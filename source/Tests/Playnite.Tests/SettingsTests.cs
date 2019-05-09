@@ -17,15 +17,13 @@ namespace Playnite.Tests
         [SetUp]
         public void TestInit()
         {
-            FileSystem.DeleteFile(PlaynitePaths.UninstallerInnoPath);
-            FileSystem.DeleteFile(PlaynitePaths.UninstallerNsisPath);
+            FileSystem.DeleteFile(PlaynitePaths.UninstallerPath);
         }
 
         [OneTimeTearDown]
         public void Cleanup()
         {
-            FileSystem.DeleteFile(PlaynitePaths.UninstallerInnoPath);
-            FileSystem.DeleteFile(PlaynitePaths.UninstallerNsisPath);
+            FileSystem.DeleteFile(PlaynitePaths.UninstallerPath);
         }
 
         [Test]
@@ -34,30 +32,7 @@ namespace Playnite.Tests
             Assert.IsTrue(PlayniteSettings.IsPortable);
             Assert.AreNotEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
 
-            File.WriteAllText(PlaynitePaths.UninstallerInnoPath, "");
-            Assert.IsFalse(PlayniteSettings.IsPortable);
-            Assert.AreEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
-        }
-
-        [Test]
-        public void PortableNsisPathsTest()
-        {
-            Assert.IsTrue(PlayniteSettings.IsPortable);
-            Assert.AreNotEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
-
-            File.WriteAllText(PlaynitePaths.UninstallerNsisPath, "");
-            Assert.IsFalse(PlayniteSettings.IsPortable);
-            Assert.AreEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
-        }
-
-        [Test]
-        public void PortableBothPathsTest()
-        {
-            Assert.IsTrue(PlayniteSettings.IsPortable);
-            Assert.AreNotEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
-
-            File.WriteAllText(PlaynitePaths.UninstallerNsisPath, "");
-            File.WriteAllText(PlaynitePaths.UninstallerInnoPath, "");
+            File.WriteAllText(PlaynitePaths.UninstallerPath, "");
             Assert.IsFalse(PlayniteSettings.IsPortable);
             Assert.AreEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
         }

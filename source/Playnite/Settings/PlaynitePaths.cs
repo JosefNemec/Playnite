@@ -9,126 +9,23 @@ namespace Playnite
 {
     public class PlaynitePaths
     {
-        public static string ProgramPath
-        {
-            get
-            {
-                return Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            }
-        }
-
-        public static string ExecutablePath
-        {
-            get
-            {
-                return System.Reflection.Assembly.GetEntryAssembly().Location;
-            }
-        }
-
-        public static string ExtensionsUserDataPath
-        {
-            get
-            {
-                return Path.Combine(ConfigRootPath, "Extensions");
-            }
-        }
-
-        public static string ExtensionsProgramPath
-        {
-            get
-            {
-                return Path.Combine(ProgramPath, "Extensions");
-            }
-        }
-
-        public static string ExtensionsDataPath
-        {
-            get
-            {
-                return Path.Combine(ConfigRootPath, "ExtensionsData");
-            }
-        }
-
-        public static string LocalizationsPath
-        {
-            get
-            {
-                return Path.Combine(ProgramPath, "Localization");
-            }
-        }
-
-        public static string ThemesProgramPath
-        {
-            get
-            {
-                return Path.Combine(ProgramPath, "Themes");
-            }
-        }
-
-        public static string ThemesUserDataPath
-        {
-            get
-            {
-                return Path.Combine(ConfigRootPath, "Themes");
-            }
-        }
-
-        public static string UninstallerInnoPath
-        {
-            get
-            {
-                return Path.Combine(ProgramPath, "unins000.exe");
-            }
-        }
-
-        public static string UninstallerNsisPath
-        {
-            get
-            {
-                return Path.Combine(ProgramPath, "uninstall.exe");
-            }
-        }
-
-        public static string BrowserCachePath
-        {
-            get
-            {
-                return Path.Combine(ConfigRootPath, "browsercache");
-            }
-        }
-
-        public static string TempPath
-        {
-            get
-            {
-                return Path.Combine(Path.GetTempPath(), "Playnite");
-            }
-        }
-
-        public static string ConfigFilePath
-        {
-            get
-            {
-                return Path.Combine(ConfigRootPath, "config.json");
-            }
-        }
-
-        public static string DataCachePath
-        {
-            get
-            {
-                return Path.Combine(ConfigRootPath, "cache");
-            }
-        }
-
-        public static string ImagesCachePath
-        {
-            get
-            {
-                return Path.Combine(DataCachePath, "images");
-            }
-        }
-
+        public static string ProgramPath => Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+        public static string ExecutablePath => System.Reflection.Assembly.GetEntryAssembly().Location;
+        public static string ExtensionsUserDataPath => Path.Combine(ConfigRootPath, "Extensions");
+        public static string ExtensionsProgramPath => Path.Combine(ProgramPath, "Extensions");
+        public static string ExtensionsDataPath => Path.Combine(ConfigRootPath, "ExtensionsData");
+        public static string LocalizationsPath => Path.Combine(ProgramPath, "Localization");
+        public static string ThemesProgramPath => Path.Combine(ProgramPath, "Themes");
+        public static string ThemesUserDataPath => Path.Combine(ConfigRootPath, "Themes");
+        public static string UninstallerPath => Path.Combine(ProgramPath, "unins000.exe");
+        public static string BrowserCachePath => Path.Combine(ConfigRootPath, "browsercache");
+        public static string TempPath => Path.Combine(Path.GetTempPath(), "Playnite");
+        public static string ConfigFilePath => Path.Combine(ConfigRootPath, "config.json");
+        public static string FullscreenConfigFilePath => Path.Combine(ConfigRootPath, "fullscreenConfig.json");
+        public static string WindowPositionsPath => Path.Combine(ConfigRootPath, "windowPositions.json");
+        public static string DataCachePath => Path.Combine(ConfigRootPath, "cache");
+        public static string ImagesCachePath => Path.Combine(DataCachePath, "images");
+        public static string UserProgramDataPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
         public static string ConfigRootPath
         {
             get
@@ -144,12 +41,6 @@ namespace Playnite
             }
         }
 
-        public static string UserProgramDataPath
-        {
-            get
-            {
-                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
-            }
-        }
+        
     }
 }

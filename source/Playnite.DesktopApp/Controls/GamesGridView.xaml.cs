@@ -146,7 +146,7 @@ namespace Playnite.DesktopApp.Controls
 
             BindingOperations.SetBinding(header, GridViewColumnHeader.VisibilityProperty, new Binding(string.Format("GridViewHeaders[{0}]", header.Tag.ToString()))
             {
-                Source = AppSettings,
+                Source = AppSettings.ViewSettings,
                 Mode = BindingMode.OneWay,
                 Converter = new BooleanToVisibilityConverter()
             });

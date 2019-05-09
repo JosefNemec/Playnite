@@ -288,13 +288,12 @@ namespace Playnite.DesktopApp.ViewModels
         {
             Settings.CopyProperties(originalSettings, false, new List<string>()
             {
-                nameof(PlayniteSettings.GridViewHeaders),
                 nameof(PlayniteSettings.FilterSettings),
-                nameof(PlayniteSettings.FullScreenFilterSettings),
-                nameof(PlayniteSettings.InstallInstanceId),
                 nameof(PlayniteSettings.ViewSettings),
-                nameof(PlayniteSettings.FullscreenViewSettings),
-                nameof(PlayniteSettings.CoverArtHeight)
+                nameof(PlayniteSettings.InstallInstanceId),
+                nameof(PlayniteSettings.CoverArtHeight),
+                nameof(PlayniteSettings.WindowPositions),
+                nameof(PlayniteSettings.Fullscreen)
             });
         }
 

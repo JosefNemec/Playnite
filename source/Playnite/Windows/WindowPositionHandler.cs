@@ -16,9 +16,9 @@ namespace Playnite.Windows
         private Window Window;
         private string WindowName;
         private bool IgnoreChanges = false;
-        private PlayniteSettings Configuration;
+        private WindowPositions Configuration;
 
-        public WindowPositionHandler(Window window, string windowName, PlayniteSettings settings)
+        public WindowPositionHandler(Window window, string windowName, WindowPositions settings)
         {
             Window = window;
             WindowName = windowName;
@@ -32,7 +32,7 @@ namespace Playnite.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Check window bounds only if this window has no configuration yet, ie. first run.
-            if (!Configuration.WindowPositions.ContainsKey(WindowName))
+            if (!Configuration.Positions.ContainsKey(WindowName))
             {
                 CheckWindowBounds();
             }
@@ -85,9 +85,9 @@ namespace Playnite.Windows
 
         private void MakeSureConfigEntryExists()
         {
-            if (!Configuration.WindowPositions.ContainsKey(WindowName))
+            if (!Configuration.Positions.ContainsKey(WindowName))
             {
-                Configuration.WindowPositions[WindowName] = new PlayniteSettings.WindowPosition();
+                Configuration.Positions[WindowName] = new WindowPosition();
             }
         }
 
@@ -106,7 +106,7 @@ namespace Playnite.Windows
             }
 
             MakeSureConfigEntryExists();
-            Configuration.WindowPositions[WindowName].State = Window.WindowState;
+            Configuration.Positions[WindowName].State = Window.WindowState;
         }
 
         public void SaveSize()
@@ -124,7 +124,7 @@ namespace Playnite.Windows
             }
 
             MakeSureConfigEntryExists();
-            Configuration.WindowPositions[WindowName].Size = new PlayniteSettings.WindowPosition.Point()
+            Configuration.Positions[WindowName].Size = new WindowPosition.Point()
             {
                 X = Window.Width,
                 Y = Window.Height
@@ -144,7 +144,7 @@ namespace Playnite.Windows
             }
 
             MakeSureConfigEntryExists();
-            Configuration.WindowPositions[WindowName].Position = new PlayniteSettings.WindowPosition.Point()
+            Configuration.Positions[WindowName].Position = new WindowPosition.Point()
             {
                 X = Window.Left,
                 Y = Window.Top
@@ -153,7 +153,7 @@ namespace Playnite.Windows
 
         public void RestoreSizeAndLocation()
         {
-            if (!Configuration.WindowPositions.ContainsKey(WindowName))
+            if (!Configuration.Positions.ContainsKey(WindowName))
             {
                 return;
             }
@@ -162,7 +162,7 @@ namespace Playnite.Windows
 
             try
             {
-                var data = Configuration.WindowPositions[WindowName];
+                var data = Configuration.Positions[WindowName];
 
                 if (data.Position != null)
                 {

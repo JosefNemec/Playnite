@@ -60,7 +60,7 @@ namespace Playnite.Behaviors
         {            
             var expander = (Expander)sender;
             var id = GetSaveStateId(expander);
-            expander.IsExpanded = !PlayniteApplication.Current.AppSettings.CollapsedCategories.Contains(id);
+            expander.IsExpanded = !PlayniteApplication.Current.AppSettings.ViewSettings.CollapsedCategories.Contains(id);
         }
 
         private static void Expander_Collapsed(object sender, RoutedEventArgs e)
@@ -72,9 +72,9 @@ namespace Playnite.Behaviors
             }
 
             var id = GetSaveStateId(expander);            
-            if (!PlayniteApplication.Current.AppSettings.CollapsedCategories.Contains(id))
+            if (!PlayniteApplication.Current.AppSettings.ViewSettings.CollapsedCategories.Contains(id))
             {
-                PlayniteApplication.Current.AppSettings.CollapsedCategories.Add(id);
+                PlayniteApplication.Current.AppSettings.ViewSettings.CollapsedCategories.Add(id);
             }
         }
 
@@ -87,9 +87,9 @@ namespace Playnite.Behaviors
             }
 
             var id = GetSaveStateId(expander);
-            if (PlayniteApplication.Current.AppSettings.CollapsedCategories.Contains(id))
+            if (PlayniteApplication.Current.AppSettings.ViewSettings.CollapsedCategories.Contains(id))
             {
-                PlayniteApplication.Current.AppSettings.CollapsedCategories.Remove(id);
+                PlayniteApplication.Current.AppSettings.ViewSettings.CollapsedCategories.Remove(id);
             }
         }
     }

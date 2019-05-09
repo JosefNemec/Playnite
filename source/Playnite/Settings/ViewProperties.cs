@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -212,5 +213,92 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
-    }        
+
+        private ObservableConcurrentDictionary<string, bool> gridViewHeaders = new ObservableConcurrentDictionary<string, bool>()
+        {
+            { "Icon", true },
+            { "Name", true },
+            { "Platform", false },
+            { "Developers", false },
+            { "Publishers", false },
+            { "ReleaseDate", true },
+            { "Genres", true },
+            { "LastActivity", true },
+            { "IsInstalled", false },
+            { "InstallDirectory", false },
+            { "Categories", false },
+            { "Playtime", true },
+            { "Added", false },
+            { "Modified", false },
+            { "PlayCount", false },
+            { "Series", false },
+            { "Version", false },
+            { "AgeRating", false },
+            { "Region", false },
+            { "Source", false },
+            { "CompletionStatus", false },
+            { "UserScore", false },
+            { "CriticScore", false },
+            { "CommunityScore", false },
+            { "Tags", false },
+            { "Library", true }
+        };
+
+        public ObservableConcurrentDictionary<string, bool> GridViewHeaders
+        {
+            get
+            {
+                return gridViewHeaders;
+            }
+
+            set
+            {
+                if (gridViewHeaders != null)
+                {
+                    gridViewHeaders.PropertyChanged -= GridViewHeaders_PropertyChanged;
+                }
+
+                gridViewHeaders = value;
+                gridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> collapsedCategories = new List<string>();
+        public List<string> CollapsedCategories
+        {
+            get
+            {
+                return collapsedCategories;
+            }
+
+            set
+            {
+                collapsedCategories = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ViewSettings()
+        {
+            GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
+        }
+
+        private void GridViewHeaders_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(GridViewHeaders.Values))
+            {
+                OnPropertyChanged(nameof(GridViewHeaders));
+            }
+        }
+
+        #region Serialization Conditions
+
+        public bool ShouldSerializeCollapsedCategories()
+        {
+            return CollapsedCategories.HasItems();
+        }
+
+        #endregion Serialization Conditions
+    }
 }

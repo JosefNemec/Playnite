@@ -319,6 +319,7 @@
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Metadata\Providers\IGDBMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
+    <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Settings\OldSettings\Plugins.cs" />
     <Compile Include="Settings\PlaynitePaths.cs" />
     <Compile Include="PipeServer.cs" />
@@ -332,6 +333,7 @@
     <Compile Include="Settings\PlayniteSettings.cs" />
     <Compile Include="App\Updater.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
+    <Compile Include="Settings\WindowPositions.cs" />
     <Compile Include="Themes.cs" />
     <Compile Include="ThirdPartyClients\ThirdPartyToolsList.cs" />
     <Compile Include="ObservableTime.cs" />

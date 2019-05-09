@@ -16,6 +16,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
+using Newtonsoft.Json.Serialization;
+using System.Runtime.Serialization;
 
 namespace Playnite
 {
@@ -189,58 +191,12 @@ namespace Playnite
 
         private static ILogger logger = LogManager.GetCurrentClassLogger();
 
-        public class WindowPosition
-        {
-            public class Point
-            {
-                public double X
-                {
-                    get; set;
-                }
-
-                public double Y
-                {
-                    get; set;
-                }
-            }
-
-            public Point Position
-            {
-                get; set;
-            }
-
-            public Point Size
-            {
-                get; set;
-            }
-
-            public System.Windows.WindowState State
-            {
-                get; set;
-            } = System.Windows.WindowState.Normal;
-        }
-
         public int Version
         {
             get; set;
         } = 1;
 
-        private Dictionary<string, WindowPosition> windowPositions = new Dictionary<string, WindowPosition>();
-        public Dictionary<string, WindowPosition> WindowPositions
-        {
-            get
-            {
-                return windowPositions;
-            }
-
-            set
-            {
-                windowPositions = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
+        private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
         {
             get
@@ -409,22 +365,6 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
-
-        private List<string> collapsedCategories = new List<string>();
-        public List<string> CollapsedCategories
-        {
-            get
-            {
-                return collapsedCategories;
-            }
-
-            set
-            {
-                collapsedCategories = value;
-                OnPropertyChanged();
-            }
-        }        
-
         private bool firstTimeWizardComplete;
         public bool FirstTimeWizardComplete
         {
@@ -436,21 +376,6 @@ namespace Playnite
             set
             {
                 firstTimeWizardComplete = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool emulatorWizardComplete;
-        public bool EmulatorWizardComplete
-        {
-            get
-            {
-                return emulatorWizardComplete;
-            }
-
-            set
-            {
-                emulatorWizardComplete = value;
                 OnPropertyChanged();
             }
         }
@@ -650,20 +575,6 @@ namespace Playnite
             }
         }
 
-        private FilterSettings fullScreenFilterSettings = new FilterSettings();
-        public FilterSettings FullScreenFilterSettings
-        {
-            get
-            {
-                return fullScreenFilterSettings;
-            }
-
-            set
-            {
-                fullScreenFilterSettings = value;
-            }
-        }
-
         private ViewSettings desktopViewSettings = new ViewSettings();
         public ViewSettings ViewSettings
         {
@@ -675,70 +586,6 @@ namespace Playnite
             set
             {
                 desktopViewSettings = value;
-            }
-        }
-
-        private ViewSettings fullscreenViewSettings = new ViewSettings();
-        public ViewSettings FullscreenViewSettings
-        {
-            get
-            {
-                return fullscreenViewSettings;
-            }
-
-            set
-            {
-                fullscreenViewSettings = value;
-            }
-        }
-
-        private ObservableConcurrentDictionary<string, bool> gridViewHeaders = new ObservableConcurrentDictionary<string, bool>()
-        {
-            { "Icon", true },
-            { "Name", true },
-            { "Platform", false },
-            { "Developers", false },
-            { "Publishers", false },
-            { "ReleaseDate", true },
-            { "Genres", true },
-            { "LastActivity", true },
-            { "IsInstalled", false },
-            { "InstallDirectory", false },
-            { "Categories", false },
-            { "Playtime", true },
-            { "Added", false },
-            { "Modified", false },
-            { "PlayCount", false },
-            { "Series", false },
-            { "Version", false },
-            { "AgeRating", false },
-            { "Region", false },
-            { "Source", false },
-            { "CompletionStatus", false },
-            { "UserScore", false },
-            { "CriticScore", false },
-            { "CommunityScore", false },
-            { "Tags", false },
-            { "Library", true }
-        };
-
-        public ObservableConcurrentDictionary<string, bool> GridViewHeaders
-        {
-            get
-            {
-                return gridViewHeaders;
-            }
-
-            set
-            {
-                if (gridViewHeaders != null)
-                {
-                    gridViewHeaders.PropertyChanged -= GridViewHeaders_PropertyChanged;
-                }
-
-                gridViewHeaders = value;
-                gridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
-                OnPropertyChanged();
             }
         }
 
@@ -1055,46 +902,85 @@ namespace Playnite
         {
             get
             {
-                return !File.Exists(PlaynitePaths.UninstallerNsisPath) && !File.Exists(PlaynitePaths.UninstallerInnoPath);
+                return !File.Exists(PlaynitePaths.UninstallerPath);
             }
+        }
+
+        [JsonIgnore]
+        public WindowPositions WindowPositions
+        {
+            get; private set;
+        }
+
+        [JsonIgnore]
+        public FullscreenSettings Fullscreen
+        {
+            get; private set;
         }
 
         public PlayniteSettings()
         {
             InstallInstanceId = Guid.NewGuid().ToString();
-            GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
         }
 
-        private void GridViewHeaders_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            // TODO
-            //if (e.PropertyName == "Values")
-            //{
-            //    OnPropertyChanged(nameof(GridViewHeaders));
-            //}
-        }
-
-        public static PlayniteSettings LoadSettings()
+        private static T LoadSettingFile<T>(string path) where T : class
         {
             try
             {
-                if (File.Exists(PlaynitePaths.ConfigFilePath))
+                if (File.Exists(path))
                 {
-                    return JsonConvert.DeserializeObject<PlayniteSettings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
+                    return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(e, "Failed to load application settings.");
+                logger.Error(e, $"Failed to load {path} setting file.");
             }
 
-            return new PlayniteSettings();
+            return null;
+        }
+
+        private static void SaveSettingFile(object settings, string path)
+        {
+            File.WriteAllText(path, JsonConvert.SerializeObject(settings, Formatting.Indented));
+        }
+
+        public static PlayniteSettings LoadSettings()
+        {
+            var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);  
+            if (settings == null)
+            {
+                settings = new PlayniteSettings();
+            }
+
+            settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
+            if (settings.WindowPositions == null)
+            {
+                settings.WindowPositions = new WindowPositions();
+            }
+
+            settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath);
+            if (settings.Fullscreen == null)
+            {
+                settings.Fullscreen = new FullscreenSettings();
+            }
+
+            return settings;
         }
 
         public void SaveSettings()
         {
             FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
-            File.WriteAllText(PlaynitePaths.ConfigFilePath, JsonConvert.SerializeObject(this, Formatting.Indented));
+            SaveSettingFile(this, PlaynitePaths.ConfigFilePath);
+            SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
+            SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
+        }
+
+        [OnError]
+        internal void OnError(StreamingContext context, ErrorContext errorContext)
+        {
+            logger.Error(errorContext.Error, $"Failed to deserialize {errorContext.Path}.");
+            errorContext.Handled = true;
         }
 
         public static void ConfigureLogger()
@@ -1228,7 +1114,7 @@ namespace Playnite
                     WriteConfig("C2F038E5-8B92-4877-91F1-DA9094155FC5", config);
                 }
             }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            catch (Exception e)// when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to migrade plugin configuration.");
             }
@@ -1248,5 +1134,14 @@ namespace Playnite
                 FileSystem.DeleteFile(shortcutPath);
             }
         }
+
+        #region Serialization Conditions
+
+        public bool ShouldSerializeDisabledPlugins()
+        {
+            return DisabledPlugins.HasItems();
+        }
+
+        #endregion Serialization Conditions
     }
 }

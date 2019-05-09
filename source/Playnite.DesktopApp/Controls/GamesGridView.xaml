@@ -51,7 +51,7 @@
     </UserControl.Resources>
 
     <ListView x:Name="GridGames" SelectionMode="Extended" BorderThickness="0"
-              DataContext="{Binding AppSettings, RelativeSource={RelativeSource AncestorType=UserControl}}"
+              DataContext="{Binding AppSettings.ViewSettings, RelativeSource={RelativeSource AncestorType=UserControl}}"
               ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}"
               VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.IsVirtualizingWhenGrouping="True"
               VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5">
@@ -144,7 +144,7 @@
                 </GridView.ColumnHeaderContainerStyle>
                 <GridView.ColumnHeaderContextMenu>
                     <ContextMenu Name="HeaderMenu"
-                                 DataContext="{Binding Data,Source={StaticResource SettingsProxy}}">
+                                 DataContext="{Binding Data, Source={StaticResource SettingsProxy}}">
                         <MenuItem Header="{DynamicResource LOCGameIconTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Icon]}" />
                         <MenuItem Header="{DynamicResource LOCGameNameTitle}"
@@ -230,7 +230,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameNameTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Name}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Name}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -250,7 +250,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGamePlatformTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Platform}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Platform}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -270,7 +270,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameProviderTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Library}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Library}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -290,7 +290,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Developers}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Developers}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -310,7 +310,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGamePublishersTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Publishers}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Publishers}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -330,7 +330,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.ReleaseDate}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.ReleaseDate}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -350,7 +350,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameGenresTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Genres}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Genres}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -370,7 +370,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameCategoriesTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Categories}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Categories}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -390,7 +390,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameTagsTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Tags}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Tags}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -410,7 +410,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.IsInstalled}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.IsInstalled}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -430,7 +430,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.InstallDirectory}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.InstallDirectory}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -450,7 +450,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameLastActivityTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.LastActivity}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.LastActivity}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -470,7 +470,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCTimePlayed}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Playtime}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Playtime}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -490,7 +490,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCPlayCountLabel}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.PlayCount}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.PlayCount}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -510,7 +510,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCCompletionStatus}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CompletionStatus}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CompletionStatus}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -530,7 +530,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCSeriesLabel}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Series}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Series}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -550,7 +550,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCVersionLabel}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Version}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Version}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -570,7 +570,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCAgeRatingLabel}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.AgeRating}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.AgeRating}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -590,7 +590,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCRegionLabel}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Region}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Region}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -610,7 +610,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCSourceLabel}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Source}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Source}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -630,7 +630,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCAddedLabel}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Added}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Added}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -650,7 +650,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCModifiedLabel}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Modified}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Modified}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -670,7 +670,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCUserScore}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.UserScore}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.UserScore}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -690,7 +690,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCCriticScore}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CriticScore}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CriticScore}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -710,7 +710,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCCommunityScore}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CommunityScore}}"/>
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CommunityScore}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>

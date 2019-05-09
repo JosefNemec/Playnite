@@ -32,7 +32,7 @@ namespace Playnite
     public class StringFilterItemProperites : ObservableObject
     {
         [JsonIgnore]
-        public bool IsSet => Values.HasItems();
+        public bool IsSet => Values.HasNonEmptyItems();
 
         private List<string> values;
         public List<string> Values
@@ -902,7 +902,7 @@ namespace Playnite
             return !Name.IsNullOrEmpty();
         }
 
-        public bool ShouldSerializeReleaseDate()
+        public bool ShouldSerializeReleaseYear()
         {
             return ReleaseYear?.IsSet == true;
         }
