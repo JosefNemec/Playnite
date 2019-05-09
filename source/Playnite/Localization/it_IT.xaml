@@ -318,10 +318,10 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Abilita il supporto del controller in modalità Desktop *</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Il pulsante guida apre la modalità a schermo intero</sys:String>
 
-    <sys:String x:Key="LOCStrechNone"></sys:String>
-    <sys:String x:Key="LOCStrechFill"></sys:String>
-    <sys:String x:Key="LOCStrechUniform"></sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
+    <sys:String x:Key="LOCStrechNone">Niente</sys:String>
+    <sys:String x:Key="LOCStrechFill">Riempi</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Uniforma</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Uniforma per riempire</sys:String>
 
     <sys:String x:Key="LOCDockLeft">A sinistra</sys:String>
     <sys:String x:Key="LOCDockRight">A destra</sys:String>
