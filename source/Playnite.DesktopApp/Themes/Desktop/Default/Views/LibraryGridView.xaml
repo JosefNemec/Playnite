@@ -30,7 +30,6 @@
                                 SelectionMode="Extended"
                                 pbeh:ScrollToSelectedBehavior.Enabled="True"
                                 DockPanel.Dock="Left"
-                                                          Grid.Row="0"
                                 BorderThickness="0">
                                 <pctrlsShared:ExtendedListBox.Style>
                                     <!--Improves performances by not populating list when other views are used-->

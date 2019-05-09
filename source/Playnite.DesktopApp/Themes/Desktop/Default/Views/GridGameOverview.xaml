@@ -11,7 +11,7 @@
     <Style TargetType="{x:Type views:GridGameOverview}">        
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:GridGameOverview}">
+                <ControlTemplate TargetType="{x:Type views:GridGameOverview}">                    
                     <DockPanel>
                         <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
                                    DockPanel.Dock="Top" Margin="0,10,15,5">
@@ -20,7 +20,31 @@
                             </Hyperlink>
                         </TextBlock>
 
+                        <TextBlock Text="{DynamicResource LOCErrorNoGameSelected}" 
+                                   Margin="0,20,0,0" DockPanel.Dock="Top"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <Trigger Property="DataContext" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
                         <DockPanel DockPanel.Dock="Top">
+                            <DockPanel.Style>
+                                <Style TargetType="DockPanel">
+                                    <Style.Triggers>
+                                        <Trigger Property="DataContext" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DockPanel.Style>
                             <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
                        Source="{Binding Game.IconObject}" />
                             <TextBlock Text="{Binding Game.DisplayName}" FontSize="20" Margin="10,0,0,0" TextWrapping="Wrap"
@@ -31,7 +55,16 @@
                             </TextBlock>
                         </DockPanel>
 
-                        <StackPanel DockPanel.Dock="Top" Margin="0,20,0,0" Orientation="Horizontal" Height="35" >
+                        <StackPanel DockPanel.Dock="Top" Margin="0,20,0,0" Orientation="Horizontal" Height="35">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Style.Triggers>
+                                        <Trigger Property="DataContext" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
                             <Button MinWidth="120" Content="{DynamicResource LOCPlayGame}" Style="{StaticResource PlayButton}"
                             Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding PlayCommand}"/>
@@ -62,6 +95,15 @@
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                       VerticalScrollBarVisibility="Auto"
                                       Margin="0,15,0,0" DockPanel.Dock="Top">
+                            <ScrollViewer.Style>
+                                <Style TargetType="ScrollViewer">
+                                    <Style.Triggers>
+                                        <Trigger Property="DataContext" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ScrollViewer.Style>
                             <StackPanel>
                                 <views:GameProperties IsTabStop="False" />
                                 <Border Margin="0,10,0,0">

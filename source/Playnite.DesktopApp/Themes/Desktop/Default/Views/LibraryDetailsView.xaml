@@ -68,7 +68,7 @@
                     <DockPanel>
                         <pctrlsShared:ExtendedListBox SelectionMode="Extended"
                             Width="350" DockPanel.Dock="Left"
-                            BorderThickness="0"
+                            BorderThickness="0"                                                      
                             SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
                             SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
                             ItemContainerStyle="{DynamicResource MainListItemStyle}"
