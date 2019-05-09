@@ -22,7 +22,6 @@ namespace TwitchLibrary
     public class TwitchLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI PlayniteApi;
         internal readonly string TokensPath;
         private const string dbImportMessageId = "twitchlibImportError";
 
