@@ -161,7 +161,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
 Beispiel: -image "{ImagePath}" -fullscreen
 Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Ohne "Spielen"-Aktion oder beim Verwenden einer URL kann kein Icon automatisch ausgewählt werden.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Symbol nicht abrufbar, da keine »Spielen«-Aktion definiert oder diese auf eine URL festgelegt wurde.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Nur fehlende Metadaten herunterladen</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Das Aktivieren dieser Option führt dazu, dass bereits befüllte Felder nicht überschrieben werden.</sys:String>
@@ -280,15 +280,15 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsClearWebCache">Webcache leeren</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Löst eventuell Probleme beim Verknüpfen von Benutzerkonten.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Infobereichsymbol anzeigen *</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray">Minimiere ins Tray</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">In Infobereich minimieren</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">In Infobereich schließen</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Spielstart:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Spielende:</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Verwende GOG Galaxy</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">GOG Galaxy ermöglicht synchronisierte Cloud-Spielstände, das Aufzeichnen von Spielzeiten, usw.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Dies wird die Kategorien aller Steam-Spiele zurücksetzen. Bist du sicher?</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Kategorien importieren</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Es wurde kein Account zum Importieren von Kategorien ausgewählt.</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Beim Spielstart GOG Galaxy verwenden</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Ermöglicht cloudsynchronisierte Spielstände, Aufzeichnen von Spielzeiten usw.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Dies wird die derzeitigen Kategorien aller Steam-Spiele überschreiben. Möchtest du wirklich fortfahren?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Kategorien importieren?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kategorien können nicht importiert werden, da kein Konto für Importe ausgewählt.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Fehler beim Import der Steam-Kategorien: Datenbank ist nicht geöffnet</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Fehler beim Import der Steam-Kategorien: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Dies wird alle Verknüpfungen entfernen und Playnite neu starten. Bist du sicher?</sys:String>
@@ -391,7 +391,7 @@ Weitere Spiele (inklusive Spiele aus dem Windows Store) kannst du zudem auch sp�
     <sys:String x:Key="LOCEmulatorsTitle">Emulatoren</sys:String>
     <sys:String x:Key="LOCEmulatorTitle">Emulator</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Plattform hinzufügen</sys:String>
-    <sys:String x:Key="LOCSelectIconTitle">Datei</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">Symbol auswählen</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Datei</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Datei</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">URL</sys:String>
@@ -438,7 +438,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCGamePlatformTitle">Plattform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategorien</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Genre</sys:String>
-    <sys:String x:Key="LOCGameReleaseDateTitle">Datum</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">Erscheinungsdatum</sys:String>
     <sys:String x:Key="LOCGameReleaseYearTitle">Erscheinungsjahr</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Entwickler</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tags</sys:String>
@@ -497,12 +497,12 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
   • Installiere Playnite in ein anderes Verzeichnis</sys:String>
 
     <!--GameEdit-->
-    <sys:String x:Key="LOCGameEditWindowTitle">Metadaten bearbeiten</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Icon der "Spielen"-Aktion</sys:String>
+    <sys:String x:Key="LOCGameEditWindowTitle">Spieldetails bearbeiten</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">Aus »Spielen«-Aktion</sys:String>
     <sys:String x:Key="LOCImageURL">URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Verweis hinzufügen</sys:String>
     <sys:String x:Key="LOCSaveChanges">Speichern</sys:String>
-    <sys:String x:Key="LOCPlayAction">"Spielen"-Aktion</sys:String>
+    <sys:String x:Key="LOCPlayAction">»Spielen«-Aktion</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Aktion hinzufügen</sys:String>
     <sys:String x:Key="LOCAddAction">Aktion hinzufügen</sys:String>
     <sys:String x:Key="LOCDeleteAction">Aktion entfernen</sys:String>
