@@ -434,10 +434,11 @@ namespace Playnite
             var jumpList = new JumpList();
             foreach (var lastGame in LastGames)
             {
+                var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
                 JumpTask task = new JumpTask
                 {
                     Title = lastGame.Name,
-                    Arguments = "-command launch:" + lastGame.Id,
+                    Arguments = args,
                     Description = string.Empty,
                     CustomCategory = "Recent",
                     ApplicationPath = PlaynitePaths.ExecutablePath
