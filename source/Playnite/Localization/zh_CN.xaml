@@ -239,7 +239,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsAdvancedLabel">高级设置</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">全屏</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">提供商</sys:String>
-    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">输入</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">自动导入游戏库中的更改</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">导入已安装的游戏</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">导入已卸载的游戏</sys:String>
@@ -315,8 +315,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下载元数据，则不会应用追溯于现有游戏</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">强制同步游戏时间</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">始终在库同步期间从远程库下载记录的游戏时间，忽略Playnite记录的时间</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">在桌面模式下启用控制器支持*</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">指南按钮打开全屏模式</sys:String>
 
     <sys:String x:Key="LOCStrechNone">无</sys:String>
     <sys:String x:Key="LOCStrechFill">填充</sys:String>
@@ -375,7 +375,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay整合</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">从帐户导入类别：</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">其他游戏</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">点击下面的按钮导入其他已安装的游戏或手动浏览（包括Windows商店游戏）</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">_导入游戏</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">配置完成</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始设置已完成。 请记住，稍后可以通过“设置”菜单更改所有设置。
@@ -539,7 +539,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCNever">永不</sys:String>
     <sys:String x:Key="LOCNotPlayed">未启动</sys:String>
     <sys:String x:Key="LOCPlayed">已启动</sys:String>
-    <sys:String x:Key="LOCBeaten"></sys:String>
+    <sys:String x:Key="LOCBeaten">拍</sys:String>
     <sys:String x:Key="LOCCompleted">已完成</sys:String>
     <sys:String x:Key="LOCCompletionStatus">完成状态</sys:String>
     <sys:String x:Key="LOCUserScore">用户分数</sys:String>
@@ -657,7 +657,8 @@ IGDB > 官方商店：
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">帐号登录</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">账户名称</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">登录到您的帐户或使用您的公共帐户名称同步完整的游戏库。
+注意，账户名称选项只能用于在 GOG 隐私设置中设置游戏库公开可见的帐户。</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">选择通过身份验证的用户或指定帐户的可信URL名称以同步您的完整库。库为私密的帐户必须指定链接到该Steam帐户的API密钥</sys:String>
