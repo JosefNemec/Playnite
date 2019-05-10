@@ -54,7 +54,7 @@ namespace OriginLibrary
 
             if (!string.IsNullOrEmpty(storeMetadata.StoreDetails.i18n.gameForumURL))
             {
-                game.Links.Add(new Link("Forum", storeMetadata.StoreDetails.i18n.gameForumURL));
+                gameInfo.Links.Add(new Link("Forum", storeMetadata.StoreDetails.i18n.gameForumURL));
             }
 
             if (!string.IsNullOrEmpty(storeMetadata.StoreDetails.i18n.gameManualURL))
