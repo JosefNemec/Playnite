@@ -45,17 +45,21 @@
                     </Setter>                        
                 </Style>
             </TabControl.Style>
+
+            <!-- Intro -->
             <TabItem Visibility="Collapsed">
                 <DockPanel LastChildFill="False" Margin="20">
                     <TextBlock Text="{DynamicResource LOCWelcomeLabel}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource LOCFirstIntro}" 
                             TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,0"/>
                 </DockPanel>
-            </TabItem>            
+            </TabItem>
+            
+            <!-- Library Selection -->
             <TabItem Visibility="Collapsed">
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="{DynamicResource LOCFirstExternalTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="{DynamicResource LOCFirstImportIntroduction}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5,20,5,20"/>
+                    <TextBlock Text="{DynamicResource LOCFirstImportIntroduction}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,20"/>
                    
                     <ItemsControl ItemsSource="{Binding LibraryPlugins}"
                                   HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -74,6 +78,7 @@
                 </DockPanel>
             </TabItem>
 
+            <!-- Libraries -->
             <TabItem Visibility="Collapsed">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" Margin="20" DockPanel.Dock="Top">
@@ -86,7 +91,81 @@
                                     Margin="20,10,20,20" DockPanel.Dock="Top"/>
                 </DockPanel>                
             </TabItem>
-            
+
+            <!-- Layout -->            
+            <TabItem>
+                <StackPanel Margin="20">
+                    <TextBlock Text="{DynamicResource LOCFirstConfigGridViewLayout}"
+                               VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
+                    <TextBlock Text="{DynamicResource LOCFirstConfigGridViewLayoutDesc}"
+                               TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,20"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <RadioButton Margin="20,0,20,0"
+                                     IsChecked="{Binding IsBannerLayoutSelected}">
+                            <RadioButton.LayoutTransform>
+                                <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
+                            </RadioButton.LayoutTransform>
+                            <RadioButton.Content>
+                                <UniformGrid Columns="5" Rows="3" Margin="10,0,0,0">
+                                    <UniformGrid.Resources>
+                                        <Style TargetType="Border" BasedOn="{StaticResource PopupBorder}">
+                                            <Setter Property="Width" Value="35" />
+                                            <Setter Property="Height" Value="76" />
+                                            <Setter Property="Margin" Value="2" />
+                                        </Style>
+                                    </UniformGrid.Resources>
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                </UniformGrid>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Margin="20,0,20,0"
+                                     IsChecked="{Binding IsBoxLayoutSelected}">
+                            <RadioButton.LayoutTransform>
+                                <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
+                            </RadioButton.LayoutTransform>
+                            <RadioButton.Content>
+                                <UniformGrid Columns="3" Rows="4" Margin="10,0,0,0">
+                                    <UniformGrid.Resources>
+                                        <Style TargetType="Border" BasedOn="{StaticResource PopupBorder}">
+                                            <Setter Property="Width" Value="63" />
+                                            <Setter Property="Height" Value="45" />
+                                            <Setter Property="Margin" Value="2" />
+                                        </Style>
+                                    </UniformGrid.Resources>
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                    <Border />
+                                </UniformGrid>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </StackPanel>
+                </StackPanel>             
+            </TabItem>
+
+            <!-- Finish -->
             <TabItem Header="Done" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel LastChildFill="False" Margin="20">
                     <TextBlock Text="{DynamicResource LOCFirstConfigFinishedTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>

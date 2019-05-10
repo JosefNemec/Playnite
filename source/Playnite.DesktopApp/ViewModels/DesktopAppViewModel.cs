@@ -934,13 +934,9 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressValue = 0;
                         ProgressTotal = addedGames.Count;
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        var metaSettings = new MetadataDownloaderSettings();
-                        metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
-                        metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
-                        metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
                         using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
+                            downloader.DownloadMetadataGroupedAsync(addedGames, AppSettings.DefaultMetadataSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
@@ -1310,13 +1306,9 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressValue = 0;
                         ProgressTotal = addedGames.Count;
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        var metaSettings = new MetadataDownloaderSettings();
-                        metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
-                        metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
-                        metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
                         using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
+                            downloader.DownloadMetadataGroupedAsync(addedGames, AppSettings.DefaultMetadataSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;

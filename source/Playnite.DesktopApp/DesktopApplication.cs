@@ -167,11 +167,7 @@ namespace Playnite.DesktopApp
             if (isFirstStart)
             {
                 await MainModel.UpdateDatabase(false);
-                var metaSettings = new MetadataDownloaderSettings();
-                metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
-                metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
-                metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                await MainModel.DownloadMetadata(metaSettings);
+                await MainModel.DownloadMetadata(AppSettings.DefaultMetadataSettings);
             }
             else
             {
@@ -184,8 +180,20 @@ namespace Playnite.DesktopApp
 
         private bool ProcessStartupWizard()
         {
-            var isFirstStart = AppSettings.DatabasePath.IsNullOrEmpty();
-            if (isFirstStart)
+            // TODO test db path recovery
+            var firstStartup = true;
+            var defaultPath = GameDatabase.GetFullDbPath(GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable));
+            if (!AppSettings.DatabasePath.IsNullOrEmpty())
+            {
+                firstStartup = false;
+            }
+            else if (AppSettings.DatabasePath.IsNullOrEmpty() && Directory.Exists(defaultPath))
+            {
+                AppSettings.DatabasePath = GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable);
+                firstStartup = false;
+            }
+
+            if (firstStartup)
             {
                 AppSettings.DatabasePath = GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable);
                 AppSettings.SaveSettings();
@@ -202,6 +210,9 @@ namespace Playnite.DesktopApp
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
+                    AppSettings.CoverArtWidthRatio = settings.CoverArtWidthRatio;
+                    AppSettings.CoverArtHeightRatio = settings.CoverArtHeightRatio;
+                    AppSettings.DefaultMetadataSettings = settings.DefaultMetadataSettings;
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
                     AppSettings.SaveSettings();
@@ -228,7 +239,7 @@ namespace Playnite.DesktopApp
                 Database.SetDatabasePath(AppSettings.DatabasePath);
             }
 
-            return isFirstStart;
+            return firstStartup;
         }
     }
 }

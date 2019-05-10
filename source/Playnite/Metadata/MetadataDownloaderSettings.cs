@@ -21,7 +21,7 @@ namespace Playnite.Metadata
         Store,
         [Description("LOCMetaSourceIGDB")]
         IGDB,
-        [Description("LOCMetaSourceStoreOverIGDB")]
+        [Description("LOCMetaSourceIGDBOverStore")]
         IGDBOverStore,
         [Description("LOCMetaSourceStoreOverIGDB")]
         StoreOverIGDB
@@ -96,7 +96,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings name = new MetadataFieldSettings(false, MetadataSource.Store);
+        private MetadataFieldSettings name = new MetadataFieldSettings(true, MetadataSource.Store);
         public MetadataFieldSettings Name
         {
             get => name;
@@ -173,7 +173,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings coverImage = new MetadataFieldSettings() { Source = MetadataSource.IGDBOverStore };
+        private MetadataFieldSettings coverImage = new MetadataFieldSettings();
         public MetadataFieldSettings CoverImage
         {
             get => coverImage;
@@ -184,7 +184,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings backgroundImage = new MetadataFieldSettings() { Source = MetadataSource.Store };
+        private MetadataFieldSettings backgroundImage = new MetadataFieldSettings();
         public MetadataFieldSettings BackgroundImage
         {
             get => backgroundImage;
@@ -195,7 +195,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings icon = new MetadataFieldSettings() { Source = MetadataSource.Store };
+        private MetadataFieldSettings icon = new MetadataFieldSettings();
         public MetadataFieldSettings Icon
         {
             get => icon;

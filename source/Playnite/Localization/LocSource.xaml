@@ -388,6 +388,8 @@ Keep in mind that you can always add any custom game for any platform manually f
 
 You can also add any other game (including Windows Store games) later from main menu by clicking on Playnite application logo.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Open emulation import guide</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">Grid View Layout</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Select preferred layout for Playnite's grid view. Image layout can be changed at any time in application settings, including image stretching options.</sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configure Platforms and Emulators</sys:String>

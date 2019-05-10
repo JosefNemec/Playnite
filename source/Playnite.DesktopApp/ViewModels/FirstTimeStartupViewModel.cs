@@ -26,7 +26,8 @@ namespace Playnite.DesktopApp.ViewModels
             public const int Intro = 0;
             public const int ProviderSelect = 1;
             public const int ProviderConfig = 2;
-            public const int Finish = 3;
+            public const int Layout = 3;
+            public const int Finish = 4;
         }
 
         private static ILogger logger = LogManager.GetLogger();
@@ -57,6 +58,9 @@ namespace Playnite.DesktopApp.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public bool IsBannerLayoutSelected { get; set; } = true;
+        public bool IsBoxLayoutSelected { get; set; } = false;
 
         private int selectedIndex = 0;
         public int SelectedIndex
@@ -194,6 +198,21 @@ namespace Playnite.DesktopApp.ViewModels
             foreach (var plugin in LibraryPlugins)
             {
                 plugin.Plugin.Dispose();
+            }
+
+            if (IsBannerLayoutSelected)
+            {
+                Settings.DefaultMetadataSettings = new Metadata.MetadataDownloaderSettings();
+                Settings.DefaultMetadataSettings.CoverImage.Source = Metadata.MetadataSource.StoreOverIGDB;
+                Settings.CoverArtWidthRatio = 92;
+                Settings.CoverArtHeightRatio = 43;
+            }
+            else
+            {
+                Settings.DefaultMetadataSettings = new Metadata.MetadataDownloaderSettings();
+                Settings.DefaultMetadataSettings.CoverImage.Source = Metadata.MetadataSource.IGDBOverStore;
+                Settings.CoverArtWidthRatio = 27;
+                Settings.CoverArtHeightRatio = 38;
             }
 
             window.Close(result);
