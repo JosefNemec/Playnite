@@ -305,9 +305,9 @@ Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abge
     <sys:String x:Key="LOCSettingsRestartTitle">Playnite neu starten?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification">Die neue Datenbank wird erst nach einem Neustart von Playnite verwendet.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Die Spielzeit wird nicht erfasst wenn die "Schließen"-Aktion gewählt wurde.</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRows">Anzahl der Zeilen</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenColumns">Anzahl der Spalten</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Anzahl der Zeilen in der Detailansicht</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">Zeilenanzahl</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">Spaltenanzahl</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Zeilenanzahl in Detailansicht</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Quelle für Hintergrundbilder:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Bild des Spiels</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Screenshot vom Steam Store</sys:String>
@@ -347,15 +347,15 @@ Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abge
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Die nachfolgende Liste enthält alle Emulatoren die von Playnite automatisch erkannt und konfiguriert werden können. Lade den Emulator von der Webseite des Anbieters herunter und installiere diese. Anschließend kannst du die Emulatoren zu Playnite hinzufügen.
 
 Denke daran, dass du über das Playnite-Menü jederzeit noch weitere Emulatoren hinzufügen kannst.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Du kannst Emulatoren auf deinem PC importieren indem du den "Verzeichnis durchsuchen"-Button anklickst. Playnite wird anschließend das Verzeichnis durchsuchen und alle bekannten Emulatoren importieren. Durchsuche mehrere Verzeichnisse indem du den Button mehrfach anklickst.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">Du kannst Spiele importieren indem du den "Spiele importieren"-Button anklickst. Mit der Auswahl des richtigen Emulators ermöglichst du Playnite Spiele vollautomatisch anhand der Dateiendung zu erkennen. Durchsuche mehrere Verzeichnisse indem du den Button mehrfach anklickst.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Du kannst jeden auf deinem PC installierten Emulator importieren, indem du auf die Schaltfläche »Ordner autom. durchsuchen« klickst. Playnite wird den ausgewählten Ordner nach allen bekannten Emulatoren durchsuchen und diese optional importieren. Durch mehrfaches Anklicken der Schaltfläche kannst du aus mehreren Ordnern importieren; die Emulatoren werden dann am Ende der aktuellen Liste hinzugefügt.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Du kannst Spiele importieren, indem du auf die Schaltfläche »Ordner via Emulator durchsuchen« klickst. Die Auswahl des passenden Emulators ermöglicht Playnite, nach den richtigen Dateitypen zu suchen und diese zu importieren. Durch mehrfaches Anklicken der Schaltfläche kannst du aus mehreren Ordnern importieren; die Emulatoren werden dann am Ende der aktuellen Liste hinzugefügt.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Du hast keinen Emulator ausgewählt, weshalb Playnite nicht in der Lage sein wird Spiele automatisch zu importieren. Bist du sicher, dass du den Import abbrechen möchtest?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Du hast noch keine Emulatoren mit Dateiendungen konfiguriert, weshalb du keine emulierten Spiele importieren kannst. Möchtest du jetzt einen Emulator hinzufügen?</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanGames">Spiele importieren</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanGames">Ordner via Emulator durchsuchen</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Dateien auswählen</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Verzeichnis durchsuchen</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Ordner autom. durchsuchen …</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Emulatoren konfigurieren</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning">Am Suchen …</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">Ordner wird durchsucht …</sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Einrichtungsassistent</sys:String>
@@ -428,19 +428,19 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
 
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Symbol</sys:String>
-    <sys:String x:Key="LOCGameCoverImageTitle">Cover</sys:String>
+    <sys:String x:Key="LOCGameCoverImageTitle">Coverbild</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Hintergrundbild</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sortiername</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Anbieter</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Name</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Kontoname</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plattform</sys:String>
-    <sys:String x:Key="LOCGameCategoriesTitle">Kategorien</sys:String>
+    <sys:String x:Key="LOCGameCategoriesTitle">Kategorie</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Genre</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Erscheinungsdatum</sys:String>
     <sys:String x:Key="LOCGameReleaseYearTitle">Erscheinungsjahr</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Entwickler</sys:String>
-    <sys:String x:Key="LOCGameTagsTitle">Tags</sys:String>
+    <sys:String x:Key="LOCGameTagsTitle">Schlagwort</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publisher</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installiert</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installiert</sys:String>
@@ -450,8 +450,8 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCGameLastActivityTitle">Zuletzt gespielt</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategorie</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Beschreibung</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle">Installationspfad</sys:String>
-    <sys:String x:Key="LOCGameCoverTitle">Cover</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Installationsverzeichnis</sys:String>
+    <sys:String x:Key="LOCGameCoverTitle">Coverbild</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Verweise</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Image-, ROM- oder ISO-Pfad</sys:String>
 
@@ -498,35 +498,35 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Spieldetails bearbeiten</sys:String>
     <sys:String x:Key="LOCUseExeIcon">Aus »Spielen«-Aktion</sys:String>
-    <sys:String x:Key="LOCImageURL">URL</sys:String>
+    <sys:String x:Key="LOCImageURL">Bild-URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Verweis hinzufügen</sys:String>
-    <sys:String x:Key="LOCSaveChanges">Speichern</sys:String>
+    <sys:String x:Key="LOCSaveChanges">Änderungen speichern</sys:String>
     <sys:String x:Key="LOCPlayAction">»Spielen«-Aktion</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Aktion hinzufügen</sys:String>
+    <sys:String x:Key="LOCAddPlayAction">»Spielen«-Aktion hinzufügen</sys:String>
     <sys:String x:Key="LOCAddAction">Aktion hinzufügen</sys:String>
     <sys:String x:Key="LOCDeleteAction">Aktion entfernen</sys:String>
-    <sys:String x:Key="LOCRemovePlayAction">Aktion entfernen</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">»Spielen«-Aktion entfernen</sys:String>
     <sys:String x:Key="LOCOtherActions">Andere Aktionen</sys:String>
     <sys:String x:Key="LOCAddGames">Spiele hinzufügen</sys:String>
     <sys:String x:Key="LOCScanFolder">Verzeichnis durchsuchen</sys:String>
-    <sys:String x:Key="LOCDetectInstalled">Suchen…</sys:String>
-    <sys:String x:Key="LOCBrowse">Datei auswählen</sys:String>
-    <sys:String x:Key="LOCOpenPlaynite">Öffne Playnite</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">Installierte ermitteln</sys:String>
+    <sys:String x:Key="LOCBrowse">Durchsuchen …</sys:String>
+    <sys:String x:Key="LOCOpenPlaynite">Playnite öffnen</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profileinstellungen</sys:String>
-    <sys:String x:Key="LOCEmptyGameNameError">Du musst dem Spiel einen Namen geben.</sys:String>
-    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Du musst dem Spiel einen Namen geben.</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameError">Spielname darf nicht leer sein.</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Spielname darf vor der Metadatensuche nicht leer sein.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Ungültige Metadaten</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Bitte gib eine gültige URL ein (mit http:// oder https://):</sys:String>
-    <sys:String x:Key="LOCURLInputInfoTitile">URL</sys:String>
+    <sys:String x:Key="LOCURLInputInfoTitile">URL auswählen</sys:String>
     <sys:String x:Key="LOCMetadataDownloadError">Fehler beim Herunterladen der Metadaten: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">Download-Fehler</sys:String>
-    <sys:String x:Key="LOCClearFilters">Filter zurücksetzen</sys:String>
+    <sys:String x:Key="LOCClearFilters">Filter leeren</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Privates Konto</sys:String>
     <sys:String x:Key="LOCPublicAccount">Öffentliches Konto</sys:String>
     <sys:String x:Key="LOCAPIKey">API-Schlüssel</sys:String>
     <sys:String x:Key="LOCStartupError">Fehler beim Starten von Playnite</sys:String>
     <sys:String x:Key="LOCSkinError">Ungültiges Theme</sys:String>
-    <sys:String x:Key="LOCClearAll">Zurücksetzen</sys:String>
+    <sys:String x:Key="LOCClearAll">Alle leeren</sys:String>
     <sys:String x:Key="LOCSetupRunning">Wird installiert …</sys:String>
     <sys:String x:Key="LOCUninstalling">Wird deinstalliert …</sys:String>
     <sys:String x:Key="LOCGameLaunching">Wird gestartet …</sys:String>
@@ -631,7 +631,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCInstallScript">Skript installieren</sys:String>
     <sys:String x:Key="LOCScriptError">Skript-Fehler</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Beim ausführen des Skripts ist ein Fehler aufgetreten.</sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder">Öffne Metadaten-Verzeichnis</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Metadatenverzeichnis öffnen</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">Anbieter-Bibliothek {0} ist nicht installiert.</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Installationsverzeichnis des Spiels nicht gefunden.</sys:String>
