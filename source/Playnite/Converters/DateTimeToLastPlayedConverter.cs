@@ -21,41 +21,38 @@ namespace Playnite.Converters
             }
             else
             {
+                if (lastPlayed.Value.Date == DateTime.Today)
+                {
+                    return ResourceProvider.GetString("LOCToday");
+                }
+
+                if (lastPlayed.Value.Date.AddDays(1) == DateTime.Today)
+                {
+                    return ResourceProvider.GetString("LOCYesterday");
+                }
+
                 var currentDate = DateTime.Now;
                 var diff = currentDate - lastPlayed.Value;
                 if (diff.TotalDays < 7)
                 {
-                    if (diff.TotalDays < 1)
+                    switch (lastPlayed.Value.DayOfWeek)
                     {
-                        return ResourceProvider.GetString("LOCToday");
-                    }
-                    else if (diff.TotalDays < 2)
-                    {
-                        return ResourceProvider.GetString("LOCYesterday");
-
-                    }
-                    else
-                    {
-                        switch (lastPlayed.Value.DayOfWeek)
-                        {
-                            case DayOfWeek.Sunday:
-                                return ResourceProvider.GetString("LOCSunday");
-                            case DayOfWeek.Monday:
-                                return ResourceProvider.GetString("LOCMonday");
-                            case DayOfWeek.Tuesday:
-                                return ResourceProvider.GetString("LOCTuesday");
-                            case DayOfWeek.Wednesday:
-                                return ResourceProvider.GetString("LOCWednesday");
-                            case DayOfWeek.Thursday:
-                                return ResourceProvider.GetString("LOCThursday");
-                            case DayOfWeek.Friday:
-                                return ResourceProvider.GetString("LOCFriday");
-                            case DayOfWeek.Saturday:
-                                return ResourceProvider.GetString("LOCSaturday");
-                            default:
-                                return lastPlayed.Value.ToString(Common.Constants.DateUiFormat);
-                        }
-
+                        case DayOfWeek.Sunday:
+                            return ResourceProvider.GetString("LOCSunday");
+                        case DayOfWeek.Monday:
+                            return ResourceProvider.GetString("LOCMonday");
+                        case DayOfWeek.Tuesday:
+                            return ResourceProvider.GetString("LOCTuesday");
+                        case DayOfWeek.Wednesday:
+                            return ResourceProvider.GetString("LOCWednesday");
+                        case DayOfWeek.Thursday:
+                            return ResourceProvider.GetString("LOCThursday");
+                        case DayOfWeek.Friday:
+                            return ResourceProvider.GetString("LOCFriday");
+                        case DayOfWeek.Saturday:
+                            return ResourceProvider.GetString("LOCSaturday");
+                        default:
+                            return lastPlayed.Value.ToString(Common.Constants.DateUiFormat);
                     }
                 }
                 else
