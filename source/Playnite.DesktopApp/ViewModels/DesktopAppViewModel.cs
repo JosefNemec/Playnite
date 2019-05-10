@@ -1065,9 +1065,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (!GlobalTaskHandler.IsActive)
                     {
-                        var settings = new MetadataDownloaderSettings();
-                        settings.ConfigureFields(MetadataSource.IGDB, true);
-                        await DownloadMetadata(settings, addedGames);
+                        await DownloadMetadata(AppSettings.DefaultMetadataSettings, addedGames);
                     }
                     else
                     {
@@ -1086,9 +1084,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (!GlobalTaskHandler.IsActive)
                     {
-                        var settings = new MetadataDownloaderSettings();
-                        settings.ConfigureFields(MetadataSource.IGDB, true);
-                        await DownloadMetadata(settings, addedGames);
+                        await DownloadMetadata(AppSettings.DefaultMetadataSettings, addedGames);
                     }
                     else
                     {
@@ -1106,9 +1102,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (!GlobalTaskHandler.IsActive)
                     {
-                        var settings = new MetadataDownloaderSettings();
-                        settings.ConfigureFields(MetadataSource.IGDB, true);
-                        await DownloadMetadata(settings, model.ImportedGames);
+                        await DownloadMetadata(AppSettings.DefaultMetadataSettings, model.ImportedGames);
                     }
                     else
                     {
