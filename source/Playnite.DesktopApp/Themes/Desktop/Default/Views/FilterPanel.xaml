@@ -96,7 +96,8 @@
                                        Tag="{pmrk:Settings FilterSettings.Library.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
                                 <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Libraries}"
-                                               FilterProperties="{pmrk:Settings FilterSettings.Library, Mode=TwoWay}"/>
+                                                           FilterProperties="{pmrk:Settings FilterSettings.Library, Mode=TwoWay}"
+                                                           IsFullTextEnabled="False"/>
 
                                 <!-- Name -->
                                 <Label Content="{DynamicResource LOCNameLabel}"

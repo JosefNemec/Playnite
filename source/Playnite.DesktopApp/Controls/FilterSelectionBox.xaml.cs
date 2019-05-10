@@ -23,6 +23,25 @@ namespace Playnite.DesktopApp.Controls
     {
         internal bool IgnoreChanges { get; set; }
 
+        public bool IsFullTextEnabled
+        {
+            get
+            {
+                return (bool)GetValue(IsFullTextEnabledProperty);
+            }
+
+            set
+            {
+                SetValue(IsFullTextEnabledProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty IsFullTextEnabledProperty = DependencyProperty.Register(
+            nameof(IsFullTextEnabled),
+            typeof(bool),
+            typeof(FilterSelectionBox),
+            new PropertyMetadata(true));
+
         public SelectableItemList ItemsList
         {
             get
@@ -105,6 +124,10 @@ namespace Playnite.DesktopApp.Controls
             {
                 box.ItemsList?.SetSelection(box.FilterProperties.Ids);
             }
+            else if (box.FilterProperties == null)
+            {
+                box.ItemsList?.SetSelection(null);
+            }
 
             box.OnFullTextTextChanged();
             box.IgnoreChanges = false;
@@ -159,9 +182,11 @@ namespace Playnite.DesktopApp.Controls
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
-        {
-            //ItemsList.SetSelection(null);
+        {            
             FilterProperties = null;
+            IgnoreChanges = true;
+            ItemsList?.SetSelection(null);
+            IgnoreChanges = false;
         }
     }
 }

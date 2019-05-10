@@ -16,7 +16,8 @@
 
     <Border BorderThickness="{DynamicResource ControlBorderThickness}"
             CornerRadius="{DynamicResource ControlCornerRadius}"
-            Style="{DynamicResource HighlightBorder}" Background="Transparent">
+            Style="{DynamicResource HighlightBorder}" Background="Transparent"
+            DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
         <Grid>
             <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"         
                           Focusable="False"
@@ -37,9 +38,13 @@
                                     VerticalAlignment="Center"/>
                                 </Viewbox>
                                 <TextBox Grid.Column="0" BorderThickness="0"
-                                         Text="{Binding FullTextText, Delay=200, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
-                                         VerticalAlignment="Center"
-                                         Margin="1,0,0,0"/>
+                                         Text="{Binding FullTextText, Delay=200, UpdateSourceTrigger=PropertyChanged}"
+                                         VerticalAlignment="Center" Margin="1,0,0,0"
+                                         Visibility="{Binding IsFullTextEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                <TextBlock Grid.Column="0" Margin="5,0,0,0"
+                                         Text="{Binding FullTextText, UpdateSourceTrigger=PropertyChanged}"
+                                         VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+                                         Visibility="{Binding IsFullTextEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                                 <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
                                         BorderThickness="0" Padding="3,0,3,0" Margin="0"
                                         FontFamily="Marlett" Content="r"
@@ -62,7 +67,7 @@
                                 <Border Background="{DynamicResource PopupBackgroundBrush}"
                                             BorderThickness="{DynamicResource PopupBorderThickness}"
                                             BorderBrush="{DynamicResource PopupBorderBrush}">
-                                    <ItemsControl ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    <ItemsControl ItemsSource="{Binding ItemsList}"
                                                         ScrollViewer.CanContentScroll="True"
                                                         KeyboardNavigation.DirectionalNavigation="Contained"
                                                         VirtualizingPanel.IsVirtualizing="True"
