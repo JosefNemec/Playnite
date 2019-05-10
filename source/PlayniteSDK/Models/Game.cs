@@ -13,59 +13,114 @@ using Newtonsoft.Json;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Specifies <see cref="Game"/> fields.
+    /// </summary>
     public enum GameField
     {
+        /// 
         BackgroundImage,
+        /// 
         Description,
+        /// 
         GenreIds,
+        /// 
         Hidden,
+        /// 
         Favorite,
+        /// 
         Icon,
+        /// 
         CoverImage,
+        /// 
         InstallDirectory,
+        /// 
         GameImagePath,
+        /// 
         LastActivity,
+        /// 
         SortingName,
+        /// 
         Gameid,
+        /// 
         PluginId,
+        /// 
         OtherActions,
+        /// 
         PlayAction,
+        /// 
         PlatformId,
+        /// 
         PublisherIds,
+        /// 
         DeveloperIds,
+        /// 
         ReleaseDate,
+        /// 
         CategoryIds,
+        /// 
         TagIds,
+        /// 
         Links,
+        /// 
         IsInstalling,
+        /// 
         IsUninstalling,
+        /// 
         IsLaunching,
+        /// 
         IsRunning,
+        /// 
         IsInstalled,
+        /// 
         IsCustomGame,
+        /// 
         Playtime,
-        Added,          
-        Modified,       
+        /// 
+        Added,
+        ///       
+        Modified,
+        ///       
         PlayCount,
+        /// 
         SeriesId,
+        /// 
         Version,
+        /// 
         AgeRatingId,
+        /// 
         RegionId,
+        /// 
         SourceId,
+        /// 
         CompletionStatus,
+        /// 
         UserScore,
+        /// 
         CriticScore,
+        /// 
         CommunityScore,
+        /// 
         Genres,
+        /// 
         Developers,
+        /// 
         Publishers,
+        /// 
         Tags,
+        /// 
         Categories,
+        /// 
         Platform,
+        /// 
         Series,
+        /// 
         AgeRating,
+        /// 
         Region,
+        /// 
         Source,
+        /// 
         ReleaseYear
     }
 
@@ -811,6 +866,9 @@ namespace Playnite.SDK.Models
 
         #region Expanded        
 
+        /// <summary>
+        /// Gets game's genres.
+        /// </summary>
         [JsonIgnore]
         public List<Genre> Genres
         {
@@ -825,6 +883,9 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Gets game's developers.
+        /// </summary>
         [JsonIgnore]
         public List<Company> Developers
         {
@@ -839,6 +900,9 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Gets game's publishers.
+        /// </summary>
         [JsonIgnore]
         public List<Company> Publishers
         {
@@ -853,6 +917,9 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Gets game's tags.
+        /// </summary>
         [JsonIgnore]
         public List<Tag> Tags
         {
@@ -867,6 +934,9 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Gets game's categories.
+        /// </summary>
         [JsonIgnore]
         public List<Category> Categories
         {
@@ -880,79 +950,119 @@ namespace Playnite.SDK.Models
                 return null;
             }
         }
-        
+
+        /// <summary>
+        /// Gets game's platform.
+        /// </summary>
         [JsonIgnore]
         public Platform Platform
         {
             get => DatabaseReference?.Platforms[platformId];
         }
 
+        /// <summary>
+        /// Gets game's series.
+        /// </summary>
         [JsonIgnore]
         public Series Series
         {
             get => DatabaseReference?.Series[seriesId];
         }
 
+        /// <summary>
+        /// Get game's age rating.
+        /// </summary>
         [JsonIgnore]
         public AgeRating AgeRating
         {
             get => DatabaseReference?.AgeRatings[ageRatingId];
         }
 
+        /// <summary>
+        /// Gets game's region.
+        /// </summary>
         [JsonIgnore]
         public Region Region
         {
             get => DatabaseReference?.Regions[regionId];
         }
 
+        /// <summary>
+        /// Gets game's source.
+        /// </summary>
         [JsonIgnore]
         public GameSource Source
         {
             get => DatabaseReference?.Sources[sourceId];
         }
 
+
+        /// <summary>
+        /// Gets game's release year.
+        /// </summary>
         [JsonIgnore]
         public int? ReleaseYear
         {
             get => ReleaseDate?.Year;
         }
 
+        /// <summary>
+        /// Gets game's user score group.
+        /// </summary>
         [JsonIgnore]
         public ScoreGroup UserScoreGroup
         {
             get => GetScoreGroup(UserScore);
         }
 
+        /// <summary>
+        /// Gets game's community score group.
+        /// </summary>
         [JsonIgnore]
         public ScoreGroup CommunityScoreGroup
         {
             get => GetScoreGroup(CommunityScore);
         }
 
+        /// <summary>
+        /// Gets game's critic score group.
+        /// </summary>
         [JsonIgnore]
         public ScoreGroup CriticScoreGroup
         {
             get => GetScoreGroup(CriticScore);
         }
 
+        /// <summary>
+        /// Gets time segment for games last activity.
+        /// </summary>
         [JsonIgnore]
         public PastTimeSegment LastActivitySegment
         {
             get => GetPastTimeSegment(LastActivity);
         }
 
+        /// <summary>
+        /// Gets time segment for games added date.
+        /// </summary>
         [JsonIgnore]
         public PastTimeSegment AddedSegment
         {
             get => GetPastTimeSegment(Added);
         }
 
+        /// <summary>
+        /// Gets time segment for games modified date..
+        /// </summary>
         [JsonIgnore]
         public PastTimeSegment ModifiedSegment
         {
             get => GetPastTimeSegment(Modified);
         }
 
+        /// <summary>
+        /// Gets game's play time category.
+        /// </summary>
         [JsonIgnore]
         public PlaytimeCategory PlaytimeCategory
         {
@@ -961,6 +1071,11 @@ namespace Playnite.SDK.Models
 
         #endregion Expanded
 
+        /// <summary>
+        /// Gets play time category.
+        /// </summary>
+        /// <param name="seconds">Play time in seconds.</param>
+        /// <returns></returns>
         private PlaytimeCategory GetPlayTimeCategory(long seconds)
         {
             if (seconds == 0)
@@ -995,6 +1110,11 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Gets time segment.
+        /// </summary>
+        /// <param name="dateTime">Date time to be measured.</param>
+        /// <returns></returns>
         private PastTimeSegment GetPastTimeSegment(DateTime? dateTime)
         {
             if (dateTime == null)
@@ -1031,6 +1151,11 @@ namespace Playnite.SDK.Models
             return PastTimeSegment.Never;
         }
 
+        /// <summary>
+        /// Gets score group.
+        /// </summary>
+        /// <param name="score">Score.</param>
+        /// <returns></returns>
         private ScoreGroup GetScoreGroup(int? score)
         {
             if (score >= 0 && score < 10)
@@ -1086,6 +1211,9 @@ namespace Playnite.SDK.Models
             return ScoreGroup.None;
         }
 
+        /// <summary>
+        /// Gets or sets game database reference.
+        /// </summary>
         internal static IGameDatabase DatabaseReference
         {
             get; set;
@@ -1108,10 +1236,7 @@ namespace Playnite.SDK.Models
             Name = name;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return Name;

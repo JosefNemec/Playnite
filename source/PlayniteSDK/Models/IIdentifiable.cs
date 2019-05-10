@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Desribest object identifiable by an id.
+    /// </summary>
     public interface IIdentifiable
     {
         /// <summary>

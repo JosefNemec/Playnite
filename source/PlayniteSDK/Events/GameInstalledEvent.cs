@@ -12,6 +12,9 @@ namespace Playnite.SDK.Events
     /// </summary>
     public class GameInstalledEventArgs : GameControllerEventArgs
     {
+        /// <summary>
+        /// Gets or sets data for newly installed game.
+        /// </summary>
         public GameInfo InstalledInfo { get; }
 
         /// <summary>
@@ -19,6 +22,7 @@ namespace Playnite.SDK.Events
         /// </summary>
         /// <param name="controller">Source controller of this event.</param>
         /// <param name="ellapsedTime">Time in seconds for how long the operation was running.</param>
+        /// <param name="installedInfo">Newly installed game.</param>
         public GameInstalledEventArgs(GameInfo installedInfo, IGameController controller, long ellapsedTime) : base(controller, ellapsedTime)
         {
             InstalledInfo = installedInfo;
@@ -29,6 +33,7 @@ namespace Playnite.SDK.Events
         /// </summary>
         /// <param name="controller">Source controller of this event.</param>
         /// <param name="ellapsedTime">Time in seconds for how long the operation was running.</param>
+        /// <param name="installedInfo">Newly installed game.</param>
         public GameInstalledEventArgs(GameInfo installedInfo, IGameController controller, double ellapsedTime)
             : this(installedInfo, controller, Convert.ToInt64(ellapsedTime))
         {

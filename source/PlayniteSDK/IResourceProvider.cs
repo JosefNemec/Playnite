@@ -18,6 +18,11 @@ namespace Playnite.SDK
         /// <returns>String resource.</returns>
         string GetString(string key);
 
+        /// <summary>
+        /// Gets application resource.
+        /// </summary>
+        /// <param name="key">Resource key.</param>
+        /// <returns>Application resource.</returns>
         object GetResource(string key);
     }
 }

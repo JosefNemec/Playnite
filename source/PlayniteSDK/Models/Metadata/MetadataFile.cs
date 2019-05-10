@@ -12,6 +12,9 @@ namespace Playnite.SDK.Metadata
     /// </summary>
     public class MetadataFile
     {
+        /// <summary>
+        /// Indicates whether metadata holds some content.
+        /// </summary>
         public bool HasContent
         {
             get => !string.IsNullOrEmpty(FileName) && Content != null;

@@ -30,9 +30,9 @@ namespace Playnite.SDK
         }
 
         /// <summary>
-        /// Returns string resource.
+        /// Gets string resource.
         /// </summary>
-        /// <param name="key">Name of the string resource.</param>
+        /// <param name="key">String resource key.</param>
         /// <returns>String resource.</returns>
         public static string GetString(string key)
         {
@@ -40,6 +40,11 @@ namespace Playnite.SDK
             return resource == null ? $"<!{key}!>" : resource as string;
         }
 
+        /// <summary>
+        /// Gets application resource.
+        /// </summary>
+        /// <param name="key">Resource key.</param>
+        /// <returns>Application resource.</returns>
         public static object GetResource(string key)
         {
             return Application.Current.TryFindResource(key);

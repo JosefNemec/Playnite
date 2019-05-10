@@ -20,6 +20,9 @@ namespace Playnite.SDK.Metadata
             get => GameInfo == null;
         }
 
+        /// <summary>
+        /// Gets or sets game information.
+        /// </summary>
         public GameInfo GameInfo
         {
             get; set;

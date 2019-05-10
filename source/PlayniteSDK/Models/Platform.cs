@@ -56,15 +56,15 @@ namespace Playnite.SDK.Models
             Name = name;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override string ToString()
         {            
             return Name;
         }
 
+        /// <summary>
+        /// Gets empty platform.
+        /// </summary>
         public static readonly Platform Empty = new Platform { Id = Guid.Empty, Name = string.Empty };
     }
 }

@@ -665,11 +665,11 @@ namespace Playnite.Database
         public Game ImportGame(GameInfo game, Guid pluginId)
         {
             var toAdd = GameInfoToGame(game, pluginId);
-            toAdd.Icon = AddNewGameFile(game.Icon, game.Id);
-            toAdd.CoverImage = AddNewGameFile(game.CoverImage, game.Id);
+            toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
+            toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
             if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
             {
-                toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, game.Id);
+                toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
             }
 
             Games.Add(toAdd);

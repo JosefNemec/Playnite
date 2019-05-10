@@ -14,6 +14,9 @@ namespace System.Collections.Generic
     /// </summary>
     public abstract class ObservableObject : INotifyPropertyChanged
     {
+        /// <summary>
+        /// If set to <c>true</c> no <see cref="PropertyChanged"/> events will be fired.
+        /// </summary>
         [JsonIgnore]
         public bool SuppressNotifications
         {

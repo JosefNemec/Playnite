@@ -10,7 +10,7 @@ namespace Playnite.SDK
     /// <summary>
     /// Describes object providing game database API.
     /// </summary>
-    public interface IGameDatabaseAPI
+    public interface IGameDatabaseAPI : IGameDatabase
     {
         /// <summary>
         /// Gets full path to database directory location.
@@ -62,17 +62,5 @@ namespace Playnite.SDK
         /// <param name="databasePath">Database path as set to game's field.</param>
         /// <returns>Full path to a file.</returns>
         string GetFullFilePath(string databasePath);
-
-        IItemCollection<Game> Games { get; }
-        IItemCollection<Platform> Platforms { get; }
-        IItemCollection<Emulator> Emulators { get; }
-        IItemCollection<Genre> Genres { get; }
-        IItemCollection<Company> Companies { get; }
-        IItemCollection<Tag> Tags { get; }
-        IItemCollection<Category> Categories { get; }
-        IItemCollection<Series> Series { get; }
-        IItemCollection<AgeRating> AgeRatings { get; }
-        IItemCollection<Region> Regions { get; }
-        IItemCollection<GameSource> Sources { get; }
     }
 }

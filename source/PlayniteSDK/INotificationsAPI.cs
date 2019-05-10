@@ -13,6 +13,9 @@ namespace Playnite.SDK
     /// </summary>
     public class NotificationMessage
     {
+        /// <summary>
+        /// Gets command executed when user activates notification.
+        /// </summary>
         public ICommand ActivationCommand
         {
             get;

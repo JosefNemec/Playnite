@@ -85,6 +85,7 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             if (Id == Guid.Empty)
@@ -97,6 +98,7 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return Name ?? string.Empty;
