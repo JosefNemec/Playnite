@@ -320,8 +320,11 @@ namespace Playnite
             }
         }
 
-        private uint coverArtWidthRatio = 92;
-        public uint CoverArtWidthRatio
+        [JsonIgnore]
+        public AspectRatio CoverAspectRatio => new AspectRatio(CoverArtWidthRatio, CoverArtHeightRatio);
+
+        private int coverArtWidthRatio = 92;
+        public int CoverArtWidthRatio
         {
             get
             {
@@ -333,11 +336,12 @@ namespace Playnite
                 coverArtWidthRatio = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CoverArtHeight));
+                OnPropertyChanged(nameof(CoverAspectRatio));
             }
         }
 
-        private uint coverArtHeightRatio = 43;
-        public uint CoverArtHeightRatio
+        private int coverArtHeightRatio = 43;
+        public int CoverArtHeightRatio
         {
             get
             {
@@ -349,6 +353,7 @@ namespace Playnite
                 coverArtHeightRatio = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CoverArtHeight));
+                OnPropertyChanged(nameof(CoverAspectRatio));
             }
         }
 
@@ -926,13 +931,13 @@ namespace Playnite
         public WindowPositions WindowPositions
         {
             get; private set;
-        }
+        } = new WindowPositions();
 
         [JsonIgnore]
         public FullscreenSettings Fullscreen
         {
             get; private set;
-        }
+        } = new FullscreenSettings();
 
         public PlayniteSettings()
         {
@@ -1143,7 +1148,7 @@ namespace Playnite
             if (runOnBootup)
             {
                 FileSystem.DeleteFile(shortcutPath);
-                Programs.CreateShortcut(PlaynitePaths.ExecutablePath, "", "", shortcutPath);
+                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, "", "", shortcutPath);
             }
             else
             {

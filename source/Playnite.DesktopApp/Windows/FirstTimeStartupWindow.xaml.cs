@@ -16,7 +16,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class FirstTimeStartupWindow : WindowBase
     {        
-        public FirstTimeStartupWindow()
+        public FirstTimeStartupWindow() : base()
         {
             InitializeComponent();
         }

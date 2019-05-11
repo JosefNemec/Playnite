@@ -23,6 +23,7 @@ namespace Playnite.Database
         private List<TItem> AddedItemsEventBuffer = new List<TItem>();
         private List<TItem> RemovedItemsEventBuffer = new List<TItem>();
         private Dictionary<Guid, ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new Dictionary<Guid, ItemUpdateEvent<TItem>>();
+        private readonly bool isPersistent = true;
 
         public ConcurrentDictionary<Guid, TItem> Items { get; }
 
@@ -43,18 +44,20 @@ namespace Playnite.Database
 
         public event EventHandler<ItemUpdatedEventArgs<TItem>> ItemUpdated;
 
-        public ItemCollection()
+        public ItemCollection(bool isPersistent = true)
         {
+            this.isPersistent = isPersistent;
             Items = new ConcurrentDictionary<Guid, TItem>();
         }
 
-        public ItemCollection(Action<TItem> initMethod) : this()
+        public ItemCollection(Action<TItem> initMethod, bool isPersistent = true) : this(isPersistent)
         {
             this.initMethod = initMethod;
         }
 
         public ItemCollection(string path)
         {
+            this.isPersistent = true;
             Items = new ConcurrentDictionary<Guid, TItem>();
             InitializeCollection(path);
         }
@@ -90,17 +93,17 @@ namespace Playnite.Database
             }
         }
 
-        private string GetItemFilePath(Guid id)
+        internal string GetItemFilePath(Guid id)
         {
             return Path.Combine(storagePath, $"{id.ToString()}.json");
         }
 
-        private void SaveItemData(TItem item)
+        internal void SaveItemData(TItem item)
         {
             FileSystem.WriteStringToFileSafe(GetItemFilePath(item.Id), Serialization.ToJson(item, false));
         }
 
-        private TItem GetItemData(Guid id)
+        internal TItem GetItemData(Guid id)
         {
             return Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(GetItemFilePath(id)));
         }
@@ -166,7 +169,11 @@ namespace Playnite.Database
 
             lock (collectionLock)
             {
-                SaveItemData(itemToAdd);
+                if (isPersistent)
+                {
+                    SaveItemData(itemToAdd);
+                }
+
                 Items.TryAdd(itemToAdd.Id, itemToAdd);
             }
 
@@ -189,7 +196,11 @@ namespace Playnite.Database
                         throw new Exception($"Item {item.Id} already exists.");
                     }
 
-                    SaveItemData(item);
+                    if (isPersistent)
+                    {
+                        SaveItemData(item);
+                    }
+
                     Items.TryAdd(item.Id, item);
                 }
             }
@@ -207,7 +218,11 @@ namespace Playnite.Database
 
             lock (collectionLock)
             {
-                FileSystem.DeleteFile(GetItemFilePath(id));
+                if (isPersistent)
+                {
+                    FileSystem.DeleteFile(GetItemFilePath(id));
+                }
+
                 Items.TryRemove(id, out var removed);
             }
 
@@ -237,7 +252,11 @@ namespace Playnite.Database
                         throw new Exception($"Item {item.Id} doesn't exists.");
                     }
 
-                    FileSystem.DeleteFile(GetItemFilePath(item.Id));
+                    if (isPersistent)
+                    {
+                        FileSystem.DeleteFile(GetItemFilePath(item.Id));
+                    }
+
                     Items.TryRemove(item.Id, out var removed);
                 }
             }
@@ -251,13 +270,25 @@ namespace Playnite.Database
             TItem oldData;
             lock (collectionLock)
             {
-                oldData = GetItemData(itemToUpdate.Id);
+                if (isPersistent)
+                {
+                    oldData = GetItemData(itemToUpdate.Id);
+                }
+                else
+                {
+                    oldData = Get(itemToUpdate.Id);
+                }
+
                 if (oldData == null)
                 {
                     throw new Exception($"Item {oldData.Id} doesn't exists.");
                 }
 
-                SaveItemData(itemToUpdate);
+                if (isPersistent)
+                {
+                    SaveItemData(itemToUpdate);
+                }
+
                 var loadedItem = Get(itemToUpdate.Id);
                 if (!ReferenceEquals(loadedItem, itemToUpdate))
                 {
@@ -275,13 +306,26 @@ namespace Playnite.Database
             {
                 foreach (var item in itemsToUpdate)
                 {
-                    var oldData = GetItemData(item.Id);
+                    TItem oldData;
+                    if (isPersistent)
+                    {
+                        oldData = GetItemData(item.Id);
+                    }
+                    else
+                    {
+                        oldData = Get(item.Id);
+                    }
+
                     if (oldData == null)
                     {
                         throw new Exception($"Item {oldData.Id} doesn't exists.");
                     }
 
-                    SaveItemData(item);
+                    if (isPersistent)
+                    {
+                        SaveItemData(item);
+                    }
+
                     var loadedItem = Get(item.Id);
                     if (!ReferenceEquals(loadedItem, item))
                     {
@@ -318,7 +362,7 @@ namespace Playnite.Database
             return Items.Values.GetEnumerator();
         }
 
-        private void OnCollectionChanged(List<TItem> addedItems, List<TItem> removedItems)
+        internal void OnCollectionChanged(List<TItem> addedItems, List<TItem> removedItems)
         {
             if (!isEventBufferEnabled)
             {
@@ -331,7 +375,7 @@ namespace Playnite.Database
             }
         }
 
-        private void OnItemUpdated(IEnumerable<ItemUpdateEvent<TItem>> updates)
+        internal void OnItemUpdated(IEnumerable<ItemUpdateEvent<TItem>> updates)
         {
             if (!isEventBufferEnabled)
             {

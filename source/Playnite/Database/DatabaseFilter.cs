@@ -16,7 +16,7 @@ namespace Playnite.Database
         private GameDatabase database;        
         private FilterSettings filter;
 
-        public SelectableItemList<LibraryPlugin> Libraries { get; set; }
+        public SelectableIdItemList<LibraryPlugin> Libraries { get; set; }
 
         private SelectableDbItemList genres;
         public SelectableDbItemList Genres

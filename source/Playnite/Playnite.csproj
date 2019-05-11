@@ -171,6 +171,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Management.Automation" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsInput, Version=1.0.6.0, Culture=neutral, PublicKeyToken=de2685b4776e9c2e, processorArchitecture=MSIL">
+      <HintPath>..\packages\InputSimulatorPlus.1.0.7\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
     <Reference Include="XInputDotNetPure">
       <HintPath>..\..\references\XInputDotNetPure.dll</HintPath>
     </Reference>
@@ -223,6 +226,7 @@
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\AfterGameCloseOptionToStringConverter.cs" />
     <Compile Include="Converters\DockToStringConverter.cs" />
+    <Compile Include="Converters\InvertedBoolenConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\StrechToStringConverter.cs" />
     <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
@@ -270,6 +274,7 @@
     <Compile Include="Database\Collections\GamesCollection.cs" />
     <Compile Include="Database\Collections\ItemCollection.cs" />
     <Compile Include="Database\GameDatabaseMigration.cs" />
+    <Compile Include="Database\InMemoryGameDatabase.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldCompletionStatus.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldDatabaseObject.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldGame.cs" />
@@ -290,6 +295,7 @@
     <Compile Include="Extensions\IProvideValueTarget.cs" />
     <Compile Include="Extensions\Markup\Api.cs" />
     <Compile Include="Extensions\Markup\BindingExtension.cs" />
+    <Compile Include="Extensions\Markup\MainViewModel.cs" />
     <Compile Include="Extensions\Markup\Settings.cs" />
     <Compile Include="Extensions\Markup\ThemeFile.cs" />
     <Compile Include="Extensions\ServiceProvider.cs" />
@@ -304,6 +310,7 @@
     <Compile Include="Input\MouseWheelGesture.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
+    <Compile Include="ObservablePowerStatus.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
     <Compile Include="Scripting\IronPython\IronPythonScript.cs" />

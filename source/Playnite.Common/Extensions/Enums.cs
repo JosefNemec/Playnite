@@ -11,6 +11,15 @@ namespace System
 {
     public static class EnumExtensions
     {
+        public static int GetMax(this Enum source)
+        {
+            return Enum.GetValues(source.GetType()).Cast<int>().Max();
+        }
+        public static int GetMin(this Enum source)
+        {
+            return Enum.GetValues(source.GetType()).Cast<int>().Min();
+        }
+
         public static string GetDescription(this Enum source)
         {
             FieldInfo field = source.GetType().GetField(source.ToString());

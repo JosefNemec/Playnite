@@ -16,7 +16,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class AboutWindow : WindowBase
     {
-        public AboutWindow()
+        public AboutWindow() : base()
         {
             InitializeComponent();
         }

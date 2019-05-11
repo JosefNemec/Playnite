@@ -32,7 +32,7 @@ namespace Playnite.Plugins
     public class ExtensionFactory : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
-        private GameDatabase database;
+        private IGameDatabase database;
         private GameControllerFactory controllers;
 
         public const string ExtensionManifestFileName = "extension.yaml";
@@ -100,7 +100,7 @@ namespace Playnite.Plugins
             }
         }
 
-        public ExtensionFactory(GameDatabase database, GameControllerFactory controllers)
+        public ExtensionFactory(IGameDatabase database, GameControllerFactory controllers)
         {
             this.database = database;
             this.controllers = controllers;
@@ -109,7 +109,7 @@ namespace Playnite.Plugins
             controllers.Started += Controllers_Started;
             controllers.Stopped += Controllers_Stopped;
             controllers.Uninstalled += Controllers_Uninstalled;
-            database.DatabaseOpened += Database_DatabaseOpened;
+            //database.DatabaseOpened += Database_DatabaseOpened;
         }
 
         public void Dispose()
@@ -121,7 +121,7 @@ namespace Playnite.Plugins
             controllers.Started -= Controllers_Installed;
             controllers.Stopped -= Controllers_Installed;
             controllers.Uninstalled -= Controllers_Installed;
-            database.DatabaseOpened -= Database_DatabaseOpened;
+            //database.DatabaseOpened -= Database_DatabaseOpened;
         }
 
         private void DisposeScripts()
@@ -497,30 +497,31 @@ namespace Playnite.Plugins
 
         private void Database_DatabaseOpened(object sender, EventArgs args)
         {
-            foreach (var script in Scripts)
-            {
-                try
-                {
-                    script.OnApplicationStarted();
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnScriptLoaded method from {script.Name} script.");
-                    continue;
-                }
-            }
+            // TODO make sure that we call this after first time startup wizard is finished as well
+            //foreach (var script in Scripts)
+            //{
+            //    try
+            //    {
+            //        script.OnApplicationStarted();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        logger.Error(e, $"Failed to load execute OnScriptLoaded method from {script.Name} script.");
+            //        continue;
+            //    }
+            //}
 
-            foreach (var plugin in Plugins.Values)
-            {
-                try
-                {
-                    plugin.Plugin.OnApplicationStarted();
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Description.Name} plugin.");
-                }
-            }
+            //foreach (var plugin in Plugins.Values)
+            //{
+            //    try
+            //    {
+            //        plugin.Plugin.OnApplicationStarted();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Description.Name} plugin.");
+            //    }
+            //}
         }
     }
 }

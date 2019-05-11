@@ -1,12 +1,297 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Playnite.Common;
+using Playnite.SDK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Playnite
 {
-    public class FullscreenSettings
+    public enum FullscreenButtonPrompts
     {
+        Xbox,
+        PlayStation
+    }
+
+    public enum ActiveFullscreenView : int
+    {
+        RecentlyPlayed = 0,
+        Favorites = 1,
+        MostPlayed = 2,
+        All = 3
+        //Explore
+    }
+
+    public class FullscreenViewSettings : ObservableObject
+    {
+        private SortOrder sortingOrder = SortOrder.Name;
+        public SortOrder SortingOrder
+        {
+            get
+            {
+                return sortingOrder;
+            }
+
+            set
+            {
+                sortingOrder = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Descending;
+        public SortOrderDirection SortingOrderDirection
+        {
+            get
+            {
+                return sortingOrderDirection;
+            }
+
+            set
+            {
+                sortingOrderDirection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private GroupableField selectedExplorerField = GroupableField.Library;
+        public GroupableField SelectedExplorerField
+        {
+            get
+            {
+                return selectedExplorerField;
+            }
+
+            set
+            {
+                selectedExplorerField = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public class FullscreenSettings : ObservableObject
+    {
+        [JsonIgnore]
+        public List<Screen> AvailableScreens => Computer.GetMonitors();
+
+        [JsonIgnore]
+        public List<ThemeDescription> AvailableThemes => ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen);
+
+        [JsonIgnore]
+        public const FullscreenButtonPrompts DefaultButtonPrompts = FullscreenButtonPrompts.Xbox;
+
+        private ActiveFullscreenView activeView = ActiveFullscreenView.RecentlyPlayed;
+        public ActiveFullscreenView ActiveView
+        {
+            get
+            {
+                return activeView;
+            }
+
+            set
+            {
+                activeView = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int monitor = 0;
+        public int Monitor
+        {
+            get
+            {
+                return monitor;
+            }
+
+            set
+            {
+                monitor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string theme = "Default";
+        public string Theme
+        {
+            get
+            {
+                return theme;
+            }
+
+            set
+            {
+                theme = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int rows = 4;
+        public int Rows
+        {
+            get
+            {
+                return rows;
+            }
+
+            set
+            {
+                rows = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int columns = 4;
+        public int Columns
+        {
+            get
+            {
+                return columns;
+            }
+
+            set
+            {
+                columns = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool horizontalLayout = false;
+        public bool HorizontalLayout
+        {
+            get
+            {
+                return horizontalLayout;
+            }
+
+            set
+            {
+                horizontalLayout = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showBattery = false;
+        public bool ShowBattery
+        {
+            get
+            {
+                return showBattery;
+            }
+
+            set
+            {
+                showBattery = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showClock = true;
+        public bool ShowClock
+        {
+            get
+            {
+                return showClock;
+            }
+
+            set
+            {
+                showClock = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showBatteryPercentage = false;
+        public bool ShowBatteryPercentage
+        {
+            get
+            {
+                return showBatteryPercentage;
+            }
+
+            set
+            {
+                showBatteryPercentage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showGameTitles = false;
+        public bool ShowGameTitles
+        {
+            get
+            {
+                return showGameTitles;
+            }
+
+            set
+            {
+                showGameTitles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private FullscreenButtonPrompts buttonPrompts = DefaultButtonPrompts;
+        public FullscreenButtonPrompts ButtonPrompts
+        {
+            get
+            {
+                return buttonPrompts;
+            }
+
+            set
+            {
+                buttonPrompts = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool installedOnlyInQuickFilters = false;
+        public bool InstalledOnlyInQuickFilters
+        {
+            get
+            {
+                return installedOnlyInQuickFilters;
+            }
+
+            set
+            {
+                installedOnlyInQuickFilters = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private FilterSettings filterSettings = new FilterSettings();
+        public FilterSettings FilterSettings
+        {
+            get
+            {
+                return filterSettings;
+            }
+
+            set
+            {
+                filterSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private FullscreenViewSettings viewSettings = new FullscreenViewSettings();
+        public FullscreenViewSettings ViewSettings
+        {
+            get
+            {
+                return viewSettings;
+            }
+
+            set
+            {
+                viewSettings = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

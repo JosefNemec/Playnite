@@ -7,7 +7,6 @@
                     xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">    
 
     <Style TargetType="{x:Type views:FilterPanel}">
-        <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:FilterPanel}">
@@ -92,7 +91,7 @@
                                 </CheckBox>
 
                                 <!-- Library -->
-                                <Label Content="{DynamicResource LOCLibraries}"
+                                <Label Content="{DynamicResource LOCLibrary}"
                                        Tag="{pmrk:Settings FilterSettings.Library.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
                                 <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Libraries}"

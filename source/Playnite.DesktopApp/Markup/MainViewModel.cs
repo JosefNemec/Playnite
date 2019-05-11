@@ -16,56 +16,15 @@ using System.Windows.Markup;
 
 namespace Playnite.DesktopApp.Markup
 {
-    public class MainViewModel : BindingExtension
-    {
-        public bool DirectValue { get; set; } = false;
 
-        public MainViewModel() : this(null)
+    public class MainViewModel : Extensions.Markup.MainViewModel<DesktopAppViewModel, DesignMainViewModel, DesktopApplication>
+    {
+        public MainViewModel() : base()
         {
         }
 
         public MainViewModel(string path) : base(path)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                Source = new DesignMainViewModel();
-                PathRoot = null;
-            }
-            else
-            {
-                Source = DesktopApplication.Current;
-                PathRoot = nameof(DesktopApplication.MainModel);
-            }
-
-            if (!path.IsNullOrEmpty())
-            {
-                PathRoot += ".";
-            }
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            if (ServiceProvider.IsTargetTemplate(serviceProvider))
-            {
-                return this;
-            }
-
-            if (DirectValue)
-            {
-                if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-                {
-                    return typeof(DesktopAppViewModel).GetProperty(Path).GetValue(Source, null);
-                }
-                else
-                {
-                    var src = ((DesktopApplication)Source).MainModel;
-                    return typeof(DesktopAppViewModel).GetProperty(Path).GetValue(src, null);
-                }
-            }
-            else
-            {
-                return base.ProvideValue(serviceProvider);
-            }
         }
     }
 }

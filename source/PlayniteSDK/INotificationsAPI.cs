@@ -46,14 +46,6 @@ namespace Playnite.SDK
         }
 
         /// <summary>
-        /// Gets action to be invoked when notification is activated.
-        /// </summary>
-        public Action InvokeAction
-        {
-            get;
-        }
-
-        /// <summary>
         /// Creates new instance of <see cref="NotificationMessage"/>.
         /// </summary>
         /// <param name="id">Notification id.</param>

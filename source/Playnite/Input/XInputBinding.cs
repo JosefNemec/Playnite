@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using WindowsInput;
+using WindowsInput.Native;
 using XInputDotNetPure;
 
 namespace Playnite.Input
@@ -73,7 +75,8 @@ namespace Playnite.Input
     public class XInputDevice
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        
+        private static readonly InputSimulator inputSimulator = new InputSimulator();
+
         public class InputState
         {
             public Stopwatch Watch
@@ -97,7 +100,7 @@ namespace Playnite.Input
             get; set;
         } = false;
 
-        private int pollingRate = 40;
+        private int pollingRate = 20;
         private int resendDelay = 700;
         private int resendRate = 80;
 
@@ -130,33 +133,33 @@ namespace Playnite.Input
             {  XInputButton.Y, ButtonState.Released }
         };
 
-        private Dictionary<XInputButton, Key> keyboardMap = new Dictionary<XInputButton, Key>()
+        private Dictionary<XInputButton, VirtualKeyCode> keyboardMap = new Dictionary<XInputButton, VirtualKeyCode>()
         {
-            {  XInputButton.A, Key.Enter },
-            {  XInputButton.B, Key.None },
-            {  XInputButton.Back, Key.None },
-            {  XInputButton.DPadDown, Key.Down },
-            {  XInputButton.DPadLeft, Key.Left },
-            {  XInputButton.DPadRight, Key.Right },
-            {  XInputButton.DPadUp, Key.Up },
-            {  XInputButton.Guide, Key.None },
-            {  XInputButton.LeftShoulder, Key.None },
-            {  XInputButton.LeftStick, Key.None },
-            {  XInputButton.LeftStickDown, Key.Down },
-            {  XInputButton.LeftStickLeft, Key.Left },
-            {  XInputButton.LeftStickRight, Key.Right },
-            {  XInputButton.LeftStickUp, Key.Up },
-            {  XInputButton.RightShoulder, Key.None },
-            {  XInputButton.RightStick, Key.None },
-            {  XInputButton.RightStickDown, Key.None },
-            {  XInputButton.RightStickLeft, Key.None },
-            {  XInputButton.RightStickRight, Key.None },
-            {  XInputButton.RightStickUp, Key.None },
-            {  XInputButton.Start, Key.None },
-            {  XInputButton.TriggerLeft, Key.PageUp },
-            {  XInputButton.TriggerRight, Key.PageDown },
-            {  XInputButton.X, Key.None },
-            {  XInputButton.Y, Key.None }
+            {  XInputButton.A, VirtualKeyCode.RETURN },
+            {  XInputButton.B, 0 },
+            {  XInputButton.Back, 0 },
+            {  XInputButton.DPadDown, VirtualKeyCode.DOWN },
+            {  XInputButton.DPadLeft, VirtualKeyCode.LEFT },
+            {  XInputButton.DPadRight, VirtualKeyCode.RIGHT },
+            {  XInputButton.DPadUp, VirtualKeyCode.UP },
+            {  XInputButton.Guide, 0 },
+            {  XInputButton.LeftShoulder, 0 },
+            {  XInputButton.LeftStick, 0 },
+            {  XInputButton.LeftStickDown, VirtualKeyCode.DOWN },
+            {  XInputButton.LeftStickLeft, VirtualKeyCode.LEFT },
+            {  XInputButton.LeftStickRight, VirtualKeyCode.RIGHT },
+            {  XInputButton.LeftStickUp, VirtualKeyCode.UP },
+            {  XInputButton.RightShoulder, 0 },
+            {  XInputButton.RightStick, 0 },
+            {  XInputButton.RightStickDown, 0 },
+            {  XInputButton.RightStickLeft, 0 },
+            {  XInputButton.RightStickRight, 0 },
+            {  XInputButton.RightStickUp, 0 },
+            {  XInputButton.Start, 0 },
+            {  XInputButton.TriggerLeft, VirtualKeyCode.PRIOR },
+            {  XInputButton.TriggerRight, VirtualKeyCode.NEXT },
+            {  XInputButton.X, 0 },
+            {  XInputButton.Y, 0 }
         };
 
         private Dictionary<XInputButton, InputState> keyWatches = new Dictionary<XInputButton, InputState>()
@@ -377,39 +380,30 @@ namespace Playnite.Input
                 {
                     return;
                 }
-
+                
                 var args = new XInputEventArgs(Key.None, pressed ? XInputButtonState.Pressed : XInputButtonState.Released, button);
                 inputManager.ProcessInput(args);
             }, null);
         }
 
-        private void SendKeyInput(Key key, bool pressed)
+        private void SendKeyInput(VirtualKeyCode key, bool pressed)
         {
-            context.Post((a) =>
+            if (key == 0)
             {
-                if (InputManager.Current.PrimaryKeyboardDevice?.ActiveSource == null)
-                {
-                    return;
-                }
+                return;
+            }
 
-                if (InputManager.Current == null)
-                {
-                    // Should happen only in very rare cases
-                    logger.Warn("Can't send key input, no input manager exits right now.");
-                }
-                else
-                {
-                    var args = new KeyEventArgs(InputManager.Current.PrimaryKeyboardDevice, InputManager.Current.PrimaryKeyboardDevice.ActiveSource, Environment.TickCount, key)
-                    {
-                        RoutedEvent = pressed ? Keyboard.KeyDownEvent : Keyboard.KeyUpEvent
-                    };
-
-                    inputManager.ProcessInput(args);
-                }
-            }, null);
+            if (pressed)
+            {
+                inputSimulator.Keyboard.KeyDown(key);
+            }
+            else
+            {
+                inputSimulator.Keyboard.KeyUp(key);
+            }
         }
 
-        private void SimulateKeyInput(Key key, bool pressed)
+        private void SimulateKeyInput(VirtualKeyCode key, bool pressed)
         {
             if (SimulateAllKeys || (SimulateNavigationKeys && IsKeysDirectionKey(key)))
             {                
@@ -417,17 +411,16 @@ namespace Playnite.Input
             }
         }
 
-        private bool IsKeysDirectionKey(Key key)
+        private bool IsKeysDirectionKey(VirtualKeyCode key)
         {
             switch (key)
             {
-                case Key.Up:
-                case Key.Down:
-                case Key.Left:
-                case Key.Right:
-                case Key.PageDown:
-                case Key.PageUp:
-                case Key.Return:
+                case VirtualKeyCode.UP:
+                case VirtualKeyCode.DOWN:
+                case VirtualKeyCode.LEFT:
+                case VirtualKeyCode.RIGHT:
+                case VirtualKeyCode.PRIOR:
+                case VirtualKeyCode.NEXT:
                     return true;
                 default:
                     return false;
@@ -447,7 +440,7 @@ namespace Playnite.Input
             get; set;
         }
 
-        public XInputEventArgs(Key key, XInputButtonState state, XInputButton button) : 
+        public XInputEventArgs(Key key, XInputButtonState state, XInputButton button) :
             base(InputManager.Current.PrimaryKeyboardDevice, InputManager.Current.PrimaryKeyboardDevice.ActiveSource, Environment.TickCount, key)
         {
             XButtonState = state;
@@ -460,7 +453,11 @@ namespace Playnite.Input
     public class XInputBinding : InputBinding
     {
         public static readonly DependencyProperty ButtonProperty =
-            DependencyProperty.Register("Button", typeof(XInputButton), typeof(XInputBinding), new UIPropertyMetadata(XInputButton.None, new PropertyChangedCallback(OnButtonPropertyChanged)));
+            DependencyProperty.Register(
+                nameof(Button),
+                typeof(XInputButton),
+                typeof(XInputBinding),
+                new UIPropertyMetadata(XInputButton.None, new PropertyChangedCallback(OnButtonPropertyChanged)));
 
         public XInputButton Button
         {
@@ -485,10 +482,16 @@ namespace Playnite.Input
                 var gesture = value as XInputGesture;
                 base.Gesture = gesture;
             }
-        }        
+        }
 
         public XInputBinding()
         {
+        }
+
+        public XInputBinding(ICommand command, XInputButton button)
+        {
+            Command = command;
+            Button = button;
         }
 
         private static void OnButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

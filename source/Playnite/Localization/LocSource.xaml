@@ -9,6 +9,9 @@
     <sys:String x:Key="LOCExitAppLabel">Exit</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Aditional filters</sys:String>
+    <sys:String x:Key="LOCFilters">Filters</sys:String>
+    <sys:String x:Key="LOCFilter">Filter</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Invalid Data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Save Changes?</sys:String>
@@ -16,6 +19,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Homepage at www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Source Code at GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Create diag. package</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Send diag. information</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">About Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Made by Josef Němec</sys:String>
 
@@ -29,9 +33,12 @@ Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="LOCNoPlatform">No Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, something bad happened...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Unrecoverable error occurred and Playnite crashed.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Unrecoverable error occurred.
         
 If you want to help us fix this issue, please create diagnostics package and use 'Report Crash' button to let us know what happened. Thank you.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Unrecoverable error occurred.
+        
+If you want to help us fix this issue, please send diagnostic information. Thank you.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Report Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Close Playnite</sys:String>
@@ -78,6 +85,9 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCDoneCapLabel">DONE</sys:String>
     <sys:String x:Key="LOCBackCapLabel">BACK</sys:String>
     <sys:String x:Key="LOCClearCapLabel">CLEAR</sys:String>
+    <sys:String x:Key="LOCClearLabel">Clear</sys:String>
+    <sys:String x:Key="LOCDismiss">Dismiss</sys:String>
+    <sys:String x:Key="LOCDismissAll">Dismiss All</sys:String>
     <sys:String x:Key="LOCImportLabel">Import</sys:String>
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCNameLabel">Name</sys:String>
@@ -150,6 +160,10 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCGameId">Game Id</sys:String>
     <sys:String x:Key="LOCDatabaseId">Database Id</sys:String>
     <sys:String x:Key="LOCPresets">Presets</sys:String>
+    <sys:String x:Key="LOCColumn">Column</sys:String>
+    <sys:String x:Key="LOCColumns">Columns</sys:String>
+    <sys:String x:Key="LOCRow">Row</sys:String>
+    <sys:String x:Key="LOCRows">Rows</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -221,7 +235,11 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullscreen Mode</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Support on Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentation</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem">Restart System</sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">Turn Off System</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">Suspend System</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
@@ -232,7 +250,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsStrechModeLabel">Stretch mode</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Banner</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Box</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">Settings marked with * require application restart to take effect</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* Requires restart to apply</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Settings</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">General</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Appearance</sys:String>
@@ -321,6 +339,15 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Enable controller support in Desktop mode *</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide button opens Fullscreen mode</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Configure settings used when metadata are being downloaded automatically after new games are imported.</sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor">Target Monitor</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Show Game Titles</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus">Show Battery Status</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage">Show Battery Percentage</sys:String>
+    <sys:String x:Key="LOCSettingsShowClock">Show Clock</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Installed Only in Quick Filters</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Button Prompts</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontal Scrolling</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
@@ -469,6 +496,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Cannot access library database. File "{0}" is being used by another process or it's in inaccessible location.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Failed to create diagnostics package.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Failed to automatically upload diagnostics package.</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnostics information was sent successfully.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnostics package was created and uploaded successfully.
 Please attach following ID to your crash report:</sys:String>
 
@@ -559,7 +587,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCReloadScripts">Reload Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">No Games Found</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Back to Desktop Mode</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Exit to Desktop Mode</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Exit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Libraries</sys:String>
     <sys:String x:Key="LOCUpdateAll">Update All</sys:String>
@@ -569,6 +597,8 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCLibrary">Library</sys:String>
     <sys:String x:Key="LOCAll">All</sys:String>
     <sys:String x:Key="LOCNone">None</sys:String>
+    <sys:String x:Key="LOCNotifications">Notifications</sys:String>
+
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -577,7 +607,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCGameImportWindowTitle">Select Games to Import</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadata search</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Update Available</sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo">Changes since last update:</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Changes since last update</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Download and Install Update</sys:String>
     <sys:String x:Key="LOCCheckForUpdates">Check for Updates</sys:String>
     <sys:String x:Key="LOCUpdateError">Update Error</sys:String>
@@ -603,6 +633,8 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCRemoveGame">Remove</sys:String>
     <sys:String x:Key="LOCPlayGame">Play</sys:String>
     <sys:String x:Key="LOCInstallGame">Install</sys:String>
+    <sys:String x:Key="LOCGameOptions">Options</sys:String>
+    <sys:String x:Key="LOCGameDetails">Details</sys:String>
     <sys:String x:Key="LOCUninstallGame">Uninstall</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Open Installation Location</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Create Desktop Shortcut</sys:String>
@@ -674,4 +706,14 @@ Note that the Account Name option only works for accounts whose game libraries h
     </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError">First time setup is not complete. Playnite will now restart to Desktop mode to finish the procedure.</sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Recently Played</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Favorites</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">Most Played</sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames">All</sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered">There are filters applied.</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Search results for:</sys:String>
+
 </ResourceDictionary>

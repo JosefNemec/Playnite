@@ -9,8 +9,9 @@ namespace Playnite
 {
     public class PlaynitePaths
     {
-        public static string ProgramPath => Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-        public static string ExecutablePath => System.Reflection.Assembly.GetEntryAssembly().Location;
+        public static string ProgramPath => Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);        
+        public static string DesktopExecutablePath => Path.Combine(ConfigRootPath, "Playnite.DesktopApp.exe");
+        public static string FullscreenExecutablePath => Path.Combine(ConfigRootPath, "Playnite.FullscreenApp.exe");
         public static string ExtensionsUserDataPath => Path.Combine(ConfigRootPath, "Extensions");
         public static string ExtensionsProgramPath => Path.Combine(ProgramPath, "Extensions");
         public static string ExtensionsDataPath => Path.Combine(ConfigRootPath, "ExtensionsData");

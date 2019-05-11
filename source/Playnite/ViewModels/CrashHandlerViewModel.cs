@@ -23,6 +23,7 @@ namespace Playnite.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
+        private ApplicationMode mode;
 
         private string exception;
         public string Exception
@@ -67,11 +68,12 @@ namespace Playnite.ViewModels
             });
         }
 
-        public CrashHandlerViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public CrashHandlerViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ApplicationMode mode)
         {
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
+            this.mode = mode;
         }
 
         public void OpenView()
@@ -91,7 +93,15 @@ namespace Playnite.ViewModels
 
         public void RestartApp()
         {
-            Process.Start(PlaynitePaths.ExecutablePath);
+            if (mode == ApplicationMode.Desktop)
+            {
+                Process.Start(PlaynitePaths.DesktopExecutablePath);
+            }
+            else
+            {
+                Process.Start(PlaynitePaths.FullscreenExecutablePath);
+            }
+
             CloseView();
         }
 
@@ -110,7 +120,7 @@ namespace Playnite.ViewModels
                 return;
             }
 
-            if (PlayniteEnvironment.InOfflineMode)
+            if (PlayniteEnvironment.InOfflineMode && mode == ApplicationMode.Desktop)
             {
                 Explorer.NavigateToFileSystemEntry(diagPath);
                 return;
@@ -119,13 +129,23 @@ namespace Playnite.ViewModels
             try
             {
                 var uploadedId = new ServicesClient().UploadDiagPackage(diagPath);
-                dialogs.ShowSelectableString(resources.GetString("LOCDiagPackageCreationSuccess"), "", uploadedId.ToString());
+                if (mode == ApplicationMode.Desktop)
+                {
+                    dialogs.ShowSelectableString(resources.GetString("LOCDiagPackageCreationSuccess"), "", uploadedId.ToString());
+                }
+                else
+                {
+                    dialogs.ShowMessage(resources.GetString("LOCDiagPackageSentSuccess"));
+                }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to upload diag package.");
                 dialogs.ShowErrorMessage(resources.GetString("LOCDiagPackageUploadError"), "");
-                Explorer.NavigateToFileSystemEntry(diagPath);
+                if (mode == ApplicationMode.Desktop)
+                {
+                    Explorer.NavigateToFileSystemEntry(diagPath);
+                }
             }
         }
     }

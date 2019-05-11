@@ -18,7 +18,7 @@ namespace Playnite.DesktopApp.Windows
     {
         private WindowPositionHandler positionManager;
 
-        public MainWindow()
+        public MainWindow() : base()
         {
             InitializeComponent();
             if (PlayniteApplication.Current.AppSettings != null)

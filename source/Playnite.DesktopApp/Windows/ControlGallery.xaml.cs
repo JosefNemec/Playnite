@@ -19,7 +19,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class ControlGallery : Window
     {
-        public ControlGallery()
+        public ControlGallery() : base()
         {
             InitializeComponent();
         }

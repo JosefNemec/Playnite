@@ -1,0 +1,170 @@
+﻿<c:WindowBase x:Class="Playnite.FullscreenApp.Windows.TextInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
+        mc:Ignorable="d"                     
+        x:Name="WindowMessageBox"
+        ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
+        ShowInTaskbar="False" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Style="{StaticResource MessageBoxWindowStyle}"
+        d:DesignWidth="1920" d:DesignHeight="1080">
+
+    <c:WindowBase.InputBindings>
+        <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
+        <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
+        <pin:XInputBinding Button="RightShoulder" Command="{Binding ConfirmCommand}" />
+        <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
+        <KeyBinding Key="Backspace" Command="{Binding BackSpaceCommand}" />
+    </c:WindowBase.InputBindings>
+    
+    <c:WindowBase.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </c:WindowBase.Resources>
+
+    <Viewbox>
+        <Grid Height="1080">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Margin="0,140,0,0" Name="TextInputText"
+                     Grid.Row="0" Grid.Column="1" FontSize="26"
+                     Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+
+            <Border Grid.Row="2" Grid.Column="1"
+                    Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,60">
+                <StackPanel>
+                    <Grid HorizontalAlignment="Center"
+                          KeyboardNavigation.DirectionalNavigation="Cycle">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="Button" BasedOn="{StaticResource ButtonVirtualKeyboard}">                                
+                                <EventSetter Event="Click" Handler="Button_Click" />
+                            </Style>
+                        </Grid.Resources>
+
+                        <Button Grid.Row="0" Grid.Column="0" Content="1" Name="Button1" />
+                        <Button Grid.Row="0" Grid.Column="1" Content="2" />
+                        <Button Grid.Row="0" Grid.Column="2" Content="3" />
+                        <Button Grid.Row="0" Grid.Column="3" Content="4" />
+                        <Button Grid.Row="0" Grid.Column="4" Content="5" />
+                        <Button Grid.Row="0" Grid.Column="5" Content="6" />
+                        <Button Grid.Row="0" Grid.Column="6" Content="7" />
+                        <Button Grid.Row="0" Grid.Column="7" Content="8" />
+                        <Button Grid.Row="0" Grid.Column="8" Content="9" />
+                        <Button Grid.Row="0" Grid.Column="9" Content="0" />
+                        <Button Grid.Row="0" Grid.Column="10" Command="{Binding BackSpaceCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl Style="{DynamicResource ButtonPromptX}"
+                                           Height="22" Margin="0,0,5,0"/>
+                                    <TextBlock Text="⌫"
+                                               Style="{StaticResource TextBlockBaseStyle}" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+
+                        <Button Grid.Row="1" Grid.Column="0" Content="q" />
+                        <Button Grid.Row="1" Grid.Column="1" Content="w" />
+                        <Button Grid.Row="1" Grid.Column="2" Content="e" />
+                        <Button Grid.Row="1" Grid.Column="3" Content="r" />
+                        <Button Grid.Row="1" Grid.Column="4" Content="t" />
+                        <Button Grid.Row="1" Grid.Column="5" Content="y" />
+                        <Button Grid.Row="1" Grid.Column="6" Content="u" />
+                        <Button Grid.Row="1" Grid.Column="7" Content="i" />
+                        <Button Grid.Row="1" Grid.Column="8" Content="o" />
+                        <Button Grid.Row="1" Grid.Column="9" Content="p" />
+                        <Button Grid.Row="1" Grid.Column="10" Grid.RowSpan="2" Command="{Binding ConfirmCommand}">
+                            <Button.Content>
+                                <StackPanel>
+                                    <ContentControl Style="{DynamicResource ButtonPromptStart}"
+                                           Height="22" Margin="0,0,0,5"/>
+                                    <TextBlock Text="{DynamicResource LOCDoneCapLabel}"
+                                               Style="{StaticResource TextBlockBaseStyle}" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+
+                        <Button Grid.Row="2" Grid.Column="0" Content="a" />
+                        <Button Grid.Row="2" Grid.Column="1" Content="s" />
+                        <Button Grid.Row="2" Grid.Column="2" Content="d" />
+                        <Button Grid.Row="2" Grid.Column="3" Content="f" />
+                        <Button Grid.Row="2" Grid.Column="4" Content="g" />
+                        <Button Grid.Row="2" Grid.Column="5" Content="h" />
+                        <Button Grid.Row="2" Grid.Column="6" Content="j" />
+                        <Button Grid.Row="2" Grid.Column="7" Content="k" />
+                        <Button Grid.Row="2" Grid.Column="8" Content="l" />
+                        <Button Grid.Row="2" Grid.Column="9" Content="-" />
+
+                        <Button Grid.Row="3" Grid.Column="0" Content="z" />
+                        <Button Grid.Row="3" Grid.Column="1" Content="x" />
+                        <Button Grid.Row="3" Grid.Column="2" Content="c" />
+                        <Button Grid.Row="3" Grid.Column="3" Content="v" />
+                        <Button Grid.Row="3" Grid.Column="4" Content="b" />
+                        <Button Grid.Row="3" Grid.Column="5" Content="n" />
+                        <Button Grid.Row="3" Grid.Column="6" Content="m" />
+                        <Button Grid.Row="3" Grid.Column="7" Content=";" />
+                        <Button Grid.Row="3" Grid.Column="8" Content=":" />
+                        <Button Grid.Row="3" Grid.Column="9" Content="!" />
+                        <Button Grid.Row="3" Grid.Column="10" Grid.RowSpan="2" Command="{Binding CancelCommand}">
+                            <Button.Content>
+                                <StackPanel>
+                                    <ContentControl Style="{DynamicResource ButtonPromptB}"
+                                           Height="22" Margin="0,0,0,5"/>
+                                    <TextBlock Text="{DynamicResource LOCCancelLabel}"
+                                               Style="{StaticResource TextBlockBaseStyle}" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+
+                        <Button Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2" Command="{Binding ClearTextCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl Style="{DynamicResource ButtonPromptRB}"
+                                           Height="22" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{DynamicResource LOCClearLabel}"
+                                               Style="{StaticResource TextBlockBaseStyle}" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        
+                        <Button Grid.Row="4" Grid.Column="0" Content=" " Grid.ColumnSpan="8" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Viewbox>    
+</c:WindowBase>

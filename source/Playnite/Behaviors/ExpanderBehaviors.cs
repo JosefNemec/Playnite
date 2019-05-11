@@ -1,6 +1,7 @@
 ﻿using Playnite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,11 @@ namespace Playnite.Behaviors
         private static void HandleSaveStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var expander = (Expander)obj;
+            if (DesignerProperties.GetIsInDesignMode(expander))
+            {
+                return;
+            }
+
             expander.Loaded += Expander_Loaded;
             if ((bool)args.NewValue)
             {

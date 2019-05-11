@@ -16,7 +16,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class MetadataLookupWindow : WindowBase
     {
-        public MetadataLookupWindow()
+        public MetadataLookupWindow() : base()
         {
             InitializeComponent();
         }

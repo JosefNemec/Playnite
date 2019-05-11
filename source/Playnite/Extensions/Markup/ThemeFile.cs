@@ -29,15 +29,7 @@ namespace Playnite.Extensions.Markup
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
-                var defaultTheme = "Default";
-                var slnPath = Path.Combine(Environment.GetEnvironmentVariable("PLAYNITE_SLN", EnvironmentVariableTarget.User), "Playnite.DesktopApp");
-                var themePath = Path.Combine(slnPath, "Themes", ThemeManager.GetThemeRootDir(mode), defaultTheme);
-                DefaultTheme = new ThemeDescription()
-                {
-                    DirectoryName = defaultTheme,
-                    DirectoryPath = themePath,
-                    Name = defaultTheme
-                };
+                DefaultTheme = GetDesignTimeDefaultTheme(mode);
             }
             else
             {
@@ -49,6 +41,25 @@ namespace Playnite.Extensions.Markup
         public ThemeFile(string path, ApplicationMode mode) : this(mode)
         {
             RelativePath = path;
+        }
+
+        public static ThemeDescription GetDesignTimeDefaultTheme(ApplicationMode mode)
+        {
+            var defaultTheme = "Default";
+            var projectName = mode == ApplicationMode.Fullscreen ? "Playnite.FullscreenApp" : "Playnite.DesktopApp";
+            var slnPath = Path.Combine(Environment.GetEnvironmentVariable("PLAYNITE_SLN", EnvironmentVariableTarget.User), projectName);
+            var themePath = Path.Combine(slnPath, "Themes", ThemeManager.GetThemeRootDir(mode), defaultTheme);
+            return new ThemeDescription()
+            {
+                DirectoryName = defaultTheme,
+                DirectoryPath = themePath,
+                Name = defaultTheme
+            };
+        }
+
+        public static string GetFilePath(string relPath, ThemeDescription defaultTheme)
+        {
+            return GetFilePath(relPath, defaultTheme, null);
         }
 
         public static string GetFilePath(string relPath, ThemeDescription defaultTheme, ThemeDescription currentTheme)

@@ -7,7 +7,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class CrashHandlerWindow : WindowBase
     {
-        public CrashHandlerWindow()
+        public CrashHandlerWindow() : base()
         {
             InitializeComponent();
         }

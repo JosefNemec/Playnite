@@ -42,11 +42,11 @@ namespace Playnite.DesktopApp.Controls
             typeof(FilterSelectionBox),
             new PropertyMetadata(true));
 
-        public SelectableItemList ItemsList
+        public SelectableIdItemList ItemsList
         {
             get
             {
-                return (SelectableItemList)GetValue(ItemsListProperty);
+                return (SelectableIdItemList)GetValue(ItemsListProperty);
             }
 
             set
@@ -57,7 +57,7 @@ namespace Playnite.DesktopApp.Controls
 
         public static readonly DependencyProperty ItemsListProperty = DependencyProperty.Register(
             nameof(ItemsList),
-            typeof(SelectableItemList),
+            typeof(SelectableIdItemList),
             typeof(FilterSelectionBox),
             new PropertyMetadata(null, ItemsListPropertyChangedCallback));
 
@@ -69,7 +69,7 @@ namespace Playnite.DesktopApp.Controls
                 return;
             }
 
-            var list = (SelectableItemList)e.NewValue;
+            var list = (SelectableIdItemList)e.NewValue;
             box.IgnoreChanges = true;
             list.SelectionChanged += (s, a) =>
             {

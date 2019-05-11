@@ -11,9 +11,9 @@ namespace Playnite.Windows
     {
         public static Type WindowType { get; private set; }
 
-        public static void SetWindowType(Type windowType)
+        public static void SetWindowType<TType>() where TType : WindowBase
         {
-            WindowType = windowType;
+            WindowType = typeof(TType);
         }
 
         public override WindowBase CreateNewWindowInstance()

@@ -134,6 +134,8 @@ namespace Playnite.Common
         private void ThrowIfDisposed()
         {
             // throws an ObjectDisposedException if this object has been disposed
+            // TODO
+            return;
             if (m_streamBase == null)
                 throw new ObjectDisposedException(GetType().Name);
         }

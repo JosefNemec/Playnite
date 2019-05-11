@@ -16,7 +16,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class InstalledGamesWindow : WindowBase
     {
-        public InstalledGamesWindow()
+        public InstalledGamesWindow() : base()
         {
             InitializeComponent();
         }

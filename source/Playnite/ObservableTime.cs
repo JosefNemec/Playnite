@@ -4,19 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Playnite.Common;
 
 namespace Playnite
 {
     public class ObservableTime : ObservableObject
     {
         private SynchronizationContext context;
+        private CancellationTokenSource watcherToken;
+        private Task currentTask;
 
-        public static ObservableTime Instance
-        {
-            get; set;
-        }
-
-        public string CurrentTime
+        public string Time
         {
             get => DateTime.Now.ToString(Common.Constants.TimeUiFormat);
         }
@@ -24,19 +22,48 @@ namespace Playnite
         public ObservableTime()
         {
             context = SynchronizationContext.Current;
-            StartTime();
+            if (!DesignerTools.IsInDesignMode)
+            {
+                StartWatcher();
+            }
         }
 
-        private void StartTime()
+        public async void StartWatcher()
         {
-            Task.Run(async () =>
+            watcherToken?.Cancel();
+            if (currentTask != null)
+            {
+                await currentTask;
+            }
+
+            watcherToken = new CancellationTokenSource();
+            currentTask = Task.Run(async () =>
             {
                 while (true)
                 {
-                    context.Post((a) => OnPropertyChanged(nameof(CurrentTime)), null);
+                    if (watcherToken.IsCancellationRequested)
+                    {
+                        return;
+                    }
+
+                    context.Post((a) => OnPropertyChanged(nameof(Time)), null);
                     await Task.Delay(10000);
                 }
-            });
+            }, watcherToken.Token);
+        }
+
+        public async void StopWatcher()
+        {
+            watcherToken?.Cancel();
+            if (currentTask != null)
+            {
+                await currentTask;
+            }
+        }
+
+        public void Dispose()
+        {
+            StopWatcher();
         }
     }
 }

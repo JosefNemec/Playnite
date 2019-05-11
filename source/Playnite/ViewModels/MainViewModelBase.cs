@@ -7,13 +7,64 @@ using System.Threading.Tasks;
 
 namespace Playnite.ViewModels
 {
-    public class MainViewModelBase : ObservableObject
+    public interface IMainViewModelBase
     {
-        public string ProgressStatus { get; set; }
-        public double ProgressValue { get; set; }
-        public double ProgressTotal { get; set; }
-        public bool ProgressVisible { get; set; }
-        public GamesCollectionView GamesView { get; set; }
+        string ProgressStatus { get; set; }
+        double ProgressValue { get; set; }
+        double ProgressTotal { get; set; }
+        bool ProgressVisible { get; set; }
+        BaseCollectionView GamesView { get; set; }
+        GamesCollectionViewEntry SelectedGame { get; set; }
+        IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
+    }
+
+    public class MainViewModelBase : ObservableObject, IMainViewModelBase
+    {
+        private string progressStatus;
+        public string ProgressStatus
+        {
+            get => progressStatus;
+            set
+            {
+                progressStatus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double progressValue;
+        public double ProgressValue
+        {
+            get => progressValue;
+            set
+            {
+                progressValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double progressTotal;
+        public double ProgressTotal
+        {
+            get => progressTotal;
+            set
+            {
+                progressTotal = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool progressVisible;
+        public bool ProgressVisible
+        {
+            get => progressVisible;
+            set
+            {
+                progressVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public BaseCollectionView GamesView { get; set; }
         public GamesCollectionViewEntry SelectedGame { get; set; }
         public IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
     }

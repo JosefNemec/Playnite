@@ -7,7 +7,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class UpdateWindow : WindowBase
     {
-        public UpdateWindow()
+        public UpdateWindow() : base()
         {
             InitializeComponent();
         }

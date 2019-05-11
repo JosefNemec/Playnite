@@ -106,24 +106,31 @@ namespace Playnite
 
             PlayniteSettings.MigrateSettingsConfig();
             AppSettings = PlayniteSettings.LoadSettings();
-            OnPropertyChanged(nameof(AppSettings));
+            if (AppSettings.StartInFullscreen)
+            {
+                ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, CmdLine.ToString());
+                CurrentNative.Shutdown(0);
+            }
 
+            OnPropertyChanged(nameof(AppSettings));
             var defaultTheme = new ThemeDescription()
             {
                 DirectoryName = defaultThemeName,
                 DirectoryPath = Path.Combine(PlaynitePaths.ThemesProgramPath, ThemeManager.GetThemeRootDir(Mode), defaultThemeName),
                 Name = defaultThemeName
             };
+
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
+            var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
             ThemeDescription customTheme = null;
-            if (AppSettings.Theme != ThemeManager.DefaultTheme.Name)
+            if (theme != ThemeManager.DefaultTheme.Name)
             {
-                customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.DirectoryName == AppSettings.Theme);
+                customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.DirectoryName == theme);
                 if (customTheme == null)
                 {
-                    logger.Error($"Failed to apply theme {AppSettings.Theme}, theme not found.");
+                    logger.Error($"Failed to apply theme {theme}, theme not found.");
                     ThemeManager.SetCurrentTheme(defaultTheme);
                 }
                 else
@@ -168,7 +175,8 @@ namespace Playnite
             var model = new CrashHandlerViewModel(
                 new CrashHandlerWindowFactory(),
                 Dialogs,
-                new ResourceProvider());
+                new ResourceProvider(),
+                Mode);
             model.Exception = exception.ToString();
             model.OpenView();
             Process.GetCurrentProcess().Kill();
@@ -176,7 +184,7 @@ namespace Playnite
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            logger.Info($"Application started from '{PlaynitePaths.ExecutablePath}', with '{string.Join(",", e.Args)}' arguments.");
+            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");            
             Startup();
             logger.Info($"Application {CurrentVersion} started");
         }
@@ -356,13 +364,13 @@ namespace Playnite
             }
         }
 
-        public void SetupInputs()
+        public void SetupInputs(bool enableXinput)
         {
-            if (AppSettings.EnableControllerInDesktop)
+            if (enableXinput)
             {
                 xdevice = new XInputDevice(InputManager.Current, this)
                 {
-                    SimulateAllKeys = true,
+                    SimulateAllKeys = false,
                     SimulateNavigationKeys = true
                 };
             }
@@ -375,19 +383,9 @@ namespace Playnite
             CurrentNative.Shutdown(0);
         }
 
-        public void Restart()
-        {
-            ReleaseResources();
-            Process.Start(PlaynitePaths.ExecutablePath);
-            CurrentNative.Shutdown(0);
-        }
+        public abstract void Restart();
 
-        public void Restart(CmdLineOptions options)
-        {            
-            ReleaseResources();
-            Process.Start(PlaynitePaths.ExecutablePath, options.ToString());
-            CurrentNative.Shutdown(0);
-        }
+        public abstract void Restart(CmdLineOptions options);
 
         public virtual void ReleaseResources()
         {
@@ -433,7 +431,7 @@ namespace Playnite
             {
                 return;
             }
-
+            
             await Task.Delay(Common.Timer.SecondsToMilliseconds(10));
             if (GlobalTaskHandler.IsActive)
             {

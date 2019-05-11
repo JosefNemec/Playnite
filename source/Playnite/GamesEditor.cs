@@ -311,7 +311,7 @@ namespace Playnite
                 }
 
                 var args = new CmdLineOptions() { Start = game.Id.ToString() }.ToString();
-                Programs.CreateShortcut(PlaynitePaths.ExecutablePath, args, icon, path);
+                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, args, icon, path);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -441,7 +441,7 @@ namespace Playnite
                     Arguments = args,
                     Description = string.Empty,
                     CustomCategory = "Recent",
-                    ApplicationPath = PlaynitePaths.ExecutablePath
+                    ApplicationPath = PlaynitePaths.DesktopExecutablePath
                 };
 
                 if (lastGame.Icon?.EndsWith(".ico", StringComparison.OrdinalIgnoreCase) == true)
@@ -513,12 +513,18 @@ namespace Playnite
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
-  
-            if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+            if (application.Mode == ApplicationMode.Desktop)
             {
-                application.Quit();
+                if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+                {
+                    application.Quit();
+                }
+                else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
+                {
+                    application.Minimize();
+                }
             }
-            else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
+            else
             {
                 application.Minimize();
             }
@@ -535,8 +541,14 @@ namespace Playnite
             dbGame.Playtime += args.EllapsedTime;
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
-
-            if (appSettings.AfterGameClose == AfterGameCloseOptions.Restore)
+            if (application.Mode == ApplicationMode.Desktop)
+            {
+                if (appSettings.AfterGameClose == AfterGameCloseOptions.Restore)
+                {
+                    application.Restore();
+                }
+            }
+            else
             {
                 application.Restore();
             }

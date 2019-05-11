@@ -18,7 +18,7 @@ namespace Playnite.DesktopApp.Windows
     {
         private WindowPositionHandler positionManager;
 
-        public GameEditWindow()
+        public GameEditWindow() : base()
         {
             InitializeComponent();
             positionManager = new WindowPositionHandler(this, "EditGame", PlayniteApplication.Current.AppSettings.WindowPositions);

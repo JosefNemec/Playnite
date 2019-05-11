@@ -37,15 +37,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         public PlayniteAPI PlayniteApi { get; }
         public ExtensionFactory Extensions { get; }
-        public IWindowFactory Window;
-        public IDialogsFactory Dialogs;
-        public IResourceProvider Resources;
-        public GameDatabase Database;
-        public DesktopGamesEditor GamesEditor;
-        public bool IsFullscreenView
-        {
-            get; protected set;
-        } = false;
+        public IWindowFactory Window { get; }
+        public IDialogsFactory Dialogs { get; }
+        public IResourceProvider Resources { get; }
+        public GameDatabase Database { get; }
+        public DesktopGamesEditor GamesEditor { get; }
 
         private Control activeView;
         public Control ActiveView
@@ -128,8 +124,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private GamesCollectionView gamesView;
-        public new GamesCollectionView GamesView
+        private DesktopCollectionView gamesView;
+        public new DesktopCollectionView GamesView
         {
             get => gamesView;
             set
@@ -827,6 +823,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ShutdownApp()
         {
+            Dispose();
             application.Quit();
         }
 
@@ -852,7 +849,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
                      
-            GamesView = new GamesCollectionView(Database, AppSettings, Extensions);         
+            GamesView = new DesktopCollectionView(Database, AppSettings, Extensions);         
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
@@ -1023,7 +1020,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public async void DownloadMetadata(MetadataDownloadViewModel model)
         {
-            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Manual, AppSettings.DefaultMetadataSettings) != true)
+            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Manual, AppSettings.DefaultMetadataSettings.GetClone()) != true)
             {
                 return;
             }
@@ -1330,8 +1327,10 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             CloseView();
-            throw new NotImplementedException();            
-            //PlayniteApplication.Current.OpenFullscreenView(false);            
+            application.Quit();
+            var cmdline = new CmdLineOptions() { SkipLibUpdate = true };
+            ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, cmdline.ToString());
+            application.Quit();
         }
 
         public void OpenView()

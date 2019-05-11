@@ -8,29 +8,6 @@ using System.Windows.Forms;
 
 namespace Playnite.Common
 {
-    public class Monitor
-    {
-        public string Name { get; set; }
-
-        public int Height { get; set; }
-
-        public int Width { get; set; }
-
-        public bool IsPrimary { get; set; }
-
-        public Monitor()
-        {
-        }
-
-        public Monitor(Screen screen)
-        {
-            IsPrimary = screen.Primary;
-            Name = screen.DeviceName;
-            Height = screen.Bounds.Height;
-            Width = screen.Bounds.Width;
-        }
-    }
-
     public class SystemInfo
     {
         public bool Is64Bit { get; set; }
@@ -43,7 +20,7 @@ namespace Playnite.Common
 
         public List<string> Gpus { get; set; }
 
-        public List<Monitor> Monitors { get; set; }
+        public List<Screen> Monitors { get; set; }
     }
 
     public enum WindowsVersion
@@ -117,16 +94,28 @@ namespace Playnite.Common
                 }
             }
 
-            info.Monitors = GetMonitors().ToList();
+            info.Monitors = GetMonitors();
             return info;
         }
 
-        public static IEnumerable<Monitor> GetMonitors()
+        public static List<Screen> GetMonitors()
         {
-            foreach (var screen in Screen.AllScreens)
-            {
-                yield return new Monitor(screen);
-            }
+            return Screen.AllScreens.ToList();
+        }
+
+        public static void Shutdown()
+        {
+            ProcessStarter.StartProcess("shutdown.exe", "-s -t 0");
+        }
+
+        public static void Restart()
+        {
+            ProcessStarter.StartProcess("shutdown.exe", "-r -t 0");
+        }
+
+        public static void Hibernate()
+        {
+            ProcessStarter.StartProcess("shutdown.exe", "-h -t 0");
         }
     }
 }

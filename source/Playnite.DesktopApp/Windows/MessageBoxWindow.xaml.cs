@@ -138,7 +138,7 @@ namespace Playnite.DesktopApp.Windows
         }
 
         
-        public MessageBoxWindow()
+        public MessageBoxWindow() : base()
         {
             InitializeComponent();
         }
@@ -156,8 +156,12 @@ namespace Playnite.DesktopApp.Windows
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
 
+            if (this != owner)
+            {
+                Owner = owner;
+            }
+
             TextInputText.Focus();
-            Owner = owner;
             Text = messageBoxText;
             Caption = caption;
             ShowInputField = true;
@@ -174,8 +178,12 @@ namespace Playnite.DesktopApp.Windows
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
 
+            if (this != owner)
+            {
+                Owner = owner;
+            }
+
             TextInputText.Focus();
-            Owner = owner;
             Text = messageBoxText;
             Caption = caption;
             ShowInputField = true;
@@ -201,8 +209,12 @@ namespace Playnite.DesktopApp.Windows
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
 
+            if (this != owner)
+            {
+                Owner = owner;
+            }
+
             result = defaultResult;
-            Owner = owner;
             Text = messageBoxText;
             Caption = caption;
             DisplayIcon = icon;

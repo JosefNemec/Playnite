@@ -16,7 +16,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class CategoryConfigWindow : WindowBase
     {
-        public CategoryConfigWindow()
+        public CategoryConfigWindow() : base()
         {
             InitializeComponent();
         }

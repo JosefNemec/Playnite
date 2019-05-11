@@ -14,19 +14,19 @@ using System.Threading.Tasks;
 namespace Playnite
 {
     public class GamesCollectionViewEntry : INotifyPropertyChanged
-    {
-        private readonly LibraryPlugin plugin;
+    {        
         private readonly Type colGroupType;
         private readonly Guid colGroupId;
 
+        public LibraryPlugin LibraryPlugin { get; }
         public Guid Id => Game.Id;
         public Guid PluginId => Game.PluginId;
         public string GameId => Game.GameId;
-        public List<Tag> Tags => Game.Tags;
-        public List<Genre> Genres => Game.Genres;
-        public List<Company> Developers => Game.Developers;
-        public List<Company> Publishers => Game.Publishers;
-        public List<Category> Categories => Game.Categories;
+        public ComparableDbItemList<Tag> Tags => new ComparableDbItemList<Tag>(Game.Tags);
+        public ComparableDbItemList<Genre> Genres => new ComparableDbItemList<Genre>(Game.Genres);
+        public ComparableDbItemList<Company> Developers => new ComparableDbItemList<Company>(Game.Developers);
+        public ComparableDbItemList<Company> Publishers => new ComparableDbItemList<Company>(Game.Publishers);
+        public ComparableDbItemList<Category> Categories => new ComparableDbItemList<Category>(Game.Categories);
         public DateTime? ReleaseDate => Game.ReleaseDate;
         public int? ReleaseYear => Game.ReleaseYear;
         public DateTime? LastActivity => Game.LastActivity;
@@ -46,6 +46,7 @@ namespace Playnite
         public bool IsUnistalling => Game.IsUninstalling;
         public bool IsLaunching => Game.IsLaunching;
         public bool IsRunning => Game.IsRunning;
+        public bool IsCustomGame => Game.IsCustomGame;
         public long Playtime => Game.Playtime;
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;
@@ -152,7 +153,7 @@ namespace Playnite
 
         public GamesCollectionViewEntry(Game game, LibraryPlugin plugin)
         {
-            this.plugin = plugin;
+            LibraryPlugin = plugin;
             Game = game;
             Game.PropertyChanged += Game_PropertyChanged;
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
@@ -218,7 +219,7 @@ namespace Playnite
 
         private object GetImageObject(string data, bool cached)
         {
-            return ImageSourceManager.GetImage(data, cached);
+            return ImageSourceManager.GetImage(data, DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()) ? false : cached);
         }
 
         public object GetDefaultIcon()
@@ -229,9 +230,9 @@ namespace Playnite
             }
             else
             {
-                if (!string.IsNullOrEmpty(plugin?.LibraryIcon))
+                if (!string.IsNullOrEmpty(LibraryPlugin?.LibraryIcon))
                 {
-                    return ImageSourceManager.GetImage(plugin.LibraryIcon, true);
+                    return ImageSourceManager.GetImage(LibraryPlugin.LibraryIcon, true);
                 }
 
                 return ResourceProvider.GetResource("DefaultGameIcon");

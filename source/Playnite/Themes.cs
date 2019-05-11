@@ -53,26 +53,61 @@ namespace Playnite
             DefaultTheme = theme;
         }
 
+        public static void ApplyFullscreenButtonPrompts(Application app, FullscreenButtonPrompts prompts)
+        {
+            if (prompts == FullscreenSettings.DefaultButtonPrompts)
+            {
+                var defaultXaml = $"{FullscreenSettings.DefaultButtonPrompts.ToString()}.xaml";
+                foreach (var dir in PlayniteApplication.CurrentNative.Resources.MergedDictionaries.ToList())
+                {
+                    if (dir.Source.OriginalString.Contains("ButtonPrompts") &&
+                        !dir.Source.OriginalString.EndsWith(defaultXaml))
+                    {
+                        PlayniteApplication.CurrentNative.Resources.MergedDictionaries.Remove(dir);
+                    }
+                }
+            }
+            else
+            {
+                var promptsPath = Path.Combine(ThemeManager.DefaultTheme.DirectoryPath, "Images", "ButtonPrompts");
+                foreach (var dir in Directory.GetDirectories(promptsPath))
+                {
+                    var dirInfo = new DirectoryInfo(dir);
+                    var promptXaml = Path.Combine(dir, $"{dirInfo.Name}.xaml");
+                    if (File.Exists(promptXaml) && dirInfo.Name == prompts.ToString())
+                    {
+                        var xaml = Xaml.GetObjectFromFile(promptXaml);
+                        if (xaml is ResourceDictionary xamlDir)
+                        {
+                            xamlDir.Source = new Uri(promptXaml, UriKind.Absolute);
+                            PlayniteApplication.CurrentNative.Resources.MergedDictionaries.Add(xamlDir);
+                        }
+                    }
+                }
+            }
+        }
+
         public static void ApplyTheme(Application app, ThemeDescription theme, ApplicationMode mode)
         {
             var allLoaded = true;
             var loadedXamls = new List<ResourceDictionary>();
-            var xamlFiles = Directory.GetFiles(theme.DirectoryPath, "*.xaml");
+            var xamlFiles = Directory.GetFiles(theme.DirectoryPath, "*.xaml", SearchOption.AllDirectories);
             foreach (var xamlFile in xamlFiles)
             {
                 try
                 {
                     var xaml = Xaml.GetObjectFromFile(xamlFile);
-                    if (xaml is ResourceDictionary)
+                    if (xaml is ResourceDictionary xamlDir)
                     {
-                        loadedXamls.Add(xaml as ResourceDictionary);
+                        xamlDir.Source = new Uri(xamlFile, UriKind.Absolute);
+                        loadedXamls.Add(xamlDir as ResourceDictionary);
                     }
                     else
                     {
                         logger.Error($"Skipping theme file {xamlFile}, it's not resource dictionary.");
                     }
                 }
-                catch (Exception e)
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, $"Failed to load xaml {xamlFiles}");
                     allLoaded = false;

@@ -412,8 +412,8 @@ namespace Playnite.DesktopApp.ViewModels
             if (regex.Success)
             {
 
-                Settings.CoverArtWidthRatio = Convert.ToUInt32(regex.Groups[1].Value);
-                Settings.CoverArtHeightRatio = Convert.ToUInt32(regex.Groups[2].Value);
+                Settings.CoverArtWidthRatio = Convert.ToInt32(regex.Groups[1].Value);
+                Settings.CoverArtHeightRatio = Convert.ToInt32(regex.Groups[2].Value);
             }
         }
     }

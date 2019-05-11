@@ -7,7 +7,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class ProgressWindow : WindowBase
     {
-        public ProgressWindow()
+        public ProgressWindow() : base()
         {
             InitializeComponent();
         }

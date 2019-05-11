@@ -16,6 +16,7 @@ using Playnite.WebView;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -46,9 +47,9 @@ namespace Playnite.DesktopApp
 
         public override void Startup()
         {            
-            ProgressWindowFactory.SetWindowType(typeof(ProgressWindow));
-            CrashHandlerWindowFactory.SetWindowType(typeof(CrashHandlerWindow));
-            UpdateWindowFactory.SetWindowType(typeof(UpdateWindow));
+            ProgressWindowFactory.SetWindowType<ProgressWindow>();
+            CrashHandlerWindowFactory.SetWindowType<CrashHandlerWindow>();
+            UpdateWindowFactory.SetWindowType<UpdateWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
 
@@ -66,7 +67,7 @@ namespace Playnite.DesktopApp
             InstantiateApp();
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
-            SetupInputs();
+            SetupInputs(AppSettings.EnableControllerInDesktop);
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
             StartUpdateCheckerAsync();            
@@ -93,6 +94,20 @@ namespace Playnite.DesktopApp
         {
             trayIcon?.Dispose();
             base.ReleaseResources();
+        }
+
+        public override void Restart()
+        {
+            ReleaseResources();
+            Process.Start(PlaynitePaths.DesktopExecutablePath);
+            CurrentNative.Shutdown(0);
+        }
+
+        public override void Restart(CmdLineOptions options)
+        {
+            ReleaseResources();
+            Process.Start(PlaynitePaths.DesktopExecutablePath, options.ToString());
+            CurrentNative.Shutdown(0);
         }
 
         public override void InstantiateApp()

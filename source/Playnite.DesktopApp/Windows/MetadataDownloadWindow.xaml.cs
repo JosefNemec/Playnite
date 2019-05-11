@@ -16,7 +16,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class MetadataDownloadWindow : WindowBase
     {
-        public MetadataDownloadWindow()
+        public MetadataDownloadWindow() : base()
         {
             InitializeComponent();
         }

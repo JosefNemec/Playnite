@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,11 @@ namespace Playnite.Behaviors
           DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (Selector)obj;
+            if (DesignerProperties.GetIsInDesignMode(control))
+            {
+                return;
+            }
+
             if ((bool)args.NewValue)
             {
                 control.SelectionChanged += Control_SelectionChanged;

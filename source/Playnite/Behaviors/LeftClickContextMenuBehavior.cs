@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,11 @@ namespace Playnite.Behaviors
         private static void HandlePropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (FrameworkElement)obj;
+            if (DesignerProperties.GetIsInDesignMode(control))
+            {
+                return;
+            }
+
             if ((bool)args.NewValue)
             {
                 control.PreviewMouseLeftButtonUp += Control_PreviewMouseLeftButtonUp;

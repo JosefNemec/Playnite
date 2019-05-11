@@ -1,0 +1,61 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"        
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:pc="clr-namespace:Playnite.Controls;assembly=Playnite"
+                    xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+                    xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp"
+                    mc:Ignorable="d">
+
+    <Style x:Key="ListGameItem" TargetType="ListBoxItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                            Margin="14">
+                        <Grid>
+                            <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Stretch="{pmrk:Settings CoverArtStretch}">
+                                <Image.Source>
+                                    <PriorityBinding>
+                                        <Binding Path="CoverImageObject" Mode="OneWay" 
+                                                Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
+                                        <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
+                                    </PriorityBinding>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
+                                       Visibility="{pmrk:Settings Fullscreen.ShowGameTitles}"
+                                       Style="{DynamicResource TextBlockBaseStyle}" FontSize="18"
+                                       HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                       TextAlignment="Center" Padding="5"                                    
+                                       Background="{DynamicResource ControlBackgroundDarkBrush}"/>
+                            <Border x:Name="MainBorder" BorderThickness="5" BorderBrush="{DynamicResource SelectionBrush}"
+                                    Margin="-5" Visibility="Collapsed" CornerRadius="3">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0"
+                                                      Color="{DynamicResource GlyphColor}"
+                                                      Opacity="1"
+                                                      RenderingBias="Quality"
+                                                      BlurRadius="20"/>
+                                </Border.Effect>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

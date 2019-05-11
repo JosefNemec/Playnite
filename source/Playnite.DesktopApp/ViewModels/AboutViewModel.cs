@@ -124,7 +124,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CreateDiagPackage()
         {
-            var model = new CrashHandlerViewModel(null, dialogs, resources);
+            var model = new CrashHandlerViewModel(null, dialogs, resources, ApplicationMode.Desktop);
             model.CreateDiagPackage();
         }
     }

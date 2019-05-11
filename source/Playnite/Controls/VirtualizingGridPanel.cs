@@ -285,11 +285,21 @@ namespace Playnite.Controls
             }
 
             var previousRows = Math.Ceiling(_offset.Y / ItemHeight);
-            firstVisibleItemIndex = (int)Math.Ceiling(previousRows * Columns);
-            lastVisibleItemIndex = (firstVisibleItemIndex - 1) + (Columns * Rows);
+            var origFirst = (int)Math.Ceiling(previousRows * Columns);
+            firstVisibleItemIndex = origFirst;
+            if (firstVisibleItemIndex - Columns >= 0)
+            {
+                firstVisibleItemIndex = firstVisibleItemIndex - Columns;
+            }
+ 
+            lastVisibleItemIndex = (origFirst - 1) + (Columns * Rows);
             if (lastVisibleItemIndex >= itemCount)
             {
                 lastVisibleItemIndex = itemCount;
+            }
+            else if (lastVisibleItemIndex + Columns <= itemCount)
+            {
+                lastVisibleItemIndex = lastVisibleItemIndex + Columns;
             }
 
             if (Rows == 1)
@@ -315,11 +325,6 @@ namespace Playnite.Controls
             return new Size(ItemWidth, ItemHeight);
         }
 
-        public IContainItemStorage GetItemStorageProvider()
-        {
-            return _itemsControl as IContainItemStorage;
-        }
-
         private int GetItemRow(int itemIndex, int itemPerRow)
         {
             int column = itemIndex % itemPerRow;
@@ -343,7 +348,6 @@ namespace Playnite.Controls
                 ItemHeight);
 
             child.Arrange(targetRect);
-            var item = GeneratorContainer.ItemFromContainer(child);
         }
 
         /// <summary>
@@ -586,6 +590,10 @@ namespace Playnite.Controls
 
         public void SetVerticalOffset(double offset)
         {
+            // Forces srolling per whole item
+            var line = Math.Round(offset / ItemHeight, MidpointRounding.AwayFromZero);
+            offset = line * ItemHeight;
+
             if (offset < 0 || _viewport.Height >= _extent.Height)
             {
                 offset = 0;

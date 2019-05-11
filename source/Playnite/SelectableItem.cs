@@ -199,7 +199,7 @@ namespace System
         }
     }
 
-    public abstract class SelectableItemList : ObservableObject
+    public abstract class SelectableIdItemList : ObservableObject
     {
         public event EventHandler SelectionChanged;
         public abstract string AsString { get; }
@@ -213,7 +213,7 @@ namespace System
         }
     }
 
-    public class SelectableItemList<TItem> : SelectableItemList, ICollection<SelectableItem<TItem>>
+    public class SelectableIdItemList<TItem> : SelectableIdItemList, ICollection<SelectableItem<TItem>>
     {
         private readonly Func<TItem, Guid> idSelector;
         internal readonly List<SelectableItem<TItem>> Items;
@@ -223,7 +223,7 @@ namespace System
             get => ToString();
         }
 
-        public SelectableItemList(
+        public SelectableIdItemList(
             IEnumerable<TItem> collection,
             Func<TItem, Guid> idSelector,
             IEnumerable<Guid> selected = null,
@@ -331,7 +331,7 @@ namespace System
         }
     }
 
-    public class SelectableDbItemList : SelectableItemList<DatabaseObject>, INotifyCollectionChanged
+    public class SelectableDbItemList : SelectableIdItemList<DatabaseObject>, INotifyCollectionChanged
     {
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
@@ -410,7 +410,7 @@ namespace System
         }
     }
 
-    public class SelectableLibraryPluginList : SelectableItemList<LibraryPlugin>
+    public class SelectableLibraryPluginList : SelectableIdItemList<LibraryPlugin>
     {
         public SelectableLibraryPluginList(IEnumerable<LibraryPlugin> collection, IEnumerable<Guid> selected = null)
             : base(collection, (a) => a.Id, selected)
