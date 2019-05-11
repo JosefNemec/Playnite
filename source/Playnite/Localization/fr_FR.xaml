@@ -315,8 +315,8 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
 
     <sys:String x:Key="LOCStrechNone">Aucun</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir</sys:String>
-    <sys:String x:Key="LOCStrechUniform">Uniforme</sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill">Uniform à remplir</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Préserver le rapport largeur/hauteur</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Recadrer</sys:String>
 
     <sys:String x:Key="LOCDockLeft">Gauche</sys:String>
     <sys:String x:Key="LOCDockRight">Droite</sys:String>
