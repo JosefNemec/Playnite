@@ -28,7 +28,7 @@ Indéterminé - Aucun changement</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sans plateforme</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh non, quelque chose s'est mal passé...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite a rencontré un problème et n'a pas pu le resoudre. Si vous voulez nous aider, vous pouvez envoyer un rapport de bug et signaler le problème. Merci beaucoup !</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite a rencontré un problème et n'a pas pu le résoudre. Si vous voulez nous aider, vous pouvez envoyer un rapport de bug et signaler le problème. Merci beaucoup !</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Signaler</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Redémarrer Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Quitter Playnite</sys:String>
@@ -98,7 +98,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCNoLabel">Non</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Bienvenue</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Utilisateur local</sys:String>
-    <sys:String x:Key="LOCAuthenticateLabel">Authentifier</sys:String>
+    <sys:String x:Key="LOCAuthenticateLabel">Connexion</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Général</sys:String>
     <sys:String x:Key="LOCMediaLabel">Medias</sys:String>
     <sys:String x:Key="LOCLinksLabel">Liens</sys:String>
@@ -138,9 +138,9 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCFriday">Vendredi</sys:String>
     <sys:String x:Key="LOCSaturday">Samedi</sys:String>
     <sys:String x:Key="LOCSunday">Dimanche</sys:String>
-    <sys:String x:Key="LOCPastWeek">Dernière semaine</sys:String>
-    <sys:String x:Key="LOCPastMonth">Mois dernier</sys:String>
-    <sys:String x:Key="LOCPastYear">L'année passée</sys:String>
+    <sys:String x:Key="LOCPastWeek">Cette semaine</sys:String>
+    <sys:String x:Key="LOCPastMonth">Ce mois-ci</sys:String>
+    <sys:String x:Key="LOCPastYear">Cette année</sys:String>
     <sys:String x:Key="LOCImportCompleted">Les catégories ont été importées avec succès.</sys:String>
     <sys:String x:Key="LOCAllGames">Tous</sys:String>
     <sys:String x:Key="LOCGameId">Id jeu</sys:String>
@@ -166,7 +166,7 @@ Résultats dans : -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Veuillez sélectionner les jeux qui doivent être mis à jour avec les nouvelles métadonnées :</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Tous les jeux de la base de données</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tous les jeux actuellement filtrés</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceSelected">Tous les jeux actuellement sélectionnés</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceSelected">Le ou les jeux actuellement sélectionnés</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Boutique Officielle</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Boutique Officielle</sys:String>
@@ -211,7 +211,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuAddGameManual">Manuellement</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Importer depuis une installation</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Importer des jeux émulés</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Jeu Windows Store...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Jeu Microsoft Store...</sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Mode plein écran</sys:String>
@@ -219,19 +219,19 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSDKDocumentation">Documentation</sys:String>
 
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails de la vue grille</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails dans le mode d'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position du panneau de filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position du panneau d'explorateur</sys:String>
-    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendu Couverture</sys:String>
-    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Aspect ratio cible</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Type d'image de couverture</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Format d'image cible</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Mode Étirer</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Bannière Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Boîte DVD</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">Les paramètres marqués par une * nécessitent le redémarrage de l'application pour être effectif</sys:String>
-    <sys:String x:Key="LOCSettingsLabel">Réglages</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">Les paramètres marqués par * nécessitent le redémarrage de l'application</sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Paramètres</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Général</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Apparence</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel">Détails du jeu</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Propriétés du jeu</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Disposition</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Autres</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Plein écran</sys:String>
@@ -250,14 +250,14 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Télécharger les métadonnées automatiquement</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Réduire dans la barre d'état au démarrage</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Lancer Playnite au démarrage de l'ordinateur</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Impossible d'enregistrer Playnite pour lancer au démarrage de l'ordinateur.</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Impossible de lancer Playnite au démarrage de l'ordinateur.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Lancer Playnite en mode plein écran</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclut Steam, Origin et autres.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Chargement d'image asynchrone (redémarrage nécessaire)</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Améliore la fluidité du défilement des listes de jeux en chargeant les images plus lentement.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Afficher le nom des jeux à la place des jaquettes manquantes</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Afficher le nom des jeux dans la vue en grille</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans la vue en liste</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Afficher le nom des jeux dans le mode d'affichage en grille</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans le mode d'affichage en liste</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Afficher le nombre d'items dans la description des groupes</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle (redémarrage nécessaire)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
@@ -302,7 +302,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">La durée de la session ne sera pas enregistrée si Playnite est fermé après le lancement du jeu.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de rangées</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de colonnes</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Nombre de rangées (Détails)</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Nbr. de rangées (Détails)</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Source de l'image de fond :</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Par défaut</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Capture d'écran (magasin)</sys:String>
@@ -310,8 +310,8 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Ne peut s'appliquer rétroactivement (à moins de retélécharger les métadonnées).</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forcer la synchronisation du temps de jeu</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Télécharger systématiquement le temps de jeu des librairies distantes lors de la synchronisation, ignorant le temps de jeu enregistré par Playnite.</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activer le support du contrôleur en mode bureau *</sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Le bouton guide ouvre le mode plein écran</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activer le support des manettes Xinput en mode bureau *</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Le bouton Guide ouvre le mode plein écran</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucun</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir</sys:String>
@@ -373,7 +373,7 @@ Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ord
     <sys:String x:Key="LOCFirstUplayIntegration">Intégration de Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importer des catégories à partir du profil :</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Autres jeux</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Cliquez sur le bouton ci-dessous pour importer d'autres jeux installés ou les rechercher manuellement (y compris les jeux Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Cliquez sur le bouton ci-dessous pour importer d'autres jeux installés ou les rechercher manuellement (y compris les jeux Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importer des jeux</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration terminée</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu "Paramètres".</sys:String>
@@ -456,7 +456,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">La base de données n'est pas ouverte.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Erreur : Impossible d'accéder à la base de données de la bibliothèque. Le fichier "{0}" est utilisé par un autre processus ou dans un emplacement inaccessible.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Erreur : Impossible de créer le dossier de diagnostic.</sys:String>
-    <sys:String x:Key="LOCDiagPackageUploadError">Impossible de télécharger automatiquement le paquet diagnostique.</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">Impossible d'envoyer le dossier de diagnostic automatiquement .</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Le dossier de diagnostic a été créé et mis en ligne avec succès. Veuillez copier le numéro d'identification indiqué ci-dessous pour le communiquer lors de la rédaction de votre rapport de bug sur la page Github du projet (Catégorie : Issues).</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Erreur : Impossible d'importer les catégories de Steam.</sys:String>
@@ -537,7 +537,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCBeaten">Terminé</sys:String>
     <sys:String x:Key="LOCCompleted">Terminé (100%)</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Statut</sys:String>
-    <sys:String x:Key="LOCUserScore">Note utilisateurs</sys:String>
+    <sys:String x:Key="LOCUserScore">Note utilisateur</sys:String>
     <sys:String x:Key="LOCCriticScore">Note presse</sys:String>
     <sys:String x:Key="LOCCommunityScore">Note communauté</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
@@ -632,7 +632,7 @@ Veuillez essayer les solutions suivantes :
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Régler les problèmes de synchronisation</sys:String>
 
-    <sys:String x:Key="LOCRenameItem">Renommer l'objet</sys:String>
+    <sys:String x:Key="LOCRenameItem">Renommer l'élément</sys:String>
     <sys:String x:Key="LOCAddNewItem">Ajouter un nouvel élément</sys:String>
     <sys:String x:Key="LOCEnterName">Saisir un nom</sys:String>
     <sys:String x:Key="LOCEnterNewName">Saisir un nouveau nom</sys:String>
@@ -652,8 +652,7 @@ Veuillez essayer les solutions suivantes :
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Connexion au compte</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nom d'utilisateur</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous à votre compte ou utilisez votre nom de compte public pour synchroniser votre bibliothèque complète.
-Notez que l'option Nom de compte ne fonctionne que pour les comptes dont les bibliothèques de jeu ont été définies dans les paramètres de confidentialité de GOG pour être publiquement visibles.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous directement à votre compte ou indiquez votre nom d'utilisateur pour synchroniser la bibliothèque. Notez que le nom d'utilisateur ne peut être utilisé que si les paramètres de visibilité du compte sont réglés sur "public".</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Sélectionnez le nom d'utilisateur de votre compte ou indiquez l'URL personnalisée de votre profil pour synchroniser la bibliothèque. Les comptes dont la visibilité des jeux est réglée sur "personne" nécessitent également d'indiquer leur clé API.
