@@ -9,7 +9,7 @@ using DiscordLibrary.Services;
 using Newtonsoft.Json;
 using Playnite;
 using Playnite.SDK;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 
 namespace DiscordLibrary
 {
@@ -61,7 +61,7 @@ namespace DiscordLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<DiscordLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<DiscordLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -77,7 +77,7 @@ namespace DiscordLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()
@@ -87,7 +87,7 @@ namespace DiscordLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)
@@ -112,7 +112,7 @@ namespace DiscordLibrary
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                api.Dialogs.ShowErrorMessage(api.Resources.FindString("LOCNotLoggedInError"), "");
+                api.Dialogs.ShowErrorMessage(api.Resources.GetString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate user.");
             }
         }

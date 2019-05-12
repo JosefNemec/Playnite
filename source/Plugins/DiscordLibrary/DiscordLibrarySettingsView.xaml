@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DiscordLibrary"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:pui="clr-namespace:PlayniteUI"
+             xmlns:pui="clr-namespace:Playnite.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="400">
     

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
+using Playnite.Common;
 
 namespace DiscordLibrary
 {
@@ -89,18 +90,20 @@ namespace DiscordLibrary
                 var installed = library.GetInstalledGames();
                 if (installed.TryGetValue(id, out var installedGame))
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo()
                     {
-                        Game.PlayAction = installedGame.PlayAction;
-                    }
+                        PlayAction = installedGame.PlayAction,
+                        OtherActions = installedGame.OtherActions,
+                        InstallDirectory = installedGame.InstallDirectory
+                    };
 
                     Game.InstallDirectory = installedGame.InstallDirectory;
                     stopWatch.Stop();
-                    OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, stopWatch.Elapsed.TotalSeconds));
                     return;
                 }
 
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
+                await Task.Delay(Playnite.Common.Timer.SecondsToMilliseconds(10));
             }
         }
 
@@ -124,7 +127,7 @@ namespace DiscordLibrary
                     return;
                 }
 
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(5));
+                await Task.Delay(Playnite.Common.Timer.SecondsToMilliseconds(5));
             }
         }
 

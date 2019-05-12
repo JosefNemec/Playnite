@@ -7,30 +7,29 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DiscordLibrary.Services;
-using Playnite.Common.System;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 
 namespace DiscordLibrary
 {
-    public class DiscordLibrary : ILibraryPlugin
+    public class DiscordLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
         private IPlayniteAPI api;
         private const string dbImportMessageId = "discordlibImportError";
         internal readonly DiscordLibrarySettings librarySettings;
 
-        public DiscordLibrary(IPlayniteAPI api)
+        public DiscordLibrary(IPlayniteAPI api) : base(api)
         {
             this.api = api;
             librarySettings = new DiscordLibrarySettings(this, api);
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\discordicon.png");
         }
 
-        internal Dictionary<string, Game> GetInstalledGames()
+        internal Dictionary<string, GameInfo> GetInstalledGames()
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             foreach (var program in Programs.GetUnistallProgramsList())
             {
                 if (string.IsNullOrEmpty(program.UninstallString))
@@ -56,11 +55,10 @@ namespace DiscordLibrary
                     continue;
                 }
 
-                var game = new Game()
+                var game = new GameInfo()
                 {
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     GameId = gameId,
-                    PluginId = Id,
                     Source = Name,
                     Name = program.DisplayName,
                     IsInstalled = true,
@@ -86,30 +84,28 @@ namespace DiscordLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new DiscordClient();
+        public override LibraryClient Client { get; } = new DiscordClient();
 
-        public string LibraryIcon { get; private set; }
+        public override string LibraryIcon => Discord.Icon;
 
-        public string Name { get; } = "Discord";
+        public override string Name { get; } = "Discord";
 
-        public bool IsClientInstalled => Discord.IsInstalled;
+        public override Guid Id { get; } = Guid.Parse("6f3c4ba7-6540-4e0c-834a-d119f71ed81e");
 
-        public Guid Id { get; } = Guid.Parse("6f3c4ba7-6540-4e0c-834a-d119f71ed81e");
-
-        public void Dispose()
+        public override void Dispose()
         {
 
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
             return new DiscordGameController(game, this);
         }
 
-        public IEnumerable<Game> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (librarySettings.ImportInstalledGames)
@@ -158,7 +154,7 @@ namespace DiscordLibrary
             {
                 api.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(api.Resources.FindString("LOCLibraryImportError"), Name) +
+                    string.Format(api.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
@@ -170,7 +166,7 @@ namespace DiscordLibrary
             return allGames;
         }
 
-        private List<Game> GetLibraryGames()
+        private List<GameInfo> GetLibraryGames()
         {
             var token = librarySettings.ApiToken;
             if (token == null)
@@ -181,14 +177,13 @@ namespace DiscordLibrary
             var library = DiscordAccountClient.GetLibrary(token);
             var lastPlayed = DiscordAccountClient.GetLastPlayed(token).ToDictionary(x => x.application_id);
 
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             foreach (var libraryGame in library)
             {
                 var applicationId = libraryGame.application.id;
-                var game = new Game()
+                var game = new GameInfo()
                 {
                     GameId = applicationId.ToString(),
-                    PluginId = Id,
                     Source = Name,
                     Name = libraryGame.application.name,
                     PlayAction = CreatePlayTask(applicationId.ToString())
@@ -205,17 +200,17 @@ namespace DiscordLibrary
             return games;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new DiscordMetadataProvider(this);
         }
 
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return librarySettings;
         }
 
-        public System.Windows.Controls.UserControl GetSettingsView(bool firstRunView)
+        public override System.Windows.Controls.UserControl GetSettingsView(bool firstRunView)
         {
             return new DiscordLibrarySettingsView();
         }

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Common.System;
+using Playnite.Common;
 
 namespace DiscordLibrary
 {
@@ -49,5 +50,6 @@ namespace DiscordLibrary
                 .FirstOrDefault(a => a.RegistryKeyName.Equals(gameId, StringComparison.OrdinalIgnoreCase));
         }
 
+        public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\discordicon.png");
     }
 }

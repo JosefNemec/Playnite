@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using DiscordLibrary.Models;
 using Playnite.Common;
+using Playnite.Common.Web;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
-using Playnite.Web;
 
 namespace DiscordLibrary
 {
-    public class DiscordMetadataProvider : ILibraryMetadataProvider
+    public class DiscordMetadataProvider : LibraryMetadataProvider
     {
         private readonly DiscordLibrary library;
         private readonly ILogger logger = LogManager.GetLogger();
@@ -30,7 +30,7 @@ namespace DiscordLibrary
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var metadata = new GameMetadata();
 
@@ -49,30 +49,31 @@ namespace DiscordLibrary
                 return null;
             }
 
-            metadata.GameData = new Game()
+            metadata.GameInfo = new GameInfo()
             {
                 Name = application.name,
                 ReleaseDate = storeListing.sku.release_date,
-                CoverImage = $"https://cdn.discordapp.com/app-assets/{applicationId}/store/{storeListing.thumbnail.id}.png?size=2048",
-                Links = new ObservableCollection<Link>() { new Link("Discord", $"https://discordapp.com/store/skus/{skuId}/{storeListing.sku.slug}") },
+                Links = new List<Link>() { new Link("Discord", $"https://discordapp.com/store/skus/{skuId}/{storeListing.sku.slug}") },
                 Description = storeListing.htmlDescription(),
             };
 
             var iconUrl = $"https://cdn.discordapp.com/app-icons/{applicationId}/{application.icon}.png";
             metadata.Icon = new MetadataFile("icon.png", HttpDownloader.DownloadData(iconUrl));
 
-            metadata.Image = new MetadataFile("cover.png", HttpDownloader.DownloadData(metadata.GameData.CoverImage));
+            metadata.CoverImage = new MetadataFile("cover.png", HttpDownloader.DownloadData(
+                $"https://cdn.discordapp.com/app-assets/{applicationId}/store/{storeListing.thumbnail.id}.png?size=2048"));
 
-            metadata.BackgroundImage = $"https://cdn.discordapp.com/app-assets/{applicationId}/store/{storeListing.hero_background.id}.png?size=2048";
+            metadata.BackgroundImage = new MetadataFile("background.png", HttpDownloader.DownloadData(
+                $"https://cdn.discordapp.com/app-assets/{applicationId}/store/{storeListing.hero_background.id}.png?size=2048"));
 
             if (application.developers != null)
             {
-                metadata.GameData.Developers = new ComparableList<string>(application.developers.Select(d => d.name));
+                metadata.GameInfo.Developers = new ComparableList<string>(application.developers.Select(d => d.name));
             }
 
             if (application.publishers != null)
             {
-                metadata.GameData.Publishers = new ComparableList<string>(application.publishers.Select(d => d.name));
+                metadata.GameInfo.Publishers = new ComparableList<string>(application.publishers.Select(d => d.name));
             }
 
             foreach (var thirdPartySku in application.third_party_skus)
@@ -83,7 +84,7 @@ namespace DiscordLibrary
                         // already handled above
                         break;
                     case "steam":
-                        metadata.GameData.Links.Add(new Link("Steam", $"https://store.steampowered.com/app/{thirdPartySku.id}"));
+                        metadata.GameInfo.Links.Add(new Link("Steam", $"https://store.steampowered.com/app/{thirdPartySku.id}"));
                         break;
                     case "uplay":
                         // Not sure how to map short 3 or 4 digit uplay ids to URLs

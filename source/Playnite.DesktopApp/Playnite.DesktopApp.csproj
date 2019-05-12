@@ -820,6 +820,7 @@ xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetD
 xcopy "$(SolutionDir)\Plugins\BethesdaLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BethesdaLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\EpicLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\EpicLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\ItchioLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\ItchioLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\DiscordLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\DiscordLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
