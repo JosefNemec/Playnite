@@ -6,11 +6,11 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Idioma</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Sair</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtro ativado (clique para trocar painel de filtro)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtro desativado (clique para trocar painel de filtro)</sys:String>
 
-    <sys:String x:Key="LOCInvalidDataTitle"></sys:String>
-    <sys:String x:Key="LOCSaveChangesAskTitle"></sys:String>
+    <sys:String x:Key="LOCInvalidDataTitle">Dados inválidos</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">Guardar alterações?</sys:String>
     
     <sys:String x:Key="LOCAboutHomePageLink"></sys:String>
     <sys:String x:Key="LOCAboutSourceLink"></sys:String>
