@@ -48,17 +48,17 @@
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam 친구</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">저장해야 할 변경 사항이 있습니다</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">게임 라이브러리 형식 업데이트 중...</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">데이터베이스 업데이트를 실패했습니다.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">게임 라이브러리를 업데이트할 수 없습니다. {0} MB의 여유 공간이 필요합니다.</sys:String>
 
-    <sys:String x:Key="LOCGameError"></sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame"></sys:String>
-    <sys:String x:Key="LOCGameStartError"></sys:String>
-    <sys:String x:Key="LOCGameStartActionError"></sys:String>
-    <sys:String x:Key="LOCGameOpenLocationError"></sys:String>
-    <sys:String x:Key="LOCGameShortcutError"></sys:String>
-    <sys:String x:Key="LOCGameInstallError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallError"></sys:String>
+    <sys:String x:Key="LOCGameError">게임 에러</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">게임을 시작할 수 없습니다. '{0}'을 데이터베이스에서 찾을 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCGameStartError">게임을 시작할 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">엑션을 시작할 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">게임 위치를 열 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">바로가기를 생성하지 못했습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameInstallError">게임을 설치할 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">게임을 삭제할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
