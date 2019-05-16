@@ -90,7 +90,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCPlayCountLabel">Oynanma Sayısı</sys:String>
     <sys:String x:Key="LOCAddedLabel">Eklendi</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Değiştirildi</sys:String>
-    <sys:String x:Key="LOCWebsiteLabel"></sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">Web Sayfası</sys:String>
     <sys:String x:Key="LOCPathLabel">Yol</sys:String>
     <sys:String x:Key="LOCOKLabel">TAMAM</sys:String>
     <sys:String x:Key="LOCSaveLabel">Kaydet</sys:String>
@@ -114,7 +114,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCDownloadLabel">İndir</sys:String>
     <sys:String x:Key="LOCSearchLabel">Ara</sys:String>
     <sys:String x:Key="LOCGenreLabel">Türü</sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Şirket</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Geliştirici</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Yayımcı</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
@@ -123,10 +123,10 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCZoomLabel">Yaklaştır</sys:String>
     <sys:String x:Key="LOCListLabel">Liste</sys:String>
     <sys:String x:Key="LOCCoversLabel">Kapak</sys:String>
-    <sys:String x:Key="LOCGridLabel"></sys:String>
+    <sys:String x:Key="LOCGridLabel">Izgara</sys:String>
     <sys:String x:Key="LOCDetailsLabel">Detay</sys:String>
     <sys:String x:Key="LOCCustomLabel">Özel</sys:String>
-    <sys:String x:Key="LOCURLLabel"></sys:String>
+    <sys:String x:Key="LOCURLLabel">Link</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Destekleyenler</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisans</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Katkıda Bulunanlar</sys:String>
@@ -141,8 +141,8 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCSaturday">Cumartesi</sys:String>
     <sys:String x:Key="LOCSunday">Pazar</sys:String>
     <sys:String x:Key="LOCPastWeek">Geçen Hafta</sys:String>
-    <sys:String x:Key="LOCPastMonth"></sys:String>
-    <sys:String x:Key="LOCPastYear"></sys:String>
+    <sys:String x:Key="LOCPastMonth">Geçen Ay</sys:String>
+    <sys:String x:Key="LOCPastYear">Geçen Yıl</sys:String>
     <sys:String x:Key="LOCImportCompleted">İçe aktarma başarıyla tamamlandı.</sys:String>
     <sys:String x:Key="LOCAllGames">Tüm Oyunlar</sys:String>
     <sys:String x:Key="LOCGameId">Oyun Id</sys:String>
@@ -171,7 +171,7 @@ Sonuçları: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Filtrelenmiş tüm oyunlar</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Sadece seçili oyunlar</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Resmi Mağaza</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">İGDB</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Resmi Mağaza</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Resmi Mağaza > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Lütfen Playnite tarafından hangi alanların otomatik olarak doldurulacağını ve verileri almak için hangi kaynakların kullanılması gerektiğini seçin.</sys:String>
@@ -204,7 +204,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCMenuConfigurationTitle">Yapılandırma</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Ayarlar</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platform ve Emülatörler</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Emülatörleri yapılandır...</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Kütüphane Yöneticisi...</sys:String>
     <sys:String x:Key="LOCMenuTools">Araçlar</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Metaveri İndir</sys:String>
@@ -214,11 +214,11 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCMenuAddGameManual">Manuel</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Otomatik Tarama...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emülatör Oyunu...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Windows Uygulama Mağazası'na Gönderme Kılavuzu...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite Hakkında</sys:String>
     <sys:String x:Key="LOCMenuIssues">Geri Bildirim</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Tam Ekran Modunu Başlat</sys:String>
-    <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Bağlantılar</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Dökümantasyonu</sys:String>
 
     <!--Settings Window-->
@@ -231,15 +231,15 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Kapağı</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
-    <sys:String x:Key="LOCSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Ayarlar</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Genel</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Görünüm</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">oyun detayları</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Düzen</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Gelişmiş</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Tam Ekran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Sağlayıcılar</sys:String>
-    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Girdi</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Kütüphanedeki değişiklikleri otomatik olarak içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Yüklü oyunları içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Kaldırılan oyunları içeri aktar</sys:String>
@@ -318,15 +318,15 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Masaüstü modunda kontrolcü desteğini etkinleştir *</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Kılavuz butonu Tam ekran modunu açar</sys:String>
 
-    <sys:String x:Key="LOCStrechNone"></sys:String>
-    <sys:String x:Key="LOCStrechFill"></sys:String>
+    <sys:String x:Key="LOCStrechNone">Hiç biri</sys:String>
+    <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
     <sys:String x:Key="LOCStrechUniform"></sys:String>
     <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
 
-    <sys:String x:Key="LOCDockLeft"></sys:String>
-    <sys:String x:Key="LOCDockRight"></sys:String>
-    <sys:String x:Key="LOCDockTop"></sys:String>
-    <sys:String x:Key="LOCDockBottom"></sys:String>
+    <sys:String x:Key="LOCDockLeft">Sol</sys:String>
+    <sys:String x:Key="LOCDockRight">Sağ</sys:String>
+    <sys:String x:Key="LOCDockTop">Üst</sys:String>
+    <sys:String x:Key="LOCDockBottom">Altta</sys:String>
 
     <sys:String x:Key="LOCImportError">İçe Aktarma Hatası</sys:String>
     <sys:String x:Key="LOCLoginChecking">Kimlik doğrulama durumu kontrol ediliyor...</sys:String>
@@ -375,7 +375,7 @@ Ana menüden 'Playnite' düğmesine tıklayarak herhangi bir platform için herh
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay Entegrasyonu</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Kategorileri hesaptan içe aktar:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Diğer Oyunlar</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Yüklü diğer oyunları içe aktarmak veya el ile göz atmak için aşağıdaki düğmeye tıklayın (Windows Mağazası oyunları dahil).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Oyunları İçe Aktar</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Yapılandırma Tamamlandı</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">İlk kurulum tamamlandı. Tüm ayarları daha sonra 'Ayarlar' menüsünden değiştirebileceğinizi unutmayın.
@@ -385,9 +385,9 @@ Daha sonra Playnite uygulama logosuna tıklayarak ana menüden diğer oyunları 
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Platformları ve Emülatörleri Yapılandır</sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Emülatörleri yapılandır</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Platformlar</sys:String>
-    <sys:String x:Key="LOCPlatformTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emülatörler</sys:String>
     <sys:String x:Key="LOCEmulatorTitle">Emülatör</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Platform Ekle</sys:String>
@@ -413,7 +413,7 @@ Daha sonra Playnite uygulama logosuna tıklayarak ana menüden diğer oyunları 
     <sys:String x:Key="LOCEmulatorSettingsHelp">Ayarlar yardım</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">Sırala</sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Gruplandır</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Artan</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Azalan</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Gruplama</sys:String>
@@ -421,7 +421,7 @@ Daha sonra Playnite uygulama logosuna tıklayarak ana menüden diğer oyunları 
     <sys:String x:Key="LOCMenuGroupCategory">Kategoriye göre grupla</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Platforma göre grupla</sys:String>
     <sys:String x:Key="LOCViewType">Görüntüleme Türü</sys:String>
-    <sys:String x:Key="LOCMenuView"></sys:String>
+    <sys:String x:Key="LOCMenuView">Gör</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">Keşif Paneli</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Filtre Paneli</sys:String>
 
@@ -433,7 +433,7 @@ Daha sonra Playnite uygulama logosuna tıklayarak ana menüden diğer oyunları 
     <sys:String x:Key="LOCGameProviderTitle">Kütüphane</sys:String>
     <sys:String x:Key="LOCGameNameTitle">İsim</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Hesap Adı</sys:String>
-    <sys:String x:Key="LOCGamePlatformTitle"></sys:String>
+    <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategori(ler)</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Tür(ler)</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Yayın Tarihi</sys:String>
@@ -645,9 +645,9 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCPLaytimeLessThenAnHour">Bir saatten az</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 ila 10 saat</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 ila 100 saat</sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100-500 saat</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500-1000 saat</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000 saatten fazla</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io istemcisi şimdi açılacak. Lütfen oturum açın ve ardından bu mesajı kapatın.</sys:String>
