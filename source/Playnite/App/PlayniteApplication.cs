@@ -446,11 +446,9 @@ namespace Playnite
                             {
                                 NotifyInWindows(updateTitle, updateBody);
                             }
-                            else
-                            {
-                                Api.Notifications.Add(new NotificationMessage("UpdateAvailable", updateBody,
-                                    NotificationType.Info, null));
-                            }
+
+                            Api.Notifications.Add(new NotificationMessage("UpdateAvailable", updateBody,
+                                NotificationType.Info, null));
                         }
                     }
                     catch (Exception exc)
