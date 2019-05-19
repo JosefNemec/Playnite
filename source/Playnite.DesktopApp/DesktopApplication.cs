@@ -235,7 +235,14 @@ namespace Playnite.DesktopApp
         {
             var icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico", ThemeManager.DefaultTheme,
                 ThemeManager.CurrentTheme));
-            trayIcon.ShowBalloonTip(title, body, icon, true);
+            if (AppSettings.EnableTray)
+            {
+                trayIcon.ShowBalloonTip(title, body, icon, true);
+            }
+            else
+            {
+                WindowsNotifyIconManager.Notify(icon, title, body);
+            }
 
         }
     }
