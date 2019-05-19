@@ -795,11 +795,27 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<DragEventArgs> DropCoverCommand 
+        {
+            get => new RelayCommand<DragEventArgs>((args) => 
+            {
+                DropCover(args);
+            });
+        }
+    
         public RelayCommand<object> SelectCoverCommand
         {
             get => new RelayCommand<object>((a) =>
             {
                 SelectCover();
+            });
+        }
+
+        public RelayCommand<DragEventArgs> DropBackgroundCommand 
+        {
+            get => new RelayCommand<DragEventArgs>((args) => 
+            {
+                DropBackground(args);
             });
         }
 
@@ -2134,9 +2150,13 @@ namespace PlayniteUI.ViewModels
             EditingGame.Icon = icon;
         }
 
-        public void SelectCover()
+        public void SelectCover(string path = null) 
         {
-            var path = dialogs.SelectImagefile();
+            if (path == null) 
+            {
+                path = dialogs.SelectImagefile();
+            }
+
             if (!string.IsNullOrEmpty(path))
             {
                 if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
@@ -2148,9 +2168,31 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void SelectBackground()
+        public void DropCover(DragEventArgs args) 
         {
-            var path = dialogs.SelectImagefile();
+            if (args.Data.GetDataPresent(DataFormats.FileDrop)) 
+            {
+                string[] files = (string[])args.Data.GetData(DataFormats.FileDrop);
+
+                if (files?.Length == 1) 
+                {
+                    string path = files[0];
+
+                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".png", ".gif", ".tga" }.Contains(Path.GetExtension(path).ToLower())) 
+                    {
+                        SelectCover(path);
+                    }
+                }
+            }
+        }
+
+        public void SelectBackground(string path = null)
+        {
+            if (path == null)
+            {
+                path = dialogs.SelectImagefile();
+            }
+
             if (!string.IsNullOrEmpty(path))
             {
                 if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
@@ -2159,6 +2201,24 @@ namespace PlayniteUI.ViewModels
                 }
 
                 EditingGame.BackgroundImage = path;
+            }
+        }
+
+        public void DropBackground(DragEventArgs args) 
+        {
+            if (args.Data.GetDataPresent(DataFormats.FileDrop)) 
+            {
+                string[] files = (string[])args.Data.GetData(DataFormats.FileDrop);
+
+                if (files?.Length == 1) 
+                {
+                    string path = files[0];
+
+                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".png", ".gif", ".tga" }.Contains(Path.GetExtension(path).ToLower())) 
+                    {
+                        SelectBackground(path);
+                    }
+                }
             }
         }
 

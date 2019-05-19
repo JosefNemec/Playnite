@@ -8,6 +8,8 @@
         xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
         xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
@@ -487,7 +489,7 @@
                                     </StackPanel>
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
-                            <DockPanel LastChildFill="True">
+                            <DockPanel LastChildFill="True" Background="Transparent" AllowDrop="True">
                                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
                                     <Button Name="ButtonSelectImage" Content="{DynamicResource LOCSelectCoverTitle}" 
                                         HorizontalAlignment="Left"
@@ -499,6 +501,11 @@
                                        Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top"
                                        AutomationProperties.HelpText="{Binding EditingGame.CoverImage, TargetNullValue=''}"/>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Drop" >
+                                        <prism:InvokeCommandAction Command="{Binding DropCoverCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </DockPanel>
                         </GroupBox>
                         <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
@@ -513,7 +520,7 @@
                                     </StackPanel>
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
-                            <DockPanel DockPanel.Dock="Top">
+                            <DockPanel DockPanel.Dock="Top" Background="Transparent" AllowDrop="True">
                                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
                                     <Button Content="{DynamicResource LOCSelectFileTitle}" HorizontalAlignment="Left"
                                         Command="{Binding SelectBackgroundCommand}"/>
@@ -532,6 +539,11 @@
                                    Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
                                    DockPanel.Dock="Top"
                                    AutomationProperties.HelpText="{Binding EditingGame.BackgroundImage, TargetNullValue=''}"/>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Drop" >
+                                        <prism:InvokeCommandAction Command="{Binding DropBackgroundCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </DockPanel>
                         </GroupBox>
                     </Grid>
