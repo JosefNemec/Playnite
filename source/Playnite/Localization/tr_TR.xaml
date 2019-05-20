@@ -230,7 +230,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Kapağı</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* ile işaretlenen ayarların etkisini göstermesi için uygulamanın yeniden başlatılması gerek</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ayarlar</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Genel</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Görünüm</sys:String>
