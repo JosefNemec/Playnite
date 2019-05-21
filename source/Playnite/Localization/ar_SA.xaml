@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <sys:String x:Key="LanguageName">Українська</sys:String>
+    <sys:String x:Key="LanguageName">إنجليزية</sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel">Langue de Playnite :</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">اللغة</sys:String>
 
-    <sys:String x:Key="LOCExitAppLabel">Beenden</sys:String>
+    <sys:String x:Key="LOCExitAppLabel">خروج</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
 
-    <sys:String x:Key="LOCInvalidDataTitle"></sys:String>
-    <sys:String x:Key="LOCSaveChangesAskTitle"></sys:String>
+    <sys:String x:Key="LOCInvalidDataTitle">بيانات غير صحيحة</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">حفظ التغييرات؟</sys:String>
     
-    <sys:String x:Key="LOCAboutHomePageLink"></sys:String>
-    <sys:String x:Key="LOCAboutSourceLink"></sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">الصفحة الرسمية على www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">الكود المصدر على Github</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutWindowTitle"></sys:String>
-    <sys:String x:Key="LOCAboutAuthor"></sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">حول Playnite</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">صنع بواسطة Josef Němec</sys:String>
 
     <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
     <sys:String x:Key="LOCCategorySetButton"></sys:String>
@@ -58,8 +58,8 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle"></sys:String>
-    <sys:String x:Key="LOCCopyTitle"></sys:String>
-    <sys:String x:Key="LOCAddTitle"></sys:String>
+    <sys:String x:Key="LOCCopyTitle">نسخ</sys:String>
+    <sys:String x:Key="LOCAddTitle">إضافة</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle"></sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle"></sys:String>
     <sys:String x:Key="LOCFinishLabel"></sys:String>
