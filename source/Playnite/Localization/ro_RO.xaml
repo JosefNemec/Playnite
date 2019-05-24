@@ -186,7 +186,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle"></sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
-    <sys:String x:Key="LOCMenuTools"></sys:String>
+    <sys:String x:Key="LOCMenuTools">Utilitare</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient"></sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary"></sys:String>
