@@ -203,7 +203,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">Poziția Panoului de Filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Poziția Panoului de Căutare</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
@@ -259,9 +259,9 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">din contul:</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Goliţi cache-ul web</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Ar putea rezolva probleme întâlnite la legarea conturilor.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Afişează iconița din zona de notificare</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Minimizare în zona de notificare</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Închidere în zona de notificare</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Când jocul pornește:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">După ce jocul se închide:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Rulează jocurile folosind programul Galaxy</sys:String>
@@ -273,9 +273,9 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCSettingsSteamCatImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Curățați Cache-ul?</sys:String>
-    <sys:String x:Key="LOCSettingsApiKeyTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsApiKeyUrlText"></sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart"></sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyTooltip">Conturile private de Steam necesită un API Key</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyUrlText">Caută API Key</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Repornirea programului este necesară pentru aplicarea noii teme</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Căutați mai multe teme</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Creează o temă nouă</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuiți la o localizare nouă</sys:String>
@@ -307,7 +307,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCDockBottom">Fund</sys:String>
 
     <sys:String x:Key="LOCImportError">Eroare de import</sys:String>
-    <sys:String x:Key="LOCLoginChecking"></sys:String>
+    <sys:String x:Key="LOCLoginChecking">Verificarea stării de autentificare...</sys:String>
     <sys:String x:Key="LOCLoginRequired">Autentificare necesară</sys:String>
     <sys:String x:Key="LOCLoginFailed">Autentificare eșuată</sys:String>
     <sys:String x:Key="LOCLoggedIn">Utilizatorul este autentificat</sys:String>
@@ -332,12 +332,14 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Scanează folder-ul ce conține Emulatorul</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Selectare fișiere</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Autodetectează din folder-ul...</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Setări Emulatoare...</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Se scanează...</sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Setare pentru prima dată</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Programul vă v-a ghida printr-un proces automat de importare a jocurilor și configurare a librăriilor externe de jocuri. Playnite poate importa în mod automat jocuri din mai multe servicii de jocuri, cum ar fi Steam sau GOG și, de asemenea, să actualizeze librăria în mod automat odată la pornirea aplicației.
+
+Rețineți că puteți adăuga manual, oricând, orice joc personalizat pentru oricare platformă din meniul principal, prin apăsarea butonul "Playnite".    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Locație personalizată</sys:String>
@@ -357,8 +359,8 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
 
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">Setări Platforme și Emulatoare</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Setări Emulatoare</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Platforme</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Platformă</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emulatoare</sys:String>
@@ -379,8 +381,10 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCImportEmulatorsButton">Importă Emulatoare...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">Descarcă Emulatoare...</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Încarcă argumentele prestabilite de la profilul emulatorului cunoscut</sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Sigur doriți să ștergeți emulatorul {0}?
+Este folosit la moment de {1} joc(uri).</sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Sigur doriți să ștergeți platforma {0}?
+Este folosită la moment de {1} joc(uri) și {2} (emulator/emulatoare).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Ajutor Setări</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">Sortează după</sys:String>
@@ -430,7 +434,7 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCDatabaseOpenError">Nu s-a putut deschide baza de date a librăriei.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Baza de date nu a fost deschisă.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Nu puteți accesa baza de date a librăriei. Fișierul "{0}" este utilizat de un alt proces sau este într-o locație inaccesibilă.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationError"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">Nu s-a reușit crearea arhiva de diagnosticare.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
@@ -452,8 +456,8 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError"></sys:String>
     <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCURLFormatError"></sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
+    <sys:String x:Key="LOCURLFormatError">Link-ul nu a putut fi deschis, URL-ul nu are un format valid.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">Aplicația nu s-a putut lansa.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
 
     <!--GameEdit-->
@@ -462,11 +466,11 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCImageURL">Imagine URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Adaugă Link</sys:String>
     <sys:String x:Key="LOCSaveChanges">Salvează Modificările</sys:String>
-    <sys:String x:Key="LOCPlayAction"></sys:String>
-    <sys:String x:Key="LOCAddPlayAction"></sys:String>
+    <sys:String x:Key="LOCPlayAction">Lansare</sys:String>
+    <sys:String x:Key="LOCAddPlayAction">Adăugare buton de lansare</sys:String>
     <sys:String x:Key="LOCAddAction">Adaugă Acţiune</sys:String>
     <sys:String x:Key="LOCDeleteAction">Șterge Acțiunea</sys:String>
-    <sys:String x:Key="LOCRemovePlayAction"></sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">Ștergere buton de lansare</sys:String>
     <sys:String x:Key="LOCOtherActions">Alte Acțiuni</sys:String>
     <sys:String x:Key="LOCAddGames">Adăugare Jocuri</sys:String>
     <sys:String x:Key="LOCScanFolder">Scanează Folder-ul...</sys:String>
@@ -476,31 +480,31 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCProfileSettings">Setări de Profil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Nume jocului nu poate fi gol.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Nume jocului nu poate fi gol înainte de căutarea metadatei.</sys:String>
-    <sys:String x:Key="LOCInvalidGameData"></sys:String>
+    <sys:String x:Key="LOCInvalidGameData">Data jocului invalidă</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Introduceți o adresă URL validă începând cu http:// sau https://</sys:String>
     <sys:String x:Key="LOCURLInputInfoTitile">Selectați URL</sys:String>
-    <sys:String x:Key="LOCMetadataDownloadError"></sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">Nu s-a putut descărca metadata: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">Eroare la descărcare</sys:String>
     <sys:String x:Key="LOCClearFilters">Curăță Filtrele</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Cont Privat</sys:String>
     <sys:String x:Key="LOCPublicAccount">Cont Public</sys:String>
     <sys:String x:Key="LOCAPIKey">API Key</sys:String>
-    <sys:String x:Key="LOCStartupError"></sys:String>
-    <sys:String x:Key="LOCSkinError"></sys:String>
+    <sys:String x:Key="LOCStartupError">Eroare la Pornire</sys:String>
+    <sys:String x:Key="LOCSkinError">Eroare Temă</sys:String>
     <sys:String x:Key="LOCClearAll">Curăță Tot</sys:String>
     <sys:String x:Key="LOCSetupRunning">Se instalează</sys:String>
     <sys:String x:Key="LOCUninstalling">Se dezinstalează</sys:String>
     <sys:String x:Key="LOCGameLaunching">Se lansează</sys:String>
     <sys:String x:Key="LOCGameRunning">Rulează</sys:String>
     <sys:String x:Key="LOCInvalidURL">URL invalid</sys:String>
-    <sys:String x:Key="LOCDoNothing"></sys:String>
+    <sys:String x:Key="LOCDoNothing">Repaus</sys:String>
     <sys:String x:Key="LOCMinimize">Minimizați</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Restaurați Fereastra</sys:String>
     <sys:String x:Key="LOCClose">Închideţi</sys:String>
     <sys:String x:Key="LOCChange">Schimbați</sys:String>
     <sys:String x:Key="LOCAdvanced">Avansat</sys:String>
     <sys:String x:Key="LOCNever">Niciodată</sys:String>
-    <sys:String x:Key="LOCNotPlayed"></sys:String>
+    <sys:String x:Key="LOCNotPlayed">Nu a fost jucat</sys:String>
     <sys:String x:Key="LOCPlayed">Jucat</sys:String>
     <sys:String x:Key="LOCBeaten">Terminat</sys:String>
     <sys:String x:Key="LOCCompleted">Completat</sys:String>
@@ -582,7 +586,7 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCPlayedHours">{0}oră {1}minut</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minute</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} secunde</sys:String>
-    <sys:String x:Key="LOCPlayedNone"></sys:String>
+    <sys:String x:Key="LOCPlayedNone">Nu a fost jucat</sys:String>
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Deschideți modul Desktop...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Deschideți modul Fullscreen...</sys:String>
@@ -594,7 +598,7 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCScriptExecutionError">Nu s-a putut executa funcția extensiei.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Deschideți folderul de metadate</sys:String>
 
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">Programul {0} nu este instalat.</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
