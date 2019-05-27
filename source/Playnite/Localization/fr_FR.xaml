@@ -537,7 +537,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCBeaten">Terminé</sys:String>
     <sys:String x:Key="LOCCompleted">Terminé (100%)</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Statut</sys:String>
-    <sys:String x:Key="LOCUserScore">Note utilisateur</sys:String>
+    <sys:String x:Key="LOCUserScore">Ma note</sys:String>
     <sys:String x:Key="LOCCriticScore">Note presse</sys:String>
     <sys:String x:Key="LOCCommunityScore">Note communauté</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
