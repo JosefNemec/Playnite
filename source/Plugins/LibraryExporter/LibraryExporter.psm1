@@ -1,6 +1,6 @@
 function ExportLibrary()
 {
-    $games = $PlayniteApi.Database.GetGames()
+    $games = $PlayniteApi.Database.Games
     $path = $PlayniteApi.Dialogs.SaveFile("CSV|*.csv|Formated TXT|*.txt")
     if ($path)
     {
