@@ -49,7 +49,7 @@ function TestFunc()
     return 4 + 4
 }
 ");
-                var res = ps.Execute("TestFunc");
+                var res = ps.CallFunction("TestFunc");
                 Assert.AreEqual(8, res);
             }
         }

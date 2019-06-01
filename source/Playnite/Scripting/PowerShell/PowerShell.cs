@@ -28,16 +28,20 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public PowerShellRuntime(string name)
+        public PowerShellRuntime()
         {
             initialSessionState = InitialSessionState.CreateDefault();
             initialSessionState.ExecutionPolicy = ExecutionPolicy.Unrestricted;
             initialSessionState.ThreadOptions = PSThreadOptions.UseCurrentThread;
             //initialSessionState.ApartmentState = System.Threading.ApartmentState.MTA;
             powerShell = System.Management.Automation.PowerShell.Create(initialSessionState);
-            powerShell.Runspace.Name = name;
             SetVariable("ErrorActionPreference", "Stop");
             SetVariable("__logger", new Logger("PowerShell"));
+        }
+
+        public PowerShellRuntime(string name) : this()
+        {
+            powerShell.Runspace.Name = name;
         }
 
         public void Dispose()
@@ -54,6 +58,35 @@ namespace Playnite.Scripting.PowerShell
                 .AddArgument(path)
                 .Invoke<PSModuleInfo>().FirstOrDefault();
             powerShell.Commands.Clear();
+        }
+
+        public object Execute(string script)
+        {
+            return Execute(script, null);
+        }
+
+        public object Execute(string script, Dictionary<string, object> variables)
+        {
+            if (variables != null)
+            {
+                foreach (var key in variables.Keys)
+                {
+                    SetVariable(key, variables[key]);
+                }
+            }
+
+            powerShell.AddScript(script);
+            var result = powerShell.Invoke();
+            powerShell.Commands.Clear();
+
+            if (result.Count == 1)
+            {
+                return result[0].BaseObject;
+            }
+            else
+            {
+                return result.Select(a => a?.BaseObject).ToList();
+            }
         }
 
         public void SetVariable(string name, object value)

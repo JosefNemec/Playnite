@@ -26,7 +26,7 @@ namespace Playnite.Scripting.IronPython
         private ScriptEngine engine;
         private ScriptScope scope;
 
-        public IronPythonRuntime(string name)
+        public IronPythonRuntime()
         {
             Dictionary<string, object> options = new Dictionary<string, object>();
             if (Debugger.IsAttached)
@@ -61,6 +61,26 @@ namespace Playnite.Scripting.IronPython
 
             // Replace the current scope with the new module
             scope = engine.ImportModule(Path.GetFileNameWithoutExtension(fileInfo.Name));
+        }
+
+        public object Execute(string script)
+        {
+            return Execute(script, null);
+        }
+
+        public object Execute(string script, Dictionary<string, object> variables)
+        {
+            if (variables != null)
+            {
+                foreach (var key in variables.Keys)
+                {
+                    scope.SetVariable(key, variables[key]);
+                }
+            }
+
+            var source = engine.CreateScriptSourceFromString(script, SourceCodeKind.AutoDetect);
+            var result = source.Execute<object>(scope);
+            return result;
         }
 
         public void SetVariable(string name, object value)

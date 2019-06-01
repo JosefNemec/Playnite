@@ -33,7 +33,7 @@ namespace Playnite.Tests.Scripting.IronPython
 def test_func():
     return 4 + 4
 ");
-                var res = py.Execute("test_func()");
+                var res = py.CallFunction("test_func");
                 Assert.AreEqual(8, res);
             }
         }
