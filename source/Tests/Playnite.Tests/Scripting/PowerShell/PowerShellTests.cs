@@ -2,6 +2,7 @@
 using Playnite.Scripting.PowerShell;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
@@ -43,12 +44,7 @@ namespace Playnite.Tests.Scripting.PowerShell
         {
             using (var ps = new PowerShellRuntime())
             {
-                ps.Execute(@"
-function TestFunc()
-{
-    return 4 + 4
-}
-");
+                ps.ImportModule(Path.Combine(TestContext.CurrentContext.TestDirectory, "Scripting\\PowerShell\\PowerShellTests.psm1"));
                 var res = ps.CallFunction("TestFunc");
                 Assert.AreEqual(8, res);
             }
@@ -70,12 +66,7 @@ function TestFunc()
             using (var ps = new PowerShellRuntime())
             {
                 Assert.IsFalse(ps.GetFunctionExits("TestFunc"));
-                ps.Execute(@"
-function TestFunc()
-{
-    return 4 + 4
-}
-");
+                ps.ImportModule(Path.Combine(TestContext.CurrentContext.TestDirectory, "Scripting\\PowerShell\\PowerShellTests.psm1"));
                 Assert.IsTrue(ps.GetFunctionExits("TestFunc"));
             }
         }

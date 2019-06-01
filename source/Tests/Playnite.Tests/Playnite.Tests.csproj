@@ -165,6 +165,9 @@
     <None Include="Resources\TestUpdateManifest.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripting\PowerShell\PowerShellTests.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">

@@ -99,7 +99,7 @@ namespace Playnite.Scripting.PowerShell
             return powerShell.Runspace.SessionStateProxy.GetVariable(name);
         }
 
-        public Collection<PSObject> CallFunction(string name, params object[] arguments)
+        public object CallFunction(string name, params object[] arguments)
         {
             powerShell.AddCommand(module.ExportedFunctions[name]);
             foreach (var argument in arguments)
@@ -108,7 +108,15 @@ namespace Playnite.Scripting.PowerShell
             }
             var result = powerShell.Invoke();
             powerShell.Commands.Clear();
-            return result;
+
+            if (result.Count == 1)
+            {
+                return result[0].BaseObject;
+            }
+            else
+            {
+                return result.Select(a => a?.BaseObject).ToList();
+            }
         }
 
         public bool GetFunctionExits(string name)
