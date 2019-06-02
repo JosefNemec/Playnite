@@ -12,109 +12,117 @@
     <sys:String x:Key="LOCInvalidDataTitle">Ugyldig data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Lagre endringer?</sys:String>
     
-    <sys:String x:Key="LOCAboutHomePageLink"></sys:String>
-    <sys:String x:Key="LOCAboutSourceLink"></sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutWindowTitle"></sys:String>
-    <sys:String x:Key="LOCAboutAuthor"></sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Hjemmeside på www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">Kildekode hos GitHub</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Lag diag. pakke</sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">Om Playnite</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">Laget av Josef Němec</sys:String>
 
-    <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCategorySetButton"></sys:String>
-    <sys:String x:Key="LOCCategoryAddCatButton"></sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCNoCategory"></sys:String>
-    <sys:String x:Key="LOCNoPlatform"></sys:String>
+    <sys:String x:Key="LOCCategoryWindowTitle">Tildel kategori</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">Sett opp kategorier</sys:String>
+    <sys:String x:Key="LOCCategoryAddCatButton">Legg til kategori</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">På - Tildel kategori
+Av - Fjern kategori
+Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
+    <sys:String x:Key="LOCNoCategory">Ingen kategori</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Ingen platform</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashReportIssue"></sys:String>
-    <sys:String x:Key="LOCCrashRestartPlaynite"></sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Uff da, her skjedde det noe feil...</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Det skjedde en en uopprettelig feil og Playnite stoppet.
 
-    <sys:String x:Key="LOCGameRemoveAskTitle"></sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+Hvis du vil hjelpe oss med å fikse feilen, vennligst opprett en diagnostikkpakke og bruk 'Rapporter programstopp' knappen og la oss vite hva som skjedde, Takk skal du ha.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Rapporter et programstopp</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">Omstart Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Avslutt Playnite</sys:String>
 
-    <sys:String x:Key="LOCSteamFriendsTooltip"></sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">Fjern(e) spill?</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Kan ikke fjerne spill som kjører eller blir installert / avinstallert.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Kan ikke avinstallere et spill som kjører.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne dette spillet?
 
-    <sys:String x:Key="LOCGameError"></sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame"></sys:String>
-    <sys:String x:Key="LOCGameStartError"></sys:String>
-    <sys:String x:Key="LOCGameStartActionError"></sys:String>
-    <sys:String x:Key="LOCGameOpenLocationError"></sys:String>
-    <sys:String x:Key="LOCGameShortcutError"></sys:String>
-    <sys:String x:Key="LOCGameInstallError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallError"></sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
+Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyre (i forhold til dine instillinger).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne {0} spill?
+
+Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyre (i forhold til dine instillinger).</sys:String>
+
+    <sys:String x:Key="LOCSteamFriendsTooltip">Steam Venner</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Seksjonen inneholder endringer for lagring</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Oppdaterer spillbibiliotekformat...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Databaseoppdatering feilet.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Kan ikke oppdatere spillbibliotek. {0} MB av tilgjengelig plass er nødvendig.</sys:String>
+
+    <sys:String x:Key="LOCGameError">SpillFeil</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">Kan ikke starte spill. '{0}' var ikke funnet i database.</sys:String>
+    <sys:String x:Key="LOCGameStartError">Kan ikke starte spill: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Kan ikke starte handling: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">Kan ikke åpne spillokasjon: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Feilet i opprettelsen av snarvei: {0}</sys:String>
+    <sys:String x:Key="LOCGameInstallError">Kan ikke installere spill: {0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">Kan ikke avinstallere spill: {0}</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekplugin som er ansvarlig for dette spillet er ikke installert eller slått på.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Offisielle metadatanedlastning er ikke tilgjengelig.</sys:String>
 
 
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle"></sys:String>
-    <sys:String x:Key="LOCRemoveTitle"></sys:String>
-    <sys:String x:Key="LOCCopyTitle"></sys:String>
-    <sys:String x:Key="LOCAddTitle"></sys:String>
-    <sys:String x:Key="LOCDefaultIconTitle"></sys:String>
-    <sys:String x:Key="LOCDefaultCoverTitle"></sys:String>
-    <sys:String x:Key="LOCFinishLabel"></sys:String>
-    <sys:String x:Key="LOCNextLabel"></sys:String>
-    <sys:String x:Key="LOCBackLabel"></sys:String>
-    <sys:String x:Key="LOCDoneCapLabel"></sys:String>
-    <sys:String x:Key="LOCBackCapLabel"></sys:String>
-    <sys:String x:Key="LOCClearCapLabel"></sys:String>
-    <sys:String x:Key="LOCImportLabel"></sys:String>
-    <sys:String x:Key="LOCSourceLabel"></sys:String>
-    <sys:String x:Key="LOCNameLabel"></sys:String>
-    <sys:String x:Key="LOCAuthorLabel"></sys:String>
-    <sys:String x:Key="LOCModuleLabel"></sys:String>
-    <sys:String x:Key="LOCSeriesLabel"></sys:String>
-    <sys:String x:Key="LOCVersionLabel"></sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel"></sys:String>
-    <sys:String x:Key="LOCRegionLabel"></sys:String>
-    <sys:String x:Key="LOCLastPlayedLabel"></sys:String>
-    <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
-    <sys:String x:Key="LOCPlayCountLabel"></sys:String>
-    <sys:String x:Key="LOCAddedLabel"></sys:String>
-    <sys:String x:Key="LOCModifiedLabel"></sys:String>
-    <sys:String x:Key="LOCWebsiteLabel"></sys:String>
-    <sys:String x:Key="LOCPathLabel"></sys:String>
-    <sys:String x:Key="LOCOKLabel"></sys:String>
-    <sys:String x:Key="LOCSaveLabel"></sys:String>
-    <sys:String x:Key="LOCCloseLabel"></sys:String>
-    <sys:String x:Key="LOCCancelLabel"></sys:String>
-    <sys:String x:Key="LOCYesLabel"></sys:String>
-    <sys:String x:Key="LOCNoLabel"></sys:String>
-    <sys:String x:Key="LOCWelcomeLabel"></sys:String>
-    <sys:String x:Key="LOCLocalUserLabel"></sys:String>
-    <sys:String x:Key="LOCAuthenticateLabel"></sys:String>
-    <sys:String x:Key="LOCGeneralLabel"></sys:String>
-    <sys:String x:Key="LOCMediaLabel"></sys:String>
-    <sys:String x:Key="LOCLinksLabel"></sys:String>
-    <sys:String x:Key="LOCInstallationLabel"></sys:String>
-    <sys:String x:Key="LOCActionsLabel"></sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
-    <sys:String x:Key="LOCTypeLabel"></sys:String>
-    <sys:String x:Key="LOCProfileLabel"></sys:String>
-    <sys:String x:Key="LOCProfilesLabel"></sys:String>
-    <sys:String x:Key="LOCRemoveLabel"></sys:String>
-    <sys:String x:Key="LOCDownloadLabel"></sys:String>
-    <sys:String x:Key="LOCSearchLabel"></sys:String>
-    <sys:String x:Key="LOCGenreLabel"></sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
-    <sys:String x:Key="LOCDeveloperLabel"></sys:String>
-    <sys:String x:Key="LOCPublisherLabel"></sys:String>
-    <sys:String x:Key="LOCCategoryLabel"></sys:String>
-    <sys:String x:Key="LOCTagLabel"></sys:String>
-    <sys:String x:Key="LOCTagsLabel"></sys:String>
-    <sys:String x:Key="LOCZoomLabel"></sys:String>
-    <sys:String x:Key="LOCListLabel"></sys:String>
-    <sys:String x:Key="LOCCoversLabel"></sys:String>
+    <sys:String x:Key="LOCEnabledTitle">Aktivert</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">Fjern</sys:String>
+    <sys:String x:Key="LOCCopyTitle">Kopier</sys:String>
+    <sys:String x:Key="LOCAddTitle">Legg til</sys:String>
+    <sys:String x:Key="LOCDefaultIconTitle">Standard ikon</sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">Standard coverbilde</sys:String>
+    <sys:String x:Key="LOCFinishLabel">Fullfør</sys:String>
+    <sys:String x:Key="LOCNextLabel">Neste</sys:String>
+    <sys:String x:Key="LOCBackLabel">Tilbake</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">FERDIG</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">TILBAKE</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">FJERN</sys:String>
+    <sys:String x:Key="LOCImportLabel">Importer</sys:String>
+    <sys:String x:Key="LOCSourceLabel">Kilde</sys:String>
+    <sys:String x:Key="LOCNameLabel">Navn</sys:String>
+    <sys:String x:Key="LOCAuthorLabel">Forfatter</sys:String>
+    <sys:String x:Key="LOCModuleLabel">Modul</sys:String>
+    <sys:String x:Key="LOCSeriesLabel">Serier</sys:String>
+    <sys:String x:Key="LOCVersionLabel">Versjon</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Årsgrense</sys:String>
+    <sys:String x:Key="LOCRegionLabel">Region</sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">Sist Spilt</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">Mest spilte</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Antall Spillforsøk</sys:String>
+    <sys:String x:Key="LOCAddedLabel">Lagt til</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">Redigert</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">Nettside</sys:String>
+    <sys:String x:Key="LOCPathLabel">Bane</sys:String>
+    <sys:String x:Key="LOCOKLabel">OK</sys:String>
+    <sys:String x:Key="LOCSaveLabel">Lagre</sys:String>
+    <sys:String x:Key="LOCCloseLabel">Lukk</sys:String>
+    <sys:String x:Key="LOCCancelLabel">Avbryt</sys:String>
+    <sys:String x:Key="LOCYesLabel">Ja</sys:String>
+    <sys:String x:Key="LOCNoLabel">Nei</sys:String>
+    <sys:String x:Key="LOCWelcomeLabel">Velkommen</sys:String>
+    <sys:String x:Key="LOCLocalUserLabel">Lokal Bruker</sys:String>
+    <sys:String x:Key="LOCAuthenticateLabel">Autentisér</sys:String>
+    <sys:String x:Key="LOCGeneralLabel">Generelt</sys:String>
+    <sys:String x:Key="LOCMediaLabel">Media</sys:String>
+    <sys:String x:Key="LOCLinksLabel">Lenker</sys:String>
+    <sys:String x:Key="LOCInstallationLabel">Installasjon</sys:String>
+    <sys:String x:Key="LOCActionsLabel">Handlinger</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Laster ned...</sys:String>
+    <sys:String x:Key="LOCTypeLabel">Type</sys:String>
+    <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
+    <sys:String x:Key="LOCProfilesLabel">Profiler</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">Fjern</sys:String>
+    <sys:String x:Key="LOCDownloadLabel">Last ned</sys:String>
+    <sys:String x:Key="LOCSearchLabel">Søk</sys:String>
+    <sys:String x:Key="LOCGenreLabel">Sjanger</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Bedrift</sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">Utvikler</sys:String>
+    <sys:String x:Key="LOCPublisherLabel">Utgiver</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
+    <sys:String x:Key="LOCTagLabel">Tagg</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Tagger</sys:String>
+    <sys:String x:Key="LOCZoomLabel">Forstørr</sys:String>
+    <sys:String x:Key="LOCListLabel">Liste</sys:String>
+    <sys:String x:Key="LOCCoversLabel">Omslag</sys:String>
     <sys:String x:Key="LOCGridLabel"></sys:String>
     <sys:String x:Key="LOCDetailsLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel"></sys:String>
@@ -203,15 +211,15 @@
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
-    <sys:String x:Key="LOCSettingsLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsGeneralLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsAppearanceLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsAdvancedLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Innstillinger</sys:String>
+    <sys:String x:Key="LOCSettingsGeneralLabel">Generelt</sys:String>
+    <sys:String x:Key="LOCSettingsAppearanceLabel">Utseende</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Spilldetaljer</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Utforming</sys:String>
+    <sys:String x:Key="LOCSettingsAdvancedLabel">Avansert</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">Fullskjerm</sys:String>
+    <sys:String x:Key="LOCSettingsProvidersLabel">Leverandør</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Inndata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -223,7 +231,7 @@
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport"></sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport"></sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Start Minimert</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError"></sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
@@ -239,12 +247,12 @@
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage"></sys:String>
-    <sys:String x:Key="LOCSettingsSkin"></sys:String>
-    <sys:String x:Key="LOCSettingsSkinColor"></sys:String>
-    <sys:String x:Key="LOCSettingsSkinFullscreen"></sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen"></sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
-    <sys:String x:Key="LOCSettingsWhatsSteamName"></sys:String>
+    <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColor">Temaprofil</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">Fullskjermtema</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Fullskjermtemaprofil</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation">Databaseplassering</sys:String>
+    <sys:String x:Key="LOCSettingsWhatsSteamName">Hva er mitt profilnavn?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus"></sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle"></sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories"></sys:String>
