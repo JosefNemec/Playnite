@@ -57,7 +57,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen kun seuraavan tuontipros
     <sys:String x:Key="LOCGameShortcutError">Virhe luotaessa pikakuvaketta: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Peliä ei voida asentaa: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Peliä ei voida poistaa: {0}</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Kirjaston lisäosaa tälle pelille ei ole asennettu tai se ei ole käytössä.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Tälle pelille ei ole asennettu kirjastoliitännäistä tai se ei ole käytössä.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Virallista metatietoa ei ole saatavilla.</sys:String>
 
 
@@ -584,14 +584,14 @@ Lisää oheinen tunnus kaatumisraporttiisi:</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Avaa asennuksen sijainti</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Luo pikakuvake työpöydälle</sys:String>
     <sys:String x:Key="LOCMoreAction">Enemmän</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">Kirjastoliitännäisen hallinnoima</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Peliaikaa seurataan ja tallennetaan sekuntien tarkkuudella.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
@@ -609,13 +609,13 @@ Lisää oheinen tunnus kaatumisraporttiisi:</sys:String>
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Avataan työpöytätila...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Avataan kokoruudun tila...</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Ladataan pelikirjastoa...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Skriptiä ei voitu asentaa.</sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Skriptin asentaminen onnistui.</sys:String>
     <sys:String x:Key="LOCInstallScript">Asenna skripti</sys:String>
     <sys:String x:Key="LOCScriptError">Skriptivirhe</sys:String>
     <sys:String x:Key="LOCScriptExecutionError"></sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Avaa metatietokansio</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Pelin asennuskansiota ei löydy.</sys:String>
