@@ -354,6 +354,7 @@
     <Compile Include="WebView\OffscreenWebView.cs" />
     <Compile Include="WebView\WebView.cs" />
     <Compile Include="WebView\WebViewFactory.cs" />
+    <Compile Include="WindowsNotifyIconManager.cs" />
     <Compile Include="Windows\CrashHandlerWindowFactory.cs" />
     <Compile Include="Windows\WebViewWindow.xaml.cs">
       <DependentUpon>WebViewWindow.xaml</DependentUpon>

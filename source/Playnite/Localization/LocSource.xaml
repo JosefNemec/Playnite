@@ -296,8 +296,9 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsWhatsSteamName">What's my account name?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Login status:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite Settings</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCategories">Import Steam Categories:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCatFrom">from account:</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata">Import metadata from Steam account:</sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel">Import Steam Categories</sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel">Import Steam Last Played</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Clear web cache</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">May solve issues encountered while linking accounts.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Show Tray Icon *</sys:String>
@@ -312,6 +313,9 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Cannot import categories, account for import is not selected.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Cannot import categories, database is not opened.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Failed to import Steam categories: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Cannot import last played information, account for import is not selected.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Cannot import last played information, database is not opened.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Failed to import Steam last played information: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">This will log you out of all linked services. Application restart is required, do you want to proceed?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Clear Cache?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">API Key is required for Steam private accounts</sys:String>
@@ -616,6 +620,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently running, do you want to cancel it and proceed with update installation?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Background task is currently running, do you want to cancel it and close Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">A new update is available for Playnite</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Reload theme list</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Apply selected theme</sys:String>
