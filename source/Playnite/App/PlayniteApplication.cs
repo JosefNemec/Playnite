@@ -152,7 +152,7 @@ namespace Playnite
 
         public abstract void Minimize();
 
-        public abstract void NotifyInWindows(string title, string body);
+        public abstract void ShowWindowsNotification(string title, string body, Action action);
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
@@ -430,7 +430,7 @@ namespace Playnite
                 return;
             }
             
-            await Task.Delay(Common.Timer.SecondsToMilliseconds(10));
+            await Task.Delay(Common.Timer.SecondsToMilliseconds(5));
             if (GlobalTaskHandler.IsActive)
             {
                 await GlobalTaskHandler.ProgressTask;
@@ -440,27 +440,42 @@ namespace Playnite
 
             while (true)
             {
-                if (!UpdateViewModel.InstanceInUse)
+                try
                 {
-                    try
+                    if (updater.IsUpdateAvailable)
                     {
-                        if (updater.IsUpdateAvailable)
+                        var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
+                        var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
+                        if (!Current.IsActive)
                         {
-                            var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
-                            var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
-                            if (!Current.IsActive)
+                            ShowWindowsNotification(updateTitle, updateBody, () =>
                             {
-                                NotifyInWindows(updateTitle, updateBody);
-                            }
-
-                            Api.Notifications.Add(new NotificationMessage("UpdateAvailable", updateBody,
-                                NotificationType.Info, null));
+                                Restore();
+                                new UpdateViewModel(
+                                    updater,
+                                    new UpdateWindowFactory(),
+                                    new ResourceProvider(),
+                                    Dialogs).OpenView();
+                            });
                         }
+
+                        Api.Notifications.Add(
+                            new NotificationMessage("UpdateAvailable",
+                            updateBody,
+                            NotificationType.Info, () =>
+                            {
+                                new UpdateViewModel(
+                                    updater,
+                                    new UpdateWindowFactory(),
+                                    new ResourceProvider(),
+                                    Dialogs).OpenView();
+                            }));
+                        return;
                     }
-                    catch (Exception exc)
-                    {
-                        logger.Warn(exc, "Failed to process update.");
-                    }
+                }
+                catch (Exception exc)
+                {
+                    logger.Warn(exc, "Failed to process update.");
                 }
 
                 await Task.Delay(Common.Timer.HoursToMilliseconds(4));

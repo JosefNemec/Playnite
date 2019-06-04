@@ -257,7 +257,7 @@ namespace Playnite.DesktopApp
             return firstStartup;
         }
 
-        public override void NotifyInWindows(string title, string body)
+        public override void ShowWindowsNotification(string title, string body, Action action)
         {
             var icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico", ThemeManager.DefaultTheme,
                 ThemeManager.CurrentTheme));
@@ -267,9 +267,8 @@ namespace Playnite.DesktopApp
             }
             else
             {
-                WindowsNotifyIconManager.Notify(icon, title, body);
+                WindowsNotifyIconManager.Notify(icon, title, body, action);
             }
-
         }
     }
 }

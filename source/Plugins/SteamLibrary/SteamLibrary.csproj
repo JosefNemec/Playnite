@@ -61,9 +61,6 @@
     <Compile Include="..\..\Playnite\Commands\GlobalCommands.cs">
       <Link>Commands\GlobalCommands.cs</Link>
     </Compile>
-    <Compile Include="..\..\Playnite\Commands\RelayCommand.cs">
-      <Link>Commands\RelayCommand.cs</Link>
-    </Compile>
     <Compile Include="..\..\Playnite\Converters\EnumToBooleanConverter.cs">
       <Link>Converters\EnumToBooleanConverter.cs</Link>
     </Compile>

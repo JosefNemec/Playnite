@@ -15,9 +15,9 @@ namespace Playnite
                 BalloonTipText = body,
                 Visible = true
             };
+
             notifyIcon.BalloonTipClicked += (o, ea) => { clickAction?.Invoke(); notifyIcon.Dispose(); };
             notifyIcon.BalloonTipClosed += (o, ea) => { notifyIcon.Dispose(); };
-
             notifyIcon.ShowBalloonTip(0); // Windows Vista and up timeout is 5sec by default, only Windows Accessibility Settings can override this
         }
     }

@@ -395,6 +395,7 @@ namespace Playnite.FullscreenApp.ViewModels
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
+            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += FullscreenAppViewModel_ActivationRequested;
             DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(database, extensions, AppSettings);
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
@@ -402,6 +403,14 @@ namespace Playnite.FullscreenApp.ViewModels
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);
+        }
+
+        private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
+        {
+            PlayniteApi.Notifications.Remove(e.Message.Id);
+            NotificationsVisible = false;
+            GameListFocused = true;
+            e.Message.ActivationAction();
         }
 
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1107,8 +1116,7 @@ namespace Playnite.FullscreenApp.ViewModels
                             PlayniteApi.Notifications.Add(new NotificationMessage(
                                 $"{plugin.Id} - download",
                                 string.Format(Resources.GetString("LOCLibraryImportError"), plugin.Name) + $"\n{e.Message}",
-                                NotificationType.Error,
-                                null));
+                                NotificationType.Error));
                         }
                     }
 

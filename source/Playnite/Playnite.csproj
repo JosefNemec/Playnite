@@ -213,7 +213,6 @@
     <Compile Include="CmdlineCommands.cs" />
     <Compile Include="Commands\GlobalCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
-    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
     <Compile Include="Controls\ExtendedListView.cs" />
     <Compile Include="Controls\FadeImage.xaml.cs">

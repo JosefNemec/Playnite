@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Playnite.Commands
+namespace Playnite.SDK
 {
     public abstract class RelayCommand : ICommand
     {

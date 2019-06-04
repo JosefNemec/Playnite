@@ -12,15 +12,19 @@ namespace Playnite.API
 {
     public class NotificationsAPI : ObservableObject, INotificationsAPI
     {
+        public class ActivationRequestEventArgs : EventArgs
+        {
+            public NotificationMessage Message { get; }
+
+            public ActivationRequestEventArgs(NotificationMessage message)
+            {
+                Message = message;
+            }
+        }
+
         private readonly SynchronizationContext context;
 
-        public RelayCommand<object> RemoveAllCommands
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                RemoveAll();
-            });
-        }
+        public event EventHandler<ActivationRequestEventArgs> ActivationRequested;
 
         public ObservableCollection<NotificationMessage> Messages
         {
@@ -38,12 +42,18 @@ namespace Playnite.API
             Messages = new ObservableCollection<NotificationMessage>();
         }
 
+        private void Message_Activated(object sender, EventArgs e)
+        {
+            ActivationRequested(this, new ActivationRequestEventArgs(sender as NotificationMessage));
+        }
+
         public void Add(NotificationMessage message)
         {
             context.Send((c =>
             {
                 if (!Messages.Any(a => a.Id == message.Id))
                 {
+                    message.Activated += Message_Activated;
                     Messages.Add(message);
                     OnPropertyChanged(nameof(Count));
                 }
@@ -56,8 +66,7 @@ namespace Playnite.API
             {
                 if (!Messages.Any(a => a.Id == id))
                 {
-                    Messages.Add(new NotificationMessage(id, text, type, null));
-                    OnPropertyChanged(nameof(Count));
+                    Add(new NotificationMessage(id, text, type));
                 }
             }), null);
         }
@@ -69,6 +78,7 @@ namespace Playnite.API
                 var message = Messages.FirstOrDefault(a => a.Id == id);
                 if (message != null)
                 {
+                    message.Activated -= Message_Activated;
                     Messages.Remove(message);
                     OnPropertyChanged(nameof(Count));
                 }
@@ -79,6 +89,11 @@ namespace Playnite.API
         {
             context.Send((c =>
             {
+                foreach (var message in Messages)
+                {
+                    message.Activated -= Message_Activated;
+                }
+
                 Messages.Clear();
                 OnPropertyChanged(nameof(Count));
             }), null);

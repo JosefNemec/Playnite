@@ -14,9 +14,19 @@ namespace Playnite.SDK
     public class NotificationMessage
     {
         /// <summary>
-        /// Gets command executed when user activates notification.
+        /// Ivokes when <see cref="ActivationAction"/> is activated.
         /// </summary>
-        public ICommand ActivationCommand
+        public event EventHandler Activated;
+
+        /// <summary>
+        /// Gets command to activate <see cref="ActivationAction"/>.
+        /// </summary>
+        public ICommand ActivateCommand { get; }
+        
+        /// <summary>
+        /// Gets action to be invoked when notification is activated.
+        /// </summary>
+        public Action ActivationAction
         {
             get;
         }
@@ -51,8 +61,18 @@ namespace Playnite.SDK
         /// <param name="id">Notification id.</param>
         /// <param name="text">Notification text.</param>
         /// <param name="type">Notification type.</param>
-        public NotificationMessage(string id, string text, NotificationType type) : this(id, text, type, null)
+        public NotificationMessage(string id, string text, NotificationType type)
         {
+            Id = id;
+            Text = text;
+            Type = type;
+            ActivateCommand = new RelayCommand<object>((a) =>
+            {
+                if (ActivationAction != null)
+                {
+                    Activated?.Invoke(this, null);
+                }
+            });
         }
 
         /// <summary>
@@ -61,13 +81,10 @@ namespace Playnite.SDK
         /// <param name="id">Notification id.</param>
         /// <param name="text">Notification text.</param>
         /// <param name="type">Notification type.</param>
-        /// <param name="command">Action to be invoked when notification is activated.</param>
-        public NotificationMessage(string id, string text, NotificationType type, ICommand command)
+        /// <param name="action">Action to be invoked when notification is activated.</param>
+        public NotificationMessage(string id, string text, NotificationType type, Action action) : this(id, text, type)
         {
-            Id = id;
-            Text = text;
-            Type = type;
-            ActivationCommand = command;
+            ActivationAction = action;
         }
     }
 

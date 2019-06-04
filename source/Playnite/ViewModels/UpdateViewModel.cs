@@ -61,14 +61,8 @@ namespace Playnite.ViewModels
             private set;
         }
 
-        public static bool InstanceInUse
-        {
-            get; set;
-        }
-
         public UpdateViewModel(Updater updater, IWindowFactory window, IResourceProvider resources, IDialogsFactory dialogs)
         {
-            InstanceInUse = true;
             context = SynchronizationContext.Current;
             this.window = window;
             this.updater = updater;
@@ -92,7 +86,6 @@ namespace Playnite.ViewModels
 
         public void CloseView()
         {
-            InstanceInUse = false;
             window.Close();
         }
 

@@ -143,5 +143,10 @@ namespace Playnite.FullscreenApp
             Process.Start(PlaynitePaths.FullscreenExecutablePath, options.ToString());
             CurrentNative.Shutdown(0);
         }
+
+        public override void ShowWindowsNotification(string title, string body, Action action)
+        {
+            // Fullscreen mode shoulnd't show anything since user has no way how inteact with it
+        }
     }
 }

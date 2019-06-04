@@ -367,7 +367,7 @@ namespace Playnite.DesktopApp.ViewModels
             Extensions = extensions;
             DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(database, extensions, AppSettings);
-
+            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested; ;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
@@ -758,6 +758,13 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
+        {
+            PlayniteApi.Notifications.Remove(e.Message.Id);
+            AppSettings.NotificationPanelVisible = false;
+            e.Message.ActivationAction();
+        }
+
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType) &&
@@ -917,8 +924,7 @@ namespace Playnite.DesktopApp.ViewModels
                             AddMessage(new NotificationMessage(
                                 $"{plugin.Id} - download",
                                 string.Format(Resources.GetString("LOCLibraryImportError"), plugin.Name) + $"\n{e.Message}",
-                                NotificationType.Error,
-                                null));
+                                NotificationType.Error));
                         }
                     }
 
@@ -1230,6 +1236,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void ClearMessages()
         {
             PlayniteApi.Notifications.RemoveAll();
+            AppSettings.NotificationPanelVisible = false;
         }
 
         public void CheckForUpdate()
@@ -1284,8 +1291,7 @@ namespace Playnite.DesktopApp.ViewModels
                         AddMessage(new NotificationMessage(
                             $"{library.Id} - download",
                             string.Format(Resources.GetString("LOCLibraryImportError"), library.Name) + $"\n{e.Message}",
-                            NotificationType.Error,
-                            null));
+                            NotificationType.Error));
                     }
 
                     ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");

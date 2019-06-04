@@ -32,7 +32,7 @@
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock DockPanel.Dock="Left">
-                                <Hyperlink Command="{pmrk:Api Notifications.RemoveAllCommands}">
+                                <Hyperlink Command="{Binding ClearMessagesCommand}">
                                     <Run Text="{DynamicResource LOCClearFilters}" />
                                 </Hyperlink>
                             </TextBlock>
@@ -40,11 +40,11 @@
 
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
                                        DockPanel.Dock="Top">
-                            <ItemsControl ItemsSource="{pmrk:Api Notifications.Messages, Mode=OneWay}" >
+                            <ItemsControl ItemsSource="{Binding PlayniteApi.Notifications.Messages}" >
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Button Style="{StaticResource NotificationMessage}"
-                                                Command="{Binding ActivationCommand}"
+                                                Command="{Binding ActivateCommand}"
                                                 Margin="2,5,2,5" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

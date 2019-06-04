@@ -3,6 +3,7 @@ using Playnite.Commands;
 using Playnite.Common;
 using Playnite.FullscreenApp.ViewModels;
 using Playnite.Input;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;

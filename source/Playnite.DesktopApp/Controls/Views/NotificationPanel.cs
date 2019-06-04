@@ -1,5 +1,6 @@
 ﻿using Playnite.API;
 using Playnite.API.DesignData;
+using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
 using Playnite.ViewModels;
 using Playnite.ViewModels.Desktop.DesignData;
@@ -16,27 +17,27 @@ namespace Playnite.DesktopApp.Controls.Views
 {
     public class NotificationPanel : Control
     {
-        private readonly IPlayniteAPI api;
+        private DesktopAppViewModel mainModel;
 
         static NotificationPanel()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(NotificationPanel), new FrameworkPropertyMetadata(typeof(NotificationPanel)));
         }
 
-        public NotificationPanel() : this(PlayniteApplication.Current?.Api)
+        public NotificationPanel() : this(DesktopApplication.Current?.MainModel)
         {
         }
 
-        public NotificationPanel(IPlayniteAPI api)
+        public NotificationPanel(DesktopAppViewModel mainModel)
         {
-            this.api = api;
+            this.mainModel = mainModel;
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                DataContext = new DesignPlayniteAPI();
+                DataContext = new DesignMainViewModel();
             }
-            else if (api != null)
+            else
             {
-                DataContext = api;
+                DataContext = mainModel;
             }
         }
     }

@@ -36,7 +36,8 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <pctrls:ButtonEx Margin="10,5,10,5"
-                                                Command="{Binding ActivationCommand}">
+                                                         BorderThickness="2"
+                                                         Command="{Binding ActivateCommand}">
                                             <Button.Content>
                                                 <TextBlock Text="{Binding Text}" TextWrapping="Wrap"
                                                            Style="{DynamicResource TextBlockBaseStyle}" />
