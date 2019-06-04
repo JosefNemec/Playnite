@@ -8,6 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">Sair</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro ativado (clique para trocar painel de filtro)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtro desativado (clique para trocar painel de filtro)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
+    <sys:String x:Key="LOCFilters"></sys:String>
+    <sys:String x:Key="LOCFilter"></sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Dados inválidos</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Guardar alterações?</sys:String>
@@ -15,6 +18,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Página inicial em www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Código-fonte no GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Criar pacote diag.</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Sobre Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Feito por Josef Němec</sys:String>
 
@@ -28,9 +32,8 @@ Indeterminado - Nenhumas alterações (quando a editar vários jogos)</sys:Strin
     <sys:String x:Key="LOCNoPlatform">Sem Plataforma</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh não, algo de mau aconteceu...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ocorreu um erro irrecuperável e o Playnite falhou.
-        
-Se quiseres ajudar-nos a corrigir este problema, cria um pacote de diagnósticos e usa o botão "Relatar Falha" para informar-nos sobre o que aconteceu. Obrigado.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Relatar Falha</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Fechar Playnite</sys:String>
@@ -61,6 +64,7 @@ Jogos importados, automaticamente, podem reaparecer no Playnite após, o próxim
     <sys:String x:Key="LOCGameUninstallError">Não foi possível desinstalar o jogo: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">A extensão da biblioteca responsável por este jogo não está instalada ou ativada.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Transferir os metadados oficiais não está disponível.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
 
 
     <!--General-->
@@ -76,6 +80,9 @@ Jogos importados, automaticamente, podem reaparecer no Playnite após, o próxim
     <sys:String x:Key="LOCDoneCapLabel">FEITO</sys:String>
     <sys:String x:Key="LOCBackCapLabel">VOLTAR</sys:String>
     <sys:String x:Key="LOCClearCapLabel">LIMPAR</sys:String>
+    <sys:String x:Key="LOCClearLabel"></sys:String>
+    <sys:String x:Key="LOCDismiss"></sys:String>
+    <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel">Importar</sys:String>
     <sys:String x:Key="LOCSourceLabel">Fonte</sys:String>
     <sys:String x:Key="LOCNameLabel">Nome</sys:String>
@@ -148,6 +155,10 @@ Jogos importados, automaticamente, podem reaparecer no Playnite após, o próxim
     <sys:String x:Key="LOCGameId">Id do Jogo</sys:String>
     <sys:String x:Key="LOCDatabaseId">Id da Base de Dados</sys:String>
     <sys:String x:Key="LOCPresets">Predefinições</sys:String>
+    <sys:String x:Key="LOCColumn"></sys:String>
+    <sys:String x:Key="LOCColumns"></sys:String>
+    <sys:String x:Key="LOCRow"></sys:String>
+    <sys:String x:Key="LOCRows"></sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">As variáveis especiais podem ser usadas para criar strings de caracteres dinâmicos:
 {InstallDir} - Diretório da instalação do jogo
@@ -215,7 +226,11 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCMenuIssues">Enviar Opinião</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation"></sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
@@ -236,6 +251,7 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsFullscreenLabel">Ecrã Inteiro</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Fornecedores</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -271,8 +287,9 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsWhatsSteamName">Qual o nome da minha conta?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Estado da sessão:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Definições do Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCategories">Importar Categorias da Steam:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCatFrom">da conta:</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Limpar cache da web</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Pode resolver problemas encontrados ao vincular contas.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Exibir Ícone na Grelha *</sys:String>
@@ -287,6 +304,9 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Não foi possível importar categorias, a conta para importação não está selecionada.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Não foi possível importar as categorias, a base de dados não está aberta.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Falha ao importar as categorias da Steam: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Todas as contas de serviços configuradas serão desvinculadas. Será necessário reiniciar o programa, desejas continuar?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Limpar Cache?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">É preciso uma Chave API para contas privadas da Steam</sys:String>
@@ -313,6 +333,16 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preencher</sys:String>
@@ -335,6 +365,7 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Importar Metadados</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton"></sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
@@ -371,6 +402,8 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
@@ -448,6 +481,7 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCDatabaseOpenAccessError"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError"></sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
@@ -540,6 +574,8 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCLibrary">Biblioteca</sys:String>
     <sys:String x:Key="LOCAll">Todos</sys:String>
     <sys:String x:Key="LOCNone">Nenhum</sys:String>
+    <sys:String x:Key="LOCNotifications"></sys:String>
+
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
@@ -557,6 +593,7 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
@@ -564,6 +601,7 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip"></sys:String>
 
     <!--Game actions-->
+    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame">Adicionar aos Favoritos</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
     <sys:String x:Key="LOCHideGame">Esconder</sys:String>
@@ -573,6 +611,8 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCRemoveGame">Remover</sys:String>
     <sys:String x:Key="LOCPlayGame">Executar</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalar</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameDetails"></sys:String>
     <sys:String x:Key="LOCUninstallGame">Desinstalar</sys:String>
     <sys:String x:Key="LOCOpenGameLocation"></sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
@@ -642,4 +682,14 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+
 </ResourceDictionary>
