@@ -8,6 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">Beenden</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filter sind aktiviert (für Filterleiste anklicken)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filter sind deaktiviert (für Filterleiste anklicken)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Weitere Filter</sys:String>
+    <sys:String x:Key="LOCFilters">Filter</sys:String>
+    <sys:String x:Key="LOCFilter">Filter</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Ungültige Daten</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Änderungen speichern?</sys:String>
@@ -15,6 +18,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Quellcode auf GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Diagnosedaten erstellen</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Diag.-Informationen senden</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Über Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">von Josef Němec</sys:String>
 
@@ -28,9 +32,12 @@ Unentschieden - Keine Änderung (bei Bearbeitung mehrerer Spiele)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Keine Plattform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nein, das hätte nicht passieren dürfen …</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite hat ein schwerwiegendes Problem festgestellt und ist abgestürzt.
-
-Wenn du uns beim Beheben dieses Problems helfen möchtest, erstelle bitte Diagnosedaten und teile uns mittels der Schaltfläche »Absturz melden« mit, was passiert ist. Danke!</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ein nicht zu behebender Fehler ist aufgetreten.
+        
+Falls du uns dabei helfen möchtest, dieses Problem zu lösen, erstelle bitte Diagnosedaten und verwende die Schaltfläche »Absturz melden«, um uns mitzuteilen, was passiert ist. Vielen Dank.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ein nicht zu behebender Fehler ist aufgetreten.
+        
+Falls du uns dabei helfen möchtest, dieses Problem zu lösen, sende bitte Diagnoseinformationen. Vielen Dank.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Absturz melden</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite neu starten</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Beenden</sys:String>
@@ -61,6 +68,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCGameUninstallError">Spiel kann nicht deinstalliert werden: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Das Bibliotheks-Plugin für dieses Spiel ist nicht installiert oder deaktiviert.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Offizielle Metadaten sind nicht zum Herunterladen verfügbar.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">Kein Spiel ausgewählt.</sys:String>
 
 
     <!--General-->
@@ -76,6 +84,9 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCDoneCapLabel">FERTIG</sys:String>
     <sys:String x:Key="LOCBackCapLabel">ZURÜCK</sys:String>
     <sys:String x:Key="LOCClearCapLabel">LEEREN</sys:String>
+    <sys:String x:Key="LOCClearLabel">Leeren</sys:String>
+    <sys:String x:Key="LOCDismiss">Verwerfen</sys:String>
+    <sys:String x:Key="LOCDismissAll">Alle verwerfen</sys:String>
     <sys:String x:Key="LOCImportLabel">Importieren</sys:String>
     <sys:String x:Key="LOCSourceLabel">Quelle</sys:String>
     <sys:String x:Key="LOCNameLabel">Name</sys:String>
@@ -148,6 +159,10 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCGameId">Spiel-ID</sys:String>
     <sys:String x:Key="LOCDatabaseId">Datenbank-ID</sys:String>
     <sys:String x:Key="LOCPresets">Voreinstellungen</sys:String>
+    <sys:String x:Key="LOCColumn">Spalte</sys:String>
+    <sys:String x:Key="LOCColumns">Spalten</sys:String>
+    <sys:String x:Key="LOCRow">Zeile</sys:String>
+    <sys:String x:Key="LOCRows">Zeilen</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
 {InstallDir} - Installationspfad des Spiels
@@ -219,7 +234,11 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuIssues">Feedback senden</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Vollbildmodus starten</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Verweise</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Auf Patreon unterstützen</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-Dokumentation</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem">System neu starten</sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">System ausschalten</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detailleistenposition in Rasteransicht</sys:String>
@@ -230,7 +249,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsStrechModeLabel">Gestreckt</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-Banner</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD-Box</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">Mit »*« markierte Einstellungen erfordern einen Neustart von Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* Erfordert zur Anwendung Neustart</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Einstellungen</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Allgemein</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Darstellung</sys:String>
@@ -240,6 +259,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsFullscreenLabel">Vollbildmodus</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Anbieter</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Eingabe</sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel">Metadaten</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Bibliotheksänderungen automatisch importieren</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Installierte Spiele importieren</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Nicht installierte Spiele importieren</sys:String>
@@ -275,8 +295,9 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsWhatsSteamName">Wie lautet mein Kontoname?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Login-Status:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite-Einstellungen</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCategories">Importiere Kategorien:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCatFrom">von Konto:</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata">Metadaten aus Steam-Konto importieren:</sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel">Steam-Kategorien importieren</sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel">»Zuletzt gespielt« aus Steam importieren</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Webcache leeren</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Löst eventuell Probleme beim Verknüpfen von Benutzerkonten.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Infobereichsymbol anzeigen *</sys:String>
@@ -291,6 +312,9 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kategorien können nicht importiert werden, da kein Konto für Importe ausgewählt.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Fehler beim Import der Steam-Kategorien: Datenbank ist nicht geöffnet</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Fehler beim Import der Steam-Kategorien: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Dies wird alle Verknüpfungen entfernen und Playnite neu starten. Bist du sicher?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Cache leeren?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Für private Steam-Konten ist ein API-Key notwendig</sys:String>
@@ -317,6 +341,16 @@ Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abge
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Synchronisiert automatisch die Spielzeit mit der Bibliothek von Steam, Origin und anderen. Playnite wird die Spielzeit von betroffenen Spielen anschließend nicht mehr selbst überwachen.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Controller-Unterstützung im Desktop-Modus aktivieren *</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide-Taste öffnet Vollbildmodus</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Konfiguriere die Einstellungen, die beim automatischen Download von Metadaten nach Importieren neuer Spiele verwendet werden.</sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor">Zielmonitor</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Spieletitel anzeigen</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus">Akkustatus anzeigen</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage">Akkuladung in Prozent anzeigen</sys:String>
+    <sys:String x:Key="LOCSettingsShowClock">Uhr anzeigen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Schaltflächenmeldungen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontales Scrollen</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
@@ -339,6 +373,8 @@ Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abge
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadatenimport</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Metadaten herunterladen</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Lege die ausgewählte Konfiguration für alle zukünftigen Metadatendownloads fest.
+Kann auch in den Anwendungseinstellungen geändert werden.</sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Assistent für Emulationsimport</sys:String>
@@ -381,6 +417,8 @@ Zudem kannst du natürlich auch jederzeit selbst ein Spiel zu deiner Playnite-Bi
 
 Weitere Spiele (inklusive Spiele aus dem Windows Store) kannst du zudem auch später noch über den "Spiel hinzufügen"-Dialog im Playnite-Menü hinzufügen.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Weitere Informationen und Hilfe zum Import von Emulatoren</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">Layout der Rasteransicht</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Wähle deine bevorzugte Darstellung für Playnites Rasteransicht aus. Das Bildlayout kann jederzeit in den Anwendungseinstellungen geändert werden, einschließlich der Optionen für die Bilddehnung.</sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Plattformen & Emulatoren konfigurieren</sys:String>
@@ -462,6 +500,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCDatabaseOpenAccessError">Fehler beim Öffnen der Datenbank: Datei "{0}" wird von einem anderen Prozess verwendet oder ist nicht lesbar.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Fehler beim Erstellen von Diagnosedaten.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Fehler beim Hochladen von Diagnosedaten.</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnoseinformationen wurden erfolgreich versendet.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnosedaten wurden erfolgreich erstellt und hochgeladen.
    
 Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die Kennung deiner Diagnosedaten:</sys:String>
@@ -553,7 +592,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCReloadScripts">Skripte neu laden</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">[UNUSED]</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Keine Spiele gefunden</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Zurück zum Desktop</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Zurück zum Desktopmodus</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite beenden</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotheken</sys:String>
     <sys:String x:Key="LOCUpdateAll">Alle aktualisieren</sys:String>
@@ -563,6 +602,8 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCLibrary">Bibliothek</sys:String>
     <sys:String x:Key="LOCAll">Alle</sys:String>
     <sys:String x:Key="LOCNone">Keine</sys:String>
+    <sys:String x:Key="LOCNotifications">Benachrichtigungen</sys:String>
+
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Zusätzliche Emulator-Argumente</sys:String>
@@ -571,7 +612,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCGameImportWindowTitle">Spiele importieren</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadaten importieren</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Aktualisierung verfügbar</sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo">Änderungen seit der letzten Aktualisierung:</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Änderungen seit letzter Aktualisierung</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Playnite aktualisieren</sys:String>
     <sys:String x:Key="LOCCheckForUpdates">Suche nach Aktualisierungen</sys:String>
     <sys:String x:Key="LOCUpdateError">Fehler beim Aktualisieren</sys:String>
@@ -580,6 +621,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Fehler beim Aktualisieren von Playnite:</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Im Hintergrund wird gerade ein Prozess ausgeführt, soll dieser beendet und mit dem Update fortgefahren werden?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Im Hintergrund wird gerade ein Prozess ausgeführt, soll Playnite wirklich beendet werden?</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Für Playnite ist eine neue Aktualisierung verfügbar</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Themes-Liste neu laden</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Theme anwenden</sys:String>
@@ -587,6 +629,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Überwacht die Dateien des Themes auf Änderungen und wendet diese automatisch an.</sys:String>
 
     <!--Game actions-->
+    <sys:String x:Key="LOCSaveAsDefault">Als Standard speichern</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Zu Favoriten hinzufügen</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Aus Favoriten entfernen</sys:String>
     <sys:String x:Key="LOCHideGame">Verstecke in Bibliothek</sys:String>
@@ -596,6 +639,8 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCRemoveGame">Spiel entfernen</sys:String>
     <sys:String x:Key="LOCPlayGame">Spielen</sys:String>
     <sys:String x:Key="LOCInstallGame">Spiel installieren</sys:String>
+    <sys:String x:Key="LOCGameOptions">Optionen</sys:String>
+    <sys:String x:Key="LOCGameDetails">Details</sys:String>
     <sys:String x:Key="LOCUninstallGame">Spiel deinstallieren</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Öffne Installationspfad</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Erstelle Desktop-Verknüpfung</sys:String>
@@ -667,4 +712,14 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
     </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Benutzerkonten-URL</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Angemeldet</sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError">Die Ersteinrichtung ist nicht abgeschlossen. Playnite wird nun im Desktopmodus neu gestartet, um die Einrichtung abzuschließen.</sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Zuletzt gespielt</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Favoriten</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">Spielzeit</sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames">Alle</sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered">Es wurden Filter angewendet.</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Suchergebnisse für:</sys:String>
+
 </ResourceDictionary>
