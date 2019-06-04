@@ -239,6 +239,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avançat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pantalla completa</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Proveïdors</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importa els canvis a la biblioteca automàticament</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importa jocs instal·lats</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importa els jocs desinstal·lats</sys:String>
@@ -314,6 +315,8 @@ Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sy
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">No s'aplica retrospectivament als jocs existents sense tornar a descarregar les bases de dades.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Força la sincronització del temps de joc</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Descarregar sempre el temps de joc enregistrat de la biblioteca remota durant la sincronització de la biblioteca, ignorant el temps enregistrat per Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activar la compatibilitat amb el controlador en mode Escriptori *</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">El botó Guia obre el mode de Pantalla completa</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
@@ -345,9 +348,9 @@ Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sy
         
 També pots configurar i importar més tard qualsevol emulador personalitzat a través del menú de configuració.</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">Pots importar qualsevol emulador instal·lat al teu PC en clicar en "Detectar des de carpeta...". Playnite buscara en la carpeta seleccionada qualsevol emulador conegut i permetrà importar-los. Pots importar de diverses carpetes repetint l'acció, els emuladors seran afegits al final de la llista actual.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Pots importar jocs prement el botó "Escaneja la carpeta mitjançant l’emulador". La selecció de l’emulador apropiat indicarà a Playnite quins tipus de fitxers haurien de ser escanejats i importats. Pots importar des de múltiples carpetes utilitzant aquest botó diverses vegades, els jocs s'afegiran a la part inferior de la llista actual.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">No hi ha cap emulador seleccionat per importar. No podràs importar automàticament cap joc emulat sense configurar primer els emuladors. Estàs segur que vols continuar i sortir del procés d'importació?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">No hi ha cap emulador configurat a Playnite. No pots importar jocs sense configurar primer l’emulador i seleccionar els tipus de fitxer adequats. Vols afegir alguns emuladors ara?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Escaneja la carpeta mitjançant l’emulador</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Selecciona arxius </sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Detecció automàtica de carpeta ...</sys:String>
@@ -364,7 +367,7 @@ Tingueu en compte que sempre podeu afegir qualsevol joc personalitzat per a qual
     <sys:String x:Key="LOCFirstDBLocDefault">Ubicació de dades de programa per defecte per a tots els usuaris</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Ubicació personalitzada</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integració de biblioteques</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Importa automàticament els jocs des dels serveis següents. Qualsevol canvi posterior del joc (estat de la instal·lació) s'actualitzarà automàticament a l’arrencada de Playnite o quan s’activi manualment. La configuració seleccionada afecta a les importacions inicials i posteriors.</sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration">Integració de Steam</sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration">Integració d'Origin</sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration">Integració de GOG</sys:String>
@@ -654,8 +657,7 @@ Pots provar aixó per solucionar el problema:
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Inicia sessió al compte</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nom del compte</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicia la sessió al teu compte o al teu compte públic per sincronitzar la teva biblioteca completa.
-Tingues en compte que l’opció Nom del compte només funciona amb comptes que tinguin visibilitat pública.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicia la sessió al teu compte o utilitza el nom del teu compte públic per sincronitzar la teva biblioteca completa. Tingues en compte que l’opció Nom del compte només funciona per a comptes que han establert a la configuració de privadesa de GOG que les seves biblioteques siguin públiques.</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selecciona l’usuari autenticat o especifica el nom d’URL del vostre compte per sincronitzar la biblioteca completa. Els comptes amb visibilitat de biblioteca privada han d’especificar la clau d’API vinculada a aquest compte de Steam.

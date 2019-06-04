@@ -24,8 +24,8 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Вибрано - Категорію призначено
 Не вибрано - Прибрати категорію
 Невизначено - Без змін (коли редагується кілька ігр)</sys:String>
-    <sys:String x:Key="LOCNoCategory"></sys:String>
-    <sys:String x:Key="LOCNoPlatform"></sys:String>
+    <sys:String x:Key="LOCNoCategory">Немає категорії</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Немає платформи</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">О ні, щось пішло не так...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Критична помилка призвела до падіння Playnite.
@@ -60,6 +60,7 @@
     <sys:String x:Key="LOCGameInstallError">Не вдається встановити гру: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Не вдається видалити гру: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Плагін для бібліотеки відповідальний за запуск гри не встановлено або не ввімкнено.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
@@ -113,7 +114,7 @@
     <sys:String x:Key="LOCDownloadLabel">Завантажити</sys:String>
     <sys:String x:Key="LOCSearchLabel">Пошук</sys:String>
     <sys:String x:Key="LOCGenreLabel">Жанр</sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Компанія</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Розробник</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Видавець</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Категорія</sys:String>
@@ -122,10 +123,10 @@
     <sys:String x:Key="LOCZoomLabel">Масштабування</sys:String>
     <sys:String x:Key="LOCListLabel">Список</sys:String>
     <sys:String x:Key="LOCCoversLabel">Обкладинка</sys:String>
-    <sys:String x:Key="LOCGridLabel"></sys:String>
+    <sys:String x:Key="LOCGridLabel">Сітка</sys:String>
     <sys:String x:Key="LOCDetailsLabel">Деталі</sys:String>
     <sys:String x:Key="LOCCustomLabel">Власні</sys:String>
-    <sys:String x:Key="LOCURLLabel"></sys:String>
+    <sys:String x:Key="LOCURLLabel">URL-адреса</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Меценати</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Ліцензія</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Автори</sys:String>
@@ -139,14 +140,14 @@
     <sys:String x:Key="LOCFriday">П'ятниця</sys:String>
     <sys:String x:Key="LOCSaturday">Субота</sys:String>
     <sys:String x:Key="LOCSunday">Неділя</sys:String>
-    <sys:String x:Key="LOCPastWeek"></sys:String>
-    <sys:String x:Key="LOCPastMonth"></sys:String>
-    <sys:String x:Key="LOCPastYear"></sys:String>
+    <sys:String x:Key="LOCPastWeek">Минулий тиждень</sys:String>
+    <sys:String x:Key="LOCPastMonth">Минулий місяць</sys:String>
+    <sys:String x:Key="LOCPastYear">Минулий рік</sys:String>
     <sys:String x:Key="LOCImportCompleted">Імпортування успішно завершено.</sys:String>
     <sys:String x:Key="LOCAllGames">Всі ігри</sys:String>
     <sys:String x:Key="LOCGameId">Ігровий Id</sys:String>
     <sys:String x:Key="LOCDatabaseId">Id бази даних</sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
+    <sys:String x:Key="LOCPresets">Шаблони</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Спеціальні змінні можуть бути застосовані при додаванні динамічної строки:
 {InstallDir} - Директорія зі встановленою грою
@@ -203,8 +204,8 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCMenuConfigurationTitle">Конфігурація</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Налаштування</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Платформи та емулятори</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Налаштування емуляторів...</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Менеджер бібліотеки...</sys:String>
     <sys:String x:Key="LOCMenuTools">Інструменти</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Завантажити метадані</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Відкрити сторонній клієнт</sys:String>
@@ -217,7 +218,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCMenuAbout">Про Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Надіслати відгук</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Запустити повноекранний режим</sys:String>
-    <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Посилання</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Документація</sys:String>
 
     <!--Settings Window-->
@@ -230,14 +231,15 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
-    <sys:String x:Key="LOCSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Налаштування</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Загальні</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Зовнішній вигляд</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Подробиці гри</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Розташування</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Додатково</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Повноекранний режим</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Сторонні постачальники</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Автоматично імпортувати зміни в бібліотеці</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Імпортувати встановлені ігри</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Імпортувати видалені ігри</sys:String>
@@ -313,16 +315,18 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Не застосовується ретроспективно до існуючих ігор без повторного завантаження метаданих.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
-    <sys:String x:Key="LOCStrechNone"></sys:String>
-    <sys:String x:Key="LOCStrechFill"></sys:String>
+    <sys:String x:Key="LOCStrechNone">Нічого</sys:String>
+    <sys:String x:Key="LOCStrechFill">Заповнення</sys:String>
     <sys:String x:Key="LOCStrechUniform"></sys:String>
     <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
 
-    <sys:String x:Key="LOCDockLeft"></sys:String>
-    <sys:String x:Key="LOCDockRight"></sys:String>
-    <sys:String x:Key="LOCDockTop"></sys:String>
-    <sys:String x:Key="LOCDockBottom"></sys:String>
+    <sys:String x:Key="LOCDockLeft">Зліва</sys:String>
+    <sys:String x:Key="LOCDockRight">Зправа</sys:String>
+    <sys:String x:Key="LOCDockTop">Зверху</sys:String>
+    <sys:String x:Key="LOCDockBottom">Внизу</sys:String>
 
     <sys:String x:Key="LOCImportError">Помилка імпортування</sys:String>
     <sys:String x:Key="LOCLoginChecking">Перевірка стану автентифікації...</sys:String>
@@ -371,7 +375,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCFirstUplayIntegration">Інтерграція з Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Імпортувати категорії з акаунта:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Інші ігри</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Натисніть кнопку нижче, щоб імпортувати інші встановлені ігри або додати їх вручну (включаючи ігри з Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Імпортувати ігри</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Конфігурацію завершено</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Початкове налаштування завершено. Пам'ятайте, що ви можете змінити всі налаштування пізніше через меню "Налаштування".
@@ -409,15 +413,15 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCEmulatorSettingsHelp">Довідка про налаштування</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">Сортувати за</sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Групування</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Зростанням</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Спаданням</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Не групувати</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">Групувати за постачальником</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Групувати за категорією</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Групувати за платформою</sys:String>
-    <sys:String x:Key="LOCViewType"></sys:String>
-    <sys:String x:Key="LOCMenuView"></sys:String>
+    <sys:String x:Key="LOCViewType">Тип перегляду</sys:String>
+    <sys:String x:Key="LOCMenuView">Вигляд</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
 
@@ -549,9 +553,9 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCExtensionCreatedBy">Створено:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Версія:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Модуль:</sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
-    <sys:String x:Key="LOCAll"></sys:String>
-    <sys:String x:Key="LOCNone"></sys:String>
+    <sys:String x:Key="LOCLibrary">Бібліотека</sys:String>
+    <sys:String x:Key="LOCAll">Все</sys:String>
+    <sys:String x:Key="LOCNone">Нічого</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Аргументи емулятора</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Додаткові аргументи емулятора</sys:String>
@@ -622,23 +626,23 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCScriptExecutionError">Не вдалося виконати функцію розширення.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Відкрити теку з метаданими</sys:String>
 
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0} клієнт не встановлено.</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
 
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
+    <sys:String x:Key="LOCRenameItem">Перейменувати</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Додати елемент</sys:String>
     <sys:String x:Key="LOCEnterName"></sys:String>
     <sys:String x:Key="LOCEnterNewName"></sys:String>
 
     <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">Від 1 до 10 годин</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">Від 10 до 100 годин</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">Від 100 до 500 годин</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">Від 500 до 1000 годин</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>

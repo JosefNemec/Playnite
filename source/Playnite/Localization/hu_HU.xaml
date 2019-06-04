@@ -58,6 +58,7 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCGameInstallError">Játék nem telepíthető: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Játék nem eltávolítható: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
@@ -234,6 +235,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsAdvancedLabel">Haladó</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Kliensek</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Könyvtár változások automatikus importálása</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Telepített játékok importálása</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -310,6 +312,8 @@ Minden jelenlegi művelete (metaadatok letöltése) abba marad.</sys:String>
 	képek helyett</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -370,7 +374,7 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay Integrálás</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Következő felhasználóból kategóriák importálása:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Más játékok</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Kattintson a gombra hogy kézileg adjon játékokat a könyvtárhoz (Például Windows Store-ból).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Játékok importálása</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguráció kész</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Elsődleges konfiguráció elkészült. Ne felejtse hogy később bármikor változtathat ezt a 'Beállítások' menüben
