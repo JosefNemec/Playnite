@@ -203,7 +203,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfiguration</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Einstellungen …</sys:String>
-    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformen & Emulatoren</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformen &amp; Emulatoren</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Emulatoren konfigurieren</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Bibliotheksverwaltung</sys:String>
     <sys:String x:Key="LOCMenuTools">Werkzeuge</sys:String>
@@ -383,7 +383,7 @@ Weitere Spiele (inklusive Spiele aus dem Windows Store) kannst du zudem auch sp�
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Weitere Informationen und Hilfe zum Import von Emulatoren</sys:String>
 
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle">Plattformen & Emulatoren konfigurieren</sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">Plattformen &amp; Emulatoren konfigurieren</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Emulatoren konfigurieren</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Plattformen</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Plattform</sys:String>
