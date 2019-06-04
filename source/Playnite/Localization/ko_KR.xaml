@@ -8,6 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">종료</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">필터가 활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">필터가 비활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
+    <sys:String x:Key="LOCFilters"></sys:String>
+    <sys:String x:Key="LOCFilter"></sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">잘못된 데이터</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">변경 사항을 저장하시겠습니까?</sys:String>
@@ -15,6 +18,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">홈페이지: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">GitHub에서 소스 코드 보기</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">진단 패키지 생성</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Playnite에 관하여</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Josef Němec이 개발함</sys:String>
 
@@ -28,9 +32,8 @@
     <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">아... 뭔가 이상한 일이 벌어지고있어요...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구 불가능한 에러가 발생함에 따라 Playnite가 작동을 중지했습니다.
-        
-이 문제를 수정하는 것을 돕고 싶으시다면, 진단 패키지를 생성하고 ‘오류 보고’ 버튼을 통해 무슨 일이 일어났는지 알려주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite 종료</sys:String>
@@ -61,6 +64,7 @@
     <sys:String x:Key="LOCGameUninstallError">게임을 삭제할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">이 게임을 담당하는 라이브러리 플러그인이 설치되거나 활성화되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">공식 메타데이터 다운로드를 사용할 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
 
 
     <!--General-->
@@ -76,6 +80,9 @@
     <sys:String x:Key="LOCDoneCapLabel">완료</sys:String>
     <sys:String x:Key="LOCBackCapLabel">이전</sys:String>
     <sys:String x:Key="LOCClearCapLabel">지우기</sys:String>
+    <sys:String x:Key="LOCClearLabel"></sys:String>
+    <sys:String x:Key="LOCDismiss"></sys:String>
+    <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel">가져오기</sys:String>
     <sys:String x:Key="LOCSourceLabel">소스</sys:String>
     <sys:String x:Key="LOCNameLabel">게임 명</sys:String>
@@ -148,6 +155,10 @@
     <sys:String x:Key="LOCGameId">게임 Id</sys:String>
     <sys:String x:Key="LOCDatabaseId">데이터베이스 Id</sys:String>
     <sys:String x:Key="LOCPresets">프리셋</sys:String>
+    <sys:String x:Key="LOCColumn"></sys:String>
+    <sys:String x:Key="LOCColumns"></sys:String>
+    <sys:String x:Key="LOCRow"></sys:String>
+    <sys:String x:Key="LOCRows"></sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">특정 변수는 다음과 같은 동적 스트링을 통해 표현할 수 있습니다:
 {InstallDir} - 게임 설치 위치
@@ -219,7 +230,11 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuIssues">피드백 보내기</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">전체 화면 모드 시작</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">링크</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK 개발 문서</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">상세 정보 그리드 뷰 방식</sys:String>
@@ -230,7 +245,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsStrechModeLabel">늘이기 모드</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 베너</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD 박스</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">*로 표시된 설정은 응용 프로그램을 다시 시작해야만 적용됩니다</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
     <sys:String x:Key="LOCSettingsLabel">설정</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">일반</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">보기 방식</sys:String>
@@ -240,6 +255,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenLabel">전체 화면</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">공급자</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">입력</sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">라이브러리 변경 사항을 자동으로 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">설치된 게임 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">설치되지 않은 게임 가져오기</sys:String>
@@ -275,8 +291,9 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsWhatsSteamName">계정 이름이 뭐죠?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">로그인 상태:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite 설정</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCategories">Steam 카테고리 가져오기:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCatFrom">다음 계정에서 가져오기:</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">웹 캐시 삭제</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">계정을 연동하는데 발생하는 문제를 해결할 수도 있습니다.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">트레이 아이콘 표시하기 *</sys:String>
@@ -291,6 +308,9 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">카테고리를 가져올 계정이 선택되지 않아 카테고리를 가져올 수 없습니다.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">데이터베이스를 열 수 없어 카테고리를 가져올 수 없습니다.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Steam 카테고리를 가져오지 못했습니다: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">연동된 모든 서비스를 로그아웃시킵니다. 응용 프로그램을 재시작해야합니다. 계속하시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">캐시를 삭제하시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">비공개 Steam 계정에는 API 키가 필요합니다</sys:String>
@@ -317,6 +337,16 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">라이브러리 동기화 중에 Playnite가 기록한 플레이 시간을 적용하는 대신 원격 라이브러리에서 기록된 플레이 시간을 다운로드합니다.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">데스크탑 모드에서 컨트롤러 지원 활성화 *</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">가이드 버튼을 전체 화면으로 열기</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
@@ -339,6 +369,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">메타데이터 가져오기</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">메타데이터 다운로드</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">에뮬레이터 게임 가져오기 도구</sys:String>
@@ -375,6 +406,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
@@ -452,6 +485,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCDatabaseOpenAccessError"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError"></sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
@@ -544,6 +578,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCLibrary"></sys:String>
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
+    <sys:String x:Key="LOCNotifications"></sys:String>
+
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
@@ -561,6 +597,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
@@ -568,6 +605,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip"></sys:String>
 
     <!--Game actions-->
+    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame"></sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
     <sys:String x:Key="LOCHideGame"></sys:String>
@@ -577,6 +615,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCRemoveGame"></sys:String>
     <sys:String x:Key="LOCPlayGame"></sys:String>
     <sys:String x:Key="LOCInstallGame"></sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameDetails"></sys:String>
     <sys:String x:Key="LOCUninstallGame"></sys:String>
     <sys:String x:Key="LOCOpenGameLocation"></sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
@@ -646,4 +686,14 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+
 </ResourceDictionary>
