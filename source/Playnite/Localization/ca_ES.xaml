@@ -1,6 +1,5 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<?xml version="1.0"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <sys:String x:Key="LanguageName">Català</sys:String>
 
@@ -52,7 +51,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCDBUpgradeFail">Ha fallat l’actualització de la base de dades, no es pot obrir el fitxer de base de dades.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">No es pot actualitzar la biblioteca de jocs. Es requereixen {0} MB d’espai lliure.</sys:String>
 
-    <sys:String x:Key="LOCGameError">GameError</sys:String>
+    <sys:String x:Key="LOCGameError">Error de Joc</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">No es pot iniciar el joc. '{0}' no s’ha trobat a la base de dades.</sys:String>
     <sys:String x:Key="LOCGameStartError">No es pot iniciar el joc: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">No es pot iniciar l’acció: {0}</sys:String>
@@ -61,6 +60,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCGameInstallError">No es pot instal·lar el joc: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">No es pot desinstal·lar el joc: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">El plugin de biblioteca responsable d'aquest joc no està instal·lat ni activat.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Descàrrega de metadades oficials no disponible.</sys:String>
 
 
     <!--General-->
@@ -102,7 +102,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCLocalUserLabel">Usuari Local</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel">Autenticar-se</sys:String>
     <sys:String x:Key="LOCGeneralLabel">General</sys:String>
-    <sys:String x:Key="LOCMediaLabel">Media</sys:String>
+    <sys:String x:Key="LOCMediaLabel">Medis</sys:String>
     <sys:String x:Key="LOCLinksLabel">Enllaços</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instal·lació</sys:String>
     <sys:String x:Key="LOCActionsLabel">Accions</sys:String>
@@ -114,6 +114,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCDownloadLabel">Descarregar</sys:String>
     <sys:String x:Key="LOCSearchLabel">Buscar</sys:String>
     <sys:String x:Key="LOCGenreLabel">Gènere</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Companyia</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Desenvolupador</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Editor</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Categoria</sys:String>
@@ -122,10 +123,11 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListLabel">Llista</sys:String>
     <sys:String x:Key="LOCCoversLabel">Cobertes</sys:String>
+    <sys:String x:Key="LOCGridLabel">Graella</sys:String>
     <sys:String x:Key="LOCDetailsLabel">Detalls</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalitzat</sys:String>
-    <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LOCURLLabel">Enllaç</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">Patró</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Llicència</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Col·laboradors</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Tancant Playnite...</sys:String>
@@ -138,10 +140,14 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCFriday">Divendres</sys:String>
     <sys:String x:Key="LOCSaturday">Dissabte</sys:String>
     <sys:String x:Key="LOCSunday">Diumenge</sys:String>
+    <sys:String x:Key="LOCPastWeek">La setmana passada</sys:String>
+    <sys:String x:Key="LOCPastMonth">El mes passat</sys:String>
+    <sys:String x:Key="LOCPastYear">L'any passat</sys:String>
     <sys:String x:Key="LOCImportCompleted">La importació s'ha completat correctament.</sys:String>
     <sys:String x:Key="LOCAllGames">Tots els jocs</sys:String>
     <sys:String x:Key="LOCGameId">Id del joc</sys:String>
     <sys:String x:Key="LOCDatabaseId">Id de la base de dades</sys:String>
+    <sys:String x:Key="LOCPresets">Ajustaments Predefinits</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Les variables especials es poden utilitzar per afegir una cadena dinàmica:
 {InstallDir} - Directori d'instal·lació del joc
@@ -198,6 +204,8 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCMenuConfigurationTitle">Configuració</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Opcions</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plataformes i Emuladors</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Configurar emuladors...</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Organitzador de Llibreria...</sys:String>
     <sys:String x:Key="LOCMenuTools">Eines</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Base de dades de descàrregues</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Obre client de tercers</sys:String>
@@ -206,14 +214,28 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCMenuAddGameManual">Manualment</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escaneja automàticament...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Joc emulat...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Joc de la Tenda Microsoft...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envia els teus comentaris</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Inicia mode a pantalla completa</sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Enllaços</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentació SDK</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detalls de posició en vista de graella</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">Posició de panell de filtres</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posició de panell d'exploració</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderització de portada</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Objectiu de relació d'aspecte</sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">Mode Estirat</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Bàner de Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">Caixa de DVD</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">Configuracions marcades amb * requereixen un reinici per a prendre efecte</sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Configuració</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">General</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Aparença</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Detalls del Joc</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Disposició</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avançat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pantalla completa</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Proveïdors</sys:String>
@@ -270,9 +292,9 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsSteamCatImportError">No s’han pogut importar les categories de Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Això us retirarà l'accés a tots els serveis enllaçats. Cal reiniciar l’aplicació, voleu continuar?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Eliminar Cache?</sys:String>
-    <sys:String x:Key="LOCSettingsApiKeyTooltip">API Key is required for Steam private accounts</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyTooltip">Clau API requerida per a comptes de Steam privats</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">Obté la clau API</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite restart is required to apply new theme</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Es requereix reiniciar Playnite per a aplicar el tema nou</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Aconsegueix més temes</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Crea un nou tema</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Afegiu una nova localització</sys:String>
@@ -293,6 +315,16 @@ Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sy
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Força la sincronització del temps de joc</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Descarregar sempre el temps de joc enregistrat de la biblioteca remota durant la sincronització de la biblioteca, ignorant el temps enregistrat per Playnite.</sys:String>
 
+    <sys:String x:Key="LOCStrechNone">Cap</sys:String>
+    <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Uniforme</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Emplenar uniformement</sys:String>
+
+    <sys:String x:Key="LOCDockLeft">Esquerra</sys:String>
+    <sys:String x:Key="LOCDockRight">Dreta</sys:String>
+    <sys:String x:Key="LOCDockTop">Superior</sys:String>
+    <sys:String x:Key="LOCDockBottom">Inferior</sys:String>
+
     <sys:String x:Key="LOCImportError">Error d'importació</sys:String>
     <sys:String x:Key="LOCLoginChecking">Comprovant l’estat d’autenticació ...</sys:String>
     <sys:String x:Key="LOCLoginRequired">Es requereix autenticació</sys:String>
@@ -312,10 +344,10 @@ Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sy
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">A continuació es mostra la llista d’emuladors que Playnite pot reconèixer i configurar automàticament. Pots descarregar-los i instal·lar-los visitant el seu lloc web. Quan hagis instal·lat els emuladors, ves a la pantalla següent per importar-los a Playnite.
         
 També pots configurar i importar més tard qualsevol emulador personalitzat a través del menú de configuració.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">You can import any emulators installed on your PC by pressing "Autodetect from folder..." button. Playnite will search selected folder for any known emulators and provide option to import them. You can import from multiple folders by using said button multiple times, emulators will be added at the bottom of current list.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">You can import games by pressing "Scan folder using Emulator" button. Selecting appropriate emulator will tell Playnite, which file types should be scanned and imported. You can import from multiple folders by using said button multiple times, games will be added at the bottom of current list.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">There are no emulators selected for import. You won't be able to automatically import any emulated games without configuring emulators first. Are you sure you want to continue and exit import process?</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">There are no emulators configured in Playnite. You cannot import games without configuring emulator first and selecting appropriate file types. Do you want to add some emulators now?</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Pots importar qualsevol emulador instal·lat al teu PC en clicar en "Detectar des de carpeta...". Playnite buscara en la carpeta seleccionada qualsevol emulador conegut i permetrà importar-los. Pots importar de diverses carpetes repetint l'acció, els emuladors seran afegits al final de la llista actual.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Escaneja la carpeta mitjançant l’emulador</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Selecciona arxius </sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Detecció automàtica de carpeta ...</sys:String>
@@ -332,7 +364,7 @@ Tingueu en compte que sempre podeu afegir qualsevol joc personalitzat per a qual
     <sys:String x:Key="LOCFirstDBLocDefault">Ubicació de dades de programa per defecte per a tots els usuaris</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Ubicació personalitzada</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integració de biblioteques</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration">Integració de Steam</sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration">Integració d'Origin</sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration">Integració de GOG</sys:String>
@@ -346,9 +378,11 @@ Tingueu en compte que sempre podeu afegir qualsevol joc personalitzat per a qual
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">S'ha completat la configuració inicial. Recorda que pots canviar tots els paràmetres a través del menú "Configuració".
 
 També pots afegir qualsevol altre joc al menú principal fent clic al logotip de l’aplicació Playnite.</sys:String>
-    
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport">Obrir guia d'importació d'emuladors</sys:String>
+
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configura Plataformes i Emuladors</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Configurar emuladors</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Plataformes</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Plataforma</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emuladors</sys:String>
@@ -363,7 +397,7 @@ També pots afegir qualsevol altre joc al menú principal fent clic al logotip d
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Voleu desar els canvis de la plataforma?</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Voleu desar els canvis de l’emulador?</sys:String>
     <sys:String x:Key="LOCExecutableTitle">Executable</sys:String>
-    <sys:String x:Key="LOCArgumentsTitle">Arguments</sys:String>
+    <sys:String x:Key="LOCArgumentsTitle">Paràmetres</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">Directori de treball</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Tipus de fitxers admesos</sys:String>
     <sys:String x:Key="LOCImportEmulatorsButton">Importar emuladors ...</sys:String>
@@ -376,18 +410,23 @@ Actualment està sent utilitzat per {1} jocs i {2} emuladors.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Ajuda de configuració</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">Ordenar per</sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Agrupa per</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendent</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendent</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">No agrupeu</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">Agrupar per Biblioteca</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Agrupar per Categoria</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Agrupar per Plataforma</sys:String>
+    <sys:String x:Key="LOCViewType">Tipus de vista</sys:String>
+    <sys:String x:Key="LOCMenuView">Vista</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Panell d'Exploració</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">Panell de Filtració</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Icona</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Imatge de coberta</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Imatge de fons</sys:String>
-    <sys:String x:Key="LOCGameSortingNameTitle">Sorting Name</sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">Nom d'Ordenació</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Biblioteca</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Nom</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Nom del compte</sys:String>
@@ -395,6 +434,7 @@ Actualment està sent utilitzat per {1} jocs i {2} emuladors.</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Catgeoria(es)</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Gènere(s)</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Data de llançament</sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">Any d'Estrena</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Desenvolupador(s)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etiqueta(es)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editor(s)</sys:String>
@@ -515,6 +555,9 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCExtensionCreatedBy">Creat per:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versió:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Mòdul:</sys:String>
+    <sys:String x:Key="LOCLibrary">Biblioteca</sys:String>
+    <sys:String x:Key="LOCAll">Tots</sys:String>
+    <sys:String x:Key="LOCNone">Cap</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments adicionals de l'emulador</sys:String>
@@ -567,7 +610,7 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Cancel·lar la monitorització del joc?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">El control d’instal·lació està en funcionament ara mateix, vols cancel·lar el procés i tornar el joc a l’estat anterior?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">La supervisió d’execució del joc està en funcionament ara mateix , vols cancel·lar el procés i tornar el joc a l’estat anterior?</sys:String>
-
+    
     <sys:String x:Key="LOCTimePlayed">Temps jugat</sys:String>
     <sys:String x:Key="LOCLastPlayed">Última partida</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
@@ -590,6 +633,18 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuració d’acció de joc no vàlida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Resolució de problemes de sincronització del compte</sys:String>
+
+    <sys:String x:Key="LOCRenameItem">Renomenar Ítem</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Afegeix nou element</sys:String>
+    <sys:String x:Key="LOCEnterName">Introdueix el nom</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Introdueix el nou nom</sys:String>
+
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Menys d'una hora</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 a 10 hores</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 a 100 hores</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 a 500 hores</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 a 1000 hores</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Ara s'obrirà el client de itch.io. Inicia sessió i tanca aquest missatge.</sys:String>
