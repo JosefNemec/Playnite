@@ -112,21 +112,27 @@
             <TextBlock Text="{DynamicResource LOCSteamBackgroundSource}"
                        VerticalAlignment="Center"/>
             <ContentControl Content="{StaticResource BackgroundSourceBox}" Margin="10,0,0,0" />
-        </StackPanel>       
+        </StackPanel>
 
-        <TextBlock Text="{DynamicResource LOCSettingsSteamImportCategories}"
-                   DockPanel.Dock="Top" Margin="0,25,5,5"
-                   Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <StackPanel DockPanel.Dock="Top" Margin="20,10,5,5" Orientation="Horizontal"
+
+        <StackPanel DockPanel.Dock="Top" Margin="0,25,5,5" Orientation="Horizontal"
                     Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Button Content="{DynamicResource LOCImportLabel}" Name="ButtonImportSteamCategories"
-                    Command="{Binding ImportSteamCategoriesCommand}"
-                    CommandParameter="{Binding SelectedItem, ElementName=ComboSteamCatImport}"/>
-            <TextBlock Text="{DynamicResource LOCSettingsSteamImportCatFrom}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <TextBlock Text="{DynamicResource LOCSettingsSteamImportMetadata}"
+                   VerticalAlignment="Center"
+                   Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <ComboBox IsReadOnly="True" Margin="10,0,0,0"
-                      Name="ComboSteamCatImport"
+                      Name="ComboSteamMetadataImport"
                       DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
                       ItemsSource="{Binding SteamUsers}" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="40,10,5,5" Orientation="Horizontal"
+                    Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Button Content="{DynamicResource LOCImportSteamCategoriesLabel}" Name="ButtonImportSteamCategories"
+                     Margin="0,0,10,0" Command="{Binding ImportSteamCategoriesCommand}"
+                    CommandParameter="{Binding SelectedItem, ElementName=ComboSteamMetadataImport}"/>
+            <Button Content="{DynamicResource LOCImportSteamLastActivityLabel}" Name="ButtonImportSteamLastActivity"
+                        Command="{Binding ImportSteamLastActivityCommand}"
+                        CommandParameter="{Binding SelectedItem, ElementName=ComboSteamMetadataImport}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
