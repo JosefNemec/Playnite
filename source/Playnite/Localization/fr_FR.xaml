@@ -583,7 +583,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCReloadScripts">Actualiser les scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Scripts chargés avec succès.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Aucun jeu détecté</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Quitter le mode plein écran</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Retour au bureau</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Quitter Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Clients de jeu</sys:String>
     <sys:String x:Key="LOCUpdateAll">Tous les clients</sys:String>
@@ -703,7 +703,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCSteamCustomUrlName">URL perso.</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Nom d'utilisateur</sys:String>
 
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">La configuration initiale n'est pas achevée. Playnite va maintenant redémarrer en mode Bureau pour continuer la procédure.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Lancés récemment</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Favoris</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Temps de jeu</sys:String>
