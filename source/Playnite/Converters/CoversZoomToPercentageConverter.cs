@@ -8,7 +8,7 @@ namespace Playnite.Converters
 {
     public class CoversZoomToPercentageConverter : MarkupExtension, IValueConverter
     {
-        private const double OneHundredPercentValue = ViewSettings.DefaultCoversZoom;
+        private const double OneHundredPercentValue = ViewSettings.DefaultGridItemWidth;
 
         // raw pixel value to percentage
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

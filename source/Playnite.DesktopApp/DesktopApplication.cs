@@ -225,8 +225,8 @@ namespace Playnite.DesktopApp
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
-                    AppSettings.CoverArtWidthRatio = settings.CoverArtWidthRatio;
-                    AppSettings.CoverArtHeightRatio = settings.CoverArtHeightRatio;
+                    AppSettings.GridItemWidthRatio = settings.GridItemWidthRatio;
+                    AppSettings.GridItemHeightRatio = settings.GridItemHeightRatio;
                     AppSettings.DefaultMetadataSettings = settings.DefaultMetadataSettings;
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;

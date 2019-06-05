@@ -14,20 +14,50 @@ namespace Playnite
     {
         [Description("LOCGameNameTitle")]
         Name,
-        [Description("LOCGameLastActivityTitle")]
-        LastActivity,
+        [Description("LOCPlatformTitle")]
+        Platform,
         [Description("LOCGameProviderTitle")]
         Library,
-        [Description("LOCGameCategoriesTitle")]
+        [Description("LOCCategoryLabel")]
         Categories,
-        [Description("LOCGameGenresTitle")]
+        [Description("LOCGameLastActivityTitle")]
+        LastActivity,
+        [Description("LOCGenreLabel")]
         Genres,
         [Description("LOCGameReleaseDateTitle")]
         ReleaseDate,
-        [Description("LOCGameDevelopersTitle")]
+        [Description("LOCDeveloperLabel")]
         Developers,
-        [Description("LOCGamePublishersTitle")]
+        [Description("LOCPublisherLabel")]
         Publishers,
+        [Description("LOCTagLabel")]
+        Tags,
+        [Description("LOCSeriesLabel")]
+        Series,
+        [Description("LOCAgeRatingLabel")]
+        AgeRating,
+        [Description("LOCVersionLabel")]
+        Version,
+        [Description("LOCRegionLabel")]
+        Region,
+        [Description("LOCSourceLabel")]
+        Source,
+        [Description("LOCPlayCountLabel")]
+        PlayCount,
+        [Description("LOCTimePlayed")]
+        Playtime,
+        [Description("LOCCompletionStatus")]
+        CompletionStatus,
+        [Description("LOCUserScore")]
+        UserScore,
+        [Description("LOCCriticScore")]
+        CriticScore,
+        [Description("LOCCommunityScore")]
+        CommunityScore,
+        [Description("LOCDateAddedLabel")]
+        Added,
+        [Description("LOCDateModifiedLabel")]
+        Modified,
         [Description("LOCGameIsInstalledTitle")]
         IsInstalled,
         [Description("LOCGameHiddenTitle")]
@@ -36,36 +66,6 @@ namespace Playnite
         Favorite,
         [Description("LOCGameInstallDirTitle")]
         InstallDirectory,
-        [Description("LOCGamePlatformTitle")]
-        Platform,
-        [Description("LOCGameTagsTitle")]
-        Tags,
-        [Description("LOCTimePlayed")]
-        Playtime,
-        [Description("LOCAddedLabel")]
-        Added,
-        [Description("LOCModifiedLabel")]
-        Modified,
-        [Description("LOCPlayCountLabel")]
-        PlayCount,
-        [Description("LOCSeriesLabel")]
-        Series,
-        [Description("LOCVersionLabel")]
-        Version,
-        [Description("LOCAgeRatingLabel")]
-        AgeRating,
-        [Description("LOCRegionLabel")]
-        Region,
-        [Description("LOCSourceLabel")]
-        Source,
-        [Description("LOCCompletionStatus")]
-        CompletionStatus,
-        [Description("LOCUserScore")]
-        UserScore,
-        [Description("LOCCriticScore")]
-        CriticScore,
-        [Description("LOCCommunityScore")]
-        CommunityScore
     }
 
     public enum SortOrderDirection
@@ -80,20 +80,24 @@ namespace Playnite
     {
         [Description("LOCMenuGroupDont")]
         None,
-        [Description("LOCLibraries")]
+        [Description("LOCPlatformTitle")]
+        Platform,
+        [Description("LOCGameProviderTitle")]
         Library,
         [Description("LOCCategoryLabel")]
         Category,
+        [Description("LOCGameLastActivityTitle")]
+        LastActivity,
         [Description("LOCGenreLabel")]
         Genre,
+        [Description("LOCGameReleaseYearTitle")]
+        ReleaseYear,
         [Description("LOCDeveloperLabel")]
         Developer,
         [Description("LOCPublisherLabel")]
         Publisher,
         [Description("LOCTagLabel")]
         Tag,
-        [Description("LOCPlatformTitle")]
-        Platform,
         [Description("LOCSeriesLabel")]
         Series,
         [Description("LOCAgeRatingLabel")]
@@ -104,8 +108,6 @@ namespace Playnite
         Source,
         [Description("LOCTimePlayed")]
         PlayTime,
-        [Description("LOCGameReleaseYearTitle")]
-        ReleaseYear,
         [Description("LOCCompletionStatus")]
         CompletionStatus,
         [Description("LOCUserScore")]
@@ -114,11 +116,9 @@ namespace Playnite
         CriticScore,
         [Description("LOCCommunityScore")]
         CommunityScore,
-        [Description("LOCGameLastActivityTitle")]
-        LastActivity,
-        [Description("LOCAddedLabel")]
+        [Description("LOCDateAddedLabel")]
         Added,
-        [Description("LOCModifiedLabel")]
+        [Description("LOCDateModifiedLabel")]
         Modified
     }
 
@@ -134,10 +134,9 @@ namespace Playnite
 
     public class ViewSettings : ObservableObject
     {
-        // TODO change to something reasonable
-        public const double MinCoversZoom = 90;
-        public const double DefaultCoversZoom = 230;
-        public const double MaxCoversZoom = 460;
+        public const double MinGridItemWidth = 180;
+        public const double DefaultGridItemWidth = 360;
+        public const double MaxGridItemWidth = 540;
 
         private SortOrder sortingOrder = SortOrder.Name;
         public SortOrder SortingOrder

@@ -291,7 +291,7 @@ namespace Playnite.DesktopApp.ViewModels
                 nameof(PlayniteSettings.FilterSettings),
                 nameof(PlayniteSettings.ViewSettings),
                 nameof(PlayniteSettings.InstallInstanceId),
-                nameof(PlayniteSettings.CoverArtHeight),
+                nameof(PlayniteSettings.GridItemHeight),
                 nameof(PlayniteSettings.WindowPositions),
                 nameof(PlayniteSettings.Fullscreen)
             });
@@ -412,8 +412,8 @@ namespace Playnite.DesktopApp.ViewModels
             if (regex.Success)
             {
 
-                Settings.CoverArtWidthRatio = Convert.ToInt32(regex.Groups[1].Value);
-                Settings.CoverArtHeightRatio = Convert.ToInt32(regex.Groups[2].Value);
+                Settings.GridItemWidthRatio = Convert.ToInt32(regex.Groups[1].Value);
+                Settings.GridItemHeightRatio = Convert.ToInt32(regex.Groups[2].Value);
             }
         }
     }

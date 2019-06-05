@@ -79,8 +79,8 @@
                                                                 <DropShadowEffect BlurRadius="5" Color="#DD000000" ShadowDepth="5"
                                                               x:Name="ShadowEffect"/>
                                                             </Border.Effect>
-                                                            <Grid Width="{pmrk:Settings CoversZoom}"
-                                                              Height="{pmrk:Settings CoverArtHeight}">
+                                                            <Grid Width="{pmrk:Settings GridItemWidth}"
+                                                              Height="{pmrk:Settings GridItemHeight}">
                                                                 <Grid.InputBindings>
                                                                     <MouseBinding MouseAction="LeftDoubleClick"
                                                                   Command="{pmrk:MainViewModel StartGameCommand, DirectValue=True}"
@@ -101,36 +101,28 @@
                                                                 <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
                                                                     <TextBlock Text="{Binding DisplayName, Mode=OneWay}"
                                                                            TextWrapping="Wrap" Margin="5"
-                                                               Style="{StaticResource BaseTextBlockStyle}"
-                                                               TextTrimming="CharacterEllipsis" TextAlignment="Center"
-                                                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                               FontSize="{Binding Path=SliderValue, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                                                           Style="{StaticResource BaseTextBlockStyle}"
+                                                                           TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <Border Background="#88000000" x:Name="BorderMouseOver" Visibility="Collapsed">
-                                                                    <Grid Margin="10" VerticalAlignment="Center">
-                                                                        <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition Width="*" />
-                                                                            <ColumnDefinition Width="*" />
-                                                                        </Grid.ColumnDefinitions>
-                                                                        <Grid.RowDefinitions>
-                                                                            <RowDefinition Height="Auto" />
-                                                                        </Grid.RowDefinitions>
-                                                                        <Button Background="#EE000000" Content="▶"
-                                                                Grid.Row="0" Grid.Column="0" Margin="0,0,3,0"
-                                                                FontSize="{Binding Path=SliderValue, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
-                                                                Command="{pmrk:MainViewModel StartGameCommand}"
-                                                                CommandParameter="{Binding Game}" />
-                                                                        <Button Background="#EE000000" Content="ℹ"
-                                                                Grid.Row="0" Grid.Column="1" Margin="3,0,0,0"
-                                                                FontSize="{Binding Path=SliderValue, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
-                                                                Command="{pmrk:MainViewModel ShowGameSideBarCommand}"
-                                                                CommandParameter="{Binding}"/>
-                                                                    </Grid>
+                                                                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <Button Background="#EE000000" Content="▶"
+                                                                                    Margin="20,0,2,0"
+                                                                                    Command="{pmrk:MainViewModel StartGameCommand}"
+                                                                                    CommandParameter="{Binding Game}" />
+                                                                            <Button Background="#EE000000" Content="ℹ"
+                                                                                    Margin="2,0,20,0"
+                                                                                    Command="{pmrk:MainViewModel ShowGameSideBarCommand}"
+                                                                                    CommandParameter="{Binding}"/>
+                                                                        </StackPanel>
+                                                                    </Viewbox>
                                                                 </Border>
                                                             </Grid>
                                                         </Border>
                                                         <TextBlock Text="{Binding DisplayName}" Style="{DynamicResource BaseTextBlockStyle}"
-                                                               Width="{pmrk:Settings CoversZoom}"
+                                                               Width="{pmrk:Settings GridItemWidth}"
                                                                TextAlignment="Center" TextTrimming="CharacterEllipsis"
                                                                Margin="0,10,0,0" Grid.Row="1"
                                                                Visibility="{pmrk:Settings ShowNamesUnderCovers}">
@@ -170,10 +162,10 @@
                                     Grid.Row="1">
                                 <Label Content="{DynamicResource LOCZoomLabel}" Margin="10,0,10,0"/>
                                 <pctrls:SliderWithPopup x:Name="SliderZoom"
-                                        SliderValue="{pmrk:Settings CoversZoom, Mode=TwoWay}" 
-                                        SliderMaximumValue="{x:Static playnite:ViewSettings.MaxCoversZoom}"
-                                        SliderMinimumValue="{x:Static playnite:ViewSettings.MinCoversZoom}"
-                                        PopupLabel="{pmrk:Settings CoversZoom, Converter={StaticResource CoversZoomToPercentageConverter}, StringFormat={}{0}%}" />
+                                        SliderValue="{pmrk:Settings GridItemWidth, Mode=TwoWay}" 
+                                        SliderMaximumValue="{x:Static playnite:ViewSettings.MaxGridItemWidth}"
+                                        SliderMinimumValue="{x:Static playnite:ViewSettings.MinGridItemWidth}"
+                                        PopupLabel="{pmrk:Settings GridItemWidth, Converter={StaticResource CoversZoomToPercentageConverter}, StringFormat={}{0}%}" />
                             </StackPanel>
                         </Grid>
                     </DockPanel>

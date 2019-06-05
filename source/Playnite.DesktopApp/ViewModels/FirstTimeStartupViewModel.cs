@@ -204,8 +204,8 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Settings.DefaultMetadataSettings = new Metadata.MetadataDownloaderSettings();
                 Settings.DefaultMetadataSettings.CoverImage.Source = Metadata.MetadataSource.StoreOverIGDB;
-                Settings.CoverArtWidthRatio = 92;
-                Settings.CoverArtHeightRatio = 43;
+                Settings.GridItemWidthRatio = 92;
+                Settings.GridItemHeightRatio = 43;
                 Settings.Fullscreen.HorizontalLayout = false;
                 Settings.Fullscreen.Rows = 4;
             }
@@ -213,8 +213,8 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Settings.DefaultMetadataSettings = new Metadata.MetadataDownloaderSettings();
                 Settings.DefaultMetadataSettings.CoverImage.Source = Metadata.MetadataSource.IGDBOverStore;
-                Settings.CoverArtWidthRatio = 27;
-                Settings.CoverArtHeightRatio = 38;
+                Settings.GridItemWidthRatio = 27;
+                Settings.GridItemHeightRatio = 38;
                 Settings.Fullscreen.HorizontalLayout = false;
                 Settings.Fullscreen.Rows = 2;
             }

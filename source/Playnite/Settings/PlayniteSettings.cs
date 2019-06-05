@@ -288,13 +288,13 @@ namespace Playnite
         }
 
         [JsonIgnore]
-        public double CoverArtHeight
+        public double GridItemHeight
         {
             get
             {
-                if (CoversZoom != 0)
+                if (GridItemWidth != 0)
                 {
-                    return CoversZoom * ((double)coverArtHeightRatio / CoverArtWidthRatio);
+                    return GridItemWidth * ((double)gridItemHeightRatio / GridItemWidthRatio);
                 }
                 else
                 {
@@ -303,56 +303,55 @@ namespace Playnite
             }
         }
 
-        // TODO rename
-        private double coversZoom = ViewSettings.DefaultCoversZoom;
-        public double CoversZoom
+        private double gridItemWidth = ViewSettings.DefaultGridItemWidth;
+        public double GridItemWidth
         {
             get
             {
-                return coversZoom;
+                return gridItemWidth;
             }
 
             set
             {
-                coversZoom = value;
+                gridItemWidth = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(CoverArtHeight));
+                OnPropertyChanged(nameof(GridItemHeight));
             }
         }
 
         [JsonIgnore]
-        public AspectRatio CoverAspectRatio => new AspectRatio(CoverArtWidthRatio, CoverArtHeightRatio);
+        public AspectRatio CoverAspectRatio => new AspectRatio(GridItemWidthRatio, GridItemHeightRatio);
 
-        private int coverArtWidthRatio = 92;
-        public int CoverArtWidthRatio
+        private int gridItemWidthRatio = 92;
+        public int GridItemWidthRatio
         {
             get
             {
-                return coverArtWidthRatio;
+                return gridItemWidthRatio;
             }
 
             set
             {
-                coverArtWidthRatio = value;
+                gridItemWidthRatio = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(CoverArtHeight));
+                OnPropertyChanged(nameof(GridItemHeight));
                 OnPropertyChanged(nameof(CoverAspectRatio));
             }
         }
 
-        private int coverArtHeightRatio = 43;
-        public int CoverArtHeightRatio
+        private int gridItemHeightRatio = 43;
+        public int GridItemHeightRatio
         {
             get
             {
-                return coverArtHeightRatio;
+                return gridItemHeightRatio;
             }
 
             set
             {
-                coverArtHeightRatio = value;
+                gridItemHeightRatio = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(CoverArtHeight));
+                OnPropertyChanged(nameof(GridItemHeight));
                 OnPropertyChanged(nameof(CoverAspectRatio));
             }
         }

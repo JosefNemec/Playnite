@@ -101,7 +101,9 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCMostPlayedLabel">Most Played</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Play Count</sys:String>
     <sys:String x:Key="LOCAddedLabel">Added</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Added Date</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modified</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Modified Date</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Path</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
