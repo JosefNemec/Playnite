@@ -19,6 +19,7 @@ namespace Playnite.DesktopApp
             ListGrouped
         }
 
+        private PlayniteSettings settings;
         private ViewSettings viewSettings;
         private GroupableField? currentGrouping = null;
 
@@ -71,6 +72,7 @@ namespace Playnite.DesktopApp
             PlayniteSettings settings,
             ExtensionFactory extensions) : base(database, extensions, settings.FilterSettings)
         {
+            this.settings = settings;
             Database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
             Database.Games.ItemUpdated += Database_GameUpdated;
             Database.Platforms.ItemUpdated += Database_PlatformUpdated;
@@ -238,7 +240,7 @@ namespace Playnite.DesktopApp
             {
                 case GamesViewType.Standard:
                     Items.Clear();
-                    Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x))));
+                    Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings)));
                     break;
 
                 case GamesViewType.ListGrouped:
@@ -250,14 +252,14 @@ namespace Playnite.DesktopApp
                         {
                             return ids.Select(c =>
                             {
-                                return new GamesCollectionViewEntry(x, GetLibraryPlugin(x), groupTypes[viewSettings.GroupingOrder], c);
+                            return new GamesCollectionViewEntry(x, GetLibraryPlugin(x), groupTypes[viewSettings.GroupingOrder], c, settings);
                             });
                         }
                         else
                         {
                             return new List<GamesCollectionViewEntry>()
                             {
-                                new GamesCollectionViewEntry(x, GetLibraryPlugin(x))
+                                new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings)
                             };
                         }
                     }));
@@ -458,7 +460,7 @@ namespace Playnite.DesktopApp
                 switch (ViewType)
                 {
                     case GamesViewType.Standard:
-                        addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game)));
+                        addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game), settings));
                         break;
 
                     case GamesViewType.ListGrouped:
@@ -468,12 +470,12 @@ namespace Playnite.DesktopApp
                         {
                             addList.AddRange(ids.Select(c =>
                             {
-                                return new GamesCollectionViewEntry(game, GetLibraryPlugin(game), groupTypes[viewSettings.GroupingOrder], c);
+                                return new GamesCollectionViewEntry(game, GetLibraryPlugin(game), groupTypes[viewSettings.GroupingOrder], c, settings);
                             }));
                         }
                         else
                         {
-                            addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game)));
+                            addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game), settings));
                         }
 
                         break;

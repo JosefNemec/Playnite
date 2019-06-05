@@ -35,6 +35,24 @@ namespace Playnite
         Restore
     }
 
+    public enum DefaultIconSourceOptions
+    {
+        [Description("LOCGameProviderTitle")]
+        Library,
+        [Description("LOCPlatformTitle")]
+        Platform,
+        [Description("LOCGeneralLabel")]
+        General
+    }
+
+    public enum DefaultCoverSourceOptions
+    {
+        [Description("LOCPlatformTitle")]
+        Platform,
+        [Description("LOCGeneralLabel")]
+        General
+    }
+
     public class PlayniteSettings : ObservableObject
     {
         private static ILogger logger = LogManager.GetCurrentClassLogger();
@@ -55,6 +73,36 @@ namespace Playnite
             set
             {
                 detailsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DefaultIconSourceOptions defaultIconSource = DefaultIconSourceOptions.General;
+        public DefaultIconSourceOptions DefaultIconSource
+        {
+            get
+            {
+                return defaultIconSource;
+            }
+
+            set
+            {
+                defaultIconSource = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DefaultCoverSourceOptions defaultCoverSource = DefaultCoverSourceOptions.General;
+        public DefaultCoverSourceOptions DefaultCoverSource
+        {
+            get
+            {
+                return defaultCoverSource;
+            }
+
+            set
+            {
+                defaultCoverSource = value;
                 OnPropertyChanged();
             }
         }

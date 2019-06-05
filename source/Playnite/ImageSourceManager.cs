@@ -38,6 +38,11 @@ namespace Playnite
 
         public static object GetImage(string source, bool cached)
         {
+            if (DesignerTools.IsInDesignMode)
+            {
+                cached = false;
+            }
+
             if (source.IsNullOrEmpty())
             {
                 return null;

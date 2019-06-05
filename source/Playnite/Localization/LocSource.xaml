@@ -43,6 +43,7 @@ If you want to help us fix this issue, please send diagnostic information. Thank
     <sys:String x:Key="LOCCrashRestartPlaynite">Restart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Close Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager">Library Manager</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remove Game(s)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Cannot remove game that's running or being installed/uninstalled.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Cannot uninstall game that's running.</sys:String>
@@ -244,6 +245,8 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuSuspendSystem">Suspend System</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Missing game icon source</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Indent game details</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filter panel position</sys:String>

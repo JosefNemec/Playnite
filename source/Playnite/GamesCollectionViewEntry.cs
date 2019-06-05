@@ -14,7 +14,8 @@ using System.Threading.Tasks;
 namespace Playnite
 {
     public class GamesCollectionViewEntry : INotifyPropertyChanged
-    {        
+    {
+        private PlayniteSettings settings;
         private readonly Type colGroupType;
         private readonly Guid colGroupId;
 
@@ -151,15 +152,16 @@ namespace Playnite
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin)
+        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings)
         {
+            this.settings = settings;
             LibraryPlugin = plugin;
             Game = game;
             Game.PropertyChanged += Game_PropertyChanged;
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
         }
 
-        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, Type colGroupType, Guid colGroupId) : this(game, plugin)
+        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, Type colGroupType, Guid colGroupId, PlayniteSettings settings) : this(game, plugin, settings)
         {
             this.colGroupType = colGroupType;
             this.colGroupId = colGroupId;
@@ -219,29 +221,28 @@ namespace Playnite
 
         private object GetImageObject(string data, bool cached)
         {
-            return ImageSourceManager.GetImage(data, DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()) ? false : cached);
+            return ImageSourceManager.GetImage(data, cached);
         }
-
+        
         public object GetDefaultIcon()
         {
-            if (!string.IsNullOrEmpty(Platform?.Icon))
+            if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && LibraryPlugin?.LibraryIcon.IsNullOrEmpty() == false)
+            {
+                return ImageSourceManager.GetImage(LibraryPlugin.LibraryIcon, true);
+            }
+            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform && Platform?.Icon.IsNullOrEmpty() == false)
             {
                 return ImageSourceManager.GetImage(Platform.Icon, true);
             }
             else
             {
-                if (!string.IsNullOrEmpty(LibraryPlugin?.LibraryIcon))
-                {
-                    return ImageSourceManager.GetImage(LibraryPlugin.LibraryIcon, true);
-                }
-
                 return ResourceProvider.GetResource("DefaultGameIcon");
             }
         }
 
         public object GetDefaultCoverImage()
         {
-            if (!string.IsNullOrEmpty(Platform?.Cover))
+            if (settings.DefaultCoverSource == DefaultCoverSourceOptions.Platform && Platform?.Cover.IsNullOrEmpty() == false)
             {
                 return ImageSourceManager.GetImage(Platform.Cover, true);
             }

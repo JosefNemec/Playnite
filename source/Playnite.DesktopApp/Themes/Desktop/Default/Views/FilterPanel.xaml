@@ -91,6 +91,13 @@
                                     </StackPanel>
                                 </CheckBox>
 
+                                <!-- Platform -->
+                                <Label Content="{DynamicResource LOCPlatformTitle}"
+                                       Tag="{pmrk:Settings FilterSettings.Platform.IsSet, FallbackValue='False'}"
+                                       Style="{StaticResource FilterLabel}"/>
+                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Platforms}"
+                                               FilterProperties="{pmrk:Settings FilterSettings.Platform, Mode=TwoWay}"/>
+
                                 <!-- Library -->
                                 <Label Content="{DynamicResource LOCLibrary}"
                                        Tag="{pmrk:Settings FilterSettings.Library.IsSet, FallbackValue='False'}"
@@ -98,7 +105,7 @@
                                 <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Libraries}"
                                                            FilterProperties="{pmrk:Settings FilterSettings.Library, Mode=TwoWay}"
                                                            IsFullTextEnabled="False"/>
-
+                                
                                 <!-- Name -->
                                 <Label Content="{DynamicResource LOCNameLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Name, FallbackValue=''}"
@@ -110,14 +117,7 @@
                                        Tag="{pmrk:Settings FilterSettings.Genre.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
                                 <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Genres}"
-                                               FilterProperties="{pmrk:Settings FilterSettings.Genre, Mode=TwoWay}"/>
-
-                                <!-- Platform -->
-                                <Label Content="{DynamicResource LOCPlatformTitle}"
-                                       Tag="{pmrk:Settings FilterSettings.Platform.IsSet, FallbackValue='False'}"
-                                       Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Platforms}"
-                                               FilterProperties="{pmrk:Settings FilterSettings.Platform, Mode=TwoWay}"/>
+                                               FilterProperties="{pmrk:Settings FilterSettings.Genre, Mode=TwoWay}"/>             
 
                                 <!-- Release Year -->
                                 <Label Content="{DynamicResource LOCGameReleaseYearTitle}"

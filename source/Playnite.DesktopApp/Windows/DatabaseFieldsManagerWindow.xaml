@@ -9,7 +9,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
-        Title="DatabaseFieldsManagerWindow" Height="500" Width="650">
+        Title="{DynamicResource LOCLibraryManager}" Height="500" Width="650">
     
     <Grid>
         <Grid.RowDefinitions>

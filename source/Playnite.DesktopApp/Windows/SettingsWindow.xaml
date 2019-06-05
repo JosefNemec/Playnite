@@ -241,23 +241,6 @@
                         <!-- Appearance -->                        
                         <TabItem>
                             <StackPanel>
-                                <StackPanel.Resources>
-                                    <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
-                                                        x:Key="CoverArtStretchValues">
-                                        <ObjectDataProvider.MethodParameters>
-                                            <x:Type TypeName="winMedia:Stretch" />
-                                        </ObjectDataProvider.MethodParameters>
-                                    </ObjectDataProvider>
-                                    <ComboBox x:Key="ComboStrechOptions" x:Shared="False"
-                                          SelectedValue="{Binding CoverArtStretch}"
-                                          ItemsSource="{Binding Source={StaticResource CoverArtStretchValues}}">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Converter={pcon:StrechToStringConverter}}"/>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                </StackPanel.Resources>
                                 <StackPanel Orientation="Horizontal"> 
                                     <TextBlock Text="{DynamicResource LOCSettingsSkin}" VerticalAlignment="Center" />
                                     <ComboBox Margin="10,0,0,0"
@@ -293,39 +276,41 @@
                                 <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImage}" Margin="0,15,0,0"
                                   Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImage}"/>
 
-                                <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />
-                                <Separator />
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
-                                               VerticalAlignment="Center"/>
-                                    <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
-                                                           Margin="5,0,0,0"
-                                                           Value="{Binding Settings.GridItemWidthRatio}"/>
-                                    <TextBlock Text=":" VerticalAlignment="Center"
-                                               Margin="2,0,2,0"/>
-                                    <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
-                                                           Value="{Binding Settings.GridItemHeightRatio}"/>
-
-                                    <Button Content="{DynamicResource LOCPresets}" Margin="15,0,0,0" Padding="2"
-                                            pbeh:LeftClickContextMenuBehavior.Enabled="True">
-                                        <Button.ContextMenu>
-                                            <ContextMenu Placement="Bottom">
-                                                <MenuItem Header="{DynamicResource LOCSettingsCovertAspectDVD}"
-                                                          Command="{Binding SetCoverArtAspectRatioCommand}"
-                                                          CommandParameter="27:38"/>
-                                                <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteam}"
-                                                          Command="{Binding SetCoverArtAspectRatioCommand}"
-                                                          CommandParameter="92:43"/> 
-                                            </ContextMenu>
-                                        </Button.ContextMenu>
-                                    </Button>
+                                <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource LOCSettingsDefaulIconSource}"
+                                               Margin="0,0,10,0" VerticalAlignment="Center" />
+                                    <ComboBox SelectedValue="{Binding Settings.DefaultIconSource}">
+                                        <ComboBox.ItemsSource>
+                                            <x:Array Type="{x:Type sys:Enum}">
+                                                <p:DefaultIconSourceOptions>Library</p:DefaultIconSourceOptions>
+                                                <p:DefaultIconSourceOptions>Platform</p:DefaultIconSourceOptions>
+                                                <p:DefaultIconSourceOptions>General</p:DefaultIconSourceOptions>
+                                            </x:Array>
+                                        </ComboBox.ItemsSource>
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="{DynamicResource LOCSettingsStrechModeLabel}" VerticalAlignment="Center" />
-                                    <ContentControl DataContext="{Binding Settings}"
-                                                Content="{StaticResource ComboStrechOptions}"
-                                                MinWidth="140" Margin="5,0,0,0"
-                                                VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+                                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource LOCSettingsDefaulCoverSource}"
+                                               Margin="0,0,10,0" VerticalAlignment="Center" />
+                                    <ComboBox SelectedValue="{Binding Settings.DefaultCoverSource}">
+                                        <ComboBox.ItemsSource>
+                                            <x:Array Type="{x:Type sys:Enum}">
+                                                <p:DefaultCoverSourceOptions>Platform</p:DefaultCoverSourceOptions>
+                                                <p:DefaultCoverSourceOptions>General</p:DefaultCoverSourceOptions>
+                                            </x:Array>
+                                        </ComboBox.ItemsSource>
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
@@ -384,6 +369,23 @@
                                 </DataTemplate>
                             </TabItem.Resources>
                             <StackPanel>
+                                <StackPanel.Resources>
+                                    <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                                        x:Key="CoverArtStretchValues">
+                                        <ObjectDataProvider.MethodParameters>
+                                            <x:Type TypeName="winMedia:Stretch" />
+                                        </ObjectDataProvider.MethodParameters>
+                                    </ObjectDataProvider>
+                                    <ComboBox x:Key="ComboStrechOptions" x:Shared="False"
+                                          SelectedValue="{Binding CoverArtStretch}"
+                                          ItemsSource="{Binding Source={StaticResource CoverArtStretchValues}}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Converter={pcon:StrechToStringConverter}}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </StackPanel.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -421,6 +423,41 @@
                                 </Grid>
                                 <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" Margin="0,15,0,0"
                                           Content="{DynamicResource LOCSettingsIndentGameDetails}" />
+
+                                <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />
+                                <Separator />
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
+                                               VerticalAlignment="Center"/>
+                                    <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
+                                                           Margin="5,0,0,0"
+                                                           Value="{Binding Settings.GridItemWidthRatio}"/>
+                                    <TextBlock Text=":" VerticalAlignment="Center"
+                                               Margin="2,0,2,0"/>
+                                    <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
+                                                           Value="{Binding Settings.GridItemHeightRatio}"/>
+
+                                    <Button Content="{DynamicResource LOCPresets}" Margin="15,0,0,0" Padding="2"
+                                            pbeh:LeftClickContextMenuBehavior.Enabled="True">
+                                        <Button.ContextMenu>
+                                            <ContextMenu Placement="Bottom">
+                                                <MenuItem Header="{DynamicResource LOCSettingsCovertAspectDVD}"
+                                                          Command="{Binding SetCoverArtAspectRatioCommand}"
+                                                          CommandParameter="27:38"/>
+                                                <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteam}"
+                                                          Command="{Binding SetCoverArtAspectRatioCommand}"
+                                                          CommandParameter="92:43"/>
+                                            </ContextMenu>
+                                        </Button.ContextMenu>
+                                    </Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="{DynamicResource LOCSettingsStrechModeLabel}" VerticalAlignment="Center" />
+                                    <ContentControl DataContext="{Binding Settings}"
+                                                Content="{StaticResource ComboStrechOptions}"
+                                                MinWidth="140" Margin="5,0,0,0"
+                                                VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </StackPanel>
                             </StackPanel>
                         </TabItem>
 

@@ -12,6 +12,7 @@ namespace Playnite.FullscreenApp
 {
     public class FullscreenCollectionView : BaseCollectionView
     {
+        private PlayniteSettings settings;
         private FullscreenViewSettings viewSettings;
 
         public FullscreenCollectionView(
@@ -19,6 +20,7 @@ namespace Playnite.FullscreenApp
             PlayniteSettings settings,
             ExtensionFactory extensions) : base(database, extensions, settings.Fullscreen.FilterSettings)
         {
+            this.settings = settings;
             Database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
             Database.Games.ItemUpdated += Database_GameUpdated;
             viewSettings = settings.Fullscreen.ViewSettings;
@@ -26,7 +28,7 @@ namespace Playnite.FullscreenApp
             using (CollectionView.DeferRefresh())
             {
                 SetViewDescriptions();
-                Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x))));
+                Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings)));
             };
         }
 
@@ -105,7 +107,7 @@ namespace Playnite.FullscreenApp
             var addList = new List<GamesCollectionViewEntry>();
             foreach (var game in args.AddedItems)
             {
-                addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game)));
+                addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game), settings));
             }
 
             if (addList.Count > 0)
