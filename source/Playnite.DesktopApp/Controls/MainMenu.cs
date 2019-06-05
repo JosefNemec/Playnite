@@ -69,7 +69,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 if (icon is string)
                 {
-                    item.Icon = Images.GetImageFromFile(ThemeFile.GetFilePath(icon as string, ThemeManager.DefaultTheme, ThemeManager.CurrentTheme));
+                    item.Icon = Images.GetImageFromFile(ThemeFile.GetFilePath(icon as string));
                 }
                 else
                 {

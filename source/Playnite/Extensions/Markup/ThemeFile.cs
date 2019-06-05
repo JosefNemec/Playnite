@@ -57,9 +57,14 @@ namespace Playnite.Extensions.Markup
             };
         }
 
+        public static string GetFilePath(string relPath)
+        {
+            return GetFilePath(relPath, ThemeManager.DefaultTheme, ThemeManager.CurrentTheme);
+        }
+
         public static string GetFilePath(string relPath, ThemeDescription defaultTheme)
         {
-            return GetFilePath(relPath, defaultTheme, null);
+            return GetFilePath(relPath, defaultTheme, ThemeManager.CurrentTheme);
         }
 
         public static string GetFilePath(string relPath, ThemeDescription defaultTheme, ThemeDescription currentTheme)

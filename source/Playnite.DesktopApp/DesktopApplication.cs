@@ -159,7 +159,7 @@ namespace Playnite.DesktopApp
             {
                 MenuActivation = PopupActivationMode.LeftOrRightClick,
                 DoubleClickCommand = MainModel.ShowWindowCommand,
-                Icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico", ThemeManager.DefaultTheme, ThemeManager.CurrentTheme)),
+                Icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico")),
                 Visibility = Visibility.Visible,
                 ContextMenu = new TrayContextMenu(MainModel)
             };
@@ -259,8 +259,7 @@ namespace Playnite.DesktopApp
 
         public override void ShowWindowsNotification(string title, string body, Action action)
         {
-            var icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico", ThemeManager.DefaultTheme,
-                ThemeManager.CurrentTheme));
+            var icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico"));
             if (AppSettings.EnableTray)
             {
                 trayIcon.ShowBalloonTip(title, body, icon, true);
