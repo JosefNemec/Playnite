@@ -60,8 +60,8 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
 
     <sys:String x:Key="LOCGameError">Pelivirhe</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Peliä ei voida käynnistää. Tietokannasta ei löydetty '{0}'.</sys:String>
-    <sys:String x:Key="LOCGameStartError">Ei voida käynnistää peliä: {0}</sys:String>
-    <sys:String x:Key="LOCGameStartActionError">Ei voida käynnistää toimintoa: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartError">Peliä ei voida käynnistää: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Toimintoa ei voida käynnistää: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Pelin sijaintia ei voitu avata: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Virhe luotaessa pikakuvaketta: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Peliä ei voida asentaa: {0}</sys:String>
@@ -176,7 +176,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
 Esimerkki: -image "{ImagePath}" -fullscreen
 Tuottaa tuloksen: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Kuvaketta ei voida hankkia jos suoritustoiminto puuttuu tai on asetettu URL:ksi.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Kuvaketta ei voida hakea, jos Pelaa-toiminto puuttuu tai se on asetettu URL:ksi.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Lataa vain metadata peleille joista se puuttuu</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Tämä toiminto ohittaa latauksen pelille jos sen dataa (jossakin kentässä) on jo olemassa.</sys:String>
@@ -247,9 +247,9 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kansitaiteen renderöinti</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Kuvasuhdetavoite</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Venytetty</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam juliste</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-juliste</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD-laatikko</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">* Vaatii uudelleenkäynnistyksen toimiakseen</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* Käyttöönotto vaatii uudelleenkäynnistyksen</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Asetukset</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Yleiset</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Ulkoasu</sys:String>
@@ -379,7 +379,7 @@ Voidaan muuttaa myös ohjelman asetuksista.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulaation tuontivelho</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Tämä velho opastaa sinua konsoliemulaattorien latauksessa ja tuonnissa, kuten myös emuloitujen pelien tuonnissa.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Muista, että voit aina myöhemmin lisätä emulaattoreita ja/tai pelejä päävalikon kautta ("Työkalut"-valikon alta emulaattorien asetukset ja "Lisää pelejä" -valikon alta emuloidut pelit).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Alla on lista emulaattoreista, jotka Playnite voi tunnistaa ja konfiguroida automaattisesti. Voit ladata ja asentaa ne vierailemalla niiden verkkosivuilla. Kun olet asentanut emulaattorit, siirry seuraavaan ruutuun tuodaksesi ne Playniteen.
 
 Voit myös konfiguroida ja tuoda minkä tahansa emulaattorin myöhemmin konfiguraatiovalikon kautta.</sys:String>
