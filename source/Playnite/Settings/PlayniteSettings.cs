@@ -59,6 +59,21 @@ namespace Playnite
             }
         }
 
+        private bool indentGameDetails = true;
+        public bool IndentGameDetails
+        {
+            get
+            {
+                return indentGameDetails;
+            }
+
+            set
+            {
+                indentGameDetails = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Dock gridViewDetailsPosition = Dock.Right;
         public Dock GridViewDetailsPosition
         {

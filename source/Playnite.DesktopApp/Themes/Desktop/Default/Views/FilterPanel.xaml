@@ -7,6 +7,7 @@
                     xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">    
 
     <Style TargetType="{x:Type views:FilterPanel}">
+        <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:FilterPanel}">

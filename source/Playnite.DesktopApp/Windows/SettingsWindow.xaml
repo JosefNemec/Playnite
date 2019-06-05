@@ -384,30 +384,43 @@
                                 </DataTemplate>
                             </TabItem.Resources>
                             <StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
                                     <TextBlock Text="{DynamicResource LOCSettingsFilterPanelPosition}"
-                                               VerticalAlignment="Center" />
+                                            VerticalAlignment="Center"
+                                           Grid.Column="0" Grid.Row="0" />
                                     <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
-                                              ItemsSource="{StaticResource LeftRightDockOptions}"
-                                              SelectedValue="{Binding Settings.FilterPanelPosition}"
-                                              Margin="5,0,0,0"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            ItemsSource="{StaticResource LeftRightDockOptions}"
+                                            SelectedValue="{Binding Settings.FilterPanelPosition}"
+                                            Margin="5" Grid.Column="1" Grid.Row="0" />
+
                                     <TextBlock Text="{DynamicResource LOCSettingsExplorerPanelPosition}"
-                                               VerticalAlignment="Center" />
+                                            VerticalAlignment="Center"
+                                           Grid.Column="0" Grid.Row="1"  />
                                     <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
-                                              ItemsSource="{StaticResource LeftRightDockOptions}"
-                                              SelectedValue="{Binding Settings.ExplorerPanelPosition}"
-                                              Margin="5,0,0,0"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            ItemsSource="{StaticResource LeftRightDockOptions}"
+                                            SelectedValue="{Binding Settings.ExplorerPanelPosition}"
+                                            Margin="5" Grid.Column="1" Grid.Row="1" />
+
                                     <TextBlock Text="{DynamicResource LOCSettingsGridViewDetailsPosition}"
-                                               VerticalAlignment="Center" />
+                                            VerticalAlignment="Center"
+                                           Grid.Column="0" Grid.Row="2"  />
                                     <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
-                                              ItemsSource="{StaticResource LeftRightDockOptions}"
-                                              SelectedValue="{Binding Settings.GridViewDetailsPosition}"
-                                              Margin="5,0,0,0"/>
-                                </StackPanel>
+                                            ItemsSource="{StaticResource LeftRightDockOptions}"
+                                            SelectedValue="{Binding Settings.GridViewDetailsPosition}"
+                                            Margin="5" Grid.Column="1" Grid.Row="2" />
+                                </Grid>
+                                <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" Margin="0,15,0,0"
+                                          Content="{DynamicResource LOCSettingsIndentGameDetails}" />
                             </StackPanel>
                         </TabItem>
 

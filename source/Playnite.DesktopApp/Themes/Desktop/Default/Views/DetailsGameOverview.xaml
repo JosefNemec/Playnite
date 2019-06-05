@@ -18,24 +18,37 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
+                            <RowDefinition>
+                                <RowDefinition.Style>
+                                    <Style TargetType="{x:Type RowDefinition}">
+                                        <Setter Property="Height" Value="Auto" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="True">
+                                                <Setter Property="Height" Value="4*" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </RowDefinition.Style>
+                            </RowDefinition>
                             <RowDefinition Height="6*"/>
                         </Grid.RowDefinitions>
                         <Grid.Style>
                             <Style TargetType="Grid">
+                                <Setter Property="Background" Value="#CC000000" />
                                 <Style.Triggers>
                                     <Trigger Property="DataContext" Value="{x:Null}">
                                         <Setter Property="Visibility" Value="Collapsed" />
                                     </Trigger>
+                                    <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource GameDetailsBackGroundBrush}" />
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Grid.Style>
 
-                        <Border Grid.ColumnSpan="10" Grid.RowSpan="10" Background="{DynamicResource GameDetailsBackGroundBrush}" />
-
                         <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="{DynamicResource FontFamily}"
                                    Text="{Binding Game.DisplayName, Mode=OneWay}"
-                                   FontSize="34" Margin="40,60,0,10" TextWrapping="Wrap"
+                                   FontSize="34" Margin="40,40,0,10" TextWrapping="Wrap"
                                    DockPanel.Dock="Left" VerticalAlignment="Top" Foreground="{StaticResource TextBrush}">
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="3"/>
