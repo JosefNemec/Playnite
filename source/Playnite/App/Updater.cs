@@ -222,7 +222,7 @@ namespace Playnite
 
         public static Version GetCurrentVersion()
         {
-            return System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+            return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
         }
 
         private string GetUpdateManifestData(string url)
