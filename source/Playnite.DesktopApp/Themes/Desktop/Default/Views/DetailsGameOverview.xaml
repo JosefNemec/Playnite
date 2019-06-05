@@ -46,7 +46,7 @@
                                 Margin="40,10,0,0">
                             <Image Margin="0,0,0,10" VerticalAlignment="Top"
                                 RenderOptions.BitmapScalingMode="Fant"
-                                Source="{Binding Game.CoverImageObject, Mode=OneWay}" />
+                                Source="{Binding Game.CoverImageObject}" />                         
                             <Button Height="40" Content="{DynamicResource LOCPlayGame}" Style="{StaticResource PlayButton}"
                                 Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{Binding PlayCommand}"/>

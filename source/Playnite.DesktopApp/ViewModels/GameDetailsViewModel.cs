@@ -90,6 +90,11 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public Visibility SourceLibraryVisibility
+        {
+            get => (settings.DetailsVisibility.Library & Game.LibraryPlugin != null) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public Visibility PlayTimeVisibility
         {
             get => (settings.DetailsVisibility.PlayTime && game.Playtime > 0) ? Visibility.Visible : Visibility.Collapsed;
@@ -149,6 +154,14 @@ namespace Playnite.DesktopApp.ViewModels
                 game = value;
                 OnPropertyChanged();
             }
+        }
+
+        public RelayCommand<Guid> SetLibraryFilterCommand
+        {
+            get => new RelayCommand<Guid>((filter) =>
+            {
+                SetLibraryFilter(filter);
+            });
         }
 
         public RelayCommand<DatabaseObject> SetPlatformFilterCommand
@@ -327,6 +340,12 @@ namespace Playnite.DesktopApp.ViewModels
                 settings.FilterSettings.ReleaseYear = new StringFilterItemProperites(date.Value.Year.ToString());
                 settings.FilterPanelVisible = true;
             }
+        }
+
+        public void SetLibraryFilter(Guid LibraryId)
+        {
+            var filter = new FilterItemProperites() { Ids = new List<Guid> { LibraryId } };
+            settings.FilterSettings.Library = filter;
         }
 
         public void Play()

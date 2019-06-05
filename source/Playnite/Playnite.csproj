@@ -328,6 +328,7 @@
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Metadata\Providers\IGDBMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
+    <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Settings\OldSettings\Plugins.cs" />
     <Compile Include="Settings\PlaynitePaths.cs" />

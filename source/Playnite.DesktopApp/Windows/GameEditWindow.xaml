@@ -490,6 +490,10 @@
                     <!-- Internal Id -->
                     <TextBlock Grid.Column="4" Grid.Row="1" Text="{DynamicResource LOCDatabaseId}" />
                     <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding EditingGame.Id}" IsReadOnly="True" />
+
+                    <!-- Library -->
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="{DynamicResource LOCGameProviderTitle}" />
+                    <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding LibraryPlugin.Name, FallbackValue='Playnite'}" />
                 </Grid>               
             </TabItem>
             

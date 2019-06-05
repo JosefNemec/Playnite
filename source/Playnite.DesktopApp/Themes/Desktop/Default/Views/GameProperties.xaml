@@ -106,28 +106,46 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
+                                    <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{DynamicResource LOCTimePlayed}" Foreground="{DynamicResource GlyphBrush}"
-                       Grid.Column="0" Grid.Row="0" Margin="0,0,10,3"/>
+                                            Grid.Column="0" Grid.Row="0" Margin="0,0,10,5"/>
                                 <TextBlock Text="{Binding Game.Playtime, Converter={StaticResource LongToTimePlayedConverter}}"
-                       Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" />
+                                            Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" />
                                 <TextBlock Text="{DynamicResource LOCLastPlayed}" Foreground="{DynamicResource GlyphBrush}"
-                       Grid.Column="0" Grid.Row="1"/>
+                                            Grid.Column="0" Grid.Row="1" Margin="0,0,10,5"/>
                                 <TextBlock Text="{Binding Game.LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}"
-                       Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" />
+                                            Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" />
+                                <TextBlock Text="{DynamicResource LOCCompletionStatus}" Foreground="{DynamicResource GlyphBrush}"
+                                            Grid.Column="0" Grid.Row="2"/>
+                                <TextBlock Text="{Binding Game.CompletionStatus, Converter={StaticResource ObjectToStringConverter}}"
+                                            Grid.Column="1" Grid.Row="2" Margin="10,0,0,0" />
                             </Grid>
+                            
+                            <!-- Library -->
+                            <StackPanel Visibility="{Binding SourceLibraryVisibility}">
+                                <Label Content="{DynamicResource LOCGameProviderTitle}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Game.LibraryPlugin.LibraryIcon}"
+                                       RenderOptions.BitmapScalingMode="Fant" Height="18" Margin="0,0,5,0" />
+                                    <Button Style="{StaticResource PropertyItemButton}"
+                                            Command="{Binding SetLibraryFilterCommand}"
+                                            CommandParameter="{Binding Game.PluginId}"
+                                            Content="{Binding Game.LibraryPlugin.Name}" />
+                                </StackPanel>
+                            </StackPanel>
 
                             <!-- Platform -->
                             <StackPanel Visibility="{Binding PlatformVisibility}">
                                 <Label Content="{DynamicResource LOCPlatformTitle}" />
                                 <Button Style="{StaticResource PropertyItemButton}"
-                            Command="{Binding SetPlatformFilterCommand}"
-                            CommandParameter="{Binding Game.Platform}"
-                            Content="{Binding Game.Platform.Name}" />
+                                        Command="{Binding SetPlatformFilterCommand}"
+                                        CommandParameter="{Binding Game.Platform}"
+                                        Content="{Binding Game.Platform.Name}" />
                             </StackPanel>
 
                             <!--Genres-->
