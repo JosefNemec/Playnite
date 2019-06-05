@@ -229,7 +229,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Mode plein écran</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Liens</sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport">Soutenir le projet</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Soutenir Playnite</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Redémarrer l'ordinateur</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Arrêter l'ordinateur</sys:String>
@@ -249,7 +249,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsGeneralLabel">Général</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Apparence</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Propriétés du jeu</sys:String>
-    <sys:String x:Key="LOCSettingsLayoutLabel">Disposition</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Mise à l'échelle</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Autres</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Plein écran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Fournisseurs</sys:String>
@@ -342,7 +342,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsShowClock">Afficher l'heure</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Apparence des boutons</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLayout">Mode d'affichage</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">Mise à l'échelle</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Défilement Horizontal</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucun</sys:String>
@@ -412,7 +412,7 @@ Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ord
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration terminée</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu "Paramètres".</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Ouvrir le guide d'importation d'émulation</sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout">Mode d'affichage en grille</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">Disposition (affichage en grille)</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Sélectionner le mode de mise à l'échelle des images pour l'affichage en grille. Ce paramètre peut être modifié à tout moment.</sys:String>
 
     <!--Platforms Settings-->
