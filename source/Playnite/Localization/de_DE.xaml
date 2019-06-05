@@ -56,15 +56,15 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCGameEditChangeNotif">Abschnitt enthält zu speichernde Änderungen</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Bibliotheksformat wird aktualisiert …</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Datenbankaktualisierung gescheitert.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Fehler beim Aktualisieren der Bibliothek: Es werden {0} MB freier Speicherplatz benötigt.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Spielebibliothek kann nicht aktualisiert werden. Es werden {0} MB freier Speicherplatz benötigt.</sys:String>
 
     <sys:String x:Key="LOCGameError">Spielfehler</sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame">Fehler beim Starten des Spiels: '{0}' befindet sich nicht in der Datenbank</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">Spiel kann nicht gestartet werden: »{0}« wurde in der Datenbank nicht gefunden.</sys:String>
     <sys:String x:Key="LOCGameStartError">Fehler beim Starten des Spiels: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Fehler beim Ausführen der Aktion: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Fehler beim Öffnen des Installationspfades: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Fehler beim Erstellen der Verknüpfung: {0}</sys:String>
-    <sys:String x:Key="LOCGameInstallError">Fehler beim Installieren des Spiels: {0}</sys:String>
+    <sys:String x:Key="LOCGameInstallError">Spiel kann nicht installiert werden: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Spiel kann nicht deinstalliert werden: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Das Bibliotheks-Plugin für dieses Spiel ist nicht installiert oder deaktiviert.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Offizielle Metadaten sind nicht zum Herunterladen verfügbar.</sys:String>
@@ -238,7 +238,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSDKDocumentation">SDK-Dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">System neu starten</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">System ausschalten</sys:String>
-    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">Ruhezustand</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detailleistenposition in Rasteransicht</sys:String>
@@ -312,9 +312,9 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kategorien können nicht importiert werden, da kein Konto für Importe ausgewählt.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Fehler beim Import der Steam-Kategorien: Datenbank ist nicht geöffnet</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Fehler beim Import der Steam-Kategorien: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">»Zuletzt gespielt«-Informationen können nicht importiert werden, da kein Benutzerkonto ausgewählt wurde.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">»Zuletzt gespielt«-Informationen können nicht importiert werden, da die Datenbank nicht geöffnet ist.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Fehler beim Importieren von Steams »Zuletzt gespielt«-Informationen: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Dies wird alle Verknüpfungen entfernen und Playnite neu starten. Bist du sicher?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Cache leeren?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Für private Steam-Konten ist ein API-Key notwendig</sys:String>
@@ -347,7 +347,7 @@ Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abge
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Akkustatus anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Akkuladung in Prozent anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Uhr anzeigen</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Nur in Schnellfilter installiert</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Schaltflächenmeldungen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontales Scrollen</sys:String>
