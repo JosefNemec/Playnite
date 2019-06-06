@@ -42,6 +42,7 @@ Falls du uns beim Beheben dieses Problems helfen möchtest, sende bitte Diagnose
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite neu starten</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Beenden</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Spiel(e) entfernen?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Fehler beim Entfernen des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Fehler beim Deinstallieren des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
@@ -100,7 +101,9 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCMostPlayedLabel">Spielzeit</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Spielhäufigkeit</sys:String>
     <sys:String x:Key="LOCAddedLabel">Hinzufügedatum</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Änderungsdatum</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Pfad</sys:String>
     <sys:String x:Key="LOCOKLabel">Okay</sys:String>
@@ -241,6 +244,9 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuSuspendSystem">Ruhezustand</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detailleistenposition in Rasteransicht</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position der Filterleiste</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position der Explorerleiste</sys:String>
