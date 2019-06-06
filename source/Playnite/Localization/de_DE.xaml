@@ -40,9 +40,9 @@ Falls du uns beim Beheben dieses Problems helfen möchtest, erstelle bitte Diagn
 Falls du uns beim Beheben dieses Problems helfen möchtest, sende bitte Diagnoseinformationen. Vielen Dank.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Absturz melden</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite neu starten</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Beenden</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Playnite beenden</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">Bibliotheksverwaltung</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Spiel(e) entfernen?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Fehler beim Entfernen des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Fehler beim Deinstallieren des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
@@ -101,9 +101,9 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCMostPlayedLabel">Spielzeit</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Spielhäufigkeit</sys:String>
     <sys:String x:Key="LOCAddedLabel">Hinzufügedatum</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Hinzufügedatum</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Änderungsdatum</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Veränderungsdatum</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Pfad</sys:String>
     <sys:String x:Key="LOCOKLabel">Okay</sys:String>
@@ -232,7 +232,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuAddGameManual">Manuell</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automatisch durchsuchen</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuliertes Spiel</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows Store</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft-Store-Spiel …</sys:String>
     <sys:String x:Key="LOCMenuAbout">Über Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Feedback senden</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Vollbildmodus starten</sys:String>
@@ -244,9 +244,9 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuSuspendSystem">Ruhezustand</sys:String>
 
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Fehlende Quelle für Spielsymbol</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Fehlende Quelle für Spielcover</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Spieledetails einrücken</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detailleistenposition in Rasteransicht</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position der Filterleiste</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position der Explorerleiste</sys:String>
@@ -416,12 +416,12 @@ Zudem kannst du natürlich auch jederzeit selbst ein Spiel zu deiner Playnite-Bi
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay-Integration</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Kategorien importieren von Konto:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Andere Spiele</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Du kannst weitere installierte Spiele importieren oder manuell nach weiteren Spielen suchen (inklusive Spielen aus dem Windows Store) indem du den Button unten anklickst.</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Klicke auf die Schaltfläche unten, um andere installierte Spiele zu importieren, oder suche nach ihnen manuell (inklusive Spielen aus dem Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Spiele importieren</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguration abgeschlossen</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Playnite ist fertig eingerichtet! Denke daran, dass du alle Konfigurationsparameter jederzeit in den Einstellungen ändern kannst.
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Die Ersteinrichtung wurde abgeschlossen. Alle Einstellungen können jederzeit im Menü »Einstellungen« verändert werden.
 
-Weitere Spiele (inklusive Spiele aus dem Windows Store) kannst du zudem auch später noch über den "Spiel hinzufügen"-Dialog im Playnite-Menü hinzufügen.</sys:String>
+Weiterhin kannst du jedes andere Spiel (inklusive Spielen aus dem Microsoft Store) aus dem Hauptmenü heraus hinzufügen, indem du auf Playnites Anwendungslogo klickst.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Weitere Informationen und Hilfe zum Import von Emulatoren</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Layout der Rasteransicht</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Wähle deine bevorzugte Darstellung für Playnites Rasteransicht aus. Das Bildlayout kann jederzeit in den Anwendungseinstellungen geändert werden, einschließlich der Optionen für die Bilddehnung.</sys:String>
