@@ -36,7 +36,7 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Zgłoś awarię</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Zamknij Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć grę/y?</sys:String>
@@ -140,7 +140,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licencja</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Współtwórcy</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Zamykanie Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Dzisiaj</sys:String>
     <sys:String x:Key="LOCYesterday">Wczoraj</sys:String>
     <sys:String x:Key="LOCMonday">Poniedziałek</sys:String>
@@ -415,9 +415,7 @@ Pamiętaj, że zawsze możesz dodać dowolną niestandardową grę dla dowolnej 
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importuj gry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguracja zakończona</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Wstępna konfiguracja została zakończona. Pamiętaj, że możesz zmienić wszystkie ustawienia później za pomocą przycisku w menu "Ustawienia".
-
-Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -642,7 +640,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">Zarządzane przez wtyczkę biblioteki</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Rozpoczęcie gry będzie zarządzane przez wtyczkę biblioteki odpowiedzialną za tę grę.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Nie znaleziono żadnych informacji na temat gry "{0}" na określonej stronie.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Wskazówka: Możesz użyć bardziej zaawansowanego procesu pobierania metadanych podczas za pomocą opcji menu "Edycja".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Niedostępne, gdy niektóre procesy są w toku.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Można użyć w tekście opisu kodu HTML</sys:String>
