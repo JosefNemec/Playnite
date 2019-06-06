@@ -38,6 +38,7 @@ Négyzet - Ne változzon (több játék állításakor)</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite újraindítása</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite bezárása</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Listából való törlés megerősítése</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nem törölhetsz játékot ami fut vagy települ/törlődik.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nem távolíthatsz el játékot ami fut.</sys:String>
@@ -96,7 +97,9 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCMostPlayedLabel">Leggyakrabban játszva</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">játszva</sys:String>
     <sys:String x:Key="LOCAddedLabel">Hozzáadva</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Módosítva</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel"></sys:String>
     <sys:String x:Key="LOCPathLabel">Útvonal</sys:String>
     <sys:String x:Key="LOCOKLabel"></sys:String>
@@ -235,6 +238,9 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
