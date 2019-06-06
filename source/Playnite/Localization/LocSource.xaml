@@ -41,7 +41,7 @@ If you want to help us fix this issue, please create diagnostics package and use
 If you want to help us fix this issue, please send diagnostic information. Thank you.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Report Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restart Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Close Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Exit Playnite</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Library Manager</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remove Game(s)?</sys:String>
@@ -102,9 +102,9 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCMostPlayedLabel">Most Played</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Play Count</sys:String>
     <sys:String x:Key="LOCAddedLabel">Added</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel">Added Date</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Date Added</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modified</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel">Modified Date</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Date Modified</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Path</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -145,7 +145,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
     <sys:String x:Key="LOCLicenseLabel">License</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contributors</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Closing Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Exiting Playnite...</sys:String>
     <sys:String x:Key="LOCToday">Today</sys:String>
     <sys:String x:Key="LOCYesterday">Yesterday</sys:String>
     <sys:String x:Key="LOCMonday">Monday</sys:String>
@@ -233,7 +233,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuAddGameManual">Manually...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scan Automatically...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulated Game...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows Store Game...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store Game...</sys:String>
     <sys:String x:Key="LOCMenuAbout">About Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullscreen Mode</sys:String>
@@ -418,12 +418,12 @@ Keep in mind that you can always add any custom game for any platform manually f
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay Integration</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Import categories from account:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Other games</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Click on the button below to import other installed games or browse for them manually (including Windows Store games).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Click on the button below to import other installed games or browse for them manually (including Microsoft Store games).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Import Games</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration Finished</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Initial setup has been completed. Remember that you can change all settings later via 'Settings' menu.
 
-You can also add any other game (including Windows Store games) later from main menu by clicking on Playnite application logo.</sys:String>
+You can also add any other game (including Microsoft Store games) later from main menu by clicking on Playnite application logo.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Open emulation import guide</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Grid View Layout</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Select preferred layout for Playnite's grid view. Image layout can be changed at any time in application settings, including image stretching options.</sys:String>
@@ -653,7 +653,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCPlayActionUsePlugin">Managed by library plugin</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Game's starting process will be managed by the library plugin responsible for this game.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Didn't find any relevant information about game '{0}' on specified page.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
