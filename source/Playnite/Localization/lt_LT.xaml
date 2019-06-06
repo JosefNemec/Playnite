@@ -36,7 +36,7 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Pranešti apie problemą</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Iš naujo paleisti Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Uždaryti Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Pašalinti žaidimą(us)?</sys:String>
@@ -140,7 +140,7 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCPatronsLabel">Rėmėjai</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenzija</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Prisidėję</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite uždaromas...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Šiandien</sys:String>
     <sys:String x:Key="LOCYesterday">Vakar</sys:String>
     <sys:String x:Key="LOCMonday">Pirmadienį</sys:String>
@@ -226,7 +226,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCMenuAddGameManual">Rankiniu būdu</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Įtraukti įrašytą arba iš aplanko</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Įtraukti emuliuojamą žaidimą(us)</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows parduotuvės žaidimas...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Apie Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Siųsti atsiliepimą</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Pradėti viso ekrano rėžime</sys:String>
@@ -416,9 +416,7 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Įtraukti žaidimus</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigūravimas baigtas</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Pirminė konfigūracija baigta. Bet kada pasirinktus nustatymus galite pakeisti 'Nustatymai' meniu.
-
-Kitą žaidimą(us)bet kada galite pridėti paspaudus Playnite programos logotipą.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Atidaryti emuliacijos importavimo vedlį</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -647,7 +645,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCPlayActionUsePlugin">Valdyti bibliotekos įskiepius</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Žaidimo paleidimo procesą valdys bibliotekos įskiepis atsakingas už šį žaidimą.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Nepavyko rasti informacijos apie žadimą '{0}' nurodytame tinklalapyje.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Patarimas: Detalesnis metadata atsisiuntimo valdymas pavieniui žaidimui galimas pasirinkus punktą "Keisti" .</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Negalimas, kai vyksta veiksmas fone.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Aprašymo tekstas yra jautrus HTML sintaksei</sys:String>
