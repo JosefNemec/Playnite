@@ -36,7 +36,7 @@ Indeterminado - Nenhumas alterações (quando a editar vários jogos)</sys:Strin
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Relatar Falha</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Fechar Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remover Jogo(s)?</sys:String>
@@ -140,7 +140,7 @@ Jogos importados, automaticamente, podem reaparecer no Playnite após, o próxim
     <sys:String x:Key="LOCPatronsLabel">Patronos</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licença</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contribuidores</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">A fechar o Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Hoje</sys:String>
     <sys:String x:Key="LOCYesterday">Ontem</sys:String>
     <sys:String x:Key="LOCMonday">Segunda-feira</sys:String>
