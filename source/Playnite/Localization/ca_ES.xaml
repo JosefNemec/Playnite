@@ -38,6 +38,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reinicia Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Tanca Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Eliminar joc(s)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">No es pot eliminar un joc que s'està executant o que està instal·lat/desinstal·lat.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">No es pot desinstal·lar un joc que s'està executant.</sys:String>
@@ -96,7 +97,9 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCMostPlayedLabel">Més Jugat</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Contador de Partides</sys:String>
     <sys:String x:Key="LOCAddedLabel">Afegit</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificat</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Pàgina web</sys:String>
     <sys:String x:Key="LOCPathLabel">Drecera</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -237,6 +240,9 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detalls de posició en vista de graella</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posició de panell de filtres</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posició de panell d'exploració</sys:String>
