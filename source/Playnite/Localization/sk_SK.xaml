@@ -38,6 +38,7 @@ Neurčité - Žiadné zmeny (počas upravovania viacerích hier)</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reštartovať Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Zavrieť Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Zmazať Hru(y)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
@@ -96,7 +97,9 @@ Hry, ktoré sa automatický importovaly sa môžu znova objaviť v aplikácií P
     <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
     <sys:String x:Key="LOCPlayCountLabel"></sys:String>
     <sys:String x:Key="LOCAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Web</sys:String>
     <sys:String x:Key="LOCPathLabel">Cieľ</sys:String>
     <sys:String x:Key="LOCOKLabel"></sys:String>
@@ -234,6 +237,9 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
