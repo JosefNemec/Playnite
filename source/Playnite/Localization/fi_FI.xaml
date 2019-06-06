@@ -40,7 +40,7 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, luo diagnostiikkapaketti j
 Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diagnostiikkatiedot. Kiitos.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Raportoi kaatuminen</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Uudelleenkäynnistä Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Sulje Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Poistu Playnitesta</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Kirjastomanageri</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Poista peli(t)?</sys:String>
@@ -232,7 +232,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCMenuAddGameManual">Manuaalisesti...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Etsi automaattisesti...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuloitu peli...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows Storen peli...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store -peli...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Tietoja Playnitesta</sys:String>
     <sys:String x:Key="LOCMenuIssues">Lähetä palautetta</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Käynnistä kokoruudulla</sys:String>
@@ -416,12 +416,12 @@ Muista, että voit aina manuaalisesti lisätä minkä tahansa pelin mille tahans
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay-integrointi</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Tuo kategoriat tunnukselta:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Muut pelit</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Klikkaa alla olevaa nappulaa tuodaksesi muita asennettuja pelejä tai etsiäksesi manuaalisesti (Windows Store-pelit mukaan lukien).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Klikkaa alla olevaa nappia tuodaksesi muita asennettuja pelejä tai etsiäksesi manuaalisesti (Microsoft Store -pelit mukaan lukien).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Tuo pelit</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Määritys suoritettu</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Alustava asennus on valmis. Muista, että voit myöhemmin muuttaa kaikkia asetuksia "Asetukset"-valikon kautta.
 
-Voit myös myöhemmin lisätä minkä tahansa pelin (mukaan lukien Windows Store -pelit) klikkaamalla päävalikon Playnite-logoa.</sys:String>
+Voit myös myöhemmin lisätä minkä tahansa pelin (mukaan lukien Microsoft Store -pelit) klikkaamalla päävalikon Playnite-logoa.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Avaa emulaattorien tuontiohje</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Ruudukkonäkymän asettelu</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Valitse Playniten ruudukkonäkymän ensisijainen asettelu. Kuva-asettelua voidaan muuttaa milloin tahansa ohjelman asetuksista, kuvien venytysvaihtoehdot mukaan lukien.</sys:String>
