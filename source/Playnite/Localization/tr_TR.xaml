@@ -36,7 +36,7 @@ Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Çökmeyi Rapor Et</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite'ı Yeniden Başlat</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Playnite'ı Kapat</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Oyun(lar) Kaldırılsın mı?</sys:String>
@@ -140,7 +140,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCPatronsLabel">Destekleyenler</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisans</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Katkıda Bulunanlar</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite kapatılıyor...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Bugün</sys:String>
     <sys:String x:Key="LOCYesterday">Dün</sys:String>
     <sys:String x:Key="LOCMonday">Pazartesi</sys:String>
@@ -228,7 +228,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCMenuAddGameManual">Manuel</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Otomatik Tarama...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emülatör Oyunu...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows Uygulama Mağazası'na Gönderme Kılavuzu...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite Hakkında</sys:String>
     <sys:String x:Key="LOCMenuIssues">Geri Bildirim</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Tam Ekran Modunu Başlat</sys:String>
@@ -413,12 +413,10 @@ Ana menüden 'Playnite' düğmesine tıklayarak herhangi bir platform için herh
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay Entegrasyonu</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Kategorileri hesaptan içe aktar:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Diğer Oyunlar</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Yüklü diğer oyunları içe aktarmak veya el ile göz atmak için aşağıdaki düğmeye tıklayın (Windows Mağazası oyunları dahil).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Oyunları İçe Aktar</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Yapılandırma Tamamlandı</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">İlk kurulum tamamlandı. Tüm ayarları daha sonra 'Ayarlar' menüsünden değiştirebileceğinizi unutmayın.
-
-Daha sonra Playnite uygulama logosuna tıklayarak ana menüden diğer oyunları da ekleyebilirsiniz.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Playnite'ın kapak görünümünün tercih edilen düzenini seç. Fotoğraf düzeni uygulama ayarlarından her zaman değiştirilebilir, fotoğraf genişletme seçenekleri de dahil.</sys:String>
@@ -648,7 +646,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCPlayActionUsePlugin">Kütüphane eklentisi tarafından yönetiliyor</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Oyunun başlangıç ​​süreci, bu oyundan sorumlu kütüphane eklentisi tarafından yönetilecektir.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Belirtilen sayfada '{0}' oyunu ile ilgili herhangi bir bilgi bulunamadı.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">İpucu: "Düzenle" menü seçeneğiyle tekli oyun düzenlerken daha gelişmiş metaveri indirme işlemini kullanabilirsiniz.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Bazı işlem devam ederken kullanılamaz.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Açıklama metni HTML sözdizimine duyarlıdır.</sys:String>
