@@ -8,7 +8,7 @@
     <sys:String x:Key="LOCExitAppLabel">Salir</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">El filtro está habilitado (haga clic para alternar el panel de filtros)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">El filtro está deshabilitado (haga clic para alternar el panel de filtros)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters">Filtros adicionales</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters">Filtros</sys:String>
     <sys:String x:Key="LOCFilter">Filtro</sys:String>
 
@@ -40,7 +40,7 @@ Si quieres ayudarnos a arreglar el problema, por favor, crea un paquete de diagn
 Si quieres ayudarnos a arreglar el problema, por favor, envíanos la información de diagnóstico. Gracias.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar un Problema</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Cerrar Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">¿Eliminar Juego(s)?</sys:String>
@@ -144,7 +144,7 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
     <sys:String x:Key="LOCPatronsLabel">Patrones</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licencia</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contribuyentes</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Cerrando Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Hoy</sys:String>
     <sys:String x:Key="LOCYesterday">Ayer</sys:String>
     <sys:String x:Key="LOCMonday">Lunes</sys:String>
@@ -232,7 +232,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Importar Instalado o de Carpeta</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Importar Juego(s) emulados</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Juego de Windows Store...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Acerca de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar Comentarios</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo de pantalla completa</sys:String>
@@ -419,12 +419,10 @@ Sugerencia: si desea sincronizar su biblioteca entre varias computadoras, config
     <sys:String x:Key="LOCFirstUplayIntegration">Integración Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importar categorías de la cuenta:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Otros juegos</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Haz click en el botón para importar otros juegos instalados, o buscalos manualmente (incluyendo juegos de Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importar Juegos</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuración Finalizada</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">La configuración inicial se ha completado. Recuerde que puede cambiar todas las configuraciones más tarde a través del menú 'Configuración'.
-
-También puede agregar cualquier otro juego más adelante desde el menú principal haciendo clic en el logotipo de la aplicación Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Abrir guía de importación de emulación</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Disposición de cuadrícula</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Seleccionar disposición preferida para la vista de cuadrícula de Playnite. La disposición de imagen puede cambiarse en cualquier momento en las opciones de aplicación, incluyendo las opciones de estiramiento de imagen.</sys:String>
@@ -653,7 +651,7 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCPlayActionUsePlugin">Gestionado por el plugin de la biblioteca.</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">El proceso de inicio del juego será gestionado por el plugin de biblioteca responsable de este juego.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">No se encontró ninguna información relevante sobre el juego '{0}' en la página específicada.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Sugerencia: puede usar un proceso de descarga de metadatos más avanzado mientras edita un solo juego a través de la opción de menú "Editar".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">No disponible cuando alguna acción está en proceso.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">El texto de descripción es sensible a la sintaxis HTML</sys:String>
