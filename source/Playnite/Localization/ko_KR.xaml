@@ -38,6 +38,7 @@
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite 종료</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 삭제하시겠습니까?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">게임이 실행 중이거나 설치, 삭제되는 중에는 게임을 삭제할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">게임이 실행 중일 때 삭제할 수 없습니다.</sys:String>
@@ -96,7 +97,9 @@
     <sys:String x:Key="LOCMostPlayedLabel">가장 많이 플레이</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">플레이 횟수</sys:String>
     <sys:String x:Key="LOCAddedLabel">추가일</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">수정일</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">웹사이트</sys:String>
     <sys:String x:Key="LOCPathLabel">경로</sys:String>
     <sys:String x:Key="LOCOKLabel">확인</sys:String>
@@ -237,6 +240,9 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">상세 정보 그리드 뷰 방식</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">필터 패널 방식</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">탐색기 패널 방식</sys:String>
