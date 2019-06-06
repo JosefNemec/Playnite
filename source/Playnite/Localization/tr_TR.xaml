@@ -38,6 +38,7 @@ Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite'ı Yeniden Başlat</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite'ı Kapat</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Oyun(lar) Kaldırılsın mı?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Çalışan veya yüklü/kaldırılan oyun kaldırılamıyor.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Çalışan oyun kaldırılamıyor.</sys:String>
@@ -96,7 +97,9 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCMostPlayedLabel">En Çok Oynanan</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Oynanma Sayısı</sys:String>
     <sys:String x:Key="LOCAddedLabel">Eklendi</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Değiştirildi</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Web Sayfası</sys:String>
     <sys:String x:Key="LOCPathLabel">Yol</sys:String>
     <sys:String x:Key="LOCOKLabel">TAMAM</sys:String>
@@ -237,6 +240,9 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCMenuSuspendSystem">Sistemi Yasakla</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
