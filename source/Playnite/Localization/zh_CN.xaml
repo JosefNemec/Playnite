@@ -36,7 +36,7 @@
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">报告问题</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重新启动Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">关闭Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">删除游戏？</sys:String>
@@ -140,7 +140,7 @@
     <sys:String x:Key="LOCPatronsLabel">赞助这</sys:String>
     <sys:String x:Key="LOCLicenseLabel">许可证</sys:String>
     <sys:String x:Key="LOCContributorsLabel">贡献者</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">正在关闭Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">今天</sys:String>
     <sys:String x:Key="LOCYesterday">昨天</sys:String>
     <sys:String x:Key="LOCMonday">星期一</sys:String>
@@ -228,7 +228,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuAddGameManual">手动</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">自动扫描...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">模拟器游戏...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows 商店游戏</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">关于Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">发送反馈</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">启动全屏模式</sys:String>
@@ -412,12 +412,10 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay整合</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">从帐户导入类别：</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">其他游戏</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">点击下面的按钮导入其他已安装的游戏或手动浏览（包括Windows商店游戏）</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">_导入游戏</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">配置完成</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始设置已完成。 请记住，稍后可以通过“设置”菜单更改所有设置。
-
-您也可以通过单击Playnite图标从主菜单中添加任何其他游戏</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">打开模拟导入指南</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -647,7 +645,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCPlayActionUsePlugin">由库插件管理</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">游戏的启动过程将由负责此游戏的库插件管理</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">在指定页面上没有找到关于游戏“{0}”的任何相关信息</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示：您可以通过“编辑”菜单选项编辑单个游戏时使用更高级的数据下载过程</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些操作正在进行时不可用</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本是HTML语法敏感的</sys:String>
