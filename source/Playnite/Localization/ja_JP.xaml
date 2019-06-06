@@ -38,6 +38,7 @@
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite を再起動</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite を終了</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">ゲームを削除しますか？</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">実行中またはインストール/アンインストール中のゲームは削除できません。</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">実行中のゲームをアンインストールすることはできません。</sys:String>
@@ -96,7 +97,9 @@
     <sys:String x:Key="LOCMostPlayedLabel">最もプレイされたゲーム</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">プレイ回数</sys:String>
     <sys:String x:Key="LOCAddedLabel">追加日</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">変更日</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Webサイト</sys:String>
     <sys:String x:Key="LOCPathLabel">ファイルの場所</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -237,6 +240,9 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">グリッドビューの詳細位置</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">フィルターパネルの位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">エクスプローラーパネルの位置</sys:String>
