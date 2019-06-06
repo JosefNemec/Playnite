@@ -36,7 +36,7 @@
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Αναφορά προβλήματος</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Επανεκκινήση Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Κλείσιμο Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Κατάργηση παιχνιδιών?</sys:String>
@@ -140,7 +140,7 @@
     <sys:String x:Key="LOCPatronsLabel"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Άδεια</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Συνεισφέροντες</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Κλείσιμο Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Σήμερα</sys:String>
     <sys:String x:Key="LOCYesterday">Χθες</sys:String>
     <sys:String x:Key="LOCMonday">Δευτέρα</sys:String>
@@ -413,9 +413,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Εισαγωγή Παιχνιδιών</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Η διαμόρφωση ολοκληρώθηκε</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Η αρχική ρύθμιση έχει ολοκληρωθεί. Θυμηθείτε ότι μπορείτε να αλλάξετε όλες τις ρυθμίσεις αργότερα μέσω του μενού "Ρυθμίσεις".
-
-Μπορείτε επίσης να προσθέσετε οποιοδήποτε άλλο παιχνίδι από το κύριο μενού κάνοντας κλικ στο λογότυπο της εφαρμογής Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
