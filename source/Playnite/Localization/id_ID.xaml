@@ -36,7 +36,7 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Laporkan Masalah</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Muat Ulang Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Keluar Dari Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Hapus Game yang dipilih?</sys:String>
@@ -140,7 +140,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCPatronsLabel">Patron</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisensi</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Kontributor</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Menutup Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Hari Ini</sys:String>
     <sys:String x:Key="LOCYesterday">Kemarin</sys:String>
     <sys:String x:Key="LOCMonday">Senin</sys:String>
@@ -414,9 +414,7 @@ Tip: Jika kamu ingin mensingkronisasikan library untuk beberapa komputer sekalig
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Import Game</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurasi telah Selesai</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Konfigurasi awal telah selesai. Ingatlah bahwa kamu bisa menggati lagi semua setting tadi secara manual di menu 'Settings'.
-
-Kamu juga bisa menambahkan game lainnya nanti lewat tombol 'Playnite'.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -640,7 +638,7 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Tidak menemukan informasi relevan tentang game '{0}'.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Kamu bisa menggunakan metadata editor yang lebih lengkap dimenu "Edit" per game.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Tidak tersedia. Ada yang masih diproses.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Teks deskripsi ini menggunakan format HTML.</sys:String>
