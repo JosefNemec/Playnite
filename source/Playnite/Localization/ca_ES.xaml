@@ -36,7 +36,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar un problema</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reinicia Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Tanca Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Eliminar joc(s)?</sys:String>
@@ -140,7 +140,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCPatronsLabel">Patró</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Llicència</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Col·laboradors</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Tancant Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Avui</sys:String>
     <sys:String x:Key="LOCYesterday">Ahir</sys:String>
     <sys:String x:Key="LOCMonday">Dilluns</sys:String>
@@ -228,7 +228,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCMenuAddGameManual">Manualment</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escaneja automàticament...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Joc emulat...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Joc de la Tenda Microsoft...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envia els teus comentaris</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Inicia mode a pantalla completa</sys:String>
@@ -412,12 +412,10 @@ Tingueu en compte que sempre podeu afegir qualsevol joc personalitzat per a qual
     <sys:String x:Key="LOCFirstUplayIntegration">Integració d'Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importa categories des del compte:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Altres jocs</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Feu clic al següent botó per importar altres jocs instal·lats o navegar per ells manualment (inclosos els jocs de Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importar jocs</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuració finalitzada</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">S'ha completat la configuració inicial. Recorda que pots canviar tots els paràmetres a través del menú "Configuració".
-
-També pots afegir qualsevol altre joc al menú principal fent clic al logotip de l’aplicació Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Obrir guia d'importació d'emuladors</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -647,7 +645,7 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCPlayActionUsePlugin">Gestionat pel plugin de biblioteca</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">El procés d'inici del joc serà gestionat pel plugin de la biblioteca responsable d'aquest joc.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">No s'ha trobat cap informació rellevant sobre el joc '{0}' a la pàgina específica.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Consell: pots utilitzar el procés de descàrrega de bases de dades més avançat mentre edites un joc a través de l'opció "Edita".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">No està disponible quan hi ha alguna acció en curs.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">El text de descripció és sensible a la sintaxi HTML</sys:String>
