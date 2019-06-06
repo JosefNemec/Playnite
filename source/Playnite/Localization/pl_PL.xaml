@@ -38,6 +38,7 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Zamknij Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć grę/y?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nie można usunąć gry, która jest uruchomiona lub jest instalowana/odinstalowywana.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nie można odinstalować uruchomionej gry.</sys:String>
@@ -96,7 +97,9 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCMostPlayedLabel">Najczęściej grane</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Liczba uruchomień</sys:String>
     <sys:String x:Key="LOCAddedLabel">Dodany</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Zmodyfikowany</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Strona WWW</sys:String>
     <sys:String x:Key="LOCPathLabel">Ścieżka</sys:String>
     <sys:String x:Key="LOCOKLabel"></sys:String>
@@ -237,6 +240,9 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
