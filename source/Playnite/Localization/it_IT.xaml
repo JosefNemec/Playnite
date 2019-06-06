@@ -42,6 +42,7 @@ Se vuoi aiutarci a risolvere questo problema, per favore invia informazioni diag
     <sys:String x:Key="LOCCrashRestartPlaynite">Riavvia Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Chiudi Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager">Gestione libreria</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Rimuovi Gioco/chi?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Impossibile rimuovere il gioco mentre è avviato o durante la installazione/disinstallazione.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Impossibile disinstallare il gioco mentre è avviato.</sys:String>
@@ -100,7 +101,9 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCMostPlayedLabel">Più giocato</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Numero di partite</sys:String>
     <sys:String x:Key="LOCAddedLabel">Aggiunto</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Data di immissione</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificato</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Data di Modifica</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Sito</sys:String>
     <sys:String x:Key="LOCPathLabel">Percorso</sys:String>
     <sys:String x:Key="LOCOKLabel">Ok</sys:String>
@@ -241,6 +244,9 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCMenuSuspendSystem">Sospendi sistema</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Fonte dell'icona del gioco mancante</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte della copertina del gioco mancante</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Dettagli interno del gioco</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posizione dettagli a griglia</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posizione del pannello filtro</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posizione pannello Esplora</sys:String>
