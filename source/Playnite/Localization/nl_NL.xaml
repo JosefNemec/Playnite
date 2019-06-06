@@ -36,7 +36,7 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporteer Probleem</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Herstart Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Sluit Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
@@ -140,7 +140,7 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCPatronsLabel"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licentie</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bijdragers</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite wordt gesloten...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Vandaag</sys:String>
     <sys:String x:Key="LOCYesterday">Gisteren</sys:String>
     <sys:String x:Key="LOCMonday">Maandag</sys:String>
@@ -415,9 +415,7 @@ Tip: Als je je bibliotheek over meerdere computers wilt synchroniseren, stel de 
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importeer Spellen</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuratie Klaar</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Eerste setup is klaar. Je kan alle instellingen later aanpassen via het 'Instellingen' menu.
-
-Je kan later ook andere spellen toevoegen via het hoofdmenu door op het Playnite logo te klikken.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -641,7 +639,7 @@ Het wordt op dit moment door {1} spel(len) en {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Geen relevante informatie gevonden over het spel '{0}' op de gespecificeerde pagina.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Je kan een geavanceerder metadata download proces gebruiken wanneer je een individueel spel bewerkt via de "Bewerken" menu optie.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Niet beschikbaar als sommige acties nog bezig zijn.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Beschrijvingstekst is HTML syntax sensitief</sys:String>
