@@ -40,7 +40,7 @@ Se desidera aiutarci a riparare il problema, la prego di creare un pacchetto di 
 Se vuoi aiutarci a risolvere questo problema, per favore invia informazioni diagnostiche. Grazie.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Segnala crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Riavvia Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Chiudi Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Esci da Playnite</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gestione libreria</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Rimuovi Gioco/chi?</sys:String>
@@ -101,9 +101,9 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCMostPlayedLabel">Più giocato</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Numero di partite</sys:String>
     <sys:String x:Key="LOCAddedLabel">Aggiunto</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel">Data di immissione</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Data di aggiunta</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificato</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel">Data di Modifica</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Data di modifica</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Sito</sys:String>
     <sys:String x:Key="LOCPathLabel">Percorso</sys:String>
     <sys:String x:Key="LOCOKLabel">Ok</sys:String>
@@ -232,7 +232,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scansione automaticamente...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Gioco emulato...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Gioco Windows Store...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Gioco Microsoft Store...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Informazioni su Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Invia commento</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Avvia a Schermo Intero</sys:String>
@@ -422,7 +422,7 @@ Si ricordi che può sempre aggiungere manualmente qualunque gioco personalizzato
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configurazione completata</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Il setup iniziale è stato completato. Ricorda che può cambiare tutte le impostazioni in seguito attraverso il menù "Impostazioni".
 
-Può anche aggiungere qualunque gioco/chi in seguito dal menù principale cliccando sul logo dell'applicazione di Playnite.</sys:String>
+Può anche aggiungere qualunque gioco/chi (inclusi quelli del Microsoft Store) in seguito dal menù principale cliccando sul logo dell'applicazione di Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Guida all'importazione di emulazione aperta</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Posizionamento della visualizzazione a griglia</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Seleziona il layout preferito per la griglia di Playnite. Il layout dell'immagine può essere modificato in qualsiasi momento nelle impostazioni dell'applicazione, comprese le opzioni di estensione dell'immagine.</sys:String>
