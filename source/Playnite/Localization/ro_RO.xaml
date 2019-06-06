@@ -8,7 +8,7 @@
     <sys:String x:Key="LOCExitAppLabel">Iesire</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtrul este activat (click pentru a comuta panoul)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtrul este dezactivat (click pentru a comuta panoul)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters">Filtre suplimentare</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters">Filtre</sys:String>
     <sys:String x:Key="LOCFilter">Filtru</sys:String>
 
@@ -38,7 +38,7 @@ Dacă dorești să ne ajuți, te rog generează un pachet de diagnostic și folo
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Raportează o eroare</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartează Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Închide Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Managerul Librăriei</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Înlătură Joc(uri)?</sys:String>
@@ -99,9 +99,9 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCMostPlayedLabel">Cele mai jucate</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Total redat</sys:String>
     <sys:String x:Key="LOCAddedLabel">Adăugat</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel">Data Adăugării</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificat</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel">Data Modificării</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Locație</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -142,7 +142,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenţă</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contribuitori</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Se închide Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Astăzi</sys:String>
     <sys:String x:Key="LOCYesterday">Ieri</sys:String>
     <sys:String x:Key="LOCMonday">Luni</sys:String>
@@ -230,7 +230,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCMenuAddGameManual">Adaugare Manuală...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scanare Automată...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Joc Emulat...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store Game...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Despre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Exprimați-vă Părerea</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Pornește în modul Fullscreen</sys:String>
@@ -413,7 +413,7 @@ Rețineți că puteți adăuga manual, oricând, orice joc personalizat pentru o
     <sys:String x:Key="LOCFirstUplayIntegration">Integrare Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importare categorii de la contul:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Alte jocuri</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Apăsați butonul de mai jos pentru a importa alte jocuri instalate sau pentru a le căuta manual (incluzând jocurile de pe Microsoft Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importă Jocuri</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Setare Finalizată</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
@@ -641,7 +641,7 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">Controlat de plugin-ul librăriei</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Procesul de pornire al jocului va fi gestionat de plugin-ul librăriei responsabile acestui joc.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Nu au fost găsite informații relevante jocului '{0}' de pe pagina specificată.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Sfat: Puteți folosi un proces mai avansat de descărcare a metadatelor în timpul editării unui joc prin opțiunea de "Editare" din meniu.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nedisponibil când se execută o acțiune.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Textul descrierii trebuie să conțină o sintaxă HTML senzitivă</sys:String>
