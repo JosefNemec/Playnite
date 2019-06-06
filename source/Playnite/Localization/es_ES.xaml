@@ -42,6 +42,7 @@ Si quieres ayudarnos a arreglar el problema, por favor, envíanos la informació
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Cerrar Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">¿Eliminar Juego(s)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">No se puede eliminar un juego mientras se ejecuta, instala o desinstala.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">No se puede desinstalar el juego mientras se ejecuta.</sys:String>
@@ -100,7 +101,9 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
     <sys:String x:Key="LOCMostPlayedLabel">Mas jugado</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Tiempo de Juego</sys:String>
     <sys:String x:Key="LOCAddedLabel">Agregado</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificado</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Página Web</sys:String>
     <sys:String x:Key="LOCPathLabel">Ruta</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -241,6 +244,9 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender el sistema</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posición de los detalles de la vista de cuandrícula</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posición del panel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posición del panel de exploración</sys:String>
