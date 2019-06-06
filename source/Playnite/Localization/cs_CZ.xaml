@@ -40,9 +40,9 @@ Pokud nám chcete pomoci tento problém napravit, vytvořte prosím diagnostick�
 Pokud nám chcete pomoci tento problém napravit, odešlete prosím diagnostický balíček. Děkujeme.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Nahlásit zhroucení</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartovat Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Zavřít Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Opustit Playnite</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">Správce knihovny</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Odstranit hru(y)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nelze odstranit hru která je spuštěná nebo která se instaluje/odinstalovává.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nelze odinstalovat hru která je spuštěná.</sys:String>
@@ -101,9 +101,9 @@ Automaticky importované hry se po dalším importování znovu objeví v Playni
     <sys:String x:Key="LOCMostPlayedLabel">Nejvíce hrané</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Počet zahrání</sys:String>
     <sys:String x:Key="LOCAddedLabel">Přidáno</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Datum přidání</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Změněno</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Datum změny</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Webová stránka</sys:String>
     <sys:String x:Key="LOCPathLabel">Cesta</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -232,7 +232,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuAddGameManual">Ručně...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automaticky prohledat...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulovaná hra...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Hra z Windows Store...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Hra z Microsoft Store...</sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Odeslat zpětnou vazbu</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Spustit režim celé obrazovky</sys:String>
@@ -244,9 +244,9 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuSuspendSystem">Uspat systém</sys:String>
 
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Chybějící zdroj ikon her</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Chybějící zdroj obálek her</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Odsadit podrobnosti o hře</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Pozice detailů v zobrazení mřížky</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Pozice panelu s filtry</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Pozice panelu průzkumníka</sys:String>
@@ -417,12 +417,12 @@ Pamatujte že vždy můžete hru přidat ručně, z hlavního menu, kliknutím n
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay integrace</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importovat kategorie z účtu:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Ostatní hry</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Klikněte na tlačítko níže pro import ostatních instalovaných her, případně je vyberte manuálně (včetně her z Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Klikněte na tlačítko níže pro import ostatních instalovaných her, případně je vyberte manuálně (včetně her z Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importovat hry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurace dokončena</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Úvodní nastavení bylo dokončeno. Pamatujte že všechna nastavení jdou změnit později v "Nastavení".
 
-Taktéž můžete později přidat jakoukoliv hru (včetně her z Windows Store) z hlavního menu, kliknutím na ikonu Playnite.</sys:String>
+Taktéž můžete později přidat jakoukoliv hru (včetně her z Microsoft Store) z hlavního menu, kliknutím na ikonu Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Otevřít průvodce importem emulátorů</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Zobrazení mřížky</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Vyberte preferované rozložení pro zobrazení mřížky. Rozložení obrázků může být kdykoliv změněno v nastavení aplikace, včetně různých možností zvětšování obrázků.</sys:String>
