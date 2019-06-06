@@ -8,7 +8,7 @@
     <sys:String x:Key="LOCExitAppLabel">Sair</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro habilitado (clique para alternar o painel de filtros)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtro desabilitado (clique para alternar o painel de filtros)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters">Filtros adicionais</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters">Filtros</sys:String>
     <sys:String x:Key="LOCFilter">Filtro</sys:String>
 
@@ -36,7 +36,7 @@ Indeterminada - Nenhuma alteração (quando editando vários jogos)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Relatar falha</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar o Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Fechar o Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remover Jogo(s)?</sys:String>
@@ -140,7 +140,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCPatronsLabel">Patronos</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licença</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Colaboradores</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Fechando o Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Hoje</sys:String>
     <sys:String x:Key="LOCYesterday">Ontem</sys:String>
     <sys:String x:Key="LOCMonday">Segunda-feira</sys:String>
@@ -228,7 +228,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escanear automaticamente...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Jogo emulado...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Jogo da Microsoft Store...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre o Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar comentários</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo tela cheia</sys:String>
@@ -412,12 +412,10 @@ Tenha em mente que você sempre pode adicionar jogos personalizados de qualquer 
     <sys:String x:Key="LOCFirstUplayIntegration">Integração com o Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importar categorias da conta:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Outros jogos</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Clique no botão abaixo para importar outros jogos instalados ou procurá-los manualmente (incluindo jogos da Microsoft Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importar jogos</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuração concluída</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">A configuração inicial foi concluída. Lembre-se de que você pode alterar todas as configurações mais tarde através do menu "Configurações".
-
-Você também pode adicionar mais jogos através do menu principal, clicando no botão "Playnite".</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Abrir o assistente de importação de emuladores</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Esquema de grade</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -647,7 +645,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCPlayActionUsePlugin">Gerenciado pela extensão da biblioteca</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">O processo de inicialização do jogo será gerenciado pela extensão da biblioteca responsável por este jogo.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Não encontramos nenhuma informação relevante sobre o jogo "{0}" na página especificada.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Dica: você pode usar um processo mais avançado para baixar metadados ao editar um único jogo através da opção "Editar..." no menu de contexto.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Indisponível enquanto houver alguma ação em andamento.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">O texto de descrição é sensível à sintaxe HTML</sys:String>
