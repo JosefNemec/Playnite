@@ -38,6 +38,7 @@ Indéterminé - Aucun changement</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Redémarrer Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Quitter Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Supprimer le(s) jeu(x) ?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Impossible de retirer un jeu en cours d'exécution/installation.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Le jeu est en cours d'exécution et ne peut être désinstallé.</sys:String>
@@ -96,7 +97,9 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCMostPlayedLabel">Temps de jeu</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Nombre de sessions</sys:String>
     <sys:String x:Key="LOCAddedLabel">Ajouté le</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modifié le</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Site internet</sys:String>
     <sys:String x:Key="LOCPathLabel">Chemin</sys:String>
     <sys:String x:Key="LOCOKLabel">Ok</sys:String>
@@ -236,6 +239,9 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuSuspendSystem">Mettre en veille</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails dans le mode d'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position du panneau de filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position du panneau d'explorateur</sys:String>
