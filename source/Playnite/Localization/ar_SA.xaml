@@ -8,7 +8,7 @@
     <sys:String x:Key="LOCExitAppLabel">خروج</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">المرشِّح مفعل (انقر للتبديل في لوحة المرشح)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">المرشِّح معطل (انقر للتبديل في لوحة المرشح)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters">مرشحات إضافية</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters">مرشحات</sys:String>
     <sys:String x:Key="LOCFilter">مرشح</sys:String>
 
@@ -34,7 +34,7 @@
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">تبليغ الانهيار</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">إعادة تشغيل Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">غلق Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">إزالة اللعبة/الألعاب؟</sys:String>
