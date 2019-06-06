@@ -38,6 +38,7 @@
     <sys:String x:Key="LOCCrashRestartPlaynite">Перезагрузить</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Закрыть</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Убрать игру(ы)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Невозможно удалить игру, которая работает или устанавливается/удаляется.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Невозможно удалить запущенную игру.</sys:String>
@@ -96,7 +97,9 @@
     <sys:String x:Key="LOCMostPlayedLabel">Всего сыграно</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Счетчик времени</sys:String>
     <sys:String x:Key="LOCAddedLabel">Добавлено</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Модифицировано</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Веб-сайт</sys:String>
     <sys:String x:Key="LOCPathLabel">Путь</sys:String>
     <sys:String x:Key="LOCOKLabel">ОК</sys:String>
@@ -237,6 +240,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Сетка просмотра деталей положения</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Положение панели фильтра</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Положение панели проводника</sys:String>
