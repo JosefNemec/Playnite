@@ -36,7 +36,7 @@
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Сообщить о проблеме</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Перезагрузить</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Закрыть</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Убрать игру(ы)?</sys:String>
@@ -140,7 +140,7 @@
     <sys:String x:Key="LOCPatronsLabel">Меценаты</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Лицензия</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Авторы</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite закрывается...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Сегодня</sys:String>
     <sys:String x:Key="LOCYesterday">Вчера</sys:String>
     <sys:String x:Key="LOCMonday">Понедельник</sys:String>
@@ -228,7 +228,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuAddGameManual">Вручную</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Импортировать установленные/из папки</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Импортировать эмулированные игры</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows Store Game...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">О Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Отправить отзыв</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Запустить полноэкранный режим</sys:String>
@@ -415,12 +415,10 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCFirstUplayIntegration">Интеграция с Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Импортировать категории из аккаунта:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Остальные игры</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Нажмите кнопку ниже для импорта других установленных игр или для их просмотра вручную (включая игры в Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Импортировать игры</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Конфигурация завершена</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Начальная настройка завершена. Помните, что вы можете изменить все настройки позже через меню "Настройки".
-
-Вы также можете добавить любую другую игру позже из главного меню, нажав на логотип приложения Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Открыть руководство по импорту эмуляции</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -649,7 +647,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPlayActionUsePlugin">Управляется плагином библиотеки</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Процесс запуска игры будет управляться библиотечным плагином, ответственным за эту игру.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Не найдена соответствующая информация об игре '{0}' на конкретной странице.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
