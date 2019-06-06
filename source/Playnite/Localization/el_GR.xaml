@@ -38,6 +38,7 @@
     <sys:String x:Key="LOCCrashRestartPlaynite">Επανεκκινήση Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Κλείσιμο Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Κατάργηση παιχνιδιών?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Δεν είναι δυνατή η κατάργηση παιχνιδιού που εκτελείται ή εγκαθίσταται / απεγκαθίσταται.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Δεν είναι δυνατή η απεγκατάσταση του παιχνιδιού που εκτελείται.</sys:String>
@@ -96,7 +97,9 @@
     <sys:String x:Key="LOCMostPlayedLabel">Παίχτηκαν περισσότερο </sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Μετρητής παιχνιδιού</sys:String>
     <sys:String x:Key="LOCAddedLabel">Προστέθηκε</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Τροποποιήθηκε</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Δικτυακός τόπος</sys:String>
     <sys:String x:Key="LOCPathLabel">Διαδρομή</sys:String>
     <sys:String x:Key="LOCOKLabel"></sys:String>
@@ -237,6 +240,9 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
