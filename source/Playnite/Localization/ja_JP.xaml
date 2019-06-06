@@ -36,7 +36,7 @@
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">クラッシュレポート</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite を再起動</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Playnite を終了</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">ゲームを削除しますか？</sys:String>
@@ -140,7 +140,7 @@
     <sys:String x:Key="LOCPatronsLabel">パトロン</sys:String>
     <sys:String x:Key="LOCLicenseLabel">ライセンス</sys:String>
     <sys:String x:Key="LOCContributorsLabel">寄稿者</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite を終了します</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">今日</sys:String>
     <sys:String x:Key="LOCYesterday">昨日</sys:String>
     <sys:String x:Key="LOCMonday">月曜日</sys:String>
@@ -228,7 +228,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCMenuAddGameManual">手動追加</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">自動スキャン</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">エミュレータのゲームを追加</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windowsストアのゲームを追加</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite について</sys:String>
     <sys:String x:Key="LOCMenuIssues">フィードバックを送信</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">フルスクリーンモードに切り替え</sys:String>
@@ -412,12 +412,10 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay統合</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">アカウントからカテゴリーをインポートします。</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">その他のゲーム</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">下のボタンをクリックして、インストールされている他のゲームをインポートするか、手動で参照してください(Windowsストアゲームを含む)。</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">ゲームのインポート</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">設定完了</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初期設定が完了しました。後で '設定'メニューからすべての設定を変更できます。
-
-Playniteアプリケーションのロゴをクリックして、メインメニューから他のゲーム(Windowsストアゲームを含む)を後で追加することもできます。</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">エミュレーションインポートガイドを開く</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -647,7 +645,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCPlayActionUsePlugin">ライブラリプラグインで管理</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">ゲームの開始プロセスは、このゲームを担当するライブラリプラグインによって管理されます。</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">特定のページでゲーム '{0}'に関する適切な情報は見つかりませんでした。</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">ヒント：[編集]メニューオプションを使用して単一のゲームを編集しながら、より高度なメタデータダウンロードプロセスを使用できます。</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">何らかのアクションが進行中のときは利用できません。</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">説明テキストはHTML構文に依存します</sys:String>
