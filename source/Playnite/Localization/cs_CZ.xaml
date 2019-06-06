@@ -42,6 +42,7 @@ Pokud nám chcete pomoci tento problém napravit, odešlete prosím diagnostick�
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartovat Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Zavřít Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Odstranit hru(y)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nelze odstranit hru která je spuštěná nebo která se instaluje/odinstalovává.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nelze odinstalovat hru která je spuštěná.</sys:String>
@@ -100,7 +101,9 @@ Automaticky importované hry se po dalším importování znovu objeví v Playni
     <sys:String x:Key="LOCMostPlayedLabel">Nejvíce hrané</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Počet zahrání</sys:String>
     <sys:String x:Key="LOCAddedLabel">Přidáno</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Změněno</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Webová stránka</sys:String>
     <sys:String x:Key="LOCPathLabel">Cesta</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -241,6 +244,9 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuSuspendSystem">Uspat systém</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Pozice detailů v zobrazení mřížky</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Pozice panelu s filtry</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Pozice panelu průzkumníka</sys:String>
