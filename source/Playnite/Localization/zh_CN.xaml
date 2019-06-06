@@ -38,6 +38,7 @@
     <sys:String x:Key="LOCCrashRestartPlaynite">重新启动Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">关闭Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">删除游戏？</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">无法删除正在运行或正在安装/卸载的游戏</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">无法卸载正在运行的游戏</sys:String>
@@ -96,7 +97,9 @@
     <sys:String x:Key="LOCMostPlayedLabel">启动最多</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">启动次数</sys:String>
     <sys:String x:Key="LOCAddedLabel">已添加</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">已修改</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">网页</sys:String>
     <sys:String x:Key="LOCPathLabel">路径</sys:String>
     <sys:String x:Key="LOCOKLabel">好的</sys:String>
@@ -237,6 +240,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">网格视图详细位置</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">过滤面板位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">浏览器面板位置</sys:String>
