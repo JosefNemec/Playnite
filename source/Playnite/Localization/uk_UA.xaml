@@ -36,7 +36,7 @@
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Сповістити про проблему</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Перезавантажити Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Закрити Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Прибрати ігри?</sys:String>
@@ -140,7 +140,7 @@
     <sys:String x:Key="LOCPatronsLabel">Меценати</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Ліцензія</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Автори</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Закриваємо Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Сьогодні</sys:String>
     <sys:String x:Key="LOCYesterday">Вчора</sys:String>
     <sys:String x:Key="LOCMonday">Понеділок</sys:String>
@@ -415,9 +415,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Імпортувати ігри</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Конфігурацію завершено</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Початкове налаштування завершено. Пам'ятайте, що ви можете змінити всі налаштування пізніше через меню "Налаштування".
-
-Ви також можете додати будь-які інші ігри пізніше з головного меню, натиснувши на логотип програми Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -642,7 +640,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCPlayActionUsePlugin">Управляється плагіном бібліотеки</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Процес запуску гри буде керуватися бібліотечним плагіном, відповідальним за цю гру.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Не знайдено відповідну інформацію про гру '{0}' на даній сторінці.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Порада: Ви можете використовувати більш просунутий процес завантаження метаданих під час редагування однієї гри за допомогою опції меню "Редагувати".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, коли виконується деяка дія.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст опису чутливий до синтаксису HTML</sys:String>
