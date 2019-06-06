@@ -36,7 +36,7 @@
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Playnite 종료</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 삭제하시겠습니까?</sys:String>
@@ -140,7 +140,7 @@
     <sys:String x:Key="LOCPatronsLabel">후원자</sys:String>
     <sys:String x:Key="LOCLicenseLabel">라이센스</sys:String>
     <sys:String x:Key="LOCContributorsLabel">기여자</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite 종료하는 중...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">오늘</sys:String>
     <sys:String x:Key="LOCYesterday">어제</sys:String>
     <sys:String x:Key="LOCMonday">월요일</sys:String>
@@ -228,7 +228,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuAddGameManual">직접 추가</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">자동으로 스캔...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">에뮬레이터 게임...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows Store 게임...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite에 관하여</sys:String>
     <sys:String x:Key="LOCMenuIssues">피드백 보내기</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">전체 화면 모드 시작</sys:String>
