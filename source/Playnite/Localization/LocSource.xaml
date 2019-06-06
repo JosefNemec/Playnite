@@ -9,7 +9,7 @@
     <sys:String x:Key="LOCExitAppLabel">Exit</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters">Aditional filters</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Additional filters</sys:String>
     <sys:String x:Key="LOCFilters">Filters</sys:String>
     <sys:String x:Key="LOCFilter">Filter</sys:String>
 
