@@ -42,6 +42,7 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCCrashRestartPlaynite">Uudelleenkäynnistä Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sulje Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager">Kirjastomanageri</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Poista peli(t)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Käynnissä tai kesken asennuksen/poiston olevaa peliä ei voi poistaa.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Käynnissä olevaa peliä ei voi poistaa.</sys:String>
@@ -100,7 +101,9 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCMostPlayedLabel">Eniten pelattu</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Pelikerrat</sys:String>
     <sys:String x:Key="LOCAddedLabel">Lisätty</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Lisäyspäivä</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Muokattu</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Muokkauspäivä</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Verkkosivusto</sys:String>
     <sys:String x:Key="LOCPathLabel">Polku</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -241,6 +244,9 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCMenuSuspendSystem">Aseta järjestelmä valmiustilaan</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Puuttuva pelin kuvakkeen lähde</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuttuva pelin kannen lähde</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Sisennä pelin tiedot</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Ruudukkonäkymän tietojen paikka</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Suodatinpaneelin paikka</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Selaimen paneelin paikka</sys:String>
