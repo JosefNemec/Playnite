@@ -36,7 +36,7 @@ Neurčité - Žiadné zmeny (počas upravovania viacerích hier)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Nahlásiť chybu</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reštartovať Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Zavrieť Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Zmazať Hru(y)?</sys:String>
@@ -412,9 +412,7 @@ Tip: Pokiaľ chcete synchronizovať knižnicu medzi viacerími počítačmi, umi
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importovať Hry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurácia dokončená</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Úvodné nastavenie bolo dokončené. Všetky nastavenia môžte neskôr zmeniť v menu Nastavení.
-
-Neskôr tiež môžte pridať inú hru(y) z hlavného menu kliknutím na logo aplikácie Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -638,7 +636,7 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Na tejto stránke sa o hre '{0}' nenašli žiadne relevantné informácie.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Typ: Môžte použiť pokročilejší proces sťahovania dát metadata počas upravovania jednej hry pomocou menu "Upraviť..</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nieje dostupné počas prebiehajúcej akcie.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
