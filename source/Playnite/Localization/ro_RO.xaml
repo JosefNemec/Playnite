@@ -40,6 +40,7 @@ Dacă dorești să ne ajuți, te rog generează un pachet de diagnostic și folo
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartează Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Închide Playnite</sys:String>
 
+    <sys:String x:Key="LOCLibraryManager">Managerul Librăriei</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Înlătură Joc(uri)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nu se poate înlătura jocul care rulează sau care este instalat/dezinstalat.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nu se poate dezinstala un joc care rulează.</sys:String>
@@ -98,7 +99,9 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCMostPlayedLabel">Cele mai jucate</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Total redat</sys:String>
     <sys:String x:Key="LOCAddedLabel">Adăugat</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Data Adăugării</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificat</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Data Modificării</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Locație</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -239,6 +242,9 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendare Sistem</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Nu s-a putut găsi sursa iconiței jocului</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Nu s-a putut găsi sursa coperții jocului</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Indentați detaliile jocului</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Poziția panoului de detalii în modul de vizualizare copertă</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Poziția Panoului de Filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Poziția Panoului de Căutare</sys:String>
@@ -307,11 +313,11 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Activarea acestei opțiuni vă va oferi funcționalitați precum salvări Cloud, durata de joacă etc.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">Acțiunea aceasta v-a suprascrie categoriile prezente în toate jocurile de Steam. Doriți să continuați?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importă Categorii?</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nu s-a putut importa categoriile, contul pentru import nu este selectat.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nu s-a putut importa categoriile, baza de date nu este deschisă.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Nu s-a putut importa următoarele categorii de pe Steam: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Nu s-a putut importa informațiile ultimului joc, contul pentru import nu este selectat.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Nu s-a putut importa informațiile ultimului joc, baza de date nu este deschisă.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Opțiunea aceasta vă v-a deloga de pe toate serviciile conectate. Repornirea aplicației este necesară, doriți să continuați?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Curățați Cache-ul?</sys:String>
