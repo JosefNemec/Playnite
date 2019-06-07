@@ -52,8 +52,7 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{Binding IconSource, Mode=OneWay}"
                                                RenderOptions.BitmapScalingMode="HighQuality" Width="18"/>
-                                        <TextBlock Text="{Binding Item.Name, Mode=OneWay}" Margin="5,0,0,0"
-                                                   Foreground="{StaticResource TextBrush}" />
+                                        <TextBlock Text="{Binding Item.Name, Mode=OneWay}" Margin="5,0,0,0" />
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -61,8 +60,7 @@
                         <GridViewColumn Header="{DynamicResource LOCPathLabel}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="0,1,0,1"
-                                               Foreground="{StaticResource TextBrush}"/>
+                                    <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="0,1,0,1"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -95,6 +93,7 @@
                 <Grid>
                     <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
                     <TextBlock Text="{DynamicResource LOCEmuWizardScanning}"
+                               Style="{DynamicResource BaseTextBlockStyle}"   
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
                 <Button Content="{DynamicResource LOCCancelLabel}"  Margin="10,0,0,0"

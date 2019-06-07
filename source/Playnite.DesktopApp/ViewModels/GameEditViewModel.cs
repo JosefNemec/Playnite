@@ -854,7 +854,7 @@ namespace Playnite.DesktopApp.ViewModels
             get;
         }
 
-        public LibraryPlugin LibraryPlugin => extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == game.PluginId);
+        public LibraryPlugin LibraryPlugin => extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == game?.PluginId);
 
         public RelayCommand<object> ConfirmCommand
         {

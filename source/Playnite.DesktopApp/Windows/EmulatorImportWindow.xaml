@@ -135,7 +135,7 @@
                                 <GridViewColumn Header="{DynamicResource LOCNameLabel}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5" Foreground="{StaticResource TextBrush}"/>
+                                            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -289,7 +289,9 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
                     <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-                    <TextBlock Text="{DynamicResource LOCEmuWizardScanning}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{DynamicResource LOCEmuWizardScanning}" 
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
                 <Button Content="{DynamicResource LOCCancelLabel}"  Margin="10,0,0,0"
                         Command="{Binding CancelProgressCommand}"/>

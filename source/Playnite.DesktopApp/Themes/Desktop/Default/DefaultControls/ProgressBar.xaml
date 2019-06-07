@@ -8,7 +8,7 @@
 
     <Style TargetType="{x:Type ProgressBar}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}"/>
         <Setter Property="Background" Value="{DynamicResource NormalBrushDark}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}"/>
         <Setter Property="Template">
@@ -45,9 +45,9 @@
                                 <BeginStoryboard>
                                     <Storyboard RepeatBehavior="Forever">
                                         <DoubleAnimation Storyboard.TargetName="HiderPreTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                         To="1" Duration="0:00:4" AutoReverse="True"/>
+                                                         To="1" Duration="0:00:2" AutoReverse="True"/>
                                         <DoubleAnimation Storyboard.TargetName="HiderPostTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                         To="0" Duration="0:00:4" AutoReverse="True"/>
+                                                         To="0" Duration="0:00:2" AutoReverse="True"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>

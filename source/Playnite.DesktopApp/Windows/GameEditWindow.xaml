@@ -479,21 +479,29 @@
                                 SelectedDate="{Binding EditingGame.Added}"/>
 
                     <!-- Modified -->
-                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{DynamicResource LOCModifiedLabel}" />
+                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{DynamicResource LOCModifiedLabel}"
+                               Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <TextBlock Grid.Column="2" Grid.Row="9" Margin="3,6,3,6"
+                               Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                              Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
 
                     <!-- GameId -->
-                    <TextBlock Grid.Column="4" Grid.Row="0" Text="{DynamicResource LOCGameId}" />
-                    <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding EditingGame.GameId}" IsReadOnly="True" />
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="{DynamicResource LOCGameId}"
+                               Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding EditingGame.GameId}" IsReadOnly="True"
+                               Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                     <!-- Internal Id -->
-                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{DynamicResource LOCDatabaseId}" />
-                    <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding EditingGame.Id}" IsReadOnly="True" />
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{DynamicResource LOCDatabaseId}"
+                               Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding EditingGame.Id}" IsReadOnly="True"
+                               Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                     <!-- Library -->
-                    <TextBlock Grid.Column="4" Grid.Row="2" Text="{DynamicResource LOCGameProviderTitle}" />
-                    <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding LibraryPlugin.Name, FallbackValue='Playnite'}" />
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="{DynamicResource LOCGameProviderTitle}"
+                               Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding LibraryPlugin.Name, FallbackValue='Playnite'}"
+                               Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </Grid>               
             </TabItem>
             
@@ -794,7 +802,8 @@
 
         <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-            <TextBlock Text="{DynamicResource LOCDownloadingLabel}"
+            <TextBlock Text="{DynamicResource LOCDownloadingLabel}"                       
+                       Style="{DynamicResource BaseTextBlockStyle}"   
                        HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
     </Grid>

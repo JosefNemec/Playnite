@@ -19,7 +19,7 @@
         <ProgressBar Height="35" IsIndeterminate="True" />
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    TextTrimming="CharacterEllipsis"
-                   Style="{DynamicResource BaseTextBlockStyle}"
+                   Style="{DynamicResource BaseTextBlockStyle}"                   
                    Text="{Binding ProgressText}"/>
     </Grid>
 </controls:WindowBase>

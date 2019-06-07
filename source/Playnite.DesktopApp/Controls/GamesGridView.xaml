@@ -75,17 +75,14 @@
         <ListView.ItemContainerStyle>
             <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
                 <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseDoubleClick" />
-                <Setter Property="FontSize" Value="12" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsInstalled}" Value="True">
-                        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding IsInstalled}" Value="False">
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsInstalled}" Value="False" />
+                            <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="False" />
+                        </MultiDataTrigger.Conditions>
                         <Setter Property="Foreground" Value="{StaticResource TextBrushDarker}" />
-                    </DataTrigger>
-                    <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-                    </Trigger>
+                    </MultiDataTrigger>
                 </Style.Triggers>
             </Style>
         </ListView.ItemContainerStyle>
