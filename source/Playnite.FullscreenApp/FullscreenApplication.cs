@@ -106,6 +106,8 @@ namespace Playnite.FullscreenApp
 
         private async void OpenMainViewAsync()
         {
+            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
 

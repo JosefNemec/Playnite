@@ -124,8 +124,6 @@ namespace Playnite.DesktopApp
                 new ResourceProvider(),
                 new NotificationsAPI());
             Extensions = new ExtensionFactory(Database, Controllers);
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             GamesEditor = new DesktopGamesEditor(
                 Database,
                 Controllers,
@@ -176,6 +174,8 @@ namespace Playnite.DesktopApp
                 logger.Error(e, "Failed to load third party tools.");
             }
 
+            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;  
 

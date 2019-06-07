@@ -11,7 +11,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="510" Width="630" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
+        Height="540" Width="650" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
         AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>
@@ -92,8 +92,8 @@
                 </DockPanel>                
             </TabItem>
 
-            <!-- Layout -->            
-            <TabItem>
+            <!-- Layout -->
+            <TabItem Visibility="Collapsed">
                 <StackPanel Margin="20">
                     <TextBlock Text="{DynamicResource LOCFirstConfigGridViewLayout}"
                                VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
