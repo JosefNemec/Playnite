@@ -15,7 +15,7 @@
     <sys:String x:Key="LOCInvalidDataTitle">Ungültige Daten</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Änderungen speichern?</sys:String>
     
-    <sys:String x:Key="LOCAboutHomePageLink">www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Homepage: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Quellcode auf GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Diagnosedaten erstellen</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Diag.-Informationen senden</sys:String>
@@ -23,7 +23,7 @@
     <sys:String x:Key="LOCAboutAuthor">von Josef Němec</sys:String>
 
     <sys:String x:Key="LOCCategoryWindowTitle">Kategorie zuweisen</sys:String>
-    <sys:String x:Key="LOCCategorySetButton">Kategorien speichern</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">Kategorien festlegen</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Kategorie hinzufügen</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Aktiv - Spiel zur Kategorie hinzufügen
 Inaktiv - Spiel aus Kategorie entfernen
@@ -44,31 +44,31 @@ Falls du uns beim Beheben dieses Problems helfen möchtest, sende bitte Diagnose
 
     <sys:String x:Key="LOCLibraryManager">Bibliotheksverwaltung</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Spiel(e) entfernen?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">Fehler beim Entfernen des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">Fehler beim Deinstallieren des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Bist du sicher, dass du dieses Spiel entfernen möchtest?
+    <sys:String x:Key="LOCGameRemoveRunningError">Spiel kann nicht entfernt werden, da es gerade läuft oder (de-)installiert wird.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Derzeit laufende Spiele können nicht deinstalliert werden.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Möchtest du dieses Spiel wirklich entfernen?
         
-Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, beim nächsten Import wieder automatisch in deiner Spieleliste erscheinen.</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Bist du sicher, dass du diese {0} Spiele entfernen möchtest?
+Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, beim nächsten Importvorgang eventuell erneut in Playnite.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Möchtest du wirklich {0} Spiele entfernen?
         
-Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, beim nächsten Import wieder automatisch in deiner Spieleliste erscheinen.</sys:String>
+Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, beim nächsten Importvorgang eventuell erneut in Playnite.</sys:String>
 
-    <sys:String x:Key="LOCSteamFriendsTooltip">Steam-Freundesliste</sys:String>
+    <sys:String x:Key="LOCSteamFriendsTooltip">Steam-Freunde</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Abschnitt enthält zu speichernde Änderungen</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Bibliotheksformat wird aktualisiert …</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Datenbankaktualisierung gescheitert.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Fehler bei der Datenbankaktualisierung.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Spielebibliothek kann nicht aktualisiert werden. Es werden {0} MB freier Speicherplatz benötigt.</sys:String>
 
     <sys:String x:Key="LOCGameError">Spielfehler</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Spiel kann nicht gestartet werden: »{0}« wurde in der Datenbank nicht gefunden.</sys:String>
-    <sys:String x:Key="LOCGameStartError">Fehler beim Starten des Spiels: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartError">Spiel kann nicht gestartet werden: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Fehler beim Ausführen der Aktion: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Fehler beim Öffnen des Installationspfades: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Fehler beim Erstellen der Verknüpfung: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Spiel kann nicht installiert werden: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Spiel kann nicht deinstalliert werden: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Das Bibliotheks-Plugin für dieses Spiel ist nicht installiert oder deaktiviert.</sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader">Offizielle Metadaten sind nicht zum Herunterladen verfügbar.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Keine offizielle Unterstützung zum Herunterladen von Metadaten verfügbar.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Kein Spiel ausgewählt.</sys:String>
 
 
@@ -100,10 +100,10 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCLastPlayedLabel">Zuletzt gespielt</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Spielzeit</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Spielhäufigkeit</sys:String>
-    <sys:String x:Key="LOCAddedLabel">Hinzufügedatum</sys:String>
+    <sys:String x:Key="LOCAddedLabel">Hinzugefügt</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Hinzufügedatum</sys:String>
-    <sys:String x:Key="LOCModifiedLabel">Änderungsdatum</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel">Veränderungsdatum</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">Geändert</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Änderungsdatum</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Pfad</sys:String>
     <sys:String x:Key="LOCOKLabel">Okay</sys:String>
@@ -141,7 +141,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCDetailsLabel">Details</sys:String>
     <sys:String x:Key="LOCCustomLabel">Benutzerdefiniert</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">Unterstützer</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lizenz</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Mitwirkende</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite wird beendet …</sys:String>
@@ -167,13 +167,13 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCRow">Zeile</sys:String>
     <sys:String x:Key="LOCRows">Zeilen</sys:String>
     
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
-{InstallDir} - Installationspfad des Spiels
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Folgende Variablen können verwendet werden:
+{InstallDir} - Installationsverzeichnis des Spiels
 {InstallDirName} - Name des Installationsverzeichnisses
 {ImagePath} - Pfad zur ISO/ROM des Spiels, falls vorhanden
 {ImageName} - Dateiname vom ISO/ROM des Spiels
 {ImageNameNoExt} - Dateiname vom ISO/ROM des Spiels (ohne Dateiendung)
-{PlayniteDir} - Playnite Installationspfad
+{PlayniteDir} - Playnites Installationsverzeichnis
 {Name} - Name des Spiels
         
 Beispiel: -image "{ImagePath}" -fullscreen
@@ -185,7 +185,7 @@ Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Das Aktivieren dieser Option führt dazu, dass bereits befüllte Felder nicht überschrieben werden.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spieleauswahl</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Bitte wähle die Spiele aus, für die die Metadaten aktualisiert werden sollen:</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceAll">Alle Spiele in Datenbank</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceAll">Alle Spiele der Datenbank</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Angezeigte Spiele</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Ausgewählte Spiele</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Offizieller Shop</sys:String>
