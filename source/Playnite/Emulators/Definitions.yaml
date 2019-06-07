@@ -179,7 +179,7 @@
     - Name: Default
       DefaultArguments: '"{ImagePath}" -fullscreen'
       Platforms: [Super Nintendo Entertainment System]
-      ImageExtensions: [zip, gz, jma, sfc]
+      ImageExtensions: [zip, gz, jma, sfc, smc]
       ExecutableLookup: ^snes9x.*\.exe
 
 - Name: ZSNES
