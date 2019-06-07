@@ -1054,6 +1054,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             GameListFocused = true;
             isInitialized = true;
+            Extensions.NotifiyOnApplicationStarted();
         }
 
         public void SelectGame(Guid id)

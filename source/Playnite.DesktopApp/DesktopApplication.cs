@@ -165,6 +165,9 @@ namespace Playnite.DesktopApp
 
         private async void OpenMainViewAsync(bool isFirstStart)
         {
+            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
+
             try
             {
                 MainModel.ThirdPartyTools = ThirdPartyToolsList.GetTools(Extensions.LibraryPlugins);
@@ -174,8 +177,6 @@ namespace Playnite.DesktopApp
                 logger.Error(e, "Failed to load third party tools.");
             }
 
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;  
 
