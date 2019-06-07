@@ -1,4 +1,13 @@
-﻿- Name: Locale Emulator
+﻿- Name: FightCade
+  Website: 'https://www.fightcade.com/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImageNameNoExt}"'
+      Platforms: [Various]
+      ImageExtensions: [zip, bin]
+      ExecutableLookup: ^ggpofba\.exe
+
+- Name: Locale Emulator
   Website: 'https://pooi.moe/Locale-Emulator/'
   Profiles:
     - Name: Default
