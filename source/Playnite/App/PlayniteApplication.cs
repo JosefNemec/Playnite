@@ -142,6 +142,15 @@ namespace Playnite
             {
                 ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
             }
+
+            try
+            {
+                Localization.SetLanguage(AppSettings.Language);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+            }
         }
 
         public abstract void InstantiateApp();
@@ -306,15 +315,6 @@ namespace Playnite
 
         public void ConfigureApplication()
         {
-            try
-            {
-                Localization.SetLanguage(AppSettings.Language);
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
-            }
-
             HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
             if (AppSettings.DisableHwAcceleration)
             {
