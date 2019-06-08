@@ -99,6 +99,16 @@
                             </StackPanel>
                             <pctrls:SliderEx x:Name="PART_SliderRows"
                                        Margin="{StaticResource ItemMargin}" />
+                            
+                            <StackPanel Orientation="Horizontal"
+                                       Margin="{StaticResource ItemMargin}">
+                                <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}" Margin="0,0,5,0"
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+                                <TextBlock Text="{Binding Value, ElementName=PART_SliderItemSpacing}"
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+                            </StackPanel>
+                            <pctrls:SliderEx x:Name="PART_SliderItemSpacing"
+                                       Margin="{StaticResource ItemMargin}" />                            
 
                             <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
                                        Margin="{StaticResource ItemMargin}"

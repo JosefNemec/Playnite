@@ -9,7 +9,7 @@
                     xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp"
                     mc:Ignorable="d">
 
-    <Style x:Key="ListGameItem" TargetType="ListBoxItem">
+    <Style x:Key="ListGameItem" TargetType="ListBoxItem">        
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -17,10 +17,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
-                    <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
-                            Margin="14">
-                        <Grid>
-                            <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
+                    <Grid Margin="{pmrk:Settings FullscreenItemSpacingMargin}">                        
+                        <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                    VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Stretch="{pmrk:Settings CoverArtStretch}">
                                 <Image.Source>
@@ -37,6 +35,8 @@
                                        HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                                        TextAlignment="Center" Padding="5"                                    
                                        Background="{DynamicResource ControlBackgroundDarkBrush}"/>
+                            <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                                    Margin="-3"/>
                             <Border x:Name="MainBorder" BorderThickness="5" BorderBrush="{DynamicResource SelectionBrush}"
                                     Margin="-5" Visibility="Collapsed" CornerRadius="3">
                                 <Border.Effect>
@@ -48,10 +48,10 @@
                                 </Border.Effect>
                             </Border>
                         </Grid>
-                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Canvas.ZIndex" Value="90" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

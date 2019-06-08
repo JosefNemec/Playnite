@@ -29,6 +29,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ToggleHorizontalLayout", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_SliderColumns", Type = typeof(Slider))]
     [TemplatePart(Name = "PART_SliderRows", Type = typeof(Slider))]
+    [TemplatePart(Name = "PART_SliderItemSpacing", Type = typeof(Slider))]
     [TemplatePart(Name = "PART_SelectButtonPrompts", Type = typeof(Selector))]
     public class SettingsMenu : Control
     {
@@ -45,6 +46,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private ToggleButton ToggleHorizontalLayout;
         private Slider SliderColumns;
         private Slider SliderRows;
+        private Slider SliderItemSpacing;
 
         static SettingsMenu()
         {
@@ -234,6 +236,22 @@ namespace Playnite.FullscreenApp.Controls.Views
                          BindingMode.OneWay,
                          UpdateSourceTrigger.PropertyChanged,
                          new InvertedBoolenConverter());
+                }
+
+                SliderItemSpacing = Template.FindName("PART_SliderItemSpacing", this) as Slider;
+                if (SliderItemSpacing != null)
+                {
+                    SliderItemSpacing.Minimum = 0;
+                    SliderItemSpacing.Maximum = 40;
+                    SliderItemSpacing.TickFrequency = 1;
+                    SliderItemSpacing.IsSnapToTickEnabled = true;
+                    BindingTools.SetBinding(
+                       SliderItemSpacing,
+                       Slider.ValueProperty,
+                       mainModel.AppSettings,
+                       nameof(PlayniteSettings.FullscreenItemSpacing),
+                       BindingMode.TwoWay,
+                       UpdateSourceTrigger.PropertyChanged);
                 }
 
                 ToggleHorizontalLayout = Template.FindName("PART_ToggleHorizontalLayout", this) as ToggleButton;

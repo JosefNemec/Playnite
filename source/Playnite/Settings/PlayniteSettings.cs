@@ -19,7 +19,6 @@ using System.Windows;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using Playnite.Metadata;
-
 namespace Playnite
 {
     public enum AfterLaunchOptions
@@ -55,7 +54,7 @@ namespace Playnite
 
     public class PlayniteSettings : ObservableObject
     {
-        private static ILogger logger = LogManager.GetCurrentClassLogger();
+        private static SDK.ILogger logger = SDK.LogManager.GetLogger();
 
         public int Version
         {
@@ -280,6 +279,61 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private int gridItemSpacing = 8;
+        public int GridItemSpacing
+        {
+            get
+            {
+                return gridItemSpacing;
+            }
+
+            set
+            {
+                gridItemSpacing = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ItemSpacingMargin));
+            }
+        }
+
+        private int fullscreenItemSpacing = 20;
+        public int FullscreenItemSpacing
+        {
+            get
+            {
+                return fullscreenItemSpacing;
+            }
+
+            set
+            {
+                fullscreenItemSpacing = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(FullscreenItemSpacingMargin));
+            }
+        }
+
+        [JsonIgnore]
+        public Thickness ItemSpacingMargin
+        {
+            get
+            {
+                int marginX = GridItemSpacing / 2;
+                int marginY = ((int)CoverAspectRatio.GetWidth(GridItemSpacing) / 2);
+                return new Thickness(marginY, marginX, 0, 0);
+            }
+        }
+
+        [JsonIgnore]
+        public Thickness FullscreenItemSpacingMargin
+        {
+            get
+            {
+                int marginX = FullscreenItemSpacing / 2;
+                int marginY = ((int)CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2);
+                return new Thickness(marginY, marginX, 0, 0);
+            }
+        }
+
         private bool firstTimeWizardComplete;
         public bool FirstTimeWizardComplete
         {
@@ -894,7 +948,7 @@ namespace Playnite
             {
                 settings.Fullscreen = new FullscreenSettings();
             }
-
+            
             return settings;
         }
 
@@ -943,7 +997,7 @@ namespace Playnite
             var rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
             config.LoggingRules.Add(rule2);
 
-            LogManager.Configuration = config;
+            NLog.LogManager.Configuration = config;
         }
 
         public static string GetAppConfigValue(string key)

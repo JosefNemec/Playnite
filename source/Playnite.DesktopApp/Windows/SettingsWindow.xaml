@@ -430,7 +430,7 @@
                                     <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
                                                VerticalAlignment="Center"/>
                                     <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
-                                                           Margin="5,0,0,0"
+                                                           Margin="10,0,0,0"
                                                            Value="{Binding Settings.GridItemWidthRatio}"/>
                                     <TextBlock Text=":" VerticalAlignment="Center"
                                                Margin="2,0,2,0"/>
@@ -455,8 +455,14 @@
                                     <TextBlock Text="{DynamicResource LOCSettingsStrechModeLabel}" VerticalAlignment="Center" />
                                     <ContentControl DataContext="{Binding Settings}"
                                                 Content="{StaticResource ComboStrechOptions}"
-                                                MinWidth="140" Margin="5,0,0,0"
+                                                MinWidth="140" Margin="10,0,0,0"
                                                 VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}" VerticalAlignment="Center" />
+                                    <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+                                                           Value="{Binding Settings.GridItemSpacing}" />
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>

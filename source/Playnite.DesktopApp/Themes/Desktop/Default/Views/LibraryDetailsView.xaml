@@ -12,7 +12,7 @@
     <Style x:Key="MainListItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontSize" Value="15" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -22,7 +22,7 @@
                         <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed"
                                                         BorderThickness="5,0,0,0" BorderBrush="{DynamicResource GlyphBrush}"/>
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent">
-                            <ContentPresenter Margin="10,5,0,5"/>
+                            <ContentPresenter Margin="10,3,0,3"/>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -158,7 +158,7 @@
                                     Command="{pmrk:MainViewModel StartGameCommand, DirectValue=True}"
                                     CommandParameter="{Binding Game}"/>
                                         </DockPanel.InputBindings>
-                                        <Image Height="32" RenderOptions.BitmapScalingMode="Fant"
+                                        <Image Height="26" RenderOptions.BitmapScalingMode="Fant"
                             DockPanel.Dock="Left" Margin="0,0,8,0"
                             Visibility="{pmrk:Settings ShowIconsOnList}">
                                             <Image.Source>

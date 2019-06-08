@@ -60,14 +60,13 @@
                                     <Style TargetType="GridViewColumnHeader">
                                         <Setter Property="Visibility" Value="Collapsed" />
                                     </Style>
-                                    <Style TargetType="ListBoxItem">
-                                        <Setter Property="Margin" Value="8"/>
+                                    <Style TargetType="ListBoxItem">                                        
                                         <Setter Property="OverridesDefaultStyle" Value="True" />
                                         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                    <Grid Background="Transparent">
+                                                    <Grid Background="Transparent" Margin="{pmrk:Settings ItemSpacingMargin}">
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="*" />
                                                             <RowDefinition Height="Auto" />
