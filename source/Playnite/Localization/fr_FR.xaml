@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <sys:String x:Key="LanguageName">Anglais</sys:String>
+    <sys:String x:Key="LanguageName">Français</sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Langue de Playnite :</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Quitter</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Des filtres sont activés (cliquez pour basculer le panneau filtre)</sys:String>
