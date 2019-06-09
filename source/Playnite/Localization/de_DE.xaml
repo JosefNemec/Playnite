@@ -272,7 +272,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Alle Spiele importieren</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importieren aller Spiele (Privatsphäre des Profils muss auf »Öffentlich« gestellt oder ein API-Schlüssel verwendet werden)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Ungültiger Pfad zur Datenbank.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidAccountName">Kontenname darf nicht leer sein.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">Name des Benutzerkontos darf nicht leer sein.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Kein Steam-Konto für Bibliotheksimport ausgewählt.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Kein Steam-Konto für Kategorieimport ausgewählt.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Bibliothek beim Starten aktualisieren</sys:String>
