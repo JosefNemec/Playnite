@@ -365,8 +365,6 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
-            DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);
-            DatabaseExplorer = new DatabaseExplorer(database, extensions, AppSettings);
             ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested; ;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
@@ -836,6 +834,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         protected void InitializeView()
         {
+            DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings.FilterSettings);
+            DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
             ActiveView = new Controls.Views.Library();
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             () =>

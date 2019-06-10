@@ -396,8 +396,6 @@ namespace Playnite.FullscreenApp.ViewModels
             PlayniteApi = playniteApi;
             Extensions = extensions;
             ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += FullscreenAppViewModel_ActivationRequested;
-            DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);
-            DatabaseExplorer = new DatabaseExplorer(database, extensions, AppSettings);
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
             SetViewSizeAndPosition(IsFullScreen);
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
@@ -1023,6 +1021,8 @@ namespace Playnite.FullscreenApp.ViewModels
 
         protected void InitializeView()
         {
+            DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings.Fullscreen.FilterSettings);
+            DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             () =>
             {

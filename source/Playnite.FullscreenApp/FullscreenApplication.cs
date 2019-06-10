@@ -80,8 +80,6 @@ namespace Playnite.FullscreenApp
                 new ResourceProvider(),
                 new NotificationsAPI());
             Extensions = new ExtensionFactory(Database, Controllers);
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             GamesEditor = new GamesEditor(
                 Database,
                 Controllers,
