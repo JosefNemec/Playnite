@@ -183,7 +183,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Only download metadata for games missing them</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Enabling this option will skip download for a game if some data (for specific field) are already present.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Enabling this option will skip downloading metadata for data fields that already contain information.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Games selection</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Please select which games should to be updated with new metadata:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">All games from database</sys:String>
