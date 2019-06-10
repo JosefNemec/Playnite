@@ -8,11 +8,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Style="{StaticResource HighlightBorder}">
+                    <Border Style="{StaticResource HighlightBorder}" Background="{DynamicResource ButtonBackgroundBrush}">
                         <TextBlock Text="{Binding Text}"
                                    Style="{DynamicResource BaseTextBlockStyle}"
-                                   Margin="4" TextWrapping="Wrap"
-                                   MinHeight="48"/>
+                                   Margin="6" TextWrapping="Wrap"
+                                   MinHeight="38" />
                     </Border>                    
                 </ControlTemplate>
             </Setter.Value>
@@ -25,7 +25,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:NotificationPanel">
                     <DockPanel Background="{TemplateBinding Background}">
-                        <DockPanel Margin="10,8,5,12" DockPanel.Dock="Top">
+                        <DockPanel Margin="10,15,5,15" DockPanel.Dock="Top">
                             <TextBlock DockPanel.Dock="Right" Margin="0,0,5,0">
                                 <Hyperlink Command="{pmrk:MainViewModel CloseNotificationPanelCommand}">
                                     <Run Text="r" FontFamily="Marlett" />
@@ -33,7 +33,7 @@
                             </TextBlock>
                             <TextBlock DockPanel.Dock="Left">
                                 <Hyperlink Command="{Binding ClearMessagesCommand}">
-                                    <Run Text="{DynamicResource LOCClearFilters}" />
+                                    <Run Text="{DynamicResource LOCDismissAll}" />
                                 </Hyperlink>
                             </TextBlock>
                         </DockPanel>
@@ -45,7 +45,7 @@
                                     <DataTemplate>
                                         <Button Style="{StaticResource NotificationMessage}"
                                                 Command="{Binding ActivateCommand}"
-                                                Margin="2,5,2,5" />
+                                                Margin="5,5,5,0" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

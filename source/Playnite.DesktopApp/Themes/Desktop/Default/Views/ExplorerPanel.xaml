@@ -4,26 +4,42 @@
                     xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
                     xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                    xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf">    
+                    xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+                    xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">    
 
     <Style TargetType="{x:Type views:ExplorerPanel}">
         <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:ExplorerPanel}">
-                    <DockPanel Background="{TemplateBinding Background}">
-                        <ComboBox DockPanel.Dock="Top" Margin="5"
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Margin="0,-50,0,0">
+                        <DockPanel Margin="0,40,0,0">
+                            <ComboBox DockPanel.Dock="Top" Margin="5,8,5,8"
                                   SelectedValue="{Binding SelectedField}"
                                   ItemsSource="{Binding Fields}"/>
-                        <ListBox DockPanel.Dock="Top" Margin="5"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                 DisplayMemberPath="Name"
-                                 SelectedItem="{Binding SelectedFieldObject}"
-                                 ItemsSource="{Binding FieldValues}">
-                        </ListBox>
-                    </DockPanel>                    
+                            <ListBox DockPanel.Dock="Top" Margin="5,0,5,8" 
+                                     Width="280"
+                                     BorderThickness="0"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     DisplayMemberPath="Name"
+                                     SelectedItem="{Binding SelectedFieldObject}"
+                                     ItemsSource="{Binding FieldValues}">
+                            </ListBox>
+                        </DockPanel>
+                    </Border>                   
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
+                <Setter Property="Background" Value="Transparent" />
+            </DataTrigger>
+            <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                <Setter Property="Background" Value="Transparent" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

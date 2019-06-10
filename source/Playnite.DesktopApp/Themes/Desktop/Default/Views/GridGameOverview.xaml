@@ -8,128 +8,130 @@
                     xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
                     xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite">    
 
-    <Style TargetType="{x:Type views:GridGameOverview}">        
+    <Style TargetType="{x:Type views:GridGameOverview}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:GridGameOverview}">                    
-                    <DockPanel>
-                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
+                <ControlTemplate TargetType="{x:Type views:GridGameOverview}">
+                    <Border Padding="10,0,5,0">
+                        <DockPanel>
+                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
                                    DockPanel.Dock="Top" Margin="0,10,15,5">
                             <Hyperlink Command="{pmrk:MainViewModel CloseGameSideBarCommand}">
                                 <Run Text="r" FontFamily="Marlett" />
                             </Hyperlink>
-                        </TextBlock>
+                            </TextBlock>
 
-                        <TextBlock Text="{DynamicResource LOCErrorNoGameSelected}" 
+                            <TextBlock Text="{DynamicResource LOCErrorNoGameSelected}" 
                                    Margin="0,20,0,0" DockPanel.Dock="Top"
                                    HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                    <Style.Triggers>
-                                        <Trigger Property="DataContext" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-
-                        <DockPanel DockPanel.Dock="Top">
-                            <DockPanel.Style>
-                                <Style TargetType="DockPanel">
-                                    <Style.Triggers>
-                                        <Trigger Property="DataContext" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </DockPanel.Style>
-                            <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
-                       Source="{Binding Game.IconObject}" />
-                            <TextBlock Text="{Binding Game.DisplayName}" FontSize="20" Margin="10,0,0,0" TextWrapping="Wrap"
-                            DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
-                                <TextBlock.Effect>
-                                    <DropShadowEffect ShadowDepth="3"/>
-                                </TextBlock.Effect>
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <Trigger Property="DataContext" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
                             </TextBlock>
-                        </DockPanel>
 
-                        <StackPanel DockPanel.Dock="Top" Margin="0,20,0,0" Orientation="Horizontal" Height="35">
-                            <StackPanel.Style>
-                                <Style TargetType="StackPanel">
-                                    <Style.Triggers>
-                                        <Trigger Property="DataContext" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </StackPanel.Style>
-                            <Button MinWidth="120" Content="{DynamicResource LOCPlayGame}" Style="{StaticResource PlayButton}"
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel.Style>
+                                    <Style TargetType="DockPanel">
+                                        <Style.Triggers>
+                                            <Trigger Property="DataContext" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DockPanel.Style>
+                                <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
+                       Source="{Binding Game.IconObject}" />
+                                <TextBlock Text="{Binding Game.DisplayName}" FontSize="20" Margin="10,0,0,0" TextWrapping="Wrap"
+                            DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect ShadowDepth="3"/>
+                                    </TextBlock.Effect>
+                                </TextBlock>
+                            </DockPanel>
+
+                            <StackPanel DockPanel.Dock="Top" Margin="0,20,0,0" Orientation="Horizontal" Height="35">
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Style.Triggers>
+                                            <Trigger Property="DataContext" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                                <Button MinWidth="120" Content="{DynamicResource LOCPlayGame}" Style="{StaticResource PlayButton}"
                             Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding PlayCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCInstallGame}"
+                                <Button MinWidth="120" Content="{DynamicResource LOCInstallGame}"
                             Visibility="{Binding IsInstallAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding InstallCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"
+                                <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"
                             Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding CheckSetupCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCUninstalling}"
+                                <Button MinWidth="120" Content="{DynamicResource LOCUninstalling}"
                             Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding CheckSetupCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCGameRunning}"
+                                <Button MinWidth="120" Content="{DynamicResource LOCGameRunning}"
                             Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding CheckExecutionCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCGameLaunching}"
+                                <Button MinWidth="120" Content="{DynamicResource LOCGameLaunching}"
                             Visibility="{Binding IsLaunching, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding CheckExecutionCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCMoreAction}"
+                                <Button MinWidth="120" Content="{DynamicResource LOCMoreAction}"
                             Margin="15,0,0,0" pbeh:LeftClickContextMenuBehavior.Enabled="True">
-                                <Button.ContextMenu>
-                                    <pctrls:GameMenu DataContext="{pmrk:MainViewModel SelectedGame}"
+                                    <Button.ContextMenu>
+                                        <pctrls:GameMenu DataContext="{pmrk:MainViewModel SelectedGame}"
                                          Placement="Bottom" ShowStartSection="False" />
-                                </Button.ContextMenu>
-                            </Button>
-                        </StackPanel>
+                                    </Button.ContextMenu>
+                                </Button>
+                            </StackPanel>
 
-                        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                       VerticalScrollBarVisibility="Auto"
                                       Margin="0,15,0,0" DockPanel.Dock="Top">
-                            <ScrollViewer.Style>
-                                <Style TargetType="ScrollViewer">
-                                    <Style.Triggers>
-                                        <Trigger Property="DataContext" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ScrollViewer.Style>
-                            <StackPanel>
-                                <views:GameProperties IsTabStop="False" />
-                                <Border Margin="0,10,0,0">
-                                    <Border.Style>
-                                        <Style TargetType="Border" BasedOn="{StaticResource {x:Type Border}}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Game.Description}" Value="{x:Null}">
-                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Game.Description}" Value="">
-                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
-                                    <pctrlsShared:HtmlTextView HtmlText="{Binding Game.Description, Mode=OneWay}"
+                                <ScrollViewer.Style>
+                                    <Style TargetType="ScrollViewer">
+                                        <Style.Triggers>
+                                            <Trigger Property="DataContext" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ScrollViewer.Style>
+                                <StackPanel>
+                                    <views:GameProperties IsTabStop="False" />
+                                    <Border Margin="0,10,0,0">
+                                        <Border.Style>
+                                            <Style TargetType="Border" BasedOn="{StaticResource {x:Type Border}}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Game.Description}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Game.Description}" Value="">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <pctrlsShared:HtmlTextView HtmlText="{Binding Game.Description, Mode=OneWay}"
                                                                Visibility="{Binding DescriptionVisibility}"
                                         HtmlFontFamily="{DynamicResource FontFamily}"
                                         HtmlForeground="{DynamicResource TextColor}"
                                         LinkForeground="{DynamicResource GlyphColor}"
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
-                                </Border>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </DockPanel>
+                                    </Border>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </DockPanel>
+                    </Border>                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

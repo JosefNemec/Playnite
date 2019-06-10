@@ -54,6 +54,11 @@
                 <DockPanel>
                     <ListBox DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
                           Name="TreeSections" MinWidth="140">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
                         <ListBoxItem Content="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True">
                             <ListBoxItem.Tag>
                                 <sys:Int32>0</sys:Int32>
@@ -251,7 +256,7 @@
                                     <!--TODO update links -->
                                     <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                                         <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                                                   CommandParameter="https://www.reddit.com/r/playnite/comments/7o2bd2/custom_themes_database/">
+                                                   CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Themes">
                                             <Run Text="{DynamicResource LOCSettingsGetThemes}" />
                                         </Hyperlink>
                                     </TextBlock>
@@ -592,6 +597,11 @@
                                 <TextBlock Text="{Binding Value.Name}" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
                     </ListBox>
                     <ScrollViewer DockPanel.Dock="Left">
                         <ContentControl Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"
@@ -612,6 +622,11 @@
                                 <TextBlock Text="{Binding Value.Name}" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
                     </ListBox>
                     <ContentControl DockPanel.Dock="Left" Margin="20"
                                     Content="{Binding SelectedItem.Value.View, ElementName=TreeGenericPlugins}"/>

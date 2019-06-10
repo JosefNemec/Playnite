@@ -5,44 +5,76 @@
                     xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
                     xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
                     xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
-                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite">
+                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+                    xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite">
 
     <Style TargetType="{x:Type views:Library}">
         <Setter Property="Background" Value="Yellow" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:Library}">
-                    <DockPanel>
-                        <DockPanel.Resources>         
-                            <Storyboard x:Key="VisibilityOn">
-                                <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                 Storyboard.TargetName="FilterPanel"
-                                                 From="0" To="230" Duration="0:0:0.10" />
-                            </Storyboard>
-                            <Storyboard x:Key="VisibilityOff">
-                                <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                 Storyboard.TargetName="FilterPanel"
-                                                 From="230" To="0" Duration="0:0:0.10" />
-                            </Storyboard>
-                        </DockPanel.Resources>
-                        <views:FilterPanel x:Name="FilterPanel"
-                                    DockPanel.Dock="{pmrk:Settings FilterPanelPosition}" Width="230"
-                                    pbeh:AnimatedVisibility.Visibility="{pmrk:Settings FilterPanelVisible}"
-                                    pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
-                                    pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}">               
-                        </views:FilterPanel>
-                        <views:ExplorerPanel Visibility="{pmrk:Settings ExplorerPanelVisible}"
-                                             DockPanel.Dock="{pmrk:Settings ExplorerPanelPosition}"
-                                             Width="260" />
-                        <Grid DockPanel.Dock="Left">
-                            <views:LibraryDetailsView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"
-                                                        IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"/>
-                            <views:LibraryGridView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.Grid}}"
-                                                     IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.Grid}}"/>
-                            <views:LibraryListView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.List}}"
-                                                     IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.List}}"/>
-                        </Grid>
-                    </DockPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  />
+                        </Grid.ColumnDefinitions>
+                        
+                        <pctrlsShared:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
+                                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                            <pctrlsShared:FadeImage.Style>
+                                <Style TargetType="pctrlsShared:FadeImage">
+                                    <Setter Property="Source" Value="{x:Null}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="True">
+                                            <Setter Property="Source" Value="{Binding SelectedGame.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </pctrlsShared:FadeImage.Style>
+                        </pctrlsShared:FadeImage>
+
+                        <views:MainPanel DockPanel.Dock="Top" Grid.Row="0" Panel.ZIndex="90" />
+                        
+                        <DockPanel Grid.Row="1">
+                            <DockPanel.Resources>
+                                <Storyboard x:Key="VisibilityOn">
+                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetName="FilterPanel"
+                                                From="0" To="230" Duration="0:0:0.10" />
+                                </Storyboard>
+                                <Storyboard x:Key="VisibilityOff">
+                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetName="FilterPanel"
+                                                From="230" To="0" Duration="0:0:0.10" />
+                                </Storyboard>
+                            </DockPanel.Resources>
+
+                            <views:FilterPanel x:Name="FilterPanel"
+                                               BorderBrush="{DynamicResource NormalBrush}" BorderThickness="1,0,1,0"
+                                DockPanel.Dock="{pmrk:Settings FilterPanelPosition}" Width="250"
+                                pbeh:AnimatedVisibility.Visibility="{pmrk:Settings FilterPanelVisible}"
+                                pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
+                                pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}">
+                            </views:FilterPanel>
+                            <views:ExplorerPanel Visibility="{pmrk:Settings ExplorerPanelVisible}"
+                                            DockPanel.Dock="{pmrk:Settings ExplorerPanelPosition}"
+                                                 BorderBrush="{DynamicResource NormalBrush}" BorderThickness="1,0,1,0"/>
+                            <Grid DockPanel.Dock="Left">
+                                <views:LibraryDetailsView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"
+                                                    IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"/>
+                                <views:LibraryGridView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.Grid}}"
+                                                    IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.Grid}}"/>
+                                <views:LibraryListView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.List}}"
+                                                    IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.List}}"/>
+                            </Grid>
+                        </DockPanel>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

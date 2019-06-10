@@ -7,271 +7,283 @@
                     xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">    
 
     <Style TargetType="{x:Type views:FilterPanel}">
-        <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
+        <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:FilterPanel}">
                     <ControlTemplate.Resources>
                         <Style TargetType="Hyperlink" BasedOn="{StaticResource {x:Type Hyperlink}}" />
                     </ControlTemplate.Resources>
-
-                    <DockPanel Background="{TemplateBinding Background}">
-                        <DockPanel Margin="10,8,5,12" DockPanel.Dock="Top">
-                            <TextBlock DockPanel.Dock="Right" Margin="0,0,5,0">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"                            
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="0,-50,0,0">
+                        <DockPanel>
+                            <DockPanel Margin="10,48,5,12" DockPanel.Dock="Top">
+                                <TextBlock DockPanel.Dock="Right" Margin="0,0,5,0">
                                 <Hyperlink Command="{Binding CloseFilterPanelCommand}">
                                     <Run Text="r" FontFamily="Marlett" />
                                 </Hyperlink>
-                                        </TextBlock>
-                                        <TextBlock DockPanel.Dock="Left">
+                                </TextBlock>
+                                <TextBlock DockPanel.Dock="Left">
                                 <Hyperlink Command="{Binding ClearFiltersCommand}">
                                     <Run Text="{DynamicResource LOCClearFilters}" />
                                 </Hyperlink>
-                            </TextBlock>
-                        </DockPanel>
-                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+                                </TextBlock>
+                            </DockPanel>
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
                                       DockPanel.Dock="Top" Padding="0,0,0,15">
-                            <StackPanel>
-                                <StackPanel.Resources>
-                                    <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-                                        <Setter Property="Margin" Value="8,2,6,8" />
-                                        <Style.Triggers>
-                                            <Trigger Property="IsChecked" Value="False">
-                                                <Setter Property="Opacity" Value="0.6" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                    <Style x:Key="FilterLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-                                        <Setter Property="Margin" Value="8,10,6,4" />
-                                        <Style.Triggers>
-                                            <Trigger Property="Tag" Value="False">
-                                                <Setter Property="Opacity" Value="0.6"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                    <Style TargetType="pctrls:SearchBox">
-                                        <Setter Property="Margin" Value="8,0,6,0" />
-                                        <Setter Property="ShowImage" Value="False" />
-                                    </Style>
-                                    <Style TargetType="pctrls:FilterSelectionBox">
-                                        <Setter Property="Margin" Value="8,0,6,0" />
-                                    </Style>
-                                    <Style TargetType="pctrls:FilterEnumSelectionBox">
-                                        <Setter Property="Margin" Value="8,0,6,0" />
-                                    </Style>
-                                    <Style TargetType="pctrls:FilterStringSelectionBox">
-                                        <Setter Property="Margin" Value="8,0,6,0" />
-                                    </Style>
-                                </StackPanel.Resources>
+                                <StackPanel>
+                                    <StackPanel.Resources>
+                                        <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                                            <Setter Property="Margin" Value="8,2,6,8" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsChecked" Value="False">
+                                                    <Setter Property="Opacity" Value="0.6" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                        <Style x:Key="FilterLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                                            <Setter Property="Margin" Value="8,10,6,4" />
+                                            <Style.Triggers>
+                                                <Trigger Property="Tag" Value="False">
+                                                    <Setter Property="Opacity" Value="0.6"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                        <Style TargetType="pctrls:SearchBox">
+                                            <Setter Property="Margin" Value="8,0,6,0" />
+                                            <Setter Property="ShowImage" Value="False" />
+                                        </Style>
+                                        <Style TargetType="pctrls:FilterSelectionBox">
+                                            <Setter Property="Margin" Value="8,0,6,0" />
+                                        </Style>
+                                        <Style TargetType="pctrls:FilterEnumSelectionBox">
+                                            <Setter Property="Margin" Value="8,0,6,0" />
+                                        </Style>
+                                        <Style TargetType="pctrls:FilterStringSelectionBox">
+                                            <Setter Property="Margin" Value="8,0,6,0" />
+                                        </Style>
+                                    </StackPanel.Resources>
 
-                                <CheckBox Name="CheckFilterInstalled" IsChecked="{pmrk:Settings FilterSettings.IsInstalled, Mode=TwoWay}" Style="{StaticResource FilterCheck}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,0,5,0" />
-                                        <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=({0})}" />
-                                    </StackPanel>
-                                </CheckBox>
+                                    <CheckBox Name="CheckFilterInstalled" IsChecked="{pmrk:Settings FilterSettings.IsInstalled, Mode=TwoWay}" Style="{StaticResource FilterCheck}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
+                                    </CheckBox>
 
-                                <CheckBox Name="CheckFilterUnInstalled" IsChecked="{pmrk:Settings FilterSettings.IsUnInstalled, Mode=TwoWay}" Style="{StaticResource FilterCheck}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{DynamicResource LOCGameIsUnInstalledTitle}" Margin="0,0,5,0" />
-                                        <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=({0})}" />
-                                    </StackPanel>
-                                </CheckBox>
+                                    <CheckBox Name="CheckFilterUnInstalled" IsChecked="{pmrk:Settings FilterSettings.IsUnInstalled, Mode=TwoWay}" Style="{StaticResource FilterCheck}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource LOCGameIsUnInstalledTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
+                                    </CheckBox>
 
-                                <CheckBox Name="CheckFilterHidden" IsChecked="{pmrk:Settings FilterSettings.Hidden, Mode=TwoWay}" Style="{StaticResource FilterCheck}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{DynamicResource LOCGameHiddenTitle}" Margin="0,0,5,0" />
-                                        <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=({0})}" />
-                                    </StackPanel>
-                                </CheckBox>
+                                    <CheckBox Name="CheckFilterHidden" IsChecked="{pmrk:Settings FilterSettings.Hidden, Mode=TwoWay}" Style="{StaticResource FilterCheck}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource LOCGameHiddenTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
+                                    </CheckBox>
 
-                                <CheckBox Name="CheckFilterFavorite" IsChecked="{pmrk:Settings FilterSettings.Favorite, Mode=TwoWay}" Style="{StaticResource FilterCheck}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{DynamicResource LOCGameFavoriteTitle}" Margin="0,0,5,0" />
-                                        <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=({0})}" />
-                                    </StackPanel>
-                                </CheckBox>
+                                    <CheckBox Name="CheckFilterFavorite" IsChecked="{pmrk:Settings FilterSettings.Favorite, Mode=TwoWay}" Style="{StaticResource FilterCheck}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource LOCGameFavoriteTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
+                                    </CheckBox>
 
-                                <!-- Platform -->
-                                <Label Content="{DynamicResource LOCPlatformTitle}"
+                                    <!-- Platform -->
+                                    <Label Content="{DynamicResource LOCPlatformTitle}"
                                        Tag="{pmrk:Settings FilterSettings.Platform.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Platforms}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Platforms}"
                                                FilterProperties="{pmrk:Settings FilterSettings.Platform, Mode=TwoWay}"/>
 
-                                <!-- Library -->
-                                <Label Content="{DynamicResource LOCLibrary}"
+                                    <!-- Library -->
+                                    <Label Content="{DynamicResource LOCLibrary}"
                                        Tag="{pmrk:Settings FilterSettings.Library.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Libraries}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Libraries}"
                                                            FilterProperties="{pmrk:Settings FilterSettings.Library, Mode=TwoWay}"
                                                            IsFullTextEnabled="False"/>
-                                
-                                <!-- Name -->
-                                <Label Content="{DynamicResource LOCNameLabel}"
+
+                                    <!-- Name -->
+                                    <Label Content="{DynamicResource LOCNameLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Name, FallbackValue=''}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:SearchBox x:Name="TextFilterName" Text="{pmrk:Settings FilterSettings.Name, Delay=100, Mode=TwoWay}" />
+                                    <pctrls:SearchBox x:Name="TextFilterName" Text="{pmrk:Settings FilterSettings.Name, Delay=100, Mode=TwoWay}" />
 
-                                <!-- Genre -->
-                                <Label Content="{DynamicResource LOCGenreLabel}"
+                                    <!-- Genre -->
+                                    <Label Content="{DynamicResource LOCGenreLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Genre.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Genres}"
-                                               FilterProperties="{pmrk:Settings FilterSettings.Genre, Mode=TwoWay}"/>             
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Genres}"
+                                               FilterProperties="{pmrk:Settings FilterSettings.Genre, Mode=TwoWay}"/>
 
-                                <!-- Release Year -->
-                                <Label Content="{DynamicResource LOCGameReleaseYearTitle}"
+                                    <!-- Release Year -->
+                                    <Label Content="{DynamicResource LOCGameReleaseYearTitle}"
                                        Tag="{pmrk:Settings FilterSettings.ReleaseYear.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterStringSelectionBox ItemsList="{Binding DatabaseFilters.ReleaseYears}"
+                                    <pctrls:FilterStringSelectionBox ItemsList="{Binding DatabaseFilters.ReleaseYears}"
                                                FilterProperties="{pmrk:Settings FilterSettings.ReleaseYear, Mode=TwoWay}" />
 
-                                <!-- Developer -->
-                                <Label Content="{DynamicResource LOCDeveloperLabel}"
+                                    <!-- Developer -->
+                                    <Label Content="{DynamicResource LOCDeveloperLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Developer.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Developers}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Developers}"
                                                FilterProperties="{pmrk:Settings FilterSettings.Developer, Mode=TwoWay}"/>
 
-                                <!-- Publisher -->
-                                <Label Content="{DynamicResource LOCPublisherLabel}"
+                                    <!-- Publisher -->
+                                    <Label Content="{DynamicResource LOCPublisherLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Publisher.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Publishers}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Publishers}"
                                                FilterProperties="{pmrk:Settings FilterSettings.Publisher, Mode=TwoWay}"/>
 
-                                <!-- Category -->
-                                <Label Content="{DynamicResource LOCCategoryLabel}"
+                                    <!-- Category -->
+                                    <Label Content="{DynamicResource LOCCategoryLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Category.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Categories}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Categories}"
                                                FilterProperties="{pmrk:Settings FilterSettings.Category, Mode=TwoWay}"/>
 
-                                <!-- Tag -->
-                                <Label Content="{DynamicResource LOCTagLabel}"
+                                    <!-- Tag -->
+                                    <Label Content="{DynamicResource LOCTagLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Tag.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
                                     <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Tags}"
                                                FilterProperties="{pmrk:Settings FilterSettings.Tag, Mode=TwoWay}"/>
 
-                                <!-- PlayTime -->
-                                <Label Content="{DynamicResource LOCTimePlayed}"
+                                    <!-- PlayTime -->
+                                    <Label Content="{DynamicResource LOCTimePlayed}"
                                        Tag="{pmrk:Settings FilterSettings.PlayTime.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.PlayTime, Mode=TwoWay}" >
-                                    <pctrls:FilterEnumSelectionBox.EnumType>
-                                        <x:Type TypeName="pmodels:PlaytimeCategory" />
-                                    </pctrls:FilterEnumSelectionBox.EnumType>
-                                </pctrls:FilterEnumSelectionBox>
+                                    <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.PlayTime, Mode=TwoWay}" >
+                                        <pctrls:FilterEnumSelectionBox.EnumType>
+                                            <x:Type TypeName="pmodels:PlaytimeCategory" />
+                                        </pctrls:FilterEnumSelectionBox.EnumType>
+                                    </pctrls:FilterEnumSelectionBox>
 
-                                <!-- CompletionStatus -->
-                                <Label Content="{DynamicResource LOCCompletionStatus}"
+                                    <!-- CompletionStatus -->
+                                    <Label Content="{DynamicResource LOCCompletionStatus}"
                                        Tag="{pmrk:Settings FilterSettings.CompletionStatus.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.CompletionStatus, Mode=TwoWay}" >
-                                    <pctrls:FilterEnumSelectionBox.EnumType>
-                                        <x:Type TypeName="pmodels:CompletionStatus" />
-                                    </pctrls:FilterEnumSelectionBox.EnumType>
-                                </pctrls:FilterEnumSelectionBox>
+                                    <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.CompletionStatus, Mode=TwoWay}" >
+                                        <pctrls:FilterEnumSelectionBox.EnumType>
+                                            <x:Type TypeName="pmodels:CompletionStatus" />
+                                        </pctrls:FilterEnumSelectionBox.EnumType>
+                                    </pctrls:FilterEnumSelectionBox>
 
-                                <!-- Series -->
-                                <Label Content="{DynamicResource LOCSeriesLabel}"
+                                    <!-- Series -->
+                                    <Label Content="{DynamicResource LOCSeriesLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Series.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Series}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Series}"
                                                FilterProperties="{pmrk:Settings FilterSettings.Series, Mode=TwoWay}"/>
 
-                                <!-- Region -->
-                                <Label Content="{DynamicResource LOCRegionLabel}"
+                                    <!-- Region -->
+                                    <Label Content="{DynamicResource LOCRegionLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Region.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Regions}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Regions}"
                                                FilterProperties="{pmrk:Settings FilterSettings.Region, Mode=TwoWay}"/>
 
-                                <!-- Source -->
-                                <Label Content="{DynamicResource LOCSourceLabel}"
+                                    <!-- Source -->
+                                    <Label Content="{DynamicResource LOCSourceLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Source.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Sources}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Sources}"
                                                FilterProperties="{pmrk:Settings FilterSettings.Source, Mode=TwoWay}"/>
 
-                                <!-- AgeRating -->
-                                <Label Content="{DynamicResource LOCAgeRatingLabel}"
+                                    <!-- AgeRating -->
+                                    <Label Content="{DynamicResource LOCAgeRatingLabel}"
                                        Tag="{pmrk:Settings FilterSettings.AgeRating.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.AgeRatings}"
+                                    <pctrls:FilterSelectionBox ItemsList="{Binding DatabaseFilters.AgeRatings}"
                                                FilterProperties="{pmrk:Settings FilterSettings.AgeRating, Mode=TwoWay}"/>
 
-                                <!-- Version -->
-                                <Label Content="{DynamicResource LOCVersionLabel}"
+                                    <!-- Version -->
+                                    <Label Content="{DynamicResource LOCVersionLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Version, FallbackValue=''}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:SearchBox Text="{pmrk:Settings FilterSettings.Version, Delay=100, Mode=TwoWay}" />
+                                    <pctrls:SearchBox Text="{pmrk:Settings FilterSettings.Version, Delay=100, Mode=TwoWay}" />
 
-                                <!-- UserScore -->
-                                <Label Content="{DynamicResource LOCUserScore}"
+                                    <!-- UserScore -->
+                                    <Label Content="{DynamicResource LOCUserScore}"
                                        Tag="{pmrk:Settings FilterSettings.UserScore.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.UserScore, Mode=TwoWay}" >
-                                    <pctrls:FilterEnumSelectionBox.EnumType>
-                                        <x:Type TypeName="pmodels:ScoreGroup" />
-                                    </pctrls:FilterEnumSelectionBox.EnumType>
-                                </pctrls:FilterEnumSelectionBox>
+                                    <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.UserScore, Mode=TwoWay}" >
+                                        <pctrls:FilterEnumSelectionBox.EnumType>
+                                            <x:Type TypeName="pmodels:ScoreGroup" />
+                                        </pctrls:FilterEnumSelectionBox.EnumType>
+                                    </pctrls:FilterEnumSelectionBox>
 
-                                <!-- CommunityScore -->
-                                <Label Content="{DynamicResource LOCCommunityScore}"
+                                    <!-- CommunityScore -->
+                                    <Label Content="{DynamicResource LOCCommunityScore}"
                                        Tag="{pmrk:Settings FilterSettings.CommunityScore.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.CommunityScore, Mode=TwoWay}" >
-                                    <pctrls:FilterEnumSelectionBox.EnumType>
-                                        <x:Type TypeName="pmodels:ScoreGroup" />
-                                    </pctrls:FilterEnumSelectionBox.EnumType>
-                                </pctrls:FilterEnumSelectionBox>
+                                    <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.CommunityScore, Mode=TwoWay}" >
+                                        <pctrls:FilterEnumSelectionBox.EnumType>
+                                            <x:Type TypeName="pmodels:ScoreGroup" />
+                                        </pctrls:FilterEnumSelectionBox.EnumType>
+                                    </pctrls:FilterEnumSelectionBox>
 
-                                <!-- CriticScore -->
-                                <Label Content="{DynamicResource LOCCriticScore}"
+                                    <!-- CriticScore -->
+                                    <Label Content="{DynamicResource LOCCriticScore}"
                                        Tag="{pmrk:Settings FilterSettings.CriticScore.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.CriticScore, Mode=TwoWay}" >
-                                    <pctrls:FilterEnumSelectionBox.EnumType>
-                                        <x:Type TypeName="pmodels:ScoreGroup" />
-                                    </pctrls:FilterEnumSelectionBox.EnumType>
-                                </pctrls:FilterEnumSelectionBox>
+                                    <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.CriticScore, Mode=TwoWay}" >
+                                        <pctrls:FilterEnumSelectionBox.EnumType>
+                                            <x:Type TypeName="pmodels:ScoreGroup" />
+                                        </pctrls:FilterEnumSelectionBox.EnumType>
+                                    </pctrls:FilterEnumSelectionBox>
 
-                                <!--LastActivity-->
-                                <Label Content="{DynamicResource LOCGameLastActivityTitle}"
+                                    <!--LastActivity-->
+                                    <Label Content="{DynamicResource LOCGameLastActivityTitle}"
                                        Tag="{pmrk:Settings FilterSettings.LastActivity.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.LastActivity, Mode=TwoWay}" >
-                                    <pctrls:FilterEnumSelectionBox.EnumType>
-                                        <x:Type TypeName="pmodels:PastTimeSegment" />
-                                    </pctrls:FilterEnumSelectionBox.EnumType>
-                                </pctrls:FilterEnumSelectionBox>
-                                
-                                <!--Added-->
-                                <Label Content="{DynamicResource LOCAddedLabel}"
+                                    <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.LastActivity, Mode=TwoWay}" >
+                                        <pctrls:FilterEnumSelectionBox.EnumType>
+                                            <x:Type TypeName="pmodels:PastTimeSegment" />
+                                        </pctrls:FilterEnumSelectionBox.EnumType>
+                                    </pctrls:FilterEnumSelectionBox>
+
+                                    <!--Added-->
+                                    <Label Content="{DynamicResource LOCAddedLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Added.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.Added, Mode=TwoWay}" >
-                                    <pctrls:FilterEnumSelectionBox.EnumType>
-                                        <x:Type TypeName="pmodels:PastTimeSegment" />
-                                    </pctrls:FilterEnumSelectionBox.EnumType>
-                                </pctrls:FilterEnumSelectionBox>
-                                
-                                <!--Modified-->
-                                <Label Content="{DynamicResource LOCModifiedLabel}"
+                                    <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.Added, Mode=TwoWay}" >
+                                        <pctrls:FilterEnumSelectionBox.EnumType>
+                                            <x:Type TypeName="pmodels:PastTimeSegment" />
+                                        </pctrls:FilterEnumSelectionBox.EnumType>
+                                    </pctrls:FilterEnumSelectionBox>
+
+                                    <!--Modified-->
+                                    <Label Content="{DynamicResource LOCModifiedLabel}"
                                        Tag="{pmrk:Settings FilterSettings.Modified.IsSet, FallbackValue='False'}"
                                        Style="{StaticResource FilterLabel}"/>
-                                <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.Modified, Mode=TwoWay}" >
-                                    <pctrls:FilterEnumSelectionBox.EnumType>
-                                        <x:Type TypeName="pmodels:PastTimeSegment" />
-                                    </pctrls:FilterEnumSelectionBox.EnumType>
-                                </pctrls:FilterEnumSelectionBox>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </DockPanel>
+                                    <pctrls:FilterEnumSelectionBox FilterProperties="{pmrk:Settings FilterSettings.Modified, Mode=TwoWay}" >
+                                        <pctrls:FilterEnumSelectionBox.EnumType>
+                                            <x:Type TypeName="pmodels:PastTimeSegment" />
+                                        </pctrls:FilterEnumSelectionBox.EnumType>
+                                    </pctrls:FilterEnumSelectionBox>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </DockPanel>
+                    </Border>                    
                 </ControlTemplate>
-            </Setter.Value>
+            </Setter.Value>            
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
+                <Setter Property="Background" Value="Transparent" />
+            </DataTrigger>
+            <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                <Setter Property="Background" Value="Transparent" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

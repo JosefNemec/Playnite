@@ -17,8 +17,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="44" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -40,24 +39,6 @@
                                 </Storyboard>
                             </Grid.Resources>
                             
-                            <pctrlsShared:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
-                                                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
-                                <pctrlsShared:FadeImage.Style>
-                                    <Style TargetType="pctrlsShared:FadeImage">
-                                        <Setter Property="Source" Value="{x:Null}" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="True">
-                                                <Setter Property="Source" Value="{Binding SelectedGame.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </pctrlsShared:FadeImage.Style>
-                            </pctrlsShared:FadeImage>
-
-                            <views:MainPanel Grid.Row="0" Grid.Column="0" />
                             <DockPanel Grid.Row="1" Grid.Column="0">
                                 <views:Sidebar DockPanel.Dock="{pmrk:Settings SidebarPosition}"
                                                Visibility="{pmrk:Settings SidebarVisible}" />                             

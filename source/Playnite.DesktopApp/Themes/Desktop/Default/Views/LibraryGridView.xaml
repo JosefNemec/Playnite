@@ -9,15 +9,31 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">    
 
     <Style TargetType="{x:Type views:LibraryGridView}">
-        <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:LibraryGridView}">
                     <DockPanel Background="{TemplateBinding Background}">
-                        <views:GridGameOverview Visibility="{pmrk:Settings GridViewSideBarVisible}"                                                
-                                                DataContext="{Binding SelectedGameDetails}"
-                                                DockPanel.Dock="{pmrk:Settings GridViewDetailsPosition}"
-                                                Width="360" Margin="10,0,5,0" />
+                        <Border Margin="0,-50,0,0" Visibility="{pmrk:Settings GridViewSideBarVisible}" 
+                                Width="350" DockPanel.Dock="{pmrk:Settings GridViewDetailsPosition}"
+                                BorderBrush="{DynamicResource NormalBrush}">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
+                                    <Setter Property="BorderThickness" Value="1,0,0,0" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{pmrk:Settings GridViewDetailsPosition}" Value="Left">
+                                            <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <views:GridGameOverview Margin="0,40,0,0"
+                                                    BorderThickness="1,0,1,0"
+                                                DataContext="{Binding SelectedGameDetails}"/>
+                        </Border>
                         <Grid DockPanel.Dock="Left">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -66,70 +82,60 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                    <Grid Background="Transparent" Margin="{pmrk:Settings ItemSpacingMargin}">
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="*" />
-                                                            <RowDefinition Height="Auto" />
-                                                        </Grid.RowDefinitions>
-                                                        <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2"
-                                                            Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                            Grid.Row="0">
-                                                            <Border.Effect>
-                                                                <DropShadowEffect BlurRadius="5" Color="#DD000000" ShadowDepth="5"
-                                                              x:Name="ShadowEffect"/>
-                                                            </Border.Effect>
-                                                            <Grid Width="{pmrk:Settings GridItemWidth}"
-                                                              Height="{pmrk:Settings GridItemHeight}">
+                                                    <Border Background="{DynamicResource NormalBrush}" BorderThickness="2" x:Name="SelectionBorder" 
+                                                            BorderBrush="{DynamicResource PopupBorderBrush}"
+                                                            Margin="{pmrk:Settings ItemSpacingMargin}">
+                                                        <StackPanel>                                                     
+                                                            <Grid Width="{pmrk:Settings GridItemWidth}" Height="{pmrk:Settings GridItemHeight}"
+                                                                  Grid.Row="0" Grid.Column="0">
                                                                 <Grid.InputBindings>
                                                                     <MouseBinding MouseAction="LeftDoubleClick"
-                                                                  Command="{pmrk:MainViewModel StartGameCommand, DirectValue=True}"
-                                                                  CommandParameter="{Binding Game}"/>
+                                                                                    Command="{pmrk:MainViewModel StartGameCommand, DirectValue=True}"
+                                                                                    CommandParameter="{Binding Game}"/>
                                                                 </Grid.InputBindings>
                                                                 <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
-                                                                   Stretch="{pmrk:Settings CoverArtStretch}"
-                                                                   HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                        Stretch="{pmrk:Settings CoverArtStretch}"
+                                                                        HorizontalAlignment="Center" VerticalAlignment="Center">
                                                                     <Image.Source>
                                                                         <PriorityBinding>
                                                                             <Binding Path="CoverImageObject"
-                                                                                 IsAsync="{pmrk:Settings AsyncImageLoading, DirectValue=True}"
-                                                                                 Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
+                                                                                        IsAsync="{pmrk:Settings AsyncImageLoading, DirectValue=True}"
+                                                                                        Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
                                                                             <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
                                                                         </PriorityBinding>
                                                                     </Image.Source>
                                                                 </Image>
                                                                 <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
                                                                     <TextBlock Text="{Binding DisplayName, Mode=OneWay}"
-                                                                           TextWrapping="Wrap" Margin="5"
-                                                                           Style="{StaticResource BaseTextBlockStyle}"
-                                                                           TextTrimming="CharacterEllipsis" TextAlignment="Center"
-                                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                                TextWrapping="Wrap" Margin="5"
+                                                                                Style="{StaticResource BaseTextBlockStyle}"
+                                                                                TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                                                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <Border Background="#88000000" x:Name="BorderMouseOver" Visibility="Collapsed">
                                                                     <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
                                                                         <StackPanel Orientation="Horizontal">
                                                                             <Button Background="#EE000000" Content="▶"
-                                                                                    Margin="20,0,2,0"
-                                                                                    Command="{pmrk:MainViewModel StartGameCommand}"
-                                                                                    CommandParameter="{Binding Game}" />
+                                                                                Margin="20,0,2,0"
+                                                                                Command="{pmrk:MainViewModel StartGameCommand}"
+                                                                                CommandParameter="{Binding Game}" />
                                                                             <Button Background="#EE000000" Content="ℹ"
-                                                                                    Margin="2,0,20,0"
-                                                                                    Command="{pmrk:MainViewModel ShowGameSideBarCommand}"
-                                                                                    CommandParameter="{Binding}"/>
+                                                                                Margin="2,0,20,0"
+                                                                                Command="{pmrk:MainViewModel ShowGameSideBarCommand}"
+                                                                                CommandParameter="{Binding}"/>
                                                                         </StackPanel>
                                                                     </Viewbox>
                                                                 </Border>
                                                             </Grid>
-                                                        </Border>
-                                                        <TextBlock Text="{Binding DisplayName}" Style="{DynamicResource BaseTextBlockStyle}"
-                                                               Width="{pmrk:Settings GridItemWidth}"
-                                                               TextAlignment="Center" TextTrimming="CharacterEllipsis"
-                                                               Margin="0,10,0,0" Grid.Row="1"
-                                                               Visibility="{pmrk:Settings ShowNamesUnderCovers}">
-                                                            <TextBlock.Effect>
-                                                                <DropShadowEffect BlurRadius="5" Color="#DD000000" ShadowDepth="3" />
-                                                            </TextBlock.Effect>
-                                                        </TextBlock>
-                                                    </Grid>
+                                                            <TextBlock Text="{Binding DisplayName}" Style="{DynamicResource BaseTextBlockStyle}"                                                                   
+                                                                       TextAlignment="Center" TextTrimming="CharacterEllipsis"
+                                                                       VerticalAlignment="Center"
+                                                                       Padding="2,5,2,5" Grid.Row="1" Grid.Column="0"
+                                                                       Width="{pmrk:Settings GridItemWidth}" 
+                                                                       Visibility="{pmrk:Settings ShowNamesUnderCovers}" />
+
+                                                        </StackPanel>
+                                                    </Border>                                                    
                                                     <ControlTemplate.Triggers>
                                                         <MultiDataTrigger>
                                                             <MultiDataTrigger.Conditions>
@@ -157,8 +163,7 @@
                                     </ItemsPanelTemplate>
                                 </pctrlsShared:ExtendedListBox.ItemsPanel>
                             </pctrlsShared:ExtendedListBox>
-                            <StackPanel Margin="5" Orientation="Horizontal"
-                                    Grid.Row="1">
+                            <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="1">
                                 <Label Content="{DynamicResource LOCZoomLabel}" Margin="10,0,10,0"/>
                                 <pctrls:SliderWithPopup x:Name="SliderZoom"
                                         SliderValue="{pmrk:Settings GridItemWidth, Mode=TwoWay}" 

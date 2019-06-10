@@ -55,6 +55,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
 
                 <!--Derived Styles-->
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/StandardWindowStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/WindowBarButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/BottomButton.xaml" />

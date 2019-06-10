@@ -9,50 +9,56 @@
                     xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">    
 
     <Style TargetType="{x:Type views:MainPanel}">
-        <Setter Property="Background" Value="{StaticResource GamesListPanelBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:MainPanel}">
-                    <Border Background="{TemplateBinding Background}"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}">
-                        <DockPanel Margin="0,0,110,0">
-                            <Border DockPanel.Dock="Left" Background="Transparent" Cursor="Hand" 
-                        pbeh:LeftClickContextMenuBehavior.Enabled="True"
-                        WindowChrome.IsHitTestVisibleInChrome="True"
-                        Margin="5,0,0,0">
-                                <Border.ContextMenu>
-                                    <pctrls:MainMenu StaysOpen="False" Placement="Bottom" />
-                                </Border.ContextMenu>
-                                <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Height="40" RenderOptions.BitmapScalingMode="Fant" />
-                            </Border>
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" Height="50">
+                        <DockPanel Margin="0,3,110,3">
+                            <DockPanel DockPanel.Dock="Left"
+                                       Width="350">
 
-                            <pctrls:SearchBox Width="235" DockPanel.Dock="Left" Margin="5,6,0,6"
-                                   WindowChrome.IsHitTestVisibleInChrome="True"
-                                   Text="{pmrk:Settings FilterSettings.Name, Delay=100, Mode=TwoWay}" />
+                                <Border Background="Transparent" Cursor="Hand" DockPanel.Dock="Left"
+                                    pbeh:LeftClickContextMenuBehavior.Enabled="True"
+                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                    Margin="5,0,0,0">
+                                    <Border.ContextMenu>
+                                        <pctrls:MainMenu StaysOpen="False" Placement="Bottom" />
+                                    </Border.ContextMenu>
+                                    <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Height="40" RenderOptions.BitmapScalingMode="Fant"
+                                       Margin="10,0,5,0"/>
+                                </Border>
 
-                            <Border Background="Transparent" Cursor="Hand" 
-                        DockPanel.Dock="Left" Margin="5,6,0,6" Width="35"
-                        pbeh:LeftClickContextMenuBehavior.Enabled="True"
-                        WindowChrome.IsHitTestVisibleInChrome="True"
-                        Style="{DynamicResource HighlightBorder}">
+                                <pctrls:SearchBox Margin="5,6,10,6"  DockPanel.Dock="Left"
+                                                WindowChrome.IsHitTestVisibleInChrome="True"
+                                                  
+                                                  Background="{DynamicResource MainPanelItemBackgroundBrush}"
+                                                Text="{pmrk:Settings FilterSettings.Name, Delay=100, Mode=TwoWay}" />
+                            </DockPanel>
+
+                            <Border Background="{DynamicResource MainPanelItemBackgroundBrush}" Cursor="Hand" 
+                                    DockPanel.Dock="Left" Margin="10,6,0,6" Width="35"
+                                    pbeh:LeftClickContextMenuBehavior.Enabled="True"
+                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                    Style="{DynamicResource HighlightBorder}">
                                 <Border.ContextMenu>
                                     <pctrls:ViewSettingsMenu StaysOpen="False" Placement="Bottom" />
                                 </Border.ContextMenu>
                                 <TextBlock Text="&#xE10C;" FontFamily="Segoe UI Symbol" FontSize="20"
-                               Foreground="{StaticResource TextBrush}"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                           Foreground="{StaticResource TextBrush}"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Border>
 
                             <CheckBox IsChecked="{pmrk:Settings FilterPanelVisible, Mode=TwoWay}"
-                          WindowChrome.IsHitTestVisibleInChrome="True"
-                          DockPanel.Dock="Left" Margin="5,6,0,6" Width="35">
+                                      WindowChrome.IsHitTestVisibleInChrome="True"
+                                      DockPanel.Dock="Left" Margin="10,6,0,6" Width="35">
                                 <CheckBox.Style>
                                     <Style TargetType="CheckBox">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <Border Background="Transparent" Style="{DynamicResource HighlightBorder}"
+                                                    <Border  Background="{DynamicResource MainPanelItemBackgroundBrush}"
+                                                        Style="{DynamicResource HighlightBorder}"
                                                 Cursor="Hand">
                                                         <TextBlock Text="&#xE16E;" FontFamily="Segoe UI Symbol" FontSize="20"
                                                        VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -76,23 +82,24 @@
                             </CheckBox>
 
                             <CheckBox IsChecked="{pmrk:Settings NotificationPanelVisible, Mode=TwoWay}"
-                          WindowChrome.IsHitTestVisibleInChrome="True"
-                          DockPanel.Dock="Left" Margin="5,6,0,6">
+                                      WindowChrome.IsHitTestVisibleInChrome="True"
+                                      DockPanel.Dock="Left" Margin="10,6,0,6">
                                 <CheckBox.Style>
                                     <Style TargetType="ToggleButton">
+                                        <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <Border Background="Transparent" Cursor="Hand">
+                                                    <Border Cursor="Hand" Background="Transparent">
                                                         <Grid>
                                                             <TextBlock Text="&#x1f514;" FontFamily="Segoe UI Symbol" FontSize="20"
-                                                           Foreground="{DynamicResource GlyphBrush}"
-                                                           HorizontalAlignment="Center"/>
+                                                                       Foreground="{TemplateBinding Foreground}"
+                                                                       HorizontalAlignment="Center"/>
                                                             <Border CornerRadius="3" Width="15" Height="15" Margin="25,15,0,0"
-                                                        Background="OrangeRed">
+                                                                    Background="OrangeRed">
                                                                 <TextBlock Text="{pmrk:Api Notifications.Count}" FontSize="12"                                                               
-                                                               Foreground="{DynamicResource TextBrush}"
-                                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                       Foreground="{DynamicResource TextBrush}"
+                                                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                             </Border>
                                                         </Grid>
                                                     </Border>
@@ -104,37 +111,44 @@
                                                 <Setter Property="Visibility" Value="Collapsed"/>
                                                 <Setter Property="IsChecked" Value="False"/>
                                             </DataTrigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                            </Trigger>
                                         </Style.Triggers>
                                     </Style>
                                 </CheckBox.Style>
                             </CheckBox>
 
                             <Button Margin="15,6,5,6" DockPanel.Dock="Right"
-                        Background="Transparent"
-                        Padding="0" BorderThickness="0"
-                        WindowChrome.IsHitTestVisibleInChrome="True"
-                        Command="{Binding OpenSteamFriendsCommand}"
-                        ToolTip="{DynamicResource LOCSteamFriendsTooltip}"
-                        Visibility="{pmrk:Settings ShowSteamFriendsButton}">
+                                    Background="Transparent"
+                                    Padding="0" BorderThickness="0"
+                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                    Command="{Binding OpenSteamFriendsCommand}"
+                                    ToolTip="{DynamicResource LOCSteamFriendsTooltip}"
+                                    Visibility="{pmrk:Settings ShowSteamFriendsButton}">
                                 <TextBlock Text="&#xE125;" FontFamily="Segoe UI Symbol" FontSize="22"
-                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
 
-                            <Button Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding CancelProgressCommand}"
-                        Background="Transparent"
-                        Content="{DynamicResource LOCCancelLabel}"
-                        WindowChrome.IsHitTestVisibleInChrome="True"
-                        DockPanel.Dock="Right" Margin="5,6,0,6" />
-
-                            <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      DockPanel.Dock="Left" Margin="10,6,0,6">
-                                <ProgressBar Maximum="{Binding ProgressTotal}"
-                                 Value="{Binding ProgressValue}" />
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                               Style="{DynamicResource BaseTextBlockStyle}"
-                               Text="{Binding ProgressStatus}" />
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="10,5,0,5">
+                                <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      MaxWidth="600" MinWidth="300">
+                                    <ProgressBar Maximum="{Binding ProgressTotal}"
+                                             Background="{DynamicResource MainPanelItemBackgroundBrush}"
+                                            Value="{Binding ProgressValue}" />
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Style="{DynamicResource BaseTextBlockStyle}" Margin="5,0,5,0"
+                                           Text="{Binding ProgressStatus}" TextTrimming="CharacterEllipsis" />
+                                </Grid>
+                                
+                                <Button Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Command="{Binding CancelProgressCommand}"
+                                        Background="{DynamicResource MainPanelItemBackgroundBrush}"
+                                        Content="{DynamicResource LOCCancelLabel}"
+                                        WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Margin="5,0,0,0" />
+                            </StackPanel>
+                    
                         </DockPanel>
                     </Border>
                 </ControlTemplate>

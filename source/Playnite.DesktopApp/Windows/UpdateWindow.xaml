@@ -20,6 +20,7 @@
 
         <DockPanel Background="{StaticResource ControlBackgroundBrush}" Grid.Row="0" Margin="5,5,5,0">
             <TextBlock Text="{DynamicResource LOCUpdaterChangesInfo}"
+                       Style="{DynamicResource BaseTextBlockStyle}"
                        Margin="10" DockPanel.Dock="Top"/>
             <ScrollViewer DockPanel.Dock="Top">
                 <ItemsControl Name="ItemsNotes" ItemsSource="{Binding ReleaseNotes}">

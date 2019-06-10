@@ -34,7 +34,7 @@
                         </Grid.RowDefinitions>
                         <Grid.Style>
                             <Style TargetType="Grid">
-                                <Setter Property="Background" Value="#CC000000" />
+                                <Setter Property="Background" Value="Transparent" />
                                 <Style.Triggers>
                                     <Trigger Property="DataContext" Value="{x:Null}">
                                         <Setter Property="Visibility" Value="Collapsed" />
@@ -42,13 +42,16 @@
                                     <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="True">
                                         <Setter Property="Background" Value="{DynamicResource GameDetailsBackGroundBrush}" />
                                     </DataTrigger>
+                                    <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Grid.Style>
 
                         <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="{DynamicResource FontFamily}"
                                    Text="{Binding Game.DisplayName, Mode=OneWay}"
-                                   FontSize="34" Margin="40,40,0,10" TextWrapping="Wrap"
+                                   FontSize="34" Margin="40,80,0,20" TextWrapping="Wrap"
                                    DockPanel.Dock="Left" VerticalAlignment="Top" Foreground="{StaticResource TextBrush}">
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="3"/>
@@ -56,7 +59,7 @@
                         </TextBlock>
 
                         <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                                Margin="40,10,0,0">
+                                    Margin="40,0,0,0">
                             <Image Margin="0,0,0,10" VerticalAlignment="Top"
                                 RenderOptions.BitmapScalingMode="Fant"
                                 Source="{Binding Game.CoverImageObject}" />                         
@@ -88,15 +91,30 @@
                             </Button>
                         </StackPanel>
 
-                        <Border Grid.Column="1" Grid.Row="2" Padding="10" Margin="20,0,10,20" CornerRadius="3"
-                    VerticalAlignment="Top" MaxWidth="300">
+                        <Border Grid.Column="1" Grid.Row="2" Margin="20,0,10,20" CornerRadius="{StaticResource ControlCornerRadius}"
+                                VerticalAlignment="Top" MaxWidth="300">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Padding" Value="10,0,10,10" />
+                                <Style.Triggers>
+                                        <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="False">
+                                            <Setter Property="Background" Value="{DynamicResource MainPanelItemBackgroundBrush}" />
+                                            <Setter Property="Padding" Value="10" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
                             <ScrollViewer Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <views:GameProperties IsTabStop="False"/>
                             </ScrollViewer>
                         </Border>
 
                         <Border Grid.Column="2" Grid.Row="1" Margin="0,0,5,20"
-                    CornerRadius="3" VerticalAlignment="Top" >
+                                CornerRadius="3" VerticalAlignment="Top" >
                             <Border.Style>
                                 <Style TargetType="Border" BasedOn="{StaticResource {x:Type Border}}">
                                     <Style.Triggers>
@@ -110,13 +128,28 @@
                                 </Style>
                             </Border.Style>
                             <ScrollViewer>
-                                <pctrlsShared:HtmlTextView HtmlText="{Binding Game.Description, Mode=OneWay}"
+                                <Border CornerRadius="{StaticResource ControlCornerRadius}">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="Transparent" />                                            
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="False">
+                                                    <Setter Property="Background" Value="{DynamicResource MainPanelItemBackgroundBrush}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                                                    <Setter Property="Background" Value="Transparent" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <pctrlsShared:HtmlTextView HtmlText="{Binding Game.Description, Mode=OneWay}"
                                                            Visibility="{Binding DescriptionVisibility}"
-                                         HtmlFontFamily="{DynamicResource FontFamily}"
-                                         HtmlForeground="{DynamicResource TextColor}"
-                                         LinkForeground="{DynamicResource GlyphColor}"
-                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                                           HtmlFontFamily="{DynamicResource FontFamily}"
+                                                            HtmlForeground="{DynamicResource TextColor}"
+                                                            LinkForeground="{DynamicResource GlyphColor}"
+                                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                </Border>
                             </ScrollViewer>
                         </Border>
                     </Grid>

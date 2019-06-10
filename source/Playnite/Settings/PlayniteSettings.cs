@@ -317,9 +317,8 @@ namespace Playnite
         {
             get
             {
-                int marginX = GridItemSpacing / 2;
                 int marginY = ((int)CoverAspectRatio.GetWidth(GridItemSpacing) / 2);
-                return new Thickness(marginY, marginX, 0, 0);
+                return new Thickness(marginY, GridItemSpacing, 0, 0);
             }
         }
 
