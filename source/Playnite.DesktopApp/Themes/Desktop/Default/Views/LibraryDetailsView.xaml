@@ -97,7 +97,7 @@
                                                                                VerticalAlignment="Center" HorizontalAlignment="Left"
                                                                                Style="{DynamicResource BaseTextBlockStyle}"
                                                                                DockPanel.Dock="Left" TextAlignment="Center"
-                                                                               Visibility="{pmrk:Settings ShowIconsOnList}"/>
+                                                                               Visibility="{pmrk:Settings ShowGroupCount}"/>
                                                                     </DockPanel>
                                                                 </Expander.Header>
                                                                 <ItemsPresenter />
