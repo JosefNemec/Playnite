@@ -182,7 +182,7 @@ Tuottaa tuloksen: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Kuvaketta ei voida hakea, jos Pelaa-toiminto puuttuu tai se on asetettu URL:ksi.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Lataa vain metadata peleille joista se puuttuu</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Tämä toiminto ohittaa latauksen pelille jos sen dataa (jossakin kentässä) on jo olemassa.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ottamalla tämän valinnan käyttöön metadataa ei ladata niille kentille, jotka jo sisältävät tietoa.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Pelikokoelma</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Valitse pelit jotka tulisi päivittää uudella metadatalla:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Kaikki tietokannan pelit</sys:String>
@@ -244,6 +244,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCMenuSuspendSystem">Aseta järjestelmä valmiustilaan</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Kohteiden välistys</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Puuttuva pelin kuvakkeen lähde</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuttuva pelin kannen lähde</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Sisennä pelin tiedot</sys:String>
