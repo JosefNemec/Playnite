@@ -182,7 +182,7 @@ Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Symbol nicht abrufbar, da keine »Spielen«-Aktion definiert oder diese auf eine URL festgelegt wurde.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Nur fehlende Metadaten herunterladen</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Das Aktivieren dieser Option führt dazu, dass bereits befüllte Felder nicht überschrieben werden.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spieleauswahl</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Bitte wähle die Spiele aus, für die die Metadaten aktualisiert werden sollen:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Alle Spiele der Datenbank</sys:String>
@@ -244,6 +244,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuSuspendSystem">Ruhezustand</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fehlende Quelle für Spielsymbol</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fehlende Quelle für Spielcover</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Spieledetails einrücken</sys:String>
