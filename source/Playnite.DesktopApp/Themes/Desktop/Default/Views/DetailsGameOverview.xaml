@@ -51,7 +51,7 @@
 
                         <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="{DynamicResource FontFamily}"
                                    Text="{Binding Game.DisplayName, Mode=OneWay}"
-                                   FontSize="34" Margin="40,80,0,20" TextWrapping="Wrap"
+                                   FontSize="34" Margin="40,40,0,20" TextWrapping="Wrap"
                                    DockPanel.Dock="Left" VerticalAlignment="Top" Foreground="{StaticResource TextBrush}">
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="3"/>

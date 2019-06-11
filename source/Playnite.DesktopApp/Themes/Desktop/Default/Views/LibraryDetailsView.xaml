@@ -14,132 +14,120 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:LibraryDetailsView}">
                     <DockPanel>
-                        <Border Margin="0,-50,0,0" DockPanel.Dock="Left"
-                                BorderBrush="{DynamicResource NormalBrush}" BorderThickness="0,0,1,0">
-                            <Border.Style>
-                                <Style TargetType="Border">
+                        <pctrlsShared:ExtendedListBox  SelectionMode="Extended" Width="350"
+                                                        BorderThickness="0" DockPanel.Dock="Left"
+                                                        SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                                                        SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
+                                                        ItemContainerStyle="{DynamicResource DetailsViewItemStyle}"
+                                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                        ScrollViewer.PanningMode="VerticalOnly"
+                                                        pbeh:ScrollToSelectedBehavior.Enabled="True"
+                                                        VirtualizingPanel.CacheLengthUnit="Item"
+                                                        VirtualizingPanel.CacheLength="5"
+                                                        VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                                                        VirtualizingPanel.VirtualizationMode="Recycling">
+                            <pctrlsShared:ExtendedListBox.Style>
+                                <!--Improves performances by not populating list when other views are used-->
+                                <Style TargetType="pctrlsShared:ExtendedListBox" BasedOn="{StaticResource {x:Type pctrlsShared:ExtendedListBox}}">
+                                    <Setter Property="ItemsSource" Value="{x:Null}" />
                                     <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
                                     <Style.Triggers>
+                                        <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Details}">
+                                            <Setter Property="ItemsSource" Value="{Binding GamesView.CollectionView}" />
+                                        </DataTrigger>
                                         <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
                                             <Setter Property="Background" Value="Transparent" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
-                            </Border.Style>
-                            <pctrlsShared:ExtendedListBox SelectionMode="Extended"
-                                                      Margin="0,50,0,0" Width="350"
-                            BorderThickness="0"
-                            SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
-                            SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
-                            ItemContainerStyle="{DynamicResource DetailsViewItemStyle}"
-                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                            ScrollViewer.PanningMode="VerticalOnly"
-                            pbeh:ScrollToSelectedBehavior.Enabled="True"
-                            VirtualizingPanel.CacheLengthUnit="Item"
-                            VirtualizingPanel.CacheLength="5"
-                            VirtualizingPanel.IsVirtualizingWhenGrouping="True"
-                            VirtualizingPanel.VirtualizationMode="Recycling">
-                                <pctrlsShared:ExtendedListBox.Style>
-                                    <!--Improves performances by not populating list when other views are used-->
-                                    <Style TargetType="pctrlsShared:ExtendedListBox" BasedOn="{StaticResource {x:Type pctrlsShared:ExtendedListBox}}">
-                                        <Setter Property="ItemsSource" Value="{x:Null}" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Details}">
-                                                <Setter Property="ItemsSource" Value="{Binding GamesView.CollectionView}" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </pctrlsShared:ExtendedListBox.Style>
-                                <pctrlsShared:ExtendedListBox.ContextMenu>
-                                    <pctrls:GameMenu DataContext="{pmrk:MainViewModel SelectedGames}" />
-                                </pctrlsShared:ExtendedListBox.ContextMenu>
-                                <ListBox.InputBindings>
-                                    <KeyBinding Command="{Binding EditSelectedGamesCommand}"
-                                Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
-                                Modifiers="{Binding EditSelectedGamesCommand.Gesture.Modifiers}" />
-                                    <KeyBinding Command="{Binding RemoveSelectedGamesCommand}"
-                                Key ="{Binding RemoveSelectedGamesCommand.Gesture.Key}"
-                                Modifiers="{Binding RemoveSelectedGamesCommand.Gesture.Modifiers}" />
-                                    <KeyBinding Command="{Binding StartSelectedGameCommand}"
-                                Key ="{Binding StartSelectedGameCommand.Gesture.Key}"
-                                Modifiers="{Binding StartSelectedGameCommand.Gesture.Modifiers}" />
-                                </ListBox.InputBindings>
-                                <pctrlsShared:ExtendedListBox.GroupStyle>
-                                    <GroupStyle>
-                                        <GroupStyle.ContainerStyle>
-                                            <Style TargetType="{x:Type GroupItem}">
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate>
-                                                            <Expander BorderThickness="0" IsExpanded="True"
-                                                                  pbeh:ExpanderBehaviors.SaveState="True"
-                                                                  pbeh:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
-                                                                <Expander.Header>
-                                                                    <DockPanel Background="Transparent">
-                                                                        <TextBlock DockPanel.Dock="Left"
-                                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                                               TextAlignment="Center" Margin="0,0,5,0">
-                                                                            <TextBlock.Style>
-                                                                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                                                                                    <Setter Property="Text" Value="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" />
-                                                                                    <Style.Triggers>
-                                                                                        <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="{x:Null}">
-                                                                                            <Setter Property="Text" Value="{DynamicResource LOCNone}" />
-                                                                                        </DataTrigger>
-                                                                                        <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="">
-                                                                                            <Setter Property="Text" Value="{DynamicResource LOCNone}" />
-                                                                                        </DataTrigger>
-                                                                                    </Style.Triggers>
-                                                                                </Style>
-                                                                            </TextBlock.Style>
-                                                                        </TextBlock>
-                                                                        <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}"
-                                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                                               Style="{DynamicResource BaseTextBlockStyle}"
-                                                                               DockPanel.Dock="Left" TextAlignment="Center"
-                                                                               Visibility="{pmrk:Settings ShowGroupCount}"/>
-                                                                    </DockPanel>
-                                                                </Expander.Header>
-                                                                <ItemsPresenter />
-                                                            </Expander>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </GroupStyle.ContainerStyle>
-                                    </GroupStyle>
-                                </pctrlsShared:ExtendedListBox.GroupStyle>
-                                <pctrlsShared:ExtendedListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <DockPanel Background="Transparent">
-                                            <DockPanel.InputBindings>
-                                                <MouseBinding MouseAction="LeftDoubleClick"
-                                    Command="{pmrk:MainViewModel StartGameCommand, DirectValue=True}"
-                                    CommandParameter="{Binding Game}"/>
-                                            </DockPanel.InputBindings>
-                                            <Image Height="26" RenderOptions.BitmapScalingMode="Fant"
-                            DockPanel.Dock="Left" Margin="0,0,8,0"
-                            Visibility="{pmrk:Settings ShowIconsOnList}">
-                                                <Image.Source>
-                                                    <PriorityBinding>
-                                                        <Binding Path="IconObject" IsAsync="{pmrk:Settings AsyncImageLoading, DirectValue=True}"
-                                            Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
-                                                        <Binding Path="DefaultIconObject" Mode="OneWay"/>
-                                                    </PriorityBinding>
-                                                </Image.Source>
-                                            </Image>
-                                            <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
-                                VerticalAlignment="Center" DockPanel.Dock="Left">
-                                            </TextBlock>
-                                        </DockPanel>
-                                    </DataTemplate>
-                                </pctrlsShared:ExtendedListBox.ItemTemplate>
-                            </pctrlsShared:ExtendedListBox>
-                        </Border>
-                        <Border Margin="0,-50,0,0" DockPanel.Dock="Left">
-                            <views:DetailsGameOverview
-                                DataContext="{Binding SelectedGameDetails}" />
-                        </Border>
+                            </pctrlsShared:ExtendedListBox.Style>
+                            <pctrlsShared:ExtendedListBox.ContextMenu>
+                                <pctrls:GameMenu DataContext="{pmrk:MainViewModel SelectedGames}" />
+                            </pctrlsShared:ExtendedListBox.ContextMenu>
+                            <ListBox.InputBindings>
+                                <KeyBinding Command="{Binding EditSelectedGamesCommand}"
+                            Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
+                            Modifiers="{Binding EditSelectedGamesCommand.Gesture.Modifiers}" />
+                                <KeyBinding Command="{Binding RemoveSelectedGamesCommand}"
+                            Key ="{Binding RemoveSelectedGamesCommand.Gesture.Key}"
+                            Modifiers="{Binding RemoveSelectedGamesCommand.Gesture.Modifiers}" />
+                                <KeyBinding Command="{Binding StartSelectedGameCommand}"
+                            Key ="{Binding StartSelectedGameCommand.Gesture.Key}"
+                            Modifiers="{Binding StartSelectedGameCommand.Gesture.Modifiers}" />
+                            </ListBox.InputBindings>
+                            <pctrlsShared:ExtendedListBox.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.ContainerStyle>
+                                        <Style TargetType="{x:Type GroupItem}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <Expander BorderThickness="0" IsExpanded="True"
+                                                                pbeh:ExpanderBehaviors.SaveState="True"
+                                                                pbeh:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
+                                                            <Expander.Header>
+                                                                <DockPanel Background="Transparent">
+                                                                    <TextBlock DockPanel.Dock="Left"
+                                                                            VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                                            TextAlignment="Center" Margin="0,0,5,0">
+                                                                        <TextBlock.Style>
+                                                                            <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                                                <Setter Property="Text" Value="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" />
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="{x:Null}">
+                                                                                        <Setter Property="Text" Value="{DynamicResource LOCNone}" />
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="">
+                                                                                        <Setter Property="Text" Value="{DynamicResource LOCNone}" />
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </TextBlock.Style>
+                                                                    </TextBlock>
+                                                                    <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}"
+                                                                            VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                                            Style="{DynamicResource BaseTextBlockStyle}"
+                                                                            DockPanel.Dock="Left" TextAlignment="Center"
+                                                                            Visibility="{pmrk:Settings ShowGroupCount}"/>
+                                                                </DockPanel>
+                                                            </Expander.Header>
+                                                            <ItemsPresenter />
+                                                        </Expander>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </GroupStyle.ContainerStyle>
+                                </GroupStyle>
+                            </pctrlsShared:ExtendedListBox.GroupStyle>
+                            <pctrlsShared:ExtendedListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel Background="Transparent">
+                                        <DockPanel.InputBindings>
+                                            <MouseBinding MouseAction="LeftDoubleClick"
+                                Command="{pmrk:MainViewModel StartGameCommand, DirectValue=True}"
+                                CommandParameter="{Binding Game}"/>
+                                        </DockPanel.InputBindings>
+                                        <Image Height="26" RenderOptions.BitmapScalingMode="Fant"
+                        DockPanel.Dock="Left" Margin="0,0,8,0"
+                        Visibility="{pmrk:Settings ShowIconsOnList}">
+                                            <Image.Source>
+                                                <PriorityBinding>
+                                                    <Binding Path="IconObject" IsAsync="{pmrk:Settings AsyncImageLoading, DirectValue=True}"
+                                        Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
+                                                    <Binding Path="DefaultIconObject" Mode="OneWay"/>
+                                                </PriorityBinding>
+                                            </Image.Source>
+                                        </Image>
+                                        <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
+                            VerticalAlignment="Center" DockPanel.Dock="Left">
+                                        </TextBlock>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </pctrlsShared:ExtendedListBox.ItemTemplate>
+                        </pctrlsShared:ExtendedListBox>
+                        <views:DetailsGameOverview  DockPanel.Dock="Left"
+                            DataContext="{Binding SelectedGameDetails}" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

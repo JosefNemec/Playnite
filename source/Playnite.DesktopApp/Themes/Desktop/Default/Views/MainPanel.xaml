@@ -12,31 +12,35 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:MainPanel}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}" Height="50">
+                    <Border Height="50">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <DockPanel Margin="0,3,110,3">
-                            <DockPanel DockPanel.Dock="Left"
-                                       Width="350">
+                            <Border Background="Transparent" Cursor="Hand" DockPanel.Dock="Left"
+                                pbeh:LeftClickContextMenuBehavior.Enabled="True"
+                                WindowChrome.IsHitTestVisibleInChrome="True"
+                                Margin="5,0,0,0">
+                                <Border.ContextMenu>
+                                    <pctrls:MainMenu StaysOpen="False" Placement="Bottom" />
+                                </Border.ContextMenu>
+                                <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Height="40" RenderOptions.BitmapScalingMode="Fant"
+                                    Margin="10,0,5,0"/>
+                            </Border>
 
-                                <Border Background="Transparent" Cursor="Hand" DockPanel.Dock="Left"
-                                    pbeh:LeftClickContextMenuBehavior.Enabled="True"
-                                    WindowChrome.IsHitTestVisibleInChrome="True"
-                                    Margin="5,0,0,0">
-                                    <Border.ContextMenu>
-                                        <pctrls:MainMenu StaysOpen="False" Placement="Bottom" />
-                                    </Border.ContextMenu>
-                                    <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Height="40" RenderOptions.BitmapScalingMode="Fant"
-                                       Margin="10,0,5,0"/>
-                                </Border>
-
-                                <pctrls:SearchBox Margin="5,6,10,6"  DockPanel.Dock="Left"
+                            <pctrls:SearchBox Margin="5,6,0,6"  DockPanel.Dock="Left"
                                                 WindowChrome.IsHitTestVisibleInChrome="True"
-                                                  
-                                                  Background="{DynamicResource MainPanelItemBackgroundBrush}"
-                                                Text="{pmrk:Settings FilterSettings.Name, Delay=100, Mode=TwoWay}" />
-                            </DockPanel>
+                                                Width="300"
+                                                Text="{pmrk:Settings FilterSettings.Name, Delay=100, Mode=TwoWay}" />                      
 
-                            <Border Background="{DynamicResource MainPanelItemBackgroundBrush}" Cursor="Hand" 
+                            <Border Cursor="Hand" 
                                     DockPanel.Dock="Left" Margin="10,6,0,6" Width="35"
                                     pbeh:LeftClickContextMenuBehavior.Enabled="True"
                                     WindowChrome.IsHitTestVisibleInChrome="True"
@@ -57,9 +61,7 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <Border  Background="{DynamicResource MainPanelItemBackgroundBrush}"
-                                                        Style="{DynamicResource HighlightBorder}"
-                                                Cursor="Hand">
+                                                    <Border Style="{DynamicResource HighlightBorder}" Cursor="Hand">
                                                         <TextBlock Text="&#xE16E;" FontFamily="Segoe UI Symbol" FontSize="20"
                                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                                        Foreground="{TemplateBinding Foreground}"/>
@@ -133,9 +135,7 @@
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="10,5,0,5">
                                 <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                       MaxWidth="600" MinWidth="300">
-                                    <ProgressBar Maximum="{Binding ProgressTotal}"
-                                             Background="{DynamicResource MainPanelItemBackgroundBrush}"
-                                            Value="{Binding ProgressValue}" />
+                                    <ProgressBar Maximum="{Binding ProgressTotal}" Value="{Binding ProgressValue}" />
                                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                            Style="{DynamicResource BaseTextBlockStyle}" Margin="5,0,5,0"
                                            Text="{Binding ProgressStatus}" TextTrimming="CharacterEllipsis" />
@@ -143,7 +143,6 @@
                                 
                                 <Button Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Command="{Binding CancelProgressCommand}"
-                                        Background="{DynamicResource MainPanelItemBackgroundBrush}"
                                         Content="{DynamicResource LOCCancelLabel}"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
                                         Margin="5,0,0,0" />

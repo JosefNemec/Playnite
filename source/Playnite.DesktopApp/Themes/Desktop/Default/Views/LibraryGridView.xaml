@@ -13,26 +13,19 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:LibraryGridView}">
                     <DockPanel Background="{TemplateBinding Background}">
-                        <Border Margin="0,-50,0,0" Visibility="{pmrk:Settings GridViewSideBarVisible}" 
-                                Width="350" DockPanel.Dock="{pmrk:Settings GridViewDetailsPosition}"
-                                BorderBrush="{DynamicResource NormalBrush}">
+                        <Border Visibility="{pmrk:Settings GridViewSideBarVisible}" 
+                                Width="350" DockPanel.Dock="{pmrk:Settings GridViewDetailsPosition}">
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
-                                    <Setter Property="BorderThickness" Value="1,0,0,0" />
                                     <Style.Triggers>
                                         <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
                                             <Setter Property="Background" Value="Transparent" />
                                         </DataTrigger>
-                                        <DataTrigger Binding="{pmrk:Settings GridViewDetailsPosition}" Value="Left">
-                                            <Setter Property="BorderThickness" Value="0,0,1,0" />
-                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </Border.Style>
-                            <views:GridGameOverview Margin="0,40,0,0"
-                                                    BorderThickness="1,0,1,0"
-                                                DataContext="{Binding SelectedGameDetails}"/>
+                            <views:GridGameOverview DataContext="{Binding SelectedGameDetails}"/>
                         </Border>
                         <Grid DockPanel.Dock="Left">
                             <Grid.RowDefinitions>

@@ -21,7 +21,7 @@
     <Color x:Key="PopupBackgroundColor">#171e26</Color>
     <Color x:Key="PopupBorderColor">#666666</Color>
     <Color x:Key="BackgroundToneColor">#182028</Color>
-    <Color x:Key="GamesListPanelColor">#CC000000</Color>
+    <Color x:Key="GamesListPanelColor">#AA000000</Color>
 
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />

@@ -11,25 +11,19 @@
         <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:ExplorerPanel}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Margin="0,-50,0,0">
-                        <DockPanel Margin="0,40,0,0">
-                            <ComboBox DockPanel.Dock="Top" Margin="5,8,5,8"
-                                  SelectedValue="{Binding SelectedField}"
-                                  ItemsSource="{Binding Fields}"/>
-                            <ListBox DockPanel.Dock="Top" Margin="5,0,5,8" 
-                                     Width="280"
-                                     BorderThickness="0"
-                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                     DisplayMemberPath="Name"
-                                     SelectedItem="{Binding SelectedFieldObject}"
-                                     ItemsSource="{Binding FieldValues}">
-                            </ListBox>
-                        </DockPanel>
-                    </Border>                   
+                <ControlTemplate TargetType="{x:Type views:ExplorerPanel}">                   
+                    <DockPanel Background="{TemplateBinding Background}">
+                        <ComboBox DockPanel.Dock="Top" Margin="5,8,5,8"
+                                SelectedValue="{Binding SelectedField}"
+                                ItemsSource="{Binding Fields}"/>
+                        <ListBox DockPanel.Dock="Top" Margin="5,0,5,8"                                      
+                                    BorderThickness="0"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    DisplayMemberPath="Name"
+                                    SelectedItem="{Binding SelectedFieldObject}"
+                                    ItemsSource="{Binding FieldValues}">
+                        </ListBox>
+                    </DockPanel>                 
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

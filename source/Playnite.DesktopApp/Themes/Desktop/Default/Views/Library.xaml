@@ -39,7 +39,7 @@
                             </pctrlsShared:FadeImage.Style>
                         </pctrlsShared:FadeImage>
 
-                        <views:MainPanel DockPanel.Dock="Top" Grid.Row="0" Panel.ZIndex="90" />
+                        <views:MainPanel DockPanel.Dock="Top" Grid.Row="0" />
                         
                         <DockPanel Grid.Row="1">
                             <DockPanel.Resources>
@@ -56,15 +56,14 @@
                             </DockPanel.Resources>
 
                             <views:FilterPanel x:Name="FilterPanel"
-                                               BorderBrush="{DynamicResource NormalBrush}" BorderThickness="1,0,1,0"
                                 DockPanel.Dock="{pmrk:Settings FilterPanelPosition}" Width="250"
                                 pbeh:AnimatedVisibility.Visibility="{pmrk:Settings FilterPanelVisible}"
                                 pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
                                 pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}">
                             </views:FilterPanel>
                             <views:ExplorerPanel Visibility="{pmrk:Settings ExplorerPanelVisible}"
-                                            DockPanel.Dock="{pmrk:Settings ExplorerPanelPosition}"
-                                                 BorderBrush="{DynamicResource NormalBrush}" BorderThickness="1,0,1,0"/>
+                                                 DockPanel.Dock="{pmrk:Settings ExplorerPanelPosition}"
+                                                 Width="280"/>
                             <Grid DockPanel.Dock="Left">
                                 <views:LibraryDetailsView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"
                                                     IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"/>
