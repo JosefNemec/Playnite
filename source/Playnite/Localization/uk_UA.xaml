@@ -178,7 +178,7 @@
     <sys:String x:Key="LOCExecIconMissingPlayAction">Неможливо отримати піктограму якщо дія Грати відсутня або вибрано URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Завантажити метадані лише для тих ігор, які їх бракують</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">При ввімкненні цієї опції ігри які мають хоча б якісь дані буде пропущено</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Вибір ігор</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Будь ласка, оберіть які ігри потребують оновлення метаданих:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Всі ігри з бази даних</sys:String>
@@ -240,6 +240,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
