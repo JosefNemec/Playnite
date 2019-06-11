@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
@@ -55,7 +56,12 @@ namespace Playnite.Common
                     return WindowsVersion.Unknown;
                 }
             }
-        }            
+        }
+
+        public static int GetWindowsReleaseId()
+        {
+            return Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ReleaseId", ""));
+        }
 
         public static SystemInfo GetSystemInfo()
         {
