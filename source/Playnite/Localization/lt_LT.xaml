@@ -176,7 +176,7 @@ Rezultatas: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Nepavyksta gauti piktogramos jei veiksmo "Žaisti" nėra arba jis veda į URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Atsiųsti metadatą tik žaidimams, kurios jiems trūksta</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Pasirinkus šią parinktį bus praleisti laukai, kurie jau yra užpildyti.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Žaidimų pasirinkimas</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Pasirinkite, kuriuos žaidimus norite atnaujinnti su nauja metadata:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Visi žaidimai iš duombazės</sys:String>
@@ -238,6 +238,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
