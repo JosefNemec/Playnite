@@ -178,7 +178,7 @@ Resulta em: -image "c:\pasta\imagem.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Não é possível obter um ícone se a ação "Executar" não existe ou estiver definida como um URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Baixar metadados somente para jogos sem informações</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Habilitar esta opção fará com que o Playnite ignore jogos que já tiverem alguns dos dados (em campos específicos) inseridos.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Seleção de jogos</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Selecione quais jogos devem ser atualizados com novos metadados:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Todos os jogos do banco de dados</sys:String>
@@ -240,6 +240,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender o sistema</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Indentar detalhes do jogo</sys:String>
