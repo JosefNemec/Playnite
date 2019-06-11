@@ -318,6 +318,7 @@ namespace Playnite
             HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
             if (AppSettings.DisableHwAcceleration)
             {
+                logger.Info("Enabling software rendering.");
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
             }
 
@@ -507,6 +508,7 @@ namespace Playnite
         {
             try
             {
+                logger.Info("Disabling DPI awareness.");
                 // https://stackoverflow.com/questions/13858665/disable-dpi-awareness-for-wpf-application
                 var setDpiHwnd = typeof(HwndTarget).GetField("_setDpi", BindingFlags.Static | BindingFlags.NonPublic);
                 setDpiHwnd?.SetValue(null, false);

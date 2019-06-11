@@ -160,7 +160,7 @@ namespace Playnite.Database
             {
                 DatabaseCollection_ItemUpdated(GroupableField.Publisher, e);
                 DatabaseCollection_ItemUpdated(GroupableField.Developer, e);
-            };            
+            };
         }
 
         private void DatabaseCollection_ItemUpdated<T>(GroupableField field, ItemUpdatedEventArgs<T> e) where T : DatabaseObject
