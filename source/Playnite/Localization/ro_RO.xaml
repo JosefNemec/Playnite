@@ -180,7 +180,7 @@ Rezultă în: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Iconița nu poate fi preluată dacă butonul de lansare lipsește sau este setată ca URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Descărcați metadata numai pentru jocurile pe care le lipsesc</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Activarea acestei opțiuni va duce la omiterea descărcării jocului în cazul în care există deja date (pentru unele câmpuri).</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selecția de jocuri</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Selectați ce jocuri ar trebui actualizate cu metadate noi:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Toate jocurile din baza de date</sys:String>
@@ -242,6 +242,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendare Sistem</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Nu s-a putut găsi sursa iconiței jocului</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Nu s-a putut găsi sursa coperții jocului</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Indentați detaliile jocului</sys:String>
