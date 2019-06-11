@@ -75,8 +75,8 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                    <Border Background="{DynamicResource NormalBrush}" BorderThickness="2" x:Name="SelectionBorder" 
-                                                            BorderBrush="{DynamicResource PopupBorderBrush}"
+                                                    <Border Background="{DynamicResource NormalBrushDark}" BorderThickness="2" x:Name="SelectionBorder" 
+                                                            BorderBrush="{DynamicResource NormalBorderBrush}"
                                                             Margin="{pmrk:Settings ItemSpacingMargin}">
                                                         <StackPanel>                                                     
                                                             <Grid Width="{pmrk:Settings GridItemWidth}" Height="{pmrk:Settings GridItemHeight}"
