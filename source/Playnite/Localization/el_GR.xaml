@@ -178,7 +178,7 @@
     <sys:String x:Key="LOCExecIconMissingPlayAction">Δεν είναι δυνατή η λήψη εικονιδίου αν η εντολή Αναπαραγωγή λείπει ή έχει οριστεί διεύθυνση URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Λήψη metadata μόνο για παιχνίδια που δεν έχουν</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Αν ενεργοποιήσετε αυτήν την επιλογή, θα παραλειφθεί η λήψη για ένα παιχνίδι αν υπάρχουν ήδη δεδομένα (για συγκεκριμένο πεδίο).</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Επιλογή παιχνιδιών</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Επιλέξτε ποια παιχνίδια θα ενημερωθούν με νέα metadata:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Όλα τα παιχνίδια από τη βάση δεδομένων</sys:String>
@@ -240,6 +240,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
