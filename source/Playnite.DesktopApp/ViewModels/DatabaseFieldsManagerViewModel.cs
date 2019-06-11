@@ -504,7 +504,7 @@ namespace Playnite.DesktopApp.ViewModels
                 resources.GetString("LOCEnterName"),
                 resources.GetString("LOCAddNewItem"),
                 "");
-            if (res.Result)
+            if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
                 collection.Add(typeof(TItem).CrateInstance<TItem>(res.SelectedString));
             }
@@ -516,7 +516,7 @@ namespace Playnite.DesktopApp.ViewModels
                 resources.GetString("LOCEnterNewName"),
                 resources.GetString("LOCRenameItem"),
                 item.Name);
-            if (res.Result)
+            if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
                 item.Name = res.SelectedString;
             }

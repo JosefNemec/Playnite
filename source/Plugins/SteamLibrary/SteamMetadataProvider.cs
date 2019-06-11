@@ -301,13 +301,29 @@ namespace SteamLibrary
             if (downloadedMetadata.StoreDetails != null)
             {
                 gameInfo.Description = downloadedMetadata.StoreDetails.detailed_description;
-                gameInfo.Genres = new List<string>(downloadedMetadata.StoreDetails.genres?.Select(a => a.description));
-                gameInfo.Developers = new List<string>(downloadedMetadata.StoreDetails.developers);
-                gameInfo.Publishers = new List<string>(downloadedMetadata.StoreDetails.publishers);
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
-                gameInfo.Tags = new List<string>(downloadedMetadata.StoreDetails.categories?.Select(a => cultInfo.ToTitleCase(a.description)));
                 gameInfo.ReleaseDate = downloadedMetadata.StoreDetails.release_date.date;
                 gameInfo.CriticScore = downloadedMetadata.StoreDetails.metacritic?.score;
+
+                if (downloadedMetadata.StoreDetails.publishers.HasNonEmptyItems())
+                {
+                    gameInfo.Publishers = new List<string>(downloadedMetadata.StoreDetails.publishers);
+                }
+
+                if (downloadedMetadata.StoreDetails.developers.HasNonEmptyItems())
+                {
+                    gameInfo.Developers = new List<string>(downloadedMetadata.StoreDetails.developers);
+                }
+
+                if (downloadedMetadata.StoreDetails.categories.HasItems())
+                {
+                    gameInfo.Tags = new List<string>(downloadedMetadata.StoreDetails.categories.Select(a => cultInfo.ToTitleCase(a.description)));
+                }
+
+                if (downloadedMetadata.StoreDetails.genres.HasItems())
+                {
+                    gameInfo.Genres = new List<string>(downloadedMetadata.StoreDetails.genres.Select(a => a.description));
+                }
             }
 
             if (downloadedMetadata.ProductDetails != null)

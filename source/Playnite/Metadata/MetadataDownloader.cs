@@ -39,7 +39,8 @@ namespace Playnite.Metadata
         {
             foreach (var downloader in downloaders.Values)
             {
-                downloader.Dispose();
+                // Null check because downloader might be from library without official metadata provider
+                downloader?.Dispose();
             }
         }
 
@@ -289,7 +290,7 @@ namespace Playnite.Metadata
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.GenreIds.HasItems()))
                             {
                                 gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameInfo?.Genres);
-                                if (gameData?.GameInfo?.Genres.HasItems() == true)
+                                if (gameData?.GameInfo?.Genres.HasNonEmptyItems() == true)
                                 {
                                     game.GenreIds = database.Genres.Add(gameData.GameInfo.Genres).Select(a => a.Id).ToList();
                                 }
@@ -313,7 +314,7 @@ namespace Playnite.Metadata
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.DeveloperIds.HasItems()))
                             {
                                 gameData = ProcessField(game, settings.Developer, ref storeData, ref igdbData, (a) => a.GameInfo?.Developers);
-                                if (gameData?.GameInfo?.Developers.HasItems() == true)
+                                if (gameData?.GameInfo?.Developers.HasNonEmptyItems() == true)
                                 {
                                     game.DeveloperIds = database.Companies.Add(gameData.GameInfo.Developers).Select(a => a.Id).ToList();
                                 }
@@ -327,7 +328,7 @@ namespace Playnite.Metadata
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.PublisherIds.HasItems()))
                             {
                                 gameData = ProcessField(game, settings.Publisher, ref storeData, ref igdbData, (a) => a.GameInfo?.Publishers);
-                                if (gameData?.GameInfo?.Publishers.HasItems() == true)
+                                if (gameData?.GameInfo?.Publishers.HasNonEmptyItems() == true)
                                 {
                                     game.PublisherIds = database.Companies.Add(gameData.GameInfo.Publishers).Select(a => a.Id).ToList();
                                 }
@@ -340,7 +341,7 @@ namespace Playnite.Metadata
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.TagIds.HasItems()))
                             {
                                 gameData = ProcessField(game, settings.Tag, ref storeData, ref igdbData, (a) => a.GameInfo?.Tags);
-                                if (gameData?.GameInfo?.Tags.HasItems() == true)
+                                if (gameData?.GameInfo?.Tags.HasNonEmptyItems() == true)
                                 {
                                     game.TagIds = database.Tags.Add(gameData.GameInfo.Tags).Select(a => a.Id).ToList();
                                 }

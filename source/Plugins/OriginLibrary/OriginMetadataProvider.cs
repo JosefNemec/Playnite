@@ -33,9 +33,6 @@ namespace OriginLibrary
             {
                 Name = StringExtensions.NormalizeGameName(storeMetadata.StoreDetails.i18n.displayName),
                 Description = storeMetadata.StoreDetails.i18n.longDescription,
-                Developers = new List<string>() { storeMetadata.StoreDetails.developerFacetKey }, 
-                Publishers = new List<string>() { storeMetadata.StoreDetails.publisherFacetKey },
-                Genres = new List<string>(storeMetadata.StoreDetails.genreFacetKey?.Split(',')),
                 ReleaseDate = storeMetadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate,
                 Links = new List<Link>()
                 {
@@ -43,6 +40,21 @@ namespace OriginLibrary
                     new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name)
                 }
             };
+
+            if (!storeMetadata.StoreDetails.publisherFacetKey.IsNullOrEmpty())
+            {
+                gameInfo.Publishers = new List<string>() { storeMetadata.StoreDetails.publisherFacetKey };
+            }
+
+            if (!storeMetadata.StoreDetails.developerFacetKey.IsNullOrEmpty())
+            {
+                gameInfo.Developers = new List<string>() { storeMetadata.StoreDetails.developerFacetKey };
+            }
+
+            if (!storeMetadata.StoreDetails.genreFacetKey.IsNullOrEmpty())
+            {
+                gameInfo.Genres = new List<string>(storeMetadata.StoreDetails.genreFacetKey?.Split(','));
+            }
 
             var metadata = new GameMetadata()
             {

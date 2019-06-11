@@ -2108,22 +2108,22 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.Name = metadata.GameInfo.Name;
             }
 
-            if (metadata.GameInfo.Developers?.Any() == true)
+            if (metadata.GameInfo.Developers?.HasNonEmptyItems() == true)
             {
                 AddNewDevelopers(metadata.GameInfo.Developers);
             }
 
-            if (metadata.GameInfo.Publishers?.Any() == true)
+            if (metadata.GameInfo.Publishers?.HasNonEmptyItems() == true)
             {
                 AddNewPublishers(metadata.GameInfo.Publishers);
             }
 
-            if (metadata.GameInfo.Genres?.Any() == true)
+            if (metadata.GameInfo.Genres?.HasNonEmptyItems() == true)
             {
                 AddNewGenres(metadata.GameInfo.Genres);
             }
 
-            if (metadata.GameInfo.Tags?.Any() == true)
+            if (metadata.GameInfo.Tags?.HasNonEmptyItems() == true)
             {
                 AddNewTags(metadata.GameInfo.Tags);
             }

@@ -74,6 +74,8 @@ namespace ItchioLibrary
                 // Other info
                 var infoPanel = gamePage.QuerySelector(".game_info_panel_widget");
                 var fields = infoPanel.QuerySelectorAll("tr");
+                gameData.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name));
+
                 foreach (var field in fields)
                 {
                     var name = field.QuerySelectorAll("td")[0].TextContent;
@@ -106,8 +108,6 @@ namespace ItchioLibrary
 
                         continue;
                     }
-
-                    gameData.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name));
 
                     if (name == "Author")
                     {
