@@ -178,7 +178,7 @@ ResultaT: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">No es pot obtenir la icona si falta l’acció de Jugar o estàmarcat com URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Descarrega només bases de dades per a jocs</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Si activeu aquesta opció, es saltarà la descàrrega d'un joc si ja hi ha algunes dades (per a un camp específic).</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selecció de jocs</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Selecciona els jocs que s’actualitzaran amb les noves bases de dades:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Tots els jocs de la base de dades</sys:String>
@@ -240,6 +240,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
