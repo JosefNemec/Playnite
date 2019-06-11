@@ -182,7 +182,7 @@ Resulteert in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Kan geen icoon verkrijgen als de Speel actie mist of is ingesteld op een URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Download alleen metadata voor spellen die nog geen metadata hebben</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Het aanzetten van deze optie zal de download voor een spel overslaan als er al data in een specifiek veld staat.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spellen selectie</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Selecteer alsjeblieft de spellen die moeten worden geüpdatet met nieuwe metadata:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Alle spellen uit de database</sys:String>
@@ -244,6 +244,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
