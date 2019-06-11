@@ -178,7 +178,7 @@
     <sys:String x:Key="LOCExecIconMissingPlayAction">Невозможно получить иконку если отсутствует "Игровое действие" или выбран URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Скачивать метаданные только для тех игр, у которых они пропали</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">При включении данной опции будет пропускаться скачивание для игр, у которых уже есть какие-либо данные.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Выбор игр</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Пожалуйста выберите у какой игры вы хотите обновить метаданные:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Все игры из базы данных</sys:String>
@@ -240,6 +240,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
