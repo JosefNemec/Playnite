@@ -182,7 +182,7 @@ Příklad: -image "{ImagePath}" -fullscreen
     <sys:String x:Key="LOCExecIconMissingPlayAction">Nelze získat ikonu, když chybí akce Hrát, nebo je nastavená na odkaz URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Stáhnout metadata pouze pro hry, u kterých chybí</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Povolení této možnosti způsobí přeskočení stahování dat hry, pokud data k specifickému poli už existují.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Povolení této možnosti způsobí, že se přeskočí stahování metadat pro datová pole, která už informace obsahují.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Výběr her</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Vyberte, které hry by měly být aktualizovány pomocí nových metadat:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Všechny hry v databázi</sys:String>
@@ -244,6 +244,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuSuspendSystem">Uspat systém</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Mezery mezi položkami</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Chybějící zdroj ikon her</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Chybějící zdroj obálek her</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Odsadit podrobnosti o hře</sys:String>
