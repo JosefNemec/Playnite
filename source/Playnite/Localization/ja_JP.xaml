@@ -178,7 +178,7 @@
     <sys:String x:Key="LOCExecIconMissingPlayAction">アイコンを取得できません。プレイアクションが登録されていないか、または、URLが設定されていません。</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">メタデータが足りないゲームのみダウンロードする。</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">特定のフィールドのデータがすでに存在する場合、このオプションを有効にするとゲームのダウンロードがスキップされます。</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">ゲームセレクト</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">どのゲームを新しいメタデータで更新するか選択してください。</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">データベースに登録されているすべてのゲーム</sys:String>
@@ -240,6 +240,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
