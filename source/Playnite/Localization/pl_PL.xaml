@@ -178,7 +178,7 @@ W efekcie: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Nie można uzyskać ikony, jeśli nie ma akcji odtwarzania lub ustawiony jest adres URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Pobierz tylko metadane dla gier, w których ich brakuje</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Włączenie tej opcji spowoduje pominięcie pobierania danych gry, jeśli dane dla określonego pola już istnieją.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Wybór gier</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Wybierz, które gry należy zaktualizować o nowe metadane:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Wszystkie gry z bazy danych</sys:String>
@@ -240,6 +240,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
