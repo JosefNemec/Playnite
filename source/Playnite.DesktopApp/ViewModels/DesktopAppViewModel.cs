@@ -908,6 +908,11 @@ namespace Playnite.DesktopApp.ViewModels
 
                     foreach (var plugin in Extensions.LibraryPlugins)
                     {
+                        if (GlobalTaskHandler.CancelToken.IsCancellationRequested)
+                        {
+                            return;
+                        }
+
                         Logger.Info($"Importing games from {plugin.Name} plugin.");
                         ProgressStatus = string.Format(Resources.GetString("LOCProgressImportinGames"), plugin.Name);
 

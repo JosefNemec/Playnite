@@ -6,13 +6,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Playnite.Database
 {
 
     public class DatabaseFilter : ObservableObject
     {
+        private static object syncLockYears = new object();
+        private static object syncLockGenres = new object();
+        private static object syncLockPlatforms = new object();
+        private static object syncLockAges = new object();
+        private static object syncLockCategories = new object();
+        private static object syncLockPublishers = new object();
+        private static object syncLockDevelopers = new object();
+        private static object syncLockRegions = new object();
+        private static object syncLockSeries = new object();
+        private static object syncLockSources = new object();
+        private static object syncLockTags = new object();
+        private readonly SynchronizationContext context;
         private GameDatabase database;        
         private FilterSettings filter;
 
@@ -142,6 +156,7 @@ namespace Playnite.Database
 
         public DatabaseFilter(GameDatabase database, ExtensionFactory extensions, FilterSettings filter)
         {
+            this.context = SynchronizationContext.Current;
             this.database = database;
             this.filter = filter;
                         
@@ -183,6 +198,21 @@ namespace Playnite.Database
             Series = new SelectableDbItemList(database.Series, null, null, true);
             Sources = new SelectableDbItemList(database.Sources, null, null, true);
             Tags = new SelectableDbItemList(database.Tags, null, null, true);
+
+            context.Send((a) =>
+            {
+                BindingOperations.EnableCollectionSynchronization(ReleaseYears, syncLockYears);
+                BindingOperations.EnableCollectionSynchronization(Genres, syncLockGenres);
+                BindingOperations.EnableCollectionSynchronization(Platforms, syncLockPlatforms);
+                BindingOperations.EnableCollectionSynchronization(AgeRatings, syncLockAges);
+                BindingOperations.EnableCollectionSynchronization(Categories, syncLockCategories);
+                BindingOperations.EnableCollectionSynchronization(Publishers, syncLockPublishers);
+                BindingOperations.EnableCollectionSynchronization(Developers, syncLockDevelopers);
+                BindingOperations.EnableCollectionSynchronization(Regions, syncLockRegions);
+                BindingOperations.EnableCollectionSynchronization(Series, syncLockSeries);
+                BindingOperations.EnableCollectionSynchronization(Sources, syncLockSources);
+                BindingOperations.EnableCollectionSynchronization(Tags, syncLockTags);
+            }, null);
 
             database.Games.ItemCollectionChanged += Games_ItemCollectionChanged;
             database.Games.ItemUpdated += Games_ItemUpdated;
