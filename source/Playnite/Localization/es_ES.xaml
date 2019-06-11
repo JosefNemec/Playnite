@@ -182,7 +182,7 @@ Resulta en: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">No se puede obtener el icono si falta la acción de Iniciar o esta establecida por URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Solo descargar metadatos a juegos que les faltan</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Habilitar esta opción hará que se omita la descarga para los juegos que cuenten con algún dato para un campo en específico.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Activar esta opción saltará las descargas de metadatos de campos que ya contengan información.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selección de Juegos</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Por favor seleccione para que juegos se descargará metadatos:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Todos los Juegos en la base de datos</sys:String>
@@ -244,6 +244,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender el sistema</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Espacio entre elementos</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fuente del icono del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fuente de la portada del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Reducir detalles del juego</sys:String>
