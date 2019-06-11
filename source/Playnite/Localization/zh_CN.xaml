@@ -178,7 +178,7 @@
     <sys:String x:Key="LOCExecIconMissingPlayAction">如果启动操作缺失或设置为链接，则无法获取图标</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">只为丢失数据的游戏下载数据</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">如果某些数据（特定领域）已存在，启用此选项将跳过游戏数据的下载</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">游戏选择</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">请选择使用新数据更新哪些游戏：</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">数据库中的所有游戏</sys:String>
@@ -240,6 +240,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
