@@ -176,7 +176,7 @@ Eredménye: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Csak akkor töltsön metaadatokat ha a játék nem tartalmaz</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ha engedélyezi ezt az opciót akkor átugorja a letöltést a játékhoz, ha bizonyos adatokat (adott mezőre) már tartalmaz.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Játék választás</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Kérem válassza ki mely játékok medaadatait szeretné frissíteni:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Adatbázis össze játéka</sys:String>
@@ -238,6 +238,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
