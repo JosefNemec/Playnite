@@ -8,6 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">Avslutt</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filter er på (klikk for å åpne filterpanel)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filter er av (klikk for å åpne filterpanel)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
+    <sys:String x:Key="LOCFilters"></sys:String>
+    <sys:String x:Key="LOCFilter"></sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Ugyldig data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Lagre endringer?</sys:String>
@@ -15,6 +18,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Hjemmeside på www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Kildekode hos GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Lag diag. pakke</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Om Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Laget av Josef Němec</sys:String>
 
@@ -28,13 +32,13 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Uff da, her skjedde det noe feil...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Det skjedde en en uopprettelig feil og Playnite stoppet.
-
-Hvis du vil hjelpe oss med å fikse feilen, vennligst opprett en diagnostikkpakke og bruk 'Rapporter programstopp' knappen og la oss vite hva som skjedde, Takk skal du ha.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporter et programstopp</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Omstart Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Avslutt Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern(e) spill?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan ikke fjerne spill som kjører eller blir installert / avinstallert.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kan ikke avinstallere et spill som kjører.</sys:String>
@@ -61,6 +65,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCGameUninstallError">Kan ikke avinstallere spill: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekplugin som er ansvarlig for dette spillet er ikke installert eller slått på.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Offisielle metadatanedlastning er ikke tilgjengelig.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
 
 
     <!--General-->
@@ -76,6 +81,9 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCDoneCapLabel">FERDIG</sys:String>
     <sys:String x:Key="LOCBackCapLabel">TILBAKE</sys:String>
     <sys:String x:Key="LOCClearCapLabel">FJERN</sys:String>
+    <sys:String x:Key="LOCClearLabel"></sys:String>
+    <sys:String x:Key="LOCDismiss"></sys:String>
+    <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel">Importer</sys:String>
     <sys:String x:Key="LOCSourceLabel">Kilde</sys:String>
     <sys:String x:Key="LOCNameLabel">Navn</sys:String>
@@ -89,7 +97,9 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCMostPlayedLabel">Mest spilte</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Antall Spillforsøk</sys:String>
     <sys:String x:Key="LOCAddedLabel">Lagt til</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Redigert</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Nettside</sys:String>
     <sys:String x:Key="LOCPathLabel">Bane</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -148,6 +158,10 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCGameId"></sys:String>
     <sys:String x:Key="LOCDatabaseId"></sys:String>
     <sys:String x:Key="LOCPresets"></sys:String>
+    <sys:String x:Key="LOCColumn"></sys:String>
+    <sys:String x:Key="LOCColumns"></sys:String>
+    <sys:String x:Key="LOCRow"></sys:String>
+    <sys:String x:Key="LOCRows"></sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
 
@@ -199,9 +213,17 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCMenuIssues"></sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation"></sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
@@ -220,6 +242,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fullskjerm</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Leverandør</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Inndata</sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -255,8 +278,9 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCSettingsWhatsSteamName">Hva er mitt profilnavn?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus"></sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCategories"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCatFrom"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsShowTray"></sys:String>
@@ -271,6 +295,9 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle"></sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip"></sys:String>
@@ -295,6 +322,16 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -317,6 +354,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle"></sys:String>
     <sys:String x:Key="LOCDownloadMetaButton"></sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
@@ -353,6 +391,8 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
@@ -430,6 +470,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCDatabaseOpenAccessError"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError"></sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
@@ -522,6 +563,8 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCLibrary"></sys:String>
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
+    <sys:String x:Key="LOCNotifications"></sys:String>
+
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
@@ -539,6 +582,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
@@ -546,6 +590,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip"></sys:String>
 
     <!--Game actions-->
+    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame"></sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
     <sys:String x:Key="LOCHideGame"></sys:String>
@@ -555,6 +600,8 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCRemoveGame"></sys:String>
     <sys:String x:Key="LOCPlayGame"></sys:String>
     <sys:String x:Key="LOCInstallGame"></sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameDetails"></sys:String>
     <sys:String x:Key="LOCUninstallGame"></sys:String>
     <sys:String x:Key="LOCOpenGameLocation"></sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
@@ -624,4 +671,14 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+
 </ResourceDictionary>

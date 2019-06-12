@@ -8,6 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">Uždaryti</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtras yra įgalintas (Paspauskite norėdami įjungti filtrų skydelį)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtras yra išjungtas (Paspauskite norėdami įjungti filtrų skydelį)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
+    <sys:String x:Key="LOCFilters"></sys:String>
+    <sys:String x:Key="LOCFilter"></sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Neteisingi duomenys</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Išsaugoti pakeitimus?</sys:String>
@@ -15,6 +18,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Tinklapis: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Atvirąjį kodą rasite GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Sukurti diagnostinį paketą</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Apie Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Kūrėjas: Josef Němec</sys:String>
 
@@ -28,11 +32,13 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Nenurodyta platforma</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">O ne, nutiko kažkas blogo...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite susidūrė su problema, kurios nepavyko išspręsti. Jeigu norite mums padėti, sukurk diagnostinį paketą ir pranešk apie problemą. Ačiū.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Pranešti apie problemą</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Iš naujo paleisti Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Uždaryti Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Pašalinti žaidimą(us)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Negalimas pašalinti žaidimo,nes jis šiuo metu yra įrašomas/ ištrinamas.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Negalimas pašalinti žaidimo, nes jis šiuo metu paleistas.</sys:String>
@@ -59,6 +65,7 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCGameUninstallError">Nepavyko ištrinti žaidimo: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekos įskiepis valdantis šį žaidimą nėra įdiegtas ar įgalintas.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Oficialių metaduomenų atsisiuntimas nėra galimas.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
 
 
     <!--General-->
@@ -74,6 +81,9 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCDoneCapLabel">BAIGTA</sys:String>
     <sys:String x:Key="LOCBackCapLabel">GRĮŽTI</sys:String>
     <sys:String x:Key="LOCClearCapLabel">IŠVALYTI</sys:String>
+    <sys:String x:Key="LOCClearLabel"></sys:String>
+    <sys:String x:Key="LOCDismiss"></sys:String>
+    <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel">Įtraukti</sys:String>
     <sys:String x:Key="LOCSourceLabel">Šaltinis</sys:String>
     <sys:String x:Key="LOCNameLabel">Pavadinimas</sys:String>
@@ -87,7 +97,9 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCMostPlayedLabel">Daugiausiai žaista</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Žaista kartų</sys:String>
     <sys:String x:Key="LOCAddedLabel">Pridėta</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modifikuota</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Tiklalapis</sys:String>
     <sys:String x:Key="LOCPathLabel">Kelias iki žaidimo</sys:String>
     <sys:String x:Key="LOCOKLabel">Gerai</sys:String>
@@ -128,7 +140,7 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCPatronsLabel">Rėmėjai</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenzija</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Prisidėję</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite uždaromas...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Šiandien</sys:String>
     <sys:String x:Key="LOCYesterday">Vakar</sys:String>
     <sys:String x:Key="LOCMonday">Pirmadienį</sys:String>
@@ -146,6 +158,10 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCGameId">Žaidimo Id</sys:String>
     <sys:String x:Key="LOCDatabaseId">Duombazės Id</sys:String>
     <sys:String x:Key="LOCPresets">Ruošiniai</sys:String>
+    <sys:String x:Key="LOCColumn"></sys:String>
+    <sys:String x:Key="LOCColumns"></sys:String>
+    <sys:String x:Key="LOCRow"></sys:String>
+    <sys:String x:Key="LOCRows"></sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Specialiosios greitosios komandos:
 {InstallDir} - Žaidimo direktorija
@@ -160,7 +176,7 @@ Rezultatas: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Nepavyksta gauti piktogramos jei veiksmo "Žaisti" nėra arba jis veda į URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Atsiųsti metadatą tik žaidimams, kurios jiems trūksta</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Pasirinkus šią parinktį bus praleisti laukai, kurie jau yra užpildyti.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Žaidimų pasirinkimas</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Pasirinkite, kuriuos žaidimus norite atnaujinnti su nauja metadata:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Visi žaidimai iš duombazės</sys:String>
@@ -210,14 +226,22 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCMenuAddGameManual">Rankiniu būdu</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Įtraukti įrašytą arba iš aplanko</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Įtraukti emuliuojamą žaidimą(us)</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Windows parduotuvės žaidimas...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Apie Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Siųsti atsiliepimą</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Pradėti viso ekrano rėžime</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Nuorodos</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentacija</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Papildomos informacijos pozicija tinklelio rėžimu</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filtrų skydelio pozicija</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Naršymo skydelio pozicija</sys:String>
@@ -226,7 +250,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsStrechModeLabel">Ištempto vaizdo rėžimas</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam baneris</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Žaidimo dėžutė</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">Nustatymai pažymėti * reikalauja programos paleidimo iš naujo</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
     <sys:String x:Key="LOCSettingsLabel">Nustatymai</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Bendri</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Išvaizda</sys:String>
@@ -236,6 +260,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsFullscreenLabel">Viso ekrano rėžimas</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Šaltiniai</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Įtraukti bibliotekos pakeitimus automatiškai</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Įtraukti įrašytus žaidimus</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importuoti neįrašytus žaidimus</sys:String>
@@ -271,8 +296,9 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsWhatsSteamName">Koks mano vartotojo vardas?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Prisijungimo būsena:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite nustatymai</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCategories">Įtraukti Steam kategorijas:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCatFrom">iš vartotojo:</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Išvalyti talpyklą</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Gali padėti išspręsti problemas, atsiradusias bandant susieti paskyras.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Rodyti sistemos dėklė</sys:String>
@@ -287,6 +313,9 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nepavyko įtraukti kategorijų, nepasirinktas vartotojas.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nepavyko įtraukti kategorijų, duombazė nėra atidaryta.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Nepavyko įtrauti kategorijų iš Steam: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Šis veiksmas atjungs Jus nuo visų paskyrų. Reikalingas programos paleidimas iš naujo, ar norite tęsti?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Išvalyti Talpyklą?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">API raktas reikalingas privatiems Steam vartotojamas</sys:String>
@@ -314,6 +343,16 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Visada ignoruoti Playnite išsaugotą žaidimo laiką ir bibliotekos sinchronizacijos metu atsiųsti įšsaugotą žaidimo laiką iš nuotolinės bibliotekos.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nieko</sys:String>
     <sys:String x:Key="LOCStrechFill">Užpildyti</sys:String>
@@ -336,6 +375,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadata įtraukimas</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Atsisiųsti metadatą</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emuliacijos importavimo vedlys</sys:String>
@@ -377,10 +417,10 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Įtraukti žaidimus</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigūravimas baigtas</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Pirminė konfigūracija baigta. Bet kada pasirinktus nustatymus galite pakeisti 'Nustatymai' meniu.
-
-Kitą žaidimą(us)bet kada galite pridėti paspaudus Playnite programos logotipą.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Atidaryti emuliacijos importavimo vedlį</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfigūruoti platformas ir emulatorius</sys:String>
@@ -460,6 +500,7 @@ Ją šiuo metu naudoja {1} žaidimas(ai) ir {2} emulatorius(iai).</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Nepavyko pasiekti bibliotekos duombazės. Failas "{0}" yra nepasiekiamas arba jį naudoja kitas procesas.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Nepavyko sukurti diagnostinio paketo.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Nepavyko automatiškai patalpinti diagnostikos paketo.</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnostinis paketas sukurtas sėkmingai.</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Nepavyko įtraukti steam kategorijų.</sys:String>
@@ -549,7 +590,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCReloadScripts">Iš naujo paleisti skriptus</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Visi skriptai paleisti iš naujo sėkmingai.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Pagal kriterijus žaidimų nerasta</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Grįžti į darbalaukį</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Uždaryti Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotekos</sys:String>
     <sys:String x:Key="LOCUpdateAll">Naujinti viską</sys:String>
@@ -559,6 +600,8 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCLibrary">Biblioteka</sys:String>
     <sys:String x:Key="LOCAll">Visi</sys:String>
     <sys:String x:Key="LOCNone">Nieko</sys:String>
+    <sys:String x:Key="LOCNotifications"></sys:String>
+
 
     <sys:String x:Key="LOCEmulatorArguments">Emuliatoriaus argumentai</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Papildomi emuliatoriaus argumentai</sys:String>
@@ -567,7 +610,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCGameImportWindowTitle">Pasirinkti žaidimus įtraukimui</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadata paieška</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Galimas atnaujinimas</sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo">Pakeitimai nuo paskutinio atnaujinimo:</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Įrašyti atnaujinimą</sys:String>
     <sys:String x:Key="LOCCheckForUpdates">Tikrinti, ar yra atnaujinimų</sys:String>
     <sys:String x:Key="LOCUpdateError">Atnaujinimo klaida</sys:String>
@@ -576,6 +619,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Nepavyko atsiųsti ir įdiegti atnaujinimo.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Fone vyksta procesas, ar norite jį atšaukti ir pradėti atnaujinimą?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Šiuo metu fone vyksta procesas. Ar norite jį atšaukti ir uždaryti Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Atnaujinti temų sąrašą</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Pritaikyti pasirinktą temą</sys:String>
@@ -583,6 +627,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Automatiškai atnaujinti temą kai pasikeičia šaltinio failai</sys:String>
 
     <!--Game actions-->
+    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame">Pridėti prie mėgstamų</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Pašalinti iš mėgstamų</sys:String>
     <sys:String x:Key="LOCHideGame">Paslėpti</sys:String>
@@ -592,6 +637,8 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCRemoveGame">Pašalinti</sys:String>
     <sys:String x:Key="LOCPlayGame">Žaisti</sys:String>
     <sys:String x:Key="LOCInstallGame">Įrašyti</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameDetails"></sys:String>
     <sys:String x:Key="LOCUninstallGame">Ištrinti</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Atidaryti žaidimo direktoriją</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Sukurti darbalaukio nuorodą</sys:String>
@@ -599,7 +646,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCPlayActionUsePlugin">Valdyti bibliotekos įskiepius</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Žaidimo paleidimo procesą valdys bibliotekos įskiepis atsakingas už šį žaidimą.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Nepavyko rasti informacijos apie žadimą '{0}' nurodytame tinklalapyje.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Patarimas: Detalesnis metadata atsisiuntimo valdymas pavieniui žaidimui galimas pasirinkus punktą "Keisti" .</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Negalimas, kai vyksta veiksmas fone.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Aprašymo tekstas yra jautrus HTML sintaksei</sys:String>
@@ -661,4 +708,14 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Nurodyti vartotojo biblioteką:</sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Vartotojo nuorodos pavadinimas</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Autentifikuotas vartotojas</sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+
 </ResourceDictionary>

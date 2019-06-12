@@ -8,6 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">Kilépés</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Szűrő engedélyezve (kattints hogy megnyisd a szűrő panelt)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Szűrő kikapcsolva (kattints hogy megnyisd a szűrő panelt)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters"></sys:String>
+    <sys:String x:Key="LOCFilters"></sys:String>
+    <sys:String x:Key="LOCFilter"></sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Érvénytelen data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Mented a változásokat?</sys:String>
@@ -15,6 +18,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Weboldalunk www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">GitHub forráskód</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">diag. csomag készítése</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Playnite-ról</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Készítette: Josef Němec</sys:String>
 
@@ -28,11 +32,13 @@ Négyzet - Ne változzon (több játék állításakor)</sys:String>
     <sys:String x:Key="LOCNoPlatform"></sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh ne, valami hiba történt...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite problémába ütközött és nem tudta megoldani. Ha szeretnél benne segíteni, kérlek készíts egy diagnosztiai jelentést. Köszönjük.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Hiba jelentése</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite újraindítása</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Playnite bezárása</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
 
+    <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Listából való törlés megerősítése</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nem törölhetsz játékot ami fut vagy települ/törlődik.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nem távolíthatsz el játékot ami fut.</sys:String>
@@ -59,6 +65,7 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCGameUninstallError">Játék nem eltávolítható: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
 
 
     <!--General-->
@@ -74,6 +81,9 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCDoneCapLabel"></sys:String>
     <sys:String x:Key="LOCBackCapLabel"></sys:String>
     <sys:String x:Key="LOCClearCapLabel"></sys:String>
+    <sys:String x:Key="LOCClearLabel"></sys:String>
+    <sys:String x:Key="LOCDismiss"></sys:String>
+    <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel">Importálás</sys:String>
     <sys:String x:Key="LOCSourceLabel">Forrás</sys:String>
     <sys:String x:Key="LOCNameLabel">Név</sys:String>
@@ -87,7 +97,9 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCMostPlayedLabel">Leggyakrabban játszva</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">játszva</sys:String>
     <sys:String x:Key="LOCAddedLabel">Hozzáadva</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel">Módosítva</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel"></sys:String>
     <sys:String x:Key="LOCPathLabel">Útvonal</sys:String>
     <sys:String x:Key="LOCOKLabel"></sys:String>
@@ -128,7 +140,7 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCPatronsLabel"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licensz</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Közreműködők</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite bezárása...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
     <sys:String x:Key="LOCToday">Ma</sys:String>
     <sys:String x:Key="LOCYesterday">Tegnap</sys:String>
     <sys:String x:Key="LOCMonday">Hétfő</sys:String>
@@ -146,6 +158,10 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCGameId"></sys:String>
     <sys:String x:Key="LOCDatabaseId"></sys:String>
     <sys:String x:Key="LOCPresets"></sys:String>
+    <sys:String x:Key="LOCColumn"></sys:String>
+    <sys:String x:Key="LOCColumns"></sys:String>
+    <sys:String x:Key="LOCRow"></sys:String>
+    <sys:String x:Key="LOCRows"></sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Speciális változók alkalmazhatóak dinamikus stringekért:
 {InstallDir} - Játék telepítési útvonala
@@ -160,7 +176,7 @@ Eredménye: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Csak akkor töltsön metaadatokat ha a játék nem tartalmaz</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ha engedélyezi ezt az opciót akkor átugorja a letöltést a játékhoz, ha bizonyos adatokat (adott mezőre) már tartalmaz.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Játék választás</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Kérem válassza ki mely játékok medaadatait szeretné frissíteni:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Adatbázis össze játéka</sys:String>
@@ -215,9 +231,17 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCMenuIssues">Visszajelzés küldése</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Teljesképernyős mód indítása</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation"></sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
@@ -236,6 +260,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Kliensek</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Könyvtár változások automatikus importálása</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Telepített játékok importálása</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -271,8 +296,9 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsWhatsSteamName">Mi a felhasználónevem?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Belépési státusz:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite beállítások</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCategories">Steam kategóriák importálása:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportCatFrom">Ebből a felhasználóból:</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Web cache tisztítása</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Felhasználó hozzácsatolásakor keletkező hibákat lehet megoldja.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Tálca ikon megjelenítése</sys:String>
@@ -287,6 +313,9 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nem lehet importálni a kategóriákat, felhasználó nincs megadva.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nem lehet importálni a kategóriákat, adatbázis nincs megnyitva.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Következő steam kategóriákat nem lehet importálni: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Ez kilépteti az összes szolgáltatásból. Ehez újra kell indítania az alkalmazást, folytatja?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Cache ürítése?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">API kulcs szükséges steam privát felhasználókhoz</sys:String>
@@ -314,6 +343,16 @@ Minden jelenlegi művelete (metaadatok letöltése) abba marad.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -336,6 +375,7 @@ Minden jelenlegi művelete (metaadatok letöltése) abba marad.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metaadatok importálása</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Metadata letöltése</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulálás importálási segéd</sys:String>
@@ -377,10 +417,10 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Játékok importálása</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguráció kész</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Elsődleges konfiguráció elkészült. Ne felejtse hogy később bármikor változtathat ezt a 'Beállítások' menüben
-
-És bármikor adhat hozzá más játékot ha rányom a Playnite ikonra főmenüben.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Platformok és emulátorok konfigurálása</sys:String>
@@ -460,6 +500,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Nem lehet hozzáférni a könyvtár adatbázishoz. A fájl "{0}" egy másik művelet által van használatban, vagy nem lehet hozzáférni.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Hiba történt diagnosztika csomag készítésekor</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnosztika csomag sikeresen elkészült.</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Hiba steam könyvtárak importálásakor.</sys:String>
@@ -544,7 +585,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCReloadScripts">Szkriptek újratöltése</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Minden szkript sikeresen újratöltött.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nem található játék</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Visszalépés asztali módba</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite bezárása</sys:String>
     <sys:String x:Key="LOCLibraries"></sys:String>
     <sys:String x:Key="LOCUpdateAll"></sys:String>
@@ -554,6 +595,8 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCLibrary"></sys:String>
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
+    <sys:String x:Key="LOCNotifications"></sys:String>
+
 
     <sys:String x:Key="LOCEmulatorArguments">Emulátor parancsok</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Egyéb emulátor parancsok</sys:String>
@@ -562,7 +605,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Játékok kiválasztása importáláshoz</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metaadatok keresése</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Frissítés elérhető</sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo">Változások az utolsó frissítés óta:</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Frissítés telepítése</sys:String>
     <sys:String x:Key="LOCCheckForUpdates"></sys:String>
     <sys:String x:Key="LOCUpdateError"></sys:String>
@@ -571,6 +614,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Háttér folyamat jelenleg folyamatban van. Abba hagyja hogy haladjon a frissítéssel?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Téma lista újratöltése</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Kiválasztott téma alkalmazása</sys:String>
@@ -578,6 +622,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Téma automatikus változtatása ha a fájl változik</sys:String>
 
     <!--Game actions-->
+    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame">Kedvencekhez adás</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Eltávolítás kedvencekből</sys:String>
     <sys:String x:Key="LOCHideGame">Elrejtés</sys:String>
@@ -587,6 +632,8 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCRemoveGame">Listából törlés</sys:String>
     <sys:String x:Key="LOCPlayGame">Játék</sys:String>
     <sys:String x:Key="LOCInstallGame">Telepítés</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameDetails"></sys:String>
     <sys:String x:Key="LOCUninstallGame">Játék törlése</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Telepítési hely megnyitása</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Parancsikon készítés</sys:String>
@@ -594,7 +641,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Nem található használható információ '{0}' játékról a megadott oldalon.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Használhat egy haladóbb metaadat letöltési folyamatot miközben egy játékot szerkeszt "Szerkesztés" menüpont alatt.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nem elérhető néhány folyamat alatt.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Leírás szöveg HTML syntax érzékeny</sys:String>
@@ -656,4 +703,14 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Felhasználói könyvtár beállítása a következő szerint:</sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+
 </ResourceDictionary>
