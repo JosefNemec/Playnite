@@ -10,6 +10,7 @@ using Playnite.SDK.Models;
 using Moq;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
+using Playnite.API;
 
 namespace OriginLibrary.Tests
 {
@@ -19,6 +20,7 @@ namespace OriginLibrary.Tests
         public static OriginLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
+            api.Setup(a => a.Paths).Returns(new PlaynitePathsAPI());
             return new OriginLibrary(api.Object);
         }
 
@@ -50,7 +52,7 @@ namespace OriginLibrary.Tests
         {
             var originLib = CreateLibrary();
             var games = originLib.GetInstalledGames(true);
-            var cacheFiles = Directory.GetFiles(Path.Combine(OriginTests.TempPath, "origincache"), "*.json");
+            var cacheFiles = Directory.GetFiles(Origin.GetCachePath(originLib.GetPluginUserDataPath()), "*.json");
             Assert.IsTrue(cacheFiles.Count() > 0);
         }
 
