@@ -22,6 +22,21 @@ using System.Text.RegularExpressions;
 
 namespace Playnite.DesktopApp.ViewModels
 {
+    public class SelectableTrayIcon
+    {
+        public SelectableTrayIcon(string trayIcon)
+        {
+            this.TrayIcon = trayIcon;
+        }
+
+        public string TrayIcon { get; }
+
+        public object ImageSource
+        {
+            get => ResourceProvider.GetResource(TrayIcon);
+        }
+    }
+
     public class SelectablePlugin : ObservableObject
     {
         public Plugin Plugin { get; set; }
@@ -124,6 +139,12 @@ namespace Playnite.DesktopApp.ViewModels
             private set;
         } = false;
 
+        public List<SelectableTrayIcon> AvailableTrayIcons
+        {
+            get;
+            private set;
+        } = new List<SelectableTrayIcon>();
+
         public List<SelectablePlugin> PluginsList
         {
             get;
@@ -209,6 +230,13 @@ namespace Playnite.DesktopApp.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.application = app;
+
+            AvailableTrayIcons = new List<SelectableTrayIcon>
+            {
+                new SelectableTrayIcon("TrayIcon"),
+                new SelectableTrayIcon("TrayIconWhite"),
+                new SelectableTrayIcon("TrayIconBlack")
+            };
 
             PluginsList = Extensions
                 .GetExtensionDescriptors()
@@ -361,6 +389,7 @@ namespace Playnite.DesktopApp.ViewModels
                         nameof(Settings.DatabasePath),
                         nameof(Settings.DisabledPlugins),
                         nameof(Settings.EnableTray),
+                        nameof(Settings.TrayIcon),
                         nameof(Settings.EnableControllerInDesktop),
                         nameof(Settings.Language)
                     }))

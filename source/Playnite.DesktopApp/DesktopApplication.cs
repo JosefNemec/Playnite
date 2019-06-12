@@ -25,6 +25,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Playnite.DesktopApp
 {
@@ -160,7 +161,7 @@ namespace Playnite.DesktopApp
             {
                 MenuActivation = PopupActivationMode.LeftOrRightClick,
                 DoubleClickCommand = MainModel.ShowWindowCommand,
-                Icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico")),
+                Icon = GetTrayIcon(),
                 Visibility = Visibility.Visible,
                 ContextMenu = new TrayContextMenu(MainModel)
             };
@@ -263,7 +264,7 @@ namespace Playnite.DesktopApp
 
         public override void ShowWindowsNotification(string title, string body, Action action)
         {
-            var icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico"));
+            var icon = GetTrayIcon();
             if (AppSettings.EnableTray)
             {
                 trayIcon.ShowBalloonTip(title, body, icon, true);
@@ -272,6 +273,14 @@ namespace Playnite.DesktopApp
             {
                 WindowsNotifyIconManager.Notify(icon, title, body, action);
             }
+        }
+
+        private Icon GetTrayIcon()
+        {
+            var trayIconImage =
+                ResourceProvider.GetResource(AppSettings.TrayIcon) as BitmapImage ??
+                ResourceProvider.GetResource("TrayIcon") as BitmapImage;
+            return new Icon(trayIconImage.UriSource.LocalPath);
         }
     }
 }
