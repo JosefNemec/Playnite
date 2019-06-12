@@ -221,7 +221,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfiguration</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Einstellungen …</sys:String>
-    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformen & Emulatoren</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformen &amp; Emulatoren</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Emulatoren konfigurieren</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Bibliotheksverwaltung</sys:String>
     <sys:String x:Key="LOCMenuTools">Werkzeuge</sys:String>
@@ -428,7 +428,7 @@ Weiterhin kannst du jedes andere Spiel (inklusive Spielen aus dem Microsoft Stor
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Wähle deine bevorzugte Darstellung für Playnites Rasteransicht aus. Das Bildlayout kann jederzeit in den Anwendungseinstellungen geändert werden, einschließlich der Optionen für die Bilddehnung.</sys:String>
 
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle">Plattformen & Emulatoren konfigurieren</sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">Plattformen &amp; Emulatoren konfigurieren</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Emulatoren konfigurieren</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Plattformen</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Plattform</sys:String>
