@@ -39,7 +39,7 @@ namespace Playnite.Metadata
         {
             foreach (var downloader in downloaders.Values)
             {
-                downloader.Dispose();
+                downloader?.Dispose();
             }
         }
 
