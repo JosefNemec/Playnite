@@ -269,14 +269,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                 if (ListGameItems != null)
                 {
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameOptionsCommand, Key = Key.X });
-                    ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = Key.A });
-                    ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.InstallSelectedCommand, Key = Key.Enter });
-                    ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.PlaySelectedCommand, Key = Key.Enter });
+                    ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = Key.A });                    
+                    ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ActivateSelectedCommand, Key = Key.Enter });
 
                     ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ToggleGameOptionsCommand, XInputButton.Start));
-                    ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ToggleGameDetailsCommand, XInputButton.A));
-                    ListGameItems.InputBindings.Add(new XInputBinding(mainModel.InstallSelectedCommand, XInputButton.X));
-                    ListGameItems.InputBindings.Add(new XInputBinding(mainModel.PlaySelectedCommand, XInputButton.X));
+                    ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ToggleGameDetailsCommand, XInputButton.A));                    
+                    ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ActivateSelectedCommand, XInputButton.X));
 
                     BindingTools.SetBinding(ListGameItems,
                         ListBox.VisibilityProperty,
@@ -298,7 +296,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                         nameof(mainModel.GameListFocused));
                 }
 
-                AssignButtonWithCommand(ref ButtonInstall, "PART_ButtonInstall", mainModel.InstallSelectedCommand);
+                AssignButtonWithCommand(ref ButtonInstall, "PART_ButtonInstall", mainModel.ActivateSelectedCommand);
                 BindingTools.SetBinding(
                     ButtonInstall,
                     ButtonBase.VisibilityProperty,
@@ -307,7 +305,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     converter: new InvertedBooleanToVisibilityConverter(),
                     fallBackValue: Visibility.Collapsed);
 
-                AssignButtonWithCommand(ref ButtonPlay, "PART_ButtonPlay", mainModel.PlaySelectedCommand);
+                AssignButtonWithCommand(ref ButtonPlay, "PART_ButtonPlay", mainModel.ActivateSelectedCommand);
                 BindingTools.SetBinding(
                     ButtonPlay,
                     ButtonBase.VisibilityProperty,

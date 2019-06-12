@@ -158,8 +158,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 selectedGame = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(GameDetailsButtonVisible));
-                OnPropertyChanged(nameof(GameDetailsEntry));
+                OnPropertyChanged(nameof(GameDetailsButtonVisible));                
             }
         }
 
@@ -249,11 +248,29 @@ namespace Playnite.FullscreenApp.ViewModels
                 gameDetailsVisible = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GameDetailsButtonVisible));
-                OnPropertyChanged(nameof(GameDetailsEntry));
+
+                if (value == true)
+                {
+                    GameDetailsEntry = SelectedGame;
+                }
+                else
+                {
+                    GameDetailsEntry = null;
+                }
             }
         }
 
-        public GamesCollectionViewEntry GameDetailsEntry => GameDetailsVisible ? SelectedGame : null;
+        private GamesCollectionViewEntry gameDetailsEntry;
+        public GamesCollectionViewEntry GameDetailsEntry
+        {
+            get => gameDetailsEntry;
+            set
+            {
+                gameDetailsEntry = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool GameDetailsButtonVisible => GameDetailsVisible == false && SelectedGame != null;
 
         private DatabaseFilter databaseFilters;
@@ -359,9 +376,8 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> OpenPatreonCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> OpenAdditionalFiltersCommand { get; private set; }
-        public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }
-        public RelayCommand<object> InstallSelectedCommand { get; private set; }
-        public RelayCommand<object> PlaySelectedCommand { get; private set; }
+        public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }        
+        public RelayCommand<object> ActivateSelectedCommand { get; private set; }
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> NextFilterViewCommand { get; private set; }
         public RelayCommand<object> PrevFilterViewCommand { get; private set; }
@@ -606,6 +622,12 @@ namespace Playnite.FullscreenApp.ViewModels
 
             ToggleGameDetailsCommand = new RelayCommand<object>((a) =>
             {
+                var oldEntr = GameDetailsEntry;
+                if (GameDetailsVisible)
+                {
+                    SelectedGame = oldEntr;
+                }
+
                 GameDetailsVisible = !GameDetailsVisible;
                 GameListVisible = !GameListVisible;
 
@@ -812,15 +834,31 @@ namespace Playnite.FullscreenApp.ViewModels
                 GameListFocused = true;
             });
 
-            InstallSelectedCommand = new RelayCommand<object>((a) =>
+            ActivateSelectedCommand = new RelayCommand<object>((a) =>
             {
-                GamesEditor.InstallGame(SelectedGame.Game);
-            }, (a) => SelectedGame?.IsInstalled == false);
-
-            PlaySelectedCommand = new RelayCommand<object>((a) =>
-            {
-                GamesEditor.PlayGame(SelectedGame.Game);
-            }, (a) => SelectedGame?.IsInstalled == true);
+                if (GameDetailsVisible)
+                {
+                    if (GameDetailsEntry?.IsInstalled == true)
+                    {
+                        GamesEditor.PlayGame(GameDetailsEntry.Game);
+                    }
+                    else if (GameDetailsEntry?.IsInstalled == false)
+                    {
+                        GamesEditor.InstallGame(GameDetailsEntry.Game);
+                    }
+                }
+                else
+                {
+                    if (SelectedGame?.IsInstalled == true)
+                    {
+                        GamesEditor.PlayGame(SelectedGame.Game);
+                    }
+                    else if (SelectedGame?.IsInstalled == false)
+                    {
+                        GamesEditor.InstallGame(SelectedGame.Game);
+                    }
+                }
+            });
 
             OpenSearchCommand = new RelayCommand<object>((a) =>
             {
@@ -854,21 +892,25 @@ namespace Playnite.FullscreenApp.ViewModels
 
             SelectPrevGameCommand = new RelayCommand<object>((a) =>
             {
-                var currIndex = GamesView.CollectionView.IndexOf(SelectedGame);
+                var currIndex = GamesView.CollectionView.IndexOf(GameDetailsEntry);
                 var prevIndex = currIndex - 1;
                 if (prevIndex >= 0)
                 {
-                    SelectGameIndex(prevIndex);
+                    GameDetailsFocused = false;
+                    GameDetailsEntry = GamesView.CollectionView.GetItemAt(prevIndex) as GamesCollectionViewEntry;
+                    GameDetailsFocused = true;
                 }
             });
 
             SelectNextGameCommand = new RelayCommand<object>((a) =>
             {
-                var currIndex = GamesView.CollectionView.IndexOf(SelectedGame);
+                var currIndex = GamesView.CollectionView.IndexOf(GameDetailsEntry);
                 var nextIndex = currIndex + 1;
                 if (nextIndex <= GamesView.CollectionView.Count)
                 {
-                    SelectGameIndex(nextIndex);
+                    GameDetailsFocused = false;
+                    GameDetailsEntry = GamesView.CollectionView.GetItemAt(nextIndex) as GamesCollectionViewEntry;
+                    GameDetailsFocused = true;
                 }
             });
         }

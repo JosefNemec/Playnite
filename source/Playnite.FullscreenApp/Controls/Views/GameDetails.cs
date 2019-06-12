@@ -74,6 +74,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ButtonInstall = Template.FindName("PART_ButtonInstall", this) as ButtonBase;
                 if (ButtonInstall != null)
                 {
+                    ButtonInstall.Command = mainModel.ActivateSelectedCommand;
                     BindingTools.SetBinding(
                         ButtonInstall,
                         ButtonBase.VisibilityProperty,
@@ -81,16 +82,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                         $"{nameof(mainModel.GameDetailsEntry)}.{nameof(mainModel.GameDetailsEntry.IsInstalled)}",
                         converter: new InvertedBooleanToVisibilityConverter(),
                         fallBackValue: Visibility.Collapsed);
-                    BindingTools.SetBinding(
-                        ButtonInstall,
-                        ButtonBase.CommandProperty,
-                        mainModel,
-                        $"{nameof(mainModel.InstallSelectedCommand)}");
                 }
 
                 ButtonPlay = Template.FindName("PART_ButtonPlay", this) as ButtonBase;
                 if (ButtonPlay != null)
                 {
+                    ButtonPlay.Command = mainModel.ActivateSelectedCommand;
                     BindingTools.SetBinding(
                         ButtonPlay,
                         ButtonBase.VisibilityProperty,
@@ -98,21 +95,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                         $"{nameof(mainModel.GameDetailsEntry)}.{nameof(mainModel.GameDetailsEntry.IsInstalled)}",
                         converter: new Converters.BooleanToVisibilityConverter(),
                         fallBackValue: Visibility.Collapsed);
-                    BindingTools.SetBinding(
-                        ButtonPlay,
-                        ButtonBase.CommandProperty,
-                        mainModel,
-                        $"{nameof(mainModel.PlaySelectedCommand)}");
                 }
 
                 ButtonOptions = Template.FindName("PART_ButtonOptions", this) as ButtonBase;
                 if (ButtonOptions != null)
                 {
-                    BindingTools.SetBinding(
-                        ButtonOptions,
-                        ButtonBase.CommandProperty,
-                        mainModel,
-                        $"{nameof(mainModel.ToggleGameOptionsCommand)}");
+                    ButtonOptions.Command = mainModel.ToggleGameOptionsCommand;
                 }
             }
         }
