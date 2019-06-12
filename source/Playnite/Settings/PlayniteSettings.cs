@@ -231,7 +231,7 @@ namespace Playnite
         [JsonIgnore]
         public AspectRatio CoverAspectRatio => new AspectRatio(GridItemWidthRatio, GridItemHeightRatio);
 
-        private int gridItemWidthRatio = 92;
+        private int gridItemWidthRatio = 27;
         public int GridItemWidthRatio
         {
             get
@@ -248,7 +248,7 @@ namespace Playnite
             }
         }
 
-        private int gridItemHeightRatio = 43;
+        private int gridItemHeightRatio = 38;
         public int GridItemHeightRatio
         {
             get
