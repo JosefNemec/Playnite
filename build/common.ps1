@@ -153,3 +153,29 @@ function global:Write-DebugLog()
 
     Write-Host $Message -ForegroundColor DarkGray
 }
+
+function global:Get-NuGet()
+{
+    $nugetCmd = (Get-Command -Name "nuget.exe" -Type Application -ErrorAction Ignore)
+
+    if (-not $nugetCmd)
+    {
+        $nugetCmd = Join-Path $PSScriptRoot "nuget.exe"
+        Invoke-WebRequest -Uri $NugetUrl -OutFile $nugetCmd
+    }
+
+    return $nugetCmd
+}
+
+function global:Get-MSBuild()
+{
+    $vswhereCmd = (Get-Command -Name "vswhere" -Type Application -ErrorAction Ignore)
+
+    if (-not $vswhereCmd)
+    {
+        & (Get-NuGet) install vswhere -Version 2.6.7 -SolutionDirectory $PSScriptRoot | Write-Verbose
+        $vswhereCmd = Join-Path $PSScriptRoot "packages\vswhere.2.6.7\tools\vswhere.exe"
+    }
+
+    return & $vswhereCmd -version "[15.0,16.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe"
+}
