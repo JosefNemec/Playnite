@@ -131,10 +131,10 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCTagLabel">Étiquette</sys:String>
     <sys:String x:Key="LOCTagsLabel">Étiquettes</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Liste</sys:String>
+    <sys:String x:Key="LOCListLabel">Détails</sys:String>
     <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
-    <sys:String x:Key="LOCGridLabel">Bannières</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Détails</sys:String>
+    <sys:String x:Key="LOCGridLabel">Grille</sys:String>
+    <sys:String x:Key="LOCDetailsLabel">Liste</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personnalisé</sys:String>
     <sys:String x:Key="LOCURLLabel">Lien</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -153,7 +153,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCPastWeek">Cette semaine</sys:String>
     <sys:String x:Key="LOCPastMonth">Ce mois-ci</sys:String>
     <sys:String x:Key="LOCPastYear">Cette année</sys:String>
-    <sys:String x:Key="LOCImportCompleted">Les catégories ont été importées avec succès.</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Les informations ont été importées avec succès.</sys:String>
     <sys:String x:Key="LOCAllGames">Tous</sys:String>
     <sys:String x:Key="LOCGameId">Id jeu</sys:String>
     <sys:String x:Key="LOCDatabaseId">Id base de données</sys:String>
@@ -227,7 +227,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuAddGameManual">Manuellement</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Importer depuis une installation</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Importer des jeux émulés</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Ajouter un jeu (Microsoft Store)</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Importer depuis Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Mode plein écran</sys:String>
@@ -240,27 +240,27 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource">Icône manquante</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource">Jaquette manquante</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Cacher les détails</sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails dans le mode d'affichage en grille</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Détails en bas de page (affichage en liste)</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails (affichage en grille)</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position du panneau de filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position du panneau d'explorateur</sys:String>
-    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Type d'image de couverture</sys:String>
-    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Format d'image cible</sys:String>
-    <sys:String x:Key="LOCSettingsStrechModeLabel">Mode Étirer</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Propriétés de l'affichage en grille</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Format d'affichage</sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">Mise à l'échelle</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Bannière Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Boîte DVD</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Redémarrage nécessaire</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Paramètres</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Général</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Apparence</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel">Propriétés du jeu</sys:String>
-    <sys:String x:Key="LOCSettingsLayoutLabel">Mise à l'échelle</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Détails</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Autres</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Plein écran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Fournisseurs</sys:String>
-    <sys:String x:Key="LOCSettingsInputLabel">Entrée</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Manette</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Métadonnées</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importer les modifications dans la bibliothèque automatiquement</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer les jeux installés</sys:String>
@@ -278,31 +278,31 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Impossible de lancer Playnite au démarrage de l'ordinateur.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Lancer Playnite en mode plein écran</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclut Steam, Origin et autres.</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">Chargement d'image asynchrone (redémarrage nécessaire)</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Chargement d'image asynchrone *</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Améliore la fluidité du défilement des listes de jeux en chargeant les images plus lentement.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Afficher le nom des jeux à la place des jaquettes manquantes</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Afficher le nom des jeux dans le mode d'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans le mode d'affichage en liste</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Afficher le nombre d'items dans la description des groupes</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle (redémarrage nécessaire)</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle *</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle (redémarrage nécessaire)</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS *</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Afficher les images de fond</sys:String>
-    <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
+    <sys:String x:Key="LOCSettingsSkin">Thème *</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profil du thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Thème plein écran</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Thème plein écran</sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation">Emplacement de la base de données</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation">Emplacement de la base de données *</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Aide</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Statut de connexion :</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Paramètres de Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata">Importer les métadonnées depuis le compte Steam :</sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel">Importer les catégories de Steam</sys:String>
-    <sys:String x:Key="LOCImportSteamLastActivityLabel">Importer "Dernière utilisation" depuis Steam</sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel">Importer "Dernière utilisation"</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Effacer le cache Web</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Peut résoudre les problèmes rencontrés lors de la liaison de profils.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">Réduire dans la barre d'état</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Réduire dans la barre d'état *</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Lorsque la fenêtre est minimisée</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Lorsque la fenêtre est fermée</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">En début de jeu :</sys:String>
@@ -347,9 +347,9 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Afficher l'état de la batterie</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Afficher le pourcentage de batterie restant</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Afficher l'heure</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Installé uniquement dans les filtres rapides</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Ajouter "Installé uniquement" aux filtres rapides</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Apparence des boutons</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLayout">Mise à l'échelle</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Défilement Horizontal</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucun</sys:String>
@@ -373,7 +373,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Importation de Métadonnées</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Télécharger les Métadonnées</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Configurer les paramètres de téléchargement des métadonnées.
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Définit un profil de téléchargement des métadonnées.
 Peut également être modifié dans le menu de paramètres.</sys:String>
     
     <!--Emulator Import-->
@@ -414,7 +414,7 @@ Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ord
     <sys:String x:Key="LOCFirstUplayIntegration">Intégration de Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importer des catégories à partir du profil :</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Autres jeux</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Cliquez sur le bouton ci-dessous pour importer d'autres jeux installés ou les rechercher manuellement (y compris les jeux Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Cliquez sur le bouton ci-dessous pour importer d'autres jeux installés ou les rechercher manuellement (y compris les jeux du Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importer des jeux</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration terminée</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu "Paramètres".</sys:String>
@@ -462,7 +462,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCViewType">"Type d'affichage"</sys:String>
     <sys:String x:Key="LOCMenuView">Afficher</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">Panneau d'exploration</sys:String>
-    <sys:String x:Key="LOCMenuViewFilterPanel">Panneau de filtre</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">Filtres</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Icône</sys:String>
