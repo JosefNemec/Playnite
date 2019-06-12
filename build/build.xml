@@ -43,6 +43,10 @@
     </Target>
     <Target Name="Build" DependsOnTargets="Plugins">
         <MSBuild
+            Projects="../source/tools/Playnite.UIWrapper/Playnite.UIWrapper.csproj"
+            Targets="Build"
+            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
             Projects="../source/Playnite.DesktopApp/Playnite.DesktopApp.csproj"
             Targets="Build"
             Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />

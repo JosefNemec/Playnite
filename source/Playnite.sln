@@ -119,6 +119,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicLibrary.Tests", "Plugin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.FullscreenApp.Tests", "Tests\Playnite.FullscreenApp.Tests\Playnite.FullscreenApp.Tests.csproj", "{AEDEC1D7-8C49-4A54-B265-F595CFD89247}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.UIWrapper", "Tools\Playnite.UIWrapper\Playnite.UIWrapper.csproj", "{445DC787-06EC-4407-892F-0955ADD5C2D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -245,6 +247,10 @@ Global
 		{AEDEC1D7-8C49-4A54-B265-F595CFD89247}.Debug|x86.Build.0 = Debug|Any CPU
 		{AEDEC1D7-8C49-4A54-B265-F595CFD89247}.Release|x86.ActiveCfg = Release|Any CPU
 		{AEDEC1D7-8C49-4A54-B265-F595CFD89247}.Release|x86.Build.0 = Release|Any CPU
+		{445DC787-06EC-4407-892F-0955ADD5C2D7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{445DC787-06EC-4407-892F-0955ADD5C2D7}.Debug|x86.Build.0 = Debug|Any CPU
+		{445DC787-06EC-4407-892F-0955ADD5C2D7}.Release|x86.ActiveCfg = Release|Any CPU
+		{445DC787-06EC-4407-892F-0955ADD5C2D7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -285,6 +291,7 @@ Global
 		{CAA480E1-7AB2-4DA9-980F-6F935AB7FA69} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 		{DD58A297-6C39-4F47-B3FE-F04B307420FA} = {A55A55BB-F795-41BC-8A58-D683F3EFAAEB}
 		{AEDEC1D7-8C49-4A54-B265-F595CFD89247} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
+		{445DC787-06EC-4407-892F-0955ADD5C2D7} = {214A3A6E-C961-405E-8F5E-96314B672CF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3300FF38-9F6F-4C0F-87F3-776D6C64846D}
