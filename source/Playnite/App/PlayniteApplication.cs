@@ -579,6 +579,8 @@ namespace Playnite
                             FileSystem.DeleteFile(AppSettings.DatabasePath);
                             AppSettings.DatabasePath = newDbPath;
                         }
+
+                        GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
                     }
                     else
                     {
