@@ -818,7 +818,14 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                ProcessStarter.StartUrl(@"https://github.com/JosefNemec/Playnite/issues/new");
+                if (PlayniteSettings.GetAppConfigValue("UpdateBranch") == "beta")
+                {
+                    ProcessStarter.StartUrl(@"https://github.com/JosefNemec/Playnite.Testing/issues/");
+                }
+                else
+                {
+                    ProcessStarter.StartUrl(@"https://github.com/JosefNemec/Playnite/issues/");
+                }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
