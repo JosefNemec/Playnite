@@ -157,6 +157,7 @@ if (!$SkipBuild)
             Join-Path $OutputDir "Playnite.SDK.dll" | SignFile
             Join-Path $OutputDir "Playnite.DesktopApp.exe" | SignFile
             Join-Path $OutputDir "Playnite.FullscreenApp.exe" | SignFile
+            Join-Path $OutputDir "PlayniteUI.exe" | SignFile
         }
     }
 }
