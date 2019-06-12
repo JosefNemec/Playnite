@@ -562,16 +562,16 @@ namespace Playnite
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsInstalling = false;
             dbGame.IsInstalled = true;
-            dbGame.InstallDirectory = args.Controller.Game.InstallDirectory;
+            dbGame.InstallDirectory = args.InstalledInfo.InstallDirectory;
 
-            if (dbGame.PlayAction == null)
+            if (args.InstalledInfo.PlayAction != null)
             {
-                dbGame.PlayAction = args.Controller.Game.PlayAction;
+                dbGame.PlayAction = args.InstalledInfo.PlayAction;
             }
 
-            if (dbGame.OtherActions == null)
+            if (args.InstalledInfo.OtherActions != null)
             {
-                dbGame.OtherActions = args.Controller.Game.OtherActions;
+                dbGame.OtherActions = args.InstalledInfo.OtherActions.ToObservable();
             }
 
             Database.Games.Update(dbGame);
