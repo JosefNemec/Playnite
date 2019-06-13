@@ -2203,6 +2203,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var extension = Path.GetExtension(file.FileName);
                 var fileName = Guid.NewGuid().ToString() + extension;
                 var targetPath = Path.Combine(PlaynitePaths.TempPath, fileName);
+                FileSystem.PrepareSaveFile(targetPath);
                 File.WriteAllBytes(targetPath, file.Content);
                 return targetPath;
             }
@@ -2257,6 +2258,7 @@ namespace Playnite.DesktopApp.ViewModels
         private string SaveConvertedTgaToTemp(string tgaPath)
         {
             var tempPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
+            FileSystem.PrepareSaveFile(tempPath);
             File.WriteAllBytes(tempPath, BitmapExtensions.TgaToBitmap(tgaPath).ToPngArray());
             return tempPath;
         }
