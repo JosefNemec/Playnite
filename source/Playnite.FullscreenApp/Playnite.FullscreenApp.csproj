@@ -160,6 +160,7 @@
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
+    <SplashScreen Include="SplashScreen.png" />
     <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-Black.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

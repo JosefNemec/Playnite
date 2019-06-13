@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Playnite.FullscreenApp
 {
@@ -23,14 +24,16 @@ namespace Playnite.FullscreenApp
 
         public FullscreenAppViewModel MainModel { get; set; }
         public const string DefaultThemeName = "Default";
+        private SplashScreen splashScreen;
 
         public new static FullscreenApplication Current
         {
             get => (FullscreenApplication)PlayniteApplication.Current;
         }
 
-        public FullscreenApplication(App nativeApp) : base(nativeApp, ApplicationMode.Fullscreen, DefaultThemeName)
+        public FullscreenApplication(App nativeApp, SplashScreen splashScreen) : base(nativeApp, ApplicationMode.Fullscreen, DefaultThemeName)
         {
+            this.splashScreen = splashScreen;
         }
 
         public override void Startup()
@@ -64,6 +67,7 @@ namespace Playnite.FullscreenApp
             StartUpdateCheckerAsync();
             SendUsageDataAsync();
             ProcessArguments();
+            splashScreen.Close(new TimeSpan(0));
         }
 
         public override void InstantiateApp()

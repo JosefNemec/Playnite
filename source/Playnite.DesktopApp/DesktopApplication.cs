@@ -33,6 +33,7 @@ namespace Playnite.DesktopApp
         private ILogger logger = LogManager.GetLogger();
         private TaskbarIcon trayIcon;
         public const string DefaultThemeName = "Default";
+        private SplashScreen splashScreen;
 
         public List<ThirdPartyTool> ThirdPartyTools { get; private set; }
         public DesktopAppViewModel MainModel { get; set; }
@@ -41,12 +42,13 @@ namespace Playnite.DesktopApp
             get => (DesktopApplication)PlayniteApplication.Current;
         }
 
-        public DesktopApplication(App nativeApp) : base(nativeApp, ApplicationMode.Desktop, DefaultThemeName)
+        public DesktopApplication(App nativeApp, SplashScreen splashScreen) : base(nativeApp, ApplicationMode.Desktop, DefaultThemeName)
         {
+            this.splashScreen = splashScreen;
         }
 
         public override void Startup()
-        {            
+        {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashHandlerWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
@@ -72,7 +74,8 @@ namespace Playnite.DesktopApp
             LoadTrayIcon();
             StartUpdateCheckerAsync();            
             SendUsageDataAsync();
-            ProcessArguments(); 
+            ProcessArguments();
+            splashScreen.Close(new TimeSpan(0));
         }
 
         public override void InitializeNative()

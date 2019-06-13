@@ -304,6 +304,7 @@
     <None Include="Themes\Desktop\Classic\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <SplashScreen Include="SplashScreen.png" />
     <Content Include="Themes\Desktop\Default\Constants.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
