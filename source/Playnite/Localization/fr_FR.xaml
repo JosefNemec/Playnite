@@ -347,7 +347,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Afficher l'état de la batterie</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Afficher le pourcentage de batterie restant</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Afficher l'heure</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Ajouter "Installé uniquement" aux filtres rapides</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">N'afficher que les jeux installés (Tri rapide)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Apparence des boutons</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Défilement Horizontal</sys:String>
@@ -483,7 +483,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installés</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Jeu installé</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Non installés</sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle">Cachés</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Masqués</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favoris</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Dernière activité</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Catégorie</sys:String>
@@ -630,7 +630,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCSaveAsDefault">Enregistrer comme réglage par défaut</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Ajouter aux favoris</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Retirer des favoris</sys:String>
-    <sys:String x:Key="LOCHideGame">Cacher la sélection</sys:String>
+    <sys:String x:Key="LOCHideGame">Masquer la sélection</sys:String>
     <sys:String x:Key="LOCUnHideGame">Afficher dans la bibliothèque</sys:String>
     <sys:String x:Key="LOCEditGame">Modifier les propriétés...</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Définir des catégories...</sys:String>
@@ -659,7 +659,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Le monitoring de l'installation est en cours, voulez-vous l'annuler ?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Le monitoring de l'exécution du jeu est en cours, voulez-vous l'annuler ?</sys:String>
     
-    <sys:String x:Key="LOCTimePlayed">Vous avez joué</sys:String>
+    <sys:String x:Key="LOCTimePlayed">Temps de jeu</sys:String>
     <sys:String x:Key="LOCLastPlayed">Dernière session</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutes</sys:String>
