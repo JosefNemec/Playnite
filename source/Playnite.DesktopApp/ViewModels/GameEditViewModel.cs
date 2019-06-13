@@ -2351,11 +2351,16 @@ namespace Playnite.DesktopApp.ViewModels
                     if (HttpDownloader.GetResponseCode(url.SelectedString) == HttpStatusCode.OK)
                     {
                         EditingGame.BackgroundImage = url.SelectedString;
-                        return;
+                    }
+                    else
+                    {
+                        dialogs.ShowErrorMessage(resources.GetString("LOCDownloadError"), string.Empty);
                     }
                 }
-
-                dialogs.ShowErrorMessage(resources.GetString("LOCInvalidURL"), string.Empty);
+                else
+                {
+                    dialogs.ShowErrorMessage(resources.GetString("LOCInvalidURL"), string.Empty);
+                }
             }
         }
 
