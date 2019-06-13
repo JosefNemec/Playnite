@@ -60,6 +60,11 @@ namespace Playnite
                 var defaultXaml = $"{FullscreenSettings.DefaultButtonPrompts.ToString()}.xaml";
                 foreach (var dir in PlayniteApplication.CurrentNative.Resources.MergedDictionaries.ToList())
                 {
+                    if (dir.Source == null)
+                    {
+                        continue;
+                    }
+
                     if (dir.Source.OriginalString.Contains("ButtonPrompts") &&
                         !dir.Source.OriginalString.EndsWith(defaultXaml))
                     {

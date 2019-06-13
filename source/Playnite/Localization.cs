@@ -109,6 +109,7 @@ namespace Playnite
                 try
                 {
                     res = Xaml.GetObjectFromFile<ResourceDictionary>(langFile);
+                    res.Source = new Uri(langFile, UriKind.Absolute);
                     // Unstranslated strings are imported as empty entries by Crowdin.
                     // We need to remove them to make sure that origina English text will be displayed instead.
                     foreach (var key in res.Keys)
