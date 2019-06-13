@@ -212,7 +212,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCProgressBattleNetLibImport">Scaricamento aggiornamenti libreria di Battle.net...</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Scaricamento metadata...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importazione dei giochi installati...</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Importazione di {0} giochi...</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importazione giochi di {0}...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Scaricamento degli aggiornamenti della libreria...</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Scaricamento degli aggiornamenti della libreria</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Aggiornamento libreria completato</sys:String>
@@ -390,7 +390,7 @@ Può essere modificata anche nelle impostazioni dell'applicazione.</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Di seguito la lista di emulatori che Playnite può riconoscere e configurare automaticamente. Può scaricarli e installarli visitando i loro siti. Una volta che ha installato gli emulatori, proceda nella schermata successiva per importarli in Playnite.
         
 Può anche configurare e importare ogni emulatore personalizzato attraverso il menù di configurazione.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Può importare ogni emulatore installato sul PC premendo il tasto di "Scansione automatica dalla cartella..." . Playnite cercerà la cartella selezionata per ogni emulatore conosciuto e provvederà l'opzione di importarli. Può importare da più cartelle usando tale tasto più volte, gli emulatori saranno aggiunti sul fondo della lista attuale.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Puoi importare qualsiasi emulatore installato sul PC premendo sul tasto "Scansione automatica dalla cartella...". Playnite cercerà la cartella selezionata per ogni emulatore conosciuto e provvederà l'opzione di importarli. Puoi importare da più cartelle usando tale tasto più volte, gli emulatori saranno aggiunti sul fondo della lista attuale.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">Può importare i giochi premendo il tasto "Scansiona la cartella usando l'emulatore" . Selezionando l'emulatore appropriato, sarà comunicato a Playnite quali tipi di tile dovrebbero essere scansionati e importati. Può anche importare da più cartelle usando tale tasto più volte, i giochi saranno aggiunti sul fondo della lista attuale.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Non ci sono emulatori selezionati per l'importazione. Non sarà in grado di importare automaticamente ogni gioco emulato senza configurare per prima gli emulatori. Sicuro di voler continuare e uscire dal processo di importazione?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Non ci sono emulatori configurati in Playnite. Non può importare i giochi senza configurare per prima l'emulatore e selezionando i tipi di file appropriati. Desidera aggiungere ora qualche emulatore?</sys:String>
@@ -520,7 +520,7 @@ La prego di allegare il seguente codice ID al seguente resoconto del crash:</sys
 
     <sys:String x:Key="LOCBnetLibraryImportError">Scaricamento della librearia di Battle.net fallita.</sys:String>
     <sys:String x:Key="LOCSteamLibraryImportError">Scaricamento della librearia di Steam fallita.</sys:String>
-    <sys:String x:Key="LOCGOGLibraryImportError">Scaricamento della librearia di GOG fallita.</sys:String>
+    <sys:String x:Key="LOCGOGLibraryImportError">Scaricamento della libreria di GOG fallita.</sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError">Scaricamento della librearia di Origin fallita.</sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError">Scaricamento della librearia di Uplay fallita.</sys:String>
     
