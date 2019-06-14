@@ -265,7 +265,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avanzado</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pantalla Completa</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Proovedores</sys:String>
-    <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadatos</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importar cambios en la biblioteca automáticamente</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importar juegos instalados</sys:String>
@@ -279,7 +279,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Descargar actualizaciones de bibliotecas de terceros en el inicio</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Descargar metadatos después de importar los juegos.</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Iniciar minimizado</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot">Iniciar Playnite al arranque del ordenador</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Iniciar Playnite al encender el ordenador</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Error al resgistrar Playnite para ejecutar cuando se inicia el ordenador.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Iniciar en Pantalla Completa</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Incluye Steam, Origin y otros.</sys:String>
@@ -588,7 +588,7 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCPlayed">Jugado</sys:String>
     <sys:String x:Key="LOCBeaten">Terminado</sys:String>
     <sys:String x:Key="LOCCompleted">Completado</sys:String>
-    <sys:String x:Key="LOCCompletionStatus">Estado de Completamiento</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Estado de finalización</sys:String>
     <sys:String x:Key="LOCUserScore">Puntaje de los Usuarios</sys:String>
     <sys:String x:Key="LOCCriticScore">Puntaje de los Críticos</sys:String>
     <sys:String x:Key="LOCCommunityScore">Puntaje de la Comunidad</sys:String>
