@@ -93,7 +93,15 @@ namespace GogLibrary
         public override void Install()
         {
             ReleaseResources();
-            ProcessStarter.StartUrl(@"goggalaxy://openGameView/" + Game.GameId);
+            if (Gog.IsInstalled)
+            {
+                ProcessStarter.StartUrl(@"goggalaxy://openGameView/" + Game.GameId);
+            }
+            else
+            {
+                ProcessStarter.StartUrl(@"https://www.gog.com/account");
+            }
+
             StartInstallWatcher();
         }
 
