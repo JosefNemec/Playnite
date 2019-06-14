@@ -398,7 +398,11 @@ namespace Playnite
             {
                 try
                 {
-                    GlobalTaskHandler.CancelAndWait();                    
+                    if (GlobalTaskHandler.CancelAndWait(Common.Timer.SecondsToMilliseconds(5)) == false)
+                    {
+                        logger.Warn("Global task cancelation failed in time.");
+                    }
+
                     GamesEditor?.Dispose();
                     AppSettings?.SaveSettings();
                     Extensions?.Dispose();

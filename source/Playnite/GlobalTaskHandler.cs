@@ -26,6 +26,17 @@ namespace Playnite
             }
         }
 
+        public static bool? CancelAndWait(int millisecondsTimeout)
+        {
+            if (IsActive)
+            {
+                CancelToken?.Cancel();
+                return ProgressTask?.Wait(millisecondsTimeout);
+            }
+
+            return null;
+        }
+
         public async static Task CancelAndWaitAsync()
         {
             if (IsActive)
