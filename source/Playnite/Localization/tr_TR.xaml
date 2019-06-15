@@ -8,9 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">Çıkış</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtreleme Açık (gizle/göster)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtreleme Kapalı (gizle/göster)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Ek filtreler</sys:String>
+    <sys:String x:Key="LOCFilters">Filtreler</sys:String>
+    <sys:String x:Key="LOCFilter">Filtrele</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Geçersiz Veri</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Değişiklikler kaydedilsin mi?</sys:String>
@@ -18,7 +18,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Web Adresi: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">GitHub: Kaynak Kodu</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Teşhis paketi oluştur</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Sorun giderme bilgisini gönder</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Playnite Hakkında</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Josef Němec tarafından yapılmıştır</sys:String>
 
@@ -32,7 +32,9 @@ Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platform Yok</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh hayır, kötü bir şey oldu...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kurtarılamaz hata oluştu ve Playnite çöktü.
+        
+Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen sorun giderme paketi oluşturun ve ne olduğunu bize bildirmek için 'Hatayı Rapor Et' düğmesini kullanın. Teşekkürler.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Çökmeyi Rapor Et</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite'ı Yeniden Başlat</sys:String>
@@ -81,9 +83,9 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCDoneCapLabel">TAMAMLANDI</sys:String>
     <sys:String x:Key="LOCBackCapLabel">GERİ</sys:String>
     <sys:String x:Key="LOCClearCapLabel">TEMİZLE</sys:String>
-    <sys:String x:Key="LOCClearLabel"></sys:String>
-    <sys:String x:Key="LOCDismiss"></sys:String>
-    <sys:String x:Key="LOCDismissAll"></sys:String>
+    <sys:String x:Key="LOCClearLabel">Temizle</sys:String>
+    <sys:String x:Key="LOCDismiss">Yoksay</sys:String>
+    <sys:String x:Key="LOCDismissAll">Tümünü Yoksay</sys:String>
     <sys:String x:Key="LOCImportLabel">Yükle</sys:String>
     <sys:String x:Key="LOCSourceLabel">Kaynak</sys:String>
     <sys:String x:Key="LOCNameLabel">İsim</sys:String>
@@ -97,9 +99,9 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCMostPlayedLabel">En Çok Oynanan</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Oynanma Sayısı</sys:String>
     <sys:String x:Key="LOCAddedLabel">Eklendi</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Eklenme Tarihi</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Değiştirildi</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Değiştirme Tarihi</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Web Sayfası</sys:String>
     <sys:String x:Key="LOCPathLabel">Yol</sys:String>
     <sys:String x:Key="LOCOKLabel">TAMAM</sys:String>
@@ -140,7 +142,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCPatronsLabel">Destekleyenler</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisans</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Katkıda Bulunanlar</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Playnite kapatılıyor...</sys:String>
     <sys:String x:Key="LOCToday">Bugün</sys:String>
     <sys:String x:Key="LOCYesterday">Dün</sys:String>
     <sys:String x:Key="LOCMonday">Pazartesi</sys:String>
