@@ -338,11 +338,15 @@ namespace OriginLibrary
 
                 foreach (var game in api.GetOwnedGames(info.pid.pidId, token).Where(a => a.offerType == "basegame"))
                 {
+                    UsageResponse usage = api.GetUsage(info.pid.pidId, game.offerId, token);
+
                     games.Add(new GameInfo()
                     {
                         Source = "Origin",
                         GameId = game.offerId,
-                        Name = game.offerId
+                        Name = game.offerId,
+                        LastActivity = usage.lastSessionEndTimeStamp,
+                        Playtime = usage.total
                     });
                 }
 
