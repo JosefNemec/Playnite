@@ -6,6 +6,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         mc:Ignorable="d"                     
         x:Name="WindowMessageBox"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
@@ -71,97 +72,97 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.Resources>
-                            <Style TargetType="Button" BasedOn="{StaticResource ButtonVirtualKeyboard}">                                
+                            <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource ButtonVirtualKeyboard}">                                
                                 <EventSetter Event="Click" Handler="Button_Click" />
                             </Style>
                         </Grid.Resources>
 
-                        <Button Grid.Row="0" Grid.Column="0" Content="1" Name="Button1" />
-                        <Button Grid.Row="0" Grid.Column="1" Content="2" />
-                        <Button Grid.Row="0" Grid.Column="2" Content="3" />
-                        <Button Grid.Row="0" Grid.Column="3" Content="4" />
-                        <Button Grid.Row="0" Grid.Column="4" Content="5" />
-                        <Button Grid.Row="0" Grid.Column="5" Content="6" />
-                        <Button Grid.Row="0" Grid.Column="6" Content="7" />
-                        <Button Grid.Row="0" Grid.Column="7" Content="8" />
-                        <Button Grid.Row="0" Grid.Column="8" Content="9" />
-                        <Button Grid.Row="0" Grid.Column="9" Content="0" />
-                        <Button Grid.Row="0" Grid.Column="10" Command="{Binding BackSpaceCommand}">
-                            <Button.Content>
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="0" Content="1" x:Name="Button1" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="1" Content="2" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="2" Content="3" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="3" Content="4" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="4" Content="5" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="5" Content="6" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="6" Content="7" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="7" Content="8" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="8" Content="9" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="9" Content="0" />
+                        <pctrls:ButtonEx Grid.Row="0" Grid.Column="10" Command="{Binding BackSpaceCommand}">
+                            <pctrls:ButtonEx.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <ContentControl Style="{DynamicResource ButtonPromptX}"
                                            Height="22" Margin="0,0,5,0"/>
                                     <TextBlock Text="⌫"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
-                            </Button.Content>
-                        </Button>
+                            </pctrls:ButtonEx.Content>
+                        </pctrls:ButtonEx>
 
-                        <Button Grid.Row="1" Grid.Column="0" Content="q" />
-                        <Button Grid.Row="1" Grid.Column="1" Content="w" />
-                        <Button Grid.Row="1" Grid.Column="2" Content="e" />
-                        <Button Grid.Row="1" Grid.Column="3" Content="r" />
-                        <Button Grid.Row="1" Grid.Column="4" Content="t" />
-                        <Button Grid.Row="1" Grid.Column="5" Content="y" />
-                        <Button Grid.Row="1" Grid.Column="6" Content="u" />
-                        <Button Grid.Row="1" Grid.Column="7" Content="i" />
-                        <Button Grid.Row="1" Grid.Column="8" Content="o" />
-                        <Button Grid.Row="1" Grid.Column="9" Content="p" />
-                        <Button Grid.Row="1" Grid.Column="10" Grid.RowSpan="2" Command="{Binding ConfirmCommand}">
-                            <Button.Content>
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="0" Content="q" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="1" Content="w" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="2" Content="e" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="3" Content="r" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="4" Content="t" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="5" Content="y" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="6" Content="u" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="7" Content="i" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="8" Content="o" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="9" Content="p" />
+                        <pctrls:ButtonEx Grid.Row="1" Grid.Column="10" Grid.RowSpan="2" Command="{Binding ConfirmCommand}">
+                            <pctrls:ButtonEx.Content>
                                 <StackPanel>
                                     <ContentControl Style="{DynamicResource ButtonPromptStart}"
                                            Height="22" Margin="0,0,0,5"/>
                                     <TextBlock Text="{DynamicResource LOCDoneCapLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
-                            </Button.Content>
-                        </Button>
+                            </pctrls:ButtonEx.Content>
+                        </pctrls:ButtonEx>
 
-                        <Button Grid.Row="2" Grid.Column="0" Content="a" />
-                        <Button Grid.Row="2" Grid.Column="1" Content="s" />
-                        <Button Grid.Row="2" Grid.Column="2" Content="d" />
-                        <Button Grid.Row="2" Grid.Column="3" Content="f" />
-                        <Button Grid.Row="2" Grid.Column="4" Content="g" />
-                        <Button Grid.Row="2" Grid.Column="5" Content="h" />
-                        <Button Grid.Row="2" Grid.Column="6" Content="j" />
-                        <Button Grid.Row="2" Grid.Column="7" Content="k" />
-                        <Button Grid.Row="2" Grid.Column="8" Content="l" />
-                        <Button Grid.Row="2" Grid.Column="9" Content="-" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="0" Content="a" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="1" Content="s" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="2" Content="d" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="3" Content="f" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="4" Content="g" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="5" Content="h" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="6" Content="j" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="7" Content="k" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="8" Content="l" />
+                        <pctrls:ButtonEx Grid.Row="2" Grid.Column="9" Content="-" />
 
-                        <Button Grid.Row="3" Grid.Column="0" Content="z" />
-                        <Button Grid.Row="3" Grid.Column="1" Content="x" />
-                        <Button Grid.Row="3" Grid.Column="2" Content="c" />
-                        <Button Grid.Row="3" Grid.Column="3" Content="v" />
-                        <Button Grid.Row="3" Grid.Column="4" Content="b" />
-                        <Button Grid.Row="3" Grid.Column="5" Content="n" />
-                        <Button Grid.Row="3" Grid.Column="6" Content="m" />
-                        <Button Grid.Row="3" Grid.Column="7" Content=";" />
-                        <Button Grid.Row="3" Grid.Column="8" Content=":" />
-                        <Button Grid.Row="3" Grid.Column="9" Content="!" />
-                        <Button Grid.Row="3" Grid.Column="10" Grid.RowSpan="2" Command="{Binding CancelCommand}">
-                            <Button.Content>
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="0" Content="z" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="1" Content="x" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="2" Content="c" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="3" Content="v" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="4" Content="b" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="5" Content="n" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="6" Content="m" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="7" Content=";" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="8" Content=":" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="9" Content="!" />
+                        <pctrls:ButtonEx Grid.Row="3" Grid.Column="10" Grid.RowSpan="2" Command="{Binding CancelCommand}">
+                            <pctrls:ButtonEx.Content>
                                 <StackPanel>
                                     <ContentControl Style="{DynamicResource ButtonPromptB}"
                                            Height="22" Margin="0,0,0,5"/>
                                     <TextBlock Text="{DynamicResource LOCCancelLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
-                            </Button.Content>
-                        </Button>
+                            </pctrls:ButtonEx.Content>
+                        </pctrls:ButtonEx>
 
-                        <Button Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2" Command="{Binding ClearTextCommand}">
-                            <Button.Content>
+                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2" Command="{Binding ClearTextCommand}">
+                            <pctrls:ButtonEx.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <ContentControl Style="{DynamicResource ButtonPromptRB}"
+                                    <ContentControl Style="{DynamicResource ButtonPromptLB}"
                                            Height="22" Margin="0,0,5,0"/>
                                     <TextBlock Text="{DynamicResource LOCClearLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
-                            </Button.Content>
-                        </Button>
+                            </pctrls:ButtonEx.Content>
+                        </pctrls:ButtonEx>
                         
-                        <Button Grid.Row="4" Grid.Column="0" Content=" " Grid.ColumnSpan="8" />
+                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="0" Content=" " Grid.ColumnSpan="8" />
                     </Grid>
                 </StackPanel>
             </Border>

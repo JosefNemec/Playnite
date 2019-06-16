@@ -18,7 +18,6 @@
         d:DesignWidth="1920" d:DesignHeight="1080">
     
     <c:WindowBase.InputBindings>
-        <pin:XInputBinding Button="X" Command="{Binding InstallUpdateCommand}" />
         <pin:XInputBinding Button="B" Command="{Binding CloseCommand}" />
         <KeyBinding Key="Return" Command="{Binding InstallUpdateCommand}" />
         <KeyBinding Key="Backspace" Command="{Binding CloseCommand}" />
@@ -75,11 +74,11 @@
                     <ProgressBar Value="{Binding UpdateProgress}" Maximum="100" Height="35"
                              Visibility="{Binding ShowProgress, Converter={pcon:BooleanToVisibilityConverter}}"
                              DockPanel.Dock="Top" Margin="5"/>
-                    <Button Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
+                    <pctrls:ButtonEx x:Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
                             Style="{StaticResource ButtonMessageBox}"
                             IsEnabled="{Binding ShowProgress, Converter={pcon:NegateConverter}}"
                             Command="{Binding CloseCommand}" />
-                    <Button Name="ButtonInstall" Content="{DynamicResource LOCUpdaterInstallUpdate}" DockPanel.Dock="Right"
+                    <pctrls:ButtonEx x:Name="ButtonInstall" Content="{DynamicResource LOCUpdaterInstallUpdate}" DockPanel.Dock="Right"
                             pbeh:FocusBahaviors.OnVisibilityFocus="True"
                             Style="{StaticResource ButtonMessageBox}"
                             IsEnabled="{Binding ShowProgress, Converter={pcon:NegateConverter}}"

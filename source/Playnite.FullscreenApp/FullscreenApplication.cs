@@ -67,7 +67,6 @@ namespace Playnite.FullscreenApp
             StartUpdateCheckerAsync();
             SendUsageDataAsync();
             ProcessArguments();
-            splashScreen.Close(new TimeSpan(0));
         }
 
         public override void InstantiateApp()
@@ -110,6 +109,7 @@ namespace Playnite.FullscreenApp
         {
             Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
+            splashScreen.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
 

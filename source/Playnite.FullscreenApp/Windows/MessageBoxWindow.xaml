@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         mc:Ignorable="d"
         x:Name="WindowMessageBox"                     
         Title="{Binding Caption, ElementName=WindowMessageBox}"
@@ -42,17 +43,17 @@
                                MaxWidth="900" TextWrapping="Wrap"/>
                     <StackPanel Orientation="Horizontal" Margin="0,25,0,0"
                                 KeyboardNavigation.DirectionalNavigation="Contained"
-                                HorizontalAlignment="Left" VerticalAlignment="Center">                        
-                        <Button Content="{DynamicResource LOCOKLabel}" Name="ButtonOK" Click="ButtonOK_Click"
+                                HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <pctrls:ButtonEx Content="{DynamicResource LOCOKLabel}" x:Name="ButtonOK" Click="ButtonOK_Click"
                                 Style="{StaticResource ButtonMessageBox}"
                                 Visibility="{Binding ShowOKButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Button Content="{DynamicResource LOCYesLabel}" Name="ButtonYes" Click="ButtonYes_Click"
+                        <pctrls:ButtonEx Content="{DynamicResource LOCYesLabel}" x:Name="ButtonYes" Click="ButtonYes_Click"
                                 Style="{StaticResource ButtonMessageBox}"                                
                                 Visibility="{Binding ShowYesButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Button Content="{DynamicResource LOCNoLabel}" Name="ButtonNo" Click="ButtonNo_Click"
+                        <pctrls:ButtonEx Content="{DynamicResource LOCNoLabel}" x:Name="ButtonNo" Click="ButtonNo_Click"
                                 Style="{StaticResource ButtonMessageBox}"                                
                                 Visibility="{Binding ShowNoButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Button Content="{DynamicResource LOCCancelLabel}" Name="ButtonCancel" Click="ButtonCancel_Click"
+                        <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}" x:Name="ButtonCancel" Click="ButtonCancel_Click"
                                 Style="{StaticResource ButtonMessageBox}"                                
                                 Visibility="{Binding ShowCancelButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     </StackPanel>
