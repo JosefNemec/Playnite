@@ -190,8 +190,8 @@ Blir til: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Bare valgte spill</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Offisiell Butikk</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore"></sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB"></sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGBD > Offisiell Butikk</sys:String>
+    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Offisiell Butikk > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
