@@ -324,7 +324,7 @@
                         <TabItem>
                             <ScrollViewer>
                                 <StackPanel>
-                                    <TextBlock Text="Show game fields on details panel:" />
+                                    <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
                                     <CheckBox Content="{DynamicResource LOCTimePlayed}"
                                               IsChecked="{Binding Settings.DetailsVisibility.PlayTime}"
                                               Margin="0,10,0,0"/>

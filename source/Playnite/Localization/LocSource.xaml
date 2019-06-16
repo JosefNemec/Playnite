@@ -245,6 +245,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuSuspendSystem">Suspend System</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Game fields to be displayed on details panel:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Item spacing</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Missing game icon source</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>

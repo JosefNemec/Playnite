@@ -90,7 +90,7 @@
                                 <StackPanel>
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
                                                FontFamily="{DynamicResource FontTitilliumWebBold}"
-                                               Text="{DynamicResource LOCGameLastActivityTitle}"
+                                               Text="{DynamicResource LOCTimePlayed}"
                                                Margin="0,0,0,10" />
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
                                                Text="{Binding Playtime, Converter={StaticResource LongToTimePlayedConverter}}" />
@@ -99,7 +99,7 @@
                                 <StackPanel Margin="50,0,0,0">
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
                                                FontFamily="{DynamicResource FontTitilliumWebBold}"
-                                               Text="{DynamicResource LOCTimePlayed}"
+                                               Text="{DynamicResource LOCGameLastActivityTitle}"
                                                Margin="0,0,0,10" />
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
                                                Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" />

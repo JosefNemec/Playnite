@@ -22,12 +22,12 @@
             <TabItem Header="{DynamicResource LOCPlatformTitle}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                        <Button Content="Add" Margin="5"
+                        <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddPlatformCommand}"/>
-                        <Button Content="Remove" Margin="5"
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
                                 Command="{Binding RemovePlatformCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
-                        <Button Content="Rename" Margin="5"
+                        <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenamePlatformCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
                     </StackPanel>
