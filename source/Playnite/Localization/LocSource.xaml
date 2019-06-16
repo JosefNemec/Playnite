@@ -76,6 +76,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Enabled</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remove</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Rename</sys:String>
     <sys:String x:Key="LOCCopyTitle">Copy</sys:String>
     <sys:String x:Key="LOCAddTitle">Add</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Default Icon</sys:String>
