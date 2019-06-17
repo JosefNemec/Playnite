@@ -75,6 +75,7 @@ Automaticky importované hry se po dalším importování znovu objeví v Playni
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Povoleno</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Odstranit</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Přejmenovat</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopírovat</sys:String>
     <sys:String x:Key="LOCAddTitle">Přidat</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Výchozí ikona</sys:String>
@@ -244,6 +245,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuSuspendSystem">Uspat systém</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Pole, která budou viditelná v zobrazení detailů:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Mezery mezi položkami</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Chybějící zdroj ikon her</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Chybějící zdroj obálek her</sys:String>
