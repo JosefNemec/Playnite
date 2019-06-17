@@ -287,8 +287,9 @@
                                   Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImage}"/>
 
                                 <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource LOCSettingsDefaulIconSource}"
-                                               Margin="0,0,10,0" VerticalAlignment="Center" />
+                                    <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
+                                                    ContentStringFormat="{}{0} *"
+                                                    Margin="0,0,10,0" VerticalAlignment="Center" />
                                     <ComboBox SelectedValue="{Binding Settings.DefaultIconSource}">
                                         <ComboBox.ItemsSource>
                                             <x:Array Type="{x:Type sys:Enum}">
@@ -306,8 +307,9 @@
                                 </StackPanel>
 
                                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource LOCSettingsDefaulCoverSource}"
-                                               Margin="0,0,10,0" VerticalAlignment="Center" />
+                                    <ContentControl Content="{DynamicResource LOCSettingsDefaulCoverSource}"
+                                                    ContentStringFormat="{}{0} *"
+                                                    Margin="0,0,10,0" VerticalAlignment="Center" />
                                     <ComboBox SelectedValue="{Binding Settings.DefaultCoverSource}">
                                         <ComboBox.ItemsSource>
                                             <x:Array Type="{x:Type sys:Enum}">
