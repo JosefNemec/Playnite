@@ -79,37 +79,37 @@ namespace Playnite.FullscreenApp.ViewModels
             StartGameCommand = new RelayCommand<object>((a) =>
             {
                 gamesEditor.PlayGame(Game.Game);
-                mainModel.GameMenuVisible = false;
+                mainModel.ToggleGameOptionsCommand.Execute(null);
             });
 
             InstallGameCommand = new RelayCommand<object>((a) =>
             {
                 gamesEditor.InstallGame(Game.Game);
-                mainModel.GameMenuVisible = false;
+                mainModel.ToggleGameOptionsCommand.Execute(null);
             });
 
             UninstallGameCommand = new RelayCommand<object>((a) =>
             {
                 gamesEditor.UnInstallGame(Game.Game);
-                mainModel.GameMenuVisible = false;
+                mainModel.ToggleGameOptionsCommand.Execute(null);
             });
 
             ToggleFavoritesCommand = new RelayCommand<object>((a) =>
             {
                 gamesEditor.ToggleFavoriteGame(Game.Game);
-                mainModel.GameMenuVisible = false;
+                mainModel.ToggleGameOptionsCommand.Execute(null);
             });
 
             ToggleVisibilityCommand = new RelayCommand<object>((a) =>
             {
                 gamesEditor.ToggleHideGame(Game.Game);
-                mainModel.GameMenuVisible = false;
+                mainModel.ToggleGameOptionsCommand.Execute(null);
             });
 
             RemoveGameCommand = new RelayCommand<object>((a) =>
             {
                 gamesEditor.RemoveGame(Game.Game);
-                mainModel.GameMenuVisible = false;
+                mainModel.ToggleGameOptionsCommand.Execute(null);
             });
         }
 
@@ -125,7 +125,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 items.Add(new GameActionItem(InstallGameCommand, resources.GetString("LOCInstallGame")));
             }
 
-            items.Add(new GameActionItem(ToggleFavoritesCommand, Game.Hidden ? resources.GetString("LOCRemoveFavoriteGame") : resources.GetString("LOCFavoriteGame")));
+            items.Add(new GameActionItem(ToggleFavoritesCommand, Game.Favorite ? resources.GetString("LOCRemoveFavoriteGame") : resources.GetString("LOCFavoriteGame")));
             items.Add(new GameActionItem(ToggleVisibilityCommand, Game.Hidden ? resources.GetString("LOCUnHideGame") : resources.GetString("LOCHideGame")));
             items.Add(new GameActionItem(RemoveGameCommand, resources.GetString("LOCRemoveGame")));
 
