@@ -73,6 +73,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Etkin</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Sil</sys:String>
+    <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopyala</sys:String>
     <sys:String x:Key="LOCAddTitle">Ekle</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Varsayılan İkon</sys:String>
@@ -242,6 +243,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCMenuSuspendSystem">Sistemi Yasakla</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
