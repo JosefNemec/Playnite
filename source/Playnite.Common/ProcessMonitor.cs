@@ -8,6 +8,7 @@ using System.Management;
 using System.Threading;
 using System.IO;
 using Playnite.SDK;
+using System.Text.RegularExpressions;
 
 namespace Playnite.Common
 {
@@ -63,6 +64,63 @@ namespace Playnite.Common
             watcherToken?.Cancel();
         }
 
+        public async void WatchUwpApp(string familyName, bool alreadyRunning)
+        {
+            logger.Debug($"Starting UWP {familyName} app watcher.");
+            watcherToken = new CancellationTokenSource();
+            var startedCalled = false;
+            var processStarted = false;
+            var processFound = false;
+            var failCount = 0;
+            var matchProcString = familyName.Replace("_", @"_.+__");
+
+            while (true)
+            {
+                if (watcherToken.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                try
+                {
+                    processFound = false;
+                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
+                    foreach (var process in processes)
+                    {
+                        if (process.TryGetMainModuleFileName(out var procPath))
+                        {
+                            if (Regex.IsMatch(procPath, matchProcString))
+                            {
+                                processFound = true;
+                                processStarted = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (Exception e) when (failCount < 5)
+                {
+                    // This shouldn't happen, but there were some crash reports from Process.GetProcesses
+                    failCount++;
+                    logger.Error(e, "Watch process.");
+                }
+
+                if (!alreadyRunning && processFound && !startedCalled)
+                {
+                    OnTreeStarted();
+                    startedCalled = true;
+                }
+
+                if (!processFound && processStarted)
+                {
+                    OnTreeDestroyed();
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
+        }
+
         private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning)
         {
             if (!Directory.Exists(directory))
@@ -77,7 +135,7 @@ namespace Playnite.Common
             }
 
             var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
-            watcherToken = new CancellationTokenSource(); 
+            watcherToken = new CancellationTokenSource();
             var startedCalled = false;
             var processStarted = false;
             var failCount = 0;

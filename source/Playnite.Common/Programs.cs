@@ -60,6 +60,7 @@ namespace Playnite.Common
         public string Icon { get; set; }
         public string WorkDir { get; set; }
         public string Name { get; set; }
+        public string AppId { get; set; }
 
         public override string ToString()
         {
@@ -355,7 +356,8 @@ namespace Playnite.Common
                         WorkDir = package.InstalledLocation.Path,
                         Path = "explorer.exe",
                         Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",
-                        Icon = iconPath
+                        Icon = iconPath,
+                        AppId = package.Id.FamilyName
                     };
 
                     apps.Add(app);

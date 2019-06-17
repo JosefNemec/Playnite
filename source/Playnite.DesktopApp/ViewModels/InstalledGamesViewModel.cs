@@ -104,7 +104,7 @@ namespace Playnite.DesktopApp.ViewModels
             public ImportableProgram(Program program, ProgramType type) : base(program)
             {
                 Type = type;
-                DisplayPath = type == ProgramType.Win32 ? program.Path : "Windows Store";
+                DisplayPath = type == ProgramType.Win32 ? program.Path : "Microsoft Store";
             }
         }
         
@@ -256,7 +256,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     Name = program.Item.Name,
                     InstallDirectory = program.Item.WorkDir,
-                    Source = program.Type == ProgramType.UWP ? "Windows Store" : string.Empty,
+                    Source = program.Type == ProgramType.UWP ? "Microsoft Store" : string.Empty,
                     IsInstalled = true
                 };
 
