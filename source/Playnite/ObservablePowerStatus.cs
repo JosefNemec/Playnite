@@ -25,7 +25,7 @@ namespace Playnite
 
         public int PercentCharge
         {
-            get => (int)SystemInformation.PowerStatus.BatteryLifePercent;
+            get => (int)(SystemInformation.PowerStatus.BatteryLifePercent * 100);
         }
 
         public BatteryChargeLevel Charge

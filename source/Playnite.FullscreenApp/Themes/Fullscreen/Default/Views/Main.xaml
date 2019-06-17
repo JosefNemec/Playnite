@@ -55,6 +55,7 @@
                                             Grid.Column="6">
                                     <ContentControl.Style>
                                         <Style TargetType="ContentControl">
+                                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding PowerStatus.Charge}" Value="Critical">
                                                     <Setter Property="Content" Value="{DynamicResource BatteryStatusCritical}" />
@@ -71,7 +72,6 @@
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding PowerStatus.IsCharging}" Value="True">
                                                     <Setter Property="Content" Value="{DynamicResource BatteryStatusCharging}" />
-                                                    <Setter Property="Foreground" Value="Black" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
