@@ -106,7 +106,7 @@ namespace OriginLibrary
                 if (exeIcon != null)
                 {
                     var iconName = Guid.NewGuid() + ".png";
-                    storeMetadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                    metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
                 }
             }
 
