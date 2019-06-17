@@ -71,6 +71,7 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">활성화</sys:String>
     <sys:String x:Key="LOCRemoveTitle">제거</sys:String>
+    <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">복사</sys:String>
     <sys:String x:Key="LOCAddTitle">추가</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">기본 아이콘</sys:String>
@@ -240,6 +241,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
