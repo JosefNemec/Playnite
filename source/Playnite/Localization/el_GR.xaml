@@ -71,6 +71,7 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Αφαίρεση</sys:String>
+    <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">Αντιγραφή</sys:String>
     <sys:String x:Key="LOCAddTitle">Προσθήκη</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Προεπιλεγμένο εικονίδιο</sys:String>
@@ -240,6 +241,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
