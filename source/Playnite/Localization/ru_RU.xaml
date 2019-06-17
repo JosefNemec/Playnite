@@ -31,7 +31,7 @@
     <sys:String x:Key="LOCNoCategory">Нет категории</sys:String>
     <sys:String x:Key="LOCNoPlatform">Нет платформы</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle">О нет, что-то пошло не так...</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Сообщить о проблеме</sys:String>
@@ -51,7 +51,7 @@
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Друзья в Стиме</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Раздел содержить изменения, которые необходимо сохранить</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Обновление версии базы данных...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Не удалось обновить базу данных. Не получилось открыть файл базы данных.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Невозможно обновить библиотеку игр. Требуется {0} МБ свободного места.</sys:String>
 
@@ -117,7 +117,7 @@
     <sys:String x:Key="LOCLinksLabel">Ссылки</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Настройки</sys:String>
     <sys:String x:Key="LOCActionsLabel">Действия</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel">Скачивание...</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">Тип</sys:String>
     <sys:String x:Key="LOCProfileLabel">Профиль</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Профили</sys:String>
@@ -203,32 +203,32 @@ IGDB > Официальный магазин:
 Предпочтение данным из магазина, когда отсутствуют - использовать из IGDB.com.</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport">Скачивание обновлений Steam-библиотеки...</sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport">Скачивание обновлений GOG-библиотеки...</sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport">Скачивание обновлений Origin-библиотеки...</sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport">Скачивание обновлений Battle.net-библиотеки...</sys:String>
-    <sys:String x:Key="LOCProgressMetadata">Скачивание метаданных...</sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames">Импортирование установленных игр...</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Импорт игр из {0} ...</sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames">Скачивание обновлений библиотеки...</sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport">Скачивание обновлений библиотеки...</sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressMetadata"></sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
+    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Обновление библиотеки завершено</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources">Освобождение ресурсов...</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Конфигурация</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Настройки</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Платформы и эмуляторы</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Настроить эмуляторы...</sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle">Менеджер библиотеки...</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
     <sys:String x:Key="LOCMenuTools">Инструменты</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata">Скачать метаданные</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Открыть сторонний клиент</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Перезагрузить игровой список</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Добавить игру</sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual">Вручную</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Импортировать установленные/из папки</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">Импортировать эмулированные игры</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">О Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Отправить отзыв</sys:String>
@@ -281,22 +281,22 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Не удалось зарегистрировать Playnite для запуска при запуске компьютера.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Запуск в полноэкранном режиме</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Включает в себя Steam,Origin и прочие.</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">Асинхронная загрузка изображений</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Улучшает прокрутку игрового списка,но ухудшает скорость загрузки изображений.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показывать название игры при отсутствии обложки</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Показывать название игры в режиме обложек</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Отображать иконки в режиме списка</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Показывать количество элементов в описании групп</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAcceleration">Выключить аппаратное ускорение</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Используйте когда присутствуют заикания или другие проблемы интерфейса.</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Отключить масштабирование DPI (требуется перезагрузка)</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Показать кнопку друзей из Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Показывать фоновое изображение</sys:String>
-    <sys:String x:Key="LOCSettingsSkin">Тема</sys:String>
+    <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Цвет темы</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen"> </sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Кнопки контроллера в полноэкранном режиме</sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation">Местоположение базы данных</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Имя моего аккаунта?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Статус:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Настройки</sys:String>
@@ -305,7 +305,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Очистить веб-кэш</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Может решить проблемы, возникающие при привязке учетных записей.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">Показывать трэй-иконку</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Свернуть в трэй</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Свернуть</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Во время игры:</sys:String>
@@ -345,7 +345,7 @@ IGDB > Официальный магазин:
 Не применяется ретроспективно к существующим играм.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительно синхронизировать время воспроизведения</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Всегда загружайте записанное время воспроизведения из удаленной библиотеки во время синхронизации библиотеки, игнорируя время, записанное Playnite.</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Вкл. контроллер в режиме рабочего стола</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide открывает полноэкр. режим</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
@@ -369,7 +369,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCDockBottom">Низ</sys:String>
 
     <sys:String x:Key="LOCImportError">Ошибка при импортировании</sys:String>
-    <sys:String x:Key="LOCLoginChecking">Проверка...</sys:String>
+    <sys:String x:Key="LOCLoginChecking"></sys:String>
     <sys:String x:Key="LOCLoginRequired">Нужна аутентификация</sys:String>
     <sys:String x:Key="LOCLoginFailed">Не удалось аутентифицировать</sys:String>
     <sys:String x:Key="LOCLoggedIn">Пользователь аутентифицирован</sys:String>
@@ -388,15 +388,15 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Ниже приведен список эмуляторов, которые Playnite может распознавать и автоматически настраивать. Вы можете загрузить и установить их, посетив их веб-сайт. После установки эмуляторов перейдите к следующему экрану, чтобы импортировать их в Playnite.
 
 Вы также можете настроить и импортировать любой пользовательский эмулятор позже через меню конфигурации.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Вы можете импортировать любые эмуляторы, установленные на вашем ПК, нажав кнопку "Автообнаружение из папки...". Playnite будет искать выбранную папку для любых известных эмуляторов и даст возможность импортировать их. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, эмуляторы будут добавлены в нижнюю часть текущего списка.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">Вы можете импортировать игры, нажав кнопку "Сканировать папку с помощью эмулятора". Выбранный эмулятор сообщит Playnite, какие типы файлов следует сканировать и импортировать. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, игры будут добавлены в нижнюю часть текущего списка.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Нет подходящих эмуляторов для импортирования. Вы не сможете автоматически импортировать какие-либо эмулированные игры, предварительно не настроив эмулятор. Вы действительно хотите продолжить и выйти из процесса импортирования?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">В Playnite нет настроенных эмуляторов. Вы не можете импортировать игры без предварительной настройки эмулятора и выбора соответствующих типов файлов. Вы хотите добавить эмуляторы сейчас?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Сканировать папку с помощью эмулятора</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Выбор файлов</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Автообнаружение из папки...</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Настройка эмуляторов...</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning">Сканирование...</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Конфигурация при первом запуске</sys:String>
@@ -446,8 +446,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCArgumentsTitle">Аргументы</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">Рабочая директория</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Поддерживаемые типы файлов</sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton">Импортировать эмуляторы...</sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton">Скачать эмуляторы...</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Загрузка предустановки с аргументами из известного профиля эмулятора</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Вы уверены что хотите удалить {0} эмулятор?
 В настоящий момент он используется {1} игрой(ами).</sys:String>
@@ -549,9 +549,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCRemovePlayAction">Удалить игровое действие</sys:String>
     <sys:String x:Key="LOCOtherActions">Другие действия</sys:String>
     <sys:String x:Key="LOCAddGames">Добавить игры</sys:String>
-    <sys:String x:Key="LOCScanFolder">Сканировать папку...</sys:String>
+    <sys:String x:Key="LOCScanFolder"></sys:String>
     <sys:String x:Key="LOCDetectInstalled">Определить установленные</sys:String>
-    <sys:String x:Key="LOCBrowse">Выбрать...</sys:String>
+    <sys:String x:Key="LOCBrowse"></sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Открыть Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Настройки профиля</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Имя игры не может быть пустым.</sys:String>
@@ -636,8 +636,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCRemoveFavoriteGame">Убрать из любимых</sys:String>
     <sys:String x:Key="LOCHideGame">Скрыть</sys:String>
     <sys:String x:Key="LOCUnHideGame">Показать</sys:String>
-    <sys:String x:Key="LOCEditGame">Редактировать...</sys:String>
-    <sys:String x:Key="LOCSetGameCategory">Выбрать категорию...</sys:String>
+    <sys:String x:Key="LOCEditGame"></sys:String>
+    <sys:String x:Key="LOCSetGameCategory"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Удалить</sys:String>
     <sys:String x:Key="LOCPlayGame">Запуск</sys:String>
     <sys:String x:Key="LOCInstallGame">Установить</sys:String>
@@ -670,9 +670,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPlayedSeconds">{0} сек</sys:String>
     <sys:String x:Key="LOCPlayedNone">Не запускалась</sys:String>
 
-    <sys:String x:Key="LOCOpeningDesktopModeMessage">Запустить режим рабочего стола...</sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Запустить полноэкранный режим...</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase">Загрузка библиотеки игр ...</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Не удалось установить файл скрипта.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Скрипт успешно установлен.</sys:String>
     <sys:String x:Key="LOCInstallScript">Установить скрипт</sys:String>
@@ -700,7 +700,7 @@ IGDB > Официальный магазин:
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">теперь откроется клиент itch.io. Пожалуйста, войдите в систему и закройте это сообщение.</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">Ожидая входа в систему, закройте это, когда закончите...</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
     <sys:String x:Key="LOCItchioClientNotInstalledError">Клиент Itch версии 25 или новее не установлен.</sys:String>
 
     <!--GOG-->
