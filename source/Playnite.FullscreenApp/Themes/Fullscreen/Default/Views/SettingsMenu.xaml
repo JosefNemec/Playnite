@@ -34,9 +34,12 @@
                             <pctrls:ComboBoxEx x:Name="PART_SelectMonitor"
                                        Margin="{StaticResource ItemMargin}" />
 
-                            <TextBlock Text="{DynamicResource LOCSettingsSkin}"
+                            <ContentControl Content="{DynamicResource LOCSettingsSkin}"
+                                       ContentStringFormat="{}{0} *"
                                        Margin="{StaticResource ItemMargin}"
-                                       Style="{DynamicResource TextBlockBaseStyle}" />
+                                       Foreground="{DynamicResource TextBrush}"
+                                       FontSize="{DynamicResource FontSize}"
+                                       FontFamily="{DynamicResource FontTitilliumWebLight}"/>
                             <pctrls:ComboBoxEx x:Name="PART_SelectTheme"
                                        Margin="{StaticResource ItemMargin}" />
 

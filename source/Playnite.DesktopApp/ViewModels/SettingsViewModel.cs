@@ -361,7 +361,8 @@ namespace Playnite.DesktopApp.ViewModels
                         nameof(Settings.DatabasePath),
                         nameof(Settings.DisabledPlugins),
                         nameof(Settings.EnableTray),
-                        nameof(Settings.EnableControllerInDesktop)
+                        nameof(Settings.EnableControllerInDesktop),
+                        nameof(Settings.Language)
                     }))
                 {
                     if (dialogs.ShowMessage(
@@ -372,11 +373,6 @@ namespace Playnite.DesktopApp.ViewModels
                         application.Restart(new CmdLineOptions() { SkipLibUpdate = true });
                     }
                 }
-            }
-
-            if (editedFields?.Contains(nameof(Settings.Language)) == true)
-            {
-                Localization.SetLanguage(Settings.Language);
             }
 
             WindowClosing(true);

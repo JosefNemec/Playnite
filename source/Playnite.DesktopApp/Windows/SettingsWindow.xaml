@@ -121,7 +121,9 @@
                         <TabItem>
                             <StackPanel>
                                 <DockPanel Margin="0,0,0,10" LastChildFill="False">
-                                    <TextBlock Text="{DynamicResource LOCLanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
+                                    <ContentControl Content="{DynamicResource LOCLanguageSettingsLabel}" 
+                                                    ContentStringFormat="{}{0} *"
+                                                    VerticalAlignment="Center" Margin="5,0,10,0" />
                                     <ComboBox Name="ComboLanguage"
                                       SelectedValue="{Binding Settings.Language}"
                                       SelectedValuePath="Id" DisplayMemberPath="LocaleString"
@@ -184,9 +186,10 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
-                                    <CheckBox Name="CheckEnableTray" Content="{DynamicResource LOCSettingsShowTray}" Margin="5,0,0,0"
-                                            IsChecked="{Binding Settings.EnableTray}"
-                                      Grid.Column="0" Grid.Row="0"/>
+                                    <CheckBox Name="CheckEnableTray" Margin="5,0,0,0" Grid.Column="0" Grid.Row="0"
+                                              IsChecked="{Binding Settings.EnableTray}"
+                                              Content="{DynamicResource LOCSettingsShowTray}"                                
+                                              ContentStringFormat="{}{0} *" />
                                     <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource LOCSettingsMinimizeToTray}" Margin="20,10,5,5"
                                         IsChecked="{Binding Settings.MinimizeToTray}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"
@@ -246,8 +249,10 @@
                         <!-- Appearance -->                        
                         <TabItem>
                             <StackPanel>
-                                <StackPanel Orientation="Horizontal"> 
-                                    <TextBlock Text="{DynamicResource LOCSettingsSkin}" VerticalAlignment="Center" />
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl VerticalAlignment="Center"
+                                                    Content="{DynamicResource LOCSettingsSkin}"                                                    
+                                                    ContentStringFormat="{}{0} *"/>
                                     <ComboBox Margin="10,0,0,0"
                                               ItemsSource="{Binding AvailableThemes}"
                                               SelectedValue="{Binding Settings.Theme}"
@@ -476,8 +481,9 @@
                         <TabItem>
                             <StackPanel>
                                 <DockPanel>
-                                    <TextBlock Text="{DynamicResource LOCSettingsDBLocation}"
-                                               DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                                    <ContentControl Content="{DynamicResource LOCSettingsDBLocation}"
+                                                    ContentStringFormat="{}{0} *" 
+                                                    DockPanel.Dock="Left" VerticalAlignment="Center"/>
                                     <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
                                             DockPanel.Dock="Right" Padding="5,0,5,0"
                                             Command="{Binding SelectDbFileCommand}"/>
@@ -486,13 +492,17 @@
                                              IsReadOnly="True"/>
                                 </DockPanel>
                                 <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}"
+                                          ContentStringFormat="{}{0} *"
                                           ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                                           Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
                                           Margin="0,45,0,0"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
+                                          ContentStringFormat="{}{0} *"
                                           Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
                                           Margin="0,15,0,0"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}" ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
+                                <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}"
+                                          ContentStringFormat="{}{0} *"
+                                          ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
                                           Margin="0,15,0,0"
                                           Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
                                 <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}"
@@ -506,6 +516,7 @@
                         <TabItem>
                             <StackPanel>
                                 <CheckBox Content="{DynamicResource LOCSettingsXInputInDesktopMode}"
+                                          ContentStringFormat="{}{0} *"
                                           Name="CheckXInputEnabled"
                                           IsChecked="{Binding Settings.EnableControllerInDesktop}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsXInputGuideOpensFullscreen}"
