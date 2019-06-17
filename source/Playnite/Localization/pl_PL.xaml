@@ -71,6 +71,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktywuj</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Usuń</sys:String>
+    <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopiuj</sys:String>
     <sys:String x:Key="LOCAddTitle">Dodaj</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Domyślna ikona</sys:String>
@@ -240,6 +241,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
