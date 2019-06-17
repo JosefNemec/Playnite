@@ -75,6 +75,7 @@ Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, b
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktiviert</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Entfernen</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Umbenennen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopieren</sys:String>
     <sys:String x:Key="LOCAddTitle">Hinzufügen</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Standardsymbol</sys:String>
@@ -244,6 +245,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuSuspendSystem">Ruhezustand</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">In der Detailleiste anzuzeigende Datenfelder:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Elementabstände</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fehlende Quelle für Spielsymbol</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fehlende Quelle für Spielcover</sys:String>
