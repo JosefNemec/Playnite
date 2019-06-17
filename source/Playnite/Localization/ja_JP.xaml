@@ -31,7 +31,7 @@
     <sys:String x:Key="LOCNoCategory">カテゴリーなし</sys:String>
     <sys:String x:Key="LOCNoPlatform">プラットフォームなし</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle">大変申し訳ありません。プログラムに問題が発生しました。</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">クラッシュレポート</sys:String>
@@ -51,7 +51,7 @@
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam フレンド</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">未保存の変更があります</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">ゲームライブラリのフォーマットを更新しています。</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">データベースの更新に失敗しました。</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">ゲームライブラリを更新できません。 {0} MBの空き容量が必要です。</sys:String>
 
@@ -117,7 +117,7 @@
     <sys:String x:Key="LOCLinksLabel">関連リンク</sys:String>
     <sys:String x:Key="LOCInstallationLabel">インストール</sys:String>
     <sys:String x:Key="LOCActionsLabel">アクション</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel">ダウンロード中</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">タイプ</sys:String>
     <sys:String x:Key="LOCProfileLabel">プロファイル</sys:String>
     <sys:String x:Key="LOCProfilesLabel">プロファイル</sys:String>
@@ -203,32 +203,32 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
 公式ストアのデータを優先し、利用できない場合はIGDB.comのデータを使用します。</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport">Steamライブラリの更新をダウンロードしています。</sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport">GOGライブラリの更新をダウンロードしています。</sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport">Originライブラリの更新をダウンロードしています。</sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport">Battle.netライブラリの更新をダウンロードしています。</sys:String>
-    <sys:String x:Key="LOCProgressMetadata">メタデータを更新中</sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames">インストール済のゲームをインポート中</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">{0} のゲームをインポート中</sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames">ライブラリの更新をダウンロードしています。</sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport">ライブラリの更新をダウンロードしています。</sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressMetadata"></sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
+    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">ライブラリの更新完了</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources">リソースを解放中</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">コンフィグ</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">設定</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">プラットフォーム・エミュレータ</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">エミュレータの設定</sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle">ライブラリーの管理</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
     <sys:String x:Key="LOCMenuTools">ツール</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata">メタデータを取得</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">外部アプリを開く</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">ゲームライブラリを更新</sys:String>
     <sys:String x:Key="LOCMenuAddGame">ゲームを追加</sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual">手動追加</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">自動スキャン</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">エミュレータのゲームを追加</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite について</sys:String>
     <sys:String x:Key="LOCMenuIssues">フィードバックを送信</sys:String>
@@ -281,22 +281,22 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">コンピュータの起動時に、Playniteを実行するよう登録することができませんでした。</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">フルスクリーンモードで起動する</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Steam、Originなどが含まれます。</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">非同期画像読み込み *</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">遅いイメージロード時間と引き換えに、ゲームリストのスクロールの滑らかさを改善します。</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">カバー画像がない場合はゲーム名を表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">グリッドビューにゲーム名を表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">詳細ビューリストにゲームのアイコンを表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">グループの説明にアイテム数を表示する</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAcceleration">ハードウェアアクセラレーションを無効にする *</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">表示崩れなどのUIの問題が発生した場合に使用します。</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPIスケーリングを無効にする *</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steamの友達ボタンを表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">背景画像を表示する</sys:String>
-    <sys:String x:Key="LOCSettingsSkin">テーマ</sys:String>
+    <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">テーマのプロファイル</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">フルスクリーンモード用テーマ</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">フルスクリーンモード用テーマのプロファイル</sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation">データベースの場所 *</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">私のアカウント名は何ですか？</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">ログイン状態：</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite 設定</sys:String>
@@ -305,7 +305,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Webキャッシュを削除</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">アカウントのリンク中に発生した問題を解決できる可能性があります。</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">トレイアイコンを表示</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">トレイに最小化</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">トレイに閉じる</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">ゲーム起動時に：</sys:String>
@@ -344,7 +344,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">メタデータを再ダウンロードせずに既存のゲームに遡って適用することはありません。</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">プレイ時間の同期を強制する</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Playniteで記録された時間を無視して、ライブラリの同期中は常に記録されたプレイ時間をリモートライブラリからダウンロードします。</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">デスクトップモードでコントローラサポートを有効にする *</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">ガイドボタンでフルスクリーンモードを開く</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
@@ -368,7 +368,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCDockBottom">下</sys:String>
 
     <sys:String x:Key="LOCImportError">インポートエラー</sys:String>
-    <sys:String x:Key="LOCLoginChecking">認証ステータスを確認しています。</sys:String>
+    <sys:String x:Key="LOCLoginChecking"></sys:String>
     <sys:String x:Key="LOCLoginRequired">認証が必要</sys:String>
     <sys:String x:Key="LOCLoginFailed">認証に失敗</sys:String>
     <sys:String x:Key="LOCLoggedIn">ユーザー認証済み</sys:String>
@@ -387,15 +387,15 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">以下はPlayniteが認識し自動的に設定できるエミュレータのリストです。あなたはこれらのウェブサイトを訪問し、ダウンロードしてインストールすることができます。エミュレータをインストールしたら、次の画面に進んでそれらをPlayniteにインポートします。
         
 また、後で設定メニューからカスタムエミュレータを設定してインポートすることもできます。</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">「フォルダから自動検出」ボタンを押すと、PCにインストールされているエミュレータをインポートできます。Playniteは選択されたフォルダから既知のエミュレータを探し、それらをインポートするオプションを提供します。ボタンを複数回使用して複数のフォルダからインポートすることができ、エミュレータは現在のリストの一番下に追加されます。</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">「エミュレータを使用してフォルダをスキャン」ボタンを押すことでゲームをインポートできます。適切なエミュレータを選択すると、Playniteにどのファイルタイプをスキャンしてインポートするかを指示します。ボタンを複数回使用して複数のフォルダからインポートすることができ、ゲームは現在のリストの一番下に追加されます。</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">インポート用に選択されたエミュレーターがありません。 最初にエミュレータを設定しないと、エミュレートされたゲームを自動的にインポートすることはできません。 続行してインポート処理を終了しますか？</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playniteにエミュレータが設定されていません。 エミュレータを最初に設定し、適切なファイルタイプを選択しないとゲームをインポートできません。 今すぐエミュレータを追加しますか？</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">エミュレータを使用してフォルダをスキャン</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">ファイルを選択</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">フォルダから自動検出</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">エミュレータの設定</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning">スキャン中</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">初回設定</sys:String>
@@ -443,8 +443,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCArgumentsTitle">引数</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">作業フォルダ</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">サポートされているファイルの種類</sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton">エミュレータをインポート</sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton">エミュレータをダウンロード</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">既知のエミュレータプロファイルからプリセット引数を読み込む</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">エミュレータ {0} を削除してもよろしいですか？       
 現在 {1} 個のゲームで使用されています。</sys:String>
@@ -547,9 +547,9 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCRemovePlayAction">プレイアクションの削除</sys:String>
     <sys:String x:Key="LOCOtherActions">その他のアクション</sys:String>
     <sys:String x:Key="LOCAddGames">ゲームを追加</sys:String>
-    <sys:String x:Key="LOCScanFolder">フォルダをスキャン</sys:String>
+    <sys:String x:Key="LOCScanFolder"></sys:String>
     <sys:String x:Key="LOCDetectInstalled">インストール済みを検出</sys:String>
-    <sys:String x:Key="LOCBrowse">参照</sys:String>
+    <sys:String x:Key="LOCBrowse"></sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Playnite を開く</sys:String>
     <sys:String x:Key="LOCProfileSettings">プロファイル設定</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">ゲーム名は空欄にできません。</sys:String>
@@ -634,8 +634,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCRemoveFavoriteGame">お気に入りから削除</sys:String>
     <sys:String x:Key="LOCHideGame">非表示</sys:String>
     <sys:String x:Key="LOCUnHideGame">ライブラリに表示</sys:String>
-    <sys:String x:Key="LOCEditGame">編集</sys:String>
-    <sys:String x:Key="LOCSetGameCategory">カテゴリーを設定</sys:String>
+    <sys:String x:Key="LOCEditGame"></sys:String>
+    <sys:String x:Key="LOCSetGameCategory"></sys:String>
     <sys:String x:Key="LOCRemoveGame">削除</sys:String>
     <sys:String x:Key="LOCPlayGame">プレイ</sys:String>
     <sys:String x:Key="LOCInstallGame">インストール</sys:String>
@@ -668,9 +668,9 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCPlayedSeconds">{0} 秒</sys:String>
     <sys:String x:Key="LOCPlayedNone">未プレイ</sys:String>
 
-    <sys:String x:Key="LOCOpeningDesktopModeMessage">デスクトップモードへ切り替え中</sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage">フルスクリーンモードへ切り替え中</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase">ゲームライブラリをロード中</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">スクリプトファイルのインストールに失敗しました。</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">スクリプトは正常にインストールされました。</sys:String>
     <sys:String x:Key="LOCInstallScript">スクリプトのインストール</sys:String>
@@ -698,7 +698,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.ioクライアントが開きます。サインインしてからこのメッセージを閉じてください。</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">ユーザーがログインするのを待っています。完了したら閉じてください。</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
     <sys:String x:Key="LOCItchioClientNotInstalledError">バージョン25以降のItchクライアントがインストールされていません。</sys:String>
 
     <!--GOG-->
