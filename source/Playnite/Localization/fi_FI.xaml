@@ -75,6 +75,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Käytössä</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Poista</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Nimeä uudelleen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopioi</sys:String>
     <sys:String x:Key="LOCAddTitle">Lisää</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Oletuskuvake</sys:String>
@@ -244,6 +245,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCMenuSuspendSystem">Aseta järjestelmä valmiustilaan</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Lisätietopaneelissa näytettävät kentät:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Kohteiden välistys</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Puuttuva pelin kuvakkeen lähde</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuttuva pelin kannen lähde</sys:String>
