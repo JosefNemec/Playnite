@@ -71,6 +71,7 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Включено</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Убрать</sys:String>
+    <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">Копировать</sys:String>
     <sys:String x:Key="LOCAddTitle">Добавить</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Стандартная иконка</sys:String>
@@ -240,6 +241,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
