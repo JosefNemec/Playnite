@@ -71,6 +71,7 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Eltávolítás</sys:String>
+    <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">Másolás</sys:String>
     <sys:String x:Key="LOCAddTitle">Hozzáadás</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Alapértelmezett ikon</sys:String>
@@ -238,6 +239,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
