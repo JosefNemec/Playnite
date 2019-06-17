@@ -31,7 +31,7 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCNoCategory">Ingen kategori</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen platform</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle">Uff da, her skjedde det noe feil...</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Uff da, her skjedde det noe feil…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Det skjedde en uoprettelig feil.
 
 Hvis du vil hjelpe oss å fikse problemet, vennligst opprett en diagnostikkpakke og trykk på 'Rapporter Kræsj' for å la oss vite hva som skjedde. Takk.</sys:String>
@@ -55,7 +55,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Venner</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Seksjonen inneholder endringer for lagring</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Oppdaterer spillbibiliotekformat...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Oppdaterer spillbibiliotekformat…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Databaseoppdatering feilet.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Kan ikke oppdatere spillbibliotek. {0} MB av tilgjengelig plass er nødvendig.</sys:String>
 
@@ -121,7 +121,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCLinksLabel">Lenker</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Installasjon</sys:String>
     <sys:String x:Key="LOCActionsLabel">Handlinger</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel">Laster ned...</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Laster ned…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Type</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiler</sys:String>
@@ -145,7 +145,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisens</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bidragsytere</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Lukker Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Lukker Playnite…</sys:String>
     <sys:String x:Key="LOCToday">I dag</sys:String>
     <sys:String x:Key="LOCYesterday">I går</sys:String>
     <sys:String x:Key="LOCMonday">Mandag</sys:String>
@@ -207,33 +207,33 @@ Offisiell Butikk > IGDB:
 Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk data fra IGDB.com databasen.</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport">Laster ned oppdateringer fra Steam-biblioteket...</sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport">Laster ned oppdateringer fra GOG-biblioteket...</sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport">Laster ned oppdateringer fra Origin-biblioteket...</sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport">Laster ned oppdateringer fra Battle.net-biblioteket...</sys:String>
-    <sys:String x:Key="LOCProgressMetadata">Laster ned metadata...</sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames">Importerer installerte spill...</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Importerer {0} spill...</sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames">Laster ned biblioteksoppdateringer...</sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport">Laster ned biblioteksoppdateringer...</sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">Laster ned oppdateringer fra Steam-biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">Laster ned oppdateringer fra GOG-biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Laster ned oppdateringer fra Origin-biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">Laster ned oppdateringer fra Battle.net-biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">Laster ned metadata…</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Importerer installerte spill…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importerer {0} spill…</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">Laster ned biblioteksoppdateringer…</sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport">Laster ned biblioteksoppdateringer…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Biblioteksoppdatering vellykket</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources">Frigir ressurser...</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">Frigir ressurser…</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfigurasjon</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Innstillinger...</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Innstillinger…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformer og Emulatorer</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Konfigurer Emulatorer...</sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle">Biblioteksbehandler...</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Konfigurer Emulatorer…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Biblioteksbehandler…</sys:String>
     <sys:String x:Key="LOCMenuTools">Verktøy</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata">Last ned Metadata...</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">Last ned Metadata…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Åpne tredjeparts-klient</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Oppdater Spillbibliotek</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Legg til Spill</sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual">Manuelt...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Automatisk Skanning...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">Emulert Spill...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store Spill...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">Manuelt…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Automatisk Skanning…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Emulert Spill…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store Spill…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Gi Tilbakemelding</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullskjermmodus</sys:String>
@@ -296,11 +296,11 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage"></sys:String>
-    <sys:String x:Key="LOCSettingsSkin">Tema *</sys:String>
+    <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Tema-profil</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Fullskjermstema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Fullskjermstema-profil</sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation">Databaseplassering *</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Hva er profilnavnet mitt?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus"></sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle"></sys:String>
@@ -447,10 +447,10 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
     
-    <sys:String x:Key="LOCMenuSortByTitle"></sys:String>
+    <sys:String x:Key="LOCMenuSortByTitle">Sorter Etter</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
-    <sys:String x:Key="LOCMenuSortAscending"></sys:String>
-    <sys:String x:Key="LOCMenuSortDescending"></sys:String>
+    <sys:String x:Key="LOCMenuSortAscending">Stigende</sys:String>
+    <sys:String x:Key="LOCMenuSortDescending">Synkende</sys:String>
     <sys:String x:Key="LOCMenuGroupDont"></sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">Sorter etter Bibliotek</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory"></sys:String>
@@ -685,7 +685,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io klienten vil åpnes. Vennligst logg inn, og så lukker du denne meldingen.</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">Venter på at brukeren skal logge inn, vennligst lukk dette når du er ferdig...</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
     <sys:String x:Key="LOCItchioClientNotInstalledError">Versjon 25 eller nyere av Itch klienten er ikke installert.</sys:String>
 
     <!--GOG-->
