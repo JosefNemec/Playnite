@@ -75,6 +75,7 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Habilitado</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Eliminar</sys:String>
+    <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">Copiar</sys:String>
     <sys:String x:Key="LOCAddTitle">Agregar</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Icono Predeterminado</sys:String>
@@ -244,6 +245,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender el sistema</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacio entre elementos</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fuente del icono del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fuente de la portada del juego faltante</sys:String>
