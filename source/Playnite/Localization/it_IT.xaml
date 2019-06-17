@@ -75,6 +75,7 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Abilitato</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Rimuovi</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Rinomina</sys:String>
     <sys:String x:Key="LOCCopyTitle">Copia</sys:String>
     <sys:String x:Key="LOCAddTitle">Aggiungi</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Icona di base</sys:String>
@@ -244,6 +245,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCMenuSuspendSystem">Sospendi sistema</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Campi di gioco da visualizzare nel pannello dettagli:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Spaziatura oggetti</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fonte dell'icona del gioco mancante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte della copertina del gioco mancante</sys:String>
