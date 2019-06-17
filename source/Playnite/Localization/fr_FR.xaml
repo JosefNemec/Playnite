@@ -71,6 +71,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Actif</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Supprimer</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Renommer</sys:String>
     <sys:String x:Key="LOCCopyTitle">Copier</sys:String>
     <sys:String x:Key="LOCAddTitle">Ajouter</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Icône par défaut</sys:String>
@@ -239,6 +240,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuSuspendSystem">Mettre en veille</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
