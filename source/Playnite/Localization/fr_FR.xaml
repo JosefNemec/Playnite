@@ -720,5 +720,6 @@ Veuillez essayer les solutions suivantes :
 
     <sys:String x:Key="LOCGameListFiltered">Des filtres sont actifs.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Résultats de la recherche :</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Ce nom est déjà utilisé par un autre élément.</sys:String>
 
 </ResourceDictionary>
