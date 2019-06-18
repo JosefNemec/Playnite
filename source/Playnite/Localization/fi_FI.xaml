@@ -727,5 +727,6 @@ Huomioi, että tunnuksen nimen käyttäminen toimii vain tunnuksilla, jotka on a
 
     <sys:String x:Key="LOCGameListFiltered">Suodattimia on käytössä.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Tulokset haulle:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
