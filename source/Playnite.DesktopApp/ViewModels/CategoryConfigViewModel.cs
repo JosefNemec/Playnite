@@ -147,7 +147,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var newCategoeries = Categories.Where(a => (a.Selected == true || a.Selected == null) && database.Categories[a.Item.Id] == null);
                 if (newCategoeries.Any())
                 {
-                    database.Categories.Add(newCategoeries.Select(a => a.Item));
+                    database.Categories.Add(newCategoeries.Select(a => a.Item).ToList());
                 }
 
                 if (games != null)
