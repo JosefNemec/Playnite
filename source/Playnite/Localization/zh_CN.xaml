@@ -727,5 +727,6 @@ IGDB > 官方商店：
 
     <sys:String x:Key="LOCGameListFiltered">应用筛选</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">搜索结果：</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">已存在同一个名称的项目。</sys:String>
 
 </ResourceDictionary>
