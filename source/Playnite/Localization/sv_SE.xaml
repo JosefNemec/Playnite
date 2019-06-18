@@ -711,5 +711,6 @@ Det används för närvarande av {1} spel and {2} emulator(er).</sys:String>
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
