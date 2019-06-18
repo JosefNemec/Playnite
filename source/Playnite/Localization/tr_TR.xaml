@@ -726,5 +726,6 @@ Not Hesap ismi seçeneği sadece GOG'un gizlilik seçeneğinin herkese görünü
 
     <sys:String x:Key="LOCGameListFiltered">Uygulanan filtreler var.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
