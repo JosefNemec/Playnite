@@ -720,5 +720,6 @@ Você pode tentar corrigir o problema:
 
     <sys:String x:Key="LOCGameListFiltered">Alguns filtros foram aplicados.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Buscar resultados para:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
