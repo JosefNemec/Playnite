@@ -730,5 +730,6 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
 
     <sys:String x:Key="LOCGameListFiltered">Es wurden Filter angewendet.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Suchergebnisse für:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Ein Element mit demselben Namen existiert bereits.</sys:String>
 
 </ResourceDictionary>
