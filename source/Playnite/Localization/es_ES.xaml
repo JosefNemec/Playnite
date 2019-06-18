@@ -728,5 +728,6 @@ La opción de Nombre de Cuenta solo aparece para cuentas cuyas librerías de jue
 
     <sys:String x:Key="LOCGameListFiltered">Hay filtros aplicados.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Resultados de la búsqueda de:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
