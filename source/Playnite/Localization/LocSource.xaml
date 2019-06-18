@@ -729,5 +729,6 @@ Note that the Account Name option only works for accounts whose game libraries h
 
     <sys:String x:Key="LOCGameListFiltered">There are filters applied.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Search results for:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">An item with the same name already exists.</sys:String>
 
 </ResourceDictionary>

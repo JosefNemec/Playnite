@@ -51,7 +51,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as Genre);
+                RenameItem(EditingGenres, a.First() as Genre);
             }, (a) => a?.Count == 1);
         }
 
@@ -84,7 +84,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as Company);
+                RenameItem(EditingCompanies, a.First() as Company);
             }, (a) => a?.Count == 1);
         }
 
@@ -117,7 +117,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as Tag);
+                RenameItem(EditingTags, a.First() as Tag);
             }, (a) => a?.Count == 1);
         }
 
@@ -150,7 +150,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as Platform);
+                RenameItem(EditingPlatforms, a.First() as Platform);
             }, (a) => a?.Count == 1);
         }
 
@@ -215,7 +215,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as Series);
+                RenameItem(EditingSeries, a.First() as Series);
             }, (a) => a?.Count == 1);
         }
 
@@ -248,7 +248,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as AgeRating);
+                RenameItem(EditingAgeRatings, a.First() as AgeRating);
             }, (a) => a?.Count == 1);
         }
 
@@ -281,7 +281,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as Region);
+                RenameItem(EditingRegions, a.First() as Region);
             }, (a) => a?.Count == 1);
         }
 
@@ -314,7 +314,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as GameSource);
+                RenameItem(EditingSources, a.First() as GameSource);
             }, (a) => a?.Count == 1);
         }
 
@@ -347,7 +347,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameItem(a.First() as Category);
+                RenameItem(EditingCategories, a.First() as Category);
             }, (a) => a?.Count == 1);
         }
 
@@ -506,11 +506,18 @@ namespace Playnite.DesktopApp.ViewModels
                 "");
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
-                collection.Add(typeof(TItem).CrateInstance<TItem>(res.SelectedString));
+                if (collection.Any(a => a.Name.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    dialogs.ShowErrorMessage(resources.GetString("LOCItemAlreadyExists"), "");
+                }
+                else
+                {
+                    collection.Add(typeof(TItem).CrateInstance<TItem>(res.SelectedString));
+                }
             }
         }
 
-        public void RenameItem<TItem>(TItem item) where TItem : DatabaseObject
+        public void RenameItem<TItem>(IList<TItem> collection, TItem item) where TItem : DatabaseObject
         {
             var res = dialogs.SelectString(
                 resources.GetString("LOCEnterNewName"),
@@ -518,7 +525,14 @@ namespace Playnite.DesktopApp.ViewModels
                 item.Name);
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
-                item.Name = res.SelectedString;
+                if (collection.Any(a => a.Name.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    dialogs.ShowErrorMessage(resources.GetString("LOCItemAlreadyExists"), "");
+                }
+                else
+                {
+                    item.Name = res.SelectedString;
+                }
             }
         }
 
