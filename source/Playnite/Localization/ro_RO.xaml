@@ -716,5 +716,6 @@ De menționat că opțiunea pentru Numele Contului este funcțională doar pentr
 
     <sys:String x:Key="LOCGameListFiltered">Sunt aplicate filtrele.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Rezultatele căutării pentru:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
