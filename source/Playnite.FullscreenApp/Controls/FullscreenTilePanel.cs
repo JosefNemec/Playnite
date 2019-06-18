@@ -100,6 +100,25 @@ namespace Playnite.FullscreenApp.Controls
             typeof(FullscreenTilePanel),
             new FrameworkPropertyMetadata(4, OnLayoutPropertyChanged));
 
+        public int ItemSpacing
+        {
+            get
+            {
+                return (int)GetValue(ItemSpacingProperty);
+            }
+
+            set
+            {
+                SetValue(ItemSpacingProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty ItemSpacingProperty = DependencyProperty.RegisterAttached(
+            nameof(ItemSpacing),
+            typeof(int),
+            typeof(FullscreenTilePanel),
+            new FrameworkPropertyMetadata(10, OnLayoutPropertyChanged));
+
         public FullscreenTilePanel() : base()
         {
             RenderTransform = trans;

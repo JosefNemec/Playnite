@@ -142,7 +142,8 @@
                                                                 Rows="{pmrk:Settings Fullscreen.Rows}"
                                                                 Columns="{pmrk:Settings Fullscreen.Columns}"
                                                                 UseHorizontalLayout="{pmrk:Settings Fullscreen.HorizontalLayout}"
-                                                                ItemAspectRatio="{pmrk:Settings CoverAspectRatio}" />
+                                                                ItemAspectRatio="{pmrk:Settings CoverAspectRatio}"
+                                                                ItemSpacing="{pmrk:Settings FullscreenItemSpacing}"/>
                                         </ItemsPanelTemplate>
                                     </ListBox.ItemsPanel>
                                 </pctrls:ListBoxEx>
