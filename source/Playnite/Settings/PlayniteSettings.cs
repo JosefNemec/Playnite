@@ -292,6 +292,7 @@ namespace Playnite
             {
                 gridItemSpacing = value;
                 OnPropertyChanged();
+                ItemSpacingMargin = new Thickness(GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2);
                 OnPropertyChanged(nameof(ItemSpacingMargin));
             }
         }
@@ -313,14 +314,7 @@ namespace Playnite
         }
 
         [JsonIgnore]
-        public Thickness ItemSpacingMargin
-        {
-            get
-            {
-                int marginY = ((int)CoverAspectRatio.GetWidth(GridItemSpacing) / 2);
-                return new Thickness(marginY, GridItemSpacing, 0, 0);
-            }
-        }
+        public Thickness ItemSpacingMargin { get; private set; }
 
         [JsonIgnore]
         public Thickness FullscreenItemSpacingMargin
