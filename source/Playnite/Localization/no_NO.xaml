@@ -464,7 +464,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCGameIconTitle"></sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle"></sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle"></sys:String>
-    <sys:String x:Key="LOCGameSortingNameTitle"></sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">Sorteringsnavn</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Bibliotek</sys:String>
     <sys:String x:Key="LOCGameNameTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle"></sys:String>
