@@ -706,5 +706,6 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Søkeresultater for:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
