@@ -7,6 +7,7 @@
                     xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp">
 
     <Style x:Key="PropertyItemButton" TargetType="Button">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="Margin" Value="0,2,5,2" />
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="Template">
@@ -41,10 +42,11 @@
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                             <Style TargetType="ItemsControl">
-                                <Setter Property="ItemsPanel">
+                                <Setter Property="AlternationCount" Value="{Binding RelativeSource={RelativeSource Self}, Path=Items.Count}" />
+                                <Setter Property="ItemsPanel">                                    
                                     <Setter.Value>
                                         <ItemsPanelTemplate>
-                                            <WrapPanel FlowDirection="LeftToRight" IsItemsHost="true" />
+                                            <WrapPanel FlowDirection="LeftToRight" IsItemsHost="true" />                                            
                                         </ItemsPanelTemplate>
                                     </Setter.Value>
                                 </Setter>
@@ -90,16 +92,17 @@
                             Content="{Binding Name}"/>
                             </DataTemplate>
                             <DataTemplate x:Key="LinkItemTemplate">
-                                <Button Style="{StaticResource PropertyItemButton}"
-                            Command="{x:Static pcmds:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="{Binding Url}"
-                            Content="{Binding Name}"
-                            ToolTip="{Binding Url}" />
+                                <Button Style="{StaticResource PropertyItemButton}"                                        
+                                    Command="{x:Static pcmds:GlobalCommands.NavigateUrlCommand}"
+                                    CommandParameter="{Binding Url}"
+                                    Content="{Binding Name}"
+                                    ToolTip="{Binding Url}" />
                             </DataTemplate>
                         </Grid.Resources>
 
                         <StackPanel>
-                            <Grid Visibility="{Binding PlayTimeVisibility}">
+                            <Grid Visibility="{Binding PlayTimeVisibility}"
+                                  Margin="0,0,0,10">
                                 <Grid.Resources>
                                     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
                                 </Grid.Resources>
@@ -196,7 +199,7 @@
                             <StackPanel Visibility="{Binding LinkVisibility}">
                                 <Label Content="{DynamicResource LOCLinksLabel}" />
                                 <ItemsControl ItemsSource="{Binding Game.Links}"
-                                  ItemTemplate="{StaticResource LinkItemTemplate}"/>
+                                              ItemTemplate="{StaticResource LinkItemTemplate}"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
