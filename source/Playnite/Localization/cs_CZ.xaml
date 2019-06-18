@@ -728,5 +728,6 @@ Pozor že možnost zadání jména účtu funguje pouze pro ty účty, které ma
 
     <sys:String x:Key="LOCGameListFiltered">Jsou použity nějaké filtry.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Výsledky hledání pro:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Položka s tímto jménem již existuje.</sys:String>
 
 </ResourceDictionary>
