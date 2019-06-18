@@ -704,5 +704,6 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
