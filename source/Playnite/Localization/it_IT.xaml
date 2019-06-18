@@ -727,5 +727,6 @@ Nota che l'opzione Nome Account funziona solo per gli account le cui librerie di
 
     <sys:String x:Key="LOCGameListFiltered">Ci sono filtri applicati.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Risultati della ricerca per:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Impossibile rinominare il file o la cartella è già esistente.</sys:String>
 
 </ResourceDictionary>
