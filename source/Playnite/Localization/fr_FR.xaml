@@ -132,10 +132,10 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCTagLabel">Étiquette</sys:String>
     <sys:String x:Key="LOCTagsLabel">Étiquettes</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Détails</sys:String>
+    <sys:String x:Key="LOCListLabel">Affichage en liste</sys:String>
     <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
     <sys:String x:Key="LOCGridLabel">Grille</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Liste</sys:String>
+    <sys:String x:Key="LOCDetailsLabel">Affichage détaillé</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personnalisé</sys:String>
     <sys:String x:Key="LOCURLLabel">Lien</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -244,7 +244,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Détails en bas de page (affichage en liste)</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Déplacer les informations en bas de page (affichage détaillé)</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails (affichage en grille)</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position du panneau de filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position du panneau d'explorateur</sys:String>
@@ -252,7 +252,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Format d'affichage</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Mise à l'échelle</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Bannière Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD">Boîte DVD</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">Boîtier DVD</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Redémarrage nécessaire</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Paramètres</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Général</sys:String>
@@ -271,7 +271,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importer tous les jeux (nécessite un profil public ou une clé API)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">L'emplacement du fichier de base de données n'est pas valide, le chemin de fichier correct doit être défini.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Le nom du profil ne peut pas être vide.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Aucun profil de Steam n'a été sélectionné pour l'importation de la bibliothèque.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Aucun profil Steam n'a été sélectionné pour l'importation de la bibliothèque.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Aucun compte Steam n'a été sélectionné pour l'importation de catégories.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Actualiser la bibliothèque au démarrage</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Télécharger les métadonnées automatiquement</sys:String>
@@ -284,7 +284,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Améliore la fluidité du défilement des listes de jeux en chargeant les images plus lentement.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Afficher le nom des jeux à la place des jaquettes manquantes</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Afficher le nom des jeux dans le mode d'affichage en grille</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans le mode d'affichage en liste</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans le mode d'affichage détaillé</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Afficher le nombre d'items dans la description des groupes</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
@@ -521,7 +521,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     
     <sys:String x:Key="LOCLibraryImportError">Echec de l'importation depuis {0}.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Impossible de rechercher des jeux par profil d'émulateur sélectionné. Le profil ne contient aucune extension de fichier ou plateformes.</sys:String>
-    <sys:String x:Key="LOCStartGenericError">Playnite n'a pas pu demarrer. Veuillez fermer toutes les instances en cours et réessayer.</sys:String>
+    <sys:String x:Key="LOCStartGenericError">Playnite n'a pas pu démarrer. Veuillez fermer toutes les instances en cours et réessayer.</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Echec de l'application du thème "{0}", profil de couleur "{1}"
 
 {1}</sys:String>
@@ -600,8 +600,8 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCExtensionVersion">Version :</sys:String>
     <sys:String x:Key="LOCExtensionModule">Module :</sys:String>
     <sys:String x:Key="LOCLibrary">Bibliothèque</sys:String>
-    <sys:String x:Key="LOCAll">Tout</sys:String>
-    <sys:String x:Key="LOCNone">Aucun(e)</sys:String>
+    <sys:String x:Key="LOCAll">[Tout]</sys:String>
+    <sys:String x:Key="LOCNone">Indéterminé</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
 
 
