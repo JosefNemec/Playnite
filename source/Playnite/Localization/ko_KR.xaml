@@ -8,9 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">종료</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">필터가 활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">필터가 비활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCAditionalFilters">추가 필터</sys:String>
+    <sys:String x:Key="LOCFilters">필터</sys:String>
+    <sys:String x:Key="LOCFilter">필터</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">잘못된 데이터</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">변경 사항을 저장하시겠습니까?</sys:String>
@@ -18,7 +18,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">홈페이지: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">GitHub에서 소스 코드 보기</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">진단 패키지 생성</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">시스템 정보 전송</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Playnite에 관하여</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Josef Němec이 개발함</sys:String>
 
@@ -31,14 +31,18 @@
     <sys:String x:Key="LOCNoCategory">카테고리 없음</sys:String>
     <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">이런, 문제가 발생했습니다…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
+        
+이 문제를 수정하는 것을 돕고 싶으시다면, 진단 패키지를 생성하고 ‘오류 보고’ 버튼을 통해 무슨 일이 일어났는지 알려주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
+        
+이 문제를 수정하는 것을 돕고 싶으시다면, 분석 정보를 보내주세요. 감사합니다.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Playnite 나가기</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">라이브러리 관리자</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 삭제하시겠습니까?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">게임이 실행 중이거나 설치, 삭제되는 중에는 게임을 삭제할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">게임이 실행 중일 때 삭제할 수 없습니다.</sys:String>
@@ -51,7 +55,7 @@
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam 친구</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">저장해야 할 변경 사항이 있습니다</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">게임 라이브러리 형식 업데이트 중…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">데이터베이스 업데이트를 실패했습니다.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">게임 라이브러리를 업데이트할 수 없습니다. {0} MB의 여유 공간이 필요합니다.</sys:String>
 
@@ -65,13 +69,13 @@
     <sys:String x:Key="LOCGameUninstallError">게임을 삭제할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">이 게임을 담당하는 라이브러리 플러그인이 설치되거나 활성화되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">공식 메타데이터 다운로드를 사용할 수 없습니다.</sys:String>
-    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">선택한 게임이 없습니다.</sys:String>
 
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">활성화</sys:String>
     <sys:String x:Key="LOCRemoveTitle">제거</sys:String>
-    <sys:String x:Key="LOCRenameTitle"></sys:String>
+    <sys:String x:Key="LOCRenameTitle">이름 바꾸기</sys:String>
     <sys:String x:Key="LOCCopyTitle">복사</sys:String>
     <sys:String x:Key="LOCAddTitle">추가</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">기본 아이콘</sys:String>
@@ -82,9 +86,9 @@
     <sys:String x:Key="LOCDoneCapLabel">완료</sys:String>
     <sys:String x:Key="LOCBackCapLabel">이전</sys:String>
     <sys:String x:Key="LOCClearCapLabel">지우기</sys:String>
-    <sys:String x:Key="LOCClearLabel"></sys:String>
-    <sys:String x:Key="LOCDismiss"></sys:String>
-    <sys:String x:Key="LOCDismissAll"></sys:String>
+    <sys:String x:Key="LOCClearLabel">초기화</sys:String>
+    <sys:String x:Key="LOCDismiss">무시</sys:String>
+    <sys:String x:Key="LOCDismissAll">모두 무시</sys:String>
     <sys:String x:Key="LOCImportLabel">가져오기</sys:String>
     <sys:String x:Key="LOCSourceLabel">소스</sys:String>
     <sys:String x:Key="LOCNameLabel">게임 명</sys:String>
@@ -98,9 +102,9 @@
     <sys:String x:Key="LOCMostPlayedLabel">가장 많이 플레이</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">플레이 횟수</sys:String>
     <sys:String x:Key="LOCAddedLabel">추가일</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">날짜 추가됨</sys:String>
     <sys:String x:Key="LOCModifiedLabel">수정일</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">날짜 변경됨</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">웹사이트</sys:String>
     <sys:String x:Key="LOCPathLabel">경로</sys:String>
     <sys:String x:Key="LOCOKLabel">확인</sys:String>
@@ -117,7 +121,7 @@
     <sys:String x:Key="LOCLinksLabel">링크</sys:String>
     <sys:String x:Key="LOCInstallationLabel">설치</sys:String>
     <sys:String x:Key="LOCActionsLabel">액션</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">다운로드 중…</sys:String>
     <sys:String x:Key="LOCTypeLabel">유형</sys:String>
     <sys:String x:Key="LOCProfileLabel">프로필</sys:String>
     <sys:String x:Key="LOCProfilesLabel">프로필</sys:String>
@@ -141,7 +145,7 @@
     <sys:String x:Key="LOCPatronsLabel">후원자</sys:String>
     <sys:String x:Key="LOCLicenseLabel">라이센스</sys:String>
     <sys:String x:Key="LOCContributorsLabel">기여자</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Playnite 나가는 중…</sys:String>
     <sys:String x:Key="LOCToday">오늘</sys:String>
     <sys:String x:Key="LOCYesterday">어제</sys:String>
     <sys:String x:Key="LOCMonday">월요일</sys:String>
@@ -159,10 +163,10 @@
     <sys:String x:Key="LOCGameId">게임 Id</sys:String>
     <sys:String x:Key="LOCDatabaseId">데이터베이스 Id</sys:String>
     <sys:String x:Key="LOCPresets">프리셋</sys:String>
-    <sys:String x:Key="LOCColumn"></sys:String>
-    <sys:String x:Key="LOCColumns"></sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
+    <sys:String x:Key="LOCColumn">열</sys:String>
+    <sys:String x:Key="LOCColumns">열</sys:String>
+    <sys:String x:Key="LOCRow">행</sys:String>
+    <sys:String x:Key="LOCRows">행</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">특정 변수는 다음과 같은 동적 스트링을 통해 표현할 수 있습니다:
 {InstallDir} - 게임 설치 위치
