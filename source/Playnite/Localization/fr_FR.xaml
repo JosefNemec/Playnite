@@ -3,7 +3,7 @@
 
     <sys:String x:Key="LanguageName">Français</sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel">Langue de Playnite :</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Quitter</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Des filtres sont activés (cliquez pour basculer le panneau filtre)</sys:String>
@@ -13,7 +13,7 @@
     <sys:String x:Key="LOCFilter">Filtre</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Données invalides</sys:String>
-    <sys:String x:Key="LOCSaveChangesAskTitle">Enregistrer les modifications ?</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">Sauvegarder les modifications ?</sys:String>
     
     <sys:String x:Key="LOCAboutHomePageLink">www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Code source sur GitHub</sys:String>
@@ -32,16 +32,20 @@ Indéterminé - Aucun changement</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sans plateforme</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh non, quelque chose s'est mal passé…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite a rencontré un problème et n'a pas pu le résoudre. Si vous voulez nous aider, vous pouvez envoyer un rapport de bug et signaler le problème. Merci beaucoup !</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Playnite a rencontré un problème et n'a pas pu le résoudre. Si vous voulez nous aider, vous pouvez envoyer un rapport de bug et signaler le problème. Merci beaucoup !</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Signaler</sys:String>
-    <sys:String x:Key="LOCCrashRestartPlaynite">Redémarrer Playnite</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Une erreur est survenue.
+        
+Si vous souhaitez nous aider à corriger ce problème, veuillez créer un paquet diagnostique et utiliser le bouton 'Signaler un Bug' pour nous signaler le problème. Merci.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Une erreur est survenue.
+        
+Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rapport de bug. Merci.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Signaler un Crash</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">Relancer Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Quitter Playnite</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gestionnaire de bibliothèque</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Supprimer le(s) jeu(x) ?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Impossible de retirer un jeu en cours d'exécution/installation.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">Le jeu est en cours d'exécution et ne peut être désinstallé.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Impossible de retirer un jeu en cours d'exécution.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Êtes-vous sûr de vouloir supprimer ce jeu ?
 
 Les jeux importés automatiquement sont susceptibles de réapparaître après la prochaine procédure d'importation (selon vos paramètres).</sys:String>
@@ -52,24 +56,24 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCSteamFriendsTooltip">Afficher la liste d'amis</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">La section contient des modifications à enregistrer</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Mise à jour de la base de données...</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">La mise à jour de la base de données a échoué. Impossible d'ouvrir le fichier de base.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">La mise à jour de la base de données a échoué.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">La mise à jour de la base de données a échoué. {0} Mo d'espace libres requis.</sys:String>
 
     <sys:String x:Key="LOCGameError">Erreur de jeu</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Erreur : Impossible de démarrer le jeu. '{0}' n'a pas été trouvé dans la base de données.</sys:String>
-    <sys:String x:Key="LOCGameStartError">Erreur : Impossible de démarrer le jeu : {0}</sys:String>
-    <sys:String x:Key="LOCGameStartActionError">Erreur : Impossible de démarrer l'action : {0}</sys:String>
+    <sys:String x:Key="LOCGameStartError">Impossible de démarrer le jeu : {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Impossible de démarrer l'action : {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Erreur : Impossible d'ouvrir l'emplacement du jeu : {0}</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Erreur : La creation du raccourci a échoué : {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Impossible de créer un raccourci : {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Erreur : Impossible d'installer le jeu : {0}</sys:String>
-    <sys:String x:Key="LOCGameUninstallError">Erreur : Impossible de désinstaller le jeu : {0}</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Le client en charge de ce jeu n'est pas installé.</sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader">Téléchargement des métadonnées non disponible.</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">Impossible de désinstaller le jeu : {0}</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Le client en charge de ce jeu n'est pas installé ou activé.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Téléchargement des métadonnées officielles non disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Aucun jeu sélectionné.</sys:String>
 
 
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle">Actif</sys:String>
+    <sys:String x:Key="LOCEnabledTitle">Activé</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Supprimer</sys:String>
     <sys:String x:Key="LOCRenameTitle">Renommer</sys:String>
     <sys:String x:Key="LOCCopyTitle">Copier</sys:String>
@@ -89,7 +93,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCNameLabel">Nom</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Auteur</sys:String>
-    <sys:String x:Key="LOCModuleLabel">Modules</sys:String>
+    <sys:String x:Key="LOCModuleLabel">Module</sys:String>
     <sys:String x:Key="LOCSeriesLabel">Série</sys:String>
     <sys:String x:Key="LOCVersionLabel">Version</sys:String>
     <sys:String x:Key="LOCAgeRatingLabel">PEGI</sys:String>
@@ -103,8 +107,8 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCDateModifiedLabel">Dernière modification</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Site internet</sys:String>
     <sys:String x:Key="LOCPathLabel">Chemin</sys:String>
-    <sys:String x:Key="LOCOKLabel">Ok</sys:String>
-    <sys:String x:Key="LOCSaveLabel">Enregistrer</sys:String>
+    <sys:String x:Key="LOCOKLabel">OK</sys:String>
+    <sys:String x:Key="LOCSaveLabel">Sauvegarder</sys:String>
     <sys:String x:Key="LOCCloseLabel">Fermer</sys:String>
     <sys:String x:Key="LOCCancelLabel">Annuler</sys:String>
     <sys:String x:Key="LOCYesLabel">Oui</sys:String>
@@ -113,7 +117,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCLocalUserLabel">Utilisateur local</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel">Connexion</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Général</sys:String>
-    <sys:String x:Key="LOCMediaLabel">Medias</sys:String>
+    <sys:String x:Key="LOCMediaLabel">Média</sys:String>
     <sys:String x:Key="LOCLinksLabel">Liens</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Installation</sys:String>
     <sys:String x:Key="LOCActionsLabel">Actions</sys:String>
