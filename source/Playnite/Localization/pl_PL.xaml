@@ -8,9 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">Wyjście</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtry są aktywne (kliknij, aby przełączyć panel filtra)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtry są nieaktywne (kliknij, aby przełączyć panel filtra)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Dodatkowe filtry</sys:String>
+    <sys:String x:Key="LOCFilters">Filtry</sys:String>
+    <sys:String x:Key="LOCFilter">Filtr</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Nieprawidłowe dane</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Zapisać zmiany?</sys:String>
@@ -36,7 +36,7 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Zgłoś awarię</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Wyjdź z Playnite</sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć grę/y?</sys:String>
