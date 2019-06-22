@@ -8,7 +8,7 @@
     <sys:String x:Key="LOCExitAppLabel">خروج</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">المرشِّح مفعل (انقر للتبديل في لوحة المرشح)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">المرشِّح معطل (انقر للتبديل في لوحة المرشح)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
+    <sys:String x:Key="LOCAditionalFilters">مرشحات إضافية</sys:String>
     <sys:String x:Key="LOCFilters">مرشحات</sys:String>
     <sys:String x:Key="LOCFilter">مرشح</sys:String>
 
@@ -22,15 +22,19 @@
     <sys:String x:Key="LOCAboutWindowTitle">حول Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">صنع بواسطة Josef Němec</sys:String>
 
-    <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCategorySetButton"></sys:String>
+    <sys:String x:Key="LOCCategoryWindowTitle">تحديد فئة</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">تعيين الفئات</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">إضافة فئة</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">مؤشر - تحديد فئة
+دون مؤشر - إزالة فئة
+غير محدد - لا تغيرات (عند تحرير ألعاب متعددة)</sys:String>
     <sys:String x:Key="LOCNoCategory">بلا فئة</sys:String>
     <sys:String x:Key="LOCNoPlatform">بلا منصة</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">حدث خطأ غير قابل للاسترداد.
+
+إذا تريد مساعدتنا في حل هذه المشكلة ، فالرجاء إنشاء حزمة تشخيص واستخدام زر "الإبلاغ عن الأعطال" لإعلامنا بما حدث. شكرا.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">تبليغ الانهيار</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">إعادة تشغيل Playnite</sys:String>
