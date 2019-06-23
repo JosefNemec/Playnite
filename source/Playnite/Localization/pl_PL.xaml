@@ -71,7 +71,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktywuj</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Usuń</sys:String>
-    <sys:String x:Key="LOCRenameTitle"></sys:String>
+    <sys:String x:Key="LOCRenameTitle">Zmień nazwę</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopiuj</sys:String>
     <sys:String x:Key="LOCAddTitle">Dodaj</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Domyślna ikona</sys:String>
@@ -82,7 +82,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCDoneCapLabel">GOTOWE</sys:String>
     <sys:String x:Key="LOCBackCapLabel">COFNIJ</sys:String>
     <sys:String x:Key="LOCClearCapLabel">WYCZYŚĆ</sys:String>
-    <sys:String x:Key="LOCClearLabel"></sys:String>
+    <sys:String x:Key="LOCClearLabel">Wyczyść</sys:String>
     <sys:String x:Key="LOCDismiss"></sys:String>
     <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel">Importuj</sys:String>
@@ -93,7 +93,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCSeriesLabel">Seria</sys:String>
     <sys:String x:Key="LOCVersionLabel">Wersja</sys:String>
     <sys:String x:Key="LOCAgeRatingLabel">Kategoria wiekowa</sys:String>
-    <sys:String x:Key="LOCRegionLabel"></sys:String>
+    <sys:String x:Key="LOCRegionLabel">Region</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Ostatnio grane</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Najczęściej grane</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Liczba uruchomień</sys:String>
@@ -103,7 +103,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Strona WWW</sys:String>
     <sys:String x:Key="LOCPathLabel">Ścieżka</sys:String>
-    <sys:String x:Key="LOCOKLabel"></sys:String>
+    <sys:String x:Key="LOCOKLabel">OK</sys:String>
     <sys:String x:Key="LOCSaveLabel">Zapisz</sys:String>
     <sys:String x:Key="LOCCloseLabel">Zamknij</sys:String>
     <sys:String x:Key="LOCCancelLabel">Anuluj</sys:String>
@@ -117,7 +117,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCLinksLabel">Linki</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instalacja</sys:String>
     <sys:String x:Key="LOCActionsLabel">Akcje</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Pobieranie…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Typ</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profile</sys:String>
@@ -125,13 +125,13 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCDownloadLabel">Pobierz</sys:String>
     <sys:String x:Key="LOCSearchLabel">Szukaj</sys:String>
     <sys:String x:Key="LOCGenreLabel">Gatunek</sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Firma</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Producent</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Wydawca</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategoria</sys:String>
     <sys:String x:Key="LOCTagLabel"></sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagi</sys:String>
-    <sys:String x:Key="LOCZoomLabel"></sys:String>
+    <sys:String x:Key="LOCZoomLabel">Powiększenie</sys:String>
     <sys:String x:Key="LOCListLabel">Lista</sys:String>
     <sys:String x:Key="LOCCoversLabel">Okładki</sys:String>
     <sys:String x:Key="LOCGridLabel"></sys:String>
@@ -141,7 +141,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licencja</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Współtwórcy</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Wychodzenie z Playnite…</sys:String>
     <sys:String x:Key="LOCToday">Dzisiaj</sys:String>
     <sys:String x:Key="LOCYesterday">Wczoraj</sys:String>
     <sys:String x:Key="LOCMonday">Poniedziałek</sys:String>
