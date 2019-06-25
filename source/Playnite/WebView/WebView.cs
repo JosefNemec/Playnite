@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows;
 
 namespace Playnite.WebView
 {
@@ -30,6 +31,7 @@ namespace Playnite.WebView
             context = SynchronizationContext.Current;
             window = new WebViewWindow();
             window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;
+            window.Browser.TitleChanged += Browser_TitleChanged;
             window.Owner = WindowManager.CurrentWindow;
             window.Width = width;
             window.Height = height;
@@ -44,6 +46,14 @@ namespace Playnite.WebView
             }
 
             NavigationChanged?.Invoke(this, new EventArgs());
+        }
+
+        private void Browser_TitleChanged(object sender, DependencyPropertyChangedEventArgs args)
+        {
+            string titlePrefix = args.NewValue as string;
+            string titleSuffix = "Playnite";
+
+            window.Title = string.IsNullOrEmpty(titlePrefix) ? titleSuffix : string.Format("{0} - {1}", titlePrefix, titleSuffix);
         }
 
         public void Close()
