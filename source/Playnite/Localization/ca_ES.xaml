@@ -8,9 +8,9 @@
     <sys:String x:Key="LOCExitAppLabel">Sortir</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">El filtre està habilitat (feu clic per canviar el panell de filtre)</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">El filtre està desactivat (feu clic per canviar el panell de filtre)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Filtres addicionals</sys:String>
+    <sys:String x:Key="LOCFilters">Filtres</sys:String>
+    <sys:String x:Key="LOCFilter">Filtre</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Dades no vàlides</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Vols guardar els canvis?</sys:String>
