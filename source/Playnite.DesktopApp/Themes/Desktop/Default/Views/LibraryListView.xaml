@@ -12,20 +12,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:LibraryListView}">
-                    <pctrls:GamesGridView SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
-                                          SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
-                                          AppSettings="{pmrk:Settings}">
-                        <pctrls:GamesGridView.Style>
-                            <Style TargetType="pctrls:GamesGridView">
-                                <Setter Property="ItemsSource" Value="{x:Null}" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
-                                        <Setter Property="ItemsSource" Value="{Binding GamesView.CollectionView}" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </pctrls:GamesGridView.Style>
-                    </pctrls:GamesGridView>
+                    <pctrls:GamesGridView x:Name="PART_ListGames" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

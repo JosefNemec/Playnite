@@ -201,6 +201,7 @@
     <Compile Include="API\ExtensionDescription.cs" />
     <Compile Include="App\CmdLineOptions.cs" />
     <Compile Include="Behaviors\AnimatedVisibility.cs" />
+    <Compile Include="Behaviors\GridBehaviors.cs" />
     <Compile Include="CefTools.cs" />
     <Compile Include="App\PlayniteApplication.cs" />
     <Compile Include="App\UpdateManifest.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\OpacityBoolConverter.cs" />
     <Compile Include="Converters\SortingOrderToStringConverter.cs" />
+    <Compile Include="Converters\StringNullOrEmptyToBoolConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />

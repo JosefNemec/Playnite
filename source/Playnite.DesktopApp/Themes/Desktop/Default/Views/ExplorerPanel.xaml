@@ -11,19 +11,28 @@
         <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:ExplorerPanel}">                   
-                    <DockPanel Background="{TemplateBinding Background}">
-                        <ComboBox DockPanel.Dock="Top" Margin="5,8,5,8"
-                                SelectedValue="{Binding SelectedField}"
-                                ItemsSource="{Binding Fields}"/>
-                        <ListBox DockPanel.Dock="Top" Margin="5,0,5,8"                                      
-                                    BorderThickness="0"
-                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                    DisplayMemberPath="Name"
-                                    SelectedItem="{Binding SelectedFieldObject}"
-                                    ItemsSource="{Binding FieldValues}">
-                        </ListBox>
-                    </DockPanel>                 
+                <ControlTemplate TargetType="{x:Type views:ExplorerPanel}">
+                    <Border BorderBrush="{DynamicResource NormalBrush}">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderThickness" Value="1,0,0,0" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{pmrk:Settings ExplorerPanelPosition}" Value="Left">
+                                        <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <DockPanel Background="{TemplateBinding Background}">
+                            <ComboBox Name="PART_SelectFields"
+                                  DockPanel.Dock="Top" Margin="5,8,5,8" />
+                            <ListBox Name="PART_SelectItems"
+                                 DockPanel.Dock="Top" Margin="5,0,5,8"                                      
+                                 BorderThickness="0"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            </ListBox>
+                        </DockPanel>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

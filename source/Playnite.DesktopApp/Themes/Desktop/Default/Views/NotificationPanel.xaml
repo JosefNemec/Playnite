@@ -4,21 +4,6 @@
                     xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
                     xmlns:psdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK">
 
-    <Style x:Key="NotificationMessage" TargetType="Button">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Style="{StaticResource HighlightBorder}" Background="{DynamicResource ButtonBackgroundBrush}">
-                        <TextBlock Text="{Binding Text}"
-                                   Style="{DynamicResource BaseTextBlockStyle}"
-                                   Margin="6" TextWrapping="Wrap"
-                                   MinHeight="38" />
-                    </Border>                    
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style TargetType="{x:Type local:NotificationPanel}">
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
         <Setter Property="Template">
@@ -26,33 +11,29 @@
                 <ControlTemplate TargetType="local:NotificationPanel">
                     <DockPanel Background="{TemplateBinding Background}">
                         <DockPanel Margin="10,15,5,15" DockPanel.Dock="Top">
-                            <TextBlock DockPanel.Dock="Right" Margin="0,0,5,0">
-                                <Hyperlink Command="{pmrk:MainViewModel CloseNotificationPanelCommand}">
-                                    <Run Text="r" FontFamily="Marlett" />
-                                </Hyperlink>
-                            </TextBlock>
-                            <TextBlock DockPanel.Dock="Left">
-                                <Hyperlink Command="{Binding ClearMessagesCommand}">
-                                    <Run Text="{DynamicResource LOCDismissAll}" />
-                                </Hyperlink>
-                            </TextBlock>
+                            <Button Name="PART_ButtonClose" Content="r" FontFamily="Marlett"
+                                    DockPanel.Dock="Right" Margin="0,0,5,0" />
+                            <Button Name="PART_ButtonDismissAll" DockPanel.Dock="Left" 
+                                    Content="{DynamicResource LOCDismissAll}" />
                         </DockPanel>
-
-                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
-                                       DockPanel.Dock="Top">
-                            <ItemsControl ItemsSource="{Binding PlayniteApi.Notifications.Messages}" >
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Button Style="{StaticResource NotificationMessage}"
-                                                Command="{Binding ActivateCommand}"
-                                                Margin="5,5,5,0" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
+                        <ItemsControl Name="PART_ItemsMessages" DockPanel.Dock="Top" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource NotificationMessage}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+                        </ItemsControl>
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-</ResourceDictionary>
+</ResourceDictionary> 

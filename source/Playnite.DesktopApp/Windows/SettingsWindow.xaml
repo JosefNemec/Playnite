@@ -329,11 +329,20 @@
                         
                         <!-- Game Details -->
                         <TabItem>
-                            <ScrollViewer>
-                                <StackPanel>
-                                    <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
+                                <UniformGrid Columns="3" VerticalAlignment="Top">
+                                    <CheckBox Content="{DynamicResource LOCGameCoverTitle}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.CoverImage}"
+                                              Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCTimePlayed}"
                                               IsChecked="{Binding Settings.DetailsVisibility.PlayTime}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCGameLastActivityTitle}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.LastPlayed}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCCompletionStatus}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.CompletionStatus}"
                                               Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCPlatformTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Platform}"
@@ -365,8 +374,8 @@
                                     <CheckBox Content="{DynamicResource LOCGameDescriptionTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Description}"
                                               Margin="0,10,0,0"/>
-                                </StackPanel>
-                            </ScrollViewer>
+                                </UniformGrid>
+                            </StackPanel>
                         </TabItem>
 
                         <!-- Layout -->

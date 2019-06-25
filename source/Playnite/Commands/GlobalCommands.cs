@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace Playnite.Commands
             if (url is string stringUrl)
             {
                 NavigateUrl(stringUrl);
+            }
+            if (url is Link linkUrl)
+            {
+                NavigateUrl(linkUrl.Url);
             }
             else if (url is Uri uriUrl)
             {

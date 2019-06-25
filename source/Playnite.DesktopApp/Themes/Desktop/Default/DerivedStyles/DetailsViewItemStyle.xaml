@@ -9,6 +9,7 @@
     <Style x:Key="DetailsViewItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="Template">
             <Setter.Value>
@@ -19,7 +20,7 @@
                         <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed"
                                                         BorderThickness="5,0,0,0" BorderBrush="{DynamicResource GlyphBrush}"/>
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent">
-                            <ContentPresenter Margin="10,3,0,3"/>
+                            <ContentPresenter />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>

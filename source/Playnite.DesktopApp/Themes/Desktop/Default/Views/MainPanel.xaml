@@ -24,36 +24,29 @@
                             </Style>
                         </Border.Style>
                         <DockPanel Margin="0,3,110,3">
-                            <Border Background="Transparent" Cursor="Hand" DockPanel.Dock="Left"
-                                pbeh:LeftClickContextMenuBehavior.Enabled="True"
-                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                Margin="5,0,0,0">
-                                <Border.ContextMenu>
-                                    <pctrls:MainMenu StaysOpen="False" Placement="Bottom" />
-                                </Border.ContextMenu>
-                                <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Height="40" RenderOptions.BitmapScalingMode="Fant"
-                                    Margin="10,0,5,0"/>
+                            <Border Name="PART_ElemMainMenu" Background="Transparent"
+                                    Cursor="Hand" DockPanel.Dock="Left" Margin="5,0,0,0"
+                                    WindowChrome.IsHitTestVisibleInChrome="True">
+                                <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}"
+                                       Height="40" RenderOptions.BitmapScalingMode="Fant"
+                                       Margin="10,0,5,0"/>
                             </Border>
 
-                            <pctrls:SearchBox Margin="5,6,0,6"  DockPanel.Dock="Left"
-                                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                                Width="300"
-                                                Text="{pmrk:Settings FilterSettings.Name, Delay=100, Mode=TwoWay}" />                      
+                            <pctrls:SearchBox x:Name="PART_TextMainSearch"
+                                              Margin="5,6,0,6" DockPanel.Dock="Left"
+                                              WindowChrome.IsHitTestVisibleInChrome="True"
+                                              Width="300" />                      
 
-                            <Border Cursor="Hand" 
+                            <Border x:Name="PART_ElemViewMenu" Cursor="Hand" Background="Transparent"
                                     DockPanel.Dock="Left" Margin="10,6,0,6" Width="35"
-                                    pbeh:LeftClickContextMenuBehavior.Enabled="True"
                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                     Style="{DynamicResource HighlightBorder}">
-                                <Border.ContextMenu>
-                                    <pctrls:ViewSettingsMenu StaysOpen="False" Placement="Bottom" />
-                                </Border.ContextMenu>
                                 <TextBlock Text="&#xE10C;" FontFamily="Segoe UI Symbol" FontSize="20"
                                            Foreground="{StaticResource TextBrush}"
                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Border>
 
-                            <CheckBox IsChecked="{pmrk:Settings FilterPanelVisible, Mode=TwoWay}"
+                            <CheckBox x:Name="PART_ToggleFilter"
                                       WindowChrome.IsHitTestVisibleInChrome="True"
                                       DockPanel.Dock="Left" Margin="10,6,0,6" Width="35">
                                 <CheckBox.Style>
@@ -61,29 +54,30 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <Border Style="{DynamicResource HighlightBorder}" Cursor="Hand">
+                                                    <Border Style="{DynamicResource HighlightBorder}" Cursor="Hand"
+                                                            Background="Transparent">
                                                         <TextBlock Text="&#xE16E;" FontFamily="Segoe UI Symbol" FontSize="20"
-                                                       VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       Foreground="{TemplateBinding Foreground}"/>
+                                                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                   Foreground="{TemplateBinding Foreground}"/>
                                                     </Border>
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{pmrk:Settings FilterSettings.IsActive}" Value="True">
+                                            <Trigger Property="Tag" Value="{StaticResource True}">
                                                 <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                                                 <Setter Property="ToolTip" Value="{DynamicResource LOCFilterActiveLabel}" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{pmrk:Settings FilterSettings.IsActive}" Value="False">
-                                                <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
+                                            </Trigger>
+                                            <Trigger Property="Tag" Value="{StaticResource False}">
+                                                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                                                 <Setter Property="ToolTip" Value="{DynamicResource LOCFilterInactiveLabel}" />
-                                            </DataTrigger>
+                                            </Trigger>
                                         </Style.Triggers>
                                     </Style>
                                 </CheckBox.Style>
                             </CheckBox>
 
-                            <CheckBox IsChecked="{pmrk:Settings NotificationPanelVisible, Mode=TwoWay}"
+                            <CheckBox x:Name="PART_ToggleNotifications"
                                       WindowChrome.IsHitTestVisibleInChrome="True"
                                       DockPanel.Dock="Left" Margin="10,6,0,6">
                                 <CheckBox.Style>
@@ -97,11 +91,14 @@
                                                             <TextBlock Text="&#x1f514;" FontFamily="Segoe UI Symbol" FontSize="20"
                                                                        Foreground="{TemplateBinding Foreground}"
                                                                        HorizontalAlignment="Center"/>
-                                                            <Border CornerRadius="3" Width="15" Height="15" Margin="25,15,0,0"
+                                                            <Border CornerRadius="3" Width="15" Height="15"
+                                                                    Margin="20,0,0,0"
+                                                                    HorizontalAlignment="Right"
+                                                                    VerticalAlignment="Bottom"
                                                                     Background="OrangeRed">
                                                                 <TextBlock Text="{pmrk:Api Notifications.Count}" FontSize="12"                                                               
-                                                                       Foreground="{DynamicResource TextBrush}"
-                                                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                           Foreground="{DynamicResource TextBrush}"
+                                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                             </Border>
                                                         </Grid>
                                                     </Border>
@@ -111,7 +108,6 @@
                                         <Style.Triggers>
                                             <DataTrigger Binding="{pmrk:Api Notifications.Count}" Value="0">
                                                 <Setter Property="Visibility" Value="Collapsed"/>
-                                                <Setter Property="IsChecked" Value="False"/>
                                             </DataTrigger>
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
@@ -121,33 +117,29 @@
                                 </CheckBox.Style>
                             </CheckBox>
 
-                            <Button Margin="15,6,5,6" DockPanel.Dock="Right"
+                            <Button Name="PART_ButtonSteamFriends"
+                                    Margin="15,6,5,6" DockPanel.Dock="Right"
                                     Background="Transparent"
                                     Padding="0" BorderThickness="0"
                                     WindowChrome.IsHitTestVisibleInChrome="True"
-                                    Command="{Binding OpenSteamFriendsCommand}"
-                                    ToolTip="{DynamicResource LOCSteamFriendsTooltip}"
-                                    Visibility="{pmrk:Settings ShowSteamFriendsButton}">
+                                    ToolTip="{DynamicResource LOCSteamFriendsTooltip}">
                                 <TextBlock Text="&#xE125;" FontFamily="Segoe UI Symbol" FontSize="22"
                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
 
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="10,5,0,5">
-                                <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                      MaxWidth="600" MinWidth="300">
-                                    <ProgressBar Maximum="{Binding ProgressTotal}" Value="{Binding ProgressValue}" />
-                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                           Style="{DynamicResource BaseTextBlockStyle}" Margin="5,0,5,0"
-                                           Text="{Binding ProgressStatus}" TextTrimming="CharacterEllipsis" />
+                                <Grid MaxWidth="600" MinWidth="300">
+                                    <ProgressBar Name="PART_ProgressGlobal" />
+                                    <TextBlock Name="PART_TextProgressText"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Style="{DynamicResource BaseTextBlockStyle}" Margin="5,0,5,0" />
                                 </Grid>
-                                
-                                <Button Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                        Command="{Binding CancelProgressCommand}"
+
+                                <Button Name="PART_ButtonProgressCancel"
                                         Content="{DynamicResource LOCCancelLabel}"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
                                         Margin="5,0,0,0" />
-                            </StackPanel>
-                    
+                            </StackPanel>                    
                         </DockPanel>
                     </Border>
                 </ControlTemplate>

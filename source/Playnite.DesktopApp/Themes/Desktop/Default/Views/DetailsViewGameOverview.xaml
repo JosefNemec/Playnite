@@ -1,0 +1,195 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+                    xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
+                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
+                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp">
+
+    <Style x:Key="DetailsViewGameOverview" TargetType="{x:Type views:GameOverview}">        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type views:GameOverview}">
+                    <Grid MaxWidth="1024" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition>
+                                <RowDefinition.Style>
+                                    <Style TargetType="{x:Type RowDefinition}">
+                                        <Setter Property="Height" Value="Auto" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="True">
+                                                <Setter Property="Height" Value="*" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </RowDefinition.Style>
+                            </RowDefinition>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Style.Triggers>
+                                    <Trigger Property="DataContext" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </Trigger>
+                                    <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="False">
+                                        <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                    
+                        <DockPanel Grid.Row="0" Margin="20,20,10,15"
+                                   VerticalAlignment="Bottom">
+                            <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
+                                   DockPanel.Dock="Right" Width="180" Margin="0,0,10,0"
+                                   StretchDirection="Both" Stretch="Uniform"
+                                   RenderOptions.BitmapScalingMode="Fant" />
+                            <StackPanel VerticalAlignment="Bottom">
+                                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="{DynamicResource FontFamily}"
+                                           Text="{Binding Game.DisplayName}"
+                                           FontSize="34" Margin="0,0,0,5" TextWrapping="Wrap"
+                                           HorizontalAlignment="Left" Foreground="{StaticResource TextBrush}">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect ShadowDepth="3"/>
+                                    </TextBlock.Effect>
+                                </TextBlock>                                
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
+                                            Orientation="Horizontal"
+                                            DockPanel.Dock="Left">
+                                    <Button Name="PART_ButtonMainAction" 
+                                            Width="150" Height="40" Style="{DynamicResource PlayButton}" />
+                                    <Button Name="PART_ButtonMoreActions"
+                                            Content="{DynamicResource LOCMoreAction}"
+                                            Width="150" Height="40" Margin="10,0,0,0" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <ScrollViewer Grid.Row="1"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto">
+                            <ScrollViewer.Style>
+                                <Style TargetType="ScrollViewer" BasedOn="{StaticResource {x:Type ScrollViewer}}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource GameDetailsBackGroundBrush}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </DataTrigger>
+                                    </Style.Triggers>                                    
+                                </Style>
+                            </ScrollViewer.Style>
+                            <DockPanel>
+                                <StackPanel Margin="20,0,0,0" DockPanel.Dock="Left" Width="300">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="ItemsControl">                                            
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                        <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                                            <Setter Property="Margin" Value="0,3,8,3" />
+                                            <Setter Property="VerticalAlignment" Value="Top" />
+                                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                        </Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource PropertyItemButton}" />
+                                    </StackPanel.Resources>
+
+                                    <TextBlock Text="{DynamicResource LOCGameDetails}" Margin="0,15,0,10"
+                                                Style="{DynamicResource BaseTextBlockStyle}" />
+                                    <Separator />
+                                    <Grid Margin="0,5,0,10"
+                                          pbeh:GridBehaviors.ColumnCount="2"
+                                          pbeh:GridBehaviors.StarColumns="1"
+                                          pbeh:GridBehaviors.RowCount="12">
+                                        <Grid.Resources>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+                                        </Grid.Resources>
+
+                                        <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}"
+                                               Grid.Column="0" Grid.Row="0" />
+                                        <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center"
+                                               Grid.Column="1" Grid.Row="0" />
+
+                                        <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}"
+                                            Grid.Column="0" Grid.Row="1" />
+                                        <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="1" />
+
+                                        <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}"
+                                            Grid.Column="0" Grid.Row="2"/>
+                                        <TextBlock Name="PART_TextCompletionStatus" VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="2" />
+
+                                        <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}"
+                                           Grid.Column="0" Grid.Row="3" />
+                                        <Button Name="PART_ButtonLibrary" VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="3" />
+
+                                        <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}"
+                                           Grid.Column="0" Grid.Row="4" />
+                                        <Button Name="PART_ButtonPlatform" VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="4" />
+
+                                        <Label Name="PART_ElemGenres" Content="{DynamicResource LOCGenreLabel}"
+                                           Grid.Column="0" Grid.Row="5" />
+                                        <ItemsControl Name="PART_ItemsGenres"
+                                                  Grid.Column="1" Grid.Row="5" />
+
+                                        <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}"
+                                           Grid.Column="0" Grid.Row="6" />
+                                        <ItemsControl Name="PART_ItemsDevelopers"
+                                                  Grid.Column="1" Grid.Row="6" />
+
+                                        <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}"
+                                           Grid.Column="0" Grid.Row="7" />
+                                        <ItemsControl Name="PART_ItemsPublishers"
+                                                  Grid.Column="1" Grid.Row="7" />
+
+                                        <Label Name="PART_ElemReleaseDate" Content="{DynamicResource LOCGameReleaseDateTitle}"
+                                           Grid.Column="0" Grid.Row="8" />
+                                        <Button Name="PART_ButtonReleaseDate" VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="8" />
+
+                                        <Label Name="PART_ElemCategories" Content="{DynamicResource LOCGameCategoriesTitle}"
+                                           Grid.Column="0" Grid.Row="9" />
+                                        <ItemsControl Name="PART_ItemsCategories"
+                                                  Grid.Column="1" Grid.Row="9" />
+
+                                        <Label  Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}"
+                                            Grid.Column="0" Grid.Row="10" />
+                                        <ItemsControl Name="PART_ItemsTags"
+                                                  Grid.Column="1" Grid.Row="10" />
+
+                                        <Label Name="PART_ElemLinks" Content="{DynamicResource LOCLinksLabel}"
+                                           Grid.Column="0" Grid.Row="11" />
+                                        <ItemsControl Name="PART_ItemsLinks"
+                                                  Grid.Column="1" Grid.Row="11" />
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Name="PART_ElemDescription"
+                                        DockPanel.Dock="Right" Margin="5,0,5,0">
+                                    <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,10"
+                                           Style="{DynamicResource BaseTextBlockStyle}" />
+                                    <Separator />
+                                    <pctrlsShared:HtmlTextView Name="PART_HtmlDescription"
+                                                       HtmlFontFamily="{DynamicResource FontFamily}"
+                                                       HtmlForeground="{DynamicResource TextColor}"
+                                                       LinkForeground="{DynamicResource GlyphColor}"                                      
+                                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                       ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

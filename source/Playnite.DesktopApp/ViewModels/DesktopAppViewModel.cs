@@ -344,6 +344,11 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
         #endregion
 
+        public DesktopAppViewModel()
+        {
+            InitializeCommands();
+        }
+
         public DesktopAppViewModel(
             GameDatabase database,
             IWindowFactory window,
@@ -370,6 +375,9 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
+
+            PlayniteApi.Notifications.Add(new NotificationMessage("1", "Some testing notification message.", NotificationType.Info));
+            PlayniteApi.Notifications.Add(new NotificationMessage("2", "Some really long testing notification message that should be on more lines of text.", NotificationType.Error));
         }
 
         private void InitializeCommands()

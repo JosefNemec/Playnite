@@ -38,6 +38,51 @@ namespace Playnite
             }
         }
 
+        private bool lastPlayed = true;
+        public bool LastPlayed
+        {
+            get
+            {
+                return lastPlayed;
+            }
+
+            set
+            {
+                lastPlayed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool completionStatus = false;
+        public bool CompletionStatus
+        {
+            get
+            {
+                return completionStatus;
+            }
+
+            set
+            {
+                completionStatus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool coverImage = true;
+        public bool CoverImage
+        {
+            get
+            {
+                return coverImage;
+            }
+
+            set
+            {
+                coverImage = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool platform = true;
         public bool Platform
         {

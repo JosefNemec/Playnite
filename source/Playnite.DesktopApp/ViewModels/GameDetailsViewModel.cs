@@ -90,6 +90,39 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public string MainActionDescription
+        {
+            get
+            {
+                if (Game?.IsRunning == true)
+                {
+                    return resources.GetString("LOCGameRunning");
+                }
+                else if (Game?.IsLaunching == true)
+                {
+                    return resources.GetString("LOCGameLaunching");
+                }
+                else if (Game?.IsInstalling == true)
+                {
+                    return resources.GetString("LOCSetupRunning");
+                }
+                else if (Game?.IsUnistalling == true)
+                {
+                    return resources.GetString("LOCUninstalling");
+                }
+                else if (Game?.IsInstalled == false)
+                {
+                    return resources.GetString("LOCInstallGame");
+                }
+                else if (Game?.IsInstalled == true)
+                {
+                    return resources.GetString("LOCPlayGame");
+                }
+
+                return "<ErrorState>";
+            }
+        }
+
         public Visibility SourceLibraryVisibility
         {
             get => (settings.DetailsVisibility.Library & Game.LibraryPlugin != null) ? Visibility.Visible : Visibility.Collapsed;
@@ -97,7 +130,17 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Visibility PlayTimeVisibility
         {
-            get => (settings.DetailsVisibility.PlayTime && game.Playtime > 0) ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.PlayTime) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility LastPlayedVisibility
+        {
+            get => (settings.DetailsVisibility.LastPlayed) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility CompletionStatusVisibility
+        {
+            get => (settings.DetailsVisibility.CompletionStatus) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility PlatformVisibility
@@ -143,6 +186,11 @@ namespace Playnite.DesktopApp.ViewModels
         public Visibility DescriptionVisibility
         {
             get => (settings.DetailsVisibility.Description && !game.Description.IsNullOrEmpty()) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility CoverVisibility
+        {
+            get => (settings.DetailsVisibility.CoverImage) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private GamesCollectionViewEntry game;
@@ -220,6 +268,11 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> OpenLinkCommand
+        {
+            get => GlobalCommands.NavigateUrlCommand;
+        }
+
         public RelayCommand<DatabaseObject> PlayCommand
         {
             get => new RelayCommand<DatabaseObject>((a) =>
@@ -249,6 +302,29 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 CheckExecution();
+            });
+        }
+
+        public RelayCommand<object> MainActionCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                if (Game?.IsInstalling == true || Game?.IsUnistalling == true)
+                {
+                    CheckSetup();
+                }
+                else if (Game?.IsRunning == true || Game?.IsLaunching == true)
+                {
+                    CheckExecution();
+                }
+                else if (Game?.IsInstalled == false)
+                {
+                    Install();
+                }
+                else if(Game?.IsInstalled == true)
+                {
+                    Play();
+                }  
             });
         }
 
@@ -291,6 +367,7 @@ namespace Playnite.DesktopApp.ViewModels
             OnPropertyChanged(nameof(IsLaunching));
             OnPropertyChanged(nameof(IsPlayAvailable));
             OnPropertyChanged(nameof(IsInstallAvailable));
+            OnPropertyChanged(nameof(MainActionDescription));
             NotifyVisibilityChange();
         }
 
@@ -346,6 +423,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             var filter = new FilterItemProperites() { Ids = new List<Guid> { LibraryId } };
             settings.FilterSettings.Library = filter;
+            settings.FilterPanelVisible = true;
         }
 
         public void Play()

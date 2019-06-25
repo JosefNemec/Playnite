@@ -1,5 +1,8 @@
-﻿using Playnite.Common;
+﻿using Playnite.Behaviors;
+using Playnite.Common;
+using Playnite.Controls;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.ViewModels;
 using Playnite.ViewModels.Desktop.DesignData;
 using System;
 using System.Collections.Generic;
@@ -10,25 +13,25 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Playnite.DesktopApp.Controls.Views
 {
-    [TemplatePart(Name = "PART_ListGames", Type = typeof(GamesGridView))]
-    public class LibraryListView : Control
+    [TemplatePart(Name = "PART_ListGames", Type = typeof(ExtendedListBox))]
+    [TemplatePart(Name = "PART_ControlGameView", Type = typeof(Control))]
+    public abstract class BaseGamesView : Control
     {
+        internal readonly ViewType viewType;
         internal readonly DesktopAppViewModel mainModel;
-        internal GamesGridView ListGames;
 
-        static LibraryListView()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(LibraryListView), new FrameworkPropertyMetadata(typeof(LibraryListView)));
-        }
+        internal Control ControlGameView;
+        internal ExtendedListBox ListGames;
 
-        public LibraryListView() : this(DesktopApplication.Current?.MainModel)
+        public BaseGamesView(ViewType viewType) : this(viewType, DesktopApplication.Current?.MainModel)
         {
         }
 
-        public LibraryListView(DesktopAppViewModel mainModel)
+        public BaseGamesView(ViewType viewType, DesktopAppViewModel mainModel)
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
@@ -39,6 +42,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 this.mainModel = mainModel;
             }
 
+            this.viewType = viewType;
             mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
         }
 
@@ -55,10 +59,10 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void SetListGamesBinding()
         {
-            if (mainModel.AppSettings.ViewSettings.GamesViewType == ViewType.List)
+            if (mainModel.AppSettings.ViewSettings.GamesViewType == viewType)
             {
                 BindingTools.SetBinding(ListGames,
-                    GamesGridView.ItemsSourceProperty,
+                    ExtendedListBox.ItemsSourceProperty,
                     mainModel,
                     $"{nameof(mainModel.GamesView)}.{nameof(DesktopCollectionView.CollectionView)}");
             }
@@ -67,27 +71,41 @@ namespace Playnite.DesktopApp.Controls.Views
                 ListGames.ItemsSource = null;
             }
         }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            ListGames = Template.FindName("PART_ListGames", this) as GamesGridView;
+            ControlGameView = Template.FindName("PART_ControlGameView", this) as Control;
+            if (ControlGameView != null)
+            {
+                BindingTools.SetBinding(ControlGameView,
+                    Control.DataContextProperty,
+                    mainModel,
+                    nameof(DesktopAppViewModel.SelectedGameDetails));
+            }
+
+            ListGames = Template.FindName("PART_ListGames", this) as ExtendedListBox;
             if (ListGames != null)
             {
                 SetListGamesBinding();
-                ListGames.AppSettings = mainModel.AppSettings;
-
                 BindingTools.SetBinding(ListGames,
-                    GamesGridView.SelectedItemProperty,
+                    ExtendedListBox.SelectedItemProperty,
                     mainModel,
                     nameof(DesktopAppViewModel.SelectedGame),
                     BindingMode.TwoWay);
                 BindingTools.SetBinding(ListGames,
-                    GamesGridView.SelectedItemsListProperty,
+                    ExtendedListBox.SelectedItemsListProperty,
                     mainModel,
                     nameof(DesktopAppViewModel.SelectedGamesBinder),
                     BindingMode.TwoWay);
+
+                ScrollToSelectedBehavior.SetEnabled(ListGames, true);
+
+                ListGames.InputBindings.Add(new KeyBinding(mainModel.EditSelectedGamesCommand, mainModel.EditSelectedGamesCommand.Gesture));
+                ListGames.InputBindings.Add(new KeyBinding(mainModel.RemoveSelectedGamesCommand, mainModel.RemoveSelectedGamesCommand.Gesture));
+                ListGames.InputBindings.Add(new KeyBinding(mainModel.StartSelectedGameCommand, mainModel.StartSelectedGameCommand.Gesture));
             }
         }
-    }
+    } 
 }

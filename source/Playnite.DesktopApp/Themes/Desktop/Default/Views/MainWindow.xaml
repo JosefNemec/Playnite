@@ -25,14 +25,14 @@
                             <Grid.Resources>      
                                 <Storyboard x:Key="VisibilityOn">
                                     <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                 Storyboard.TargetName="Notifications">
+                                                 Storyboard.TargetName="PART_Notifications">
                                         <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-260,0,0,0" />
                                         <SplineThicknessKeyFrame KeyTime="0:0:0.10" Value="0,0,0,0" />
                                     </ThicknessAnimationUsingKeyFrames>
                                 </Storyboard>
                                 <Storyboard x:Key="VisibilityOff">
                                     <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                 Storyboard.TargetName="Notifications">
+                                                 Storyboard.TargetName="PART_Notifications">
                                         <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
                                         <SplineThicknessKeyFrame KeyTime="0:0:0.10" Value="-260,0,0,0" />
                                     </ThicknessAnimationUsingKeyFrames>
@@ -40,11 +40,12 @@
                             </Grid.Resources>
                             
                             <DockPanel Grid.Row="1" Grid.Column="0">
-                                <views:Sidebar DockPanel.Dock="{pmrk:Settings SidebarPosition}"
-                                               Visibility="{pmrk:Settings SidebarVisible}" />                             
-                                <ContentControl Content="{pmrk:MainViewModel ActiveView}" DockPanel.Dock="Top" />
+                                <views:Sidebar x:Name="PART_Sidebar"
+                                               DockPanel.Dock="{pmrk:Settings SidebarPosition}" />                             
+                                <ContentControl Name="PART_ContentView"
+                                                DockPanel.Dock="Top" />
                             </DockPanel>                            
-                            <views:NotificationPanel x:Name="Notifications"  
+                            <views:NotificationPanel x:Name="PART_Notifications"  
                                                      WindowChrome.IsHitTestVisibleInChrome="True"
                                                      Width="260"
                                                      Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"

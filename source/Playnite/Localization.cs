@@ -72,7 +72,7 @@ namespace Playnite
                 ResourceDictionary res = null;
                 try
                 {
-                    res = Xaml.GetObjectFromFile<ResourceDictionary>(langPath);
+                    res = Xaml.FromFile<ResourceDictionary>(langPath);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -108,7 +108,7 @@ namespace Playnite
                 ResourceDictionary res = null;
                 try
                 {
-                    res = Xaml.GetObjectFromFile<ResourceDictionary>(langFile);
+                    res = Xaml.FromFile<ResourceDictionary>(langFile);
                     res.Source = new Uri(langFile, UriKind.Absolute);
                     // Unstranslated strings are imported as empty entries by Crowdin.
                     // We need to remove them to make sure that origina English text will be displayed instead.

@@ -106,7 +106,13 @@ namespace Playnite.DesktopApp.Controls
             context = SynchronizationContext.Current;
             this.model = model;
             resources = new ResourceProvider();
+            Opened += GameMenu_Opened;
             DataContextChanged += GameMenu_DataContextChanged;
+            InitializeItems();
+        }
+
+        private void GameMenu_Opened(object sender, RoutedEventArgs e)
+        {
             InitializeItems();
         }
 
@@ -161,39 +167,11 @@ namespace Playnite.DesktopApp.Controls
                 AssignGame(null);
                 Games = null;
             }
-
-            InitializeItems();
         }
 
         private void AssignGame(Game game)
         {
-            if (Game != null)
-            {
-                Game.PropertyChanged -= Game_PropertyChanged;
-            }
-
             Game = game;
-
-            if (Game != null)
-            {
-                Game.PropertyChanged += Game_PropertyChanged;
-            }
-        }
-
-        private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if ((new string[]
-            {
-                nameof(Game.IsInstalled),
-                nameof(Game.OtherActions),
-                nameof(Game.Links),
-                nameof(Game.Favorite),
-                nameof(Game.Hidden)
-            }).Contains(e.PropertyName))
-            {
-                //Can be called from different threads when game database update is done
-                context.Post((a) => InitializeItems(), null);
-            }            
         }
 
         public void InitializeItems()

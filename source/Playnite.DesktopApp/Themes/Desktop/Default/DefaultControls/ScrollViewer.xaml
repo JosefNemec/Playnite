@@ -22,9 +22,6 @@
                         </Track.Thumb>
                     </Track>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="PART_Track" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_Track}" />
-                        </Trigger>
                         <Trigger Property="Orientation" Value="Horizontal">
                             <Setter Property="LayoutTransform" TargetName="PART_Track">
                                 <Setter.Value>
@@ -73,12 +70,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger SourceName="PART_VerticalScrollBar" Property="Visibility" Value="Visible">
                             <Setter Property="IsTabStop" Value="True"/>
-                        </Trigger>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="PART_VerticalScrollBar" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_VerticalScrollBar}" />
-                        </Trigger>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="PART_HorizontalScrollBar" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_HorizontalScrollBar}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

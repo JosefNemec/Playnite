@@ -1,4 +1,5 @@
-﻿using Playnite.DesktopApp.ViewModels;
+﻿using Playnite.Common;
+using Playnite.DesktopApp.ViewModels;
 using Playnite.ViewModels;
 using Playnite.ViewModels.Desktop.DesignData;
 using System;
@@ -9,18 +10,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Playnite.DesktopApp.Controls.Views
-{ 
+{
+    [TemplatePart(Name = "PART_Sidebar", Type = typeof(Sidebar))]
+    [TemplatePart(Name = "PART_ContentView", Type = typeof(ContentControl))]
     public class MainWindow : Control
     {
+        private readonly DesktopAppViewModel mainModel;
+        private Sidebar Sidebar;
+        private ContentControl ContentView;
+
         static MainWindow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MainWindow), new FrameworkPropertyMetadata(typeof(MainWindow)));
@@ -34,11 +34,37 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                DataContext = new DesignMainViewModel();
+                this.mainModel = new DesignMainViewModel();
             }
             else if (mainModel != null)
             {
-                DataContext = mainModel;
+                this.mainModel = mainModel;
+            }
+
+            DataContext = this.mainModel;
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            Sidebar = Template.FindName("PART_Sidebar", this) as Sidebar;
+            if (Sidebar != null)
+            {
+                BindingTools.SetBinding(Sidebar,
+                    Sidebar.VisibilityProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.SidebarVisible),
+                    converter: new BooleanToVisibilityConverter());
+            }
+
+            ContentView = Template.FindName("PART_ContentView", this) as ContentControl;
+            if (ContentView != null)
+            {
+                BindingTools.SetBinding(ContentView,
+                    ContentControl.ContentProperty,
+                    mainModel,
+                    nameof(mainModel.ActiveView));
             }
         }
     }

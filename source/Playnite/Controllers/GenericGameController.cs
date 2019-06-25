@@ -48,7 +48,7 @@ namespace Playnite.Controllers
                 procMon.TreeDestroyed += Monitor_TreeDestroyed;
 
                 // Handle Windows store apps
-                var uwpMatch = Regex.Match(playAction.Arguments, @"shell:AppsFolder\\(.+)!.+");
+                var uwpMatch = Regex.Match(playAction.Arguments ?? string.Empty, @"shell:AppsFolder\\(.+)!.+");
                 if (playAction.Path == "explorer.exe" && uwpMatch.Success)
                 {
                     procMon.TreeStarted += ProcMon_TreeStarted;

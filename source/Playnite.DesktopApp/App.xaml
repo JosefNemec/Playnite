@@ -55,6 +55,10 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
 
                 <!--Derived Styles-->
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemStyle.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemTemplate.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemTemplate.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewGroupStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/StandardWindowStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/WindowBarButton.xaml" />
@@ -64,6 +68,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/ImageHighlightButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/MainWindowStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/PlayButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/NotificationMessage.xaml" />
 
                 <!--Views-->
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/Sidebar.xaml" />
@@ -72,8 +77,8 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/MainPanel.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/NotificationPanel.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/GameProperties.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/Views/DetailsGameOverview.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/Views/GridGameOverview.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/DetailsViewGameOverview.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/GridViewGameOverview.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/LibraryDetailsView.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/LibraryGridView.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/LibraryListView.xaml" />

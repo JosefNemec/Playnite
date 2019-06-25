@@ -19,21 +19,21 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition  />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        
-                        <pctrlsShared:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
+
+                        <pctrlsShared:FadeImage x:Name="PART_ImageBackground"
+                                                HorizontalAlignment="Center" VerticalAlignment="Top"
                                                 Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
                             <pctrlsShared:FadeImage.Style>
                                 <Style TargetType="pctrlsShared:FadeImage">
-                                    <Setter Property="Source" Value="{x:Null}" />
                                     <Style.Triggers>
                                         <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
                                             <Setter Property="Visibility" Value="Hidden" />
                                         </DataTrigger>
-                                        <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="True">
-                                            <Setter Property="Source" Value="{Binding SelectedGame.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
-                                        </DataTrigger>
+                                        <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Grid}">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                        </DataTrigger>                                    
                                     </Style.Triggers>
                                 </Style>
                             </pctrlsShared:FadeImage.Style>
@@ -45,32 +45,31 @@
                             <DockPanel.Resources>
                                 <Storyboard x:Key="VisibilityOn">
                                     <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                Storyboard.TargetName="FilterPanel"
+                                                Storyboard.TargetName="PART_FilterPanel"
                                                 From="0" To="230" Duration="0:0:0.10" />
                                 </Storyboard>
                                 <Storyboard x:Key="VisibilityOff">
                                     <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                Storyboard.TargetName="FilterPanel"
+                                                Storyboard.TargetName="PART_FilterPanel"
                                                 From="230" To="0" Duration="0:0:0.10" />
                                 </Storyboard>
                             </DockPanel.Resources>
 
-                            <views:FilterPanel x:Name="FilterPanel"
-                                DockPanel.Dock="{pmrk:Settings FilterPanelPosition}" Width="250"
-                                pbeh:AnimatedVisibility.Visibility="{pmrk:Settings FilterPanelVisible}"
-                                pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
-                                pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}">
-                            </views:FilterPanel>
+                            <views:FilterPanel x:Name="PART_FilterPanel"
+                                               DockPanel.Dock="{pmrk:Settings FilterPanelPosition}" Width="250"
+                                               pbeh:AnimatedVisibility.Visibility="{pmrk:Settings FilterPanelVisible}"
+                                               pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
+                                               pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}">
+                            </views:FilterPanel>                            
+                            
                             <views:ExplorerPanel Visibility="{pmrk:Settings ExplorerPanelVisible}"
                                                  DockPanel.Dock="{pmrk:Settings ExplorerPanelPosition}"
                                                  Width="280"/>
+                            
                             <Grid DockPanel.Dock="Left">
-                                <views:LibraryDetailsView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"
-                                                    IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"/>
-                                <views:LibraryGridView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.Grid}}"
-                                                    IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.Grid}}"/>
-                                <views:LibraryListView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.List}}"
-                                                    IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.List}}"/>
+                                <views:LibraryDetailsView x:Name="PART_ViewDetails" />
+                                <views:LibraryGridView x:Name="PART_ViewGrid" />
+                                <views:LibraryListView x:Name="PART_ViewList" />
                             </Grid>
                         </DockPanel>
                     </Grid>

@@ -50,7 +50,6 @@ namespace Playnite
         public virtual void Dispose()
         {            
             filterSettings.FilterChanged -= FilterSettings_FilterChanged;
-            Items.Clear();
             Items = null;
         }
 

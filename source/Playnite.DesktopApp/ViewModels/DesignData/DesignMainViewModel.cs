@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.DesktopApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Playnite.ViewModels.Desktop.DesignData
 {
-    public class DesignMainViewModel : MainViewModelBase
+    public class DesignMainViewModel : DesktopAppViewModel
     {
         public DesignMainViewModel()
         {

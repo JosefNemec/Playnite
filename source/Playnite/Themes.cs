@@ -81,7 +81,7 @@ namespace Playnite
                     var promptXaml = Path.Combine(dir, $"{dirInfo.Name}.xaml");
                     if (File.Exists(promptXaml) && dirInfo.Name == prompts.ToString())
                     {
-                        var xaml = Xaml.GetObjectFromFile(promptXaml);
+                        var xaml = Xaml.FromFile(promptXaml);
                         if (xaml is ResourceDictionary xamlDir)
                         {
                             xamlDir.Source = new Uri(promptXaml, UriKind.Absolute);
@@ -101,7 +101,7 @@ namespace Playnite
             {
                 try
                 {
-                    var xaml = Xaml.GetObjectFromFile(xamlFile);
+                    var xaml = Xaml.FromFile(xamlFile);
                     if (xaml is ResourceDictionary xamlDir)
                     {
                         xamlDir.Source = new Uri(xamlFile, UriKind.Absolute);
