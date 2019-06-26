@@ -17,7 +17,7 @@ namespace Playnite.Controls
         private double centerMargin;
         private int itemCount => itemsControl?.HasItems == true ? itemsControl.Items.Count : 0;
 
-        private double lastItemWith;
+        private double cachedItemWith;
         public double ItemWidth
         {
             get
@@ -30,17 +30,17 @@ namespace Playnite.Controls
 
                 if (width > 0)
                 {
-                    lastItemWith = width;
+                    cachedItemWith = width;
                     return width;
                 }
                 else
                 {
-                    return lastItemWith;
+                    return cachedItemWith;
                 }
             }
         }
 
-        private double lastItemHeight;
+        private double cachedItemHeight;
         public double ItemHeight
         {
             get
@@ -53,12 +53,12 @@ namespace Playnite.Controls
 
                 if (height > 0)
                 {
-                    lastItemHeight = height;
+                    cachedItemHeight = height;
                     return height;
                 }
                 else
                 {
-                    return lastItemHeight;
+                    return cachedItemHeight;
                 }
             }
         }
@@ -70,12 +70,27 @@ namespace Playnite.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (itemsControl == null)
+            UpdateScrollInfo(availableSize);
+
+            // This is for weird edge case where Measuring can occur and OnItemsChanged was not called by WPF first
+            if (ItemWidth == 0)
             {
-                return new Size(0, 0);
+                itemsControl = ItemsControl.GetItemsOwner(this);
+                generator = (IRecyclingItemContainerGenerator)ItemContainerGenerator;
+                using (generator.StartAt(generator.GeneratorPositionFromIndex(0), GeneratorDirection.Forward, true))
+                {
+                    UIElement child = generator.GenerateNext(out var newlyRealized) as UIElement;
+                    if (child != null)
+                    {
+                        AddInternalChild(child);
+                        generator.PrepareItemContainer(child);
+                        child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                        UpdateScrollInfo(availableSize);
+                        RemoveInternalChildRange(0, 1);
+                    }
+                }                
             }
 
-            UpdateScrollInfo(availableSize);
             GetVisibleRange(out var firstItemIndex, out var lastItemIndex);
             if (lastItemIndex < 0)
             {
