@@ -26,6 +26,7 @@
                         <DockPanel>
                             <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                                     Content="r" FontFamily="Marlett"
+                                    Style="{StaticResource SimpleButton}"
                                     Command="{pmrk:MainViewModel CloseGameSideBarCommand}"
                                     DockPanel.Dock="Top" Margin="0,10,15,5" />
 

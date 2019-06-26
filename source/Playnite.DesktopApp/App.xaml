@@ -56,6 +56,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
 
                 <!--Derived Styles-->
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/Simplebutton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemTemplate.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemTemplate.xaml" />

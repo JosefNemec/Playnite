@@ -25,10 +25,13 @@
                         <DockPanel Background="{TemplateBinding Background}">
                             <DockPanel Margin="10,8,5,12" DockPanel.Dock="Top">
                                 <Button Content="r" FontFamily="Marlett"
-                                    DockPanel.Dock="Right" Margin="0,0,5,0"
-                                    Name="PART_ButtonClose"/>
-                                <Button DockPanel.Dock="Left" Content="{StaticResource LOCClearFilters}"
-                                    Name="PART_ButtonClear"/>
+                                        Style="{StaticResource SimpleButton}"
+                                        DockPanel.Dock="Right" Margin="0,0,5,0"
+                                        Name="PART_ButtonClose"/>
+                                <Button DockPanel.Dock="Left" Content="{StaticResource LOCClearFilters}"                                        
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource SimpleButton}"
+                                        Name="PART_ButtonClear"/>
                             </DockPanel>
                             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
                                       DockPanel.Dock="Top" Padding="0,0,0,15">
