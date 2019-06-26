@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Playnite.DesktopApp.Controls
 {
@@ -38,7 +40,10 @@ namespace Playnite.DesktopApp.Controls
 
         private void GamesEditor_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            InitializeItems();
+            if (e.PropertyName == nameof(GamesEditor.LastGames))
+            {
+                InitializeItems();
+            }
         }
 
         private MenuItem AddMenuChild(
@@ -89,7 +94,10 @@ namespace Playnite.DesktopApp.Controls
 
                 if (icon == null)
                 {
-                    icon = ResourceProvider.GetResource("DefaultGameIcon");
+                    var resourceIcon = ResourceProvider.GetResource("DefaultGameIcon") as BitmapImage;
+                    var image = new Image() { Source = resourceIcon };
+                    RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.HighQuality);
+                    icon = image;
                 }
 
                 AddMenuChild(Items, game.Name, mainModel.StartGameCommand, game, icon);
