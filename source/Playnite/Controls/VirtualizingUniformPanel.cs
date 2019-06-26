@@ -314,9 +314,6 @@ namespace Playnite.Controls
 
         public void SetVerticalOffset(double newOffset)
         {
-            var line = Math.Round(newOffset / ItemHeight, MidpointRounding.AwayFromZero);
-            newOffset = line * ItemHeight;
-
             if (newOffset < 0 || viewport.Height >= extent.Height)
             {
                 newOffset = 0;
@@ -385,7 +382,7 @@ namespace Playnite.Controls
 
         public void MouseWheelDown()
         {
-            LineDown();
+            SetVerticalOffset(VerticalOffset + (ItemHeight / 2));
         }
 
         public void MouseWheelLeft()
@@ -400,7 +397,7 @@ namespace Playnite.Controls
 
         public void MouseWheelUp()
         {
-            LineUp();
+            SetVerticalOffset(VerticalOffset - (ItemHeight / 2));
         }
 
         public void PageLeft()

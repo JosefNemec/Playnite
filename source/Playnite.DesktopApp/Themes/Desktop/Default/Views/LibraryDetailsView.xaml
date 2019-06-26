@@ -44,7 +44,7 @@
                                 </DataTemplate>
                             </pctrlsShared:ExtendedListBox.ItemTemplate>
                         </pctrlsShared:ExtendedListBox>
-                        <views:GameOverview Name="PART_ControlGameView" DockPanel.Dock="Left"
+                        <views:GameOverview x:Name="PART_ControlGameView" DockPanel.Dock="Left"
                                             Style="{StaticResource DetailsViewGameOverview}" />
                     </DockPanel>
                 </ControlTemplate>
