@@ -9,8 +9,8 @@
                     mc:Ignorable="d">
 
     <BitmapImage x:Key="TrayIcon" UriSource="{pmrk:ThemeFile 'Images/applogo.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="TrayIconWhite" UriSource="{pmrk:ThemeFile 'Images/applogo_white.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="TrayIconBlack" UriSource="{pmrk:ThemeFile 'Images/applogo_black.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="TrayIconWhite" UriSource="{pmrk:ThemeFile 'Images/trayicon_white.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="TrayIconBlack" UriSource="{pmrk:ThemeFile 'Images/trayicon_black.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
     <BitmapImage x:Key="AddGameIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/add.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True" />
     <BitmapImage x:Key="UpdateDbIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/refresh.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True" />
     <BitmapImage x:Key="ExtensionsIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/script.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
