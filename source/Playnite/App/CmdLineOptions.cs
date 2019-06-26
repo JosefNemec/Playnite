@@ -15,6 +15,9 @@ namespace Playnite
         [Option("nolibupdate")]
         public bool SkipLibUpdate { get; set; }
 
+        [Option("startdesktop")]
+        public bool StartInDesktop { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);

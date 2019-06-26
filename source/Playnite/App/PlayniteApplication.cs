@@ -89,11 +89,6 @@ namespace Playnite
             Mode = mode;
             Current = this;
             CurrentNative = nativeApp;
-            CurrentNative.SessionEnding += Application_SessionEnding;
-            CurrentNative.Exit += Application_Exit;
-            CurrentNative.Startup += Application_Startup;
-            CurrentNative.Activated += Application_Activated;
-            CurrentNative.Deactivated += Application_Deactivated;
             CurrentNative.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             if (!Debugger.IsAttached)
             {
@@ -102,11 +97,18 @@ namespace Playnite
 
             PlayniteSettings.MigrateSettingsConfig();
             AppSettings = PlayniteSettings.LoadSettings();
-            if (AppSettings.StartInFullscreen)
+            if (AppSettings.StartInFullscreen && mode == ApplicationMode.Desktop && !CmdLine.StartInDesktop)
             {
                 ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, CmdLine.ToString());
                 CurrentNative.Shutdown(0);
+                return;
             }
+
+            CurrentNative.SessionEnding += Application_SessionEnding;
+            CurrentNative.Exit += Application_Exit;
+            CurrentNative.Startup += Application_Startup;
+            CurrentNative.Activated += Application_Activated;
+            CurrentNative.Deactivated += Application_Deactivated;
 
             OnPropertyChanged(nameof(AppSettings));
             var defaultTheme = new ThemeDescription()
