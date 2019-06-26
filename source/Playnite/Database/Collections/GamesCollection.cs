@@ -55,7 +55,16 @@ namespace Playnite.Database
             var result = base.Remove(id);
             db.RemoveFile(item.Icon);
             db.RemoveFile(item.CoverImage);
-            db.RemoveFile(item.BackgroundImage);
+
+            if (item.BackgroundImage.IsHttpUrl())
+            {
+                HttpFileCache.ClearCache(item.BackgroundImage);
+            }
+            else
+            {
+                db.RemoveFile(item.BackgroundImage);
+            }
+
             return result;
         }
 
@@ -72,7 +81,15 @@ namespace Playnite.Database
                 var dbItem = Get(item.Id);
                 db.RemoveFile(dbItem.Icon);
                 db.RemoveFile(dbItem.CoverImage);
-                db.RemoveFile(dbItem.BackgroundImage);
+
+                if (dbItem.BackgroundImage.IsHttpUrl())
+                {
+                    HttpFileCache.ClearCache(dbItem.BackgroundImage);
+                }
+                else
+                {
+                    db.RemoveFile(dbItem.BackgroundImage);
+                }                    
             }
 
             var result = base.Remove(items);
@@ -95,6 +112,10 @@ namespace Playnite.Database
             if (!dbItem.BackgroundImage.IsNullOrEmpty() && !dbItem.BackgroundImage.IsHttpUrl() && dbItem.BackgroundImage != itemToUpdate.BackgroundImage)
             {
                 db.RemoveFile(dbItem.BackgroundImage);
+            }
+            else if (dbItem.BackgroundImage.IsHttpUrl() && dbItem.BackgroundImage != itemToUpdate.BackgroundImage)
+            {
+                HttpFileCache.ClearCache(dbItem.BackgroundImage);
             }
 
             base.Update(itemToUpdate);
