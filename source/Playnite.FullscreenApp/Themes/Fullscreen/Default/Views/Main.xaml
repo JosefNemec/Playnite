@@ -91,8 +91,8 @@
                                         Grid.Column="9">
                                     <Button.Content>
                                         <Grid>
-                                            <TextBlock Text="&#x1f514;" FontFamily="Segoe UI Symbol"
-                                                       HorizontalAlignment="Center" Margin="2"
+                                            <TextBlock Text="&#xeea3;" FontFamily="{StaticResource FontIcoFont}"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2"
                                                        Foreground="White" FontSize="30" />
                                             <TextBlock Text="&#x25CF;" Foreground="{DynamicResource GlyphBrush}"
                                                        HorizontalAlignment="Right" VerticalAlignment="Bottom"

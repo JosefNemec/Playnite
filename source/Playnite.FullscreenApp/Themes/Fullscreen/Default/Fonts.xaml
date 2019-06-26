@@ -11,4 +11,5 @@
     <FontFamily x:Key="FontTitilliumWeb">/Themes/Fullscreen/Default/Fonts/TitilliumWeb/#Titillium Web</FontFamily>
     <FontFamily x:Key="FontTitilliumWebLight">/Themes/Fullscreen/Default/Fonts/TitilliumWeb/TitilliumWeb-Light.ttf#Titillium Web</FontFamily>
     <FontFamily x:Key="FontTitilliumWebBold">/Themes/Fullscreen/Default/Fonts/TitilliumWeb/TitilliumWeb-Bold.ttf#Titillium Web</FontFamily>
+    <FontFamily x:Key="FontIcoFont">/Themes/Fullscreen/Default/Fonts/IcoFonts/#icofont</FontFamily>
 </ResourceDictionary>

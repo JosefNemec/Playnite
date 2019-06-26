@@ -23,7 +23,8 @@
                                            Style="{DynamicResource TextBlockBaseStyle}"
                                            FontFamily="{DynamicResource FontTitilliumWebBold}"
                                            FontSize="36" Margin="0,0,20,0" />
-                                <TextBlock Text="&#x1f514;" FontFamily="Segoe UI Symbol"
+                                <TextBlock Text="&#xeea3;" FontFamily="{StaticResource FontIcoFont}"
+                                           VerticalAlignment="Center"
                                            HorizontalAlignment="Center" Margin="2"
                                            Foreground="{DynamicResource TextBrush}" FontSize="30"/>
                             </StackPanel>

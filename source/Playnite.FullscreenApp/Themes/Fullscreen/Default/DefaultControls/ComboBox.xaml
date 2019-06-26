@@ -28,7 +28,7 @@
                                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                                     <DockPanel LastChildFill="False" Background="Transparent">
                                         <Viewbox DockPanel.Dock="Right" Height="20">
-                                            <TextBlock Text="&#xE70D;" FontFamily="Segoe MDL2 Assets"
+                                            <TextBlock Text="&#xeab2;" FontFamily="{StaticResource FontIcoFont}"
                                                        Foreground="{DynamicResource TextBrush}"
                                                        FontSize="{DynamicResource FontSize}"
                                                        VerticalAlignment="Center"/>

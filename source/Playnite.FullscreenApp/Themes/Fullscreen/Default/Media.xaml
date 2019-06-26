@@ -11,11 +11,11 @@
     <BitmapImage x:Key="DefaultGameIcon" UriSource="{pmrk:ThemeFile 'Images/applogo_clean.png'}" popt:Freeze="True" />
     <BitmapImage x:Key="DefaultGameCover" UriSource="{pmrk:ThemeFile 'Images/custom_cover_background.png'}" popt:Freeze="True" />
 
-    <TextBlock x:Key="BatteryStatusCritical" Text="&#xE851;" FontFamily="Segoe MDL2 Assets" />
-    <TextBlock x:Key="BatteryStatusLow" Text="&#xE853;" FontFamily="Segoe MDL2 Assets" />
-    <TextBlock x:Key="BatteryStatusMedium" Text="&#x856;" FontFamily="Segoe MDL2 Assets" />
-    <TextBlock x:Key="BatteryStatusHigh" Text="&#xE859;" FontFamily="Segoe MDL2 Assets" />
-    <TextBlock x:Key="BatteryStatusCharging" Text="&#xE862;" FontFamily="Segoe MDL2 Assets" />
+    <TextBlock x:Key="BatteryStatusCritical" Text="&#xeeb1;" FontFamily="{StaticResource FontIcoFont}" />
+    <TextBlock x:Key="BatteryStatusLow" Text="&#xeeb4;" FontFamily="{StaticResource FontIcoFont}" />
+    <TextBlock x:Key="BatteryStatusMedium" Text="&#xeeb3;" FontFamily="{StaticResource FontIcoFont}" />
+    <TextBlock x:Key="BatteryStatusHigh" Text="&#xeeb2;" FontFamily="{StaticResource FontIcoFont}" />
+    <TextBlock x:Key="BatteryStatusCharging" Text="&#xeed4;" FontFamily="{StaticResource FontIcoFont}" />
 
     <Style x:Key="ProgressIndicator" TargetType="ContentControl">
         <Setter Property="Template">

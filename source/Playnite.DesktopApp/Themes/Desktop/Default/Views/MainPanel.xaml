@@ -25,7 +25,7 @@
                         </Border.Style>
                         <DockPanel Margin="0,3,110,3">
                             <Border Name="PART_ElemMainMenu" Background="Transparent"
-                                    Cursor="Hand" DockPanel.Dock="Left" Margin="5,0,0,0"
+                                    DockPanel.Dock="Left" Margin="5,0,0,0" Cursor="Hand"
                                     WindowChrome.IsHitTestVisibleInChrome="True">
                                 <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}"
                                        Height="40" RenderOptions.BitmapScalingMode="Fant"
@@ -37,11 +37,11 @@
                                               WindowChrome.IsHitTestVisibleInChrome="True"
                                               Width="300" />                      
 
-                            <Border x:Name="PART_ElemViewMenu" Cursor="Hand" Background="Transparent"
+                            <Border x:Name="PART_ElemViewMenu" Background="Transparent"
                                     DockPanel.Dock="Left" Margin="10,6,0,6" Width="35"
                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                     Style="{DynamicResource HighlightBorder}">
-                                <TextBlock Text="&#xE10C;" FontFamily="Segoe UI Symbol" FontSize="20"
+                                <TextBlock Text="⋯" FontSize="26" 
                                            Foreground="{StaticResource TextBrush}"
                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Border>
@@ -54,9 +54,9 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <Border Style="{DynamicResource HighlightBorder}" Cursor="Hand"
+                                                    <Border Style="{DynamicResource HighlightBorder}"
                                                             Background="Transparent">
-                                                        <TextBlock Text="&#xE16E;" FontFamily="Segoe UI Symbol" FontSize="20"
+                                                        <TextBlock Text="&#xef29;" FontFamily="{StaticResource FontIcoFont}" FontSize="20"
                                                                    VerticalAlignment="Center" HorizontalAlignment="Center"
                                                                    Foreground="{TemplateBinding Foreground}"/>
                                                     </Border>
@@ -86,9 +86,9 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <Border Cursor="Hand" Background="Transparent">
+                                                    <Border Background="Transparent">
                                                         <Grid>
-                                                            <TextBlock Text="&#x1f514;" FontFamily="Segoe UI Symbol" FontSize="20"
+                                                            <TextBlock Text="&#xeea3;" FontFamily="{StaticResource FontIcoFont}" FontSize="24"
                                                                        Foreground="{TemplateBinding Foreground}"
                                                                        HorizontalAlignment="Center"/>
                                                             <Border CornerRadius="3" Width="15" Height="15"
@@ -123,7 +123,7 @@
                                     Padding="0" BorderThickness="0"
                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                     ToolTip="{DynamicResource LOCSteamFriendsTooltip}">
-                                <TextBlock Text="&#xE125;" FontFamily="Segoe UI Symbol" FontSize="22"
+                                <TextBlock Text="&#xecf9;" FontFamily="{StaticResource FontIcoFont}" FontSize="24"
                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
 

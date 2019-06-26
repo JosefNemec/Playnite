@@ -204,6 +204,9 @@
     <None Include="Themes\Fullscreen\DefaultLime\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Themes\Fullscreen\Default\Fonts\IcoFonts\icofont.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Themes\Fullscreen\Default\Images\custom_cover_background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -23,7 +23,7 @@
                 <ControlTemplate TargetType="Button">
                     <Grid Background="{TemplateBinding Background}">
                         <DockPanel Margin="{TemplateBinding Padding}">
-                            <TextBlock Text="&#xE76C;" FontFamily="Segoe MDL2 Assets"
+                            <TextBlock Text="&#xeab8;" FontFamily="{StaticResource FontIcoFont}"
                                        DockPanel.Dock="Right"
                                        Foreground="{TemplateBinding Foreground}"
                                        FontSize="20"

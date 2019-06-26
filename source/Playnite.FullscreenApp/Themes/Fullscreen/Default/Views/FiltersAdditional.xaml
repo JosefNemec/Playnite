@@ -24,7 +24,7 @@
                                         x:Name="PART_ButtonBack">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="&#xE76B;" FontFamily="Segoe MDL2 Assets"
+                                    <TextBlock Text="&#xeab5;" FontFamily="{StaticResource FontIcoFont}"
                                             FontSize="20" VerticalAlignment="Center"
                                             Margin="0,0,10,0" />
                                     <TextBlock Text="{DynamicResource LOCFilters}"
