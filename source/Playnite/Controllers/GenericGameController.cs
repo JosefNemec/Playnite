@@ -51,13 +51,23 @@ namespace Playnite.Controllers
                 var uwpMatch = Regex.Match(playAction.Arguments ?? string.Empty, @"shell:AppsFolder\\(.+)!.+");
                 if (playAction.Path == "explorer.exe" && uwpMatch.Success)
                 {
+                    var scanDirectory = Game.InstallDirectory;
                     procMon.TreeStarted += ProcMon_TreeStarted;
+
+                    if (!Game.GameId.IsNullOrEmpty())
+                    {
+                        var prg = Programs.GetUWPApps().FirstOrDefault(a => a.AppId == Game.GameId);
+                        if (prg != null)
+                        {
+                            scanDirectory = prg.WorkDir;
+                        }
+                    }                    
 
                     // TODO switch to WatchUwpApp once we are building as 64bit app
                     //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
-                    if (Directory.Exists(Game.InstallDirectory))
+                    if (Directory.Exists(scanDirectory))
                     {
-                        procMon.WatchDirectoryProcesses(Game.InstallDirectory, false, true);
+                        procMon.WatchDirectoryProcesses(scanDirectory, false, true);
                     }
                     else
                     {

@@ -255,6 +255,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var newGame = new GameInfo()
                 {
                     Name = program.Item.Name,
+                    GameId = program.Item.AppId,
                     InstallDirectory = program.Item.WorkDir,
                     Source = program.Type == ProgramType.UWP ? "Microsoft Store" : string.Empty,
                     IsInstalled = true
