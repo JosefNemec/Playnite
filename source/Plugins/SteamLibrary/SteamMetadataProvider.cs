@@ -159,7 +159,8 @@ namespace SteamLibrary
                     {
                         if (i + 1 == 10)
                         {
-                            throw;
+                            logger.Error($"Reached download timeout for Steam store game {appId}");
+                            return null;
                         }
 
                         if (e.Message.Contains("429"))
@@ -198,7 +199,15 @@ namespace SteamLibrary
             var metadata = new SteamGameMetadata();
             var productInfo = GetAppInfo(appId);
             metadata.ProductDetails = productInfo;
-            metadata.StoreDetails = GetStoreData(appId);
+
+            try
+            {
+                metadata.StoreDetails = GetStoreData(appId);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to download Steam store metadata {appId}");
+            }
 
             // Icon
             if (productInfo != null)
@@ -255,7 +264,10 @@ namespace SteamLibrary
                     metadata.BackgroundImage = new MetadataFile(GetGameBackground(appId));
                     break;
                 case BackgroundSource.StoreScreenshot:
-                    metadata.BackgroundImage = new MetadataFile(Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", ""));
+                    if (metadata.StoreDetails != null)
+                    {
+                        metadata.BackgroundImage = new MetadataFile(Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", ""));
+                    }
                     break;
                 case BackgroundSource.StoreBackground:
                     metadata.BackgroundImage = new MetadataFile(string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId));

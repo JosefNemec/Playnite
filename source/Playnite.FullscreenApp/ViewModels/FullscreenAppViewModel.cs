@@ -1178,7 +1178,7 @@ namespace Playnite.FullscreenApp.ViewModels
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
                         using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataGroupedAsync(addedGames, AppSettings.DefaultMetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;

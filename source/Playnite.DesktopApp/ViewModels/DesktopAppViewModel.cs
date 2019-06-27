@@ -961,7 +961,7 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
                         using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataGroupedAsync(addedGames, AppSettings.DefaultMetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
@@ -1002,7 +1002,7 @@ namespace Playnite.DesktopApp.ViewModels
                 using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                 {
                     GlobalTaskHandler.ProgressTask =
-                        downloader.DownloadMetadataGroupedAsync(games, settings,
+                        downloader.DownloadMetadataAsync(games, settings,
                             (g, i, t) =>
                             {
                                 ProgressValue = i + 1;
@@ -1327,7 +1327,7 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
                         using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataGroupedAsync(addedGames, AppSettings.DefaultMetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
