@@ -35,7 +35,7 @@ namespace PlayniteServices
                 options.Filters.Add(new ApiExceptionFilter());
             }).AddJsonOptions(options =>
             {
-                options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
         }
 

@@ -12,7 +12,7 @@ namespace PlayniteServices.Controllers.IGDB
 {
     public class IgdbItemController : Controller
     {
-        public async Task<TItem> GetItem<TItem>(ulong itemId, string endpointPath, object cacheLock)
+        public static async Task<TItem> GetItem<TItem>(ulong itemId, string endpointPath, object cacheLock)
         {
             var cachePath = Path.Combine(IGDB.CacheDirectory, endpointPath, itemId + ".json");
             lock (cacheLock)
@@ -27,8 +27,7 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var url = string.Format(endpointPath + @"/{0}?fields=*", itemId);
-            var stringResult = await IGDB.SendStringRequest(url);
+            var stringResult = await IGDB.SendStringRequest(endpointPath, $"fields *; where id = {itemId};");
             var item = Serialization.FromJson<List<TItem>>(stringResult)[0];
             lock (cacheLock)
             {

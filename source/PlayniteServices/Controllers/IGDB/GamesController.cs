@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using LiteDB;
 using System.IO;
 using Playnite;
+using System.Web;
 
 namespace PlayniteServices.Controllers.IGDB
 {
@@ -39,8 +40,7 @@ namespace PlayniteServices.Controllers.IGDB
 
             if (searchResult == null)
             {
-                var url = string.Format(@"games/?fields=id&limit=40&offset=0&search={0}", gameName);
-                var libraryStringResult = await IGDB.SendStringRequest(url);
+                var libraryStringResult = await IGDB.SendStringRequest("games", $"search \"{HttpUtility.UrlDecode(gameName)}\"; fields id; limit 40;");
                 searchResult = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
                 lock (CacheLock)
                 {
@@ -53,7 +53,24 @@ namespace PlayniteServices.Controllers.IGDB
             {
                 for (int i = 0; i < searchResult.Count; i++)
                 {
-                    searchResult[i] = (await gameController.Get(searchResult[i].id)).Data;
+                    var result = (await gameController.Get(searchResult[i].id)).Data;
+                    var xpanded = new ExpandedGame()
+                    {
+                        id = result.id,
+                        name = result.name,
+                        first_release_date = result.first_release_date * 1000
+                    };
+
+                    if (result.alternative_names?.Any() == true)
+                    {
+                        xpanded.alternative_names = new List<AlternativeName>();
+                        foreach (var nameId in result.alternative_names)
+                        {
+                            xpanded.alternative_names.Add((await AlternativeNameController.GetItem(nameId)).Data);
+                        }
+                    }
+
+                    searchResult[i] = xpanded;
                 }
             }
 
