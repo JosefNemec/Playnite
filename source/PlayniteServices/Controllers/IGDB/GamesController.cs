@@ -10,6 +10,7 @@ using LiteDB;
 using System.IO;
 using Playnite;
 using System.Web;
+using Playnite.SDK;
 
 namespace PlayniteServices.Controllers.IGDB
 {
@@ -17,11 +18,11 @@ namespace PlayniteServices.Controllers.IGDB
     public class GamesController : Controller
     {
         private static readonly object CacheLock = new object();
-
         private const string cacheDir = "game_search";
+        private static ILogger logger = LogManager.GetLogger();
 
         [HttpGet("{gameName}")]
-        public async Task<ServicesResponse<List<Game>>> Get(string gameName)
+        public async Task<ServicesResponse<List<ExpandedGame>>> Get(string gameName)
         {
             List<Game> searchResult = null;
             gameName = gameName.ToLower();
@@ -49,11 +50,22 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
+            var finalResult = new List<ExpandedGame>();
             using (var gameController = new GameController())
             {
                 for (int i = 0; i < searchResult.Count; i++)
                 {
-                    var result = (await gameController.Get(searchResult[i].id)).Data;
+                    Game result = null;
+                    try
+                    {
+                        result = (await gameController.Get(searchResult[i].id)).Data;
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, $"Failed to get game {searchResult[i].id}");
+                        continue;
+                    }
+
                     var xpanded = new ExpandedGame()
                     {
                         id = result.id,
@@ -70,11 +82,11 @@ namespace PlayniteServices.Controllers.IGDB
                         }
                     }
 
-                    searchResult[i] = xpanded;
+                    finalResult.Add(xpanded);
                 }
             }
 
-            return new ServicesResponse<List<Game>>(searchResult);
+            return new ServicesResponse<List<ExpandedGame>>(finalResult);
         }
     }
 }
