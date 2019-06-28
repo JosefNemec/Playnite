@@ -749,6 +749,21 @@ namespace Playnite
             }
         }
 
+        private string trayIcon = "TrayIcon";
+        public string TrayIcon
+        {
+            get
+            {
+                return trayIcon;
+            }
+
+            set
+            {
+                trayIcon = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string InstallInstanceId
         {
             get; set;

@@ -186,10 +186,24 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
-                                    <CheckBox Name="CheckEnableTray" Margin="5,0,0,0" Grid.Column="0" Grid.Row="0"
-                                              IsChecked="{Binding Settings.EnableTray}"
-                                              Content="{DynamicResource LOCSettingsShowTray}"                                
-                                              ContentStringFormat="{}{0} *" />
+                                    <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                                        <CheckBox Name="CheckEnableTray" Margin="5,0,0,0" VerticalAlignment="Center"
+                                                  IsChecked="{Binding Settings.EnableTray}"
+                                                  Content="{DynamicResource LOCSettingsShowTray}"
+                                                  ContentStringFormat="{}{0} *" />
+                                        <ComboBox Margin="5,0,0,0"
+                                          ItemsSource="{Binding AvailableTrayIcons}"
+                                          SelectedValue="{Binding Settings.TrayIcon}"
+                                          SelectedValuePath="TrayIcon">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Image RenderOptions.BitmapScalingMode="Fant"
+                                                           VerticalAlignment="Center" Height="16" Margin="5"
+                                                           Source="{Binding ImageSource}" />
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </StackPanel>
                                     <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource LOCSettingsMinimizeToTray}" Margin="20,10,5,5"
                                         IsChecked="{Binding Settings.MinimizeToTray}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"
