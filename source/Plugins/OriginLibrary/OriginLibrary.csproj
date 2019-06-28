@@ -69,6 +69,7 @@
       <Link>GameActionActivator.cs</Link>
     </Compile>
     <Compile Include="Environment.cs" />
+    <Compile Include="Models\UsageReponse.cs" />
     <Compile Include="Models\AccountEntitlementsResponse.cs" />
     <Compile Include="Models\AccountInfoResponse.cs" />
     <Compile Include="Models\AuthTokenResponse.cs" />
