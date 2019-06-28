@@ -60,6 +60,11 @@ namespace PlayniteServices.Controllers.IGDB
         public async Task<ServicesResponse<ExpandedGame>> Get(ulong gameId)
         {
             var game = (await new GameController().Get(gameId)).Data;
+            if (game.id == 0)
+            {
+                new ServicesResponse<ExpandedGame>(new ExpandedGame());
+            }
+
             var parsedGame = new ExpandedGame()
             {
                 id = game.id,

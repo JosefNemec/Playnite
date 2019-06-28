@@ -66,6 +66,11 @@ namespace PlayniteServices.Controllers.IGDB
                         continue;
                     }
 
+                    if (result.id == 0)
+                    {
+                        continue;
+                    }
+
                     var xpanded = new ExpandedGame()
                     {
                         id = result.id,

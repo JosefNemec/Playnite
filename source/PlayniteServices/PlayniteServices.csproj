@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Compile Include="..\Playnite.Common\Extensions\CloneObject.cs" Link="Common\CloneObject.cs" />
+    <Compile Include="..\Playnite.Common\Extensions\ObjectExtensions.cs" Link="Common\ObjectExtensions.cs" />
     <Compile Include="..\Playnite.Common\InteropMethods.cs" Link="Common\InteropMethods.cs" />
     <Compile Include="..\Playnite.Common\Serialization.cs" Link="Common\Serialization.cs" />
     <Compile Include="..\Playnite.Common\FileSystem.cs" Link="Common\FileSystem.cs" />

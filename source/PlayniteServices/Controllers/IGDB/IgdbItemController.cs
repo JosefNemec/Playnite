@@ -27,8 +27,20 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var stringResult = await IGDB.SendStringRequest(endpointPath, $"fields *; where id = {itemId};");
-            var item = Serialization.FromJson<List<TItem>>(stringResult)[0];
+            var stringResult = await IGDB.SendStringRequest(endpointPath, $"fields *; where id = {itemId};");    
+            var items = Serialization.FromJson<List<TItem>>(stringResult);
+
+            TItem item;
+            // IGDB resturns empty results of the id is a duplicate of another game
+            if (items.Count > 0)
+            {
+                item = items[0];
+            }
+            else
+            {
+                item = typeof(TItem).CrateInstance<TItem>();
+            }
+
             lock (cacheLock)
             {
                 FileSystem.PrepareSaveFile(cachePath);
