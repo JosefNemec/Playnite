@@ -555,7 +555,10 @@ namespace Playnite.Database
 
                             if (convertedList.TryGetValue(oldObj, out var curObj))
                             {
-                                gameObjs.Add(curObj.Id);
+                                if (!gameObjs.Contains(curObj.Id))
+                                {
+                                    gameObjs.Add(curObj.Id);
+                                }
                             }
                             else
                             {
