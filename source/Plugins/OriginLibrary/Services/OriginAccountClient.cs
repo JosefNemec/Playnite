@@ -57,10 +57,8 @@ namespace OriginLibrary.Services
             }
 
             var stringData = client.DownloadString(string.Format(@"https://api1.origin.com/atom/users/{0}/games/{1}/usage", userId, masterTitleId));
-
             return new UsageResponse(stringData);
         }
-
 
         public AuthTokenResponse GetAccessToken()
         {

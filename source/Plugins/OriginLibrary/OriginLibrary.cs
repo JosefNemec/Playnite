@@ -338,15 +338,23 @@ namespace OriginLibrary
 
                 foreach (var game in api.GetOwnedGames(info.pid.pidId, token).Where(a => a.offerType == "basegame"))
                 {
-                    UsageResponse usage = api.GetUsage(info.pid.pidId, game.offerId, token);
+                    UsageResponse usage = null;
+                    try
+                    {
+                        usage = api.GetUsage(info.pid.pidId, game.offerId, token);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, $"Failed to get usage data for {game.offerId}");
+                    }
 
                     games.Add(new GameInfo()
                     {
                         Source = "Origin",
                         GameId = game.offerId,
                         Name = game.offerId,
-                        LastActivity = usage.lastSessionEndTimeStamp,
-                        Playtime = usage.total
+                        LastActivity = usage?.lastSessionEndTimeStamp,
+                        Playtime = usage?.total ?? 0
                     });
                 }
 
