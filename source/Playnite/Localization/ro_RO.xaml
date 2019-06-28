@@ -31,7 +31,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nicio Categorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Nicio Platformă</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle">Ce păcat! S-a întâmplat ceva neplăcut...</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">A avut loc o eroare irecuperabilă. Playnite s-a închis.
 
 Dacă dorești să ne ajuți, te rog generează un pachet de diagnostic și foloșeste butonul 'Raportează o Eroare' pentru a afla ce s-a întâmplat. Vă mulțumesc.</sys:String>
@@ -53,7 +53,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Prieteni de pe Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Secțiunea conține schimbări care trebuie să fie salvate</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Se face update la librăria de jocuri...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Update-ul la baza de date a eșuat.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Nu se poate face update la librăria de jocuri. {0} MB de spațiu liber este necesar.</sys:String>
 
@@ -73,6 +73,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Activat</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Elimină</sys:String>
+    <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">Copiază</sys:String>
     <sys:String x:Key="LOCAddTitle">Adaugă</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Pictogramă Implicită</sys:String>
@@ -118,7 +119,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCLinksLabel">Link-uri</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instalare</sys:String>
     <sys:String x:Key="LOCActionsLabel">Acțiuni</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel">Se descarcă...</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">Tip</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profile</sys:String>
@@ -204,32 +205,32 @@ Magazin > IGDB:
 Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt disponibile.</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport">Se descarcă actualizări la librăria Steam...</sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport">Se descarcă actualizări la librăria GOG...</sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport">Se descarcă actualizări la librăria Origin...</sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport">Se descarcă actualizări la librăria Battle.net...</sys:String>
-    <sys:String x:Key="LOCProgressMetadata">Se descarcă metadata...</sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames">Se importă jocurile instalate...</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Se importă {0} jocuri...</sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames">Se descarcă actualizările librăriei...</sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport">Se descarcă actualizările librăriei...</sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressMetadata"></sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
+    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Actualizarea librăriei s-a finalizat</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources">Se eliberează resursele...</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Configurare</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Setări...</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platforme și Emulatoare</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Configurați Emulatoare...</sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle">Managerul Librăriei...</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
     <sys:String x:Key="LOCMenuTools">Utilitare</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata">Descărcare Metadata...</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Deschideți lansator terț</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Actualizare Librărie</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Adaugare Joc</sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual">Adaugare Manuală...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Scanare Automată...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">Joc Emulat...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Despre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Exprimați-vă Părerea</sys:String>
@@ -242,6 +243,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendare Sistem</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Nu s-a putut găsi sursa iconiței jocului</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Nu s-a putut găsi sursa coperții jocului</sys:String>
@@ -281,22 +283,22 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nu s-a putut seta Playnite pentru pornirea deodată cu calculatorul.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Pornește în mod Fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Include Steam, Origin și altele.</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">Încarcarea imaginilor asincronă *</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Îmbunătățește performanța în scroll-ul listelor de jocuri, dar imaginile se vor încărca mai incet.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Redați numele în cazul în care nu există imagine</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Arata numele jocurile in modul "Grid" de redare</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Arata iconitele jocurilor in modul de redare "Detalii"</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Arata numarul de obiecte in descrierile grupurilor</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAcceleration">Dezactivează accelerarea hardware</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Foloseste daca intalneste sacadare sau alte probleme legate de interfata</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Dezactiveaza scalarea DPI *</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Arata butonul pentru Prietenii pe Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Arată imagine de fundal</sys:String>
-    <sys:String x:Key="LOCSettingsSkin">Temă *</sys:String>
+    <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profilul temei</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema pentru Fulscreen</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Profilul Temei Fullscreen</sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation">Locaţia bazei de date *</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Care este numele contului meu?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Stare de conectare:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Setari Playnite</sys:String>
@@ -305,7 +307,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCImportSteamLastActivityLabel">Importă Ultimul Joc jucat de pe Steam</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Goliţi cache-ul web</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Ar putea rezolva probleme întâlnite la legarea conturilor.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">Afişează iconița din zona de notificare</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Minimizare în zona de notificare</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Închidere în zona de notificare</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Când jocul pornește:</sys:String>
@@ -344,7 +346,7 @@ Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Nu se aplică retroactiv jocurilor existente fără re-descărcarea metadatelor.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forțează sincronizarea duratei de joacă</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activare suport gamepad pentru modul Desktop *</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Butonul Guide al gamepad-ului deschide modul Fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
@@ -368,7 +370,7 @@ Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</
     <sys:String x:Key="LOCDockBottom">Fund</sys:String>
 
     <sys:String x:Key="LOCImportError">Eroare de import</sys:String>
-    <sys:String x:Key="LOCLoginChecking">Verificarea stării de autentificare...</sys:String>
+    <sys:String x:Key="LOCLoginChecking"></sys:String>
     <sys:String x:Key="LOCLoginRequired">Autentificare necesară</sys:String>
     <sys:String x:Key="LOCLoginFailed">Autentificare eșuată</sys:String>
     <sys:String x:Key="LOCLoggedIn">Utilizatorul este autentificat</sys:String>
@@ -393,9 +395,9 @@ Poti de asemenea configura si importa orice alt emulator mai tarziu din meniul d
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Scanează folder-ul ce conține Emulatorul</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Selectare fișiere</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Autodetectează din folder-ul...</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Setări Emulatoare...</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning">Se scanează...</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Setare pentru prima dată</sys:String>
@@ -442,8 +444,8 @@ Rețineți că puteți adăuga manual, oricând, orice joc personalizat pentru o
     <sys:String x:Key="LOCArgumentsTitle">Parametrii</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">Directorul de lucru</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Tipuri de fișiere suportate</sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton">Importă Emulatoare...</sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton">Descarcă Emulatoare...</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Încarcă argumentele prestabilite de la profilul emulatorului cunoscut</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Sigur doriți să ștergeți emulatorul {0}?
 Este folosit la moment de {1} joc(uri).</sys:String>
@@ -541,9 +543,9 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Ștergere buton de lansare</sys:String>
     <sys:String x:Key="LOCOtherActions">Alte Acțiuni</sys:String>
     <sys:String x:Key="LOCAddGames">Adăugare Jocuri</sys:String>
-    <sys:String x:Key="LOCScanFolder">Scanează Folder-ul...</sys:String>
+    <sys:String x:Key="LOCScanFolder"></sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detectează instalările</sys:String>
-    <sys:String x:Key="LOCBrowse">Caută...</sys:String>
+    <sys:String x:Key="LOCBrowse"></sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Deschide Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Setări de Profil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Nume jocului nu poate fi gol.</sys:String>
@@ -628,8 +630,8 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Șterge de la Favorite</sys:String>
     <sys:String x:Key="LOCHideGame">Ascundeți</sys:String>
     <sys:String x:Key="LOCUnHideGame">Afișează în Librărie</sys:String>
-    <sys:String x:Key="LOCEditGame">Editare...</sys:String>
-    <sys:String x:Key="LOCSetGameCategory">Setează Categorie...</sys:String>
+    <sys:String x:Key="LOCEditGame"></sys:String>
+    <sys:String x:Key="LOCSetGameCategory"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Şterge</sys:String>
     <sys:String x:Key="LOCPlayGame">Jucați</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalaţi</sys:String>
@@ -662,9 +664,9 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} secunde</sys:String>
     <sys:String x:Key="LOCPlayedNone">Nu a fost jucat</sys:String>
 
-    <sys:String x:Key="LOCOpeningDesktopModeMessage">Deschideți modul Desktop...</sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Deschideți modul Fullscreen...</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase">Se încarcă librăria de jocuri...</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Nu s-a putut instala fișierul script.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script instalat cu succes.</sys:String>
     <sys:String x:Key="LOCInstallScript">Instalează Script</sys:String>
@@ -692,7 +694,7 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">se va deschide clientul itch.io. Vă rugăm să vă logați și să închideți mesajul acesta.</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">Se așteaptă ca utilizatorul să se logheze, vă rugăm să închideți fereastra aceasta când terminați...</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
     <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
 
     <!--GOG-->
@@ -714,5 +716,6 @@ De menționat că opțiunea pentru Numele Contului este funcțională doar pentr
 
     <sys:String x:Key="LOCGameListFiltered">Sunt aplicate filtrele.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Rezultatele căutării pentru:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
 
 </ResourceDictionary>
