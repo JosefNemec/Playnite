@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TwitchLibrary.Services;
+using Playnite.Common;
 
 namespace TwitchLibrary
 {
@@ -31,20 +32,23 @@ namespace TwitchLibrary
         public bool IsUserLoggedIn
         {
             get
-            {
-                if (library.LoginData == null)
+            {                
+                var token = library.GetAuthToken();
+                if (token.IsNullOrEmpty())
                 {
                     return false;
                 }
-
-                try
+                else
                 {
-                    library.GetLibraryGames();
-                    return true;
-                }
-                catch
-                {
-                    return false;
+                    try
+                    {
+                        AmazonEntitlementClient.GetAccountEntitlements(token);
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
                 }
             }
         }
@@ -100,16 +104,26 @@ namespace TwitchLibrary
             source.CopyProperties(this, false, null, true);
         }
 
+        public class Cookie
+        {
+            public string value { get; set; }
+        }
+
         private void Login()
         {
             try
             {
-                using (var view = api.WebViews.CreateView(400, 600))
+                if (!Twitch.IsInstalled)
                 {
-                    var api = new TwitchAccountClient(view, library.TokensPath);
-                    api.Login();
+                    api.Dialogs.ShowErrorMessage(
+                        string.Format(api.Resources.GetString("LOCClientNotInstalledError"), "Twitch"),
+                        "");
+                    return;
                 }
 
+                api.Dialogs.ShowMessage(string.Format(api.Resources.GetString("LOCSignInExternalNotif"), "Twitch"));
+                Twitch.StartClient();
+                api.Dialogs.ShowMessage(api.Resources.GetString("LOCSignInExternalWaitMessage"));
                 OnPropertyChanged(nameof(IsUserLoggedIn));
             }
             catch (Exception e) when (!Environment.IsDebugBuild)

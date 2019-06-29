@@ -51,6 +51,23 @@ namespace TwitchLibrary
             }
         }
 
+        public static string CookiesPath
+        {
+            get
+            {
+                var installDir = InstallationPath;
+                if (!installDir.IsNullOrEmpty())
+                {
+                    return Path.Combine(installDir, "Electron3", "Cookies");
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+        }
+
         public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\twitchicon.png");
 
         public static UninstallProgram GetUninstallRecord(string gameId)
@@ -59,5 +76,9 @@ namespace TwitchLibrary
                 .FirstOrDefault(a => a.RegistryKeyName.Trim(new char[] { '{', '}' }).Equals(gameId, StringComparison.OrdinalIgnoreCase));
         }
 
+        public static void StartClient()
+        {
+            ProcessStarter.StartProcess(ClientExecPath, string.Empty);
+        }
     }
 }

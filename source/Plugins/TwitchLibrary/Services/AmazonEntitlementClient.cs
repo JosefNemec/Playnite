@@ -12,19 +12,17 @@ namespace TwitchLibrary.Services
 {
     public class AmazonEntitlementClient
     {
-        public static List<GoodsItem> GetAccountEntitlements(string accountId, string authToken)
+        public static List<Entitlement> GetAccountEntitlements(string authToken)
         {
             // This looks super bad and we should idealy use HttpClient instead.
             // Problem is that Amazon server is super picky about how the request is formatted
             // and this is only working version for now.
 
-            var content = "{\"customer\":{\"id\":\"amzn1.twitch.account_id\"},\"client\":{\"clientId\":\"Fuel\"},\"startSync\":{\"syncToken\":null,\"syncPoint\":null}}";
-            content = content.Replace("account_id", accountId);
-            var request = (HttpWebRequest)WebRequest.Create(@"https://adg-entitlement.amazon.com/twitch/syncGoods/");
-            request.Headers.Add("TwitchOAuth", authToken);
-            request.Headers.Add("X-ADG-Oauth-Headers", "TwitchOAuth");
+            var content = "{\"clientId\":\"Fuel\",\"syncPoint\":null}";
+            var request = (HttpWebRequest)WebRequest.Create(@"https://sds.amazon.com/");
+            request.Headers.Add("x-auth-twitch", authToken);
             request.Headers.Add("Accept-Encoding", "gzip");
-            request.Headers.Add("X-Amz-Target", "com.amazon.adg.entitlement.model.ADGEntitlementService.syncGoods");
+            request.Headers.Add("X-Amz-Target", "com.amazonaws.gearbox.softwaredistribution.service.model.SoftwareDistributionService.GetEntitlements");
             request.Headers.Add("Content-Encoding", "amz-1.0");
             request.ContentType = "application/json; charset=utf-8";
             request.UserAgent = "FuelSDK/release-1.0.0.0";
@@ -45,8 +43,8 @@ namespace TwitchLibrary.Services
                 result = streamReader.ReadToEnd();
             }
 
-            var goods = JsonConvert.DeserializeObject<SyncGoodsResponse>(result);
-            return goods.goods;                
+            var goods = JsonConvert.DeserializeObject<EntitlementsResponse>(result);
+            return goods.entitlements;                
         }
     }
 }
