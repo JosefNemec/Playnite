@@ -48,7 +48,7 @@ namespace Playnite
 
         public virtual void OnStarting(object sender, GameControllerEventArgs args)
         {
-            execContext.Post((a) => Starting?.Invoke(sender, args), null);
+            execContext.Send((a) => Starting?.Invoke(sender, args), null);
         }
 
         public virtual void OnStarted(object sender, GameControllerEventArgs args)
