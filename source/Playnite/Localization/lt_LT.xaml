@@ -679,6 +679,8 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCOpenMetadataFolder">Atidaryti metaduomenų aplanką</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} klientas yra neįdiegtas.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Nerasta įdiegto žaidimo katalogas.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Neteisingai nustatytas žaidimo veiksmas.</sys:String>
 
