@@ -685,6 +685,8 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCOpenMetadataFolder">Aprire la cartella dei metadati</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} client non installato.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} client si aprirà ora. Accedi e poi chiudi questo messaggio.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Attendere per l'accesso dell'utente, chiudere quando ha finito…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Cartella di installazione del gioco non trovata.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Configurazione dell'azione del gioco non valida.</sys:String>
 
