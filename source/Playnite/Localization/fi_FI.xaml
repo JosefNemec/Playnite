@@ -685,6 +685,8 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCOpenMetadataFolder">Avaa metatietokansio</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} -asiakasohjelmaa ei ole asennettu.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Pelin asennuskansiota ei löydy.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Virheellinen pelitoiminnon määritys.</sys:String>
 
