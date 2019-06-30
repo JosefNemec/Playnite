@@ -27,27 +27,6 @@ namespace TwitchLibrary
 
         internal TwitchLibrarySettings LibrarySettings { get; private set; }
 
-        internal TwitchLoginData LoginData
-        {
-            get
-            {
-                if (!File.Exists(TokensPath))
-                {
-                    return null;
-                }
-
-                try
-                {
-                    return JsonConvert.DeserializeObject<TwitchLoginData>(File.ReadAllText(TokensPath));
-                }
-                catch (Exception e) when (!Environment.IsDebugBuild)
-                {
-                    logger.Error(e, "Failed to load twitch login information.");
-                    return null;
-                }
-            }
-        }
-
         public TwitchLibrary(IPlayniteAPI api) : base(api)
         {
             LibrarySettings = new TwitchLibrarySettings(this, PlayniteApi);
@@ -100,48 +79,47 @@ namespace TwitchLibrary
             return games;
         }
 
-        public List<GameInfo> GetLibraryGames()
+        public string GetAuthToken()
         {
-            var login = LoginData;
-            if (login == null)
+            if (!Twitch.CookiesPath.IsNullOrEmpty() && File.Exists(Twitch.CookiesPath))
             {
-                throw new Exception("User is not logged in.");
-            }
-
-            var games = new List<GameInfo>();
-            List<GoodsItem> libraryGames = null;
-
-            try
-            {
-                libraryGames = AmazonEntitlementClient.GetAccountEntitlements(login.AccountId, login.AccessToken);
-            }
-            catch (WebException libExc)
-            {
-                // Token renew doesn't properly based on expiration date, so try always to renew token for now until it's fixed.
-                logger.Warn(libExc, "Failed to download Twitch library at first attempt.");
                 try
                 {
-                    var client = new TwitchAccountClient(null, TokensPath);
-                    client.RenewTokens(login.AuthenticationToken, login.AccountId);
-                    login = LoginData;
-                }
-                catch (Exception renewExc)
-                {
-                    logger.Error(renewExc, "Failed to renew Twitch authentication.");
-                }
-
-                try
-                {
-                    libraryGames = AmazonEntitlementClient.GetAccountEntitlements(login.AccountId, login.AccessToken);
+                    using (var db = new Sqlite(Twitch.CookiesPath, SqliteOpenFlags.ReadOnly))
+                    {
+                        var cookies = db.Query<TwitchCookie>("SELECT * FROM 'cookies' WHERE name='auth-token'");
+                        if (cookies.Count > 0)
+                        {
+                            return cookies[0].value;
+                        }
+                        else
+                        {
+                            logger.Error("No Twitch auth token found.");
+                        }
+                    }
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to download Twitch library.");
-                    throw new Exception("Authentication is required.");
+                    logger.Error(e, "Failed to get Twitch auth token.");
                 }
             }
 
-            foreach (var item in libraryGames)
+            return null;
+        }
+
+        public List<GameInfo> GetLibraryGames()
+        {
+            var token = GetAuthToken();
+            if (token.IsNullOrEmpty())
+            {
+                throw new Exception("Authentication is required.");
+            }
+
+
+            var games = new List<GameInfo>();
+            var entitlements = AmazonEntitlementClient.GetAccountEntitlements(token);
+
+            foreach (var item in entitlements)
             {
                 if (item.product.productLine != "Twitch:FuelGame")
                 {
@@ -152,7 +130,7 @@ namespace TwitchLibrary
                 {
                     Source = "Twitch",
                     GameId = item.product.id,
-                    Name = item.product.productTitle
+                    Name = item.product.title
                 };
 
                 games.Add(game);
@@ -252,7 +230,7 @@ namespace TwitchLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new TwitchMetadataProvider();
+            return new TwitchMetadataProvider(this);
         }
 
         #endregion ILibraryPlugin

@@ -30,6 +30,23 @@ namespace Playnite.Database
         private GameDatabase database;        
         private FilterSettings filter;
 
+        private bool missedDbUpdate = false;
+        private bool ignoreDatabaseUpdates = false;
+        public bool IgnoreDatabaseUpdates
+        {
+            get => ignoreDatabaseUpdates;
+            set
+            {
+                ignoreDatabaseUpdates = value;
+                if (value == false && missedDbUpdate)
+                {
+                    LoadFilterCollection();
+                }
+
+                missedDbUpdate = false;
+            }
+        }
+
         public SelectableIdItemList<LibraryPlugin> Libraries { get; set; }
 
         private SelectableDbItemList genres;
@@ -233,6 +250,12 @@ namespace Playnite.Database
 
         private void Games_ItemUpdated(object sender, ItemUpdatedEventArgs<Game> e)
         {
+            if (IgnoreDatabaseUpdates)
+            {
+                missedDbUpdate = true;
+                return;
+            }
+
             foreach (var update in e.UpdatedItems)
             {
                 if (update.OldData.ReleaseDate != update.NewData.ReleaseDate && update.NewData.ReleaseDate != null)
@@ -244,6 +267,12 @@ namespace Playnite.Database
 
         private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> e)
         {
+            if (IgnoreDatabaseUpdates)
+            {
+                missedDbUpdate = true;
+                return;
+            }
+
             foreach (var update in e.AddedItems)
             {
                 if (update.ReleaseDate != null)
@@ -255,6 +284,12 @@ namespace Playnite.Database
 
         private void UpdateAvailableFilterList<T>(SelectableDbItemList targetList, ItemCollectionChangedEventArgs<T> args) where T : DatabaseObject
         {
+            if (IgnoreDatabaseUpdates)
+            {
+                missedDbUpdate = true;
+                return;
+            }
+
             if (args.AddedItems.HasItems())
             {
                 args.AddedItems.ForEach(a => targetList.Add(a));

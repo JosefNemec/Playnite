@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace TwitchLibrary.Models
 {
-    public class TwitchOauthRequest
+    public class TwitchCookie
     {
-        public string ClientID;
-        public string Code;
-        public string State;
-        public string RedirectUri;
+        public string name { get; set; }
+        public string value { get; set; }
+        public string host_key { get; set; }
     }
 }

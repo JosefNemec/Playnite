@@ -2509,7 +2509,10 @@ namespace Playnite.DesktopApp.ViewModels
                         try
                         {
                             var metadata = downloader.GetMetadata(EditingGame);
-                            Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
+                            if (metadata != null)
+                            {
+                                Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
+                            }
                         }
                         finally
                         {

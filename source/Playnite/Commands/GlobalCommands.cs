@@ -26,7 +26,7 @@ namespace Playnite.Commands
             {
                 NavigateUrl(stringUrl);
             }
-            if (url is Link linkUrl)
+            else if (url is Link linkUrl)
             {
                 NavigateUrl(linkUrl.Url);
             }

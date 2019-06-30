@@ -1138,6 +1138,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 GlobalTaskHandler.ProgressTask = Task.Run(async () =>
                 {
+                    DatabaseFilters.IgnoreDatabaseUpdates = true;
                     var addedGames = new List<Game>();
                     ProgressVisible = true;
                     ProgressValue = 0;
@@ -1194,6 +1195,7 @@ namespace Playnite.FullscreenApp.ViewModels
             finally
             {
                 ProgressVisible = false;
+                DatabaseFilters.IgnoreDatabaseUpdates = false;
             }
         }
 
