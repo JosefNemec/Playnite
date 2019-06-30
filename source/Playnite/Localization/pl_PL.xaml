@@ -678,6 +678,8 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Otwórz folder metadanych</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} nie jest zainstalowany.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Nie odnaleziono katalogu instalacyjnego gry.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Nieprawidłowa konfiguracja akcji odtwarzania.</sys:String>
 
