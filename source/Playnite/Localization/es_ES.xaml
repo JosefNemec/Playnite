@@ -687,6 +687,8 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCOpenMetadataFolder">Abrir carpeta de metadatos</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">El cliente {0} no está instalado.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Directorio de instación del juego no encontrado.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Cofiguración de ación de juego inválida.</sys:String>
 
