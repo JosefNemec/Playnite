@@ -686,6 +686,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCOpenMetadataFolder">打开元数据文件夹</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} 客户端未安装</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">未找到游戏的安装目录</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">无效的游戏动作配置</sys:String>
 
