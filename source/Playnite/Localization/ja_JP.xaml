@@ -679,6 +679,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCOpenMetadataFolder">メタデータフォルダを開く</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} クライアントがインストールされていません。</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">ゲームのインストールディレクトリが見つかりません。</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">無効なゲームアクション設定。</sys:String>
 
