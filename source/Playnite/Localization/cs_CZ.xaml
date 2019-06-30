@@ -686,6 +686,8 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCOpenMetadataFolder">Otevřít složku metadat</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">Klient {0} není nainstalován.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Instalační adresář hry nebyl nalezen.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Neplatná konfigurace akcí hry.</sys:String>
 
