@@ -681,6 +681,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCOpenMetadataFolder">Открыть папку метаданных</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">Клиент {0} не установлен.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Каталог установки игры не найден.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Неправильная конфигурация игрового действия.</sys:String>
 
