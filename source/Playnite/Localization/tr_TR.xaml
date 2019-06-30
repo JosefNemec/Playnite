@@ -684,6 +684,8 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCOpenMetadataFolder">Metaveri klasörünü aç</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} istemci yüklenmemiş.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Oyunun kurulum dizini bulunamadı.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Geçersiz oyun eylemi yapılandırması.</sys:String>
 
