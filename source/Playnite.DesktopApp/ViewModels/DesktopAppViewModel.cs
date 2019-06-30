@@ -562,7 +562,7 @@ namespace Playnite.DesktopApp.ViewModels
                             new DatabaseFieldsManagerWindowFactory(),
                             Dialogs,
                             Resources));
-            }, (a) => Database.IsOpen,
+            }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.W, ModifierKeys.Control));
 
             UpdateLibraryCommand = new RelayCommand<LibraryPlugin>((a) =>
@@ -916,6 +916,7 @@ namespace Playnite.DesktopApp.ViewModels
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 GlobalTaskHandler.ProgressTask = Task.Run(async () =>
                 {
+                    DatabaseFilters.IgnoreDatabaseUpdates = true;
                     var addedGames = new List<Game>();
                     ProgressVisible = true;
                     ProgressValue = 0;
@@ -978,6 +979,73 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 GameAdditionAllowed = true;
                 ProgressVisible = false;
+                DatabaseFilters.IgnoreDatabaseUpdates = false;
+            }
+        }
+
+        public async void UpdateLibrary(LibraryPlugin library)
+        {
+            GameAdditionAllowed = false;
+
+            try
+            {
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                GlobalTaskHandler.ProgressTask = Task.Run(async () =>
+                {
+                    DatabaseFilters.IgnoreDatabaseUpdates = true;
+                    var addedGames = new List<Game>();
+                    ProgressVisible = true;
+                    ProgressValue = 0;
+                    ProgressTotal = 1;
+                    ProgressStatus = string.Format(Resources.GetString("LOCProgressImportinGames"), library.Name);
+
+                    try
+                    {
+                        using (Database.BufferedUpdate())
+                        {
+                            addedGames.AddRange(Database.ImportGames(library, AppSettings.ForcePlayTimeSync));
+                        }
+
+                        RemoveMessage($"{library.Id} - download");
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        Logger.Error(e, $"Failed to import games from plugin: {library.Name}");
+                        AddMessage(new NotificationMessage(
+                            $"{library.Id} - download",
+                            string.Format(Resources.GetString("LOCLibraryImportError"), library.Name) + $"\n{e.Message}",
+                            NotificationType.Error));
+                    }
+
+                    ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
+                    await Task.Delay(500);
+
+                    if (addedGames.Any() && AppSettings.DownloadMetadataOnImport)
+                    {
+                        Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
+                        ProgressValue = 0;
+                        ProgressTotal = addedGames.Count;
+                        ProgressStatus = Resources.GetString("LOCProgressMetadata");
+                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
+                        {
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
+                                (g, i, t) =>
+                                {
+                                    ProgressValue = i + 1;
+                                    ProgressStatus = Resources.GetString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
+                                },
+                                GlobalTaskHandler.CancelToken).Wait();
+                        }
+                    }
+                });
+
+                await GlobalTaskHandler.ProgressTask;
+            }
+            finally
+            {
+                GameAdditionAllowed = true;
+                ProgressVisible = false;
+                DatabaseFilters.IgnoreDatabaseUpdates = false;
             }
         }
 
@@ -993,6 +1061,7 @@ namespace Playnite.DesktopApp.ViewModels
                     await GlobalTaskHandler.ProgressTask;
                 }
 
+                DatabaseFilters.IgnoreDatabaseUpdates = true;
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 ProgressVisible = true;
                 ProgressValue = 0;
@@ -1016,6 +1085,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 ProgressVisible = false;
                 GameAdditionAllowed = true;
+                DatabaseFilters.IgnoreDatabaseUpdates = false;
             }
         }
 
@@ -1280,70 +1350,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Logger.Error(e, "Failed to check for update.");
                 Dialogs.ShowErrorMessage(Resources.GetString("LOCUpdateCheckFailMessage"), Resources.GetString("LOCUpdateError"));
-            }
-        }
-
-        public async void UpdateLibrary(LibraryPlugin library)
-        {
-            GameAdditionAllowed = false;
-
-            try
-            {
-                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Run(async () =>
-                {
-                    var addedGames = new List<Game>();
-                    ProgressVisible = true;
-                    ProgressValue = 0;
-                    ProgressTotal = 1;                  
-                    ProgressStatus = string.Format(Resources.GetString("LOCProgressImportinGames"), library.Name);
-
-                    try
-                    {
-                        using (Database.BufferedUpdate())
-                        {
-                            addedGames.AddRange(Database.ImportGames(library, AppSettings.ForcePlayTimeSync));
-                        }
-
-                        RemoveMessage($"{library.Id} - download");
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, $"Failed to import games from plugin: {library.Name}");
-                        AddMessage(new NotificationMessage(
-                            $"{library.Id} - download",
-                            string.Format(Resources.GetString("LOCLibraryImportError"), library.Name) + $"\n{e.Message}",
-                            NotificationType.Error));
-                    }
-
-                    ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
-                    await Task.Delay(500);
-
-                    if (addedGames.Any() && AppSettings.DownloadMetadataOnImport)
-                    {
-                        Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
-                        ProgressValue = 0;
-                        ProgressTotal = addedGames.Count;
-                        ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
-                        {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
-                                (g, i, t) =>
-                                {
-                                    ProgressValue = i + 1;
-                                    ProgressStatus = Resources.GetString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
-                                },
-                                GlobalTaskHandler.CancelToken).Wait();
-                        }
-                    }
-                });
-
-                await GlobalTaskHandler.ProgressTask;
-            }
-            finally
-            {
-                GameAdditionAllowed = true;
-                ProgressVisible = false;
             }
         }
 
