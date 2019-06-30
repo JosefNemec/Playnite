@@ -45,7 +45,7 @@ Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rappor
     <sys:String x:Key="LOCLibraryManager">Gestionnaire de bibliothèque</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Supprimer le(s) jeu(x) ?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Impossible de retirer un jeu en cours d'exécution/installation.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">Impossible de retirer un jeu en cours d'exécution.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Le jeu est en cours d'exécution et ne peut être désinstallé.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Êtes-vous sûr de vouloir supprimer ce jeu ?
 
 Les jeux importés automatiquement sont susceptibles de réapparaître après la prochaine procédure d'importation (selon vos paramètres).</sys:String>
@@ -683,6 +683,8 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCOpenMetadataFolder">Ouvrir dossier de métadonnées</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} le client n'est pas installé.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} Le client va maintenant démarrer. Veuillez vous identifier avant de fermer la fenêtre de connexion.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">(Fermer cette fenêtre une fois la connexion établie)</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Dossier d'installation introuvable.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuration invalide.</sys:String>
 
