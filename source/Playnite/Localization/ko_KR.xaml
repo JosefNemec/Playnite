@@ -247,6 +247,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
