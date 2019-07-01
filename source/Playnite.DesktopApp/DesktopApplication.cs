@@ -2,6 +2,7 @@
 using Playnite.API;
 using Playnite.Controllers;
 using Playnite.Database;
+using Playnite.DesktopApp.API;
 using Playnite.DesktopApp.Controls;
 using Playnite.DesktopApp.Markup;
 using Playnite.DesktopApp.ViewModels;

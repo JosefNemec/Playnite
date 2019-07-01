@@ -191,7 +191,6 @@
     <Compile Include="API\DatabaseAPI.cs" />
     <Compile Include="API\DesignData\DesignNotificationsAPI.cs" />
     <Compile Include="API\DesignData\DesignPlayniteAPI.cs" />
-    <Compile Include="API\MainViewAPI.cs" />
     <Compile Include="API\NotificationsAPI.cs" />
     <Compile Include="API\ScriptExtensionDescription.cs" />
     <Compile Include="API\Logger.cs" />

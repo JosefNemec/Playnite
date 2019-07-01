@@ -1,6 +1,7 @@
 ﻿using Playnite.API;
 using Playnite.Controllers;
 using Playnite.Database;
+using Playnite.FullscreenApp.API;
 using Playnite.FullscreenApp.ViewModels;
 using Playnite.FullscreenApp.Windows;
 using Playnite.Plugins;

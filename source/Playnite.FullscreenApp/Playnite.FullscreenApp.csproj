@@ -114,6 +114,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Api\MainViewAPI.cs" />
     <Compile Include="Controls\ListBoxEx.cs" />
     <Compile Include="Controls\CheckBoxEx.cs" />
     <Compile Include="Controls\FilterStringListSelection.cs" />

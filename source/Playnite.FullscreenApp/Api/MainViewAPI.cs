@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.FullscreenApp.ViewModels;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.ViewModels;
 using System;
@@ -7,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.API
+namespace Playnite.FullscreenApp.API
 {
     public class MainViewAPI : IMainViewAPI
     {
-        private MainViewModelBase mainModel;
+        private FullscreenAppViewModel mainModel;
 
         public IEnumerable<Game> SelectedGames
         {
@@ -28,7 +29,7 @@ namespace Playnite.API
             }
         }
 
-        public MainViewAPI(MainViewModelBase mainModel)
+        public MainViewAPI(FullscreenAppViewModel mainModel)
         {
             this.mainModel = mainModel;
         }
