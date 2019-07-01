@@ -247,6 +247,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spillfelt som vises i detaljepanelet:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Elementavstand</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Kilde for manglende spill-ikon</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Kilde for manglende spill-cover</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Innrykk for spilldetaljer</sys:String>
