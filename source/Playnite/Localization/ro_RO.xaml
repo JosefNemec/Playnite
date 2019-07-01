@@ -245,6 +245,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Nu s-a putut găsi sursa iconiței jocului</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Nu s-a putut găsi sursa coperții jocului</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Indentați detaliile jocului</sys:String>
