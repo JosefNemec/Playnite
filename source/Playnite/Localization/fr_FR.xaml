@@ -246,6 +246,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largeur des bordures</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Déplacer les informations en bas de page (affichage détaillé)</sys:String>
