@@ -70,8 +70,10 @@
 
                                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
                                             Margin="0,10,0,10">
-                                    <Button Name="PART_ButtonMainAction" 
+                                    <Button Name="PART_ButtonPlayAction" 
                                             Width="150" Height="40" Style="{DynamicResource PlayButton}" />
+                                    <Button Name="PART_ButtonContextAction" 
+                                            Width="150" Height="40" />
                                     <Button Name="PART_ButtonMoreActions"
                                             Content="{DynamicResource LOCMoreAction}"
                                             Width="150" Height="40" Margin="10,0,0,0" />

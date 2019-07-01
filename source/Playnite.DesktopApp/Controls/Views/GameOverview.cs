@@ -48,7 +48,8 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ItemsTags", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsLinks", Type = typeof(ItemsControl))]
 
-    [TemplatePart(Name = "PART_ButtonMainAction", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_ButtonPlayAction", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_ButtonContextAction", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonMoreActions", Type = typeof(Button))]
     [TemplatePart(Name = "PART_HtmlDescription", Type = typeof(HtmlTextView))]
     [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
@@ -84,7 +85,8 @@ namespace Playnite.DesktopApp.Controls.Views
         private ItemsControl ItemsTags;
         private ItemsControl ItemsLinks;
 
-        private Button ButtonMainAction;
+        private Button ButtonPlayAction;
+        private Button ButtonContextAction;
         private Button ButtonMoreActions;
         private HtmlTextView HtmlDescription;
         private Image ImageCover;
@@ -115,15 +117,34 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             base.OnApplyTemplate();
 
-            ButtonMainAction = Template.FindName("PART_ButtonMainAction", this) as Button;
-            if (ButtonMainAction != null)
+            ButtonPlayAction = Template.FindName("PART_ButtonPlayAction", this) as Button;
+            if (ButtonPlayAction != null)
             {
-                BindingTools.SetBinding(ButtonMainAction,
+                BindingTools.SetBinding(ButtonPlayAction,
                     Button.CommandProperty,
-                    nameof(GameDetailsViewModel.MainActionCommand));
-                BindingTools.SetBinding(ButtonMainAction,
+                    nameof(GameDetailsViewModel.PlayCommand));
+                BindingTools.SetBinding(ButtonPlayAction,
                     Button.ContentProperty,
-                    nameof(GameDetailsViewModel.MainActionDescription));
+                    nameof(GameDetailsViewModel.ContextActionDescription));
+                BindingTools.SetBinding(ButtonPlayAction,
+                    Button.VisibilityProperty,
+                    nameof(GameDetailsViewModel.IsPlayAvailable),
+                    converter: new BooleanToVisibilityConverter());
+            }
+
+            ButtonContextAction = Template.FindName("PART_ButtonContextAction", this) as Button;
+            if (ButtonContextAction != null)
+            {
+                BindingTools.SetBinding(ButtonContextAction,
+                    Button.CommandProperty,
+                    nameof(GameDetailsViewModel.ContextActionCommand));
+                BindingTools.SetBinding(ButtonContextAction,
+                    Button.ContentProperty,
+                    nameof(GameDetailsViewModel.ContextActionDescription));
+                BindingTools.SetBinding(ButtonContextAction,
+                    Button.VisibilityProperty,
+                    nameof(GameDetailsViewModel.IsContextAvailable),
+                    converter: new BooleanToVisibilityConverter());
             }
 
             ButtonMoreActions = Template.FindName("PART_ButtonMoreActions", this) as Button;

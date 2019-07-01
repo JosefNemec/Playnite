@@ -35,7 +35,7 @@
                                        Margin="{StaticResource ItemMargin}" />
 
                             <ContentControl Content="{DynamicResource LOCSettingsSkin}"
-                                       ContentStringFormat="{}{0} *"
+                                       ContentStringFormat="{}{0} *" Focusable="False"
                                        Margin="{StaticResource ItemMargin}"
                                        Foreground="{DynamicResource TextBrush}"
                                        FontSize="{DynamicResource FontSize}"

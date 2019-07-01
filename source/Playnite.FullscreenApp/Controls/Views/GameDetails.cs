@@ -18,15 +18,13 @@ using System.Windows.Input;
 namespace Playnite.FullscreenApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ViewHost", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ButtonInstall", Type = typeof(ButtonBase))]
-    [TemplatePart(Name = "PART_ButtonPlay", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ButtonContext", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonOptions", Type = typeof(ButtonBase))]
     public class GameDetails : Control
     {
         private FullscreenAppViewModel mainModel;
         private FrameworkElement ViewHost;
-        private ButtonBase ButtonInstall;
-        private ButtonBase ButtonPlay;
+        private ButtonBase ButtonContext;
         private ButtonBase ButtonOptions;
 
         static GameDetails()
@@ -71,30 +69,19 @@ namespace Playnite.FullscreenApp.Controls.Views
                          nameof(mainModel.GameDetailsFocused));
                 }
 
-                ButtonInstall = Template.FindName("PART_ButtonInstall", this) as ButtonBase;
-                if (ButtonInstall != null)
+                ButtonContext = Template.FindName("PART_ButtonContext", this) as ButtonBase;
+                if (ButtonContext != null)
                 {
-                    ButtonInstall.Command = mainModel.ActivateSelectedCommand;
                     BindingTools.SetBinding(
-                        ButtonInstall,
-                        ButtonBase.VisibilityProperty,
+                        ButtonContext,
+                        ButtonBase.CommandProperty,
                         mainModel,
-                        $"{nameof(mainModel.GameDetailsEntry)}.{nameof(mainModel.GameDetailsEntry.IsInstalled)}",
-                        converter: new InvertedBooleanToVisibilityConverter(),
-                        fallBackValue: Visibility.Collapsed);
-                }
-
-                ButtonPlay = Template.FindName("PART_ButtonPlay", this) as ButtonBase;
-                if (ButtonPlay != null)
-                {
-                    ButtonPlay.Command = mainModel.ActivateSelectedCommand;
+                        $"{nameof(mainModel.SelectedGameDetails)}.{nameof(mainModel.SelectedGameDetails.ContextActionCommand)}");
                     BindingTools.SetBinding(
-                        ButtonPlay,
-                        ButtonBase.VisibilityProperty,
+                        ButtonContext,
+                        ButtonBase.ContentProperty,
                         mainModel,
-                        $"{nameof(mainModel.GameDetailsEntry)}.{nameof(mainModel.GameDetailsEntry.IsInstalled)}",
-                        converter: new Converters.BooleanToVisibilityConverter(),
-                        fallBackValue: Visibility.Collapsed);
+                        $"{nameof(mainModel.SelectedGameDetails)}.{nameof(mainModel.SelectedGameDetails.ContextActionDescription)}");
                 }
 
                 ButtonOptions = Template.FindName("PART_ButtonOptions", this) as ButtonBase;

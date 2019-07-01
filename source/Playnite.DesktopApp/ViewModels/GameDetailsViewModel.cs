@@ -74,11 +74,27 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public bool IsInstalled
+        {
+            get
+            {
+                return Game != null && Game.IsInstalled;
+            }
+        }
+
         public bool IsPlayAvailable
         {
             get
             {
                 return Game != null && Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching;
+            }
+        }
+
+        public bool IsContextAvailable
+        {
+            get
+            {
+                return Game != null && (IsRunning || IsInstalling || IsUninstalling || IsLaunching || !IsInstalled);
             }
         }
 
@@ -90,7 +106,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public string MainActionDescription
+        public string ContextActionDescription
         {
             get
             {
@@ -305,7 +321,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> MainActionCommand
+        public RelayCommand<object> ContextActionCommand
         {
             get => new RelayCommand<object>((a) =>
             {
@@ -366,8 +382,9 @@ namespace Playnite.DesktopApp.ViewModels
             OnPropertyChanged(nameof(IsUninstalling));
             OnPropertyChanged(nameof(IsLaunching));
             OnPropertyChanged(nameof(IsPlayAvailable));
+            OnPropertyChanged(nameof(IsContextAvailable));
             OnPropertyChanged(nameof(IsInstallAvailable));
-            OnPropertyChanged(nameof(MainActionDescription));
+            OnPropertyChanged(nameof(ContextActionDescription));
             NotifyVisibilityChange();
         }
 

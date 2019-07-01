@@ -153,12 +153,33 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
                 else
                 {
-                    SelectedGameDetails = new GameDetailsViewModel(value, Resources, GamesEditor, this);
+                    SelectedGameDetails = new GameDetailsViewModel(value, Resources, GamesEditor, this, Dialogs);
                 }
 
                 selectedGame = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GameDetailsButtonVisible));                
+            }
+        }
+
+        private GamesCollectionViewEntry gameDetailsEntry;
+        public GamesCollectionViewEntry GameDetailsEntry
+        {
+            get => gameDetailsEntry;
+            set
+            {
+                SelectedGameDetails?.Dispose();
+                if (value == null)
+                {
+                    SelectedGameDetails = null;
+                }
+                else
+                {
+                    SelectedGameDetails = new GameDetailsViewModel(value, Resources, GamesEditor, this, Dialogs);
+                }
+
+                gameDetailsEntry = value;
+                OnPropertyChanged();
             }
         }
 
@@ -257,17 +278,6 @@ namespace Playnite.FullscreenApp.ViewModels
                 {
                     GameDetailsEntry = null;
                 }
-            }
-        }
-
-        private GamesCollectionViewEntry gameDetailsEntry;
-        public GamesCollectionViewEntry GameDetailsEntry
-        {
-            get => gameDetailsEntry;
-            set
-            {
-                gameDetailsEntry = value;
-                OnPropertyChanged();
             }
         }
 

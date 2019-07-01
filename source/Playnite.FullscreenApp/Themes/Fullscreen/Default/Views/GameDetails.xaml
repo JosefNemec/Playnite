@@ -125,11 +125,7 @@
                             </StackPanel>
                             
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                                <pctrls:ButtonEx x:Name="PART_ButtonInstall"
-                                        Content="{DynamicResource LOCInstallGame}"
-                                        Margin="2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
-                                <pctrls:ButtonEx x:Name="PART_ButtonPlay"
-                                        Content="{DynamicResource LOCPlayGame}"
+                                <pctrls:ButtonEx x:Name="PART_ButtonContext"
                                         Margin="2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
                                 <pctrls:ButtonEx x:Name="PART_ButtonOptions"
                                         Content="{DynamicResource LOCGameOptions}"

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
@@ -26,6 +27,7 @@ namespace Playnite.FullscreenApp.ViewModels
         private readonly IResourceProvider resources;
         private readonly GamesEditor gamesEditor;
         private readonly FullscreenAppViewModel mainModel;
+        private IDialogsFactory dialogs;
 
         public GamesCollectionViewEntry Game { get; set; }
 
@@ -40,6 +42,40 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        public string ContextActionDescription
+        {
+            get
+            {
+                if (Game?.IsRunning == true)
+                {
+                    return resources.GetString("LOCGameRunning");
+                }
+                else if (Game?.IsLaunching == true)
+                {
+                    return resources.GetString("LOCGameLaunching");
+                }
+                else if (Game?.IsInstalling == true)
+                {
+                    return resources.GetString("LOCSetupRunning");
+                }
+                else if (Game?.IsUnistalling == true)
+                {
+                    return resources.GetString("LOCUninstalling");
+                }
+                else if (Game?.IsInstalled == false)
+                {
+                    return resources.GetString("LOCInstallGame");
+                }
+                else if (Game?.IsInstalled == true)
+                {
+                    return resources.GetString("LOCPlayGame");
+                }
+
+                return "<ErrorState>";
+            }
+        }
+
+
         #region Game Commands
         public RelayCommand<object> StartGameCommand { get; private set; }
         public RelayCommand<object> InstallGameCommand { get; private set; }
@@ -47,17 +83,20 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> ToggleFavoritesCommand { get; private set; }
         public RelayCommand<object> ToggleVisibilityCommand { get; private set; }
         public RelayCommand<object> RemoveGameCommand { get; private set; }
+        public RelayCommand<object> ContextActionCommand { get; private set;}
         #endregion
 
         public GameDetailsViewModel(
             GamesCollectionViewEntry gameView,
             IResourceProvider resources,
             GamesEditor gamesEditor,
-            FullscreenAppViewModel mainModel)
+            FullscreenAppViewModel mainModel,
+            IDialogsFactory dialogs)
         {
             this.resources = resources;
             this.gamesEditor = gamesEditor;
             this.mainModel = mainModel;
+            this.dialogs = dialogs;
             Game = gameView;
             Game.Game.PropertyChanged += Game_PropertyChanged;
             InitializeCommands();
@@ -72,6 +111,7 @@ namespace Playnite.FullscreenApp.ViewModels
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             InitializeItems();
+            OnPropertyChanged(nameof(ContextActionDescription));
         }
 
         public void InitializeCommands()
@@ -111,6 +151,26 @@ namespace Playnite.FullscreenApp.ViewModels
                 gamesEditor.RemoveGame(Game.Game);
                 mainModel.ToggleGameOptionsCommand.Execute(null);
             });
+
+            ContextActionCommand = new RelayCommand<object>((a) =>
+            {
+                if (Game?.IsInstalling == true || Game?.IsUnistalling == true)
+                {
+                    CheckSetup();
+                }
+                else if (Game?.IsRunning == true || Game?.IsLaunching == true)
+                {
+                    CheckExecution();
+                }
+                else if (Game?.IsInstalled == false)
+                {
+                    gamesEditor.InstallGame(Game.Game);
+                }
+                else if (Game?.IsInstalled == true)
+                {
+                    gamesEditor.PlayGame(Game.Game);
+                }
+            });
         }
 
         public void InitializeItems()
@@ -135,6 +195,28 @@ namespace Playnite.FullscreenApp.ViewModels
             }
 
             GameItems = items;
+        }
+
+        public void CheckSetup()
+        {
+            if (dialogs.ShowMessage(
+                resources.GetString("LOCCancelMonitoringSetupAsk"),
+                resources.GetString("LOCCancelMonitoringAskTitle"),
+                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                gamesEditor.CancelGameMonitoring(Game.Game);
+            }
+        }
+
+        public void CheckExecution()
+        {
+            if (dialogs.ShowMessage(
+                resources.GetString("LOCCancelMonitoringExecutionAsk"),
+                resources.GetString("LOCCancelMonitoringAskTitle"),
+                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                gamesEditor.CancelGameMonitoring(Game.Game);
+            }
         }
     }
 }
