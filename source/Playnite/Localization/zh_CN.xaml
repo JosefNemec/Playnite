@@ -247,6 +247,7 @@ IGDB > 官方商店：
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">要显示的详细面板的游戏字段：</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">项目间隔</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">缺少游戏图标源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺少游戏封面源</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">缩进游戏详情</sys:String>
