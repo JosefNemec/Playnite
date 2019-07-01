@@ -499,6 +499,12 @@
                                     <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
                                                            Value="{Binding Settings.GridItemSpacing}" />
                                 </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="{DynamicResource LOCSettingsGridItemCoverMargin}" VerticalAlignment="Center" />
+                                    <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+                                                           Value="{Binding Settings.GridItemMargin}" />
+                                </StackPanel>
                             </StackPanel>
                         </TabItem>
 

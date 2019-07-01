@@ -297,6 +297,21 @@ namespace Playnite
             }
         }
 
+        private int gridItemMargin = 2;
+        public int GridItemMargin
+        {
+            get
+            {
+                return gridItemMargin;
+            }
+
+            set
+            {
+                gridItemMargin = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int fullscreenItemSpacing = 20;
         public int FullscreenItemSpacing
         {

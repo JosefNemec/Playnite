@@ -15,17 +15,18 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Border x:Name="SelectionBorder"
                             BorderThickness="1"
-                            Background="{DynamicResource NormalBrushDark}"
-                            BorderBrush="{DynamicResource NormalBorderBrush}"
+                            Background="{DynamicResource GridItemBackgroundBrush}"
                             Margin="{pmrk:Settings ItemSpacingMargin}">
                         <ContentPresenter />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                            <Setter Property="BorderThickness" Value="1" TargetName="SelectionBorder"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                            <Setter Property="BorderThickness" Value="1" TargetName="SelectionBorder"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

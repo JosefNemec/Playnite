@@ -14,7 +14,8 @@
                 <ControlTemplate TargetType="{x:Type pctrls:GameListItem}">
                     <StackPanel Name="PART_PanelHost">
                         <Grid Width="{pmrk:Settings GridItemWidth}"
-                              Height="{pmrk:Settings GridItemHeight}">                            
+                              Height="{pmrk:Settings GridItemHeight}"
+                              Margin="{pmrk:Settings GridItemMargin}">
                             <Image Name="PART_ImageCover"
                                    RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
