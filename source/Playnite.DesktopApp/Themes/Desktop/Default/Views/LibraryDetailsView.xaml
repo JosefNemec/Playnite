@@ -24,17 +24,7 @@
                                                       VirtualizingPanel.CacheLengthUnit="Item"
                                                       VirtualizingPanel.CacheLength="5"
                                                       VirtualizingPanel.IsVirtualizingWhenGrouping="True"
-                                                      VirtualizingPanel.VirtualizationMode="Recycling">
-                            <pctrlsShared:ExtendedListBox.Style>
-                                <Style TargetType="pctrlsShared:ExtendedListBox" BasedOn="{StaticResource {x:Type pctrlsShared:ExtendedListBox}}">                         
-                                    <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
-                                            <Setter Property="Background" Value="Transparent" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </pctrlsShared:ExtendedListBox.Style>                         
+                                                      VirtualizingPanel.VirtualizationMode="Recycling">                       
                             <pctrlsShared:ExtendedListBox.GroupStyle>
                                 <GroupStyle ContainerStyle="{StaticResource DetailsViewGroupStyle}"/>
                             </pctrlsShared:ExtendedListBox.GroupStyle>

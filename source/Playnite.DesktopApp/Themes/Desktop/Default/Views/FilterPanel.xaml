@@ -6,8 +6,7 @@
                     xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
                     xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">    
 
-    <Style TargetType="{x:Type views:FilterPanel}">
-        <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />        
+    <Style TargetType="{x:Type views:FilterPanel}">  
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:FilterPanel}">
@@ -212,13 +211,5 @@
                 </ControlTemplate>
             </Setter.Value>            
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
-                <Setter Property="Background" Value="Transparent" />
-            </DataTrigger>
-            <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
-                <Setter Property="Background" Value="Transparent" />
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -13,16 +13,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:MainPanel}">
                     <Border Height="50" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource NormalBrush}">
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{pmrk:Settings ShowBackgroundImage}" Value="False">
-                                        <Setter Property="Background" Value="Transparent" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
                         <DockPanel Margin="0,3,110,3">
                             <Border Name="PART_ElemMainMenu" Background="Transparent"
                                     DockPanel.Dock="Left" Margin="5,0,0,0" Cursor="Hand"

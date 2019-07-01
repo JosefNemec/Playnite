@@ -230,8 +230,12 @@ namespace Playnite.Database
                 return path?.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
             }
             else if (path.Contains("%AppData%", StringComparison.OrdinalIgnoreCase))
-            {                
+            {
                 return path?.Replace("%AppData%", Environment.ExpandEnvironmentVariables("%AppData%"), StringComparison.OrdinalIgnoreCase);
+            }
+            else if (!Paths.IsFullPath(path))
+            {
+                return Path.GetFullPath(path);
             }
             else
             {

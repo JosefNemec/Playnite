@@ -54,6 +54,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_HtmlDescription", Type = typeof(HtmlTextView))]
     [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageIcon", Type = typeof(Image))]
+    [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     public class GameOverview : Control
     {
         private readonly DesktopAppViewModel mainModel;
@@ -91,6 +92,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private HtmlTextView HtmlDescription;
         private Image ImageCover;
         private Image ImageIcon;
+        private FadeImage ImageBackground;
 
         static GameOverview()
         {
@@ -110,6 +112,19 @@ namespace Playnite.DesktopApp.Controls.Views
             else if (mainModel != null)
             {
                 this.mainModel = mainModel;
+            }
+
+            mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
+        }
+
+        private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PlayniteSettings.ShowBackgroundImage))
+            {
+                if (ImageBackground != null)
+                {
+                    SetBackgroundBinding();
+                }
             }
         }
 
@@ -203,6 +218,12 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingOperations.SetBinding(ImageIcon, Image.SourceProperty, sourceBinding);
             }
 
+            ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
+            if (ImageBackground != null)
+            {
+                SetBackgroundBinding();
+            }
+
             SetElemVisibility(ref ElemPlayTime, "PART_ElemPlayTime", nameof(GameDetailsViewModel.PlayTimeVisibility));
             SetElemVisibility(ref ElemLastPlayed, "PART_ElemLastPlayed", nameof(GameDetailsViewModel.LastPlayedVisibility));
             SetElemVisibility(ref ElemCompletionStatus, "PART_ElemCompletionStatus", nameof(GameDetailsViewModel.CompletionStatusVisibility));
@@ -275,6 +296,22 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GameDetailsViewModel.OpenLinkCommand),
                 nameof(GamesCollectionViewEntry.Links),
                 nameof(Link.Url));
+        }
+
+        private void SetBackgroundBinding()
+        {
+            if (mainModel.AppSettings.ShowBackgroundImage)
+            {
+                BindingTools.SetBinding(ImageBackground,
+                    FadeImage.SourceProperty,
+                    mainModel,
+                    $"{nameof(mainModel.SelectedGame)}.{nameof(GamesCollectionViewEntry.BackgroundImageObject)}",
+                    isAsync: true);
+            }
+            else
+            {
+                ImageBackground.Source = null;
+            }
         }
 
         private void SetItemsControlBinding(ref ItemsControl elem, string partId, string command, string listSource, string tooltip = null)

@@ -55,5 +55,19 @@ namespace Playnite.Tests
             Assert.IsFalse(Paths.AreEqual(@"c:\file.exe", @"d:\file.exe"));
             Assert.IsFalse(Paths.AreEqual(@"c:\file:?.exe", @"d:\file.exe"));
         }
+
+        [Test]
+        public void IsFullPathTest()
+        {
+            Assert.IsTrue(Paths.IsFullPath(@"c:\test"));
+            Assert.IsTrue(Paths.IsFullPath(@"c:\test\test.exe"));
+            Assert.IsTrue(Paths.IsFullPath(@"c:\test\"));
+            Assert.IsFalse(Paths.IsFullPath(@"test"));
+            Assert.IsFalse(Paths.IsFullPath(@"\test"));
+            Assert.IsFalse(Paths.IsFullPath(@".\test"));
+            Assert.IsFalse(Paths.IsFullPath(@"test.exe"));
+            Assert.IsFalse(Paths.IsFullPath(@"\test.exe"));
+            Assert.IsFalse(Paths.IsFullPath(@".\test.exe"));
+        }
     }
 }

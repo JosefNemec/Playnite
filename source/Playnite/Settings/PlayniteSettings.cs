@@ -121,6 +121,30 @@ namespace Playnite
             }
         }
 
+        public double CalculatedGameDetailsIndentation
+        {
+            get
+            {
+                return IndentGameDetails ? GameDetailsIndentation : Double.NaN;
+            }
+        }
+
+        private int gameDetailsIndentation = 600;
+        public int GameDetailsIndentation
+        {
+            get
+            {
+                return gameDetailsIndentation;
+            }
+
+            set
+            {
+                gameDetailsIndentation = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CalculatedGameDetailsIndentation));
+            }
+        }
+
         private Dock gridViewDetailsPosition = Dock.Right;
         public Dock GridViewDetailsPosition
         {

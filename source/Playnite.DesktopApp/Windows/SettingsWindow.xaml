@@ -456,8 +456,15 @@
                                             SelectedValue="{Binding Settings.GridViewDetailsPosition}"
                                             Margin="5" Grid.Column="1" Grid.Row="2" />
                                 </Grid>
-                                <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" Margin="0,15,0,0"
-                                          Content="{DynamicResource LOCSettingsIndentGameDetails}" />
+
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" VerticalAlignment="Center"
+                                              Content="{DynamicResource LOCSettingsIndentGameDetails}" />
+                                    <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+                                                           Value="{Binding Settings.GameDetailsIndentation}"
+                                                           IsEnabled="{Binding Settings.IndentGameDetails}" />
+
+                                </StackPanel>
 
                                 <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />
                                 <Separator />

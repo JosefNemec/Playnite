@@ -130,5 +130,17 @@ namespace Playnite.Common
         {
             return string.Join(" ", filename.Split(Path.GetInvalidFileNameChars()));
         }
+
+        public static bool IsFullPath(string path)
+        {
+            try
+            {
+                return Path.GetFullPath(path) == path;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
