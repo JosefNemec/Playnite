@@ -247,6 +247,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campos del juego que serán mostrados en el panel de detalles:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacio entre elementos</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fuente del icono del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fuente de la portada del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Reducir detalles del juego</sys:String>
