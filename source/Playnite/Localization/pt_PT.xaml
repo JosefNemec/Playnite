@@ -243,6 +243,7 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espaçamento de Itens</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fonte de ícone de jogo ausente</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte de capa de jogo ausente</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
