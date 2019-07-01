@@ -60,11 +60,6 @@ namespace Playnite.FullscreenApp
         private void SetViewDescriptions()
         {
             var sortDirection = viewSettings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
-            if (viewSettings.SortingOrder == SortOrder.Name)
-            {
-                sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
-            }
-
             CollectionView.SortDescriptions.Add(new SortDescription(viewSettings.SortingOrder.ToString(), sortDirection));
             if (viewSettings.SortingOrder != SortOrder.Name)
             {
