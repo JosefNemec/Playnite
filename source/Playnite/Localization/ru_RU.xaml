@@ -49,14 +49,14 @@
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Вы уверены что хотите убрать эту игру?
 
 Автоматически импортированные игры могут появиться в Playnite после следующей процедуры импорта (в зависимости от ваших настроек).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Вы уверены что хотите убрать эти {0} игры?
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Вы уверены что хотите убрать следующие игры {0} ?
 
 Автоматически импортированные игры могут появиться в Playnite после следующей процедуры импорта (в зависимости от ваших настроек).</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Друзья в Стиме</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif">Раздел содержить изменения, которые необходимо сохранить</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Раздел содержит изменения, которые необходимо сохранить</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Обновление формата базы данных…</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Не удалось обновить базу данных. Не получилось открыть файл базы данных.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Ошибка обновления базы данных.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Невозможно обновить библиотеку игр. Требуется {0} МБ свободного места.</sys:String>
 
     <sys:String x:Key="LOCGameError">Ошибка игры</sys:String>
@@ -64,7 +64,7 @@
     <sys:String x:Key="LOCGameStartError">Не удалось запустить игру: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Не удалось начать действие: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Не удалось открыть расположение игры: {0}</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Не удалось создать значок: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Не удалось создать ярлык: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Не удалось установить игру: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Не удалось удалить игру: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Плагин библиотеки, ответственный за эту игру, не установлен или не включен.</sys:String>
@@ -81,7 +81,7 @@
     <sys:String x:Key="LOCDefaultIconTitle">Стандартная иконка</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Стандартная обложка</sys:String>
     <sys:String x:Key="LOCFinishLabel">Закончить</sys:String>
-    <sys:String x:Key="LOCNextLabel">Следующее</sys:String>
+    <sys:String x:Key="LOCNextLabel">Далее</sys:String>
     <sys:String x:Key="LOCBackLabel">Назад</sys:String>
     <sys:String x:Key="LOCDoneCapLabel">ГОТОВО</sys:String>
     <sys:String x:Key="LOCBackCapLabel">НАЗАД</sys:String>
@@ -247,6 +247,7 @@ IGDB > Официальный магазин:
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поля игр, отображаемые на панели подробностей:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Расстояние между элементами</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина рамки</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Отсутствует источник значка игры</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Отсутствует источник обложки игры</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Сместить описание игры вниз</sys:String>
