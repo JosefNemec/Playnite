@@ -159,6 +159,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCPastWeek">Past Week</sys:String>
     <sys:String x:Key="LOCPastMonth">Past Month</sys:String>
     <sys:String x:Key="LOCPastYear">Past Year</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">More than a year ago</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
     <sys:String x:Key="LOCAllGames">All Games</sys:String>
     <sys:String x:Key="LOCGameId">Game Id</sys:String>

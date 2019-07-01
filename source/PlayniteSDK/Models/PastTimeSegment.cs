@@ -43,9 +43,15 @@ namespace Playnite.SDK.Models
         PastYear = 4,
 
         /// <summary>
+        /// Idicates time occurig past year.
+        /// </summary>
+        [Description("LOCMoreThenYear")]
+        MoreThenYear = 5,
+
+        /// <summary>
         /// Idicates time that never happened.
         /// </summary>
         [Description("LOCNever")]
-        Never = 5
+        Never = 6
     }
 }

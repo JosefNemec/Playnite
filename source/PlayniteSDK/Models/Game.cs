@@ -1148,7 +1148,7 @@ namespace Playnite.SDK.Models
                 return PastTimeSegment.PastYear;
             }
 
-            return PastTimeSegment.Never;
+            return PastTimeSegment.MoreThenYear;
         }
 
         /// <summary>
