@@ -38,18 +38,6 @@
 
                             <Grid MaxWidth="1024" HorizontalAlignment="Stretch">
                                 <Grid.RowDefinitions>
-                                    <!--<RowDefinition>
-                                        <RowDefinition.Style>
-                                            <Style TargetType="{x:Type RowDefinition}">
-                                                <Setter Property="Height" Value="{pmrk:Settings GameDetailsIndentation}" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{pmrk:Settings IndentGameDetails}" Value="False">
-                                                        <Setter Property="Height" Value="Auto" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </RowDefinition.Style>
-                                    </RowDefinition>-->
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
