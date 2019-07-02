@@ -154,6 +154,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCPastWeek">Minggu lalu</sys:String>
     <sys:String x:Key="LOCPastMonth">Bulan lalu</sys:String>
     <sys:String x:Key="LOCPastYear"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted"></sys:String>
     <sys:String x:Key="LOCAllGames"></sys:String>
     <sys:String x:Key="LOCGameId"></sys:String>
