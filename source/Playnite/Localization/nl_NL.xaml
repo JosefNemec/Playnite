@@ -158,6 +158,7 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCPastWeek">Afgelopen Week</sys:String>
     <sys:String x:Key="LOCPastMonth">Afgelopen Maand</sys:String>
     <sys:String x:Key="LOCPastYear">Afgelopen Jaar</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Importeren succesvol voltooid.</sys:String>
     <sys:String x:Key="LOCAllGames">Alle Spellen</sys:String>
     <sys:String x:Key="LOCGameId">Spel Id</sys:String>
