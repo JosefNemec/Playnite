@@ -152,6 +152,7 @@
     <sys:String x:Key="LOCPastWeek"></sys:String>
     <sys:String x:Key="LOCPastMonth"></sys:String>
     <sys:String x:Key="LOCPastYear"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted"></sys:String>
     <sys:String x:Key="LOCAllGames"></sys:String>
     <sys:String x:Key="LOCGameId"></sys:String>
