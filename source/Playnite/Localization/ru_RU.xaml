@@ -158,6 +158,7 @@
     <sys:String x:Key="LOCPastWeek">На прошлой неделе</sys:String>
     <sys:String x:Key="LOCPastMonth">Прошлый месяц</sys:String>
     <sys:String x:Key="LOCPastYear">Прошлый год</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Больше года назад</sys:String>
     <sys:String x:Key="LOCImportCompleted">Импорт успешно завершен.</sys:String>
     <sys:String x:Key="LOCAllGames">Все игры</sys:String>
     <sys:String x:Key="LOCGameId">Идентификатор игры</sys:String>
