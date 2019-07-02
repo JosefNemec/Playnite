@@ -154,6 +154,7 @@
     <sys:String x:Key="LOCPastWeek">Минулий тиждень</sys:String>
     <sys:String x:Key="LOCPastMonth">Минулий місяць</sys:String>
     <sys:String x:Key="LOCPastYear">Минулий рік</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Імпортування успішно завершено.</sys:String>
     <sys:String x:Key="LOCAllGames">Всі ігри</sys:String>
     <sys:String x:Key="LOCGameId">Ігровий Id</sys:String>
