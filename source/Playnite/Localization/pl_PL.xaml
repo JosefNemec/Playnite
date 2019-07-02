@@ -158,6 +158,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCPastWeek">Zeszły tydzień</sys:String>
     <sys:String x:Key="LOCPastMonth">Zeszły miesiąc</sys:String>
     <sys:String x:Key="LOCPastYear">Zeszły rok</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Importowanie zakończone sukcesem.</sys:String>
     <sys:String x:Key="LOCAllGames">Wszystkie gry</sys:String>
     <sys:String x:Key="LOCGameId">ID gry</sys:String>
