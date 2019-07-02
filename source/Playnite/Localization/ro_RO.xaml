@@ -156,6 +156,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCPastWeek">Săptămâna trecută</sys:String>
     <sys:String x:Key="LOCPastMonth">Luna trecută</sys:String>
     <sys:String x:Key="LOCPastYear">Anul trecut</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Import realizat cu succes.</sys:String>
     <sys:String x:Key="LOCAllGames">Toate jocurile</sys:String>
     <sys:String x:Key="LOCGameId">Id de joc</sys:String>
