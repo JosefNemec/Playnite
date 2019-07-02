@@ -156,6 +156,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCPastWeek">Geçen Hafta</sys:String>
     <sys:String x:Key="LOCPastMonth">Geçen Ay</sys:String>
     <sys:String x:Key="LOCPastYear">Geçen Yıl</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">İçe aktarma başarıyla tamamlandı.</sys:String>
     <sys:String x:Key="LOCAllGames">Tüm Oyunlar</sys:String>
     <sys:String x:Key="LOCGameId">Oyun Id</sys:String>
