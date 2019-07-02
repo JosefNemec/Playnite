@@ -154,6 +154,7 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCPastWeek">Praėjusią savaitę</sys:String>
     <sys:String x:Key="LOCPastMonth">Pastarąjį mėnesį</sys:String>
     <sys:String x:Key="LOCPastYear">Pastaraisiais metais</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Importavimas sėkmingai baigtas.</sys:String>
     <sys:String x:Key="LOCAllGames">Visi žaidimai</sys:String>
     <sys:String x:Key="LOCGameId">Žaidimo Id</sys:String>
