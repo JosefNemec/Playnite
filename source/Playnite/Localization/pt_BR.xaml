@@ -158,6 +158,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCPastWeek">Na última semana</sys:String>
     <sys:String x:Key="LOCPastMonth">No último mês</sys:String>
     <sys:String x:Key="LOCPastYear">No último ano</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Importação concluída com sucesso.</sys:String>
     <sys:String x:Key="LOCAllGames">Todos os jogos</sys:String>
     <sys:String x:Key="LOCGameId">ID do jogo</sys:String>
