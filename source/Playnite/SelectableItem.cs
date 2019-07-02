@@ -360,9 +360,13 @@ namespace System
         // TODO keep ordering when item is added or removed
         public void Add(DatabaseObject item, bool selected = false)
         {
-            if (Items.FirstOrDefault(a => a.Item.Id == item.Id) != null)
+            var existing = Items.FirstOrDefault(a => a.Item.Id == item.Id);
+            if (existing != null)
             {
-                throw new Exception("Item is already part of the collection.");
+                if (selected)
+                {
+                    existing.Selected = true;
+                }
             }
 
             var newItem = new SelectableItem<DatabaseObject>(item)
