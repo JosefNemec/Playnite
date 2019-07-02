@@ -154,6 +154,7 @@
     <sys:String x:Key="LOCPastWeek">過去 1 週間</sys:String>
     <sys:String x:Key="LOCPastMonth">過去 1 ヶ月間</sys:String>
     <sys:String x:Key="LOCPastYear">過去 1 年間</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">インポート完了</sys:String>
     <sys:String x:Key="LOCAllGames">全てのゲーム</sys:String>
     <sys:String x:Key="LOCGameId">ゲームID</sys:String>
