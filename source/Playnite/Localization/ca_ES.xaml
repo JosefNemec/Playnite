@@ -154,6 +154,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCPastWeek">La setmana passada</sys:String>
     <sys:String x:Key="LOCPastMonth">El mes passat</sys:String>
     <sys:String x:Key="LOCPastYear">L'any passat</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">La importació s'ha completat correctament.</sys:String>
     <sys:String x:Key="LOCAllGames">Tots els jocs</sys:String>
     <sys:String x:Key="LOCGameId">Id del joc</sys:String>
