@@ -132,9 +132,9 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCCompanyLabel">Entreprise</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Développeur</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Éditeur</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">Catégorie</sys:String>
-    <sys:String x:Key="LOCTagLabel">Étiquette</sys:String>
-    <sys:String x:Key="LOCTagsLabel">Étiquettes</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Catégories</sys:String>
+    <sys:String x:Key="LOCTagLabel">Étiquettes</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Étiquette(s)</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListLabel">Affichage en liste</sys:String>
     <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
@@ -469,7 +469,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Grouper par Plateforme</sys:String>
     <sys:String x:Key="LOCViewType">"Type d'affichage"</sys:String>
     <sys:String x:Key="LOCMenuView">Afficher</sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel">Panneau d'exploration</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Explorateur</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Filtres</sys:String>
 
     <!--Game fields-->
