@@ -158,6 +158,7 @@
     <sys:String x:Key="LOCPastWeek">지난 주</sys:String>
     <sys:String x:Key="LOCPastMonth">지난 달</sys:String>
     <sys:String x:Key="LOCPastYear">지난 해</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">가져오기를 성공적으로 완료했습니다.</sys:String>
     <sys:String x:Key="LOCAllGames">모든 게임</sys:String>
     <sys:String x:Key="LOCGameId">게임 Id</sys:String>
