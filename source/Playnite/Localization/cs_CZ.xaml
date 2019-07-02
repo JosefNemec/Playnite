@@ -158,6 +158,7 @@ Automaticky importované hry se po dalším importování znovu objeví v Playni
     <sys:String x:Key="LOCPastWeek">Minulý týden</sys:String>
     <sys:String x:Key="LOCPastMonth">Minulý měsíc</sys:String>
     <sys:String x:Key="LOCPastYear">Za poslední rok</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Před více než rokem</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import byl úspěšně dokončen.</sys:String>
     <sys:String x:Key="LOCAllGames">Všechny hry</sys:String>
     <sys:String x:Key="LOCGameId">ID hry</sys:String>
@@ -247,7 +248,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Pole, která budou viditelná v zobrazení detailů:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Mezery mezi položkami</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Šířka ohraničení položky v mřížce</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Chybějící zdroj ikon her</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Chybějící zdroj obálek her</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Odsadit podrobnosti o hře</sys:String>
@@ -357,7 +358,7 @@ Všechny nyní prováděné úkony (jako stahování metadat) budou zrušeny.</s
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Zobrazit stav baterie</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Zobrazit stav baterie v procentech</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Zobrazit hodiny</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Pouze nainstalováno v Rychlých filtrech</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Rozložení</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontální skrolování</sys:String>
