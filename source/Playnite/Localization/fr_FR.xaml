@@ -584,7 +584,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCChange">Changer</sys:String>
     <sys:String x:Key="LOCAdvanced">Avancé</sys:String>
     <sys:String x:Key="LOCNever">[Indéterminé]</sys:String>
-    <sys:String x:Key="LOCNotPlayed">[Pas encore commencé]</sys:String>
+    <sys:String x:Key="LOCNotPlayed">[Non commencé]</sys:String>
     <sys:String x:Key="LOCPlayed">Commencé</sys:String>
     <sys:String x:Key="LOCBeaten">Terminé</sys:String>
     <sys:String x:Key="LOCCompleted">Terminé (100%)</sys:String>
