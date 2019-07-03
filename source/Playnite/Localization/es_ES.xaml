@@ -158,7 +158,7 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
     <sys:String x:Key="LOCPastWeek">La última semana</sys:String>
     <sys:String x:Key="LOCPastMonth">El último mes</sys:String>
     <sys:String x:Key="LOCPastYear">El último año</sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Hace más de un año</sys:String>
     <sys:String x:Key="LOCImportCompleted">Importación completada correctamente.</sys:String>
     <sys:String x:Key="LOCAllGames">Todos los juegos</sys:String>
     <sys:String x:Key="LOCGameId">Id del juego</sys:String>
@@ -248,7 +248,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campos del juego que serán mostrados en el panel de detalles:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacio entre elementos</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ancho del borde el objeto de rejilla</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fuente del icono del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fuente de la portada del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Reducir detalles del juego</sys:String>
@@ -689,8 +689,8 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCOpenMetadataFolder">Abrir carpeta de metadatos</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">El cliente {0} no está instalado.</sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">El cliente {0} se abrirá. Por favor, inicia sesión y cierra este mensaje.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Esperando a que el usuario inicie sesión, por favor, cierre esto cuando haya terminado…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Directorio de instación del juego no encontrado.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Cofiguración de ación de juego inválida.</sys:String>
 
