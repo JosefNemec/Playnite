@@ -248,7 +248,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Lisätietopaneelissa näytettävät kentät:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Kohteiden välistys</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ruudukon kohteen reunaviivan leveys</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Puuttuva pelin kuvakkeen lähde</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuttuva pelin kannen lähde</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Sisennä pelin tiedot</sys:String>
@@ -687,8 +687,8 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCOpenMetadataFolder">Avaa metatietokansio</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} -asiakasohjelmaa ei ole asennettu.</sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} sovellus avautuu nyt. Kirjaudu sisään ja sulje sen jälkeen tämä viesti.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Odotetaan käyttäjän sisäänkirjautumista, sulje tämä kun olet valmis…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Pelin asennuskansiota ei löydy.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Virheellinen pelitoiminnon määritys.</sys:String>
 
@@ -731,6 +731,6 @@ Huomioi, että tunnuksen nimen käyttäminen toimii vain tunnuksilla, jotka on a
 
     <sys:String x:Key="LOCGameListFiltered">Suodattimia on käytössä.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Tulokset haulle:</sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Annettu nimi on jo käytössä.</sys:String>
 
 </ResourceDictionary>
