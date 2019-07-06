@@ -31,11 +31,13 @@ Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
     <sys:String x:Key="LOCNoCategory">Kategori Yok</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platform Yok</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Oh hayır, kötü bir şey oldu…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kurtarılamaz hata oluştu ve Playnite çöktü.
         
 Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen sorun giderme paketi oluşturun ve ne olduğunu bize bildirmek için 'Hatayı Rapor Et' düğmesini kullanın. Teşekkürler.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz hata oluştu.
+        
+Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgilerini gönderin. Teşekkür ederim.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Çökmeyi Rapor Et</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite'ı Yeniden Başlat</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite'dan Çık</sys:String>
@@ -53,7 +55,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Arkadaşları</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Bölüm kaydedilecek değişiklikler içeriyor</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Oyun kütüphanesi formatı güncelleniyor…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Veritabanı güncellemesi başarısız oldu, veritabanı dosyasını açamıyor.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Oyun kütüphanesi güncellenemiyor. {0} MB boş alan gerekiyor.</sys:String>
 
@@ -67,7 +69,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCGameUninstallError">Oyun kaldırılamıyor: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bu oyundan sorumlu kütüphane eklentisi kurulu değil veya etkin değil.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Resmi meta veri yüklemesi mevcut değil.</sys:String>
-    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">Seçili Oyun Yok.</sys:String>
 
 
     <!--General-->
