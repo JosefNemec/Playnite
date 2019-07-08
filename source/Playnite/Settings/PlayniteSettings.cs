@@ -1055,6 +1055,8 @@ namespace Playnite
             config.LoggingRules.Add(rule2);
 
             NLog.LogManager.Configuration = config;
+            SDK.LogManager.Init(new NLogLogProvider());
+            logger = SDK.LogManager.GetLogger();
         }
 
         public static string GetAppConfigValue(string key)
@@ -1155,7 +1157,7 @@ namespace Playnite
                     WriteConfig("C2F038E5-8B92-4877-91F1-DA9094155FC5", config);
                 }
             }
-            catch (Exception e)// when (!PlayniteEnvironment.ThrowAllErrors)
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to migrade plugin configuration.");
             }
