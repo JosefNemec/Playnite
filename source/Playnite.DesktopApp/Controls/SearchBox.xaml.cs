@@ -101,7 +101,7 @@ namespace Playnite.DesktopApp.Controls
 
         private void ClearImage_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            TextFilter.Text = string.Empty;
+            TextFilter.Clear();
         }
 
         private static void TextPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
