@@ -234,7 +234,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scansiona automaticamente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Gioco emulato…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Gioco Microsoft Store…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Informazioni su Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Invia commento</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Avvia a Schermo Intero</sys:String>
