@@ -34,6 +34,16 @@ namespace Playnite
         Restore
     }
 
+    public enum TrayIconType
+    {
+        [Description("TrayIcon")]
+        Default,
+        [Description("TrayIconWhite")]
+        Bright,
+        [Description("TrayIconBlack")]
+        Dark
+    }
+
     public enum DefaultIconSourceOptions
     {
         [Description("LOCGameProviderTitle")]
@@ -788,8 +798,8 @@ namespace Playnite
             }
         }
 
-        private string trayIcon = "TrayIcon";
-        public string TrayIcon
+        private TrayIconType trayIcon = TrayIconType.Default;
+        public TrayIconType TrayIcon
         {
             get
             {

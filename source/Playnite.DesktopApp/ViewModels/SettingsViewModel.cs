@@ -24,16 +24,13 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class SelectableTrayIcon
     {
-        public SelectableTrayIcon(string trayIcon)
-        {
-            this.TrayIcon = trayIcon;
-        }
+        public TrayIconType TrayIcon { get; }
+        public object ImageSource { get; }
 
-        public string TrayIcon { get; }
-
-        public object ImageSource
+        public SelectableTrayIcon(TrayIconType trayIcon)
         {
-            get => ResourceProvider.GetResource(TrayIcon);
+            TrayIcon = trayIcon;
+            ImageSource = ResourceProvider.GetResource(TrayIcon.GetDescription());
         }
     }
 
@@ -233,9 +230,9 @@ namespace Playnite.DesktopApp.ViewModels
 
             AvailableTrayIcons = new List<SelectableTrayIcon>
             {
-                new SelectableTrayIcon("TrayIcon"),
-                new SelectableTrayIcon("TrayIconWhite"),
-                new SelectableTrayIcon("TrayIconBlack")
+                new SelectableTrayIcon(TrayIconType.Default),
+                new SelectableTrayIcon(TrayIconType.Bright),
+                new SelectableTrayIcon(TrayIconType.Dark)
             };
 
             PluginsList = Extensions
