@@ -234,7 +234,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCMenuAddGameManual">Ręcznie…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Skanuj automatycznie…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulowana gra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Gra z Microsoft Store…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Wyślij opinię</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Uruchom tryb pełnoekranowy</sys:String>
