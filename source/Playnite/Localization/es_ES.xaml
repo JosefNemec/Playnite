@@ -234,7 +234,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escanear Automáticamente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Juego Emulado…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Juego de Microsoft Store…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Acerca de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar Comentarios</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo de pantalla completa</sys:String>
