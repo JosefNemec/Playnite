@@ -234,7 +234,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuAddGameManual">Ručně…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automaticky prohledat…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulovaná hra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Hra z Microsoft Store nebo aplikace Xbox…</sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Odeslat zpětnou vazbu</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Spustit režim celé obrazovky</sys:String>
@@ -359,7 +359,7 @@ Všechny nyní prováděné úkony (jako stahování metadat) budou zrušeny.</s
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Zobrazit stav baterie v procentech</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Zobrazit hodiny</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Pouze nainstalováno v Rychlých filtrech</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Popisky tlačítek</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Rozložení</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontální skrolování</sys:String>
 
@@ -688,8 +688,8 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCOpenMetadataFolder">Otevřít složku metadat</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">Klient {0} není nainstalován.</sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">Klient {0} bude nyní otevřen, přihlašte se a pak tuto zprávu zavřete.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Čekám až se uživatel přihlásí, prosím zavřete toto okno, jakmile se tak stane…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Instalační adresář hry nebyl nalezen.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Neplatná konfigurace akcí hry.</sys:String>
 
