@@ -331,6 +331,8 @@ namespace Playnite.Database
                     {
                         item.CopyProperties(loadedItem, true, null, true);
                     }
+
+                    updates.Add(new ItemUpdateEvent<TItem>(oldData, loadedItem));
                 }
             }
 
