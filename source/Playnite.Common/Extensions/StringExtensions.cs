@@ -63,7 +63,6 @@ namespace System
             newName = Regex.Replace(newName, @"\[.*?\]", "");
             newName = Regex.Replace(newName, @"\(.*?\)", "");
             newName = Regex.Replace(newName, @"\s*:\s*", ": ");
-            newName = Regex.Replace(newName, @"\s*-\s*", ": ");
             newName = Regex.Replace(newName, @"\s+", " ");
             if (Regex.IsMatch(newName, @",\s*The$"))
             {
