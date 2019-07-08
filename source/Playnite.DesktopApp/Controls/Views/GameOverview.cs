@@ -274,27 +274,33 @@ namespace Playnite.DesktopApp.Controls.Views
 
             SetItemsControlBinding(ref ItemsGenres, "PART_ItemsGenres",
                 nameof(GameDetailsViewModel.SetGenreFilterCommand),
-                nameof(GamesCollectionViewEntry.Genres));
+                nameof(GamesCollectionViewEntry.Genres),
+                nameof(GameDetailsViewModel.GenreVisibility));
 
             SetItemsControlBinding(ref ItemsDevelopers, "PART_ItemsDevelopers",
                 nameof(GameDetailsViewModel.SetDeveloperFilterCommand),
-                nameof(GamesCollectionViewEntry.Developers));
+                nameof(GamesCollectionViewEntry.Developers),
+                nameof(GameDetailsViewModel.DeveloperVisibility));
 
             SetItemsControlBinding(ref ItemsPublishers, "PART_ItemsPublishers",
                 nameof(GameDetailsViewModel.SetPublisherFilterCommand),
-                nameof(GamesCollectionViewEntry.Publishers));
+                nameof(GamesCollectionViewEntry.Publishers),
+                nameof(GameDetailsViewModel.PublisherVisibility));
 
             SetItemsControlBinding(ref ItemsCategories, "PART_ItemsCategories",
                 nameof(GameDetailsViewModel.SetCategoryFilterCommand),
-                nameof(GamesCollectionViewEntry.Categories));
+                nameof(GamesCollectionViewEntry.Categories),
+                nameof(GameDetailsViewModel.CategoryVisibility));
 
             SetItemsControlBinding(ref ItemsTags, "PART_ItemsTags",
                 nameof(GameDetailsViewModel.SetTagFilterCommand),
-                nameof(GamesCollectionViewEntry.Tags));
+                nameof(GamesCollectionViewEntry.Tags),
+                nameof(GameDetailsViewModel.TagVisibility));
 
             SetItemsControlBinding(ref ItemsLinks, "PART_ItemsLinks",
                 nameof(GameDetailsViewModel.OpenLinkCommand),
                 nameof(GamesCollectionViewEntry.Links),
+                nameof(GameDetailsViewModel.LinkVisibility),
                 nameof(Link.Url));
         }
 
@@ -314,7 +320,7 @@ namespace Playnite.DesktopApp.Controls.Views
             }
         }
 
-        private void SetItemsControlBinding(ref ItemsControl elem, string partId, string command, string listSource, string tooltip = null)
+        private void SetItemsControlBinding(ref ItemsControl elem, string partId, string command, string listSource, string visibility, string tooltip = null)
         {
             elem = Template.FindName(partId, this) as ItemsControl;
             if (elem != null)
@@ -323,6 +329,9 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(elem,
                     ItemsControl.ItemsSourceProperty,
                     GetGameBindingPath(listSource));
+                BindingTools.SetBinding(elem,
+                    TextBlock.VisibilityProperty,
+                    visibility);
             }
         }
 
