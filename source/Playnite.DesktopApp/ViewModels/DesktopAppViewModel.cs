@@ -819,23 +819,9 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void ReportIssue()
+        public static void ReportIssue()
         {
-            try
-            {
-                if (PlayniteSettings.GetAppConfigValue("UpdateBranch") == "beta")
-                {
-                    ProcessStarter.StartUrl(@"https://github.com/JosefNemec/Playnite.Testing/issues/");
-                }
-                else
-                {
-                    ProcessStarter.StartUrl(@"https://github.com/JosefNemec/Playnite/issues/");
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                Logger.Error(e, "Failed to open report issue url.");
-            }
+            CrashHandlerViewModel.ReportIssue();
         }
 
         public void ShutdownApp()

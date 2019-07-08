@@ -279,7 +279,7 @@ namespace Playnite.DesktopApp
         private Icon GetTrayIcon()
         {
             var trayIconImage =
-                ResourceProvider.GetResource(AppSettings.TrayIcon) as BitmapImage ??
+                ResourceProvider.GetResource(AppSettings.TrayIcon.GetDescription()) as BitmapImage ??
                 ResourceProvider.GetResource("TrayIcon") as BitmapImage;
             return new Icon(trayIconImage.UriSource.LocalPath);
         }

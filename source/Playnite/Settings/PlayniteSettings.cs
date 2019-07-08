@@ -34,6 +34,16 @@ namespace Playnite
         Restore
     }
 
+    public enum TrayIconType
+    {
+        [Description("TrayIcon")]
+        Default,
+        [Description("TrayIconWhite")]
+        Bright,
+        [Description("TrayIconBlack")]
+        Dark
+    }
+
     public enum DefaultIconSourceOptions
     {
         [Description("LOCGameProviderTitle")]
@@ -788,8 +798,8 @@ namespace Playnite
             }
         }
 
-        private string trayIcon = "TrayIcon";
-        public string TrayIcon
+        private TrayIconType trayIcon = TrayIconType.Default;
+        public TrayIconType TrayIcon
         {
             get
             {
@@ -1045,6 +1055,8 @@ namespace Playnite
             config.LoggingRules.Add(rule2);
 
             NLog.LogManager.Configuration = config;
+            SDK.LogManager.Init(new NLogLogProvider());
+            logger = SDK.LogManager.GetLogger();
         }
 
         public static string GetAppConfigValue(string key)
@@ -1145,7 +1157,7 @@ namespace Playnite
                     WriteConfig("C2F038E5-8B92-4877-91F1-DA9094155FC5", config);
                 }
             }
-            catch (Exception e)// when (!PlayniteEnvironment.ThrowAllErrors)
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to migrade plugin configuration.");
             }

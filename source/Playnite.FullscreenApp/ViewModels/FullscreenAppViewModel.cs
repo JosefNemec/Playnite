@@ -718,64 +718,64 @@ namespace Playnite.FullscreenApp.ViewModels
                 switch (gameField)
                 {
                     case GameField.PluginId:
-                        OpenSubFilter("Library", nameof(DatabaseFilter.Libraries), nameof(FilterSettings.Library), true);
+                        OpenSubFilter("LOCLibrary", nameof(DatabaseFilter.Libraries), nameof(FilterSettings.Library), true);
                         break;
                     case GameField.Categories:
-                        OpenSubFilter("Categories", nameof(DatabaseFilter.Categories), nameof(FilterSettings.Category), true);
+                        OpenSubFilter("LOCCategoryLabel", nameof(DatabaseFilter.Categories), nameof(FilterSettings.Category), true);
                         break;
                     case GameField.Platform:
-                        OpenSubFilter("Platforms", nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform), true);
+                        OpenSubFilter("LOCPlatformTitle", nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform), true);
                         break;
                     case GameField.CompletionStatus:
-                        OpenSubEnumFilter("Completion Status", typeof(CompletionStatus), nameof(FilterSettings.CompletionStatus));
+                        OpenSubEnumFilter("LOCCompletionStatus", typeof(CompletionStatus), nameof(FilterSettings.CompletionStatus));
                         break;
                     case GameField.ReleaseYear:
-                        OpenSubStringFilter("Release Year", nameof(DatabaseFilter.ReleaseYears), nameof(FilterSettings.ReleaseYear));
+                        OpenSubStringFilter("LOCGameReleaseYearTitle", nameof(DatabaseFilter.ReleaseYears), nameof(FilterSettings.ReleaseYear));
                         break;
                     case GameField.Genres:
-                        OpenSubFilter("Genres", nameof(DatabaseFilter.Genres), nameof(FilterSettings.Genre));
+                        OpenSubFilter("LOCGenreLabel", nameof(DatabaseFilter.Genres), nameof(FilterSettings.Genre));
                         break;
                     case GameField.Developers:
-                        OpenSubFilter("Developers", nameof(DatabaseFilter.Developers), nameof(FilterSettings.Developer));
+                        OpenSubFilter("LOCDeveloperLabel", nameof(DatabaseFilter.Developers), nameof(FilterSettings.Developer));
                         break;
                     case GameField.Publishers:
-                        OpenSubFilter("Publishers", nameof(DatabaseFilter.Publishers), nameof(FilterSettings.Publisher));
+                        OpenSubFilter("LOCPublisherLabel", nameof(DatabaseFilter.Publishers), nameof(FilterSettings.Publisher));
                         break;
                     case GameField.Tags:
-                        OpenSubFilter("Tags", nameof(DatabaseFilter.Tags), nameof(FilterSettings.Tag));
+                        OpenSubFilter("LOCTagLabel", nameof(DatabaseFilter.Tags), nameof(FilterSettings.Tag));
                         break;
                     case GameField.Playtime:
-                        OpenSubEnumFilter("Playtime", typeof(PlaytimeCategory), nameof(FilterSettings.PlayTime));
+                        OpenSubEnumFilter("LOCTimePlayed", typeof(PlaytimeCategory), nameof(FilterSettings.PlayTime));
                         break;
                     case GameField.Series:
-                        OpenSubFilter("Series", nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));
+                        OpenSubFilter("LOCSeriesLabel", nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));
                         break;
                     case GameField.Region:
-                        OpenSubFilter("Region", nameof(DatabaseFilter.Regions), nameof(FilterSettings.Region));
+                        OpenSubFilter("LOCRegionLabel", nameof(DatabaseFilter.Regions), nameof(FilterSettings.Region));
                         break;
                     case GameField.Source:
-                        OpenSubFilter("Source", nameof(DatabaseFilter.Sources), nameof(FilterSettings.Source));
+                        OpenSubFilter("LOCSourceLabel", nameof(DatabaseFilter.Sources), nameof(FilterSettings.Source));
                         break;
                     case GameField.AgeRating:
-                        OpenSubFilter("AgeRating", nameof(DatabaseFilter.AgeRatings), nameof(FilterSettings.AgeRating));
+                        OpenSubFilter("LOCAgeRatingLabel", nameof(DatabaseFilter.AgeRatings), nameof(FilterSettings.AgeRating));
                         break;
                     case GameField.UserScore:
-                        OpenSubEnumFilter("UserScore", typeof(ScoreGroup), nameof(FilterSettings.UserScore));
+                        OpenSubEnumFilter("LOCUserScore", typeof(ScoreGroup), nameof(FilterSettings.UserScore));
                         break;
                     case GameField.CommunityScore:
-                        OpenSubEnumFilter("CommunityScore", typeof(ScoreGroup), nameof(FilterSettings.CommunityScore));
+                        OpenSubEnumFilter("LOCCommunityScore", typeof(ScoreGroup), nameof(FilterSettings.CommunityScore));
                         break;
                     case GameField.CriticScore:
-                        OpenSubEnumFilter("CriticScore", typeof(ScoreGroup), nameof(FilterSettings.CriticScore));
+                        OpenSubEnumFilter("LOCCriticScore", typeof(ScoreGroup), nameof(FilterSettings.CriticScore));
                         break;
                     case GameField.LastActivity:
-                        OpenSubEnumFilter("LastActivity", typeof(PastTimeSegment), nameof(FilterSettings.LastActivity));
+                        OpenSubEnumFilter("LOCGameLastActivityTitle", typeof(PastTimeSegment), nameof(FilterSettings.LastActivity));
                         break;
                     case GameField.Added:
-                        OpenSubEnumFilter("Added", typeof(PastTimeSegment), nameof(FilterSettings.Added));
+                        OpenSubEnumFilter("LOCAddedLabel", typeof(PastTimeSegment), nameof(FilterSettings.Added));
                         break;
                     case GameField.Modified:
-                        OpenSubEnumFilter("Modified", typeof(PastTimeSegment), nameof(FilterSettings.Modified));
+                        OpenSubEnumFilter("LOCModifiedLabel", typeof(PastTimeSegment), nameof(FilterSettings.Modified));
                         break;
                 }
             });
@@ -950,7 +950,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             SubFilterControl = new FilterEnumListSelection(this, isPrimaryFilter)
             {
-                Title = title,
+                Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title,
                 EnumType = enumType
             };
 
@@ -969,7 +969,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             SubFilterControl = new FilterStringListSelection(this, isPrimaryFilter)
             {
-                Title = title
+                Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title
             };
 
             BindingOperations.SetBinding(SubFilterControl, FilterStringListSelection.ItemsListProperty, new Binding()
@@ -993,7 +993,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             SubFilterControl = new FilterDbItemtSelection(this, isPrimaryFilter)
             {
-                Title = title
+                Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title
             };
 
             BindingOperations.SetBinding(SubFilterControl, FilterDbItemtSelection.ItemsListProperty, new Binding()

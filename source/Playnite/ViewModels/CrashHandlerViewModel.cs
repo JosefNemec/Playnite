@@ -86,9 +86,23 @@ namespace Playnite.ViewModels
             window.Close();
         }
 
-        public void ReportIssue()
+        public static void ReportIssue()
         {
-            Process.Start(@"https://github.com/JosefNemec/Playnite/issues");
+            try
+            {
+                if (PlayniteEnvironment.ReleaseChannel == ReleaseChannel.Beta)
+                {
+                    ProcessStarter.StartUrl(UrlConstants.IssuesTestingUrl);
+                }
+                else
+                {
+                    ProcessStarter.StartUrl(UrlConstants.IssuesUrl);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to open report issue url.");
+            }
         }
 
         public void RestartApp()

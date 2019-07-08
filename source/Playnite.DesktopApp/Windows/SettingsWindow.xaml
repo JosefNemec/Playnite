@@ -192,9 +192,10 @@
                                                   Content="{DynamicResource LOCSettingsShowTray}"
                                                   ContentStringFormat="{}{0} *" />
                                         <ComboBox Margin="5,0,0,0"
-                                          ItemsSource="{Binding AvailableTrayIcons}"
-                                          SelectedValue="{Binding Settings.TrayIcon}"
-                                          SelectedValuePath="TrayIcon">
+                                                  ItemsSource="{Binding AvailableTrayIcons}"
+                                                  SelectedValue="{Binding Settings.TrayIcon}"
+                                                  SelectedValuePath="TrayIcon"
+                                                  IsEnabled="{Binding Settings.EnableTray}">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Image RenderOptions.BitmapScalingMode="Fant"

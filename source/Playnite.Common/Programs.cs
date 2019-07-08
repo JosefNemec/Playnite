@@ -15,44 +15,6 @@ using Windows.Management.Deployment;
 
 namespace Playnite.Common
 {
-    //public enum ExecutableType : int
-    //{
-    //    Native = 0,
-    //    Script = 1,
-    //    Html = 2
-    //}
-
-    //public class Executable
-    //{
-    //    public string Path { get; set; }
-    //    public ExecutableType Type { get; set; }
-
-    //    public Executable(string path)
-    //    {
-    //        var info = new FileInfo(path);
-    //        Path = path;
-    //        switch (info.Extension)
-    //        {
-    //            case var ext when ".exe".Equals(ext, StringComparison.OrdinalIgnoreCase):
-    //                Type = ExecutableType.Native;
-    //                break;
-
-    //            case var ext when ".html".Equals(ext, StringComparison.OrdinalIgnoreCase):
-    //                Type = ExecutableType.Html;
-    //                break;
-
-    //            case var ext when Regex.IsMatch(ext, @"\.(bat|cmd)", RegexOptions.IgnoreCase):
-    //                Type = ExecutableType.Script;
-    //                break;
-    //        }
-    //    }
-
-    //    public override string ToString()
-    //    {
-    //        return Path;
-    //    }
-    //}
-
     public class Program
     {
         public string Path { get; set; }
@@ -347,12 +309,16 @@ namespace Playnite.Common
                     var name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Properties']/*[local-name() = 'DisplayName']").InnerText;
                     if (name.StartsWith("ms-resource"))
                     {
-                        name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Identity']").Attributes["Name"].Value;
+                        name = Resources.GetIndirectResourceString(package.Id.FullName, package.Id.Name, name);
+                        if (name.IsNullOrEmpty())
+                        {
+                            name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Identity']").Attributes["Name"].Value;
+                        }
                     }
 
                     var app = new Program()
                     {
-                        Name = name,
+                        Name = StringExtensions.NormalizeGameName(name),
                         WorkDir = package.InstalledLocation.Path,
                         Path = "explorer.exe",
                         Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",

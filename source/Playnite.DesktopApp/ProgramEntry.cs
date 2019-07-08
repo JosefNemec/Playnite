@@ -18,7 +18,6 @@ namespace Playnite.DesktopApp
             var splash = new SplashScreen("SplashScreen.png");
             splash.Show(false);
             PlayniteSettings.ConfigureLogger();
-            LogManager.Init(new NLogLogProvider());
             var app = new DesktopApplication(new App(), splash);
             app.Run();
         }
