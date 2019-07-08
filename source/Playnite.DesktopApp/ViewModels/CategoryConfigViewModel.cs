@@ -263,7 +263,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private ObservableCollection<SelectableItem<Category>> GetAllCategories()
         {
-            return database.Categories.Select(a => new SelectableItem<Category>(a)).ToObservable();
+            return database.Categories.Select(a => new SelectableItem<Category>(a)).OrderBy(a => a.Item.Name).ToObservable();
         }
     }
 }
