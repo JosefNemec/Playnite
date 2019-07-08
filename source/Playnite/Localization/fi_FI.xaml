@@ -234,7 +234,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCMenuAddGameManual">Manuaalisesti…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Etsi automaattisesti…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuloitu peli…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store -peli…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Tietoja Playnitesta</sys:String>
     <sys:String x:Key="LOCMenuIssues">Lähetä palautetta</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Käynnistä kokoruudulla</sys:String>
