@@ -23,10 +23,12 @@
         <Image x:Name="StagingImage"
                HorizontalAlignment="{Binding ElementName=ControlRoot, Path=HorizontalAlignment}"
                VerticalAlignment="{Binding ElementName=ControlRoot, Path=VerticalAlignment}"
-               RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+               RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}" />
         <Image x:Name="MainImage"
                HorizontalAlignment="{Binding ElementName=ControlRoot, Path=HorizontalAlignment}"
                VerticalAlignment="{Binding ElementName=ControlRoot, Path=VerticalAlignment}"
-               RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+               RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}" />
     </Grid>
 </UserControl>

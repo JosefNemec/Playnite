@@ -46,6 +46,16 @@ namespace Playnite.Controls
             set { SetValue(SourceProperty, value); }
         }
 
+        public static readonly DependencyProperty ImageOpacityMaskProperty =
+                DependencyProperty.Register(nameof(ImageOpacityMask), typeof(Brush), typeof(FadeImage),
+            new PropertyMetadata());
+
+        public Brush ImageOpacityMask
+        {
+            get { return (Brush)GetValue(ImageOpacityMaskProperty); }
+            set { SetValue(ImageOpacityMaskProperty, value); }
+        }
+
         private static void SourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (FadeImage)obj;

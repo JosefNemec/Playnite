@@ -18,14 +18,14 @@
                         <Grid>
                             <pctrlsShared:FadeImage x:Name="PART_ImageBackground" Stretch="Uniform"
                                                     HorizontalAlignment="Center" VerticalAlignment="Top">
-                                <pctrlsShared:FadeImage.OpacityMask>
+                                <pctrlsShared:FadeImage.ImageOpacityMask>
                                     <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0" RadiusX="2" RadiusY="0.9">
                                         <RadialGradientBrush.GradientStops>
-                                            <GradientStop Color="Black" Offset="0" />
-                                            <GradientStop Color="Transparent" Offset="0.9" />
+                                            <GradientStop Color="Black" Offset="0.3" />
+                                            <GradientStop Color="Transparent" Offset="1" />
                                         </RadialGradientBrush.GradientStops>
                                     </RadialGradientBrush>
-                                </pctrlsShared:FadeImage.OpacityMask>
+                                </pctrlsShared:FadeImage.ImageOpacityMask>
                             </pctrlsShared:FadeImage>
 
                             <Grid HorizontalAlignment="Stretch">
