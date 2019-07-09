@@ -383,7 +383,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> ShutdownSystemCommand { get; private set; }
         public RelayCommand<object> RestartSystemCommand { get; private set; }
         public RelayCommand<object> HibernateSystemCommand { get; private set; }
-        public RelayCommand<object> OpenPatreonCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> OpenAdditionalFiltersCommand { get; private set; }
         public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }        
@@ -706,11 +705,6 @@ namespace Playnite.FullscreenApp.ViewModels
                 {
                     Computer.Restart();
                 }
-            });
-
-            OpenPatreonCommand = new RelayCommand<object>((a) =>
-            {
-                ProcessStarter.StartUrl(@"https://www.patreon.com/playnite");
             });
 
             LoadSubFilterCommand = new RelayCommand<GameField>((gameField) =>

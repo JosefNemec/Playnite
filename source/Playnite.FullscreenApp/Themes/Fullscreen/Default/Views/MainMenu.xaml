@@ -53,9 +53,13 @@
 
                             <Canvas Height="75" />
 
-                            <!--<pctrls:ButtonEx x:Name="PART_ButtonPatreon"
+                            <pctrls:ButtonEx x:Name="PART_ButtoFeedback"
                                     Style="{DynamicResource ButtonMainMenu}"
-                                    Content="{DynamicResource LOCMenuPatreonSupport}" />-->
+                                    Content="{DynamicResource LOCMenuIssues}" />
+
+                            <pctrls:ButtonEx x:Name="PART_ButtonPatreon"
+                                    Style="{DynamicResource ButtonMainMenu}"
+                                    Content="{DynamicResource LOCMenuPatreonSupport}" />
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>

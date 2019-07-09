@@ -21,6 +21,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonSettings", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonExitPlaynite", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonSwitchToDesktop", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ButtoFeedback", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonPatreon", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonRestartSystem", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonShutdownSystem", Type = typeof(ButtonBase))]
@@ -33,6 +34,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private ButtonBase ButtonExitPlaynite;
         private ButtonBase ButtonSwitchToDesktop;
         private ButtonBase ButtonPatreon;
+        private ButtonBase ButtoFeedback;
         private ButtonBase ButtonRestartSystem;
         private ButtonBase ButtonShutdownSystem;
         private ButtonBase ButtonHibernateSystem;
@@ -100,7 +102,22 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ButtonPatreon = Template.FindName("PART_ButtonPatreon", this) as ButtonBase;
                 if (ButtonPatreon != null)
                 {
-                    ButtonPatreon.Command = mainModel.OpenPatreonCommand;
+                    ButtonPatreon.Command = new NavigateUrlCommand();
+                    ButtonPatreon.CommandParameter = UrlConstants.Patreon;
+                }
+
+                ButtoFeedback = Template.FindName("PART_ButtoFeedback", this) as ButtonBase;
+                if (ButtoFeedback != null)
+                {
+                    ButtoFeedback.Command = new NavigateUrlCommand();
+                    if (PlayniteEnvironment.ReleaseChannel == ReleaseChannel.Beta)
+                    {
+                        ButtoFeedback.CommandParameter = UrlConstants.IssuesTesting;
+                    }
+                    else
+                    {
+                        ButtoFeedback.CommandParameter = UrlConstants.Issues;
+                    }
                 }
 
                 ButtonRestartSystem = Template.FindName("PART_ButtonRestartSystem", this) as ButtonBase;

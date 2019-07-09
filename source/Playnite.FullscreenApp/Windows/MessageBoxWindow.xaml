@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+        xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
         mc:Ignorable="d"
         x:Name="WindowMessageBox"                     
         Title="{Binding Caption, ElementName=WindowMessageBox}"
@@ -37,7 +38,8 @@
                                Style="{StaticResource TextBlockBaseStyle}"                               
                                FontFamily="{StaticResource FontTitilliumWebBold}"
                                FontSize="26" Margin="0,0,0,15"
-                               HorizontalAlignment="Left" TextAlignment="Left" />
+                               HorizontalAlignment="Left" TextAlignment="Left"
+                               Visibility="{Binding Caption, ElementName=WindowMessageBox, Converter={pcon:StringNullOrEmptyToVisibilityConverter}}"/>
                     <TextBlock Text="{Binding Text, ElementName=WindowMessageBox}"
                                Style="{StaticResource TextBlockBaseStyle}"
                                MaxWidth="900" TextWrapping="Wrap"/>

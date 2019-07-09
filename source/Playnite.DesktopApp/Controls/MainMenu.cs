@@ -162,22 +162,28 @@ namespace Playnite.DesktopApp.Controls
             // FullScreen
             Items.Add(new Separator());
             AddMenuChild(Items, "LOCMenuOpenFullscreen", mainModel.OpenFullScreenCommand, null, ResourceProvider.GetResource("FullscreenModeIcon"));
+            Items.Add(new Separator());            
+
+            // Links
+            var linksItem = AddMenuChild(Items, "LOCMenuLinksTitle", null);            
+            AddMenuChild(linksItem.Items, "Discord", GlobalCommands.NavigateUrlCommand, UrlConstants.Discord, "Images/discord.png");
+            AddMenuChild(linksItem.Items, "Twitter", GlobalCommands.NavigateUrlCommand, UrlConstants.Twitter, "Images/twitter.png");
+            AddMenuChild(linksItem.Items, "Reddit", GlobalCommands.NavigateUrlCommand, UrlConstants.Reddit, "Images/reddit.png");            
+
+            // Help
+            var helpItem = AddMenuChild(Items, "LOCMenuHelpTitle", null);            
+            AddMenuChild(helpItem.Items, "Wiki / FAQ", GlobalCommands.NavigateUrlCommand, UrlConstants.Wiki);
+            AddMenuChild(helpItem.Items, "LOCMenuIssues", mainModel.ReportIssueCommand);
+            AddMenuChild(helpItem.Items, "LOCSDKDocumentation", GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
+            
+            // Patreon
+            AddMenuChild(Items, "LOCMenuPatreonSupport", GlobalCommands.NavigateUrlCommand, UrlConstants.Patreon, "Images/patreon.png");
+
             Items.Add(new Separator());
 
             // About
             AddMenuChild(Items, "LOCMenuAbout", mainModel.OpenAboutCommand, null, ResourceProvider.GetResource("AboutPlayniteIcon"));
 
-            // Links
-            var linksItem = AddMenuChild(Items, "LOCMenuLinksTitle", null);
-            AddMenuChild(linksItem.Items, "Patreon", GlobalCommands.NavigateUrlCommand, @"https://www.patreon.com/playnite", "Images/patreon.png");
-            AddMenuChild(linksItem.Items, "Discord", GlobalCommands.NavigateUrlCommand, @"https://discord.gg/hSFvmN6", "Images/discord.png");
-            AddMenuChild(linksItem.Items, "Twitter", GlobalCommands.NavigateUrlCommand, @"https://twitter.com/AppPlaynite", "Images/twitter.png");
-            AddMenuChild(linksItem.Items, "Reddit", GlobalCommands.NavigateUrlCommand, @"https://www.reddit.com/r/playnite/", "Images/reddit.png");
-            linksItem.Items.Add(new Separator());
-            AddMenuChild(linksItem.Items, "LOCSDKDocumentation", GlobalCommands.NavigateUrlCommand, @"https://playnite.link/docs/", "Images/MenuIcons/script.png");
-
-            // Feedback
-            AddMenuChild(Items, "LOCMenuIssues", mainModel.ReportIssueCommand);
 
             // Check for update
             AddMenuChild(Items, "LOCCheckForUpdates", mainModel.CheckForUpdateCommand);

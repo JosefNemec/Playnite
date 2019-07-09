@@ -8,7 +8,13 @@ namespace Playnite
 {
     public static class UrlConstants
     {
-        public const string IssuesTestingUrl = @"https://github.com/JosefNemec/Playnite.Testing/issues/";
-        public const string IssuesUrl = @"https://github.com/JosefNemec/Playnite/issues";
+        public const string IssuesTesting = @"https://github.com/JosefNemec/Playnite.Testing/issues/new";
+        public const string Issues = @"https://github.com/JosefNemec/Playnite/issues/new";
+        public const string Patreon = @"https://www.patreon.com/playnite";
+        public const string Discord = @"https://discord.gg/hSFvmN6";
+        public const string Twitter = @"https://twitter.com/AppPlaynite";
+        public const string Reddit = @"https://www.reddit.com/r/playnite/";
+        public const string SdkDocs = @"https://playnite.link/docs/";
+        public const string Wiki = @"https://github.com/JosefNemec/Playnite/wiki";
     }
 }

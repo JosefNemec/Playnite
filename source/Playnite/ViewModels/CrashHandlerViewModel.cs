@@ -92,11 +92,11 @@ namespace Playnite.ViewModels
             {
                 if (PlayniteEnvironment.ReleaseChannel == ReleaseChannel.Beta)
                 {
-                    ProcessStarter.StartUrl(UrlConstants.IssuesTestingUrl);
+                    ProcessStarter.StartUrl(UrlConstants.IssuesTesting);
                 }
                 else
                 {
-                    ProcessStarter.StartUrl(UrlConstants.IssuesUrl);
+                    ProcessStarter.StartUrl(UrlConstants.Issues);
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

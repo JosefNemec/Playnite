@@ -240,6 +240,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullscreen Mode</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Help</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Support on Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restart System</sys:String>
@@ -708,6 +709,10 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCPLaytime100to500">100 to 500 hours</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 to 1000 hours</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">You are about to leave Playnite and navigate to following web page using your default web browser. Do you want to continue?
+    
+{0}</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
