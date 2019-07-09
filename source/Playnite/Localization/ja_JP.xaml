@@ -235,6 +235,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCMenuIssues">フィードバックを送信</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">フルスクリーンモードに切り替え</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">関連リンク</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK ドキュメンテーション</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
@@ -700,6 +701,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCPLaytime100to500">100～500時間</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500～1000時間</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000時間以上</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.ioクライアントが開きます。サインインしてからこのメッセージを閉じてください。</sys:String>
