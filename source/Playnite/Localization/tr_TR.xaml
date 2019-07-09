@@ -240,6 +240,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCMenuIssues">Geri Bildirim</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Tam Ekran Modunu Başlat</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Bağlantılar</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Patreon'da Destekle</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Dökümantasyonu</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Sistemi Yeniden Başlat</sys:String>
@@ -709,6 +710,8 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCPLaytime100to500">100-500 saat</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500-1000 saat</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000 saatten fazla</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io istemcisi şimdi açılacak. Lütfen oturum açın ve ardından bu mesajı kapatın.</sys:String>
