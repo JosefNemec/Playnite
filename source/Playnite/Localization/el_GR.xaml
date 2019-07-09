@@ -294,6 +294,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Προφίλ θέματος</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Θέμα πλήρους οθόνης</sys:String>
