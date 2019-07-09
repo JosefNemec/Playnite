@@ -11,6 +11,7 @@
     <Color x:Key="GlyphColor">#FFEC6200</Color>
     <Color x:Key="GlyphLightColor">#FFFFAA00</Color>
     <Color x:Key="SelectionLightColor">#FF8D919D</Color>
+    <Color x:Key="OverlayColor">#BB000000</Color>
     
     <Color x:Key="ControlBackgroundColor">#FF2B354D</Color>
     <Color x:Key="ControlBackgroundColorDark">#FF121830</Color>
@@ -23,8 +24,7 @@
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{DynamicResource ControlBackgroundColor}" />
     <SolidColorBrush x:Key="ControlBackgroundDarkBrush" Color="{DynamicResource ControlBackgroundColorDark}" />
     <SolidColorBrush x:Key="SelectionLightBrush" Color="{DynamicResource SelectionLightColor}" />
-
-    <SolidColorBrush x:Key="OverlayBackgroundBrush" Color="#DD000000" />
+    <SolidColorBrush x:Key="OverlayBrush" Color="{DynamicResource OverlayColor}" />
     
     <sys:Double x:Key="FontSize">22</sys:Double>
 

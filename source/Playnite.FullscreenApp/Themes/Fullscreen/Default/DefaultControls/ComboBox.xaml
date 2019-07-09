@@ -54,7 +54,7 @@
                                   MinWidth="{TemplateBinding ActualWidth}"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                                 <Border BorderBrush="{DynamicResource SelectionLightBrush}"                                        
-                                        Background="{DynamicResource ControlBackgroundBrush}"
+                                        Background="{DynamicResource ControlBackgroundDarkBrush}"
                                         BorderThickness="2">
                                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                                   VerticalScrollBarVisibility="Auto">
@@ -117,12 +117,12 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundDarkBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
                             <Setter Property="Foreground" Value="Black" />
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundDarkBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
                             <Setter Property="Foreground" Value="Black" />
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus" />
                         </Trigger>

@@ -12,7 +12,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:GameMenu}">
                     <Grid x:Name="PART_MenuHost"
-                          Background="{DynamicResource OverlayBackgroundBrush}"
+                          Background="{DynamicResource OverlayBrush}"
                           KeyboardNavigation.TabNavigation="Cycle"
                           KeyboardNavigation.DirectionalNavigation="Cycle">
 
@@ -26,12 +26,12 @@
                                     <TextBlock Text="{Binding Game.DisplayName}"
                                                Background="#AA000000"
                                                Style="{DynamicResource TextBlockBaseStyle}"
-                                               Padding="15,5,15,5" TextWrapping="Wrap"
+                                               Padding="15,15,15,15" TextWrapping="Wrap"
                                                HorizontalAlignment="Stretch"
                                                VerticalAlignment="Bottom">
                                     </TextBlock>
                                 </Grid>                                
-                                <pctrls:ItemsControlEx x:Name="PART_ItemsHost">
+                                <pctrls:ItemsControlEx x:Name="PART_ItemsHost" Focusable="False">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <pctrls:ButtonEx Content="{Binding Title}"

@@ -11,113 +11,118 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:SettingsMenu}">
-                    <Grid x:Name="PART_MenuHost" Background="#AA000000"
-                          KeyboardNavigation.TabNavigation="Cycle"
-                          
-                          KeyboardNavigation.DirectionalNavigation="Cycle">
-                        <StackPanel Background="{DynamicResource OverlayMenuBackgroundBrush}" Margin="0,0,200,0"
-                                    HorizontalAlignment="Right" VerticalAlignment="Stretch"
-                                    MinWidth="440">
-                            <StackPanel.Resources>
-                                <Thickness x:Key="ItemMargin">10,3,10,3</Thickness>
-                            </StackPanel.Resources>
+                    <DockPanel Margin="0,0,200,0" MinWidth="440" Background="{DynamicResource OverlayMenuBackgroundBrush}"
+                               HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                        <DockPanel.Resources>
+                            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
+                        </DockPanel.Resources>
 
-                            <TextBlock Text="{DynamicResource LOCSettingsLabel}"
-                                        Style="{DynamicResource TextBlockBaseStyle}"
-                                        FontFamily="{DynamicResource FontTitilliumWebBold}"
-                                        HorizontalAlignment="Right" Margin="30,30,60,30"
-                                        FontSize="36" />
+                        <TextBlock Text="{DynamicResource LOCSettingsLabel}"
+                                    Style="{DynamicResource TextBlockBaseStyle}"
+                                    FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                    HorizontalAlignment="Right" Margin="30,30,60,30"
+                                    FontSize="36" DockPanel.Dock="Top" />
+                                
+                        <TextBlock DockPanel.Dock="Top" 
+                                    Style="{DynamicResource TextBlockBaseStyle}"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Text="{DynamicResource LOCSettingsRestartNotification}" />
 
-                            <TextBlock Text="{DynamicResource LOCSettingsTargetMonitor}"
-                                       Margin="{StaticResource ItemMargin}"
-                                       Style="{DynamicResource TextBlockBaseStyle}" />
-                            <pctrls:ComboBoxEx x:Name="PART_SelectMonitor"
-                                       Margin="{StaticResource ItemMargin}" />
+                        <ScrollViewer DockPanel.Dock="Top"
+                                        x:Name="PART_MenuHost" 
+                                        KeyboardNavigation.TabNavigation="Cycle"                          
+                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                        Focusable="False" CanContentScroll="True"
+                                        HorizontalScrollBarVisibility="Disabled"
+                                        VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource LOCSettingsTargetMonitor}"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{DynamicResource TextBlockBaseStyle}" />
+                                <pctrls:ComboBoxEx x:Name="PART_SelectMonitor"
+                                    Margin="{StaticResource ItemMargin}" />
 
-                            <ContentControl Content="{DynamicResource LOCSettingsSkin}"
-                                       ContentStringFormat="{}{0} *" Focusable="False"
-                                       Margin="{StaticResource ItemMargin}"
-                                       Foreground="{DynamicResource TextBrush}"
-                                       FontSize="{DynamicResource FontSize}"
-                                       FontFamily="{DynamicResource FontTitilliumWebLight}"/>
-                            <pctrls:ComboBoxEx x:Name="PART_SelectTheme"
-                                       Margin="{StaticResource ItemMargin}" />
+                                <ContentControl Content="{DynamicResource LOCSettingsSkin}"
+                                    ContentStringFormat="{}{0} *" Focusable="False"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Foreground="{DynamicResource TextBrush}"
+                                    FontSize="{DynamicResource FontSize}"
+                                    FontFamily="{DynamicResource FontTitilliumWebLight}"/>
+                                <pctrls:ComboBoxEx x:Name="PART_SelectTheme"
+                                    Margin="{StaticResource ItemMargin}" />
 
-                            <pctrls:CheckBoxEx x:Name="PART_ToggleGameTitles"
-                                       Margin="{StaticResource ItemMargin}"
-                                      Style="{DynamicResource CheckBoxSettings}"
-                                      Content="{DynamicResource LOCSettingsFullscreenShowGameTitles}"  />
+                                <TextBlock Text="{DynamicResource LOCSettingsFullscreenLayout}"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{DynamicResource TextBlockBaseStyle}"/>
 
-                            <pctrls:CheckBoxEx x:Name="PART_ToggleBattery"
-                                       Margin="{StaticResource ItemMargin}"
-                                      Style="{DynamicResource CheckBoxSettings}"
-                                      Content="{DynamicResource LOCSettingsShowBatteryStatus}"  />
+                                <pctrls:CheckBoxEx x:Name="PART_ToggleHorizontalLayout"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{DynamicResource CheckBoxSettings}"
+                                    Content="{DynamicResource LOCSettingsFullscreenHorizontalScrolling}" />
 
-                            <pctrls:CheckBoxEx x:Name="PART_ToggleBatteryPercentage"
-                                       Margin="{StaticResource ItemMargin}"
-                                      Style="{StaticResource CheckBoxSettings}"
-                                      Content="{DynamicResource LOCSettingsShowBatteryPercentage}"  />
+                                <StackPanel Orientation="Horizontal"
+                                    Margin="{StaticResource ItemMargin}">
+                                    <TextBlock Text="{DynamicResource LOCColumns}" Margin="0,0,5,0"
+                                        Style="{DynamicResource TextBlockBaseStyle}"/>
+                                    <TextBlock Text="{Binding Value, ElementName=PART_SliderColumns}"
+                                        Style="{DynamicResource TextBlockBaseStyle}"/>
+                                </StackPanel>
+                                <pctrls:SliderEx x:Name="PART_SliderColumns"
+                                    Margin="{StaticResource ItemMargin}" />
 
-                            <pctrls:CheckBoxEx x:Name="PART_ToggleClock"
-                                       Margin="{StaticResource ItemMargin}"
-                                      Style="{DynamicResource CheckBoxSettings}"
-                                      Content="{DynamicResource LOCSettingsShowClock}"  />
+                                <StackPanel Orientation="Horizontal"
+                                    Margin="{StaticResource ItemMargin}">
+                                    <TextBlock Text="{DynamicResource LOCRows}" Margin="0,0,5,0"
+                                        Style="{DynamicResource TextBlockBaseStyle}"/>
+                                    <TextBlock Text="{Binding Value, ElementName=PART_SliderRows}"
+                                        Style="{DynamicResource TextBlockBaseStyle}"/>
+                                </StackPanel>
+                                <pctrls:SliderEx x:Name="PART_SliderRows"
+                                    Margin="{StaticResource ItemMargin}" />
 
-                            <pctrls:CheckBoxEx x:Name="PART_ToggleInstalledInQFilter"
-                                       Margin="{StaticResource ItemMargin}"
-                                      Style="{DynamicResource CheckBoxSettings}"
-                                      Content="{DynamicResource LOCSettingsFullscreenQuickFilterInstalled}"  />
+                                <StackPanel Orientation="Horizontal"
+                                    Margin="{StaticResource ItemMargin}">
+                                    <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}" Margin="0,0,5,0"
+                                        Style="{DynamicResource TextBlockBaseStyle}"/>
+                                    <TextBlock Text="{Binding Value, ElementName=PART_SliderItemSpacing}"
+                                        Style="{DynamicResource TextBlockBaseStyle}"/>
+                                </StackPanel>
+                                <pctrls:SliderEx x:Name="PART_SliderItemSpacing"
+                                    Margin="{StaticResource ItemMargin}" />
 
-                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenButtonPrompts}"
-                                       Margin="{StaticResource ItemMargin}"
-                                       Style="{DynamicResource TextBlockBaseStyle}" />
-                            <pctrls:ComboBoxEx x:Name="PART_SelectButtonPrompts"
-                                       Margin="{StaticResource ItemMargin}" />
+                                <pctrls:CheckBoxEx x:Name="PART_ToggleGameTitles"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{DynamicResource CheckBoxSettings}"
+                                    Content="{DynamicResource LOCSettingsFullscreenShowGameTitles}"  />
 
-                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenLayout}"
-                                       Margin="{StaticResource ItemMargin}"
-                                       Style="{DynamicResource TextBlockBaseStyle}"/>
+                                <pctrls:CheckBoxEx x:Name="PART_ToggleBattery"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{DynamicResource CheckBoxSettings}"
+                                    Content="{DynamicResource LOCSettingsShowBatteryStatus}"  />
 
-                            <pctrls:CheckBoxEx x:Name="PART_ToggleHorizontalLayout"
-                                       Margin="{StaticResource ItemMargin}"
-                                      Style="{DynamicResource CheckBoxSettings}"
-                                      Content="{DynamicResource LOCSettingsFullscreenHorizontalScrolling}" />
+                                <pctrls:CheckBoxEx x:Name="PART_ToggleBatteryPercentage"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{StaticResource CheckBoxSettings}"
+                                    Content="{DynamicResource LOCSettingsShowBatteryPercentage}"  />
 
-                            <StackPanel Orientation="Horizontal"
-                                       Margin="{StaticResource ItemMargin}">
-                                <TextBlock Text="{DynamicResource LOCColumns}" Margin="0,0,5,0"
-                                           Style="{DynamicResource TextBlockBaseStyle}"/>
-                                <TextBlock Text="{Binding Value, ElementName=PART_SliderColumns}"
-                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+                                <pctrls:CheckBoxEx x:Name="PART_ToggleClock"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{DynamicResource CheckBoxSettings}"
+                                    Content="{DynamicResource LOCSettingsShowClock}"  />
+
+                                <pctrls:CheckBoxEx x:Name="PART_ToggleInstalledInQFilter"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{DynamicResource CheckBoxSettings}"
+                                    Content="{DynamicResource LOCSettingsFullscreenQuickFilterInstalled}"  />
+
+                                <TextBlock Text="{DynamicResource LOCSettingsFullscreenButtonPrompts}"
+                                    Margin="{StaticResource ItemMargin}"
+                                    Style="{DynamicResource TextBlockBaseStyle}" />
+                                <pctrls:ComboBoxEx x:Name="PART_SelectButtonPrompts"
+                                    Margin="{StaticResource ItemMargin}" />                                    
                             </StackPanel>
-                            <pctrls:SliderEx x:Name="PART_SliderColumns"
-                                       Margin="{StaticResource ItemMargin}" />
-
-                            <StackPanel Orientation="Horizontal"
-                                       Margin="{StaticResource ItemMargin}">
-                                <TextBlock Text="{DynamicResource LOCRows}" Margin="0,0,5,0"
-                                           Style="{DynamicResource TextBlockBaseStyle}"/>
-                                <TextBlock Text="{Binding Value, ElementName=PART_SliderRows}"
-                                           Style="{DynamicResource TextBlockBaseStyle}"/>
-                            </StackPanel>
-                            <pctrls:SliderEx x:Name="PART_SliderRows"
-                                       Margin="{StaticResource ItemMargin}" />
-                            
-                            <StackPanel Orientation="Horizontal"
-                                       Margin="{StaticResource ItemMargin}">
-                                <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}" Margin="0,0,5,0"
-                                           Style="{DynamicResource TextBlockBaseStyle}"/>
-                                <TextBlock Text="{Binding Value, ElementName=PART_SliderItemSpacing}"
-                                           Style="{DynamicResource TextBlockBaseStyle}"/>
-                            </StackPanel>
-                            <pctrls:SliderEx x:Name="PART_SliderItemSpacing"
-                                       Margin="{StaticResource ItemMargin}" />                            
-
-                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                       Margin="{StaticResource ItemMargin}"
-                                       Text="{DynamicResource LOCSettingsRestartNotification}" />
-                        </StackPanel>
-                    </Grid>
+                        </ScrollViewer>
+                    </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

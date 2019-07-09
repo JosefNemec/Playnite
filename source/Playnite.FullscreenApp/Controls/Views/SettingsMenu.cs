@@ -81,6 +81,10 @@ namespace Playnite.FullscreenApp.Controls.Views
                     MenuHost.InputBindings.Add(new KeyBinding(mainModel.ToggleSettingsMenuCommand, new KeyGesture(Key.Back)));
                     MenuHost.InputBindings.Add(new KeyBinding(mainModel.ToggleSettingsMenuCommand, new KeyGesture(Key.Escape)));
                     MenuHost.InputBindings.Add(new XInputBinding(mainModel.ToggleSettingsMenuCommand, XInputButton.B));
+                    BindingTools.SetBinding(MenuHost,
+                         FocusBahaviors.FocusBindingProperty,
+                         mainModel,
+                         nameof(mainModel.SettingsMenuVisible));
                 }
 
                 SelectMonitor = Template.FindName("PART_SelectMonitor", this) as Selector;
@@ -95,10 +99,6 @@ namespace Playnite.FullscreenApp.Controls.Views
                         nameof(FullscreenSettings.Monitor),
                         BindingMode.TwoWay,
                         UpdateSourceTrigger.PropertyChanged);
-                    BindingTools.SetBinding(SelectMonitor,
-                         FocusBahaviors.FocusBindingProperty,
-                         mainModel,
-                         nameof(mainModel.SettingsMenuVisible));
                 }
 
                 SelectTeme = Template.FindName("PART_SelectTheme", this) as Selector;

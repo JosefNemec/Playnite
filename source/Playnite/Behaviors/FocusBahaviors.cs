@@ -49,17 +49,38 @@ namespace Playnite.Behaviors
                 }
                 else
                 {
-                    foreach (var child in ElementTreeHelper.FindVisualChildren<FrameworkElement>(control))
+                    if (!control.IsLoaded)
                     {
-                        if (child.Focusable && child.IsVisible)
+                        control.Loaded += Control_Loaded;
+                    }
+                    else
+                    {
+                        foreach (var child in ElementTreeHelper.FindVisualChildren<FrameworkElement>(control))
                         {
-                            child.Focus();
-                            return;
+                            if (child.Focusable && child.IsVisible)
+                            {
+                                child.Focus();
+                                return;
+                            }
                         }
                     }
                 }
             }
-        }        
+        }
+
+        private static void Control_Loaded(object sender, RoutedEventArgs e)
+        {
+            var elem = (FrameworkElement)sender;
+            elem.Loaded -= Control_Loaded;
+            foreach (var child in ElementTreeHelper.FindVisualChildren<FrameworkElement>(elem))
+            {
+                if (child.Focusable)
+                {
+                    child.Focus();
+                    return;
+                }
+            }
+        }
 
         private static readonly DependencyProperty OnVisibilityFocusProperty =
             DependencyProperty.RegisterAttached(

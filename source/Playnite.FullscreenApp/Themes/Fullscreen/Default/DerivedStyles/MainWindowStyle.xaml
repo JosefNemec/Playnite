@@ -54,7 +54,7 @@
                     <AdornerDecorator>
                         <Grid Background="{TemplateBinding Background}">
                             <ContentPresenter />
-                            <Border Background="#AA000000"
+                            <Border Background="{DynamicResource OverlayBrush}"
                                     x:Name="BorderDim" Visibility="Collapsed" />
                         </Grid>
                     </AdornerDecorator>

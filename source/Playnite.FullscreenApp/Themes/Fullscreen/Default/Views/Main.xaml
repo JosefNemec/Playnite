@@ -149,6 +149,21 @@
                                 </pctrls:ListBoxEx>
                             </DockPanel>
 
+                            <TextBlock Grid.Row="1" FontSize="40"
+                                       Text="{DynamicResource LOCNoGamesFound}"
+                                       TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Items.Count, ElementName=PART_ListGameItems}" Value="0">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
                             <Grid Grid.Row="2" Background="{DynamicResource TopBarBackgroundBrush}"
                               Height="100">
                                 <Grid.ColumnDefinitions>
@@ -270,6 +285,9 @@
                                 </StackPanel>
                             </Grid>
                         </Grid>
+
+                        <Border Background="{DynamicResource OverlayBrush}"
+                                Visibility="{Binding MainMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <views:GameDetails x:Name="PART_ElemGameDetails" Grid.RowSpan="3"
                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
