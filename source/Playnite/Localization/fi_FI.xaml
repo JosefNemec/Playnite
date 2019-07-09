@@ -239,6 +239,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCMenuIssues">Lähetä palautetta</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Käynnistä kokoruudulla</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Linkit</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Tue Patreonissa</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK dokumentointi</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Uudelleenkäynnistä järjestelmä</sys:String>
@@ -706,6 +707,8 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCPLaytime100to500">100-500 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500-1000 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io sovellus avautuu nyt. Kirjaudu sisään ja sulje sen jälkeen tämä viesti.</sys:String>
