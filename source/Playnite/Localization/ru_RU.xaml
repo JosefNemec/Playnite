@@ -239,6 +239,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuIssues">Отправить отзыв</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Запустить полноэкранный режим</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Связи</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Поддержать нас в patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Документация</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Перезагрузка</sys:String>
@@ -709,6 +710,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPLaytime100to500">От 100 до 500 часов</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">От 500 до 1000 часов</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">теперь откроется клиент itch.io. Пожалуйста, войдите в систему и закройте это сообщение.</sys:String>
