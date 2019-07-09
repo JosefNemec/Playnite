@@ -292,6 +292,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Išjungti DPI mastelio keitimą</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Rodyti Steam draugų mygtuką</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Rodyti fono paveikslėlį</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Temos profilis</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Viso ekrano rėžimo tema</sys:String>
