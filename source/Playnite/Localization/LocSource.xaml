@@ -299,7 +299,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disable DPI Scaling</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Show Steam friends button</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Show background image</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Strech over the whole application window</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Stretch over the whole application window</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Theme Profile</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Fullscreen Theme</sys:String>
