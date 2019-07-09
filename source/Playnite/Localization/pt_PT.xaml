@@ -235,6 +235,7 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCMenuIssues">Enviar Opinião</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Iniciar modo Tela Cheia</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Suporte no Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentação SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar o sistema</sys:String>
@@ -685,6 +686,8 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCPLaytime100to500">100 a 500 horas</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
