@@ -299,6 +299,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI Ölçeklendirmeyi Devre Dışı Bırak</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam arkadaşlar düğmesini göster</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Arka plan resmini göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Tema Profili</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tam Ekran Teması</sys:String>
