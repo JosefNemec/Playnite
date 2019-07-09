@@ -239,6 +239,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCMenuIssues">Enviar comentários</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo tela cheia</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoie-nos no Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentação do SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar o sistema</sys:String>
@@ -704,6 +705,8 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCPLaytime100to500">100 a 500 horas</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 a 1000 horas</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">O cliente do itch.io será executado agora. Entre com a sua conta e feche esta janela.</sys:String>
