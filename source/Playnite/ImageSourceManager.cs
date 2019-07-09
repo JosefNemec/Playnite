@@ -14,8 +14,8 @@ namespace Playnite
     public class ImageSourceManager
     {
         private static ILogger logger = LogManager.GetLogger();
-        private static MemoryCache cache = new MemoryCache(Units.MegaBytesToBytes(100));
         private static GameDatabase database;
+        internal static MemoryCache Cache = new MemoryCache(Units.MegaBytesToBytes(100));
 
         public static void SetDatabase(GameDatabase db)
         {
@@ -32,7 +32,7 @@ namespace Playnite
         {
             if (args.EventType == FileEvent.Removed)
             {
-                cache.TryRemove(args.FileId, out var file);
+                Cache.TryRemove(args.FileId, out var file);
             }
         }
 
@@ -50,7 +50,7 @@ namespace Playnite
 
             if (source.StartsWith("resources:"))
             {
-                if (cached && cache.TryGet(source, out var image))
+                if (cached && Cache.TryGet(source, out var image))
                 {
                     return image;
                 }
@@ -64,7 +64,7 @@ namespace Playnite
                         {
                             if (cached)
                             {
-                                cache.TryAdd(source, imageData, imageData.GetSizeInMemory());
+                                Cache.TryAdd(source, imageData, imageData.GetSizeInMemory());
                             }
                             return imageData;
                         }
@@ -106,7 +106,7 @@ namespace Playnite
                     {
                         if (cached)
                         {
-                            cache.TryAdd(source, imageData, imageData.GetSizeInMemory());
+                            Cache.TryAdd(source, imageData, imageData.GetSizeInMemory());
                         }
 
                         return imageData;
@@ -129,7 +129,7 @@ namespace Playnite
 
                 try
                 {
-                    if (cached && cache.TryGet(source, out var image))
+                    if (cached && Cache.TryGet(source, out var image))
                     {
                         return image;
                     }
@@ -144,7 +144,7 @@ namespace Playnite
                     {
                         if (cached)
                         {
-                            cache.TryAdd(source, imageData, imageData.GetSizeInMemory());
+                            Cache.TryAdd(source, imageData, imageData.GetSizeInMemory());
                         }
 
                         return imageData;

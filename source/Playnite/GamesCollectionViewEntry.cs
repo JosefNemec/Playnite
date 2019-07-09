@@ -7,9 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Playnite
 {
@@ -236,8 +238,18 @@ namespace Playnite
             }
             else
             {
-                return ResourceProvider.GetResource("DefaultGameIcon");
+                if (ImageSourceManager.Cache.TryGet("DefaultGameIcon", out var image))
+                {
+                    return image;
+                }
+                else if (ResourceProvider.GetResource("DefaultGameIcon") is BitmapImage resImage)
+                {
+                    ImageSourceManager.Cache.TryAdd("DefaultGameIcon", resImage, resImage.GetSizeInMemory());
+                    return resImage;
+                }
             }
+
+            return null;
         }
 
         public object GetDefaultCoverImage()
@@ -248,8 +260,18 @@ namespace Playnite
             }
             else
             {
-                return ResourceProvider.GetResource("DefaultGameCover");
+                if (ImageSourceManager.Cache.TryGet("DefaultGameCover", out var image))
+                {
+                    return image;
+                }
+                else if (ResourceProvider.GetResource("DefaultGameCover") is BitmapImage resImage)
+                {
+                    ImageSourceManager.Cache.TryAdd("DefaultGameCover", resImage, resImage.GetSizeInMemory());
+                    return resImage;
+                }
             }
+
+            return null;
         }
 
         public override string ToString()
