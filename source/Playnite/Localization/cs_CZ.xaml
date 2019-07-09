@@ -298,6 +298,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Vypnout DPI škálování</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Zobrazit tlačítko "Steam přátelé"</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Zobrazit obrázek na pozadí</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Motiv vzhledu</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Motiv vzhledu</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Motiv vzhledu režimu celé obrazovky</sys:String>
