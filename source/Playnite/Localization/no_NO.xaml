@@ -239,6 +239,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCMenuIssues">Gi Tilbakemelding</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullskjermmodus</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Lenker</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Støtt på Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Dokumentasjon</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Systemomstart</sys:String>
@@ -687,6 +688,8 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCPLaytime100to500">100 til 500 timer</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 til 1000 timer</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io klienten vil åpnes. Vennligst logg inn, og så lukker du denne meldingen.</sys:String>
