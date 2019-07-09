@@ -234,11 +234,12 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escanear Automáticamente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Juego Emulado…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Juego de Microsoft Store o App Xbox…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Acerca de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar Comentarios</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo de pantalla completa</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Enlaces</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoyar en Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentación de SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar el sistema</sys:String>
@@ -298,7 +299,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Deshabilitar escalado de DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostrar el botón de amigos de steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Mostrar imagen de fondo</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Estira sobre la ventana de la aplicación completa</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil del Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema de Pantalla Completa</sys:String>
@@ -708,6 +709,8 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCPLaytime100to500">De 100 a 500 horas</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">De 500 a 1000 horas</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Se va a abrir el cliente de itch.io. Por favor, inicia sesión y cierra este mensaje.</sys:String>
