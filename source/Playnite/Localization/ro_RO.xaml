@@ -237,6 +237,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCMenuIssues">Exprimați-vă Părerea</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Pornește în modul Fullscreen</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Link-uri</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Ajutați-ne pe Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentaţie Trusă de Dezvoltare</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Repornire Sistem</sys:String>
@@ -696,6 +697,8 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">Între 100 și 500 ore</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Între 500 și 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Mai mult de 1000 ore</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">se va deschide clientul itch.io. Vă rugăm să vă logați și să închideți mesajul acesta.</sys:String>
