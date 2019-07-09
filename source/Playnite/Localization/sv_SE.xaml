@@ -292,6 +292,7 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Tema Profiler</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Fullskärms Teman</sys:String>
