@@ -239,6 +239,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCMenuIssues">Wyślij opinię</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Uruchom tryb pełnoekranowy</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Linki</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Wspieraj na Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentacja SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Zrestartuj system</sys:String>
@@ -699,6 +700,8 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCPLaytime100to500"></sys:String>
     <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
     <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io klient jest uruchamiany. Zaloguj się, a następnie zamknij ten komunikat..</sys:String>
