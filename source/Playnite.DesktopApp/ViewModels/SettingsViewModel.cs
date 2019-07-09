@@ -319,7 +319,7 @@ namespace Playnite.DesktopApp.ViewModels
                 nameof(PlayniteSettings.GridItemHeight),
                 nameof(PlayniteSettings.WindowPositions),
                 nameof(PlayniteSettings.Fullscreen)
-            });
+            }, true);
         }
 
         public void ConfirmDialog()

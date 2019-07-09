@@ -13,20 +13,19 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border x:Name="SelectionBorder"
-                            BorderThickness="1"
-                            Background="{DynamicResource GridItemBackgroundBrush}"
-                            Margin="{pmrk:Settings ItemSpacingMargin}">
+                    <Grid Background="{DynamicResource GridItemBackgroundBrush}"
+                          Margin="{pmrk:Settings ItemSpacingMargin}">
+                        <Border x:Name="SelectionBorder" BorderThickness="3" Margin="-3" />
                         <ContentPresenter />
-                    </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
-                            <Setter Property="BorderThickness" Value="1" TargetName="SelectionBorder"/>
+                            <Setter Property="Canvas.ZIndex" Value="90" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
-                            <Setter Property="BorderThickness" Value="1" TargetName="SelectionBorder"/>
+                            <Setter Property="Canvas.ZIndex" Value="90" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

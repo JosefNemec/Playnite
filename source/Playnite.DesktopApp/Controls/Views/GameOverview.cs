@@ -119,7 +119,8 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.ShowBackgroundImage))
+            if (e.PropertyName == nameof(PlayniteSettings.ShowBackgroundImage) ||
+                e.PropertyName == nameof(PlayniteSettings.StrechBackgroundImage))
             {
                 if (ImageBackground != null)
                 {
@@ -306,7 +307,7 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void SetBackgroundBinding()
         {
-            if (mainModel.AppSettings.ShowBackgroundImage)
+            if (mainModel.AppSettings.ShowBackgroundImage && !mainModel.AppSettings.StrechBackgroundImage)
             {
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,

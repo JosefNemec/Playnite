@@ -10,7 +10,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:FilterPanel}">
-                    <Border BorderBrush="{DynamicResource NormalBrush}">
+                    <Border BorderBrush="{DynamicResource PanelSeparatorBrush}">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="BorderThickness" Value="1,0,0,0" />
@@ -197,19 +197,29 @@
 
                                     <!--Added-->
                                     <Label Name="PART_ElemAddedLabel" Style="{StaticResource FilterLabel}"
-                                       Content="{DynamicResource LOCAddedLabel}" />
+                                       Content="{DynamicResource LOCDateAddedLabel}" />
                                     <pctrls:FilterEnumSelectionBox x:Name="PART_FilterAdded" />
 
                                     <!--Modified-->
                                     <Label Name="PART_ElemModifiedLabel" Style="{StaticResource FilterLabel}"
-                                       Content="{DynamicResource LOCModifiedLabel}" />
+                                       Content="{DynamicResource LOCDateModifiedLabel}" />
                                     <pctrls:FilterEnumSelectionBox x:Name="PART_FilterModified" />
                                 </StackPanel>
                             </ScrollViewer>
                         </DockPanel>
                     </Border>                                                       
                 </ControlTemplate>
-            </Setter.Value>            
+            </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{pmrk:Settings ShowBackgroundImage}" Value="True" />
+                    <Condition Binding="{pmrk:Settings StrechBackgroundImage}" Value="True" />
+                    <Condition Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Details}"  />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource PanelDimmingBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

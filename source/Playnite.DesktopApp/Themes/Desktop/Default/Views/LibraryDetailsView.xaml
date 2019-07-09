@@ -16,7 +16,7 @@
                     <DockPanel>
                         <pctrlsShared:ExtendedListBox x:Name="PART_ListGames"
                                                       SelectionMode="Extended" Width="350"
-                                                      BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBrush}"
+                                                      BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PanelSeparatorBrush}"
                                                       DockPanel.Dock="Left"
                                                       ItemContainerStyle="{DynamicResource DetailsViewItemStyle}"
                                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -24,7 +24,21 @@
                                                       VirtualizingPanel.CacheLengthUnit="Item"
                                                       VirtualizingPanel.CacheLength="5"
                                                       VirtualizingPanel.IsVirtualizingWhenGrouping="True"
-                                                      VirtualizingPanel.VirtualizationMode="Recycling">                       
+                                                      VirtualizingPanel.VirtualizationMode="Recycling">
+                            <pctrlsShared:ExtendedListBox.Style>
+                                <Style TargetType="pctrlsShared:ExtendedListBox" BasedOn="{StaticResource {x:Type pctrlsShared:ExtendedListBox}}">
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{pmrk:Settings ShowBackgroundImage}" Value="True" />
+                                                <Condition Binding="{pmrk:Settings StrechBackgroundImage}" Value="True" />
+                                                <Condition Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Details}" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Background" Value="{DynamicResource PanelDimmingBrush}" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>                                       
+                            </pctrlsShared:ExtendedListBox.Style>                            
                             <pctrlsShared:ExtendedListBox.GroupStyle>
                                 <GroupStyle ContainerStyle="{StaticResource DetailsViewGroupStyle}"/>
                             </pctrlsShared:ExtendedListBox.GroupStyle>

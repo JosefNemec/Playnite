@@ -12,7 +12,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:MainPanel}">
-                    <Border Height="50" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource NormalBrush}">
+                    <Border Height="50" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource PanelSeparatorBrush}"
+                            Background="{TemplateBinding Background}">
                         <DockPanel Margin="0,3,110,3">
                             <Border Name="PART_ElemMainMenu" Background="Transparent"
                                     DockPanel.Dock="Left" Margin="5,0,0,0" Cursor="Hand"
@@ -117,7 +118,8 @@
                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
 
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="10,5,0,5">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"
+                                        HorizontalAlignment="Center" Margin="0,5,0,5">
                                 <Grid MaxWidth="600" MinWidth="300">
                                     <ProgressBar Name="PART_ProgressGlobal" />
                                     <TextBlock Name="PART_TextProgressText"
@@ -135,5 +137,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{pmrk:Settings ShowBackgroundImage}" Value="True" />
+                    <Condition Binding="{pmrk:Settings StrechBackgroundImage}" Value="True" />
+                    <Condition Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Details}" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource PanelDimmingBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -139,7 +139,7 @@ namespace Playnite
             }
         }
 
-        private int gameDetailsIndentation = 600;
+        private int gameDetailsIndentation = 500;
         public int GameDetailsIndentation
         {
             get
@@ -478,6 +478,21 @@ namespace Playnite
             set
             {
                 showBackgroundImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool strechBackgroundImage = false;
+        public bool StrechBackgroundImage
+        {
+            get
+            {
+                return strechBackgroundImage;
+            }
+
+            set
+            {
+                strechBackgroundImage = value;
                 OnPropertyChanged();
             }
         }

@@ -28,15 +28,15 @@
                                            TextTrimming="CharacterEllipsis" TextAlignment="Center"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
-                            <Border Background="#88000000" x:Name="BorderMouseOver" Visibility="Collapsed">
+                            <Border Background="#AA000000" x:Name="BorderMouseOver" Visibility="Collapsed">
                                 <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Name="PART_ButtonPlay"
-                                                Background="#EE000000" Content="▶"
-                                                Margin="20,0,2,0"/>
-                                        <Button Name="PART_ButtonInfo"
-                                                Background="#EE000000" Content="ℹ"
-                                                Margin="2,0,20,0"/>
+                                        <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
+                                                Margin="20,0,2,0" VerticalAlignment="Center"
+                                                Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
+                                        <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
+                                                Margin="2,0,20,0" VerticalAlignment="Center"
+                                                Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
                                     </StackPanel>
                                 </Viewbox>
                             </Border>

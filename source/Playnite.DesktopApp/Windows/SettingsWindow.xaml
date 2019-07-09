@@ -288,20 +288,23 @@
                                     </TextBlock>
                                 </StackPanel> 
                                 
-                                <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}" Margin="0,20,0,0"
-                                  Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}" Margin="0,25,0,0"
+                                          Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
-                                  Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
+                                          Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
-                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
+                                          Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
-                                  Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
+                                          Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
-                                  Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
+                                          Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImage}" Margin="0,15,0,0"
-                                  Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImage}"/>
+                                          Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImage}"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImageOnWindow}" Margin="25,15,0,0"
+                                          Name="CheckShowBackgroundImageOnWindow" IsChecked="{Binding Settings.StrechBackgroundImage}"
+                                          IsEnabled="{Binding Settings.ShowBackgroundImage}"/>
 
-                                <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
+                                <StackPanel Margin="0,25,0,0" Orientation="Horizontal">
                                     <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
                                                     ContentStringFormat="{}{0} *"
                                                     Margin="0,0,10,0" VerticalAlignment="Center" />

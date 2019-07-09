@@ -11,7 +11,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:ExplorerPanel}">
-                    <Border BorderBrush="{DynamicResource NormalBrush}">
+                    <Border BorderBrush="{DynamicResource PanelSeparatorBrush}">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="BorderThickness" Value="1,0,0,0" />
@@ -35,5 +35,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{pmrk:Settings ShowBackgroundImage}" Value="True" />
+                    <Condition Binding="{pmrk:Settings StrechBackgroundImage}" Value="True" />
+                    <Condition Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Details}" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource PanelDimmingBrush}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
