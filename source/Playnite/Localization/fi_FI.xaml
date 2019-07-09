@@ -298,6 +298,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Poista DPI-skaalaus käytöstä</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Näytä Steam-kaverit painike</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Näytä taustakuva</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Teema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Teemaprofiili</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Koko näytön teema</sys:String>
