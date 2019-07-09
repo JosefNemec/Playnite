@@ -158,7 +158,7 @@
     <sys:String x:Key="LOCPastWeek">上周</sys:String>
     <sys:String x:Key="LOCPastMonth">上个月</sys:String>
     <sys:String x:Key="LOCPastYear">去年</sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear">一年以上</sys:String>
     <sys:String x:Key="LOCImportCompleted">导入已成功完成</sys:String>
     <sys:String x:Key="LOCAllGames">所有游戏</sys:String>
     <sys:String x:Key="LOCGameId">游戏ID</sys:String>
@@ -234,11 +234,12 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuAddGameManual">手动...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">自动扫描...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">模拟器游戏...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store 或 Xbox 应用程序游戏…</sys:String>
     <sys:String x:Key="LOCMenuAbout">关于Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">发送反馈</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">启动全屏模式</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">链接</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">帮助</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">在 Patreon 上支持我们</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK文档</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">重启系统</sys:String>
@@ -248,7 +249,7 @@ IGDB > 官方商店：
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">要显示的详细面板的游戏字段：</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">项目间隔</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">网格项目边框宽度</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">缺少游戏图标源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺少游戏封面源</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">缩进游戏详情</sys:String>
@@ -298,7 +299,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">禁用DPI缩放</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">显示Steam好友按钮</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">显示背景图片</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">延伸整个应用程序窗口</sys:String>
     <sys:String x:Key="LOCSettingsSkin">主题</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">主题简介</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">全屏主题</sys:String>
@@ -689,8 +690,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCOpenMetadataFolder">打开元数据文件夹</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} 客户端未安装</sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} 客户端即将打开。请登录然后关闭此消息。</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">正在等待用户登录，请在完成后关闭...</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">未找到游戏的安装目录</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">无效的游戏动作配置</sys:String>
 
@@ -707,6 +708,10 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCPLaytime100to500">100 至 500 小时</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 至 1000 小时</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">您即将离开Playnite，并使用您的默认网页浏览器来浏览网页。您想要继续吗？
+    
+{0}</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io客户端现在将打开，请登录然后关闭此消息</sys:String>
