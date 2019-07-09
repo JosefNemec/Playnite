@@ -233,11 +233,12 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuAddGameManual">Manuellement</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Importer depuis une installation</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Importer des jeux émulés</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Jeu Microsoft Store/App Xbox…</sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Mode plein écran</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Liens</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Aide</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Soutenir Playnite</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Redémarrer l'ordinateur</sys:String>
@@ -297,7 +298,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Afficher les images de fond</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Étendre sur toute la fenêtre d'application</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profil du thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Thème plein écran</sys:String>
@@ -704,6 +705,10 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime100to500">100 à 500 heures</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 à 1000 heures</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Vous êtes sur le point de quitter Playnite pour ouvrir la page web suivante à l'aide de votre navigateur par défaut. Voulez-vous continuer ?
+    
+{0}</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Le client itch.io va maintenant démarrer. Veuillez vous identifier avant de fermer la fenêtre de connexion.</sys:String>
