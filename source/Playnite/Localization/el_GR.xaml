@@ -235,6 +235,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCMenuIssues">Στείλετε τα σχόλιά σας</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Εναρξη λειτουργίας πλήρους οθόνης</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">έγγραφα SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
@@ -692,6 +693,8 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCPLaytime100to500"></sys:String>
     <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
     <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
