@@ -298,6 +298,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">禁用DPI缩放</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">显示Steam好友按钮</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">显示背景图片</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">主题</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">主题简介</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">全屏主题</sys:String>
