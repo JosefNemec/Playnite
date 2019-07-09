@@ -298,6 +298,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Отключить масштабирование DPI (требуется перезагрузка)</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Показать кнопку друзей из Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Показывать фоновое изображение</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Тема оформления</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Цвет темы</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen"> </sys:String>
