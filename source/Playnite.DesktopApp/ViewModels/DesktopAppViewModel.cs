@@ -917,11 +917,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                         try
                         {
-                            using (Database.BufferedUpdate())
-                            {
-                                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync));
-                            }
-
+                            addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync));
                             RemoveMessage($"{plugin.Id} - download");
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -984,11 +980,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                     try
                     {
-                        using (Database.BufferedUpdate())
-                        {
-                            addedGames.AddRange(Database.ImportGames(library, AppSettings.ForcePlayTimeSync));
-                        }
-
+                        addedGames.AddRange(Database.ImportGames(library, AppSettings.ForcePlayTimeSync));
                         RemoveMessage($"{library.Id} - download");
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
