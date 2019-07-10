@@ -184,9 +184,9 @@ if ($ConfigUpdatePath)
 
         Write-DebugLog "Settings config value $proName : $proValue"
 
-        if ($configXml.configuration.appSettings.add.key -contains $proName)
+        if ($configXml.appSettings.add.key -contains $proName)
         {
-            $node = $configXml.configuration.appSettings.add | Where { $_.key -eq $proName }
+            $node = $configXml.appSettings.add | Where { $_.key -eq $proName }
             $node.value = $proValue
         }
         else
@@ -194,7 +194,7 @@ if ($ConfigUpdatePath)
             $node = $configXml.CreateElement("add")
             $node.SetAttribute("key", $proName)
             $node.SetAttribute("value", $proValue)
-            $configXml.configuration.appSettings.AppendChild($node) | Out-Null
+            $configXml.appSettings.AppendChild($node) | Out-Null
         }
     }
 
