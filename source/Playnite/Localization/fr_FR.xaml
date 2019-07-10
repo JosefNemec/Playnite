@@ -45,7 +45,7 @@ Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rappor
     <sys:String x:Key="LOCLibraryManager">Gestionnaire de bibliothèque</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Supprimer le(s) jeu(x) ?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Impossible de retirer un jeu en cours d'exécution/installation.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">Impossible de retirer un jeu en cours d'exécution.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Le jeu est en cours d'exécution et ne peut être désinstallé.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Êtes-vous sûr de vouloir supprimer ce jeu ?
 
 Les jeux importés automatiquement sont susceptibles de réapparaître après la prochaine procédure d'importation (selon vos paramètres).</sys:String>
@@ -132,13 +132,13 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCCompanyLabel">Entreprise</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Développeur</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Éditeur</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">Catégorie</sys:String>
-    <sys:String x:Key="LOCTagLabel">Étiquette</sys:String>
-    <sys:String x:Key="LOCTagsLabel">Étiquettes</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Catégories</sys:String>
+    <sys:String x:Key="LOCTagLabel">Étiquettes</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Étiquette(s)</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListLabel">Affichage en liste</sys:String>
     <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
-    <sys:String x:Key="LOCGridLabel">Grille</sys:String>
+    <sys:String x:Key="LOCGridLabel">Affichage en grille</sys:String>
     <sys:String x:Key="LOCDetailsLabel">Affichage détaillé</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personnalisé</sys:String>
     <sys:String x:Key="LOCURLLabel">Lien</sys:String>
@@ -158,6 +158,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCPastWeek">Cette semaine</sys:String>
     <sys:String x:Key="LOCPastMonth">Ce mois-ci</sys:String>
     <sys:String x:Key="LOCPastYear">Cette année</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Il y a plus d'un an</sys:String>
     <sys:String x:Key="LOCImportCompleted">Les informations ont été importées avec succès.</sys:String>
     <sys:String x:Key="LOCAllGames">Tous</sys:String>
     <sys:String x:Key="LOCGameId">Id jeu</sys:String>
@@ -232,11 +233,12 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuAddGameManual">Manuellement</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Importer depuis une installation</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Importer des jeux émulés</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Importer depuis Microsoft Store</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Jeu Microsoft Store/App Xbox…</sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Mode plein écran</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Liens</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Aide</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Soutenir Playnite</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Redémarrer l'ordinateur</sys:String>
@@ -246,6 +248,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largeur des bordures</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Déplacer les informations en bas de page (affichage détaillé)</sys:String>
@@ -295,6 +298,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Afficher les images de fond</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Étendre sur toute la fenêtre d'application</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profil du thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Thème plein écran</sys:String>
@@ -467,7 +471,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Grouper par Plateforme</sys:String>
     <sys:String x:Key="LOCViewType">"Type d'affichage"</sys:String>
     <sys:String x:Key="LOCMenuView">Afficher</sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel">Panneau d'exploration</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Explorateur</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Filtres</sys:String>
 
     <!--Game fields-->
@@ -582,7 +586,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCChange">Changer</sys:String>
     <sys:String x:Key="LOCAdvanced">Avancé</sys:String>
     <sys:String x:Key="LOCNever">[Indéterminé]</sys:String>
-    <sys:String x:Key="LOCNotPlayed">[Pas encore commencé]</sys:String>
+    <sys:String x:Key="LOCNotPlayed">[Non commencé]</sys:String>
     <sys:String x:Key="LOCPlayed">Commencé</sys:String>
     <sys:String x:Key="LOCBeaten">Terminé</sys:String>
     <sys:String x:Key="LOCCompleted">Terminé (100%)</sys:String>
@@ -683,6 +687,8 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCOpenMetadataFolder">Ouvrir dossier de métadonnées</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} le client n'est pas installé.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} Le client va maintenant démarrer. Veuillez vous identifier avant de fermer la fenêtre de connexion.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">(Fermer cette fenêtre une fois la connexion établie)</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Dossier d'installation introuvable.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuration invalide.</sys:String>
 
@@ -699,6 +705,10 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime100to500">100 à 500 heures</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 à 1000 heures</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Vous êtes sur le point de quitter Playnite pour ouvrir la page web suivante à l'aide de votre navigateur par défaut. Voulez-vous continuer ?
+    
+{0}</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Le client itch.io va maintenant démarrer. Veuillez vous identifier avant de fermer la fenêtre de connexion.</sys:String>

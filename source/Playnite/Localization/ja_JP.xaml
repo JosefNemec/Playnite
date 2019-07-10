@@ -154,6 +154,7 @@
     <sys:String x:Key="LOCPastWeek">過去 1 週間</sys:String>
     <sys:String x:Key="LOCPastMonth">過去 1 ヶ月間</sys:String>
     <sys:String x:Key="LOCPastYear">過去 1 年間</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">インポート完了</sys:String>
     <sys:String x:Key="LOCAllGames">全てのゲーム</sys:String>
     <sys:String x:Key="LOCGameId">ゲームID</sys:String>
@@ -234,6 +235,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCMenuIssues">フィードバックを送信</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">フルスクリーンモードに切り替え</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">関連リンク</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK ドキュメンテーション</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
@@ -243,6 +245,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
@@ -292,6 +295,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steamの友達ボタンを表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">背景画像を表示する</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">テーマのプロファイル</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">フルスクリーンモード用テーマ</sys:String>
@@ -679,6 +683,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCOpenMetadataFolder">メタデータフォルダを開く</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} クライアントがインストールされていません。</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">ゲームのインストールディレクトリが見つかりません。</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">無効なゲームアクション設定。</sys:String>
 
@@ -695,6 +701,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCPLaytime100to500">100～500時間</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500～1000時間</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000時間以上</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.ioクライアントが開きます。サインインしてからこのメッセージを閉じてください。</sys:String>

@@ -158,6 +158,7 @@ Automaticky importované hry se po dalším importování znovu objeví v Playni
     <sys:String x:Key="LOCPastWeek">Minulý týden</sys:String>
     <sys:String x:Key="LOCPastMonth">Minulý měsíc</sys:String>
     <sys:String x:Key="LOCPastYear">Za poslední rok</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Před více než rokem</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import byl úspěšně dokončen.</sys:String>
     <sys:String x:Key="LOCAllGames">Všechny hry</sys:String>
     <sys:String x:Key="LOCGameId">ID hry</sys:String>
@@ -233,11 +234,12 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuAddGameManual">Ručně…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automaticky prohledat…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulovaná hra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Hra z Microsoft Store…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Hra z Microsoft Store nebo aplikace Xbox…</sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Odeslat zpětnou vazbu</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Spustit režim celé obrazovky</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Odkazy</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podpořit na Patreonu</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentace SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restartovat systém</sys:String>
@@ -247,6 +249,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Pole, která budou viditelná v zobrazení detailů:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Mezery mezi položkami</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Šířka ohraničení položky v mřížce</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Chybějící zdroj ikon her</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Chybějící zdroj obálek her</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Odsadit podrobnosti o hře</sys:String>
@@ -296,6 +299,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Vypnout DPI škálování</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Zobrazit tlačítko "Steam přátelé"</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Zobrazit obrázek na pozadí</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Motiv vzhledu</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Motiv vzhledu</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Motiv vzhledu režimu celé obrazovky</sys:String>
@@ -356,8 +360,8 @@ Všechny nyní prováděné úkony (jako stahování metadat) budou zrušeny.</s
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Zobrazit stav baterie</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Zobrazit stav baterie v procentech</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Zobrazit hodiny</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Pouze nainstalováno v Rychlých filtrech</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Popisky tlačítek</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Rozložení</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontální skrolování</sys:String>
 
@@ -686,6 +690,8 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCOpenMetadataFolder">Otevřít složku metadat</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">Klient {0} není nainstalován.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">Klient {0} bude nyní otevřen, přihlašte se a pak tuto zprávu zavřete.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Čekám až se uživatel přihlásí, prosím zavřete toto okno, jakmile se tak stane…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Instalační adresář hry nebyl nalezen.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Neplatná konfigurace akcí hry.</sys:String>
 
@@ -702,6 +708,8 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCPLaytime100to500">100 až 500 hodin</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 až 1000 hodin</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Klient itch.io bude nyní otevřen, přihlašte se a pak tuto zprávu zavřete.</sys:String>

@@ -158,6 +158,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCPastWeek">Viime viikko</sys:String>
     <sys:String x:Key="LOCPastMonth">Viime kuukausi</sys:String>
     <sys:String x:Key="LOCPastYear">Viime vuosi</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Yli vuosi sitten</sys:String>
     <sys:String x:Key="LOCImportCompleted">Tuonti onnistui.</sys:String>
     <sys:String x:Key="LOCAllGames">Kaikki pelit</sys:String>
     <sys:String x:Key="LOCGameId">Pelin tunnus</sys:String>
@@ -233,11 +234,12 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCMenuAddGameManual">Manuaalisesti…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Etsi automaattisesti…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuloitu peli…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store -peli…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Tietoja Playnitesta</sys:String>
     <sys:String x:Key="LOCMenuIssues">Lähetä palautetta</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Käynnistä kokoruudulla</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Linkit</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Tue Patreonissa</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK dokumentointi</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Uudelleenkäynnistä järjestelmä</sys:String>
@@ -247,6 +249,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Lisätietopaneelissa näytettävät kentät:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Kohteiden välistys</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ruudukon kohteen reunaviivan leveys</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Puuttuva pelin kuvakkeen lähde</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuttuva pelin kannen lähde</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Sisennä pelin tiedot</sys:String>
@@ -296,6 +299,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Poista DPI-skaalaus käytöstä</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Näytä Steam-kaverit painike</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Näytä taustakuva</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Teema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Teemaprofiili</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Koko näytön teema</sys:String>
@@ -685,6 +689,8 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCOpenMetadataFolder">Avaa metatietokansio</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} -asiakasohjelmaa ei ole asennettu.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} sovellus avautuu nyt. Kirjaudu sisään ja sulje sen jälkeen tämä viesti.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Odotetaan käyttäjän sisäänkirjautumista, sulje tämä kun olet valmis…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Pelin asennuskansiota ei löydy.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Virheellinen pelitoiminnon määritys.</sys:String>
 
@@ -701,6 +707,8 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCPLaytime100to500">100-500 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500-1000 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io sovellus avautuu nyt. Kirjaudu sisään ja sulje sen jälkeen tämä viesti.</sys:String>
@@ -727,6 +735,6 @@ Huomioi, että tunnuksen nimen käyttäminen toimii vain tunnuksilla, jotka on a
 
     <sys:String x:Key="LOCGameListFiltered">Suodattimia on käytössä.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Tulokset haulle:</sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Annettu nimi on jo käytössä.</sys:String>
 
 </ResourceDictionary>

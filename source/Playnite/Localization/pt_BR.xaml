@@ -31,14 +31,18 @@ Indeterminada - Nenhuma alteração (quando editando vários jogos)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sem categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sem plataforma</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Opa, isso não deveria ter acontecido…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ocorreu um erro irrecuperável.
+        
+Se você quiser nos ajudar a corrigir esse problema, crie um pacote de diagnósticos e use o botão "Relatar falha" para nos informar sobre o que aconteceu. Obrigado.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ocorreu um erro irrecuperável.
+        
+Se você quiser nos ajudar a corrigir este problema, por favor envie informações de diagnóstico. Obrigado.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Relatar falha</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar o Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Sair do Playnite</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">Gerenciador da biblioteca</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remover Jogo(s)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Não é possível remover um jogo que está sendo executado ou instalado/desinstalado.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Não é possível remover um jogo que está sendo executado.</sys:String>
@@ -51,7 +55,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Amigos do Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Esta seção contém alterações que ainda não foram salvas</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Atualizando o formato da biblioteca de jogos…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Falha ao atualizar o banco de dados, não foi possível abrir o arquivo.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Não foi possível atualizar a biblioteca. Pelo menos {0} MBs de espaço livre são necessários para continuar.</sys:String>
 
@@ -71,7 +75,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Habilitado</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remover</sys:String>
-    <sys:String x:Key="LOCRenameTitle"></sys:String>
+    <sys:String x:Key="LOCRenameTitle">Renomear</sys:String>
     <sys:String x:Key="LOCCopyTitle">Copiar</sys:String>
     <sys:String x:Key="LOCAddTitle">Adicionar</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Ícone padrão</sys:String>
@@ -98,9 +102,9 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCMostPlayedLabel">Mais jogado</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Vezes jogado</sys:String>
     <sys:String x:Key="LOCAddedLabel">Adicionado</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Data de adição</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificado</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Data de modificação</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Site</sys:String>
     <sys:String x:Key="LOCPathLabel">Caminho</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -117,7 +121,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCLinksLabel">Links</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instalação</sys:String>
     <sys:String x:Key="LOCActionsLabel">Ações</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Baixando…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipo</sys:String>
     <sys:String x:Key="LOCProfileLabel">Perfil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Perfis</sys:String>
@@ -141,7 +145,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCPatronsLabel">Patronos</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licença</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Colaboradores</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Saindo do Playnite…</sys:String>
     <sys:String x:Key="LOCToday">Hoje</sys:String>
     <sys:String x:Key="LOCYesterday">Ontem</sys:String>
     <sys:String x:Key="LOCMonday">Segunda-feira</sys:String>
@@ -154,6 +158,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCPastWeek">Na última semana</sys:String>
     <sys:String x:Key="LOCPastMonth">No último mês</sys:String>
     <sys:String x:Key="LOCPastYear">No último ano</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Importação concluída com sucesso.</sys:String>
     <sys:String x:Key="LOCAllGames">Todos os jogos</sys:String>
     <sys:String x:Key="LOCGameId">ID do jogo</sys:String>
@@ -203,17 +208,17 @@ Loja oficial > IGDB:
 Prefirir os dados da loja oficial e, quando não estiver disponível, usar o banco de dados IGBD.com.</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressMetadata"></sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
-    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">Baixando alterações na biblioteca do Steam…</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">Baixando alterações na biblioteca do GOG…</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Baixando alterações na biblioteca do Origin…</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">Baixando alterações na biblioteca do Battle.net…</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">Baixando metadados…</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Importando jogos instalados…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importando {0} jogos…</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">Baixando atualizações da biblioteca…</sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport">Baixando atualizações da biblioteca…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Biblioteca atualizada</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">Liberando recursos…</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Configuração</sys:String>
@@ -234,6 +239,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCMenuIssues">Enviar comentários</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo tela cheia</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoie-nos no Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentação do SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar o sistema</sys:String>
@@ -243,6 +249,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Indentar detalhes do jogo</sys:String>
@@ -292,6 +299,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Exibir botão de amigos do Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Exibir imagem de fundo</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil do tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema em tela cheia</sys:String>
@@ -679,6 +687,8 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCOpenMetadataFolder">Abrir a pasta de metadados</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">Cliente do {0} não instalado.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Diretório de instalação do jogo não encontrado.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuração de ação do jogo inválida.</sys:String>
 
@@ -695,6 +705,8 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCPLaytime100to500">100 a 500 horas</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 a 1000 horas</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">O cliente do itch.io será executado agora. Entre com a sua conta e feche esta janela.</sys:String>

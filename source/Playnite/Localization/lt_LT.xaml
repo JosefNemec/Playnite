@@ -154,6 +154,7 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCPastWeek">Praėjusią savaitę</sys:String>
     <sys:String x:Key="LOCPastMonth">Pastarąjį mėnesį</sys:String>
     <sys:String x:Key="LOCPastYear">Pastaraisiais metais</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Importavimas sėkmingai baigtas.</sys:String>
     <sys:String x:Key="LOCAllGames">Visi žaidimai</sys:String>
     <sys:String x:Key="LOCGameId">Žaidimo Id</sys:String>
@@ -232,6 +233,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCMenuIssues">Siųsti atsiliepimą</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Pradėti viso ekrano rėžime</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Nuorodos</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentacija</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
@@ -241,6 +243,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
@@ -290,6 +293,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Išjungti DPI mastelio keitimą</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Rodyti Steam draugų mygtuką</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Rodyti fono paveikslėlį</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Temos profilis</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Viso ekrano rėžimo tema</sys:String>
@@ -679,6 +683,8 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCOpenMetadataFolder">Atidaryti metaduomenų aplanką</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} klientas yra neįdiegtas.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Nerasta įdiegto žaidimo katalogas.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Neteisingai nustatytas žaidimo veiksmas.</sys:String>
 
@@ -695,6 +701,8 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCPLaytime100to500">Nuo 100 iki 500 valandų</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Nuo 500 iki 1000 valandų</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">bus atidarytas itch.io klientas. Prašome prisijungti ir uždaryti šį langą.</sys:String>

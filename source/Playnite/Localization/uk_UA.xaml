@@ -154,6 +154,7 @@
     <sys:String x:Key="LOCPastWeek">Минулий тиждень</sys:String>
     <sys:String x:Key="LOCPastMonth">Минулий місяць</sys:String>
     <sys:String x:Key="LOCPastYear">Минулий рік</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Імпортування успішно завершено.</sys:String>
     <sys:String x:Key="LOCAllGames">Всі ігри</sys:String>
     <sys:String x:Key="LOCGameId">Ігровий Id</sys:String>
@@ -234,6 +235,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCMenuIssues">Надіслати відгук</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Запустити повноекранний режим</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Посилання</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Документація</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
@@ -243,6 +245,7 @@ IGDB > Офіційний магазин:
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
@@ -292,6 +295,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Показувати кнопку друзів Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Показати фонове зображення</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Тема профілю</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Повноекранна тема</sys:String>
@@ -674,6 +678,8 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCOpenMetadataFolder">Відкрити теку з метаданими</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} клієнт не встановлено.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
@@ -690,6 +696,8 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCPLaytime100to500">Від 100 до 500 годин</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Від 500 до 1000 годин</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>

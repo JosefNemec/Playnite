@@ -156,6 +156,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCPastWeek">Săptămâna trecută</sys:String>
     <sys:String x:Key="LOCPastMonth">Luna trecută</sys:String>
     <sys:String x:Key="LOCPastYear">Anul trecut</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Import realizat cu succes.</sys:String>
     <sys:String x:Key="LOCAllGames">Toate jocurile</sys:String>
     <sys:String x:Key="LOCGameId">Id de joc</sys:String>
@@ -236,6 +237,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCMenuIssues">Exprimați-vă Părerea</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Pornește în modul Fullscreen</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Link-uri</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Ajutați-ne pe Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentaţie Trusă de Dezvoltare</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Repornire Sistem</sys:String>
@@ -245,6 +247,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Nu s-a putut găsi sursa iconiței jocului</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Nu s-a putut găsi sursa coperții jocului</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Indentați detaliile jocului</sys:String>
@@ -294,6 +297,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Arata butonul pentru Prietenii pe Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Arată imagine de fundal</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profilul temei</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema pentru Fulscreen</sys:String>
@@ -675,6 +679,8 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Deschideți folderul de metadate</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">Programul {0} nu este instalat.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Calea de instalare a jocului nu a fost gasită.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Setarea acțiunii jocului este invalidă.</sys:String>
 
@@ -691,6 +697,8 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">Între 100 și 500 ore</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Între 500 și 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Mai mult de 1000 ore</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">se va deschide clientul itch.io. Vă rugăm să vă logați și să închideți mesajul acesta.</sys:String>
