@@ -1,0 +1,743 @@
+﻿<?xml version="1.0"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="LanguageName">Türkçe</sys:String>
+
+    <sys:String x:Key="LOCLanguageSettingsLabel">Dil</sys:String>
+
+    <sys:String x:Key="LOCExitAppLabel">Çıkış</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtreleme Açık (gizle/göster)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtreleme Kapalı (gizle/göster)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Ek filtreler</sys:String>
+    <sys:String x:Key="LOCFilters">Filtreler</sys:String>
+    <sys:String x:Key="LOCFilter">Filtrele</sys:String>
+
+    <sys:String x:Key="LOCInvalidDataTitle">Geçersiz Veri</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">Değişiklikler kaydedilsin mi?</sys:String>
+    
+    <sys:String x:Key="LOCAboutHomePageLink">Web Adresi: www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">GitHub: Kaynak Kodu</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Teşhis paketi oluştur</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Sorun giderme bilgisini gönder</sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">Playnite Hakkında</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">Josef Němec tarafından yapılmıştır</sys:String>
+
+    <sys:String x:Key="LOCCategoryWindowTitle">Kategori Ata</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">Kategorileri Ayarla</sys:String>
+    <sys:String x:Key="LOCCategoryAddCatButton">Kategori Ekle</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">İşaretli - Kategoriye ata
+İşaretlenmemiş - Kategoriyi kaldır
+Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
+    <sys:String x:Key="LOCNoCategory">Kategori Yok</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Platform Yok</sys:String>
+
+    <sys:String x:Key="LOCCrashWindowTitle">Oh hayır, kötü bir şey oldu…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kurtarılamaz hata oluştu ve Playnite çöktü.
+        
+Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen sorun giderme paketi oluşturun ve ne olduğunu bize bildirmek için 'Hatayı Rapor Et' düğmesini kullanın. Teşekkürler.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz hata oluştu.
+        
+Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgilerini gönderin. Teşekkür ederim.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Çökmeyi Rapor Et</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">Playnite'ı Yeniden Başlat</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Playnite'dan Çık</sys:String>
+
+    <sys:String x:Key="LOCLibraryManager">Kütüphane Yöneticisi</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">Oyun(lar) Kaldırılsın mı?</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Çalışan veya yüklü/kaldırılan oyun kaldırılamıyor.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Çalışan oyun kaldırılamıyor.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Bu oyunu kaldırmak istediğinizden emin misiniz?
+        
+Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden sonra (ayarlarınıza bağlı olarak) Playnite'da yeniden görünebilir.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">{0} oyunları kaldırmak istediğinize emin misiniz?
+        
+Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden sonra (ayarlarınıza bağlı olarak) Playnite'da yeniden görünebilir.</sys:String>
+
+    <sys:String x:Key="LOCSteamFriendsTooltip">Steam Arkadaşları</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Bölüm kaydedilecek değişiklikler içeriyor</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Oyun kütüphanesi formatı güncelleniyor…</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Veritabanı güncellemesi başarısız oldu, veritabanı dosyasını açamıyor.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Oyun kütüphanesi güncellenemiyor. {0} MB boş alan gerekiyor.</sys:String>
+
+    <sys:String x:Key="LOCGameError">OyunHatası</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">Oyuna başlatılamıyor. '{0}' veritabanında bulunamadı.</sys:String>
+    <sys:String x:Key="LOCGameStartError">Oyun başlatılamıyor: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">İşlem başlatılamıyor: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">Oyun konumu açılamıyor: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Kısayol oluşturulamadı: {0}</sys:String>
+    <sys:String x:Key="LOCGameInstallError">Oyun yüklenemiyor: {0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">Oyun kaldırılamıyor: {0}</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bu oyundan sorumlu kütüphane eklentisi kurulu değil veya etkin değil.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Resmi meta veri yüklemesi mevcut değil.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">Seçili Oyun Yok.</sys:String>
+
+
+    <!--General-->
+    <sys:String x:Key="LOCEnabledTitle">Etkin</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">Sil</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Yeniden Adlandırın</sys:String>
+    <sys:String x:Key="LOCCopyTitle">Kopyala</sys:String>
+    <sys:String x:Key="LOCAddTitle">Ekle</sys:String>
+    <sys:String x:Key="LOCDefaultIconTitle">Varsayılan İkon</sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">Varsayılan Kapak Resmi</sys:String>
+    <sys:String x:Key="LOCFinishLabel">Bitir</sys:String>
+    <sys:String x:Key="LOCNextLabel">İleri</sys:String>
+    <sys:String x:Key="LOCBackLabel">Geri</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">TAMAMLANDI</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">GERİ</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">TEMİZLE</sys:String>
+    <sys:String x:Key="LOCClearLabel">Temizle</sys:String>
+    <sys:String x:Key="LOCDismiss">Yoksay</sys:String>
+    <sys:String x:Key="LOCDismissAll">Tümünü Yoksay</sys:String>
+    <sys:String x:Key="LOCImportLabel">Yükle</sys:String>
+    <sys:String x:Key="LOCSourceLabel">Kaynak</sys:String>
+    <sys:String x:Key="LOCNameLabel">İsim</sys:String>
+    <sys:String x:Key="LOCAuthorLabel">Yazar</sys:String>
+    <sys:String x:Key="LOCModuleLabel">Modül</sys:String>
+    <sys:String x:Key="LOCSeriesLabel">Seri</sys:String>
+    <sys:String x:Key="LOCVersionLabel">Versiyon</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Yaş Ortalaması</sys:String>
+    <sys:String x:Key="LOCRegionLabel">Bölge</sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">Son Oynanma</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">En Çok Oynanan</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Oynanma Sayısı</sys:String>
+    <sys:String x:Key="LOCAddedLabel">Eklendi</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Eklenme Tarihi</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">Değiştirildi</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Değiştirme Tarihi</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">Web Sayfası</sys:String>
+    <sys:String x:Key="LOCPathLabel">Yol</sys:String>
+    <sys:String x:Key="LOCOKLabel">TAMAM</sys:String>
+    <sys:String x:Key="LOCSaveLabel">Kaydet</sys:String>
+    <sys:String x:Key="LOCCloseLabel">Kapat</sys:String>
+    <sys:String x:Key="LOCCancelLabel">İptal</sys:String>
+    <sys:String x:Key="LOCYesLabel">Evet</sys:String>
+    <sys:String x:Key="LOCNoLabel">Hayır</sys:String>
+    <sys:String x:Key="LOCWelcomeLabel">Hoşgeldiniz</sys:String>
+    <sys:String x:Key="LOCLocalUserLabel">Yerel Kullanıcı</sys:String>
+    <sys:String x:Key="LOCAuthenticateLabel">Kimlik Doğrulaması</sys:String>
+    <sys:String x:Key="LOCGeneralLabel">Genel</sys:String>
+    <sys:String x:Key="LOCMediaLabel">Medya</sys:String>
+    <sys:String x:Key="LOCLinksLabel">Linkler</sys:String>
+    <sys:String x:Key="LOCInstallationLabel">Kurulum</sys:String>
+    <sys:String x:Key="LOCActionsLabel">Eylemler</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">İndiriliyor ...</sys:String>
+    <sys:String x:Key="LOCTypeLabel">Tipi</sys:String>
+    <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
+    <sys:String x:Key="LOCProfilesLabel">Profiller</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">Sil</sys:String>
+    <sys:String x:Key="LOCDownloadLabel">İndir</sys:String>
+    <sys:String x:Key="LOCSearchLabel">Ara</sys:String>
+    <sys:String x:Key="LOCGenreLabel">Türü</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Şirket</sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">Geliştirici</sys:String>
+    <sys:String x:Key="LOCPublisherLabel">Yayımcı</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
+    <sys:String x:Key="LOCTagLabel">Etiket</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Etiketler</sys:String>
+    <sys:String x:Key="LOCZoomLabel">Yaklaştır</sys:String>
+    <sys:String x:Key="LOCListLabel">Liste</sys:String>
+    <sys:String x:Key="LOCCoversLabel">Kapak</sys:String>
+    <sys:String x:Key="LOCGridLabel">Izgara</sys:String>
+    <sys:String x:Key="LOCDetailsLabel">Detay</sys:String>
+    <sys:String x:Key="LOCCustomLabel">Özel</sys:String>
+    <sys:String x:Key="LOCURLLabel">Link</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">Destekleyenler</sys:String>
+    <sys:String x:Key="LOCLicenseLabel">Lisans</sys:String>
+    <sys:String x:Key="LOCContributorsLabel">Katkıda Bulunanlar</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Playnite'den Çıkılıyor…</sys:String>
+    <sys:String x:Key="LOCToday">Bugün</sys:String>
+    <sys:String x:Key="LOCYesterday">Dün</sys:String>
+    <sys:String x:Key="LOCMonday">Pazartesi</sys:String>
+    <sys:String x:Key="LOCTuesday">Salı</sys:String>
+    <sys:String x:Key="LOCWednesday">Çarşamba</sys:String>
+    <sys:String x:Key="LOCThursday">Perşembe</sys:String>
+    <sys:String x:Key="LOCFriday">Cuma</sys:String>
+    <sys:String x:Key="LOCSaturday">Cumartesi</sys:String>
+    <sys:String x:Key="LOCSunday">Pazar</sys:String>
+    <sys:String x:Key="LOCPastWeek">Geçen Hafta</sys:String>
+    <sys:String x:Key="LOCPastMonth">Geçen Ay</sys:String>
+    <sys:String x:Key="LOCPastYear">Geçen Yıl</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">More than a year ago</sys:String>
+    <sys:String x:Key="LOCImportCompleted">İçe aktarma başarıyla tamamlandı.</sys:String>
+    <sys:String x:Key="LOCAllGames">Tüm Oyunlar</sys:String>
+    <sys:String x:Key="LOCGameId">Oyun Id</sys:String>
+    <sys:String x:Key="LOCDatabaseId">Veritabanı Id</sys:String>
+    <sys:String x:Key="LOCPresets">Ön ayarlar</sys:String>
+    <sys:String x:Key="LOCColumn">sütun</sys:String>
+    <sys:String x:Key="LOCColumns">Sütunlar</sys:String>
+    <sys:String x:Key="LOCRow">Satır</sys:String>
+    <sys:String x:Key="LOCRows">Satırlar</sys:String>
+    
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Dinamik dize eklemek için özel değişkenler kullanılabilir:
+{InstallDir} - Oyun yükleme klasörü
+{InstallDirName} - Yükleme klasörünün adı
+{ImagePath} - Ayarlandıysa oyun ISO / ROM yolu
+{ImageName} - Oyun ISO / ROM dosya adı
+{ImageNameNoExt} - Uzantı olmadan oyun ISO / ROM dosya adı
+{PlayniteDir} - Playnite kurulum dizini
+{Name} - Oyun ismi
+        
+Örnek: -image "{ImagePath}" -fullscreen
+Sonuçları: -image "c:\folder\image.iso" -fullscreen</sys:String>
+
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Oynatma işlemi eksikse veya URL'ye ayarlanmışsa simge alınamıyor.</sys:String>
+
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Sadece metaverileri olmayan oyunlar için indir</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Bu seçeneğin etkinleştirilmesi, zaten bilgi içeren veri alanları için meta verileri indirmeyi atlar.</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceIntro">Oyun Seçimi</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceDescription">Lütfen hangi oyunların yeni metaverilerle güncellenmesi gerektiğini seç:</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceAll">Veritabanından Tüm Oyunlar</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceFiltered">Filtrelenmiş tüm oyunlar</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceSelected">Sadece seçili oyunlar</sys:String>
+    <sys:String x:Key="LOCMetaSourceStore">Resmi Mağaza</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">İGDB</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Resmi Mağaza</sys:String>
+    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Resmi Mağaza > IGDB</sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">Lütfen Playnite tarafından hangi alanların otomatik olarak doldurulacağını ve verileri almak için hangi kaynakların kullanılması gerektiğini seçin.</sys:String>
+    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Mağaza:
+Sadece Resmi Mağaza verilerini kullan.
+    
+IGDB:
+Sadece IGDB.com verilerini kullan.
+    
+IGDB > Official Store:
+IGDB.com veritabanındaki verileri tercih edin ve mümkün olmadığında resmi mağaza verilerini kullanın.
+    
+Official Store > IGDB:
+Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritabanını kullanın.</sys:String>
+
+    <!--Progess string-->
+    <sys:String x:Key="LOCProgressSteamLibImport">Steam kütüphanesi güncellemeleri indiriliyor…</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">GOG kütüphane güncellemeleri indiriliyor …</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Origin kütüphane güncellemeleri indiriliyor …</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">Battle.net kütüphane güncellemeleri indiriliyor ...</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">Meta veri indiriliyor …</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Yüklü oyunları içeri aktarma...</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">{0}oyunları içe aktarılıyor…</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">Kütüphane güncellemeleri indiriliyor</sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport">Kütüphane güncellemeleri indiriliyor …
+</sys:String>
+    <sys:String x:Key="LOCProgressLibImportFinish">Kütüphane güncellemesi bitti</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">Kaynakları serbest bırakma…</sys:String>
+
+    <!--Menu-->
+    <sys:String x:Key="LOCMenuConfigurationTitle">Yapılandırma</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Ayarlar…</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platform ve Emülatörler</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Emülatörleri Yapılandırın…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Kütüphane Müdürü…</sys:String>
+    <sys:String x:Key="LOCMenuTools">Araçlar</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">Meta Verileri İndirin…</sys:String>
+    <sys:String x:Key="LOCMenuOpenClient">3. Parti İstemci Aç</sys:String>
+    <sys:String x:Key="LOCMenuReloadLibrary">Oyun Kütüphanesini Güncelle</sys:String>
+    <sys:String x:Key="LOCMenuAddGame">Oyun Ekle</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">Manuel…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Otomatik Olarak Tara</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Taklit Oyunu…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAbout">Playnite Hakkında</sys:String>
+    <sys:String x:Key="LOCMenuIssues">Geri Bildirim</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Tam Ekran Modunu Başlat</sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Bağlantılar</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Patreon'da Destekle</sys:String>
+    <sys:String x:Key="LOCSDKDocumentation">SDK Dökümantasyonu</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem">Sistemi Yeniden Başlat</sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">Sistemi Kapat</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">Sistemi Yasakla</sys:String>
+
+    <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Ayrıntılar panelinde görüntülenecek oyun alanları:</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Öğe aralığı</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Izgara öğesi sınır genişliği</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Kayıp oyun simgesi kaynağı</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Eksik oyun kapak kaynağı</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Oyun ayrıntılarını girintile</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Izgara görünümü ayrıntı konumu</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">Filtre paneli konumu</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Tarayıcı Panel Konumu</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kaplama fotoğrafı renderlama</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Hedef boy oranı</sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">Streç modu</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Kapağı</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD kutusu</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* Uygulanması için yeniden başlatmak gerekir</sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Ayarlar</sys:String>
+    <sys:String x:Key="LOCSettingsGeneralLabel">Genel</sys:String>
+    <sys:String x:Key="LOCSettingsAppearanceLabel">Görünüm</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">oyun detayları</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Düzen</sys:String>
+    <sys:String x:Key="LOCSettingsAdvancedLabel">Gelişmiş</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">Tam Ekran</sys:String>
+    <sys:String x:Key="LOCSettingsProvidersLabel">Sağlayıcılar</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Girdi</sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel">Meta veri</sys:String>
+    <sys:String x:Key="LOCSettingsImportLabel">Kütüphanedeki değişiklikleri otomatik olarak içeri aktar</sys:String>
+    <sys:String x:Key="LOCSettingsImportInstalledLabel">Yüklü oyunları içeri aktar</sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Kaldırılan oyunları içeri aktar</sys:String>
+    <sys:String x:Key="LOCSettingsImportLibraryLabel">Tüm oyunları içeri aktar</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Tüm oyunları içeri aktar (Genel hesap veya API anahtarı gerekli)</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidDBLocation">Geçersiz veritabanı dosyası konumu, uygun dosya yolu ayarlanmalıdır.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">Hesap adı boş bırakılamaz.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Kütüphane içe aktarımı için Steam hesabı seçilmedi.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Kategori içe aktarımı için Steam hesabı seçilmedi.</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Başlangıçta 3. parti kütüphane güncellemelerini indirin</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Oyunları içeri aktardıktan sonra metaverilerini indir</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Minimize şekilde başlat</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Bilgisayar açıldığında başlat</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Bilgisayar başladığında başlatmak için Playnite kaydı yapılamadı.</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Tam ekran modunda başlat</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Steam, Origin ve diğerlerini içerir.</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Arkaplanda görüntüleri yükleme (yeniden başlatma gerektirir)</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Daha yavaş görüntü yükleme süreleri karşılığında oyun listelerinin kaydırma düzgünlüğünü artırır.</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Kapak resmi eksik olduğunda oyunun adını göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Oyun adlarını Kapak görünümünde göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Oyun simgelerini Liste görünümünde göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Grup açıklamalarında öğe sayısını göster</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration">Donanım ivmesini devre dışı bırak</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Takılma veya benzeri kullanıcı arayüzü sorunları yaşarken kullanın</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI Ölçeklendirmeyi Devre Dışı Bırak</sys:String>
+    <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam arkadaşlar düğmesini göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImage">Arka plan resmini göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColor">Tema Profili</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">Tam Ekran Teması</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Tam Ekran Tema Profili</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation">Veritabanı Konumu</sys:String>
+    <sys:String x:Key="LOCSettingsWhatsSteamName">Hesap adım ne?</sys:String>
+    <sys:String x:Key="LOCSettingsLoginStatus">Giriş durumu:</sys:String>    
+    <sys:String x:Key="LOCSettingsWindowTitle">Playnite Ayarları</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata">Steam hesabından meta verileri içe aktar:</sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel">Steam Kategorilerini İçe Aktar</sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel">Steam En Son Oynananları İçeri Aktar</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCache">Web önbelleğini temizle</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Hesapları bağlarken karşılaşılan sorunları çözebilir.</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Tepsi simgesini göster</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Sistem tepsisine küçült</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Sistem tepsisine kapat</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">Oyun başladığında:</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameClose">Oyun kapandıktan sonra:</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Galaxy istemcisini kullanarak oyun başlat</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Bulut yedekleme, oyun süresi sayımı vb. gibi özellikleri etkinleştirecek.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Bu, tüm Steam oyunlarındaki geçerli kategorilerin üzerine yazacaktır. Devam etmek istiyor musun?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Kategoriler İçe Aktarılsın mı?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kategoriler alınamıyor, hesap seçilmedi.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kategoriler alınamıyor, veritabanı açılmadı.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportError">Steam kategorileri içe aktarılamadı: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">En son oynanma bilgileri alınamıyor, hesap seçilmedi.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">En son oynatılan bilgiler alınamıyor, veritabanı açılmadı.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Steam en son oynanma bilgileri alınamadı: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">Bu sizi bağlı tüm servislerden çıkarır. Uygulamanın yeniden başlatılması gerekiyor, devam etmek istiyor musunuz?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheTitle">Önbelleği Temizle?</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyTooltip">Steam özel hesapları için API Anahtarı gerekir</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyUrlText">API anahtarını al</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Yeni temayı uygulamak için playnite yeniden başlatılmalıdır</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">Daha fazla tema al</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">Yeni tema oluştur</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Yeni yerelleştirmeye katkıda bulun</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Değiştirilen ayarlardan bazıları Playnite'ın yeniden başlatılmasını gerektiriyor. Playnite'ı şimdi yeniden başlatmak ister misiniz?
+    
+Şu anda etkin olan tüm görevler (metaveri indirmeleri) iptal edilir.</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">Playnite yeniden başlatılsın mı?</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification">Yeni veritabanı dosyası konumu ancak uygulama yeniden başlatıldıktan sonra kullanılacaktır.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"Kapat" eylemi ayarlanmışsa, oyun süresi kaydedilmeyecektir.</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">Satır sayısı</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">Sütun sayısı</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Ayrıntı görünümü satır sayısı</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSource">Arka plan resmi kaynağı:</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">Oyun Resmi</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Mağaza Ekran Görüntüsü</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">Mağaza Arka Planı</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Metaverileri yeniden indirmeden mevcut oyunlara geriye dönük olarak uygulanmaz.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Oynanış süresini sekronize etmeye zorla</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Playnite tarafından kaydedilen süreyi göz ardı ederek, daima kütüphane senkronizasyonu sırasında kaydedilmiş oynatma süresini indirin.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Masaüstü modunda denetleyici desteğini etkinleştirme</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Kılavuz butonu Tam ekran modunu açar</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Yeni oyunlar içe aktarıldıktan sonra meta veriler otomatik olarak indirilirken kullanılan ayarları yapılandırın.</sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor">Hedef Monitör</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Oyun Adlarını Göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus">Pil Durumunu Göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage">Pil Yüzdesini Göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowClock">Saati göster</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Sadece Hızlı Filtrelerde İnili</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Düğme İstemleri</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">düzen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Yatay Kaydırma</sys:String>
+
+    <sys:String x:Key="LOCStrechNone">Hiç biri</sys:String>
+    <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
+    <sys:String x:Key="LOCStrechUniform">üniforma</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Doldurmak için üniforma</sys:String>
+
+    <sys:String x:Key="LOCDockLeft">Sol</sys:String>
+    <sys:String x:Key="LOCDockRight">Sağ</sys:String>
+    <sys:String x:Key="LOCDockTop">Üst</sys:String>
+    <sys:String x:Key="LOCDockBottom">Altta</sys:String>
+
+    <sys:String x:Key="LOCImportError">İçe Aktarma Hatası</sys:String>
+    <sys:String x:Key="LOCLoginChecking">Kimlik doğrulama durumu kontrol ediliyor…</sys:String>
+    <sys:String x:Key="LOCLoginRequired">Doğrulama gerekli</sys:String>
+    <sys:String x:Key="LOCLoginFailed">Kimlik doğrulama başarısız oldu</sys:String>
+    <sys:String x:Key="LOCLoggedIn">Kullanıcı kimliği doğrulandı</sys:String>
+    <sys:String x:Key="LOCNotLoggedIn">Kimlik doğrulama gerektirir</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Kullanıcı kimliği doğrulanamadı.</sys:String>
+
+    <!--Meta Import-->
+    <sys:String x:Key="LOCMetaImportWindowTitle">Metaveriyi İçe Aktar</sys:String>
+    <sys:String x:Key="LOCDownloadMetaButton">Metaveri İndir</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">İlerideki metaveri yüklemeleri için seçili yapılandırmayı ayarla.
+Aynı zamanda uygulama ayarlarından da değiştirilebilir.</sys:String>
+    
+    <!--Emulator Import-->
+    <sys:String x:Key="LOCEmuWizardWindowTitle">Emülatör İçe Aktarma Sihirbazı</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Bu sihirbaz, konsol emülatör indirme ve içe aktarma işlemlerinin yanı sıra emülatör oyunların içe aktarılması sürecinde size rehberlik edecektir.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Her zaman daha sonra ana menüden ek emülatörler ve/veya oyunlar ekleyebileceğinizi unutmayın (Emülatör ayarları için "Araçlar" menüsü ve emülatör oyunlar için "Oyun Ekle" menüsü altında).</sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Aşağıdaki listede bulunan emülatörleri Playnite tanıyabilir ve otomatik olarak konfigüre edilebilir. Bunları web sitelerini ziyaret ederek indirip yükleyebilirsiniz. Emülatörler kurulduktan sonra Playnite'a aktarmak için bir sonraki ekrana geçin.
+        
+Ayrıca herhangi bir emülatörü daha sonra yapılandırma menüsü ile yapılandırabilir ve içe aktarabilirsiniz.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Bilgisayarınızda yüklü olan emülatörleri "Klasörden otomatik algıla ... " düğmesine basarak alabilirsiniz. Playnite , seçilen emülatörlerde seçilen klasörü arayacak ve içe aktarma seçeneği sunacaktır. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, öykünücüler geçerli listenin altına eklenir.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">"Emulator kullanarak klasörü tara" düğmesine basarak oyunları içe aktarabilirsiniz. Uygun emülatörün seçilmesi, hangi dosya türlerinin taranıp içe aktarılması gerektiğini Playnite'a söyleyecektir. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, oyunlar geçerli listenin altına eklenir.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">İçe aktarma için seçilen emülatör yok. Emülatörü yapılandırmadan, oyunları otomatik olarak içe aktaramazsınız. İçe aktarma işlemini iptal ederek, devam etmek istediğinizden emin misiniz?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playnite'da yapılandırılmış emülatör yok. Önce emülatörü yapılandırmadan ve uygun dosya türlerini seçmeden oyunları içe aktaramazsınız. Şimdi bazı emülatörleri eklemek ister misiniz?</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanGames">Emülatör kullanarak klasörü tara</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Dosyaları seç</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Klasörden otomatik algılama…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Emülatörleri Yapılandırın…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">Taranıyor...
+</sys:String>
+
+    <!--FirstTime Wizard-->
+    <sys:String x:Key="LOCFirstWindowTitle">İlk Kez Yapılandırma</sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Bu sihirbaz, otomatik oyun alma işlemi ve harici oyun kütüphanelerinin yapılandırılması konusunda size rehberlik edecektir. Playnite, Steam veya GOG gibi birden fazla oyun hizmetinden oyunları otomatik olarak alabilir ve uygulama başlatılırken otomatik olarak güncelleyerek kütüphanenizi güncel tutabilir.
+        
+Ana menüden 'Playnite' düğmesine tıklayarak herhangi bir platform için herhangi bir oyunu her zaman manuel olarak ekleyebileceğinizi unutmayın.   
+    </sys:String>
+    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Kütüphane veritabanı dosyası için konum seçin. Konum daha sonra Ayarlar menüsü aracılığıyla da değiştirilebilir.</sys:String>
+    <sys:String x:Key="LOCFirstDBLocDefault">Tüm kullanıcılar için varsayılan program veri konumu</sys:String>
+    <sys:String x:Key="LOCFirstDBLocCustom">Özel konum</sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">Kütüphane Entegrasyonu</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Oyunları aşağıdaki servislerden otomatik olarak içe aktar. Daha sonra yapılacak oyun değişiklikleri (kurulum durumu) Playnite açılışında veya manuel olarak tetiklendiğinde otomatik olarak güncellenecektir. Seçilen ayarlar başlangıçtaki ve sonraki tüm içe aktarmaları etkiler.</sys:String>
+    <sys:String x:Key="LOCFirstSteamIntegration">Steam Entegrasyonu</sys:String>
+    <sys:String x:Key="LOCFirstOriginIntegration">Origin Entegrasyonu</sys:String>
+    <sys:String x:Key="LOCFirstGOGIntegration">GOG Entegrasyonu</sys:String>
+    <sys:String x:Key="LOCFirstBattleNetIntegration">Battle.net Entegrasyonu</sys:String>
+    <sys:String x:Key="LOCFirstUplayIntegration">Uplay Entegrasyonu</sys:String>
+    <sys:String x:Key="LOCFirstSteamImportCategories">Kategorileri hesaptan içe aktar:</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesTitle">Diğer Oyunlar</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Yüklü diğer oyunları içe aktarmak veya manuel olarak taramak için (Microsoft Mağazası oyunları dahil) aşağıdaki düğmeye tıklayın.</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesImportButton">Oyunları İçe Aktar</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">Yapılandırma Tamamlandı</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">İlk kurulum tamamlandı. Bütün ayarları daha sonra 'Ayarlar' menüsünden değiştirebilirsiniz.
+
+Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana menüden Playnite uygulama logosuna tıklayarak ekleyebilirsiniz.</sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport">Öykünme içe aktarma rehberini aç</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">Izgara Görünümü Düzeni</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Playnite'ın kapak görünümünün tercih edilen düzenini seç. Fotoğraf düzeni uygulama ayarlarından her zaman değiştirilebilir, fotoğraf genişletme seçenekleri de dahil.</sys:String>
+
+    <!--Platforms Settings-->
+    <sys:String x:Key="LOCPlatformsWindowTitle">Platformları ve Emülatörleri Yapılandır</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Emülatörleri yapılandır</sys:String>
+    <sys:String x:Key="LOCPlatformsTitle">Platformlar</sys:String>
+    <sys:String x:Key="LOCPlatformTitle">Platform</sys:String>
+    <sys:String x:Key="LOCEmulatorsTitle">Emülatörler</sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">Emülatör</sys:String>
+    <sys:String x:Key="LOCAddPlatformTitle">Platform Ekle</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">Simge Seç</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">Kapak Seç</sys:String>
+    <sys:String x:Key="LOCSelectFileTitle">Dosya Seç</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">URL Seç</sys:String>
+    <sys:String x:Key="LOCAddEmulatorTitle">Emülatör Ekle</sys:String>
+    <sys:String x:Key="LOCSupportedPlatformsTitle">Desteklenen Platform(lar)</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Platform değişikliklerini kaydetmek ister misiniz?</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Emülatör değişikliklerini kaydetmek ister misiniz?</sys:String>
+    <sys:String x:Key="LOCExecutableTitle">Çalıştırılabilir</sys:String>
+    <sys:String x:Key="LOCArgumentsTitle">Değişkenler</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">Çalışma Dizini</sys:String>
+    <sys:String x:Key="LOCSupportedFilesTitle">Desteklenen Dosya Türleri</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">Emülatörleri İçe Aktar …</sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton">Emülatörleri İndirin…</sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Bilinen emülatör profilinden önceden belirlenmiş değişkenleri yükleyin</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">{0} emülatörünü kaldırmak istediğinizden emin misiniz??        
+Şu anda {1} oyun(lar) tarafından kullanılıyor.</sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">{0} platformunu kaldırmak istediğinize emin misiniz?        
+Şu anda {1} oyun(lar) ve {2} emülatör(ler) tarafından kullanılıyor.</sys:String>
+    <sys:String x:Key="LOCEmulatorSettingsHelp">Ayarlar yardım</sys:String>
+    
+    <sys:String x:Key="LOCMenuSortByTitle">Sırala</sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Gruplandır</sys:String>
+    <sys:String x:Key="LOCMenuSortAscending">Artan</sys:String>
+    <sys:String x:Key="LOCMenuSortDescending">Azalan</sys:String>
+    <sys:String x:Key="LOCMenuGroupDont">Gruplama</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">Kütüphaneye göre grupla</sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory">Kategoriye göre grupla</sys:String>
+    <sys:String x:Key="LOCMenuGroupPlatform">Platforma göre grupla</sys:String>
+    <sys:String x:Key="LOCViewType">Görüntüleme Türü</sys:String>
+    <sys:String x:Key="LOCMenuView">Gör</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Keşif Paneli</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">Filtre Paneli</sys:String>
+
+    <!--Game fields-->
+    <sys:String x:Key="LOCGameIconTitle">Simge</sys:String>
+    <sys:String x:Key="LOCGameCoverImageTitle">Kapak Resmi</sys:String>
+    <sys:String x:Key="LOCGameBackgroundTitle">Arkaplan Resmi</sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">Sıralama İsmi</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">Kütüphane</sys:String>
+    <sys:String x:Key="LOCGameNameTitle">İsim</sys:String>
+    <sys:String x:Key="LOCGameAccountNameTitle">Hesap Adı</sys:String>
+    <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
+    <sys:String x:Key="LOCGameCategoriesTitle">Kategori(ler)</sys:String>
+    <sys:String x:Key="LOCGameGenresTitle">Tür(ler)</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">Yayın Tarihi</sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">Çıkış yılı</sys:String>
+    <sys:String x:Key="LOCGameDevelopersTitle">Geliştirici(ler)</sys:String>
+    <sys:String x:Key="LOCGameTagsTitle">Etiket(ler)</sys:String>
+    <sys:String x:Key="LOCGamePublishersTitle">Yayımcı(lar)</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">Yüklü</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Yüklü</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Kaldırılmış</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Gizli</sys:String>
+    <sys:String x:Key="LOCGameFavoriteTitle">Favori</sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle">Son Oynanma</sys:String>
+    <sys:String x:Key="LOCGameCategoryTitle">Kategori</sys:String>
+    <sys:String x:Key="LOCGameDescriptionTitle">Açıklama</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Kurulum Dizini</sys:String>
+    <sys:String x:Key="LOCGameCoverTitle">Kapak Resmi</sys:String>
+    <sys:String x:Key="LOCGameLinksTitle">Linkler</sys:String>
+    <sys:String x:Key="LOCGameROMTitle">Image, ROM veya ISO Yolu</sys:String>
+
+    <!--Errors-->
+    <sys:String x:Key="LOCDatabaseErroTitle">Veritabanı Hatası</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenError">Kütüphane veritabanı açılamadı.</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">Veritabanı açılmadı.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">Kütüphane veritabanına erişilemiyor. "{0}" dosyası başka bir işlem tarafından kullanılıyor veya erişilemeyen bir konumda.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">Tanılama paketi oluşturulamadı.</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">Tanılama paketi otomatik olarak yüklenemedi.</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">Form bilgisi başarılı bir şekilde gönderildi.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Tanılama paketi başarıyla oluşturuldu ve yüklendi.
+Lütfen kilitlenme raporunuza aşağıdaki kimliği ekleyin:</sys:String>
+
+    <sys:String x:Key="LOCSteamCategoryImportError">Steam kategorileri alınamadı.</sys:String>
+    
+    <sys:String x:Key="LOCBnetInstalledImportError">Yüklü Battle.net oyunları içe aktarılamadı.</sys:String>
+    <sys:String x:Key="LOCSteamInstalledImportError">Yüklü Steam oyunları içe aktarılamadı.</sys:String>
+    <sys:String x:Key="LOCGOGInstalledImportError">Yüklü GOG oyunları içe aktarılamadı.</sys:String>
+    <sys:String x:Key="LOCOriginInstalledImportError">Yüklü Origin oyunları içe aktarılamadı.</sys:String>
+    <sys:String x:Key="LOCUplayInstalledImportError">Yüklü Uplay oyunları içe aktarılamadı.</sys:String>
+
+    <sys:String x:Key="LOCBnetLibraryImportError">Battle.net kütüphanesi indirilemedi.</sys:String>
+    <sys:String x:Key="LOCSteamLibraryImportError">Steam kütüphanesi indirilemedi.</sys:String>
+    <sys:String x:Key="LOCGOGLibraryImportError">GOG kütüphanesi indirilemedi.</sys:String>
+    <sys:String x:Key="LOCOriginLibraryImportError">Origin kütüphanesi indirilemedi.</sys:String>
+    <sys:String x:Key="LOCUplayLibraryImportError">Uplay kütüphanesi indirilemedi.</sys:String>
+    
+    <sys:String x:Key="LOCLibraryImportError">{0} konumundan oyun içe aktarılamadı.</sys:String>    
+    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Seçilen emülatör profiline göre oyunlar aranamıyor. Profilde herhangi bir dosya uzantısı veya platform bulunmuyor.</sys:String>
+    <sys:String x:Key="LOCStartGenericError">Playnite başlatılamadı. Lütfen çalışan tüm örnekleri kapatın ve tekrar deneyin.</sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">"{0}" teması, renkli profil "{1}" uygulanamadı
+        
+{2}</sys:String>
+    <sys:String x:Key="LOCURLFormatError">Bağlantı açılamıyor, URL geçerli biçimde değil.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">Uygulama başlatılamadı.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Web görünümü bileşeni başlatılamadı, Playnite başlangıç ​​ile devam edemiyor.
+        
+Sorunu çözmek için bunları deneyebilirsiniz:        
+  • Tüm dosyaların doğru şekilde yüklendiğinden emin olun, yeniden yüklemek yardımcı olabilir
+  • Virüsten koruma programının Playnite dizinindeki dosyaları engellemediğinden emin olun
+  • Farklı yükleme konumu deneyin</sys:String>
+
+    <!--GameEdit-->
+    <sys:String x:Key="LOCGameEditWindowTitle">Oyun Detaylarını Düzenle</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">Oynama işleminden</sys:String>
+    <sys:String x:Key="LOCImageURL">Resim URL’si</sys:String>
+    <sys:String x:Key="LOCAddLinkButton">Link Ekle</sys:String>
+    <sys:String x:Key="LOCSaveChanges">Değişiklikleri Kaydet</sys:String>
+    <sys:String x:Key="LOCPlayAction">Oynama Eylemi</sys:String>
+    <sys:String x:Key="LOCAddPlayAction">Oynama Eylemi Ekle</sys:String>
+    <sys:String x:Key="LOCAddAction">Eylem Ekle</sys:String>
+    <sys:String x:Key="LOCDeleteAction">Eylemi Sil</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">Oynama Eylemini Sil</sys:String>
+    <sys:String x:Key="LOCOtherActions">Diğer Eylemler</sys:String>
+    <sys:String x:Key="LOCAddGames">Oyunları Ekle</sys:String>
+    <sys:String x:Key="LOCScanFolder">Klasörü Tara…</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">Kurulu Olanları Algıla</sys:String>
+    <sys:String x:Key="LOCBrowse">Göz atın…</sys:String>
+    <sys:String x:Key="LOCOpenPlaynite">Playnite'ı Aç</sys:String>
+    <sys:String x:Key="LOCProfileSettings">Profil Ayarları</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameError">Oyun adı boş bırakılamaz.</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Metaverileri aramadan önce oyun adı boş bırakılamaz.</sys:String>
+    <sys:String x:Key="LOCInvalidGameData">Geçersiz oyun verileri</sys:String>
+    <sys:String x:Key="LOCURLInputInfo">http:// veya https:// ile başlayan geçerli web URL'si girin</sys:String>
+    <sys:String x:Key="LOCURLInputInfoTitile">URL Seç</sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">Metaveriler indirilemedi: {0}</sys:String>
+    <sys:String x:Key="LOCDownloadError">İndirme Hatası</sys:String>
+    <sys:String x:Key="LOCClearFilters">Filtreleri Temizle</sys:String>
+    <sys:String x:Key="LOCPrivateAccount">Özel Hesap</sys:String>
+    <sys:String x:Key="LOCPublicAccount">Genel Hesap</sys:String>
+    <sys:String x:Key="LOCAPIKey">API Anahtarı</sys:String>
+    <sys:String x:Key="LOCStartupError">Başlangıç Hatası</sys:String>
+    <sys:String x:Key="LOCSkinError">Tema Hatası</sys:String>
+    <sys:String x:Key="LOCClearAll">Hepsini Temizle</sys:String>
+    <sys:String x:Key="LOCSetupRunning">Yükleniyor</sys:String>
+    <sys:String x:Key="LOCUninstalling">Kaldırılıyor</sys:String>
+    <sys:String x:Key="LOCGameLaunching">Başlatılıyor</sys:String>
+    <sys:String x:Key="LOCGameRunning">Çalışıyor</sys:String>
+    <sys:String x:Key="LOCInvalidURL">Geçersiz URL</sys:String>
+    <sys:String x:Key="LOCDoNothing">Hiçbir şey yapma</sys:String>
+    <sys:String x:Key="LOCMinimize">Küçült</sys:String>
+    <sys:String x:Key="LOCRestoreWindow">Pencereyi geri yükle</sys:String>
+    <sys:String x:Key="LOCClose">Kapat</sys:String>
+    <sys:String x:Key="LOCChange">Değiştir</sys:String>
+    <sys:String x:Key="LOCAdvanced">Gelişmiş</sys:String>
+    <sys:String x:Key="LOCNever">Asla</sys:String>
+    <sys:String x:Key="LOCNotPlayed">Oynanmadı</sys:String>
+    <sys:String x:Key="LOCPlayed">Oynandı</sys:String>
+    <sys:String x:Key="LOCBeaten">Yenildi</sys:String>
+    <sys:String x:Key="LOCCompleted">Tamamlandı</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Tamamlanma Durumu</sys:String>
+    <sys:String x:Key="LOCUserScore">Kullanıcı Puanı</sys:String>
+    <sys:String x:Key="LOCCriticScore">Kritik Puanı</sys:String>
+    <sys:String x:Key="LOCCommunityScore">Topluluk Puanı</sys:String>
+    <sys:String x:Key="LOCScripts">Komut Dosyaları</sys:String>
+    <sys:String x:Key="LOCPlugins">Eklentiler</sys:String>
+    <sys:String x:Key="LOCExtensions">Uzantılar</sys:String>
+    <sys:String x:Key="LOCReloadScripts">Komut Dosyalarını Yeniden Yükle</sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess">Tüm komut dosyaları başarıyla yeniden yüklendi.</sys:String>
+    <sys:String x:Key="LOCNoGamesFound">Oyun Bulunamadı</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Masaüstü Moduna Çık</sys:String>
+    <sys:String x:Key="LOCExitPlaynite">Playnite'ı Kapat</sys:String>
+    <sys:String x:Key="LOCLibraries">Kütüphaneler</sys:String>
+    <sys:String x:Key="LOCUpdateAll">Tümünü Güncelle</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Oluşturan:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Versiyon:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">Modül:</sys:String>
+    <sys:String x:Key="LOCLibrary">Kütüphane</sys:String>
+    <sys:String x:Key="LOCAll">Tümü</sys:String>
+    <sys:String x:Key="LOCNone">Hiç biri</sys:String>
+    <sys:String x:Key="LOCNotifications">Bildirimler</sys:String>
+
+
+    <sys:String x:Key="LOCEmulatorArguments">Emulator Argümanları</sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments">Ek Emulator Argümanları</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">Emulator Argümanlarını Geçersiz Kıl</sys:String>
+
+    <sys:String x:Key="LOCGameImportWindowTitle">İçe Aktarılacak Oyunları Seçin</sys:String>
+    <sys:String x:Key="LOCMetaLookupWindowTitle">Metaveri arama</sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle">Güncelleme Mevcut</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Son güncellemeden bu yana yapılan değişiklikler</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Güncellemeyi İndir ve Yükle</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Güncelleştirmeleri Denetle</sys:String>
+    <sys:String x:Key="LOCUpdateError">Güncelleme Hatası</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Yeni sürüm kontrol edilemedi.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Şu anda son sürümü kullanıyorsunuz.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Güncelleme indirilemediği için yüklenemedi.</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Arka plan görevi şu anda çalışıyor, iptal etmek ve güncelleme yüklemesine devam etmek istiyor musunuz?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Arka plan görevi şu anda çalışıyor, iptal edip Playnite'ı kapatmak istiyor musunuz?</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite için yeni bir güncelleme mevcut</sys:String>
+
+    <sys:String x:Key="LOCThemeTestReloadList">Tema listesini yeniden yükle</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">Seçilen temayı uygula</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChanges">Dosya değişikliklerini izle</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Kaynak dosya değiştiğinde temayı otomatik olarak uygula</sys:String>
+
+    <!--Game actions-->
+    <sys:String x:Key="LOCSaveAsDefault">Varsayılan olarak kaydet</sys:String>
+    <sys:String x:Key="LOCFavoriteGame">Favorilere ekle</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">Favorilerden kaldır</sys:String>
+    <sys:String x:Key="LOCHideGame">Gizle</sys:String>
+    <sys:String x:Key="LOCUnHideGame">Kütüphanede göster</sys:String>
+    <sys:String x:Key="LOCEditGame">Düzenle…</sys:String>
+    <sys:String x:Key="LOCSetGameCategory">Kategori Ayarla…</sys:String>
+    <sys:String x:Key="LOCRemoveGame">Sil</sys:String>
+    <sys:String x:Key="LOCPlayGame">Oyna</sys:String>
+    <sys:String x:Key="LOCInstallGame">Yükle</sys:String>
+    <sys:String x:Key="LOCGameOptions">Seçenekler</sys:String>
+    <sys:String x:Key="LOCGameDetails">Ayrıntılar</sys:String>
+    <sys:String x:Key="LOCUninstallGame">Kaldır</sys:String>
+    <sys:String x:Key="LOCOpenGameLocation">Kurulum Konumunu Aç</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">Masaüstü kısayolu oluşturun</sys:String>
+    <sys:String x:Key="LOCMoreAction">Daha Fazla</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">Kütüphane eklentisi tarafından yönetiliyor</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">Oyunun başlangıç ​​süreci, bu oyundan sorumlu kütüphane eklentisi tarafından yönetilecektir.</sys:String>
+
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Belirtilen sayfada '{0}' oyunu ile ilgili herhangi bir bilgi bulamadık .</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">İpucu: "Düzenle" menü seçeneğiyle tekli oyun düzenlerken daha gelişmiş metaveri indirme işlemini kullanabilirsiniz.</sys:String>
+    <sys:String x:Key="LOCProgreessAvailabilityMessage">Bazı işlem devam ederken kullanılamaz.</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Açıklama metni HTML sözdizimine duyarlıdır.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Oynanış süresi izlenir ve saniye biçiminde saklanır.</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">0'dan 100'e kadar olan bir değer girin yada boş bırakın.</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite'ın gelişimi bu kullanıcılar tarafından desteklenir:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">Kod, yerelleştirme ve diğer katkıda bulunanlar özel bir düzende değildir:</sys:String>
+
+    <sys:String x:Key="LOCCancelMonitoringAskTitle">Oyun izleme iptal edilsin mi?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">Kurulum izleme şu anda çalışıyor, süreci iptal etmek ve oyunu önceki durumuna döndürmek istiyor musunuz?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Oyun yürütme izleme şu anda çalışıyor, işlemi iptal etmek ve oyunu önceki durumuna döndürmek istiyor musunuz?</sys:String>
+    
+    <sys:String x:Key="LOCTimePlayed">Oynama Süresi</sys:String>
+    <sys:String x:Key="LOCLastPlayed">Son Oynanma</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0}s {1}dk</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0} dakika</sys:String>
+    <sys:String x:Key="LOCPlayedSeconds">{0} saniye</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Oynanmadı</sys:String>
+
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Masaüstü modunu açıyor…</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Tam ekran modunu açıyor…</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Oyun kütüphanesi yükleniyor...</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Komut dosyası yüklenemedi.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Komut dosyası başarıyla kuruldu.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Komut Dosyasını Yükle</sys:String>
+    <sys:String x:Key="LOCScriptError">Komut Dosyası Hatası</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">Uzantı işlevi yürütülemedi.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Metaveri klasörünü aç</sys:String>
+
+    <sys:String x:Key="LOCClientNotInstalledError">{0} istemci yüklenmemiş.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} müşteri şimdi açılacak. Lütfen oturum açın ve ardından bu mesajı kapatın.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Kullanıcının oturum açmasını bekleyin, tamamladığınızda lütfen bunu kapatın...</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Oyunun kurulum dizini bulunamadı.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Geçersiz oyun eylemi yapılandırması.</sys:String>
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Hesap senkronizasyonu sorunlarını giderme</sys:String>
+
+    <sys:String x:Key="LOCRenameItem">Öğeyi yeniden adlandır</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Yeni öğe ekle</sys:String>
+    <sys:String x:Key="LOCEnterName">İsim gir</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Yeni isim gir</sys:String>
+
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Bir saatten az</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 ila 10 saat</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 ila 100 saat</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100-500 saat</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500-1000 saat</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000 saatten fazla</sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io istemcisi şimdi açılacak. Lütfen oturum açın ve ardından bu mesajı kapatın.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Kullanıcının oturum açmasını bekleyin, tamamladığınızda lütfen bunu kapatın...</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Itch istemcisi sürüm 25 veya daha yenisi yüklü değil.</sys:String>
+
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin">Hesap Girişi</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Hesap Adı</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Bütün kütüphaneni senkronize etmek için hesabına giriş yap ya da herkese açık hesap ismini kullan.
+Not Hesap ismi seçeneği sadece GOG'un gizlilik seçeneğinin herkese görünür olan hesaplar için çalışır.</sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Tam kitaplığınızı senkronize etmek için kimliği doğrulanmış bir kullanıcı seçin veya hesabınızın ticari URL adını belirtin. Özel kütüphane görünürlüğüne sahip hesapların, Steam hesabına bağlı olan API anahtarını belirtmesi gerekir.
+    </sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">Hesap URL Adı</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Doğrulanmış Kullanıcı</sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError">İlk kez kurulumu tamamlanamadı. Playnite şimdi işlemi tamamlamak için Masaüstü moduna sıfırlanıcak.</sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">En Son Oynananlar</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Favoriler</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">En Çok Oynanan</sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames">Hepsi</sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered">Uygulanan filtreler var.</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Arama Sonuçları:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Aynı ada sahip bir öğe zaten var.</sys:String>
+
+</ResourceDictionary>

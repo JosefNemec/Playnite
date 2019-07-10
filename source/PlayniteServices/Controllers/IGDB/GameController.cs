@@ -57,89 +57,90 @@ namespace PlayniteServices.Controllers.IGDB
     public class GameParsedController : Controller
     {
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<ParsedGame>> Get(ulong gameId)
+        public async Task<ServicesResponse<ExpandedGame>> Get(ulong gameId)
         {
             var game = (await new GameController().Get(gameId)).Data;
-            var parsedGame = new ParsedGame()
+            if (game.id == 0)
+            {
+                new ServicesResponse<ExpandedGame>(new ExpandedGame());
+            }
+
+            var parsedGame = new ExpandedGame()
             {
                 id = game.id,
                 name = game.name,
-                first_release_date = game.first_release_date,
-                cover = game.cover?.url,
-                websites = game.websites,
+                slug = game.slug,
+                url = game.url,
                 summary = game.summary,
+                storyline = game.storyline,
+                popularity = game.popularity,
+                version_title = game.version_title,
+                category = game.category,
+                first_release_date = game.first_release_date,
                 rating = game.rating,
                 aggregated_rating = game.aggregated_rating,
-                total_rating = game.total_rating,
-                alternative_names = game.alternative_names,
-                external = game.external,
-                screenshots = game.screenshots,
-                videos = game.videos,
-                artworks = game.artworks,
-                release_dates = game.release_dates
+                total_rating = game.total_rating
             };
 
-            if (game.developers?.Any() == true)
+            if (game.alternative_names?.Any() == true)
             {
-                parsedGame.developers = new List<string>();
-                foreach (var dev in game.developers)
+                parsedGame.alternative_names = new List<AlternativeName>();
+                foreach (var nameId in game.alternative_names)
                 {
-                    var dbDev = (await (new CompanyController()).Get(dev)).Data;
-                    parsedGame.developers.Add(dbDev.name);
+                    parsedGame.alternative_names.Add((await AlternativeNameController.GetItem(nameId)).Data);
                 }
             }
 
-            if (game.game_modes?.Any() == true)
+            if (game.involved_companies?.Any() == true)
             {
-                parsedGame.game_modes = new List<string>();
-                foreach (var mode in game.game_modes)
+                parsedGame.involved_companies = new List<ExpandedInvolvedCompany>();
+                foreach (var companyId in game.involved_companies)
                 {
-                    var dbMode = (await (new GameModeController()).Get(mode)).Data;
-                    parsedGame.game_modes.Add(dbMode.name);
+                    parsedGame.involved_companies.Add((await InvolvedCompanyController.GetItem(companyId)).Data);
                 }
             }
 
             if (game.genres?.Any() == true)
             {
-                parsedGame.genres = new List<string>();
-                foreach (var genre in game.genres)
+                parsedGame.genres_v3 = new List<Genre>();
+                foreach (var genreId in game.genres)
                 {
-                    var dbGenre = (await (new GenreController()).Get(genre)).Data;
-                    parsedGame.genres.Add(dbGenre.name);
+                    parsedGame.genres_v3.Add((await GenreController.GetItem(genreId)).Data);
                 }
             }
 
-            if (game.publishers?.Any() == true)
+            if (game.websites?.Any() == true)
             {
-                parsedGame.publishers = new List<string>();
-                foreach (var pub in game.publishers)
+                parsedGame.websites = new List<Website>();
+                foreach (var websiteId in game.websites)
                 {
-                    var dbDev = (await (new CompanyController()).Get(pub)).Data;
-                    parsedGame.publishers.Add(dbDev.name);
+                    parsedGame.websites.Add((await WebsiteController.GetItem(websiteId)).Data);
                 }
             }
 
-            if (game.themes?.Any() == true)
+            if (game.game_modes?.Any() == true)
             {
-                parsedGame.themes = new List<string>();
-                foreach (var theme in game.themes)
+                parsedGame.game_modes_v3 = new List<GameMode>();
+                foreach (var modeId in game.game_modes)
                 {
-                    var dbTheme = (await (new ThemeController()).Get(theme)).Data;
-                    parsedGame.themes.Add(dbTheme.name);
+                    parsedGame.game_modes_v3.Add((await GameModeController.GetItem(modeId)).Data);
                 }
             }
 
-            if (game.platforms?.Any() == true)
+            if (game.cover > 0)
             {
-                parsedGame.platforms = new List<string>();
-                foreach (var platform in game.platforms)
-                {
-                    var dbPlatform = (await (new PlatformController()).Get(platform)).Data;
-                    parsedGame.platforms.Add(dbPlatform.name);
-                }
+                parsedGame.cover_v3 = (await CoverController.GetItem(game.cover)).Data;
             }
 
-            return new ServicesResponse<ParsedGame>(parsedGame);
+            // fallback properties for 4.x
+            parsedGame.cover = parsedGame.cover_v3?.url;
+            parsedGame.publishers = parsedGame.involved_companies?.Where(a => a.publisher == true).Select(a => a.company.name).ToList();
+            parsedGame.developers = parsedGame.involved_companies?.Where(a => a.developer == true).Select(a => a.company.name).ToList();
+            parsedGame.genres = parsedGame.genres_v3?.Select(a => a.name).ToList();
+            parsedGame.game_modes = parsedGame.game_modes_v3?.Select(a => a.name).ToList();
+            parsedGame.first_release_date = parsedGame.first_release_date * 1000;
+
+            return new ServicesResponse<ExpandedGame>(parsedGame);
         }
     }
 }

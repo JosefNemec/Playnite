@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -91,7 +93,15 @@ namespace GogLibrary
         public override void Install()
         {
             ReleaseResources();
-            ProcessStarter.StartUrl(@"goggalaxy://openGameView/" + Game.GameId);
+            if (Gog.IsInstalled)
+            {
+                ProcessStarter.StartUrl(@"goggalaxy://openGameView/" + Game.GameId);
+            }
+            else
+            {
+                ProcessStarter.StartUrl(@"https://www.gog.com/account");
+            }
+
             StartInstallWatcher();
         }
 
@@ -159,10 +169,14 @@ namespace GogLibrary
                 {
                     var game = games[Game.GameId];
                     stopWatch.Stop();
-                    Game.PlayAction = game.PlayAction;
-                    Game.OtherActions = game.OtherActions;
-                    Game.InstallDirectory = game.InstallDirectory;
-                    OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+                    var installInfo = new GameInfo()
+                    {
+                        PlayAction = game.PlayAction,
+                        OtherActions = game.OtherActions,
+                        InstallDirectory = game.InstallDirectory
+                    };
+
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, stopWatch.Elapsed.TotalSeconds));
                     return;
                 }
 

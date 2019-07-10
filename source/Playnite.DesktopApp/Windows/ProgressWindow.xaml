@@ -1,0 +1,25 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        mc:Ignorable="d"                     
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        ShowTitle="False" ShowCloseButton="False"
+        ShowMaximizeButton="False" ShowMinimizeButton="False"
+        ResizeMode="NoResize" Width="400"
+        SizeToContent="Height"
+        Title="{Binding ProgressText}"
+        AutomationProperties.AutomationId="WindowProgress">
+
+    <Grid Margin="5,-20,5,5">
+        <ProgressBar Height="35" IsIndeterminate="True" />
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                   TextTrimming="CharacterEllipsis"
+                   Style="{DynamicResource BaseTextBlockStyle}"                   
+                   Text="{Binding ProgressText}"/>
+    </Grid>
+</controls:WindowBase>

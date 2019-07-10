@@ -2,7 +2,7 @@
 using OriginLibrary.Services;
 using Playnite;
 using Playnite.SDK;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +57,7 @@ namespace OriginLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<OriginLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<OriginLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -66,7 +66,7 @@ namespace OriginLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()
@@ -76,7 +76,7 @@ namespace OriginLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)

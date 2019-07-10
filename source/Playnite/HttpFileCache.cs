@@ -1,6 +1,7 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Common;
+using Playnite.Common.Web;
+using Playnite.SDK;
 using Playnite.Settings;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.IO;

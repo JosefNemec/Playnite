@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using SteamLibrary.Models;
 using Playnite.SDK;
 
@@ -67,6 +67,15 @@ namespace SteamLibrary
             });
         }
 
+        [JsonIgnore]
+        public RelayCommand<LocalSteamUser> ImportSteamLastActivityCommand
+        {
+            get => new RelayCommand<LocalSteamUser>((a) =>
+            {
+                ImportSteamLastActivity(a);
+            });
+        }
+
         public SteamLibrarySettings()
         {
         }
@@ -76,7 +85,7 @@ namespace SteamLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<SteamLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<SteamLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -85,7 +94,7 @@ namespace SteamLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()
@@ -95,7 +104,7 @@ namespace SteamLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)
@@ -105,7 +114,7 @@ namespace SteamLibrary
 
             if (ImportUninstalledGames && IdSource == SteamIdSource.Name && string.IsNullOrEmpty(AccountName))
             {
-                errors.Add(api.Resources.FindString("LOCSettingsInvalidAccountName"));
+                errors.Add(api.Resources.GetString("LOCSettingsInvalidAccountName"));
                 allValid = false;
             }
 
@@ -121,6 +130,12 @@ namespace SteamLibrary
         {
             var accId = user == null ? 0 : user.Id;
             library.ImportSteamCategories(accId);
+        }
+
+        public void ImportSteamLastActivity(LocalSteamUser user)
+        {
+            var accId = user == null ? 0 : user.Id;
+            library.ImportSteamLastActivity(accId);
         }
     }
 }

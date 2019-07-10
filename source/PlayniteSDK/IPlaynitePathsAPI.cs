@@ -25,5 +25,10 @@ namespace Playnite.SDK
         /// Gets path where Playnite's configuration is stored.
         /// </summary>
         string ConfigurationPath { get; }
+
+        /// <summary>
+        /// Gets path dedicated for plugins to store data.
+        /// </summary>
+        string ExtensionsDataPath { get; }
     }
 }

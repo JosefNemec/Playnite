@@ -53,7 +53,7 @@ namespace PlayniteServices.Controllers.Steam
             var cachePath = Path.Combine(Steam.CacheDirectory, cacheDir, appId + ".txt");
             lock (CacheLock)
             {
-                FileSystem.PrepareSaveFile(cachePath);
+                Playnite.Common.FileSystem.PrepareSaveFile(cachePath);
                 System.IO.File.WriteAllText(cachePath, data);
             }
 

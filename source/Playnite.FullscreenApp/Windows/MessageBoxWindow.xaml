@@ -1,0 +1,66 @@
+﻿<controls:WindowBase x:Class="Playnite.FullscreenApp.Windows.MessageBoxWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+        xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+        mc:Ignorable="d"
+        x:Name="WindowMessageBox"                     
+        Title="{Binding Caption, ElementName=WindowMessageBox}"
+        ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
+        ShowInTaskbar="False" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Style="{StaticResource MessageBoxWindowStyle}"
+        d:DesignWidth="1920" d:DesignHeight="1080">    
+    <controls:WindowBase.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </controls:WindowBase.Resources>
+
+    <Viewbox>
+        <Grid Height="1080">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Grid.Column="1" Grid.Row="1">
+                <StackPanel Margin="30">
+                    <TextBlock Text="{Binding Caption, ElementName=WindowMessageBox}"
+                               Style="{StaticResource TextBlockBaseStyle}"                               
+                               FontFamily="{StaticResource FontTitilliumWebBold}"
+                               FontSize="26" Margin="0,0,0,15"
+                               HorizontalAlignment="Left" TextAlignment="Left"
+                               Visibility="{Binding Caption, ElementName=WindowMessageBox, Converter={pcon:StringNullOrEmptyToVisibilityConverter}}"/>
+                    <TextBlock Text="{Binding Text, ElementName=WindowMessageBox}"
+                               Style="{StaticResource TextBlockBaseStyle}"
+                               MaxWidth="900" TextWrapping="Wrap"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,25,0,0"
+                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <pctrls:ButtonEx Content="{DynamicResource LOCOKLabel}" x:Name="ButtonOK" Click="ButtonOK_Click"
+                                Style="{StaticResource ButtonMessageBox}"
+                                Visibility="{Binding ShowOKButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <pctrls:ButtonEx Content="{DynamicResource LOCYesLabel}" x:Name="ButtonYes" Click="ButtonYes_Click"
+                                Style="{StaticResource ButtonMessageBox}"                                
+                                Visibility="{Binding ShowYesButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <pctrls:ButtonEx Content="{DynamicResource LOCNoLabel}" x:Name="ButtonNo" Click="ButtonNo_Click"
+                                Style="{StaticResource ButtonMessageBox}"                                
+                                Visibility="{Binding ShowNoButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}" x:Name="ButtonCancel" Click="ButtonCancel_Click"
+                                Style="{StaticResource ButtonMessageBox}"                                
+                                Visibility="{Binding ShowCancelButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </StackPanel>
+                </StackPanel>                
+            </Border>
+        </Grid>
+    </Viewbox>
+</controls:WindowBase>

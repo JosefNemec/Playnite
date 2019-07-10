@@ -42,6 +42,23 @@ namespace OriginLibrary.Services
             return JsonConvert.DeserializeObject<AccountInfoResponse>(stringData);
         }
 
+        public UsageResponse GetUsage(long userId, string gameId, AuthTokenResponse token)
+        {
+            var gameStoreData = OriginApiClient.GetGameStoreData(gameId);
+            string multiplayerId = gameStoreData.platforms.First(a => a.platform == "PCWIN").multiplayerId;
+            string masterTitleId = gameStoreData.masterTitleId;
+
+            var client = new WebClient();
+            client.Headers.Add("authtoken", token.access_token);
+            client.Headers.Add("X-Origin-Platform", "PCWIN");
+            if (!string.IsNullOrEmpty(multiplayerId))
+            {
+                client.Headers.Add("MultiplayerId", multiplayerId);
+            }
+
+            var stringData = client.DownloadString(string.Format(@"https://api1.origin.com/atom/users/{0}/games/{1}/usage", userId, masterTitleId));
+            return new UsageResponse(stringData);
+        }
 
         public AuthTokenResponse GetAccessToken()
         {

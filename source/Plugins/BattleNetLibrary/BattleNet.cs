@@ -1,10 +1,10 @@
-﻿using Playnite;
-using Playnite.Common.System;
+﻿using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -63,6 +63,8 @@ namespace BattleNetLibrary
                 return !string.IsNullOrEmpty(clientExe) && File.Exists(clientExe);
             }
         }
+
+        public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\battleneticon.png");
 
         public static void StartClient()
         {

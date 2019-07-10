@@ -20,9 +20,9 @@ namespace SteamLibrary
         public string Name { get; private set; }
         public GameID GameId { get; private set; }
         public string InstallFolder { get; private set; }
-        public ComparableList<string> Categories { get; private set; }
+        public List<string> Categories { get; private set; }
         public string Developer { get; private set; }
-        public ObservableCollection<Link> Links { get; private set; }
+        public List<Link> Links { get; private set; }
         public string IconPath { get; private set; }
         private readonly ModType modType;
 
@@ -49,10 +49,10 @@ namespace SteamLibrary
             modType = type;
             InstallFolder = installFolder;
             Name = "Unknown Mod";
-            Links = new ObservableCollection<Link>();
+            Links = new List<Link>();
             GameId = new GameID();
             Developer = "Unknown";
-            Categories = new ComparableList<string>();
+            Categories = new List<string>();
         }
 
         static public ModInfo GetFromGameID(GameID gameID)

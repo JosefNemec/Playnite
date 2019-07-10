@@ -1,60 +1,96 @@
-﻿using Playnite;
-using Playnite.Common.System;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TwitchLibrary.Models;
+using TwitchLibrary.Services;
 
 namespace TwitchLibrary
 {
-    public class TwitchMetadataProvider : ILibraryMetadataProvider
+    public class TwitchMetadataProvider : LibraryMetadataProvider
     {
-        #region IMetadataProvider
-        
-        public GameMetadata GetMetadata(Game game)
+        private ILogger logger = LogManager.GetLogger();
+        private TwitchLibrary library;
+        private List<Entitlement> entitlements;
+
+        public TwitchMetadataProvider(TwitchLibrary library)
         {
-            var gameData = game.CloneJson();
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
+            this.library = library;
+            
+                var token = library.GetAuthToken();
+                if (!token.IsNullOrEmpty())
+                {
+                try
+                {
+                    entitlements = AmazonEntitlementClient.GetAccountEntitlements(token);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to get entitlements for Twitch metadata.");
+                }
+            }
         }
 
-        #endregion IMetadataProvider
-
-        public GameMetadata UpdateGameWithMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
-            var metadata = new GameMetadata();
-            var program = Twitch.GetUninstallRecord(game.GameId);
-            if (program == null)
+            var gameInfo = new GameInfo
             {
-                return metadata;
-            }
+                Links = new List<Link>()
+            };
 
-            if (!string.IsNullOrEmpty(program.DisplayIcon) && File.Exists(program.DisplayIcon))
+            var metadata = new GameMetadata()
             {
-                var iconPath = program.DisplayIcon;
-                var iconFile = Path.GetFileName(iconPath);
-                if (iconPath.EndsWith("ico", StringComparison.OrdinalIgnoreCase))
+                GameInfo = gameInfo
+            };
+
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name));
+
+            var program = Twitch.GetUninstallRecord(game.GameId);
+            if (program != null)
+            {
+                gameInfo.Name = StringExtensions.NormalizeGameName(program.DisplayName);
+                if (!string.IsNullOrEmpty(program.DisplayIcon) && File.Exists(program.DisplayIcon))
                 {
-                    var data = File.ReadAllBytes(iconPath);
-                    metadata.Icon = new MetadataFile(iconFile, data);
-                }
-                else
-                {
-                    var exeIcon = IconExtension.ExtractIconFromExe(iconPath, true);
-                    if (exeIcon != null)
+                    var iconPath = program.DisplayIcon;
+                    if (iconPath.EndsWith("ico", StringComparison.OrdinalIgnoreCase))
                     {
-                        var iconName = Guid.NewGuid() + ".png";
-                        metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));                       
+                        metadata.Icon = new MetadataFile(program.DisplayIcon);
+                    }
+                    else
+                    {
+                        var exeIcon = IconExtension.ExtractIconFromExe(iconPath, true);
+                        if (exeIcon != null)
+                        {
+                            var iconName = Guid.NewGuid() + ".png";
+                            metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                        }
                     }
                 }
             }
 
-            game.Name = StringExtensions.NormalizeGameName(program.DisplayName);
+            if (entitlements?.Any() == true)
+            {
+                var entitlement = entitlements.FirstOrDefault(a => a.product.id == game.GameId);
+                if (entitlement != null)
+                {
+                    if (entitlement.product.productDetail?.iconUrl != null)
+                    {
+                        metadata.CoverImage = new MetadataFile(entitlement.product.productDetail.iconUrl);
+                    }
+
+                    if (entitlement.product.productDetail?.details?.backgroundUrl2 != null)
+                    {
+                        metadata.BackgroundImage = new MetadataFile(entitlement.product.productDetail.details.backgroundUrl2);
+                    }
+                }
+            }
+
             return metadata;
         }
     }

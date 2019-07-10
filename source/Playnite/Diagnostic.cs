@@ -7,10 +7,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using Playnite.Settings;
-using Playnite.Common.System;
 using Playnite.Common;
-using Playnite.App;
+using Playnite.Settings;
 
 namespace Playnite
 {
@@ -39,9 +37,13 @@ namespace Playnite
                     }
 
                     // Config 
-                    if (File.Exists(PlaynitePaths.ConfigFilePath))
+                    if (Directory.Exists(PlaynitePaths.ConfigRootPath))
                     {
-                        archive.CreateEntryFromFile(PlaynitePaths.ConfigFilePath, Path.GetFileName(PlaynitePaths.ConfigFilePath));
+                        foreach (var cfg in Directory.GetFiles(PlaynitePaths.ConfigRootPath, "*.json"))
+                        {
+                            var fileInfo = new FileInfo(cfg);
+                            archive.CreateEntryFromFile(cfg, fileInfo.Name);
+                        }
                     }
 
                     // Extension configs

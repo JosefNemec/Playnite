@@ -1,4 +1,4 @@
-﻿using Playnite;
+﻿using Playnite.Common;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace SteamLibrary
 {
-    public class SteamClient : ILibraryClient
+    public class SteamClient : LibraryClient
     {
-        public bool IsInstalled { get => Steam.IsInstalled; }
+        public override string Icon => Steam.Icon;
 
-        public void Open()
+        public override bool IsInstalled => Steam.IsInstalled;
+
+        public override void Open()
         {
             ProcessStarter.StartProcess(Steam.ClientExecPath, string.Empty);
         }

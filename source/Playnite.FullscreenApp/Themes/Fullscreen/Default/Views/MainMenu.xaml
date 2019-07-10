@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pcmds="clr-namespace:Playnite.Commands;assembly=Playnite"
+                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+                    xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views;assembly=Playnite.FullscreenApp"
+                    xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp"
+                    xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls;assembly=Playnite.FullscreenApp"
+                    xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">    
+
+    <Style TargetType="{x:Type views:MainMenu}">        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type views:MainMenu}">
+                    <Grid>
+                        <StackPanel x:Name="PART_MenuHost"  
+                                    KeyboardNavigation.TabNavigation="Cycle"
+                                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                                    Background="{DynamicResource OverlayMenuBackgroundBrush}"
+                                    Margin="0,0,100,0" MinWidth="440"
+                                    HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30,30,40,30">
+                                <TextBlock Text="Playnite" Style="{DynamicResource TextBlockBaseStyle}"
+                                       FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                       FontSize="36" Margin="0,0,20,0" />
+                                <Image Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" Height="48"
+                                   RenderOptions.BitmapScalingMode="Fant" />
+                            </StackPanel>
+
+                            <pctrls:ButtonEx x:Name="PART_ButtonSettings"
+                                Style="{DynamicResource ButtonMainMenu}"
+                                Content="{DynamicResource LOCSettingsLabel}" />
+
+                            <pctrls:ButtonEx x:Name="PART_ButtonExitPlaynite"
+                                Style="{DynamicResource ButtonMainMenu}"
+                                Content="{DynamicResource LOCExitPlaynite}" />
+
+                            <pctrls:ButtonEx x:Name="PART_ButtonSwitchToDesktop"
+                                Style="{DynamicResource ButtonMainMenu}"
+                                Content="{DynamicResource LOCBackToDesktopMode}" />
+
+                            <Canvas Height="75" />
+
+                            <pctrls:ButtonEx x:Name="PART_ButtonShutdownSystem"
+                                Style="{DynamicResource ButtonMainMenu}"
+                                Content="{DynamicResource LOCMenuShutdownSystem}" />
+
+                            <pctrls:ButtonEx x:Name="PART_ButtonHibernateSystem"
+                                Style="{DynamicResource ButtonMainMenu}"
+                                Content="{DynamicResource LOCMenuSuspendSystem}" />
+
+                            <pctrls:ButtonEx x:Name="PART_ButtonRestartSystem"
+                                Style="{DynamicResource ButtonMainMenu}"
+                                Content="{DynamicResource LOCMenuRestartSystem}"/>
+
+                            <Canvas Height="75" />
+
+                            <pctrls:ButtonEx x:Name="PART_ButtoFeedback"
+                                Style="{DynamicResource ButtonMainMenu}"
+                                Content="{DynamicResource LOCMenuIssues}" />
+
+                            <pctrls:ButtonEx x:Name="PART_ButtonPatreon"
+                                Style="{DynamicResource ButtonMainMenu}"
+                                Content="{DynamicResource LOCMenuPatreonSupport}" />
+                        </StackPanel>
+                        <Border Background="{DynamicResource OverlayBrush}"
+                                Width="{Binding ActualWidth, ElementName=PART_MenuHost}"
+                                Margin="{Binding Margin, ElementName=PART_MenuHost}"
+                                HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                                Visibility="{Binding SettingsMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

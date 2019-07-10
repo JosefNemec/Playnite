@@ -1,0 +1,13 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Playnite.FullscreenApp"
+    xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+    xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls">
+
+    <Style TargetType="pctrls:ItemsControlEx" BasedOn="{StaticResource {x:Type ItemsControl}}">
+    </Style>
+
+    <Style TargetType="pctrls:ListBoxEx" BasedOn="{StaticResource {x:Type ListBox}}">
+    </Style>
+</ResourceDictionary>

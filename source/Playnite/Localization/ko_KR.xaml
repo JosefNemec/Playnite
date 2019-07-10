@@ -1,0 +1,721 @@
+﻿<?xml version="1.0"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="LanguageName">한국어</sys:String>
+
+    <sys:String x:Key="LOCLanguageSettingsLabel">언어</sys:String>
+
+    <sys:String x:Key="LOCExitAppLabel">종료</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">필터가 활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">필터가 비활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">추가 필터</sys:String>
+    <sys:String x:Key="LOCFilters">필터</sys:String>
+    <sys:String x:Key="LOCFilter">필터</sys:String>
+
+    <sys:String x:Key="LOCInvalidDataTitle">잘못된 데이터</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">변경 사항을 저장하시겠습니까?</sys:String>
+    
+    <sys:String x:Key="LOCAboutHomePageLink">홈페이지: www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">GitHub에서 소스 코드 보기</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">진단 패키지 생성</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">시스템 정보 전송</sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">Playnite에 관하여</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">Josef Němec이 개발함</sys:String>
+
+    <sys:String x:Key="LOCCategoryWindowTitle">카테고리 지정</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">카테고리 설정</sys:String>
+    <sys:String x:Key="LOCCategoryAddCatButton">카테고리 추가</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">체크됨 - 카테고리 지정
+체크되지 않음 - 카테고리 삭제
+다중 값 - 변경 사항 없음 (여러 게임 편집 시)</sys:String>
+    <sys:String x:Key="LOCNoCategory">카테고리 없음</sys:String>
+    <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
+
+    <sys:String x:Key="LOCCrashWindowTitle">이런, 문제가 발생했습니다…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
+        
+이 문제를 수정하는 것을 돕고 싶으시다면, 진단 패키지를 생성하고 ‘오류 보고’ 버튼을 통해 무슨 일이 일어났는지 알려주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
+        
+이 문제를 수정하는 것을 돕고 싶으시다면, 분석 정보를 보내주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Playnite 나가기</sys:String>
+
+    <sys:String x:Key="LOCLibraryManager">라이브러리 관리자</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">게임을 삭제하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">게임이 실행 중이거나 설치, 삭제되는 중에는 게임을 삭제할 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">게임이 실행 중일 때 삭제할 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">이 게임을 삭제하시겠습니까?
+        
+다음 가져오기 작업 후, 자동으로 가져온 게임이 새로고침될 것입니다 (설정에 따라 달라집니다).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">{0}개의 게임을 삭제하시겠습니까?
+        
+다음 가져오기 작업 후, 자동으로 가져온 게임이 새로고침될 것입니다 (설정에 따라 달라집니다).</sys:String>
+
+    <sys:String x:Key="LOCSteamFriendsTooltip">Steam 친구</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">저장해야 할 변경 사항이 있습니다</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">게임 라이브러리 형식 업데이트 중…</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">데이터베이스 업데이트를 실패했습니다.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">게임 라이브러리를 업데이트할 수 없습니다. {0} MB의 여유 공간이 필요합니다.</sys:String>
+
+    <sys:String x:Key="LOCGameError">게임 에러</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">게임을 시작할 수 없습니다. '{0}'을 데이터베이스에서 찾을 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCGameStartError">게임을 시작할 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">액션을 시작할 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">게임 위치를 열 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">바로가기를 생성하지 못했습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameInstallError">게임을 설치할 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">게임을 삭제할 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">이 게임을 담당하는 라이브러리 플러그인이 설치되거나 활성화되지 않았습니다.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">공식 메타데이터 다운로드를 사용할 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">선택한 게임이 없습니다.</sys:String>
+
+
+    <!--General-->
+    <sys:String x:Key="LOCEnabledTitle">활성화</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">제거</sys:String>
+    <sys:String x:Key="LOCRenameTitle">이름 바꾸기</sys:String>
+    <sys:String x:Key="LOCCopyTitle">복사</sys:String>
+    <sys:String x:Key="LOCAddTitle">추가</sys:String>
+    <sys:String x:Key="LOCDefaultIconTitle">기본 아이콘</sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">기본 커버 이미지</sys:String>
+    <sys:String x:Key="LOCFinishLabel">완료</sys:String>
+    <sys:String x:Key="LOCNextLabel">다음</sys:String>
+    <sys:String x:Key="LOCBackLabel">이전</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">완료</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">이전</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">지우기</sys:String>
+    <sys:String x:Key="LOCClearLabel">초기화</sys:String>
+    <sys:String x:Key="LOCDismiss">무시</sys:String>
+    <sys:String x:Key="LOCDismissAll">모두 무시</sys:String>
+    <sys:String x:Key="LOCImportLabel">가져오기</sys:String>
+    <sys:String x:Key="LOCSourceLabel">소스</sys:String>
+    <sys:String x:Key="LOCNameLabel">게임 명</sys:String>
+    <sys:String x:Key="LOCAuthorLabel">제작자</sys:String>
+    <sys:String x:Key="LOCModuleLabel">모듈</sys:String>
+    <sys:String x:Key="LOCSeriesLabel">시리즈</sys:String>
+    <sys:String x:Key="LOCVersionLabel">버전</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">연령 등급</sys:String>
+    <sys:String x:Key="LOCRegionLabel">지역</sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">최근 플레이</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">가장 많이 플레이</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">플레이 횟수</sys:String>
+    <sys:String x:Key="LOCAddedLabel">추가일</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">날짜 추가됨</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">수정일</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">날짜 변경됨</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">웹사이트</sys:String>
+    <sys:String x:Key="LOCPathLabel">경로</sys:String>
+    <sys:String x:Key="LOCOKLabel">확인</sys:String>
+    <sys:String x:Key="LOCSaveLabel">저장</sys:String>
+    <sys:String x:Key="LOCCloseLabel">닫기</sys:String>
+    <sys:String x:Key="LOCCancelLabel">취소</sys:String>
+    <sys:String x:Key="LOCYesLabel">예</sys:String>
+    <sys:String x:Key="LOCNoLabel">아니오</sys:String>
+    <sys:String x:Key="LOCWelcomeLabel">환영합니다</sys:String>
+    <sys:String x:Key="LOCLocalUserLabel">로컬 사용자</sys:String>
+    <sys:String x:Key="LOCAuthenticateLabel">인증</sys:String>
+    <sys:String x:Key="LOCGeneralLabel">일반</sys:String>
+    <sys:String x:Key="LOCMediaLabel">미디어</sys:String>
+    <sys:String x:Key="LOCLinksLabel">링크</sys:String>
+    <sys:String x:Key="LOCInstallationLabel">설치</sys:String>
+    <sys:String x:Key="LOCActionsLabel">액션</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">다운로드 중…</sys:String>
+    <sys:String x:Key="LOCTypeLabel">유형</sys:String>
+    <sys:String x:Key="LOCProfileLabel">프로필</sys:String>
+    <sys:String x:Key="LOCProfilesLabel">프로필</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">제거</sys:String>
+    <sys:String x:Key="LOCDownloadLabel">다운로드</sys:String>
+    <sys:String x:Key="LOCSearchLabel">검색</sys:String>
+    <sys:String x:Key="LOCGenreLabel">장르</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">회사</sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">개발사</sys:String>
+    <sys:String x:Key="LOCPublisherLabel">배급사</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">카테고리</sys:String>
+    <sys:String x:Key="LOCTagLabel">태그</sys:String>
+    <sys:String x:Key="LOCTagsLabel">태그</sys:String>
+    <sys:String x:Key="LOCZoomLabel">확대 및 축소</sys:String>
+    <sys:String x:Key="LOCListLabel">목록</sys:String>
+    <sys:String x:Key="LOCCoversLabel">커버</sys:String>
+    <sys:String x:Key="LOCGridLabel">격자</sys:String>
+    <sys:String x:Key="LOCDetailsLabel">자세히</sys:String>
+    <sys:String x:Key="LOCCustomLabel">사용자 지정</sys:String>
+    <sys:String x:Key="LOCURLLabel">URL</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">후원자</sys:String>
+    <sys:String x:Key="LOCLicenseLabel">라이센스</sys:String>
+    <sys:String x:Key="LOCContributorsLabel">기여자</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Playnite 나가는 중…</sys:String>
+    <sys:String x:Key="LOCToday">오늘</sys:String>
+    <sys:String x:Key="LOCYesterday">어제</sys:String>
+    <sys:String x:Key="LOCMonday">월요일</sys:String>
+    <sys:String x:Key="LOCTuesday">화요일</sys:String>
+    <sys:String x:Key="LOCWednesday">수요일</sys:String>
+    <sys:String x:Key="LOCThursday">목요일</sys:String>
+    <sys:String x:Key="LOCFriday">금요일</sys:String>
+    <sys:String x:Key="LOCSaturday">토요일</sys:String>
+    <sys:String x:Key="LOCSunday">일요일</sys:String>
+    <sys:String x:Key="LOCPastWeek">지난 주</sys:String>
+    <sys:String x:Key="LOCPastMonth">지난 달</sys:String>
+    <sys:String x:Key="LOCPastYear">지난 해</sys:String>
+    <sys:String x:Key="LOCMoreThenYear"></sys:String>
+    <sys:String x:Key="LOCImportCompleted">가져오기를 성공적으로 완료했습니다.</sys:String>
+    <sys:String x:Key="LOCAllGames">모든 게임</sys:String>
+    <sys:String x:Key="LOCGameId">게임 Id</sys:String>
+    <sys:String x:Key="LOCDatabaseId">데이터베이스 Id</sys:String>
+    <sys:String x:Key="LOCPresets">프리셋</sys:String>
+    <sys:String x:Key="LOCColumn">열</sys:String>
+    <sys:String x:Key="LOCColumns">열</sys:String>
+    <sys:String x:Key="LOCRow">행</sys:String>
+    <sys:String x:Key="LOCRows">행</sys:String>
+    
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">특정 변수는 다음과 같은 동적 스트링을 통해 표현할 수 있습니다:
+{InstallDir} - 게임 설치 위치
+{InstallDirName} - 설치 폴더 이름
+{ImagePath} - 게임 ISO/ROM 경로 (설정된 경우)
+{ImageName} - 게임 ISO/ROM 파일 이름
+{ImageNameNoExt} - 확장자를 제외한 게임 ISO/ROM 파일 이름
+{PlayniteDir} - Playnite 설치 경로
+{Name} - 게임 이름
+        
+예시: -image "{ImagePath}" -fullscreen
+결과: -image "c:\folder\image.iso" -fullscreen</sys:String>
+
+    <sys:String x:Key="LOCExecIconMissingPlayAction">실행 액션이 손실되었거나 실행 액션이 URL로 설정된 경우 아이콘을 불러올 수 없습니다.</sys:String>
+
+    <sys:String x:Key="LOCMetaSkipNonEmpty">메타데이터가 손실된 게임에 한해 다운로드</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceIntro">게임 선택</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceDescription">새 메타데이터로 업데이트할 게임을 선택하세요:</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceAll">데이터베이스의 모든 게임</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceFiltered">현재 필터된 모든 게임</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceSelected">선택한 게임만</sys:String>
+    <sys:String x:Key="LOCMetaSourceStore">공식 스토어</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 공식 스토어</sys:String>
+    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">공식 스토어 > IGDB</sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">어떤 필드를 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하세요.</sys:String>
+    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">스토어:
+공식 스토어의 데이터만을 사용합니다.
+    
+IGDB:
+IGDB.com 데이터베이스만을 사용합니다.
+    
+IGDB > 공식 스토어:
+IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 경우 공식 스토어의 데이터를 사용합니다.
+    
+공식 스토어 > IGDB:
+공식 스토어의 데이터를 우선 적용하며, 이를 사용할 수 없을 경우 IGDB.com 데이터베이스를 사용합니다.</sys:String>
+
+    <!--Progess string-->
+    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressMetadata"></sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
+    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
+    <sys:String x:Key="LOCProgressLibImportFinish">라이브러리 업데이트 완료</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
+
+    <!--Menu-->
+    <sys:String x:Key="LOCMenuConfigurationTitle">설정</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">플랫폼 및 에뮬레이터</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuTools">도구</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
+    <sys:String x:Key="LOCMenuOpenClient">서드파티 클라이언트 열기</sys:String>
+    <sys:String x:Key="LOCMenuReloadLibrary">게임 라이브러리 업데이트</sys:String>
+    <sys:String x:Key="LOCMenuAddGame">게임 추가</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAbout">Playnite에 관하여</sys:String>
+    <sys:String x:Key="LOCMenuIssues">피드백 보내기</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">전체 화면 모드 시작</sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">링크</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
+    <sys:String x:Key="LOCSDKDocumentation">SDK 개발 문서</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+
+    <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">상세 정보 그리드 뷰 방식</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">필터 패널 방식</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">탐색기 패널 방식</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">커버 아트 렌더링</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">고정 비율 설정</sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">늘이기 모드</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 베너</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD 박스</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
+    <sys:String x:Key="LOCSettingsLabel">설정</sys:String>
+    <sys:String x:Key="LOCSettingsGeneralLabel">일반</sys:String>
+    <sys:String x:Key="LOCSettingsAppearanceLabel">보기 방식</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">게임 상세 정보</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">레이아웃</sys:String>
+    <sys:String x:Key="LOCSettingsAdvancedLabel">고급 설정</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">전체 화면</sys:String>
+    <sys:String x:Key="LOCSettingsProvidersLabel">공급자</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">입력</sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportLabel">라이브러리 변경 사항을 자동으로 가져오기</sys:String>
+    <sys:String x:Key="LOCSettingsImportInstalledLabel">설치된 게임 가져오기</sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">설치되지 않은 게임 가져오기</sys:String>
+    <sys:String x:Key="LOCSettingsImportLibraryLabel">모든 게임 가져오기</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">모든 게임 가져오기 (공개된 계정이나 API 키가 필요합니다)</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidDBLocation">올바르지 않은 데이터베이스 파일 위치입니다. 올바른 파일 위치로 설정되어야 합니다.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">계정 이름은 비워둘 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">라이브러리를 가져오기 위한 Steam 계정이 선택되지 않았습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">카테고리를 가져오기 위한 Steam 계정이 선택되지 않았습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">시작 시 서드파티 라이브러리 업데이트 다운로드</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">게임을 가져온 후 메타데이터 다운로드</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">최소화 상태로 시작</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">컴퓨터 시작 시 Playnite 실행</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Playnite를 시작프로그램으로 등록하지 못했습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">전체 화면 모드로 시작</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Steam, Origin 등 포함.</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">이미지 로드 시간을 늦추는 대신 게임 목록의 스크롤이 더 부드러워집니다.</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">커버 아트가 손실된 경우 게임 명 표시</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">그리드 뷰에서 게임 이름 표시</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">자세히 보기 방식의 목록에서 게임 아이콘 표시</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">그룹 설명에 항목 수 표시</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">끊기는 현상이 발생하거나 비슷한 UI 문제가 발생할 때 사용하세요</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
+    <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam 친구 버튼 표시</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImage">배경 이미지 표시</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsSkin"></sys:String>
+    <sys:String x:Key="LOCSettingsSkinColor">테마 프로파일</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">전체 화면 테마</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">전체 화면 테마 프로파일</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
+    <sys:String x:Key="LOCSettingsWhatsSteamName">계정 이름이 뭐죠?</sys:String>
+    <sys:String x:Key="LOCSettingsLoginStatus">로그인 상태:</sys:String>    
+    <sys:String x:Key="LOCSettingsWindowTitle">Playnite 설정</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCache">웹 캐시 삭제</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">계정을 연동하는데 발생하는 문제를 해결할 수도 있습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">트레이로 최소화</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">닫은 후 트레이로</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">게임을 시작할 시:</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameClose">게임을 종료할 시:</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Galaxy 클라이언트로 게임 시작</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">클라우드 저장, 플레이 시간 기록 등의 기능이 활성화됩니다.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">현재 적용된 모든 Steam 게임의 카테고리를 덮어씌웁니다. 계속하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">카테고리를 가져오시겠습니까?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">카테고리를 가져올 계정이 선택되지 않아 카테고리를 가져올 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">데이터베이스를 열 수 없어 카테고리를 가져올 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportError">Steam 카테고리를 가져오지 못했습니다: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">연동된 모든 서비스를 로그아웃시킵니다. 응용 프로그램을 재시작해야합니다. 계속하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheTitle">캐시를 삭제하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyTooltip">비공개 Steam 계정에는 API 키가 필요합니다</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyUrlText">API 키 얻기</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">새로운 테마를 적용하기 위해선 Playnite를 재시작해야합니다</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">더 많은 테마</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">새로운 테마 생성</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">현지화에 기여하기</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">일부 변경된 설정을 적용하기 위해선 Playnite를 재시작해야합니다. Playnite를 재시작하시겠습니까?
+    
+현재 진행 중인 작업(메타데이터 다운로드)은 취소됩니다.</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">Playnite를 재시작하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification">새로운 데이터베이스 파일 경로는 응용 프로그램이 재시작 된 후 적용됩니다.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"닫기" 액션이 설정되어있으면 게임 플레이 시간이 기록되지 않습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">행 수</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">열 수</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">자세히 보기 방식의 열 수</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSource">배경 이미지 소스:</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">게임 이미지</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">스토어 스크린샷</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">스토어 배경</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">메타데이터를 다시 다운로드하지 않으면 기존 게임에는 소급 적용되지 않습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">강제로 플레이 시간 동기화</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">라이브러리 동기화 중에 Playnite가 기록한 플레이 시간을 적용하는 대신 원격 라이브러리에서 기록된 플레이 시간을 다운로드합니다.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">가이드 버튼을 전체 화면으로 열기</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
+
+    <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
+    <sys:String x:Key="LOCStrechFill">채우기</sys:String>
+    <sys:String x:Key="LOCStrechUniform">원본 비율로 크기에 맞추기</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">원본 비율로 가장 크게 맞추기</sys:String>
+
+    <sys:String x:Key="LOCDockLeft">왼쪽</sys:String>
+    <sys:String x:Key="LOCDockRight">오른쪽</sys:String>
+    <sys:String x:Key="LOCDockTop">상단</sys:String>
+    <sys:String x:Key="LOCDockBottom">하단</sys:String>
+
+    <sys:String x:Key="LOCImportError">가져오기 오류</sys:String>
+    <sys:String x:Key="LOCLoginChecking"></sys:String>
+    <sys:String x:Key="LOCLoginRequired">인증이 필요함</sys:String>
+    <sys:String x:Key="LOCLoginFailed">인증 실패</sys:String>
+    <sys:String x:Key="LOCLoggedIn">사용자 인증됨</sys:String>
+    <sys:String x:Key="LOCNotLoggedIn">인증이 필요함</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">사용자 인증에 실패하였습니다.</sys:String>
+
+    <!--Meta Import-->
+    <sys:String x:Key="LOCMetaImportWindowTitle">메타데이터 가져오기</sys:String>
+    <sys:String x:Key="LOCDownloadMetaButton">메타데이터 다운로드</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    
+    <!--Emulator Import-->
+    <sys:String x:Key="LOCEmuWizardWindowTitle">에뮬레이터 게임 가져오기 도구</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">이 도구는 콘솔 에뮬레이터를 다운로드하고 가져오는 작업과, 에뮬레이터 게임을 가져오는 작업을 안내합니다.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanGames"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonSelectFiles"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
+
+    <!--FirstTime Wizard-->
+    <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
+    <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstSteamIntegration"></sys:String>
+    <sys:String x:Key="LOCFirstOriginIntegration"></sys:String>
+    <sys:String x:Key="LOCFirstGOGIntegration"></sys:String>
+    <sys:String x:Key="LOCFirstBattleNetIntegration"></sys:String>
+    <sys:String x:Key="LOCFirstUplayIntegration"></sys:String>
+    <sys:String x:Key="LOCFirstSteamImportCategories"></sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesTitle"></sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesImportButton"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
+
+    <!--Platforms Settings-->
+    <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformsTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorsTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorTitle"></sys:String>
+    <sys:String x:Key="LOCAddPlatformTitle"></sys:String>
+    <sys:String x:Key="LOCSelectIconTitle"></sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle"></sys:String>
+    <sys:String x:Key="LOCSelectFileTitle"></sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle"></sys:String>
+    <sys:String x:Key="LOCAddEmulatorTitle"></sys:String>
+    <sys:String x:Key="LOCSupportedPlatformsTitle"></sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle"></sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle"></sys:String>
+    <sys:String x:Key="LOCExecutableTitle"></sys:String>
+    <sys:String x:Key="LOCArgumentsTitle"></sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle"></sys:String>
+    <sys:String x:Key="LOCSupportedFilesTitle"></sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
+    
+    <sys:String x:Key="LOCMenuSortByTitle"></sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
+    <sys:String x:Key="LOCMenuSortAscending"></sys:String>
+    <sys:String x:Key="LOCMenuSortDescending"></sys:String>
+    <sys:String x:Key="LOCMenuGroupDont"></sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider"></sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory"></sys:String>
+    <sys:String x:Key="LOCMenuGroupPlatform"></sys:String>
+    <sys:String x:Key="LOCViewType"></sys:String>
+    <sys:String x:Key="LOCMenuView"></sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
+
+    <!--Game fields-->
+    <sys:String x:Key="LOCGameIconTitle"></sys:String>
+    <sys:String x:Key="LOCGameCoverImageTitle"></sys:String>
+    <sys:String x:Key="LOCGameBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle"></sys:String>
+    <sys:String x:Key="LOCGameProviderTitle"></sys:String>
+    <sys:String x:Key="LOCGameNameTitle"></sys:String>
+    <sys:String x:Key="LOCGameAccountNameTitle"></sys:String>
+    <sys:String x:Key="LOCGamePlatformTitle"></sys:String>
+    <sys:String x:Key="LOCGameCategoriesTitle"></sys:String>
+    <sys:String x:Key="LOCGameGenresTitle"></sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle"></sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle"></sys:String>
+    <sys:String x:Key="LOCGameDevelopersTitle"></sys:String>
+    <sys:String x:Key="LOCGameTagsTitle"></sys:String>
+    <sys:String x:Key="LOCGamePublishersTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle"></sys:String>
+    <sys:String x:Key="LOCGameFavoriteTitle"></sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle"></sys:String>
+    <sys:String x:Key="LOCGameCategoryTitle"></sys:String>
+    <sys:String x:Key="LOCGameDescriptionTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameCoverTitle"></sys:String>
+    <sys:String x:Key="LOCGameLinksTitle"></sys:String>
+    <sys:String x:Key="LOCGameROMTitle"></sys:String>
+
+    <!--Errors-->
+    <sys:String x:Key="LOCDatabaseErroTitle"></sys:String>
+    <sys:String x:Key="LOCDatabaseOpenError"></sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError"></sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError"></sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
+    
+    <sys:String x:Key="LOCBnetInstalledImportError"></sys:String>
+    <sys:String x:Key="LOCSteamInstalledImportError"></sys:String>
+    <sys:String x:Key="LOCGOGInstalledImportError"></sys:String>
+    <sys:String x:Key="LOCOriginInstalledImportError"></sys:String>
+    <sys:String x:Key="LOCUplayInstalledImportError"></sys:String>
+
+    <sys:String x:Key="LOCBnetLibraryImportError"></sys:String>
+    <sys:String x:Key="LOCSteamLibraryImportError"></sys:String>
+    <sys:String x:Key="LOCGOGLibraryImportError"></sys:String>
+    <sys:String x:Key="LOCOriginLibraryImportError"></sys:String>
+    <sys:String x:Key="LOCUplayLibraryImportError"></sys:String>
+    
+    <sys:String x:Key="LOCLibraryImportError"></sys:String>    
+    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError"></sys:String>
+    <sys:String x:Key="LOCStartGenericError"></sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCURLFormatError"></sys:String>
+    <sys:String x:Key="LOCAppStartupError"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+
+    <!--GameEdit-->
+    <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
+    <sys:String x:Key="LOCUseExeIcon"></sys:String>
+    <sys:String x:Key="LOCImageURL"></sys:String>
+    <sys:String x:Key="LOCAddLinkButton"></sys:String>
+    <sys:String x:Key="LOCSaveChanges"></sys:String>
+    <sys:String x:Key="LOCPlayAction"></sys:String>
+    <sys:String x:Key="LOCAddPlayAction"></sys:String>
+    <sys:String x:Key="LOCAddAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCRemovePlayAction"></sys:String>
+    <sys:String x:Key="LOCOtherActions"></sys:String>
+    <sys:String x:Key="LOCAddGames"></sys:String>
+    <sys:String x:Key="LOCScanFolder"></sys:String>
+    <sys:String x:Key="LOCDetectInstalled"></sys:String>
+    <sys:String x:Key="LOCBrowse"></sys:String>
+    <sys:String x:Key="LOCOpenPlaynite"></sys:String>
+    <sys:String x:Key="LOCProfileSettings"></sys:String>
+    <sys:String x:Key="LOCEmptyGameNameError"></sys:String>
+    <sys:String x:Key="LOCEmptyGameNameMetaSearchError"></sys:String>
+    <sys:String x:Key="LOCInvalidGameData"></sys:String>
+    <sys:String x:Key="LOCURLInputInfo"></sys:String>
+    <sys:String x:Key="LOCURLInputInfoTitile"></sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError"></sys:String>
+    <sys:String x:Key="LOCDownloadError"></sys:String>
+    <sys:String x:Key="LOCClearFilters"></sys:String>
+    <sys:String x:Key="LOCPrivateAccount"></sys:String>
+    <sys:String x:Key="LOCPublicAccount"></sys:String>
+    <sys:String x:Key="LOCAPIKey"></sys:String>
+    <sys:String x:Key="LOCStartupError"></sys:String>
+    <sys:String x:Key="LOCSkinError"></sys:String>
+    <sys:String x:Key="LOCClearAll"></sys:String>
+    <sys:String x:Key="LOCSetupRunning"></sys:String>
+    <sys:String x:Key="LOCUninstalling"></sys:String>
+    <sys:String x:Key="LOCGameLaunching"></sys:String>
+    <sys:String x:Key="LOCGameRunning"></sys:String>
+    <sys:String x:Key="LOCInvalidURL"></sys:String>
+    <sys:String x:Key="LOCDoNothing"></sys:String>
+    <sys:String x:Key="LOCMinimize"></sys:String>
+    <sys:String x:Key="LOCRestoreWindow"></sys:String>
+    <sys:String x:Key="LOCClose"></sys:String>
+    <sys:String x:Key="LOCChange"></sys:String>
+    <sys:String x:Key="LOCAdvanced"></sys:String>
+    <sys:String x:Key="LOCNever"></sys:String>
+    <sys:String x:Key="LOCNotPlayed"></sys:String>
+    <sys:String x:Key="LOCPlayed"></sys:String>
+    <sys:String x:Key="LOCBeaten"></sys:String>
+    <sys:String x:Key="LOCCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatus"></sys:String>
+    <sys:String x:Key="LOCUserScore"></sys:String>
+    <sys:String x:Key="LOCCriticScore"></sys:String>
+    <sys:String x:Key="LOCCommunityScore"></sys:String>
+    <sys:String x:Key="LOCScripts"></sys:String>
+    <sys:String x:Key="LOCPlugins"></sys:String>
+    <sys:String x:Key="LOCExtensions"></sys:String>
+    <sys:String x:Key="LOCReloadScripts"></sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
+    <sys:String x:Key="LOCNoGamesFound"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCExitPlaynite"></sys:String>
+    <sys:String x:Key="LOCLibraries"></sys:String>
+    <sys:String x:Key="LOCUpdateAll"></sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy"></sys:String>
+    <sys:String x:Key="LOCExtensionVersion"></sys:String>
+    <sys:String x:Key="LOCExtensionModule"></sys:String>
+    <sys:String x:Key="LOCLibrary"></sys:String>
+    <sys:String x:Key="LOCAll"></sys:String>
+    <sys:String x:Key="LOCNone"></sys:String>
+    <sys:String x:Key="LOCNotifications"></sys:String>
+
+
+    <sys:String x:Key="LOCEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
+
+    <sys:String x:Key="LOCGameImportWindowTitle"></sys:String>
+    <sys:String x:Key="LOCMetaLookupWindowTitle"></sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle"></sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate"></sys:String>
+    <sys:String x:Key="LOCCheckForUpdates"></sys:String>
+    <sys:String x:Key="LOCUpdateError"></sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage"></sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+
+    <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChanges"></sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChangesTooltip"></sys:String>
+
+    <!--Game actions-->
+    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
+    <sys:String x:Key="LOCFavoriteGame"></sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
+    <sys:String x:Key="LOCHideGame"></sys:String>
+    <sys:String x:Key="LOCUnHideGame"></sys:String>
+    <sys:String x:Key="LOCEditGame"></sys:String>
+    <sys:String x:Key="LOCSetGameCategory"></sys:String>
+    <sys:String x:Key="LOCRemoveGame"></sys:String>
+    <sys:String x:Key="LOCPlayGame"></sys:String>
+    <sys:String x:Key="LOCInstallGame"></sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameDetails"></sys:String>
+    <sys:String x:Key="LOCUninstallGame"></sys:String>
+    <sys:String x:Key="LOCOpenGameLocation"></sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
+    <sys:String x:Key="LOCMoreAction"></sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
+
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
+    <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
+
+    <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
+    
+    <sys:String x:Key="LOCTimePlayed"></sys:String>
+    <sys:String x:Key="LOCLastPlayed"></sys:String>
+    <sys:String x:Key="LOCPlayedHours"></sys:String>
+    <sys:String x:Key="LOCPlayedMinutes"></sys:String>
+    <sys:String x:Key="LOCPlayedSeconds"></sys:String>
+    <sys:String x:Key="LOCPlayedNone"></sys:String>
+
+    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
+    <sys:String x:Key="LOCScriptInstallFail"></sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
+    <sys:String x:Key="LOCInstallScript"></sys:String>
+    <sys:String x:Key="LOCScriptError"></sys:String>
+    <sys:String x:Key="LOCScriptExecutionError"></sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
+
+    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+
+    <sys:String x:Key="LOCRenameItem"></sys:String>
+    <sys:String x:Key="LOCAddNewItem"></sys:String>
+    <sys:String x:Key="LOCEnterName"></sys:String>
+    <sys:String x:Key="LOCEnterNewName"></sys:String>
+
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
+    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
+    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin"></sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName"></sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
+
+    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+
+    <sys:String x:Key="LOCGameListFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+
+</ResourceDictionary>

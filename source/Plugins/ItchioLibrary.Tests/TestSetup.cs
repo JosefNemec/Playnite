@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;

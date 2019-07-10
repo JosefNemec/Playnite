@@ -1,6 +1,6 @@
 ﻿using BattleNetLibrary.Models;
 using BattleNetLibrary.Services;
-using Playnite.Common.System;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -15,19 +15,16 @@ using System.Windows.Controls;
 
 namespace BattleNetLibrary
 {
-    public class BattleNetLibrary : ILibraryPlugin
+    public class BattleNetLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
         private const string dbImportMessageId = "bnetlibImportError";
         
         internal BattleNetLibrarySettings LibrarySettings { get; private set; }
 
-        public BattleNetLibrary(IPlayniteAPI api)
+        public BattleNetLibrary(IPlayniteAPI api) : base(api)
         {
-            playniteApi = api;
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\battleneticon.png");
-            LibrarySettings = new BattleNetLibrarySettings(this, playniteApi);
+            LibrarySettings = new BattleNetLibrarySettings(this, PlayniteApi);
         }
 
         public static UninstallProgram GetUninstallEntry(BNetApp app)
@@ -69,9 +66,9 @@ namespace BattleNetLibrary
             };
         }
 
-        public Dictionary<string, Game> GetInstalledGames()
+        public Dictionary<string, GameInfo> GetInstalledGames()
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             foreach (var prog in Programs.GetUnistallProgramsList())            
             {
                 if (string.IsNullOrEmpty(prog.UninstallString))
@@ -89,16 +86,15 @@ namespace BattleNetLibrary
                             continue;
                         }
 
-                        var game = new Game()
+                        var game = new GameInfo()
                         {
-                            PluginId = Id,
                             GameId = product.ProductId,
                             Source = "Battle.net",
                             Name = product.Name,
                             PlayAction = new GameAction()
                             {
                                 Type = GameActionType.File,
-                                WorkingDir = @"{InstallDir}",
+                                WorkingDir = ExpandableVariables.InstallationDirectory,
                                 Path = product.ClassicExecutable
                             },
                             InstallDirectory = prog.InstallLocation,
@@ -137,9 +133,8 @@ namespace BattleNetLibrary
                         continue;
                     }
 
-                    var game = new Game()
+                    var game = new GameInfo()
                     {
-                        PluginId = Id,
                         GameId = product.ProductId,
                         Source = "Battle.net",
                         Name = product.Name,
@@ -159,12 +154,12 @@ namespace BattleNetLibrary
             return games;
         }
 
-        public List<Game> GetLibraryGames()
+        public List<GameInfo> GetLibraryGames()
         {
-            using (var view = playniteApi.WebViews.CreateOffscreenView())
+            using (var view = PlayniteApi.WebViews.CreateOffscreenView())
             {
                 var api = new BattleNetAccountClient(view);
-                var games = new List<Game>();
+                var games = new List<GameInfo>();
                 if (!api.GetIsUserLoggedIn())
                 {
                     throw new Exception("User is not logged in.");
@@ -185,9 +180,8 @@ namespace BattleNetLibrary
                         // To avoid duplicates like multiple WoW accounts
                         if (!games.Any(a => a.GameId == gameInfo.ProductId))
                         {
-                            games.Add(new Game()
+                            games.Add(new GameInfo()
                             {
-                                PluginId = Id,
                                 Source = "Battle.net",
                                 GameId = gameInfo.ProductId,
                                 Name = gameInfo.Name
@@ -204,9 +198,8 @@ namespace BattleNetLibrary
                     if (w3Games.Any())
                     {
                         var w3 = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "W3");
-                        games.Add(new Game()
+                        games.Add(new GameInfo()
                         {
-                            PluginId = Id,
                             Source = "Battle.net",
                             GameId = w3.ProductId,
                             Name = w3.Name
@@ -215,9 +208,8 @@ namespace BattleNetLibrary
                         if (w3Games.Count() == 2)
                         {
                             var w3x = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "W3X");
-                            games.Add(new Game()
+                            games.Add(new GameInfo()
                             {
-                                PluginId = Id,
                                 Source = "Battle.net",
                                 GameId = w3x.ProductId,
                                 Name = w3x.Name
@@ -230,9 +222,8 @@ namespace BattleNetLibrary
                     if (d2Games.Any())
                     {
                         var d2 = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "D2");
-                        games.Add(new Game()
+                        games.Add(new GameInfo()
                         {
-                            PluginId = Id,
                             Source = "Battle.net",
                             GameId = d2.ProductId,
                             Name = d2.Name
@@ -241,9 +232,8 @@ namespace BattleNetLibrary
                         if (d2Games.Count() == 2)
                         {
                             var d2x = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "D2X");
-                            games.Add(new Game()
+                            games.Add(new GameInfo()
                             {
-                                PluginId = Id,
                                 Source = "Battle.net",
                                 GameId = d2x.ProductId,
                                 Name = d2x.Name
@@ -258,40 +248,33 @@ namespace BattleNetLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new BattleNetClient();
+        public override LibraryClient Client => new BattleNetClient();
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => BattleNet.Icon;
 
-        public string Name { get; } = "Battle.net";
+        public override string Name => "Battle.net";
         
-        public Guid Id { get; } = Guid.Parse("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD");
+        public override Guid Id => Guid.Parse("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD");        
 
-        public bool IsClientInstalled => BattleNet.IsInstalled;
-
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new BattleNetLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
-            return new BattleNetGameController(game, playniteApi);
+            return new BattleNetGameController(game, PlayniteApi);
         }
 
-        public IEnumerable<Game> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)
@@ -338,21 +321,21 @@ namespace BattleNetLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) + 
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) + 
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
             else
             {
-                playniteApi.Notifications.Remove(dbImportMessageId);
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
             
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new BattleNetMetadataProvider();
         }

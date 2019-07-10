@@ -1,7 +1,6 @@
 ﻿using ItchioLibrary.Models;
 using Playnite;
 using Playnite.Common;
-using Playnite.Common.System;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -54,7 +53,7 @@ namespace ItchioLibrary
             if (!Itch.IsInstalled)
             {
                 throw new Exception(
-                    api.Resources.FindString("LOCItchioClientNotInstalledError"));
+                    api.Resources.GetString("LOCItchioClientNotInstalledError"));
             }
         }
 
@@ -79,7 +78,7 @@ namespace ItchioLibrary
                 {
                     if (!Directory.Exists(Game.InstallDirectory))
                     {
-                        throw new DirectoryNotFoundException(api.Resources.FindString("LOCInstallDirNotFoundError"));
+                        throw new DirectoryNotFoundException(api.Resources.GetString("LOCInstallDirNotFoundError"));
                     }
                     
                     GameActionActivator.ActivateAction(api.ExpandGameVariables(Game, Game.PlayAction));
@@ -98,7 +97,7 @@ namespace ItchioLibrary
             }
             else
             {
-                throw new Exception(api.Resources.FindString("LOCInvalidGameActionSettings"));
+                throw new Exception(api.Resources.GetString("LOCInvalidGameActionSettings"));
             }
         }
 
@@ -186,19 +185,19 @@ namespace ItchioLibrary
                     var cave = installed?.FirstOrDefault(a => a.game.id.ToString() == Game.GameId);
                     if (cave != null)
                     {
-                        if (Game.PlayAction == null)
+                        var installInfo = new GameInfo
                         {
-                            Game.PlayAction = new GameAction()
+                            InstallDirectory = cave.installInfo.installFolder,
+                            PlayAction = new GameAction()
                             {
                                 Type = GameActionType.URL,
                                 Path = DynamicLaunchActionStr,
                                 Arguments = cave.id,
                                 IsHandledByPlugin = true
-                            };
-                        }
+                            }
+                        };
 
-                        Game.InstallDirectory = cave.installInfo.installFolder;
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
+                        OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                         return;
                     }
 

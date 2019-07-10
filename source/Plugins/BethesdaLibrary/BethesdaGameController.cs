@@ -1,5 +1,5 @@
 ﻿using Playnite;
-using Playnite.SDK;
+using Playnite.Common;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
@@ -100,13 +100,13 @@ namespace BethesdaLibrary
                 var installedGame = BethesdaLib.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
                 if (installedGame != null)
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo()
                     {
-                        Game.PlayAction = installedGame.PlayAction;
-                    }
-
-                    Game.InstallDirectory = installedGame.InstallDirectory;
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                        PlayAction = installedGame.PlayAction,
+                        InstallDirectory = installedGame.InstallDirectory
+                    };
+                    
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
                 }
 

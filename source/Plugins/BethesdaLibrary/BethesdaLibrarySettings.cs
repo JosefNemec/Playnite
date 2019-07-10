@@ -29,7 +29,7 @@ namespace BethesdaLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<BethesdaLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<BethesdaLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -38,7 +38,7 @@ namespace BethesdaLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()
@@ -48,7 +48,7 @@ namespace BethesdaLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)

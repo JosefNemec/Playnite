@@ -10,36 +10,30 @@ using System.Windows.Controls;
  
 namespace TestPlugin
 {
-    public class TestPlugin : IGenericPlugin
+    public class TestPlugin : Plugin
     {
         private ILogger logger;
-        private IPlayniteAPI api;
 
         public ISettings Settings { get; private set; } = new TestPluginSettings();
 
-        public Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C9");
+        public override Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C9");
 
-        public TestPlugin(IPlayniteAPI api)
+        public TestPlugin(IPlayniteAPI api) : base(api)
         {
             logger = api.CreateLogger();
-            this.api = api;
         }
 
-        public void Dispose()
-        {
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return Settings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new TestPluginSettingsView();
         }
 
-        public IEnumerable<ExtensionFunction> GetFunctions()
+        public override IEnumerable<ExtensionFunction> GetFunctions()
         {
             return new List<ExtensionFunction>()
             {
@@ -47,37 +41,37 @@ namespace TestPlugin
                     "Test Func from TestPlugin",
                     () =>
                     {
-                        logger.Info($"TestPluginDev ExtensionFunction {api.Database.GetGames().Count()}");
+                        logger.Info($"TestPluginDev ExtensionFunction {PlayniteApi.Database.Games.Count}");
                     })
             };
         }
 
-        public void OnGameInstalled(Game game)
+        public override void OnGameInstalled(Game game)
         {
             logger.Info($"TestPluginDev OnGameInstalled {game.Name}");
         }
 
-        public void OnGameStarted(Game game)
+        public override void OnGameStarted(Game game)
         {
             logger.Info($"TestPluginDev OnGameStarted {game.Name}");
         }
 
-        public void OnGameStarting(Game game)
+        public override void OnGameStarting(Game game)
         {
             logger.Info($"TestPluginDev OnGameStarting {game.Name}");
         }
 
-        public void OnGameStopped(Game game, long ellapsedSeconds)
+        public override void OnGameStopped(Game game, long ellapsedSeconds)
         {
             logger.Info($"TestPluginDev OnGameStopped {game.Name}");
         }
 
-        public void OnGameUninstalled(Game game)
+        public override void OnGameUninstalled(Game game)
         {
             logger.Info($"TestPluginDev OnGameUninstalled {game.Name}");
         }
 
-        public void OnApplicationStarted()
+        public override void OnApplicationStarted()
         {
             logger.Info("TestPluginDev OnApplicationStarted");
         }

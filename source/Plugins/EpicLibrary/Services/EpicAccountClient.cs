@@ -1,8 +1,6 @@
 ﻿using EpicLibrary.Models;
-using Playnite;
 using Playnite.Common;
 using Playnite.SDK;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

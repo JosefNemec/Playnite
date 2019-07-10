@@ -23,6 +23,11 @@ namespace PlayniteServices.Models.IGDB
         Steam = 13,
         Reddit = 14,
         Discord = 15
+        GooglePlus = 16,
+        Tumblr = 17,
+        LinkedIn = 18,
+        Pinterest = 19,
+        SoundCloud = 20,
     }
 
     public enum GameCategory : ulong
@@ -34,6 +39,51 @@ namespace PlayniteServices.Models.IGDB
         StandaloneExpansion = 4
     }
 
+    public enum ReleaseDateCategory
+    {
+        YYYYMMMMDD = 0,
+        YYYYMMMM = 1,
+        YYYY = 2,
+        YYYYQ1 = 3,
+        YYYYQ2 = 4,
+        YYYYQ3 = 5,
+        YYYYQ4 = 6,
+        TBD = 7
+    }
+
+    public enum Region
+    {
+        Europe = 1,
+        NorthAmerica = 2,
+        Australia = 3,
+        NewZealand = 4,
+        Japan = 5,
+        China = 6,
+        Asia = 7,
+        Worldwide = 8,
+    }
+
+    public enum ExternalGameCategory : int
+    {
+        Steam = 1,
+        Gog = 5,
+        YouTube = 10,
+        Microsoft = 11,
+        Apple = 13,
+        Twitch = 14,
+        Android = 15
+    }
+
+    public enum PlatformCategory
+    {
+        Console = 1,
+        Arcade = 2,
+        Platform = 3,
+        OperatingSystem = 4,
+        PortableConsole = 5,
+        Computer = 6,
+    }
+
     public class SteamIdGame
     {
         [BsonId(false)]
@@ -42,107 +92,89 @@ namespace PlayniteServices.Models.IGDB
         public DateTime creation_time { get; set; }
     }
 
-    public class Website
+    public class Website : IgdbItem
     {
-        public WebSiteCategory category;
-        public string url;
+        public WebSiteCategory category { get; set; }
+        public ulong game { get; set; }
+        public bool trusted { get; set; }
     }
 
-    public class AlternativeName
+    public class AlternativeName : IgdbItem
     {
-        public string name;
-        public string comment;
+        public string comment { get; set; }
+        public ulong game { get; set; }
     }
 
-    public class Image
+    public class Image : IgdbItem
     {
-        public string url;
-        public string cloudinary_id;
-        public uint width;
-        public uint height;
+        public bool animated { get; set; }
+        public bool alpha_channel { get; set; }
+        public string image_id { get; set; }
+        public uint width { get; set; }
+        public uint height { get; set; }
     }
 
-    public class Video
+    public class Video : IgdbItem
     {
-        public string name;
-        public string video_id;
+        public ulong game { get; set; }
+        public string video_id { get; set; }
     }
 
-    public class TimeTobeat
+    public class TimeTobeat : IgdbItem
     {
-        public ulong hastly;
-        public ulong normally;
-        public ulong completely;
+        public ulong game { get; set; }
+        public ulong hastly { get; set; }
+        public ulong normally { get; set; }
+        public ulong completely { get; set; }
     }
 
-    public class ReleaseDate
+    public class ReleaseDate : IgdbItem
     {
-        public ulong id;
-        public ulong game;
-        public ulong category;
-        public ulong platform;
-        public string human;
-        public long updated_at;
-        public long created_at;
-        public long date;
-        public uint region;
-        public uint y;
-        public uint m;
+        public ReleaseDateCategory category;
+        public long date { get; set; }
+        public ulong game { get; set; }
+        public string human { get; set; }
+        public int m { get; set; }
+        public ulong platform { get; set; }
+        public Region region { get; set; }
+        public int y { get; set; }
     }
 
     public class IgdbItem
     {
-        public ulong id;
-        public string name;
-        public string slug;
-        public string url;
+        public ulong id { get; set; }
+        public string name { get; set; }
+        public string slug { get; set; }
+        public string url { get; set; }
     }
 
-    public class ParsedGame : Game
+    public class ExternalGame : IgdbItem
     {
-        public new List<string> developers;
-        public new List<string> publishers;
-        public new List<string> genres;
-        public new List<string> themes;
-        public new List<string> game_modes;
-        public new string cover;
-        public new List<string> platforms;
-    }
-
-    public class Game : IgdbItem
-    {
-        public string summary;
-        public string storyline;
-        public double popularity;
-        public ulong franchise;
-        public ulong collection;
-        public ulong game;
-        public ulong version_parent;
-        public GameCategory category;
-        public TimeTobeat time_to_beat;
-        public List<ulong> developers;
-        public List<ulong> publishers;
-        public List<ulong> genres;
-        public List<ulong> themes;
-        public List<ulong> game_modes;
-        public long first_release_date;
-        public Image cover;
-        public List<Website> websites;
-        public double rating;
-        public double aggregated_rating;
-        public double total_rating;
-        public List<AlternativeName> alternative_names;
-        public Dictionary<string, string> external;
-        public List<Image> screenshots;
-        public List<Image> artworks;
-        public List<Video> videos;
-        public List<ulong> platforms;
-        public List<ReleaseDate> release_dates;
+        public ExternalGameCategory category { get; set; }
+        public ulong game { get; set; }
+        public string uid { get; set; }
+        public int year { get; set; }
     }
 
     public class Platform : IgdbItem
     {
-        public Image logo;
+        public string abbreviation { get; set; }
+        public string alternative_name { get; set; }
+        public PlatformCategory category { get; set; }
+        public int generation { get; set; }
+        public ulong platform_logo { get; set; }
+        public ulong product_family { get; set; }
+        public string summary { get; set; }
+    }
+
+    public class Franchise : IgdbItem
+    {
+        public List<ulong> games { get; set; }
+    }
+
+    public class ProductFamily : IgdbItem
+    {
+
     }
 
     public class GameMode : IgdbItem
@@ -155,10 +187,93 @@ namespace PlayniteServices.Models.IGDB
 
     public class Company : IgdbItem
     {
-        public Image logo;
+        public ulong logo { get; set; }
+    }
+
+    public class GameImage : Image
+    {
+        public ulong game { get; set; }
     }
 
     public class Genre : IgdbItem
     {
+    }
+
+    public class InvolvedCompany : IgdbItem
+    {
+        public ulong game { get; set; }
+        public ulong company { get; set; }
+        public bool developer { get; set; }
+        public bool porting { get; set; }
+        public bool publisher { get; set; }
+        public bool supporting { get; set; }
+    }
+
+    public class ExpandedInvolvedCompany : InvolvedCompany
+    {
+        public new Company company { get; set; }
+    }
+
+    public class Collection : IgdbItem
+    {
+        public List<ulong> games { get; set; }
+    }
+
+    public class ExpandedGame : Game
+    {
+        public new Franchise franchise { get; set; }
+        public new Collection collection { get; set; }
+        public new Game version_parent { get; set; }
+        public new TimeTobeat time_to_beat { get; set; }
+        public new List<ExpandedInvolvedCompany> involved_companies { get; set; }
+        public List<Genre> genres_v3 { get; set; }
+        public new List<Theme> themes { get; set; }
+        public List<GameMode> game_modes_v3 { get; set; }
+        public GameImage cover_v3 { get; set; }
+        public new List<Website> websites { get; set; }
+        public new List<AlternativeName> alternative_names { get; set; }
+        public new List<ExternalGame> external_games { get; set; }
+        public new List<GameImage> screenshots { get; set; }
+        public new List<GameImage> artworks { get; set; }
+        public new List<Video> videos { get; set; }
+        public new List<Platform> platforms { get; set; }
+        public new List<ReleaseDate> release_dates { get; set; }
+
+        // fallback properties for 4.x
+        public new string cover { get; set; }
+        public List<string> developers { get; set; }
+        public List<string> publishers { get; set; }
+        public new List<string> genres { get; set; }
+        public new List<string> game_modes { get; set; }
+    }
+
+    public class Game : IgdbItem
+    {
+        public string summary { get; set; }
+        public string storyline { get; set; }
+        public double popularity { get; set; }
+        public ulong franchise { get; set; }
+        public ulong collection { get; set; }
+        public ulong version_parent { get; set; }
+        public string version_title { get; set; }
+        public GameCategory category { get; set; }
+        public ulong time_to_beat { get; set; }
+        public List<ulong> involved_companies { get; set; }
+        public List<ulong> genres { get; set; }
+        public List<ulong> themes { get; set; }
+        public List<ulong> game_modes { get; set; }
+        public long first_release_date { get; set; }
+        public ulong cover { get; set; }
+        public List<ulong> websites { get; set; }
+        public double rating { get; set; }
+        public double aggregated_rating { get; set; }
+        public double total_rating { get; set; }
+        public List<ulong> alternative_names { get; set; }
+        public List<ulong> external_games { get; set; }
+        public List<ulong> screenshots { get; set; }
+        public List<ulong> artworks { get; set; }
+        public List<ulong> videos { get; set; }
+        public List<ulong> platforms { get; set; }
+        public List<ulong> release_dates { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using GogLibrary.Models;
 using Newtonsoft.Json;
+using Playnite.Common.Web;
 using Playnite.SDK;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;

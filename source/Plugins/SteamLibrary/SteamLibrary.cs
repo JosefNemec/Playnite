@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Playnite.SDK;
-using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using SteamLibrary.Models;
 using SteamLibrary.Services;
-using Playnite.Web;
 using SteamKit2;
 using System;
 using System.Collections.Generic;
@@ -22,13 +20,13 @@ using Playnite;
 using System.Windows;
 using System.Reflection;
 using System.Collections.ObjectModel;
+using Playnite.Common.Web;
 
 namespace SteamLibrary
 {
-    public class SteamLibrary : ILibraryPlugin
+    public class SteamLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private IPlayniteAPI playniteApi;
         private SteamServicesClient servicesClient;
         private readonly Configuration config;
         private readonly SteamApiClient apiClient = new SteamApiClient();
@@ -36,14 +34,14 @@ namespace SteamLibrary
 
         internal SteamLibrarySettings LibrarySettings { get; private set; }
 
-        public SteamLibrary(IPlayniteAPI api)
+        public SteamLibrary(IPlayniteAPI api) : base(api)
         {
             Initialize(api);
-            config = api.GetPluginConfiguration<Configuration>(this);
+            config = GetPluginConfiguration<Configuration>();
             servicesClient = new SteamServicesClient(config.ServicesEndpoint);
         }
 
-        public SteamLibrary(IPlayniteAPI api, SteamServicesClient client)
+        public SteamLibrary(IPlayniteAPI api, SteamServicesClient client) : base(api)
         {
             Initialize(api);
             servicesClient = client;
@@ -51,9 +49,7 @@ namespace SteamLibrary
 
         private void Initialize(IPlayniteAPI api)
         {
-            playniteApi = api;
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\steamicon.png");
-            LibrarySettings = new SteamLibrarySettings(this, playniteApi)
+            LibrarySettings = new SteamLibrarySettings(this, PlayniteApi)
             {
                 SteamUsers = GetSteamUsers()
             };
@@ -70,7 +66,7 @@ namespace SteamLibrary
             };
         }
 
-        internal Game GetInstalledGameFromFile(string path)
+        internal GameInfo GetInstalledGameFromFile(string path)
         {
             var kv = new KeyValue();
             kv.ReadFileAsText(path);
@@ -89,9 +85,8 @@ namespace SteamLibrary
             }
 
             var gameId = new GameID(kv["appID"].AsUnsignedInteger());
-            var game = new Game()
+            var game = new GameInfo()
             {
-                PluginId = Id,
                 Source = "Steam",
                 GameId = gameId.ToString(),
                 Name = name,
@@ -103,9 +98,9 @@ namespace SteamLibrary
             return game;
         }
 
-        internal List<Game> GetInstalledGamesFromFolder(string path)
+        internal List<GameInfo> GetInstalledGamesFromFolder(string path)
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
 
             foreach (var file in Directory.GetFiles(path, @"appmanifest*"))
             {
@@ -124,9 +119,9 @@ namespace SteamLibrary
             return games;
         }
 
-        internal List<Game> GetInstalledGoldSrcModsFromFolder(string path)
+        internal List<GameInfo> GetInstalledGoldSrcModsFromFolder(string path)
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve"};
             var dirInfo = new DirectoryInfo(path);
 
@@ -150,9 +145,9 @@ namespace SteamLibrary
             return games;
         }
 
-        internal List<Game> GetInstalledSourceModsFromFolder(string path)
+        internal List<GameInfo> GetInstalledSourceModsFromFolder(string path)
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
 
             foreach (var folder in Directory.GetDirectories(path))
             {
@@ -174,7 +169,7 @@ namespace SteamLibrary
             return games;
         }
 
-        internal Game GetInstalledModFromFolder(string path, ModInfo.ModType modType)
+        internal GameInfo GetInstalledModFromFolder(string path, ModInfo.ModType modType)
         {
             var modInfo = ModInfo.GetFromFolder(path, modType);
             if (modInfo == null)
@@ -182,16 +177,15 @@ namespace SteamLibrary
                 return null;
             }
 
-            var game = new Game()
+            var game = new GameInfo()
             {
-                PluginId = Id,
                 Source = "Steam",
                 GameId = modInfo.GameId.ToString(),
                 Name = modInfo.Name,
                 InstallDirectory = path,
                 PlayAction = CreatePlayTask(modInfo.GameId),
                 IsInstalled = true,
-                Developers = new ComparableList<string>() { modInfo.Developer },
+                Developers = new List<string>() { modInfo.Developer },
                 Links = modInfo.Links,
                 Tags = modInfo.Categories,
                 Icon = modInfo.IconPath
@@ -200,9 +194,9 @@ namespace SteamLibrary
             return game;
         }
 
-        internal Dictionary<string, Game> GetInstalledGames(bool includeMods = true)
+        internal Dictionary<string, GameInfo> GetInstalledGames(bool includeMods = true)
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             if (!Steam.IsInstalled)
             {
                 return games;
@@ -322,7 +316,7 @@ namespace SteamLibrary
             return users;
         }
 
-        internal List<Game> GetLibraryGames(SteamLibrarySettings settings)
+        internal List<GameInfo> GetLibraryGames(SteamLibrarySettings settings)
         {
             var userName = string.Empty;
             if (settings.IdSource == SteamIdSource.Name)
@@ -344,7 +338,7 @@ namespace SteamLibrary
             }
         }
 
-        internal List<Game> GetLibraryGames(string userName, string apiKey)
+        internal List<GameInfo> GetLibraryGames(string userName, string apiKey)
         {
             var userNameUrl = @"https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}";
             var libraryUrl = @"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&include_played_free_games=1&format=json&steamid={1}";
@@ -363,7 +357,17 @@ namespace SteamLibrary
                 throw new Exception("No games found on specified Steam account.");
             }
 
-            var games = new List<Game>();
+            IDictionary<string, DateTime> lastActivity = null;
+            try
+            {
+                lastActivity = GetGamesLastActivity(userId);
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to import Steam last activity.");
+            }
+
+            var games = new List<GameInfo>();
             foreach (var game in library.response.games)
             {
                 // Ignore games without name, like 243870
@@ -372,9 +376,8 @@ namespace SteamLibrary
                     continue;
                 }
 
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
-                    PluginId = Id,
                     Source = "Steam",
                     Name = game.name,
                     GameId = game.appid.ToString(),
@@ -382,24 +385,42 @@ namespace SteamLibrary
                     CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 };
 
+                if (lastActivity != null && lastActivity.TryGetValue(newGame.GameId, out var gameLastActivity))
+                {
+                    newGame.LastActivity = gameLastActivity;
+                }
+
                 games.Add(newGame);
             }
 
             return games;
         }
 
-        internal List<Game> GetLibraryGames(string userName)
+        internal List<GameInfo> GetLibraryGames(string userName)
         {
             if (string.IsNullOrEmpty(userName))
             {
                 throw new Exception("Steam user name cannot be empty.");
             }
 
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             var importedGames = servicesClient.GetSteamLibrary(userName);
             if (importedGames == null)
             {
                 throw new Exception("No games found on specified Steam account.");
+            }
+
+            IDictionary<string, DateTime> lastActivity = null;
+            if (ulong.TryParse(userName, out var userId))
+            {
+                try
+                {
+                    lastActivity = GetGamesLastActivity(userId);
+                }
+                catch (Exception exc)
+                {
+                    logger.Warn(exc, "Failed to import Steam last activity.");
+                }
             }
 
             foreach (var game in importedGames)
@@ -410,9 +431,8 @@ namespace SteamLibrary
                     continue;
                 }
 
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
-                    PluginId = Id,
                     GameId = game.appid.ToString(),
                     Source = "Steam",
                     Name = game.name,
@@ -420,16 +440,122 @@ namespace SteamLibrary
                     CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 };
 
+                if (lastActivity != null && lastActivity.TryGetValue(newGame.GameId, out var gameLastActivity))
+                {
+                    newGame.LastActivity = gameLastActivity;
+                }
+
                 games.Add(newGame);
             }
 
             return games;
         }
 
-        public List<Game> GetCategorizedGames(ulong steamId)
+        public IDictionary<string, DateTime> GetGamesLastActivity(ulong steamId)
         {
             var id = new SteamID(steamId);
-            var result = new List<Game>();
+            var result = new Dictionary<string, DateTime>();
+            var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "config", "localconfig.vdf");
+            var sharedconfig = new KeyValue();
+            sharedconfig.ReadFileAsText(vdf);
+
+            var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
+            foreach (var app in apps.Children)
+            {
+                if (app.Children.Count == 0)
+                {
+                    continue;
+                }
+
+                string gameId = app.Name;
+                if (app.Name.Contains('_'))
+                {
+                    // Mods are keyed differently, "<appId>_<modId>"
+                    // Ex. 215_2287856061
+                    string[] parts = app.Name.Split('_');
+                    if (uint.TryParse(parts[0], out uint appId) && uint.TryParse(parts[1], out uint modId))
+                    {
+                        var gid = new GameID()
+                        {
+                            AppID = appId,
+                            AppType = GameID.GameType.GameMod,
+                            ModID = modId
+                        };
+                        gameId = gid;
+                    }
+                    else
+                    {
+                        // Malformed app id?
+                        continue;
+                    }
+                }
+
+                result.Add(gameId, DateTimeOffset.FromUnixTimeSeconds(app["LastPlayed"].AsLong()).LocalDateTime);
+            }
+
+            return result;
+        }
+
+        public void ImportSteamLastActivity(ulong accountId)
+        {
+            var dialogs = PlayniteApi.Dialogs;
+            var resources = PlayniteApi.Resources;
+            var db = PlayniteApi.Database;
+
+            if (accountId == 0)
+            {
+                dialogs.ShowMessage(
+                    resources.GetString("LOCSettingsSteamLastActivityImportErrorAccount"),
+                    resources.GetString("LOCImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!db.IsOpen)
+            {
+                dialogs.ShowMessage(
+                    resources.GetString("LOCSettingsSteamLastActivityImportErrorDb"),
+                    resources.GetString("LOCImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                using (db.BufferedUpdate())
+                {
+                    foreach (var kvp in GetGamesLastActivity(accountId))
+                    {
+                        var dbGame = db.Games.FirstOrDefault(a => a.PluginId == Id && a.GameId == kvp.Key);
+                        if (dbGame == null)
+                        {
+                            continue;
+                        }
+
+                        if (dbGame.LastActivity >= kvp.Value)
+                        {
+                            continue;
+                        }
+                        dbGame.LastActivity = kvp.Value;
+                    }
+                }
+
+                dialogs.ShowMessage(resources.GetString("LOCImportCompleted"));
+            }
+            catch (Exception exc) when (!Environment.IsDebugBuild)
+            {
+                logger.Error(exc, "Failed to import Steam last activity.");
+                dialogs.ShowMessage(
+                    resources.GetString("LOCSettingsSteamLastActivityImportError"),
+                    resources.GetString("LOCImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public List<GameInfo> GetCategorizedGames(ulong steamId)
+        {
+            var id = new SteamID(steamId);
+            var result = new List<GameInfo>();
             var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "7", "remote", "sharedconfig.vdf");
             var sharedconfig = new KeyValue();
             sharedconfig.ReadFileAsText(vdf);
@@ -471,12 +597,11 @@ namespace SteamLibrary
                     }
                 }
 
-                result.Add(new Game()
+                result.Add(new GameInfo()
                 {
-                    PluginId = Id,
                     Source = "Steam",
                     GameId = gameId,
-                    Categories = new ComparableList<string>(appData),
+                    Categories = new List<string>(appData),
                     Hidden = app["hidden"].AsInteger() == 1
                 });
             }
@@ -486,13 +611,13 @@ namespace SteamLibrary
 
         public void ImportSteamCategories(ulong accountId)
         {
-            var dialogs = playniteApi.Dialogs;
-            var resources = playniteApi.Resources;
-            var db = playniteApi.Database;
+            var dialogs = PlayniteApi.Dialogs;
+            var resources = PlayniteApi.Resources;
+            var db = PlayniteApi.Database;
 
             if (dialogs.ShowMessage(
-                resources.FindString("LOCSettingsSteamCatImportWarn"),
-                resources.FindString("LOCSettingsSteamCatImportWarnTitle"),
+                resources.GetString("LOCSettingsSteamCatImportWarn"),
+                resources.GetString("LOCSettingsSteamCatImportWarnTitle"),
                 MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
             {
                 return;
@@ -501,8 +626,8 @@ namespace SteamLibrary
             if (accountId == 0)
             {
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamCatImportErrorAccount"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamCatImportErrorAccount"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -510,8 +635,8 @@ namespace SteamLibrary
             if (!db.IsOpen)
             {
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamCatImportErrorDb"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamCatImportErrorDb"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -522,62 +647,65 @@ namespace SteamLibrary
                 {
                     foreach (var game in GetCategorizedGames(accountId))
                     {
-                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
+                        if (!game.Categories.HasItems())
+                        {
+                            continue;
+                        }
+
+                        var dbGame = db.Games.FirstOrDefault(a => a.PluginId == Id && a.GameId == game.GameId);
                         if (dbGame == null)
                         {
                             continue;
                         }
 
-                        dbGame.Categories = game.Categories;
+                        dbGame.CategoryIds = db.Categories.Add(game.Categories).Select(a => a.Id).ToList();
                         dbGame.Hidden = game.Hidden;
-                        db.UpdateGame(dbGame);
+                        db.Games.Update(dbGame);
                     }
                 }
 
-                dialogs.ShowMessage(resources.FindString("LOCImportCompleted"));
+                dialogs.ShowMessage(resources.GetString("LOCImportCompleted"));
             }
             catch (Exception exc) when (!Environment.IsDebugBuild)
             {
                 logger.Error(exc, "Failed to import Steam categories.");
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamCatImportError"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamCatImportError"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new SteamClient();
+        public override LibraryClient Client => new SteamClient();
 
-        public Guid Id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
+        public override Guid Id => Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
 
-        public string Name { get; } = "Steam";
+        public override string Name => "Steam";
 
-        public string LibraryIcon { get; private set; }
+        public override string LibraryIcon => Steam.Icon;
 
-        public bool IsClientInstalled => Steam.IsInstalled;
-
-        public void Dispose()
+        public override void Dispose()
         {
             apiClient.Logout();
         }
 
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             LibrarySettings.ShowCategoryImport = !firstRunSettings;
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new SteamLibrarySettingsView();
         }
 
-        public IEnumerable<Game> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)
@@ -624,26 +752,26 @@ namespace SteamLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
             else
             {
-                playniteApi.Notifications.Remove(dbImportMessageId);
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
             return new SteamGameController(game, this);
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new SteamMetadataProvider(servicesClient, this, apiClient);
         }

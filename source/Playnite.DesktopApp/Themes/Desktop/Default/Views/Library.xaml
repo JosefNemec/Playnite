@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pcmds="clr-namespace:Playnite.Commands;assembly=Playnite"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
+                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
+                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
+                    xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
+                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+                    xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite">
+
+    <Style TargetType="{x:Type views:Library}">
+        <Setter Property="Background" Value="Yellow" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type views:Library}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        
+                        <pctrlsShared:FadeImage x:Name="PART_ImageBackground"
+                                                HorizontalAlignment="Center" VerticalAlignment="Top"
+                                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                            <pctrlsShared:FadeImage.Style>
+                                <Style TargetType="pctrlsShared:FadeImage">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Grid}">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </pctrlsShared:FadeImage.Style>
+                        </pctrlsShared:FadeImage>
+                        
+                        <views:MainPanel DockPanel.Dock="Top" Grid.Row="0" />
+                        
+                        <DockPanel Grid.Row="1">
+                            <DockPanel.Resources>
+                                <Storyboard x:Key="VisibilityOn">
+                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetName="PART_FilterPanel"
+                                                From="0" To="230" Duration="0:0:0.10" />
+                                </Storyboard>
+                                <Storyboard x:Key="VisibilityOff">
+                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                Storyboard.TargetName="PART_FilterPanel"
+                                                From="230" To="0" Duration="0:0:0.10" />
+                                </Storyboard>
+                            </DockPanel.Resources>
+
+                            <views:FilterPanel x:Name="PART_FilterPanel"
+                                               DockPanel.Dock="{pmrk:Settings FilterPanelPosition}" Width="250"
+                                               pbeh:AnimatedVisibility.Visibility="{pmrk:Settings FilterPanelVisible}"
+                                               pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
+                                               pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}">
+                            </views:FilterPanel>                            
+                            
+                            <views:ExplorerPanel Visibility="{pmrk:Settings ExplorerPanelVisible}"
+                                                 DockPanel.Dock="{pmrk:Settings ExplorerPanelPosition}"
+                                                 Width="280"/>
+                            
+                            <Grid DockPanel.Dock="Left">
+                                <views:LibraryDetailsView x:Name="PART_ViewDetails" />
+                                <views:LibraryGridView x:Name="PART_ViewGrid" />
+                                <views:LibraryListView x:Name="PART_ViewList" />
+                            </Grid>
+                        </DockPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

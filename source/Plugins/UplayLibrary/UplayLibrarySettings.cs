@@ -11,7 +11,6 @@ namespace UplayLibrary
     public class UplayLibrarySettings : ObservableObject, ISettings
     {
         private UplayLibrarySettings editingClone;
-        private IPlayniteAPI api;
         private UplayLibrary library;
 
         #region Settings      
@@ -25,12 +24,10 @@ namespace UplayLibrary
         {
         }
 
-        public UplayLibrarySettings(UplayLibrary library, IPlayniteAPI api)
+        public UplayLibrarySettings(UplayLibrary library)
         {
             this.library = library;
-            this.api = api;
-
-            var settings = api.LoadPluginSettings<UplayLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<UplayLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -39,7 +36,7 @@ namespace UplayLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()
@@ -49,7 +46,7 @@ namespace UplayLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)

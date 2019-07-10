@@ -1,8 +1,6 @@
-﻿using Playnite;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,51 +11,44 @@ using System.Threading.Tasks;
 
 namespace BattleNetLibrary
 {
-    public class BattleNetMetadataProvider : ILibraryMetadataProvider
+    public class BattleNetMetadataProvider : LibraryMetadataProvider
     {
-        public BattleNetMetadataProvider()
+        public override GameMetadata GetMetadata(Game game)
         {
-        }
-
-        #region IMetadataProvider
-
-        public GameMetadata GetMetadata(Game game)
-        {
-            var gameData = new Game("BattleNetGame")
-            {
-                GameId = game.GameId
-            };
-
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        #endregion IMetadataProvider
-
-        public GameMetadata UpdateGameWithMetadata(Game game)
-        {
-            var metadata = new GameMetadata();
             var product = BattleNetGames.GetAppDefinition(game.GameId);
             if (product == null)
             {
-                return metadata;
+                return null;
             }
 
-            if (string.IsNullOrEmpty(product.IconUrl))
+            var gameInfo = new GameInfo
             {
-                return metadata;
+                Name = product.Name,
+                Links = new List<Link>(product.Links)
+            };
+
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + product.Name));
+
+            var metadata = new GameMetadata()
+            {
+                GameInfo = gameInfo
+            };
+
+            if (!string.IsNullOrEmpty(product.IconUrl))
+            {
+                metadata.Icon = new MetadataFile(product.IconUrl);
             }
 
-            game.Name = product.Name;
-            var icon = HttpDownloader.DownloadData(product.IconUrl);
-            var iconFile = Path.GetFileName(product.IconUrl);
-            metadata.Icon = new MetadataFile(iconFile, icon);
-            var cover = HttpDownloader.DownloadData(product.CoverUrl);
-            var coverFile = Path.GetFileName(product.CoverUrl);
-            metadata.Image = new MetadataFile(coverFile, cover);
-            game.BackgroundImage = product.BackgroundUrl;
-            metadata.BackgroundImage = product.BackgroundUrl;
-            game.Links = new ObservableCollection<Link>(product.Links);
+            if (!string.IsNullOrEmpty(product.CoverUrl))
+            {
+                metadata.CoverImage = new MetadataFile(product.CoverUrl);
+            }
+
+            if (!string.IsNullOrEmpty(product.BackgroundUrl))
+            {
+                metadata.BackgroundImage = new MetadataFile(product.BackgroundUrl);
+            }
+
             return metadata;
         }
     }

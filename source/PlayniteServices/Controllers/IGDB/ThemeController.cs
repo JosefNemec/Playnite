@@ -20,6 +20,11 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpGet("{themeId}")]
         public async Task<ServicesResponse<Theme>> Get(ulong themeId)
         {
+            return await GetItem(themeId);
+        }
+
+        public static async Task<ServicesResponse<Theme>> GetItem(ulong themeId)
+        {
             return new ServicesResponse<Theme>(await GetItem<Theme>(themeId, endpointPath, CacheLock));
         }
     }

@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:steam="clr-namespace:SteamLibrary"
-             xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
-             xmlns:pui="clr-namespace:PlayniteUI"
+             xmlns:pcmd="clr-namespace:Playnite.Commands"
+             xmlns:pcon="clr-namespace:Playnite.Converters"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"              
              d:DesignHeight="400" d:DesignWidth="600">
@@ -17,8 +17,8 @@
     </d:DesignerProperties.DesignStyle>
 
     <UserControl.Resources>
-        <pui:NegateConverter x:Key="NegateConverter" />
-        <pui:EnumConverter x:Key="EnumConverter" />
+        <pcon:NegateConverter x:Key="NegateConverter" />
+        <pcon:EnumToBooleanConverter x:Key="EnumConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
@@ -90,7 +90,7 @@
                 <TextBox Text="{Binding ApiKey}" Width="200" VerticalAlignment="Center" Margin="10,0,10,0"/>
                 <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">
                     <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
-                                Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                                 CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                         <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                     </Hyperlink>
@@ -99,7 +99,7 @@
 
             <TextBlock Margin="5,15,0,0">
                 <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
-                            Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                            Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                             CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                     <Run Text="{DynamicResource LOCTroubleShootingAccountLink}" />
                 </Hyperlink>
@@ -112,21 +112,27 @@
             <TextBlock Text="{DynamicResource LOCSteamBackgroundSource}"
                        VerticalAlignment="Center"/>
             <ContentControl Content="{StaticResource BackgroundSourceBox}" Margin="10,0,0,0" />
-        </StackPanel>       
+        </StackPanel>
 
-        <TextBlock Text="{DynamicResource LOCSettingsSteamImportCategories}"
-                   DockPanel.Dock="Top" Margin="0,25,5,5"
-                   Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <StackPanel DockPanel.Dock="Top" Margin="20,10,5,5" Orientation="Horizontal"
+
+        <StackPanel DockPanel.Dock="Top" Margin="0,25,5,5" Orientation="Horizontal"
                     Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Button Content="{DynamicResource LOCImportLabel}" Name="ButtonImportSteamCategories"
-                    Command="{Binding ImportSteamCategoriesCommand}"
-                    CommandParameter="{Binding SelectedItem, ElementName=ComboSteamCatImport}"/>
-            <TextBlock Text="{DynamicResource LOCSettingsSteamImportCatFrom}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <TextBlock Text="{DynamicResource LOCSettingsSteamImportMetadata}"
+                   VerticalAlignment="Center"
+                   Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <ComboBox IsReadOnly="True" Margin="10,0,0,0"
-                      Name="ComboSteamCatImport"
+                      Name="ComboSteamMetadataImport"
                       DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
                       ItemsSource="{Binding SteamUsers}" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="40,10,5,5" Orientation="Horizontal"
+                    Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Button Content="{DynamicResource LOCImportSteamCategoriesLabel}" Name="ButtonImportSteamCategories"
+                     Margin="0,0,10,0" Command="{Binding ImportSteamCategoriesCommand}"
+                    CommandParameter="{Binding SelectedItem, ElementName=ComboSteamMetadataImport}"/>
+            <Button Content="{DynamicResource LOCImportSteamLastActivityLabel}" Name="ButtonImportSteamLastActivity"
+                        Command="{Binding ImportSteamLastActivityCommand}"
+                        CommandParameter="{Binding SelectedItem, ElementName=ComboSteamMetadataImport}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

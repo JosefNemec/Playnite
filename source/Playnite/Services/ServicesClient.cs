@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
-using Playnite.App;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -25,11 +24,11 @@ namespace Playnite.Services
         {
         }
 
-        public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName, string apiKey = null)
+        public List<PlayniteServices.Models.IGDB.ExpandedGame> GetIGDBGames(string searchName, string apiKey = null)
         {
             var encoded = Uri.EscapeDataString(searchName);
             var url = string.IsNullOrEmpty(apiKey) ? $"/igdb/games/{encoded}" : $"/igdb/games/{encoded}?apikey={apiKey}";
-            return ExecuteGetRequest<List<PlayniteServices.Models.IGDB.Game>>(url);
+            return ExecuteGetRequest<List<PlayniteServices.Models.IGDB.ExpandedGame>>(url);
         }
 
         public ulong GetIGDBGameBySteamId(string id, string apiKey = null)
@@ -44,10 +43,10 @@ namespace Playnite.Services
             return ExecuteGetRequest<PlayniteServices.Models.IGDB.Game>(url);
         }
 
-        public PlayniteServices.Models.IGDB.ParsedGame GetIGDBGameParsed(UInt64 id, string apiKey = null)
+        public PlayniteServices.Models.IGDB.ExpandedGame GetIGDBGameParsed(UInt64 id, string apiKey = null)
         {
             var url = string.IsNullOrEmpty(apiKey) ? $"/igdb/game_parsed/{id}" : $"/igdb/game_parsed/{id}?apikey={apiKey}";
-            return ExecuteGetRequest<PlayniteServices.Models.IGDB.ParsedGame>(url);
+            return ExecuteGetRequest<PlayniteServices.Models.IGDB.ExpandedGame>(url);
         }
 
         public PlayniteServices.Models.IGDB.Company GetIGDBCompany(UInt64 id, string apiKey = null)

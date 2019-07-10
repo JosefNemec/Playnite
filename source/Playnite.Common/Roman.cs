@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite
+namespace Playnite.Common
 {
     // Courtesy of https://stackoverflow.com/questions/7040289/converting-integers-to-roman-numerals
     public static class Roman

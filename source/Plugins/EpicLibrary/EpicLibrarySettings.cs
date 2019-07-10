@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Playnite;
 using Playnite.SDK;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -58,7 +58,7 @@ namespace EpicLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<EpicLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<EpicLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -67,7 +67,7 @@ namespace EpicLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()
@@ -77,7 +77,7 @@ namespace EpicLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)
@@ -101,7 +101,7 @@ namespace EpicLibrary
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                api.Dialogs.ShowErrorMessage(api.Resources.FindString("LOCNotLoggedInError"), "");
+                api.Dialogs.ShowErrorMessage(api.Resources.GetString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate user.");
             }
         }
