@@ -22,7 +22,7 @@ namespace PlayniteServices.Models.IGDB
         Android = 12,
         Steam = 13,
         Reddit = 14,
-        Discord = 15
+        Discord = 15,
         GooglePlus = 16,
         Tumblr = 17,
         LinkedIn = 18,
