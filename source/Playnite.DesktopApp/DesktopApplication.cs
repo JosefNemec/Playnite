@@ -206,11 +206,13 @@ namespace Playnite.DesktopApp
             var defaultPath = GameDatabase.GetFullDbPath(GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable));
             if (!AppSettings.DatabasePath.IsNullOrEmpty())
             {
+                AppSettings.FirstTimeWizardComplete = true;
                 firstStartup = false;
             }
             else if (AppSettings.DatabasePath.IsNullOrEmpty() && Directory.Exists(defaultPath))
             {
                 AppSettings.DatabasePath = GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable);
+                AppSettings.FirstTimeWizardComplete = true;
                 firstStartup = false;
             }
 
