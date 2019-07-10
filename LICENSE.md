@@ -19,11 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-**Dependencies not distributed under MIT:**
-
-IcoFont font files - licensed under CC BY 4.0 https://icofont.com
-
-TitilliumWeb font files - licensed under Open Font License https://fonts.google.com/specimen/Titillium+Web
-
-Xbox One and PlayStation 4 font files - proprietary license https://assetstore.unity.com/packages/2d/gui/icons/xbox-one-playstation-4-buttons-pack-77916
