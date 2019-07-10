@@ -139,7 +139,7 @@ namespace Playnite
             }
         }
 
-        private int gameDetailsIndentation = 450;
+        private int gameDetailsIndentation = 400;
         public int GameDetailsIndentation
         {
             get
