@@ -212,7 +212,7 @@ namespace GogLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import installed Origin games.");
+                    logger.Error(e, "Failed to import installed GOG games.");
                     importError = e;
                 }
             }
