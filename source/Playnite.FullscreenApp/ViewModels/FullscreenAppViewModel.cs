@@ -354,6 +354,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public bool IsExtraFilterActive
         {
             get => !IsSearchActive && GetIsExtraFilterActive(AppSettings.Fullscreen);

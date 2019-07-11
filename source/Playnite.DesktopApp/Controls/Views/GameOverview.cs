@@ -4,7 +4,6 @@ using Playnite.Controls;
 using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK.Models;
-using Playnite.ViewModels.Desktop.DesignData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -108,13 +107,14 @@ namespace Playnite.DesktopApp.Controls.Views
             if (DesignerProperties.GetIsInDesignMode(this))
             {
                 this.mainModel = new DesignMainViewModel();
+                DataContext = this.mainModel.SelectedGameDetails;
             }
             else if (mainModel != null)
             {
                 this.mainModel = mainModel;
             }
 
-            mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
+            this.mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
         }
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -6,6 +6,7 @@ using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -35,7 +36,11 @@ namespace Playnite.DesktopApp.Controls
 
         public MainMenu(DesktopAppViewModel model)
         {
-            if (model != null)
+            if (DesignerProperties.GetIsInDesignMode(this))
+            {
+                mainModel = new DesignMainViewModel();
+            }
+            else if (model != null)
             {
                 mainModel = model;
                 InitializeItems();

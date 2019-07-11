@@ -1,11 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:pcmds="clr-namespace:Playnite.Commands;assembly=Playnite"
                     xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
                     xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views;assembly=Playnite.FullscreenApp"
                     xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp"
                     xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls;assembly=Playnite.FullscreenApp"
-                    xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">    
+                    xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
 
     <Style TargetType="{x:Type views:GameMenu}">
         <Setter Property="Template">
@@ -14,8 +17,9 @@
                     <Grid x:Name="PART_MenuHost"
                           Background="{DynamicResource OverlayBrush}"
                           KeyboardNavigation.TabNavigation="Cycle"
-                          KeyboardNavigation.DirectionalNavigation="Cycle">
-
+                          KeyboardNavigation.DirectionalNavigation="Cycle"
+                          d:DesignWidth="{StaticResource DesignWidth}"
+                          d:DesignHeight="{StaticResource DesignHeight}">
                         <Border Background="{DynamicResource OverlayMenuBackgroundBrush}"
                                 CornerRadius="3" Width="400"
                                 HorizontalAlignment="Center"

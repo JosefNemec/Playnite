@@ -344,6 +344,12 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings)
+        {
+            this.resources = new ResourceProvider();
+            Game = game;
+        }
+
         public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, GamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.resources = resources;

@@ -87,6 +87,14 @@ namespace Playnite.FullscreenApp.ViewModels
         #endregion
 
         public GameDetailsViewModel(
+            GamesCollectionViewEntry gameView)
+        {
+            Game = gameView;
+            resources = new ResourceProvider();
+            InitializeItems();
+        }
+
+        public GameDetailsViewModel(
             GamesCollectionViewEntry gameView,
             IResourceProvider resources,
             GamesEditor gamesEditor,

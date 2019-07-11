@@ -96,6 +96,7 @@ namespace Playnite.FullscreenApp.Controls.Views
             if (DesignerProperties.GetIsInDesignMode(this))
             {
                 this.mainModel = new DesignMainViewModel();
+                DataContext = this.mainModel;
             }
             else if (mainModel != null)
             {

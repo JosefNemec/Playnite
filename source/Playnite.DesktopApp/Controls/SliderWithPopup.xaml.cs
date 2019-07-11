@@ -41,26 +41,26 @@ namespace Playnite.DesktopApp.Controls
 
         private void Slider_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!Popup.IsOpen)
-            {
-                Popup.IsOpen = true;
-            }
+            //if (!Popup.IsOpen)
+            //{
+            //    Popup.IsOpen = true;
+            //}
 
-            PositionPopupBelowTheEndOfTheSlider();
+            //PositionPopupBelowTheEndOfTheSlider();
         }
 
         private void PositionPopupBelowTheEndOfTheSlider()
         {
-            Popup.HorizontalOffset = Slider.Width - PopupGrid.ActualWidth;
-            Popup.VerticalOffset = 0f;
+            //Popup.HorizontalOffset = Slider.Width - PopupGrid.ActualWidth;
+            //Popup.VerticalOffset = 0f;
         }
 
         private void Slider_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (Popup.IsOpen)
-            {
-                Popup.IsOpen = false;
-            }
+            //if (Popup.IsOpen)
+            //{
+            //    Popup.IsOpen = false;
+            //}
         }
     }
 }

@@ -6,14 +6,17 @@
                     xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
                     xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
                     xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
-                    xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite">
+                    xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
 
     <Style TargetType="{x:Type views:Library}">
         <Setter Property="Background" Value="Yellow" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:Library}">
-                    <Grid>
+                    <Grid d:DesignWidth="1500" d:DesignHeight="960">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
@@ -59,9 +62,8 @@
                                                DockPanel.Dock="{pmrk:Settings FilterPanelPosition}" Width="250"
                                                pbeh:AnimatedVisibility.Visibility="{pmrk:Settings FilterPanelVisible}"
                                                pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
-                                               pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}">
-                            </views:FilterPanel>                            
-                            
+                                               pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}" />
+
                             <views:ExplorerPanel Visibility="{pmrk:Settings ExplorerPanelVisible}"
                                                  DockPanel.Dock="{pmrk:Settings ExplorerPanelPosition}"
                                                  Width="280"/>

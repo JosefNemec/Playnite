@@ -6,5 +6,5 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="d">
 
-    <FontFamily x:Key="FontIcoFont">/Themes/Desktop/Default/Fonts/IcoFonts/#icofont</FontFamily>
+    <FontFamily x:Key="FontIcoFont">/Themes/Desktop/Default/Fonts/IcoFonts/icofont.ttf#icofont</FontFamily>
 </ResourceDictionary>

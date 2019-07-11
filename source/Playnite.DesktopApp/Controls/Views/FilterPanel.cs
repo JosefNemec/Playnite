@@ -3,7 +3,6 @@ using Playnite.Converters;
 using Playnite.Database;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK.Models;
-using Playnite.ViewModels.Desktop.DesignData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

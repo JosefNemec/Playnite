@@ -1,12 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
                     xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
                     xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite"
                     xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
                     xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
-                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp">
+                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
 
     <Style x:Key="DetailsViewGameOverview" TargetType="{x:Type views:GameOverview}">        
         <Setter Property="Template">
@@ -14,7 +17,9 @@
                 <ControlTemplate TargetType="{x:Type views:GameOverview}">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                   VerticalScrollBarVisibility="Auto"
-                                  Style="{DynamicResource DetailsScrollViewer}">
+                                  Style="{DynamicResource DetailsScrollViewer}"
+                                  d:DesignWidth="1280"
+                                  d:DesignHeight="960">
                         <Grid>
                             <pctrlsShared:FadeImage x:Name="PART_ImageBackground" Stretch="Uniform"
                                                     HorizontalAlignment="Center" VerticalAlignment="Top">

@@ -16,6 +16,11 @@ namespace Playnite.FullscreenApp.ViewModels.DesignData
 {
     public class DesignMainViewModel : FullscreenAppViewModel
     {
+        public new GamesCollectionViewEntry GameDetailsEntry { get; set; }
+        public new GamesCollectionViewEntry SelectedGame { get; set; }
+        public new bool GameDetailsButtonVisible { get; set; } = true;
+        public new bool IsExtraFilterActive { get; set; } = true;
+
         public DesignMainViewModel()
         {
             MainMenuVisible = false;
@@ -30,18 +35,32 @@ namespace Playnite.FullscreenApp.ViewModels.DesignData
             ProgressVisible = true;
 
             var database = new InMemoryGameDatabase();
-            for (int i = 0; i < 25; i++)
+            Game.DatabaseReference = database;
+            var winPlatform = database.Platforms.Add("Windows");
+            var designGame = new Game($"Star Wars: Knights of the Old Republic")
             {
-                database.Games.Add(new Game($"Test Game {i}")
-                {
-                    //Icon = ThemeFile.GetFilePath("Images/custom_cover_background.png", ThemeFile.GetDesignTimeDefaultTheme())
-                });
-            }
+                ReleaseDate = new DateTime(2009, 9, 5),
+                PlatformId = winPlatform.Id,
+                PlayCount = 20,
+                Playtime = 115200,
+                LastActivity = DateTime.Today,
+                IsInstalled = true,
+                Description = "Star Wars: Knights of the Old Republic (often abbreviated as KotOR) is the first installment in the Knights of the Old Republic series. KotOR is the first computer role-playing game set in the Star Wars universe."
+            };
+
+            database.Games.Add(designGame);
+            designGame.CoverImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignCover.jpg";
+            designGame.BackgroundImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignBackground.jpg";
+            designGame.Icon = "pack://application:,,,/Playnite;component/Resources/Images/DesignIcon.png";
 
             GamesView = new FullscreenCollectionView(
                 database,
                 new PlayniteSettings(),
                 new ExtensionFactory(database, new GameControllerFactory()));
+
+            GameDetailsEntry = GamesView.Items[0];
+            SelectedGame = GamesView.Items[0];
+            SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
 
             MainMenuVisible = false;
             SettingsMenuVisible = false;

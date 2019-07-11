@@ -29,6 +29,8 @@ namespace Playnite.Common
 
     public class Timer
     {
+        private static Random randomGen = new Random();
+
         public static IDisposable TimeExecution(string name)
         {
             return new ExecutionTimer(name);
@@ -47,6 +49,13 @@ namespace Playnite.Common
         public static int SecondsToMilliseconds(int seconds)
         {
             return seconds * 1000;
+        }
+        
+        public static DateTime GetRandomDateTime()
+        {
+            var startDate = new DateTime(1970, 1, 1);
+            int range = (DateTime.Today - startDate).Days;
+            return startDate.AddDays(randomGen.Next(range));
         }
     }
 }

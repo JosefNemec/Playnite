@@ -5,7 +5,6 @@ using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.Extensions;
 using Playnite.ViewModels;
-using Playnite.ViewModels.Desktop.DesignData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -558,6 +558,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\DescriptionView.html" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\DesignBackground.jpg" />
+    <Resource Include="Resources\Images\DesignCover.jpg" />
+    <Resource Include="Resources\Images\DesignIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

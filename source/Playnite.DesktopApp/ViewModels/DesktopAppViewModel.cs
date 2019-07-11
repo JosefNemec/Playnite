@@ -35,12 +35,12 @@ namespace Playnite.DesktopApp.ViewModels
         private readonly SynchronizationContext context;
         private PlayniteApplication application;
 
-        public PlayniteAPI PlayniteApi { get; }
-        public ExtensionFactory Extensions { get; }
+        public PlayniteAPI PlayniteApi { get; set;  }
+        public ExtensionFactory Extensions { get; set; }
         public IWindowFactory Window { get; }
         public IDialogsFactory Dialogs { get; }
         public IResourceProvider Resources { get; }
-        public GameDatabase Database { get; }
+        public GameDatabase Database { get; set; }
         public DesktopGamesEditor GamesEditor { get; }
 
         private Control activeView;
@@ -164,7 +164,7 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 progressStatus = value;
-                context.Post((a) => OnPropertyChanged(), null);
+                OnPropertyChanged();
             }
         }
 
@@ -175,7 +175,7 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 progressValue = value;
-                context.Post((a) => OnPropertyChanged(), null);
+                OnPropertyChanged();
             }
         }
 
@@ -186,7 +186,7 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 progressTotal = value;
-                context.Post((a) => OnPropertyChanged(), null);
+                OnPropertyChanged();
             }
         }
 
@@ -197,7 +197,7 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 progressVisible = value;
-                context.Post((a) => OnPropertyChanged(), null);
+                OnPropertyChanged();
             }
         }
 
@@ -243,7 +243,7 @@ namespace Playnite.DesktopApp.ViewModels
         public PlayniteSettings AppSettings
         {
             get => appSettings;
-            private set
+            set
             {
                 appSettings = value;
                 OnPropertyChanged();
@@ -254,7 +254,7 @@ namespace Playnite.DesktopApp.ViewModels
         public DatabaseStats GamesStats
         {
             get => gamesStats;
-            private set
+            set
             {
                 gamesStats = value;
                 OnPropertyChanged();
@@ -265,7 +265,7 @@ namespace Playnite.DesktopApp.ViewModels
         public DatabaseFilter DatabaseFilters
         {
             get => databaseFilters;
-            private set
+            set
             {
                 databaseFilters = value;
                 OnPropertyChanged();
@@ -276,7 +276,7 @@ namespace Playnite.DesktopApp.ViewModels
         public DatabaseExplorer DatabaseExplorer
         {
             get => databaseExplorer;
-            private set
+            set
             {
                 databaseExplorer = value;
                 OnPropertyChanged();
@@ -419,7 +419,7 @@ namespace Playnite.DesktopApp.ViewModels
 #pragma warning disable CS4014
                 UpdateDatabase(AppSettings.DownloadMetadataOnImport);
 #pragma warning restore CS4014
-            }, (a) => GameAdditionAllowed || !Database.IsOpen,
+            }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.F5));
 
             OpenSteamFriendsCommand = new RelayCommand<object>((a) =>
@@ -476,13 +476,13 @@ namespace Playnite.DesktopApp.ViewModels
                     new EmulatorsWindowFactory(),
                     Dialogs,
                     Resources));
-            }, (a) => Database.IsOpen,
+            }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.T, ModifierKeys.Control));
 
             AddCustomGameCommand = new RelayCommand<object>((a) =>
             {
                 AddCustomGame(new GameEditWindowFactory());
-            }, (a) => Database.IsOpen,
+            }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.Insert));
 
             AddInstalledGamesCommand = new RelayCommand<object>((a) =>
@@ -491,7 +491,7 @@ namespace Playnite.DesktopApp.ViewModels
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
                     Dialogs), null);
-            }, (a) => Database.IsOpen);
+            }, (a) => Database?.IsOpen == true);
 
             AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
             {
@@ -501,7 +501,7 @@ namespace Playnite.DesktopApp.ViewModels
                     new EmulatorImportWindowFactory(),
                     Dialogs,
                     Resources));
-            }, (a) => Database.IsOpen,
+            }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.E, ModifierKeys.Control));
 
             AddWindowsStoreGamesCommand = new RelayCommand<object>((a) =>
@@ -510,7 +510,7 @@ namespace Playnite.DesktopApp.ViewModels
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
                     Dialogs));
-            }, (a) => Database.IsOpen);
+            }, (a) => Database?.IsOpen == true);
 
             OpenFullScreenCommand = new RelayCommand<object>((a) =>
             {
@@ -528,12 +528,12 @@ namespace Playnite.DesktopApp.ViewModels
             CancelProgressCommand = new RelayCommand<object>((a) =>
             {
                 CancelProgress();
-            }, (a) => !GlobalTaskHandler.CancelToken.IsCancellationRequested);
+            }, (a) => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
 
             ClearMessagesCommand = new RelayCommand<object>((a) =>
             {
                 ClearMessages();
-            }, (a) => PlayniteApi.Notifications.Count > 0);
+            }, (a) => PlayniteApi?.Notifications?.Count > 0);
 
             DownloadMetadataCommand = new RelayCommand<object>((a) =>
             {

@@ -48,7 +48,7 @@ namespace Playnite
                 return null;
             }
 
-            if (source.StartsWith("resources:"))
+            if (source.StartsWith("resources:") || source.StartsWith("pack://"))
             {
                 if (cached && Cache.TryGet(source, out var image))
                 {
@@ -58,7 +58,12 @@ namespace Playnite
                 {
                     try
                     {
-                        var imagePath = source.Replace("resources:", "pack://application:,,,");
+                        var imagePath = source;
+                        if (source.StartsWith("resources:"))
+                        {
+                            imagePath = source.Replace("resources:", "pack://application:,,,");
+                        }
+
                         var imageData = BitmapExtensions.BitmapFromFile(imagePath);
                         if (imageData != null)
                         {
@@ -66,6 +71,7 @@ namespace Playnite
                             {
                                 Cache.TryAdd(source, imageData, imageData.GetSizeInMemory());
                             }
+
                             return imageData;
                         }
                     }
