@@ -239,7 +239,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCMenuIssues">Enviar Comentarios</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo de pantalla completa</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Enlaces</sys:String>
-    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Ayuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoyar en Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentación de SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar el sistema</sys:String>
@@ -710,7 +710,9 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCPLaytime500to1000">De 500 a 1000 horas</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Estás a punto de salir de Playnite y navegar a la siguiente página web usando tu navegador web predeterminado. ¿Quieres continuar?
+    
+{0}</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Se va a abrir el cliente de itch.io. Por favor, inicia sesión y cierra este mensaje.</sys:String>
