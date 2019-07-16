@@ -10,6 +10,7 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using SteamKit2;
+using Playnite.Tests;
 
 namespace SteamLibrary.Tests
 {
@@ -18,8 +19,7 @@ namespace SteamLibrary.Tests
     {
         public static SteamLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            return new SteamLibrary(api.Object, null);
+            return new SteamLibrary(PlayniteTests.GetTestingApi().Object, null);
         }
 
         [Test]

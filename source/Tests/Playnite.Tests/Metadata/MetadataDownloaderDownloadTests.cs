@@ -36,7 +36,7 @@ namespace Playnite.Tests.Metadata
 
         private IEnumerable<LibraryPlugin> GetLibraryPlugins(LibraryMetadataProvider provider, Guid libraryId)
         {
-            var library = new Mock<LibraryPlugin>();
+            var library = new Mock<LibraryPlugin>(MockBehavior.Loose, null);
             library.Setup(a => a.Id).Returns(storePluginId);
             library.Setup(a => a.GetMetadataDownloader()).Returns(provider);
             return new List<LibraryPlugin>() { library.Object };
@@ -49,6 +49,7 @@ namespace Playnite.Tests.Metadata
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
+                Game.DatabaseReference = db;
                 int callCount = 0;
                 var storeCalled = false;
 
@@ -99,6 +100,7 @@ namespace Playnite.Tests.Metadata
 
                 var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
+                settings.Name.Import = false;
                 settings.ConfigureFields(MetadataSource.IGDB, true);
                 await downloader.DownloadMetadataAsync(
                     db.Games.ToList(), settings, null, null);
@@ -108,12 +110,12 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual(3, callCount);
                 var game1 = db.Games[games[0].Id];
                 Assert.AreEqual("IGDB Description Game1", game1.Description);
-                Assert.AreEqual("IGDB Developer Game1", game1.Developers[0]);
-                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0]);
+                Assert.AreEqual("IGDB Developer Game1", game1.Developers[0].Name);
+                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0].Name);
                 Assert.AreEqual("IGDB link Game1", game1.Links[0].Name);
                 Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0]);
-                Assert.AreEqual("IGDB Tag Game1", game1.Tags[0]);
+                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
+                Assert.AreEqual("IGDB Tag Game1", game1.Tags[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);
@@ -133,6 +135,7 @@ namespace Playnite.Tests.Metadata
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
+                Game.DatabaseReference = db;
                 int callCount = 0;
                 var igdbCalled = false;
 
@@ -185,12 +188,12 @@ namespace Playnite.Tests.Metadata
                 Assert.IsFalse(igdbCalled);
                 var game2 = db.Games[games[1].Id];
                 Assert.AreEqual("Store Description storeId", game2.Description);
-                Assert.AreEqual("Store Developer storeId", game2.Developers[0]);
-                Assert.AreEqual("Store Genre storeId", game2.Genres[0]);
+                Assert.AreEqual("Store Developer storeId", game2.Developers[0].Name);
+                Assert.AreEqual("Store Genre storeId", game2.Genres[0].Name);
                 Assert.AreEqual("Store link storeId", game2.Links[0].Name);
                 Assert.AreEqual("Store link url storeId", game2.Links[0].Url);
-                Assert.AreEqual("Store publisher storeId", game2.Publishers[0]);
-                Assert.AreEqual("Store Tag storeId", game2.Tags[0]);
+                Assert.AreEqual("Store publisher storeId", game2.Publishers[0].Name);
+                Assert.AreEqual("Store Tag storeId", game2.Tags[0].Name);
                 Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game2.BackgroundImage);
                 Assert.IsNotEmpty(game2.Icon);
@@ -210,6 +213,7 @@ namespace Playnite.Tests.Metadata
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
+                Game.DatabaseReference = db;
                 int callCount = 0;
                 var games = new List<Game>()
                 {
@@ -268,10 +272,10 @@ namespace Playnite.Tests.Metadata
                 var game1 = db.Games[games[0].Id];
                 Assert.AreEqual("IGDB Description Game1", game1.Description);
                 Assert.IsNull(game1.Developers);
-                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0]);
+                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0].Name);
                 Assert.AreEqual("IGDB link Game1", game1.Links[0].Name);
                 Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0]);
+                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
                 Assert.IsNull(game1.Tags);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
@@ -280,11 +284,11 @@ namespace Playnite.Tests.Metadata
 
                 var game2 = db.Games[games[1].Id];
                 Assert.AreEqual("IGDB Description Game2", game2.Description);
-                Assert.AreEqual("Store Developer Game2", game2.Developers[0]);
-                Assert.AreEqual("IGDB Genre Game2", game2.Genres[0]);
+                Assert.AreEqual("Store Developer Game2", game2.Developers[0].Name);
+                Assert.AreEqual("IGDB Genre Game2", game2.Genres[0].Name);
                 Assert.AreEqual("IGDB link Game2", game2.Links[0].Name);
                 Assert.AreEqual("IGDB link url Game2", game2.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game2", game2.Publishers[0]);
+                Assert.AreEqual("IGDB publisher Game2", game2.Publishers[0].Name);
                 Assert.IsNull(game2.Tags);
                 Assert.AreEqual(2012, game2.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game2.BackgroundImage);
@@ -301,10 +305,10 @@ namespace Playnite.Tests.Metadata
                 game1 = db.Games[games[0].Id];
                 Assert.AreEqual("IGDB Description Game1", game1.Description);
                 Assert.IsNull(game1.Developers);
-                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0]);
+                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0].Name);
                 Assert.AreEqual("IGDB link Game1", game1.Links[0].Name);
                 Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0]);
+                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
                 Assert.IsNull(game1.Tags);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
@@ -313,11 +317,11 @@ namespace Playnite.Tests.Metadata
 
                 game2 = db.Games[games[1].Id];
                 Assert.AreEqual("Store Description Game2", game2.Description);
-                Assert.AreEqual("Store Developer Game2", game2.Developers[0]);
-                Assert.AreEqual("IGDB Genre Game2", game2.Genres[0]);
+                Assert.AreEqual("Store Developer Game2", game2.Developers[0].Name);
+                Assert.AreEqual("IGDB Genre Game2", game2.Genres[0].Name);
                 Assert.AreEqual("Store link Game2", game2.Links[0].Name);
                 Assert.AreEqual("Store link url Game2", game2.Links[0].Url);
-                Assert.AreEqual("Store publisher Game2", game2.Publishers[0]);
+                Assert.AreEqual("Store publisher Game2", game2.Publishers[0].Name);
                 Assert.IsNull(game2.Tags);
                 Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game2.BackgroundImage);
@@ -333,9 +337,10 @@ namespace Playnite.Tests.Metadata
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
+                Game.DatabaseReference = db;
                 int callCount = 0;
 
-                var toImport = new GameInfo()
+                var importedGame = db.ImportGame(new GameInfo()
                 {
                     Name = "Game",
                     GameId = "storeId",
@@ -345,14 +350,13 @@ namespace Playnite.Tests.Metadata
                     Publishers = new List<string>() { "Publisher" },
                     Tags = new List<string>() { "Tag" },
                     Description = "Description",
-                    Links = new List<Link>() { new Link() },
-                    Icon = "icon",
-                    CoverImage = "image",
-                    BackgroundImage = "backImage"
-                };
+                    Links = new List<Link>() { new Link() }                    
+                });
 
-                var importedGame = db.ImportGame(toImport);
                 importedGame.PluginId = storePluginId;
+                importedGame.Icon = "icon";
+                importedGame.CoverImage = "image";
+                importedGame.BackgroundImage = "backImage";
                 db.Games.Update(importedGame);
 
                 var igdbProvider = new Mock<LibraryMetadataProvider>();
@@ -388,11 +392,11 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("icon", game.Icon);
                 Assert.AreEqual("image", game.CoverImage);
                 Assert.AreEqual("backImage", game.BackgroundImage);
-                Assert.AreEqual("Developer", game.Developers[0]);
-                Assert.AreEqual("Publisher", game.Publishers[0]);
-                Assert.AreEqual("Genre", game.Genres[0]);
+                Assert.AreEqual("Developer", game.Developers[0].Name);
+                Assert.AreEqual("Publisher", game.Publishers[0].Name);
+                Assert.AreEqual("Genre", game.Genres[0].Name);
                 CollectionAssert.IsNotEmpty(game.Links);
-                Assert.AreEqual("Tag", game.Tags[0]);
+                Assert.AreEqual("Tag", game.Tags[0].Name);
                 Assert.AreEqual(2012, game.ReleaseDate.Value.Year);
             }
         }
@@ -404,8 +408,9 @@ namespace Playnite.Tests.Metadata
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
+                Game.DatabaseReference = db;
                 int callCount = 0;
-                db.ImportGame(new GameInfo()
+                var addedGame = db.ImportGame(new GameInfo()
                 {
                     Name = "Game1",
                     Description = "Description",
@@ -415,14 +420,14 @@ namespace Playnite.Tests.Metadata
                     Publishers = new List<string>() { "Publishers" },
                     ReleaseDate = new DateTime(2012, 6, 6),
                     Tags = new List<string>() { "Tags" },
-                    Icon = "Icon",
-                    CoverImage = "Image",
-                    BackgroundImage = "BackgroundImage",
                     UserScore = 1,
                     CommunityScore = 2,
                     CriticScore = 3
                 });
 
+                addedGame.Icon = "Icon";
+                addedGame.CoverImage = "Image";
+                addedGame.BackgroundImage = "BackgroundImage";
 
                 var igdbProvider = new Mock<LibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
@@ -459,12 +464,12 @@ namespace Playnite.Tests.Metadata
 
                 var game1 = dbGames[0];
                 Assert.AreEqual("Description", game1.Description);
-                Assert.AreEqual("Developers", game1.Developers[0]);
-                Assert.AreEqual("Genres", game1.Genres[0]);
+                Assert.AreEqual("Developers", game1.Developers[0].Name);
+                Assert.AreEqual("Genres", game1.Genres[0].Name);
                 Assert.AreEqual("Link", game1.Links[0].Name);
                 Assert.AreEqual("URL", game1.Links[0].Url);
-                Assert.AreEqual("Publishers", game1.Publishers[0]);
-                Assert.AreEqual("Tags", game1.Tags[0]);
+                Assert.AreEqual("Publishers", game1.Publishers[0].Name);
+                Assert.AreEqual("Tags", game1.Tags[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);
@@ -480,12 +485,12 @@ namespace Playnite.Tests.Metadata
 
                 game1 = dbGames[0];
                 Assert.AreEqual("IGDB Description Game1", game1.Description);
-                Assert.AreEqual("IGDB Developer Game1", game1.Developers[0]);
-                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0]);
+                Assert.AreEqual("IGDB Developer Game1", game1.Developers[0].Name);
+                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0].Name);
                 Assert.AreEqual("IGDB link Game1", game1.Links[0].Name);
                 Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0]);
-                Assert.AreEqual("IGDB Tag Game1", game1.Tags[0]);
+                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
+                Assert.AreEqual("IGDB Tag Game1", game1.Tags[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);
@@ -505,12 +510,12 @@ namespace Playnite.Tests.Metadata
 
                 game1 = dbGames[0];
                 Assert.AreEqual("IGDB Description Game1", game1.Description);
-                Assert.AreEqual("IGDB Developer Game1", game1.Developers[0]);
-                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0]);
+                Assert.AreEqual("IGDB Developer Game1", game1.Developers[0].Name);
+                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0].Name);
                 Assert.AreEqual("IGDB link Game1", game1.Links[0].Name);
                 Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0]);
-                Assert.AreEqual("IGDB Tag Game1", game1.Tags[0]);
+                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
+                Assert.AreEqual("IGDB Tag Game1", game1.Tags[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);

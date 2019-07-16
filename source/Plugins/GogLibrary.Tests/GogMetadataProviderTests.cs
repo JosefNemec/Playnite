@@ -40,25 +40,25 @@ namespace GogLibrary.Tests
             var existingStore = gogLib.DownloadGameMetadata("1207658645");
             Assert.IsNotNull(existingStore.GameDetails);
             Assert.IsNotNull(existingStore.StoreDetails);
-            Assert.IsNotNull(existingStore.Icon.Content);
-            Assert.IsNotNull(existingStore.CoverImage.Content);
-            Assert.IsNotNull(existingStore.BackgroundImage);
+            Assert.IsNotNull(existingStore.Icon.OriginalUrl);
+            Assert.IsNotNull(existingStore.CoverImage.OriginalUrl);
+            Assert.IsNotNull(existingStore.BackgroundImage.OriginalUrl);
 
             // Game with missing store link in api data
             var customStore = gogLib.DownloadGameMetadata("1207662223");
             Assert.IsNotNull(customStore.GameDetails);
-            Assert.IsNotNull(customStore.StoreDetails);
-            Assert.IsNotNull(customStore.Icon.Content);
-            Assert.IsNotNull(customStore.CoverImage.Content);
-            Assert.IsNotNull(customStore.BackgroundImage);
+            Assert.IsNull(customStore.StoreDetails);
+            Assert.IsNotNull(existingStore.Icon.OriginalUrl);
+            Assert.IsNotNull(existingStore.CoverImage.OriginalUrl);
+            Assert.IsNotNull(existingStore.BackgroundImage.OriginalUrl);
 
             // Existing game not present on store
             var nonStore = gogLib.DownloadGameMetadata("2");
             Assert.IsNotNull(nonStore.GameDetails);
             Assert.IsNull(nonStore.StoreDetails);
-            Assert.IsNotNull(nonStore.Icon.Content);
-            Assert.IsNotNull(nonStore.CoverImage.Content);
-            Assert.IsNotNull(nonStore.BackgroundImage);
+            Assert.IsNotNull(existingStore.Icon.OriginalUrl);
+            Assert.IsNotNull(existingStore.CoverImage.OriginalUrl);
+            Assert.IsNotNull(existingStore.BackgroundImage.OriginalUrl);
         }
     }
 }

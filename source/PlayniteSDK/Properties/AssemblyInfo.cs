@@ -36,3 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("5.0.0.0")]
 [assembly: InternalsVisibleTo("Playnite.DesktopApp")]
 [assembly: InternalsVisibleTo("Playnite.FullscreenApp")]
+[assembly: InternalsVisibleTo("Playnite.Tests")]

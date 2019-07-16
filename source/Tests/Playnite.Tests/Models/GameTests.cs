@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlayniteTests.Models
+namespace Playnite.Tests.Models
 {
     [TestFixture]
     public class GameTests

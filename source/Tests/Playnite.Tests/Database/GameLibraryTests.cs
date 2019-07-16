@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using Playnite.Common;
 using Playnite.Database;
-using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -19,13 +18,12 @@ namespace Playnite.Tests.Database
         [SetUp]
         public void SetUp()
         {
-            var playniteApiMock = new Mock<IPlayniteAPI>();
-            libraryPluginMock = new Mock<LibraryPlugin>(playniteApiMock.Object);
+            libraryPluginMock = new Mock<LibraryPlugin>(MockBehavior.Loose, null);
             libraryPluginMock.Setup(a => a.Id).Returns(Guid.NewGuid());
         }
 
         [Test]
-        public void PlaytimeImport_Test()
+        public void PlaytimeImportTest()
         {
             var gameId = "testId";
             var timeToImport = 500;
@@ -61,7 +59,7 @@ namespace Playnite.Tests.Database
         }
 
         [Test]
-        public void SetUninstalledTagOnGames_InstalledGamesSync_Test()
+        public void SetUninstalledTagOnGames_InstalledGamesSyncTest()
         {
             const string installedGameId = "installedGame";
             libraryPluginMock.Setup(a => a.GetGames()).Returns(() => new List<GameInfo>
@@ -82,7 +80,7 @@ namespace Playnite.Tests.Database
         }
 
         [Test]
-        public void SetUninstalledTagOnGames_UninstalledGamesSync_Test()
+        public void SetUninstalledTagOnGames_UninstalledGamesSyncTest()
         {
             const string installedGameId = "installedGame";
             const string uninstalledGameId = "uninstalledGame";
@@ -105,7 +103,7 @@ namespace Playnite.Tests.Database
         }
 
         [Test]
-        public void ReinstalledGamesSetAsInstalled_Test()
+        public void ReinstalledGamesSetAsInstalledTest()
         {
             const string installedGame1Id = "installedGame1";
             const string installedGame2Id = "installedGame2";

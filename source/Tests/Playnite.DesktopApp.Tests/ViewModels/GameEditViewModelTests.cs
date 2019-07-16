@@ -41,12 +41,15 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 var newIcon = PlayniteTests.GenerateFakeFile();
                 var newImage = PlayniteTests.GenerateFakeFile();
                 var newBackground = PlayniteTests.GenerateFakeFile();
-                
+                File.WriteAllBytes(Path.Combine(temp.TempPath, newIcon.FileName), newIcon.Content);
+                File.WriteAllBytes(Path.Combine(temp.TempPath, newImage.FileName), newImage.Content);
+                File.WriteAllBytes(Path.Combine(temp.TempPath, newBackground.FileName), newBackground.Content);
+
                 // Images are replaced
                 var model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null);
-                model.EditingGame.Icon = newIcon.OriginalUrl;
-                model.EditingGame.CoverImage = newImage.OriginalUrl;
-                model.EditingGame.BackgroundImage = newBackground.OriginalUrl;
+                model.EditingGame.Icon = Path.Combine(temp.TempPath, newIcon.FileName);
+                model.EditingGame.CoverImage = Path.Combine(temp.TempPath, newImage.FileName);
+                model.EditingGame.BackgroundImage = Path.Combine(temp.TempPath, newBackground.FileName);
                 model.ConfirmDialog();
 
                 Assert.AreNotEqual(game.Icon, origIcon);
@@ -100,13 +103,16 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 var newIcon = PlayniteTests.GenerateFakeFile();
                 var newImage = PlayniteTests.GenerateFakeFile();
                 var newBackground = PlayniteTests.GenerateFakeFile();
+                File.WriteAllBytes(Path.Combine(temp.TempPath, newIcon.FileName), newIcon.Content);
+                File.WriteAllBytes(Path.Combine(temp.TempPath, newImage.FileName), newImage.Content);
+                File.WriteAllBytes(Path.Combine(temp.TempPath, newBackground.FileName), newBackground.Content);
 
                 // Replaces all images for all games
                 var games = db.Games.ToList();
                 var model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null);
-                model.EditingGame.Icon = newIcon.OriginalUrl;
-                model.EditingGame.CoverImage = newImage.OriginalUrl;
-                model.EditingGame.BackgroundImage = newBackground.OriginalUrl;
+                model.EditingGame.Icon = Path.Combine(temp.TempPath, newIcon.FileName);
+                model.EditingGame.CoverImage = Path.Combine(temp.TempPath, newImage.FileName);
+                model.EditingGame.BackgroundImage = Path.Combine(temp.TempPath, newBackground.FileName);
                 model.ConfirmDialog();
 
                 Assert.AreEqual(3, Directory.GetFiles(db.GetFileStoragePath(games[0].Id)).Count());

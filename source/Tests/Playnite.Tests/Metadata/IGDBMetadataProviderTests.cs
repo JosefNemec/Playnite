@@ -27,14 +27,12 @@ namespace Playnite.Tests.Metadata
             Assert.IsNull(data.Icon);
             Assert.IsNotNull(data.CoverImage);
             Assert.IsNotNull(data.GameInfo.ReleaseDate);
-            Assert.IsNotNull(data.BackgroundImage);
             Assert.IsFalse(string.IsNullOrEmpty(data.GameInfo.Description));
             CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);
             CollectionAssert.IsNotEmpty(data.GameInfo.Developers);
             CollectionAssert.IsNotEmpty(data.GameInfo.Tags);
             CollectionAssert.IsNotEmpty(data.GameInfo.Genres);
             CollectionAssert.IsNotEmpty(data.GameInfo.Links);
-            CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);
         }
 
         [Test]
