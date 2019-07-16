@@ -43,7 +43,7 @@ namespace Playnite.Tests.Database
             Assert.AreEqual(Path.Combine(appData, @"playnite\games"), GameDatabase.GetFullDbPath(@"%AppData%\playnite\games"));            
             Assert.AreEqual(Path.Combine(progPath, "games"), GameDatabase.GetFullDbPath(@"{PlayniteDir}\games"));
             Assert.AreEqual(@"c:\test\games", GameDatabase.GetFullDbPath(@"c:\test\games"));
-            Assert.AreEqual(@"games", GameDatabase.GetFullDbPath("games"));
+            Assert.AreEqual(Path.Combine(Environment.CurrentDirectory, @"games"), GameDatabase.GetFullDbPath("games"));
         }
 
         [Test]

@@ -39,6 +39,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
@@ -75,6 +93,10 @@
     <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19BC9097-5705-4352-90E2-99F0C63230D0}</Project>
       <Name>Playnite.SDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tests\Playnite.Tests\Playnite.Tests.csproj">
+      <Project>{f15b7d48-7f9c-406a-825c-b47bb9a5bf4b}</Project>
+      <Name>Playnite.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\ItchioLibrary\ItchioLibrary.csproj">
       <Project>{27a6e49e-f769-4709-8b43-ff60b8a882be}</Project>

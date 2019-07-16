@@ -60,19 +60,48 @@ namespace Playnite.Tests
         [Test]
         public void ContainsStringTest()
         {
-            Assert.Fail();
+            var testList = new List<string> { "test", "string", "someTest" };
+            Assert.IsTrue(testList.ContainsString("test"));
+            Assert.IsTrue(testList.ContainsString("Test"));
+            Assert.IsFalse(testList.ContainsString("Test", StringComparison.Ordinal));
+            Assert.IsFalse(testList.ContainsString("some"));
         }
 
         [Test]
         public void ContainsStringPartialTest()
         {
-            Assert.Fail();
+            var testList = new List<string> { "test", "string", "someTest" };
+            Assert.IsTrue(testList.ContainsStringPartial("test"));
+            Assert.IsTrue(testList.ContainsStringPartial("str"));
+            Assert.IsFalse(testList.ContainsStringPartial("Some", StringComparison.Ordinal));
+        }
+
+        [Test]
+        public void ContainsPartOfStringTest()
+        {
+            var testList = new List<string> { "test", "str", "someTest" };
+            Assert.IsTrue(testList.ContainsPartOfString("test"));
+            Assert.IsTrue(testList.ContainsPartOfString("string"));
+            Assert.IsTrue(testList.ContainsPartOfString("SomeTest"));
+            Assert.IsFalse(testList.ContainsPartOfString("st"));
+            Assert.IsFalse(testList.ContainsPartOfString("SomeTest", StringComparison.Ordinal));
         }
 
         [Test]
         public void IsListEqualTest()
         {
-            Assert.Fail();
+            Assert.IsTrue(
+                new List<int> { 1, 2, 3 }.IsListEqual(
+                new List<int> {1, 2, 3 }));
+            Assert.IsTrue(
+                new List<int> { 1, 2, 3 }.IsListEqual(
+                new List<int> { 3, 2, 1 }));
+            Assert.IsFalse(
+                new List<int> { 1, 2, 3 }.IsListEqual(
+                new List<int> { 1, }));
+            Assert.IsFalse(
+                new List<int> { 1 }.IsListEqual(
+                new List<int> { 1, 2, 3 }));
         }
 
         [Test]

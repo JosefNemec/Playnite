@@ -123,7 +123,7 @@ namespace Playnite
 
                 if (filter.Text.Contains(Common.Constants.ListSeparator))
                 {
-                    return filter.Texts.ContainsStringPartial(objectData.Name);
+                    return filter.Texts.ContainsPartOfString(objectData.Name);
                 }
                 else
                 {

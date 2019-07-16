@@ -37,6 +37,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="BethesdaLibraryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -46,6 +64,10 @@
     <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tests\Playnite.Tests\Playnite.Tests.csproj">
+      <Project>{f15b7d48-7f9c-406a-825c-b47bb9a5bf4b}</Project>
+      <Name>Playnite.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\BethesdaLibrary\BethesdaLibrary.csproj">
       <Project>{5c2250d7-7623-414a-b68a-4754f311df7d}</Project>

@@ -9,6 +9,7 @@ using Playnite.SDK.Models;
 using Playnite;
 using Moq;
 using Playnite.SDK;
+using Playnite.Tests;
 
 namespace GogLibrary.Tests
 {
@@ -17,8 +18,7 @@ namespace GogLibrary.Tests
     {
         public static GogLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            return new GogLibrary(api.Object);
+            return new GogLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]
