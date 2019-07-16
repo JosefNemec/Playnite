@@ -51,7 +51,7 @@ Pokud nám chcete pomoci tento problém napravit, odešlete prosím diagnostick�
 Automaticky importované hry se mohou po dalším importování znovu objevit v Playnite (v závislosti na nastavení).</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Jste si jisti, že chcete odstranit {0} her?
         
-Automaticky importované hry se po dalším importování znovu objeví v Playnite (v závislosti na nastavení).</sys:String>
+Automaticky importované hry se mohou po dalším importování znovu objevit v Playnite  (v závislosti na nastavení).</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam přátelé</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Sekce obsahuje změny, které je třeba uložit</sys:String>
