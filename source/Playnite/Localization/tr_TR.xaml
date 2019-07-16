@@ -235,12 +235,12 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCMenuAddGameManual">Manuel…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Otomatik Olarak Tara</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Taklit Oyunu…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Mağazası veya Xbox Uygulaması Oyunu…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite Hakkında</sys:String>
     <sys:String x:Key="LOCMenuIssues">Geri Bildirim</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Tam Ekran Modunu Başlat</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Bağlantılar</sys:String>
-    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Yardım</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Patreon'da Destekle</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Dökümantasyonu</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Sistemi Yeniden Başlat</sys:String>
@@ -300,7 +300,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI Ölçeklendirmeyi Devre Dışı Bırak</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam arkadaşlar düğmesini göster</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Arka plan resmini göster</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Tüm uygulama penceresini uzat</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Tema Profili</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tam Ekran Teması</sys:String>
@@ -711,7 +711,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCPLaytime500to1000">500-1000 saat</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000 saatten fazla</sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Varsayılan web tarayıcınızı kullanarak Playnite'den ayrılmak ve aşağıdaki web sayfasına geçmek üzeresiniz. Devam etmek istiyor musun</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io istemcisi şimdi açılacak. Lütfen oturum açın ve ardından bu mesajı kapatın.</sys:String>
