@@ -717,7 +717,7 @@ namespace Playnite.Database
                 var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                 if (existingGame == null)
                 {
-                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+                    logger.Info($"Adding new game {newGame.GameId} from {library.Name} plugin");
                     addedGames.Add(ImportGame(newGame, library.Id));
                 }
                 else
