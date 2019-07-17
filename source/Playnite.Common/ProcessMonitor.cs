@@ -121,6 +121,22 @@ namespace Playnite.Common
             }
         }
 
+        public static bool IsWatchableByProcessNames(string directory)
+        {
+            var realPath = directory;
+            try
+            {
+                realPath = Paths.GetFinalPathName(directory);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to get target path for a directory {directory}");
+            }
+
+            var executables = Directory.GetFiles(realPath, "*.exe", SearchOption.AllDirectories);
+            return executables.Count() > 0;
+        }
+
         private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning)
         {
             if (!Directory.Exists(directory))
