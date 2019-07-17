@@ -123,7 +123,7 @@ namespace Playnite
                 if (text?.Contains(Constants.ListSeparator) == true)
                 {
                     Texts = text.Split(Constants.ListSeparators, StringSplitOptions.RemoveEmptyEntries).
-                        Select(a => a.Trim()).ToList();
+                        Select(a => a.Trim()).Where(a => !a.IsNullOrEmpty()).ToList();
                 }
                 else
                 {
