@@ -68,11 +68,6 @@ namespace EpicLibrary
 
         public static List<LauncherInstalled.InstalledApp> GetInstalledAppList()
         {
-            if (!IsInstalled)
-            {
-                throw new Exception("Epic Launcher is not installed.");
-            }
-
             var installListPath = Path.Combine(AllUsersPath, "UnrealEngineLauncher", "LauncherInstalled.dat");
             if (!File.Exists(installListPath))
             {
@@ -81,6 +76,23 @@ namespace EpicLibrary
 
             var list = Serialization.FromJson<LauncherInstalled>(FileSystem.ReadFileAsStringSafe(installListPath));
             return list.InstallationList;
+        }
+
+        public static List<InstalledManifiest> GetInstalledManifests()
+        {
+            var manifests = new List<InstalledManifiest>();
+            var installListPath = Path.Combine(AllUsersPath, "EpicGamesLauncher", "Data", "Manifests");
+            if (!Directory.Exists(installListPath))
+            {
+                return manifests;
+            }
+
+            foreach (var manFile in Directory.GetFiles(installListPath, "*.item"))
+            {
+                manifests.Add(Serialization.FromJson<InstalledManifiest>(FileSystem.ReadFileAsStringSafe(manFile)));
+            }
+
+            return manifests;
         }
     }
 }
