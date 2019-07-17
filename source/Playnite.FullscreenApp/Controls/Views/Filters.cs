@@ -91,6 +91,11 @@ namespace Playnite.FullscreenApp.Controls.Views
                 if (ButtonAdditional != null)
                 {
                     ButtonAdditional.Command = mainModel.OpenAdditionalFiltersCommand;
+                    BindingTools.SetBinding(
+                        ButtonAdditional,
+                        ButtonBase.TagProperty,
+                        mainModel.AppSettings.Fullscreen.FilterSettings,
+                        nameof(FullscreenFilterSettings.IsSubAdditionalFilterActive));
                 }
 
                 SelectSortBy = Template.FindName("PART_SelectSortBy", this) as Selector;
