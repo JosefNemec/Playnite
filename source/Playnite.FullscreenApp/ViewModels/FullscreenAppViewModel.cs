@@ -915,7 +915,7 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 var currIndex = GamesView.CollectionView.IndexOf(GameDetailsEntry);
                 var nextIndex = currIndex + 1;
-                if (nextIndex <= GamesView.CollectionView.Count)
+                if (nextIndex < GamesView.CollectionView.Count)
                 {
                     GameDetailsFocused = false;
                     GameDetailsEntry = GamesView.CollectionView.GetItemAt(nextIndex) as GamesCollectionViewEntry;
