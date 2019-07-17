@@ -134,20 +134,29 @@
                                 <pctrls:ButtonEx x:Name="PART_ButtonOptions"
                                         Content="{DynamicResource LOCGameOptions}"
                                         Margin="5,2,2,2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
-                            </StackPanel>                            
+                            </StackPanel>
 
-                            <pctrls:ScrollViewerEx Margin="0,20,0,0"
-                                                   DockPanel.Dock="Top">
-                                <pc:HtmlTextView Background="Transparent"
-                                                HtmlText="{Binding Description}"
+                            <Border Margin="-3,20,-3,-3" DockPanel.Dock="Top">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="3" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource SelectionBrush}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <pctrls:ScrollViewerEx>
+                                    <pc:HtmlTextView HtmlText="{Binding Description}"
                                                 HtmlFontSize="16"
                                                 HtmlForeground="{DynamicResource TextColor}"
-                                                LinkForeground="{DynamicResource GlyphColor}"  
+                                                LinkForeground="{DynamicResource GlyphColor}"
                                                 FocusVisualStyle="{x:Null}" />
-                            </pctrls:ScrollViewerEx>
+                                </pctrls:ScrollViewerEx>
+                            </Border>
                         </DockPanel>
-                            
-                        
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
