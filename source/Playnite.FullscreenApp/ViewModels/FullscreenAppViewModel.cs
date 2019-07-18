@@ -867,7 +867,7 @@ namespace Playnite.FullscreenApp.ViewModels
                         GamesEditor.InstallGame(SelectedGame.Game);
                     }
                 }
-            });
+            }, (a) => Database.IsOpen);
 
             OpenSearchCommand = new RelayCommand<object>((a) =>
             {
@@ -887,7 +887,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 {
                     AppSettings.Fullscreen.ActiveView = (ActiveFullscreenView)next;
                 }
-            });
+            }, (a) => Database.IsOpen);
 
             PrevFilterViewCommand = new RelayCommand<object>((a) =>
             {
@@ -897,7 +897,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 {
                     AppSettings.Fullscreen.ActiveView = (ActiveFullscreenView)prev;
                 }
-            });
+            }, (a) => Database.IsOpen);
 
             SelectPrevGameCommand = new RelayCommand<object>((a) =>
             {
@@ -909,7 +909,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     GameDetailsEntry = GamesView.CollectionView.GetItemAt(prevIndex) as GamesCollectionViewEntry;
                     GameDetailsFocused = true;
                 }
-            });
+            }, (a) => Database.IsOpen);
 
             SelectNextGameCommand = new RelayCommand<object>((a) =>
             {
@@ -921,7 +921,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     GameDetailsEntry = GamesView.CollectionView.GetItemAt(nextIndex) as GamesCollectionViewEntry;
                     GameDetailsFocused = true;
                 }
-            });
+            }, (a) => Database.IsOpen);
         }
 
         private void SearchText_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1116,6 +1116,11 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void SelectGameIndex(int index)
         {
+            if (!Database.IsOpen)
+            {
+                return;
+            }
+
             if (GamesView.CollectionView.Count > index)
             {
                 var viewEntry = GamesView.CollectionView.GetItemAt(index) as GamesCollectionViewEntry;
