@@ -724,10 +724,9 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicie uma sessão com a sua conta ou use o nome de usuário da sua conta pública para sincronizar a sua biblioteca completa. Observe que o nome de usuário da conta só funciona para contas cujas bibliotecas de jogos foram definidas nas configurações de privacidade do GOG para serem visíveis publicamente.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selecione um usuário já autenticado ou insira o nome na URL da sua conta para sincronizar a sua biblioteca completa. Contas com a biblioteca privada precisam especificar a chave da API vinculada a essa conta Steam.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Nome da conta na URL</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Usuário autenticado</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">A configuração inicial não foi concluída. O Playnite irá reiniciar no modo janela para que o processo seja concluído.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jogados recentemente</sys:String>
