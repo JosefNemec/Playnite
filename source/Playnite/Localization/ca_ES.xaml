@@ -715,10 +715,9 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicia la sessió al teu compte o utilitza el nom del teu compte públic per sincronitzar la teva biblioteca completa. Tingues en compte que l’opció Nom del compte només funciona per a comptes que han establert a la configuració de privadesa de GOG que les seves biblioteques siguin públiques.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selecciona l’usuari autenticat o especifica el nom d’URL del vostre compte per sincronitzar la biblioteca completa. Els comptes amb visibilitat de biblioteca privada han d’especificar la clau d’API vinculada a aquest compte de Steam.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Nom de l’URL del compte</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Usuari autenticat</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
