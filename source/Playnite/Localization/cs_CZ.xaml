@@ -725,10 +725,9 @@ Můžete zkusit následující možnosti opravy:
 Pozor že možnost zadání jména účtu funguje pouze pro ty účty, které mají v nastavení GOG v záložce Soukromí nastavenou veřejnou viditelnost knihovny.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Vyberte ověřeného uživatele nebo specifikujte jméno vašeho účtu z URL pro synchronizaci celé knihovny. Účty se soukromou viditelností knihovny musejí specifikovat API klíč k danému Steam účtu.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Jméno URL účtu</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Ověřený uživatel</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Nastavení po prvním spuštění není dokončeno. Playnite se proto nyní přepne do režimu plochy, aby bylo nastavení dokončeno.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Nedávno hrané</sys:String>
