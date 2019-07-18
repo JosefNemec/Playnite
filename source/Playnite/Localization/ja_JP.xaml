@@ -716,10 +716,9 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
 [アカウント名]オプションは、ゲームライブラリがGOGのプライバシー設定で公開されて表示されるように設定されているアカウントに対してのみ機能することに注意してください。</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">すべてのライブラリを同期するには、認証済みユーザーを選択するか、アカウントのカスタムURL名を指定してください。ライブラリに非公開のゲームを持つアカウントは、そのSteamアカウントにリンクされているAPIキーを指定する必要があります。
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">アカウントURL名</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">認証済みユーザー</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
