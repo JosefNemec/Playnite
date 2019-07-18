@@ -712,9 +712,9 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
 De menționat că opțiunea pentru Numele Contului este funcțională doar pentru conturile ale căror librării de jocuri au fost setate ca fiind public vizibile în setările de confidențialitate GOG.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selectați un utilizator autentificat sau specificați numele adresei URL de vanitate al contului d-voastră pentru a vă sincroniza întreaga librărie. Conturile cu vizibilitatea librăriei setate pe privat trebuie să specifice un API Key conectat la contul de Steam.    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Nume Cont URL</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Utilizator Autentificat</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jucat Recent</sys:String>
