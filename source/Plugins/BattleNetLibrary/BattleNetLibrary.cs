@@ -95,7 +95,8 @@ namespace BattleNetLibrary
                             {
                                 Type = GameActionType.File,
                                 WorkingDir = ExpandableVariables.InstallationDirectory,
-                                Path = product.ClassicExecutable
+                                Path = product.ClassicExecutable,
+                                IsHandledByPlugin = true
                             },
                             InstallDirectory = prog.InstallLocation,
                             IsInstalled = true

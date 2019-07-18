@@ -151,6 +151,7 @@ namespace Playnite.Common
             }
 
             var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
+            var procNamesNoExt = executables.Select(a => Path.GetFileNameWithoutExtension(a)).ToList();
             watcherToken = new CancellationTokenSource();
             var startedCalled = false;
             var processStarted = false;
@@ -177,6 +178,12 @@ namespace Playnite.Common
                                 processStarted = true;
                                 break;
                             }
+                        }
+                        else if (procNamesNoExt.Contains(process.ProcessName))
+                        {
+                            processFound = true;
+                            processStarted = true;
+                            break;
                         }
                     }
                 }
