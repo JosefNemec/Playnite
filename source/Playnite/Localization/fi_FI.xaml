@@ -722,10 +722,9 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
 Huomioi, että tunnuksen nimen käyttäminen toimii vain tunnuksilla, jotka on asetettu julkiseksi GOG:in yksityisyysasetuksissa.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Valitse todennettu käyttäjä tai määrittele tilisi URL synkronoidaksesi koko kirjaston. Tilit, joiden kirjasto on asetettu yksityiseksi, tarvitsevat kyseiseen Steam-tiliin linkitetyn API-avaimen.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Tilin URL nimi</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Todennettu käyttäjä</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Ensimmäisen käynnistyksen asennus ei ole valmis. Toiminnon viimeistelemiseksi Playnite käynnistyy nyt uudelleen työpöytätilassa.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Viimeksi pelatut</sys:String>
