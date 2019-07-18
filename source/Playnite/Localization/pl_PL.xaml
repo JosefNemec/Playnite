@@ -714,10 +714,9 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Wybierz uwierzytelnionego użytkownika lub podaj adres URL konta Steam, aby zsynchronizować bibliotekę. Konta z statusem prywatny muszą określać klucz API powiązany z kontem Steam.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">URL konta</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Uwierzytelniony użytkownik</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
