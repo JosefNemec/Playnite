@@ -725,9 +725,9 @@ IGDB > 官方商店：
 注意，账户名称选项只能用于在 GOG 隐私设置中设置游戏库公开可见的帐户。</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">选择通过身份验证的用户或指定帐户的可信URL名称以同步您的完整库。库为私密的帐户必须指定链接到该Steam帐户的API密钥</sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">帐户URL名称</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">已认证用户</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">首次设置未完成。Playentin 现在将重新启动到桌面模式以完成相关步骤。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近启动</sys:String>
