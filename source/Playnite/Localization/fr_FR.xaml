@@ -721,10 +721,9 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous directement à votre compte ou indiquez votre nom d'utilisateur pour synchroniser la bibliothèque. Notez que le nom d'utilisateur ne peut être utilisé que si les paramètres de visibilité du compte sont réglés sur "public".</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Sélectionnez le nom d'utilisateur de votre compte ou indiquez l'URL personnalisée de votre profil pour synchroniser la bibliothèque. Les comptes dont la visibilité des jeux est réglée sur "personne" nécessitent également d'indiquer leur clé API.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">URL perso.</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Nom d'utilisateur</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Le compte est privé et requiert la clé API.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">La configuration initiale n'est pas achevée. Playnite va maintenant redémarrer en mode Bureau pour continuer la procédure.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Lancés récemment</sys:String>
