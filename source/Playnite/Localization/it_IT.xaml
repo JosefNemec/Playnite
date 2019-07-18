@@ -724,10 +724,9 @@ Puoi provare i seguenti :
 Nota che l'opzione Nome Account funziona solo per gli account le cui librerie di gioco sono state impostate nelle impostazioni di privacy di GOG per essere visibili pubblicamente.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selezione l'utente autentificato o specifica il nome URL dell'account per sincronizzare l'intera libreria.  Gli account con la visibilità della libreria impostata su privato devono specificare la chiave API specifica collegata a quell'account di Steam.
-  </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Nome URL dell'account</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Utente autentificato</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Account privato, è necessaria la chiave API.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">La prima configurazione non è completa. Playnite ora si riavvierà alla modalità Desktop per terminare la procedura.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Giocati di recente</sys:String>
