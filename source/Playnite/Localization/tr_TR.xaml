@@ -725,10 +725,9 @@ Sorunu çözmek için bunları deneyebilirsiniz:
 Not Hesap ismi seçeneği sadece GOG'un gizlilik seçeneğinin herkese görünür olan hesaplar için çalışır.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Tam kitaplığınızı senkronize etmek için kimliği doğrulanmış bir kullanıcı seçin veya hesabınızın ticari URL adını belirtin. Özel kütüphane görünürlüğüne sahip hesapların, Steam hesabına bağlı olan API anahtarını belirtmesi gerekir.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Hesap URL Adı</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Doğrulanmış Kullanıcı</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">İlk kez kurulumu tamamlanamadı. Playnite şimdi işlemi tamamlamak için Masaüstü moduna sıfırlanıcak.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">En Son Oynananlar</sys:String>
