@@ -60,28 +60,34 @@
 
                                     <DockPanel Margin="20,20,10,15" MaxWidth="1024">
                                         <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
-                                           DockPanel.Dock="Right" Height="170" Margin="0,0,10,0"
-                                           StretchDirection="Both" Stretch="Uniform"
-                                           RenderOptions.BitmapScalingMode="Fant" />
-                                        <StackPanel VerticalAlignment="Bottom">
-                                            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="{DynamicResource FontFamily}"
-                                           Text="{Binding Game.DisplayName}"
-                                           FontSize="34" Margin="0,0,0,5" TextWrapping="Wrap"
-                                           HorizontalAlignment="Left" Foreground="{StaticResource TextBrush}">
-                                                <TextBlock.Effect>
-                                                    <DropShadowEffect ShadowDepth="3" RenderingBias="Quality"/>
-                                                </TextBlock.Effect>
-                                            </TextBlock>
+                                               DockPanel.Dock="Right" Height="170" Margin="0,0,10,0"
+                                               StretchDirection="Both" Stretch="Uniform"
+                                               RenderOptions.BitmapScalingMode="Fant" />
+                                        <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
+                                            <DockPanel>
+                                                <Image Name="PART_ImageIcon" MaxHeight="48" MaxWidth="48"
+                                                       DockPanel.Dock="Left" Margin="0,0,10,0"
+                                                       VerticalAlignment="Center"
+                                                       RenderOptions.BitmapScalingMode="Fant" />
+                                                <TextBlock FontFamily="{DynamicResource FontFamily}"
+                                                           Text="{Binding Game.DisplayName}" DockPanel.Dock="Left"
+                                                           FontSize="34" Margin="0,0,10,0" TextWrapping="Wrap"
+                                                           VerticalAlignment="Center"
+                                                           Foreground="{StaticResource TextBrush}">
+                                                    <TextBlock.Effect>
+                                                        <DropShadowEffect ShadowDepth="3" RenderingBias="Quality"/>
+                                                    </TextBlock.Effect>
+                                                </TextBlock>
+                                            </DockPanel>
                                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
-                                            Orientation="Horizontal"
-                                            DockPanel.Dock="Left">
+                                                        Orientation="Horizontal" Margin="0,15,0,0">
                                                 <Button Name="PART_ButtonPlayAction"
-                                            Width="150" Height="40" Style="{DynamicResource PlayButton}" />
+                                                        Width="150" Height="40" Style="{DynamicResource PlayButton}" />
                                                 <Button Name="PART_ButtonContextAction" 
-                                            Width="150" Height="40" />
+                                                        Width="150" Height="40" />
                                                 <Button Name="PART_ButtonMoreActions"
-                                            Content="{DynamicResource LOCMoreAction}"
-                                            Width="150" Height="40" Margin="10,0,0,0" />
+                                                        Content="{DynamicResource LOCMoreAction}"
+                                                        Width="150" Height="40" Margin="10,0,0,0" />
                                             </StackPanel>
                                         </StackPanel>
                                     </DockPanel>

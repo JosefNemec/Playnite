@@ -68,6 +68,21 @@ namespace Playnite
             }
         }
 
+        private bool icon = false;
+        public bool Icon
+        {
+            get
+            {
+                return icon;
+            }
+
+            set
+            {
+                icon = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool coverImage = true;
         public bool CoverImage
         {

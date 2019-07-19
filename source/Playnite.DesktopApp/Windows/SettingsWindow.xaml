@@ -348,6 +348,9 @@
                             <StackPanel>
                                 <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
                                 <UniformGrid Columns="3" VerticalAlignment="Top">
+                                    <CheckBox Content="{DynamicResource LOCGameIconTitle}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Icon}"
+                                              Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCGameCoverTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.CoverImage}"
                                               Margin="0,10,0,0"/>
