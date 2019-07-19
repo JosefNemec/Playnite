@@ -21,7 +21,7 @@ namespace EpicLibrary
             get
             {
                 var path = InstallationPath;
-                return string.IsNullOrEmpty(path) ? string.Empty : Path.Combine(path, "Launcher", "Portal", "Binaries", Environment.Is64BitOperatingSystem ? "Win64" : "Win32", "EpicGamesLauncher.exe");
+                return string.IsNullOrEmpty(path) ? string.Empty : GetExecutablePath(path);
             }
         }
 
@@ -38,7 +38,8 @@ namespace EpicLibrary
         {
             get
             {
-                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Epic Games Launcher");
+                var progs = Programs.GetUnistallProgramsList().
+                    FirstOrDefault(a => a.DisplayName == "Epic Games Launcher" && File.Exists(GetExecutablePath(a.InstallLocation)));
                 if (progs == null)
                 {
                     return string.Empty;
@@ -64,6 +65,11 @@ namespace EpicLibrary
         public static void StartClient()
         {
             ProcessStarter.StartProcess(ClientExecPath, string.Empty);
+        }
+
+        internal static string GetExecutablePath(string rootPath)
+        {
+            return Path.Combine(rootPath, "Launcher", "Portal", "Binaries", Environment.Is64BitOperatingSystem ? "Win64" : "Win32", "EpicGamesLauncher.exe");
         }
 
         public static List<LauncherInstalled.InstalledApp> GetInstalledAppList()
