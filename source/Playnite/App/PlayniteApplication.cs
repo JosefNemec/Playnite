@@ -22,7 +22,6 @@ using Playnite.Common;
 using System.ComponentModel;
 using Playnite.Windows;
 using Polly;
-using CommandLine;
 
 namespace Playnite
 {
@@ -60,32 +59,23 @@ namespace Playnite
         public GameDatabase Database { get; set; }
         public PlayniteAPI Api { get; set; }
         public GameControllerFactory Controllers { get; set; }
-        public CmdLineOptions CmdLine { get; set; } = new CmdLineOptions();
+        public CmdLineOptions CmdLine { get; set; }
 
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
 
-        public PlayniteApplication(Application nativeApp, ApplicationMode mode, string defaultThemeName)
+        public PlayniteApplication(
+            Application nativeApp,
+            ApplicationMode mode,
+            string defaultThemeName,
+            CmdLineOptions cmdLine)
         {
             if (Current != null)
             {
                 throw new Exception("Only one application instance is allowed.");
             }
 
-            var parsed = Parser.Default.ParseArguments<CmdLineOptions>(Environment.GetCommandLineArgs());
-            if (parsed is Parsed<CmdLineOptions> options)
-            {
-                CmdLine = options.Value;
-            }
-            else if (parsed is NotParsed<CmdLineOptions> notParsed)
-            {
-                logger.Error("Failed to parse cmdline arguments:");
-                foreach (var error in notParsed.Errors)
-                {
-                    logger.Error(error.ToString());
-                }                    
-            }
-
+            CmdLine = cmdLine;
             Mode = mode;
             Current = this;
             CurrentNative = nativeApp;

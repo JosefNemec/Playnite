@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using CommandLine;
+using Playnite.Common;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,22 @@ namespace Playnite.FullscreenApp
         [STAThread]
         public static void Main(string[] args)
         {
-            var splash = new SplashScreen("SplashScreen.png");
-            splash.Show(false);
+            var cmdLine = new CmdLineOptions();
+            var parsed = Parser.Default.ParseArguments<CmdLineOptions>(Environment.GetCommandLineArgs());
+            if (parsed is Parsed<CmdLineOptions> options)
+            {
+                cmdLine = options.Value;
+            }
+
+            SplashScreen splash = null;
+            if (cmdLine.Start.IsNullOrEmpty())
+            {
+                splash = new SplashScreen("SplashScreen.png");
+                splash.Show(false);
+            }
+
             PlayniteSettings.ConfigureLogger();
-            var app = new FullscreenApplication(new App(), splash);
+            var app = new FullscreenApplication(new App(), splash, cmdLine);
             app.Run();
         }
     }
