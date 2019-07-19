@@ -728,7 +728,7 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">Benutzerkonten-URL</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Angemeldet</sys:String>
-    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Das Konto ist privat, der API-Schlüssel ist erforderlich.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Die Ersteinrichtung ist nicht abgeschlossen. Playnite wird nun im Desktopmodus neu gestartet, um die Einrichtung abzuschließen.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Zuletzt gespielt</sys:String>
