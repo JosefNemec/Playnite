@@ -49,6 +49,10 @@
     <SolidColorBrush x:Key="PanelSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
     <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#1f2847" />
 
+    <SolidColorBrush x:Key="PositiveRatingBrush" Color="#78ffa0" />
+    <SolidColorBrush x:Key="NegativeRatingBrush" Color="#ff6b6b" />
+    <SolidColorBrush x:Key="MixedRatingBrush" Color="#fffca1" />
+
     <LinearGradientBrush x:Key="DetailsPanelDimmingBrush" StartPoint="0.5,0.2" EndPoint="0.5,1">
         <GradientStop Color="#00000000" Offset="0"/>
         <GradientStop Color="{DynamicResource PanelDimmingColor}" Offset="1"/>

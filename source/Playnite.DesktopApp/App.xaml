@@ -59,6 +59,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
 
                 <!--Derived Styles-->
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/TextBlockGameScore.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/PropertyItemButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsScrollViewer.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/Simplebutton.xaml" />

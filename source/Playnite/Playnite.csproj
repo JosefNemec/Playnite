@@ -218,6 +218,7 @@
     <Compile Include="Controls\FadeImage.xaml.cs">
       <DependentUpon>FadeImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GridEx.cs" />
     <Compile Include="Controls\HtmlTextView.cs" />
     <Compile Include="Controls\VirtualizingGridPanel.cs" />
     <Compile Include="Controls\VirtualizingTilePanel.cs" />

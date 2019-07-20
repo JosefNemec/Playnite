@@ -8,7 +8,7 @@
 
     <Style x:Key="PropertyItemButton" TargetType="Button">
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-        <Setter Property="Margin" Value="0,3,0,3" />
+        <Setter Property="Margin" Value="0,4,0,4" />
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="Template">
             <Setter.Value>
