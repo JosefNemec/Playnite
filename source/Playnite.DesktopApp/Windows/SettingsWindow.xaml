@@ -49,7 +49,8 @@
             </DockPanel>
         </Border>
         
-        <TabControl BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+        <TabControl BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
+                    Name="TabControlMain">
             <TabItem Header="{DynamicResource LOCSettingsLabel}">
                 <DockPanel>
                     <ListBox DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
@@ -347,6 +348,9 @@
                             <StackPanel>
                                 <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
                                 <UniformGrid Columns="3" VerticalAlignment="Top">
+                                    <CheckBox Content="{DynamicResource LOCGameIconTitle}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Icon}"
+                                              Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCGameCoverTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.CoverImage}"
                                               Margin="0,10,0,0"/>
@@ -652,10 +656,8 @@
 
             <TabItem Header="{DynamicResource LOCLibraries}">
                 <DockPanel>
-                    <ListBox ItemsSource="{Binding LibraryPluginSettings}"
-                              Name="TreeLibraryPlugins" MinWidth="140"
-                              SelectedIndex="0"
-                              BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">       
+                    <ListBox Name="TreeLibraryPlugins" MinWidth="140"                              
+                             BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">       
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value.Name}" />
@@ -666,6 +668,16 @@
                                 <Setter Property="Padding" Value="5" />
                             </Style>
                         </ListBox.ItemContainerStyle>
+                        <ListBox.Style>
+                            <Style TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedIndex, ElementName=TabControlMain}" Value="1">
+                                        <Setter Property="ItemsSource" Value="{Binding LibraryPluginSettings}" />
+                                        <Setter Property="SelectedIndex" Value="0" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Style>
                     </ListBox>
                     <ScrollViewer DockPanel.Dock="Left">
                         <ContentControl Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"
@@ -677,10 +689,8 @@
             <TabItem Header="{DynamicResource LOCPlugins}"
                      Visibility="{Binding AnyGenericPluginSettings, Converter={pcon:BooleanToVisibilityConverter}}">
                 <DockPanel>
-                    <ListBox ItemsSource="{Binding GenericPluginSettings}"
-                              Name="TreeGenericPlugins" MinWidth="140"
-                              SelectedIndex="0"
-                              BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+                    <ListBox Name="TreeGenericPlugins" MinWidth="140"
+                             BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value.Name}" />
@@ -691,6 +701,16 @@
                                 <Setter Property="Padding" Value="5" />
                             </Style>
                         </ListBox.ItemContainerStyle>
+                        <ListBox.Style>
+                            <Style TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedIndex, ElementName=TabControlMain}" Value="2">
+                                        <Setter Property="ItemsSource" Value="{Binding GenericPluginSettings}" />
+                                        <Setter Property="SelectedIndex" Value="0" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Style>
                     </ListBox>
                     <ContentControl DockPanel.Dock="Left" Margin="20"
                                     Content="{Binding SelectedItem.Value.View, ElementName=TreeGenericPlugins}"/>

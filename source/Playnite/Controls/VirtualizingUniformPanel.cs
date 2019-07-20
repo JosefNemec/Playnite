@@ -11,7 +11,7 @@ namespace Playnite.Controls
 {
     public class VirtualizingUniformPanel : VirtualizingPanel, IScrollInfo
     {
-        private IItemContainerGenerator generator;
+        private IRecyclingItemContainerGenerator generator;
         internal ItemsControl itemsControl;
         private int computedColumns;
         private double centerMargin;
@@ -211,9 +211,9 @@ namespace Playnite.Controls
         {
             for (int i = InternalChildren.Count - 1; i >= 0; i--)
             {
-                GeneratorPosition childGeneratorPos = new GeneratorPosition(i, 0);
+                var childGeneratorPos = new GeneratorPosition(i, 0);
                 int itemIndex = generator.IndexFromGeneratorPosition(childGeneratorPos);
-                if (itemIndex < firstIndex || itemIndex > lastIndex)
+                if ((itemIndex < firstIndex || itemIndex > lastIndex) && itemIndex > 0)
                 {
                     generator.Remove(childGeneratorPos, 1);
                     RemoveInternalChildRange(i, 1);

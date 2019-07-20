@@ -147,15 +147,33 @@ namespace Playnite.DesktopApp.ViewModels
             get;
         }
 
+        private Dictionary<Guid, PluginSettings> libraryPluginSettings;
         public Dictionary<Guid, PluginSettings> LibraryPluginSettings
         {
-            get;
-        } = new Dictionary<Guid, PluginSettings>();
+            get
+            {
+                if (libraryPluginSettings == null)
+                {
+                    libraryPluginSettings = GetLibraryPluginSettings();
+                }
 
+                return libraryPluginSettings;
+            }
+        }
+
+        private Dictionary<Guid, PluginSettings> genericPluginSettings;
         public Dictionary<Guid, PluginSettings> GenericPluginSettings
         {
-            get;
-        } = new Dictionary<Guid, PluginSettings>();
+            get
+            {
+                if (genericPluginSettings == null)
+                {
+                    genericPluginSettings = GetGenericPluginSettings();
+                }
+
+                return genericPluginSettings;
+            }
+        }
 
         #region Commands
 
@@ -239,27 +257,11 @@ namespace Playnite.DesktopApp.ViewModels
                 .GetExtensionDescriptors()
                 .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.FolderName) != true, null, a))
                 .ToList();
+        }
 
-            foreach (var provider in Extensions.LibraryPlugins)
-            {
-                var provSetting = provider.GetSettings(false);
-                var provView = provider.GetSettingsView(false);
-                if (provSetting != null && provView != null)
-                {
-                    provView.DataContext = provSetting;
-                    provSetting.BeginEdit();
-                    var plugSetting = new PluginSettings()
-                    {
-                        Name = provider.Name,
-                        Settings = provSetting,
-                        View = provView,
-                        Icon = provider.LibraryIcon
-                    };
-
-                    LibraryPluginSettings.Add(provider.Id, plugSetting);
-                }
-            }
-
+        private Dictionary<Guid, PluginSettings> GetGenericPluginSettings()
+        {
+            var allSettings = new Dictionary<Guid, PluginSettings>();
             foreach (var plugin in Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin))
             {
                 var provSetting = plugin.Plugin.GetSettings(false);
@@ -275,9 +277,37 @@ namespace Playnite.DesktopApp.ViewModels
                         View = provView
                     };
 
-                    GenericPluginSettings.Add(plugin.Plugin.Id, plugSetting);
+                    allSettings.Add(plugin.Plugin.Id, plugSetting);
                 }
             }
+
+            return allSettings;
+        }
+
+        private Dictionary<Guid, PluginSettings> GetLibraryPluginSettings()
+        {
+            var allSettings = new Dictionary<Guid, PluginSettings>();
+            foreach (var library in Extensions.LibraryPlugins)
+            {
+                var provSetting = library.GetSettings(false);
+                var provView = library.GetSettingsView(false);
+                if (provSetting != null && provView != null)
+                {
+                    provView.DataContext = provSetting;
+                    provSetting.BeginEdit();
+                    var plugSetting = new PluginSettings()
+                    {
+                        Name = library.Name,
+                        Settings = provSetting,
+                        View = provView,
+                        Icon = library.LibraryIcon
+                    };
+
+                    allSettings.Add(library.Id, plugSetting);
+                }
+            }
+
+            return allSettings;
         }
 
         public bool? OpenView()

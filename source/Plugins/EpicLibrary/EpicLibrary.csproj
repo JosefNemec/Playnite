@@ -40,6 +40,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -76,8 +77,11 @@
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\LauncherInstalled.cs" />
     <Compile Include="Models\OauthResponse.cs" />
+    <Compile Include="EpicMetadataProvider.cs" />
+    <Compile Include="Models\WebStoreModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EpicAccountClient.cs" />
+    <Compile Include="Services\WebStoreClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">

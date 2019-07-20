@@ -217,6 +217,9 @@ namespace Playnite.DesktopApp.Controls.Views
                 });
 
                 BindingOperations.SetBinding(ImageIcon, Image.SourceProperty, sourceBinding);
+                BindingTools.SetBinding(ImageIcon,
+                    Image.VisibilityProperty,
+                    nameof(GameDetailsViewModel.IconVisibility));
             }
 
             ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;

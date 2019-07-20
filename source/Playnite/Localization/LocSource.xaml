@@ -726,10 +726,9 @@ You can try these to fix the issue:
 Note that the Account Name option only works for accounts whose game libraries have been set in GOG's privacy settings to be publicly visible.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Select authenticated user or specify vanity URL name of your account to sync your full library. Accounts with private library visibility have to specify API key linked to that Steam account.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Account is private, API Key is required.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">First time setup is not complete. Playnite will now restart to Desktop mode to finish the procedure.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Recently Played</sys:String>

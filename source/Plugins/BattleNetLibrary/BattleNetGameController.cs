@@ -58,12 +58,13 @@ namespace BattleNetLibrary
             }
             else if (app.Type == BNetAppType.Classic && Game.PlayAction.Path.Contains(app.ClassicExecutable))
             {
+                var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction);
+                GameActionActivator.ActivateAction(playAction);
                 OnStarted(this, new GameControllerEventArgs(this, 0));
                 if (Directory.Exists(Game.InstallDirectory))
                 {
-                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, true);
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, true, true);
                 }
                 else
                 {

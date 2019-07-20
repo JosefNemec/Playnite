@@ -32,7 +32,8 @@ namespace Playnite.FullscreenApp
             get => (FullscreenApplication)PlayniteApplication.Current;
         }
 
-        public FullscreenApplication(App nativeApp, SplashScreen splashScreen) : base(nativeApp, ApplicationMode.Fullscreen, DefaultThemeName)
+        public FullscreenApplication(App nativeApp, SplashScreen splashScreen, CmdLineOptions cmdLine)
+            : base(nativeApp, ApplicationMode.Fullscreen, DefaultThemeName, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
@@ -110,7 +111,7 @@ namespace Playnite.FullscreenApp
         {
             Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
-            splashScreen.Close(new TimeSpan(0));
+            splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
 

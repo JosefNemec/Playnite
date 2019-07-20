@@ -65,7 +65,7 @@ namespace Playnite.Controllers
 
                     // TODO switch to WatchUwpApp once we are building as 64bit app
                     //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
-                    if (Directory.Exists(scanDirectory))
+                    if (Directory.Exists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
                     {
                         procMon.WatchDirectoryProcesses(scanDirectory, false, true);
                     }

@@ -45,9 +45,19 @@
                                       KeyboardNavigation.DirectionalNavigation="Once">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <pctrls:CheckBoxEx Content="{Binding}" 
-                                              IsChecked="{Binding Selected}"
-                                              Margin="{StaticResource ItemMargin}" />
+                                    <pctrls:CheckBoxEx IsChecked="{Binding Selected}"
+                                                       Margin="{StaticResource ItemMargin}">
+                                        <pctrls:CheckBoxEx.Style>
+                                            <Style TargetType="pctrls:CheckBoxEx" BasedOn="{StaticResource {x:Type pctrls:CheckBoxEx}}">
+                                                <Setter Property="Content" Value="{Binding}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Item}" Value="{}{}">
+                                                        <Setter Property="Content" Value="{DynamicResource LOCNone}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </pctrls:CheckBoxEx.Style>
+                                    </pctrls:CheckBoxEx>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                             <ItemsControl.Template>
