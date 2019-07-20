@@ -756,7 +756,12 @@ namespace Playnite.Database
             // Set the uninstalled property for games that were removed
             foreach (var game in Games.Where(g => g.PluginId == library.Id && g.IsInstalled))
             {
-                game.IsInstalled = libraryGames.Any(lg => lg.GameId == game.GameId && lg.IsInstalled);
+                var isGameInstalled = libraryGames.Any(lg => lg.GameId == game.GameId && lg.IsInstalled);
+                if (game.IsInstalled != isGameInstalled)
+                {
+                    game.IsInstalled = isGameInstalled;
+                    Games.Update(game);
+                }
             }
 
             return addedGames;
