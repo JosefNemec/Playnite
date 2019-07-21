@@ -52,7 +52,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                this.mainModel = new DesignMainViewModel();
+                this.mainModel = DesignMainViewModel.DesignIntance;
             }
             else if (mainModel != null)
             {

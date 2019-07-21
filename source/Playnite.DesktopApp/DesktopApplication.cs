@@ -41,7 +41,7 @@ namespace Playnite.DesktopApp
         public DesktopAppViewModel MainModel { get; set; }
         public new static DesktopApplication Current
         {
-            get => (DesktopApplication)PlayniteApplication.Current;
+            get => PlayniteApplication.Current == null ? null : (DesktopApplication)PlayniteApplication.Current;
         }
 
         public DesktopApplication(App nativeApp, SplashScreen splashScreen, CmdLineOptions cmdLine)

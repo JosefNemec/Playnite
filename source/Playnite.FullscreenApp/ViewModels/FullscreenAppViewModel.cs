@@ -867,7 +867,7 @@ namespace Playnite.FullscreenApp.ViewModels
                         GamesEditor.InstallGame(SelectedGame.Game);
                     }
                 }
-            }, (a) => Database.IsOpen);
+            }, (a) => Database?.IsOpen == true);
 
             OpenSearchCommand = new RelayCommand<object>((a) =>
             {
@@ -887,7 +887,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 {
                     AppSettings.Fullscreen.ActiveView = (ActiveFullscreenView)next;
                 }
-            }, (a) => Database.IsOpen);
+            }, (a) => Database?.IsOpen == true);
 
             PrevFilterViewCommand = new RelayCommand<object>((a) =>
             {
@@ -897,7 +897,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 {
                     AppSettings.Fullscreen.ActiveView = (ActiveFullscreenView)prev;
                 }
-            }, (a) => Database.IsOpen);
+            }, (a) => Database?.IsOpen == true);
 
             SelectPrevGameCommand = new RelayCommand<object>((a) =>
             {
@@ -909,7 +909,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     GameDetailsEntry = GamesView.CollectionView.GetItemAt(prevIndex) as GamesCollectionViewEntry;
                     GameDetailsFocused = true;
                 }
-            }, (a) => Database.IsOpen);
+            }, (a) => Database?.IsOpen == true);
 
             SelectNextGameCommand = new RelayCommand<object>((a) =>
             {
@@ -921,7 +921,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     GameDetailsEntry = GamesView.CollectionView.GetItemAt(nextIndex) as GamesCollectionViewEntry;
                     GameDetailsFocused = true;
                 }
-            }, (a) => Database.IsOpen);
+            }, (a) => Database?.IsOpen == true);
         }
 
         private void SearchText_PropertyChanged(object sender, PropertyChangedEventArgs e)

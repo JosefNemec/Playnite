@@ -38,7 +38,7 @@ namespace Playnite.DesktopApp.Controls
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                mainModel = new DesignMainViewModel();
+                mainModel = DesignMainViewModel.DesignIntance;
             }
             else if (model != null)
             {

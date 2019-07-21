@@ -1,4 +1,5 @@
 ﻿using Playnite.API;
+using Playnite.Common;
 using Playnite.Controllers;
 using Playnite.Database;
 using Playnite.FullscreenApp.Markup;
@@ -20,6 +21,27 @@ namespace Playnite.FullscreenApp.ViewModels.DesignData
         public new GamesCollectionViewEntry SelectedGame { get; set; }
         public new bool GameDetailsButtonVisible { get; set; } = true;
         public new bool IsExtraFilterActive { get; set; } = true;
+
+        private static DesignMainViewModel designIntance;
+        public static DesignMainViewModel DesignIntance
+        {
+            get
+            {
+                if (!DesignerTools.IsInDesignMode)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (designIntance == null)
+                    {
+                        designIntance = new DesignMainViewModel();
+                    }
+
+                    return designIntance;
+                }
+            }
+        }
 
         public DesignMainViewModel()
         {

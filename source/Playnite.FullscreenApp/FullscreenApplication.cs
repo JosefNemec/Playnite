@@ -29,7 +29,7 @@ namespace Playnite.FullscreenApp
 
         public new static FullscreenApplication Current
         {
-            get => (FullscreenApplication)PlayniteApplication.Current;
+            get => PlayniteApplication.Current == null ? null : (FullscreenApplication)PlayniteApplication.Current;
         }
 
         public FullscreenApplication(App nativeApp, SplashScreen splashScreen, CmdLineOptions cmdLine)

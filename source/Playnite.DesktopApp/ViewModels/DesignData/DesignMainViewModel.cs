@@ -1,4 +1,5 @@
 ﻿using Playnite.API;
+using Playnite.Common;
 using Playnite.Controllers;
 using Playnite.Database;
 using Playnite.Plugins;
@@ -16,6 +17,27 @@ namespace Playnite.DesktopApp.ViewModels
     {
         public new GamesCollectionViewEntry SelectedGame { get; set; }
         public new IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
+
+        private static DesignMainViewModel designIntance;
+        public static DesignMainViewModel DesignIntance
+        {
+            get
+            {
+                if (!DesignerTools.IsInDesignMode)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (designIntance == null)
+                    {
+                        designIntance = new DesignMainViewModel();
+                    }
+
+                    return designIntance;
+                }
+            }
+        }
 
         public DesignMainViewModel()
         {

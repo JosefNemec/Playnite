@@ -40,7 +40,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                var designModel = new DesignMainViewModel();
+                var designModel = DesignMainViewModel.DesignIntance;
                 this.mainModel = designModel;
                 DataContext = designModel.GamesView.Items[0];
             }

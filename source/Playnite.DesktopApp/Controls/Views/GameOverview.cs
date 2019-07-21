@@ -131,7 +131,7 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                this.mainModel = new DesignMainViewModel();
+                this.mainModel = DesignMainViewModel.DesignIntance;
                 DataContext = this.mainModel.SelectedGameDetails;
             }
             else if (mainModel != null)
