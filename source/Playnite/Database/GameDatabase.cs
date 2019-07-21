@@ -435,9 +435,8 @@ namespace Playnite.Database
             lock (fileFilesLock)
             {
                 using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
-                using (var wrapper = new WrappingStream(fStream))
                 {
-                    return BitmapExtensions.BitmapFromStream(wrapper);
+                    return BitmapExtensions.BitmapFromStream(fStream);
                 }
             }
         }
