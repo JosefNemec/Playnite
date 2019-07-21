@@ -96,12 +96,12 @@ namespace Playnite.Metadata.Providers
 
         public ICollection<MetadataSearchResult> SearchMetadata(Game game)
         {
-            return client.GetIGDBGames(game.Name)?.Select(a => new MetadataSearchResult()
+            return client.GetIGDBGames(game.Name.RemoveTrademarks())?.Select(a => new MetadataSearchResult()
             {
                 Id = a.id.ToString(),
-                Name = a.name,
+                Name = a.name.RemoveTrademarks(),
                 ReleaseDate = a.first_release_date == 0 ? (DateTime?)null : DateTimeOffset.FromUnixTimeMilliseconds(a.first_release_date).DateTime,
-                AlternativeNames = a.alternative_names?.Any() == true ? a.alternative_names.Select(name => name.name).ToList() : null
+                AlternativeNames = a.alternative_names?.Any() == true ? a.alternative_names.Select(name => name.name.RemoveTrademarks()).ToList() : null
             }).ToList();
         }
 
@@ -226,10 +226,11 @@ namespace Playnite.Metadata.Providers
 
         private GameMetadata matchFun(Game game, string matchName, IEnumerable<MetadataSearchResult> list)
         {
-            var res = list.Where(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
+            var moddedMatchName = matchName.RemoveTrademarks();
+            var res = list.Where(a => string.Equals(moddedMatchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
             if (!res.Any())
             {
-                res = list.Where(a => a.AlternativeNames.ContainsString(matchName) == true);
+                res = list.Where(a => a.AlternativeNames.ContainsString(moddedMatchName) == true);
             }
 
             if (res.Any())

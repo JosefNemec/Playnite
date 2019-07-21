@@ -668,6 +668,7 @@ namespace Playnite.Database
         public Game ImportGame(GameInfo game, Guid pluginId)
         {
             var toAdd = GameInfoToGame(game, pluginId);
+            toAdd.Name = toAdd.Name.RemoveTrademarks();
             toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
             toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
             if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
@@ -682,6 +683,7 @@ namespace Playnite.Database
         public Game ImportGame(GameMetadata metadata)
         {
             var toAdd = GameInfoToGame(metadata.GameInfo, Guid.Empty);
+            toAdd.Name = toAdd.Name.RemoveTrademarks();
             if (metadata.Icon != null)
             {
                 toAdd.Icon = AddFile(metadata.Icon, toAdd.Id);
