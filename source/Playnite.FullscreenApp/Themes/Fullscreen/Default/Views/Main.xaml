@@ -28,7 +28,7 @@
                             <Grid Grid.Row="0" Background="{DynamicResource TopBarBackgroundBrush}"
                                   Height="110">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
@@ -39,7 +39,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
 
                                 <ToggleButton x:Name="PART_ToggleFilterRecently" Grid.Column="1"

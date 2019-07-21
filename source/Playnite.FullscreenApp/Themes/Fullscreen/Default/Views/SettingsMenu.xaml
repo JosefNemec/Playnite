@@ -32,7 +32,7 @@
                                     Margin="{StaticResource ItemMargin}"
                                     Text="{DynamicResource LOCSettingsRestartNotification}" />
 
-                        <ScrollViewer DockPanel.Dock="Top"
+                        <ScrollViewer DockPanel.Dock="Top" Margin="0,0,0,50"
                                         x:Name="PART_MenuHost" 
                                         KeyboardNavigation.TabNavigation="Cycle"                          
                                         KeyboardNavigation.DirectionalNavigation="Cycle"
