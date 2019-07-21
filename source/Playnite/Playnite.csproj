@@ -200,7 +200,6 @@
     <Compile Include="API\ExtensionDescription.cs" />
     <Compile Include="App\CmdLineOptions.cs" />
     <Compile Include="Behaviors\AnimatedVisibility.cs" />
-    <Compile Include="Behaviors\GridBehaviors.cs" />
     <Compile Include="CefTools.cs" />
     <Compile Include="App\PlayniteApplication.cs" />
     <Compile Include="App\UpdateManifest.cs" />

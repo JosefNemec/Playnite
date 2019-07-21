@@ -297,8 +297,7 @@
                         <!-- Appearance Advanced -->
                         <TabItem>
                             <StackPanel>
-                                <Grid pbeh:GridBehaviors.ColumnCount="2"
-                                      pbeh:GridBehaviors.RowCount="12">                                    
+                                <controls:GridEx ColumnCount="2" RowCount="12">                                    
                                     <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
                                                     ContentStringFormat="{}{0} *"
                                                     Grid.Column="0" Grid.Row="0"
@@ -339,7 +338,7 @@
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
-                                </Grid>                                
+                                </controls:GridEx>                                
                             </StackPanel>
                         </TabItem>
 
@@ -499,8 +498,7 @@
                                 <Separator />
 
 
-                                <Grid pbeh:GridBehaviors.ColumnCount="2"
-                                      pbeh:GridBehaviors.RowCount="4"
+                                <controls:GridEx ColumnCount="2" RowCount="4"
                                       Margin="0,10,0,0">
                                     <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
                                                VerticalAlignment="Center" Margin="0,10,0,10"
@@ -554,7 +552,7 @@
                                                            HorizontalAlignment="Left" VerticalAlignment="Center"
                                                            Value="{Binding Settings.GridItemMargin}"
                                                            Grid.Column="1" Grid.Row="3"/>
-                                </Grid>
+                                </controls:GridEx>
                             </StackPanel>
                         </TabItem>
 

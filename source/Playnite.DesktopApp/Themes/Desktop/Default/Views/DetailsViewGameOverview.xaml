@@ -125,10 +125,8 @@
                                                        Style="{DynamicResource BaseTextBlockStyle}" />
                                             <Separator />
                                             <pctrlsShared:GridEx Margin="0,5,0,10"
-                                                                 pbeh:GridBehaviors.ColumnCount="2"
-                                                                 pbeh:GridBehaviors.StarColumns="1"
-                                                                 pbeh:GridBehaviors.RowCount="20"
-                                                                 AutoLayoutColumns="2">
+                                                                 ColumnCount="2" StarColumns="1"
+                                                                 RowCount="20" AutoLayoutColumns="2">
                                                 <Grid.Resources>
                                                     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
                                                 </Grid.Resources>
