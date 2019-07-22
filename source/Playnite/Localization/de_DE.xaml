@@ -223,7 +223,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfiguration</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Einstellungen …</sys:String>
-    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformen &amp; Emulatoren</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformen & Emulatoren</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Emulatoren konfigurieren …</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Bibliotheksverwaltung …</sys:String>
     <sys:String x:Key="LOCMenuTools">Werkzeuge</sys:String>
@@ -298,9 +298,9 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Wähle diese Option bei Problemen mit der Oberfläche.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI-Skalierung deaktivieren</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Schaltfläche für Steam-Freunde anzeigen</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
-    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Hintergrundbild des Spiels als Fensterhintergrund verwenden</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Hintergrund weichzeichnen</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Hintergrund verdunkeln</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Theme-Profil</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Vollbild-Theme</sys:String>
