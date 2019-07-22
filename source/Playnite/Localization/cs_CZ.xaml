@@ -298,9 +298,9 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Použijte pokud se aplikace seká nebo má problémy se zobrazením</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Vypnout DPI škálování</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Zobrazit tlačítko "Steam přátelé"</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
-    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Použít obrázek pozadí hry jako pozadí celého okna</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Rozostřit pozadí</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Ztmavit pozadí</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Motiv vzhledu</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Motiv vzhledu</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Motiv vzhledu režimu celé obrazovky</sys:String>
