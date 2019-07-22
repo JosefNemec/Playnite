@@ -298,8 +298,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Используйте когда присутствуют заикания или другие проблемы интерфейса.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Отключить масштабирование DPI (требуется перезагрузка)</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Показать кнопку друзей из Steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Показывать фоновое изображение</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Растянуть по всему окну приложения</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Тема оформления</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Цвет темы</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen"> </sys:String>
