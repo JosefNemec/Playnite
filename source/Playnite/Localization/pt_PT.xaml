@@ -294,8 +294,9 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Usa caso experienciar travamentos ou problemas com a interface</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostra o botão de amigos na Steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Mosta a imagem de fundo</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil do Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema na Tela Cheia</sys:String>
