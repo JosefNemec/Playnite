@@ -171,7 +171,14 @@ namespace Playnite.FullscreenApp.ViewModels
                 SelectedGameDetails?.Dispose();
                 if (value == null)
                 {
-                    SelectedGameDetails = null;
+                    if (SelectedGame != null)
+                    {
+                        SelectedGameDetails = new GameDetailsViewModel(SelectedGame, Resources, GamesEditor, this, Dialogs);
+                    }
+                    else
+                    {
+                        SelectedGameDetails = null;
+                    }
                 }
                 else
                 {
