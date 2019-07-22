@@ -1,46 +1,39 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
-                    xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
-                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     mc:Ignorable="d">    
 
-    <Style TargetType="{x:Type views:LibraryGridView}">
+    <Style TargetType="{x:Type LibraryGridView}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:LibraryGridView}">
+                <ControlTemplate TargetType="{x:Type LibraryGridView}">
                     <DockPanel Background="{TemplateBinding Background}"
                                d:DesignWidth="1280" d:DesignHeight="960">
-                        <views:GameOverview x:Name="PART_ControlGameView" Width="350"
-                                            Style="{StaticResource GridViewGameOverview}"                                            
-                                            DockPanel.Dock="{pmrk:Settings GridViewDetailsPosition}" />                   
+                        <GameOverview x:Name="PART_ControlGameView" Width="350"
+                                      Style="{StaticResource GridViewGameOverview}"                                            
+                                      DockPanel.Dock="{Settings GridViewDetailsPosition}" />                   
                         <Grid DockPanel.Dock="Left">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <pctrlsShared:ExtendedListBox x:Name="PART_ListGames"
-                                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                          ScrollViewer.PanningMode="VerticalOnly"
-                                                          ItemContainerStyle="{DynamicResource GridViewItemStyle}"
-                                                          SelectionMode="Extended"
-                                                          DockPanel.Dock="Left"
-                                                          BorderThickness="0">
-                                <pctrlsShared:ExtendedListBox.ItemTemplate>
+                            <ExtendedListBox x:Name="PART_ListGames"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                             ScrollViewer.PanningMode="VerticalOnly"
+                                             ItemContainerStyle="{DynamicResource GridViewItemStyle}"
+                                             SelectionMode="Extended"
+                                             DockPanel.Dock="Left"
+                                             BorderThickness="0">
+                                <ExtendedListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <pctrls:GameListItem Style="{StaticResource GridViewItemTemplate}" />
+                                        <GameListItem Style="{StaticResource GridViewItemTemplate}" />
                                     </DataTemplate>
-                                </pctrlsShared:ExtendedListBox.ItemTemplate>
-                            </pctrlsShared:ExtendedListBox>
+                                </ExtendedListBox.ItemTemplate>
+                            </ExtendedListBox>
                             <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="1">
                                 <Label Content="{DynamicResource LOCZoomLabel}" Margin="10,0,10,0"/>
-                                <pctrls:SliderWithPopup x:Name="PART_SliderZoom" />
+                                <SliderWithPopup x:Name="PART_SliderZoom" />
                             </StackPanel>
                         </Grid>
                     </DockPanel>

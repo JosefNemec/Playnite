@@ -1,41 +1,35 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    xmlns:popt="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-                    mc:Ignorable="d">
+                    xmlns:popt="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
-    <BitmapImage x:Key="TrayIcon" UriSource="{pmrk:ThemeFile 'Images/applogo.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="TrayIconWhite" UriSource="{pmrk:ThemeFile 'Images/applogo_black.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="TrayIconBlack" UriSource="{pmrk:ThemeFile 'Images/applogo_white.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="AddGameIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/add.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True" />
-    <BitmapImage x:Key="UpdateDbIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/refresh.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True" />
-    <BitmapImage x:Key="ExtensionsIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/script.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="FullscreenModeIcon" UriSource="{pmrk:ThemeFile 'Images/applogo.png'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="AboutPlayniteIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/info.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="FeedbackIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/feedback.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="ExitIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/exit.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="SettingsIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/settings.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="TrayIcon" UriSource="{ThemeFile 'Images/applogo.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="TrayIconWhite" UriSource="{ThemeFile 'Images/applogo_black.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="TrayIconBlack" UriSource="{ThemeFile 'Images/applogo_white.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="AddGameIcon" UriSource="{ThemeFile 'Images/MenuIcons/add.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True" />
+    <BitmapImage x:Key="UpdateDbIcon" UriSource="{ThemeFile 'Images/MenuIcons/refresh.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True" />
+    <BitmapImage x:Key="ExtensionsIcon" UriSource="{ThemeFile 'Images/MenuIcons/script.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="FullscreenModeIcon" UriSource="{ThemeFile 'Images/applogo.png'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="AboutPlayniteIcon" UriSource="{ThemeFile 'Images/MenuIcons/info.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="FeedbackIcon" UriSource="{ThemeFile 'Images/MenuIcons/feedback.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="ExitIcon" UriSource="{ThemeFile 'Images/MenuIcons/exit.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="SettingsIcon" UriSource="{ThemeFile 'Images/MenuIcons/settings.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
 
-    <BitmapImage x:Key="PlayIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/start.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="InstallIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/install.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="LinksIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/link.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="OpenFolderIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/folder.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="DesktopShortcutIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/shortcut.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="AddFavoritesIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/favorite.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="RemoveFavoritesIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/favoriteEmpty.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="HideIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/hideCrosed.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="UnHideIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/hide.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="EditGameIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/edit.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="RemoveGameIcon" UriSource="{pmrk:ThemeFile 'Images/MenuIcons/remove.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="PlayIcon" UriSource="{ThemeFile 'Images/MenuIcons/start.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="InstallIcon" UriSource="{ThemeFile 'Images/MenuIcons/install.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="LinksIcon" UriSource="{ThemeFile 'Images/MenuIcons/link.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="OpenFolderIcon" UriSource="{ThemeFile 'Images/MenuIcons/folder.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="DesktopShortcutIcon" UriSource="{ThemeFile 'Images/MenuIcons/shortcut.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="AddFavoritesIcon" UriSource="{ThemeFile 'Images/MenuIcons/favorite.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="RemoveFavoritesIcon" UriSource="{ThemeFile 'Images/MenuIcons/favoriteEmpty.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="HideIcon" UriSource="{ThemeFile 'Images/MenuIcons/hideCrosed.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="UnHideIcon" UriSource="{ThemeFile 'Images/MenuIcons/hide.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="EditGameIcon" UriSource="{ThemeFile 'Images/MenuIcons/edit.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <BitmapImage x:Key="RemoveGameIcon" UriSource="{ThemeFile 'Images/MenuIcons/remove.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
 
-    <BitmapImage x:Key="DefaultGameIcon" UriSource="{pmrk:ThemeFile 'Images/applogo_dark.png'}" popt:Freeze="True" />
-    <BitmapImage x:Key="DefaultGameCover" UriSource="{pmrk:ThemeFile 'Images/custom_cover_background.png'}" popt:Freeze="True" />
+    <BitmapImage x:Key="DefaultGameIcon" UriSource="{ThemeFile 'Images/applogo_dark.png'}" popt:Freeze="True" />
+    <BitmapImage x:Key="DefaultGameCover" UriSource="{ThemeFile 'Images/custom_cover_background.png'}" popt:Freeze="True" />
 
-    <BitmapImage x:Key="PowerShellIcon" UriSource="{pmrk:ThemeFile 'Images/powershell.ico'}" popt:Freeze="True" />
-    <BitmapImage x:Key="PythonIcon" UriSource="{pmrk:ThemeFile 'Images/python.ico'}" popt:Freeze="True" />
-    <BitmapImage x:Key="CsharpIcon" UriSource="{pmrk:ThemeFile 'Images/csharp.ico'}" popt:Freeze="True" />
+    <BitmapImage x:Key="PowerShellIcon" UriSource="{ThemeFile 'Images/powershell.ico'}" popt:Freeze="True" />
+    <BitmapImage x:Key="PythonIcon" UriSource="{ThemeFile 'Images/python.ico'}" popt:Freeze="True" />
+    <BitmapImage x:Key="CsharpIcon" UriSource="{ThemeFile 'Images/csharp.ico'}" popt:Freeze="True" />
 </ResourceDictionary>
