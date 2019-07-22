@@ -42,22 +42,7 @@
 
                                 <Canvas Grid.Row="0" Height="{pmrk:Settings CalculatedGameDetailsIndentation}" />
 
-                                <Border Grid.Row="1" >
-                                    <Border.Style>
-                                        <Style TargetType="Border">
-                                            <Style.Triggers>
-                                                <MultiDataTrigger>
-                                                    <MultiDataTrigger.Conditions>
-                                                        <Condition Binding="{pmrk:Settings ShowBackgroundImage}" Value="True" />
-                                                        <Condition Binding="{pmrk:Settings StrechBackgroundImage}" Value="True" />
-                                                        <Condition Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.Details}"  />
-                                                    </MultiDataTrigger.Conditions>
-                                                    <Setter Property="Background" Value="{DynamicResource DetailsPanelDimmingBrush}" />
-                                                </MultiDataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
-
+                                <Border Grid.Row="1">
                                     <DockPanel Margin="20,20,10,15" MaxWidth="1024">
                                         <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
                                                DockPanel.Dock="Right" Height="170" Margin="0,0,10,0"
@@ -94,19 +79,6 @@
                                 </Border>
 
                                 <Border Grid.Row="2">
-                                    <Border.Style>
-                                        <Style TargetType="Border">
-                                            <Style.Triggers>
-                                                <MultiDataTrigger>
-                                                    <MultiDataTrigger.Conditions>
-                                                        <Condition Binding="{pmrk:Settings ShowBackgroundImage}" Value="True" />
-                                                        <Condition Binding="{pmrk:Settings StrechBackgroundImage}" Value="True" />
-                                                    </MultiDataTrigger.Conditions>
-                                                    <Setter Property="Background" Value="{DynamicResource PanelDimmingBrush}" />
-                                                </MultiDataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
                                     <DockPanel MaxWidth="1024">
                                         <StackPanel Margin="20,0,0,0" DockPanel.Dock="Left" Width="300">
                                             <StackPanel.Resources>

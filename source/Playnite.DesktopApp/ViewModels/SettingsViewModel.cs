@@ -317,14 +317,20 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CloseView()
         {
-            foreach (var provider in LibraryPluginSettings.Keys)
+            if (libraryPluginSettings.HasItems())
             {
-                LibraryPluginSettings[provider].Settings.CancelEdit();
+                foreach (var provider in libraryPluginSettings.Keys)
+                {
+                    libraryPluginSettings[provider].Settings.CancelEdit();
+                }
             }
 
-            foreach (var provider in GenericPluginSettings.Keys)
+            if (genericPluginSettings.HasItems())
             {
-                GenericPluginSettings[provider].Settings.CancelEdit();
+                foreach (var provider in genericPluginSettings.Keys)
+                {
+                    genericPluginSettings[provider].Settings.CancelEdit();
+                }
             }
 
             WindowClosing(true);
@@ -341,7 +347,7 @@ namespace Playnite.DesktopApp.ViewModels
  
         public void EndEdit()
         {
-            Settings.CopyProperties(originalSettings, false, new List<string>()
+            Settings.CopyProperties(originalSettings, true, new List<string>()
             {
                 nameof(PlayniteSettings.FilterSettings),
                 nameof(PlayniteSettings.ViewSettings),
@@ -354,21 +360,27 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ConfirmDialog()
         {
-            foreach (var provider in LibraryPluginSettings.Keys)
+            if (libraryPluginSettings.HasItems())
             {
-                if (!LibraryPluginSettings[provider].Settings.VerifySettings(out var errors))
+                foreach (var provider in libraryPluginSettings.Keys)
                 {
-                    dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), LibraryPluginSettings[provider].Name);
-                    return;
+                    if (!libraryPluginSettings[provider].Settings.VerifySettings(out var errors))
+                    {
+                        dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), libraryPluginSettings[provider].Name);
+                        return;
+                    }
                 }
             }
 
-            foreach (var plugin in GenericPluginSettings.Keys)
+            if (genericPluginSettings.HasItems())
             {
-                if (!GenericPluginSettings[plugin].Settings.VerifySettings(out var errors))
+                foreach (var plugin in genericPluginSettings.Keys)
                 {
-                    dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), GenericPluginSettings[plugin].Name);
-                    return;
+                    if (!genericPluginSettings[plugin].Settings.VerifySettings(out var errors))
+                    {
+                        dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), genericPluginSettings[plugin].Name);
+                        return;
+                    }
                 }
             }
 
@@ -394,14 +406,20 @@ namespace Playnite.DesktopApp.ViewModels
 
             EndEdit();
             originalSettings.SaveSettings();
-            foreach (var provider in LibraryPluginSettings.Keys)
+            if (libraryPluginSettings.HasItems())
             {
-                LibraryPluginSettings[provider].Settings.EndEdit();
+                foreach (var provider in libraryPluginSettings.Keys)
+                {
+                    libraryPluginSettings[provider].Settings.EndEdit();
+                }
             }
 
-            foreach (var plugin in GenericPluginSettings.Keys)
+            if (genericPluginSettings.HasItems())
             {
-                GenericPluginSettings[plugin].Settings.EndEdit();
+                foreach (var plugin in genericPluginSettings.Keys)
+                {
+                    genericPluginSettings[plugin].Settings.EndEdit();
+                }
             }
 
             if (editedFields?.Any() == true)

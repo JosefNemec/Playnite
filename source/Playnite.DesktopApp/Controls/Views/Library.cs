@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace Playnite.DesktopApp.Controls.Views
 {
@@ -54,13 +56,16 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.ShowBackgroundImage) ||
-                e.PropertyName == nameof(PlayniteSettings.StrechBackgroundImage))
+            if (e.PropertyName == nameof(PlayniteSettings.ShowBackgroundImageOnWindow))
             {
-                if (ImageBackground != null)
-                {
-                    SetBackgroundBinding();
-                }
+                SetBackgroundBinding();
+            }
+            else if (e.PropertyName == nameof(PlayniteSettings.DarkenWindowBackgroundImage) ||
+                     e.PropertyName == nameof(PlayniteSettings.BlurWindowBackgroundImage) ||
+                     e.PropertyName == nameof(PlayniteSettings.BackgroundImageBlurAmount) ||
+                     e.PropertyName == nameof(PlayniteSettings.BackgroundImageDarkAmount))
+            {
+                SetBackgroundEffect();
             }
         }
 
@@ -69,10 +74,8 @@ namespace Playnite.DesktopApp.Controls.Views
             base.OnApplyTemplate();
 
             ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
-            if (ImageBackground != null)
-            {
-                SetBackgroundBinding();
-            }
+            SetBackgroundBinding();
+            SetBackgroundEffect();
 
             SetViewBinding(ref ViewDetails, "PART_ViewDetails", ViewType.Details);
             SetViewBinding(ref ViewGrid, "PART_ViewGrid", ViewType.Grid);
@@ -101,7 +104,12 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void SetBackgroundBinding()
         {
-            if (mainModel.AppSettings.ShowBackgroundImage && mainModel.AppSettings.StrechBackgroundImage)
+            if (ImageBackground == null)
+            {
+                return;
+            }
+
+            if (mainModel.AppSettings.ShowBackgroundImageOnWindow)
             {
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,
@@ -112,6 +120,42 @@ namespace Playnite.DesktopApp.Controls.Views
             else
             {
                 ImageBackground.Source = null;
+            }
+        }
+
+        private void SetBackgroundEffect()
+        {
+            if (ImageBackground != null)
+            {
+                if (mainModel.AppSettings.BlurWindowBackgroundImage)
+                {
+                    ImageBackground.Effect = new BlurEffect()
+                    {
+                        KernelType = KernelType.Gaussian,
+                        Radius = mainModel.AppSettings.BackgroundImageBlurAmount,
+                        RenderingBias = RenderingBias.Quality
+                    };
+                }
+                else
+                {
+                    ImageBackground.Effect = null;
+                }
+            }
+
+            if (mainModel.AppSettings.DarkenWindowBackgroundImage)
+            {
+                ImageBackground.ImageDarkeningBrush = null;
+                ImageBackground.ImageDarkeningBrush = new SolidColorBrush(new Color()
+                {
+                    ScA = mainModel.AppSettings.BackgroundImageDarkAmount,
+                    ScR = 0,
+                    ScG = 0,
+                    ScB = 0
+                });
+            }
+            else
+            {
+                ImageBackground.ImageDarkeningBrush = null;
             }
         }
     }

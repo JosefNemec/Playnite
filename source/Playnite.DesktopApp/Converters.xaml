@@ -27,4 +27,5 @@
     <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
     <pcon:CoversZoomToPercentageConverter x:Key="CoversZoomToPercentageConverter" />
     <pcon:ObjectToStringConverter x:Key="ObjectToStringConverter" />
+    <pcon:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />    
 </ResourceDictionary>

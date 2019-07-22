@@ -26,8 +26,8 @@
                         </Grid.ColumnDefinitions>
                         
                         <pctrlsShared:FadeImage x:Name="PART_ImageBackground"
-                                                HorizontalAlignment="Center" VerticalAlignment="Top"
-                                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                                HorizontalAlignment="Center" VerticalAlignment="Top">
                             <pctrlsShared:FadeImage.Style>
                                 <Style TargetType="pctrlsShared:FadeImage">
                                     <Style.Triggers>

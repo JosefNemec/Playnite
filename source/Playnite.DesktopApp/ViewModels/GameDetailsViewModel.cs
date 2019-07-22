@@ -209,6 +209,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.CoverImage) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility BackgroundVisibility
+        {
+            get => (settings.DetailsVisibility.BackgroundImage) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public Visibility IconVisibility
         {
             get => (settings.DetailsVisibility.Icon) ? Visibility.Visible : Visibility.Collapsed;

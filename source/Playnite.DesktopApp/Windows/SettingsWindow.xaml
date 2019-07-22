@@ -286,11 +286,26 @@
                                           Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
                                           Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImage}" Margin="0,15,0,0"
-                                          Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImage}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImageOnWindow}" Margin="25,15,0,0"
-                                          Name="CheckShowBackgroundImageOnWindow" IsChecked="{Binding Settings.StrechBackgroundImage}"
-                                          IsEnabled="{Binding Settings.ShowBackgroundImage}"/>                                
+                                <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundWindowImage}" Margin="0,15,0,0"
+                                          Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImageOnWindow}"/>
+                                <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
+                                            IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
+                                    <CheckBox Content="{DynamicResource LOCSettingsBlurWindowBackgrounImage}" 
+                                              IsChecked="{Binding Settings.BlurWindowBackgroundImage}"/>
+                                    <Slider Minimum="0" Maximum="100"
+                                            Value="{Binding Settings.BackgroundImageBlurAmount}"
+                                            VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
+                                            IsEnabled="{Binding Settings.BlurWindowBackgroundImage}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
+                                            IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
+                                    <CheckBox Content="{DynamicResource LOCSettingsDarkenWindowBackghrounImage}" 
+                                              IsChecked="{Binding Settings.DarkenWindowBackgroundImage}"/>
+                                    <Slider Minimum="0" Maximum="1"
+                                            Value="{Binding Settings.BackgroundImageDarkAmount}"
+                                            VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
+                                            IsEnabled="{Binding Settings.DarkenWindowBackgroundImage}" />
+                                </StackPanel>
                             </StackPanel>
                         </TabItem>
 
@@ -352,6 +367,9 @@
                                               Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCGameCoverTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.CoverImage}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCGameBackgroundTitle}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.BackgroundImage}"
                                               Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCTimePlayed}"
                                               IsChecked="{Binding Settings.DetailsVisibility.PlayTime}"

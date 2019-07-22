@@ -98,6 +98,21 @@ namespace Playnite
             }
         }
 
+        private bool backgroundImage = true;
+        public bool BackgroundImage
+        {
+            get
+            {
+                return backgroundImage;
+            }
+
+            set
+            {
+                backgroundImage = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool platform = true;
         public bool Platform
         {

@@ -144,8 +144,7 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.ShowBackgroundImage) ||
-                e.PropertyName == nameof(PlayniteSettings.StrechBackgroundImage))
+            if (e.PropertyName == nameof(PlayniteSettings.DetailsVisibility))
             {
                 if (ImageBackground != null)
                 {
@@ -251,6 +250,9 @@ namespace Playnite.DesktopApp.Controls.Views
             if (ImageBackground != null)
             {
                 SetBackgroundBinding();
+                BindingTools.SetBinding(ImageBackground,
+                    Image.VisibilityProperty,
+                    nameof(GameDetailsViewModel.BackgroundVisibility));
             }
 
             SetElemVisibility(ref ElemPlayTime, "PART_ElemPlayTime", nameof(GameDetailsViewModel.PlayTimeVisibility));
@@ -403,7 +405,7 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void SetBackgroundBinding()
         {
-            if (mainModel.AppSettings.ShowBackgroundImage && !mainModel.AppSettings.StrechBackgroundImage)
+            if (mainModel.AppSettings.DetailsVisibility.BackgroundImage)
             {
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,

@@ -42,13 +42,6 @@
             <Trigger Property="DataContext" Value="{x:Null}">
                 <Setter Property="Visibility" Value="Collapsed" />
             </Trigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{pmrk:Settings ShowBackgroundImage}" Value="True" />
-                    <Condition Binding="{pmrk:Settings StrechBackgroundImage}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource PanelDimmingBrush}" />
-            </MultiDataTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

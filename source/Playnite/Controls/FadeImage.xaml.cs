@@ -21,9 +21,33 @@ namespace Playnite.Controls
     /// </summary>
     public partial class FadeImage : UserControl
     {
+        internal Storyboard mainAnim;
+        internal Storyboard stateAnim;
+        internal Storyboard borderDarkenOut;
+
+        // TODO rewrite all of this to something more sane
+
         public FadeImage()
         {
             InitializeComponent();
+            mainAnim = (Storyboard)TryFindResource("Anim");            
+            stateAnim = (Storyboard)TryFindResource("Anim2");
+            borderDarkenOut = (Storyboard)TryFindResource("BorderDarkenOut");
+            borderDarkenOut.Completed += BorderDarkenOut_Completed;
+            stateAnim.Completed += stateAnim_Completed;
+        }
+
+        private void BorderDarkenOut_Completed(object sender, EventArgs e)
+        {
+            BorderDarken.Opacity = 0;
+        }
+
+        private void stateAnim_Completed(object sender, EventArgs e)
+        {
+            if (MainImage.Source == null)
+            {
+                borderDarkenOut.Begin();                
+            }
         }
 
         public static readonly DependencyProperty StretchProperty =
@@ -56,6 +80,16 @@ namespace Playnite.Controls
             set { SetValue(ImageOpacityMaskProperty, value); }
         }
 
+        public static readonly DependencyProperty ImageDarkeningBrushProperty =
+                DependencyProperty.Register(nameof(ImageDarkeningBrush), typeof(Brush), typeof(FadeImage),
+            new PropertyMetadata());
+
+        public Brush ImageDarkeningBrush
+        {
+            get { return (Brush)GetValue(ImageDarkeningBrushProperty); }
+            set { SetValue(ImageDarkeningBrushProperty, value); }
+        }
+
         private static void SourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (FadeImage)obj;
@@ -63,21 +97,18 @@ namespace Playnite.Controls
             var oldSource = (ImageSource)args.OldValue;
 
             control.StagingImage.Visibility = Visibility.Visible;
+            control.BorderDarken.Opacity = 1;
             if (oldSource != null)
             {
                 control.StagingImage.Source = oldSource;
             }
 
             control.MainImage.Source = newSource;
+            control.mainAnim.Begin();
 
-
-            var mainAnim = (Storyboard)control.TryFindResource("Anim");
-            mainAnim.Begin();
-        
             if (oldSource != null)
             {
-                var stateAnim = (Storyboard)control.TryFindResource("Anim2");
-                stateAnim.Begin();
+                control.stateAnim.Begin();
             }
         }
     }
