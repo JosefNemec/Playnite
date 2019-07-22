@@ -294,8 +294,9 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">表示崩れなどのUIの問題が発生した場合に使用します。</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steamの友達ボタンを表示する</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">背景画像を表示する</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">テーマのプロファイル</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">フルスクリーンモード用テーマ</sys:String>
