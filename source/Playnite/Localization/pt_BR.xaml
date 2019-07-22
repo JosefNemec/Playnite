@@ -298,8 +298,9 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use se experienciar travamentos ou problemas com a interface.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Desabilitar ajuste de DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Exibir botão de amigos do Steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Exibir imagem de fundo</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Esticar por toda a janela do aplicativo</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil do tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema em tela cheia</sys:String>
