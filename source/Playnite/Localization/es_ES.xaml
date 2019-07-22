@@ -298,8 +298,9 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Usar cuando se experimente entrecortado o problemas de IU</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Deshabilitar escalado de DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostrar el botón de amigos de steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Mostrar imagen de fondo</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Estira sobre la ventana de la aplicación completa</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil del Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema de Pantalla Completa</sys:String>
