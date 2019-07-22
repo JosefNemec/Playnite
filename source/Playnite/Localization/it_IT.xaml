@@ -298,8 +298,9 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Utilizzare quando si presentano scatti o problemi simili nell'interfaccia grafica</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disabilita ridimensionamento DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostra il pulsante degli Amici di Steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Mostra immagine di sfondo</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Adatta sull'intera finestra dell'applicazione</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profilo del tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema Schermo Intero</sys:String>
