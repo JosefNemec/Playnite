@@ -298,8 +298,9 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">끊기는 현상이 발생하거나 비슷한 UI 문제가 발생할 때 사용하세요</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam 친구 버튼 표시</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">배경 이미지 표시</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">테마 프로파일</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">전체 화면 테마</sys:String>
