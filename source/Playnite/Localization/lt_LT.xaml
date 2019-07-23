@@ -189,6 +189,7 @@ Rezultatas: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Oficiali parduotuvė</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Oficiali parduotuvė > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Pasirinkite laukus, kuriuos Playnite užpildys automatiškai, ir  šaltinį, iš kurio Playnite gaus informaciją.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Parduotuvė:
 Naudoti duomenis tik iš oficialios parduotuvės.
     
