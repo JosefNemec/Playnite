@@ -39,6 +39,30 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public static GameDetailsViewModel DesignSelectedGameDetailsIntance
+        {
+            get
+            {
+                return DesignIntance?.SelectedGameDetails;
+            }
+        }
+
+        public static GamesCollectionViewEntry DesignSelectedGameIntance
+        {
+            get
+            {
+                return DesignIntance?.SelectedGame;
+            }
+        }
+
+        public static NotificationMessage DesignNotificationIntance
+        {
+            get
+            {
+                return DesignIntance?.PlayniteApi.Notifications.Messages[0];
+            }
+        }
+
         public DesignMainViewModel()
         {
             ProgressStatus = "Status example in progress...";

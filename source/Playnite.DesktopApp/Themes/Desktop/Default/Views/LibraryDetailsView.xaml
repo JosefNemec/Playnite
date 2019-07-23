@@ -8,7 +8,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type LibraryDetailsView}">
-                    <DockPanel d:DesignWidth="1280" d:DesignHeight="960">
+                    <DockPanel d:DesignWidth="1280" d:DesignHeight="960"
+                               d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
                         <ExtendedListBox x:Name="PART_ListGames"
                                          SelectionMode="Extended" Width="350"
                                          BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PanelSeparatorBrush}"

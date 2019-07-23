@@ -9,7 +9,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="NotificationPanel">
                     <DockPanel Background="{DynamicResource PopupBackgroundBrush}"
-                               d:DesignWidth="260" d:DesignHeight="400">
+                               d:DesignWidth="260" d:DesignHeight="400"
+                               d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
                         <DockPanel Margin="13,15,7,15" DockPanel.Dock="Top">
                             <Button Name="PART_ButtonClose" Content="r" FontFamily="Marlett"
                                     Style="{StaticResource SimpleButton}"

@@ -1,5 +1,4 @@
 ﻿using Playnite.Controls;
-using Playnite.FullscreenApp.ViewModels.DesignData;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;

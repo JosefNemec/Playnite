@@ -10,7 +10,8 @@
                 <ControlTemplate TargetType="{x:Type Main}">
                     <Grid x:Name="PART_MainHost"
                           d:DesignWidth="{StaticResource DesignWidth}"
-                          d:DesignHeight="{StaticResource DesignHeight}">
+                          d:DesignHeight="{StaticResource DesignHeight}"
+                          d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
                         <Grid x:Name="PART_ViewHost" Background="{DynamicResource MainBackgourndBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />

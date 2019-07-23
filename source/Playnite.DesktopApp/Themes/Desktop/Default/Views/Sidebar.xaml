@@ -12,7 +12,8 @@
                     <Border Background="Yellow"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            d:DesignWidth="64" d:DesignHeight="400">
+                            d:DesignWidth="64" d:DesignHeight="400"
+                            d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
                         <TextBlock Text="Sidebar" />
                     </Border>
                 </ControlTemplate>

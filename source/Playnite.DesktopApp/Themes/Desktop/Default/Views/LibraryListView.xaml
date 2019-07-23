@@ -9,7 +9,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type LibraryListView}">
                     <GamesGridView x:Name="PART_ListGames"
-                                   d:DesignWidth="1280" d:DesignHeight="960"/>
+                                   d:DesignWidth="1280" d:DesignHeight="960"
+                                   d:DataContext="{x:Static DesignMainViewModel.DesignIntance}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

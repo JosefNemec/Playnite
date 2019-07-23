@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.FullscreenApp.ViewModels.DesignData
+namespace Playnite.FullscreenApp.ViewModels
 {
     public class DesignMainViewModel : FullscreenAppViewModel
     {
@@ -40,6 +40,30 @@ namespace Playnite.FullscreenApp.ViewModels.DesignData
 
                     return designIntance;
                 }
+            }
+        }
+
+        public static GameDetailsViewModel DesignSelectedGameDetailsIntance
+        {
+            get
+            {
+                return DesignIntance?.SelectedGameDetails;
+            }
+        }
+
+        public static GamesCollectionViewEntry DesignSelectedGameIntance
+        {
+            get
+            {
+                return DesignIntance?.SelectedGame;
+            }
+        }
+
+        public static NotificationMessage DesignNotificationIntance
+        {
+            get
+            {
+                return DesignIntance?.PlayniteApi.Notifications.Messages[0];
             }
         }
 

@@ -1,7 +1,6 @@
 ﻿using Playnite.Behaviors;
 using Playnite.Common;
 using Playnite.FullscreenApp.ViewModels;
-using Playnite.FullscreenApp.ViewModels.DesignData;
 using Playnite.Input;
 using Playnite.SDK.Models;
 using System;

@@ -35,7 +35,8 @@
                                     <DataTemplate>
                                         <ButtonEx Margin="10,5,10,5"
                                                   BorderThickness="2"
-                                                  Command="{Binding ActivateCommand}">
+                                                  Command="{Binding ActivateCommand}"
+                                                  d:DataContext="{x:Static DesignMainViewModel.DesignNotificationIntance}">
                                             <Button.Content>
                                                 <TextBlock Text="{Binding Text}" TextWrapping="Wrap"
                                                            Style="{DynamicResource TextBlockBaseStyle}" />

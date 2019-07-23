@@ -9,7 +9,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Library}">
-                    <Grid d:DesignWidth="1500" d:DesignHeight="960">
+                    <Grid d:DesignWidth="1500" d:DesignHeight="960"
+                          d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
