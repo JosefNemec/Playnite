@@ -134,16 +134,6 @@
                                            DockPanel.Dock="Right"
                                            KeyboardNavigation.DirectionalNavigation="Once"
                                            ItemContainerStyle="{DynamicResource ListGameItem}">
-                                    <ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <FullscreenTilePanel x:Name="PART_ListGameItemsPanel"
-                                                                 Rows="{Settings Fullscreen.Rows}"
-                                                                 Columns="{Settings Fullscreen.Columns}"
-                                                                 UseHorizontalLayout="{Settings Fullscreen.HorizontalLayout}"
-                                                                 ItemAspectRatio="{Settings CoverAspectRatio}"
-                                                                 ItemSpacing="{Settings FullscreenItemSpacing}"/>
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
                                 </ListBoxEx>
                             </DockPanel>
 

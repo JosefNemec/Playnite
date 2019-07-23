@@ -15,6 +15,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace Playnite.FullscreenApp.Controls.Views
 {
@@ -269,6 +270,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ListGameItems = Template.FindName("PART_ListGameItems", this) as ListBox;
                 if (ListGameItems != null)
                 {
+                    ListGameItems.ItemsPanel = GetItemsPanelTemplate();
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameOptionsCommand, Key = Key.X });
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = Key.A });                    
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ActivateSelectedCommand, Key = Key.Enter });
@@ -433,9 +435,20 @@ namespace Playnite.FullscreenApp.Controls.Views
             }
         }
 
-        private void AssignVisibilityBinding(ref FrameworkElement elem)
+        private ItemsPanelTemplate GetItemsPanelTemplate()
         {
+            XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+            var templateDoc = new XDocument(
+                new XElement(pns + nameof(ItemsPanelTemplate),
+                    new XElement(pns + nameof(FullscreenTilePanel),
+                        new XAttribute("Rows", "{Settings Fullscreen.Rows}"),
+                        new XAttribute("Columns", "{Settings Fullscreen.Columns}"),
+                        new XAttribute("UseHorizontalLayout", "{Settings Fullscreen.HorizontalLayout}"),
+                        new XAttribute("ItemAspectRatio", "{Settings CoverAspectRatio}"),
+                        new XAttribute("ItemSpacing", "{Settings FullscreenItemSpacing}"))));
 
+            var str = templateDoc.ToString();
+            return Xaml.FromString<ItemsPanelTemplate>(str);
         }
     }
 }
