@@ -195,6 +195,7 @@ Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Offizieller Shop</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Offizieller Shop > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Bitte wähle die von Playnite automatisch auszufüllenden Felder und die hierfür zu verwendenden Quellen aus.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Offizieller Shop:
 Verwende nur Daten aus dem offiziellen Shop des Anbieters.
     
