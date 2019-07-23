@@ -188,6 +188,7 @@ Hasil : -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore"></sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB"></sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Silahkan pilih baris mana yang akan otomatis diisi oleh Playnite dan source mana yang akan digunakan sebagai sumber data.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Store:
 Gunakan hanya data dari official Store.
     
