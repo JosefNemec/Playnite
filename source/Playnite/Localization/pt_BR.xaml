@@ -195,6 +195,7 @@ Resulta em: -image "c:\pasta\imagem.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Loja oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Loja oficial > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selecione quais campos devem ser preenchidos automaticamente pelo Playnite e quais fontes devem ser usadas para obter os dados.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Por favor, considere clicar no logo acima e contribuir com informações para o banco de dados do igdb.com para melhorar os dados utilizados pelo Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Loja oficial:
 Usar somente os dados da loja oficial.
     
