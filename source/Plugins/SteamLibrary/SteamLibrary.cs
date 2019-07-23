@@ -696,7 +696,7 @@ namespace SteamLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import installed battle.net games.");
+                    logger.Error(e, "Failed to import installed Steam games.");
                     importError = e;
                 }
             }
