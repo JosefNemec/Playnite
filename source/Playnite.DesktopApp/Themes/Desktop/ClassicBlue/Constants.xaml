@@ -2,9 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <Color x:Key="BlackColor">#FF000000</Color>
-    <Color x:Key="WhiteColor">#FFFFFFFF</Color>
-
     <Color x:Key="TextColor">#f2f2f2</Color>
     <Color x:Key="TextColorDarker">#a3a3a3</Color>
     <Color x:Key="TextColorDark">#FF000000</Color>
@@ -17,6 +14,7 @@
     <Color x:Key="PopupBorderColor">#3e6184</Color>
     <Color x:Key="BackgroundToneColor">#2C3A67</Color>
     <Color x:Key="GamesListPanelColor">#AA000000</Color>
+    <Color x:Key="PanelSeparatorColor">#882C3A67</Color>
 
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
@@ -31,17 +29,8 @@
     <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
     <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{DynamicResource BackgroundToneColor}" />
     <SolidColorBrush x:Key="GamesListPanelBrush" Color="{DynamicResource GamesListPanelColor}" />
+    <SolidColorBrush x:Key="PanelSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#1c1b19" />
-
-    <sys:Double x:Key="FontSize">14</sys:Double>
-    <FontFamily x:Key="FontFamily">Trebuchet MS</FontFamily>
-    <Thickness x:Key="PopupBorderThickness">1</Thickness>
-    <Thickness x:Key="ControlBorderThickness">1</Thickness>
-    <sys:Double x:Key="EllipseBorderThickness">1</sys:Double>
-    <CornerRadius x:Key="ControlCornerRadius">1</CornerRadius>
-
-    <sys:Double x:Key="GameCoverViewRation">1.4</sys:Double>
-
     <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#1f2847" />
 
     <LinearGradientBrush  x:Key="ExpanderBackgroundBrush" StartPoint="-1,0.5" EndPoint="1.5,1" >

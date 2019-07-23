@@ -2,9 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <Color x:Key="BlackColor">#FF000000</Color>
-    <Color x:Key="WhiteColor">#FFFFFFFF</Color>
-
     <Color x:Key="TextColor">#f2f2f2</Color>
     <Color x:Key="TextColorDarker">#a3a3a3</Color>
     <Color x:Key="TextColorDark">#000000</Color>
@@ -16,7 +13,7 @@
     <Color x:Key="PopupBackgroundColor">#171e26</Color>
     <Color x:Key="PopupBorderColor">#3e6184</Color>
     <Color x:Key="BackgroundToneColor">#182028</Color>
-    <Color x:Key="GamesListPanelColor">#AA000000</Color>
+    <Color x:Key="PanelSeparatorColor">#88404040</Color>
 
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
@@ -30,17 +27,8 @@
     <SolidColorBrush x:Key="HighlightGlyphBrush" Color="{DynamicResource HighlightGlyphColor}" />
     <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
     <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{DynamicResource BackgroundToneColor}" />
-    <SolidColorBrush x:Key="GamesListPanelBrush" Color="{DynamicResource GamesListPanelColor}" />
+    <SolidColorBrush x:Key="PanelSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#1c1b19" />
-
-    <sys:Double x:Key="FontSize">14</sys:Double>
-    <FontFamily x:Key="FontFamily">Trebuchet MS</FontFamily>
-    <Thickness x:Key="PopupBorderThickness">1</Thickness>
-    <Thickness x:Key="ControlBorderThickness">1</Thickness>
-    <sys:Double x:Key="EllipseBorderThickness">1</sys:Double>
-    <CornerRadius x:Key="ControlCornerRadius">1</CornerRadius>
-
-    <sys:Double x:Key="GameCoverViewRation">1.4</sys:Double>
 
     <LinearGradientBrush  x:Key="PopupBackgroundBrush" StartPoint="0.4,0" EndPoint="0.5,1.2" >
         <GradientStop Color="{DynamicResource MainColorDark}" Offset="0"/>

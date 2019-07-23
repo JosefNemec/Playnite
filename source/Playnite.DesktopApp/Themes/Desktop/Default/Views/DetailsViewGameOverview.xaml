@@ -88,7 +88,9 @@
 
                                             <TextBlock Text="{DynamicResource LOCGameDetails}" Margin="0,15,0,10"
                                                        Style="{DynamicResource BaseTextBlockStyle}" />
-                                            <Separator />
+
+                                            <Separator Background="{DynamicResource PanelSeparatorBrush}" />
+                                            
                                             <GridEx Margin="0,5,0,10"
                                                     ColumnCount="2" StarColumns="1"
                                                     RowCount="20" AutoLayoutColumns="2">
@@ -164,8 +166,8 @@
                                         <StackPanel Name="PART_ElemDescription"
                                         DockPanel.Dock="Right" Margin="5,0,5,0">
                                             <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,10"
-                                           Style="{DynamicResource BaseTextBlockStyle}" />
-                                            <Separator />
+                                                       Style="{DynamicResource BaseTextBlockStyle}" />
+                                            <Separator Background="{DynamicResource PanelSeparatorBrush}" />
                                             <HtmlTextView x:Name="PART_HtmlDescription"
                                                           HtmlFontFamily="{DynamicResource FontFamily}"
                                                           HtmlForeground="{DynamicResource TextColor}"
