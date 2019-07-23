@@ -41,6 +41,11 @@ namespace System
 
         public static string RemoveTrademarks(this string str)
         {
+            if (str.IsNullOrEmpty())
+            {
+                return str;
+            }
+
             return Regex.Replace(str, @"[™©®]", string.Empty);
         }
 
