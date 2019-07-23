@@ -32,9 +32,9 @@
         <GradientStop Color="{DynamicResource BackgroundToneColor}" Offset="0.9"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush  x:Key="ExpanderBackgroundBrush" StartPoint="-1,0.5" EndPoint="1.5,1" >
-        <GradientStop Color="{DynamicResource MainColor}" Offset="0"/>
-        <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.9"/>
+    <LinearGradientBrush x:Key="ExpanderBackgroundBrush" StartPoint="-0.1,0.5" EndPoint="1.2,1" >
+        <GradientStop Color="#FF4c4c4c" Offset="0"/>
+        <GradientStop Color="#004c4c4c" Offset="0.7"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.5,-0.2" EndPoint="0.4,1" >

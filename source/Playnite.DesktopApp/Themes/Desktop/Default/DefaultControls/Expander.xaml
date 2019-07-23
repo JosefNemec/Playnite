@@ -12,7 +12,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Padding="{TemplateBinding Padding}" Background="{DynamicResource ExpanderBackgroundBrush}"
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -49,6 +49,7 @@
     </Style>
 
     <Style TargetType="{x:Type Expander}">
+        <Setter Property="Background" Value="{DynamicResource ExpanderBackgroundBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
@@ -58,7 +59,8 @@
                         <ToggleButton BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                                       Style="{DynamicResource ExpanderDownHeaderStyle}"
                                       Padding="{TemplateBinding Padding}"
-                                      MinHeight="25" DockPanel.Dock="Top" Background="Transparent"
+                                      MinHeight="25" DockPanel.Dock="Top"
+                                      Background="{TemplateBinding Background}"
                                       Content="{TemplateBinding Header}"
                                       IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         <Border x:Name="Border" DockPanel.Dock="Top" Visibility="Collapsed"
