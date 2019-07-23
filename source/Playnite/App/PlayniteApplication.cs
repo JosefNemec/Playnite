@@ -111,19 +111,26 @@ namespace Playnite
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
-            var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
             ThemeDescription customTheme = null;
-            if (theme != ThemeManager.DefaultTheme.Name)
+            if (CmdLine.ForceDefaultTheme)
             {
-                customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.DirectoryName == theme);
-                if (customTheme == null)
+                logger.Info("Default theme forced by cmdline.");
+            }
+            else
+            {
+                var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
+                if (theme != ThemeManager.DefaultTheme.Name)
                 {
-                    logger.Error($"Failed to apply theme {theme}, theme not found.");
-                    ThemeManager.SetCurrentTheme(defaultTheme);
-                }
-                else
-                {
-                    ThemeManager.SetCurrentTheme(customTheme);
+                    customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.DirectoryName == theme);
+                    if (customTheme == null)
+                    {
+                        logger.Error($"Failed to apply theme {theme}, theme not found.");
+                        ThemeManager.SetCurrentTheme(defaultTheme);
+                    }
+                    else
+                    {
+                        ThemeManager.SetCurrentTheme(customTheme);
+                    }
                 }
             }
 
