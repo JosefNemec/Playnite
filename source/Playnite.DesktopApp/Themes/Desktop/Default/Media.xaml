@@ -5,26 +5,24 @@
     <BitmapImage x:Key="TrayIcon" UriSource="{ThemeFile 'Images/applogo.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
     <BitmapImage x:Key="TrayIconWhite" UriSource="{ThemeFile 'Images/applogo_black.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
     <BitmapImage x:Key="TrayIconBlack" UriSource="{ThemeFile 'Images/applogo_white.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="AddGameIcon" UriSource="{ThemeFile 'Images/MenuIcons/add.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True" />
-    <BitmapImage x:Key="UpdateDbIcon" UriSource="{ThemeFile 'Images/MenuIcons/refresh.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True" />
-    <BitmapImage x:Key="ExtensionsIcon" UriSource="{ThemeFile 'Images/MenuIcons/script.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
     <BitmapImage x:Key="FullscreenModeIcon" UriSource="{ThemeFile 'Images/applogo.png'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="AboutPlayniteIcon" UriSource="{ThemeFile 'Images/MenuIcons/info.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="FeedbackIcon" UriSource="{ThemeFile 'Images/MenuIcons/feedback.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="ExitIcon" UriSource="{ThemeFile 'Images/MenuIcons/exit.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="SettingsIcon" UriSource="{ThemeFile 'Images/MenuIcons/settings.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
 
-    <BitmapImage x:Key="PlayIcon" UriSource="{ThemeFile 'Images/MenuIcons/start.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="InstallIcon" UriSource="{ThemeFile 'Images/MenuIcons/install.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="LinksIcon" UriSource="{ThemeFile 'Images/MenuIcons/link.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="OpenFolderIcon" UriSource="{ThemeFile 'Images/MenuIcons/folder.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="DesktopShortcutIcon" UriSource="{ThemeFile 'Images/MenuIcons/shortcut.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="AddFavoritesIcon" UriSource="{ThemeFile 'Images/MenuIcons/favorite.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="RemoveFavoritesIcon" UriSource="{ThemeFile 'Images/MenuIcons/favoriteEmpty.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="HideIcon" UriSource="{ThemeFile 'Images/MenuIcons/hideCrosed.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="UnHideIcon" UriSource="{ThemeFile 'Images/MenuIcons/hide.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="EditGameIcon" UriSource="{ThemeFile 'Images/MenuIcons/edit.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
-    <BitmapImage x:Key="RemoveGameIcon" UriSource="{ThemeFile 'Images/MenuIcons/remove.png'}" RenderOptions.BitmapScalingMode="NearestNeighbor" popt:Freeze="True"/>
+    <TextBlock x:Key="AddGameIcon" Text="&#xec3e;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="UpdateDbIcon" Text="&#xefd1;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="AboutPlayniteIcon" Text="&#xef4e;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="ExitIcon" Text="&#xef1d;" FontFamily="{DynamicResource FontIcoFont}" Foreground="Red" FontWeight="Light"/>
+    <TextBlock x:Key="SettingsIcon" Text="&#xefb0;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>   
+    <TextBlock x:Key="PlayIcon" Text="&#xec74;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="InstallIcon" Text="&#xef08;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="LinksIcon" Text="&#xef71;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="OpenFolderIcon" Text="&#xec5b;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="DesktopShortcutIcon" Text="&#xef20;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="AddFavoritesIcon" Text="&#xef25;" FontFamily="{DynamicResource FontIcoFont}" Foreground="Yellow" FontWeight="Light"/>
+    <TextBlock x:Key="RemoveFavoritesIcon" Text="&#xef25;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="HideIcon" Text="&#xef22;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="UnHideIcon" Text="&#xef21;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="EditGameIcon" Text="&#xeded;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="RemoveGameIcon" Text="&#xec53;" FontFamily="{DynamicResource FontIcoFont}" Foreground="Red" FontWeight="Light"/>
 
     <BitmapImage x:Key="DefaultGameIcon" UriSource="{ThemeFile 'Images/applogo_dark.png'}" popt:Freeze="True" />
     <BitmapImage x:Key="DefaultGameCover" UriSource="{ThemeFile 'Images/custom_cover_background.png'}" popt:Freeze="True" />
