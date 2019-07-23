@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Windows.Media.Imaging;
+﻿using Playnite.Common;
+using Playnite.Common.Web;
 using Playnite.Emulators;
 using Playnite.SDK;
-using Playnite.SDK.Models;
 using Playnite.SDK.Metadata;
-using Playnite.Common;
-using Playnite.Settings;
+using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
-using System.Net;
-using Playnite.Common.Web;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Windows.Media.Imaging;
 
 namespace Playnite.Database
 {
     public partial class GameDatabase : IGameDatabase
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private static readonly ILogger logger = LogManager.GetLogger();
 
         #region Locks
 
@@ -203,7 +202,7 @@ namespace Playnite.Database
 
         internal static void SaveSettingsToDbPath(DatabaseSettings settings, string dbPath)
         {
-            var settingsPath = Path.Combine(dbPath, settingsFileName);            
+            var settingsPath = Path.Combine(dbPath, settingsFileName);
             FileSystem.WriteStringToFileSafe(settingsPath, Serialization.ToJson(settings));
         }
 
@@ -241,7 +240,7 @@ namespace Playnite.Database
             {
                 return path;
             }
-        }        
+        }
 
         public void OpenDatabase()
         {
@@ -713,12 +712,13 @@ namespace Playnite.Database
         public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
         {
             var addedGames = new List<Game>();
-            foreach (var newGame in library.GetGames())
+            var libraryGames = library.GetGames().ToList();
+            foreach (var newGame in libraryGames)
             {
                 var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                 if (existingGame == null)
                 {
-                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+                    logger.Info($"Adding new game {newGame.GameId} from {library.Name} plugin");
                     addedGames.Add(ImportGame(newGame, library.Id));
                 }
                 else
@@ -754,7 +754,18 @@ namespace Playnite.Database
                 }
             }
 
-            return addedGames;        
+            // Set the uninstalled property for games that were removed
+            foreach (var game in Games.Where(g => g.PluginId == library.Id && g.IsInstalled))
+            {
+                var isGameInstalled = libraryGames.Any(lg => lg.GameId == game.GameId && lg.IsInstalled);
+                if (game.IsInstalled != isGameInstalled)
+                {
+                    game.IsInstalled = isGameInstalled;
+                    Games.Update(game);
+                }
+            }
+
+            return addedGames;
         }
     }
 }
