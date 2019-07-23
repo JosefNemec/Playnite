@@ -195,6 +195,7 @@
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 공식 스토어</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">공식 스토어 > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">어떤 필드를 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하세요.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">스토어:
 공식 스토어의 데이터만을 사용합니다.
     
