@@ -23,7 +23,7 @@ namespace Playnite.Controls
     {
         internal Storyboard mainAnim;
         internal Storyboard stateAnim;
-        internal Storyboard borderDarkenOut;
+        internal Storyboard BorderDarkenOut;
 
         // TODO rewrite all of this to something more sane
 
@@ -32,21 +32,24 @@ namespace Playnite.Controls
             InitializeComponent();
             mainAnim = (Storyboard)TryFindResource("Anim");            
             stateAnim = (Storyboard)TryFindResource("Anim2");
-            borderDarkenOut = (Storyboard)TryFindResource("BorderDarkenOut");
-            borderDarkenOut.Completed += BorderDarkenOut_Completed;
+            BorderDarkenOut = (Storyboard)TryFindResource("BorderDarkenOut");
+            BorderDarkenOut.Completed += BorderDarkenOut_Completed;
             stateAnim.Completed += stateAnim_Completed;
         }
 
         private void BorderDarkenOut_Completed(object sender, EventArgs e)
         {
-            BorderDarken.Opacity = 0;
+            if (MainImage.Source == null)
+            {
+                BorderDarken.Opacity = 0;
+            }
         }
 
         private void stateAnim_Completed(object sender, EventArgs e)
         {
             if (MainImage.Source == null)
             {
-                borderDarkenOut.Begin();                
+                BorderDarkenOut.Begin();                
             }
         }
 
@@ -98,6 +101,7 @@ namespace Playnite.Controls
 
             control.StagingImage.Visibility = Visibility.Visible;
             control.BorderDarken.Opacity = 1;
+            control.BorderDarkenOut.Stop();
             if (oldSource != null)
             {
                 control.StagingImage.Source = oldSource;
