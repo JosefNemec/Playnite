@@ -195,6 +195,7 @@ Tuottaa tuloksen: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Virallinen kauppa</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Virallinen kauppa > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Valitse kentät jotka Playniten tulisi automaattisesti täyttää ja mitä lähteitä datan hakemiseen tulisi käyttää.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Store:
 Käytä vain virallisen kaupan dataa.
     
