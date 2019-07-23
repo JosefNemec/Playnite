@@ -189,6 +189,7 @@ Eredménye: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > eredeti áruház</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Eredeti áruház > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Kérem válassza ki mely mezőket frissítse Playnite automatikusan, és milyen forrásból.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Áruház:
 Csak eredeti áruházból tartalmazó adatokat.
     
