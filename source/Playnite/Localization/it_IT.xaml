@@ -195,6 +195,7 @@ Risultati in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Negozio ufficiale</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Negozio ufficiale > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selezionare quali campi dovrebbero essere automaticamente popolati da Playnite e da quali fonti dovrebbero essere usati per ricavare i dati.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Si prega di considerare di cliccare sul logo sopra e di contribuire agli aggiornamenti al database igdb.com per migliorare l'uso dei dati da Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Negozio:
 Usare soltanto i dati del negozio ufficiale.
     
