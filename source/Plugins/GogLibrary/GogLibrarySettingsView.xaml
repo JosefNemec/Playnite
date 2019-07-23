@@ -9,7 +9,7 @@
              xmlns:pcmd="clr-namespace:Playnite.Commands"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
-    
+
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White" />
@@ -28,12 +28,17 @@
                   IsChecked="{Binding ImportInstalledGames}"
                   Content="{DynamicResource LOCSettingsImportInstalledLabel}"/>
 
-        <CheckBox DockPanel.Dock="Top" Name="CheckGOGImportUninstalled"
-                  IsChecked="{Binding ImportUninstalledGames}"
-                  Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>        
-        
+        <CheckBox DockPanel.Dock="Top" Name="CheckGOGConnectAccount"
+                  IsChecked="{Binding ConnectAccount}"
+                  Content="{DynamicResource LOCSettingsConnectAccount}"/>
+
         <StackPanel DockPanel.Dock="Top" Margin="40,5,5,5"
-                   IsEnabled="{Binding IsChecked, ElementName=CheckGOGImportUninstalled}">
+                   IsEnabled="{Binding IsChecked, ElementName=CheckGOGConnectAccount}">
+
+            <CheckBox DockPanel.Dock="Top" Name="CheckGOGImportUninstalled"
+                      IsChecked="{Binding ImportUninstalledGames}"
+                      Margin="0,10,0,0"
+                      Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
 
             <TextBlock Text="{DynamicResource LOCGOGAccountSyncDescription}"
                        Margin="0,10,0,10" TextWrapping="Wrap" />
@@ -44,7 +49,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left" 
                         IsEnabled="{Binding IsChecked, ElementName=RadioGogPrivateAcc}"
-                        Command="{Binding LoginCommand}" Margin="30,5,5,5"/> 
+                        Command="{Binding LoginCommand}" Margin="30,5,5,5"/>
                 <TextBlock VerticalAlignment="Center" Margin="10,5,5,5">
                     <TextBlock.Tag>
                         <PriorityBinding>

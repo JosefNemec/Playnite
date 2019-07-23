@@ -7,21 +7,16 @@ using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace GogLibrary
 {
     public class GogLibrary : LibraryPlugin
     {
-        private ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private const string dbImportMessageId = "goglibImportError";
 
         internal GogLibrarySettings LibrarySettings { get; private set; }
@@ -33,7 +28,7 @@ namespace GogLibrary
 
         internal Tuple<GameAction, List<GameAction>> GetGameTasks(string gameId, string installDir)
         {
-            var gameInfoPath = Path.Combine(installDir, string.Format("goggame-{0}.info", gameId));
+            var gameInfoPath = Path.Combine(installDir, $"goggame-{gameId}.info");
             if (!File.Exists(gameInfoPath))
             {
                 return new Tuple<GameAction, List<GameAction>>(null, null);
@@ -82,7 +77,7 @@ namespace GogLibrary
                 }
 
                 var gameId = match.Groups[1].Value;
-                var game = new GameInfo()
+                var game = new GameInfo
                 {
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     GameId = gameId,
@@ -90,7 +85,7 @@ namespace GogLibrary
                     Name = program.DisplayName,
                     IsInstalled = true
                 };
-   
+
                 var tasks = GetGameTasks(game.GameId, game.InstallDirectory);
                 // Empty play task = DLC
                 if (tasks.Item1 == null)
@@ -121,11 +116,11 @@ namespace GogLibrary
                     throw new Exception("User is not logged in to GOG account.");
                 }
 
-                var accInfo = api.GetAccountInfo();                
+                var accInfo = api.GetAccountInfo();
                 var libGames = api.GetOwnedGames(accInfo);
                 if (libGames == null)
                 {
-                    throw new Exception("Failed to obtain libary data.");
+                    throw new Exception("Failed to obtain library data.");
                 }
 
                 return LibraryGamesToGames(libGames).ToList();
@@ -139,7 +134,7 @@ namespace GogLibrary
             var libGames = api.GetOwnedGamesFromPublicAccount(accountName);
             if (libGames == null)
             {
-                throw new Exception("Failed to obtain libary data.");
+                throw new Exception("Failed to obtain library data.");
             }
 
             return LibraryGamesToGames(libGames).ToList();
@@ -149,12 +144,12 @@ namespace GogLibrary
         {
             foreach (var game in libGames)
             {
-                var newGame = new GameInfo()
+                var newGame = new GameInfo
                 {
                     Source = "GOG",
                     GameId = game.game.id,
                     Name = game.game.title,
-                    Links = new List<Link>()
+                    Links = new List<Link>
                     {
                         new Link("Store", @"https://www.gog.com" + game.game.url)
                     }
@@ -217,14 +212,19 @@ namespace GogLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
+                var libraryGames = LibrarySettings.UsePublicAccount ? GetLibraryGames(LibrarySettings.AccountName) : GetLibraryGames();
+                logger.Debug($"Found {libraryGames.Count} library GOG games.");
+
+                if (!LibrarySettings.ImportUninstalledGames)
+                {
+                    libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                }
+
                 try
                 {
-                    var uninstalled = LibrarySettings.UsePublicAccount ? GetLibraryGames(LibrarySettings.AccountName) : GetLibraryGames();
-                    logger.Debug($"Found {uninstalled.Count} library GOG games.");
-
-                    foreach (var game in uninstalled)
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -239,7 +239,7 @@ namespace GogLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled GOG games.");
+                    logger.Error(e, "Failed to import linked account GOG games details.");
                     importError = e;
                 }
             }

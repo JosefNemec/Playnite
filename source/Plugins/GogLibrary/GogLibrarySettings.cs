@@ -1,21 +1,14 @@
-﻿using Playnite;
+﻿using GogLibrary.Services;
+using Newtonsoft.Json;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Playnite.Commands;
-using Playnite.SDK;
-using GogLibrary.Services;
 
 namespace GogLibrary
 {
     public class GogLibrarySettings : ObservableObject, ISettings
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private GogLibrarySettings editingClone;
         private readonly GogLibrary library;
         private readonly IPlayniteAPI api;
@@ -23,6 +16,8 @@ namespace GogLibrary
         #region Settings
 
         public bool ImportInstalledGames { get; set; } = true;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -41,8 +36,8 @@ namespace GogLibrary
             {
                 using (var view = api.WebViews.CreateOffscreenView())
                 {
-                    var api = new GogAccountClient(view);
-                    return api.GetIsUserLoggedIn();
+                    var gogApi = new GogAccountClient(view);
+                    return gogApi.GetIsUserLoggedIn();
                 }
             }
         }
@@ -112,8 +107,8 @@ namespace GogLibrary
             {
                 using (var view = api.WebViews.CreateView(400, 445))
                 {
-                    var api = new GogAccountClient(view);
-                    api.Login();
+                    var gogApi = new GogAccountClient(view);
+                    gogApi.Login();
                 }
 
                 OnPropertyChanged(nameof(IsUserLoggedIn));
