@@ -191,6 +191,7 @@
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 公式ストア</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">公式ストア > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Playniteによって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">公式ストア:
 公式ストアのデータのみ使用します。
     
