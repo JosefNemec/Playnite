@@ -10,9 +10,8 @@
                 <ControlTemplate TargetType="{x:Type LibraryGridView}">
                     <DockPanel Background="{TemplateBinding Background}"
                                d:DesignWidth="1280" d:DesignHeight="960">
-                        <GameOverview x:Name="PART_ControlGameView" Width="350"
-                                      Style="{StaticResource GridViewGameOverview}"                                            
-                                      DockPanel.Dock="{Settings GridViewDetailsPosition}" />                   
+                        <GridViewGameOverview x:Name="PART_ControlGameView" Width="350"                                           
+                                              DockPanel.Dock="{Settings GridViewDetailsPosition}" />                   
                         <Grid DockPanel.Dock="Left">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />

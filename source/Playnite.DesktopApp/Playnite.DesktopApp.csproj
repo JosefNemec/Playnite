@@ -161,6 +161,8 @@
     <Compile Include="Controls\Views\Library.cs" />
     <Compile Include="Controls\Views\GameOverview.cs" />
     <Compile Include="Controls\Views\BaseGamesView.cs" />
+    <Compile Include="Controls\Views\DetailsViewGameOverview.cs" />
+    <Compile Include="Controls\Views\GridViewGameOverview.cs" />
     <Compile Include="Controls\Views\LibraryGridView.cs" />
     <Compile Include="Controls\Views\FilterPanel.cs" />
     <Compile Include="Controls\Views\LibraryDetailsView.cs" />

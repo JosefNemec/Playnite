@@ -29,8 +29,7 @@
                                 </DataTemplate>
                             </ExtendedListBox.ItemTemplate>
                         </ExtendedListBox>
-                        <GameOverview x:Name="PART_ControlGameView" DockPanel.Dock="Left"
-                                      Style="{StaticResource DetailsViewGameOverview}" />
+                        <DetailsViewGameOverview x:Name="PART_ControlGameView" DockPanel.Dock="Left" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

@@ -71,8 +71,9 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageIcon", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
-    public class GameOverview : Control
+    public abstract class GameOverview : Control
     {
+        private readonly ViewType viewType;
         private readonly DesktopAppViewModel mainModel;
 
         private FrameworkElement ElemPlayTime;
@@ -123,11 +124,11 @@ namespace Playnite.DesktopApp.Controls.Views
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GameOverview), new FrameworkPropertyMetadata(typeof(GameOverview)));
         }
 
-        public GameOverview() : this(DesktopApplication.Current?.MainModel)
+        public GameOverview(ViewType viewType) : this(viewType, DesktopApplication.Current?.MainModel)
         {
         }
 
-        public GameOverview(DesktopAppViewModel mainModel)
+        public GameOverview(ViewType viewType, DesktopAppViewModel mainModel)
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
@@ -139,7 +140,20 @@ namespace Playnite.DesktopApp.Controls.Views
                 this.mainModel = mainModel;
             }
 
+            this.viewType = viewType;
             this.mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
+            this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+        }
+
+        private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewSettings.GamesViewType))
+            {
+                if (ImageBackground != null)
+                {
+                    SetBackgroundBinding();
+                }
+            }
         }
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -191,15 +205,19 @@ namespace Playnite.DesktopApp.Controls.Views
             if (ButtonMoreActions != null)
             {
                 LeftClickContextMenuBehavior.SetEnabled(ButtonMoreActions, true);
-                ButtonMoreActions.ContextMenu = new GameMenu()
+
+                if (!DesignerProperties.GetIsInDesignMode(this))
                 {
-                    ShowStartSection = false,
-                    Placement = PlacementMode.Bottom
-                };
-                BindingTools.SetBinding(ButtonMoreActions.ContextMenu,
-                    Button.DataContextProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGame));
+                    ButtonMoreActions.ContextMenu = new GameMenu(mainModel)
+                    {
+                        ShowStartSection = false,
+                        Placement = PlacementMode.Bottom
+                    };
+                    BindingTools.SetBinding(ButtonMoreActions.ContextMenu,
+                        Button.DataContextProperty,
+                        mainModel,
+                        nameof(DesktopAppViewModel.SelectedGame));
+                }
             }
 
             HtmlDescription = Template.FindName("PART_HtmlDescription", this) as HtmlTextView;
@@ -405,7 +423,8 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void SetBackgroundBinding()
         {
-            if (mainModel.AppSettings.DetailsVisibility.BackgroundImage)
+            if (mainModel.AppSettings.DetailsVisibility.BackgroundImage &&
+                mainModel.AppSettings.ViewSettings.GamesViewType == viewType)
             {
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,

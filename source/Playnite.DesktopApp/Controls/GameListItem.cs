@@ -68,11 +68,14 @@ namespace Playnite.DesktopApp.Controls
                     nameof(GamesCollectionViewEntry.Game));
                 PanelHost.InputBindings.Add(mBinding);
 
-                PanelHost.ContextMenu = new GameMenu();
-                BindingTools.SetBinding(PanelHost.ContextMenu,
-                    Button.DataContextProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGames));
+                if (!DesignerProperties.GetIsInDesignMode(this))
+                {
+                    PanelHost.ContextMenu = new GameMenu(mainModel);
+                    BindingTools.SetBinding(PanelHost.ContextMenu,
+                        Button.DataContextProperty,
+                        mainModel,
+                        nameof(DesktopAppViewModel.SelectedGames));
+                }
             }
 
             ImageIcon = Template.FindName("PART_ImageIcon", this) as Image;

@@ -4,10 +4,10 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     mc:Ignorable="d">
 
-    <Style x:Key="DetailsViewGameOverview" TargetType="{x:Type GameOverview}">        
+    <Style TargetType="{x:Type DetailsViewGameOverview}">        
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type GameOverview}">
+                <ControlTemplate TargetType="{x:Type DetailsViewGameOverview}">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                   VerticalScrollBarVisibility="Auto"
                                   Style="{DynamicResource DetailsScrollViewer}"
