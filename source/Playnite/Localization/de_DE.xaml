@@ -300,7 +300,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Schaltfläche für Steam-Freunde anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Hintergrundbild des Spiels als Fensterhintergrund verwenden</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Hintergrund weichzeichnen</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Hintergrund verdunkeln</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Hintergrund abdunkeln</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Theme-Profil</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Vollbild-Theme</sys:String>
