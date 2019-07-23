@@ -136,7 +136,6 @@
     <Compile Include="Units.cs" />
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HttpDownloader.cs" />
-    <Compile Include="WrappingStream.cs" />
     <Compile Include="Xaml.cs" />
   </ItemGroup>
   <ItemGroup>

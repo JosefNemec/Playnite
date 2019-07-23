@@ -209,6 +209,56 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.CoverImage) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility BackgroundVisibility
+        {
+            get => (settings.DetailsVisibility.BackgroundImage) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility IconVisibility
+        {
+            get => (settings.DetailsVisibility.Icon) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility AgeRatingVisibility
+        {
+            get => (settings.DetailsVisibility.AgeRating && game.AgeRating.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility SeriesVisibility
+        {
+            get => (settings.DetailsVisibility.Series && game.Series.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility SourceVisibility
+        {
+            get => (settings.DetailsVisibility.Source && game.Source.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility RegionVisibility
+        {
+            get => (settings.DetailsVisibility.Region && game.Region.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility VersionVisibility
+        {
+            get => (settings.DetailsVisibility.Version && !game.Version.IsNullOrEmpty()) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility CommunityScoreVisibility
+        {
+            get => (settings.DetailsVisibility.CommunityScore && game.CommunityScore != null) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility CriticScoreVisibility
+        {
+            get => (settings.DetailsVisibility.CriticScore && game.CriticScore != null) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility UserScoreVisibility
+        {
+            get => (settings.DetailsVisibility.UserScore && game.UserScore != null) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         private GamesCollectionViewEntry game;
         public GamesCollectionViewEntry Game
         {
@@ -281,6 +331,46 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<DatabaseObject>((filter) =>
             {
                 SetFilter(filter, GameField.Tags);
+            });
+        }
+
+        public RelayCommand<DatabaseObject> SetAgeRatingCommand
+        {
+            get => new RelayCommand<DatabaseObject>((filter) =>
+            {
+                SetFilter(filter, GameField.AgeRating);
+            });
+        }
+
+        public RelayCommand<DatabaseObject> SetSeriesFilterCommand
+        {
+            get => new RelayCommand<DatabaseObject>((filter) =>
+            {
+                SetFilter(filter, GameField.Series);
+            });
+        }
+
+        public RelayCommand<DatabaseObject> SetSourceFilterCommand
+        {
+            get => new RelayCommand<DatabaseObject>((filter) =>
+            {
+                SetFilter(filter, GameField.Source);
+            });
+        }
+
+        public RelayCommand<DatabaseObject> SetRegionFilterCommand
+        {
+            get => new RelayCommand<DatabaseObject>((filter) =>
+            {
+                SetFilter(filter, GameField.Region);
+            });
+        }
+
+        public RelayCommand<string> SetVersionFilterCommand
+        {
+            get => new RelayCommand<string>((filter) =>
+            {
+                SetVersionFilter(filter);
             });
         }
 
@@ -425,6 +515,18 @@ namespace Playnite.DesktopApp.ViewModels
                 case GameField.Tags:
                     settings.FilterSettings.Tag = filter;
                     break;
+                case GameField.AgeRating:
+                    settings.FilterSettings.AgeRating = filter;
+                    break;
+                case GameField.Series:
+                    settings.FilterSettings.Series = filter;
+                    break;
+                case GameField.Region:
+                    settings.FilterSettings.Region = filter;
+                    break;
+                case GameField.Source:
+                    settings.FilterSettings.Source = filter;
+                    break;
                 default:
                     break;
             }
@@ -438,6 +540,15 @@ namespace Playnite.DesktopApp.ViewModels
             if (date != null)
             {
                 settings.FilterSettings.ReleaseYear = new StringFilterItemProperites(date.Value.Year.ToString());
+                settings.FilterPanelVisible = true;
+            }
+        }
+
+        public void SetVersionFilter(string version)
+        {
+            if (!version.IsNullOrEmpty())
+            {
+                settings.FilterSettings.Version = version;
                 settings.FilterPanelVisible = true;
             }
         }

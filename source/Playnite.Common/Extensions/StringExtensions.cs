@@ -39,8 +39,13 @@ namespace System
             return newName;
         }
 
-        public static string RemoveTrademarks(string str)
+        public static string RemoveTrademarks(this string str)
         {
+            if (str.IsNullOrEmpty())
+            {
+                return str;
+            }
+
             return Regex.Replace(str, @"[™©®]", string.Empty);
         }
 

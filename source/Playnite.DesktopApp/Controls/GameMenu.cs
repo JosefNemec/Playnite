@@ -1,4 +1,5 @@
 ﻿using Playnite.Common;
+using Playnite.DesktopApp.Markup;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -118,10 +119,26 @@ namespace Playnite.DesktopApp.Controls
 
         private static object GetIcon(string iconName)
         {
-            var resource = ResourceProvider.GetResource(iconName) as BitmapImage;
-            var image = new Image() { Source = resource };
-            RenderOptions.SetBitmapScalingMode(image, RenderOptions.GetBitmapScalingMode(resource));
-            return image;
+            var resource = ResourceProvider.GetResource(iconName);
+            if (resource != null)
+            {
+                if (resource is string stringIcon)
+                {
+                    return Images.GetImageFromFile(ThemeFile.GetFilePath(stringIcon));
+                }
+                else if (resource is BitmapImage bitmap)
+                {
+                    var image = new Image() { Source = bitmap };
+                    RenderOptions.SetBitmapScalingMode(image, RenderOptions.GetBitmapScalingMode(bitmap));
+                    return image;
+                }
+                else if (resource is TextBlock textIcon)
+                {
+                    return textIcon;
+                }
+            }
+
+            return null;
         }
 
         private void GameMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

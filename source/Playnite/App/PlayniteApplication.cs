@@ -22,7 +22,6 @@ using Playnite.Common;
 using System.ComponentModel;
 using Playnite.Windows;
 using Polly;
-using CommandLine;
 
 namespace Playnite
 {
@@ -60,32 +59,23 @@ namespace Playnite
         public GameDatabase Database { get; set; }
         public PlayniteAPI Api { get; set; }
         public GameControllerFactory Controllers { get; set; }
-        public CmdLineOptions CmdLine { get; set; } = new CmdLineOptions();
+        public CmdLineOptions CmdLine { get; set; }
 
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
 
-        public PlayniteApplication(Application nativeApp, ApplicationMode mode, string defaultThemeName)
+        public PlayniteApplication(
+            Application nativeApp,
+            ApplicationMode mode,
+            string defaultThemeName,
+            CmdLineOptions cmdLine)
         {
             if (Current != null)
             {
                 throw new Exception("Only one application instance is allowed.");
             }
 
-            var parsed = Parser.Default.ParseArguments<CmdLineOptions>(Environment.GetCommandLineArgs());
-            if (parsed is Parsed<CmdLineOptions> options)
-            {
-                CmdLine = options.Value;
-            }
-            else if (parsed is NotParsed<CmdLineOptions> notParsed)
-            {
-                logger.Error("Failed to parse cmdline arguments:");
-                foreach (var error in notParsed.Errors)
-                {
-                    logger.Error(error.ToString());
-                }                    
-            }
-
+            CmdLine = cmdLine;
             Mode = mode;
             Current = this;
             CurrentNative = nativeApp;
@@ -121,19 +111,26 @@ namespace Playnite
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
-            var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
             ThemeDescription customTheme = null;
-            if (theme != ThemeManager.DefaultTheme.Name)
+            if (CmdLine.ForceDefaultTheme)
             {
-                customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.DirectoryName == theme);
-                if (customTheme == null)
+                logger.Info("Default theme forced by cmdline.");
+            }
+            else
+            {
+                var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
+                if (theme != ThemeManager.DefaultTheme.Name)
                 {
-                    logger.Error($"Failed to apply theme {theme}, theme not found.");
-                    ThemeManager.SetCurrentTheme(defaultTheme);
-                }
-                else
-                {
-                    ThemeManager.SetCurrentTheme(customTheme);
+                    customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.DirectoryName == theme);
+                    if (customTheme == null)
+                    {
+                        logger.Error($"Failed to apply theme {theme}, theme not found.");
+                        ThemeManager.SetCurrentTheme(defaultTheme);
+                    }
+                    else
+                    {
+                        ThemeManager.SetCurrentTheme(customTheme);
+                    }
                 }
             }
 
@@ -318,7 +315,7 @@ namespace Playnite
         public void ConfigureApplication()
         {
             HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
-            if (AppSettings.DisableHwAcceleration)
+            if (AppSettings.DisableHwAcceleration || CmdLine.ForceSoftwareRender)
             {
                 logger.Info("Enabling software rendering.");
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;

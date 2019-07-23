@@ -1,18 +1,27 @@
-﻿using System;
+﻿using Playnite.Extensions.Markup;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using TheArtOfDev.HtmlRenderer.WPF;
 
-namespace Playnite.Behaviors
+namespace Playnite.Controls
 {
-    /// <summary>
-    /// https://rachel53461.wordpress.com/2011/09/17/wpf-grids-rowcolumn-count-properties/
-    /// </summary>
-    public class GridBehaviors
+    public class GridEx : Grid
     {
+
         #region RowCount Property
 
         /// <summary>
@@ -20,8 +29,8 @@ namespace Playnite.Behaviors
         /// Default Height is Auto
         /// </summary>
         public static readonly DependencyProperty RowCountProperty =
-            DependencyProperty.RegisterAttached(
-                "RowCount", typeof(int), typeof(GridBehaviors),
+            DependencyProperty.Register(
+                "RowCount", typeof(int), typeof(GridEx),
                 new PropertyMetadata(-1, RowCountChanged));
 
         // Get
@@ -62,8 +71,8 @@ namespace Playnite.Behaviors
         /// Default Width is Auto
         /// </summary>
         public static readonly DependencyProperty ColumnCountProperty =
-            DependencyProperty.RegisterAttached(
-                "ColumnCount", typeof(int), typeof(GridBehaviors),
+            DependencyProperty.Register(
+                "ColumnCount", typeof(int), typeof(GridEx),
                 new PropertyMetadata(-1, ColumnCountChanged));
 
         // Get
@@ -104,8 +113,8 @@ namespace Playnite.Behaviors
         /// Can set on multiple Rows
         /// </summary>
         public static readonly DependencyProperty StarRowsProperty =
-            DependencyProperty.RegisterAttached(
-                "StarRows", typeof(string), typeof(GridBehaviors),
+            DependencyProperty.Register(
+                "StarRows", typeof(string), typeof(GridEx),
                 new PropertyMetadata(string.Empty, StarRowsChanged));
 
         // Get
@@ -139,8 +148,8 @@ namespace Playnite.Behaviors
         /// Can set on multiple Columns
         /// </summary>
         public static readonly DependencyProperty StarColumnsProperty =
-            DependencyProperty.RegisterAttached(
-                "StarColumns", typeof(string), typeof(GridBehaviors),
+            DependencyProperty.Register(
+                "StarColumns", typeof(string), typeof(GridEx),
                 new PropertyMetadata(string.Empty, StarColumnsChanged));
 
         // Get
@@ -167,6 +176,47 @@ namespace Playnite.Behaviors
 
         #endregion
 
+        public static readonly DependencyProperty AutoLayoutColumnsProperty =
+            DependencyProperty.Register(
+                "AutoLayoutColumns", typeof(int), typeof(GridEx),
+                new PropertyMetadata(-1, AutoLayoutColumnsChanged));
+
+        public static int GetAutoLayoutColumns(DependencyObject obj)
+        {
+            return (int)obj.GetValue(AutoLayoutColumnsProperty);
+        }
+
+        public static void SetAutoLayoutColumns(DependencyObject obj, int value)
+        {
+            obj.SetValue(AutoLayoutColumnsProperty, value);
+        }
+
+        public static void AutoLayoutColumnsChanged(
+            DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            ((GridEx)obj).ArrangeChildren();
+        }
+
+        public GridEx() : base()
+        {
+        }
+
+        internal void ArrangeChildren()
+        {
+            var columns = GetAutoLayoutColumns(this);
+            if (columns == -1)
+            {
+                return;
+            }
+
+            for (int i = 0; i < Children.Count; i++)
+            {
+                var elem = Children[i];
+                SetColumn(elem, i % columns);
+                SetRow(elem, i / columns);
+            }
+        }
+
         private static void SetStarColumns(Grid grid)
         {
             string[] starColumns =
@@ -191,6 +241,12 @@ namespace Playnite.Behaviors
                     grid.RowDefinitions[i].Height =
                         new GridLength(1, GridUnitType.Star);
             }
+        }
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            ArrangeChildren();
+            return base.MeasureOverride(constraint);
         }
     }
 }

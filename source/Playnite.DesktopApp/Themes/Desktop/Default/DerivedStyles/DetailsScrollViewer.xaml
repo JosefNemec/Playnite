@@ -1,11 +1,5 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    mc:Ignorable="d">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="DetailsScrollViewer" TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Template">
@@ -42,13 +36,6 @@
             <Trigger Property="DataContext" Value="{x:Null}">
                 <Setter Property="Visibility" Value="Collapsed" />
             </Trigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{pmrk:Settings ShowBackgroundImage}" Value="True" />
-                    <Condition Binding="{pmrk:Settings StrechBackgroundImage}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource PanelDimmingBrush}" />
-            </MultiDataTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

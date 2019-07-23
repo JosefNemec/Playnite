@@ -49,7 +49,8 @@
             </DockPanel>
         </Border>
         
-        <TabControl BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+        <TabControl BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
+                    Name="TabControlMain">
             <TabItem Header="{DynamicResource LOCSettingsLabel}">
                 <DockPanel>
                     <ListBox DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
@@ -283,21 +284,37 @@
                                           Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
                                           Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
-                                          Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImage}" Margin="0,15,0,0"
-                                          Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImage}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImageOnWindow}" Margin="25,15,0,0"
-                                          Name="CheckShowBackgroundImageOnWindow" IsChecked="{Binding Settings.StrechBackgroundImage}"
-                                          IsEnabled="{Binding Settings.ShowBackgroundImage}"/>                                
+                                <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundWindowImage}" Margin="0,15,0,0"
+                                          Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImageOnWindow}"/>
+                                <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
+                                            IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
+                                    <CheckBox Content="{DynamicResource LOCSettingsBlurWindowBackgrounImage}" 
+                                              IsChecked="{Binding Settings.BlurWindowBackgroundImage}"/>
+                                    <Slider Minimum="0" Maximum="100"
+                                            Value="{Binding Settings.BackgroundImageBlurAmount}"
+                                            VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
+                                            IsEnabled="{Binding Settings.BlurWindowBackgroundImage}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
+                                            IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
+                                    <CheckBox Content="{DynamicResource LOCSettingsDarkenWindowBackghrounImage}" 
+                                              IsChecked="{Binding Settings.DarkenWindowBackgroundImage}"/>
+                                    <Slider Minimum="0" Maximum="1"
+                                            Value="{Binding Settings.BackgroundImageDarkAmount}"
+                                            VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
+                                            IsEnabled="{Binding Settings.DarkenWindowBackgroundImage}" />
+                                </StackPanel>
+
+                                <CheckBox Content="{DynamicResource LOCSettingsShowBackImageOnGridView}" Margin="25,15,0,0"
+                                          IsChecked="{Binding Settings.ShowBackImageOnGridView}"
+                                          IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}"/>
                             </StackPanel>
                         </TabItem>
 
                         <!-- Appearance Advanced -->
                         <TabItem>
                             <StackPanel>
-                                <Grid pbeh:GridBehaviors.ColumnCount="2"
-                                      pbeh:GridBehaviors.RowCount="12">                                    
+                                <controls:GridEx ColumnCount="2" RowCount="12">                                    
                                     <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
                                                     ContentStringFormat="{}{0} *"
                                                     Grid.Column="0" Grid.Row="0"
@@ -338,7 +355,10 @@
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
-                                </Grid>                                
+                                </controls:GridEx>
+                                
+                                <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
+                                          Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
                             </StackPanel>
                         </TabItem>
 
@@ -347,8 +367,14 @@
                             <StackPanel>
                                 <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
                                 <UniformGrid Columns="3" VerticalAlignment="Top">
+                                    <CheckBox Content="{DynamicResource LOCGameIconTitle}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Icon}"
+                                              Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCGameCoverTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.CoverImage}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCGameBackgroundTitle}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.BackgroundImage}"
                                               Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCTimePlayed}"
                                               IsChecked="{Binding Settings.DetailsVisibility.PlayTime}"
@@ -382,6 +408,30 @@
                                               Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCTagLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Tags}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCAgeRatingLabel}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.AgeRating}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCSeriesLabel}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Series}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCRegionLabel}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Region}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCSourceLabel}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Source}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCVersionLabel}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Version}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCCommunityScore}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.CommunityScore}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCCriticScore}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.CriticScore}"
+                                              Margin="0,10,0,0"/>
+                                    <CheckBox Content="{DynamicResource LOCUserScore}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.UserScore}"
                                               Margin="0,10,0,0"/>
                                     <CheckBox Content="{DynamicResource LOCLinksLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Links}"
@@ -471,8 +521,7 @@
                                 <Separator />
 
 
-                                <Grid pbeh:GridBehaviors.ColumnCount="2"
-                                      pbeh:GridBehaviors.RowCount="4"
+                                <controls:GridEx ColumnCount="2" RowCount="4"
                                       Margin="0,10,0,0">
                                     <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
                                                VerticalAlignment="Center" Margin="0,10,0,10"
@@ -526,7 +575,7 @@
                                                            HorizontalAlignment="Left" VerticalAlignment="Center"
                                                            Value="{Binding Settings.GridItemMargin}"
                                                            Grid.Column="1" Grid.Row="3"/>
-                                </Grid>
+                                </controls:GridEx>
                             </StackPanel>
                         </TabItem>
 
@@ -652,10 +701,8 @@
 
             <TabItem Header="{DynamicResource LOCLibraries}">
                 <DockPanel>
-                    <ListBox ItemsSource="{Binding LibraryPluginSettings}"
-                              Name="TreeLibraryPlugins" MinWidth="140"
-                              SelectedIndex="0"
-                              BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">       
+                    <ListBox Name="TreeLibraryPlugins" MinWidth="140"                              
+                             BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">       
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value.Name}" />
@@ -666,6 +713,16 @@
                                 <Setter Property="Padding" Value="5" />
                             </Style>
                         </ListBox.ItemContainerStyle>
+                        <ListBox.Style>
+                            <Style TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedIndex, ElementName=TabControlMain}" Value="1">
+                                        <Setter Property="ItemsSource" Value="{Binding LibraryPluginSettings}" />
+                                        <Setter Property="SelectedIndex" Value="0" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Style>
                     </ListBox>
                     <ScrollViewer DockPanel.Dock="Left">
                         <ContentControl Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"
@@ -677,10 +734,8 @@
             <TabItem Header="{DynamicResource LOCPlugins}"
                      Visibility="{Binding AnyGenericPluginSettings, Converter={pcon:BooleanToVisibilityConverter}}">
                 <DockPanel>
-                    <ListBox ItemsSource="{Binding GenericPluginSettings}"
-                              Name="TreeGenericPlugins" MinWidth="140"
-                              SelectedIndex="0"
-                              BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+                    <ListBox Name="TreeGenericPlugins" MinWidth="140"
+                             BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value.Name}" />
@@ -691,6 +746,16 @@
                                 <Setter Property="Padding" Value="5" />
                             </Style>
                         </ListBox.ItemContainerStyle>
+                        <ListBox.Style>
+                            <Style TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedIndex, ElementName=TabControlMain}" Value="2">
+                                        <Setter Property="ItemsSource" Value="{Binding GenericPluginSettings}" />
+                                        <Setter Property="SelectedIndex" Value="0" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Style>
                     </ListBox>
                     <ContentControl DockPanel.Dock="Left" Margin="20"
                                     Content="{Binding SelectedItem.Value.View, ElementName=TreeGenericPlugins}"/>

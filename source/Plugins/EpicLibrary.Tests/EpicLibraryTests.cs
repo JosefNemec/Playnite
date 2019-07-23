@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
+using Playnite.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,7 @@ namespace EpicLibrary.Tests
     {
         public static EpicLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            return new EpicLibrary(api.Object);
+            return new EpicLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]

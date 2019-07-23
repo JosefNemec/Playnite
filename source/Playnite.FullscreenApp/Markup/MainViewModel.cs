@@ -1,5 +1,4 @@
 ﻿using Playnite.FullscreenApp.ViewModels;
-using Playnite.FullscreenApp.ViewModels.DesignData;
 
 namespace Playnite.FullscreenApp.Markup
 {

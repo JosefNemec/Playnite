@@ -25,18 +25,31 @@ namespace EpicLibrary.Models
             public string path;
         }
 
+        public class ReleaseInfo
+        {
+            public string appId;
+            public List<string> platform;
+            public DateTime? dateAdded;
+        }
+
         public string id;
         public string title;
-        public string longDescription;
         public string description;
+        public List<Image> keyImages;
+        public List<Category> categories;
         public string @namespace;
         public string status;
         public DateTime? creationDate;
+        public DateTime? lastModifiedDate;
+        public Dictionary<string, CustomAttribute> customAttributes;
         public string entitlementName;
         public string entitlementType;
         public string itemType;
+        public List<ReleaseInfo> releaseInfo;
+        public string developer;
         public string developerId;
-        public Dictionary<string, CustomAttribute> customAttributes;
-        public List<Category> categories;
+        public bool endOfSupport;
     }
+
+
 }

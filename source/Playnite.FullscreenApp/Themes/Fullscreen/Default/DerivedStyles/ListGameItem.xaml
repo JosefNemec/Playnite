@@ -1,12 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"        
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:pc="clr-namespace:Playnite.Controls;assembly=Playnite"
-                    xmlns:p="clr-namespace:Playnite;assembly=Playnite"
-                    xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     mc:Ignorable="d">
 
     <Style x:Key="ListGameItem" TargetType="ListBoxItem">        
@@ -35,14 +30,15 @@
                                              From="1.06" To="1" Duration="0:0:0.2"/>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Grid Margin="{pmrk:Settings FullscreenItemSpacingMargin}"
-                          RenderTransformOrigin="0.5,0.5">
+                    <Grid Margin="{Settings FullscreenItemSpacingMargin}"
+                          RenderTransformOrigin="0.5,0.5"
+                          d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
                         <Grid.RenderTransform>
                             <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
                         </Grid.RenderTransform>
                         <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                                   Stretch="{pmrk:Settings CoverArtStretch}">
+                                   Stretch="{Settings CoverArtStretch}">
                                 <Image.Source>
                                     <PriorityBinding>
                                         <Binding Path="CoverImageObject" Mode="OneWay" 
@@ -52,7 +48,7 @@
                                 </Image.Source>
                             </Image>
                             <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
-                                       Visibility="{pmrk:Settings Fullscreen.ShowGameTitles}"
+                                       Visibility="{Settings Fullscreen.ShowGameTitles}"
                                        Style="{DynamicResource TextBlockBaseStyle}" FontSize="18"
                                        HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                                        TextAlignment="Center" Padding="5"                                    

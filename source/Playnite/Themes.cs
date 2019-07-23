@@ -96,25 +96,40 @@ namespace Playnite
         {
             var allLoaded = true;
             var loadedXamls = new List<ResourceDictionary>();
-            var xamlFiles = Directory.GetFiles(theme.DirectoryPath, "*.xaml", SearchOption.AllDirectories);
-            foreach (var xamlFile in xamlFiles)
+            var acceptableXamls = new List<string>();
+            var defaultRoot = $"Themes/{mode.GetDescription()}/{DefaultTheme.DirectoryName}/";
+            foreach (var dict in app.Resources.MergedDictionaries)
             {
+                if (dict.Source.OriginalString.StartsWith("Themes") && dict.Source.OriginalString.EndsWith("xaml"))
+                {
+                    acceptableXamls.Add(dict.Source.OriginalString.Replace(defaultRoot, "").Replace('/', '\\'));
+                }
+            }
+
+            foreach (var accXaml in acceptableXamls)
+            {
+                var xamlPath = Path.Combine(theme.DirectoryPath, accXaml);
+                if (!File.Exists(xamlPath))
+                {
+                    continue;
+                }
+
                 try
                 {
-                    var xaml = Xaml.FromFile(xamlFile);
+                    var xaml = Xaml.FromFile(xamlPath);
                     if (xaml is ResourceDictionary xamlDir)
                     {
-                        xamlDir.Source = new Uri(xamlFile, UriKind.Absolute);
+                        xamlDir.Source = new Uri(xamlPath, UriKind.Absolute);
                         loadedXamls.Add(xamlDir as ResourceDictionary);
                     }
                     else
                     {
-                        logger.Error($"Skipping theme file {xamlFile}, it's not resource dictionary.");
+                        logger.Error($"Skipping theme file {xamlPath}, it's not resource dictionary.");
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e, $"Failed to load xaml {xamlFiles}");
+                    logger.Error(e, $"Failed to load xaml {xamlPath}");
                     allLoaded = false;
                     break;
                 }

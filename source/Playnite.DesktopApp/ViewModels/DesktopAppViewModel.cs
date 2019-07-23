@@ -71,7 +71,7 @@ namespace Playnite.DesktopApp.ViewModels
             get => selectedGame;
             set
             {
-                if (value == selectedGame)
+                if (value == selectedGame && SelectedGameDetails?.Game == value)
                 {
                     return;
                 }

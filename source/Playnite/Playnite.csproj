@@ -200,7 +200,6 @@
     <Compile Include="API\ExtensionDescription.cs" />
     <Compile Include="App\CmdLineOptions.cs" />
     <Compile Include="Behaviors\AnimatedVisibility.cs" />
-    <Compile Include="Behaviors\GridBehaviors.cs" />
     <Compile Include="CefTools.cs" />
     <Compile Include="App\PlayniteApplication.cs" />
     <Compile Include="App\UpdateManifest.cs" />
@@ -218,6 +217,7 @@
     <Compile Include="Controls\FadeImage.xaml.cs">
       <DependentUpon>FadeImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GridEx.cs" />
     <Compile Include="Controls\HtmlTextView.cs" />
     <Compile Include="Controls\VirtualizingGridPanel.cs" />
     <Compile Include="Controls\VirtualizingTilePanel.cs" />

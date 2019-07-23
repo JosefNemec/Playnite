@@ -128,6 +128,7 @@ namespace Playnite
             {
                 indentGameDetails = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CalculatedGameDetailsIndentation));
             }
         }
 
@@ -467,32 +468,92 @@ namespace Playnite
             }
         }
 
-        private bool showBackgroundImage = true;
-        public bool ShowBackgroundImage
+        private bool showBackgroundImageOnWindow = true;
+        public bool ShowBackgroundImageOnWindow
         {
             get
             {
-                return showBackgroundImage;
+                return showBackgroundImageOnWindow;
             }
 
             set
             {
-                showBackgroundImage = value;
+                showBackgroundImageOnWindow = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool strechBackgroundImage = false;
-        public bool StrechBackgroundImage
+        private bool blurWindowBackgroundImage = true;
+        public bool BlurWindowBackgroundImage
         {
             get
             {
-                return strechBackgroundImage;
+                return blurWindowBackgroundImage;
             }
 
             set
             {
-                strechBackgroundImage = value;
+                blurWindowBackgroundImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double backgroundImageBlurAmount = 70;
+        public double BackgroundImageBlurAmount
+        {
+            get
+            {
+                return backgroundImageBlurAmount;
+            }
+
+            set
+            {
+                backgroundImageBlurAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool darkenWindowBackgroundImage = true;
+        public bool DarkenWindowBackgroundImage
+        {
+            get
+            {
+                return darkenWindowBackgroundImage;
+            }
+
+            set
+            {
+                darkenWindowBackgroundImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private float backgroundImageDarkAmount = 0.5f;
+        public float BackgroundImageDarkAmount
+        {
+            get
+            {
+                return backgroundImageDarkAmount;
+            }
+
+            set
+            {
+                backgroundImageDarkAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showBackImageOnGridView = false;
+        public bool ShowBackImageOnGridView
+        {
+            get
+            {
+                return showBackImageOnGridView;
+            }
+
+            set
+            {
+                showBackImageOnGridView = value;
                 OnPropertyChanged();
             }
         }

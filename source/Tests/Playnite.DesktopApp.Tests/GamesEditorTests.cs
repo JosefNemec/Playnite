@@ -268,7 +268,7 @@ namespace Playnite.DesktopApp.Tests
             CollectionAssert.IsEmpty(gameNoCommon.DeveloperIds);
             CollectionAssert.IsEmpty(gameNoCommon.PublisherIds);
             CollectionAssert.IsEmpty(gameNoCommon.CategoryIds);
-            CollectionAssert.AreEqual(null, gameNoCommon.TagIds);
+            CollectionAssert.IsEmpty(gameNoCommon.TagIds);
             Assert.IsNull(gameNoCommon.LastActivity);
             Assert.IsNull(gameNoCommon.Added);
             Assert.AreEqual(gameNoCommon.Playtime, 0);
@@ -284,9 +284,6 @@ namespace Playnite.DesktopApp.Tests
             Assert.IsNull(gameNoCommon.CommunityScore);
             Assert.IsFalse(gameNoCommon.Hidden);
             Assert.IsFalse(gameNoCommon.Favorite);
-
-            // Some common
-            Assert.Fail();
         }
     }
 }

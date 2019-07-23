@@ -8,6 +8,29 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
+    /// Scpecifies game score rating.
+    /// </summary>
+    public enum ScoreRating
+    {
+        /// <summary>
+        /// No score.
+        /// </summary>
+        None,
+        /// <summary>
+        /// Negative rating.
+        /// </summary>
+        Negative,
+        /// <summary>
+        /// Positive rating.
+        /// </summary>
+        Positive,
+        /// <summary>
+        /// Mixed rating.
+        /// </summary>
+        Mixed
+    }
+
+    /// <summary>
     /// Scpecifies rating score groups.
     /// </summary>
     public enum ScoreGroup : int

@@ -11,6 +11,7 @@ using Moq;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
 using Playnite.API;
+using Playnite.Tests;
 
 namespace OriginLibrary.Tests
 {
@@ -19,9 +20,7 @@ namespace OriginLibrary.Tests
     {
         public static OriginLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            api.Setup(a => a.Paths).Returns(new PlaynitePathsAPI());
-            return new OriginLibrary(api.Object);
+            return new OriginLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]

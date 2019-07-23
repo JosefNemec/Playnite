@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Tests;
 using SteamLibrary.Services;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,10 @@ namespace SteamLibrary.Tests
         [Test]
         public void StandardDownloadTest()
         {
-            var api = new Mock<IPlayniteAPI>();
-            var provider = new SteamMetadataProvider(null, new SteamLibrary(api.Object, null), new SteamApiClient());
+            var provider = new SteamMetadataProvider(
+                null,
+                new SteamLibrary(PlayniteTests.GetTestingApi().Object, null),
+                new SteamApiClient());
             var data = provider.GetMetadata(new Game() { GameId = "578080" });
             Assert.IsNotNull(data.GameInfo);
             Assert.IsNotNull(data.Icon);
