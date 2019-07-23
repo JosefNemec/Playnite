@@ -284,8 +284,6 @@
                                           Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
                                           Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
-                                          Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundWindowImage}" Margin="0,15,0,0"
                                           Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImageOnWindow}"/>
                                 <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
@@ -306,6 +304,10 @@
                                             VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
                                             IsEnabled="{Binding Settings.DarkenWindowBackgroundImage}" />
                                 </StackPanel>
+
+                                <CheckBox Content="{DynamicResource LOCSettingsShowBackImageOnGridView}" Margin="25,15,0,0"
+                                          IsChecked="{Binding Settings.ShowBackImageOnGridView}"
+                                          IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}"/>
                             </StackPanel>
                         </TabItem>
 
@@ -353,7 +355,10 @@
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
-                                </controls:GridEx>                                
+                                </controls:GridEx>
+                                
+                                <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
+                                          Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
                             </StackPanel>
                         </TabItem>
 

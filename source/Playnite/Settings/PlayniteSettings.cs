@@ -543,6 +543,21 @@ namespace Playnite
             }
         }
 
+        private bool showBackImageOnGridView = false;
+        public bool ShowBackImageOnGridView
+        {
+            get
+            {
+                return showBackImageOnGridView;
+            }
+
+            set
+            {
+                showBackImageOnGridView = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool downloadMetadataOnImport = true;
         public bool DownloadMetadataOnImport
         {

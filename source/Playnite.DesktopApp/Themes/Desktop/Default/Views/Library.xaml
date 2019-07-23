@@ -18,24 +18,11 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        
+
                         <FadeImage x:Name="PART_ImageBackground"
                                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
-                                   HorizontalAlignment="Center" VerticalAlignment="Top">
-                            <FadeImage.Style>
-                                <Style TargetType="FadeImage">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Settings ViewSettings.GamesViewType}" Value="{x:Static ViewType.List}">
-                                            <Setter Property="Visibility" Value="Hidden" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Settings ViewSettings.GamesViewType}" Value="{x:Static ViewType.Grid}">
-                                            <Setter Property="Visibility" Value="Hidden" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </FadeImage.Style>
-                        </FadeImage>
-                        
+                                   HorizontalAlignment="Center" VerticalAlignment="Top" />
+
                         <MainPanel DockPanel.Dock="Top" Grid.Row="0" />
                         
                         <DockPanel Grid.Row="1">

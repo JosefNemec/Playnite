@@ -65,7 +65,8 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.ShowBackgroundImageOnWindow))
+            if (e.PropertyName == nameof(PlayniteSettings.ShowBackgroundImageOnWindow) ||
+                e.PropertyName == nameof(PlayniteSettings.ShowBackImageOnGridView))
             {
                 SetBackgroundBinding();
             }
@@ -119,7 +120,8 @@ namespace Playnite.DesktopApp.Controls.Views
             }
 
             if (mainModel.AppSettings.ShowBackgroundImageOnWindow &&
-                mainModel.AppSettings.ViewSettings.GamesViewType == ViewType.Details)
+                ((mainModel.AppSettings.ShowBackImageOnGridView && mainModel.AppSettings.ViewSettings.GamesViewType == ViewType.Grid) ||
+                mainModel.AppSettings.ViewSettings.GamesViewType == ViewType.Details))
             {
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,
