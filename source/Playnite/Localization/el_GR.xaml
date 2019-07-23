@@ -191,6 +191,7 @@
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Επίσημο κατάστημα</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Επίσημο κατάστημα > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Επιλέξτε ποια πεδία πρέπει να συμπληρωθούν αυτόματα από το Playnite και ποιες πηγές θα πρέπει να χρησιμοποιηθούν για την απόκτηση των δεδομένων.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Κατάστημα:
 Χρησιμοποιείτε δεδομένα μόνο από το επίσημο κατάστημα.
     
