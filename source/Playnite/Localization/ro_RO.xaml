@@ -193,6 +193,7 @@ Rezultă în: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Magazin Oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Magazin Oficial > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selectați câmpurile dorite pentru ca Playnite să le populeze automat și ce surse vreți să utilizați pentru a obține datele.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Magazin:
 Utilizați numai datele din magazinul oficial.
     
