@@ -282,6 +282,7 @@
     <None Include="Themes\Desktop\DefaultRed\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Resource Include="Resources\igdbicon.png" />
     <Content Include="Themes\Desktop\Default\Fonts\IcoFonts\icofont.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
