@@ -179,6 +179,7 @@
     <sys:String x:Key="LOCMetaSourceIGDBOverStore"></sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB"></sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
