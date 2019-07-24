@@ -1,26 +1,23 @@
 ﻿using Newtonsoft.Json;
 using OriginLibrary.Services;
-using Playnite;
 using Playnite.SDK;
-using Playnite.Commands;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OriginLibrary
 {
     public class OriginLibrarySettings : ObservableObject, ISettings
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private OriginLibrarySettings editingClone;
-        private OriginLibrary library;
-        private IPlayniteAPI api;
+        private readonly OriginLibrary library;
+        private readonly IPlayniteAPI playniteApi;
 
         #region Settings      
 
         public bool ImportInstalledGames { get; set; } = true;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -31,7 +28,7 @@ namespace OriginLibrary
         {
             get
             {
-                using (var view = api.WebViews.CreateOffscreenView())
+                using (var view = playniteApi.WebViews.CreateOffscreenView())
                 {
                     var api = new OriginAccountClient(view);
                     return api.GetIsUserLoggedIn();
@@ -52,10 +49,10 @@ namespace OriginLibrary
         {
         }
 
-        public OriginLibrarySettings(OriginLibrary library, IPlayniteAPI api)
+        public OriginLibrarySettings(OriginLibrary library, IPlayniteAPI playniteApi)
         {
             this.library = library;
-            this.api = api;
+            this.playniteApi = playniteApi;
 
             var settings = library.LoadPluginSettings<OriginLibrarySettings>();
             if (settings != null)
@@ -94,7 +91,7 @@ namespace OriginLibrary
         {
             try
             {
-                using (var view = api.WebViews.CreateView(490, 670))
+                using (var view = playniteApi.WebViews.CreateView(490, 670))
                 {
                     var api = new OriginAccountClient(view);
                     api.Login();

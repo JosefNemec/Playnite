@@ -12,10 +12,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Controls;
 using System.Xml.Linq;
@@ -24,7 +22,7 @@ namespace OriginLibrary
 {
     public class OriginLibrary : LibraryPlugin
     {
-        private ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private const string dbImportMessageId = "originlibImportError";
 
         internal OriginLibrarySettings LibrarySettings { get; private set; }
@@ -44,7 +42,7 @@ namespace OriginLibrary
             var matchPath = Regex.Match(path, @"\[(.*?)\\(.*)\\(.*)\](.*)");
             if (!matchPath.Success)
             {
-                logger.Warn("Uknown path format " + path);
+                logger.Warn("Unknown path format " + path);
                 return string.Empty;
             }
 
@@ -62,7 +60,7 @@ namespace OriginLibrary
                     break;
 
                 default:
-                    throw new Exception("Unknown registr root entry " + root);
+                    throw new Exception("Unknown registry root entry " + root);
             }
 
             var subPath = matchPath.Groups[2].Value.Trim(Path.DirectorySeparatorChar);
@@ -74,7 +72,7 @@ namespace OriginLibrary
                 return string.Empty;
             }
 
-            var keyValue = rootKey.OpenSubKey(subPath).GetValue(key);
+            var keyValue = rootKey.OpenSubKey(subPath)?.GetValue(key);
             if (keyValue == null)
             {
                 return string.Empty;
@@ -131,7 +129,7 @@ namespace OriginLibrary
                 catch (WebException exc) when ((exc.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.NotFound)
                 {
                     logger.Info($"Origin manifest {id} not found on EA server, generating fake manifest.");
-                    var data = new GameLocalDataResponse()
+                    var data = new GameLocalDataResponse
                     {
                         offerId = id,
                         offerType = "Doesn't exists"
@@ -150,12 +148,12 @@ namespace OriginLibrary
         public GameAction GetGamePlayTask(GameLocalDataResponse manifest)
         {
             var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
-            var playAction = new GameAction()
+            var playAction = new GameAction
             {
-                IsHandledByPlugin = true                
+                IsHandledByPlugin = true
             };
 
-            if (string.IsNullOrEmpty(platform.fulfillmentAttributes.executePathOverride))
+            if (string.IsNullOrEmpty(platform?.fulfillmentAttributes.executePathOverride))
             {
                 return null;
             }
@@ -218,14 +216,14 @@ namespace OriginLibrary
                             gameId = match.Groups[1].Value + ":" + match.Groups[2].Value;
                         }
 
-                        var newGame = new GameInfo()
+                        var newGame = new GameInfo
                         {
                             Source = "Origin",
                             GameId = gameId,
                             IsInstalled = true
                         };
 
-                        GameLocalDataResponse localData = null;
+                        GameLocalDataResponse localData;
 
                         try
                         {
@@ -348,7 +346,7 @@ namespace OriginLibrary
                         logger.Error(e, $"Failed to get usage data for {game.offerId}");
                     }
 
-                    games.Add(new GameInfo()
+                    games.Add(new GameInfo
                     {
                         Source = "Origin",
                         GameId = game.offerId,
@@ -408,14 +406,19 @@ namespace OriginLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
                 try
                 {
-                    var uninstalled = GetLibraryGames();
-                    logger.Debug($"Found {uninstalled.Count} library Origin games.");
+                    var libraryGames = GetLibraryGames();
+                    logger.Debug($"Found {libraryGames.Count} library Origin games.");
 
-                    foreach (var game in uninstalled)
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -430,7 +433,7 @@ namespace OriginLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled Origin games.");
+                    logger.Error(e, "Failed to import linked account Origin games details.");
                     importError = e;
                 }
             }

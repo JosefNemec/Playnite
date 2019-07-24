@@ -8,7 +8,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="800">
-    
+
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White" />
@@ -27,12 +27,18 @@
                   IsChecked="{Binding ImportInstalledGames}"
                   Content="{DynamicResource LOCSettingsImportInstalledLabel}"/>
 
-        <CheckBox DockPanel.Dock="Top" Name="CheckOriginImportUninstalled"
-                  IsChecked="{Binding ImportUninstalledGames}"
-                  Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+        <CheckBox DockPanel.Dock="Top" Name="CheckOriginConnectAccount"
+                  IsChecked="{Binding ConnectAccount}"
+                  Content="{DynamicResource LOCSettingsConnectAccount}"/>
 
         <StackPanel DockPanel.Dock="Top" Margin="40,5,5,5"
-                    IsEnabled="{Binding IsChecked, ElementName=CheckOriginImportUninstalled}">
+                    IsEnabled="{Binding IsChecked, ElementName=CheckOriginConnectAccount}">
+
+            <CheckBox DockPanel.Dock="Top" Name="CheckOriginImportUninstalled"
+                      IsChecked="{Binding ImportUninstalledGames}"
+                      Margin="0,10,0,0"
+                      Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+
             <StackPanel Orientation="Horizontal">
                 <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left" Margin="5"
                         Command="{Binding LoginCommand}"/>
