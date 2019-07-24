@@ -279,6 +279,11 @@ namespace SteamLibrary
             return metadata;
         }
 
+        internal string ParseDescription(string description)
+        {
+            return description.Replace("%CDN_HOST_MEDIA_SSL%", "steamcdn-a.akamaihd.net");
+        }
+
         internal GameMetadata GetGameMetadata(GameID gameId)
         {
             var appId = gameId.AppID;
@@ -312,7 +317,7 @@ namespace SteamLibrary
 
             if (downloadedMetadata.StoreDetails != null)
             {
-                gameInfo.Description = downloadedMetadata.StoreDetails.detailed_description;
+                gameInfo.Description = ParseDescription(downloadedMetadata.StoreDetails.detailed_description);
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 gameInfo.ReleaseDate = downloadedMetadata.StoreDetails.release_date.date;
                 gameInfo.CriticScore = downloadedMetadata.StoreDetails.metacritic?.score;
