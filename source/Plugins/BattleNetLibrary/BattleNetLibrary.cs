@@ -17,7 +17,7 @@ namespace BattleNetLibrary
 {
     public class BattleNetLibrary : LibraryPlugin
     {
-        private ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private const string dbImportMessageId = "bnetlibImportError";
         
         internal BattleNetLibrarySettings LibrarySettings { get; private set; }
@@ -58,7 +58,7 @@ namespace BattleNetLibrary
 
         public static GameAction GetGamePlayTask(string id)
         {
-            return new GameAction()
+            return new GameAction
             {
                 Type = GameActionType.URL,
                 Path = $"battlenet://{id}/",
@@ -86,12 +86,12 @@ namespace BattleNetLibrary
                             continue;
                         }
 
-                        var game = new GameInfo()
+                        var game = new GameInfo
                         {
                             GameId = product.ProductId,
                             Source = "Battle.net",
                             Name = product.Name,
-                            PlayAction = new GameAction()
+                            PlayAction = new GameAction
                             {
                                 Type = GameActionType.File,
                                 WorkingDir = ExpandableVariables.InstallationDirectory,
@@ -134,7 +134,7 @@ namespace BattleNetLibrary
                         continue;
                     }
 
-                    var game = new GameInfo()
+                    var game = new GameInfo
                     {
                         GameId = product.ProductId,
                         Source = "Battle.net",
@@ -181,7 +181,7 @@ namespace BattleNetLibrary
                         // To avoid duplicates like multiple WoW accounts
                         if (!games.Any(a => a.GameId == gameInfo.ProductId))
                         {
-                            games.Add(new GameInfo()
+                            games.Add(new GameInfo
                             {
                                 Source = "Battle.net",
                                 GameId = gameInfo.ProductId,
@@ -199,7 +199,7 @@ namespace BattleNetLibrary
                     if (w3Games.Any())
                     {
                         var w3 = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "W3");
-                        games.Add(new GameInfo()
+                        games.Add(new GameInfo
                         {
                             Source = "Battle.net",
                             GameId = w3.ProductId,
@@ -209,7 +209,7 @@ namespace BattleNetLibrary
                         if (w3Games.Count() == 2)
                         {
                             var w3x = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "W3X");
-                            games.Add(new GameInfo()
+                            games.Add(new GameInfo
                             {
                                 Source = "Battle.net",
                                 GameId = w3x.ProductId,
@@ -223,7 +223,7 @@ namespace BattleNetLibrary
                     if (d2Games.Any())
                     {
                         var d2 = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "D2");
-                        games.Add(new GameInfo()
+                        games.Add(new GameInfo
                         {
                             Source = "Battle.net",
                             GameId = d2.ProductId,
@@ -233,7 +233,7 @@ namespace BattleNetLibrary
                         if (d2Games.Count() == 2)
                         {
                             var d2x = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "D2X");
-                            games.Add(new GameInfo()
+                            games.Add(new GameInfo
                             {
                                 Source = "Battle.net",
                                 GameId = d2x.ProductId,
@@ -293,14 +293,19 @@ namespace BattleNetLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
+                var libraryGames = GetLibraryGames();
+                logger.Debug($"Found {libraryGames.Count} library Battle.net games.");
+
+                if (!LibrarySettings.ImportUninstalledGames)
+                {
+                    libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                }
+
                 try
                 {
-                    var uninstalled = GetLibraryGames();
-                    logger.Debug($"Found {uninstalled.Count} library Battle.net games.");
-
-                    foreach (var game in uninstalled)
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -315,11 +320,11 @@ namespace BattleNetLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled Battle.net games.");
+                    logger.Error(e, "Failed to import linked account Battle.net games details.");
                     importError = e;
                 }
             }
-
+            
             if (importError != null)
             {
                 PlayniteApi.Notifications.Add(

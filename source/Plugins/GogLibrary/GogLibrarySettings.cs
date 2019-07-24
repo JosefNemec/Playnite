@@ -11,7 +11,7 @@ namespace GogLibrary
         private readonly ILogger logger = LogManager.GetLogger();
         private GogLibrarySettings editingClone;
         private readonly GogLibrary library;
-        private readonly IPlayniteAPI api;
+        private readonly IPlayniteAPI playniteApi;
 
         #region Settings
 
@@ -34,10 +34,10 @@ namespace GogLibrary
         {
             get
             {
-                using (var view = api.WebViews.CreateOffscreenView())
+                using (var view = playniteApi.WebViews.CreateOffscreenView())
                 {
-                    var gogApi = new GogAccountClient(view);
-                    return gogApi.GetIsUserLoggedIn();
+                    var api = new GogAccountClient(view);
+                    return api.GetIsUserLoggedIn();
                 }
             }
         }
@@ -55,9 +55,9 @@ namespace GogLibrary
         {
         }
 
-        public GogLibrarySettings(GogLibrary library, IPlayniteAPI api)
+        public GogLibrarySettings(GogLibrary library, IPlayniteAPI playniteApi)
         {
-            this.api = api;
+            this.playniteApi = playniteApi;
             this.library = library;
 
             var settings = library.LoadPluginSettings<GogLibrarySettings>();
@@ -89,7 +89,7 @@ namespace GogLibrary
 
             if (ImportUninstalledGames && UsePublicAccount && string.IsNullOrEmpty(AccountName))
             {
-                errors.Add(api.Resources.GetString("LOCSettingsInvalidAccountName"));
+                errors.Add(playniteApi.Resources.GetString("LOCSettingsInvalidAccountName"));
                 allValid = false;
             }
 
@@ -105,10 +105,10 @@ namespace GogLibrary
         {
             try
             {
-                using (var view = api.WebViews.CreateView(400, 445))
+                using (var view = playniteApi.WebViews.CreateView(400, 445))
                 {
-                    var gogApi = new GogAccountClient(view);
-                    gogApi.Login();
+                    var api = new GogAccountClient(view);
+                    api.Login();
                 }
 
                 OnPropertyChanged(nameof(IsUserLoggedIn));

@@ -1,26 +1,23 @@
 ﻿using BattleNetLibrary.Services;
 using Newtonsoft.Json;
-using Playnite;
 using Playnite.SDK;
-using Playnite.Commands;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BattleNetLibrary
 {
     public class BattleNetLibrarySettings : ObservableObject, ISettings
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private BattleNetLibrarySettings editingClone;
-        private BattleNetLibrary library;
-        private IPlayniteAPI api;
+        private readonly BattleNetLibrary library;
+        private readonly IPlayniteAPI playniteApi;
 
         #region Settings      
 
         public bool ImportInstalledGames { get; set; } = true;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -31,7 +28,7 @@ namespace BattleNetLibrary
         {
             get
             {
-                using (var view = api.WebViews.CreateOffscreenView())
+                using (var view = playniteApi.WebViews.CreateOffscreenView())
                 {
                     var api = new BattleNetAccountClient(view);
                     return api.GetIsUserLoggedIn();
@@ -52,10 +49,10 @@ namespace BattleNetLibrary
         {
         }
 
-        public BattleNetLibrarySettings(BattleNetLibrary library, IPlayniteAPI api)
+        public BattleNetLibrarySettings(BattleNetLibrary library, IPlayniteAPI playniteApi)
         {
             this.library = library;
-            this.api = api;
+            this.playniteApi = playniteApi;
 
             var settings = library.LoadPluginSettings<BattleNetLibrarySettings>();
             if (settings != null)
@@ -94,7 +91,7 @@ namespace BattleNetLibrary
         {
             try
             {
-                using (var view = api.WebViews.CreateView(400, 500))
+                using (var view = playniteApi.WebViews.CreateView(400, 500))
                 {
                     var api = new BattleNetAccountClient(view);
                     api.Login();
