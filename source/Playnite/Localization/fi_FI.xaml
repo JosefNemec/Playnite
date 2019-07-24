@@ -302,6 +302,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Käytä pelin taustakuvaa ikkunan taustakuvana</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Sumenna tausta</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Tummenna tausta</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Teema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Teemaprofiili</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Koko näytön teema</sys:String>
