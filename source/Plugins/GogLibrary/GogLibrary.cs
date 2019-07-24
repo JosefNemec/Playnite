@@ -214,16 +214,16 @@ namespace GogLibrary
 
             if (LibrarySettings.ConnectAccount)
             {
-                var libraryGames = LibrarySettings.UsePublicAccount ? GetLibraryGames(LibrarySettings.AccountName) : GetLibraryGames();
-                logger.Debug($"Found {libraryGames.Count} library GOG games.");
-
-                if (!LibrarySettings.ImportUninstalledGames)
-                {
-                    libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
-                }
-
                 try
                 {
+                    var libraryGames = LibrarySettings.UsePublicAccount ? GetLibraryGames(LibrarySettings.AccountName) : GetLibraryGames();
+                    logger.Debug($"Found {libraryGames.Count} library GOG games.");
+
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
                     foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))

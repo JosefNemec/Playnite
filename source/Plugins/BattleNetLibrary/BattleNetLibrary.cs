@@ -295,16 +295,16 @@ namespace BattleNetLibrary
 
             if (LibrarySettings.ConnectAccount)
             {
-                var libraryGames = GetLibraryGames();
-                logger.Debug($"Found {libraryGames.Count} library Battle.net games.");
-
-                if (!LibrarySettings.ImportUninstalledGames)
-                {
-                    libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
-                }
-
                 try
                 {
+                    var libraryGames = GetLibraryGames();
+                    logger.Debug($"Found {libraryGames.Count} library Battle.net games.");
+
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
                     foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))

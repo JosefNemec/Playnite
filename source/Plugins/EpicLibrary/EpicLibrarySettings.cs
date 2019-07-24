@@ -1,31 +1,24 @@
 ﻿using EpicLibrary.Services;
 using Newtonsoft.Json;
-using Playnite;
 using Playnite.SDK;
-using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Media;
 
 namespace EpicLibrary
 {
     public class EpicLibrarySettings : ObservableObject, ISettings
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private EpicLibrarySettings editingClone;
-        private EpicLibrary library;
-        private IPlayniteAPI api;
+        private readonly EpicLibrary library;
+        private readonly IPlayniteAPI api;
 
         #region Settings      
 
         public bool ImportInstalledGames { get; set; } = EpicLauncher.IsInstalled;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
