@@ -291,18 +291,18 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclui Steam, Origin e outros.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Carregamento de imagens assíncrono</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Melhora a suavidade da rolagem nas listas de jogos, mas as imagens podem carregar mais lentamente.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Exibir o nome do jogo quando não houver capa</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Exibir o nome dos jogos no esquema de capas</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">Exibir o ícone dos jogos no esquema de lista</sys:String>
-    <sys:String x:Key="LOCSettingsShowGroupCount">Exibir um contador de itens nas descrições de grupos</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar o nome do jogo quando não houver capa</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar o nome dos jogos no esquema de grade</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Mostrar o ícone dos jogos no esquema de detalhes</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Mostrar um contador de itens nas descrições de grupos</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desabilitar a aceleração de hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use se experienciar travamentos ou problemas com a interface.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Desabilitar ajuste de DPI</sys:String>
-    <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Exibir botão de amigos do Steam</sys:String>
+    <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostrar o botão de amigos do Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Usar a imagem de fundo do jogo como fundo da janela</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Desfocar fundo</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Escurecer fundo</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Mostrar no esquema de grade</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil do tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema em tela cheia</sys:String>
@@ -316,7 +316,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCImportSteamLastActivityLabel">Importar última execução do Steam</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Limpar o cache web</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Pode resolver problemas encontrados ao vincular contas.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">Exibir ícone na bandeja</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Mostrar o ícone na bandeja</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Minimizar para a bandeja</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Fechar para a bandeja</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Ao executar um jogo:</sys:String>
@@ -475,7 +475,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Agrupar por categoria</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Agrupar por plataforma</sys:String>
     <sys:String x:Key="LOCViewType">Esquema</sys:String>
-    <sys:String x:Key="LOCMenuView">Exibir</sys:String>
+    <sys:String x:Key="LOCMenuView">Esquema</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">Painel de navegação</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Painel de filtros</sys:String>
 
@@ -647,7 +647,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCFavoriteGame">Adicionar aos favoritos</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Remover dos favoritos</sys:String>
     <sys:String x:Key="LOCHideGame">Ocultar</sys:String>
-    <sys:String x:Key="LOCUnHideGame">Exibir na biblioteca</sys:String>
+    <sys:String x:Key="LOCUnHideGame">Mostrar na biblioteca</sys:String>
     <sys:String x:Key="LOCEditGame">Editar…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Definir categorias…</sys:String>
     <sys:String x:Key="LOCRemoveGame">Remover</sys:String>
