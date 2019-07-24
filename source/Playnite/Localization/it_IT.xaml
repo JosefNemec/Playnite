@@ -302,6 +302,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Usa l'immagine di sfondo del gioco come sfondo della finestra</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Sfocatura dello sfondo</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Sfondo scuro</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Visualizza griglia</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profilo del tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema Schermo Intero</sys:String>
