@@ -1,33 +1,23 @@
 ﻿using Newtonsoft.Json;
+using Playnite.Common.Web;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
+using SteamKit2;
 using SteamLibrary.Models;
 using SteamLibrary.Services;
-using SteamKit2;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using Playnite;
 using System.Windows;
-using System.Reflection;
-using System.Collections.ObjectModel;
-using Playnite.Common.Web;
+using System.Windows.Controls;
 
 namespace SteamLibrary
 {
     public class SteamLibrary : LibraryPlugin
     {
-        private ILogger logger = LogManager.GetLogger();
-        private readonly Configuration config;
+        private readonly ILogger logger = LogManager.GetLogger();
         private readonly SteamApiClient apiClient = new SteamApiClient();
         private const string dbImportMessageId = "steamlibImportError";
 
@@ -37,7 +27,7 @@ namespace SteamLibrary
         public SteamLibrary(IPlayniteAPI api) : base(api)
         {
             Initialize(api);
-            config = GetPluginConfiguration<Configuration>();
+            var config = GetPluginConfiguration<Configuration>();
             ServicesClient = new SteamServicesClient(config.ServicesEndpoint);
         }
 
@@ -57,7 +47,7 @@ namespace SteamLibrary
 
         internal static GameAction CreatePlayTask(GameID gameId)
         {
-            return new GameAction()
+            return new GameAction
             {
                 Name = "Play",
                 Type = GameActionType.URL,
@@ -85,7 +75,7 @@ namespace SteamLibrary
             }
 
             var gameId = new GameID(kv["appID"].AsUnsignedInteger());
-            var game = new GameInfo()
+            var game = new GameInfo
             {
                 Source = "Steam",
                 GameId = gameId.ToString(),
@@ -122,7 +112,7 @@ namespace SteamLibrary
         internal List<GameInfo> GetInstalledGoldSrcModsFromFolder(string path)
         {
             var games = new List<GameInfo>();
-            var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve"};
+            var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve" };
             var dirInfo = new DirectoryInfo(path);
 
             foreach (var folder in dirInfo.GetDirectories().Where(a => !firstPartyMods.Contains(a.Name)).Select(a => a.FullName))
@@ -177,7 +167,7 @@ namespace SteamLibrary
                 return null;
             }
 
-            var game = new GameInfo()
+            var game = new GameInfo
             {
                 Source = "Steam",
                 GameId = modInfo.GameId.ToString(),
@@ -185,7 +175,7 @@ namespace SteamLibrary
                 InstallDirectory = path,
                 PlayAction = CreatePlayTask(modInfo.GameId),
                 IsInstalled = true,
-                Developers = new List<string>() { modInfo.Developer },
+                Developers = new List<string> { modInfo.Developer },
                 Links = modInfo.Links,
                 Tags = modInfo.Categories,
                 Icon = modInfo.IconPath
@@ -262,7 +252,7 @@ namespace SteamLibrary
 
         internal List<string> GetLibraryFolders()
         {
-            var dbs = new List<string>() { Steam.InstallationPath };
+            var dbs = new List<string> { Steam.InstallationPath };
             var configPath = Path.Combine(Steam.InstallationPath, "steamapps", "libraryfolders.vdf");
             if (!File.Exists(configPath))
             {
@@ -298,7 +288,7 @@ namespace SteamLibrary
                     config.ReadFileAsText(Steam.LoginUsersPath);
                     foreach (var user in config.Children)
                     {
-                        users.Add(new LocalSteamUser()
+                        users.Add(new LocalSteamUser
                         {
                             Id = ulong.Parse(user.Name),
                             AccountName = user["AccountName"].Value,
@@ -362,7 +352,7 @@ namespace SteamLibrary
                     continue;
                 }
 
-                var newGame = new GameInfo()
+                var newGame = new GameInfo
                 {
                     Source = "Steam",
                     Name = game.name,
@@ -391,7 +381,7 @@ namespace SteamLibrary
                 throw new Exception("No games found on specified Steam account.");
             }
 
-            IDictionary<string, DateTime> lastActivity = null;      
+            IDictionary<string, DateTime> lastActivity = null;
             try
             {
                 lastActivity = GetGamesLastActivity(userId);
@@ -409,7 +399,7 @@ namespace SteamLibrary
                     continue;
                 }
 
-                var newGame = new GameInfo()
+                var newGame = new GameInfo
                 {
                     GameId = game.appid.ToString(),
                     Source = "Steam",
@@ -434,10 +424,10 @@ namespace SteamLibrary
             var id = new SteamID(steamId);
             var result = new Dictionary<string, DateTime>();
             var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "config", "localconfig.vdf");
-            var sharedconfig = new KeyValue();
-            sharedconfig.ReadFileAsText(vdf);
+            var sharedConfig = new KeyValue();
+            sharedConfig.ReadFileAsText(vdf);
 
-            var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
+            var apps = sharedConfig["Software"]["Valve"]["Steam"]["apps"];
             foreach (var app in apps.Children)
             {
                 if (app.Children.Count == 0)
@@ -453,7 +443,7 @@ namespace SteamLibrary
                     string[] parts = app.Name.Split('_');
                     if (uint.TryParse(parts[0], out uint appId) && uint.TryParse(parts[1], out uint modId))
                     {
-                        var gid = new GameID()
+                        var gid = new GameID
                         {
                             AppID = appId,
                             AppType = GameID.GameType.GameMod,
@@ -534,11 +524,11 @@ namespace SteamLibrary
         {
             var id = new SteamID(steamId);
             var result = new List<GameInfo>();
-            var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "7", "remote", "sharedconfig.vdf");
-            var sharedconfig = new KeyValue();
-            sharedconfig.ReadFileAsText(vdf);
+            var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "7", "remote", "sharedConfig.vdf");
+            var sharedConfig = new KeyValue();
+            sharedConfig.ReadFileAsText(vdf);
 
-            var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
+            var apps = sharedConfig["Software"]["Valve"]["Steam"]["apps"];
             foreach (var app in apps.Children)
             {
                 if (app.Children.Count == 0)
@@ -560,7 +550,7 @@ namespace SteamLibrary
                     string[] parts = app.Name.Split('_');
                     if (uint.TryParse(parts[0], out uint appId) && uint.TryParse(parts[1], out uint modId))
                     {
-                        var gid = new GameID()
+                        var gid = new GameID
                         {
                             AppID = appId,
                             AppType = GameID.GameType.GameMod,
@@ -575,7 +565,7 @@ namespace SteamLibrary
                     }
                 }
 
-                result.Add(new GameInfo()
+                result.Add(new GameInfo
                 {
                     Source = "Steam",
                     GameId = gameId,
@@ -701,14 +691,19 @@ namespace SteamLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
                 try
                 {
-                    var uninstalled = GetLibraryGames(LibrarySettings);
-                    logger.Debug($"Found {uninstalled.Count} library Steam games.");
+                    var libraryGames = GetLibraryGames(LibrarySettings);
+                    logger.Debug($"Found {libraryGames.Count} library Steam games.");
 
-                    foreach (var game in uninstalled)
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -723,7 +718,7 @@ namespace SteamLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled Steam games.");
+                    logger.Error(e, "Failed to import linked account Steam games details.");
                     importError = e;
                 }
             }

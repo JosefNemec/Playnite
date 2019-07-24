@@ -1,18 +1,11 @@
-﻿using Playnite;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Playnite.SDK;
+using SteamLibrary.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Playnite.Commands;
-using SteamLibrary.Models;
-using Playnite.SDK;
-using System.Windows.Media;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
 
 namespace SteamLibrary
 {
@@ -34,10 +27,10 @@ namespace SteamLibrary
 
     public class SteamLibrarySettings : ObservableObject, ISettings
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private SteamLibrarySettings editingClone;
-        private SteamLibrary library;
-        private IPlayniteAPI api;
+        private readonly SteamLibrary library;
+        private readonly IPlayniteAPI playniteApi;
 
         #region Settings
 
@@ -71,6 +64,8 @@ namespace SteamLibrary
 
         public bool ImportInstalledGames { get; set; } = true;
 
+        public bool ConnectAccount { get; set; } = false;
+
         public bool ImportUninstalledGames { get; set; } = false;
 
         public BackgroundSource BackgroundSource { get; set; } = BackgroundSource.Image;
@@ -85,7 +80,7 @@ namespace SteamLibrary
                 if (UserId.IsNullOrEmpty())
                 {
                     return AuthStatus.AuthRequired;
-                }                    
+                }
 
                 try
                 {
@@ -172,16 +167,16 @@ namespace SteamLibrary
         {
         }
 
-        public SteamLibrarySettings(SteamLibrary library, IPlayniteAPI api)
+        public SteamLibrarySettings(SteamLibrary library, IPlayniteAPI playniteApi)
         {
             this.library = library;
-            this.api = api;
+            this.playniteApi = playniteApi;
 
             var settings = library.LoadPluginSettings<SteamLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
-            }            
+            }
         }
 
         public void BeginEdit()
@@ -228,7 +223,7 @@ namespace SteamLibrary
             {
                 var steamId = string.Empty;
                 var userName = "Unknown";
-                using (var view = api.WebViews.CreateView(675, 440, Colors.Black))
+                using (var view = playniteApi.WebViews.CreateView(675, 440, Colors.Black))
                 {
                     view.NavigationChanged += async (s, e) =>
                     {
@@ -271,7 +266,7 @@ namespace SteamLibrary
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                api.Dialogs.ShowErrorMessage(api.Resources.GetString("LOCNotLoggedInError"), "");
+                playniteApi.Dialogs.ShowErrorMessage(playniteApi.Resources.GetString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate user.");
             }
         }
