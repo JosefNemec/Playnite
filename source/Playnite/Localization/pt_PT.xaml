@@ -298,6 +298,7 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil do Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema na Tela Cheia</sys:String>
