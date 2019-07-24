@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Playnite.Common;
+﻿using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -7,12 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using TwitchLibrary.Models;
 using TwitchLibrary.Services;
@@ -21,7 +14,7 @@ namespace TwitchLibrary
 {
     public class TwitchLibrary : LibraryPlugin
     {
-        private ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         internal readonly string TokensPath;
         private const string dbImportMessageId = "twitchlibImportError";
 
@@ -35,7 +28,7 @@ namespace TwitchLibrary
 
         public static GameAction GetPlayAction(string gameId)
         {
-            return new GameAction()
+            return new GameAction
             {
                 Type = GameActionType.URL,
                 Path = $"twitch://fuel-launch/{gameId}",
@@ -62,7 +55,7 @@ namespace TwitchLibrary
                 var gameId = program.RegistryKeyName.Trim(new char[] { '{', '}' }).ToLower();
                 if (!games.ContainsKey(gameId))
                 {
-                    var game = new GameInfo()
+                    var game = new GameInfo
                     {
                         InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                         GameId = gameId,
@@ -126,7 +119,7 @@ namespace TwitchLibrary
                     continue;
                 }
 
-                var game = new GameInfo()
+                var game = new GameInfo
                 {
                     Source = "Twitch",
                     GameId = item.product.id,
@@ -136,13 +129,13 @@ namespace TwitchLibrary
                 games.Add(game);
             }
 
-            return games;            
+            return games;
         }
 
         #region ILibraryPlugin
 
         public override LibraryClient Client => new TwitchClient();
-        
+
         public override string Name => "Twitch";
 
         public override string LibraryIcon => Twitch.Icon;
@@ -185,14 +178,19 @@ namespace TwitchLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
                 try
                 {
-                    var uninstalled = GetLibraryGames();
-                    logger.Debug($"Found {uninstalled.Count} library Twitch games.");
+                    var libraryGames = GetLibraryGames();
+                    logger.Debug($"Found {libraryGames.Count} library Twitch games.");
 
-                    foreach (var game in uninstalled)
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -207,7 +205,7 @@ namespace TwitchLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled Twitch games.");
+                    logger.Error(e, "Failed to import linked account Twitch games details.");
                     importError = e;
                 }
             }

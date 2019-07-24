@@ -1,28 +1,23 @@
 ﻿using Newtonsoft.Json;
-using Playnite;
 using Playnite.SDK;
-using Playnite.Commands;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TwitchLibrary.Services;
-using Playnite.Common;
 
 namespace TwitchLibrary
 {
     public class TwitchLibrarySettings : ObservableObject, ISettings
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private TwitchLibrarySettings editingClone;
-        private TwitchLibrary library;
-        private IPlayniteAPI api;
+        private readonly TwitchLibrary library;
+        private readonly IPlayniteAPI api;
 
         #region Settings      
 
         public bool ImportInstalledGames { get; set; } = true;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -32,7 +27,7 @@ namespace TwitchLibrary
         public bool IsUserLoggedIn
         {
             get
-            {                
+            {
                 var token = library.GetAuthToken();
                 if (token.IsNullOrEmpty())
                 {
