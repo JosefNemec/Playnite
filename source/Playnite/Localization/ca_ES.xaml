@@ -298,6 +298,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil del tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema de pantalla completa</sys:String>
