@@ -1,24 +1,19 @@
 ﻿using ItchioLibrary.Models;
-using Playnite;
 using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace ItchioLibrary
 {
     public class ItchioLibrary : LibraryPlugin
     {
-        private ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private const string dbImportMessageId = "itchiolibImportError";
         internal readonly ItchioLibrarySettings LibrarySettings;
 
@@ -105,7 +100,7 @@ namespace ItchioLibrary
                         continue;
                     }
 
-                    var game = new GameInfo()
+                    var game = new GameInfo
                     {
                         Source = "itch.io",
                         GameId = cave.game.id.ToString(),
@@ -166,7 +161,7 @@ namespace ItchioLibrary
                             continue;
                         }
 
-                        var game = new GameInfo()
+                        var game = new GameInfo
                         {
                             Source = "itch.io",
                             GameId = key.game.id.ToString(),
@@ -189,9 +184,9 @@ namespace ItchioLibrary
         public override string LibraryIcon => Itch.Icon;
 
         public override string Name => "itch.io";
-        
+
         public override Guid Id => Guid.Parse("00000001-EBB2-4EEC-ABCB-7C89937A42BB");
-               
+
         public override IGameController GetGameController(Game game)
         {
             return new ItchioGameController(game, PlayniteApi);
@@ -225,14 +220,19 @@ namespace ItchioLibrary
                     }
                 }
 
-                if (LibrarySettings.ImportUninstalledGames)
+                if (LibrarySettings.ConnectAccount)
                 {
                     try
                     {
-                        var uninstalled = GetLibraryGames();
-                        logger.Debug($"Found {uninstalled.Count} library itch.io games.");
+                        var libraryGames = GetLibraryGames();
+                        logger.Debug($"Found {libraryGames.Count} library itch.io games.");
 
-                        foreach (var game in uninstalled)
+                        if (!LibrarySettings.ImportUninstalledGames)
+                        {
+                            libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                        }
+
+                        foreach (var game in libraryGames)
                         {
                             if (installedGames.TryGetValue(game.GameId, out var installed))
                             {
@@ -247,7 +247,7 @@ namespace ItchioLibrary
                     }
                     catch (Exception e)
                     {
-                        logger.Error(e, "Failed to import uninstalled itch.io games.");
+                        logger.Error(e, "Failed to import linked account itch.io games details.");
                         importError = e;
                     }
                 }

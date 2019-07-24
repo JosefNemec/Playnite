@@ -1,26 +1,23 @@
 ﻿using Newtonsoft.Json;
-using Playnite;
 using Playnite.SDK;
-using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ItchioLibrary
 {
     public class ItchioLibrarySettings : ObservableObject, ISettings
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private readonly ILogger logger = LogManager.GetLogger();
         private ItchioLibrarySettings editingClone;
-        private ItchioLibrary library;
-        private IPlayniteAPI api;
+        private readonly ItchioLibrary library;
+        private readonly IPlayniteAPI playniteApi;
 
         #region Settings      
 
         public bool ImportInstalledGames { get; set; } = Itch.IsInstalled;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -39,7 +36,7 @@ namespace ItchioLibrary
                 using (var butler = new Butler())
                 {
                     return butler.GetProfiles().Count > 0;
-                }                    
+                }
             }
         }
 
@@ -56,10 +53,10 @@ namespace ItchioLibrary
         {
         }
 
-        public ItchioLibrarySettings(ItchioLibrary library, IPlayniteAPI api)
+        public ItchioLibrarySettings(ItchioLibrary library, IPlayniteAPI playniteApi)
         {
             this.library = library;
-            this.api = api;
+            this.playniteApi = playniteApi;
 
             var settings = library.LoadPluginSettings<ItchioLibrarySettings>();
             if (settings != null)
@@ -100,19 +97,19 @@ namespace ItchioLibrary
             {
                 if (!Itch.IsInstalled)
                 {
-                    api.Dialogs.ShowErrorMessage(
-                        api.Resources.GetString("LOCItchioClientNotInstalledError"), "");
+                    playniteApi.Dialogs.ShowErrorMessage(
+                        playniteApi.Resources.GetString("LOCItchioClientNotInstalledError"), "");
                     return;
                 }
 
-                api.Dialogs.ShowMessage(api.Resources.GetString("LOCItchioSignInNotif"));
+                playniteApi.Dialogs.ShowMessage(playniteApi.Resources.GetString("LOCItchioSignInNotif"));
                 Itch.StartClient();
-                api.Dialogs.ShowMessage(api.Resources.GetString("LOCItchioSignInWaitMessage"));
+                playniteApi.Dialogs.ShowMessage(playniteApi.Resources.GetString("LOCItchioSignInWaitMessage"));
                 OnPropertyChanged(nameof(IsUserLoggedIn));
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                api.Dialogs.ShowErrorMessage(api.Resources.GetString("LOCNotLoggedInError"), "");
+                playniteApi.Dialogs.ShowErrorMessage(playniteApi.Resources.GetString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate itch.io user.");
             }
         }
