@@ -302,6 +302,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Использовать фоновое изображение игры в качестве фона окна</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Размыть фон</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Затемнить фон</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Тема оформления</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Цвет темы</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen"> </sys:String>
