@@ -194,7 +194,7 @@ Résultats dans : -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Boutique Officielle</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Boutique Officielle> IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Veuillez sélectionner les champs qui doivent être automatiquement remplis par Playnite et les sources à utiliser pour obtenir les données.</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Vous pouvez cliquer sur le logo ci-dessus et contribuer à la mise à jour de la base de données igdb.com afin d'améliorer les données utilisées par Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Boutique:
 Utiliser uniquement les données fournies par les boutiques officielles.
 
@@ -298,10 +298,10 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Image de fond floue</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utiliser l'image de fond d'un jeu comme arrière-plan</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Flouter l'image de fond</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Assombrir les images de fond</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Afficher en mode d'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profil du thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Thème plein écran</sys:String>
