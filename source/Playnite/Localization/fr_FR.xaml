@@ -301,6 +301,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Image de fond floue</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profil du thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Thème plein écran</sys:String>
