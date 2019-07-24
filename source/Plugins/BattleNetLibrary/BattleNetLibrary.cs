@@ -174,7 +174,7 @@ namespace BattleNetLibrary
                         var gameInfo = BattleNetGames.Games.FirstOrDefault(a => a.ApiId == product.titleId);
                         if (gameInfo == null)
                         {
-                            logger.Warn($"Uknown game found on the account: {product.localizedGameName}/{product.titleId}, skipping import.");
+                            logger.Warn($"Unknown game found on the account: {product.localizedGameName}/{product.titleId}, skipping import.");
                             continue;
                         }
 
