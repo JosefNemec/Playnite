@@ -298,7 +298,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utiliser l'image de fond d'un jeu comme arrière-plan</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utiliser les image de fond des jeux comme arrière-plan de fenêtre</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Flouter l'image de fond</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Assombrir les images de fond</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Afficher en mode d'affichage en grille</sys:String>
