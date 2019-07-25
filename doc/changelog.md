@@ -1,5 +1,14 @@
-#### 3.0.0
+#### 5.0.0
 
+* **Breaking Changes**:
+  * Extension plugins are no longer created by inheriting plugin interface, but rather extending [Plugin](xref:Playnite.SDK.Plugins.Plugin) and [LibraryPlugin](xref:Playnite.SDK.Plugins.LibraryPlugin) abstract classes.
+  * [IGameDatabase](xref:Playnite.SDK.IGameDatabase) interface is completely changed and every object collection (Games, Genres, Tags etc.) is now accessible via appropriate `IItemCollection` property.
+  * [Game](xref:Playnite.SDK.Models.Game) changed dramatically. Fields like genres, tags and others are no longer part of the model itself but just ID pointers to appropriate database objects.
+
+* New
+  * Extended several API with new methods.
+
+#### 3.0.0
 
 * **Breaking Changes**:
   * Removed and added new APIs and API members, see [full list](memberChanges3_0.md) of changes.

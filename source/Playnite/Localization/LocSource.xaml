@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">English</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Language</sys:String>
@@ -712,6 +715,23 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCPLaytime100to500">100 to 500 hours</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 to 1000 hours</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install addon?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Failed to install extension.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Do you want to install new extension? Existing installation will be overwritten.
+    
+{0}
+By {1}
+Version {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Failed to install theme.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Do you want to install new theme? Existing installation will be overwritten.
+    
+{0}
+By {1}
+Version {2}
+    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">You are about to leave Playnite and navigate to following web page using your default web browser. Do you want to continue?
     

@@ -230,7 +230,7 @@
                                     <ContentControl VerticalAlignment="Center"
                                                     Content="{DynamicResource LOCSettingsSkin}"                                                    
                                                     ContentStringFormat="{}{0} *"/>
-                                    <ComboBox Margin="10,0,0,0"
+                                    <ComboBox Margin="10,0,0,0" MinWidth="150"
                                               ItemsSource="{Binding AvailableThemes}"
                                               SelectedValue="{Binding Settings.Theme}"
                                               SelectedValuePath="DirectoryName"

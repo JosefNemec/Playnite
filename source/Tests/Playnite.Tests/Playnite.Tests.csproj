@@ -121,6 +121,7 @@
     <Compile Include="GamesStatsTests.cs" />
     <Compile Include="IniParserTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />
+    <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />
     <Compile Include="LocalizationTests.cs" />
     <Compile Include="Metadata\IGDBMetadataProviderTests.cs" />

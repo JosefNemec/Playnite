@@ -12,7 +12,7 @@
                                   VerticalScrollBarVisibility="Auto"
                                   Style="{DynamicResource DetailsScrollViewer}"
                                   d:DesignWidth="1280"
-                                  d:DesignHeight="960"
+                                  d:DesignHeight="1280"
                                   d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}">
                         <Grid>
                             <FadeImage x:Name="PART_ImageBackground" Stretch="Uniform"

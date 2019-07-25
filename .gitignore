@@ -274,5 +274,5 @@ tests/TestConfig.yaml
 source/PlayniteServices/customSettings.json
 
 # Not redistributable
-source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Fonts/XboxOne/XBOXONE.ttf
-source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Fonts/PlayStation4/PlayStation4.ttf
+XBOXONE.ttf
+PlayStation4.ttf

@@ -78,11 +78,11 @@ namespace Playnite.Common
             }
         }
 
-        public static void CopyFile(string sourcePath, string targetPath)
+        public static void CopyFile(string sourcePath, string targetPath, bool overwrite = true)
         {
             logger.Debug($"Copying file {sourcePath} to {targetPath}");
             PrepareSaveFile(targetPath);
-            File.Copy(sourcePath, targetPath);
+            File.Copy(sourcePath, targetPath, overwrite);
         }
 
         public static void DeleteDirectory(string path)
@@ -280,6 +280,40 @@ namespace Playnite.Common
         public static long GetFileSize(string path)
         {
             return new FileInfo(path).Length;
+        }
+
+        public static void CopyDirectory(string sourceDirName, string destDirName, bool copySubDirs = true, bool overwrite = true)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, overwrite);
+            }
+
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    CopyDirectory(subdir.FullName, temppath, copySubDirs);
+                }
+            }
         }
     }
 }

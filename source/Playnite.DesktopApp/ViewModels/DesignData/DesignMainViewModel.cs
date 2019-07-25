@@ -72,19 +72,8 @@ namespace Playnite.DesktopApp.ViewModels
 
             var database = new InMemoryGameDatabase();
             Game.DatabaseReference = database;
-            var winPlatform = database.Platforms.Add("Windows");
-            var designGame = new Game($"Star Wars: Knights of the Old Republic")
-            {
-                ReleaseDate = new DateTime(2009, 9, 5),
-                PlatformId = winPlatform.Id,
-                PlayCount = 20,
-                Playtime = 115200,
-                LastActivity = DateTime.Today,
-                IsInstalled = true,
-                Description = "Star Wars: Knights of the Old Republic (often abbreviated as KotOR) is the first installment in the Knights of the Old Republic series. KotOR is the first computer role-playing game set in the Star Wars universe."
-            };
-
-            database.Games.Add(designGame);
+            GameDatabase.GenerateSampleData(database);
+            var designGame = database.Games.First();
             designGame.CoverImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignCover.jpg";
             designGame.BackgroundImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignBackground.jpg";
             designGame.Icon = "pack://application:,,,/Playnite;component/Resources/Images/DesignIcon.png";

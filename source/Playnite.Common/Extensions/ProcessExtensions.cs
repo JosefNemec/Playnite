@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Management;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -159,6 +160,15 @@ namespace System.Diagnostics
         public static bool IsRunning(string processPattern)
         {
             return Process.GetProcesses().FirstOrDefault(a => Regex.IsMatch(a.ProcessName, processPattern, RegexOptions.IgnoreCase)) != null;
+        }
+
+        public static string GetCommandLine(this Process process)
+        {
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT CommandLine FROM Win32_Process WHERE ProcessId = " + process.Id))
+            using (ManagementObjectCollection objects = searcher.Get())
+            {
+                return objects.Cast<ManagementBaseObject>().SingleOrDefault()?["CommandLine"]?.ToString();
+            }
         }
     }
 }

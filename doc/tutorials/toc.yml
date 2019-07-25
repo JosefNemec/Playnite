@@ -25,6 +25,19 @@
     - name: Plugin settings
       href: plugins/pluginSettings.md
 
+- name: Themes
+  items:
+    - name: Introduction
+      href: themes/introduction.md
+    - name: Using designer
+      href: themes/usingDesigner.md
+    - name: Manual editing
+      href: themes/manualEditing.md
+    - name: Distribution and updates
+      href: themes/distributionAndUpdates.md
+    - name: Various
+      href: themes/various.md
+
 - name: Docs
   items:
     - name: Extension Manifest

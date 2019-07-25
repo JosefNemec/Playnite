@@ -15,11 +15,17 @@ using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Xaml;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
+using CommandLine;
 
 namespace Playnite.Extensions.Markup
 {
     public class ThemeFile : MarkupExtension
     {
+        private static FileInfo lastUserTheme = null;
+        private static bool? lastUserThemeFound = null;
+
         public ThemeDescription CurrentTheme { get; set; }
         public ThemeDescription DefaultTheme { get; set; }
 
@@ -45,6 +51,36 @@ namespace Playnite.Extensions.Markup
 
         public static ThemeDescription GetDesignTimeDefaultTheme(ApplicationMode mode)
         {
+            if (lastUserThemeFound == null)
+            {
+                if (Process.GetCurrentProcess().TryGetParentId(out var parentId))
+                {
+                    var proc = Process.GetProcessById(parentId);
+                    var cmdline = proc.GetCommandLine();
+                    var regEx = Regex.Match(cmdline, @"([^""]+\.sln?)""");
+                    if (regEx.Success)
+                    {
+                        var spath = regEx.Groups[1].Value;
+                        if (spath.Contains($"Themes\\{mode.GetDescription()}"))
+                        {
+                            lastUserTheme = new FileInfo(spath);
+                            lastUserThemeFound = true;
+                        }
+                    }
+                }
+            }
+
+            if (lastUserThemeFound == true)
+            {
+                return new ThemeDescription()
+                {
+                    DirectoryName = lastUserTheme.DirectoryName,
+                    DirectoryPath = lastUserTheme.Directory.FullName,
+                    Name = "Default"
+                };
+            }
+
+            lastUserThemeFound = false;
             var defaultTheme = "Default";
             var projectName = mode == ApplicationMode.Fullscreen ? "Playnite.FullscreenApp" : "Playnite.DesktopApp";
             var slnPath = Path.Combine(Environment.GetEnvironmentVariable("PLAYNITE_SLN", EnvironmentVariableTarget.User), projectName);

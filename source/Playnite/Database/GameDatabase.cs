@@ -767,5 +767,46 @@ namespace Playnite.Database
 
             return addedGames;
         }
+
+        public static void GenerateSampleData(IGameDatabase database)
+        {
+            database.Platforms.Add("Windows");
+            database.AgeRatings.Add("18+");
+            database.Categories.Add("Category");
+            database.Companies.Add("BioWare");
+            database.Companies.Add("LucasArts");
+            database.Genres.Add("RPG");
+            database.Regions.Add("EU");
+            database.Series.Add("Star Wars");
+            database.Sources.Add("Retails");
+            database.Tags.Add("Single player");
+
+            var designGame = new Game($"Star Wars: Knights of the Old Republic")
+            {
+                ReleaseDate = new DateTime(2009, 9, 5),
+                PlatformId = database.Platforms.First().Id,
+                PlayCount = 20,
+                Playtime = 115200,
+                LastActivity = DateTime.Today,
+                IsInstalled = true,
+                AgeRatingId = database.AgeRatings.First().Id,
+                CategoryIds = new List<Guid> { database.Categories.First().Id },
+                DeveloperIds = new List<Guid> { database.Companies.First().Id },
+                PublisherIds = new List<Guid> { database.Companies.Last().Id },
+                GenreIds = new List<Guid> { database.Genres.First().Id },
+                RegionId = database.Regions.First().Id,
+                SeriesId = database.Series.First().Id,
+                SourceId = database.Sources.First().Id,
+                TagIds = new List<Guid> { database.Tags.First().Id },
+                Description = "Star Wars: Knights of the Old Republic (often abbreviated as KotOR) is the first installment in the Knights of the Old Republic series. KotOR is the first computer role-playing game set in the Star Wars universe.",
+                Version = "1.2",
+                CommunityScore = 95,
+                CriticScore = 50,
+                UserScore = 15,
+                Links = new ObservableCollection<Link> { new Link("Wiki", ""), new Link("HomePage", "") }
+            };
+
+            database.Games.Add(designGame);
+        }
     }
 }

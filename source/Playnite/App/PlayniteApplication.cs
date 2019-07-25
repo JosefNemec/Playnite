@@ -139,7 +139,10 @@ namespace Playnite
             // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
             if (customTheme != null)
             {
-                ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
+                if (!ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode))
+                {
+                    ThemeManager.SetCurrentTheme(null);
+                }
             }
 
             try
