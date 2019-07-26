@@ -1,9 +1,9 @@
 # Installing themes
 
-Using pthm file
+Using .pthm file
 ---------------------
 
-If theme developer distributes the theme as `.pthm` file then just drag and drop the file to Playnite's main windows while it's running in Desktop mode. You will be prompted with installation dialog and after installation is complete you can change to new theme via Settings menu.
+If theme developer distributes the theme as `.pthm` file then just drag and drop the file to Playnite's main window while it's running in Desktop mode. You will be prompted with installation dialog and after installation is complete you can change to new theme via Settings menu.
 
 Manual installation
 ---------------------

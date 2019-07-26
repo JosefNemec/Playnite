@@ -3,7 +3,7 @@
 Basics
 ---------------------
 
-This method is generally not recommended and using [Blend](usingDesigner.md) is recommended method. However for smaller changes this is usable method.
+This method is generally not recommended and we recommend using [Blend](usingDesigner.md) instead. However for smaller changes this is a usable method.
 
 Creating theme
 ---------------------
@@ -11,7 +11,7 @@ Creating theme
 * Create empty folder inside of `Themes` directory (and `Fullscreen` or `Desktop` subdirectory).
 * Create theme [manifest file](manifestFile.md).
     * Set proper `Mode` and `ThemeApiVersion` fields. `ThemeApiVersion` of currently installed Playnite version can be found by opening `About Playnite` menu from Desktop mode.
-* Copy original theme file (xaml, image etc.) to the new folder (make sure you keep the directory structure).
+* Copy original theme file you want to edit (xaml, image etc.) to the new folder (make sure you keep the directory structure).
 * Make changes to copied file using any text editor.
 
 Testing changes

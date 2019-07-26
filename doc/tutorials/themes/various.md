@@ -3,7 +3,7 @@ Referencing theme files
 
 If you need to reference a file that's part of you theme (for example an image), then you need to use `ThemeFile` markup extension.
 
-For example creating image that uses `applogo.png` file stored in `Images` subfolder will look like this:
+For example creating image that uses `applogo.png` file stored in `Images` subfolder would be done this way:
 
 ```xml 
 <Image Source="{ThemeFile 'Images/applogo.png'}" />
@@ -18,7 +18,7 @@ You may have seen something like this in theme files:
 <CheckBox x:Name="PART_ToggleFilter" />
 ```
 
-This says to theme engine what kind of checkbox it is and how to hookup functionality for it. If the name is changed or removed then the element will loose all functionality and you will need to set it up in theme file itself via `Binding` markups. You can see PART specifications in appropriate backend file for each control/view (for example [this file](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.DesktopApp/Controls/Views/GameOverview.cs) for GameOverview view).
+This notifies theme engine about what kind of checkbox it is and how to hookup functionality for it. If the name is changed or removed then the element will loose all functionality and you will need to set it up in theme file itself via `Binding` markups. You can see PART specifications in appropriate backend file for each control/view (for example [this file](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.DesktopApp/Controls/Views/GameOverview.cs) for GameOverview view).
 
 This however doesn't mean that you can only include information backed by PART definition in your themes...
 
@@ -40,7 +40,7 @@ Useful data binding docs:
 Color definitions
 ---------------------
 
-You may be wondering why are some colors defined with just 6 digits like `#112233` and other with 8 digits like `#BB112233`. WPF uses RGB system to define color values where each color is defined by values ranging from `00` to `FF` (using [hex](https://simple.wikipedia.org/wiki/Hexadecimal_numeral_system) digits): `#RRGGBB`. However you can also define alpha transparency using another two digits to specify transparency intensity: `#AARRGGBB`. Where `00` is fully transparent and `FF` is fully opaque.
+You may be wondering why are some colors defined with just 6 digits like `#112233` and other with 8 digits like `#BB112233`. WPF uses RGB system to define color values where each color is defined by values ranging from `00` to `FF` (using [hex](https://simple.wikipedia.org/wiki/Hexadecimal_numeral_system) digits): `#RRGGBB`. However you can also define alpha transparency using additional two digits to specify transparency intensity: `#AARRGGBB`. Where `00` is fully transparent and `FF` is fully opaque.
 
 Using custom controls and 3rd party assemblies
 ---------------------

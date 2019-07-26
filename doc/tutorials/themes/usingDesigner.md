@@ -3,9 +3,7 @@
 Installing Blend
 ---------------------
 
-Blend is part of [Visual Studio IDE](https://visualstudio.microsoft.com/), which is available for free with Community edition. Visual Studio comes with lot of components for workloads you might not be interested, for theme development make sure these options are enabled during installation:
-* `.NET Desktop development` under Workloads
-* `.NET Framework 4.6.2 SDK` and `.NET Framework 4.6.2 Targeting pack` under Individual Components
+Blend is part of [Visual Studio IDE](https://visualstudio.microsoft.com/), which is available for free with Community edition. Visual Studio comes with lot of components for workloads you might not be interested in, for theme development you only need `.NET Desktop development` workload.
 
 > [!NOTE] 
 > Playnite is currently being developed using 2017 edition of Visual Studio even though 2019 is now available. This means there might be unexcpected issues when using 2019 version. If you need to download 2017 version then it's available in [old downloads section](https://visualstudio.microsoft.com/vs/older-downloads/). Proper support for 2019 version is being worked on.
@@ -24,7 +22,7 @@ For example to create new desktop theme with "Super Clear Modern" name:
 Toolbox.exe new theme desktop "Super Clear Modern"
 ```
 
-This will create new folder theme folder with all files needed for theme to be edited in Blend. If you theme creation is successfully the Explorer window will open with folder for the new theme.
+This will create new theme folder with all files needed for theme to be edited in Blend. If theme creation is successful then Explorer window will open with your new theme folder.
 
 > [!NOTE] 
 > There might be issues with above examples if you installed Playnite into folder where write access is not enabled by default unless you have elevated privileges (folders like `c:\Program Files`). In that case you will need to run command prompt and Blend with admin privileges. However better approach would be to use different install location.
@@ -32,7 +30,7 @@ This will create new folder theme folder with all files needed for theme to be e
 Editing theme
 ---------------------
 
-To edit theme in Blend open `Theme.sln` folder from theme's directory.
+To edit theme in Blend open `Theme.sln` file from theme's directory.
 
 > [!NOTE] 
 > Just opening `.sln` file will usually open Visual Studio instead of Blend. While you can use Visual Studio to edit the theme as well, it lacks many features that make editing easier, like live preview for templates and styles. To open `.sln` files in Blend, right-click on the file, select `Open with` and choose `Blend for Visual Studio` option.
@@ -40,11 +38,11 @@ To edit theme in Blend open `Theme.sln` folder from theme's directory.
 > [!WARNING] 
 > Due to way Playnite resolves paths to theme files (like images), it is necessary to open theme sln file via the file itself. If you open Blend first and then use it to open the theme sln, some parts of live preview might not work properly. This will be fixed in future Playnite updates.
 
-First thing after creating new theme, open `theme.yaml` file and change manifest fields if you need to (you probably will need to change Author at least). For more information about available manifest fields see [this page](manifestFile.md).
+As a first thing after creating new theme, open `theme.yaml` file and change manifest fields if you need to (you will probably need to change Author at least). For more information about available manifest fields see [manifest file page](manifestFile.md).
 
 ### Files
 
-Themes consist of several `.xaml` files. Each view, panel or specific control usually have their own xaml file. Commonly used resources like colors and brushes that affect all controls are generally defined in `Constants.xaml`.
+Themes consist of several `.xaml` files. Each view, panel or specific control usually has their own xaml file. Commonly used resources like colors and brushes that affect all controls are generally defined in `Constants.xaml`.
 
 ### Live preview
 
