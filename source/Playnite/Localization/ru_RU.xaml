@@ -717,12 +717,22 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPLaytime500to1000">От 500 до 1000 часов</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Установка прошла успешно.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить дополнение?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Не удалось установить расширение.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Вы хотите установить новое расширение? Существующая установка будет перезаписана.
+    
+{0}
+ {1}
+Версия {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Не удалось установить тему.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Вы хотите установить новую тему? Существующая установка будет перезаписана.
+    
+{0}
+ {1}
+Версия {2}
+    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Вы собираетесь покинуть Playnite и перейти на страницу с помощью веб-браузера по умолчанию. Вы хотите продолжить?
     
