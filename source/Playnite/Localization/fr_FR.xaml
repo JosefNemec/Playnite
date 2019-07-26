@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">Français</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
@@ -299,7 +302,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utiliser les image de fond des jeux comme arrière-plan de fenêtre</sys:String>
-    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Flouter l'image de fond</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Flouter les images de fond</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Assombrir les images de fond</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Afficher en mode d'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
@@ -708,6 +711,13 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime100to500">100 à 500 heures</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 à 1000 heures</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Vous êtes sur le point de quitter Playnite pour ouvrir la page web suivante à l'aide de votre navigateur par défaut. Voulez-vous continuer ?
     
