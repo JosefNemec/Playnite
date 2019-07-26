@@ -27,6 +27,47 @@ namespace Playnite.Toolbox
             Themes.LocSourceName
         };
 
+        public static void CopyThemeDirectory(string sourceDirName, string destDirName, List<string> approvedXamls)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                if (file.Extension.Equals(".xaml", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (approvedXamls.ContainsString(file.FullName))
+                    {
+                        file.CopyTo(temppath, true);
+                    }
+                }
+                else
+                {
+                    file.CopyTo(temppath, true);
+                }
+            }
+    
+            foreach (DirectoryInfo subdir in dirs)
+            {
+                string temppath = Path.Combine(destDirName, subdir.Name);
+                CopyThemeDirectory(subdir.FullName, temppath, approvedXamls);
+            }
+        }
+
         public static bool AreFilesEqual(string file1, string file2)
         {
             var file1Info = new FileInfo(file1);
@@ -112,7 +153,7 @@ namespace Playnite.Toolbox
             {
                 var val = resDir.Attribute("Source").Value.Replace($"Themes/{mode.GetDescription()}/Default/", "");
                 resDir.Attribute("Source").Value = val;
-                defaultThemeXamlFiles.Add(val);
+                defaultThemeXamlFiles.Add(val.Replace('/', '\\'));
             }
 
             // Change localization file reference
@@ -135,7 +176,7 @@ namespace Playnite.Toolbox
             }
 
             // Copy to output
-            FileSystem.CopyDirectory(defaultThemeDir, outDir);
+            CopyThemeDirectory(defaultThemeDir, outDir, defaultThemeXamlFiles.Select(a => Path.Combine(defaultThemeDir, a)).ToList());
             appXaml.Save(Path.Combine(outDir, Themes.AppXamlName));
             csproj.Save(Path.Combine(outDir, Themes.ThemeProjName));
 
@@ -189,8 +230,6 @@ namespace Playnite.Toolbox
             {
                 logger.Error("No acceptable arguments given.");     
             }
-
-            Console.ReadKey();
         }
 
         public static void ProcessNewOptions(NewCmdLineOptions options)

@@ -318,6 +318,11 @@ namespace SteamLibrary
 
         internal List<GameInfo> GetLibraryGames(SteamLibrarySettings settings)
         {
+            if (settings.UserId.IsNullOrEmpty())
+            {
+                throw new Exception(PlayniteApi.Resources.GetString("LOCNotLoggedInError"));
+            }
+
             if (settings.IsPrivateAccount)
             {
                 return GetLibraryGames(ulong.Parse(settings.UserId), settings.ApiKey);

@@ -29,6 +29,7 @@
     <pcon:ICollectionNullOrEmptyToVisibilityConverter x:Key="ICollectionNullOrEmptyToVisibilityConverter" />
     <pcon:IconToImageSourceConverter x:Key="IconToImageSourceConverter" />
     <pcon:ImageStringToImageConverter x:Key="ImageStringToImageConverter" />
+    <pcon:ImageStringToImageConverter x:Key="ImageStringToImageConverterCached" Cached="True" />
     <pcon:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
     <pcon:InvertedBoolenConverter x:Key="InvertedBoolenConverter" />
     <pcon:ListToStringConverter x:Key="ListToStringConverter" />
