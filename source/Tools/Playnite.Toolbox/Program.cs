@@ -15,6 +15,8 @@ namespace Playnite.Toolbox
 {
     class Program
     {
+        private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         public static List<string> PackageFileBlackList = new List<string>
         {
             ThemeManager.ThemeManifestFileName,
@@ -176,14 +178,19 @@ namespace Playnite.Toolbox
 
         static void Main(string[] args)
         {
+            logger.Debug("Toolbox started.");
+            logger.Debug(Environment.CommandLine);
+
             var cmdlineParser = new Parser(with => with.CaseInsensitiveEnumValues = true);
             var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions>(args)
                 .WithParsed<NewCmdLineOptions>(ProcessNewOptions)
                 .WithParsed<PackCmdLineOptions>(ProcessPackOptions);
             if (result.Tag == ParserResultType.NotParsed)
             {
-                Console.Write("No acceptable arguments given.");
+                logger.Error("No acceptable arguments given.");     
             }
+
+            Console.ReadKey();
         }
 
         public static void ProcessNewOptions(NewCmdLineOptions options)
@@ -194,12 +201,12 @@ namespace Playnite.Toolbox
                 try
                 {
                     var path = GenerateNewTheme(mode, options.Name);
-                    Console.WriteLine($"Created new theme in \"{path}\"");
-                    Console.WriteLine($"Don't forget to update \"{ThemeManager.ThemeManifestFileName}\" with relevant information.");
+                    logger.Info($"Created new theme in \"{path}\"");
+                    logger.Info($"Don't forget to update \"{ThemeManager.ThemeManifestFileName}\" with relevant information.");
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Failed to create new theme." + Environment.NewLine + e.Message);
+                    logger.Error(e, "Failed to create new theme." + Environment.NewLine + e.Message);
                 }
             }
         }
@@ -213,11 +220,11 @@ namespace Playnite.Toolbox
                     var mode = options.TargetType.Equals("desktop", StringComparison.OrdinalIgnoreCase) ? ApplicationMode.Desktop : ApplicationMode.Fullscreen;
                     var sourceDir = Path.Combine(Paths.GetThemesPath(mode), options.Name);
                     var path = PackageTheme(sourceDir, options.DestinationPath, mode);
-                    Console.WriteLine($"Theme successfully packed in \"{path}\"");
+                    logger.Info($"Theme successfully packed in \"{path}\"");
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Failed to pack theme file." + Environment.NewLine + e.Message);
+                    logger.Error(e, "Failed to pack theme file." + Environment.NewLine + e.Message);
                 }
             }
         }
