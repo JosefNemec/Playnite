@@ -93,7 +93,7 @@ namespace System
                 return string.Empty;
             }
 
-            return Regex.Replace(path, @"(\.[a-z0-9]+)+$", "");
+            return Regex.Replace(path, @"(\.[A-Za-z0-9]+)+$", "");
         }
 
         public static bool Contains(this string str, string value, StringComparison comparisonType)
