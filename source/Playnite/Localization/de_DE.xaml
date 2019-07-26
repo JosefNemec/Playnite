@@ -227,7 +227,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfiguration</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Einstellungen …</sys:String>
-    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformen & Emulatoren</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformen &amp; Emulatoren</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Emulatoren konfigurieren …</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Bibliotheksverwaltung …</sys:String>
     <sys:String x:Key="LOCMenuTools">Werkzeuge</sys:String>
@@ -716,12 +716,22 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCPLaytime500to1000">500 bis 1.000 Stunden</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Mehr als 1.000 Stunden</sys:String>
 
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation war erfolgreich.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Add-on installieren?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Erweiterung konnte nicht installiert werden.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Möchtest du eine neue Erweiterung installieren? Die bestehende Installation wird überschrieben.
+    
+{0}
+Von {1}
+Version {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Theme konnte nicht intalliert werden.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Möchtest du ein neues Theme installieren? Die bestehende Installation wird überschrieben.
+    
+{0}
+Von {1}
+Version {2}
+    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Möchten Sie Playnite jetzt verlassen und mit Ihrem Standard-Webbrowser folgende Webseite öffnen?
     
