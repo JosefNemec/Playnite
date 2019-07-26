@@ -62,11 +62,11 @@ function global:Invoke-Nuget()
 
     if ($nugetCommand)
     {
-        StartAndWait "nuget" $NugetArgs
+        return StartAndWait "nuget" $NugetArgs
     }
     else
     {      
-        StartAndWait ".\nuget.exe" $NugetArgs
+        return StartAndWait ".\nuget.exe" $NugetArgs
     }
 }
 
