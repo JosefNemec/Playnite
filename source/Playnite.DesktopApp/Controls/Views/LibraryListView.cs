@@ -1,6 +1,5 @@
 ﻿using Playnite.Common;
 using Playnite.DesktopApp.ViewModels;
-using Playnite.ViewModels.Desktop.DesignData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,14 +31,14 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                this.mainModel = new DesignMainViewModel();
+                this.mainModel = DesignMainViewModel.DesignIntance;
             }
             else if (mainModel != null)
             {
                 this.mainModel = mainModel;
             }
 
-            mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)

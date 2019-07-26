@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Playnite.SDK;
+using Playnite.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,7 @@ namespace BattleNetLibrary.Tests
     {
         public static BattleNetLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            return new BattleNetLibrary(api.Object);
+            return new BattleNetLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]

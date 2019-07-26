@@ -6,6 +6,7 @@ using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -35,7 +36,11 @@ namespace Playnite.DesktopApp.Controls
 
         public MainMenu(DesktopAppViewModel model)
         {
-            if (model != null)
+            if (DesignerProperties.GetIsInDesignMode(this))
+            {
+                mainModel = DesignMainViewModel.DesignIntance;
+            }
+            else if (model != null)
             {
                 mainModel = model;
                 InitializeItems();
@@ -67,16 +72,19 @@ namespace Playnite.DesktopApp.Controls
 
             if (icon != null)
             {
-                if (icon is string)
+                if (icon is string stringIcon)
                 {
-                    item.Icon = Images.GetImageFromFile(ThemeFile.GetFilePath(icon as string));
+                    item.Icon = Images.GetImageFromFile(ThemeFile.GetFilePath(stringIcon));
                 }
-                else
+                else if (icon is BitmapImage bitmap)
                 {
-                    var resource = icon as BitmapImage;
-                    var image = new Image() { Source = resource };
-                    RenderOptions.SetBitmapScalingMode(image, RenderOptions.GetBitmapScalingMode(resource));
+                    var image = new Image() { Source = bitmap };
+                    RenderOptions.SetBitmapScalingMode(image, RenderOptions.GetBitmapScalingMode(bitmap));
                     item.Icon = image;
+                }
+                else if (icon is TextBlock textIcon)
+                {
+                    item.Icon = textIcon;
                 }
             }            
 

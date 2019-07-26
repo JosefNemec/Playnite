@@ -823,6 +823,7 @@ namespace Playnite.SDK.Models
                 userScore = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(UserScoreGroup));
+                OnPropertyChanged(nameof(UserScoreRating));
             }
         }
 
@@ -842,6 +843,7 @@ namespace Playnite.SDK.Models
                 criticScore = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CriticScoreGroup));
+                OnPropertyChanged(nameof(CriticScoreRating));
             }
         }
 
@@ -861,6 +863,7 @@ namespace Playnite.SDK.Models
                 communityScore = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CommunityScoreGroup));
+                OnPropertyChanged(nameof(CommunityScoreRating));
             }
         }
 
@@ -1007,6 +1010,33 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
+        /// Gets game's user score rating.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreRating UserScoreRating
+        {
+            get => GetScoreRating(UserScore);
+        }
+
+        /// <summary>
+        /// Gets game's community score rating.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreRating CommunityScoreRating
+        {
+            get => GetScoreRating(CommunityScore);
+        }
+
+        /// <summary>
+        /// Gets game's critic score rating.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreRating CriticScoreRating
+        {
+            get => GetScoreRating(CriticScore);
+        }
+
+        /// <summary>
         /// Gets game's user score group.
         /// </summary>
         [JsonIgnore]
@@ -1149,6 +1179,31 @@ namespace Playnite.SDK.Models
             }
 
             return PastTimeSegment.MoreThenYear;
+        }
+
+        /// <summary>
+        /// Gets score rating.
+        /// </summary>
+        /// <param name="score">Score.</param>
+        /// <returns></returns>
+        private ScoreRating GetScoreRating(int? score)
+        {
+            if (score == null)
+            {
+                return ScoreRating.None;
+            }
+            else if (score > 75)
+            {
+                return ScoreRating.Positive;
+            }
+            else if (score > 25)
+            {
+                return ScoreRating.Mixed;
+            }
+            else
+            {
+                return ScoreRating.Negative;
+            }
         }
 
         /// <summary>

@@ -779,15 +779,16 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
-                <Button TabIndex="1" Name="ButtonDownload" Content="{DynamicResource LOCMenuDownloadMetadata}" DockPanel.Dock="Left"
-                        Style="{StaticResource BottomButton}"
+                <Button TabIndex="1" Name="ButtonDownload" Content="{DynamicResource LOCMenuDownloadMetadata}"
+                        DockPanel.Dock="Left" Style="{StaticResource BottomButton}"
+                        Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                         pbeh:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
                         <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
                             <MenuItem Header="IGDB" Command="{Binding DownloadIGDBMetadataCommand}"/>
                             <MenuItem Header="Wiki" Command="{Binding DownloadWikiMetadataCommand}"/>
                             <MenuItem Header="{DynamicResource LOCMetaSourceStore}" Command="{Binding DownloadStoreCommand}"
-                                      Visibility="{Binding EditingGame.IsCustomGame, Converter={pcon:InvertedBooleanToVisibilityConverter}}"/>
+                                      Visibility="{Binding IsOfficialMetadataAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>

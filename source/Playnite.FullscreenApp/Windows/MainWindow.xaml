@@ -22,9 +22,7 @@
         Top="{Binding WindowTop, Mode=TwoWay}"
         d:DesignWidth="1920"
         d:DesignHeight="1080"
-        ResizeMode="NoResize"
-        xmlns:dd="clr-namespace:Playnite.FullscreenApp.ViewModels.DesignData"
-        d:DataContext="{d:DesignInstance dd:DesignMainViewModel,IsDesignTimeCreatable=True}">
+        ResizeMode="NoResize">
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >

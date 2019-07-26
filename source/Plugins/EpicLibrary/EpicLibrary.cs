@@ -32,24 +32,29 @@ namespace EpicLibrary
         internal Dictionary<string, GameInfo> GetInstalledGames()
         {
             var games = new Dictionary<string, GameInfo>();
-            foreach (var app in EpicLauncher.GetInstalledAppList())
+            var appList = EpicLauncher.GetInstalledAppList();
+            var manifests = EpicLauncher.GetInstalledManifests();
+
+            foreach (var app in appList)
             {
                 if (app.AppName.StartsWith("UE_"))
                 {
                     continue;
-                }            
+                }
 
+                var manifest = manifests.FirstOrDefault(a => a.AppName == app.AppName);
                 var game = new GameInfo()
                 {
                     Source = "Epic",
                     GameId = app.AppName,
-                    Name = Path.GetFileName(app.InstallLocation),
-                    InstallDirectory = app.InstallLocation,
+                    Name = manifest?.DisplayName ?? Path.GetFileName(app.InstallLocation),
+                    InstallDirectory = manifest?.InstallLocation ?? app.InstallLocation,
                     IsInstalled = true,
                     PlayAction = new GameAction()
                     {
-                        Type = GameActionType.URL,
-                        Path = string.Format(EpicLauncher.GameLaunchUrlMask, app.AppName),
+                        Type = GameActionType.File,
+                        Path = manifest?.LaunchExecutable,
+                        WorkingDir = ExpandableVariables.InstallationDirectory,
                         IsHandledByPlugin = true
                     }
                 };
@@ -177,6 +182,11 @@ namespace EpicLibrary
             }
 
             return allGames;
+        }
+
+        public override LibraryMetadataProvider GetMetadataDownloader()
+        {
+            return new EpicMetadataProvider(this, PlayniteApi);
         }
 
         #endregion ILibraryPlugin

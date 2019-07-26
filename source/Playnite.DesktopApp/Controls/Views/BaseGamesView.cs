@@ -3,7 +3,6 @@ using Playnite.Common;
 using Playnite.Controls;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.ViewModels;
-using Playnite.ViewModels.Desktop.DesignData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,7 +34,7 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                this.mainModel = new DesignMainViewModel();
+                this.mainModel = DesignMainViewModel.DesignIntance;
             }
             else if (mainModel != null)
             {
@@ -43,7 +42,7 @@ namespace Playnite.DesktopApp.Controls.Views
             }
 
             this.viewType = viewType;
-            mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -59,7 +58,8 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void SetListGamesBinding()
         {
-            if (mainModel.AppSettings.ViewSettings.GamesViewType == viewType)
+            if (mainModel.AppSettings.ViewSettings.GamesViewType == viewType ||
+                DesignerProperties.GetIsInDesignMode(this))
             {
                 BindingTools.SetBinding(ListGames,
                     ExtendedListBox.ItemsSourceProperty,

@@ -18,11 +18,6 @@ namespace Playnite.SDK
         string DatabasePath { get; }
 
         /// <summary>
-        /// Gets value indicating whether game database is open and available.
-        /// </summary>
-        bool IsOpen { get; }
-
-        /// <summary>
         /// Add file to data storage.
         /// </summary>
         /// <param name="path">Path of the file to be added.</param>

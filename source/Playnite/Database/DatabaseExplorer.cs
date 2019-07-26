@@ -57,7 +57,7 @@ namespace Playnite.Database
             }
         }
 
-        private readonly GameDatabase database;
+        private readonly IGameDatabase database;
         private readonly ExtensionFactory extensions;
         private readonly FilterSettings filters;
         private readonly PlayniteSettings settings;
@@ -109,7 +109,7 @@ namespace Playnite.Database
             }
         }
         
-        public DatabaseExplorer(GameDatabase database, ExtensionFactory extensions, PlayniteSettings settings)
+        public DatabaseExplorer(IGameDatabase database, ExtensionFactory extensions, PlayniteSettings settings)
         {
             this.database = database;
             this.extensions = extensions;

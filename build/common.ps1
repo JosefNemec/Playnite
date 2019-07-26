@@ -51,7 +51,8 @@ function global:Invoke-Nuget()
         [string]$NugetArgs
     ) 
 
-    if (-not (Get-Command -Name "nuget" -Type Application -ErrorAction Ignore))
+    $nugetCommand = Get-Command -Name "nuget" -Type Application -ErrorAction Ignore
+    if (-not $nugetCommand)
     {
         if (-not (Test-Path "nuget.exe"))
         {
@@ -59,7 +60,14 @@ function global:Invoke-Nuget()
         }
     }
 
-    StartAndWait "nuget" $NugetArgs
+    if ($nugetCommand)
+    {
+        return StartAndWait "nuget" $NugetArgs
+    }
+    else
+    {      
+        return StartAndWait ".\nuget.exe" $NugetArgs
+    }
 }
 
 function global:Get-MsBuildPath()

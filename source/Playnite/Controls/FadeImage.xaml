@@ -17,6 +17,12 @@
                              Storyboard.TargetName="StagingImage"
                              From="1.0" To="0.0" Duration="0:0:0.5"/>
         </Storyboard>
+        <Storyboard x:Name="BorderDarkenOut" x:Key="BorderDarkenOut">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="BorderDarken"
+                             FillBehavior="Stop"
+                             From="1.0" To="0.0" Duration="0:0:0.5"/>
+        </Storyboard>
     </UserControl.Resources>
 
     <Grid>
@@ -24,11 +30,14 @@
                HorizontalAlignment="{Binding ElementName=ControlRoot, Path=HorizontalAlignment}"
                VerticalAlignment="{Binding ElementName=ControlRoot, Path=VerticalAlignment}"
                RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"
-               OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}" />
+               OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}">
+        </Image>
         <Image x:Name="MainImage"
                HorizontalAlignment="{Binding ElementName=ControlRoot, Path=HorizontalAlignment}"
                VerticalAlignment="{Binding ElementName=ControlRoot, Path=VerticalAlignment}"
                RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"
-               OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}" />
+               OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}">          
+        </Image>
+        <Border x:Name="BorderDarken" Background="{Binding ImageDarkeningBrush, ElementName=ControlRoot}" />
     </Grid>
 </UserControl>

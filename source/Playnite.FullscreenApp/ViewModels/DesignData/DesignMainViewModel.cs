@@ -1,4 +1,5 @@
 ﻿using Playnite.API;
+using Playnite.Common;
 using Playnite.Controllers;
 using Playnite.Database;
 using Playnite.FullscreenApp.Markup;
@@ -12,10 +13,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.FullscreenApp.ViewModels.DesignData
+namespace Playnite.FullscreenApp.ViewModels
 {
     public class DesignMainViewModel : FullscreenAppViewModel
     {
+        public new GamesCollectionViewEntry GameDetailsEntry { get; set; }
+        public new GamesCollectionViewEntry SelectedGame { get; set; }
+        public new bool GameDetailsButtonVisible { get; set; } = true;
+        public new bool IsExtraFilterActive { get; set; } = true;
+
+        private static DesignMainViewModel designIntance;
+        public static DesignMainViewModel DesignIntance
+        {
+            get
+            {
+                if (!DesignerTools.IsInDesignMode)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (designIntance == null)
+                    {
+                        designIntance = new DesignMainViewModel();
+                    }
+
+                    return designIntance;
+                }
+            }
+        }
+
+        public static GameDetailsViewModel DesignSelectedGameDetailsIntance
+        {
+            get
+            {
+                return DesignIntance?.SelectedGameDetails;
+            }
+        }
+
+        public static GamesCollectionViewEntry DesignSelectedGameIntance
+        {
+            get
+            {
+                return DesignIntance?.SelectedGame;
+            }
+        }
+
+        public static NotificationMessage DesignNotificationIntance
+        {
+            get
+            {
+                return DesignIntance?.PlayniteApi.Notifications.Messages[0];
+            }
+        }
+
         public DesignMainViewModel()
         {
             MainMenuVisible = false;
@@ -30,18 +81,21 @@ namespace Playnite.FullscreenApp.ViewModels.DesignData
             ProgressVisible = true;
 
             var database = new InMemoryGameDatabase();
-            for (int i = 0; i < 25; i++)
-            {
-                database.Games.Add(new Game($"Test Game {i}")
-                {
-                    //Icon = ThemeFile.GetFilePath("Images/custom_cover_background.png", ThemeFile.GetDesignTimeDefaultTheme())
-                });
-            }
+            Game.DatabaseReference = database;
+            GameDatabase.GenerateSampleData(database);
+            var designGame = database.Games.First();
+            designGame.CoverImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignCover.jpg";
+            designGame.BackgroundImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignBackground.jpg";
+            designGame.Icon = "pack://application:,,,/Playnite;component/Resources/Images/DesignIcon.png";
 
             GamesView = new FullscreenCollectionView(
                 database,
                 new PlayniteSettings(),
                 new ExtensionFactory(database, new GameControllerFactory()));
+
+            GameDetailsEntry = GamesView.Items[0];
+            SelectedGame = GamesView.Items[0];
+            SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
 
             MainMenuVisible = false;
             SettingsMenuVisible = false;

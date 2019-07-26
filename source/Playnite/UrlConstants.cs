@@ -9,7 +9,7 @@ namespace Playnite
     public static class UrlConstants
     {
         public const string IssuesTesting = @"https://github.com/JosefNemec/Playnite.Testing/issues/new";
-        public const string Issues = @"https://github.com/JosefNemec/Playnite/issues/new";
+        public const string Issues = @"https://github.com/JosefNemec/Playnite/issues/new/choose";
         public const string Patreon = @"https://www.patreon.com/playnite";
         public const string Discord = @"https://discord.gg/hSFvmN6";
         public const string Twitter = @"https://twitter.com/AppPlaynite";

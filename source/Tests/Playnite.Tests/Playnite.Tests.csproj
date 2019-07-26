@@ -121,6 +121,7 @@
     <Compile Include="GamesStatsTests.cs" />
     <Compile Include="IniParserTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />
+    <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />
     <Compile Include="LocalizationTests.cs" />
     <Compile Include="Metadata\IGDBMetadataProviderTests.cs" />
@@ -186,6 +187,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\icon_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\applogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

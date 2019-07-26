@@ -854,6 +854,29 @@ namespace Playnite.DesktopApp.ViewModels
             get;
         }
 
+        public bool IsOfficialMetadataAvailable
+        {
+            get
+            {
+                if (IsMultiGameEdit)
+                {
+                    return false;
+                }
+
+                if (Game.IsCustomGame)
+                {
+                    return false;
+                }
+
+                if (extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
+                {
+                    return ((LibraryPlugin)plugin.Plugin).GetMetadataDownloader() != null;
+                }
+
+                return false;
+            }
+        }
+
         public LibraryPlugin LibraryPlugin => extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == game?.PluginId);
 
         public RelayCommand<object> ConfirmCommand

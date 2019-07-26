@@ -41,10 +41,11 @@ namespace Playnite.DesktopApp
         public DesktopAppViewModel MainModel { get; set; }
         public new static DesktopApplication Current
         {
-            get => (DesktopApplication)PlayniteApplication.Current;
+            get => PlayniteApplication.Current == null ? null : (DesktopApplication)PlayniteApplication.Current;
         }
 
-        public DesktopApplication(App nativeApp, SplashScreen splashScreen) : base(nativeApp, ApplicationMode.Desktop, DefaultThemeName)
+        public DesktopApplication(App nativeApp, SplashScreen splashScreen, CmdLineOptions cmdLine)
+            : base(nativeApp, ApplicationMode.Desktop, DefaultThemeName, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
@@ -77,7 +78,7 @@ namespace Playnite.DesktopApp
             StartUpdateCheckerAsync();            
             SendUsageDataAsync();
             ProcessArguments();
-            splashScreen.Close(new TimeSpan(0));
+            splashScreen?.Close(new TimeSpan(0));
         }
 
         public override void InitializeNative()

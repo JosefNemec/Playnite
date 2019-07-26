@@ -5,7 +5,6 @@ using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.Extensions;
 using Playnite.ViewModels;
-using Playnite.ViewModels.Desktop.DesignData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,7 +47,7 @@ namespace Playnite.DesktopApp.Controls
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                this.mainModel = new DesignMainViewModel();
+                this.mainModel = DesignMainViewModel.DesignIntance;
             }
             else if (mainModel != null)
             {
@@ -69,11 +68,14 @@ namespace Playnite.DesktopApp.Controls
                     nameof(GamesCollectionViewEntry.Game));
                 PanelHost.InputBindings.Add(mBinding);
 
-                PanelHost.ContextMenu = new GameMenu();
-                BindingTools.SetBinding(PanelHost.ContextMenu,
-                    Button.DataContextProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGames));
+                if (!DesignerProperties.GetIsInDesignMode(this))
+                {
+                    PanelHost.ContextMenu = new GameMenu(mainModel);
+                    BindingTools.SetBinding(PanelHost.ContextMenu,
+                        Button.DataContextProperty,
+                        mainModel,
+                        nameof(DesktopAppViewModel.SelectedGames));
+                }
             }
 
             ImageIcon = Template.FindName("PART_ImageIcon", this) as Image;

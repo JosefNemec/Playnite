@@ -281,7 +281,7 @@ namespace Playnite.FullscreenApp.Controls
             {
                 GeneratorPosition childGeneratorPos = new GeneratorPosition(i, 0);
                 int itemIndex = generator.IndexFromGeneratorPosition(childGeneratorPos);
-                if (itemIndex < firstIndex || itemIndex > lastIndex)
+                if ((itemIndex < firstIndex || itemIndex > lastIndex) && itemIndex > 0)
                 {
                     generator.Remove(childGeneratorPos, 1);
                     RemoveInternalChildRange(i, 1);

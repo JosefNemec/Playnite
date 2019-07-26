@@ -62,6 +62,9 @@ namespace Playnite
         public ScoreGroup UserScoreGroup => Game.UserScoreGroup;
         public ScoreGroup CriticScoreGroup => Game.CriticScoreGroup;
         public ScoreGroup CommunityScoreGroup => Game.CommunityScoreGroup;
+        public ScoreRating UserScoreRating => Game.UserScoreRating;
+        public ScoreRating CriticScoreRating => Game.CriticScoreRating;
+        public ScoreRating CommunityScoreRating => Game.CommunityScoreRating;
         public PastTimeSegment LastActivitySegment => Game.LastActivitySegment;
         public PastTimeSegment AddedSegment => Game.AddedSegment;
         public PastTimeSegment ModifiedSegment => Game.ModifiedSegment;

@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Playnite.SDK;
+using Playnite.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,7 @@ namespace ItchioLibrary.Tests
     {
         public static ItchioLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            return new ItchioLibrary(api.Object);
+            return new ItchioLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]

@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">English</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Language</sys:String>
@@ -196,6 +199,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Official Store</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Official Store > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Please select which fields should be automatically populated by Playnite and which sources should be used to obtain the data from.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Please consider clicking on the logo above and contribute updates to igdb.com database in order to improve data Playnite uses.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Store:
 Only use data from official Store.
     
@@ -299,8 +303,10 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disable DPI Scaling</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Show Steam friends button</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Show background image</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Stretch over the whole application window</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Use game background image as window background</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Blur background</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Darken background</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Show on Grid view</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Theme Profile</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Fullscreen Theme</sys:String>
@@ -710,6 +716,23 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCPLaytime500to1000">500 to 1000 hours</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install addon?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Failed to install extension.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Do you want to install new extension? Existing installation will be overwritten.
+    
+{0}
+By {1}
+Version {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Failed to install theme.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Do you want to install new theme? Existing installation will be overwritten.
+    
+{0}
+By {1}
+Version {2}
+    </sys:String>
+
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">You are about to leave Playnite and navigate to following web page using your default web browser. Do you want to continue?
     
 {0}</sys:String>
@@ -726,10 +749,9 @@ You can try these to fix the issue:
 Note that the Account Name option only works for accounts whose game libraries have been set in GOG's privacy settings to be publicly visible.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Select authenticated user or specify vanity URL name of your account to sync your full library. Accounts with private library visibility have to specify API key linked to that Steam account.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Account is private, API Key is required.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">First time setup is not complete. Playnite will now restart to Desktop mode to finish the procedure.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Recently Played</sys:String>

@@ -1,7 +1,6 @@
 ﻿using Playnite.Behaviors;
 using Playnite.Common;
 using Playnite.FullscreenApp.ViewModels;
-using Playnite.FullscreenApp.ViewModels.DesignData;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -55,7 +54,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                this.mainModel = new DesignMainViewModel();
+                this.mainModel = DesignMainViewModel.DesignIntance;
             }
             else if (mainModel != null)
             {
@@ -91,6 +90,11 @@ namespace Playnite.FullscreenApp.Controls.Views
                 if (ButtonAdditional != null)
                 {
                     ButtonAdditional.Command = mainModel.OpenAdditionalFiltersCommand;
+                    BindingTools.SetBinding(
+                        ButtonAdditional,
+                        ButtonBase.TagProperty,
+                        mainModel.AppSettings.Fullscreen.FilterSettings,
+                        nameof(FullscreenFilterSettings.IsSubAdditionalFilterActive));
                 }
 
                 SelectSortBy = Template.FindName("PART_SelectSortBy", this) as Selector;

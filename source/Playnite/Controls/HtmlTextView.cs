@@ -165,14 +165,7 @@ namespace Playnite.Controls
         static HtmlTextView()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(HtmlTextView), new FrameworkPropertyMetadata(typeof(HtmlTextView)));
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                //template = File.ReadAllText(ThemeFile.GetFilePath("Others/DescriptionView.html", ApplicationMode.Desktop));
-            }
-            else
-            {
-                template = Common.Resources.ReadFileFromResource("Playnite.Resources.DescriptionView.html");
-            }
+            template = Common.Resources.ReadFileFromResource("Playnite.Resources.DescriptionView.html");    
         }
 
 

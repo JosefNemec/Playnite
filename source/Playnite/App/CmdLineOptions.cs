@@ -18,6 +18,12 @@ namespace Playnite
         [Option("startdesktop")]
         public bool StartInDesktop { get; set; }
 
+        [Option("forcesoftrender")]
+        public bool ForceSoftwareRender { get; set; }
+
+        [Option("forcedefaulttheme")]
+        public bool ForceDefaultTheme { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);

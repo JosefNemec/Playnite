@@ -37,6 +37,14 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public string ThemeApiVersion
+        {
+            get
+            {
+                return "Theme API " + ThemeManager.ThemeApiVersion.ToString(3);
+            }
+        }
+
         public string Contributors
         {
             get

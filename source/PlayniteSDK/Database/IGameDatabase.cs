@@ -66,5 +66,15 @@ namespace Playnite.SDK
         /// Gets collection of sources.
         /// </summary>
         IItemCollection<GameSource> Sources { get; }
+
+        /// <summary>
+        /// Gets value indicating whether database is opened.
+        /// </summary>
+        bool IsOpen { get; }
+
+        /// <summary>
+        /// Invoked when database is being opened.
+        /// </summary>
+        event EventHandler DatabaseOpened;
     }
 }

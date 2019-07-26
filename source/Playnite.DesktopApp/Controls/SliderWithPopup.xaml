@@ -12,12 +12,12 @@
                 IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"
                 MouseMove="Slider_MouseMove" MouseLeave="Slider_MouseLeave">
         </Slider>
-        <Popup Name="Popup">
+        <!--<Popup Name="Popup">
             <Grid Name="PopupGrid" Background="{DynamicResource TooltipBackgroundBrush}">
                 <Border BorderBrush="{DynamicResource PopupBorderBrush}" BorderThickness="{DynamicResource PopupBorderThickness}">
                     <Label Foreground="{DynamicResource TextBrush}" Margin="4" Content="{Binding PopupLabel, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
                 </Border>
             </Grid>
-        </Popup>
+        </Popup>-->
     </Grid>
 </UserControl>

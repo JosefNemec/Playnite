@@ -27,24 +27,24 @@ namespace SteamLibrary
     public class SteamLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private SteamServicesClient servicesClient;
         private readonly Configuration config;
         private readonly SteamApiClient apiClient = new SteamApiClient();
         private const string dbImportMessageId = "steamlibImportError";
 
         internal SteamLibrarySettings LibrarySettings { get; private set; }
+        internal SteamServicesClient ServicesClient;
 
         public SteamLibrary(IPlayniteAPI api) : base(api)
         {
             Initialize(api);
             config = GetPluginConfiguration<Configuration>();
-            servicesClient = new SteamServicesClient(config.ServicesEndpoint);
+            ServicesClient = new SteamServicesClient(config.ServicesEndpoint);
         }
 
         public SteamLibrary(IPlayniteAPI api, SteamServicesClient client) : base(api)
         {
             Initialize(api);
-            servicesClient = client;
+            ServicesClient = client;
         }
 
         private void Initialize(IPlayniteAPI api)
@@ -318,40 +318,31 @@ namespace SteamLibrary
 
         internal List<GameInfo> GetLibraryGames(SteamLibrarySettings settings)
         {
-            var userName = string.Empty;
-            if (settings.IdSource == SteamIdSource.Name)
+            if (settings.UserId.IsNullOrEmpty())
             {
-                userName = settings.AccountName;
-            }
-            else
-            {
-                userName = settings.AccountId.ToString();
+                throw new Exception(PlayniteApi.Resources.GetString("LOCNotLoggedInError"));
             }
 
             if (settings.IsPrivateAccount)
             {
-                return GetLibraryGames(userName, settings.ApiKey);
+                return GetLibraryGames(ulong.Parse(settings.UserId), settings.ApiKey);
             }
             else
             {
-                return GetLibraryGames(userName);
+                return GetLibraryGames(ulong.Parse(settings.UserId));
             }
         }
 
-        internal List<GameInfo> GetLibraryGames(string userName, string apiKey)
+        internal GetOwnedGamesResult GetPrivateOwnedGames(ulong userId, string apiKey)
         {
-            var userNameUrl = @"https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}";
             var libraryUrl = @"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&include_played_free_games=1&format=json&steamid={1}";
-
-            ulong userId = 0;
-            if (!ulong.TryParse(userName, out userId))
-            {
-                var stringData = HttpDownloader.DownloadString(string.Format(userNameUrl, apiKey, userName));
-                userId = ulong.Parse(JsonConvert.DeserializeObject<ResolveVanityResult>(stringData).response.steamid);
-            }
-
             var stringLibrary = HttpDownloader.DownloadString(string.Format(libraryUrl, apiKey, userId));
-            var library = JsonConvert.DeserializeObject<GetOwnedGamesResult>(stringLibrary);
+            return JsonConvert.DeserializeObject<GetOwnedGamesResult>(stringLibrary);
+        }
+
+        internal List<GameInfo> GetLibraryGames(ulong userId, string apiKey)
+        {
+            var library = GetPrivateOwnedGames(userId, apiKey);
             if (library.response.games == null)
             {
                 throw new Exception("No games found on specified Steam account.");
@@ -396,31 +387,23 @@ namespace SteamLibrary
             return games;
         }
 
-        internal List<GameInfo> GetLibraryGames(string userName)
+        internal List<GameInfo> GetLibraryGames(ulong userId)
         {
-            if (string.IsNullOrEmpty(userName))
-            {
-                throw new Exception("Steam user name cannot be empty.");
-            }
-
             var games = new List<GameInfo>();
-            var importedGames = servicesClient.GetSteamLibrary(userName);
+            var importedGames = ServicesClient.GetSteamLibrary(userId.ToString());
             if (importedGames == null)
             {
                 throw new Exception("No games found on specified Steam account.");
             }
 
-            IDictionary<string, DateTime> lastActivity = null;
-            if (ulong.TryParse(userName, out var userId))
+            IDictionary<string, DateTime> lastActivity = null;      
+            try
             {
-                try
-                {
-                    lastActivity = GetGamesLastActivity(userId);
-                }
-                catch (Exception exc)
-                {
-                    logger.Warn(exc, "Failed to import Steam last activity.");
-                }
+                lastActivity = GetGamesLastActivity(userId);
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to import Steam last activity.");
             }
 
             foreach (var game in importedGames)
@@ -718,7 +701,7 @@ namespace SteamLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import installed battle.net games.");
+                    logger.Error(e, "Failed to import installed Steam games.");
                     importError = e;
                 }
             }
@@ -773,7 +756,7 @@ namespace SteamLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new SteamMetadataProvider(servicesClient, this, apiClient);
+            return new SteamMetadataProvider(ServicesClient, this, apiClient);
         }
 
         #endregion ILibraryPlugin

@@ -194,7 +194,7 @@ namespace Playnite.Controls
             {
                 GeneratorPosition childGeneratorPosition = new GeneratorPosition(i, 0);
                 int iIndex = ItemContainerGenerator.IndexFromGeneratorPosition(childGeneratorPosition);
-                if (iIndex < minDesiredGenerated || iIndex > maxDesiredGenerated)
+                if ((iIndex < minDesiredGenerated || iIndex > maxDesiredGenerated) && iIndex > 0)
                 {
                     Generator.Recycle(childGeneratorPosition, 1);
                     RemoveInternalChildRange(i, 1);

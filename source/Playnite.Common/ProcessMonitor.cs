@@ -121,6 +121,22 @@ namespace Playnite.Common
             }
         }
 
+        public static bool IsWatchableByProcessNames(string directory)
+        {
+            var realPath = directory;
+            try
+            {
+                realPath = Paths.GetFinalPathName(directory);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to get target path for a directory {directory}");
+            }
+
+            var executables = Directory.GetFiles(realPath, "*.exe", SearchOption.AllDirectories);
+            return executables.Count() > 0;
+        }
+
         private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning)
         {
             if (!Directory.Exists(directory))
@@ -135,6 +151,7 @@ namespace Playnite.Common
             }
 
             var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
+            var procNamesNoExt = executables.Select(a => Path.GetFileNameWithoutExtension(a)).ToList();
             watcherToken = new CancellationTokenSource();
             var startedCalled = false;
             var processStarted = false;
@@ -161,6 +178,12 @@ namespace Playnite.Common
                                 processStarted = true;
                                 break;
                             }
+                        }
+                        else if (procNamesNoExt.Contains(process.ProcessName))
+                        {
+                            processFound = true;
+                            processStarted = true;
+                            break;
                         }
                     }
                 }

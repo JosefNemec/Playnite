@@ -46,7 +46,7 @@ $specFile = "nuget.nuspec"
 try
 {
     $spec | Out-File $specFile
-    $packageRes = StartAndWait "nuget" "pack $specFile"
+    $packageRes = Invoke-Nuget "pack $specFile"
     if ($packageRes -ne 0)
     {
         throw "Nuget packing failed."

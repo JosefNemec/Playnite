@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Windows.Media.Imaging;
+﻿using Playnite.Common;
+using Playnite.Common.Web;
 using Playnite.Emulators;
 using Playnite.SDK;
-using Playnite.SDK.Models;
 using Playnite.SDK.Metadata;
-using Playnite.Common;
-using Playnite.Settings;
+using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
-using System.Net;
-using Playnite.Common.Web;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Windows.Media.Imaging;
 
 namespace Playnite.Database
 {
     public partial class GameDatabase : IGameDatabase
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private static readonly ILogger logger = LogManager.GetLogger();
 
         #region Locks
 
@@ -203,7 +202,7 @@ namespace Playnite.Database
 
         internal static void SaveSettingsToDbPath(DatabaseSettings settings, string dbPath)
         {
-            var settingsPath = Path.Combine(dbPath, settingsFileName);            
+            var settingsPath = Path.Combine(dbPath, settingsFileName);
             FileSystem.WriteStringToFileSafe(settingsPath, Serialization.ToJson(settings));
         }
 
@@ -241,7 +240,7 @@ namespace Playnite.Database
             {
                 return path;
             }
-        }        
+        }
 
         public void OpenDatabase()
         {
@@ -435,9 +434,8 @@ namespace Playnite.Database
             lock (fileFilesLock)
             {
                 using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
-                using (var wrapper = new WrappingStream(fStream))
                 {
-                    return BitmapExtensions.BitmapFromStream(wrapper);
+                    return BitmapExtensions.BitmapFromStream(fStream);
                 }
             }
         }
@@ -669,6 +667,7 @@ namespace Playnite.Database
         public Game ImportGame(GameInfo game, Guid pluginId)
         {
             var toAdd = GameInfoToGame(game, pluginId);
+            toAdd.Name = toAdd.Name.RemoveTrademarks();
             toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
             toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
             if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
@@ -683,6 +682,7 @@ namespace Playnite.Database
         public Game ImportGame(GameMetadata metadata)
         {
             var toAdd = GameInfoToGame(metadata.GameInfo, Guid.Empty);
+            toAdd.Name = toAdd.Name.RemoveTrademarks();
             if (metadata.Icon != null)
             {
                 toAdd.Icon = AddFile(metadata.Icon, toAdd.Id);
@@ -712,12 +712,13 @@ namespace Playnite.Database
         public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
         {
             var addedGames = new List<Game>();
-            foreach (var newGame in library.GetGames())
+            var libraryGames = library.GetGames().ToList();
+            foreach (var newGame in libraryGames)
             {
                 var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                 if (existingGame == null)
                 {
-                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+                    logger.Info($"Adding new game {newGame.GameId} from {library.Name} plugin");
                     addedGames.Add(ImportGame(newGame, library.Id));
                 }
                 else
@@ -753,7 +754,59 @@ namespace Playnite.Database
                 }
             }
 
-            return addedGames;        
+            // Set the uninstalled property for games that were removed
+            foreach (var game in Games.Where(g => g.PluginId == library.Id && g.IsInstalled))
+            {
+                var isGameInstalled = libraryGames.Any(lg => lg.GameId == game.GameId && lg.IsInstalled);
+                if (game.IsInstalled != isGameInstalled)
+                {
+                    game.IsInstalled = isGameInstalled;
+                    Games.Update(game);
+                }
+            }
+
+            return addedGames;
+        }
+
+        public static void GenerateSampleData(IGameDatabase database)
+        {
+            database.Platforms.Add("Windows");
+            database.AgeRatings.Add("18+");
+            database.Categories.Add("Category");
+            database.Companies.Add("BioWare");
+            database.Companies.Add("LucasArts");
+            database.Genres.Add("RPG");
+            database.Regions.Add("EU");
+            database.Series.Add("Star Wars");
+            database.Sources.Add("Retails");
+            database.Tags.Add("Single player");
+
+            var designGame = new Game($"Star Wars: Knights of the Old Republic")
+            {
+                ReleaseDate = new DateTime(2009, 9, 5),
+                PlatformId = database.Platforms.First().Id,
+                PlayCount = 20,
+                Playtime = 115200,
+                LastActivity = DateTime.Today,
+                IsInstalled = true,
+                AgeRatingId = database.AgeRatings.First().Id,
+                CategoryIds = new List<Guid> { database.Categories.First().Id },
+                DeveloperIds = new List<Guid> { database.Companies.First().Id },
+                PublisherIds = new List<Guid> { database.Companies.Last().Id },
+                GenreIds = new List<Guid> { database.Genres.First().Id },
+                RegionId = database.Regions.First().Id,
+                SeriesId = database.Series.First().Id,
+                SourceId = database.Sources.First().Id,
+                TagIds = new List<Guid> { database.Tags.First().Id },
+                Description = "Star Wars: Knights of the Old Republic (often abbreviated as KotOR) is the first installment in the Knights of the Old Republic series. KotOR is the first computer role-playing game set in the Star Wars universe.",
+                Version = "1.2",
+                CommunityScore = 95,
+                CriticScore = 50,
+                UserScore = 15,
+                Links = new ObservableCollection<Link> { new Link("Wiki", ""), new Link("HomePage", "") }
+            };
+
+            database.Games.Add(designGame);
         }
     }
 }

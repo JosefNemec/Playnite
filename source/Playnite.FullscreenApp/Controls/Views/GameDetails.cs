@@ -2,7 +2,6 @@
 using Playnite.Common;
 using Playnite.Converters;
 using Playnite.FullscreenApp.ViewModels;
-using Playnite.FullscreenApp.ViewModels.DesignData;
 using Playnite.Input;
 using System;
 using System.Collections.Generic;
@@ -40,7 +39,9 @@ namespace Playnite.FullscreenApp.Controls.Views
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                this.mainModel = new DesignMainViewModel();
+                var designModel = DesignMainViewModel.DesignIntance;
+                this.mainModel = designModel;
+                DataContext = designModel.GamesView.Items[0];
             }
             else if (mainModel != null)
             {

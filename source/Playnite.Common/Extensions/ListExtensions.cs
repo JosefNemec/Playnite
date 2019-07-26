@@ -77,16 +77,33 @@ namespace System.Collections.Generic
             return intersects;
         }
 
+        /// <summary>
+        /// Checks if source collection constains specified string completely.
+        /// </summary>
         public static bool ContainsString(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             return source?.Any(a => a?.Equals(value, comparison) == true) == true;
         }
 
+        /// <summary>
+        /// Checks if part of specified string is part of the collection.
+        /// </summary>
         public static bool ContainsStringPartial(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
+        {
+            return source?.Any(a => a?.IndexOf(value, comparison) >= 0) == true;
+        }
+
+        /// <summary>
+        /// Checks if source collection constains part of specified string.
+        /// </summary>
+        public static bool ContainsPartOfString(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             return source?.Any(a => value?.IndexOf(a, comparison) >= 0) == true;
         }
 
+        /// <summary>
+        /// Checks if two collections contain the same items in any order.
+        /// </summary>
         public static bool IsListEqual<T>(this IEnumerable<T> source, IEnumerable<T> target)
         {
             if (source == null && target == null)
@@ -114,6 +131,9 @@ namespace System.Collections.Generic
             return true;
         }
 
+        /// <summary>
+        /// Gets items contained in all colletions.
+        /// </summary>
         public static HashSet<T> GetCommonItems<T>(IEnumerable<IEnumerable<T>> lists)
         {
             if (lists?.Any() != true || lists?.First()?.Any() != true)
@@ -133,6 +153,9 @@ namespace System.Collections.Generic
             return set;
         }
 
+        /// <summary>
+        /// Gets items distinct to all collections.
+        /// </summary>
         public static HashSet<T> GetDistinctItems<T>(IEnumerable<IEnumerable<T>> lists)
         {
             if (lists?.Any() != true)

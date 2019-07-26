@@ -1,23 +1,20 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:pcmds="clr-namespace:Playnite.Commands;assembly=Playnite"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
-                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
-                    xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite">
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
 
-    <Style x:Key="GridViewGameOverview" TargetType="{x:Type views:GameOverview}">
+    <Style TargetType="{x:Type GridViewGameOverview}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:GameOverview}">
-                    <Border Padding="10,0,5,0" BorderBrush="{DynamicResource PanelSeparatorBrush}">
+                <ControlTemplate TargetType="{x:Type GridViewGameOverview}">
+                    <Border Padding="10,0,5,0" BorderBrush="{DynamicResource PanelSeparatorBrush}"
+                            d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="BorderThickness" Value="1,0,0,0" />
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{pmrk:Settings GridViewDetailsPosition}" Value="Left">
+                                    <DataTrigger Binding="{Settings GridViewDetailsPosition}" Value="Left">
                                         <Setter Property="BorderThickness" Value="0,0,1,0" />
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -27,7 +24,7 @@
                             <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                                     Content="r" FontFamily="Marlett"
                                     Style="{StaticResource SimpleButton}"
-                                    Command="{pmrk:MainViewModel CloseGameSideBarCommand}"
+                                    Command="{MainViewModel CloseGameSideBarCommand}"
                                     DockPanel.Dock="Top" Margin="0,10,15,5" />
 
                             <TextBlock Text="{DynamicResource LOCErrorNoGameSelected}" 
@@ -58,10 +55,10 @@
 
                                 <DockPanel DockPanel.Dock="Top">
                                     <Image Name="PART_ImageIcon" DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32"
-                                           RenderOptions.BitmapScalingMode="Fant" />
+                                           RenderOptions.BitmapScalingMode="Fant" Margin="0,0,10,0" />
                                     <TextBlock Text="{Binding Game.DisplayName}" FontSize="20"
-                                               Margin="10,0,0,0" TextWrapping="Wrap" 
-                                               DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
+                                               TextWrapping="Wrap" DockPanel.Dock="Left"
+                                               VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                                         <TextBlock.Effect>
                                             <DropShadowEffect ShadowDepth="3"/>
                                         </TextBlock.Effect>
@@ -88,89 +85,91 @@
                                                     <Setter Property="VerticalAlignment" Value="Center" />
                                                 </Style>
                                                 <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-                                                    <Setter Property="Margin" Value="0,3,8,3" />
+                                                    <Setter Property="Margin" Value="0,4,8,4" />
                                                     <Setter Property="VerticalAlignment" Value="Top" />
                                                     <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                                                 </Style>
                                                 <Style TargetType="Button" BasedOn="{StaticResource PropertyItemButton}" />
                                             </StackPanel.Resources>
-                                            
-                                            <Grid Margin="0,5,0,10"
-                                                  pbeh:GridBehaviors.ColumnCount="2"
-                                                  pbeh:GridBehaviors.StarColumns="1"
-                                                  pbeh:GridBehaviors.RowCount="12">
+
+                                            <GridEx Margin="0,5,0,10"
+                                                    ColumnCount="2" StarColumns="1"
+                                                    RowCount="20" AutoLayoutColumns="2">
                                                 <Grid.Resources>
                                                     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
                                                 </Grid.Resources>
 
-                                                <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}"
-                                               Grid.Column="0" Grid.Row="0" />
-                                                <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center"
-                                               Grid.Column="1" Grid.Row="0" />
+                                                <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" />
+                                                <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}"
-                                            Grid.Column="0" Grid.Row="1" />
-                                                <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center"
-                                            Grid.Column="1" Grid.Row="1" />
+                                                <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" />
+                                                <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}"
-                                            Grid.Column="0" Grid.Row="2"/>
-                                                <TextBlock Name="PART_TextCompletionStatus" VerticalAlignment="Center"
-                                            Grid.Column="1" Grid.Row="2" />
+                                                <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
+                                                <TextBlock Name="PART_TextCompletionStatus" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}"
-                                           Grid.Column="0" Grid.Row="3" />
-                                                <Button Name="PART_ButtonLibrary" VerticalAlignment="Center"
-                                            Grid.Column="1" Grid.Row="3" />
+                                                <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
+                                                <Button Name="PART_ButtonLibrary" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}"
-                                           Grid.Column="0" Grid.Row="4" />
-                                                <Button Name="PART_ButtonPlatform" VerticalAlignment="Center"
-                                            Grid.Column="1" Grid.Row="4" />
+                                                <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}" />
+                                                <Button Name="PART_ButtonPlatform" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemGenres" Content="{DynamicResource LOCGenreLabel}"
-                                           Grid.Column="0" Grid.Row="5" />
-                                                <ItemsControl Name="PART_ItemsGenres"
-                                                  Grid.Column="1" Grid.Row="5" />
+                                                <Label Name="PART_ElemGenres" Content="{DynamicResource LOCGenreLabel}" />
+                                                <ItemsControl Name="PART_ItemsGenres"  />
 
-                                                <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}"
-                                           Grid.Column="0" Grid.Row="6" />
-                                                <ItemsControl Name="PART_ItemsDevelopers"
-                                                  Grid.Column="1" Grid.Row="6" />
+                                                <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}" />
+                                                <ItemsControl Name="PART_ItemsDevelopers" />
 
-                                                <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}"
-                                           Grid.Column="0" Grid.Row="7" />
-                                                <ItemsControl Name="PART_ItemsPublishers"
-                                                  Grid.Column="1" Grid.Row="7" />
+                                                <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}" />
+                                                <ItemsControl Name="PART_ItemsPublishers" />
 
-                                                <Label Name="PART_ElemReleaseDate" Content="{DynamicResource LOCGameReleaseDateTitle}"
-                                           Grid.Column="0" Grid.Row="8" />
-                                                <Button Name="PART_ButtonReleaseDate" VerticalAlignment="Center"
-                                            Grid.Column="1" Grid.Row="8" />
+                                                <Label Name="PART_ElemReleaseDate" Content="{DynamicResource LOCGameReleaseDateTitle}" />
+                                                <Button Name="PART_ButtonReleaseDate" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemCategories" Content="{DynamicResource LOCGameCategoriesTitle}"
-                                           Grid.Column="0" Grid.Row="9" />
-                                                <ItemsControl Name="PART_ItemsCategories"
-                                                  Grid.Column="1" Grid.Row="9" />
+                                                <Label Name="PART_ElemCategories" Content="{DynamicResource LOCGameCategoriesTitle}" />
+                                                <ItemsControl Name="PART_ItemsCategories" />
 
-                                                <Label  Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}"
-                                            Grid.Column="0" Grid.Row="10" />
-                                                <ItemsControl Name="PART_ItemsTags"
-                                                  Grid.Column="1" Grid.Row="10" />
+                                                <Label Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}" />
+                                                <ItemsControl Name="PART_ItemsTags" />
 
-                                                <Label Name="PART_ElemLinks" Content="{DynamicResource LOCLinksLabel}"
-                                           Grid.Column="0" Grid.Row="11" />
-                                                <ItemsControl Name="PART_ItemsLinks"
-                                                  Grid.Column="1" Grid.Row="11" />
-                                            </Grid>
+                                                <Label Name="PART_ElemAgeRating" Content="{DynamicResource LOCAgeRatingLabel}" />
+                                                <Button Name="PART_ButtonAgeRating" VerticalAlignment="Center" />
+
+                                                <Label Name="PART_ElemSeries" Content="{DynamicResource LOCSeriesLabel}" />
+                                                <Button Name="PART_ButtonSeries" VerticalAlignment="Center" />
+
+                                                <Label Name="PART_ElemSource" Content="{DynamicResource LOCSourceLabel}" />
+                                                <Button Name="PART_ButtonSource" VerticalAlignment="Center" />
+
+                                                <Label Name="PART_ElemRegion" Content="{DynamicResource LOCRegionLabel}" />
+                                                <Button Name="PART_ButtonRegion" VerticalAlignment="Center" />
+
+                                                <Label Name="PART_ElemVersion" Content="{DynamicResource LOCVersionLabel}" />
+                                                <Button Name="PART_ButtonVersion" VerticalAlignment="Center" />
+
+                                                <Label Name="PART_ElemCommunityScore" Content="{DynamicResource LOCCommunityScore}" />
+                                                <TextBlock Name="PART_TextCommunityScore" VerticalAlignment="Center"
+                                                           Style="{DynamicResource TextBlockGameScore}" />
+
+                                                <Label Name="PART_ElemCriticScore" Content="{DynamicResource LOCCriticScore}" />
+                                                <TextBlock Name="PART_TextCriticScore" VerticalAlignment="Center"
+                                                           Style="{DynamicResource TextBlockGameScore}" />
+
+                                                <Label Name="PART_ElemUserScore" Content="{DynamicResource LOCUserScore}" />
+                                                <TextBlock Name="PART_TextUserScore" VerticalAlignment="Center"
+                                                           Style="{DynamicResource TextBlockGameScore}" />
+
+                                                <Label Name="PART_ElemLinks" Content="{DynamicResource LOCLinksLabel}" />
+                                                <ItemsControl Name="PART_ItemsLinks" />
+                                            </GridEx>
                                         </StackPanel>
                                       
-                                        <pctrlsShared:HtmlTextView Name="PART_HtmlDescription" DockPanel.Dock="Top"
-                                                    HtmlFontFamily="{DynamicResource FontFamily}"
-                                                    HtmlForeground="{DynamicResource TextColor}"
-                                                    LinkForeground="{DynamicResource GlyphColor}"                                      
-                                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                        <HtmlTextView Name="PART_HtmlDescription" DockPanel.Dock="Top"
+                                                      HtmlFontFamily="{DynamicResource FontFamily}"
+                                                      HtmlForeground="{DynamicResource TextColor}"
+                                                      LinkForeground="{DynamicResource GlyphColor}"                                      
+                                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                                     </DockPanel>
                                 </ScrollViewer>
                             </DockPanel>

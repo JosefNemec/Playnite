@@ -24,23 +24,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
         {
             var database = new GameDatabase();
             var controllers = new GameControllerFactory();
-            var model = new DesktopAppViewModel(
-                database,
-                null,
-                null,
-                null,
-                new PlayniteSettings(),
-                new DesktopGamesEditor(
-                    new GameDatabase(),
-                    controllers,
-                    new PlayniteSettings(),
-                    null,
-                    null,
-                    null),
-                null,
-                new ExtensionFactory(database, controllers),
-                null);
-
+            var model = new DesktopAppViewModel();
             var props = typeof(DesktopAppViewModel).GetProperties();
             foreach (var prop in props)
             {
