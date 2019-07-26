@@ -11,6 +11,8 @@
     <AssemblyName>Playnite.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +36,21 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ExtendedLinguisticServices, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Sensors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.Sensors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Nett, Version=0.10.0.0, Culture=neutral, PublicKeyToken=605dcfe7a1d3365b, processorArchitecture=MSIL">
       <HintPath>..\packages\Nett.0.10.1\lib\Net40\Nett.dll</HintPath>
     </Reference>
@@ -45,6 +62,12 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SQLite-net, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlite-net-pcl.1.0.10\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCL.raw, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCL.raw_basic.0.7.1\lib\net45\SQLitePCL.raw.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -55,6 +78,7 @@
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,17 +95,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingTools.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="DesignerTools.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="Extensions\CloneObject.cs" />
     <Compile Include="Extensions\Enums.cs" />
+    <Compile Include="Extensions\ItemsControlExtensions.cs" />
     <Compile Include="Extensions\IconExtension.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Images.cs" />
     <Compile Include="IniParser.cs" />
     <Compile Include="InteropMethods.cs" />
+    <Compile Include="ItemsSource.cs" />
     <Compile Include="MemoryCache.cs" />
     <Compile Include="Explorer.cs" />
     <Compile Include="NLogLogProvider.cs" />
@@ -90,23 +119,25 @@
     <Compile Include="Roman.cs" />
     <Compile Include="JsonRpcClient.cs" />
     <Compile Include="Serialization.cs" />
-    <Compile Include="Services\BaseServicesClient.cs" />
-    <Compile Include="Services\GenericResponse.cs" />
-    <Compile Include="System\Computer.cs" />
-    <Compile Include="System\FileSystem.cs" />
-    <Compile Include="System\Paths.cs" />
-    <Compile Include="System\ProcessExtensions.cs" />
-    <Compile Include="System\ProcessMonitor.cs" />
-    <Compile Include="System\ProcessStarter.cs" />
-    <Compile Include="System\Programs.cs" />
-    <Compile Include="System\SafeFileEnumerator.cs" />
-    <Compile Include="System\TempDirectory.cs" />
+    <Compile Include="Computer.cs" />
+    <Compile Include="FileSystem.cs" />
+    <Compile Include="Paths.cs" />
+    <Compile Include="Extensions\ProcessExtensions.cs" />
+    <Compile Include="ProcessMonitor.cs" />
+    <Compile Include="ProcessStarter.cs" />
+    <Compile Include="Programs.cs" />
+    <Compile Include="SafeFileEnumerator.cs" />
+    <Compile Include="Sizes.cs" />
+    <Compile Include="Sqlite.cs" />
+    <Compile Include="SystemDialogs.cs" />
+    <Compile Include="TempDirectory.cs" />
     <Compile Include="TGASharpLib.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Units.cs" />
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HttpDownloader.cs" />
-    <Compile Include="WrappingStream.cs" />
+    <Compile Include="Xaml.cs" />
+    <Compile Include="Xml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -128,5 +159,13 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.1\build\net45\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.1\build\net45\SQLitePCL.raw_basic.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SQLitePCL.raw_basic.0.7.1\build\net45\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw_basic.0.7.1\build\net45\SQLitePCL.raw_basic.targets'))" />
+  </Target>
 </Project>

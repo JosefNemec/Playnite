@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite
+namespace System
 {
     public static class ObjectExtensions
     {
@@ -25,6 +25,28 @@ namespace Playnite
                 // Ambiguous means there is more than one result
                 return true;
             }
+        }
+
+        public static T CrateInstance<T>(this Type type)
+        {
+            return (T)Activator.CreateInstance(type);
+        }
+
+        public static T CrateInstance<T>(this Type type, params object[] parameters)
+        {
+            return (T)Activator.CreateInstance(type, parameters);
+        }
+
+        public static object CreateGenericInstance(Type genericTypeDefinition, Type genericType)
+        {
+            Type resultType = genericTypeDefinition.MakeGenericType(genericType);
+            return Activator.CreateInstance(resultType);
+        }
+
+        public static object CreateGenericInstance(Type genericTypeDefinition, Type genericType, params object[] parameters)
+        {
+            Type resultType = genericTypeDefinition.MakeGenericType(genericType);
+            return Activator.CreateInstance(resultType, parameters);
         }
     }
 }

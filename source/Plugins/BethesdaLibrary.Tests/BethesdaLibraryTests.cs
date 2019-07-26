@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Playnite.SDK;
+using Playnite.Tests;
 
 namespace BethesdaLibrary.Tests
 {
@@ -10,8 +11,7 @@ namespace BethesdaLibrary.Tests
     {
         public static BethesdaLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            return new BethesdaLibrary(api.Object);
+            return new BethesdaLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]

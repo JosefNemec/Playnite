@@ -10,25 +10,17 @@ using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 
-namespace Playnite
+namespace Playnite.Common
 {
     public class Resources
     {
-        [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
-        [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr LoadResource(IntPtr hModule, IntPtr hResInfo);
-        [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr FindResource(IntPtr hModule, string lpName, string lpType);
-        [DllImport("kernel32.dll", SetLastError = true)]
-        static extern uint SizeofResource(IntPtr hModule, IntPtr hResInfo);
 
         public static void ExtractResource(string path, string name, string type, string destination)
         {
-            IntPtr hMod = LoadLibraryEx(path, IntPtr.Zero, 0x00000002);
-            IntPtr hRes = FindResource(hMod, name, type);
-            uint size = SizeofResource(hMod, hRes);
-            IntPtr pt = LoadResource(hMod, hRes);
+            IntPtr hMod = Interop.LoadLibraryEx(path, IntPtr.Zero, 0x00000002);
+            IntPtr hRes = Interop.FindResource(hMod, name, type);
+            uint size = Interop.SizeofResource(hMod, hRes);
+            IntPtr pt = Interop.LoadResource(hMod, hRes);
 
             byte[] bPtr = new byte[size];
             Marshal.Copy(pt, bPtr, 0, (int)size);
@@ -54,6 +46,40 @@ namespace Playnite
                 var tr = new StreamReader(stream);
                 return tr.ReadToEnd();
             }
+        }
+
+        public static string GetIndirectResourceString(string fullName, string packageName, string resource)
+        {
+            var resUri = new Uri(resource);
+            var resourceString = string.Empty;
+            if (resource.StartsWith("ms-resource://"))
+            {
+                resourceString = $"@{{{fullName}? {resource}}}";
+            }
+            else if (resource.Contains('/'))
+            {
+                resourceString = $"@{{{fullName}? ms-resource://{packageName}/{resource.Replace("ms-resource:", "").Trim('/')}}}";
+            }
+            else
+            {
+                resourceString = $"@{{{fullName}? ms-resource://{packageName}/resources/{resUri.Segments.Last()}}}";
+            }
+
+            var sb = new StringBuilder(1024);
+            var result = Interop.SHLoadIndirectString(resourceString, sb, sb.Capacity, IntPtr.Zero);
+            if (result == 0)
+            {
+                return sb.ToString();
+            }
+
+            resourceString = $"@{{{fullName}? ms-resource://{packageName}/{resUri.Segments.Last()}}}";
+            result = Interop.SHLoadIndirectString(resourceString, sb, sb.Capacity, IntPtr.Zero);
+            if (result == 0)
+            {
+                return sb.ToString();
+            }
+
+            return string.Empty;
         }
     }
 }

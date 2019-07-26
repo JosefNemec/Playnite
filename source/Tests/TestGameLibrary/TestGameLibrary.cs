@@ -13,46 +13,39 @@ using System.Windows.Controls;
 
 namespace TestGameLibrary
 {
-    public class TestGameLibrary : ILibraryPlugin
+    public class TestGameLibrary : LibraryPlugin
     {
-        public Guid Id { get; } = Guid.Parse("D625A3B7-1AA4-41CB-9CD7-74448D28E99B");
+        public override Guid Id { get; } = Guid.Parse("D625A3B7-1AA4-41CB-9CD7-74448D28E99B");
 
-        public string Name { get; } = "Test Library";
+        public override string Name { get; } = "Test Library";
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon { get; }
 
-        public ILibraryClient Client { get; }
+        public override LibraryClient Client { get; }
 
-        public bool IsClientInstalled => false;
-
-        public TestGameLibrary(IPlayniteAPI api)
+        public TestGameLibrary(IPlayniteAPI api) : base (api)
         {
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\installer.ico");
         }
 
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return null;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return null;
         }
 
-        public IEnumerable<Game> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
-            return new List<Game>()
+            return new List<GameInfo>()
             {
-                new Game("Notepad")
+                new GameInfo()
                 {
+                    Name = "Notepad",
                     GameId = "notepad",
-                    PluginId = Id,
                     PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,
@@ -61,10 +54,10 @@ namespace TestGameLibrary
                     IsInstalled = true,
                     Icon = @"c:\Windows\notepad.exe"
                 },
-                new Game("Calculator")
+                new GameInfo()
                 {
+                    Name = "Calculator",
                     GameId = "calc",
-                    PluginId = Id,
                     PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,
@@ -74,10 +67,10 @@ namespace TestGameLibrary
                     Icon = @"https://playnite.link/applogo.png",
                     BackgroundImage =  @"https://playnite.link/applogo.png"
                 },
-                new Game("Paint")
+                new GameInfo()
                 {
+                    Name = "Paint",
                     GameId = "mspaint",
-                    PluginId = Id,
                     PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,
@@ -86,10 +79,10 @@ namespace TestGameLibrary
                     IsInstalled = true,
                     Icon = LibraryIcon
                 },
-                new Game("WordPad")
+                new GameInfo()
                 {
+                    Name = "WordPad",
                     GameId = "write",
-                    PluginId = Id,
                     PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,
@@ -99,16 +92,6 @@ namespace TestGameLibrary
                     Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga")
                 }
             };
-        }
-
-        public IGameController GetGameController(Game game)
-        {
-            return null;
-        }
-
-        public ILibraryMetadataProvider GetMetadataDownloader()
-        {
-            return null;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Playnite
 {
     public class ThirdPartyTool
     {
-        public ILibraryClient Client { get; set; }
+        public LibraryClient Client { get; set; }
 
         public string Name { get; set; }
 
@@ -24,7 +24,7 @@ namespace Playnite
 
     public class ThirdPartyToolsList
     {
-        public static List<ThirdPartyTool> GetTools(IEnumerable<ILibraryPlugin> plugins)
+        public static List<ThirdPartyTool> GetTools(IEnumerable<LibraryPlugin> plugins)
         {
             var tools = new List<ThirdPartyTool>();
             if (plugins?.Any() == true)

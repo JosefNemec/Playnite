@@ -4,7 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Common.System;
+using Playnite.Common;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 
 namespace GogLibrary.Models
@@ -34,7 +35,7 @@ namespace GogLibrary.Models
                     Arguments = arguments,
                     Name = string.IsNullOrEmpty(name) ? "Play" : name,
                     Path = type == ActionType.FileTask ? Paths.FixSeparators(path) : link,
-                    WorkingDir = Paths.FixSeparators(Path.Combine("{InstallDir}", (workingDir ?? string.Empty))),
+                    WorkingDir = Paths.FixSeparators(Path.Combine(ExpandableVariables.InstallationDirectory, (workingDir ?? string.Empty))),
                     Type = type == ActionType.FileTask ? GameActionType.File : GameActionType.URL
                 };
 

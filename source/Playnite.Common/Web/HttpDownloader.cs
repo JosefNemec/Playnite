@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net.Http;
+using Playnite.SDK;
 
-namespace Playnite.Web
+namespace Playnite.Common.Web
 {
     public class HttpDownloader
     {
+        private static ILogger logger = LogManager.GetLogger();
         private static readonly HttpClient httpClient = new HttpClient();
         private static readonly Downloader downloader = new Downloader();
 
@@ -61,8 +63,16 @@ namespace Playnite.Web
 
         public static HttpStatusCode GetResponseCode(string url)
         {
-            var response = httpClient.GetAsync(url).GetAwaiter().GetResult();
-            return response.StatusCode;
+            try
+            {
+                var response = httpClient.GetAsync(url).GetAwaiter().GetResult();
+                return response.StatusCode;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to get HTTP response for {url}.");
+                return HttpStatusCode.ServiceUnavailable;
+            }
         }
     }
 }

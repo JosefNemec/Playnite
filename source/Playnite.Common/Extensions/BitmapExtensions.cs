@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TGASharpLib;
 
-namespace Playnite
+namespace System.Drawing.Imaging
 {
     public static class BitmapExtensions
     {
@@ -21,7 +21,12 @@ namespace Playnite
 
         public static BitmapSource CreateSourceFromURI(Uri imageUri)
         {
-            return new BitmapImage(imageUri);            
+            return CreateSourceFromURI(imageUri.LocalPath);
+        }
+
+        public static BitmapSource CreateSourceFromURI(string imageUri)
+        {
+            return BitmapFromFile(imageUri);
         }
 
         public static byte[] ToPngArray(this BitmapImage image)
@@ -38,6 +43,17 @@ namespace Playnite
                 encoder.Save(stream);
                 return stream.ToArray();
             }
+        }
+
+        public static Windows.Controls.Image ToImage(this BitmapImage bitmap, BitmapScalingMode scaling = BitmapScalingMode.Fant)
+        {
+            var image = new Windows.Controls.Image()
+            {
+                Source = bitmap
+            };
+
+            RenderOptions.SetBitmapScalingMode(image, scaling);
+            return image;
         }
 
         public static BitmapImage BitmapFromFile(string imagePath)

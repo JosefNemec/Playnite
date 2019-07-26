@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +17,13 @@ namespace Playnite.Metadata
 
     public enum MetadataSource
     {
+        [Description("LOCMetaSourceStore")]
         Store,
+        [Description("LOCMetaSourceIGDB")]
         IGDB,
+        [Description("LOCMetaSourceIGDBOverStore")]
         IGDBOverStore,
+        [Description("LOCMetaSourceStoreOverIGDB")]
         StoreOverIGDB
     }
 
@@ -59,6 +65,7 @@ namespace Playnite.Metadata
     public class MetadataDownloaderSettings : ObservableObject
     {
         private MetadataGamesSource gamesSource = MetadataGamesSource.AllFromDB;
+        [JsonIgnore]
         public MetadataGamesSource GamesSource
         {
             get
@@ -74,6 +81,7 @@ namespace Playnite.Metadata
         }
 
         private bool skipExistingValues = true;
+        [JsonIgnore]
         public bool SkipExistingValues
         {
             get
@@ -88,7 +96,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings name = new MetadataFieldSettings(false, MetadataSource.Store);
+        private MetadataFieldSettings name = new MetadataFieldSettings(true, MetadataSource.Store);
         public MetadataFieldSettings Name
         {
             get => name;
@@ -165,7 +173,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings coverImage = new MetadataFieldSettings() { Source = MetadataSource.IGDBOverStore };
+        private MetadataFieldSettings coverImage = new MetadataFieldSettings();
         public MetadataFieldSettings CoverImage
         {
             get => coverImage;
@@ -176,7 +184,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings backgroundImage = new MetadataFieldSettings() { Source = MetadataSource.Store };
+        private MetadataFieldSettings backgroundImage = new MetadataFieldSettings();
         public MetadataFieldSettings BackgroundImage
         {
             get => backgroundImage;
@@ -187,7 +195,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings icon = new MetadataFieldSettings() { Source = MetadataSource.Store };
+        private MetadataFieldSettings icon = new MetadataFieldSettings();
         public MetadataFieldSettings Icon
         {
             get => icon;

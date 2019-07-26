@@ -1,6 +1,5 @@
-﻿using NLog;
+﻿using Playnite.Common;
 using Playnite.Database;
-using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
@@ -9,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,7 +40,6 @@ namespace Playnite.Controllers
             var emulators = database.Emulators.ToList();
             var profile = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.ExpandVariables(Game);
             var proc = GameActionActivator.ActivateAction(playAction, profile);
-            OnStarted(this, new GameControllerEventArgs(this, 0));
 
             if (playAction.Type != GameActionType.URL)
             {
@@ -49,13 +48,26 @@ namespace Playnite.Controllers
                 procMon.TreeDestroyed += Monitor_TreeDestroyed;
 
                 // Handle Windows store apps
-                if (playAction.Path == "explorer.exe" &&
-                    playAction.Arguments.StartsWith("shell:") &&
-                    !string.IsNullOrEmpty(Game.InstallDirectory))
+                var uwpMatch = Regex.Match(playAction.Arguments ?? string.Empty, @"shell:AppsFolder\\(.+)!.+");
+                if (playAction.Path == "explorer.exe" && uwpMatch.Success)
                 {
-                    if (Directory.Exists(Game.InstallDirectory))
+                    var scanDirectory = Game.InstallDirectory;
+                    procMon.TreeStarted += ProcMon_TreeStarted;
+
+                    if (!Game.GameId.IsNullOrEmpty())
                     {
-                        procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                        var prg = Programs.GetUWPApps().FirstOrDefault(a => a.AppId == Game.GameId);
+                        if (prg != null)
+                        {
+                            scanDirectory = prg.WorkDir;
+                        }
+                    }                    
+
+                    // TODO switch to WatchUwpApp once we are building as 64bit app
+                    //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
+                    if (Directory.Exists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
+                    {
+                        procMon.WatchDirectoryProcesses(scanDirectory, false, true);
                     }
                     else
                     {
@@ -66,6 +78,7 @@ namespace Playnite.Controllers
                 {
                     if (proc != null)
                     {
+                        OnStarted(this, new GameControllerEventArgs(this, 0));
                         procMon.WatchProcessTree(proc);
                     }
                     else
@@ -78,6 +91,7 @@ namespace Playnite.Controllers
             {
                 if (!string.IsNullOrEmpty(Game.InstallDirectory) && Directory.Exists(Game.InstallDirectory))
                 {
+                    OnStarted(this, new GameControllerEventArgs(this, 0));
                     stopWatch = Stopwatch.StartNew();
                     procMon = new ProcessMonitor();
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
@@ -107,6 +121,11 @@ namespace Playnite.Controllers
         {
             watcherToken?.Cancel();
             procMon?.Dispose();
+        }
+
+        private void ProcMon_TreeStarted(object sender, EventArgs e)
+        {
+            OnStarted(this, new GameControllerEventArgs(this, 0));
         }
 
         private void Monitor_TreeDestroyed(object sender, EventArgs args)

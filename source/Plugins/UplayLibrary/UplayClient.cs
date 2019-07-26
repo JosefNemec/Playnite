@@ -1,4 +1,4 @@
-﻿using Playnite;
+﻿using Playnite.Common;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace UplayLibrary
 {
-    public class UplayClient : ILibraryClient
+    public class UplayClient : LibraryClient
     {
-        public bool IsInstalled { get => Uplay.IsInstalled; }
+        public override string Icon => Uplay.Icon;
 
-        public void Open()
+        public override bool IsInstalled => Uplay.IsInstalled;
+
+        public override void Open()
         {
             ProcessStarter.StartProcess(Uplay.ClientExecPath, string.Empty);
         }

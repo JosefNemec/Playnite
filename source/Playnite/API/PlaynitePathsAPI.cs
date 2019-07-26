@@ -15,5 +15,7 @@ namespace Playnite.API
         public string ApplicationPath { get => PlaynitePaths.ProgramPath; }
 
         public string ConfigurationPath { get => PlaynitePaths.ConfigRootPath; }
+
+        public string ExtensionsDataPath { get => PlaynitePaths.ExtensionsDataPath; }
     }
 }

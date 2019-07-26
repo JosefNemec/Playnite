@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Playnite.SDK;
+using Playnite.Tests;
 
 namespace UplayLibrary.Tests
 {
@@ -9,9 +10,8 @@ namespace UplayLibrary.Tests
     public class UplayLibraryTests
     {
         public static UplayLibrary CreateLibrary()
-        {
-            var api = new Mock<IPlayniteAPI>();
-            return new UplayLibrary(api.Object);
+        {            
+            return new UplayLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]

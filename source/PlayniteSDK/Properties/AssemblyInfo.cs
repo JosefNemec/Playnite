@@ -1,15 +1,16 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Windows.Markup;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PlayniteSDK")]
-[assembly: AssemblyDescription("Playnite Development Kit library")]
+[assembly: AssemblyTitle("Playnite SDK")]
+[assembly: AssemblyDescription("Playnite Development Kit Library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PlayniteSDK")]
+[assembly: AssemblyProduct("Playnite")]
 [assembly: AssemblyCopyright("Copyright © Josef Nemec 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +33,10 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.0.0.0")]
-[assembly: AssemblyFileVersion("4.0.0.0")]
+[assembly: AssemblyVersion("5.0.0.0")]
+[assembly: AssemblyFileVersion("5.0.0.0")]
+[assembly: InternalsVisibleTo("Playnite.DesktopApp")]
+[assembly: InternalsVisibleTo("Playnite.FullscreenApp")]
+[assembly: InternalsVisibleTo("Playnite.Tests")]
+
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Playnite.SDK.Models")]

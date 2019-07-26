@@ -1,0 +1,175 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="d">
+
+    <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid KeyboardNavigation.TabNavigation="Local">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="ColumnDefinition0" />
+                            <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" x:Name="RowDefinition0" />
+                            <RowDefinition Height="*" x:Name="RowDefinition1" />
+                        </Grid.RowDefinitions>
+                        <Border x:Name="HeaderBorder" Background="{DynamicResource ControlBackgroundBrush}"
+                                BorderThickness="0,0,0,1" BorderBrush="{DynamicResource NormalBorderBrush}">
+                            <TabPanel x:Name="HeaderPanel" IsItemsHost="True" Panel.ZIndex="1" Width="Auto" Height="Auto"
+                                      KeyboardNavigation.TabIndex="1" RenderTransformOrigin="0.5,0.5">
+                                <TabPanel.LayoutTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        <SkewTransform AngleX="0" AngleY="0" />
+                                        <RotateTransform Angle="0" />
+                                        <TranslateTransform X="0" Y="0" />
+                                    </TransformGroup>
+                                </TabPanel.LayoutTransform>
+                                <TabPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        <SkewTransform AngleX="0" AngleY="0" />
+                                        <RotateTransform />
+                                        <TranslateTransform X="0" Y="0" />
+                                    </TransformGroup>
+                                </TabPanel.RenderTransform>
+                            </TabPanel>
+                        </Border>
+                        <Border x:Name="ContentPanel" Grid.Column="0" Grid.Row="1"
+                                KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2"
+                                KeyboardNavigation.TabNavigation="Local" Background="{DynamicResource ControlBackgroundBrush}">
+                            <ContentPresenter x:Name="PART_SelectedContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              ContentSource="SelectedContent" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0" />
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*" />
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="Auto" />
+                            <Setter Property="Grid.Row" TargetName="HeaderBorder" Value="1"/>
+                            <Setter Property="BorderThickness" TargetName="HeaderBorder" Value="0,1,0,0"/>
+                            <Setter Property="CornerRadius" TargetName="ContentPanel" Value="2,2,0,0"/>
+                            <Setter Property="CornerRadius" TargetName="HeaderBorder" Value="0,0,2,2"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="0" />
+                            <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0" />
+                            <Setter Property="Grid.Column" TargetName="ContentPanel" Value="1" />
+                            <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto" />
+                            <Setter Property="Width" TargetName="ColumnDefinition1" Value="*" />
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*" />
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="0" />
+                            <Setter Property="Grid.Column" TargetName="HeaderBorder" Value="0"/>
+                            <Setter Property="BorderThickness" TargetName="HeaderBorder" Value="0,0,1,0"/>
+                            <Setter Property="Margin" TargetName="HeaderBorder" Value="0,0,0,0"/>
+                            <Setter Property="Margin" TargetName="ContentPanel" Value="0,0,0,0"/>
+                            <Setter Property="CornerRadius" TargetName="HeaderBorder" Value="0,2,2,0"/>
+                            <Setter Property="CornerRadius" TargetName="ContentPanel" Value="0,2,2,0"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="0" />
+                            <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0" />
+                            <Setter Property="Grid.Column" TargetName="ContentPanel" Value="0" />
+                            <Setter Property="Width" TargetName="ColumnDefinition0" Value="*" />
+                            <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto" />
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*" />
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="0" />
+                            <Setter Property="Grid.Column" TargetName="HeaderBorder" Value="1"/>
+                            <Setter Property="BorderThickness" TargetName="HeaderBorder" Value="1,0,0,0"/>
+                            <Setter Property="CornerRadius" TargetName="ContentPanel" Value="2,0,0,2"/>
+                            <Setter Property="CornerRadius" TargetName="HeaderBorder" Value="0,2,2,0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid x:Name="TabGrid">
+                        <Border x:Name="SelectedBorder" Visibility="Collapsed" Margin="1,0,1,0"
+                                SnapsToDevicePixels="True"
+                                BorderThickness="0,0,0,2" BorderBrush="{DynamicResource GlyphBrush}"/>
+                        <TextBlock x:Name="TextContent" Padding="5" Style="{DynamicResource BaseTextBlockStyle}"
+                                   Foreground="{TemplateBinding Foreground}">
+                            <ContentPresenter x:Name="ContentSite" RecognizesAccessKey="True" ContentSource="Header"
+                                              HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" />
+                        </TextBlock>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter Property="LayoutTransform" TargetName="TextContent">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="90" />
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="LayoutTransform" TargetName="TabGrid">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="270"/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter Property="LayoutTransform" TargetName="TabGrid">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="0" />
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter Property="LayoutTransform" TargetName="TextContent">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="180" />
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="LayoutTransform" TargetName="TabGrid">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="180"/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" TargetName="TextContent"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
+                            <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
+                            <Setter Property="BorderThickness" Value="1,1,1,2" TargetName="SelectedBorder" />
+                            <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
+                            <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Plugins;
+using Playnite.Plugins;
 
 namespace Playnite.Controllers
 {
@@ -21,11 +22,11 @@ namespace Playnite.Controllers
             get; private set;
         }
 
-        public event GameControllerEventHandler Starting;
-        public event GameControllerEventHandler Started;
-        public event GameControllerEventHandler Stopped;
-        public event GameControllerEventHandler Uninstalled;
-        public event GameControllerEventHandler Installed;
+        public event EventHandler<GameControllerEventArgs> Starting;
+        public event EventHandler<GameControllerEventArgs> Started;
+        public event EventHandler<GameControllerEventArgs> Stopped;
+        public event EventHandler<GameControllerEventArgs> Uninstalled;
+        public event EventHandler<GameInstalledEventArgs> Installed;
 
         public GameControllerFactory()
         {
@@ -105,12 +106,12 @@ namespace Playnite.Controllers
             Uninstalled?.Invoke(this, e);
         }
 
-        private void Controller_Installed(object sender, GameControllerEventArgs e)
+        private void Controller_Installed(object sender, GameInstalledEventArgs e)
         {
             Installed?.Invoke(this, e);
         }
 
-        public IGameController GetGameBasedController(Game game, IEnumerable<ILibraryPlugin> libraryPlugins)
+        public IGameController GetGameBasedController(Game game, ExtensionFactory extensions)
         {
             if (game.IsCustomGame)
             {
@@ -118,12 +119,9 @@ namespace Playnite.Controllers
             }
             else
             {
-                foreach (var plugin in libraryPlugins)
+                if (extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
                 {
-                    if (plugin.Id == game.PluginId)
-                    {
-                        return plugin.GetGameController(game.CloneJson()) ?? new GenericGameController(database, game);
-                    }
+                    return ((LibraryPlugin)plugin.Plugin).GetGameController(game.GetClone()) ?? new GenericGameController(database, game);
                 }
             }
 
@@ -133,7 +131,7 @@ namespace Playnite.Controllers
 
         public IGameController GetGenericGameController(Game game)
         {
-            return new GenericGameController(database, game.CloneJson());
+            return new GenericGameController(database, game.GetClone());
         }
     }
 }

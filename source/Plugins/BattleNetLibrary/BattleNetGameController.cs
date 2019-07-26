@@ -1,5 +1,6 @@
 ﻿using BattleNetLibrary.Models;
 using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -57,12 +58,13 @@ namespace BattleNetLibrary
             }
             else if (app.Type == BNetAppType.Classic && Game.PlayAction.Path.Contains(app.ClassicExecutable))
             {
+                var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction);
+                GameActionActivator.ActivateAction(playAction);
                 OnStarted(this, new GameControllerEventArgs(this, 0));
                 if (Directory.Exists(Game.InstallDirectory))
                 {
-                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, true);
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, true, true);
                 }
                 else
                 {
@@ -174,25 +176,26 @@ namespace BattleNetLibrary
                 }
                 else
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo()
                     {
-                        if (app.Type == BNetAppType.Classic)
+                        InstallDirectory = install.InstallLocation
+                    };
+                 
+                    if (app.Type == BNetAppType.Classic)
+                    {
+                        installInfo.PlayAction = new GameAction()
                         {
-                            Game.PlayAction = new GameAction()
-                            {
-                                Type = GameActionType.File,
-                                WorkingDir = @"{InstallDir}",
-                                Path = app.ClassicExecutable
-                            };
-                        }
-                        else
-                        {
-                            Game.PlayAction = BattleNetLibrary.GetGamePlayTask(Game.GameId);
-                        }
+                            Type = GameActionType.File,
+                            WorkingDir = ExpandableVariables.InstallationDirectory,
+                            Path = app.ClassicExecutable
+                        };
+                    }
+                    else
+                    {
+                        installInfo.PlayAction = BattleNetLibrary.GetGamePlayTask(Game.GameId);
                     }
 
-                    Game.InstallDirectory = install.InstallLocation;
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
                 }
             }

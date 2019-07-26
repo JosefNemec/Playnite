@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -61,12 +62,12 @@ namespace OriginLibrary
 
         public async void StartRunningWatcher()
         {
-            if (Origin.GetGameUsesEasyAntiCheat(Game))
+            if (Origin.GetGameUsesEasyAntiCheat(Game.InstallDirectory))
             {
                 // Games with EasyAntiCheat take longer to be re-executed by Origin
                 await Task.Delay(12000);
             }
-            else if (Origin.GetGameRequiresOrigin(Game))
+            else if (Origin.GetGameRequiresOrigin(Game.InstallDirectory))
             {
                 // Solves issues with game process being started/shutdown multiple times during startup via Origin
                 await Task.Delay(5000);
@@ -125,13 +126,13 @@ namespace OriginLibrary
                 {
                     if (File.Exists(executablePath))
                     {
-                        if (Game.PlayAction == null)
+                        var installInfo = new GameInfo()
                         {
-                            Game.PlayAction = origin.GetGamePlayTask(manifest);
-                        }
+                            PlayAction = origin.GetGamePlayTask(manifest),
+                            InstallDirectory = Path.GetDirectoryName(executablePath)
+                        };
 
-                        Game.InstallDirectory = Path.GetDirectoryName(executablePath);
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
+                        OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                         return;
                     }
                 }

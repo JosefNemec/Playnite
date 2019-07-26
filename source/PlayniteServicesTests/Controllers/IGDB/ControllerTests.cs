@@ -70,14 +70,14 @@ namespace PlayniteServicesTests.Controllers.IGDB
         public async Task GameParsedControllerTest()
         {
             var response = await client.GetAsync("/igdb/game_parsed/2");
-            var validResponse = JsonConvert.DeserializeObject<ServicesResponse<ParsedGame>>(await response.Content.ReadAsStringAsync());
+            var validResponse = JsonConvert.DeserializeObject<ServicesResponse<ExpandedGame>>(await response.Content.ReadAsStringAsync());
             Assert.True(string.IsNullOrEmpty(validResponse.Error));
             Assert.False(string.IsNullOrEmpty(validResponse.Data.name));
             Assert.False(string.IsNullOrEmpty(validResponse.Data.summary));
             Assert.NotEqual(0, validResponse.Data.first_release_date);
 
             response = await client.GetAsync("/igdb/game_parsed/2?apikey=" + PlayniteServices.Controllers.IGDB.IGDB.ApiKey);
-            validResponse = JsonConvert.DeserializeObject<ServicesResponse<ParsedGame>>(await response.Content.ReadAsStringAsync());
+            validResponse = JsonConvert.DeserializeObject<ServicesResponse<ExpandedGame>>(await response.Content.ReadAsStringAsync());
             Assert.True(string.IsNullOrEmpty(validResponse.Error));
             Assert.False(string.IsNullOrEmpty(validResponse.Data.name));
             Assert.False(string.IsNullOrEmpty(validResponse.Data.summary));

@@ -12,8 +12,6 @@ namespace Playnite.Database
         Removed
     }
 
-    public delegate void DatabaseFileEventHandler(object sender, DatabaseFileEventArgs args);
-
     public class DatabaseFileEventArgs : EventArgs
     {
         public string FileId

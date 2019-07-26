@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Playnite;
 using Playnite.SDK;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -61,7 +61,7 @@ namespace ItchioLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<ItchioLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<ItchioLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -70,7 +70,7 @@ namespace ItchioLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()
@@ -80,7 +80,7 @@ namespace ItchioLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)
@@ -101,18 +101,18 @@ namespace ItchioLibrary
                 if (!Itch.IsInstalled)
                 {
                     api.Dialogs.ShowErrorMessage(
-                        api.Resources.FindString("LOCItchioClientNotInstalledError"), "");
+                        api.Resources.GetString("LOCItchioClientNotInstalledError"), "");
                     return;
                 }
 
-                api.Dialogs.ShowMessage(api.Resources.FindString("LOCItchioSignInNotif"));
+                api.Dialogs.ShowMessage(api.Resources.GetString("LOCItchioSignInNotif"));
                 Itch.StartClient();
-                api.Dialogs.ShowMessage(api.Resources.FindString("LOCItchioSignInWaitMessage"));
+                api.Dialogs.ShowMessage(api.Resources.GetString("LOCItchioSignInWaitMessage"));
                 OnPropertyChanged(nameof(IsUserLoggedIn));
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                api.Dialogs.ShowErrorMessage(api.Resources.FindString("LOCNotLoggedInError"), "");
+                api.Dialogs.ShowErrorMessage(api.Resources.GetString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate itch.io user.");
             }
         }

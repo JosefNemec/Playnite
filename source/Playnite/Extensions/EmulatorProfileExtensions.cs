@@ -11,7 +11,7 @@ namespace Playnite
     {
         public static EmulatorProfile ExpandVariables(this EmulatorProfile profile, Game game)
         {
-            var expaded = profile.CloneJson();
+            var expaded = profile.GetClone();
             if (!string.IsNullOrEmpty(expaded.Arguments))
             {
                 expaded.Arguments = game.ExpandVariables(expaded.Arguments);

@@ -10,8 +10,9 @@ using AngleSharp.Dom;
 using AngleSharp.Parser.Html;
 using Newtonsoft.Json;
 using NLog;
+using Playnite.Common.Web;
+using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
-using Playnite.Web;
 
 namespace Playnite.Metadata.Providers
 {
@@ -129,17 +130,18 @@ namespace Playnite.Metadata.Providers
             }
         }
 
-        public Game ParseGamePage(WikiPage page, string gameName = "")
+        public GameMetadata ParseGamePage(WikiPage page, string gameName = "")
         {
-            logger.Info("Parsing wiki page " + page.title);
-            var game = new Game();
+            logger.Info("Parsing wiki page " + page.title);            
+            var gameInfo = new GameInfo();
+            var metadata = new GameMetadata() { GameInfo = gameInfo };
             var parser = new HtmlParser();
             var document = parser.Parse(@"<html><head></head><body>" + page.text["*"] + @"</body></html>?");
             var tables = document.QuerySelectorAll("table.infobox.hproduct");
 
             if (tables.Length == 0)
             {
-                return game;
+                return metadata;
             }
 
             IElement infoTable = null;
@@ -175,7 +177,7 @@ namespace Playnite.Metadata.Providers
             var nameField = rows[0].QuerySelector("th");
             if (nameField != null)
             {
-                game.Name = rows[0].QuerySelector("th").TextContent.Replace('\n', ' ');
+                gameInfo.Name = rows[0].QuerySelector("th").TextContent.Replace('\n', ' ');
                 imageRowIndex = 1;
             }
 
@@ -211,11 +213,14 @@ namespace Playnite.Metadata.Providers
                 image = "http:" + image;
             }
 
-            game.CoverImage = image;
+            if (!image.IsNullOrEmpty())
+            {
+                metadata.CoverImage = new MetadataFile(image);
+            }
 
             // Other fields
             var gameProperties = new Dictionary<string, string>();
-            int startIndex = (string.IsNullOrEmpty(image) || string.IsNullOrEmpty(game.Name)) ? 1 : 2;
+            int startIndex = (string.IsNullOrEmpty(image) || string.IsNullOrEmpty(gameInfo.Name)) ? 1 : 2;
             for (int i = startIndex; i < rows.Length; i++)
             {
                 var row = rows[i];
@@ -225,23 +230,23 @@ namespace Playnite.Metadata.Providers
 
                 if (rowName.IndexOf("developer", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    game.Developers = new ComparableList<string>(rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()));
+                    gameInfo.Developers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()).ToList();
                     
                     continue;
                 }
 
                 if (rowName.IndexOf("publisher", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    game.Publishers = new ComparableList<string>(rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()));
+                    gameInfo.Publishers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()).ToList();
                     continue;
                 }
 
                 if (rowName.IndexOf("genre", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    game.Genres = new ComparableList<string>(rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()));
+                    gameInfo.Genres = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()).ToList();
                     continue;
                 }
 
@@ -303,19 +308,19 @@ namespace Playnite.Metadata.Providers
 
                         if (validDate)
                         {
-                            game.ReleaseDate = dateTime;
+                            gameInfo.ReleaseDate = dateTime;
                             break;
                         }
                     }
 
-                    if (game.ReleaseDate != null)
+                    if (gameInfo.ReleaseDate != null)
                     {
                         continue;
                     }
                 }
             }
 
-            return game;
+            return metadata;
         }
     }
 }

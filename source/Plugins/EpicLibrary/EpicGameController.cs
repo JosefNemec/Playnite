@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -40,26 +41,20 @@ namespace EpicLibrary
         public override void Play()
         {
             ReleaseResources();
-            if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("com.epicgames.launcher", StringComparison.OrdinalIgnoreCase))
+            OnStarting(this, new GameControllerEventArgs(this, 0));
+            var startUri = string.Format(EpicLauncher.GameLaunchUrlMask, game.GameId);
+            ProcessStarter.StartUrl(startUri);
+            if (Directory.Exists(Game.InstallDirectory))
             {
-                OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction);
-                if (Directory.Exists(Game.InstallDirectory))
-                {
-                    stopWatch = Stopwatch.StartNew();
-                    procMon = new ProcessMonitor();
-                    procMon.TreeStarted += ProcMon_TreeStarted;
-                    procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
-                }
-                else
-                {
-                    OnStopped(this, new GameControllerEventArgs(this, 0));
-                }
+                stopWatch = Stopwatch.StartNew();
+                procMon = new ProcessMonitor();
+                procMon.TreeStarted += ProcMon_TreeStarted;
+                procMon.TreeDestroyed += Monitor_TreeDestroyed;
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
             }
             else
             {
-                throw new Exception("Unknown Epic action configuration.");
+                OnStopped(this, new GameControllerEventArgs(this, 0));
             }
         }
 
@@ -100,20 +95,21 @@ namespace EpicLibrary
                 var app = installed?.FirstOrDefault(a => a.AppName == Game.GameId);
                 if (app != null)
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo
                     {
-                        Game.PlayAction = new GameAction()
+
+                        InstallDirectory = app.InstallLocation,
+                        PlayAction = new GameAction()
                         {
                             Type = GameActionType.URL,
                             Path = string.Format(EpicLauncher.GameLaunchUrlMask, app.AppName),
                             IsHandledByPlugin = true
-                        };
-                    }
+                        }
+                    };
 
-                    Game.InstallDirectory = app.InstallLocation;
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
-                }
+                };                
 
                 await Task.Delay(5000);
             }

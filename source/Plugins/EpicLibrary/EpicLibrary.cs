@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace EpicLibrary
 {
-    public class EpicLibrary : ILibraryPlugin
+    public class EpicLibrary : LibraryPlugin
     {        
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
@@ -22,36 +22,39 @@ namespace EpicLibrary
         internal readonly string TokensPath;
         internal readonly EpicLibrarySettings LibrarySettings;
 
-        public EpicLibrary(IPlayniteAPI api)
+        public EpicLibrary(IPlayniteAPI api) : base(api)
         {
             playniteApi = api;
             LibrarySettings = new EpicLibrarySettings(this, api);
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\epicicon.png");
-            TokensPath = Path.Combine(api.GetPluginUserDataPath(this), "tokens.json");
+            TokensPath = Path.Combine(GetPluginUserDataPath(), "tokens.json");
         }
 
-        internal Dictionary<string, Game> GetInstalledGames()
+        internal Dictionary<string, GameInfo> GetInstalledGames()
         {
-            var games = new Dictionary<string, Game>();
-            foreach (var app in EpicLauncher.GetInstalledAppList())
+            var games = new Dictionary<string, GameInfo>();
+            var appList = EpicLauncher.GetInstalledAppList();
+            var manifests = EpicLauncher.GetInstalledManifests();
+
+            foreach (var app in appList)
             {
                 if (app.AppName.StartsWith("UE_"))
                 {
                     continue;
                 }
 
-                var game = new Game()
+                var manifest = manifests.FirstOrDefault(a => a.AppName == app.AppName);
+                var game = new GameInfo()
                 {
-                    PluginId = Id,
                     Source = "Epic",
                     GameId = app.AppName,
-                    Name = Path.GetFileName(app.InstallLocation),
-                    InstallDirectory = app.InstallLocation,
+                    Name = manifest?.DisplayName ?? Path.GetFileName(app.InstallLocation),
+                    InstallDirectory = manifest?.InstallLocation ?? app.InstallLocation,
                     IsInstalled = true,
                     PlayAction = new GameAction()
                     {
-                        Type = GameActionType.URL,
-                        Path = string.Format(EpicLauncher.GameLaunchUrlMask, app.AppName),
+                        Type = GameActionType.File,
+                        Path = manifest?.LaunchExecutable,
+                        WorkingDir = ExpandableVariables.InstallationDirectory,
                         IsHandledByPlugin = true
                     }
                 };
@@ -62,9 +65,9 @@ namespace EpicLibrary
             return games;
         }
 
-        internal List<Game> GetLibraryGames()
+        internal List<GameInfo> GetLibraryGames()
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             var accountApi = new EpicAccountClient(playniteApi, TokensPath);
             var assets = accountApi.GetAssets();
             if (!assets?.Any() == true)
@@ -80,9 +83,8 @@ namespace EpicLibrary
                     continue;
                 }
 
-                games.Add(new Game()
+                games.Add(new GameInfo()
                 {
-                    PluginId = Id,
                     Source = "Epic",
                     GameId = gameAsset.appName,
                     Name = catalogItem.title,
@@ -94,40 +96,33 @@ namespace EpicLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new EpicClient();
+        public override LibraryClient Client => new EpicClient();
 
-        public string Name { get; } = "Epic";
+        public override string Name => "Epic";
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => EpicLauncher.Icon;
 
-        public bool IsClientInstalled => EpicLauncher.IsInstalled;
+        public override Guid Id => Guid.Parse("00000002-DBD1-46C6-B5D0-B1BA559D10E4");
 
-        public Guid Id { get; } = Guid.Parse("00000002-DBD1-46C6-B5D0-B1BA559D10E4");
-
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new EpicLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
             return new EpicGameController(game, playniteApi);
         }
 
-        public IEnumerable<Game> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)
@@ -177,7 +172,7 @@ namespace EpicLibrary
             {
                 playniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
@@ -189,9 +184,9 @@ namespace EpicLibrary
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return null;
+            return new EpicMetadataProvider(this, PlayniteApi);
         }
 
         #endregion ILibraryPlugin

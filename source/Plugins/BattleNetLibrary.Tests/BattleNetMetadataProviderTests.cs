@@ -16,11 +16,11 @@ namespace BattleNetLibrary.Tests
         {
             var provider = new BattleNetMetadataProvider();
             var data = provider.GetMetadata(new Game() { GameId = "D3" });
-            Assert.IsNotNull(data.GameData);
+            Assert.IsNotNull(data.GameInfo);
             Assert.IsNotNull(data.Icon);
-            Assert.IsNotNull(data.Image);
-            Assert.IsFalse(string.IsNullOrEmpty(data.BackgroundImage));
-            CollectionAssert.IsNotEmpty(data.GameData.Links);
+            Assert.IsNotNull(data.CoverImage);
+            Assert.IsNotNull(data.BackgroundImage);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Links);
         }
     }
 }

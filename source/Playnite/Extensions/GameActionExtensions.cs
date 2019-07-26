@@ -12,7 +12,7 @@ namespace Playnite
     {
         public static GameAction ExpandVariables(this GameAction action, Game game)
         {
-            var expaded = action.CloneJson();
+            var expaded = action.GetClone();
             expaded.AdditionalArguments = game.ExpandVariables(expaded.AdditionalArguments);
             expaded.Arguments = game.ExpandVariables(expaded.Arguments);
             expaded.WorkingDir = game.ExpandVariables(expaded.WorkingDir, true);

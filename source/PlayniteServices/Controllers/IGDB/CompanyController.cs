@@ -19,6 +19,11 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpGet("{companyId}")]
         public async Task<ServicesResponse<Company>> Get(ulong companyId)
         {
+            return await GetItem(companyId);
+        }
+
+        public static async Task<ServicesResponse<Company>> GetItem(ulong companyId)
+        {
             return new ServicesResponse<Company>(await GetItem<Company>(companyId, endpointPath, CacheLock));
         }
     }

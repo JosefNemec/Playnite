@@ -11,10 +11,15 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using System.Configuration;
-using Playnite.Common.System;
+using Playnite.Common;
 using System.Runtime.CompilerServices;
-
-namespace Playnite.Settings
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows;
+using Newtonsoft.Json.Serialization;
+using System.Runtime.Serialization;
+using Playnite.Metadata;
+namespace Playnite
 {
     public enum AfterLaunchOptions
     {
@@ -29,73 +34,346 @@ namespace Playnite.Settings
         Restore
     }
 
-    public class PlayniteSettings : INotifyPropertyChanged, IEditableObject
+    public enum TrayIconType
     {
-        private static ILogger logger = LogManager.GetCurrentClassLogger();
+        [Description("TrayIcon")]
+        Default,
+        [Description("TrayIconWhite")]
+        Bright,
+        [Description("TrayIconBlack")]
+        Dark
+    }
 
-        public class WindowPosition
-        {
-            public class Point
-            {
-                public double X
-                {
-                    get; set;
-                }
+    public enum DefaultIconSourceOptions
+    {
+        [Description("LOCGameProviderTitle")]
+        Library,
+        [Description("LOCPlatformTitle")]
+        Platform,
+        [Description("LOCGeneralLabel")]
+        General
+    }
 
-                public double Y
-                {
-                    get; set;
-                }
-            }
+    public enum DefaultCoverSourceOptions
+    {
+        [Description("LOCPlatformTitle")]
+        Platform,
+        [Description("LOCGeneralLabel")]
+        General
+    }
 
-            public Point Position
-            {
-                get; set;
-            }
-
-            public Point Size
-            {
-                get; set;
-            }
-
-            public System.Windows.WindowState State
-            {
-                get; set;
-            } = System.Windows.WindowState.Normal;
-        }
+    public class PlayniteSettings : ObservableObject
+    {
+        private static SDK.ILogger logger = SDK.LogManager.GetLogger();
 
         public int Version
         {
             get; set;
         } = 1;
 
-        private Dictionary<string, WindowPosition> windowPositions = new Dictionary<string, WindowPosition>();
-        public Dictionary<string, WindowPosition> WindowPositions
+        private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
+        public DetailsVisibilitySettings DetailsVisibility
         {
             get
             {
-                return windowPositions;
+                return detailsVisibility;
             }
 
             set
             {
-                windowPositions = value;
+                detailsVisibility = value;
                 OnPropertyChanged();
             }
         }
 
-        private List<string> collapsedCategories = new List<string>();
-        public List<string> CollapsedCategories
+        private DefaultIconSourceOptions defaultIconSource = DefaultIconSourceOptions.General;
+        public DefaultIconSourceOptions DefaultIconSource
         {
             get
             {
-                return collapsedCategories;
+                return defaultIconSource;
             }
 
             set
             {
-                collapsedCategories = value;
+                defaultIconSource = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private DefaultCoverSourceOptions defaultCoverSource = DefaultCoverSourceOptions.General;
+        public DefaultCoverSourceOptions DefaultCoverSource
+        {
+            get
+            {
+                return defaultCoverSource;
+            }
+
+            set
+            {
+                defaultCoverSource = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool indentGameDetails = true;
+        public bool IndentGameDetails
+        {
+            get
+            {
+                return indentGameDetails;
+            }
+
+            set
+            {
+                indentGameDetails = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CalculatedGameDetailsIndentation));
+            }
+        }
+
+        public double CalculatedGameDetailsIndentation
+        {
+            get
+            {
+                return IndentGameDetails ? GameDetailsIndentation : Double.NaN;
+            }
+        }
+
+        private int gameDetailsIndentation = 400;
+        public int GameDetailsIndentation
+        {
+            get
+            {
+                return gameDetailsIndentation;
+            }
+
+            set
+            {
+                gameDetailsIndentation = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CalculatedGameDetailsIndentation));
+            }
+        }
+
+        private Dock gridViewDetailsPosition = Dock.Right;
+        public Dock GridViewDetailsPosition
+        {
+            get
+            {
+                return gridViewDetailsPosition;
+            }
+
+            set
+            {
+                gridViewDetailsPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock sideBarPosition = Dock.Left;
+        public Dock SideBarPosition
+        {
+            get
+            {
+                return sideBarPosition;
+            }
+
+            set
+            {
+                sideBarPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock filterPanelPosition = Dock.Right;
+        public Dock FilterPanelPosition
+        {
+            get
+            {
+                return filterPanelPosition;
+            }
+
+            set
+            {
+                filterPanelPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock explorerPanelPosition = Dock.Left;
+        public Dock ExplorerPanelPosition
+        {
+            get
+            {
+                return explorerPanelPosition;
+            }
+
+            set
+            {
+                explorerPanelPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool explorerPanelVisible = false;
+        public bool ExplorerPanelVisible
+        {
+            get
+            {
+                return explorerPanelVisible;
+            }
+
+            set
+            {
+                explorerPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [JsonIgnore]
+        public double GridItemHeight
+        {
+            get
+            {
+                if (GridItemWidth != 0)
+                {
+                    return GridItemWidth * ((double)gridItemHeightRatio / GridItemWidthRatio);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        private double gridItemWidth = ViewSettings.DefaultGridItemWidth;
+        public double GridItemWidth
+        {
+            get
+            {
+                return gridItemWidth;
+            }
+
+            set
+            {
+                gridItemWidth = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(GridItemHeight));
+            }
+        }
+
+        [JsonIgnore]
+        public AspectRatio CoverAspectRatio => new AspectRatio(GridItemWidthRatio, GridItemHeightRatio);
+
+        private int gridItemWidthRatio = 27;
+        public int GridItemWidthRatio
+        {
+            get
+            {
+                return gridItemWidthRatio;
+            }
+
+            set
+            {
+                gridItemWidthRatio = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(GridItemHeight));
+                OnPropertyChanged(nameof(CoverAspectRatio));
+            }
+        }
+
+        private int gridItemHeightRatio = 38;
+        public int GridItemHeightRatio
+        {
+            get
+            {
+                return gridItemHeightRatio;
+            }
+
+            set
+            {
+                gridItemHeightRatio = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(GridItemHeight));
+                OnPropertyChanged(nameof(CoverAspectRatio));
+            }
+        }
+
+        private Stretch coverArtStretch = Stretch.UniformToFill;
+        public Stretch CoverArtStretch
+        {
+            get
+            {
+                return coverArtStretch;
+            }
+
+            set
+            {
+                coverArtStretch = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int gridItemSpacing = 8;
+        public int GridItemSpacing
+        {
+            get
+            {
+                return gridItemSpacing;
+            }
+
+            set
+            {
+                gridItemSpacing = value;
+                OnPropertyChanged();
+                ItemSpacingMargin = new Thickness(GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2);
+                OnPropertyChanged(nameof(ItemSpacingMargin));
+            }
+        }
+
+        private int gridItemMargin = 2;
+        public int GridItemMargin
+        {
+            get
+            {
+                return gridItemMargin;
+            }
+
+            set
+            {
+                gridItemMargin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int fullscreenItemSpacing = 20;
+        public int FullscreenItemSpacing
+        {
+            get
+            {
+                return fullscreenItemSpacing;
+            }
+
+            set
+            {
+                fullscreenItemSpacing = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(FullscreenItemSpacingMargin));
+            }
+        }
+
+        [JsonIgnore]
+        public Thickness ItemSpacingMargin { get; private set; }
+
+        [JsonIgnore]
+        public Thickness FullscreenItemSpacingMargin
+        {
+            get
+            {
+                int marginX = FullscreenItemSpacing / 2;
+                int marginY = ((int)CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2);
+                return new Thickness(marginY, marginX, 0, 0);
             }
         }
 
@@ -110,21 +388,6 @@ namespace Playnite.Settings
             set
             {
                 firstTimeWizardComplete = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool emulatorWizardComplete;
-        public bool EmulatorWizardComplete
-        {
-            get
-            {
-                return emulatorWizardComplete;
-            }
-
-            set
-            {
-                emulatorWizardComplete = value;
                 OnPropertyChanged();
             }
         }
@@ -205,17 +468,92 @@ namespace Playnite.Settings
             }
         }
 
-        private bool showBackgroundImage = true;
-        public bool ShowBackgroundImage
+        private bool showBackgroundImageOnWindow = true;
+        public bool ShowBackgroundImageOnWindow
         {
             get
             {
-                return showBackgroundImage;
+                return showBackgroundImageOnWindow;
             }
 
             set
             {
-                showBackgroundImage = value;
+                showBackgroundImageOnWindow = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool blurWindowBackgroundImage = true;
+        public bool BlurWindowBackgroundImage
+        {
+            get
+            {
+                return blurWindowBackgroundImage;
+            }
+
+            set
+            {
+                blurWindowBackgroundImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double backgroundImageBlurAmount = 70;
+        public double BackgroundImageBlurAmount
+        {
+            get
+            {
+                return backgroundImageBlurAmount;
+            }
+
+            set
+            {
+                backgroundImageBlurAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool darkenWindowBackgroundImage = true;
+        public bool DarkenWindowBackgroundImage
+        {
+            get
+            {
+                return darkenWindowBackgroundImage;
+            }
+
+            set
+            {
+                darkenWindowBackgroundImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private float backgroundImageDarkAmount = 0.7f;
+        public float BackgroundImageDarkAmount
+        {
+            get
+            {
+                return backgroundImageDarkAmount;
+            }
+
+            set
+            {
+                backgroundImageDarkAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showBackImageOnGridView = false;
+        public bool ShowBackImageOnGridView
+        {
+            get
+            {
+                return showBackImageOnGridView;
+            }
+
+            set
+            {
+                showBackImageOnGridView = value;
                 OnPropertyChanged();
             }
         }
@@ -324,20 +662,6 @@ namespace Playnite.Settings
             }
         }
 
-        private FilterSettings fullScreenFilterSettings = new FilterSettings();
-        public FilterSettings FullScreenFilterSettings
-        {
-            get
-            {
-                return fullScreenFilterSettings;
-            }
-
-            set
-            {
-                fullScreenFilterSettings = value;
-            }
-        }
-
         private ViewSettings desktopViewSettings = new ViewSettings();
         public ViewSettings ViewSettings
         {
@@ -352,66 +676,17 @@ namespace Playnite.Settings
             }
         }
 
-        private ViewSettings fullscreenViewSettings = new ViewSettings();
-        public ViewSettings FullscreenViewSettings
+        private bool gridViewSideBarVisible = false;
+        public bool GridViewSideBarVisible
         {
             get
             {
-                return fullscreenViewSettings;
+                return gridViewSideBarVisible;
             }
 
             set
             {
-                fullscreenViewSettings = value;
-            }
-        }
-
-        private ObservableConcurrentDictionary<string, bool> gridViewHeaders = new ObservableConcurrentDictionary<string, bool>()
-        {
-            { "Icon", true },
-            { "Name", true },
-            { "Platform", false },
-            { "Developers", false },
-            { "Publishers", false },
-            { "ReleaseDate", true },
-            { "Genres", true },
-            { "LastActivity", true },
-            { "IsInstalled", false },
-            { "InstallDirectory", false },
-            { "Categories", false },
-            { "Playtime", true },
-            { "Added", false },
-            { "Modified", false },
-            { "PlayCount", false },
-            { "Series", false },
-            { "Version", false },
-            { "AgeRating", false },
-            { "Region", false },
-            { "Source", false },
-            { "CompletionStatus", false },
-            { "UserScore", false },
-            { "CriticScore", false },
-            { "CommunityScore", false },
-            { "Tags", false },
-            { "Provider", true }
-        };
-
-        public ObservableConcurrentDictionary<string, bool> GridViewHeaders
-        {
-            get
-            {
-                return gridViewHeaders;
-            }
-
-            set
-            {
-                if (gridViewHeaders != null)
-                {
-                    gridViewHeaders.PropertyChanged -= GridViewHeaders_PropertyChanged;
-                }
-
-                gridViewHeaders = value;
-                gridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
+                gridViewSideBarVisible = value;
                 OnPropertyChanged();
             }
         }
@@ -427,6 +702,54 @@ namespace Playnite.Settings
             set
             {
                 filterPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+                
+        private bool notificationPanelVisible = false;
+        [JsonIgnore]
+        public bool NotificationPanelVisible
+        {
+            get
+            {
+                return notificationPanelVisible;
+            }
+
+            set
+            {
+                notificationPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool sidebarVisible = false;
+        [JsonIgnore]
+        public bool SidebarVisible
+        {
+            get
+            {
+                return sidebarVisible;
+            }
+
+            set
+            {
+                sidebarVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock sidebarPosition = Dock.Left;
+        [JsonIgnore]
+        public Dock SidebarPosition
+        {
+            get
+            {
+                return sidebarPosition;
+            }
+
+            set
+            {
+                sidebarPosition = value;
                 OnPropertyChanged();
             }
         }
@@ -536,77 +859,32 @@ namespace Playnite.Settings
             }
         }
 
-        private string skin = "Modern";
-        public string Skin
+        private string theme = "Default";
+        public string Theme
         {
             get
             {
-                return skin;
+                return theme;
             }
 
             set
             {
-                skin = value;
+                theme = value;
                 OnPropertyChanged();
             }
         }
 
-        private string skinColor = "Default";
-        public string SkinColor
+        private TrayIconType trayIcon = TrayIconType.Default;
+        public TrayIconType TrayIcon
         {
             get
             {
-                return skinColor;
+                return trayIcon;
             }
 
             set
             {
-                skinColor = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string skinFullscreen = "Playnite";
-        public string SkinFullscreen
-        {
-            get
-            {
-                return skinFullscreen;
-            }
-
-            set
-            {
-                skinFullscreen = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string skinColorFullscreen = "Default";
-        public string SkinColorFullscreen
-        {
-            get
-            {
-                return skinColorFullscreen;
-            }
-
-            set
-            {
-                skinColorFullscreen = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private FullscreenSettings fullscreenSettings = new FullscreenSettings();
-        public FullscreenSettings FullscreenSettings
-        {
-            get
-            {
-                return fullscreenSettings;
-            }
-
-            set
-            {
-                fullscreenSettings = value;
+                trayIcon = value;
                 OnPropertyChanged();
             }
         }
@@ -691,133 +969,135 @@ namespace Playnite.Settings
             }
         }
 
+        private bool enableControolerInDesktop = false;
+        public bool EnableControllerInDesktop
+        {
+            get
+            {
+                return enableControolerInDesktop;
+            }
+
+            set
+            {
+                enableControolerInDesktop = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool guideButtonOpensFullscreen = false;
+        public bool GuideButtonOpensFullscreen
+        {
+            get
+            {
+                return guideButtonOpensFullscreen;
+            }
+
+            set
+            {
+                guideButtonOpensFullscreen = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
+        public MetadataDownloaderSettings DefaultMetadataSettings
+        {
+            get
+            {
+                return defaultMetadataSettings;
+            }
+
+            set
+            {
+                defaultMetadataSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
             get
             {
-                return !File.Exists(PlaynitePaths.UninstallerNsisPath) && !File.Exists(PlaynitePaths.UninstallerInnoPath);
+                return !File.Exists(PlaynitePaths.UninstallerPath);
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [JsonIgnore]
+        public WindowPositions WindowPositions
+        {
+            get; private set;
+        } = new WindowPositions();
 
         [JsonIgnore]
-        public List<string> EditedFields;
-        private bool isEditing = false;
-        private PlayniteSettings editingCopy;
-
-        private static PlayniteSettings instance;
-        public static PlayniteSettings Instance
+        public FullscreenSettings Fullscreen
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new PlayniteSettings();
-                }
-
-                return instance;
-            }   
-        }
+            get; private set;
+        } = new FullscreenSettings();
 
         public PlayniteSettings()
         {
             InstallInstanceId = Guid.NewGuid().ToString();
-            GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
         }
 
-        public void BeginEdit()
+        private static T LoadSettingFile<T>(string path) where T : class
         {
-            if (isEditing)
+            try
             {
-                return;
-            }
-
-            isEditing = true;
-            EditedFields = new List<string>();
-            editingCopy = this.CloneJson();
-        }
-
-        public void EndEdit()
-        {
-            if (!isEditing)
-            {
-                return;
-            }
-
-            isEditing = false;
-            foreach (var prop in EditedFields)
-            {
-                OnPropertyChanged(prop);
-            }
-        }
-
-        public void CancelEdit()
-        {
-            if (!isEditing)
-            {
-                return;
-            }
-
-            editingCopy.CopyProperties(this, false, new List<string>()
-            {
-                nameof(FilterSettings),
-                nameof(FullScreenFilterSettings),
-                nameof(InstallInstanceId),
-                nameof(ViewSettings),
-                nameof(FullscreenViewSettings)
-            });
-            isEditing = false;
-            EditedFields = new List<string>();
-        }
-
-        public void OnPropertyChanged([CallerMemberName]string name = null, bool force = false)
-        {
-            if (isEditing && !force)
-            {
-                if (!EditedFields.Contains(name))
+                if (File.Exists(path))
                 {
-                    EditedFields.Add(name);
+                    return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
                 }
             }
-            else
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            }            
+                logger.Error(e, $"Failed to load {path} setting file.");
+            }
+
+            return null;
         }
 
-        private void GridViewHeaders_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private static void SaveSettingFile(object settings, string path)
         {
-            if (e.PropertyName == "Values")
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridViewHeaders)));
-            }
+            File.WriteAllText(path, JsonConvert.SerializeObject(settings, Formatting.Indented));
         }
 
         public static PlayniteSettings LoadSettings()
         {
-            try
+            var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);  
+            if (settings == null)
             {
-                if (File.Exists(PlaynitePaths.ConfigFilePath))
-                {
-                    var settings = JsonConvert.DeserializeObject<PlayniteSettings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
-                    instance = settings;
-                }
-            }
-            catch (Exception e)
-            {
-                logger.Error(e, "Failed to load application settings.");
-                instance = new PlayniteSettings();
+                settings = new PlayniteSettings();
             }
 
-            return Instance;
+            settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
+            if (settings.WindowPositions == null)
+            {
+                settings.WindowPositions = new WindowPositions();
+            }
+
+            settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath);
+            if (settings.Fullscreen == null)
+            {
+                settings.Fullscreen = new FullscreenSettings();
+            }
+            
+            return settings;
         }
 
         public void SaveSettings()
         {
             FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
-            File.WriteAllText(PlaynitePaths.ConfigFilePath, JsonConvert.SerializeObject(this, Formatting.Indented));
+            SaveSettingFile(this, PlaynitePaths.ConfigFilePath);
+            SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
+            SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
+        }
+
+        [OnError]
+        internal void OnError(StreamingContext context, ErrorContext errorContext)
+        {
+            logger.Error(errorContext.Error, $"Failed to deserialize {errorContext.Path}.");
+            errorContext.Handled = true;
         }
 
         public static void ConfigureLogger()
@@ -850,7 +1130,9 @@ namespace Playnite.Settings
             var rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
             config.LoggingRules.Add(rule2);
 
-            LogManager.Configuration = config;
+            NLog.LogManager.Configuration = config;
+            SDK.LogManager.Init(new NLogLogProvider());
+            logger = SDK.LogManager.GetLogger();
         }
 
         public static string GetAppConfigValue(string key)
@@ -889,7 +1171,7 @@ namespace Playnite.Settings
                     return;
                 }
 
-                var oldSettings = JsonConvert.DeserializeObject<OldSettings.Settings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
+                var oldSettings = JsonConvert.DeserializeObject<Settings.OldSettings.Settings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
                 if (oldSettings.BattleNetSettings != null)
                 {
                     var config = new Dictionary<string, object>()
@@ -964,12 +1246,26 @@ namespace Playnite.Settings
             if (runOnBootup)
             {
                 FileSystem.DeleteFile(shortcutPath);
-                Programs.CreateShortcut(PlaynitePaths.ExecutablePath, "", "", shortcutPath);
+                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, "", "", shortcutPath);
             }
             else
             {
                 FileSystem.DeleteFile(shortcutPath);
             }
         }
+
+        #region Serialization Conditions
+
+        public bool ShouldSerializeDisabledPlugins()
+        {
+            return DisabledPlugins.HasItems();
+        }
+
+        public bool ShouldSerializeDefaultMetadataSettings()
+        {
+            return DefaultMetadataSettings != null;
+        }        
+
+        #endregion Serialization Conditions
     }
 }

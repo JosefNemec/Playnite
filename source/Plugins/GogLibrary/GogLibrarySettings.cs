@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using Playnite.SDK;
 using GogLibrary.Services;
 
@@ -65,7 +65,7 @@ namespace GogLibrary
             this.api = api;
             this.library = library;
 
-            var settings = api.LoadPluginSettings<GogLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<GogLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -74,7 +74,7 @@ namespace GogLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()
@@ -84,7 +84,7 @@ namespace GogLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)
@@ -94,7 +94,7 @@ namespace GogLibrary
 
             if (ImportUninstalledGames && UsePublicAccount && string.IsNullOrEmpty(AccountName))
             {
-                errors.Add(api.Resources.FindString("LOCSettingsInvalidAccountName"));
+                errors.Add(api.Resources.GetString("LOCSettingsInvalidAccountName"));
                 allValid = false;
             }
 

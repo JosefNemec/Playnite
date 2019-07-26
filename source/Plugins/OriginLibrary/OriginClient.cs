@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace OriginLibrary
 {
-    public class OriginClient : ILibraryClient
+    public class OriginClient : LibraryClient
     {
-        public bool IsInstalled { get => Origin.IsInstalled; }
+        public override string Icon => Origin.Icon;
 
-        public void Open()
+        public override bool IsInstalled => Origin.IsInstalled;
+
+        public override void Open()
         {
             Origin.StartClient();
         }

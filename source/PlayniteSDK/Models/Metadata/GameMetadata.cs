@@ -17,13 +17,13 @@ namespace Playnite.SDK.Metadata
         /// </summary>
         public bool IsEmpty
         {
-            get => GameData == null;
+            get => GameInfo == null;
         }
 
         /// <summary>
-        /// Gets or sets game metadata.
+        /// Gets or sets game information.
         /// </summary>
-        public Game GameData
+        public GameInfo GameInfo
         {
             get; set;
         }
@@ -39,7 +39,7 @@ namespace Playnite.SDK.Metadata
         /// <summary>
         /// Gets or sets game cover image.
         /// </summary>
-        public MetadataFile Image
+        public MetadataFile CoverImage
         {
             get; set;
         }
@@ -47,7 +47,7 @@ namespace Playnite.SDK.Metadata
         /// <summary>
         /// Gets or sets game background image.
         /// </summary>
-        public string BackgroundImage
+        public MetadataFile BackgroundImage
         {
             get; set;
         }
@@ -62,15 +62,15 @@ namespace Playnite.SDK.Metadata
         /// <summary>
         /// Creates new instance of <see cref="GameMetadata"/>.
         /// </summary>
-        /// <param name="gameData">Game metadata.</param>
+        /// <param name="gameInfo">Game metadata.</param>
         /// <param name="icon">Game icon.</param>
-        /// <param name="image">Game cover image.</param>
+        /// <param name="coverImage">Game cover image.</param>
         /// <param name="background">Game background image.</param>
-        public GameMetadata(Game gameData, MetadataFile icon, MetadataFile image, string background)
+        public GameMetadata(GameInfo gameInfo, MetadataFile icon, MetadataFile coverImage, MetadataFile background)
         {
-            GameData = gameData;
+            GameInfo = gameInfo;
             Icon = icon;
-            Image = image;
+            CoverImage = coverImage;
             BackgroundImage = background;
         }
 

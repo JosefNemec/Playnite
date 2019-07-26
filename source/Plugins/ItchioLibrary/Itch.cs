@@ -1,11 +1,10 @@
 ﻿using ItchioLibrary.Models;
-using Playnite;
 using Playnite.Common;
-using Playnite.Common.System;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -83,6 +82,8 @@ namespace ItchioLibrary
                 return new Version(instState.current);
             }
         }        
+
+        public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\itchioicon.png");
 
         public static void StartClient()
         {

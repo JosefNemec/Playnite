@@ -7,7 +7,7 @@
     [ValidateSet("x86", "x64")]
     [string]$Platform = "x86",
 
-    # File path with list of values for PlayniteUI.exe.config
+    # File path with list of values for Common.config
     [string]$ConfigUpdatePath,
 
     # Target directory for build files    
@@ -37,8 +37,6 @@
     # Temp directory for build process
     [string]$TempDir = (Join-Path $env:TEMP "PlayniteBuild")
 )
-
-$VSWHERE_CMD = "vswhere"
 
 $ErrorActionPreference = "Stop"
 & .\common.ps1
@@ -140,30 +138,11 @@ if (!$SkipBuild)
     {
         Remove-Item $OutputDir -Recurse -Force
     }
-
-    # Restore NuGet packages
-    if (-not (Get-Command -Name "nuget" -Type Application -ErrorAction Ignore))
-    {
-        Invoke-WebRequest -Uri $NugetUrl -OutFile "nuget.exe"
-    }
-
-    $nugetProc = Start-Process "nuget" "restore ..\source\Playnite.sln" -PassThru -NoNewWindow
-    $handle = $nugetProc.Handle
-    $nugetProc.WaitForExit()
-
+    
     $solutionDir = Join-Path $pwd "..\source"
-
-    if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
-    {
-        $VSWHERE_CMD = (Join-Path $solutionDir "packages\vswhere.2.6.7\tools\vswhere.exe")
-        if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
-        {
-            StartAndWait "nuget.exe" "install vswhere -Version 2.6.7 -SolutionDirectory `"$solutionDir`""
-        }
-    }
-
-    $msbuildpath = & $VSWHERE_CMD -version "[15.0,16.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe"
-    $arguments = "build.xml /p:SolutionDir=`"$solutionDir`" /p:OutputPath=`"$OutputDir`";Configuration=$configuration /property:Platform=$Platform /t:Build";
+    Invoke-Nuget "restore ..\source\Playnite.sln"
+    $msbuildpath = Get-MsBuildPath
+    $arguments = "build.xml /p:SolutionDir=`"$solutionDir`" /p:OutputPath=`"$OutputDir`";Configuration=$configuration /property:Platform=$Platform /t:Build"
     $compilerResult = StartAndWait $msbuildPath $arguments
     if ($compilerResult -ne 0)
     {
@@ -176,6 +155,8 @@ if (!$SkipBuild)
             Join-Path $OutputDir "Playnite.dll" | SignFile
             Join-Path $OutputDir "Playnite.Common.dll" | SignFile
             Join-Path $OutputDir "Playnite.SDK.dll" | SignFile
+            Join-Path $OutputDir "Playnite.DesktopApp.exe" | SignFile
+            Join-Path $OutputDir "Playnite.FullscreenApp.exe" | SignFile
             Join-Path $OutputDir "PlayniteUI.exe" | SignFile
         }
     }
@@ -187,7 +168,7 @@ if (!$SkipBuild)
 if ($ConfigUpdatePath)
 {
     Write-OperationLog "Updating config values..."
-    $configPath = Join-Path $OutputDir "PlayniteUI.exe.config"
+    $configPath = Join-Path $OutputDir "Common.config"
     [xml]$configXml = Get-Content $configPath
     $customConfigContent = Get-Content $ConfigUpdatePath
 
@@ -203,9 +184,9 @@ if ($ConfigUpdatePath)
 
         Write-DebugLog "Settings config value $proName : $proValue"
 
-        if ($configXml.configuration.appSettings.add.key -contains $proName)
+        if ($configXml.appSettings.add.key -contains $proName)
         {
-            $node = $configXml.configuration.appSettings.add | Where { $_.key -eq $proName }
+            $node = $configXml.appSettings.add | Where { $_.key -eq $proName }
             $node.value = $proValue
         }
         else
@@ -213,14 +194,14 @@ if ($ConfigUpdatePath)
             $node = $configXml.CreateElement("add")
             $node.SetAttribute("key", $proName)
             $node.SetAttribute("value", $proValue)
-            $configXml.configuration.appSettings.AppendChild($node) | Out-Null
+            $configXml.appSettings.AppendChild($node) | Out-Null
         }
     }
 
     $configXml.Save($configPath)
 }
 
-$buildNumber = (Get-ChildItem (Join-Path $OutputDir "PlayniteUI.exe")).VersionInfo.ProductVersion
+$buildNumber = (Get-ChildItem (Join-Path $OutputDir "Playnite.dll")).VersionInfo.ProductVersion
 $buildNumber = $buildNumber -replace "\.0\.\d+$", ""
 $buildNumberPlain = $buildNumber.Replace(".", "")
 New-Folder $InstallerDir

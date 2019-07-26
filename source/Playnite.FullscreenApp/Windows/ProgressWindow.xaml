@@ -1,0 +1,42 @@
+﻿<c:WindowBase x:Class="Playnite.FullscreenApp.Windows.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
+        xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        mc:Ignorable="d"
+        ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
+        ShowInTaskbar="False" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Style="{StaticResource MessageBoxWindowStyle}"
+        Background="{StaticResource MainBackgourndBrush}"
+        d:DesignWidth="1920" d:DesignHeight="1080">
+
+    <Viewbox>
+        <Grid Height="1080">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <Image RenderOptions.BitmapScalingMode="Fant"
+                       Height="200"
+                       Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" />
+                <ContentControl Style="{StaticResource ProgressIndicator}" Focusable="False"
+                                Height="38" Width="38" />                
+                <TextBlock Text="{Binding ProgressText}"
+                           HorizontalAlignment="Center" Margin="0,20,0,0"
+                           Style="{StaticResource TextBlockBaseStyle}" />
+                
+            </StackPanel>
+        </Grid>
+    </Viewbox>
+</c:WindowBase>

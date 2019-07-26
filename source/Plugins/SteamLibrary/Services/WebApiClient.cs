@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SteamLibrary.Models;
-using Playnite.Web;
+using Playnite.Common.Web;
 
 namespace SteamLibrary.Services
 {

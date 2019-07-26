@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
+
+    <Style TargetType="{x:Type GameMenu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GameMenu}">
+                    <Grid x:Name="PART_MenuHost"
+                          Background="{DynamicResource OverlayBrush}"
+                          KeyboardNavigation.TabNavigation="Cycle"
+                          KeyboardNavigation.DirectionalNavigation="Cycle"
+                          d:DesignWidth="{StaticResource DesignWidth}"
+                          d:DesignHeight="{StaticResource DesignHeight}">
+                        <Border Background="{DynamicResource OverlayMenuBackgroundBrush}"
+                                CornerRadius="3" Width="400"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Image Source="{Binding Game.CoverImageObject}" />
+                                    <TextBlock Text="{Binding Game.DisplayName}"
+                                               Background="#AA000000"
+                                               Style="{DynamicResource TextBlockBaseStyle}"
+                                               Padding="15,15,15,15" TextWrapping="Wrap"
+                                               HorizontalAlignment="Stretch"
+                                               VerticalAlignment="Bottom">
+                                    </TextBlock>
+                                </Grid>                                
+                                <ItemsControlEx x:Name="PART_ItemsHost" Focusable="False">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <ButtonEx Content="{Binding Title}"
+                                                      Command="{Binding Command}"
+                                                      Margin="5" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControlEx>
+                            </DockPanel>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

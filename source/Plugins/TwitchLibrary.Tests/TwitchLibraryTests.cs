@@ -9,6 +9,7 @@ using Moq;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
+using Playnite.Tests;
 
 namespace TwitchLibrary.Tests
 {
@@ -17,9 +18,7 @@ namespace TwitchLibrary.Tests
     {
         public static TwitchLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            api.Setup(a => a.GetPluginUserDataPath(It.IsAny<ILibraryPlugin>())).Returns(() => TwitchTests.TempPath);
-            return new TwitchLibrary(api.Object);
+            return new TwitchLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
 

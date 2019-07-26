@@ -4,20 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Services;
-using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using Playnite.Database;
 using System.IO;
-using Playnite.SDK.Models;
-using Playnite.SDK;
-using Playnite.Web;
 using System.Text.RegularExpressions;
+using Playnite.SDK;
 using Playnite.SDK.Metadata;
+using Playnite.SDK.Models;
+using Playnite.Common;
 
 namespace Playnite.Metadata.Providers
 {
-    public class IGDBMetadataProvider : ILibraryMetadataProvider
+    public class IGDBMetadataProvider : LibraryMetadataProvider
     {
         private ServicesClient client;
 
@@ -30,10 +27,10 @@ namespace Playnite.Metadata.Providers
             this.client = client;
         }
 
-        private Game GetParsedGame(ulong id)
+        private GameInfo GetParsedGame(ulong id)
         {
             var dbGame = client.GetIGDBGameParsed(id);
-            var game = new Game()
+            var game = new GameInfo()
             {
                 Name = dbGame.name,
                 Description = dbGame.summary?.Replace("\n", "\n<br>")
@@ -55,28 +52,28 @@ namespace Playnite.Metadata.Providers
 
             if (dbGame.developers?.Any() == true)
             {
-                game.Developers = new ComparableList<string>(dbGame.developers);
+                game.Developers = dbGame.developers;
             }
 
             if (dbGame.publishers?.Any() == true)
             {
-                game.Publishers = new ComparableList<string>(dbGame.publishers);
+                game.Publishers = dbGame.publishers;
             }
 
             if (dbGame.genres?.Any() == true)
             {
-                game.Genres = new ComparableList<string>(dbGame.genres);
+                game.Genres = dbGame.genres;
             }
 
             if (dbGame.websites?.Any() == true)
             {
-                game.Links = new ObservableCollection<Link>(dbGame.websites.Select(a => new Link(a.category.ToString(), a.url)));
+                game.Links = dbGame.websites.Select(a => new Link(a.category.ToString(), a.url)).ToList();
             }
 
             if (dbGame.game_modes?.Any() == true)
             {
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
-                game.Tags = new ComparableList<string>(dbGame.game_modes.Select(a => cultInfo.ToTitleCase(a)));
+                game.Tags = dbGame.game_modes.Select(a => cultInfo.ToTitleCase(a)).ToList();
             }
 
             if (dbGame.aggregated_rating != 0)
@@ -99,12 +96,12 @@ namespace Playnite.Metadata.Providers
 
         public ICollection<MetadataSearchResult> SearchMetadata(Game game)
         {
-            return client.GetIGDBGames(game.Name)?.Select(a => new MetadataSearchResult()
+            return client.GetIGDBGames(game.Name.RemoveTrademarks())?.Select(a => new MetadataSearchResult()
             {
                 Id = a.id.ToString(),
-                Name = a.name,
+                Name = a.name.RemoveTrademarks(),
                 ReleaseDate = a.first_release_date == 0 ? (DateTime?)null : DateTimeOffset.FromUnixTimeMilliseconds(a.first_release_date).DateTime,
-                AlternativeNames = a.alternative_names?.Any() == true ? a.alternative_names.Select(name => name.name).ToList() : null
+                AlternativeNames = a.alternative_names?.Any() == true ? a.alternative_names.Select(name => name.name.RemoveTrademarks()).ToList() : null
             }).ToList();
         }
 
@@ -114,14 +111,14 @@ namespace Playnite.Metadata.Providers
             MetadataFile image = null;
             if (!string.IsNullOrEmpty(game.CoverImage))
             {
-                var name = Path.GetFileName(game.CoverImage);
-                image = new MetadataFile(name, HttpDownloader.DownloadData(game.CoverImage));
+                image = new MetadataFile(game.CoverImage);
+                game.CoverImage = null;
             }
 
-            return new GameMetadata(game, null, image, string.Empty);
+            return new GameMetadata(game, null, image, null);
         }
 
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             if (game.PluginId == Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB"))
             {
@@ -137,7 +134,7 @@ namespace Playnite.Metadata.Providers
                 return GameMetadata.GetEmptyData();
             }
 
-            var copyGame = game.CloneJson();
+            var copyGame = game.GetClone();
             copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
             var name = copyGame.Name;
             var results = SearchMetadata(copyGame).ToList();
@@ -178,7 +175,7 @@ namespace Playnite.Metadata.Providers
             }
 
             // Try removing apostrophes
-            var resCopy = results.CloneJson();
+            var resCopy = results.GetClone();
             resCopy.ForEach(a => a.Name = a.Name.Replace("'", ""));
             data = matchFun(game, name, resCopy);
             if (data != null)
@@ -188,7 +185,7 @@ namespace Playnite.Metadata.Providers
 
             // Try removing all ":"
             testName = Regex.Replace(testName, @"\s*:\s*", " ");
-            resCopy = results.CloneJson();
+            resCopy = results.GetClone();
             resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*:\s*", " "));
             data = matchFun(game, testName, resCopy);
             if (data != null)
@@ -229,10 +226,11 @@ namespace Playnite.Metadata.Providers
 
         private GameMetadata matchFun(Game game, string matchName, IEnumerable<MetadataSearchResult> list)
         {
-            var res = list.Where(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
+            var moddedMatchName = matchName.RemoveTrademarks();
+            var res = list.Where(a => string.Equals(moddedMatchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
             if (!res.Any())
             {
-                res = list.Where(a => a.AlternativeNames?.ContainsInsensitive(matchName) == true);
+                res = list.Where(a => a.AlternativeNames.ContainsString(moddedMatchName) == true);
             }
 
             if (res.Any())

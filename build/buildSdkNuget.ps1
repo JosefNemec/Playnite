@@ -15,16 +15,10 @@ $ErrorActionPreference = "Stop"
 if (!$SkipBuild)
 {
     New-EmptyFolder $OutputPath
-    # Restore NuGet packages
-    if (-not (Get-Command -Name "nuget" -Type Application -ErrorAction Ignore))
-    {
-        Invoke-WebRequest -Uri $NugetUrl -OutFile "nuget.exe"
-    }
-
-    StartAndWait "nuget" "restore ..\source\PlayniteSDK\packages.config -PackagesDirectory ..\source\packages"
+    Invoke-Nuget "restore ..\source\PlayniteSDK\packages.config -PackagesDirectory ..\source\packages"
     $project = Join-Path $pwd "..\source\PlayniteSDK\Playnite.SDK.csproj"
-    $msbuildPath = "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
-    $arguments = "`"$project`" /p:OutputPath=`"$outputPath`";Configuration=$configuration /t:Build";
+    $msbuildPath = Get-MsBuildPath
+    $arguments = "`"$project`" /p:OutputPath=`"$outputPath`";Configuration=$configuration /t:Build"
     $compilerResult = StartAndWait $msbuildPath $arguments
     if ($compilerResult -ne 0)
     {
@@ -52,7 +46,7 @@ $specFile = "nuget.nuspec"
 try
 {
     $spec | Out-File $specFile
-    $packageRes = StartAndWait "nuget" "pack $specFile"
+    $packageRes = Invoke-Nuget "pack $specFile"
     if ($packageRes -ne 0)
     {
         throw "Nuget packing failed."

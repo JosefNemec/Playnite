@@ -62,12 +62,13 @@ namespace PlayniteServices.Controllers.IGDB
             get;
         } = new HttpClient();
 
-        private static HttpRequestMessage CreateRequest(string url, string apiKey)
+        private static HttpRequestMessage CreateRequest(string url, string query, string apiKey)
         {
             var request = new HttpRequestMessage()
             {
                 RequestUri = new Uri(UrlBase + url),
-                Method = HttpMethod.Get
+                Method = HttpMethod.Get,
+                Content = new StringContent(query)
             };
 
             request.Headers.Add("user-key", apiKey);
@@ -75,9 +76,9 @@ namespace PlayniteServices.Controllers.IGDB
             return request;
         }
 
-        public static async Task<string> SendStringRequest(string url)
+        public static async Task<string> SendStringRequest(string url, string query)
         {
-            var sharedRequest = CreateRequest(url, ApiKey);
+            var sharedRequest = CreateRequest(url, query, ApiKey);
             var sharedResponse = await HttpClient.SendAsync(sharedRequest);
             return await sharedResponse.Content.ReadAsStringAsync();
         }

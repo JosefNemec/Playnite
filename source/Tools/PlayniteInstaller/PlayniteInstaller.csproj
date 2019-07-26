@@ -38,6 +38,9 @@
     <ApplicationIcon>Resources\installer.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -62,7 +65,7 @@
     <Compile Include="..\..\PlayniteSDK\Collections\ObservableObject.cs">
       <Link>ObservableObject.cs</Link>
     </Compile>
-    <Compile Include="..\..\PlayniteUI\Commands\RelayCommand.cs">
+    <Compile Include="..\..\PlayniteSDK\RelayCommand.cs">
       <Link>RelayCommand.cs</Link>
     </Compile>
     <Compile Include="..\..\Playnite\App\UpdateManifest.cs">
@@ -104,6 +107,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,5 +1,5 @@
 ﻿using Playnite;
-using Playnite.Common.System;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -133,13 +133,13 @@ namespace UplayLibrary
                 var installedGame = uplay.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
                 if (installedGame != null)
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo()
                     {
-                        Game.PlayAction = installedGame.PlayAction;
-                    }
+                        PlayAction = installedGame.PlayAction,
+                        InstallDirectory = installedGame.InstallDirectory
+                    };
 
-                    Game.InstallDirectory = installedGame.InstallDirectory;
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
                 }
 
