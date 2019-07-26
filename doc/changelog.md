@@ -11,20 +11,17 @@
 #### 3.0.0
 
 * **Breaking Changes**:
-  * Removed and added new APIs and API members, see [full list](memberChanges3_0.md) of changes.
+  * Removed and added new APIs and API members.
   * Game files are no longer stored in single database file. All game and media files are now accessible in their raw form even without user of database API.
-  * See [migration tutorial](tutorials/extensionMigration2to3.md) for step by step guide on how update existing extensions.
 
 #### 2.0.0
 
 * **Breaking Changes**:
-  * In order to unify terminology used in Playnite's UI and that in SDK, some classes and class members [were renamed](memberChanges2_0.md).
+  * In order to unify terminology used in Playnite's UI and that in SDK, some classes and class members were renamed.
   * Extensions (both plugins and scripts) have to provide [extension manifest](tutorials/extensionsManifest.md) otherwise they won't be loaded.
     * Various information about extension (author, version etc.) must be now stored in manifest file.
   * Both plugins and scripts have to be stored in the same folder called `Extensions` (rather then in separate `Plugins` or `Scripts` folders).
   * Signature for default C# plugins has changed and they now have to implement `IGenericPlugin` interface to be loaded.
-
-* See [migration tutorial](tutorials/extensionMigration1to2.md) for step by step guide on how to convert existing extensions to a new format.
 
 * New Plugin types. There are now two types of plugins that can be implemented:
   * Generic Plugin: Same as the old plugins.
@@ -49,5 +46,5 @@
 #### 1.1.0
 
 * **Breaking Change**: Scripts and Plugins must be place in subfolders rather then directly inside of `Scripts` or `Plugins` folders.
-* New: [OnGameStarting](xref:Playnite.SDK.Plugins.IGenericPlugin.OnGameStarting(Playnite.SDK.Models.Game)) event that will execute before game is started. See [events](tutorials/scripts/scriptingEvents.md) for use from scripts.
+* New: `OnGameStarting` event that will execute before game is started. See [events](tutorials/scripts/scriptingEvents.md) for use from scripts.
 * New: [ShowErrorMessage](xref:Playnite.SDK.IDialogsFactory.ShowErrorMessage(System.String,System.String)) method in `IDialogsFactory`

@@ -37,6 +37,10 @@
       href: themes/distributionAndUpdates.md
     - name: Various
       href: themes/various.md
+    - name: Installing themes
+      href: themes/installing.md
+    - name: Manifest file
+      href: themes/manifestFile.md
 
 - name: Docs
   items:

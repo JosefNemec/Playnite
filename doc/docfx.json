@@ -38,9 +38,7 @@
     ],
     "resource": [
       {
-        "files": [
-          "images/**"
-        ]
+        "files": [ "**/images/**" ]
       }
     ],
     "overwrite": [
