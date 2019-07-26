@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">Deutsch</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Sprache</sys:String>
@@ -195,6 +198,7 @@ Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Offizieller Shop</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Offizieller Shop > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Bitte wähle die von Playnite automatisch auszufüllenden Felder und die hierfür zu verwendenden Quellen aus.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Zur Verbesserung der von Playnite verwendeten Daten sollten Sie auf das obige Logo klicken und Aktualisierungen in die igdb.com-Datenbank eintragen.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Offizieller Shop:
 Verwende nur Daten aus dem offiziellen Shop des Anbieters.
     
@@ -298,8 +302,10 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Wähle diese Option bei Problemen mit der Oberfläche.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI-Skalierung deaktivieren</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Schaltfläche für Steam-Freunde anzeigen</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Hintergrundbild anzeigen</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Über das gesamte Anwendungsfenster ausdehnen</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Hintergrundbild des Spiels als Fensterhintergrund verwenden</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Hintergrund weichzeichnen</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Hintergrund abdunkeln</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">In Gitteransicht anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Theme-Profil</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Vollbild-Theme</sys:String>
@@ -710,6 +716,23 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCPLaytime500to1000">500 bis 1.000 Stunden</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Mehr als 1.000 Stunden</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation war erfolgreich.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Add-on installieren?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Erweiterung konnte nicht installiert werden.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Möchtest du eine neue Erweiterung installieren? Die bestehende Installation wird überschrieben.
+    
+{0}
+Von {1}
+Version {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Theme konnte nicht intalliert werden.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Möchtest du ein neues Theme installieren? Die bestehende Installation wird überschrieben.
+    
+{0}
+Von {1}
+Version {2}
+    </sys:String>
+
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Möchten Sie Playnite jetzt verlassen und mit Ihrem Standard-Webbrowser folgende Webseite öffnen?
     
 {0}</sys:String>
@@ -726,10 +749,9 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
 Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktioniert, deren Spielebibliotheken in GOGs Privatsphäreeinstellungen als öffentlich sichtbar festgelegt wurden.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Wähle einen authentifizierten Benutzer aus oder gib deine Konto-URL ein, um deine vollständige Bibliothek zu synchronisieren. Bei Konten mit lediglich privater Bibliothekssichtbarkeit muss der mit dem Steam-Konto verknüpfte API-Schlüssel angegeben werden.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Benutzerkonten-URL</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Angemeldet</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Das Konto ist privat, der API-Schlüssel ist erforderlich.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Die Ersteinrichtung ist nicht abgeschlossen. Playnite wird nun im Desktopmodus neu gestartet, um die Einrichtung abzuschließen.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Zuletzt gespielt</sys:String>
