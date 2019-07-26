@@ -483,6 +483,21 @@ namespace Playnite
             }
         }
 
+        private bool highQualityBackgroundBlur = true;
+        public bool HighQualityBackgroundBlur
+        {
+            get
+            {
+                return highQualityBackgroundBlur;
+            }
+
+            set
+            {
+                highQualityBackgroundBlur = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool blurWindowBackgroundImage = true;
         public bool BlurWindowBackgroundImage
         {
@@ -498,7 +513,7 @@ namespace Playnite
             }
         }
 
-        private double backgroundImageBlurAmount = 70;
+        private double backgroundImageBlurAmount = 60;
         public double BackgroundImageBlurAmount
         {
             get

@@ -305,6 +305,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Show Steam friends button</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Use game background image as window background</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Blur background</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">High Quality</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Darken background</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Show on Grid view</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>

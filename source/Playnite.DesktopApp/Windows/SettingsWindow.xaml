@@ -294,6 +294,9 @@
                                             Value="{Binding Settings.BackgroundImageBlurAmount}"
                                             VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
                                             IsEnabled="{Binding Settings.BlurWindowBackgroundImage}" />
+                                    <CheckBox IsChecked="{Binding Settings.HighQualityBackgroundBlur}"
+                                              IsEnabled="{Binding Settings.BlurWindowBackgroundImage}"
+                                              Content="{DynamicResource LOCSettingsBlurHighQuality}" Margin="15,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
                                             IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
