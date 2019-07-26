@@ -620,6 +620,12 @@ namespace Playnite.Database
                 foreach (var file in Directory.EnumerateFiles(gamesDir, "*.json"))
                 {
                     var game = Serialization.FromJson<Dictionary<string, object>>(FileSystem.ReadFileAsStringSafe(file));
+                    if (game == null)
+                    {
+                        // Some users have 0 sized game files for uknown reason.
+                        File.Delete(file);
+                        continue;
+                    }
 
                     // Genres    
                     convetList(game, nameof(OldModels.NewVer1.OldGame.Genres), nameof(Game.GenreIds), allGenres);
