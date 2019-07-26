@@ -50,7 +50,7 @@
                                                        RenderOptions.BitmapScalingMode="Fant" />
                                                 <TextBlock FontFamily="{DynamicResource FontFamily}"
                                                            Text="{Binding Game.DisplayName}" DockPanel.Dock="Left"
-                                                           FontSize="34" Margin="0,0,10,0" TextWrapping="Wrap"
+                                                           FontSize="30" Margin="0,0,10,0" TextWrapping="Wrap"
                                                            VerticalAlignment="Center"
                                                            Foreground="{StaticResource TextBrush}">
                                                     <TextBlock.Effect>
