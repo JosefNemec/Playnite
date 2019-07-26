@@ -35,6 +35,10 @@ Toolbox.exe pack theme desktop "SuperClearModern" "c:\somedir"
 
 `<ThemeDirectoryName>` is name of the theme folder from `Themes\Desktop|Fullscreen` directory where you are developing the theme.
 
+# Uploading themes
+
+There's currently no official database with user made themes. We will be launching new forums soon (probably by the end July), which will be used as official theme database.
+
 # Updating Themes
 
 You will need to update themes from time to time to make sure they work with new Playnite versions properly.
