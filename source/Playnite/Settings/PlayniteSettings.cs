@@ -528,7 +528,7 @@ namespace Playnite
             }
         }
 
-        private float backgroundImageDarkAmount = 0.5f;
+        private float backgroundImageDarkAmount = 0.7f;
         public float BackgroundImageDarkAmount
         {
             get
