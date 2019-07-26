@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">Italiano</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Lingua</sys:String>
@@ -710,6 +713,23 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCPLaytime100to500">da 100 a 500 ore</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">da 500 a 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Più di 1000</sys:String>
+
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installazione avvenuta con successo.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installazione?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Installazione estensione fallita.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vuoi installare una nuova estensione? L'installazione esistente sarà sovrascritta.
+    
+{0}
+ {1}
+Versione {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Impossibile installare il tema.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Vuoi installare una nuova estensione? L'installazione esistente sarà sovrascritta.
+    
+{0}
+ {1}
+Versione {2}
+    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Stai per lasciare Playnite e navigare nella pagina web seguente utilizzando il browser web predefinito. Vuoi continuare?
     
