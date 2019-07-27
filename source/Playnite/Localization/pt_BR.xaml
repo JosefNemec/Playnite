@@ -304,6 +304,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostrar o botão de amigos do Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Usar a imagem de fundo do jogo como fundo da janela</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Desfocar fundo</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Escurecer fundo</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Mostrar no esquema de grade</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
