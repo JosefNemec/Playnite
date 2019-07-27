@@ -73,7 +73,8 @@ namespace Playnite.DesktopApp.Controls.Views
             else if (e.PropertyName == nameof(PlayniteSettings.DarkenWindowBackgroundImage) ||
                      e.PropertyName == nameof(PlayniteSettings.BlurWindowBackgroundImage) ||
                      e.PropertyName == nameof(PlayniteSettings.BackgroundImageBlurAmount) ||
-                     e.PropertyName == nameof(PlayniteSettings.BackgroundImageDarkAmount))
+                     e.PropertyName == nameof(PlayniteSettings.BackgroundImageDarkAmount) ||
+                     e.PropertyName == nameof(PlayniteSettings.HighQualityBackgroundBlur))
             {
                 SetBackgroundEffect();
             }
@@ -143,9 +144,9 @@ namespace Playnite.DesktopApp.Controls.Views
                 {
                     ImageBackground.Effect = new BlurEffect()
                     {
-                        KernelType = KernelType.Gaussian,
+                        KernelType = KernelType.Box,
                         Radius = mainModel.AppSettings.BackgroundImageBlurAmount,
-                        RenderingBias = RenderingBias.Quality
+                        RenderingBias = mainModel.AppSettings.HighQualityBackgroundBlur ? RenderingBias.Quality : RenderingBias.Performance
                     };
                 }
                 else
