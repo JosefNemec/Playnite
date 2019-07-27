@@ -300,6 +300,7 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostra o botão de amigos na Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
