@@ -31,20 +31,20 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Bockad - Tilldela kategori
 Avbockad - Ta bort kategori
 Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
-    <sys:String x:Key="LOCNoCategory"></sys:String>
-    <sys:String x:Key="LOCNoPlatform"></sys:String>
+    <sys:String x:Key="LOCNoCategory">Ingen kategori</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Ingen plattform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapportera problem</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Starta om Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Avsluta Playnite</sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Ta bort Spel?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Det går inte att avinstallera ett spel som körs.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Är du säker på att du vill ta bort det här spelet?
         
 Automatiskt importerade spel kan visas igen i Playnite efter nästa import (beroende på dina inställningar).</sys:String>
@@ -72,9 +72,9 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
 
 
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle"></sys:String>
+    <sys:String x:Key="LOCEnabledTitle">Aktiverad</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Ta bort</sys:String>
-    <sys:String x:Key="LOCRenameTitle"></sys:String>
+    <sys:String x:Key="LOCRenameTitle">Byt namn</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopiera</sys:String>
     <sys:String x:Key="LOCAddTitle">Lägg till</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Standard Ikon</sys:String>
@@ -85,19 +85,19 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCDoneCapLabel"></sys:String>
     <sys:String x:Key="LOCBackCapLabel"></sys:String>
     <sys:String x:Key="LOCClearCapLabel"></sys:String>
-    <sys:String x:Key="LOCClearLabel"></sys:String>
-    <sys:String x:Key="LOCDismiss"></sys:String>
-    <sys:String x:Key="LOCDismissAll"></sys:String>
+    <sys:String x:Key="LOCClearLabel">Rensa</sys:String>
+    <sys:String x:Key="LOCDismiss">Avfärda</sys:String>
+    <sys:String x:Key="LOCDismissAll">Avfärda alla</sys:String>
     <sys:String x:Key="LOCImportLabel">Importera</sys:String>
     <sys:String x:Key="LOCSourceLabel">Källkod</sys:String>
     <sys:String x:Key="LOCNameLabel">Namn</sys:String>
     <sys:String x:Key="LOCAuthorLabel"></sys:String>
     <sys:String x:Key="LOCModuleLabel"></sys:String>
-    <sys:String x:Key="LOCSeriesLabel"></sys:String>
+    <sys:String x:Key="LOCSeriesLabel">Serie</sys:String>
     <sys:String x:Key="LOCVersionLabel"></sys:String>
     <sys:String x:Key="LOCAgeRatingLabel"></sys:String>
-    <sys:String x:Key="LOCRegionLabel"></sys:String>
-    <sys:String x:Key="LOCLastPlayedLabel"></sys:String>
+    <sys:String x:Key="LOCRegionLabel">Region</sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">Senast spelad</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
     <sys:String x:Key="LOCPlayCountLabel"></sys:String>
     <sys:String x:Key="LOCAddedLabel"></sys:String>
