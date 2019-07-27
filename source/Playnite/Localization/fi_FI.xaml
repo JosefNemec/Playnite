@@ -304,6 +304,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Näytä Steam-kaverit painike</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Käytä pelin taustakuvaa ikkunan taustakuvana</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Sumenna tausta</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Tummenna tausta</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Näytä ruudukkonäkymässä</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Teema</sys:String>
