@@ -12,8 +12,8 @@
     <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCFilters">Filtriloj</sys:String>
+    <sys:String x:Key="LOCFilter">Filtrilo</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle"></sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle"></sys:String>
@@ -22,8 +22,8 @@
     <sys:String x:Key="LOCAboutSourceLink"></sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutWindowTitle"></sys:String>
-    <sys:String x:Key="LOCAboutAuthor"></sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">Pri Playnite</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">Farita de Josef Němec</sys:String>
 
     <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
     <sys:String x:Key="LOCCategorySetButton"></sys:String>
