@@ -544,6 +544,11 @@ namespace Playnite.Database
                 {
                     if (game.TryGetValue(origKey, out var storedObj))
                     {
+                        if (storedObj == null)
+                        {
+                            return;
+                        }
+
                         var gameObjs = new List<Guid>();
                         var oldLIst = (storedObj as JArray).ToObject<List<string>>();
                         foreach (var oldObj in oldLIst)
