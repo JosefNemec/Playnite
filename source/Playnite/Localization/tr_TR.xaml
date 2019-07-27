@@ -305,6 +305,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam arkadaşlar düğmesini göster</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Oyun arka planını pencere arka planı olarak kullan</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Arka planı bulanıklaştır</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Arka planı karart</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Izgara görünümünde göster</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
