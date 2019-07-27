@@ -218,7 +218,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCProgressBattleNetLibImport">Stahuje se aktualizace knihovny Battle.net…</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Stahují se metadata…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importují se instalované hry…</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Importuje se {0} her…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importují se hry z platformy {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Stahují se aktualizace knihoven…</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Stahují se aktualizace knihoven…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Aktualizace knihovny dokončena</sys:String>
@@ -304,6 +304,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Zobrazit tlačítko "Steam přátelé"</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Použít obrázek pozadí hry jako pozadí celého okna</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Rozostřit pozadí</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Vysoká kvalita</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Ztmavit pozadí</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Zobrazit v Zobrazení mřížky</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Motiv vzhledu</sys:String>
