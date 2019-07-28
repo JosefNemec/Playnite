@@ -198,7 +198,7 @@ Resulta en: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Tienda oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Tienda oficial > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Por favor seleccione que campos debe rellenar automáticamente Playnite y que fuentes utilizar para obtener los datos</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Por favor considere hacer clic en el logotipo de arriba y contribuir actualizaciones a la base de datos de igdb.com para mejorar los datos que utiliza Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Tienda:
 Solo usar datos de la tienda oficial.
     
@@ -280,7 +280,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importar juegos instalados</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importar juegos desintalados</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importar todos los juegos</sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importar todos los juegos (La privacidad de la cuenta debe ser establecida como Pública o una llave de API debe ser especificada)</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importar todos los juegos (La privacidad de la cuenta debe ser establecida como Pública o una Clave de API debe ser proporcionada)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Ubicación del archivo de base de datos no es válida, se debe establecer una ruta de archivo adecuada.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">El nombre de la cuenta no puede estar vacío.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">No se seleccionó ninguna cuenta de Steam para la importación de la biblioteca.</sys:String>
@@ -295,18 +295,18 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Carga de imágenes asíncrona</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Mejora la suavidad de desplazamiento de las listas de juegos a cambio de tiempos de carga de imágenes más lentos.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar nombres de juegos cuando falta arte de portada</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar nombres de juegos en la vista de Portadas</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar nombres de juegos en la vista de Cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostrar iconos de juegos en la vista de Lista</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostrar recuento de elementos en las descripciones de los grupos</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desactivar aceleración por hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Usar cuando se experimente entrecortado o problemas de IU</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Deshabilitar escalado de DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostrar el botón de amigos de steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
-    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Usar la imagen de fondo del juego como fondo de la ventana</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Difuminar el fondo</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Alta Calidad</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Oscurecer el fondo</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Mostrar en la Vista de Cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil del Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema de Pantalla Completa</sys:String>
@@ -337,8 +337,8 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Fallo al importar información de últimos jugados de Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Esto lo desconectará de todos los servicios vinculados. Se requiere reiniciar la aplicación, ¿Quieres proceder?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">¿Limpiar cache?</sys:String>
-    <sys:String x:Key="LOCSettingsApiKeyTooltip">La Llave de API es necesaria para las cuentas privadas de Steam</sys:String>
-    <sys:String x:Key="LOCSettingsApiKeyUrlText">Obtener la Llave de API</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyTooltip">La Clave de API es necesaria para las cuentas privadas de Steam</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyUrlText">Obtener Clave de API</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Se requiere reiniciar Playnite cuando se cambia el tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Obtener más temas</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Crear un tema nuevo</sys:String>
@@ -581,7 +581,7 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCClearFilters">Borrar filtros</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Cuenta Privada</sys:String>
     <sys:String x:Key="LOCPublicAccount">Cuenta Pública</sys:String>
-    <sys:String x:Key="LOCAPIKey">Llave de API</sys:String>
+    <sys:String x:Key="LOCAPIKey">Clave de API</sys:String>
     <sys:String x:Key="LOCStartupError">Error de Inicio</sys:String>
     <sys:String x:Key="LOCSkinError">Error del Tema</sys:String>
     <sys:String x:Key="LOCClearAll">Borrar Todo</sys:String>
@@ -717,12 +717,22 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCPLaytime500to1000">De 500 a 1000 horas</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instalación fue exitosa.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">¿Instalar extensión?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Error al instalar la extensión.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">¿Quieres instalar una nueva extensión? La instalación existente se sobrescribirá.
+    
+{0}
+Por {1}
+Versión {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Fallo al instalar el tema.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">¿Quieres instalar un nuevo tema? La instalación existente se sobrescribirá.
+    
+{0}
+Por {1}
+Versión {2}
+    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Estás a punto de salir de Playnite y navegar a la siguiente página web usando tu navegador web predeterminado. ¿Quieres continuar?
     
@@ -742,7 +752,7 @@ La opción de Nombre de Cuenta solo aparece para cuentas cuyas librerías de jue
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">Nombre URL de la cuenta</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Usuario Autenticado</sys:String>
-    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">La Cuenta es privada, se requiere una Clave de API.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Configuración de primera vez no completada. Playnite se reiniciará en modo escritorio para terminar el proceso.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jugado recientemente</sys:String>
