@@ -20,11 +20,12 @@
                 <ControlTemplate TargetType="{x:Type ListBox}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}" CornerRadius="{DynamicResource ControlCornerRadius}">
-                        <ScrollViewer Padding="{TemplateBinding Padding}" Focusable="False"
+                        <ScrollViewer Focusable="False"
                                       HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                                       VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
                                       CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                            Margin="{TemplateBinding Padding}"/>
                         </ScrollViewer>
                     </Border>
                 </ControlTemplate>
