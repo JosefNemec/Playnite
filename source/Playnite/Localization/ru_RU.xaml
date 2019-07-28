@@ -198,7 +198,7 @@
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Официальный магазин</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Официальный магазин > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Выберите, какие поля должны быть автоматически заполнены Playnite и какие источники должны использоваться для получения данных.</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Пожалуйста, нажмите на логотип выше и внесите изменения в базу данных IGDB.com, чтобы улучшить данные, используемые Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Магазин:
 Использовать данные только из магазина.
 
@@ -242,9 +242,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuAbout">О Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Отправить отзыв</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Запустить полноэкранный режим</sys:String>
-    <sys:String x:Key="LOCMenuLinksTitle">Связи</sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Ссылки</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Помощь</sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport">Поддержать нас в patreon</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Поддержать на Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Документация</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Перезагрузка</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Завершение работы</sys:String>
@@ -304,7 +304,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Показать кнопку друзей из Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Использовать фоновое изображение игры в качестве фона окна</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Размыть фон</sys:String>
-    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Высокое качество</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Затемнить фон</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Показать в сетке</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Тема оформления</sys:String>
@@ -657,7 +657,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCEditGame">Изменить…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Выбрать категорию...</sys:String>
     <sys:String x:Key="LOCRemoveGame">Удалить</sys:String>
-    <sys:String x:Key="LOCPlayGame">Запуск</sys:String>
+    <sys:String x:Key="LOCPlayGame">Играть</sys:String>
     <sys:String x:Key="LOCInstallGame">Установить</sys:String>
     <sys:String x:Key="LOCGameOptions">Настройки</sys:String>
     <sys:String x:Key="LOCGameDetails">Описание</sys:String>
