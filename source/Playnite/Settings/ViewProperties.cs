@@ -124,11 +124,11 @@ namespace Playnite
 
     public enum ViewType : int
     {
-        [Description("LOCDetailsLabel")]
+        [Description("LOCDetailsViewLabel")]
         Details = 0,
-        [Description("LOCGridLabel")]
+        [Description("LOCGridViewLabel")]
         Grid = 1,
-        [Description("LOCListLabel")]
+        [Description("LOCListViewLabel")]
         List = 2
     }
 

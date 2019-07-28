@@ -140,10 +140,10 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCTagLabel">Tag</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tags</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">List</sys:String>
+    <sys:String x:Key="LOCListViewLabel">List View</sys:String>
     <sys:String x:Key="LOCCoversLabel">Covers</sys:String>
-    <sys:String x:Key="LOCGridLabel">Grid</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Details</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Grid View</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Details View</sys:String>
     <sys:String x:Key="LOCCustomLabel">Custom</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -622,6 +622,9 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCAll">All</sys:String>
     <sys:String x:Key="LOCNone">None</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
+    <sys:String x:Key="LOCWidth">Width</sys:String>
+    <sys:String x:Key="LOCHeight">Height</sys:String>
+    <sys:String x:Key="LOCSize">Size</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
@@ -718,7 +721,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install addon?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install extension?</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">Failed to install extension.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Do you want to install new extension? Existing installation will be overwritten.
     
