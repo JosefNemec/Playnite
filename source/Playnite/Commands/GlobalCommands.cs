@@ -3,6 +3,7 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,11 +13,20 @@ namespace Playnite.Commands
 {
     public static class GlobalCommands
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public static RelayCommand<object> NavigateUrlCommand
         {
             get => new RelayCommand<object>((url) =>
             {
-                NavigateUrl(url);
+                try
+                {
+                    NavigateUrl(url);
+                }
+                catch (Exception e) when (!Debugger.IsAttached)
+                {
+                    logger.Error(e, "Failed to open url.");
+                }
             });
         }
 
@@ -42,6 +52,11 @@ namespace Playnite.Commands
 
         public static void NavigateUrl(string url)
         {
+            if (url.IsNullOrEmpty())
+            {
+                throw new Exception("No URL was given.");
+            }
+
             if (!Regex.IsMatch(url, @"^.*:\/\/"))
             {
                 url = "http://" + url;
