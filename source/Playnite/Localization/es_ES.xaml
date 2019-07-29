@@ -139,10 +139,10 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
     <sys:String x:Key="LOCTagLabel">Etiqueta</sys:String>
     <sys:String x:Key="LOCTagsLabel">Etiquetas</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Lista</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Vista de Lista</sys:String>
     <sys:String x:Key="LOCCoversLabel">Portada</sys:String>
-    <sys:String x:Key="LOCGridLabel">Cuadrícula</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detalles</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Vista de Cuadrícula</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Vista de Detalles</sys:String>
     <sys:String x:Key="LOCCustomLabel">Customizado</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrones</sys:String>
@@ -253,7 +253,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campos del juego que serán mostrados en el panel de detalles:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacio entre elementos</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ancho del borde el objeto de rejilla</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ancho del borde el objeto de cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fuente del icono del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fuente de la portada del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Reducir detalles del juego</sys:String>
@@ -622,6 +622,9 @@ Puedes intentar esto para resolverlo:
     <sys:String x:Key="LOCAll">Todos</sys:String>
     <sys:String x:Key="LOCNone">Ninguno</sys:String>
     <sys:String x:Key="LOCNotifications">Notificaciones</sys:String>
+    <sys:String x:Key="LOCWidth">Ancho</sys:String>
+    <sys:String x:Key="LOCHeight">Alto</sys:String>
+    <sys:String x:Key="LOCSize">Tamaño</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos del Emulador</sys:String>
