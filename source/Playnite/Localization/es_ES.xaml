@@ -253,11 +253,13 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campos del juego que serán mostrados en el panel de detalles:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacio entre elementos</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ancho del borde el objeto de cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fuente del icono del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fuente de la portada del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Reducir detalles del juego</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posición de los detalles de la vista de cuandrícula</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posición del panel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posición del panel de exploración</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderización del arte de la portada</sys:String>
