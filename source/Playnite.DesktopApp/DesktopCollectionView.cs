@@ -164,12 +164,6 @@ namespace Playnite.DesktopApp
             }
 
             currentGrouping = viewSettings.GroupingOrder;
-
-            if (viewSettings.SortingOrder == SortOrder.Name)
-            {
-                sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
-            }
-
             CollectionView.SortDescriptions.Add(new SortDescription(viewSettings.SortingOrder.ToString(), sortDirection));
             if (viewSettings.SortingOrder != SortOrder.Name)
             {
