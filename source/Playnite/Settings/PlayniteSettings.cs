@@ -216,6 +216,21 @@ namespace Playnite
             }
         }
 
+        private Dock detailsListPosition = Dock.Left;
+        public Dock DetailsListPosition
+        {
+            get
+            {
+                return detailsListPosition;
+            }
+
+            set
+            {
+                detailsListPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool explorerPanelVisible = false;
         public bool ExplorerPanelVisible
         {
@@ -227,6 +242,66 @@ namespace Playnite
             set
             {
                 explorerPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double filterPanelWitdh = 240;
+        public double FilterPanelWitdh
+        {
+            get
+            {
+                return filterPanelWitdh;
+            }
+
+            set
+            {
+                filterPanelWitdh = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double explorerPanelWitdh = 280;
+        public double ExplorerPanelWitdh
+        {
+            get
+            {
+                return explorerPanelWitdh;
+            }
+
+            set
+            {
+                explorerPanelWitdh = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double grdiDetailsWitdh = 350;
+        public double GrdiDetailsWitdh
+        {
+            get
+            {
+                return grdiDetailsWitdh;
+            }
+
+            set
+            {
+                grdiDetailsWitdh = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double detailsListWitdh = 350;
+        public double DetailsListWitdh
+        {
+            get
+            {
+                return detailsListWitdh;
+            }
+
+            set
+            {
+                detailsListWitdh = value;
                 OnPropertyChanged();
             }
         }

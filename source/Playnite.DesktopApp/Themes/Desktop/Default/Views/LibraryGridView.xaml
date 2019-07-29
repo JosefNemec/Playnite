@@ -11,7 +11,8 @@
                     <DockPanel Background="{TemplateBinding Background}"
                                d:DesignWidth="1280" d:DesignHeight="960"
                                d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <GridViewGameOverview x:Name="PART_ControlGameView" Width="350"
+                        <GridViewGameOverview x:Name="PART_ControlGameView"
+                                              Width="{Settings GrdiDetailsWitdh}"
                                               DockPanel.Dock="{Settings GridViewDetailsPosition}" />                   
                         <Grid DockPanel.Dock="Left">
                             <Grid.RowDefinitions>

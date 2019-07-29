@@ -259,6 +259,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Indent game details</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Details game list position</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filter panel position</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Explorer panel position</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Cover art rendering</sys:String>
