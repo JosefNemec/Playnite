@@ -492,7 +492,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     settings.FilterSettings.IsInstalled = settings.InstalledOnlyInQuickFilters;
                     settings.FilterSettings.Favorite = true;
                     settings.ViewSettings.SortingOrder = SortOrder.Name;
-                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Descending;
+                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Ascending;
                     break;
                 case ActiveFullscreenView.MostPlayed:
                     settings.FilterSettings.IsInstalled = settings.InstalledOnlyInQuickFilters;
@@ -504,7 +504,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     settings.FilterSettings.IsInstalled = false;
                     settings.FilterSettings.Favorite = false;
                     settings.ViewSettings.SortingOrder = SortOrder.Name;
-                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Descending;
+                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Ascending;
                     break;
                 //case ActiveFullscreenView.Explore:
                 //    break;
