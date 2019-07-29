@@ -139,10 +139,10 @@ Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, b
     <sys:String x:Key="LOCTagLabel">Schlagwort</sys:String>
     <sys:String x:Key="LOCTagsLabel">Schlagwörter</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Liste</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Listenansicht</sys:String>
     <sys:String x:Key="LOCCoversLabel">Cover</sys:String>
-    <sys:String x:Key="LOCGridLabel">Raster</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Details</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Rasteransicht</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Detailansicht</sys:String>
     <sys:String x:Key="LOCCustomLabel">Benutzerdefiniert</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Unterstützer</sys:String>
@@ -622,6 +622,9 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCAll">Alle</sys:String>
     <sys:String x:Key="LOCNone">Keine</sys:String>
     <sys:String x:Key="LOCNotifications">Benachrichtigungen</sys:String>
+    <sys:String x:Key="LOCWidth">Breite</sys:String>
+    <sys:String x:Key="LOCHeight">Höhe</sys:String>
+    <sys:String x:Key="LOCSize">Größe</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
