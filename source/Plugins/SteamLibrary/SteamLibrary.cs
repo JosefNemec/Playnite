@@ -209,6 +209,12 @@ namespace SteamLibrary
                 {
                     GetInstalledGamesFromFolder(libFolder).ForEach(a =>
                     {
+                        // Ignore redist
+                        if (a.GameId == "228980")
+                        {
+                            return;
+                        }
+
                         if (!games.ContainsKey(a.GameId))
                         {
                             games.Add(a.GameId, a);
