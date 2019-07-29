@@ -133,10 +133,10 @@
     <sys:String x:Key="LOCTagLabel">وسم</sys:String>
     <sys:String x:Key="LOCTagsLabel">وسوم</sys:String>
     <sys:String x:Key="LOCZoomLabel"></sys:String>
-    <sys:String x:Key="LOCListLabel">قائمة</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">غلاف</sys:String>
-    <sys:String x:Key="LOCGridLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel"></sys:String>
     <sys:String x:Key="LOCURLLabel"></sys:String>
     <sys:String x:Key="LOCPatronsLabel"></sys:String>
@@ -575,6 +575,9 @@
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
