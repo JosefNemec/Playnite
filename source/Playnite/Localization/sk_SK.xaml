@@ -135,10 +135,10 @@ Hry, ktoré sa automatický importovaly sa môžu znova objaviť v aplikácií P
     <sys:String x:Key="LOCTagLabel">Označenie</sys:String>
     <sys:String x:Key="LOCTagsLabel"></sys:String>
     <sys:String x:Key="LOCZoomLabel">Priblížiť</sys:String>
-    <sys:String x:Key="LOCListLabel">Zoznam</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Obaly</sys:String>
-    <sys:String x:Key="LOCGridLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detaily</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Vlastné</sys:String>
     <sys:String x:Key="LOCURLLabel"></sys:String>
     <sys:String x:Key="LOCPatronsLabel"></sys:String>
@@ -297,6 +297,7 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
@@ -604,6 +605,9 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulátoru</sys:String>

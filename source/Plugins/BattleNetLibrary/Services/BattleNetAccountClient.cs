@@ -48,7 +48,10 @@ namespace BattleNetLibrary.Services
                 var address = webView.GetCurrentAddress();
                 if (address.StartsWith(@"https://account.blizzard.com") && !address.Equals(apiUrls.logoutUri, StringComparison.OrdinalIgnoreCase))
                 {
-                    webView.Close();
+                    if (GetIsUserLoggedIn())
+                    {
+                        webView.Close();
+                    }
                 }
             };
 

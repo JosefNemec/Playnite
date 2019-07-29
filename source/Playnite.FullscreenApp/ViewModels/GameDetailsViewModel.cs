@@ -197,7 +197,7 @@ namespace Playnite.FullscreenApp.ViewModels
             items.Add(new GameActionItem(ToggleVisibilityCommand, Game.Hidden ? resources.GetString("LOCUnHideGame") : resources.GetString("LOCHideGame")));
             items.Add(new GameActionItem(RemoveGameCommand, resources.GetString("LOCRemoveGame")));
 
-            if (!Game.IsCustomGame)
+            if (!Game.IsCustomGame && Game.IsInstalled)
             {
                 items.Add(new GameActionItem(UninstallGameCommand, resources.GetString("LOCUninstallGame")));
             }

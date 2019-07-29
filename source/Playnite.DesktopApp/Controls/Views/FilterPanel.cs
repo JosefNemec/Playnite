@@ -212,7 +212,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetFilterSelectionBoxFilter(ref FilterCategory, "PART_FilterCategory", nameof(DatabaseFilter.Categories), nameof(FilterSettings.Category));
             SetFilterSelectionBoxFilter(ref FilterTag, "PART_FilterTag", nameof(DatabaseFilter.Tags), nameof(FilterSettings.Tag));
             SetFilterEnumSelectionBoxFilter(ref FilterPlayTime, "PART_FilterPlayTime", nameof(FilterSettings.PlayTime), typeof(PlaytimeCategory));
-            SetFilterEnumSelectionBoxFilter(ref FilterCompletionStatus, "PART_FilterCompletionStatus", nameof(FilterSettings.PlayTime), typeof(CompletionStatus));
+            SetFilterEnumSelectionBoxFilter(ref FilterCompletionStatus, "PART_FilterCompletionStatus", nameof(FilterSettings.CompletionStatus), typeof(CompletionStatus));
             SetFilterSelectionBoxFilter(ref FilterSeries, "PART_FilterSeries", nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));
             SetFilterSelectionBoxFilter(ref FilterRegion, "PART_FilterRegion", nameof(DatabaseFilter.Regions), nameof(FilterSettings.Region));
             SetFilterSelectionBoxFilter(ref FilterSource, "PART_FilterSource", nameof(DatabaseFilter.Sources), nameof(FilterSettings.Source));

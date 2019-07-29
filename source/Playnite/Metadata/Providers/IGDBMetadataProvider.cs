@@ -67,7 +67,7 @@ namespace Playnite.Metadata.Providers
 
             if (dbGame.websites?.Any() == true)
             {
-                game.Links = dbGame.websites.Select(a => new Link(a.category.ToString(), a.url)).ToList();
+                game.Links = dbGame.websites.Where(a => !a.url.IsNullOrEmpty()).Select(a => new Link(a.category.ToString(), a.url)).ToList();
             }
 
             if (dbGame.game_modes?.Any() == true)

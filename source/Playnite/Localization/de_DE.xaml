@@ -139,10 +139,10 @@ Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, b
     <sys:String x:Key="LOCTagLabel">Schlagwort</sys:String>
     <sys:String x:Key="LOCTagsLabel">Schlagwörter</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Liste</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Listenansicht</sys:String>
     <sys:String x:Key="LOCCoversLabel">Cover</sys:String>
-    <sys:String x:Key="LOCGridLabel">Raster</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Details</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Rasteransicht</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Detailansicht</sys:String>
     <sys:String x:Key="LOCCustomLabel">Benutzerdefiniert</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Unterstützer</sys:String>
@@ -304,6 +304,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Schaltfläche für Steam-Freunde anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Hintergrundbild des Spiels als Fensterhintergrund verwenden</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Hintergrund weichzeichnen</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Hohe Qualität</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Hintergrund abdunkeln</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">In Gitteransicht anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
@@ -538,7 +539,7 @@ Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die 
     <sys:String x:Key="LOCUplayLibraryImportError">Fehler beim Import der Uplay-Bibliothek.</sys:String>
     
     <sys:String x:Key="LOCLibraryImportError">Fehler beim Import von {0}-Spielen.</sys:String>    
-    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Für das ausgewählte Emulatorprofil konnten keine Spiele gefunden werden: Du musst entweder eine Plattform oder Dateiendungen definieren.</sys:String>
+    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Mit dem ausgewählten Emulatorprofil kann nicht nach Spielen gesucht werden, da es keine Dateinamenerweiterungen oder Plattformen enthält.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite konnte nicht gestartet werden. Bitte beende alle laufenden Instanzen von Playnite und versuche es erneut.</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Fehler beim Anwenden des Themes »{0}« mit Farbprofil »{1}«
 
@@ -621,6 +622,9 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCAll">Alle</sys:String>
     <sys:String x:Key="LOCNone">Keine</sys:String>
     <sys:String x:Key="LOCNotifications">Benachrichtigungen</sys:String>
+    <sys:String x:Key="LOCWidth">Breite</sys:String>
+    <sys:String x:Key="LOCHeight">Höhe</sys:String>
+    <sys:String x:Key="LOCSize">Größe</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
@@ -717,7 +721,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCPLaytime1000plus">Mehr als 1.000 Stunden</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation war erfolgreich.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Add-on installieren?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Erweiterung installieren?</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">Erweiterung konnte nicht installiert werden.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Möchtest du eine neue Erweiterung installieren? Die bestehende Installation wird überschrieben.
     
@@ -733,14 +737,14 @@ Von {1}
 Version {2}
     </sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Möchten Sie Playnite jetzt verlassen und mit Ihrem Standard-Webbrowser folgende Webseite öffnen?
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Du bist im Begriff, Playnite zu verlassen und mit deinem Standard-Webbrowser folgende Webseite zu öffnen. Möchtest du fortfahren?
     
 {0}</sys:String>
 
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif">Der itch.io Client wird gestartet… Bitte melde dich dort an und schließe anschließend diese Meldung.</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">Es wird auf die Benutzeranmeldung gewartet. Bitte schließen, sobald du damit fertig bist …</sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError">Der itch.io Client in Version 25 oder neuer wird benötigt, konnte aber nicht gefunden werden.</sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">Der itch.io-Client wird jetzt geöffnet. Bitte melde dich dort an und schließe anschließend diese Meldung.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Es wird auf die Benutzeranmeldung gewartet. Bitte schließen diese Meldung, sobald du damit fertig bist …</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Der itch.io-Client in Version 25 oder neuer wird benötigt, konnte aber nicht gefunden werden.</sys:String>
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Kontoanmeldung</sys:String>
@@ -750,7 +754,7 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
 
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">Benutzerkonten-URL</sys:String>
-    <sys:String x:Key="LOCSteamLoggedInUser">Angemeldet</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Authentifizierte Benutzer</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Das Konto ist privat, der API-Schlüssel ist erforderlich.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Die Ersteinrichtung ist nicht abgeschlossen. Playnite wird nun im Desktopmodus neu gestartet, um die Einrichtung abzuschließen.</sys:String>
@@ -759,7 +763,7 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
     <sys:String x:Key="LOCQuickFilterMostPlayed">Spielzeit</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Alle</sys:String>
 
-    <sys:String x:Key="LOCGameListFiltered">Es wurden Filter angewendet.</sys:String>
+    <sys:String x:Key="LOCGameListFiltered">Es sind Filter aktiv.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Suchergebnisse für:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Ein Element mit demselben Namen existiert bereits.</sys:String>
 

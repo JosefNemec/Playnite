@@ -14,7 +14,6 @@
         Title="Playnite" ShowTitle="False"
         Loaded="Window_Loaded"
         Width="1280" Height="900"
-        MinWidth="1024" MinHeight="700"
         WindowStartupLocation="CenterScreen"
         Visibility="{Binding Visibility, Mode=TwoWay}"
         WindowState="{Binding WindowState, Mode=TwoWay}"

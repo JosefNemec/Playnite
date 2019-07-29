@@ -2176,7 +2176,7 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.Description = metadata.GameInfo.Description;
             }
 
-            if (metadata.GameInfo.Links != null)
+            if (metadata.GameInfo.Links.HasItems())
             {
                 EditingGame.Links = metadata.GameInfo.Links.ToObservable();
             }

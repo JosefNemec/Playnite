@@ -139,10 +139,10 @@ Jogos importados, automaticamente, podem reaparecer no Playnite após, o próxim
     <sys:String x:Key="LOCTagLabel">Marcador</sys:String>
     <sys:String x:Key="LOCTagsLabel">Marcadores</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Lista</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Capas</sys:String>
-    <sys:String x:Key="LOCGridLabel">Grade</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detalhes</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizado</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patronos</sys:String>
@@ -300,6 +300,7 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostra o botão de amigos na Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
@@ -598,6 +599,9 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCAll">Todos</sys:String>
     <sys:String x:Key="LOCNone">Nenhum</sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>

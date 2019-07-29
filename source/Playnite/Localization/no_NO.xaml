@@ -139,10 +139,10 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCTagLabel">Tagg</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagger</sys:String>
     <sys:String x:Key="LOCZoomLabel">Forstørr</sys:String>
-    <sys:String x:Key="LOCListLabel">Liste</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Omslag</sys:String>
-    <sys:String x:Key="LOCGridLabel">Rutenett</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detaljer</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Egendefinert</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -161,7 +161,7 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCPastWeek">Siste Uken</sys:String>
     <sys:String x:Key="LOCPastMonth">Siste Måneden</sys:String>
     <sys:String x:Key="LOCPastYear">Siste Året</sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Mer enn ett år siden</sys:String>
     <sys:String x:Key="LOCImportCompleted">Importeringen var vellykket.</sys:String>
     <sys:String x:Key="LOCAllGames">Alle Spill</sys:String>
     <sys:String x:Key="LOCGameId">Spill Id</sys:String>
@@ -238,12 +238,12 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCMenuAddGameManual">Manuelt…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automatisk Skanning…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulert Spill…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store eller Xbox App Spill…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Gi Tilbakemelding</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullskjermmodus</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Lenker</sys:String>
-    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Hjelp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Støtt på Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Dokumentasjon</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Systemomstart</sys:String>
@@ -252,8 +252,8 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spillfelt som vises i detaljepanelet:</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemSpacing">Elementavstand</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Gjenstandsmellomrom</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Grensebredde til rutenettgjenstander</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Kilde for manglende spill-ikon</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Kilde for manglende spill-cover</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Innrykk for spilldetaljer</sys:String>
@@ -297,13 +297,14 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList"></sys:String>
-    <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Vis antall gjenstander på gruppebeskrivelser</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
@@ -600,6 +601,9 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
@@ -683,8 +687,8 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
 
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
+    <sys:String x:Key="LOCRenameItem">Omdøp gjenstand</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Legg til ny gjenstand</sys:String>
     <sys:String x:Key="LOCEnterName"></sys:String>
     <sys:String x:Key="LOCEnterNewName"></sys:String>
 
@@ -727,6 +731,6 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Søkeresultater for:</sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">En gjenstand med samme navn finnes fra før.</sys:String>
 
 </ResourceDictionary>
