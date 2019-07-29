@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Język</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Wyjście</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Filtry są aktywne (kliknij, aby przełączyć panel filtra)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filtry są nieaktywne (kliknij, aby przełączyć panel filtra)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtry są aktywne (kliknij, aby przełączyć filtry)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtry są nieaktywne (kliknij, aby przełączyć filtry)</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Dodatkowe filtry</sys:String>
     <sys:String x:Key="LOCFilters">Filtry</sys:String>
     <sys:String x:Key="LOCFilter">Filtr</sys:String>
@@ -139,10 +139,10 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCTagLabel">Tag</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagi</sys:String>
     <sys:String x:Key="LOCZoomLabel">Powiększenie</sys:String>
-    <sys:String x:Key="LOCListLabel">Lista</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Okładki</sys:String>
-    <sys:String x:Key="LOCGridLabel">Siatka</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Szczegóły</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizacja</sys:String>
     <sys:String x:Key="LOCURLLabel">Adres</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
@@ -559,7 +559,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCAddGames">Dodaj gry</sys:String>
     <sys:String x:Key="LOCScanFolder">Skanuj folder…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detekcja instalacji</sys:String>
-    <sys:String x:Key="LOCBrowse"></sys:String>
+    <sys:String x:Key="LOCBrowse">Przeglądanie…</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Otwórz Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Ustawienia profilu</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Nazwa gry nie może być pusta.</sys:String>
@@ -613,6 +613,9 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCAll">Wszystko</sys:String>
     <sys:String x:Key="LOCNone">Żaden</sys:String>
     <sys:String x:Key="LOCNotifications">Powiadomienia</sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulatora</sys:String>
@@ -631,7 +634,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Nie udało się pobrać i zainstalować aktualizacji.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Zadanie w tle jest obecnie uruchomione, czy chcesz anulować i zaktualizować?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Zadanie w tle jest aktualnie uruchomione, czy chcesz je anulować i zamknąć Playnite?</sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Dostępna jest aktualizacja dla Playnite</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Przeładuj listę motywów</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Zatwierdź wybrany motyw</sys:String>
@@ -709,11 +712,20 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Zainstalowano poprawnie.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Zainstalować dodatki?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">Nie udało się zainstalować rozszerzenia.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Czy chcesz dodać nowe rozszerzenie? Istniejące rozszerzenie zostanie nadpisane.
+    
+{0}
+przez {1}
+Wersja {2}
+    </sys:String>
     <sys:String x:Key="LOCThemeInstallFail">Nie udało się zainstalować motywu.</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Czy chcesz dodać nowy motyw? Istniejący motyw zostanie nadpisany.
+    
+{0}
+przez {1}
+Wersja {2}    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
