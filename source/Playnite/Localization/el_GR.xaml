@@ -135,10 +135,10 @@
     <sys:String x:Key="LOCTagLabel">Ετικέτα</sys:String>
     <sys:String x:Key="LOCTagsLabel">Ετικέτες</sys:String>
     <sys:String x:Key="LOCZoomLabel">Μεγέθυνση</sys:String>
-    <sys:String x:Key="LOCListLabel">Λίστα</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Εξώφυλλα</sys:String>
-    <sys:String x:Key="LOCGridLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Λεπτομέρειες</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Ειδικό</sys:String>
     <sys:String x:Key="LOCURLLabel"></sys:String>
     <sys:String x:Key="LOCPatronsLabel"></sys:String>
@@ -606,6 +606,9 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
