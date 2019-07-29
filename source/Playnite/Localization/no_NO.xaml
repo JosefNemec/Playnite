@@ -253,11 +253,13 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spillfelt som vises i detaljepanelet:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Gjenstandsmellomrom</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Grensebredde til rutenettgjenstander</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Kilde for manglende spill-ikon</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Kilde for manglende spill-cover</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Innrykk for spilldetaljer</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
