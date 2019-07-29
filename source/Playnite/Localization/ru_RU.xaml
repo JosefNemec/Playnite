@@ -30,7 +30,7 @@
     <sys:String x:Key="LOCCategoryAddCatButton">Добавить категорию</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Выбрано - Категория назначена
 Не выбрано - Категория не назначена
-Неопределено - Без изменений (когда редактируется несколько игр)</sys:String>
+Не определено - Без изменений (когда редактируется несколько игр)</sys:String>
     <sys:String x:Key="LOCNoCategory">Нет категории</sys:String>
     <sys:String x:Key="LOCNoPlatform">Нет платформы</sys:String>
 
@@ -103,7 +103,7 @@
     <sys:String x:Key="LOCRegionLabel">Регион</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Последний запуск</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Часто играемые</sys:String>
-    <sys:String x:Key="LOCPlayCountLabel">Счетчик времени</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Количество запусков</sys:String>
     <sys:String x:Key="LOCAddedLabel">Добавлено</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Дата добавления</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Модифицировано</sys:String>
@@ -139,10 +139,10 @@
     <sys:String x:Key="LOCTagLabel">Тэг</sys:String>
     <sys:String x:Key="LOCTagsLabel">Тэги</sys:String>
     <sys:String x:Key="LOCZoomLabel">Приблизить</sys:String>
-    <sys:String x:Key="LOCListLabel">Список</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Отображение списком</sys:String>
     <sys:String x:Key="LOCCoversLabel">Обложка</sys:String>
-    <sys:String x:Key="LOCGridLabel">Сетка</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Детали</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">В виде сетки</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Подробный вид</sys:String>
     <sys:String x:Key="LOCCustomLabel">Собственные</sys:String>
     <sys:String x:Key="LOCURLLabel">Ссылка</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Меценаты</sys:String>
@@ -358,7 +358,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Фон из магазина</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite будет использовать доступные игровые скриншоты как фон, взамен фоновых изображений из магазина.
 Не применяется ретроспективно к существующим играм.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительно синхронизировать время воспроизведения</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительно синхронизировать время игры</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Всегда загружайте записанное время воспроизведения из удаленной библиотеки во время синхронизации библиотеки, игнорируя время, записанное Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Включить поддержку контроллера в режиме рабочего стола</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide открывает полноэкр. режим</sys:String>
@@ -475,8 +475,8 @@ IGDB > Официальный магазин:
     
     <sys:String x:Key="LOCMenuSortByTitle">Сортировать</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Группа по</sys:String>
-    <sys:String x:Key="LOCMenuSortAscending">Возрастанию</sys:String>
-    <sys:String x:Key="LOCMenuSortDescending">Убыванию</sys:String>
+    <sys:String x:Key="LOCMenuSortAscending">По возрастанию</sys:String>
+    <sys:String x:Key="LOCMenuSortDescending">По убыванию</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Не группировать</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">По стороннему клиенту</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">По категории</sys:String>
@@ -623,6 +623,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCAll">Все</sys:String>
     <sys:String x:Key="LOCNone">Нету</sys:String>
     <sys:String x:Key="LOCNotifications">Уведомления</sys:String>
+    <sys:String x:Key="LOCWidth">Ширина</sys:String>
+    <sys:String x:Key="LOCHeight">Высота</sys:String>
+    <sys:String x:Key="LOCSize">Размер</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Параметры для эмулятора</sys:String>
@@ -672,7 +675,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Игровое время считается в секундах.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Время игры отслеживается и сохраняется в секундах.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Введите значение от 0 до 100(либо оставьте пустое если не хотите оценивать)</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Разработка Playnite осуществляется благодаря средствам этих людей:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Люди, принимающие участие в написании кода, локализаций и т.д.:</sys:String>
@@ -719,7 +722,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Установка прошла успешно.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить дополнение?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить расширение?</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">Не удалось установить расширение.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Вы хотите установить новое расширение? Существующая установка будет перезаписана.
     
