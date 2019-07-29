@@ -120,7 +120,7 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCLinksLabel">Länkar</sys:String>
     <sys:String x:Key="LOCInstallationLabel"></sys:String>
     <sys:String x:Key="LOCActionsLabel">Handlingar</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Laddar ner…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Typ</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiler</sys:String>
@@ -144,7 +144,7 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCPatronsLabel"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licens</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bidragsgivare</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Avslutar Playnite…</sys:String>
     <sys:String x:Key="LOCToday">Idag</sys:String>
     <sys:String x:Key="LOCYesterday">Igår</sys:String>
     <sys:String x:Key="LOCMonday">Måndag</sys:String>
@@ -157,7 +157,7 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCPastWeek">Senaste veckan</sys:String>
     <sys:String x:Key="LOCPastMonth">Senaste månaden</sys:String>
     <sys:String x:Key="LOCPastYear">Senaste året</sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Mer än 1 år sedan</sys:String>
     <sys:String x:Key="LOCImportCompleted"></sys:String>
     <sys:String x:Key="LOCAllGames">Alla spel</sys:String>
     <sys:String x:Key="LOCGameId"></sys:String>
@@ -247,11 +247,13 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
