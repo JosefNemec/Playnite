@@ -559,7 +559,7 @@
                                 <Separator />
 
 
-                                <controls:GridEx ColumnCount="2" RowCount="4"
+                                <controls:GridEx ColumnCount="2" RowCount="5"
                                       Margin="0,10,0,0">
                                     <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
                                                VerticalAlignment="Center" Margin="0,10,0,10"
@@ -613,6 +613,10 @@
                                                            HorizontalAlignment="Left" VerticalAlignment="Center"
                                                            Value="{Binding Settings.GridItemMargin}"
                                                            Grid.Column="1" Grid.Row="3"/>
+
+                                    <CheckBox Content="{DynamicResource LOCSettingsGridItemDrawBackground}"
+                                              Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0"
+                                              IsChecked="{Binding Settings.ShowGridItemBackground}"/>
                                 </controls:GridEx>
                             </StackPanel>
                         </TabItem>

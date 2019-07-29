@@ -306,6 +306,21 @@ namespace Playnite
             }
         }
 
+        private bool showGridItemBackground = true;
+        public bool ShowGridItemBackground
+        {
+            get
+            {
+                return showGridItemBackground;
+            }
+
+            set
+            {
+                showGridItemBackground = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public double GridItemHeight
         {
