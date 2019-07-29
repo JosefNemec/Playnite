@@ -135,10 +135,10 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCTagLabel"></sys:String>
     <sys:String x:Key="LOCTagsLabel"></sys:String>
     <sys:String x:Key="LOCZoomLabel"></sys:String>
-    <sys:String x:Key="LOCListLabel">Lista</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Omslag</sys:String>
-    <sys:String x:Key="LOCGridLabel">Rutnät</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detaljer</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Manuell</sys:String>
     <sys:String x:Key="LOCURLLabel"></sys:String>
     <sys:String x:Key="LOCPatronsLabel"></sys:String>
@@ -606,6 +606,9 @@ Det används för närvarande av {1} spel and {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
