@@ -139,10 +139,10 @@
     <sys:String x:Key="LOCTagLabel">标签</sys:String>
     <sys:String x:Key="LOCTagsLabel">标签</sys:String>
     <sys:String x:Key="LOCZoomLabel">放大</sys:String>
-    <sys:String x:Key="LOCListLabel">列表</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">封面</sys:String>
-    <sys:String x:Key="LOCGridLabel">网格</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">详细信息</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">自定义</sys:String>
     <sys:String x:Key="LOCURLLabel">网址</sys:String>
     <sys:String x:Key="LOCPatronsLabel">赞助这</sys:String>
@@ -621,6 +621,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCAll">全部</sys:String>
     <sys:String x:Key="LOCNone">无</sys:String>
     <sys:String x:Key="LOCNotifications">通知</sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
