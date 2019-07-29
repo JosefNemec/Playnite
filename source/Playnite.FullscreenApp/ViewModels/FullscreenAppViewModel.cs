@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
@@ -430,7 +431,6 @@ namespace Playnite.FullscreenApp.ViewModels
             Extensions = extensions;
             ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += FullscreenAppViewModel_ActivationRequested;
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
-            SetViewSizeAndPosition(IsFullScreen);
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);
@@ -1018,6 +1018,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
+            SetViewSizeAndPosition(IsFullScreen);
             InitializeView();
         }
 
@@ -1061,12 +1062,13 @@ namespace Playnite.FullscreenApp.ViewModels
             var screen = screens[screenIndex];
             var ratio = Sizes.GetAspectRatio(screen.Bounds);
             ViewportWidth = ratio.GetWidth(ViewportHeight);
+            var dpi = VisualTreeHelper.GetDpi(Window.Window);
             if (fullscreen)
             {
-                WindowWidth = screen.Bounds.Width;
-                WindowHeight = screen.Bounds.Height;
-                WindowLeft = screen.Bounds.X;
-                WindowTop = screen.Bounds.Y;
+                WindowLeft = screen.Bounds.X / dpi.DpiScaleX;
+                WindowTop = screen.Bounds.Y / dpi.DpiScaleY;
+                WindowWidth = screen.Bounds.Width / dpi.DpiScaleX;
+                WindowHeight = screen.Bounds.Height / dpi.DpiScaleY;
             }
             else
             {

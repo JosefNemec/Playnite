@@ -61,7 +61,6 @@ namespace Playnite.FullscreenApp
             }
 
             ConfigureApplication();
-            DisableDpiAwareness();
             InstantiateApp();
             MigrateDatabase();
             SetupInputs(true);
