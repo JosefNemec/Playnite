@@ -139,10 +139,10 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCTagLabel">Marcador</sys:String>
     <sys:String x:Key="LOCTagsLabel">Marcadores</sys:String>
     <sys:String x:Key="LOCZoomLabel">Ampliar/Reduzir</sys:String>
-    <sys:String x:Key="LOCListLabel">Lista</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Esquema de lista</sys:String>
     <sys:String x:Key="LOCCoversLabel">Capas</sys:String>
-    <sys:String x:Key="LOCGridLabel">Grade</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detalhes</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Esquema de grade</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Esquema de detalhes</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizado</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patronos</sys:String>
@@ -304,7 +304,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostrar o botão de amigos do Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Usar a imagem de fundo do jogo como fundo da janela</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Desfocar fundo</sys:String>
-    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Alta qualidade</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Escurecer fundo</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Mostrar no esquema de grade</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
@@ -621,6 +621,9 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCAll">Tudo</sys:String>
     <sys:String x:Key="LOCNone">Nenhum</sys:String>
     <sys:String x:Key="LOCNotifications">Notificações</sys:String>
+    <sys:String x:Key="LOCWidth">Largura</sys:String>
+    <sys:String x:Key="LOCHeight">Altura</sys:String>
+    <sys:String x:Key="LOCSize">Tamanho</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do emulador</sys:String>
