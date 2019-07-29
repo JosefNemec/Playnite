@@ -153,7 +153,7 @@ namespace Playnite
             }
         }
 
-        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Descending;
+        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Ascending;
         public SortOrderDirection SortingOrderDirection
         {
             get
