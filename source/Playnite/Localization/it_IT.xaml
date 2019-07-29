@@ -253,11 +253,13 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campi del gioco da visualizzare nel pannello dettagli:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Spaziatura oggetti</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Disegna sfondo</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Larghezza del bordo dell'oggetto nella griglia</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fonte dell'icona del gioco mancante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte della copertina del gioco mancante</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Indenta i dettagli del gioco</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posizione dettagli a griglia</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posizione lista dettagli</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posizione del pannello filtro</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posizione pannello Esplora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendering copertina</sys:String>
