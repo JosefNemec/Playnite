@@ -135,10 +135,10 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCTagLabel">Etiqueta</sys:String>
     <sys:String x:Key="LOCTagsLabel">Etiquetes</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Llista</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Cobertes</sys:String>
-    <sys:String x:Key="LOCGridLabel">Graella</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detalls</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalitzat</sys:String>
     <sys:String x:Key="LOCURLLabel">Enllaç</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patró</sys:String>
@@ -614,6 +614,9 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCAll">Tots</sys:String>
     <sys:String x:Key="LOCNone">Cap</sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'emulador</sys:String>
