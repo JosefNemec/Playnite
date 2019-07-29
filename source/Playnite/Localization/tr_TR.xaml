@@ -139,10 +139,10 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCTagLabel">Etiket</sys:String>
     <sys:String x:Key="LOCTagsLabel">Etiketler</sys:String>
     <sys:String x:Key="LOCZoomLabel">Yaklaştır</sys:String>
-    <sys:String x:Key="LOCListLabel">Liste</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Kapak</sys:String>
-    <sys:String x:Key="LOCGridLabel">Izgara</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detay</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Özel</sys:String>
     <sys:String x:Key="LOCURLLabel">Link</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Destekleyenler</sys:String>
@@ -623,6 +623,9 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCAll">Tümü</sys:String>
     <sys:String x:Key="LOCNone">Hiç biri</sys:String>
     <sys:String x:Key="LOCNotifications">Bildirimler</sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight">Yükseklik</sys:String>
+    <sys:String x:Key="LOCSize">Boyut</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argümanları</sys:String>
@@ -719,7 +722,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCPLaytime1000plus">1000 saatten fazla</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Eklenti yükle</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail"></sys:String>
