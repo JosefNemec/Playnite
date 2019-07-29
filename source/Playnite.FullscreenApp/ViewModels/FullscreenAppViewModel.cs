@@ -142,6 +142,7 @@ namespace Playnite.FullscreenApp.ViewModels
             get => selectedGame;
             set
             {
+                // TODO completely rework and decouple selected game from main view and game details
                 if (value == selectedGame)
                 {
                     return;
@@ -159,9 +160,22 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 selectedGame = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(GameDetailsButtonVisible));                
+                OnPropertyChanged(nameof(GameDetailsButtonVisible));
+
+                if (GameDetailsVisible && (value == null || GameDetailsEntry != value))
+                {
+                    var selected = SelectClosestGameDetails();
+                    if (selected != null)
+                    {
+                        selectedGame = selected;
+                        OnPropertyChanged();
+                        OnPropertyChanged(nameof(GameDetailsButtonVisible));
+                    }
+                }
             }
         }
+
+        private int lastGameDetailsIndex = -1;
 
         private GamesCollectionViewEntry gameDetailsEntry;
         public GamesCollectionViewEntry GameDetailsEntry
@@ -169,6 +183,7 @@ namespace Playnite.FullscreenApp.ViewModels
             get => gameDetailsEntry;
             set
             {
+                // TODO completely rework and decouple selected game from main view and game details
                 SelectedGameDetails?.Dispose();
                 if (value == null)
                 {
@@ -180,10 +195,13 @@ namespace Playnite.FullscreenApp.ViewModels
                     {
                         SelectedGameDetails = null;
                     }
+
+                    lastGameDetailsIndex = -1;
                 }
                 else
                 {
                     SelectedGameDetails = new GameDetailsViewModel(value, Resources, GamesEditor, this, Dialogs);
+                    lastGameDetailsIndex = GamesView.CollectionView.IndexOf(value);
                 }
 
                 gameDetailsEntry = value;
@@ -929,6 +947,36 @@ namespace Playnite.FullscreenApp.ViewModels
                     GameDetailsFocused = true;
                 }
             }, (a) => Database?.IsOpen == true);
+        }
+
+        private GamesCollectionViewEntry SelectClosestGameDetails()
+        {
+            var focusIndex = -1;
+            if (lastGameDetailsIndex == 0 && GamesView.CollectionView.Count > 0)
+            {
+                focusIndex = 0;
+            }
+            else if (lastGameDetailsIndex > 0 && GamesView.CollectionView.Count < lastGameDetailsIndex && GamesView.CollectionView.Count > 0)
+            {
+                focusIndex = GamesView.CollectionView.Count + 1;
+            }
+            else
+            {
+                focusIndex = lastGameDetailsIndex - 1;
+            }
+
+            if (focusIndex > -1)
+            {
+                GameDetailsFocused = false;
+                GameDetailsEntry = GamesView.CollectionView.GetItemAt(focusIndex) as GamesCollectionViewEntry;
+                GameDetailsFocused = true;
+                return GameDetailsEntry;
+            }
+            else
+            {
+                ToggleGameDetailsCommand.Execute(null);
+                return null;
+            }
         }
 
         private void SearchText_PropertyChanged(object sender, PropertyChangedEventArgs e)
