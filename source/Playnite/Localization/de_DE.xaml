@@ -253,11 +253,13 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">In der Detailleiste anzuzeigende Datenfelder:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Elementabstände</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Hintergrund zeichnen</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Randbreite von Elementen in Rasteransicht</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fehlende Quelle für Spielsymbol</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fehlende Quelle für Spielcover</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Spieledetails einrücken</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detailleistenposition in Rasteransicht</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Position der Detailspieleliste</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position der Filterleiste</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position der Explorerleiste</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Coverdarstellung</sys:String>
