@@ -252,6 +252,11 @@ namespace Playnite.Database
             var dbExists = File.Exists(DatabaseFileSettingsPath);
             logger.Info("Opening db " + DatabasePath);
 
+            if (!FileSystem.CanWriteToFolder(DatabasePath))
+            {
+                throw new Exception($"Can't to write to \"{DatabasePath}\" folder.");
+            }
+
             if (!dbExists)
             {
                 FileSystem.CreateDirectory(DatabasePath);
