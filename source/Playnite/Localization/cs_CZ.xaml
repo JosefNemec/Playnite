@@ -139,10 +139,10 @@ Automaticky importované hry se mohou po dalším importování znovu objevit v 
     <sys:String x:Key="LOCTagLabel">Štítek</sys:String>
     <sys:String x:Key="LOCTagsLabel">Štítky</sys:String>
     <sys:String x:Key="LOCZoomLabel">Přiblížení</sys:String>
-    <sys:String x:Key="LOCListLabel">Seznam</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Zobrazení seznamu</sys:String>
     <sys:String x:Key="LOCCoversLabel">Obaly</sys:String>
-    <sys:String x:Key="LOCGridLabel">Mřížka</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Podrobnosti</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Zobrazení mřížky</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Zobrazení podrobností</sys:String>
     <sys:String x:Key="LOCCustomLabel">Vlastní</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
@@ -218,7 +218,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCProgressBattleNetLibImport">Stahuje se aktualizace knihovny Battle.net…</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Stahují se metadata…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importují se instalované hry…</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Importuje se {0} her…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importují se hry z platformy {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Stahují se aktualizace knihoven…</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Stahují se aktualizace knihoven…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Aktualizace knihovny dokončena</sys:String>
@@ -304,6 +304,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Zobrazit tlačítko "Steam přátelé"</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Použít obrázek pozadí hry jako pozadí celého okna</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Rozostřit pozadí</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Vysoká kvalita</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Ztmavit pozadí</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Zobrazit v Zobrazení mřížky</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Motiv vzhledu</sys:String>
@@ -620,6 +621,9 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCAll">Vše</sys:String>
     <sys:String x:Key="LOCNone">Nic</sys:String>
     <sys:String x:Key="LOCNotifications">Oznámení</sys:String>
+    <sys:String x:Key="LOCWidth">Šířka</sys:String>
+    <sys:String x:Key="LOCHeight">Výška</sys:String>
+    <sys:String x:Key="LOCSize">Velikost</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulátoru</sys:String>

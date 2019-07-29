@@ -139,10 +139,10 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCTagLabel">Etichetta</sys:String>
     <sys:String x:Key="LOCTagsLabel">Etichette</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Lista</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Visualizzazione Elenco</sys:String>
     <sys:String x:Key="LOCCoversLabel">Copertine</sys:String>
-    <sys:String x:Key="LOCGridLabel">Griglia</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Dettagli</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Visualizzazione griglia</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Visualizzazione dettagliata</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizzato</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patron</sys:String>
@@ -304,6 +304,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostra il pulsante degli Amici di Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Usa l'immagine di sfondo del gioco come sfondo della finestra</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Sfocatura dello sfondo</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Qualità elevata</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Sfondo scuro</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Visualizza griglia</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
@@ -619,6 +620,9 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCAll">Tutti</sys:String>
     <sys:String x:Key="LOCNone">Nessuno</sys:String>
     <sys:String x:Key="LOCNotifications">Notifiche</sys:String>
+    <sys:String x:Key="LOCWidth">Larghezza</sys:String>
+    <sys:String x:Key="LOCHeight">Altezza</sys:String>
+    <sys:String x:Key="LOCSize">Dimensioni</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Argomenti dell'emulatore</sys:String>
@@ -715,7 +719,7 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCPLaytime1000plus">Più di 1000</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installazione avvenuta con successo.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installazione?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installare l'estensione?</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">Installazione estensione fallita.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vuoi installare una nuova estensione? L'installazione esistente sarà sovrascritta.
     

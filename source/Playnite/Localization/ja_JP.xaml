@@ -135,10 +135,10 @@
     <sys:String x:Key="LOCTagLabel">タグ</sys:String>
     <sys:String x:Key="LOCTagsLabel">タグ</sys:String>
     <sys:String x:Key="LOCZoomLabel">ズーム</sys:String>
-    <sys:String x:Key="LOCListLabel">リスト</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">カバー</sys:String>
-    <sys:String x:Key="LOCGridLabel">グリッド</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">詳細</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">カスタム</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">パトロン</sys:String>
@@ -300,6 +300,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steamの友達ボタンを表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
@@ -613,6 +614,9 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCAll">すべて</sys:String>
     <sys:String x:Key="LOCNone">無し</sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">エミュレータ引数</sys:String>

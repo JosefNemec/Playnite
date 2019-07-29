@@ -139,10 +139,10 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCTagLabel">Étiquettes</sys:String>
     <sys:String x:Key="LOCTagsLabel">Étiquette(s)</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Affichage en liste</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
-    <sys:String x:Key="LOCGridLabel">Affichage en grille</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Affichage détaillé</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Personnalisé</sys:String>
     <sys:String x:Key="LOCURLLabel">Lien</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -303,8 +303,9 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utiliser les image de fond des jeux comme arrière-plan de fenêtre</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Flouter les images de fond</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Haute qualité</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Assombrir les images de fond</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Afficher en mode d'affichage en grille</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Utiliser en mode d'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profil du thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Thème plein écran</sys:String>
@@ -596,7 +597,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPlayed">Commencé</sys:String>
     <sys:String x:Key="LOCBeaten">Terminé</sys:String>
     <sys:String x:Key="LOCCompleted">Terminé (100%)</sys:String>
-    <sys:String x:Key="LOCCompletionStatus">Statut</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Progression</sys:String>
     <sys:String x:Key="LOCUserScore">Ma note</sys:String>
     <sys:String x:Key="LOCCriticScore">Note presse</sys:String>
     <sys:String x:Key="LOCCommunityScore">Note communauté</sys:String>
@@ -617,6 +618,9 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCAll">[Tout]</sys:String>
     <sys:String x:Key="LOCNone">Indéterminé</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
@@ -713,7 +717,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installer l'extension ?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">L'installation de l'extension a échoué.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Voulez-vous installer une nouvelle extension ? L'installation existante sera supprimée.
     

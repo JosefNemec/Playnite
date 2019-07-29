@@ -135,10 +135,10 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCTagLabel">Žymė</sys:String>
     <sys:String x:Key="LOCTagsLabel">Žymės</sys:String>
     <sys:String x:Key="LOCZoomLabel">Keisti dydį</sys:String>
-    <sys:String x:Key="LOCListLabel">Sąrašas</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Viršeliai</sys:String>
-    <sys:String x:Key="LOCGridLabel">Tinklelis</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detalus</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Pasirinktinis</sys:String>
     <sys:String x:Key="LOCURLLabel">Nuoroda</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Rėmėjai</sys:String>
@@ -298,6 +298,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Rodyti Steam draugų mygtuką</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
@@ -613,6 +614,9 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCAll">Visi</sys:String>
     <sys:String x:Key="LOCNone">Nieko</sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Emuliatoriaus argumentai</sys:String>
