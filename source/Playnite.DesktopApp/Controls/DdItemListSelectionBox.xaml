@@ -40,6 +40,7 @@
                                            TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
                                            VerticalAlignment="Center"
                                            Grid.Column="0" Margin="5,0,0,0"/>
+                                
                                 <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
                                         BorderThickness="0" Padding="3,0,3,0" Margin="0"
                                         FontFamily="Marlett" Content="r"
@@ -47,6 +48,7 @@
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                                             <Setter Property="Visibility" Value="Collapsed" />
+                                            <Setter Property="Background" Value="Transparent" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
                                                     <Setter Property="Visibility" Value="Visible" />
