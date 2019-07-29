@@ -139,10 +139,10 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCTagLabel">Étiquettes</sys:String>
     <sys:String x:Key="LOCTagsLabel">Étiquette(s)</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Affichage en liste</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
-    <sys:String x:Key="LOCGridLabel">Affichage en grille</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Affichage détaillé</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Personnalisé</sys:String>
     <sys:String x:Key="LOCURLLabel">Lien</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -618,6 +618,9 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCAll">[Tout]</sys:String>
     <sys:String x:Key="LOCNone">Indéterminé</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
@@ -714,7 +717,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installer l'extension ?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">L'installation de l'extension a échoué.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Voulez-vous installer une nouvelle extension ? L'installation existante sera supprimée.
     
