@@ -139,10 +139,10 @@
     <sys:String x:Key="LOCTagLabel">태그</sys:String>
     <sys:String x:Key="LOCTagsLabel">태그</sys:String>
     <sys:String x:Key="LOCZoomLabel">확대 및 축소</sys:String>
-    <sys:String x:Key="LOCListLabel">목록</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">커버</sys:String>
-    <sys:String x:Key="LOCGridLabel">격자</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">자세히</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">사용자 지정</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">후원자</sys:String>
@@ -603,6 +603,9 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
