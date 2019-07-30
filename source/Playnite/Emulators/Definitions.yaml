@@ -1,4 +1,13 @@
-﻿- Name: FightCade
+﻿- Name: Reicast
+  Website: 'https://reicast.com/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sega Dreamcast]
+      ImageExtensions: [gdi, cdi, chd]
+      ExecutableLookup: ^reicast.*\.exe
+
+- Name: FightCade
   Website: 'https://www.fightcade.com/'
   Profiles:
     - Name: Default
