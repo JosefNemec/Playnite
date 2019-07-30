@@ -139,10 +139,10 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCTagLabel">Tag</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagi</sys:String>
     <sys:String x:Key="LOCZoomLabel">Powiększenie</sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCListViewLabel">Widok listy</sys:String>
     <sys:String x:Key="LOCCoversLabel">Okładki</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Widok siatki</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Widok szczegółów</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizacja</sys:String>
     <sys:String x:Key="LOCURLLabel">Adres</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
@@ -253,13 +253,13 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Wyświetlane pola gry w panelu szczegółowym:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Rozstawienie elementów</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Rysowanie tła</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Szerokość ramki okładki</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Brak źródła ikony gry</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Brak źródła okładki gry</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Przesuń szczegóły gry na dół</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Szczegóły pozycji siatki</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozycja szczegółów gry</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Pozycja panelu filtrowania</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Pozycja panelu eksploratora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderowanie okładki</sys:String>
@@ -308,7 +308,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Rozmazane tło</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">Wysoka jakość</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Ciemniejsze tło</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Pokaż w widoku siatki</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Motyw</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Motyw profilu</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Motyw pełnoekranowy</sys:String>
@@ -362,7 +362,7 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Wymuś synchronizację czasu gry</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Zawsze pobieraj czas gry z klienta, podczas synchronizacji, ignorując czas z Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Włącz obsługę pada w trybie pulpitu</sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Przycisk Guide otwiera tryb pełnoekranowy</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Pokaż tytuły gier</sys:String>
@@ -370,9 +370,9 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Pozostała ilość baterii</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Pokaż czas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Podpowiedzi przycisków</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Układ</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Przewijanie w poziomie</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Żaden</sys:String>
     <sys:String x:Key="LOCStrechFill">Wypełnienie</sys:String>
@@ -395,7 +395,7 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Importowanie metadanych</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Pobranie metadanych</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Wybierz dane konfigurację pobierania metadanych do pobierania w przyszłości. Możesz to zmienić w ustawieniach aplikacji.</sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Kreator importu emulatorów</sys:String>
@@ -411,7 +411,7 @@ Możesz także skonfigurować i importować dowolny niestandardowy emulator pó�
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Skanuj folder dla ROM/ISO</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Wybierz pliki</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Skanowanie folderów…</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Konfiguracja emulatorów…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Skanowanie…</sys:String>
 
     <!--FirstTime Wizard-->
@@ -436,8 +436,8 @@ Pamiętaj, że zawsze możesz dodać dowolną niestandardową grę dla dowolnej 
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importuj gry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguracja zakończona</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport">Otwórz przewodnik importowania emulatorów</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">Układ widoku siatki</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
     <!--Platforms Settings-->
@@ -615,9 +615,9 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCAll">Wszystko</sys:String>
     <sys:String x:Key="LOCNone">Żaden</sys:String>
     <sys:String x:Key="LOCNotifications">Powiadomienia</sys:String>
-    <sys:String x:Key="LOCWidth"></sys:String>
-    <sys:String x:Key="LOCHeight"></sys:String>
-    <sys:String x:Key="LOCSize"></sys:String>
+    <sys:String x:Key="LOCWidth">Szerokość</sys:String>
+    <sys:String x:Key="LOCHeight">Wysokość</sys:String>
+    <sys:String x:Key="LOCSize">Rozmiar</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulatora</sys:String>
@@ -714,7 +714,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Zainstalowano poprawnie.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Czy zainstalować rozszerzenie?</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">Nie udało się zainstalować rozszerzenia.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Czy chcesz dodać nowe rozszerzenie? Istniejące rozszerzenie zostanie nadpisane.
     
@@ -729,7 +729,9 @@ Wersja {2}
 przez {1}
 Wersja {2}    </sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Czy chcesz opuścić Playnite i przejść do następującej strony internetowej?
+    
+{0}</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io klient jest uruchamiany. Zaloguj się, a następnie zamknij ten komunikat..</sys:String>
