@@ -259,7 +259,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Отсутствует источник обложки игры</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Сместить описание игры вниз</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Сетка просмотра деталей положения</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Положение списка игр</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Положение панели фильтра</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Положение панели проводника</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Обложка рендеринга</sys:String>
@@ -476,7 +476,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCEmulatorSettingsHelp">Настройки справки</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">Сортировать</sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle">Группа по</sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Группировать</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">По возрастанию</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">По убыванию</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Не группировать</sys:String>
@@ -665,7 +665,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPlayGame">Играть</sys:String>
     <sys:String x:Key="LOCInstallGame">Установить</sys:String>
     <sys:String x:Key="LOCGameOptions">Настройки</sys:String>
-    <sys:String x:Key="LOCGameDetails">Описание</sys:String>
+    <sys:String x:Key="LOCGameDetails">Подробная информация</sys:String>
     <sys:String x:Key="LOCUninstallGame">Установить</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Открыть расположение игры</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Создать ярлык на рабочем столе</sys:String>
