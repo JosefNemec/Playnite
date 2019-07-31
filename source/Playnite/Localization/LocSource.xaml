@@ -258,9 +258,9 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Grid item border width</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Missing game icon source</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Indent game details</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Vertical spacing to game details</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Details game list position</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Details view game list position</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filter panel position</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Explorer panel position</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Cover art rendering</sys:String>
