@@ -754,7 +754,7 @@ Wersja {2}    </sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Najczęściej grane</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Wszystko</sys:String>
 
-    <sys:String x:Key="LOCGameListFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListFiltered">Zastosowano filtry.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Wyniki wyszukiwania dla:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Element o tej nazwie już istnieje.</sys:String>
 
