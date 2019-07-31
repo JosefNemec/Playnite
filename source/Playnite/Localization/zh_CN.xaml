@@ -23,7 +23,7 @@
     <sys:String x:Key="LOCAboutCreateDiagButton">创建诊断程序包</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">发送诊断信息</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">关于 Playnite</sys:String>
-    <sys:String x:Key="LOCAboutAuthor">由 Josef Němec 制作，由 Albert Abdilim 翻译</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">由 Josef Němec 制作，由 Albert Abdilim 汉化</sys:String>
 
     <sys:String x:Key="LOCCategoryWindowTitle">分配类别</sys:String>
     <sys:String x:Key="LOCCategorySetButton">设置类别</sys:String>
@@ -145,7 +145,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">详细视图</sys:String>
     <sys:String x:Key="LOCCustomLabel">自定义</sys:String>
     <sys:String x:Key="LOCURLLabel">网址</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">赞助这</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">赞助者</sys:String>
     <sys:String x:Key="LOCLicenseLabel">许可证</sys:String>
     <sys:String x:Key="LOCContributorsLabel">贡献者</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">正在退出 Playente…</sys:String>
@@ -257,9 +257,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">网格项目边框宽度</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">缺少游戏图标源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺少游戏封面源</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">缩进游戏详情</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">垂直间距到游戏详情</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">网格视图详细位置</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition">详细游戏列表位置</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">详细视图游戏列表位置</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">过滤面板位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">浏览器面板位置</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">封面艺术渲染</sys:String>
