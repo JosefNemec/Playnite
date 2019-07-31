@@ -257,7 +257,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ancho del borde del objeto de cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fuente del icono del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fuente de la portada del juego faltante</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Distancia vertical a detalles del juego</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Espaciado vertical a los detalles del juego</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posición de los detalles de la Vista de Cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posición de la lista de juegos de la Vista de Detalles</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posición del panel de filtros</sys:String>
