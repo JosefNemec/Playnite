@@ -36,7 +36,8 @@
                             
                                 <DockPanel Margin="20,20,10,15" MaxWidth="1024" Grid.Row="1">
                                     <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
-                                            DockPanel.Dock="Right" Height="170" Margin="0,0,10,0"
+                                            DockPanel.Dock="Right" Margin="0,0,10,0"
+                                            Height="{Settings GameDetailsCoverHeight}"
                                             StretchDirection="Both" Stretch="Uniform"
                                             RenderOptions.BitmapScalingMode="Fant" />
                                     <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">

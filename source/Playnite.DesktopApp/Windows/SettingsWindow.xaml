@@ -377,7 +377,13 @@
                                     <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
                                                            Value="{Binding Settings.GameDetailsIndentation}"
                                                            IsEnabled="{Binding Settings.IndentGameDetails}" />
-
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="{DynamicResource LOCSettingsGameDetailsCoverHeight}"/>
+                                    <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+                                                           Value="{Binding Settings.GameDetailsCoverHeight}" />
                                 </StackPanel>
 
                                 <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />

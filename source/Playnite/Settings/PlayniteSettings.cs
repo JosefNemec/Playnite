@@ -1119,6 +1119,21 @@ namespace Playnite
             }
         }
 
+        private double gameDetailsCoverHeight = 170;
+        public double GameDetailsCoverHeight
+        {
+            get
+            {
+                return gameDetailsCoverHeight;
+            }
+
+            set
+            {
+                gameDetailsCoverHeight = value;
+                OnPropertyChanged();
+            }
+        }
+
         private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
         public MetadataDownloaderSettings DefaultMetadataSettings
         {
