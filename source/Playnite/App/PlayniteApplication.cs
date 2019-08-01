@@ -22,6 +22,7 @@ using Playnite.Common;
 using System.ComponentModel;
 using Playnite.Windows;
 using Polly;
+using System.Windows.Media;
 
 namespace Playnite
 {
@@ -152,6 +153,32 @@ namespace Playnite
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+            }
+
+            if (mode == ApplicationMode.Desktop)
+            {
+                try
+                {
+                    if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.FontFamilyName))
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontFamily", new FontFamily(AppSettings.FontFamilyName));
+                    }
+                    else
+                    {
+                        logger.Error($"Cannot set font {AppSettings.FontFamilyName}, font not found.");
+                    }
+
+                    if (AppSettings.FontSize > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSize", AppSettings.FontSize);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
+                }
             }
         }
 

@@ -29,7 +29,7 @@
             </TextBlock.Style>
         </TextBlock>
         <TextBox TabIndex="{Binding Path=TabIndex, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                 Name="TextFilter" VerticalContentAlignment="Center" FontSize="14"
+                 Name="TextFilter" VerticalContentAlignment="Center"
                  Text="{Binding Text, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
                  TextChanged="TextFilter_TextChanged">
             <TextBox.Style>

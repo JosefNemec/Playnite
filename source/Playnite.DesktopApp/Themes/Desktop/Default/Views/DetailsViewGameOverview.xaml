@@ -166,6 +166,7 @@
                                                     Style="{DynamicResource BaseTextBlockStyle}" />
                                         <Separator Background="{DynamicResource PanelSeparatorBrush}" />
                                         <HtmlTextView x:Name="PART_HtmlDescription"
+                                                        HtmlFontSize="{DynamicResource FontSize}"
                                                         HtmlFontFamily="{DynamicResource FontFamily}"
                                                         HtmlForeground="{DynamicResource TextColor}"
                                                         LinkForeground="{DynamicResource GlyphColor}"                                      

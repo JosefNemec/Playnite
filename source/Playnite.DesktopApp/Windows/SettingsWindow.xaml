@@ -256,6 +256,19 @@
                                     </TextBlock>
                                 </StackPanel>
 
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
+                                    <ContentControl Content="{DynamicResource LOCSettingsInterfaceFont}" VerticalAlignment="Center"
+                                                    ContentStringFormat="{}{0} *" />
+                                    <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
+                                              SelectedValue="{Binding Settings.FontFamilyName}" />
+                                    <ContentControl Content="{DynamicResource LOCSize}" Margin="10,0,10,0"
+                                                    ContentStringFormat="{}{0} *" VerticalAlignment="Center" />
+                                    <pctrls:NullableIntBox MinValue="9" MaxValue="100" Width="50"
+                                                           ToolTip="{DynamicResource LOCSettingsFontSizeNotice}"
+                                                           ToolTipService.InitialShowDelay="0"
+                                                           Value="{Binding Settings.FontSize}" />
+                                </StackPanel>
+
                                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0" >
                                     <CheckBox Name="CheckEnableTray" VerticalAlignment="Center"
                                                   IsChecked="{Binding Settings.EnableTray}"
@@ -742,7 +755,7 @@
                                                 <Image RenderOptions.BitmapScalingMode="Fant"
                                                        VerticalAlignment="Center" Height="24" Margin="5"
                                                        Source="{Binding PluginIcon}" />
-                                                <TextBlock FontSize="14" VerticalAlignment="Center"
+                                                <TextBlock VerticalAlignment="Center"
                                                            Margin="0,5,5,5"
                                                            Text="{Binding Description.Name}" />
                                             </StackPanel>

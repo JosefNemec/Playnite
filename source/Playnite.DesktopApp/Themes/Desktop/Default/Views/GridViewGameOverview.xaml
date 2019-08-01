@@ -166,8 +166,9 @@
                                                 <ItemsControl Name="PART_ItemsLinks" />
                                             </GridEx>
                                         </StackPanel>
-                                      
+
                                         <HtmlTextView Name="PART_HtmlDescription" DockPanel.Dock="Top"
+                                                      HtmlFontSize="{DynamicResource FontSize}"
                                                       HtmlFontFamily="{DynamicResource FontFamily}"
                                                       HtmlForeground="{DynamicResource TextColor}"
                                                       LinkForeground="{DynamicResource GlyphColor}"                                      

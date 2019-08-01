@@ -1134,6 +1134,36 @@ namespace Playnite
             }
         }
 
+        private string fontFamilyName = "Trebuchet MS";
+        public string FontFamilyName
+        {
+            get
+            {
+                return fontFamilyName;
+            }
+
+            set
+            {
+                fontFamilyName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSize = 14;
+        public double FontSize
+        {
+            get
+            {
+                return fontSize;
+            }
+
+            set
+            {
+                fontSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
         public MetadataDownloaderSettings DefaultMetadataSettings
         {
