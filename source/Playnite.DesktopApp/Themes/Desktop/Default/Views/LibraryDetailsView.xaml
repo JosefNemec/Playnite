@@ -29,6 +29,9 @@
                                         <DataTrigger Binding="{Settings DetailsListPosition}" Value="Right">
                                             <Setter Property="BorderThickness" Value="1,0,0,0" />
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </ExtendedListBox.Style>

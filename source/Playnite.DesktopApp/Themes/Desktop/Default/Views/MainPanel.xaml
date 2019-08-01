@@ -8,10 +8,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MainPanel}">
-                    <Border Height="50" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource PanelSeparatorBrush}"
+                    <Border Height="50" BorderBrush="{DynamicResource PanelSeparatorBrush}"
                             Background="{TemplateBinding Background}"
                             d:DesignWidth="1280"
                             d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderThickness" Value="0,0,0,1" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <DockPanel Margin="0,3,110,3">
                             <Border x:Name="PART_ElemMainMenu" Background="Transparent"
                                     DockPanel.Dock="Left" Margin="5,0,0,0" Cursor="Hand"

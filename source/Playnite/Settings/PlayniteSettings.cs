@@ -1104,6 +1104,21 @@ namespace Playnite
             }
         }
 
+        private bool showPanelSeparators = true;
+        public bool ShowPanelSeparators
+        {
+            get
+            {
+                return showPanelSeparators;
+            }
+
+            set
+            {
+                showPanelSeparators = value;
+                OnPropertyChanged();
+            }
+        }
+
         private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
         public MetadataDownloaderSettings DefaultMetadataSettings
         {
