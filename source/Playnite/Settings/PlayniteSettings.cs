@@ -1164,6 +1164,66 @@ namespace Playnite
             }
         }
 
+        private double fontSizeSmall = 12;
+        public double FontSizeSmall
+        {
+            get
+            {
+                return fontSizeSmall;
+            }
+
+            set
+            {
+                fontSizeSmall = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeLarge = 15;
+        public double FontSizeLarge
+        {
+            get
+            {
+                return fontSizeLarge;
+            }
+
+            set
+            {
+                fontSizeLarge = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeLarger = 20;
+        public double FontSizeLarger
+        {
+            get
+            {
+                return fontSizeLarger;
+            }
+
+            set
+            {
+                fontSizeLarger = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeLargest = 29;
+        public double FontSizeLargest
+        {
+            get
+            {
+                return fontSizeLargest;
+            }
+
+            set
+            {
+                fontSizeLargest = value;
+                OnPropertyChanged();
+            }
+        }
+
         private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
         public MetadataDownloaderSettings DefaultMetadataSettings
         {

@@ -174,6 +174,30 @@ namespace Playnite
                         CurrentNative.Resources.Add(
                             "FontSize", AppSettings.FontSize);
                     }
+
+                    if (AppSettings.FontSizeSmall > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeSmall", AppSettings.FontSizeSmall);
+                    }
+
+                    if (AppSettings.FontSizeLarge > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLarge", AppSettings.FontSizeLarge);
+                    }
+
+                    if (AppSettings.FontSizeLarger > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLarger", AppSettings.FontSizeLarger);
+                    }
+
+                    if (AppSettings.FontSizeLargest > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLargest", AppSettings.FontSizeLargest);
+                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

@@ -261,15 +261,9 @@
                                                     ContentStringFormat="{}{0} *" />
                                     <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
                                               SelectedValue="{Binding Settings.FontFamilyName}" />
-                                    <ContentControl Content="{DynamicResource LOCSize}" Margin="10,0,10,0"
-                                                    ContentStringFormat="{}{0} *" VerticalAlignment="Center" />
-                                    <pctrls:NullableIntBox MinValue="9" MaxValue="100" Width="50"
-                                                           ToolTip="{DynamicResource LOCSettingsFontSizeNotice}"
-                                                           ToolTipService.InitialShowDelay="0"
-                                                           Value="{Binding Settings.FontSize}" />
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0" >
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" >
                                     <CheckBox Name="CheckEnableTray" VerticalAlignment="Center"
                                                   IsChecked="{Binding Settings.EnableTray}"
                                                   Content="{DynamicResource LOCSettingsShowTray}"
@@ -375,6 +369,35 @@
                                 
                                 <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
                                           Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
+
+                                <StackPanel Orientation="Horizontal"  Margin="0,20,0,0">
+                                    <ContentControl Content="Font sizes:" Margin="0,0,10,0"
+                                                    ContentStringFormat="{}{0} *" VerticalAlignment="Top" />
+                                    <UniformGrid Rows="2">
+                                        <UniformGrid.Resources>
+                                            <Style TargetType="pctrls:NullableIntBox" BasedOn="{StaticResource {x:Type pctrls:NullableIntBox}}">
+                                                <Setter Property="Margin" Value="5,0,5,0" />
+                                                <Setter Property="Width" Value="50" />
+                                                <Setter Property="MinValue" Value="9" />
+                                                <Setter Property="MaxValue" Value="100" />
+                                            </Style>
+                                        </UniformGrid.Resources>
+                                        <TextBlock Text="{DynamicResource LOCSmall}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCNormal}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCLarge}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCLarger}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCLargest}" Margin="5,0,5,0"/>
+
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSizeSmall}"/>
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSize}"/>
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLarge}"/>
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLarger}"/>
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLargest}"/>
+                                    </UniformGrid>
+
+                                    <Button Content="{DynamicResource LOCDefault}" VerticalAlignment="Bottom"
+                                            Margin="10,0,0,0" Command="{Binding SetDefaultFontSizes}"/>
+                                </StackPanel>
                             </StackPanel>
                         </TabItem>
 

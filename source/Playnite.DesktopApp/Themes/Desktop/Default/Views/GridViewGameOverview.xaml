@@ -59,7 +59,7 @@
                                 <DockPanel DockPanel.Dock="Top">
                                     <Image Name="PART_ImageIcon" DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32"
                                            RenderOptions.BitmapScalingMode="Fant" Margin="0,0,10,0" />
-                                    <TextBlock Text="{Binding Game.DisplayName}" FontSize="20"
+                                    <TextBlock Text="{Binding Game.DisplayName}" FontSize="{DynamicResource FontSizeLarger}"
                                                TextWrapping="Wrap" DockPanel.Dock="Left"
                                                VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                                         <TextBlock.Effect>
