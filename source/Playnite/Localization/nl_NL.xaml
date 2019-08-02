@@ -260,6 +260,9 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
@@ -296,7 +299,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Omvat Steam, Origin en anderen.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Zorgt voor soepeler scrollen in de spellijst in ruil voor het langzamere laden van afbeeldingen.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Toon spelnaam wanneer de cover art mist</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Toon spelnaam op cover weergave</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Toon game iconen in Lijstweergave</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
@@ -625,7 +628,12 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight"></sys:String>
     <sys:String x:Key="LOCSize"></sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argumenten</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Extra Emulator Argumenten</sys:String>
