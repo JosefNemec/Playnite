@@ -262,6 +262,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Положение списка игр</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Нарисовать разделитель между панелями</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Высота обложки</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Шрифт программы</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Положение панели фильтра</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Положение панели проводника</sys:String>
