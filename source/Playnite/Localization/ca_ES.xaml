@@ -256,6 +256,9 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detalls de posició en vista de graella</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posició de panell de filtres</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posició de panell d'exploració</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderització de portada</sys:String>
@@ -292,7 +295,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclou Steam, Origin i altres.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Millora la suavitat de desplaçament de les llistes de jocs a canvi de temps de càrrega d'imatges més lents.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostra el nom del joc quan faltin les cobertes</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostra els noms dels jocs a la vista de cobertes</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostra les icones del joc a la vista de llista</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostra el recompte d’elements a les descripcions de grups</sys:String>
@@ -619,7 +622,12 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight"></sys:String>
     <sys:String x:Key="LOCSize"></sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments adicionals de l'emulador</sys:String>
