@@ -28,7 +28,7 @@
                         
                         <FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
                                    Grid.ColumnSpan="4" Grid.RowSpan="2"
-                                   Source="{Binding BackgroundImageObject, IsAsync=True}" />
+                                   Source="{Binding BackgroundImage}" />
 
                         <Border Background="{DynamicResource GameDetailsBackgroundBrush}"
                                 Grid.ColumnSpan="4" Grid.Row="1">
