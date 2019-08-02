@@ -261,6 +261,9 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Izgara görünümü ayrıntı konumu</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filtre paneli konumu</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Tarayıcı Panel Konumu</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kaplama fotoğrafı renderlama</sys:String>
@@ -297,7 +300,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Steam, Origin ve diğerlerini içerir.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Arkaplanda görüntüleri yükleme (yeniden başlatma gerektirir)</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Daha yavaş görüntü yükleme süreleri karşılığında oyun listelerinin kaydırma düzgünlüğünü artırır.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Kapak resmi eksik olduğunda oyunun adını göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Oyun adlarını Kapak görünümünde göster</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Oyun simgelerini Liste görünümünde göster</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Grup açıklamalarında öğe sayısını göster</sys:String>
@@ -628,7 +631,12 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight">Yükseklik</sys:String>
     <sys:String x:Key="LOCSize">Boyut</sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argümanları</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ek Emulator Argümanları</sys:String>
