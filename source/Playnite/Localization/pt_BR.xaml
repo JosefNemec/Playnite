@@ -262,6 +262,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posição da lista de jogos no esquema de detalhes</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Desenhar separador entre painéis</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Altura da capa do jogo</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fonte do aplicativo</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posição do painel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posição do painel de navegação</sys:String>
