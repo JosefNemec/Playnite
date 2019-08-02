@@ -230,6 +230,9 @@
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
@@ -576,7 +579,12 @@
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight"></sys:String>
     <sys:String x:Key="LOCSize"></sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
