@@ -218,7 +218,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCProgressBattleNetLibImport">Descargando actualizaciones de la biblioteca de Battle.net…</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Descargando metadatos…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importando juegos instalados…</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Importando {0} juegos…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importando juegos de {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Descargando actualizaciones de la biblioteca…</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Descargando actualizaciones de la biblioteca…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Actualización de biblioteca finalizada</sys:String>
@@ -260,6 +260,9 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espaciado vertical a los detalles del juego</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posición de los detalles de la Vista de Cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posición de la lista de juegos de la Vista de Detalles</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Dibujar separador entre paneles</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Alto de imagen de la portada del juego</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Fuente de la Aplicación</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posición del panel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posición del panel de exploración</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderización del arte de la portada</sys:String>
@@ -296,7 +299,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Incluye Steam, Origin y otros.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Carga de imágenes asíncrona</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Mejora la suavidad de desplazamiento de las listas de juegos a cambio de tiempos de carga de imágenes más lentos.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar nombre del juego cuando falta arte de portada</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar nombre del juego si falta arte de portada</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar nombres de juegos en la vista de Cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostrar iconos de juegos en la lista de Vista de Detalles</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostrar recuento de elementos en las descripciones de los grupos</sys:String>
@@ -626,7 +629,12 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCWidth">Ancho</sys:String>
     <sys:String x:Key="LOCHeight">Alto</sys:String>
     <sys:String x:Key="LOCSize">Tamaño</sys:String>
-
+    <sys:String x:Key="LOCSmall">Pequeño</sys:String>
+    <sys:String x:Key="LOCNormal">Normal</sys:String>
+    <sys:String x:Key="LOCLarge">Grande</sys:String>
+    <sys:String x:Key="LOCLarger">Más grande</sys:String>
+    <sys:String x:Key="LOCLargest">El más grande</sys:String>
+    <sys:String x:Key="LOCDefault">Predeterminado</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos del Emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos del Emulador Adicionales</sys:String>
