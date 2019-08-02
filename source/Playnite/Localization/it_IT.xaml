@@ -262,6 +262,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posizione lista dettagli</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Disegna separatore tra i pannelli</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Altezza immagine della copertina gioco</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Altezza icona lista giochi</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Carattere dell'applicazione</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posizione del pannello filtro</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posizione pannello Esplora</sys:String>
