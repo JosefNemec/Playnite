@@ -260,6 +260,9 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espaçamento vertical nos detalhes do jogo</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posição dos detalhes no esquema de grade</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posição da lista de jogos no esquema de detalhes</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Desenhar separador entre painéis</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Altura da capa do jogo</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Fonte do aplicativo</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posição do painel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posição do painel de navegação</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderização da arte da capa</sys:String>
@@ -626,7 +629,12 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCWidth">Largura</sys:String>
     <sys:String x:Key="LOCHeight">Altura</sys:String>
     <sys:String x:Key="LOCSize">Tamanho</sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos adicionais do emulador</sys:String>
