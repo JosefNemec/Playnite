@@ -260,6 +260,9 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Szczegóły pozycji siatki</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Pozycja panelu filtrowania</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Pozycja panelu eksploratora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderowanie okładki</sys:String>
@@ -296,7 +299,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Zawiera Steam, Origin i pozostałe.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchroniczne ładowanie obrazu</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Poprawia płynność przewijania listy gier kosztem wolniejszego ładowania się grafiki</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Wyświetlaj nazwę gry, gdy brakuje okładki</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Pokaż nazwy gier w widoku okładki</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Pokaż ikony gier w widoku listy</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
@@ -618,7 +621,12 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCWidth">Szerokość</sys:String>
     <sys:String x:Key="LOCHeight">Wysokość</sys:String>
     <sys:String x:Key="LOCSize">Rozmiar</sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulatora</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatkowe argumenty emulatora</sys:String>
