@@ -161,7 +161,7 @@
                                     </StackPanel>
 
                                     <StackPanel Name="PART_ElemDescription"
-                                                DockPanel.Dock="Right" Margin="5,0,5,0">
+                                                DockPanel.Dock="Right" Margin="5,0,20,0">
                                         <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,10"
                                                     Style="{DynamicResource BaseTextBlockStyle}" />
                                         <Separator Background="{DynamicResource PanelSeparatorBrush}" />

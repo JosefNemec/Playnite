@@ -29,7 +29,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
                     <Track x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="True"
-                           Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                           Width="17">
                         <Track.Resources>
                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">42</sys:Double>
                         </Track.Resources>
