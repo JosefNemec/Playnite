@@ -1224,6 +1224,22 @@ namespace Playnite
             }
         }
 
+        private double detailsViewListIconSize = 26;
+        public double DetailsViewListIconSize
+        {
+            get
+            {
+                return detailsViewListIconSize;
+            }
+
+            set
+            {
+                detailsViewListIconSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
         public MetadataDownloaderSettings DefaultMetadataSettings
         {

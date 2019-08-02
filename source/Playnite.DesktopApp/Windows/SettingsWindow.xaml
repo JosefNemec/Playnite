@@ -422,6 +422,13 @@
                                                            Value="{Binding Settings.GameDetailsCoverHeight}" />
                                 </StackPanel>
 
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="{DynamicResource LOCSettingsGameDetailsListIconSize}"/>
+                                    <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+                                                           Value="{Binding Settings.DetailsViewListIconSize}" />
+                                </StackPanel>
+
                                 <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
                                 <UniformGrid Columns="3" VerticalAlignment="Top">
                                     <CheckBox Content="{DynamicResource LOCGameIconTitle}"
