@@ -262,6 +262,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
