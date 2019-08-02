@@ -256,6 +256,9 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">グリッドビューの詳細位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">フィルターパネルの位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">エクスプローラーパネルの位置</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">カバーアートのレンダリング</sys:String>
@@ -292,7 +295,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Steam、Originなどが含まれます。</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">遅いイメージロード時間と引き換えに、ゲームリストのスクロールの滑らかさを改善します。</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">カバー画像がない場合はゲーム名を表示する</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">グリッドビューにゲーム名を表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">詳細ビューリストにゲームのアイコンを表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">グループの説明にアイテム数を表示する</sys:String>
@@ -619,7 +622,12 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight"></sys:String>
     <sys:String x:Key="LOCSize"></sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">エミュレータ引数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">追加のエミュレータ引数</sys:String>
