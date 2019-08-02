@@ -69,7 +69,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 1;
+        } = 2;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -573,21 +573,6 @@ namespace Playnite
             }
         }
 
-        private bool highQualityBackgroundBlur = true;
-        public bool HighQualityBackgroundBlur
-        {
-            get
-            {
-                return highQualityBackgroundBlur;
-            }
-
-            set
-            {
-                highQualityBackgroundBlur = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool blurWindowBackgroundImage = true;
         public bool BlurWindowBackgroundImage
         {
@@ -603,7 +588,7 @@ namespace Playnite
             }
         }
 
-        private double backgroundImageBlurAmount = 60;
+        private double backgroundImageBlurAmount = 17;
         public double BackgroundImageBlurAmount
         {
             get
@@ -1305,10 +1290,18 @@ namespace Playnite
 
         public static PlayniteSettings LoadSettings()
         {
-            var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);  
+            var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);
             if (settings == null)
             {
                 settings = new PlayniteSettings();
+            }
+            else
+            {
+                if (settings.Version == 1)
+                {
+                    settings.BackgroundImageBlurAmount = 17;
+                    settings.Version = 2;
+                }
             }
 
             settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
@@ -1395,89 +1388,6 @@ namespace Playnite
 
         public static void MigrateSettingsConfig()
         {
-            void WriteConfig(string id, Dictionary<string, object> config)
-            {
-                var path = Path.Combine(PlaynitePaths.ExtensionsDataPath, id, "config.json");
-                if (!File.Exists(path))
-                {
-                    FileSystem.CreateDirectory(path);
-                    File.WriteAllText(path, JsonConvert.SerializeObject(config, Formatting.Indented));
-                }
-            }
-
-            try
-            {
-                if (!File.Exists(PlaynitePaths.ConfigFilePath))
-                {
-                    return;
-                }
-
-                var oldSettings = JsonConvert.DeserializeObject<Settings.OldSettings.Settings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
-                if (oldSettings.BattleNetSettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.BattleNetSettings.IntegrationEnabled },
-                        { "ImportUninstalledGames", oldSettings.BattleNetSettings.LibraryDownloadEnabled }
-                    };
-
-                    WriteConfig("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD", config);
-                }
-
-                if (oldSettings.OriginSettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.OriginSettings.IntegrationEnabled },
-                        { "ImportUninstalledGames", oldSettings.OriginSettings.LibraryDownloadEnabled }
-                    };
-
-                    WriteConfig("85DD7072-2F20-4E76-A007-41035E390724", config);
-                }
-
-                if (oldSettings.GOGSettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.GOGSettings.IntegrationEnabled },
-                        { "ImportUninstalledGames", oldSettings.GOGSettings.LibraryDownloadEnabled },
-                        { "StartGamesUsingGalaxy", oldSettings.GOGSettings.RunViaGalaxy }
-                    };
-
-                    WriteConfig("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E", config);
-                }
-
-                if (oldSettings.SteamSettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.SteamSettings.IntegrationEnabled },
-                        { "ImportUninstalledGames", oldSettings.SteamSettings.LibraryDownloadEnabled },
-                        { "PreferScreenshotForBackground", oldSettings.SteamSettings.PreferScreenshotForBackground },
-                        { "ApiKey", oldSettings.SteamSettings.APIKey },
-                        { "IsPrivateAccount", oldSettings.SteamSettings.PrivateAccount },
-                        { "AccountId", oldSettings.SteamSettings.AccountId },
-                        { "AccountName", oldSettings.SteamSettings.AccountName },
-                        { "IdSource", oldSettings.SteamSettings.IdSource }
-                    };
-
-                    WriteConfig("CB91DFC9-B977-43BF-8E70-55F46E410FAB", config);
-                }
-
-                if (oldSettings.UplaySettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.UplaySettings.IntegrationEnabled }
-                    };
-
-                    WriteConfig("C2F038E5-8B92-4877-91F1-DA9094155FC5", config);
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed to migrade plugin configuration.");
-            }
         }
 
         public static void SetBootupStateRegistration(bool runOnBootup)

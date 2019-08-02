@@ -15,6 +15,7 @@ using System.Net;
 using Playnite.Common.Web;
 using System.Drawing.Imaging;
 using System.Threading;
+using System.Collections.Concurrent;
 
 namespace Playnite.Database
 {
@@ -25,7 +26,7 @@ namespace Playnite.Database
         #region Locks
 
         private readonly object databaseConfigFileLock = new object();
-        private ReaderWriterLockSlim fileLock = new ReaderWriterLockSlim();
+        private readonly ConcurrentDictionary<string, object> fileLocks = new ConcurrentDictionary<string, object>();
 
         #endregion Locks
 
@@ -397,28 +398,31 @@ namespace Playnite.Database
                 return;
             }
 
-            fileLock.EnterReadLock();
+
             try
             {
-                FileSystem.DeleteFileSafe(filePath);
+                lock (GetFileLock(dbPath))
+                {
+                    FileSystem.DeleteFileSafe(filePath);
 
-                try
-                {
-                    var dir = Path.GetDirectoryName(filePath);
-                    if (FileSystem.IsDirectoryEmpty(dir))
+                    try
                     {
-                        FileSystem.DeleteDirectory(dir);
+                        var dir = Path.GetDirectoryName(filePath);
+                        if (FileSystem.IsDirectoryEmpty(dir))
+                        {
+                            FileSystem.DeleteDirectory(dir);
+                        }
                     }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    // Getting crash reports from Path.GetDirectoryName for some reason.
-                    logger.Error(e, "Failed to clean up directory after removing file");
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        // Getting crash reports from Path.GetDirectoryName for some reason.
+                        logger.Error(e, "Failed to clean up directory after removing file");
+                    }
                 }
             }
             finally
             {
-                fileLock.ExitReadLock();
+                ReleaseFileLock(dbPath);
             }
 
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
@@ -433,17 +437,19 @@ namespace Playnite.Database
                 return null;
             }
 
-            fileLock.EnterReadLock();
             try
             {
-                using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                lock (GetFileLock(dbPath))
                 {
-                    return BitmapExtensions.BitmapFromStream(fStream);
+                    using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                    {
+                        return BitmapExtensions.BitmapFromStream(fStream);
+                    }
                 }
             }
             finally
             {
-                fileLock.ExitReadLock();
+                ReleaseFileLock(dbPath);
             }
         }
 
@@ -452,15 +458,17 @@ namespace Playnite.Database
             CheckDbState();
             var filePath = GetFullFilePath(dbPath);
 
-            fileLock.EnterReadLock();
             try
             {
-                FileSystem.PrepareSaveFile(targetPath);
-                File.Copy(filePath, targetPath);
+                lock (GetFileLock(dbPath))
+                {
+                    FileSystem.PrepareSaveFile(targetPath);
+                    File.Copy(filePath, targetPath);
+                }
             }
             finally
             {
-                fileLock.ExitReadLock();
+                ReleaseFileLock(dbPath);
             }
         }
 
@@ -808,6 +816,25 @@ namespace Playnite.Database
             };
 
             database.Games.Add(designGame);
+        }
+
+        private object GetFileLock(string filePath)
+        {
+            if (fileLocks.TryGetValue(filePath, out object fileLock))
+            {
+                return fileLock;
+            }
+            else
+            {
+                var lc = new object();
+                fileLocks.TryAdd(filePath, lc);
+                return lc;
+            }
+        }
+
+        private void ReleaseFileLock(string filePath)
+        {
+            fileLocks.TryRemove(filePath, out var removed);
         }
     }
 }
