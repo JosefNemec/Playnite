@@ -256,6 +256,9 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
@@ -292,7 +295,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Включаючи Steam, Origin та інші.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Покращує плавність прокручування списків ігор в обмін на повільніший час завантаження зображення.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показувати назву гри, коли відсутня обкладинка</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Відображення назв ігор у поданні «Обкладинка»</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Відображати піктограми ігор у поданні списку</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
@@ -614,7 +617,12 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight"></sys:String>
     <sys:String x:Key="LOCSize"></sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Аргументи емулятора</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Додаткові аргументи емулятора</sys:String>
