@@ -262,6 +262,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Spielelistenposition in Detailansicht</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Trennzeichen zwischen den Segmenten einfügen</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Höhe der Spieletitelbilder</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Symbolhöhe der Spieleliste</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Anwendungsschriftart</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position der Filterleiste</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position der Explorerleiste</sys:String>
@@ -634,7 +635,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCNormal">Normal</sys:String>
     <sys:String x:Key="LOCLarge">Groß</sys:String>
     <sys:String x:Key="LOCLarger">Größer</sys:String>
-    <sys:String x:Key="LOCLargest">Riesig</sys:String>
+    <sys:String x:Key="LOCLargest">Sehr groß</sys:String>
     <sys:String x:Key="LOCDefault">Standard</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
@@ -764,7 +765,7 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
 
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">Benutzerkonten-URL</sys:String>
-    <sys:String x:Key="LOCSteamLoggedInUser">Authentifizierte Benutzer</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Authentifizierter Benutzer</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Das Konto ist privat, der API-Schlüssel ist erforderlich.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Die Ersteinrichtung ist nicht abgeschlossen. Playnite wird nun im Desktopmodus neu gestartet, um die Einrichtung abzuschließen.</sys:String>
