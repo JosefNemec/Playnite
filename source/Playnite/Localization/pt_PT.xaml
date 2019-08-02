@@ -258,6 +258,7 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posicionamento do painel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
