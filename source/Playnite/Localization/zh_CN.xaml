@@ -262,6 +262,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">详细视图游戏列表位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">过滤面板位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">浏览器面板位置</sys:String>
