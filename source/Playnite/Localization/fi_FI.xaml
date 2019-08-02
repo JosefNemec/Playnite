@@ -139,9 +139,9 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCTagLabel">Tunniste</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tunnisteet</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoomaa</sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCListViewLabel">Listanäkymä</sys:String>
     <sys:String x:Key="LOCCoversLabel">Kannet</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Ruudukkonäkymä</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Mukautettu</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
@@ -253,7 +253,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Lisätietopaneelissa näytettävät kentät:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Kohteiden välistys</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Piirrä tausta</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ruudukon kohteen reunaviivan leveys</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Puuttuva pelin kuvakkeen lähde</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuttuva pelin kannen lähde</sys:String>
@@ -262,7 +262,8 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Sovelluksen fontti</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Suodatinpaneelin paikka</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Selaimen paneelin paikka</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kansitaiteen renderöinti</sys:String>
@@ -299,7 +300,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Sisältää Steamin, Originin ja muut.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynkroninen kuvan lataus</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Parantaa rullauksen sujuvuutta pelilistoissa mutta hidastaa hieman kuvien lataamista.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Näytä pelin nimi jos kansitaide puuttuu</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Näytä pelien nimet ruudukkonäkymässä</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Näytä pelien kuvakkeet lisätietonäkymässä</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Näytä määrä ryhmien kuvauksissa</sys:String>
@@ -309,7 +310,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Näytä Steam-kaverit painike</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Käytä pelin taustakuvaa ikkunan taustakuvana</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Sumenna tausta</sys:String>
-    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Korkea laatu</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Tummenna tausta</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Näytä ruudukkonäkymässä</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Teema</sys:String>
@@ -625,15 +626,15 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCAll">Kaikki</sys:String>
     <sys:String x:Key="LOCNone">Ei mitään</sys:String>
     <sys:String x:Key="LOCNotifications">Ilmoitukset</sys:String>
-    <sys:String x:Key="LOCWidth"></sys:String>
-    <sys:String x:Key="LOCHeight"></sys:String>
-    <sys:String x:Key="LOCSize"></sys:String>
-    <sys:String x:Key="LOCSmall"></sys:String>
-    <sys:String x:Key="LOCNormal"></sys:String>
-    <sys:String x:Key="LOCLarge"></sys:String>
-    <sys:String x:Key="LOCLarger"></sys:String>
-    <sys:String x:Key="LOCLargest"></sys:String>
-    <sys:String x:Key="LOCDefault"></sys:String>
+    <sys:String x:Key="LOCWidth">Leveys</sys:String>
+    <sys:String x:Key="LOCHeight">Korkeus</sys:String>
+    <sys:String x:Key="LOCSize">Koko</sys:String>
+    <sys:String x:Key="LOCSmall">Pieni</sys:String>
+    <sys:String x:Key="LOCNormal">Normaali</sys:String>
+    <sys:String x:Key="LOCLarge">Suuri</sys:String>
+    <sys:String x:Key="LOCLarger">Suurempi</sys:String>
+    <sys:String x:Key="LOCLargest">Suurin</sys:String>
+    <sys:String x:Key="LOCDefault">Oletus</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulaattorien argumentit</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Emulaattorin lisä-argumentit</sys:String>
@@ -728,8 +729,8 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCPLaytime500to1000">500-1000 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Asennus onnistui.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Asenna laajennus?</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail">Laajennuksen asennus epäonnistui.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail">Teeman asennus epäonnistui.</sys:String>
