@@ -260,6 +260,9 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsIndentGameDetails">Spaziatura verticale ai dettagli del gioco</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posizione dettagli a griglia</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posizione lista dettagli</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Disegna separatore tra i pannelli</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Altezza immagine della copertina gioco</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Carattere dell'applicazione</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posizione del pannello filtro</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posizione pannello Esplora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendering copertina</sys:String>
@@ -625,7 +628,12 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCWidth">Larghezza</sys:String>
     <sys:String x:Key="LOCHeight">Altezza</sys:String>
     <sys:String x:Key="LOCSize">Dimensioni</sys:String>
-
+    <sys:String x:Key="LOCSmall">Piccolo</sys:String>
+    <sys:String x:Key="LOCNormal">Normale</sys:String>
+    <sys:String x:Key="LOCLarge">Grande</sys:String>
+    <sys:String x:Key="LOCLarger">Più grande</sys:String>
+    <sys:String x:Key="LOCLargest">Massimo</sys:String>
+    <sys:String x:Key="LOCDefault">Predefinito</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argomenti dell'emulatore</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ulteriori argomenti dell'emulatore</sys:String>
