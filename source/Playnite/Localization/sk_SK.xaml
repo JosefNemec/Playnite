@@ -253,6 +253,9 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
@@ -289,7 +292,7 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Vrátane Steam, Origin a iných.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Vylepšuje plynulosť skrolovania zoznamu hier na úkor pomalšieho načítavania obrázkov.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Zobraziť názov hry ak chýba obal</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Zobraziť ikonu hry v zobrazení zoznam</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
@@ -610,7 +613,12 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight"></sys:String>
     <sys:String x:Key="LOCSize"></sys:String>
-
+    <sys:String x:Key="LOCSmall"></sys:String>
+    <sys:String x:Key="LOCNormal"></sys:String>
+    <sys:String x:Key="LOCLarge"></sys:String>
+    <sys:String x:Key="LOCLarger"></sys:String>
+    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulátoru</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatočné argumenty emulátora</sys:String>
