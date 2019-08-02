@@ -262,6 +262,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posición de la lista de juegos de la Vista de Detalles</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Dibujar separador entre paneles</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Alto de imagen de la portada del juego</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fuente de la Aplicación</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posición del panel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posición del panel de exploración</sys:String>
