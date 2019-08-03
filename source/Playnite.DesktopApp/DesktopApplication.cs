@@ -75,8 +75,10 @@ namespace Playnite.DesktopApp
             SetupInputs(AppSettings.EnableControllerInDesktop);
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
+#pragma warning disable CS4014
             StartUpdateCheckerAsync();            
             SendUsageDataAsync();
+#pragma warning restore CS4014
             ProcessArguments();
             splashScreen?.Close(new TimeSpan(0));
         }

@@ -481,7 +481,7 @@ namespace Playnite
             resourcesReleased = true;
         }
 
-        public async void StartUpdateCheckerAsync()
+        public async Task StartUpdateCheckerAsync()
         {
             if (PlayniteEnvironment.InOfflineMode)
             {
@@ -494,53 +494,57 @@ namespace Playnite
                 await GlobalTaskHandler.ProgressTask;
             }
 
-            var updater = new Updater(this);
-
-            while (true)
+#pragma warning disable CS4014
+            Task.Run(async () =>
             {
-                try
+                var updater = new Updater(this);
+                while (true)
                 {
-                    if (updater.IsUpdateAvailable)
+                    try
                     {
-                        var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
-                        var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
-                        if (!Current.IsActive)
+                        if (updater.IsUpdateAvailable)
                         {
-                            ShowWindowsNotification(updateTitle, updateBody, () =>
+                            var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
+                            var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
+                            if (!Current.IsActive)
                             {
-                                Restore();
-                                new UpdateViewModel(
-                                    updater,
-                                    new UpdateWindowFactory(),
-                                    new ResourceProvider(),
-                                    Dialogs).OpenView();
-                            });
+                                ShowWindowsNotification(updateTitle, updateBody, () =>
+                                {
+                                    Restore();
+                                    new UpdateViewModel(
+                                        updater,
+                                        new UpdateWindowFactory(),
+                                        new ResourceProvider(),
+                                        Dialogs).OpenView();
+                                });
+                            }
+
+                            Api.Notifications.Add(
+                                new NotificationMessage("UpdateAvailable",
+                                updateBody,
+                                NotificationType.Info, () =>
+                                {
+                                    new UpdateViewModel(
+                                        updater,
+                                        new UpdateWindowFactory(),
+                                        new ResourceProvider(),
+                                        Dialogs).OpenView();
+                                }));
+                            return;
                         }
-
-                        Api.Notifications.Add(
-                            new NotificationMessage("UpdateAvailable",
-                            updateBody,
-                            NotificationType.Info, () =>
-                            {
-                                new UpdateViewModel(
-                                    updater,
-                                    new UpdateWindowFactory(),
-                                    new ResourceProvider(),
-                                    Dialogs).OpenView();
-                            }));
-                        return;
                     }
-                }
-                catch (Exception exc)
-                {
-                    logger.Warn(exc, "Failed to process update.");
-                }
+                    catch (Exception exc)
+                    {
+                        logger.Warn(exc, "Failed to process update.");
+                    }
 
-                await Task.Delay(Common.Timer.HoursToMilliseconds(4));
-            }
+                    await Task.Delay(Common.Timer.HoursToMilliseconds(4));
+                }
+            });
+#pragma warning restore CS4014
         }
 
-        public async void SendUsageDataAsync()
+        public async Task SendUsageDataAsync()
         {
             if (PlayniteEnvironment.InOfflineMode)
             {
