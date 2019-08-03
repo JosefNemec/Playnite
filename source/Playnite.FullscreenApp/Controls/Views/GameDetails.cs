@@ -1,5 +1,6 @@
 ﻿using Playnite.Behaviors;
 using Playnite.Common;
+using Playnite.Controls;
 using Playnite.Converters;
 using Playnite.FullscreenApp.ViewModels;
 using Playnite.Input;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Playnite.FullscreenApp.Controls.Views
@@ -19,12 +21,16 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ViewHost", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ButtonContext", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonOptions", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
+    [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     public class GameDetails : Control
     {
         private FullscreenAppViewModel mainModel;
         private FrameworkElement ViewHost;
         private ButtonBase ButtonContext;
         private ButtonBase ButtonOptions;
+        private Image ImageCover;
+        private FadeImage ImageBackground;
 
         static GameDetails()
         {
@@ -90,6 +96,32 @@ namespace Playnite.FullscreenApp.Controls.Views
                 if (ButtonOptions != null)
                 {
                     ButtonOptions.Command = mainModel.ToggleGameOptionsCommand;
+                }
+
+                ImageCover = Template.FindName("PART_ImageCover", this) as Image;
+                if (ImageCover != null)
+                {
+                    var sourceBinding = new PriorityBinding();
+                    sourceBinding.Bindings.Add(new Binding()
+                    {
+                        Path = new PropertyPath(nameof(GamesCollectionViewEntry.CoverImageObject)),
+                        Converter = new NullToDependencyPropertyUnsetConverter()
+                    });
+                    sourceBinding.Bindings.Add(new Binding()
+                    {
+                        Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultCoverImageObject)),
+                        Converter = new NullToDependencyPropertyUnsetConverter()
+                    });
+
+                    BindingOperations.SetBinding(ImageCover, Image.SourceProperty, sourceBinding);
+                }
+
+                ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
+                if (ImageBackground != null)
+                {
+                    BindingTools.SetBinding(ImageBackground,
+                        FadeImage.SourceProperty,
+                        nameof(GamesCollectionViewEntry.BackgroundImage));
                 }
             }
         }
