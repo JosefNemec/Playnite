@@ -479,15 +479,16 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)
-xcopy "$(SolutionDir)\Plugins\SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\SteamLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\GogLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\GogLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\OriginLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BattleNetLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\BethesdaLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BethesdaLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\EpicLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\EpicLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\GogLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\GogLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\ItchioLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\ItchioLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\OriginLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\SteamLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y</PostBuildEvent>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
 </Project>
