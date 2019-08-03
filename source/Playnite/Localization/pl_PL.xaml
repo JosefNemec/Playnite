@@ -261,9 +261,9 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Szczegóły pozycji siatki</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Wysokość obrazu okładki gry</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Wysokość obrazu ikony gry</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Czcionka aplikacji</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Pozycja panelu filtrowania</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Pozycja panelu eksploratora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderowanie okładki</sys:String>
@@ -300,7 +300,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Zawiera Steam, Origin i pozostałe.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchroniczne ładowanie obrazu</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Poprawia płynność przewijania listy gier kosztem wolniejszego ładowania się grafiki</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Wyświetlaj nazwę gry, gdy brakuje okładki</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Pokaż nazwy gier w widoku okładki</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Pokaż ikony gier w widoku listy</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
@@ -622,12 +622,12 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCWidth">Szerokość</sys:String>
     <sys:String x:Key="LOCHeight">Wysokość</sys:String>
     <sys:String x:Key="LOCSize">Rozmiar</sys:String>
-    <sys:String x:Key="LOCSmall"></sys:String>
-    <sys:String x:Key="LOCNormal"></sys:String>
-    <sys:String x:Key="LOCLarge"></sys:String>
-    <sys:String x:Key="LOCLarger"></sys:String>
-    <sys:String x:Key="LOCLargest"></sys:String>
-    <sys:String x:Key="LOCDefault"></sys:String>
+    <sys:String x:Key="LOCSmall">Małe</sys:String>
+    <sys:String x:Key="LOCNormal">Normalne</sys:String>
+    <sys:String x:Key="LOCLarge">Duże</sys:String>
+    <sys:String x:Key="LOCLarger">Większe</sys:String>
+    <sys:String x:Key="LOCLargest">Największe</sys:String>
+    <sys:String x:Key="LOCDefault">Domyślne</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulatora</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatkowe argumenty emulatora</sys:String>
@@ -750,14 +750,15 @@ Wersja {2}    </sys:String>
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Login</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nazwa konta</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Zaloguj się do konta lub podaj nazwę konta, jeżeli jest publiczne, aby zsynchronizować bibliotekę.
+Pamiętaj, że opcja Nazwa konta działa tylko w przypadku kont, których konta GOG są ustawione na publiczne.</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">URL konta</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Uwierzytelniony użytkownik</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Konto jest prywatne, rekomendowana użycie API klucza.</sys:String>
 
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">Pierwsza konfiguracja nie została ukończona. Playnite zostanie uruchomiony ponownie w trybie pulpitu, aby zakończyć konfigurowanie.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Ostatnio grane</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Ulubione</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Najczęściej grane</sys:String>
