@@ -631,11 +631,11 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCWidth">Width</sys:String>
     <sys:String x:Key="LOCHeight">Height</sys:String>
     <sys:String x:Key="LOCSize">Size</sys:String>
-    <sys:String x:Key="LOCSmall">Small</sys:String>
-    <sys:String x:Key="LOCNormal">Normal</sys:String>
-    <sys:String x:Key="LOCLarge">Large</sys:String>
-    <sys:String x:Key="LOCLarger">Larger</sys:String>
-    <sys:String x:Key="LOCLargest">Largest</sys:String>
+    <sys:String x:Key="LOCFontSmall">Small</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normal</sys:String>
+    <sys:String x:Key="LOCFontLarge">Large</sys:String>
+    <sys:String x:Key="LOCFontLarger">Larger</sys:String>
+    <sys:String x:Key="LOCFontLargest">Largest</sys:String>
     <sys:String x:Key="LOCDefault">Default</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>

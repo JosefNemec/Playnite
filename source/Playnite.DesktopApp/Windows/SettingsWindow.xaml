@@ -379,11 +379,11 @@
                                                 <Setter Property="MaxValue" Value="100" />
                                             </Style>
                                         </UniformGrid.Resources>
-                                        <TextBlock Text="{DynamicResource LOCSmall}" Margin="5,0,5,0"/>
-                                        <TextBlock Text="{DynamicResource LOCNormal}" Margin="5,0,5,0"/>
-                                        <TextBlock Text="{DynamicResource LOCLarge}" Margin="5,0,5,0"/>
-                                        <TextBlock Text="{DynamicResource LOCLarger}" Margin="5,0,5,0"/>
-                                        <TextBlock Text="{DynamicResource LOCLargest}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontSmall}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontNormal}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontLarge}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontLarger}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontLargest}" Margin="5,0,5,0"/>
 
                                         <pctrls:NullableIntBox Value="{Binding Settings.FontSizeSmall}"/>
                                         <pctrls:NullableIntBox Value="{Binding Settings.FontSize}"/>
