@@ -618,11 +618,11 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight"></sys:String>
     <sys:String x:Key="LOCSize"></sys:String>
-    <sys:String x:Key="LOCSmall"></sys:String>
-    <sys:String x:Key="LOCNormal"></sys:String>
-    <sys:String x:Key="LOCLarge"></sys:String>
-    <sys:String x:Key="LOCLarger"></sys:String>
-    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCFontSmall"></sys:String>
+    <sys:String x:Key="LOCFontNormal"></sys:String>
+    <sys:String x:Key="LOCFontLarge"></sys:String>
+    <sys:String x:Key="LOCFontLarger"></sys:String>
+    <sys:String x:Key="LOCFontLargest"></sys:String>
     <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Аргументи емулятора</sys:String>
