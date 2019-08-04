@@ -412,7 +412,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">ファイルを選択</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">スキャン中</sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">初回設定</sys:String>
@@ -432,12 +432,14 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay統合</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">アカウントからカテゴリーをインポートします。</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">その他のゲーム</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">下のボタンをクリックして、インストールされている他のゲームをインポートするか、手動で参照してください(Microsoftストアゲームを含む)。</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">ゲームのインポート</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">設定完了</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初期設定が完了しました。後で '設定'メニューからすべての設定を変更できます。
+
+Playniteアプリケーションのロゴをクリックして、メインメニューから他のゲーム(Microsoftストアゲームを含む) を後で追加することもできます。</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">エミュレーションインポートガイドを開く</sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">グリッドビューレイアウト</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
     <!--Platforms Settings-->
@@ -623,11 +625,11 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCWidth"></sys:String>
     <sys:String x:Key="LOCHeight"></sys:String>
     <sys:String x:Key="LOCSize"></sys:String>
-    <sys:String x:Key="LOCSmall"></sys:String>
-    <sys:String x:Key="LOCNormal"></sys:String>
-    <sys:String x:Key="LOCLarge"></sys:String>
-    <sys:String x:Key="LOCLarger"></sys:String>
-    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCFontSmall"></sys:String>
+    <sys:String x:Key="LOCFontNormal"></sys:String>
+    <sys:String x:Key="LOCFontLarge"></sys:String>
+    <sys:String x:Key="LOCFontLarger"></sys:String>
+    <sys:String x:Key="LOCFontLargest"></sys:String>
     <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">エミュレータ引数</sys:String>
@@ -664,7 +666,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCRemoveGame">削除</sys:String>
     <sys:String x:Key="LOCPlayGame">プレイ</sys:String>
     <sys:String x:Key="LOCInstallGame">インストール</sys:String>
-    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameOptions">オプション</sys:String>
     <sys:String x:Key="LOCGameDetails"></sys:String>
     <sys:String x:Key="LOCUninstallGame">アンインストール</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">インストール先を開く</sys:String>
@@ -756,6 +758,6 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">同じ名前の アイテムが既に存在します</sys:String>
 
 </ResourceDictionary>
