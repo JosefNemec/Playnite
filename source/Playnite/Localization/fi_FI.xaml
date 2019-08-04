@@ -629,11 +629,11 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCWidth">Leveys</sys:String>
     <sys:String x:Key="LOCHeight">Korkeus</sys:String>
     <sys:String x:Key="LOCSize">Koko</sys:String>
-    <sys:String x:Key="LOCSmall">Pieni</sys:String>
-    <sys:String x:Key="LOCNormal">Normaali</sys:String>
-    <sys:String x:Key="LOCLarge">Suuri</sys:String>
-    <sys:String x:Key="LOCLarger">Suurempi</sys:String>
-    <sys:String x:Key="LOCLargest">Suurin</sys:String>
+    <sys:String x:Key="LOCFontSmall"></sys:String>
+    <sys:String x:Key="LOCFontNormal"></sys:String>
+    <sys:String x:Key="LOCFontLarge"></sys:String>
+    <sys:String x:Key="LOCFontLarger"></sys:String>
+    <sys:String x:Key="LOCFontLargest"></sys:String>
     <sys:String x:Key="LOCDefault">Oletus</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulaattorien argumentit</sys:String>
