@@ -635,7 +635,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCFontNormal">Normal</sys:String>
     <sys:String x:Key="LOCFontLarge">Groß</sys:String>
     <sys:String x:Key="LOCFontLarger">Größer</sys:String>
-    <sys:String x:Key="LOCFontLargest">Riesig</sys:String>
+    <sys:String x:Key="LOCFontLargest">Sehr groß</sys:String>
     <sys:String x:Key="LOCDefault">Standard</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
