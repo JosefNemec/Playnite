@@ -630,11 +630,11 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCWidth">Šířka</sys:String>
     <sys:String x:Key="LOCHeight">Výška</sys:String>
     <sys:String x:Key="LOCSize">Velikost</sys:String>
-    <sys:String x:Key="LOCSmall">Malý</sys:String>
-    <sys:String x:Key="LOCNormal">Normální</sys:String>
-    <sys:String x:Key="LOCLarge">Velký</sys:String>
-    <sys:String x:Key="LOCLarger">Větší</sys:String>
-    <sys:String x:Key="LOCLargest">Největší</sys:String>
+    <sys:String x:Key="LOCFontSmall">Malý</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normální</sys:String>
+    <sys:String x:Key="LOCFontLarge">Velký</sys:String>
+    <sys:String x:Key="LOCFontLarger">Větší</sys:String>
+    <sys:String x:Key="LOCFontLargest">Největší</sys:String>
     <sys:String x:Key="LOCDefault">Výchozí</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulátoru</sys:String>
