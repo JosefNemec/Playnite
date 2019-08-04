@@ -629,11 +629,11 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCWidth">Larghezza</sys:String>
     <sys:String x:Key="LOCHeight">Altezza</sys:String>
     <sys:String x:Key="LOCSize">Dimensioni</sys:String>
-    <sys:String x:Key="LOCSmall">Piccolo</sys:String>
-    <sys:String x:Key="LOCNormal">Normale</sys:String>
-    <sys:String x:Key="LOCLarge">Grande</sys:String>
-    <sys:String x:Key="LOCLarger">Più grande</sys:String>
-    <sys:String x:Key="LOCLargest">Massimo</sys:String>
+    <sys:String x:Key="LOCFontSmall">Piccolo</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normale</sys:String>
+    <sys:String x:Key="LOCFontLarge">Grande</sys:String>
+    <sys:String x:Key="LOCFontLarger">Più grande</sys:String>
+    <sys:String x:Key="LOCFontLargest">Massimo</sys:String>
     <sys:String x:Key="LOCDefault">Predefinito</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argomenti dell'emulatore</sys:String>
