@@ -238,7 +238,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuAddGameManual">Вручную...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Автоматически...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Из эмулятора...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Игра из Microsoft Store или из приложения Xbox</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Из Microsoft Store или приложения Xbox…</sys:String>
     <sys:String x:Key="LOCMenuAbout">О Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Отправить отзыв</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Запустить полноэкранный режим</sys:String>
@@ -253,7 +253,7 @@ IGDB > Официальный магазин:
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поля игр, отображаемые на панели подробностей:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Расстояние между элементами</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Рисовать фон</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина рамки</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Отсутствует источник значка игры</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Отсутствует источник обложки игры</sys:String>
@@ -262,7 +262,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Положение списка игр</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Нарисовать разделитель между панелями</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Высота обложки</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Высота значка списка игр</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Шрифт программы</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Положение панели фильтра</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Положение панели проводника</sys:String>
@@ -632,11 +632,11 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCWidth">Ширина</sys:String>
     <sys:String x:Key="LOCHeight">Высота</sys:String>
     <sys:String x:Key="LOCSize">Размер</sys:String>
-    <sys:String x:Key="LOCSmall"></sys:String>
-    <sys:String x:Key="LOCNormal"></sys:String>
-    <sys:String x:Key="LOCLarge"></sys:String>
-    <sys:String x:Key="LOCLarger"></sys:String>
-    <sys:String x:Key="LOCLargest"></sys:String>
+    <sys:String x:Key="LOCFontSmall">Маленький</sys:String>
+    <sys:String x:Key="LOCFontNormal">Обычный</sys:String>
+    <sys:String x:Key="LOCFontLarge">Большой</sys:String>
+    <sys:String x:Key="LOCFontLarger">Очень большой</sys:String>
+    <sys:String x:Key="LOCFontLargest">Огромный</sys:String>
     <sys:String x:Key="LOCDefault">По умолчанию</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Параметры для эмулятора</sys:String>
