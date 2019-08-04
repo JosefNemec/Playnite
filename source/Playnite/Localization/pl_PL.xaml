@@ -257,10 +257,10 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Szerokość ramki okładki</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Brak źródła ikony gry</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Brak źródła okładki gry</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Odstęp pionowy szczegółów gry</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Szczegóły pozycji siatki</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozycja szczegółów gry</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Separator pomiędzy panelami</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Wysokość obrazu okładki gry</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Wysokość obrazu ikony gry</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Czcionka aplikacji</sys:String>
@@ -339,7 +339,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nie można zaimportować kategorii, baza danych nie jest otwarta.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Nie udało się zaimportować kategorii Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Nie można zaimportować danych ostatniej rozgrywki, konto nie zostało wybrane.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Nie można zaimportować informacji o ostatniej rozgrywce, baza danych nie jest otwarta.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Błąd importowania informacji o ostatniej rozgrywce z Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Spowoduje to wylogowanie Cię z wszystkich powiązanych usług. Wymagany jest restart aplikacji, czy chcesz kontynuować?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Wyczyścić pamięć podręczną?</sys:String>
@@ -368,7 +368,7 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Włącz obsługę pada w trybie pulpitu</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Przycisk Guide otwiera tryb pełnoekranowy</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
-    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor">Ekran docelowy</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Pokaż tytuły gier</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Pokaż stan baterii</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Pozostała ilość baterii</sys:String>
@@ -408,7 +408,7 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Poniżej znajduje się lista emulatorów, które Playnite rozpoznaje i automatycznie konfiguruje. Możesz je pobrać i zainstalować, odwiedzając ich stronę internetową. Po zainstalowaniu emulatorów przejdź do następnego ekranu, aby zaimportować je do Playnite.
         
 Możesz także skonfigurować i importować dowolny niestandardowy emulator później za pośrednictwem menu konfiguracji.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Można importować dowolne emulatory zainstalowane na komputerze, naciskając przycisk "Skanowanie folderów...". Playnite przeszuka wybrany folder dla wszystkich znanych emulatorów i udostępni opcję ich importowania. Możesz importować dane z wielu folderów, używając tego przycisku kilka razy, emulatory zostaną dodane na dole bieżącej listy.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">Możesz importować gry, naciskając przycisk "Skanuj folder dla ROM/ISO". Wybór odpowiedniego emulatora powie Playnite, które typy plików powinny być skanowane i importowane. Możesz importować z wielu folderów, używając tego przycisku kilka razy, gry zostaną dodane na dole bieżącej listy.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Nie wybrano żadnych emulatorów do zaimportowania. Automatyczne importowanie emulowanych gier nie będzie możliwe bez wcześniejszego skonfigurowania emulatora. Czy na pewno chcesz kontynuować i opuścić proces importowania?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">W Playnite nie ma skonfigurowanych emulatorów. Nie można importować gier bez uprzedniego skonfigurowania emulatora i wybrania odpowiednich typów plików. Czy chcesz teraz dodać kilka emulatorów?</sys:String>
@@ -439,7 +439,9 @@ Pamiętaj, że zawsze możesz dodać dowolną niestandardową grę dla dowolnej 
     <sys:String x:Key="LOCFirstOtherGamesText">Kliknij przycisk poniżej, aby importować inne zainstalowane gry lub przeglądać je ręcznie (w tym gry Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importuj gry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguracja zakończona</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Wstępna konfiguracja została zakończona. Pamiętaj, że możesz zmienić wszystkie ustawienia później za pomocą przycisku w menu "Ustawienia".
+
+Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Otwórz przewodnik importowania emulatorów</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Układ widoku siatki</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -522,7 +524,7 @@ Jest obecnie używany przez {1} grę/gry i {2} emulator(y).</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Nie można uzyskać dostępu do bazy danych biblioteki. Plik "{0}" jest używany przez inny proces lub jest w niedostępnej lokalizacji.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Nie można utworzyć diag. packege.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Błąd przy udostępnianiu pakietu diagnostycznego.</sys:String>
-    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">Informacje diagnostyczne zostały wysłane pomyślnie.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Pakiet diagnostyczny utworzono i udostępniono.
 Dołącz następujący identyfikator do raportu błędu:</sys:String>
 
@@ -622,11 +624,11 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCWidth">Szerokość</sys:String>
     <sys:String x:Key="LOCHeight">Wysokość</sys:String>
     <sys:String x:Key="LOCSize">Rozmiar</sys:String>
-    <sys:String x:Key="LOCFontSmall"></sys:String>
-    <sys:String x:Key="LOCFontNormal"></sys:String>
-    <sys:String x:Key="LOCFontLarge"></sys:String>
-    <sys:String x:Key="LOCFontLarger"></sys:String>
-    <sys:String x:Key="LOCFontLargest"></sys:String>
+    <sys:String x:Key="LOCFontSmall">Małe</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normalne</sys:String>
+    <sys:String x:Key="LOCFontLarge">Duże</sys:String>
+    <sys:String x:Key="LOCFontLarger">Większe</sys:String>
+    <sys:String x:Key="LOCFontLargest">Największe</sys:String>
     <sys:String x:Key="LOCDefault">Domyślne</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulatora</sys:String>
