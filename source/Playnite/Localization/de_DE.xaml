@@ -631,11 +631,11 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCWidth">Breite</sys:String>
     <sys:String x:Key="LOCHeight">Höhe</sys:String>
     <sys:String x:Key="LOCSize">Größe</sys:String>
-    <sys:String x:Key="LOCSmall">Klein</sys:String>
-    <sys:String x:Key="LOCNormal">Normal</sys:String>
-    <sys:String x:Key="LOCLarge">Groß</sys:String>
-    <sys:String x:Key="LOCLarger">Größer</sys:String>
-    <sys:String x:Key="LOCLargest">Sehr groß</sys:String>
+    <sys:String x:Key="LOCFontSmall">Klein</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normal</sys:String>
+    <sys:String x:Key="LOCFontLarge">Groß</sys:String>
+    <sys:String x:Key="LOCFontLarger">Größer</sys:String>
+    <sys:String x:Key="LOCFontLargest">Riesig</sys:String>
     <sys:String x:Key="LOCDefault">Standard</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
