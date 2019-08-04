@@ -340,7 +340,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsSteamCatImportError">Nie udało się zaimportować kategorii Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Nie można zaimportować danych ostatniej rozgrywki, konto nie zostało wybrane.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Błąd importowania informacji o ostatniej rozgrywce z Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Spowoduje to wylogowanie Cię z wszystkich powiązanych usług. Wymagany jest restart aplikacji, czy chcesz kontynuować?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Wyczyścić pamięć podręczną?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Klucz API jest wymagany dla kont prywatnych Steam</sys:String>
@@ -622,11 +622,11 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCWidth">Szerokość</sys:String>
     <sys:String x:Key="LOCHeight">Wysokość</sys:String>
     <sys:String x:Key="LOCSize">Rozmiar</sys:String>
-    <sys:String x:Key="LOCSmall">Małe</sys:String>
-    <sys:String x:Key="LOCNormal">Normalne</sys:String>
-    <sys:String x:Key="LOCLarge">Duże</sys:String>
-    <sys:String x:Key="LOCLarger">Większe</sys:String>
-    <sys:String x:Key="LOCLargest">Największe</sys:String>
+    <sys:String x:Key="LOCFontSmall"></sys:String>
+    <sys:String x:Key="LOCFontNormal"></sys:String>
+    <sys:String x:Key="LOCFontLarge"></sys:String>
+    <sys:String x:Key="LOCFontLarger"></sys:String>
+    <sys:String x:Key="LOCFontLargest"></sys:String>
     <sys:String x:Key="LOCDefault">Domyślne</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulatora</sys:String>
