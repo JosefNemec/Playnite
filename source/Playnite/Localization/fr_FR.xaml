@@ -262,7 +262,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Afficher un séparateur entre les panneaux</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Hauteur de la jaquette</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Hauteur des icônes (liste de jeux)</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont">Police d'affichage</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Taille du texte</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position du panneau de filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position du panneau d'explorateur</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Propriétés de l'affichage en grille</sys:String>
@@ -627,11 +627,11 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCWidth">Largeur</sys:String>
     <sys:String x:Key="LOCHeight">Hauteur</sys:String>
     <sys:String x:Key="LOCSize">Taille</sys:String>
-    <sys:String x:Key="LOCSmall">Réduit</sys:String>
-    <sys:String x:Key="LOCNormal">Normal</sys:String>
-    <sys:String x:Key="LOCLarge">Grand</sys:String>
-    <sys:String x:Key="LOCLarger">Très grand</sys:String>
-    <sys:String x:Key="LOCLargest">Maximum</sys:String>
+    <sys:String x:Key="LOCFontSmall">Réduite</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normale</sys:String>
+    <sys:String x:Key="LOCFontLarge">Grande</sys:String>
+    <sys:String x:Key="LOCFontLarger">Très grande</sys:String>
+    <sys:String x:Key="LOCFontLargest">Maximale</sys:String>
     <sys:String x:Key="LOCDefault">Par défaut</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
