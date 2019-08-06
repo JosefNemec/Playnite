@@ -13,7 +13,7 @@
     <sys:String x:Key="LOCFilterInactiveLabel">Filtret är inaktiverat (klicka för att växla filterpanelen)</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Ytterligare filter</sys:String>
     <sys:String x:Key="LOCFilters">Filter</sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCFilter">Filter</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Ogiltiga data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Spara ändring?</sys:String>
@@ -259,22 +259,22 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Plats för speldetaljer i rutnätsvy</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Höjd för spelomslag</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Ikonhöjd på spellistan</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Font</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Plats för filterpanelen</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Plats för utforskarpanelen</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Visning spelomslagsbilder</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Målbildförhållande</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Låda</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Kräver omstart för att spara</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Inställningar</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Allmänt</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Utseende</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Speldetaljer</sys:String>
-    <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avancerat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Helskärm</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Distribuerare</sys:String>
@@ -298,7 +298,7 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Innehåller Steam, Origin och andra.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynkron laddning av bilder</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Förbättrar rullningsläge i spellistor i utbyte mot långsammare bildbelastningstider.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Visa spelnamn när spelomslag saknas</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Visa spelnamn i rutnätsvyn</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Visa spelikoner i listvy</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Visa räknare på titelfältet för gruppen</sys:String>
