@@ -262,7 +262,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posição da lista de jogos no esquema de detalhes</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Desenhar separador entre painéis</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Altura da capa do jogo</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Altura dos ícones na lista de jogos</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fonte do aplicativo</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posição do painel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posição do painel de navegação</sys:String>
@@ -630,12 +630,12 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCWidth">Largura</sys:String>
     <sys:String x:Key="LOCHeight">Altura</sys:String>
     <sys:String x:Key="LOCSize">Tamanho</sys:String>
-    <sys:String x:Key="LOCFontSmall"></sys:String>
-    <sys:String x:Key="LOCFontNormal"></sys:String>
-    <sys:String x:Key="LOCFontLarge"></sys:String>
-    <sys:String x:Key="LOCFontLarger"></sys:String>
-    <sys:String x:Key="LOCFontLargest"></sys:String>
-    <sys:String x:Key="LOCDefault"></sys:String>
+    <sys:String x:Key="LOCFontSmall">Pequeno</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normal</sys:String>
+    <sys:String x:Key="LOCFontLarge">Grande</sys:String>
+    <sys:String x:Key="LOCFontLarger">Muito grande</sys:String>
+    <sys:String x:Key="LOCFontLargest">Enorme</sys:String>
+    <sys:String x:Key="LOCDefault">Padrão</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos adicionais do emulador</sys:String>
