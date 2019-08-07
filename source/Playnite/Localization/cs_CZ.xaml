@@ -278,7 +278,6 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importovat změny v knihovně automaticky</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importovat nainstalované hry</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount">Propojit účet</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importovat nenainstalované hry</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importovat všechny hry</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importovat všechny hry (je třeba buďto veřejný účet, nebo poskytnout API klíč)</sys:String>
