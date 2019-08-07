@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">English</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Language</sys:String>
@@ -137,10 +140,10 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCTagLabel">Tag</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tags</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">List</sys:String>
+    <sys:String x:Key="LOCListViewLabel">List View</sys:String>
     <sys:String x:Key="LOCCoversLabel">Covers</sys:String>
-    <sys:String x:Key="LOCGridLabel">Grid</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Details</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Grid View</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Details View</sys:String>
     <sys:String x:Key="LOCCustomLabel">Custom</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -251,11 +254,17 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Game fields to be displayed on details panel:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Item spacing</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Draw background</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Grid item border width</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Missing game icon source</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Indent game details</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Vertical spacing to game details</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Details view game list position</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Draw separator between panels</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Game cover image height</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Game list icon height</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Application font</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filter panel position</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Explorer panel position</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Cover art rendering</sys:String>
@@ -293,7 +302,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Includes Steam, Origin and others.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchronous image loading</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Improves scrolling smoothness of game lists in exchange for slower image load times.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Display game name if cover art is missing</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Show game name if cover art is missing</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Show game names on Grid view</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Show game icons on Details view list</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Show item count on group descriptions</sys:String>
@@ -303,6 +312,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Show Steam friends button</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Use game background image as window background</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Blur background</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">High Quality</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Darken background</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Show on Grid view</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
@@ -619,7 +629,15 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCAll">All</sys:String>
     <sys:String x:Key="LOCNone">None</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
-
+    <sys:String x:Key="LOCWidth">Width</sys:String>
+    <sys:String x:Key="LOCHeight">Height</sys:String>
+    <sys:String x:Key="LOCSize">Size</sys:String>
+    <sys:String x:Key="LOCFontSmall">Small</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normal</sys:String>
+    <sys:String x:Key="LOCFontLarge">Large</sys:String>
+    <sys:String x:Key="LOCFontLarger">Larger</sys:String>
+    <sys:String x:Key="LOCFontLargest">Largest</sys:String>
+    <sys:String x:Key="LOCDefault">Default</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -713,6 +731,23 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCPLaytime100to500">100 to 500 hours</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 to 1000 hours</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
+
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install extension?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Failed to install extension.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Do you want to install new extension? Existing installation will be overwritten.
+    
+{0}
+By {1}
+Version {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Failed to install theme.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Do you want to install new theme? Existing installation will be overwritten.
+    
+{0}
+By {1}
+Version {2}
+    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">You are about to leave Playnite and navigate to following web page using your default web browser. Do you want to continue?
     

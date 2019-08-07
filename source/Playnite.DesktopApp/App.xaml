@@ -2,15 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"             
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <Application.Resources>
         <ResourceDictionary>
-            <sys:Double x:Key="DesignWidth">1920</sys:Double>
-            <sys:Double x:Key="DesignHeight">1080</sys:Double>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Playnite;component/Localization/LocSource.xaml"/>
-                <ResourceDictionary Source="Converters.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/Fonts.xaml" />
+                <ResourceDictionary Source="GlobalResources.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Constants.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Common.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Media.xaml" />

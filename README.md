@@ -34,7 +34,7 @@ The list of known issues and solutions can be found [on the wiki](https://github
 
 Privacy Statement
 ---------
-Playnite doesn't store any user information and you don't need to provide any information to import installed games. Login is required only for the full library import of GOG, Origin and Battle.net games and in that case only the web session cookie is stored, the same way when you login to those services via the web browser.
+Playnite doesn't store any user information and you don't need to provide any information to import installed games. Account connection process is usually done via official login web forms and only the web session cookies or tokens are stored, the same way when you login to those services via the web browser.
 
 Questions, issues etc.
 ---------

@@ -166,52 +166,52 @@
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
     <SplashScreen Include="SplashScreen.png" />
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-Black.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-Bold.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-BoldItalic.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-ExtraLight.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-ExtraLightItalic.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-Italic.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-Light.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-LightItalic.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-Regular.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-SemiBold.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\TitilliumWeb\TitilliumWeb-SemiBoldItalic.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\PlayStation4\PlayStation4.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts\XboxOne\XBOXONE.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="..\..\references\Fonts\icofont.ttf">
+      <Link>Fonts\icofont.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\PlayStation4.ttf">
+      <Link>Fonts\PlayStation4.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-Black.ttf">
+      <Link>Fonts\TitilliumWeb-Black.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-Bold.ttf">
+      <Link>Fonts\TitilliumWeb-Bold.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-BoldItalic.ttf">
+      <Link>Fonts\TitilliumWeb-BoldItalic.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-ExtraLight.ttf">
+      <Link>Fonts\TitilliumWeb-ExtraLight.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-ExtraLightItalic.ttf">
+      <Link>Fonts\TitilliumWeb-ExtraLightItalic.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-Italic.ttf">
+      <Link>Fonts\TitilliumWeb-Italic.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-Light.ttf">
+      <Link>Fonts\TitilliumWeb-Light.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-LightItalic.ttf">
+      <Link>Fonts\TitilliumWeb-LightItalic.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-Regular.ttf">
+      <Link>Fonts\TitilliumWeb-Regular.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-SemiBold.ttf">
+      <Link>Fonts\TitilliumWeb-SemiBold.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\TitilliumWeb-SemiBoldItalic.ttf">
+      <Link>Fonts\TitilliumWeb-SemiBoldItalic.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\references\Fonts\XBOXONE.ttf">
+      <Link>Fonts\XBOXONE.ttf</Link>
+    </Resource>
     <None Include="app.manifest" />
     <None Include="Themes\Fullscreen\DefaultLime\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Themes\Fullscreen\Default\Fonts\IcoFonts\icofont.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Themes\Fullscreen\Default\Images\custom_cover_background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -224,10 +224,9 @@
     <None Include="Themes\Fullscreen\Default\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Page Include="Converters.xaml">
+    <Page Include="GlobalResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -288,11 +287,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Themes\Fullscreen\Default\Images\ButtonPrompts\PlayStation\PlayStation.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Fonts.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -485,15 +479,16 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)
-xcopy "$(SolutionDir)\Plugins\SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\SteamLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\GogLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\GogLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\OriginLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BattleNetLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\BethesdaLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BethesdaLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\EpicLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\EpicLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\GogLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\GogLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\ItchioLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\ItchioLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\OriginLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\SteamLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
 xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y</PostBuildEvent>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
 </Project>

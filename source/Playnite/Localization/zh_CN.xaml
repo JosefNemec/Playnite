@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">简体中文</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">语言</sys:String>
@@ -136,10 +139,10 @@
     <sys:String x:Key="LOCTagLabel">标签</sys:String>
     <sys:String x:Key="LOCTagsLabel">标签</sys:String>
     <sys:String x:Key="LOCZoomLabel">放大</sys:String>
-    <sys:String x:Key="LOCListLabel">列表</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">封面</sys:String>
-    <sys:String x:Key="LOCGridLabel">网格</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">详细信息</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">自定义</sys:String>
     <sys:String x:Key="LOCURLLabel">网址</sys:String>
     <sys:String x:Key="LOCPatronsLabel">赞助这</sys:String>
@@ -195,6 +198,7 @@
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">官方商店 > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">请选择哪些字段应该由Playnite自动填充，以及应使用哪些源来获取数据</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">官方商店:
 只使用官方商店的数据
     
@@ -298,8 +302,11 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">遇到卡顿或类似的用户界面问题时使用</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">禁用DPI缩放</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">显示Steam好友按钮</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">显示背景图片</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">延伸整个应用程序窗口</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">主题</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">主题简介</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">全屏主题</sys:String>
@@ -614,6 +621,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCAll">全部</sys:String>
     <sys:String x:Key="LOCNone">无</sys:String>
     <sys:String x:Key="LOCNotifications">通知</sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
@@ -709,6 +719,13 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCPLaytime500to1000">500 至 1000 小时</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">您即将离开Playnite，并使用您的默认网页浏览器来浏览网页。您想要继续吗？
     
 {0}</sys:String>
@@ -725,9 +742,9 @@ IGDB > 官方商店：
 注意，账户名称选项只能用于在 GOG 隐私设置中设置游戏库公开可见的帐户。</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">选择通过身份验证的用户或指定帐户的可信URL名称以同步您的完整库。库为私密的帐户必须指定链接到该Steam帐户的API密钥</sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">帐户URL名称</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">已认证用户</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">首次设置未完成。Playentin 现在将重新启动到桌面模式以完成相关步骤。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近启动</sys:String>

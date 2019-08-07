@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">Français</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
@@ -136,10 +139,10 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCTagLabel">Étiquettes</sys:String>
     <sys:String x:Key="LOCTagsLabel">Étiquette(s)</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Affichage en liste</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
-    <sys:String x:Key="LOCGridLabel">Affichage en grille</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Affichage détaillé</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Personnalisé</sys:String>
     <sys:String x:Key="LOCURLLabel">Lien</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -194,6 +197,7 @@ Résultats dans : -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Boutique Officielle</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Boutique Officielle> IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Veuillez sélectionner les champs qui doivent être automatiquement remplis par Playnite et les sources à utiliser pour obtenir les données.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Vous pouvez cliquer sur le logo ci-dessus et contribuer à la mise à jour de la base de données igdb.com afin d'améliorer les données utilisées par Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Boutique:
 Utiliser uniquement les données fournies par les boutiques officielles.
 
@@ -297,8 +301,11 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Afficher les images de fond</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow">Étendre sur toute la fenêtre d'application</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utiliser les image de fond des jeux comme arrière-plan de fenêtre</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Flouter les images de fond</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Haute qualité</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Assombrir les images de fond</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Utiliser en mode d'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profil du thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Thème plein écran</sys:String>
@@ -590,7 +597,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPlayed">Commencé</sys:String>
     <sys:String x:Key="LOCBeaten">Terminé</sys:String>
     <sys:String x:Key="LOCCompleted">Terminé (100%)</sys:String>
-    <sys:String x:Key="LOCCompletionStatus">Statut</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Progression</sys:String>
     <sys:String x:Key="LOCUserScore">Ma note</sys:String>
     <sys:String x:Key="LOCCriticScore">Note presse</sys:String>
     <sys:String x:Key="LOCCommunityScore">Note communauté</sys:String>
@@ -611,6 +618,9 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCAll">[Tout]</sys:String>
     <sys:String x:Key="LOCNone">Indéterminé</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
@@ -706,6 +716,22 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime500to1000">500 à 1000 heures</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">L'installation de l'extension a échoué.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Voulez-vous installer une nouvelle extension ? L'installation existante sera supprimée.
+    
+{0}
+Par {1}
+Version {2}    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">L'installation du thème a échoué.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Voulez-vous installer un nouveau thème? L'installation existante sera supprimée.
+    
+{0}
+Par {1}
+Version {2}
+    </sys:String>
+
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Vous êtes sur le point de quitter Playnite pour ouvrir la page web suivante à l'aide de votre navigateur par défaut. Voulez-vous continuer ?
     
 {0}</sys:String>
@@ -721,10 +747,9 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous directement à votre compte ou indiquez votre nom d'utilisateur pour synchroniser la bibliothèque. Notez que le nom d'utilisateur ne peut être utilisé que si les paramètres de visibilité du compte sont réglés sur "public".</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Sélectionnez le nom d'utilisateur de votre compte ou indiquez l'URL personnalisée de votre profil pour synchroniser la bibliothèque. Les comptes dont la visibilité des jeux est réglée sur "personne" nécessitent également d'indiquer leur clé API.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">URL perso.</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Nom d'utilisateur</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Le compte est privé et requiert la clé API.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">La configuration initiale n'est pas achevée. Playnite va maintenant redémarrer en mode Bureau pour continuer la procédure.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Lancés récemment</sys:String>

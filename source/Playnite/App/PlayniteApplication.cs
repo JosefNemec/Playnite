@@ -22,6 +22,7 @@ using Playnite.Common;
 using System.ComponentModel;
 using Playnite.Windows;
 using Polly;
+using System.Windows.Media;
 
 namespace Playnite
 {
@@ -139,7 +140,10 @@ namespace Playnite
             // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
             if (customTheme != null)
             {
-                ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
+                if (!ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode))
+                {
+                    ThemeManager.SetCurrentTheme(null);
+                }
             }
 
             try
@@ -149,6 +153,56 @@ namespace Playnite
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+            }
+
+            if (mode == ApplicationMode.Desktop)
+            {
+                try
+                {
+                    if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.FontFamilyName))
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontFamily", new FontFamily(AppSettings.FontFamilyName));
+                    }
+                    else
+                    {
+                        logger.Error($"Cannot set font {AppSettings.FontFamilyName}, font not found.");
+                    }
+
+                    if (AppSettings.FontSize > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSize", AppSettings.FontSize);
+                    }
+
+                    if (AppSettings.FontSizeSmall > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeSmall", AppSettings.FontSizeSmall);
+                    }
+
+                    if (AppSettings.FontSizeLarge > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLarge", AppSettings.FontSizeLarge);
+                    }
+
+                    if (AppSettings.FontSizeLarger > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLarger", AppSettings.FontSizeLarger);
+                    }
+
+                    if (AppSettings.FontSizeLargest > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLargest", AppSettings.FontSizeLargest);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
+                }
             }
         }
 
@@ -427,7 +481,7 @@ namespace Playnite
             resourcesReleased = true;
         }
 
-        public async void StartUpdateCheckerAsync()
+        public async Task StartUpdateCheckerAsync()
         {
             if (PlayniteEnvironment.InOfflineMode)
             {
@@ -440,53 +494,57 @@ namespace Playnite
                 await GlobalTaskHandler.ProgressTask;
             }
 
-            var updater = new Updater(this);
-
-            while (true)
+#pragma warning disable CS4014
+            Task.Run(async () =>
             {
-                try
+                var updater = new Updater(this);
+                while (true)
                 {
-                    if (updater.IsUpdateAvailable)
+                    try
                     {
-                        var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
-                        var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
-                        if (!Current.IsActive)
+                        if (updater.IsUpdateAvailable)
                         {
-                            ShowWindowsNotification(updateTitle, updateBody, () =>
+                            var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
+                            var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
+                            if (!Current.IsActive)
                             {
-                                Restore();
-                                new UpdateViewModel(
-                                    updater,
-                                    new UpdateWindowFactory(),
-                                    new ResourceProvider(),
-                                    Dialogs).OpenView();
-                            });
+                                ShowWindowsNotification(updateTitle, updateBody, () =>
+                                {
+                                    Restore();
+                                    new UpdateViewModel(
+                                        updater,
+                                        new UpdateWindowFactory(),
+                                        new ResourceProvider(),
+                                        Dialogs).OpenView();
+                                });
+                            }
+
+                            Api.Notifications.Add(
+                                new NotificationMessage("UpdateAvailable",
+                                updateBody,
+                                NotificationType.Info, () =>
+                                {
+                                    new UpdateViewModel(
+                                        updater,
+                                        new UpdateWindowFactory(),
+                                        new ResourceProvider(),
+                                        Dialogs).OpenView();
+                                }));
+                            return;
                         }
-
-                        Api.Notifications.Add(
-                            new NotificationMessage("UpdateAvailable",
-                            updateBody,
-                            NotificationType.Info, () =>
-                            {
-                                new UpdateViewModel(
-                                    updater,
-                                    new UpdateWindowFactory(),
-                                    new ResourceProvider(),
-                                    Dialogs).OpenView();
-                            }));
-                        return;
                     }
-                }
-                catch (Exception exc)
-                {
-                    logger.Warn(exc, "Failed to process update.");
-                }
+                    catch (Exception exc)
+                    {
+                        logger.Warn(exc, "Failed to process update.");
+                    }
 
-                await Task.Delay(Common.Timer.HoursToMilliseconds(4));
-            }
+                    await Task.Delay(Common.Timer.HoursToMilliseconds(4));
+                }
+            });
+#pragma warning restore CS4014
         }
 
-        public async void SendUsageDataAsync()
+        public async Task SendUsageDataAsync()
         {
             if (PlayniteEnvironment.InOfflineMode)
             {
@@ -509,6 +567,11 @@ namespace Playnite
 
         public void DisableDpiAwareness()
         {
+            if (Computer.WindowsVersion == WindowsVersion.Win10 && Computer.GetWindowsReleaseId() >= 1903)
+            {
+                return;
+            }
+
             try
             {
                 logger.Info("Disabling DPI awareness.");
@@ -517,23 +580,25 @@ namespace Playnite
                 setDpiHwnd?.SetValue(null, false);
 
                 var setProcessDpiAwareness = typeof(HwndTarget).GetProperty("ProcessDpiAwareness", BindingFlags.Static | BindingFlags.NonPublic);
-                if (Computer.WindowsVersion == WindowsVersion.Win10 && Computer.GetWindowsReleaseId() >= 1903)
-                {
-                    Assembly assembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName.StartsWith("WindowsBase"));
-                    var enumType = assembly.GetType("MS.Win32.NativeMethods+PROCESS_DPI_AWARENESS");
-                    foreach (var enumVal in Enum.GetValues(enumType))
-                    {
-                        if (enumVal.ToString() == "PROCESS_SYSTEM_DPI_AWARE")
-                        {
-                            setProcessDpiAwareness?.SetValue(null, enumVal, null);
-                            break;
-                        }
-                    }
-                }
-                else
-                {
+
+                // Doesn't work
+                //if (Computer.WindowsVersion == WindowsVersion.Win10 && Computer.GetWindowsReleaseId() >= 1903)
+                //{
+                //    Assembly assembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName.StartsWith("WindowsBase"));
+                //    var enumType = assembly.GetType("MS.Win32.NativeMethods+PROCESS_DPI_AWARENESS");
+                //    foreach (var enumVal in Enum.GetValues(enumType))
+                //    {
+                //        if (enumVal.ToString() == "PROCESS_SYSTEM_DPI_AWARE")
+                //        {
+                //            setProcessDpiAwareness?.SetValue(null, enumVal, null);
+                //            break;
+                //        }
+                //    }
+                //}
+                //else
+                //{
                     setProcessDpiAwareness?.SetValue(null, 1, null);
-                }
+                //}
 
                 var setDpi = typeof(UIElement).GetField("_setDpi", BindingFlags.Static | BindingFlags.NonPublic);
                 setDpi?.SetValue(null, false);

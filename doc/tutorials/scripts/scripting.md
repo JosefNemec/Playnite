@@ -13,18 +13,18 @@ Playnite can be extended with additional functionality using scripts. [PowerShel
 Accessing Playnite API
 ---------------------
 
-Playnite API is available to scripts via `PlayniteAPI` variable. Variable provides [IPlayniteAPI](xref:Playnite.SDK.IPlayniteAPI) methods and interfaces. To get list of all games in library use [Database](xref:Playnite.SDK.IPlayniteAPI.Database) property from `IPlayniteAPI`, method [GetGames](xref:Playnite.SDK.IGameDatabaseAPI.GetGames) returns list of all games.
+Playnite API is available to scripts via `PlayniteAPI` variable. Variable provides [IPlayniteAPI](xref:Playnite.SDK.IPlayniteAPI) methods and interfaces. For example to get list of all games in library use [Database](xref:Playnite.SDK.IPlayniteAPI.Database) property from `IPlayniteAPI` and [Games](xref:Playnite.SDK.IGameDatabase.Games) collection.
 
 **PowerShell**:
 
 ```powershell
-$PlayniteAPI.Database.GetGames()
+$PlayniteAPI.Database.Games
 ```
 
 **IronPython**:
 
 ```python
-PlayniteApi.Database.GetGames()
+PlayniteApi.Database.Games
 ```
 
 To display number of games use `Dialogs` property from `PlayniteApi` variable. `Dialogs` provides [IDialogsFactory](xref:Playnite.SDK.IDialogsFactory) interface containing method for interaction with user. `ShowMessage` method will show simple text message to user.
@@ -32,14 +32,14 @@ To display number of games use `Dialogs` property from `PlayniteApi` variable. `
 **PowerShell**:
 
 ```powershell
-$gameCount = $PlayniteApi.Database.GetGames().Count
+$gameCount = $PlayniteApi.Database.Games.Count
 $PlayniteApi.Dialogs.ShowMessage($gameCount)
 ```
 
 **IronPython**:
 
 ```python
-game_count = PlayniteApi.Database.GetGames().Count
+game_count = PlayniteApi.Database.Games.Count
 PlayniteApi.Dialogs.ShowMessage(str(game_count))
 ```
 
@@ -53,7 +53,7 @@ Displays number of games in database when executing `Show Game Count` menu from 
 ```powershell
 function global:DisplayGameCount()
 {
-    $gameCount = $PlayniteApi.Database.GetGames().Count
+    $gameCount = $PlayniteApi.Database.Games.Count
     $PlayniteApi.Dialogs.ShowMessage($gameCount)
 }
 ```
@@ -62,7 +62,7 @@ function global:DisplayGameCount()
 
 ```python
 def display_game_count():
-    game_count = PlayniteApi.Database.GetGames().Count
+    game_count = PlayniteApi.Database.Games.Count
     PlayniteApi.Dialogs.ShowMessage(str(game_count))
 ```
 

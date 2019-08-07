@@ -3,9 +3,8 @@ Library Plugins
 
 To implement library plugin:
 
-* Create new public class describing [ILibraryPlugin](xref:Playnite.SDK.Plugins.ILibraryPlugin) interface.
-* Add constructor accepting single [IPlayniteAPI](xref:Playnite.SDK.IPlayniteAPI) argument.
-* Implement mandatory members from `ILibraryPlugin`.
+* Create new public class inheriting from [LibraryPlugin](xref:Playnite.SDK.Plugins.LibraryPlugin) abstract class.
+* Add implementation for mandatory abstract members.
 
 Mandatory members
 ---------------------
@@ -25,66 +24,52 @@ Mandatory members
 | PlayAction | Game action used to start the game. Only if game is reported as installed via `State` property. |
 | InstallDirectory | Installation location. Only if game is reported as installed via `State` property.  |
 
-Optional members
----------------------
-
-Return null or specify empty method if you don't want to provide implementation for these.
-
-| Member | Description |
-| -- | -- |
-| Client | Returns client application for this library. If present adds entry into `Open 3rd party client` menu. |
-| LibraryIcon | Default library icon shown if no game icon is available. |
-| GetSettings | [Plugin settings object.](pluginSettings.md) |
-| GetSettingsView | [Plugin settings view.](pluginSettings.md) |
-| GetGameController | Custom controller handling actions like game execution and installation. |
-| GetMetadataDownloader | Custom metadata downloader used when `Official Store` source is used when downloading metadata. |
+You can implement additional functionality by overriding virtual methods from [LibraryPlugin](xref:Playnite.SDK.Plugins.LibraryPlugin) base class.
 
 Example plugin
 ---------------------
 
 ```csharp
-public class LibraryPlugin : ILibraryPlugin
+public class LibraryPlugin : LibraryPlugin
 {
-    public LibraryPlugin(IPlayniteAPI api)
+    public override Guid Id { get; } = Guid.Parse("D625A3B7-1AA4-41CB-9CD7-74448D28E99B");
+
+    public override string Name { get; } = "Test Library";
+
+    public TestGameLibrary(IPlayniteAPI api) : base (api)
     {
     }
 
-    public void Dispose()
+    public override IEnumerable<GameInfo> GetGames()
     {
-        // Add code to be executed when plugin is being unloaded.
-    }
-
-    public Guid Id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FCC");
-
-    public string Name { get; } = "LibraryPlugin";
-
-    public ILibraryClient Client { get; }
-
-    public string LibraryIcon { get; }
-
-    public ISettings GetSettings(bool firstRunSettings)
-    {
-        return null;
-    }
-
-    public UserControl GetSettingsView(bool firstRunView)
-    {
-        return null
-    }
-
-    public IEnumerable<Game> GetGames()
-    {
-        // Return list of library games.
-    }
-
-    public IGameController GetGameController(Game game)
-    {
-        return null;
-    }
-
-    public ILibraryMetadataProvider GetMetadataDownloader()
-    {
-        return null;        
+        return new List<GameInfo>()
+        {
+            new GameInfo()
+            {
+                Name = "Notepad",
+                GameId = "notepad",
+                PlayAction = new GameAction()
+                {
+                    Type = GameActionType.File,
+                    Path = "notepad.exe"
+                },
+                IsInstalled = true,
+                Icon = @"c:\Windows\notepad.exe"
+            },
+            new GameInfo()
+            {
+                Name = "Calculator",
+                GameId = "calc",
+                PlayAction = new GameAction()
+                {
+                    Type = GameActionType.File,
+                    Path = "calc.exe"
+                },
+                IsInstalled = true,
+                Icon = @"https://playnite.link/applogo.png",
+                BackgroundImage =  @"https://playnite.link/applogo.png"
+            }
+        };
     }
 }
 ```

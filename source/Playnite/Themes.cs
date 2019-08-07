@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using Playnite.Settings;
 using Playnite.Common;
 using Playnite.SDK;
+using System.IO.Compression;
 
 namespace Playnite
 {
@@ -18,7 +19,10 @@ namespace Playnite
     {
         public string Name { get; set; }
         public string Author { get; set; }
+        public string Website { get; set; }
         public string Version { get; set; }
+        public ApplicationMode Mode { get; set; }
+        public string ThemeApiVersion { get; set; } = ThemeManager.ThemeApiVersion.ToString(3);
         public string DirectoryPath { get; set; }
         public string DirectoryName { get; set; }
 
@@ -34,7 +38,9 @@ namespace Playnite
     public class ThemeManager
     {
         private static ILogger logger = LogManager.GetLogger();
-        private const string themeManifestFileName = "theme.yaml";
+        public const string ThemeManifestFileName = "theme.yaml";
+        public const string PackedThemeFileExtention = ".pthm";
+        public static System.Version ThemeApiVersion => new System.Version("1.1.0");
         public static ThemeDescription CurrentTheme { get; private set; }
         public static ThemeDescription DefaultTheme { get; private set; } 
 
@@ -92,8 +98,14 @@ namespace Playnite
             }
         }
 
-        public static void ApplyTheme(Application app, ThemeDescription theme, ApplicationMode mode)
+        public static bool ApplyTheme(Application app, ThemeDescription theme, ApplicationMode mode)
         {
+            if ((new System.Version(theme.ThemeApiVersion).Major != ThemeApiVersion.Major))
+            {
+                logger.Error($"Failed to apply {theme.Name} theme, unsupported API version {theme.ThemeApiVersion}.");
+                return false;
+            }
+
             var allLoaded = true;
             var loadedXamls = new List<ResourceDictionary>();
             var acceptableXamls = new List<string>();
@@ -138,7 +150,10 @@ namespace Playnite
             if (allLoaded)
             {
                 loadedXamls.ForEach(a => app.Resources.MergedDictionaries.Add(a));
+                return true;
             }
+
+            return false;
         }
 
         public static List<ThemeDescription> GetAvailableThemes(ApplicationMode mode)
@@ -152,7 +167,7 @@ namespace Playnite
             {
                 foreach (var dir in Directory.GetDirectories(userPath))
                 {
-                    var descriptorPath = Path.Combine(dir, themeManifestFileName);
+                    var descriptorPath = Path.Combine(dir, ThemeManifestFileName);
                     if (File.Exists(descriptorPath))
                     {
                         var info = new FileInfo(descriptorPath);
@@ -167,7 +182,7 @@ namespace Playnite
             {
                 foreach (var dir in Directory.GetDirectories(programPath))
                 {
-                    var descriptorPath = Path.Combine(dir, themeManifestFileName);
+                    var descriptorPath = Path.Combine(dir, ThemeManifestFileName);
                     if (File.Exists(descriptorPath))
                     {
                         var info = new FileInfo(descriptorPath);
@@ -180,6 +195,32 @@ namespace Playnite
             }
 
             return themes;
+        }
+
+        public static ThemeDescription GetDescriptionFromPackedFile(string path)
+        {
+            using (var zip = ZipFile.OpenRead(path))
+            {
+                var manifest = zip.GetEntry(ThemeManifestFileName);
+                using (var logStream = manifest.Open())
+                {
+                    using (TextReader tr = new StreamReader(logStream))
+                    {
+                        return Serialization.FromYaml<ThemeDescription>(tr.ReadToEnd());
+                    }
+                }
+
+            }
+        }
+
+        public static void InstallFromPackedFile(string path)
+        {
+            var desc = GetDescriptionFromPackedFile(path);
+            var installDir = Paths.GetSafeFilename(desc.Name).Replace(" ", string.Empty)+ "_" + (desc.Name + desc.Author).MD5();
+            var targetDir = PlayniteSettings.IsPortable ? PlaynitePaths.ThemesProgramPath : PlaynitePaths.ThemesUserDataPath;
+            targetDir = Path.Combine(targetDir, desc.Mode.GetDescription(), installDir);
+            FileSystem.CreateDirectory(targetDir, true);
+            ZipFile.ExtractToDirectory(path, targetDir);
         }
     }
 }

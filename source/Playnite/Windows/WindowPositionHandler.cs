@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using Playnite;
+using Playnite.Common;
 using Playnite.Settings;
 
 namespace Playnite.Windows
@@ -138,11 +139,6 @@ namespace Playnite.Windows
                 return;
             }
 
-            if (Window.Left < 0 || Window.Top < 0)
-            {
-                return;
-            }
-
             MakeSureConfigEntryExists();
             Configuration.Positions[WindowName].Position = new WindowPosition.Point()
             {
@@ -166,8 +162,24 @@ namespace Playnite.Windows
 
                 if (data.Position != null)
                 {
-                    Window.Left = data.Position.X;
-                    Window.Top = data.Position.Y;
+                    if (data.State == WindowState.Maximized)
+                    {
+                        Window.Left = data.Position.X;
+                        Window.Top = data.Position.Y;
+                    }
+                    else
+                    {
+                        // Make sure that position is part of at least one connected screen
+                        foreach (var monitor in Computer.GetMonitors())
+                        {
+                            if (monitor.WorkingArea.Contains((int)data.Position.X, (int)data.Position.Y))
+                            {
+                                Window.Left = data.Position.X;
+                                Window.Top = data.Position.Y;
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 if (data.Size != null)

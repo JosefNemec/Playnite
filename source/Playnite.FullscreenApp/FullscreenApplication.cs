@@ -61,13 +61,14 @@ namespace Playnite.FullscreenApp
             }
 
             ConfigureApplication();
-            DisableDpiAwareness();
             InstantiateApp();
             MigrateDatabase();
             SetupInputs(true);
             OpenMainViewAsync();
+#pragma warning disable CS4014
             StartUpdateCheckerAsync();
             SendUsageDataAsync();
+#pragma warning restore CS4014
             ProcessArguments();
         }
 

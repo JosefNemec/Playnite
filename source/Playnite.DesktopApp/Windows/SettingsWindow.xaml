@@ -76,36 +76,42 @@
                                 <sys:Int32>2</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
-                        <ListBoxItem Content="{DynamicResource LOCSettingsGameDetailsLabel}"
+                        <ListBoxItem Content="{DynamicResource LOCDetailsViewLabel}"
                                      Margin="15,0,0,0">
                             <ListBoxItem.Tag>
                                 <sys:Int32>3</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
-                        <ListBoxItem Content="{DynamicResource LOCSettingsLayoutLabel}"
+                        <ListBoxItem Content="{DynamicResource LOCGridViewLabel}"
                                      Margin="15,0,0,0">
                             <ListBoxItem.Tag>
                                 <sys:Int32>4</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
-                        <ListBoxItem Content="{DynamicResource LOCSettingsAdvancedLabel}">
+                        <ListBoxItem Content="{DynamicResource LOCSettingsLayoutLabel}"
+                                     Margin="15,0,0,0">
                             <ListBoxItem.Tag>
                                 <sys:Int32>5</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
-                        <ListBoxItem Content="{DynamicResource LOCSettingsInputLabel}">
+                        <ListBoxItem Content="{DynamicResource LOCSettingsAdvancedLabel}">
                             <ListBoxItem.Tag>
                                 <sys:Int32>6</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
-                        <ListBoxItem Content="{DynamicResource LOCExtensions}">
+                        <ListBoxItem Content="{DynamicResource LOCSettingsInputLabel}">
                             <ListBoxItem.Tag>
                                 <sys:Int32>7</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
-                        <ListBoxItem Content="{DynamicResource LOCSettingsMetadataLabel}">
+                        <ListBoxItem Content="{DynamicResource LOCExtensions}">
                             <ListBoxItem.Tag>
                                 <sys:Int32>8</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsMetadataLabel}">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>9</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
                     </ListBox>
@@ -230,7 +236,7 @@
                                     <ContentControl VerticalAlignment="Center"
                                                     Content="{DynamicResource LOCSettingsSkin}"                                                    
                                                     ContentStringFormat="{}{0} *"/>
-                                    <ComboBox Margin="10,0,0,0"
+                                    <ComboBox Margin="10,0,0,0" MinWidth="150"
                                               ItemsSource="{Binding AvailableThemes}"
                                               SelectedValue="{Binding Settings.Theme}"
                                               SelectedValuePath="DirectoryName"
@@ -250,7 +256,14 @@
                                     </TextBlock>
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0" >
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
+                                    <ContentControl Content="{DynamicResource LOCSettingsInterfaceFont}" VerticalAlignment="Center"
+                                                    ContentStringFormat="{}{0} *" />
+                                    <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
+                                              SelectedValue="{Binding Settings.FontFamilyName}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" >
                                     <CheckBox Name="CheckEnableTray" VerticalAlignment="Center"
                                                   IsChecked="{Binding Settings.EnableTray}"
                                                   Content="{DynamicResource LOCSettingsShowTray}"
@@ -275,13 +288,7 @@
                                 <CheckBox Name="CheckCloseToTray" Content="{DynamicResource LOCSettingsCloseToTray}" Margin="20,5,5,5"
                                         IsChecked="{Binding Settings.CloseToTray}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}" />
-
-                                <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}" Margin="0,15,0,0"
-                                          Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
-                                          Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
-                                          Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
+                                
                                 <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
                                           Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundWindowImage}" Margin="0,15,0,0"
@@ -290,7 +297,7 @@
                                             IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
                                     <CheckBox Content="{DynamicResource LOCSettingsBlurWindowBackgrounImage}" 
                                               IsChecked="{Binding Settings.BlurWindowBackgroundImage}"/>
-                                    <Slider Minimum="0" Maximum="100"
+                                    <Slider Minimum="0" Maximum="50" TickFrequency="1" IsSnapToTickEnabled="True"
                                             Value="{Binding Settings.BackgroundImageBlurAmount}"
                                             VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
                                             IsEnabled="{Binding Settings.BlurWindowBackgroundImage}" />
@@ -359,12 +366,66 @@
                                 
                                 <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
                                           Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
+
+                                <StackPanel Orientation="Horizontal"  Margin="0,20,0,0">
+                                    <ContentControl Content="Font sizes:" Margin="0,0,10,0"
+                                                    ContentStringFormat="{}{0} *" VerticalAlignment="Top" />
+                                    <UniformGrid Rows="2">
+                                        <UniformGrid.Resources>
+                                            <Style TargetType="pctrls:NullableIntBox" BasedOn="{StaticResource {x:Type pctrls:NullableIntBox}}">
+                                                <Setter Property="Margin" Value="5,0,5,0" />
+                                                <Setter Property="Width" Value="50" />
+                                                <Setter Property="MinValue" Value="9" />
+                                                <Setter Property="MaxValue" Value="100" />
+                                            </Style>
+                                        </UniformGrid.Resources>
+                                        <TextBlock Text="{DynamicResource LOCFontSmall}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontNormal}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontLarge}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontLarger}" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{DynamicResource LOCFontLargest}" Margin="5,0,5,0"/>
+
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSizeSmall}"/>
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSize}"/>
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLarge}"/>
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLarger}"/>
+                                        <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLargest}"/>
+                                    </UniformGrid>
+
+                                    <Button Content="{DynamicResource LOCDefault}" VerticalAlignment="Bottom"
+                                            Margin="10,0,0,0" Command="{Binding SetDefaultFontSizes}"/>
+                                </StackPanel>
                             </StackPanel>
                         </TabItem>
 
-                        <!-- Game Details -->
+                        <!-- Details view -->
                         <TabItem>
                             <StackPanel>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowIconList}"
+                                          Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
+                                
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,15">
+                                    <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" VerticalAlignment="Center"
+                                              Content="{DynamicResource LOCSettingsIndentGameDetails}" />
+                                    <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+                                                           Value="{Binding Settings.GameDetailsIndentation}"
+                                                           IsEnabled="{Binding Settings.IndentGameDetails}" />
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="{DynamicResource LOCSettingsGameDetailsCoverHeight}"/>
+                                    <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+                                                           Value="{Binding Settings.GameDetailsCoverHeight}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="{DynamicResource LOCSettingsGameDetailsListIconSize}"/>
+                                    <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+                                                           Value="{Binding Settings.DetailsViewListIconSize}" />
+                                </StackPanel>
+
                                 <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
                                 <UniformGrid Columns="3" VerticalAlignment="Top">
                                     <CheckBox Content="{DynamicResource LOCGameIconTitle}"
@@ -442,18 +503,9 @@
                                 </UniformGrid>
                             </StackPanel>
                         </TabItem>
-
-                        <!-- Layout -->
+                        
+                        <!-- Grid View -->
                         <TabItem>
-                            <TabItem.Resources>
-                                <x:Array x:Key="LeftRightDockOptions" Type="{x:Type sys:Enum}">
-                                    <sysCtrls:Dock>Left</sysCtrls:Dock>
-                                    <sysCtrls:Dock>Right</sysCtrls:Dock>
-                                </x:Array>
-                                <DataTemplate x:Key="LeftRightComboTemplate">
-                                    <TextBlock Text="{Binding Converter={pcon:DockToStringConverter}}"/>
-                                </DataTemplate>
-                            </TabItem.Resources>
                             <StackPanel>
                                 <StackPanel.Resources>
                                     <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
@@ -472,56 +524,17 @@
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
                                 </StackPanel.Resources>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Text="{DynamicResource LOCSettingsFilterPanelPosition}"
-                                            VerticalAlignment="Center"
-                                           Grid.Column="0" Grid.Row="0" />
-                                    <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
-                                            ItemsSource="{StaticResource LeftRightDockOptions}"
-                                            SelectedValue="{Binding Settings.FilterPanelPosition}"
-                                            Margin="5" Grid.Column="1" Grid.Row="0" />
-
-                                    <TextBlock Text="{DynamicResource LOCSettingsExplorerPanelPosition}"
-                                            VerticalAlignment="Center"
-                                           Grid.Column="0" Grid.Row="1"  />
-                                    <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
-                                            ItemsSource="{StaticResource LeftRightDockOptions}"
-                                            SelectedValue="{Binding Settings.ExplorerPanelPosition}"
-                                            Margin="5" Grid.Column="1" Grid.Row="1" />
-
-                                    <TextBlock Text="{DynamicResource LOCSettingsGridViewDetailsPosition}"
-                                            VerticalAlignment="Center"
-                                           Grid.Column="0" Grid.Row="2"  />
-                                    <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
-                                            ItemsSource="{StaticResource LeftRightDockOptions}"
-                                            SelectedValue="{Binding Settings.GridViewDetailsPosition}"
-                                            Margin="5" Grid.Column="1" Grid.Row="2" />
-                                </Grid>
-
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" VerticalAlignment="Center"
-                                              Content="{DynamicResource LOCSettingsIndentGameDetails}" />
-                                    <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
-                                                           Value="{Binding Settings.GameDetailsIndentation}"
-                                                           IsEnabled="{Binding Settings.IndentGameDetails}" />
-
-                                </StackPanel>
+                                
+                                <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}"
+                                          Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
+                                          Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
 
                                 <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />
                                 <Separator />
 
 
-                                <controls:GridEx ColumnCount="2" RowCount="4"
+                                <controls:GridEx ColumnCount="2" RowCount="5"
                                       Margin="0,10,0,0">
                                     <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
                                                VerticalAlignment="Center" Margin="0,10,0,10"
@@ -575,7 +588,100 @@
                                                            HorizontalAlignment="Left" VerticalAlignment="Center"
                                                            Value="{Binding Settings.GridItemMargin}"
                                                            Grid.Column="1" Grid.Row="3"/>
+
+                                    <CheckBox Content="{DynamicResource LOCSettingsGridItemDrawBackground}"
+                                              Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0"
+                                              IsChecked="{Binding Settings.ShowGridItemBackground}"/>
                                 </controls:GridEx>
+                            </StackPanel>
+                        </TabItem>
+
+                        <!-- Layout -->
+                        <TabItem>
+                            <TabItem.Resources>
+                                <x:Array x:Key="LeftRightDockOptions" Type="{x:Type sys:Enum}">
+                                    <sysCtrls:Dock>Left</sysCtrls:Dock>
+                                    <sysCtrls:Dock>Right</sysCtrls:Dock>
+                                </x:Array>
+                                <DataTemplate x:Key="LeftRightComboTemplate">
+                                    <TextBlock Text="{Binding Converter={pcon:DockToStringConverter}}"/>
+                                </DataTemplate>
+                            </TabItem.Resources>
+
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="{DynamicResource LOCSettingsFilterPanelPosition}"
+                                            VerticalAlignment="Center"
+                                           Grid.Column="0" Grid.Row="0" />
+                                    <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
+                                            ItemsSource="{StaticResource LeftRightDockOptions}"
+                                            SelectedValue="{Binding Settings.FilterPanelPosition}"
+                                            Margin="5" Grid.Column="1" Grid.Row="0" />
+                                    <TextBlock Text="{DynamicResource LOCWidth}" Grid.Column="2" Grid.Row="0"
+                                               VerticalAlignment="Center" Margin="15,0,5,0"/>
+                                    <pctrls:NullableIntBox MinValue="150" MaxValue="1024" Width="50"
+                                                           Grid.Column="3" Grid.Row="0"
+                                                           Value="{Binding Settings.FilterPanelWitdh}"
+                                                           VerticalAlignment="Center"/>
+
+                                    <TextBlock Text="{DynamicResource LOCSettingsExplorerPanelPosition}"
+                                            VerticalAlignment="Center"
+                                           Grid.Column="0" Grid.Row="1"  />
+                                    <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
+                                            ItemsSource="{StaticResource LeftRightDockOptions}"
+                                            SelectedValue="{Binding Settings.ExplorerPanelPosition}"
+                                            Margin="5" Grid.Column="1" Grid.Row="1" />
+                                    <TextBlock Text="{DynamicResource LOCWidth}" Grid.Column="2" Grid.Row="1"
+                                               VerticalAlignment="Center" Margin="15,0,5,0"/>
+                                    <pctrls:NullableIntBox MinValue="150" MaxValue="1024" Width="50"
+                                                           Grid.Column="3" Grid.Row="1"
+                                                           Value="{Binding Settings.ExplorerPanelWitdh}"
+                                                           VerticalAlignment="Center"/>
+
+                                    <TextBlock Text="{DynamicResource LOCSettingsGridViewDetailsPosition}"
+                                            VerticalAlignment="Center"
+                                           Grid.Column="0" Grid.Row="2"  />
+                                    <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
+                                            ItemsSource="{StaticResource LeftRightDockOptions}"
+                                            SelectedValue="{Binding Settings.GridViewDetailsPosition}"
+                                            Margin="5" Grid.Column="1" Grid.Row="2" />
+                                    <TextBlock Text="{DynamicResource LOCWidth}" Grid.Column="2" Grid.Row="2"
+                                               VerticalAlignment="Center" Margin="15,0,5,0"/>
+                                    <pctrls:NullableIntBox MinValue="150" MaxValue="1024" Width="50"
+                                                           Grid.Column="3" Grid.Row="2"
+                                                           Value="{Binding Settings.GrdiDetailsWitdh}"
+                                                           VerticalAlignment="Center"/>
+
+                                    <TextBlock Text="{DynamicResource LOCSettingsDetailsGameListPosition}"
+                                            VerticalAlignment="Center"
+                                           Grid.Column="0" Grid.Row="3"  />
+                                    <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
+                                            ItemsSource="{StaticResource LeftRightDockOptions}"
+                                            SelectedValue="{Binding Settings.DetailsListPosition}"
+                                            Margin="5" Grid.Column="1" Grid.Row="3" />
+                                    <TextBlock Text="{DynamicResource LOCWidth}" Grid.Column="2" Grid.Row="3"
+                                               VerticalAlignment="Center" Margin="15,0,5,0"/>
+                                    <pctrls:NullableIntBox MinValue="150" MaxValue="1024" Width="50"
+                                                           Grid.Column="3" Grid.Row="3"
+                                                           Value="{Binding Settings.DetailsListWitdh}"
+                                                           VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <CheckBox Content="{DynamicResource LOCSettingsDrawPanelSeparators}" Margin="0,15,0,0"
+                                          IsChecked="{Binding Settings.ShowPanelSeparators}" />
                             </StackPanel>
                         </TabItem>
 
@@ -676,7 +782,7 @@
                                                 <Image RenderOptions.BitmapScalingMode="Fant"
                                                        VerticalAlignment="Center" Height="24" Margin="5"
                                                        Source="{Binding PluginIcon}" />
-                                                <TextBlock FontSize="14" VerticalAlignment="Center"
+                                                <TextBlock VerticalAlignment="Center"
                                                            Margin="0,5,5,5"
                                                            Text="{Binding Description.Name}" />
                                             </StackPanel>

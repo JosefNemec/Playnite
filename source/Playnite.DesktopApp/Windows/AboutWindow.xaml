@@ -19,15 +19,13 @@
                     Style="{StaticResource BottomButton}" Command="{Binding CloseCommand}"/>
         </DockPanel>
 
-        <StackPanel KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" Orientation="Horizontal" DockPanel.Dock="Top" Margin="10">
-            <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Width="64" Height="64" RenderOptions.BitmapScalingMode="Fant"/>
+        <GridEx KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="10"
+                ColumnCount="3" StarColumns="1">
+            <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Width="64" Height="64" RenderOptions.BitmapScalingMode="Fant"
+                   Grid.Column="0"  />
 
-            <StackPanel Margin="15,0,0,0">
-                <StackPanel Orientation="Horizontal">
-                    <Label Name="TextVersionInfo" Content="{Binding VersionInfo}" Foreground="{StaticResource TextBrush}" FontSize="20"/>
-                    <Label Content="{Binding SDKVersion}" Foreground="{StaticResource TextBrush}" FontSize="20"
-                           Margin="160,0,0,0"/>
-                </StackPanel>                
+            <StackPanel Margin="15,0,0,0" Grid.Column="1">
+                <Label Name="TextVersionInfo" Content="{Binding VersionInfo}" Foreground="{StaticResource TextBrush}" FontSize="20"/>           
                 <TextBlock Text="{DynamicResource LOCAboutAuthor}" Foreground="LightGray"/>
                 <TextBlock KeyboardNavigation.TabIndex="1">
                 <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
@@ -42,7 +40,13 @@
                 </Hyperlink>
                 </TextBlock>
             </StackPanel>
-        </StackPanel>
+            <StackPanel Grid.Column="2">
+                <Label Content="{Binding SDKVersion}" Foreground="{StaticResource TextBrush}"
+                       FontSize="16" Margin="10,0,0,0"/>
+                <Label Content="{Binding ThemeApiVersion}" Foreground="{StaticResource TextBrush}"
+                       FontSize="16" Margin="10,10,0,0"/>
+            </StackPanel>
+        </GridEx>
 
         <TabControl TabIndex="2" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
             <TabItem Header="{DynamicResource LOCPatronsLabel}">

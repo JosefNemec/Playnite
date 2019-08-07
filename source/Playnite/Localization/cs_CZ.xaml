@@ -1,35 +1,38 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
     <sys:String x:Key="LanguageName">Čeština</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Jazyk</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Ukončit</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Filtr je zapnutý (klikněte na panel filtrování)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filtr je vypnutý (klikněte na panel filtrování)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtr je zapnutý (klikněte pro přepnutí panelu s filtry)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtr je vypnutý (klikněte pro přepnutí panelu s filtry)</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Další filtry</sys:String>
     <sys:String x:Key="LOCFilters">Filtry</sys:String>
     <sys:String x:Key="LOCFilter">Filtr</sys:String>
 
-    <sys:String x:Key="LOCInvalidDataTitle">Neplatná Data</sys:String>
+    <sys:String x:Key="LOCInvalidDataTitle">Neplatná data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Uložit změny?</sys:String>
     
-    <sys:String x:Key="LOCAboutHomePageLink">Domovská stránka v www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Domovská stránka na www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Zdrojový kód na GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Vytvořit diag. balíček</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Odeslat diagnostické informace</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">O Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Vytvořil Josef Němec</sys:String>
 
-    <sys:String x:Key="LOCCategoryWindowTitle">Přidělit Kategorii</sys:String>
+    <sys:String x:Key="LOCCategoryWindowTitle">Přiřadit kategorii</sys:String>
     <sys:String x:Key="LOCCategorySetButton">Nastavit kategorie</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Přidat kategorii</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Zaškrtnuto - Přiřadit kategorii
 Nezaškrtnuto - Odebrat kategorii
 Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCNoCategory">Bez kategorie</sys:String>
-    <sys:String x:Key="LOCNoPlatform">Bez Platformy</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Bez platformy</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Ale ne, stalo se něco špatného…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Objevila se fatální chyba.
@@ -38,25 +41,25 @@ Pokud nám chcete pomoci tento problém napravit, vytvořte prosím diagnostick�
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Objevila se fatální chyba.
         
 Pokud nám chcete pomoci tento problém napravit, odešlete prosím diagnostický balíček. Děkujeme.</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Nahlásit zhroucení</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Nahlásit pád</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartovat Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Opustit Playnite</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Správce knihovny</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Odstranit hru(y)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">Nelze odstranit hru která je spuštěná nebo která se instaluje/odinstalovává.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">Nelze odinstalovat hru která je spuštěná.</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Nelze odstranit hru, která je spuštěná, nebo probíhá její instalace/odinstalace.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Nelze odinstalovat hru, která je spuštěná.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Jste si jisti, že chcete tuto hru odstranit?
         
 Automaticky importované hry se mohou po dalším importování znovu objevit v Playnite (v závislosti na nastavení).</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Jste si jisti, že chcete odstranit {0} her?
         
-Automaticky importované hry se po dalším importování znovu objeví v Playnite (v závislosti na nastavení).</sys:String>
+Automaticky importované hry se mohou po dalším importování znovu objevit v Playnite  (v závislosti na nastavení).</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam přátelé</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif">Sekce obsahuje změny které je třeba uložit</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Sekce obsahuje změny, které je třeba uložit</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Aktualizace formátu herní knihovny…</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Aktualizace Databáze selhala.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Aktualizace databáze selhala.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Nelze aktualizovat knihovnu her. Je třeba {0} MB volného prostoru.</sys:String>
 
     <sys:String x:Key="LOCGameError">Chyba hry</sys:String>
@@ -136,10 +139,10 @@ Automaticky importované hry se po dalším importování znovu objeví v Playni
     <sys:String x:Key="LOCTagLabel">Štítek</sys:String>
     <sys:String x:Key="LOCTagsLabel">Štítky</sys:String>
     <sys:String x:Key="LOCZoomLabel">Přiblížení</sys:String>
-    <sys:String x:Key="LOCListLabel">Seznam</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Zobrazení seznamu</sys:String>
     <sys:String x:Key="LOCCoversLabel">Obaly</sys:String>
-    <sys:String x:Key="LOCGridLabel">Mřížka</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Podrobnosti</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Zobrazení mřížky</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Zobrazení podrobností</sys:String>
     <sys:String x:Key="LOCCustomLabel">Vlastní</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
@@ -195,6 +198,7 @@ Příklad: -image "{ImagePath}" -fullscreen
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Oficiální obchod</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Oficiální obchod > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vyberte, která pole by měla být automaticky doplněna Playnitem a které zdroje by měly být použity k získání údajů.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Prosím zvažte přispění aktualizace do databáze igdb.com (klinutím na logo výše), čímž zlepšíte data, která Playnite používá.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Oficiální obchod:
 Použije pouze data z oficiálního obchodu.
     
@@ -214,7 +218,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCProgressBattleNetLibImport">Stahuje se aktualizace knihovny Battle.net…</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Stahují se metadata…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importují se instalované hry…</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Importuje se {0} her…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importují se hry z platformy {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Stahují se aktualizace knihoven…</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Stahují se aktualizace knihoven…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Aktualizace knihovny dokončena</sys:String>
@@ -239,7 +243,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuIssues">Odeslat zpětnou vazbu</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Spustit režim celé obrazovky</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Odkazy</sys:String>
-    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Nápověda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podpořit na Patreonu</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentace SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restartovat systém</sys:String>
@@ -299,8 +303,11 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Použijte pokud se aplikace seká nebo má problémy se zobrazením</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Vypnout DPI škálování</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Zobrazit tlačítko "Steam přátelé"</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImage">Zobrazit obrázek na pozadí</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundImageOnWindow"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Použít obrázek pozadí hry jako pozadí celého okna</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Rozostřit pozadí</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Vysoká kvalita</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Ztmavit pozadí</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Zobrazit v Zobrazení mřížky</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Motiv vzhledu</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Motiv vzhledu</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Motiv vzhledu režimu celé obrazovky</sys:String>
@@ -615,6 +622,9 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCAll">Vše</sys:String>
     <sys:String x:Key="LOCNone">Nic</sys:String>
     <sys:String x:Key="LOCNotifications">Oznámení</sys:String>
+    <sys:String x:Key="LOCWidth">Šířka</sys:String>
+    <sys:String x:Key="LOCHeight">Výška</sys:String>
+    <sys:String x:Key="LOCSize">Velikost</sys:String>
 
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulátoru</sys:String>
@@ -710,7 +720,26 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCPLaytime500to1000">500 až 1000 hodin</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalace byla úspěšná.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainstalovat rozšíření?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail">Nepodařilo se nainstalovat rozšíření.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Chcete nainstalovat nové rozšíření? Existující verze bude přepsána.
+    
+{0}
+Vytvořil(a) {1}
+Verze {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail">Instalace motivu selhala.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Chcete nainstalovat nový motiv? Existující verze bude přepsána.
+    
+{0}
+Vytvořil(a) {1}
+Verze {2}
+    </sys:String>
+
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Chystáte se opustit Playnite a otevřít následující stránku ve vašem výchozím webovém prohlížeči. Chcete pokračovat?
+    
+{0}</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Klient itch.io bude nyní otevřen, přihlašte se a pak tuto zprávu zavřete.</sys:String>
@@ -724,10 +753,9 @@ Můžete zkusit následující možnosti opravy:
 Pozor že možnost zadání jména účtu funguje pouze pro ty účty, které mají v nastavení GOG v záložce Soukromí nastavenou veřejnou viditelnost knihovny.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Vyberte ověřeného uživatele nebo specifikujte jméno vašeho účtu z URL pro synchronizaci celé knihovny. Účty se soukromou viditelností knihovny musejí specifikovat API klíč k danému Steam účtu.
-    </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Jméno URL účtu</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Ověřený uživatel</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Účet je soukromý. Je vyžadován API klíč.</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Nastavení po prvním spuštění není dokončeno. Playnite se proto nyní přepne do režimu plochy, aby bylo nastavení dokončeno.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Nedávno hrané</sys:String>

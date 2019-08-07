@@ -33,8 +33,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <TextBlock Text="{Binding Name}" DockPanel.Dock="Top" Margin="5" FontWeight="Bold"
-                                       FontSize="14"/>
+                            <TextBlock Text="{Binding Name}" DockPanel.Dock="Top" Margin="5" FontWeight="Bold" />
                             <TextBlock Text="{Binding Description}" DockPanel.Dock="Top" Margin="5,0,5,5"
                                        FontStyle="Italic" FontSize="12" TextWrapping="Wrap"
                                        Visibility="{Binding Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>

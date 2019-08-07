@@ -130,6 +130,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => Localization.AvailableLanguages;
         }
 
+        public List<string> AvailableFonts
+        {
+            get => System.Drawing.FontFamily.Families.Where(a => !a.Name.IsNullOrEmpty()).Select(a => a.Name).ToList();
+        }
+
         public bool DatabaseLocationChanged
         {
             get;
@@ -222,6 +227,18 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<string>((ratio) =>
             {
                 SetCoverArtAspectRatio(ratio);
+            });
+        }
+
+        public RelayCommand<object> SetDefaultFontSizes
+        {
+            get => new RelayCommand<object>((ratio) =>
+            {
+                Settings.FontSize = 14;
+                Settings.FontSizeSmall = 12;
+                Settings.FontSizeLarge = 15;
+                Settings.FontSizeLarger = 20;
+                Settings.FontSizeLargest = 29;
             });
         }
 
@@ -436,7 +453,13 @@ namespace Playnite.DesktopApp.ViewModels
                         nameof(Settings.EnableTray),
                         nameof(Settings.TrayIcon),
                         nameof(Settings.EnableControllerInDesktop),
-                        nameof(Settings.Language)
+                        nameof(Settings.Language),
+                        nameof(Settings.FontFamilyName),
+                        nameof(Settings.FontSize),
+                        nameof(Settings.FontSizeSmall),
+                        nameof(Settings.FontSizeLarge),
+                        nameof(Settings.FontSizeLarger),
+                        nameof(Settings.FontSizeLargest)
                     }))
                 {
                     if (dialogs.ShowMessage(

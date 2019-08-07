@@ -47,7 +47,7 @@ namespace Playnite.ViewModels
                 {
                     progresAction();
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                catch (Exception exc)
                 {
                     FailException = exc;
                     window.Close(false);

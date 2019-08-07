@@ -1,4 +1,13 @@
-﻿- Name: FightCade
+﻿- Name: Reicast
+  Website: 'https://reicast.com/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sega Dreamcast]
+      ImageExtensions: [gdi, cdi, chd]
+      ExecutableLookup: ^reicast.*\.exe
+
+- Name: FightCade
   Website: 'https://www.fightcade.com/'
   Profiles:
     - Name: Default
@@ -448,17 +457,17 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy]
       ImageExtensions: [zip, 7z, rar, bin, gb, dmg]
-      ExecutableLookup: ^mGBA.*\.exe$ 
+      ExecutableLookup: ^mGBA.exe$ 
     - Name: Nintendo Game Boy Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Color]
       ImageExtensions: [zip, 7z, rar, bin, gbc, cgb, sgb]
-      ExecutableLookup: ^mGBA.*\.exe$
+      ExecutableLookup: ^mGBA.exe$
     - Name: Nintendo Game Boy Advance
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Advance]
       ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb]
-      ExecutableLookup: ^mGBA.*\.exe$
+      ExecutableLookup: ^mGBA.exe$
 
 - Name: Nebula 2
   Website: 'http://nebula.emulatronia.com/'

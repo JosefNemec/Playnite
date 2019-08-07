@@ -199,6 +199,12 @@ namespace SteamLibrary
                 {
                     GetInstalledGamesFromFolder(libFolder).ForEach(a =>
                     {
+                        // Ignore redist
+                        if (a.GameId == "228980")
+                        {
+                            return;
+                        }
+
                         if (!games.ContainsKey(a.GameId))
                         {
                             games.Add(a.GameId, a);
@@ -308,6 +314,11 @@ namespace SteamLibrary
 
         internal List<GameInfo> GetLibraryGames(SteamLibrarySettings settings)
         {
+            if (settings.UserId.IsNullOrEmpty())
+            {
+                throw new Exception(PlayniteApi.Resources.GetString("LOCNotLoggedInError"));
+            }
+
             if (settings.IsPrivateAccount)
             {
                 return GetLibraryGames(ulong.Parse(settings.UserId), settings.ApiKey);

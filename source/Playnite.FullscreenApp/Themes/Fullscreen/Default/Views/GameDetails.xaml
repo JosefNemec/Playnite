@@ -28,7 +28,7 @@
                         
                         <FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
                                    Grid.ColumnSpan="4" Grid.RowSpan="2"
-                                   Source="{Binding BackgroundImageObject, IsAsync=True}" />
+                                   x:Name="PART_ImageBackground" />
 
                         <Border Background="{DynamicResource GameDetailsBackgroundBrush}"
                                 Grid.ColumnSpan="4" Grid.Row="1">
@@ -47,15 +47,7 @@
                                 Margin="14" Grid.Column="1" Grid.Row="1"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Right">
-                            <Image>
-                                <Image.Source>
-                                    <PriorityBinding>
-                                        <Binding Path="CoverImageObject" Mode="OneWay" 
-                                                 Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
-                                        <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
-                                    </PriorityBinding>
-                                </Image.Source>
-                            </Image>
+                            <Image x:Name="PART_ImageCover" />
                         </Border>
 
                         <Image Grid.Column="1" Grid.Row="1"

@@ -3,9 +3,8 @@ Generic Plugins
 
 To implement generic plugin:
 
-* Create new public class describing [IGenericPlugin](xref:Playnite.SDK.Plugins.IGenericPlugin) interface.
-* Add constructor accepting single [IPlayniteAPI](xref:Playnite.SDK.IPlayniteAPI) argument.
-* Implement mandatory members from `IGenericPlugin`.
+* Create new public class inheriting from [Plugin](xref:Playnite.SDK.Plugins.Plugin) abstract class.
+* Add implementation for mandatory abstract members.
 
 Mandatory members
 ---------------------
@@ -17,48 +16,24 @@ Mandatory members
 Optional members
 ---------------------
 
-Return null or specify empty method if you don't want to provide implementation for these.
-
-| Member | Description |
-| -- | -- |
-| GetSettings | [Plugin settings object.](pluginSettings.md) |
-| GetSettingsView | [Plugin settings view.](pluginSettings.md) |
-| GetFunctions | Adds executable menu entries into `Extensions` submenu in Playnite's main menu. |
-
+You can implement additional functionality by overriding virtual methods from [Plugin](xref:Playnite.SDK.Plugins.Plugin) base class.
 
 Example plugin
 ---------------------
 
 ```csharp
-public class TestPlugin : IGenericPlugin
+public class TestPlugin : Plugin
 {
-    private ILogger logger = LogManager.GetLogger();
+    private ILogger logger;
 
-    private IPlayniteAPI api;
+    public override Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C9");
 
-    public Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C8");
-
-    public TestPlugin(IPlayniteAPI api)
+    public TestPlugin(IPlayniteAPI api) : base(api)
     {
-        this.api = api;
+        logger = api.CreateLogger();
     }
 
-    public void Dispose()
-    {
-        // Add code to be executed when plugin is being unloaded.
-    }
-
-    public ISettings GetSettings(bool firstRunSettings)
-    {
-        return null;
-    }
-
-    public UserControl GetSettingsView(bool firstRunView)
-    {
-        return null
-    }
-
-    public IEnumerable<ExtensionFunction> GetFunctions()
+    public override IEnumerable<ExtensionFunction> GetFunctions()
     {
         return new List<ExtensionFunction>()
         {
@@ -71,32 +46,32 @@ public class TestPlugin : IGenericPlugin
         };
     }
 
-    public void OnGameInstalled(Game game)
+    public override void OnGameInstalled(Game game)
     {
         // Add code to be executed when game is finished installing.
     }
 
-    public void OnGameStarted(Game game)
+    public override void OnGameStarted(Game game)
     {
         // Add code to be executed when game is started running.
     }
 
-    public void OnGameStarting(Game game)
+    public override void OnGameStarting(Game game)
     {
         // Add code to be executed when game is preparing to be started.
     }
 
-    public void OnGameStopped(Game game, long elapsedSeconds)
+    public override void OnGameStopped(Game game, long elapsedSeconds)
     {
-        // Add code to be execute when game stops running.
+        // Add code to be executed when game is preparing to be started.
     }
 
-    public void OnGameUninstalled(Game game)
+    public override void OnGameUninstalled(Game game)
     {
         // Add code to be executed when game is uninstalled.
     }
 
-    public void OnApplicationStarted()
+    public override void OnApplicationStarted()
     {
         // Add code to be execute when Playnite is initialized.
     }

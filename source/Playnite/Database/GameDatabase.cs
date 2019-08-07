@@ -1,29 +1,32 @@
-﻿using Playnite.Common;
-using Playnite.Common.Web;
-using Playnite.Emulators;
-using Playnite.SDK;
-using Playnite.SDK.Metadata;
-using Playnite.SDK.Models;
-using Playnite.SDK.Plugins;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Windows.Media.Imaging;
+using Playnite.Emulators;
+using Playnite.SDK;
+using Playnite.SDK.Models;
+using Playnite.SDK.Metadata;
+using Playnite.Common;
+using Playnite.Settings;
+using Playnite.SDK.Plugins;
+using System.Net;
+using Playnite.Common.Web;
+using System.Drawing.Imaging;
+using System.Threading;
+using System.Collections.Concurrent;
 
 namespace Playnite.Database
 {
     public partial class GameDatabase : IGameDatabase
     {
-        private static readonly ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         #region Locks
 
         private readonly object databaseConfigFileLock = new object();
-        private readonly object fileFilesLock = new object();
+        private readonly ConcurrentDictionary<string, object> fileLocks = new ConcurrentDictionary<string, object>();
 
         #endregion Locks
 
@@ -202,7 +205,7 @@ namespace Playnite.Database
 
         internal static void SaveSettingsToDbPath(DatabaseSettings settings, string dbPath)
         {
-            var settingsPath = Path.Combine(dbPath, settingsFileName);
+            var settingsPath = Path.Combine(dbPath, settingsFileName);            
             FileSystem.WriteStringToFileSafe(settingsPath, Serialization.ToJson(settings));
         }
 
@@ -240,7 +243,7 @@ namespace Playnite.Database
             {
                 return path;
             }
-        }
+        }        
 
         public void OpenDatabase()
         {
@@ -251,6 +254,11 @@ namespace Playnite.Database
 
             var dbExists = File.Exists(DatabaseFileSettingsPath);
             logger.Info("Opening db " + DatabasePath);
+
+            if (!FileSystem.CanWriteToFolder(DatabasePath))
+            {
+                throw new Exception($"Can't to write to \"{DatabasePath}\" folder.");
+            }
 
             if (!dbExists)
             {
@@ -335,12 +343,9 @@ namespace Playnite.Database
                 try
                 {
                     var extension = Path.GetExtension(new Uri(path).AbsolutePath);
-                    var fileName = Guid.NewGuid().ToString() + extension;
-                    lock (fileFilesLock)
-                    {
-                        HttpDownloader.DownloadFile(path, Path.Combine(targetDir, fileName));
-                        dbPath = Path.Combine(parentId.ToString(), fileName);
-                    }
+                    var fileName = Guid.NewGuid().ToString() + extension;               
+                    HttpDownloader.DownloadFile(path, Path.Combine(targetDir, fileName));
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
                 }
                 catch (WebException e)
                 {
@@ -351,19 +356,16 @@ namespace Playnite.Database
             else
             {
                 var fileName = Path.GetFileName(path);
-                lock (fileFilesLock)
+                // Re-use file if already part of db folder, don't copy.
+                if (Paths.AreEqual(targetDir, Path.GetDirectoryName(path)))
                 {
-                    // Re-use file if already part of db folder, don't copy.
-                    if (Paths.AreEqual(targetDir, Path.GetDirectoryName(path)))
-                    {
-                        dbPath = Path.Combine(parentId.ToString(), fileName);
-                    }
-                    else
-                    {
-                        fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
-                        FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
-                        dbPath = Path.Combine(parentId.ToString(), fileName);
-                    }
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
+                }
+                else
+                {
+                    fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
+                    FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
                 }
             }
 
@@ -376,12 +378,8 @@ namespace Playnite.Database
             CheckDbState();
             var dbPath = Path.Combine(parentId.ToString(), Guid.NewGuid().ToString() + Path.GetExtension(fileName));
             var targetPath = Path.Combine(FilesDirectoryPath, dbPath);
-            lock (fileFilesLock)
-            {
-                FileSystem.PrepareSaveFile(targetPath);
-                File.WriteAllBytes(targetPath, content);
-            }
-
+            FileSystem.PrepareSaveFile(targetPath);
+            File.WriteAllBytes(targetPath, content);
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Added));
             return dbPath;
         }
@@ -400,23 +398,31 @@ namespace Playnite.Database
                 return;
             }
 
-            lock (fileFilesLock)
-            {
-                FileSystem.DeleteFileSafe(filePath);
 
-                try
+            try
+            {
+                lock (GetFileLock(dbPath))
                 {
-                    var dir = Path.GetDirectoryName(filePath);
-                    if (FileSystem.IsDirectoryEmpty(dir))
+                    FileSystem.DeleteFileSafe(filePath);
+
+                    try
                     {
-                        FileSystem.DeleteDirectory(dir);
+                        var dir = Path.GetDirectoryName(filePath);
+                        if (FileSystem.IsDirectoryEmpty(dir))
+                        {
+                            FileSystem.DeleteDirectory(dir);
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        // Getting crash reports from Path.GetDirectoryName for some reason.
+                        logger.Error(e, "Failed to clean up directory after removing file");
                     }
                 }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    // Getting crash reports from Path.GetDirectoryName for some reason.
-                    logger.Error(e, "Failed to clean up directory after removing file");
-                }
+            }
+            finally
+            {
+                ReleaseFileLock(dbPath);
             }
 
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
@@ -431,23 +437,38 @@ namespace Playnite.Database
                 return null;
             }
 
-            lock (fileFilesLock)
+            try
             {
-                using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                lock (GetFileLock(dbPath))
                 {
-                    return BitmapExtensions.BitmapFromStream(fStream);
+                    using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                    {
+                        return BitmapExtensions.BitmapFromStream(fStream);
+                    }
                 }
+            }
+            finally
+            {
+                ReleaseFileLock(dbPath);
             }
         }
 
         public void CopyFile(string dbPath, string targetPath)
         {
             CheckDbState();
-            lock (fileFilesLock)
+            var filePath = GetFullFilePath(dbPath);
+
+            try
             {
-                var filePath = GetFullFilePath(dbPath);
-                FileSystem.PrepareSaveFile(targetPath);
-                File.Copy(filePath, targetPath);
+                lock (GetFileLock(dbPath))
+                {
+                    FileSystem.PrepareSaveFile(targetPath);
+                    File.Copy(filePath, targetPath);
+                }
+            }
+            finally
+            {
+                ReleaseFileLock(dbPath);
             }
         }
 
@@ -712,13 +733,12 @@ namespace Playnite.Database
         public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
         {
             var addedGames = new List<Game>();
-            var libraryGames = library.GetGames().ToList();
-            foreach (var newGame in libraryGames)
+            foreach (var newGame in library.GetGames())
             {
                 var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                 if (existingGame == null)
                 {
-                    logger.Info($"Adding new game {newGame.GameId} from {library.Name} plugin");
+                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
                     addedGames.Add(ImportGame(newGame, library.Id));
                 }
                 else
@@ -754,18 +774,67 @@ namespace Playnite.Database
                 }
             }
 
-            // Set the uninstalled property for games that were removed
-            foreach (var game in Games.Where(g => g.PluginId == library.Id && g.IsInstalled))
-            {
-                var isGameInstalled = libraryGames.Any(lg => lg.GameId == game.GameId && lg.IsInstalled);
-                if (game.IsInstalled != isGameInstalled)
-                {
-                    game.IsInstalled = isGameInstalled;
-                    Games.Update(game);
-                }
-            }
+            return addedGames;        
+        }
 
-            return addedGames;
+        public static void GenerateSampleData(IGameDatabase database)
+        {
+            database.Platforms.Add("Windows");
+            database.AgeRatings.Add("18+");
+            database.Categories.Add("Category");
+            database.Companies.Add("BioWare");
+            database.Companies.Add("LucasArts");
+            database.Genres.Add("RPG");
+            database.Regions.Add("EU");
+            database.Series.Add("Star Wars");
+            database.Sources.Add("Retails");
+            database.Tags.Add("Single player");
+
+            var designGame = new Game($"Star Wars: Knights of the Old Republic")
+            {
+                ReleaseDate = new DateTime(2009, 9, 5),
+                PlatformId = database.Platforms.First().Id,
+                PlayCount = 20,
+                Playtime = 115200,
+                LastActivity = DateTime.Today,
+                IsInstalled = true,
+                AgeRatingId = database.AgeRatings.First().Id,
+                CategoryIds = new List<Guid> { database.Categories.First().Id },
+                DeveloperIds = new List<Guid> { database.Companies.First().Id },
+                PublisherIds = new List<Guid> { database.Companies.Last().Id },
+                GenreIds = new List<Guid> { database.Genres.First().Id },
+                RegionId = database.Regions.First().Id,
+                SeriesId = database.Series.First().Id,
+                SourceId = database.Sources.First().Id,
+                TagIds = new List<Guid> { database.Tags.First().Id },
+                Description = "Star Wars: Knights of the Old Republic (often abbreviated as KotOR) is the first installment in the Knights of the Old Republic series. KotOR is the first computer role-playing game set in the Star Wars universe.",
+                Version = "1.2",
+                CommunityScore = 95,
+                CriticScore = 50,
+                UserScore = 15,
+                Links = new ObservableCollection<Link> { new Link("Wiki", ""), new Link("HomePage", "") }
+            };
+
+            database.Games.Add(designGame);
+        }
+
+        private object GetFileLock(string filePath)
+        {
+            if (fileLocks.TryGetValue(filePath, out object fileLock))
+            {
+                return fileLock;
+            }
+            else
+            {
+                var lc = new object();
+                fileLocks.TryAdd(filePath, lc);
+                return lc;
+            }
+        }
+
+        private void ReleaseFileLock(string filePath)
+        {
+            fileLocks.TryRemove(filePath, out var removed);
         }
     }
 }

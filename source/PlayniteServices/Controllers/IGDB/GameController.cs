@@ -38,6 +38,12 @@ namespace PlayniteServices.Controllers.IGDB
                     return BadRequest();
                 }
 
+                if (game == null)
+                {
+                    logger.Error("Failed IGDB content serialization.");
+                    return Ok();
+                }
+
                 logger.Info($"Received game webhook from IGDB: {game.id}");
                 var cachePath = Path.Combine(IGDB.CacheDirectory, endpointPath, game.id + ".json");
                 lock (CacheLock)

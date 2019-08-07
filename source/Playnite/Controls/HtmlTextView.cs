@@ -23,11 +23,11 @@ namespace Playnite.Controls
     {
         private static string template = string.Empty;
 
-        public int HtmlFontSize
+        public double HtmlFontSize
         {
             get
             {
-                return (int)GetValue(HtmlFontSizeProperty);
+                return (double)GetValue(HtmlFontSizeProperty);
             }
 
             set
@@ -37,12 +37,12 @@ namespace Playnite.Controls
         }
 
         public static readonly DependencyProperty HtmlFontSizeProperty =
-            DependencyProperty.Register("HtmlFontSize", typeof(int), typeof(HtmlTextView), new PropertyMetadata(11, OnHtmlFontSizeChange));
+            DependencyProperty.Register("HtmlFontSize", typeof(double), typeof(HtmlTextView), new PropertyMetadata(11.0, OnHtmlFontSizeChange));
 
         private static void OnHtmlFontSizeChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as HtmlTextView;
-            var size = (int)e.NewValue;
+            var size = (double)e.NewValue;
             var content = template;
             content = content.Replace("{text}", obj.HtmlText);
             content = content.Replace("{foreground}", obj.HtmlForeground.ToHtml());
@@ -165,14 +165,7 @@ namespace Playnite.Controls
         static HtmlTextView()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(HtmlTextView), new FrameworkPropertyMetadata(typeof(HtmlTextView)));
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                //template = File.ReadAllText(ThemeFile.GetFilePath("Others/DescriptionView.html", ApplicationMode.Desktop));
-            }
-            else
-            {
-                template = Common.Resources.ReadFileFromResource("Playnite.Resources.DescriptionView.html");
-            }
+            template = Common.Resources.ReadFileFromResource("Playnite.Resources.DescriptionView.html");    
         }
 
 

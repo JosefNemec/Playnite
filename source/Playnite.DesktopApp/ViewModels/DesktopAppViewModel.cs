@@ -1250,33 +1250,59 @@ namespace Playnite.DesktopApp.ViewModels
                     var path = files[0];
                     if (File.Exists(path))
                     {
-                        // Other file types to be added in #501
-                        if (!(new List<string>() { ".exe", ".lnk" }).Contains(Path.GetExtension(path).ToLower()))
+                        var ext = Path.GetExtension(path).ToLower();
+                        if (ext.Equals(ThemeManager.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            return;
-                        }
-
-                        var game = GameExtensions.GetGameFromExecutable(path);
-                        var exePath = game.GetRawExecutablePath();
-                        if (!string.IsNullOrEmpty(exePath))
-                        {
-                            var ico = IconExtension.ExtractIconFromExe(exePath, true);
-                            if (ico != null)
+                            try
                             {
-                                var iconName = Guid.NewGuid().ToString() + ".png";
-                                game.Icon = Database.AddFile(iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png), game.Id);
-                            }                            
-                        }
-
-                        Database.Games.Add(game);
-                        Database.AssignPcPlatform(game);
-                        if (GamesEditor.EditGame(game) == true)
-                        {
-                            SelectGame(game.Id);
+                                var desc = ThemeManager.GetDescriptionFromPackedFile(path);
+                                if (Dialogs.ShowMessage(
+                                        string.Format(Resources.GetString("LOCThemeInstallPrompt"),
+                                            desc.Name, desc.Author, desc.Version),
+                                        Resources.GetString("LOCGeneralExtensionInstallTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                {
+                                    ThemeManager.InstallFromPackedFile(path);
+                                    Dialogs.ShowMessage(Resources.GetString("LOCGeneralExtensionInstallSuccess"));
+                                }
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                Logger.Error(e, "Failed to install theme.");
+                                Dialogs.ShowErrorMessage(
+                                    Resources.GetString("LOCThemeInstallFail"), "");
+                            }
                         }
                         else
                         {
-                            Database.Games.Remove(game);
+                            // Other file types to be added in #501
+                            if (!(new List<string>() { ".exe", ".lnk" }).Contains(ext))
+                            {
+                                return;
+                            }
+
+                            var game = GameExtensions.GetGameFromExecutable(path);
+                            var exePath = game.GetRawExecutablePath();
+                            if (!string.IsNullOrEmpty(exePath))
+                            {
+                                var ico = IconExtension.ExtractIconFromExe(exePath, true);
+                                if (ico != null)
+                                {
+                                    var iconName = Guid.NewGuid().ToString() + ".png";
+                                    game.Icon = Database.AddFile(iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png), game.Id);
+                                }
+                            }
+
+                            Database.Games.Add(game);
+                            Database.AssignPcPlatform(game);
+                            if (GamesEditor.EditGame(game) == true)
+                            {
+                                SelectGame(game.Id);
+                            }
+                            else
+                            {
+                                Database.Games.Remove(game);
+                            }
                         }
                     }
                     else if (Directory.Exists(path))
