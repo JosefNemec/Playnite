@@ -29,8 +29,7 @@ namespace Playnite.Toolbox
 
         public static void CopyThemeDirectory(string sourceDirName, string destDirName, List<string> approvedXamls)
         {
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-
+            var dir = new DirectoryInfo(sourceDirName);
             if (!dir.Exists)
             {
                 throw new DirectoryNotFoundException(
@@ -38,14 +37,14 @@ namespace Playnite.Toolbox
                     + sourceDirName);
             }
 
-            DirectoryInfo[] dirs = dir.GetDirectories();
+            var dirs = dir.GetDirectories();
             if (!Directory.Exists(destDirName))
             {
                 Directory.CreateDirectory(destDirName);
             }
 
-            FileInfo[] files = dir.GetFiles();
-            foreach (FileInfo file in files)
+            var files = dir.GetFiles();
+            foreach (var file in files)
             {
                 string temppath = Path.Combine(destDirName, file.Name);
                 if (file.Extension.Equals(".xaml", StringComparison.OrdinalIgnoreCase))
@@ -61,7 +60,7 @@ namespace Playnite.Toolbox
                 }
             }
     
-            foreach (DirectoryInfo subdir in dirs)
+            foreach (var subdir in dirs)
             {
                 string temppath = Path.Combine(destDirName, subdir.Name);
                 CopyThemeDirectory(subdir.FullName, temppath, approvedXamls);
@@ -77,8 +76,14 @@ namespace Playnite.Toolbox
                 return false;
             }
 
-            return FileSystem.GetMD5(file1) == FileSystem.GetMD5(file2);
-            // Check xaml content
+            if (file1Info.Extension.Equals(".xaml", StringComparison.OrdinalIgnoreCase))
+            {
+                return Xml.AreEqual(File.ReadAllText(file1), File.ReadAllText(file2));
+            }
+            else
+            {
+                return FileSystem.GetMD5(file1) == FileSystem.GetMD5(file2);
+            }
         }
 
         public static string PackageTheme(string themeDirectory, string targetPath, ApplicationMode mode)
@@ -124,13 +129,49 @@ namespace Playnite.Toolbox
             return targetPath;
         }
 
+        public static void BackupTheme(string themeDirectory, string destination)
+        {
+            var dir = new DirectoryInfo(themeDirectory);
+            var dirs = dir.GetDirectories();
+            if (!Directory.Exists(destination))
+            {
+                Directory.CreateDirectory(destination);
+            }
+
+            var files = dir.GetFiles();
+            foreach (var file in files)
+            {
+                var targetPath = Path.Combine(destination, file.Name);
+                file.CopyTo(targetPath, true);
+            }
+
+            foreach (var subdir in dirs)
+            {
+                if (!subdir.Name.StartsWith("backup_"))
+                {
+                    string targetPath = Path.Combine(destination, subdir.Name);
+                    BackupTheme(subdir.FullName, targetPath);
+                }
+            }
+        }
+
         public static void UpdateTheme(string themeDirectory, ApplicationMode mode)
         {
+            BackupTheme(themeDirectory, Paths.GetNextBackupFolder(themeDirectory));
             var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
-            foreach (var file in Directory.GetFiles(defaultThemeDir, "*.*", SearchOption.AllDirectories))
-            {
-                var subName = file.Replace(defaultThemeDir, "");
-            }
+
+
+            //foreach (var file in Directory.GetFiles(defaultThemeDir, "*.*", SearchOption.AllDirectories))
+            //{
+            //    var subName = file.Replace(defaultThemeDir, "");
+
+
+
+
+
+            //}
+
+
         }
 
         public static string GenerateNewTheme(ApplicationMode mode, string themeName)
@@ -223,9 +264,10 @@ namespace Playnite.Toolbox
             logger.Debug(Environment.CommandLine);
 
             var cmdlineParser = new Parser(with => with.CaseInsensitiveEnumValues = true);
-            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions>(args)
+            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions, UpdateCmdLineOptions>(args)
                 .WithParsed<NewCmdLineOptions>(ProcessNewOptions)
-                .WithParsed<PackCmdLineOptions>(ProcessPackOptions);
+                .WithParsed<PackCmdLineOptions>(ProcessPackOptions)
+                .WithParsed<UpdateCmdLineOptions>(ProcessUpdateOptions);
             if (result.Tag == ParserResultType.NotParsed)
             {
                 logger.Error("No acceptable arguments given.");     
@@ -264,6 +306,24 @@ namespace Playnite.Toolbox
                 catch (Exception e)
                 {
                     logger.Error(e, "Failed to pack theme file." + Environment.NewLine + e.Message);
+                }
+            }
+        }
+
+        public static void ProcessUpdateOptions(UpdateCmdLineOptions options)
+        {
+            if (options.Type == ItemType.Theme)
+            {
+                try
+                {
+                    var mode = options.TargetType.Equals("desktop", StringComparison.OrdinalIgnoreCase) ? ApplicationMode.Desktop : ApplicationMode.Fullscreen;
+                    var sourceDir = Path.Combine(Paths.GetThemesPath(mode), options.Name);
+                    UpdateTheme(sourceDir, mode);
+                    logger.Info($"Theme successfully updated.");
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to update theme file." + Environment.NewLine + e.Message);
                 }
             }
         }

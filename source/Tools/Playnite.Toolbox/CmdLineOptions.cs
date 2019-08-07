@@ -37,4 +37,15 @@ namespace Playnite.Toolbox
         [Value(2, Required = true)]
         public string DestinationPath { get; set; }
     }
+
+    [Verb("update")]
+    public class UpdateCmdLineOptions
+    {
+        [Value(0, Required = true)]
+        public ItemType Type { get; set; }
+        [Value(1, Required = true)]
+        public string TargetType { get; set; }
+        [Value(2, Required = true)]
+        public string Name { get; set; }
+    }
 }

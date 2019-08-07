@@ -29,5 +29,18 @@ namespace Playnite.Toolbox
         {
             return Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Themes", fileName);
         }
+
+        public static string GetNextBackupFolder(string rootFolder)
+        {
+            var latestBack = -1;
+            var dirs = Directory.GetDirectories(rootFolder).Where(a => Path.GetFileName(a).StartsWith("backup_")).ToList();
+            if (dirs.Any())
+            {
+                latestBack = dirs.Select(a => int.Parse(Path.GetFileName(a).Replace("backup_", ""))).Max();
+            }
+
+            latestBack += 1;
+            return Path.Combine(rootFolder, $"backup_{latestBack}");
+        }
     }
 }

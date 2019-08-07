@@ -54,6 +54,11 @@ namespace System
             return string.IsNullOrEmpty(source);
         }
 
+        public static bool IsNullOrWhiteSpace(this string source)
+        {
+            return string.IsNullOrWhiteSpace(source);
+        }
+
         public static string NormalizeGameName(string name)
         {
             if (string.IsNullOrEmpty(name))
