@@ -712,14 +712,19 @@ namespace SteamLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
                 try
                 {
-                    var uninstalled = GetLibraryGames(LibrarySettings);
-                    logger.Debug($"Found {uninstalled.Count} library Steam games.");
+                    var libraryGames = GetLibraryGames(LibrarySettings);
+                    logger.Debug($"Found {libraryGames.Count} library Steam games.");
 
-                    foreach (var game in uninstalled)
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -734,7 +739,7 @@ namespace SteamLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled Steam games.");
+                    logger.Error(e, "Failed to import linked account Steam games details.");
                     importError = e;
                 }
             }
