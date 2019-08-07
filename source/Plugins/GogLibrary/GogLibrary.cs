@@ -7,16 +7,21 @@ using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace GogLibrary
 {
     public class GogLibrary : LibraryPlugin
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private ILogger logger = LogManager.GetLogger();
         private const string dbImportMessageId = "goglibImportError";
 
         internal GogLibrarySettings LibrarySettings { get; private set; }
@@ -28,7 +33,7 @@ namespace GogLibrary
 
         internal Tuple<GameAction, List<GameAction>> GetGameTasks(string gameId, string installDir)
         {
-            var gameInfoPath = Path.Combine(installDir, $"goggame-{gameId}.info");
+            var gameInfoPath = Path.Combine(installDir, string.Format("goggame-{0}.info", gameId));
             if (!File.Exists(gameInfoPath))
             {
                 return new Tuple<GameAction, List<GameAction>>(null, null);
@@ -77,7 +82,7 @@ namespace GogLibrary
                 }
 
                 var gameId = match.Groups[1].Value;
-                var game = new GameInfo
+                var game = new GameInfo()
                 {
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     GameId = gameId,
@@ -120,7 +125,7 @@ namespace GogLibrary
                 var libGames = api.GetOwnedGames(accInfo);
                 if (libGames == null)
                 {
-                    throw new Exception("Failed to obtain library data.");
+                    throw new Exception("Failed to obtain libary data.");
                 }
 
                 return LibraryGamesToGames(libGames).ToList();
@@ -134,7 +139,7 @@ namespace GogLibrary
             var libGames = api.GetOwnedGamesFromPublicAccount(accountName);
             if (libGames == null)
             {
-                throw new Exception("Failed to obtain library data.");
+                throw new Exception("Failed to obtain libary data.");
             }
 
             return LibraryGamesToGames(libGames).ToList();
@@ -144,12 +149,12 @@ namespace GogLibrary
         {
             foreach (var game in libGames)
             {
-                var newGame = new GameInfo
+                var newGame = new GameInfo()
                 {
                     Source = "GOG",
                     GameId = game.game.id,
                     Name = game.game.title,
-                    Links = new List<Link>
+                    Links = new List<Link>()
                     {
                         new Link("Store", @"https://www.gog.com" + game.game.url)
                     }

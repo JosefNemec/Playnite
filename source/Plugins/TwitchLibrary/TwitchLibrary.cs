@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Newtonsoft.Json;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -6,6 +7,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using TwitchLibrary.Models;
 using TwitchLibrary.Services;
@@ -14,7 +21,7 @@ namespace TwitchLibrary
 {
     public class TwitchLibrary : LibraryPlugin
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private ILogger logger = LogManager.GetLogger();
         internal readonly string TokensPath;
         private const string dbImportMessageId = "twitchlibImportError";
 
@@ -28,7 +35,7 @@ namespace TwitchLibrary
 
         public static GameAction GetPlayAction(string gameId)
         {
-            return new GameAction
+            return new GameAction()
             {
                 Type = GameActionType.URL,
                 Path = $"twitch://fuel-launch/{gameId}",
@@ -55,7 +62,7 @@ namespace TwitchLibrary
                 var gameId = program.RegistryKeyName.Trim(new char[] { '{', '}' }).ToLower();
                 if (!games.ContainsKey(gameId))
                 {
-                    var game = new GameInfo
+                    var game = new GameInfo()
                     {
                         InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                         GameId = gameId,
@@ -119,7 +126,7 @@ namespace TwitchLibrary
                     continue;
                 }
 
-                var game = new GameInfo
+                var game = new GameInfo()
                 {
                     Source = "Twitch",
                     GameId = item.product.id,

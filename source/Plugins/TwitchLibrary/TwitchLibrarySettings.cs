@@ -1,17 +1,24 @@
 ﻿using Newtonsoft.Json;
+using Playnite;
 using Playnite.SDK;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TwitchLibrary.Services;
+using Playnite.Common;
 
 namespace TwitchLibrary
 {
     public class TwitchLibrarySettings : ObservableObject, ISettings
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private TwitchLibrarySettings editingClone;
-        private readonly TwitchLibrary library;
-        private readonly IPlayniteAPI api;
+        private TwitchLibrary library;
+        private IPlayniteAPI api;
 
         #region Settings      
 

@@ -1,11 +1,18 @@
-﻿using Newtonsoft.Json;
-using Playnite.SDK;
-using SteamLibrary.Models;
+﻿using Playnite;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Playnite.Commands;
+using SteamLibrary.Models;
+using Playnite.SDK;
+using System.Windows.Media;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using System.Windows.Media;
 
 namespace SteamLibrary
 {
@@ -27,10 +34,10 @@ namespace SteamLibrary
 
     public class SteamLibrarySettings : ObservableObject, ISettings
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private SteamLibrarySettings editingClone;
-        private readonly SteamLibrary library;
-        private readonly IPlayniteAPI playniteApi;
+        private SteamLibrary library;
+        private IPlayniteAPI api;
 
         #region Settings
 
@@ -167,10 +174,10 @@ namespace SteamLibrary
         {
         }
 
-        public SteamLibrarySettings(SteamLibrary library, IPlayniteAPI playniteApi)
+        public SteamLibrarySettings(SteamLibrary library, IPlayniteAPI api)
         {
             this.library = library;
-            this.playniteApi = playniteApi;
+            this.api = api;
 
             var settings = library.LoadPluginSettings<SteamLibrarySettings>();
             if (settings != null)
@@ -223,7 +230,7 @@ namespace SteamLibrary
             {
                 var steamId = string.Empty;
                 var userName = "Unknown";
-                using (var view = playniteApi.WebViews.CreateView(675, 440, Colors.Black))
+                using (var view = api.WebViews.CreateView(675, 440, Colors.Black))
                 {
                     view.NavigationChanged += async (s, e) =>
                     {
@@ -269,7 +276,7 @@ namespace SteamLibrary
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                playniteApi.Dialogs.ShowErrorMessage(playniteApi.Resources.GetString("LOCNotLoggedInError"), "");
+                api.Dialogs.ShowErrorMessage(api.Resources.GetString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate user.");
             }
         }

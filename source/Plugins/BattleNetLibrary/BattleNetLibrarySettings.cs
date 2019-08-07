@@ -1,17 +1,22 @@
 ﻿using BattleNetLibrary.Services;
 using Newtonsoft.Json;
+using Playnite;
 using Playnite.SDK;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BattleNetLibrary
 {
     public class BattleNetLibrarySettings : ObservableObject, ISettings
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private BattleNetLibrarySettings editingClone;
-        private readonly BattleNetLibrary library;
-        private readonly IPlayniteAPI playniteApi;
+        private BattleNetLibrary library;
+        private IPlayniteAPI api;
 
         #region Settings      
 
@@ -28,7 +33,7 @@ namespace BattleNetLibrary
         {
             get
             {
-                using (var view = playniteApi.WebViews.CreateOffscreenView())
+                using (var view = api.WebViews.CreateOffscreenView())
                 {
                     var api = new BattleNetAccountClient(view);
                     return api.GetIsUserLoggedIn();
@@ -49,10 +54,10 @@ namespace BattleNetLibrary
         {
         }
 
-        public BattleNetLibrarySettings(BattleNetLibrary library, IPlayniteAPI playniteApi)
+        public BattleNetLibrarySettings(BattleNetLibrary library, IPlayniteAPI api)
         {
             this.library = library;
-            this.playniteApi = playniteApi;
+            this.api = api;
 
             var settings = library.LoadPluginSettings<BattleNetLibrarySettings>();
             if (settings != null)
@@ -91,7 +96,7 @@ namespace BattleNetLibrary
         {
             try
             {
-                using (var view = playniteApi.WebViews.CreateView(400, 500))
+                using (var view = api.WebViews.CreateView(400, 500))
                 {
                     var api = new BattleNetAccountClient(view);
                     api.Login();

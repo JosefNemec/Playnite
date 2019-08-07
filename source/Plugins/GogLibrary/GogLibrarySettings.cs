@@ -1,17 +1,24 @@
-﻿using GogLibrary.Services;
-using Newtonsoft.Json;
-using Playnite.SDK;
+﻿using Playnite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Playnite.Commands;
+using Playnite.SDK;
+using GogLibrary.Services;
 
 namespace GogLibrary
 {
     public class GogLibrarySettings : ObservableObject, ISettings
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private GogLibrarySettings editingClone;
         private readonly GogLibrary library;
-        private readonly IPlayniteAPI playniteApi;
+        private readonly IPlayniteAPI api;
 
         #region Settings
 
@@ -34,7 +41,7 @@ namespace GogLibrary
         {
             get
             {
-                using (var view = playniteApi.WebViews.CreateOffscreenView())
+                using (var view = api.WebViews.CreateOffscreenView())
                 {
                     var api = new GogAccountClient(view);
                     return api.GetIsUserLoggedIn();
@@ -55,9 +62,9 @@ namespace GogLibrary
         {
         }
 
-        public GogLibrarySettings(GogLibrary library, IPlayniteAPI playniteApi)
+        public GogLibrarySettings(GogLibrary library, IPlayniteAPI api)
         {
-            this.playniteApi = playniteApi;
+            this.api = api;
             this.library = library;
 
             var settings = library.LoadPluginSettings<GogLibrarySettings>();
@@ -89,7 +96,7 @@ namespace GogLibrary
 
             if (ImportUninstalledGames && UsePublicAccount && string.IsNullOrEmpty(AccountName))
             {
-                errors.Add(playniteApi.Resources.GetString("LOCSettingsInvalidAccountName"));
+                errors.Add(api.Resources.GetString("LOCSettingsInvalidAccountName"));
                 allValid = false;
             }
 
@@ -105,7 +112,7 @@ namespace GogLibrary
         {
             try
             {
-                using (var view = playniteApi.WebViews.CreateView(400, 445))
+                using (var view = api.WebViews.CreateView(400, 445))
                 {
                     var api = new GogAccountClient(view);
                     api.Login();

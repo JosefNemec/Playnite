@@ -1,17 +1,22 @@
 ﻿using Newtonsoft.Json;
+using Playnite;
 using Playnite.SDK;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ItchioLibrary
 {
     public class ItchioLibrarySettings : ObservableObject, ISettings
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private ItchioLibrarySettings editingClone;
-        private readonly ItchioLibrary library;
-        private readonly IPlayniteAPI playniteApi;
+        private ItchioLibrary library;
+        private IPlayniteAPI api;
 
         #region Settings      
 
@@ -53,10 +58,10 @@ namespace ItchioLibrary
         {
         }
 
-        public ItchioLibrarySettings(ItchioLibrary library, IPlayniteAPI playniteApi)
+        public ItchioLibrarySettings(ItchioLibrary library, IPlayniteAPI api)
         {
             this.library = library;
-            this.playniteApi = playniteApi;
+            this.api = api;
 
             var settings = library.LoadPluginSettings<ItchioLibrarySettings>();
             if (settings != null)
@@ -97,19 +102,19 @@ namespace ItchioLibrary
             {
                 if (!Itch.IsInstalled)
                 {
-                    playniteApi.Dialogs.ShowErrorMessage(
-                        playniteApi.Resources.GetString("LOCItchioClientNotInstalledError"), "");
+                    api.Dialogs.ShowErrorMessage(
+                        api.Resources.GetString("LOCItchioClientNotInstalledError"), "");
                     return;
                 }
 
-                playniteApi.Dialogs.ShowMessage(playniteApi.Resources.GetString("LOCItchioSignInNotif"));
+                api.Dialogs.ShowMessage(api.Resources.GetString("LOCItchioSignInNotif"));
                 Itch.StartClient();
-                playniteApi.Dialogs.ShowMessage(playniteApi.Resources.GetString("LOCItchioSignInWaitMessage"));
+                api.Dialogs.ShowMessage(api.Resources.GetString("LOCItchioSignInWaitMessage"));
                 OnPropertyChanged(nameof(IsUserLoggedIn));
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                playniteApi.Dialogs.ShowErrorMessage(playniteApi.Resources.GetString("LOCNotLoggedInError"), "");
+                api.Dialogs.ShowErrorMessage(api.Resources.GetString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate itch.io user.");
             }
         }

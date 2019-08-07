@@ -1,17 +1,22 @@
 ﻿using Newtonsoft.Json;
 using OriginLibrary.Services;
+using Playnite;
 using Playnite.SDK;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OriginLibrary
 {
     public class OriginLibrarySettings : ObservableObject, ISettings
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private OriginLibrarySettings editingClone;
-        private readonly OriginLibrary library;
-        private readonly IPlayniteAPI playniteApi;
+        private OriginLibrary library;
+        private IPlayniteAPI api;
 
         #region Settings      
 
@@ -28,7 +33,7 @@ namespace OriginLibrary
         {
             get
             {
-                using (var view = playniteApi.WebViews.CreateOffscreenView())
+                using (var view = api.WebViews.CreateOffscreenView())
                 {
                     var api = new OriginAccountClient(view);
                     return api.GetIsUserLoggedIn();
@@ -49,10 +54,10 @@ namespace OriginLibrary
         {
         }
 
-        public OriginLibrarySettings(OriginLibrary library, IPlayniteAPI playniteApi)
+        public OriginLibrarySettings(OriginLibrary library, IPlayniteAPI api)
         {
             this.library = library;
-            this.playniteApi = playniteApi;
+            this.api = api;
 
             var settings = library.LoadPluginSettings<OriginLibrarySettings>();
             if (settings != null)
@@ -91,7 +96,7 @@ namespace OriginLibrary
         {
             try
             {
-                using (var view = playniteApi.WebViews.CreateView(490, 670))
+                using (var view = api.WebViews.CreateView(490, 670))
                 {
                     var api = new OriginAccountClient(view);
                     api.Login();

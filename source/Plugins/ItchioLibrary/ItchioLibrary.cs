@@ -1,19 +1,24 @@
 ﻿using ItchioLibrary.Models;
+using Playnite;
 using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace ItchioLibrary
 {
     public class ItchioLibrary : LibraryPlugin
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private ILogger logger = LogManager.GetLogger();
         private const string dbImportMessageId = "itchiolibImportError";
         internal readonly ItchioLibrarySettings LibrarySettings;
 
@@ -100,7 +105,7 @@ namespace ItchioLibrary
                         continue;
                     }
 
-                    var game = new GameInfo
+                    var game = new GameInfo()
                     {
                         Source = "itch.io",
                         GameId = cave.game.id.ToString(),
@@ -161,7 +166,7 @@ namespace ItchioLibrary
                             continue;
                         }
 
-                        var game = new GameInfo
+                        var game = new GameInfo()
                         {
                             Source = "itch.io",
                             GameId = key.game.id.ToString(),

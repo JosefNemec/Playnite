@@ -1,4 +1,5 @@
-﻿using EpicLibrary.Services;
+﻿using EpicLibrary.Models;
+using EpicLibrary.Services;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -6,13 +7,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace EpicLibrary
 {
     public class EpicLibrary : LibraryPlugin
     {
-        private readonly ILogger logger = LogManager.GetLogger();
+        private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
         private const string dbImportMessageId = "epiclibImportError";
         internal readonly string TokensPath;
@@ -39,14 +43,14 @@ namespace EpicLibrary
                 }
 
                 var manifest = manifests.FirstOrDefault(a => a.AppName == app.AppName);
-                var game = new GameInfo
+                var game = new GameInfo()
                 {
                     Source = "Epic",
                     GameId = app.AppName,
                     Name = manifest?.DisplayName ?? Path.GetFileName(app.InstallLocation),
                     InstallDirectory = manifest?.InstallLocation ?? app.InstallLocation,
                     IsInstalled = true,
-                    PlayAction = new GameAction
+                    PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,
                         Path = manifest?.LaunchExecutable,
@@ -79,7 +83,7 @@ namespace EpicLibrary
                     continue;
                 }
 
-                games.Add(new GameInfo
+                games.Add(new GameInfo()
                 {
                     Source = "Epic",
                     GameId = gameAsset.appName,
