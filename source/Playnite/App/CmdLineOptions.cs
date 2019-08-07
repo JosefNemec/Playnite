@@ -24,6 +24,9 @@ namespace Playnite
         [Option("forcedefaulttheme")]
         public bool ForceDefaultTheme { get; set; }
 
+        [Option("hidesplashscreen")]
+        public bool HideSplashScreen { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);
