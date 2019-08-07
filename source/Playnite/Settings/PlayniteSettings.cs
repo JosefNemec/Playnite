@@ -1397,7 +1397,13 @@ namespace Playnite
             if (runOnBootup)
             {
                 FileSystem.DeleteFile(shortcutPath);
-                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, "", "", shortcutPath);
+
+                var hideSplashScreenOption = new CmdLineOptions()
+                {
+                    HideSplashScreen = true
+                };
+
+                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, hideSplashScreenOption.ToString(), "", shortcutPath);
             }
             else
             {

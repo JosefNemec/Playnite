@@ -23,7 +23,7 @@ namespace Playnite.FullscreenApp
             }
 
             SplashScreen splash = null;
-            if (cmdLine.Start.IsNullOrEmpty())
+            if (cmdLine.Start.IsNullOrEmpty() && !cmdLine.HideSplashScreen)
             {
                 splash = new SplashScreen("SplashScreen.png");
                 splash.Show(false);
