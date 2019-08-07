@@ -76,7 +76,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
 
 
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle">Käytössä</sys:String>
+    <sys:String x:Key="LOCEnabledTitle">Päällä</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Poista</sys:String>
     <sys:String x:Key="LOCRenameTitle">Nimeä uudelleen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopioi</sys:String>
@@ -130,7 +130,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCProfilesLabel">Profiilit</sys:String>
     <sys:String x:Key="LOCRemoveLabel">Poista</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Lataa</sys:String>
-    <sys:String x:Key="LOCSearchLabel">Etsi</sys:String>
+    <sys:String x:Key="LOCSearchLabel">Hae</sys:String>
     <sys:String x:Key="LOCGenreLabel">Lajityyppi</sys:String>
     <sys:String x:Key="LOCCompanyLabel">Yritys</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Kehittäjä</sys:String>
@@ -148,7 +148,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCPatronsLabel">Patronit</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisenssi</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Avustajat</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playnite suljetaan…</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Playnite sulkeutuu…</sys:String>
     <sys:String x:Key="LOCToday">Tänään</sys:String>
     <sys:String x:Key="LOCYesterday">Eilen</sys:String>
     <sys:String x:Key="LOCMonday">Maanantai</sys:String>
@@ -348,7 +348,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playniten uudelleenkäynnistys vaaditaan teeman käyttöön ottamiseksi</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Hanki lisää teemoja</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Luo uusi teema</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization">Avusta lokalisoinnissa</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Avusta käännöksissä</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Jotkut muutetut asetukset vaativat Playniten uudelleenkäynnistyksen. Haluatko käynnistää Playniten uudelleen nyt?
 
 Kaikki aktiiviset tapahtumat (metadatan lataukset) peruutetaan.</sys:String>
