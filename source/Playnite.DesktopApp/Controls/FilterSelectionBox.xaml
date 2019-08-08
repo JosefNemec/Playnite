@@ -47,7 +47,7 @@
                                          Visibility="{Binding IsFullTextEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                                 <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
                                         BorderThickness="0" Padding="3,0,3,0" Margin="0"
-                                        FontFamily="Marlett" Content="r"
+                                        Content="&#xef00;" FontFamily="{DynamicResource FontIcoFont}" FontSize="18"
                                         Click="ClearButton_Click">
                                     <Button.Style>                                        
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">

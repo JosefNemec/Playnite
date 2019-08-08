@@ -43,7 +43,8 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <TextBlock Text="⌫" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
+        <TextBlock Text="&#xef00;" FontFamily="{DynamicResource FontIcoFont}"
+                   FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
                    MouseUp="ClearImage_MouseUp" Foreground="{DynamicResource TextBrushDarker}">
             <TextBlock.Style>
                 <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
