@@ -1396,14 +1396,23 @@ namespace Playnite
             var shortcutPath = Path.Combine(startupPath, "Playnite.lnk");
             if (runOnBootup)
             {
-                FileSystem.DeleteFile(shortcutPath);
-
-                var hideSplashScreenOption = new CmdLineOptions()
+                var args = new CmdLineOptions()
                 {
                     HideSplashScreen = true
-                };
+                }.ToString();
+                                
+                if (File.Exists(shortcutPath))
+                {
+                    var existLnk = Programs.GetLnkShortcutData(shortcutPath);
+                    if (existLnk.Path == PlaynitePaths.DesktopExecutablePath &&
+                        existLnk.Arguments == args)
+                    {
+                        return;
+                    }
+                }
 
-                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, hideSplashScreenOption.ToString(), "", shortcutPath);
+                FileSystem.DeleteFile(shortcutPath);
+                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, args, "", shortcutPath);
             }
             else
             {
