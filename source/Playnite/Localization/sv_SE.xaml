@@ -251,7 +251,7 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Infofält som visas på detaljpanelen:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Marginal mellan rutorna</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Visa bakgrund</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Tjocklek på ram för rutnätet</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Saknar källa för spelikoner</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Saknar källa för spelomslagsbilder</sys:String>
@@ -669,7 +669,7 @@ Du kan prova följande tips för att försöka avhjälpa felet:
     <sys:String x:Key="LOCRemoveGame">Ta Bort</sys:String>
     <sys:String x:Key="LOCPlayGame">Spela</sys:String>
     <sys:String x:Key="LOCInstallGame">Installera</sys:String>
-    <sys:String x:Key="LOCGameOptions">Inställningar</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails">Detaljer</sys:String>
     <sys:String x:Key="LOCUninstallGame">Avinstallera</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Bläddra bland Lokalafiler</sys:String>
