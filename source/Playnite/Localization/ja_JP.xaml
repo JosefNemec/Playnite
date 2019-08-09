@@ -666,7 +666,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCRemoveGame">削除</sys:String>
     <sys:String x:Key="LOCPlayGame">プレイ</sys:String>
     <sys:String x:Key="LOCInstallGame">インストール</sys:String>
-    <sys:String x:Key="LOCGameOptions">オプション</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails">詳細</sys:String>
     <sys:String x:Key="LOCUninstallGame">アンインストール</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">インストール先を開く</sys:String>
