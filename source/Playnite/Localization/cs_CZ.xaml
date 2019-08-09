@@ -253,7 +253,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Pole, která budou viditelná v zobrazení detailů:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Mezery mezi položkami</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Vykreslovat pozadí</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Vykreslovat pozadí položek v mřížce</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Šířka ohraničení položky v mřížce</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Chybějící zdroj ikon her</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Chybějící zdroj obálek her</sys:String>
@@ -671,7 +671,7 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCRemoveGame">Odstranit</sys:String>
     <sys:String x:Key="LOCPlayGame">Hrát</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalovat</sys:String>
-    <sys:String x:Key="LOCGameOptions">Možnosti</sys:String>
+    <sys:String x:Key="LOCGameOptions">Možnosti hry</sys:String>
     <sys:String x:Key="LOCGameDetails">Podrobnosti</sys:String>
     <sys:String x:Key="LOCUninstallGame">Odinstalovat</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Otevřít umístění instalace</sys:String>
