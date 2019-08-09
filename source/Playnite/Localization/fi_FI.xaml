@@ -253,14 +253,14 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Lisätietopaneelissa näytettävät kentät:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Kohteiden välistys</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Piirrä tausta</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Näytä ruudukkonäkymäkohteen taustakuva</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ruudukon kohteen reunaviivan leveys</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Puuttuva pelin kuvakkeen lähde</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuttuva pelin kannen lähde</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Pystysuora välistys pelin lisätietoihin</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Ruudukkonäkymän tietojen paikka</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pelilistan asema lisätietonäkymässä</sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Piirrä erotin paneelien väliin</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Näytä erotin paneelien välillä</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Pelin kansikuvan korkeus</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Pelilistan kuvakkeen korkeus</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Sovelluksen fontti</sys:String>
@@ -670,7 +670,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCRemoveGame">Poista</sys:String>
     <sys:String x:Key="LOCPlayGame">Pelaa</sys:String>
     <sys:String x:Key="LOCInstallGame">Asenna</sys:String>
-    <sys:String x:Key="LOCGameOptions">Valinnat</sys:String>
+    <sys:String x:Key="LOCGameOptions">Pelin asetukset</sys:String>
     <sys:String x:Key="LOCGameDetails">Lisätiedot</sys:String>
     <sys:String x:Key="LOCUninstallGame">Poista asennus</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Avaa asennuksen sijainti</sys:String>
