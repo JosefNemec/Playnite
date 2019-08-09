@@ -1488,28 +1488,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CloseView()
         {
-            try
-            {
-                if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
-                {
-                    FileSystem.DeleteFile(EditingGame.Icon);
-                }
-
-                if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
-                {
-                    FileSystem.DeleteFile(EditingGame.CoverImage);
-                }
-
-                if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
-                {
-                    FileSystem.DeleteFile(EditingGame.BackgroundImage);
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed to cleanup temporary files.");
-            }
-
+            CleanupTempFiles();
             window.Close(false);
         }
 
@@ -1975,11 +1954,6 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         Game.Icon = database.AddFile(EditingGame.Icon, game.Id); ;
                     }
-
-                    if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
-                    {
-                        FileSystem.DeleteFile(EditingGame.Icon);
-                    }
                 }
             }
 
@@ -2011,11 +1985,6 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         Game.CoverImage = database.AddFile(EditingGame.CoverImage, Game.Id);
-                    }
-
-                    if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
-                    {
-                        FileSystem.DeleteFile(EditingGame.CoverImage);
                     }
                 }
             }
@@ -2071,11 +2040,6 @@ namespace Playnite.DesktopApp.ViewModels
                         {
                             Game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, Game.Id);
                         }
-
-                        if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
-                        {
-                            FileSystem.DeleteFile(EditingGame.BackgroundImage);
-                        }
                     }
                 }
             }
@@ -2121,7 +2085,33 @@ namespace Playnite.DesktopApp.ViewModels
                 database.Games.Update(Game);
             }
 
+            CleanupTempFiles();
             window.Close(true);
+        }
+
+        internal void CleanupTempFiles()
+        {
+            try
+            {
+                if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.Icon);
+                }
+
+                if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.CoverImage);
+                }
+
+                if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.BackgroundImage);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to cleanup temporary files.");
+            }
         }
 
         public void PreviewGameData(GameMetadata metadata)
