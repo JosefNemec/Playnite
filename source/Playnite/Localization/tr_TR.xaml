@@ -673,7 +673,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCRemoveGame">Sil</sys:String>
     <sys:String x:Key="LOCPlayGame">Oyna</sys:String>
     <sys:String x:Key="LOCInstallGame">Yükle</sys:String>
-    <sys:String x:Key="LOCGameOptions">Seçenekler</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails">Ayrıntılar</sys:String>
     <sys:String x:Key="LOCUninstallGame">Kaldır</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Kurulum Konumunu Aç</sys:String>
