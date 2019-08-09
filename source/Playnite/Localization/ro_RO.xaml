@@ -660,7 +660,7 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCRemoveGame">Şterge</sys:String>
     <sys:String x:Key="LOCPlayGame">Jucați</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalaţi</sys:String>
-    <sys:String x:Key="LOCGameOptions">Opţiuni</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails">Detalii</sys:String>
     <sys:String x:Key="LOCUninstallGame">Dezinstalați</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Deschide Directorul de Instalare</sys:String>
