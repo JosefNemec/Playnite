@@ -253,7 +253,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campos de jogo exibidos no painel de detalhes:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espaçamento entre itens</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Desenhar fundo</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Desenhar fundo nos itens da grade</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largura das bordas no esquema de grade</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fonte do ícone do jogo ausente</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte da capa do jogo ausente</sys:String>
@@ -671,7 +671,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCRemoveGame">Remover</sys:String>
     <sys:String x:Key="LOCPlayGame">Executar</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalar</sys:String>
-    <sys:String x:Key="LOCGameOptions">Opções</sys:String>
+    <sys:String x:Key="LOCGameOptions">Opções do jogo</sys:String>
     <sys:String x:Key="LOCGameDetails">Detalhes</sys:String>
     <sys:String x:Key="LOCUninstallGame">Desinstalar</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Abrir o local do jogo</sys:String>
