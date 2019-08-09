@@ -253,7 +253,7 @@ IGDB > 官方商店：
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">要显示的详细面板的游戏字段：</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">项目间隔</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">绘制背景</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">网格项目边框宽度</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">缺少游戏图标源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺少游戏封面源</sys:String>
@@ -671,7 +671,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCRemoveGame">移除</sys:String>
     <sys:String x:Key="LOCPlayGame">启动</sys:String>
     <sys:String x:Key="LOCInstallGame">安装</sys:String>
-    <sys:String x:Key="LOCGameOptions">选项</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails">详细信息</sys:String>
     <sys:String x:Key="LOCUninstallGame">卸载</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">打开安装位置</sys:String>
