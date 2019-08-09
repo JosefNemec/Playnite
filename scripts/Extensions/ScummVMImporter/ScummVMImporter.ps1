@@ -39,7 +39,7 @@ function global:ImportScummVMGames()
         return
     }
 
-    $scummvmEmulator = $PlayniteApi.Database.GetEmulators() | Where { $_.Name -eq "ScummVM" } | Select-Object -First 1
+    $scummvmEmulator = $PlayniteApi.Database.Emulators | Where { $_.Name -eq "ScummVM" } | Select-Object -First 1
     if (!$scummvmEmulator)
     {
         $PlayniteApi.Dialogs.ShowMessage("Couldn't find ScummVM emulator configuration in Playnite. Make sure you have ScummVM emulator configured.")
@@ -62,7 +62,7 @@ function global:ImportScummVMGames()
             $playTask.EmulatorProfileId = $scummvmEmulator.Profiles[0].Id
 
             $game.PlayAction =  $playTask
-            $PlayniteApi.Database.AddGame($game)
+            $PlayniteApi.Database.Games.Add($game)
         }
     }
 }
