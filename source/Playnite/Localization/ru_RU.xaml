@@ -253,14 +253,14 @@ IGDB > Официальный магазин:
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поля игр, отображаемые на панели подробностей:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Расстояние между элементами</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Рисовать фон</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Рисовать фон элемента сетки</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина рамки</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Отсутствует источник значка игры</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Отсутствует источник обложки игры</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Расстояние по вертикали до описания игр</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Сетка просмотра деталей положения</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Положение списка игр</sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Нарисовать разделитель между панелями</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Рисовать разделитель между панелями</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Высота обложки</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Высота значка списка игр</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Шрифт программы</sys:String>
@@ -673,7 +673,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCRemoveGame">Удалить</sys:String>
     <sys:String x:Key="LOCPlayGame">Играть</sys:String>
     <sys:String x:Key="LOCInstallGame">Установить</sys:String>
-    <sys:String x:Key="LOCGameOptions">Настройки</sys:String>
+    <sys:String x:Key="LOCGameOptions">Настройки игры</sys:String>
     <sys:String x:Key="LOCGameDetails">Подробная информация</sys:String>
     <sys:String x:Key="LOCUninstallGame">Установить</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Открыть расположение игры</sys:String>
