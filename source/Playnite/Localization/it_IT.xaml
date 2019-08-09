@@ -253,7 +253,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campi del gioco da visualizzare nel pannello dettagli:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Spaziatura oggetti</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Disegna sfondo</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Disegna sfondo elemento griglia</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Larghezza del bordo dell'oggetto nella griglia</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fonte dell'icona del gioco mancante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte della copertina del gioco mancante</sys:String>
@@ -670,7 +670,7 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCRemoveGame">Rimuovi</sys:String>
     <sys:String x:Key="LOCPlayGame">Gioca</sys:String>
     <sys:String x:Key="LOCInstallGame">Installa</sys:String>
-    <sys:String x:Key="LOCGameOptions">Opzioni</sys:String>
+    <sys:String x:Key="LOCGameOptions">Opzioni di Gioco</sys:String>
     <sys:String x:Key="LOCGameDetails">Dettagli</sys:String>
     <sys:String x:Key="LOCUninstallGame">Disinstalla</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Apri percorso gioco</sys:String>
