@@ -253,7 +253,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spelvelden weer te geven op detailspaneel:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Itemafstand</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Teken achtergrond</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Grensbreedte rasteritem</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Bron ontbrekende spelicoon</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Bron ontbrekende spelomslag</sys:String>
@@ -670,7 +670,7 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCRemoveGame">Verwijderen</sys:String>
     <sys:String x:Key="LOCPlayGame">Speel</sys:String>
     <sys:String x:Key="LOCInstallGame">Installeer</sys:String>
-    <sys:String x:Key="LOCGameOptions">Opties</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails">Details</sys:String>
     <sys:String x:Key="LOCUninstallGame">Deïnstalleer</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Open spel locatie</sys:String>
