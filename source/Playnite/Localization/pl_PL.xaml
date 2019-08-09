@@ -253,7 +253,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Wyświetlane pola gry w panelu szczegółowym:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Rozstawienie elementów</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Rysowanie tła</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Szerokość ramki okładki</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Brak źródła ikony gry</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Brak źródła okładki gry</sys:String>
@@ -665,7 +665,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCRemoveGame">Usuń</sys:String>
     <sys:String x:Key="LOCPlayGame">Graj</sys:String>
     <sys:String x:Key="LOCInstallGame">Instaluj</sys:String>
-    <sys:String x:Key="LOCGameOptions">Ustawienia</sys:String>
+    <sys:String x:Key="LOCGameOptions">Opcje gry</sys:String>
     <sys:String x:Key="LOCGameDetails">Szczegóły</sys:String>
     <sys:String x:Key="LOCUninstallGame">Odinstaluj</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Otwórz lokalizację instalacji</sys:String>
