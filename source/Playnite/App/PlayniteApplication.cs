@@ -169,7 +169,7 @@ namespace Playnite
         {
             logger.Info("Shutting down application because of session ending.");
 
-            if (e.ReasonSessionEnding == ReasonSessionEnding.Logoff)
+            if (e.ReasonSessionEnding == ReasonSessionEnding.Shutdown)
             {
                 QuitWithoutReleasingResources();
             }
