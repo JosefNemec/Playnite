@@ -32,6 +32,7 @@ namespace Playnite.DesktopApp.ViewModels
         public static ILogger Logger = LogManager.GetLogger();
         private static object gamesLock = new object();
         protected bool ignoreCloseActions = false;
+        protected bool ignoreSelectionChanges = false;
         private readonly SynchronizationContext context;
         private PlayniteApplication application;
 
@@ -71,6 +72,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => selectedGame;
             set
             {
+                if (ignoreSelectionChanges)
+                {
+                    return;
+                }
+
                 if (value == selectedGame && SelectedGameDetails?.Game == value)
                 {
                     return;
@@ -651,7 +657,15 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (SelectedGames?.Count() > 1)
                 {
-                    GamesEditor.EditGames(SelectedGames.Select(g => g.Game).ToList());
+                    ignoreSelectionChanges = true;
+                    try
+                    {
+                        GamesEditor.EditGames(SelectedGames.Select(g => g.Game).ToList());
+                    }
+                    finally
+                    {
+                        ignoreSelectionChanges = false;
+                    }
                 }
                 else
                 {
@@ -692,7 +706,15 @@ namespace Playnite.DesktopApp.ViewModels
 
             EditGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
-                GamesEditor.EditGames(a.ToList());
+                ignoreSelectionChanges = true;
+                try
+                {
+                    GamesEditor.EditGames(a.ToList());
+                }
+                finally
+                {
+                    ignoreSelectionChanges = false;
+                }
             });
 
             OpenGameLocationCommand = new RelayCommand<Game>((a) =>
