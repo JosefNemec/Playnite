@@ -23,6 +23,7 @@ using Playnite.Windows;
 using System.Drawing.Imaging;
 using Playnite.DesktopApp.Windows;
 using Playnite.SDK.Plugins;
+using Playnite.Metadata.Providers;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -2492,7 +2493,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
             
-            model.SearchTerm = EditingGame.Name;
+            model.SearchTerm = IGDBMetadataProvider.GetIgdbSearchString(EditingGame.Name);
             if (model.OpenView() == true)
             {
                 ShowCheckBoxes = true;
