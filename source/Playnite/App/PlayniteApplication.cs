@@ -168,7 +168,15 @@ namespace Playnite
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
             logger.Info("Shutting down application because of session ending.");
-            Quit();
+
+            if (e.ReasonSessionEnding == ReasonSessionEnding.Logoff)
+            {
+                QuitWithoutReleasingResources();
+            }
+            else
+            {
+                Quit();
+            }
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
@@ -375,6 +383,12 @@ namespace Playnite
                     SimulateNavigationKeys = true
                 };
             }
+        }
+
+        public void QuitWithoutReleasingResources()
+        {
+            logger.Info("Shutting down Playnite without releasing resources");
+            CurrentNative.Shutdown(0);
         }
 
         public void Quit()
