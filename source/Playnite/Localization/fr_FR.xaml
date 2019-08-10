@@ -252,7 +252,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Afficher l'arrière-plan</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largeur des bordures</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
@@ -668,7 +668,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCRemoveGame">Supprimer</sys:String>
     <sys:String x:Key="LOCPlayGame">Jouer</sys:String>
     <sys:String x:Key="LOCInstallGame">Installer</sys:String>
-    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameOptions">Options</sys:String>
     <sys:String x:Key="LOCGameDetails">Propriétés</sys:String>
     <sys:String x:Key="LOCUninstallGame">Désinstaller</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Ouvrir l'emplacement du jeu</sys:String>
