@@ -380,12 +380,6 @@ namespace Playnite
             }
         }
 
-        public void QuitWithoutReleasingResources()
-        {
-            logger.Info("Shutting down Playnite without releasing resources");
-            CurrentNative.Shutdown(0);
-        }
-
         public void Quit()
         {
             logger.Info("Shutting down Playnite");
@@ -426,7 +420,7 @@ namespace Playnite
             }, ResourceProvider.GetString("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
-            
+
             // This must run on main thread
             CurrentNative.Dispatcher.Invoke(() =>
             {
