@@ -169,14 +169,9 @@ namespace Playnite
         {
             logger.Info("Shutting down application because of session ending.");
 
-            if (e.ReasonSessionEnding == ReasonSessionEnding.Shutdown)
-            {
-                QuitWithoutReleasingResources();
-            }
-            else
-            {
-                Quit();
-            }
+            CefTools.MachineShuttingDown = (e.ReasonSessionEnding == ReasonSessionEnding.Shutdown);
+
+            Quit();
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
@@ -385,12 +380,6 @@ namespace Playnite
             }
         }
 
-        public void QuitWithoutReleasingResources()
-        {
-            logger.Info("Shutting down Playnite without releasing resources");
-            CurrentNative.Shutdown(0);
-        }
-
         public void Quit()
         {
             logger.Info("Shutting down Playnite");
@@ -431,7 +420,7 @@ namespace Playnite
             }, ResourceProvider.GetString("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
-
+            
             // This must run on main thread
             CurrentNative.Dispatcher.Invoke(() =>
             {

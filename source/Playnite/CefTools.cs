@@ -15,6 +15,8 @@ namespace Playnite
     {
         public static bool IsInitialized { get; private set; }
 
+        public static bool MachineShuttingDown { private get; set; }
+
         public static void ConfigureCef()
         {
             FileSystem.CreateDirectory(PlaynitePaths.BrowserCachePath);
@@ -30,6 +32,11 @@ namespace Playnite
 
         public static void Shutdown()
         {
+            if (MachineShuttingDown)
+            {
+                return;
+            }
+
             Cef.Shutdown();
             IsInitialized = false;
         }
