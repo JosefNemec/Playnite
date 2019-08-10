@@ -380,6 +380,12 @@ namespace Playnite
             }
         }
 
+        public void QuitWithoutReleasingResources()
+        {
+            logger.Info("Shutting down Playnite without releasing resources");
+            CurrentNative.Shutdown(0);
+        }
+
         public void Quit()
         {
             logger.Info("Shutting down Playnite");
