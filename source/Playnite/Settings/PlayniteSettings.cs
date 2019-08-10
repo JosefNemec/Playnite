@@ -50,7 +50,7 @@ namespace Playnite
         Library,
         [Description("LOCPlatformTitle")]
         Platform,
-        [Description("LOCGeneralLabel")]
+        [Description("Playnite")]
         General
     }
 
@@ -58,7 +58,7 @@ namespace Playnite
     {
         [Description("LOCPlatformTitle")]
         Platform,
-        [Description("LOCGeneralLabel")]
+        [Description("Playnite")]
         General
     }
 
