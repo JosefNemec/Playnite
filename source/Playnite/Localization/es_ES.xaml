@@ -253,8 +253,8 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campos del juego que serán mostrados en el panel de detalles:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacio entre elementos</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ancho del borde del objeto de cuadrícula</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Dibujar fondo de elemento de cuadrícula</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ancho del borde del elemento de cuadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fuente del icono del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fuente de la portada del juego faltante</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espaciado vertical a los detalles del juego</sys:String>
@@ -671,7 +671,7 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCRemoveGame">Eliminar</sys:String>
     <sys:String x:Key="LOCPlayGame">Iniciar</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalar</sys:String>
-    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameOptions">Opciones de Juego</sys:String>
     <sys:String x:Key="LOCGameDetails">Detalles</sys:String>
     <sys:String x:Key="LOCUninstallGame">Desinstalar</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Abrir la ubicación del juego</sys:String>
