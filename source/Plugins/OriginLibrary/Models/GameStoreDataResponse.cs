@@ -23,11 +23,13 @@ namespace OriginLibrary.Models
         public class Platform
         {
             public string platform;
+            public string multiplayerId;
             public DateTime releaseDate;
         }
 
         public string offerId;
         public string offerType;
+        public string masterTitleId;
         public List<Platform> platforms;
         public string publisherFacetKey;
         public string developerFacetKey;

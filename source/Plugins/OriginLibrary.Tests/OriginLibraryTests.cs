@@ -10,6 +10,8 @@ using Playnite.SDK.Models;
 using Moq;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
+using Playnite.API;
+using Playnite.Tests;
 
 namespace OriginLibrary.Tests
 {
@@ -18,9 +20,7 @@ namespace OriginLibrary.Tests
     {
         public static OriginLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            api.Setup(a => a.GetPluginUserDataPath(It.IsAny<ILibraryPlugin>())).Returns(() => OriginTests.TempPath);
-            return new OriginLibrary(api.Object);
+            return new OriginLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]
@@ -31,13 +31,12 @@ namespace OriginLibrary.Tests
             Assert.AreNotEqual(0, games.Count);
 
             var game = games.Values.First();
-            Assert.AreNotEqual(game.PluginId, Guid.Empty);
             Assert.IsTrue(!string.IsNullOrEmpty(game.Name));
             Assert.IsTrue(!string.IsNullOrEmpty(game.GameId));
             Assert.IsTrue(Directory.Exists(game.InstallDirectory));
             Assert.IsNotNull(game.PlayAction);
 
-            foreach (Game g in games.Values)
+            foreach (var g in games.Values)
             {
                 if (g.PlayAction.Type == GameActionType.File)
                 {
@@ -52,7 +51,7 @@ namespace OriginLibrary.Tests
         {
             var originLib = CreateLibrary();
             var games = originLib.GetInstalledGames(true);
-            var cacheFiles = Directory.GetFiles(Path.Combine(OriginTests.TempPath, "origincache"), "*.json");
+            var cacheFiles = Directory.GetFiles(Origin.GetCachePath(originLib.GetPluginUserDataPath()), "*.json");
             Assert.IsTrue(cacheFiles.Count() > 0);
         }
 

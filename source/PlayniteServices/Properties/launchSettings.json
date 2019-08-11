@@ -11,7 +11,7 @@
         "IIS Express": {
             "commandName": "IISExpress",
             "launchBrowser": true,
-            "launchUrl": "api/steam/library/",
+            "launchUrl": "steam/library/",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }

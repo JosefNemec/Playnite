@@ -1,6 +1,5 @@
 ﻿using Playnite.SDK;
 using Playnite.SDK.Plugins;
-using Playnite.ThirdPartyClients;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,7 +12,7 @@ namespace Playnite
 {
     public class ThirdPartyTool
     {
-        public ILibraryClient Client { get; set; }
+        public LibraryClient Client { get; set; }
 
         public string Name { get; set; }
 
@@ -25,7 +24,7 @@ namespace Playnite
 
     public class ThirdPartyToolsList
     {
-        public static List<ThirdPartyTool> GetTools(IEnumerable<ILibraryPlugin> plugins)
+        public static List<ThirdPartyTool> GetTools(IEnumerable<LibraryPlugin> plugins)
         {
             var tools = new List<ThirdPartyTool>();
             if (plugins?.Any() == true)
@@ -41,16 +40,6 @@ namespace Playnite
                         });
                     }
                 }
-            }
-
-            var epic = new EpicLauncherClient();
-            if (epic.IsInstalled)
-            {
-                tools.Add(new ThirdPartyTool()
-                {
-                    Client = epic,
-                    Name = "Epic Launcher"
-                });
             }
 
             return tools;

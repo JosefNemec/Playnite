@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="BottomButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="15,8,15,8" />
+        <Setter Property="MinWidth" Value="70" />
+    </Style>
+</ResourceDictionary>

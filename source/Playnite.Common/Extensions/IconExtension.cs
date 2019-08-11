@@ -8,11 +8,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Playnite.Common;
 
-namespace Playnite
+namespace System.Drawing
 {
     public enum ShellIconSize : uint
     {
@@ -23,8 +23,6 @@ namespace Playnite
 
     public static class IconExtension
     {
-
-
         public static Icon ExtractIconFromExe(string file, bool large)
         {
             int readIconCount = 0;
@@ -35,11 +33,11 @@ namespace Playnite
             {
                 if (large)
                 {
-                    readIconCount = InteropMethods.ExtractIconEx(file, 0, hIconEx, hDummy, 1);
+                    readIconCount = Interop.ExtractIconEx(file, 0, hIconEx, hDummy, 1);
                 }
                 else
                 {
-                    readIconCount = InteropMethods.ExtractIconEx(file, 0, hDummy, hIconEx, 1);
+                    readIconCount = Interop.ExtractIconEx(file, 0, hDummy, hIconEx, 1);
                 }
 
                 if (readIconCount > 0 && hIconEx[0] != IntPtr.Zero)
@@ -62,7 +60,7 @@ namespace Playnite
                 {
                     if (ptr != IntPtr.Zero)
                     {
-                        InteropMethods.DestroyIcon(ptr);
+                        Interop.DestroyIcon(ptr);
                     }
                 }
 
@@ -70,7 +68,7 @@ namespace Playnite
                 {
                     if (ptr != IntPtr.Zero)
                     {
-                        InteropMethods.DestroyIcon(ptr);
+                        Interop.DestroyIcon(ptr);
                     }
                 }
             }
@@ -90,13 +88,13 @@ namespace Playnite
             Bitmap bitmap = icon.ToBitmap();
             IntPtr hBitmap = bitmap.GetHbitmap();
 
-            BitmapSource wpfBitmap = Imaging.CreateBitmapSourceFromHBitmap(
+            BitmapSource wpfBitmap = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
                 hBitmap,
                 IntPtr.Zero,
                 Int32Rect.Empty,
                 BitmapSizeOptions.FromEmptyOptions());
 
-            if (!InteropMethods.DeleteObject(hBitmap))
+            if (!Interop.DeleteObject(hBitmap))
             {
                 throw new Win32Exception();
             }

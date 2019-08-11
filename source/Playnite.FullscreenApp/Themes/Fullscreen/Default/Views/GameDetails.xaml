@@ -1,0 +1,159 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                    
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
+
+    <Style TargetType="{x:Type GameDetails}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GameDetails}">
+                    <Grid Background="{DynamicResource MainBackgourndBrush}"
+                          x:Name="PART_ViewHost"
+                          d:DesignWidth="{StaticResource DesignWidth}"
+                          d:DesignHeight="{StaticResource DesignHeight}"
+                          d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
+                          KeyboardNavigation.DirectionalNavigation="Contained"
+                          KeyboardNavigation.TabNavigation="Contained">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="350" />
+                            <ColumnDefinition Width="6*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="4*" />
+                        </Grid.RowDefinitions>
+                        
+                        <FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
+                                   Grid.ColumnSpan="4" Grid.RowSpan="2"
+                                   Source="{Binding BackgroundImageObject, IsAsync=True}" />
+
+                        <Border Background="{DynamicResource GameDetailsBackgroundBrush}"
+                                Grid.ColumnSpan="4" Grid.Row="1">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding BackgroundImage}" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+
+                        <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                                Margin="14" Grid.Column="1" Grid.Row="1"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Right">
+                            <Image>
+                                <Image.Source>
+                                    <PriorityBinding>
+                                        <Binding Path="CoverImageObject" Mode="OneWay" 
+                                                 Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
+                                        <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
+                                    </PriorityBinding>
+                                </Image.Source>
+                            </Image>
+                        </Border>
+
+                        <Image Grid.Column="1" Grid.Row="1"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Right"
+                               Margin="24"
+                               Source="{Binding LibraryPlugin.LibraryIcon}"
+                               Height="48" RenderOptions.BitmapScalingMode="Fant">
+                            <Image.Effect>
+                                <DropShadowEffect Color="White" BlurRadius="20" ShadowDepth="0"
+                                                  RenderingBias="Quality" Opacity="1"/>
+                            </Image.Effect>
+                        </Image>
+
+                        <DockPanel Grid.Column="2" Grid.Row="1"
+                                   Margin="20"
+                                   HorizontalAlignment="Left">
+
+                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                       Text="{Binding DisplayName}"
+                                       Foreground="White" FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                       FontSize="38" DockPanel.Dock="Top">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect ShadowDepth="2" Color="Black"
+                                                      RenderingBias="Quality" Opacity="1"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,20,20,20">
+                                <StackPanel>
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                               Text="{DynamicResource LOCTimePlayed}"
+                                               Margin="0,0,0,10" />
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               Text="{Binding Playtime, Converter={StaticResource LongToTimePlayedConverter}}" />
+                                </StackPanel>
+                                
+                                <StackPanel Margin="50,0,0,0">
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                               Text="{DynamicResource LOCGameLastActivityTitle}"
+                                               Margin="0,0,0,10" />
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
+                                </StackPanel>
+
+                                <StackPanel Margin="50,0,0,0">
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                               Text="{DynamicResource LOCGameReleaseDateTitle}"
+                                               Margin="0,0,0,10" />
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               Text="{Binding ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" />
+                                </StackPanel>
+
+                                <StackPanel Margin="50,0,0,0">
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                               Text="{DynamicResource LOCGamePlatformTitle}"
+                                               Margin="0,0,0,10" />
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               Text="{Binding Platform}" />
+                                </StackPanel>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                <ButtonEx x:Name="PART_ButtonContext"
+                                          Margin="2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
+                                <ButtonEx x:Name="PART_ButtonOptions"
+                                          Content="{DynamicResource LOCGameOptions}"
+                                          Margin="5,2,2,2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
+                            </StackPanel>
+
+                            <Border Margin="-3,20,-3,-3" DockPanel.Dock="Top">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="3" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource SelectionBrush}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <ScrollViewerEx>
+                                    <HtmlTextView HtmlText="{Binding Description}"
+                                                  HtmlFontSize="16"
+                                                  HtmlForeground="{DynamicResource TextColor}"
+                                                  LinkForeground="{DynamicResource GlyphColor}"
+                                                  FocusVisualStyle="{x:Null}" />
+                                </ScrollViewerEx>
+                            </Border>
+                        </DockPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

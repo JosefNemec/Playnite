@@ -44,26 +44,26 @@ namespace Playnite.SDK
         /// <summary>
         /// Occurs when game is being started.
         /// </summary>
-        event GameControllerEventHandler Starting;
+        event EventHandler<GameControllerEventArgs> Starting;
 
         /// <summary>
         /// Occurs when game is started.
         /// </summary>
-        event GameControllerEventHandler Started;
+        event EventHandler<GameControllerEventArgs> Started;
 
         /// <summary>
         /// Occurs when game stops running.
         /// </summary>
-        event GameControllerEventHandler Stopped;
+        event EventHandler<GameControllerEventArgs> Stopped;
 
         /// <summary>
         /// Occurs when game is finished uninstalling.
         /// </summary>
-        event GameControllerEventHandler Uninstalled;
+        event EventHandler<GameControllerEventArgs> Uninstalled;
 
         /// <summary>
         /// Occurs when game is finished installing.
         /// </summary>
-        event GameControllerEventHandler Installed;
+        event EventHandler<GameInstalledEventArgs> Installed;
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/game_modes")]
+    [Route("igdb/game_modes")]
     public class GameModeController : IgdbItemController
     {
         private static readonly object CacheLock = new object();
@@ -18,6 +18,11 @@ namespace PlayniteServices.Controllers.IGDB
 
         [HttpGet("{modeId}")]
         public async Task<ServicesResponse<GameMode>> Get(ulong modeId)
+        {
+            return await GetItem(modeId);
+        }
+
+        public static async Task<ServicesResponse<GameMode>> GetItem(ulong modeId)
         {
             return new ServicesResponse<GameMode>(await GetItem<GameMode>(modeId, endpointPath, CacheLock));
         }

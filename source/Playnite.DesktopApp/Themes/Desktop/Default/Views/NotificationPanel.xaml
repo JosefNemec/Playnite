@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
+
+    <Style TargetType="{x:Type NotificationPanel}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="NotificationPanel">
+                    <DockPanel Background="{DynamicResource PopupBackgroundBrush}"
+                               d:DesignWidth="260" d:DesignHeight="400"
+                               d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
+                        <DockPanel Margin="13,15,7,15" DockPanel.Dock="Top">
+                            <Button Name="PART_ButtonClose" Content="r" FontFamily="Marlett"
+                                    Style="{StaticResource SimpleButton}"
+                                    DockPanel.Dock="Right" Margin="0,0,5,0" />
+                            <Button Name="PART_ButtonDismissAll" DockPanel.Dock="Left"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource SimpleButton}"
+                                    Content="{DynamicResource LOCDismissAll}" />
+                        </DockPanel>
+                        <ItemsControl Name="PART_ItemsMessages" DockPanel.Dock="Top" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource NotificationMessage}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+                        </ItemsControl>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary> 

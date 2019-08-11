@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SteamLibrary.Models;
-using Playnite.Web;
+using Playnite.Common.Web;
 
 namespace SteamLibrary.Services
 {
@@ -20,8 +20,7 @@ namespace SteamLibrary.Services
 
         public static string GetRawStoreAppDetail(uint appId)
         {
-            var url = @"http://store.steampowered.com/api/appdetails?appids={0}";
-            url = string.Format(url, appId);
+            var url = $"https://store.steampowered.com/api/appdetails?appids={appId}";
             return HttpDownloader.DownloadString(url);
         }
 

@@ -9,5 +9,10 @@ namespace SteamLibrary
         {
             return new GameID(ulong.Parse(game.GameId));
         }
+
+        public static GameID ToSteamGameID(this GameInfo game)
+        {
+            return new GameID(ulong.Parse(game.GameId));
+        }
     }
 }

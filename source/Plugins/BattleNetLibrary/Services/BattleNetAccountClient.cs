@@ -1,7 +1,6 @@
 ﻿using BattleNetLibrary.Models;
 using Playnite.Common;
 using Playnite.SDK;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +16,7 @@ namespace BattleNetLibrary.Services
         private const string apiStatusUrl = @"https://account.blizzard.com/api/";
         private const string gamesUrl = @"https://account.blizzard.com/api/games-and-subs";
         private const string classicGamesUrl = @"https://account.blizzard.com/api/classic-games";
-        private ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWebView webView;
 
         public BattleNetAccountClient(IWebView webView)
@@ -43,11 +42,12 @@ namespace BattleNetLibrary.Services
 
         public void Login()
         {
-            var apiUrls = GetDefaultApiStatus();
+            var apiUrls = GetDefaultApiStatus();            
             webView.NavigationChanged += (s, e) =>
             {
                 var address = webView.GetCurrentAddress();
-                if (address.StartsWith(@"https://account.blizzard.com") && !address.Equals(apiUrls.logoutUri, StringComparison.OrdinalIgnoreCase))
+                logger.Debug($"Battlenet login navigation {address}");
+                if (address.Equals(@"https://account.blizzard.com/overview", StringComparison.OrdinalIgnoreCase))
                 {
                     webView.Close();
                 }
@@ -82,6 +82,7 @@ namespace BattleNetLibrary.Services
                         }
                     }
 
+                    logger.Debug(responseText);
                     var deserialized = Serialization.FromJson<BattleNetApiStatus>(responseText);
                     return  deserialized;
                 }

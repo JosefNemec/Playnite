@@ -9,6 +9,7 @@ using Playnite.SDK.Models;
 using Playnite;
 using Moq;
 using Playnite.SDK;
+using Playnite.Tests;
 
 namespace GogLibrary.Tests
 {
@@ -17,8 +18,7 @@ namespace GogLibrary.Tests
     {
         public static GogLibrary CreateLibrary()
         {
-            var api = new Mock<IPlayniteAPI>();
-            return new GogLibrary(api.Object);
+            return new GogLibrary(PlayniteTests.GetTestingApi().Object);
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace GogLibrary.Tests
             Assert.AreNotEqual(0, games.Count);
             CollectionAssert.AllItemsAreUnique(games);
 
-            foreach (Game game in games.Values)
+            foreach (var game in games.Values)
             {
                 Assert.IsFalse(string.IsNullOrEmpty(game.Name));
                 Assert.IsFalse(string.IsNullOrEmpty(game.GameId));

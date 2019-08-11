@@ -1,14 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
 using OriginLibrary.Models;
 using OriginLibrary.Services;
-using Playnite;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace OriginLibrary
 {
-    public class OriginMetadataProvider : ILibraryMetadataProvider
+    public class OriginMetadataProvider : LibraryMetadataProvider
     {
         private readonly IPlayniteAPI api;
 
@@ -27,67 +26,50 @@ namespace OriginLibrary
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
-            var gameData = game.CloneJson();
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        #endregion IMetadataProvider
-
-        public OriginGameMetadata DownloadGameMetadata(string id)
-        {
-            var data = new OriginGameMetadata()
+            var storeMetadata = DownloadGameMetadata(game.GameId);
+            var gameInfo = new GameInfo
             {
-                StoreDetails = OriginApiClient.GetGameStoreData(id)
-            };
-        
-            var imageUrl = data.StoreDetails.imageServer + data.StoreDetails.i18n.packArtLarge;
-            var imageData = HttpDownloader.DownloadData(imageUrl);
-            var imageName = Guid.NewGuid() + Path.GetExtension(new Uri(imageUrl).AbsolutePath);
-            data.Image = new MetadataFile(imageName, imageData);
-
-            if (!string.IsNullOrEmpty(data.StoreDetails.offerPath))
-            {
-                data.StoreMetadata = OriginApiClient.GetStoreMetadata(data.StoreDetails.offerPath);
-                var bkData = data.StoreMetadata?.gamehub.components.items?.FirstOrDefault(a => a.ContainsKey("origin-store-pdp-hero"));
-                if (bkData != null)
+                Name = StringExtensions.NormalizeGameName(storeMetadata.StoreDetails.i18n.displayName),
+                Description = storeMetadata.StoreDetails.i18n.longDescription,
+                ReleaseDate = storeMetadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate,
+                Links = new List<Link>()
                 {
-                    var bk = (bkData["origin-store-pdp-hero"] as JObject).ToObject<Dictionary<string, object>>();
-                    if (bk.TryGetValue("background-image", out var backgroundUrl))
-                    {
-                        data.BackgroundImage = backgroundUrl.ToString();
-                    }
+                    new Link("Store", @"https://www.origin.com/store" + storeMetadata.StoreDetails.offerPath),
+                    new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name)
                 }
-            }
-
-            return data;
-        }
-
-        public OriginGameMetadata UpdateGameWithMetadata(Game game)
-        {
-            var metadata = DownloadGameMetadata(game.GameId);
-            game.Name = StringExtensions.NormalizeGameName(metadata.StoreDetails.i18n.displayName);
-            game.Links = new ObservableCollection<Link>()
-            {
-                new Link("Store", @"https://www.origin.com/store" + metadata.StoreDetails.offerPath),
-                new Link("Wiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name)
             };
 
-            if (!string.IsNullOrEmpty(metadata.StoreDetails.i18n.gameForumURL))
+            if (!storeMetadata.StoreDetails.publisherFacetKey.IsNullOrEmpty())
             {
-                game.Links.Add(new Link("Forum", metadata.StoreDetails.i18n.gameForumURL));
+                gameInfo.Publishers = new List<string>() { storeMetadata.StoreDetails.publisherFacetKey };
             }
 
-            game.Description = metadata.StoreDetails.i18n.longDescription;
-            game.Developers = new ComparableList<string>() { metadata.StoreDetails.developerFacetKey };
-            game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisherFacetKey };
-            game.Genres = new ComparableList<string>(metadata.StoreDetails.genreFacetKey?.Split(','));
-            game.ReleaseDate = metadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate;
-            game.BackgroundImage = metadata.BackgroundImage;
+            if (!storeMetadata.StoreDetails.developerFacetKey.IsNullOrEmpty())
+            {
+                gameInfo.Developers = new List<string>() { storeMetadata.StoreDetails.developerFacetKey };
+            }
 
-            if (!string.IsNullOrEmpty(metadata.StoreDetails.i18n.gameManualURL))
+            if (!storeMetadata.StoreDetails.genreFacetKey.IsNullOrEmpty())
+            {
+                gameInfo.Genres = new List<string>(storeMetadata.StoreDetails.genreFacetKey?.Split(','));
+            }
+
+            var metadata = new GameMetadata()
+            {
+                GameInfo = gameInfo,
+                Icon = storeMetadata.Icon,
+                CoverImage = storeMetadata.CoverImage,
+                BackgroundImage = storeMetadata.BackgroundImage
+            };
+
+            if (!string.IsNullOrEmpty(storeMetadata.StoreDetails.i18n.gameForumURL))
+            {
+                gameInfo.Links.Add(new Link("Forum", storeMetadata.StoreDetails.i18n.gameForumURL));
+            }
+
+            if (!string.IsNullOrEmpty(storeMetadata.StoreDetails.i18n.gameManualURL))
             {
                 game.OtherActions = new ObservableCollection<GameAction>()
                 {
@@ -95,7 +77,7 @@ namespace OriginLibrary
                     {
                         IsHandledByPlugin = false,
                         Type = GameActionType.URL,
-                        Path = metadata.StoreDetails.i18n.gameManualURL,
+                        Path = storeMetadata.StoreDetails.i18n.gameManualURL,
                         Name = "Manual"
                     }
                 };
@@ -117,7 +99,7 @@ namespace OriginLibrary
 
                 if (string.IsNullOrEmpty(executable))
                 {
-                    return metadata;
+                    return storeMetadata;
                 }
 
                 var exeIcon = IconExtension.ExtractIconFromExe(executable, true);
@@ -129,6 +111,33 @@ namespace OriginLibrary
             }
 
             return metadata;
+        }
+
+        #endregion IMetadataProvider
+
+        public OriginGameMetadata DownloadGameMetadata(string id)
+        {
+            var data = new OriginGameMetadata()
+            {
+                StoreDetails = OriginApiClient.GetGameStoreData(id)
+            };
+
+            data.CoverImage = new MetadataFile(data.StoreDetails.imageServer + data.StoreDetails.i18n.packArtLarge);
+            if (!string.IsNullOrEmpty(data.StoreDetails.offerPath))
+            {
+                data.StoreMetadata = OriginApiClient.GetStoreMetadata(data.StoreDetails.offerPath);
+                var bkData = data.StoreMetadata?.gamehub.components.items?.FirstOrDefault(a => a.ContainsKey("origin-store-pdp-hero"));
+                if (bkData != null)
+                {
+                    var bk = (bkData["origin-store-pdp-hero"] as JObject).ToObject<Dictionary<string, object>>();
+                    if (bk.TryGetValue("background-image", out var backgroundUrl))
+                    {
+                        data.BackgroundImage = new MetadataFile(backgroundUrl.ToString());
+                    }
+                }
+            }
+
+            return data;
         }
     }
 }

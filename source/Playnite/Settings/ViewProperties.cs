@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -10,59 +12,132 @@ namespace Playnite
 {
     public enum SortOrder
     {
+        [Description("LOCGameNameTitle")]
         Name,
-        LastActivity,
-        Provider,
-        Categories,
-        Genres,
-        ReleaseDate,
-        Developers,
-        Publishers,
-        IsInstalled,
-        Hidden,
-        Favorite,
-        InstallDirectory,
-        Icon,
+        [Description("LOCPlatformTitle")]
         Platform,
+        [Description("LOCGameProviderTitle")]
+        Library,
+        [Description("LOCCategoryLabel")]
+        Categories,
+        [Description("LOCGameLastActivityTitle")]
+        LastActivity,
+        [Description("LOCGenreLabel")]
+        Genres,
+        [Description("LOCGameReleaseDateTitle")]
+        ReleaseDate,
+        [Description("LOCDeveloperLabel")]
+        Developers,
+        [Description("LOCPublisherLabel")]
+        Publishers,
+        [Description("LOCTagLabel")]
         Tags,
-        Playtime,
-        Added,
-        Modified,
-        PlayCount,
+        [Description("LOCSeriesLabel")]
         Series,
-        Version,
+        [Description("LOCAgeRatingLabel")]
         AgeRating,
+        [Description("LOCVersionLabel")]
+        Version,
+        [Description("LOCRegionLabel")]
         Region,
+        [Description("LOCSourceLabel")]
         Source,
+        [Description("LOCPlayCountLabel")]
+        PlayCount,
+        [Description("LOCTimePlayed")]
+        Playtime,
+        [Description("LOCCompletionStatus")]
         CompletionStatus,
+        [Description("LOCUserScore")]
         UserScore,
+        [Description("LOCCriticScore")]
         CriticScore,
-        CommunityScore
+        [Description("LOCCommunityScore")]
+        CommunityScore,
+        [Description("LOCDateAddedLabel")]
+        Added,
+        [Description("LOCDateModifiedLabel")]
+        Modified,
+        [Description("LOCGameIsInstalledTitle")]
+        IsInstalled,
+        [Description("LOCGameHiddenTitle")]
+        Hidden,
+        [Description("LOCGameFavoriteTitle")]
+        Favorite,
+        [Description("LOCGameInstallDirTitle")]
+        InstallDirectory,
     }
 
     public enum SortOrderDirection
     {
+        [Description("LOCMenuSortAscending")]
         Ascending,
+        [Description("LOCMenuSortDescending")]
         Descending
     }
 
-    public enum GroupOrder
+    public enum GroupableField
     {
+        [Description("LOCMenuGroupDont")]
         None,
-        Provider,
+        [Description("LOCPlatformTitle")]
+        Platform,
+        [Description("LOCGameProviderTitle")]
+        Library,
+        [Description("LOCCategoryLabel")]
         Category,
-        Platform
+        [Description("LOCGameLastActivityTitle")]
+        LastActivity,
+        [Description("LOCGenreLabel")]
+        Genre,
+        [Description("LOCGameReleaseYearTitle")]
+        ReleaseYear,
+        [Description("LOCDeveloperLabel")]
+        Developer,
+        [Description("LOCPublisherLabel")]
+        Publisher,
+        [Description("LOCTagLabel")]
+        Tag,
+        [Description("LOCSeriesLabel")]
+        Series,
+        [Description("LOCAgeRatingLabel")]
+        AgeRating,
+        [Description("LOCRegionLabel")]
+        Region,
+        [Description("LOCSourceLabel")]
+        Source,
+        [Description("LOCTimePlayed")]
+        PlayTime,
+        [Description("LOCCompletionStatus")]
+        CompletionStatus,
+        [Description("LOCUserScore")]
+        UserScore,
+        [Description("LOCCriticScore")]
+        CriticScore,
+        [Description("LOCCommunityScore")]
+        CommunityScore,
+        [Description("LOCDateAddedLabel")]
+        Added,
+        [Description("LOCDateModifiedLabel")]
+        Modified
     }
 
     public enum ViewType : int
     {
-        List = 0,
-        Images = 1,
-        Grid = 2
+        [Description("LOCDetailsViewLabel")]
+        Details = 0,
+        [Description("LOCGridViewLabel")]
+        Grid = 1,
+        [Description("LOCListViewLabel")]
+        List = 2
     }
 
     public class ViewSettings : ObservableObject
     {
+        public const double MinGridItemWidth = 120;
+        public const double DefaultGridItemWidth = 280;
+        public const double MaxGridItemWidth = 560;
+
         private SortOrder sortingOrder = SortOrder.Name;
         public SortOrder SortingOrder
         {
@@ -78,7 +153,7 @@ namespace Playnite
             }
         }
 
-        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Descending;
+        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Ascending;
         public SortOrderDirection SortingOrderDirection
         {
             get
@@ -93,8 +168,8 @@ namespace Playnite
             }
         }
 
-        private GroupOrder groupingOrder = GroupOrder.None;
-        public GroupOrder GroupingOrder
+        private GroupableField groupingOrder = GroupableField.None;
+        public GroupableField GroupingOrder
         {
             get
             {
@@ -108,7 +183,7 @@ namespace Playnite
             }
         }
 
-        private ViewType gamesViewType;
+        private ViewType gamesViewType = ViewType.Details;
         public ViewType GamesViewType
         {
             get
@@ -123,19 +198,106 @@ namespace Playnite
             }
         }
 
-        private double coversZoom = 180;
-        public double CoversZoom
+        private GroupableField selectedExplorerField = GroupableField.Library;
+        public GroupableField SelectedExplorerField
         {
             get
             {
-                return coversZoom;
+                return selectedExplorerField;
             }
 
             set
             {
-                coversZoom = value;
+                selectedExplorerField = value;
                 OnPropertyChanged();
             }
         }
-    }        
+
+        private ObservableConcurrentDictionary<string, bool> gridViewHeaders = new ObservableConcurrentDictionary<string, bool>()
+        {
+            { "Icon", true },
+            { "Name", true },
+            { "Platform", false },
+            { "Developers", false },
+            { "Publishers", false },
+            { "ReleaseDate", true },
+            { "Genres", true },
+            { "LastActivity", true },
+            { "IsInstalled", false },
+            { "InstallDirectory", false },
+            { "Categories", false },
+            { "Playtime", true },
+            { "Added", false },
+            { "Modified", false },
+            { "PlayCount", false },
+            { "Series", false },
+            { "Version", false },
+            { "AgeRating", false },
+            { "Region", false },
+            { "Source", false },
+            { "CompletionStatus", false },
+            { "UserScore", false },
+            { "CriticScore", false },
+            { "CommunityScore", false },
+            { "Tags", false },
+            { "Library", true }
+        };
+
+        public ObservableConcurrentDictionary<string, bool> GridViewHeaders
+        {
+            get
+            {
+                return gridViewHeaders;
+            }
+
+            set
+            {
+                if (gridViewHeaders != null)
+                {
+                    gridViewHeaders.PropertyChanged -= GridViewHeaders_PropertyChanged;
+                }
+
+                gridViewHeaders = value;
+                gridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> collapsedCategories = new List<string>();
+        public List<string> CollapsedCategories
+        {
+            get
+            {
+                return collapsedCategories;
+            }
+
+            set
+            {
+                collapsedCategories = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ViewSettings()
+        {
+            GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
+        }
+
+        private void GridViewHeaders_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(GridViewHeaders.Values))
+            {
+                OnPropertyChanged(nameof(GridViewHeaders));
+            }
+        }
+
+        #region Serialization Conditions
+
+        public bool ShouldSerializeCollapsedCategories()
+        {
+            return CollapsedCategories.HasItems();
+        }
+
+        #endregion Serialization Conditions
+    }
 }

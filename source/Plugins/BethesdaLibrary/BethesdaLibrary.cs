@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using Playnite.Common.System;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -15,18 +13,16 @@ using System.Windows.Controls;
 
 namespace BethesdaLibrary
 {
-    public class BethesdaLibrary : ILibraryPlugin
+    public class BethesdaLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
+        private const string dbImportMessageId = "bethesdalibImportError";
 
         internal BethesdaLibrarySettings LibrarySettings { get; private set; }
 
-        public BethesdaLibrary(IPlayniteAPI api)
+        public BethesdaLibrary(IPlayniteAPI api) : base(api)
         {
-            playniteApi = api;
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\bethesdaicon.png");
-            LibrarySettings = new BethesdaLibrarySettings(this, playniteApi);
+            LibrarySettings = new BethesdaLibrarySettings(this, PlayniteApi);
         }
 
         public GameAction GetGamePlayTask(string id)
@@ -39,9 +35,9 @@ namespace BethesdaLibrary
             };
         }
 
-        public List<Game> GetInstalledGames()
+        public List<GameInfo> GetInstalledGames()
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
 
             foreach (var program in Bethesda.GetBethesdaInstallEntried())
             {
@@ -53,10 +49,9 @@ namespace BethesdaLibrary
 
                 var match = Regex.Match(program.UninstallString, @"uninstall\/(\d+)");
                 var gameId = match.Groups[1].Value;
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
                     GameId = gameId,
-                    PluginId = Id,
                     Source = "Bethesda",
                     InstallDirectory = installDir,
                     PlayAction = GetGamePlayTask(gameId),
@@ -72,46 +67,56 @@ namespace BethesdaLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new BethesdaClient();
+        public override LibraryClient Client => new BethesdaClient();
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => Bethesda.Icon;
 
-        public string Name { get; } = "Bethesda";
+        public override string Name => "Bethesda";
 
-        public Guid Id { get; } = Guid.Parse("0E2E793E-E0DD-4447-835C-C44A1FD506EC");
+        public override Guid Id => Guid.Parse("0E2E793E-E0DD-4447-835C-C44A1FD506EC");
 
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return firstRunSettings ? null : LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return firstRunView ? null : new BethesdaLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
             return new BethesdaGameController(this, game);
         }
 
-        public IEnumerable<Game> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
+            var allGames = new List<GameInfo>();
             if (LibrarySettings.ImportInstalledGames)
             {
-                return GetInstalledGames();
+                try
+                {
+                    var installed = GetInstalledGames();
+                    logger.Debug($"Found {installed.Count} installed Bethesda games.");
+                    PlayniteApi.Notifications.Remove(dbImportMessageId);
+                    return installed;
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import uninstalled Bethesda games.");
+                    PlayniteApi.Notifications.Add(
+                        dbImportMessageId,
+                        string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                        System.Environment.NewLine + e.Message,
+                        NotificationType.Error);
+                }
             }
 
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new BethesdaMetadataProvider();
         }

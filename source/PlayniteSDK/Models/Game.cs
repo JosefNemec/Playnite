@@ -14,6 +14,117 @@ using Newtonsoft.Json;
 namespace Playnite.SDK.Models
 {
     /// <summary>
+    /// Specifies <see cref="Game"/> fields.
+    /// </summary>
+    public enum GameField
+    {
+        /// 
+        BackgroundImage,
+        /// 
+        Description,
+        /// 
+        GenreIds,
+        /// 
+        Hidden,
+        /// 
+        Favorite,
+        /// 
+        Icon,
+        /// 
+        CoverImage,
+        /// 
+        InstallDirectory,
+        /// 
+        GameImagePath,
+        /// 
+        LastActivity,
+        /// 
+        SortingName,
+        /// 
+        Gameid,
+        /// 
+        PluginId,
+        /// 
+        OtherActions,
+        /// 
+        PlayAction,
+        /// 
+        PlatformId,
+        /// 
+        PublisherIds,
+        /// 
+        DeveloperIds,
+        /// 
+        ReleaseDate,
+        /// 
+        CategoryIds,
+        /// 
+        TagIds,
+        /// 
+        Links,
+        /// 
+        IsInstalling,
+        /// 
+        IsUninstalling,
+        /// 
+        IsLaunching,
+        /// 
+        IsRunning,
+        /// 
+        IsInstalled,
+        /// 
+        IsCustomGame,
+        /// 
+        Playtime,
+        /// 
+        Added,
+        ///       
+        Modified,
+        ///       
+        PlayCount,
+        /// 
+        SeriesId,
+        /// 
+        Version,
+        /// 
+        AgeRatingId,
+        /// 
+        RegionId,
+        /// 
+        SourceId,
+        /// 
+        CompletionStatus,
+        /// 
+        UserScore,
+        /// 
+        CriticScore,
+        /// 
+        CommunityScore,
+        /// 
+        Genres,
+        /// 
+        Developers,
+        /// 
+        Publishers,
+        /// 
+        Tags,
+        /// 
+        Categories,
+        /// 
+        Platform,
+        /// 
+        Series,
+        /// 
+        AgeRating,
+        /// 
+        Region,
+        /// 
+        Source,
+        /// 
+        ReleaseYear
+    }
+
+    /// <summary>
     /// Represents Playnite game object.
     /// </summary>
     public class Game : DatabaseObject
@@ -34,8 +145,8 @@ namespace Playnite.SDK.Models
                 backgroundImage = value;
                 OnPropertyChanged();
             }
-        }       
-        
+        }
+
         private string description;
         /// <summary>
         /// Gets or sets HTML game description.
@@ -54,39 +165,22 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ComparableList<string> developers;
-        /// <summary>
-        /// Gets or sets list of developers.
-        /// </summary>
-        public ComparableList<string> Developers
-        {
-            get
-            {
-                return developers;
-            }
-
-            set
-            {
-                developers = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ComparableList<string> genres;
+        private List<Guid> genreIds;
         /// <summary>
         /// Gets or sets list of genres.
         /// </summary>
-        public ComparableList<string> Genres
+        public List<Guid> GenreIds
         {
             get
             {
-                return genres;
+                return genreIds;
             }
 
             set
             {
-                genres = value;
+                genreIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Genres));
             }
         }
 
@@ -126,7 +220,7 @@ namespace Playnite.SDK.Models
             }
         }
 
-        
+
         private string icon;
         /// <summary>
         /// Gets or sets game icon. Local file path, HTTP URL or database file ids are supported.
@@ -222,24 +316,7 @@ namespace Playnite.SDK.Models
             {
                 lastActivity = value;
                 OnPropertyChanged();
-            }
-        }
-
-        private string name;
-        /// <summary>
-        /// Gets or sets game name.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(LastActivitySegment));
             }
         }
 
@@ -351,21 +428,41 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ComparableList<string> publishers;
+        private List<Guid> publisherIds;
         /// <summary>
         /// Gets or sets list of publishers.
         /// </summary>
-        public ComparableList<string> Publishers
+        public List<Guid> PublisherIds
         {
             get
             {
-                return publishers;
+                return publisherIds;
             }
 
             set
             {
-                publishers = value;
+                publisherIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Publishers));
+            }
+        }
+
+        private List<Guid> developerIds;
+        /// <summary>
+        /// Gets or sets list of developers.
+        /// </summary>
+        public List<Guid> DeveloperIds
+        {
+            get
+            {
+                return developerIds;
+            }
+
+            set
+            {
+                developerIds = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Developers));
             }
         }
 
@@ -384,42 +481,45 @@ namespace Playnite.SDK.Models
             {
                 releaseDate = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ReleaseYear));
             }
         }
 
-        private ComparableList<string> categories;
+        private List<Guid> categoryIds;
         /// <summary>
         /// Gets or sets game categories.
         /// </summary>
-        public ComparableList<string> Categories
+        public List<Guid> CategoryIds
         {
             get
             {
-                return categories;
+                return categoryIds;
             }
 
             set
             {
-                categories = value;
+                categoryIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Categories));
             }
         }
 
-        private ComparableList<string> tags;
+        private List<Guid> tagIds;
         /// <summary>
         /// Gets or sets list of tags.
         /// </summary>
-        public ComparableList<string> Tags
+        public List<Guid> TagIds
         {
             get
             {
-                return tags;
+                return tagIds;
             }
 
             set
             {
-                tags = value;
+                tagIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Tags));
             }
         }
 
@@ -535,6 +635,7 @@ namespace Playnite.SDK.Models
             {
                 playtime = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(PlaytimeCategory));
             }
         }
 
@@ -553,6 +654,7 @@ namespace Playnite.SDK.Models
             {
                 added = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(AddedSegment));
             }
         }
 
@@ -571,6 +673,7 @@ namespace Playnite.SDK.Models
             {
                 modified = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ModifiedSegment));
             }
         }
 
@@ -592,21 +695,22 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string series;
+        private Guid seriesId;
         /// <summary>
         /// Gets or sets game series.
         /// </summary>
-        public string Series
+        public Guid SeriesId
         {
             get
             {
-                return series;
+                return seriesId;
             }
 
             set
             {
-                series = value;
+                seriesId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Series));
             }
         }
 
@@ -628,57 +732,60 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string ageRating;
+        private Guid ageRatingId;
         /// <summary>
         /// Gets or sets age rating for a game.
         /// </summary>
-        public string AgeRating
+        public Guid AgeRatingId
         {
             get
             {
-                return ageRating;
+                return ageRatingId;
             }
 
             set
             {
-                ageRating = value;
+                ageRatingId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(AgeRating));
             }
         }
 
-        private string region;
+        private Guid regionId;
         /// <summary>
         /// Gets or sets game region.
         /// </summary>
-        public string Region
+        public Guid RegionId
         {
             get
             {
-                return region;
+                return regionId;
             }
 
             set
             {
-                region = value;
+                regionId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Region));
             }
         }
 
-        private string source;
+        private Guid sourceId;
         /// <summary>
         /// Gets or sets source of the game.
         /// </summary>
-        public string Source
+        public Guid SourceId
         {
             get
             {
-                return source;
+                return sourceId;
             }
 
             set
             {
-                source = value;
+                sourceId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Source));
             }
         }
 
@@ -715,6 +822,8 @@ namespace Playnite.SDK.Models
             {
                 userScore = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(UserScoreGroup));
+                OnPropertyChanged(nameof(UserScoreRating));
             }
         }
 
@@ -733,6 +842,8 @@ namespace Playnite.SDK.Models
             {
                 criticScore = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CriticScoreGroup));
+                OnPropertyChanged(nameof(CriticScoreRating));
             }
         }
 
@@ -751,7 +862,416 @@ namespace Playnite.SDK.Models
             {
                 communityScore = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CommunityScoreGroup));
+                OnPropertyChanged(nameof(CommunityScoreRating));
             }
+        }
+
+        #region Expanded        
+
+        /// <summary>
+        /// Gets game's genres.
+        /// </summary>
+        [JsonIgnore]
+        public List<Genre> Genres
+        {
+            get
+            {                
+                if (genreIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Genre>(DatabaseReference?.Genres.Where(a => genreIds.Contains(a.Id)));
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets game's developers.
+        /// </summary>
+        [JsonIgnore]
+        public List<Company> Developers
+        {
+            get
+            {
+                if (developerIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Company>(DatabaseReference?.Companies.Where(a => developerIds.Contains(a.Id)));
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets game's publishers.
+        /// </summary>
+        [JsonIgnore]
+        public List<Company> Publishers
+        {
+            get
+            {
+                if (publisherIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Company>(DatabaseReference?.Companies.Where(a => publisherIds.Contains(a.Id)));
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets game's tags.
+        /// </summary>
+        [JsonIgnore]
+        public List<Tag> Tags
+        {
+            get
+            {
+                if (tagIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Tag>(DatabaseReference?.Tags.Where(a => tagIds.Contains(a.Id)));
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets game's categories.
+        /// </summary>
+        [JsonIgnore]
+        public List<Category> Categories
+        {
+            get
+            {
+                if (categoryIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Category>(DatabaseReference?.Categories.Where(a => categoryIds.Contains(a.Id)));                    
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets game's platform.
+        /// </summary>
+        [JsonIgnore]
+        public Platform Platform
+        {
+            get => DatabaseReference?.Platforms[platformId];
+        }
+
+        /// <summary>
+        /// Gets game's series.
+        /// </summary>
+        [JsonIgnore]
+        public Series Series
+        {
+            get => DatabaseReference?.Series[seriesId];
+        }
+
+        /// <summary>
+        /// Get game's age rating.
+        /// </summary>
+        [JsonIgnore]
+        public AgeRating AgeRating
+        {
+            get => DatabaseReference?.AgeRatings[ageRatingId];
+        }
+
+        /// <summary>
+        /// Gets game's region.
+        /// </summary>
+        [JsonIgnore]
+        public Region Region
+        {
+            get => DatabaseReference?.Regions[regionId];
+        }
+
+        /// <summary>
+        /// Gets game's source.
+        /// </summary>
+        [JsonIgnore]
+        public GameSource Source
+        {
+            get => DatabaseReference?.Sources[sourceId];
+        }
+
+
+        /// <summary>
+        /// Gets game's release year.
+        /// </summary>
+        [JsonIgnore]
+        public int? ReleaseYear
+        {
+            get => ReleaseDate?.Year;
+        }
+
+        /// <summary>
+        /// Gets game's user score rating.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreRating UserScoreRating
+        {
+            get => GetScoreRating(UserScore);
+        }
+
+        /// <summary>
+        /// Gets game's community score rating.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreRating CommunityScoreRating
+        {
+            get => GetScoreRating(CommunityScore);
+        }
+
+        /// <summary>
+        /// Gets game's critic score rating.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreRating CriticScoreRating
+        {
+            get => GetScoreRating(CriticScore);
+        }
+
+        /// <summary>
+        /// Gets game's user score group.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreGroup UserScoreGroup
+        {
+            get => GetScoreGroup(UserScore);
+        }
+
+        /// <summary>
+        /// Gets game's community score group.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreGroup CommunityScoreGroup
+        {
+            get => GetScoreGroup(CommunityScore);
+        }
+
+        /// <summary>
+        /// Gets game's critic score group.
+        /// </summary>
+        [JsonIgnore]
+        public ScoreGroup CriticScoreGroup
+        {
+            get => GetScoreGroup(CriticScore);
+        }
+
+        /// <summary>
+        /// Gets time segment for games last activity.
+        /// </summary>
+        [JsonIgnore]
+        public PastTimeSegment LastActivitySegment
+        {
+            get => GetPastTimeSegment(LastActivity);
+        }
+
+        /// <summary>
+        /// Gets time segment for games added date.
+        /// </summary>
+        [JsonIgnore]
+        public PastTimeSegment AddedSegment
+        {
+            get => GetPastTimeSegment(Added);
+        }
+
+        /// <summary>
+        /// Gets time segment for games modified date..
+        /// </summary>
+        [JsonIgnore]
+        public PastTimeSegment ModifiedSegment
+        {
+            get => GetPastTimeSegment(Modified);
+        }
+
+        /// <summary>
+        /// Gets game's play time category.
+        /// </summary>
+        [JsonIgnore]
+        public PlaytimeCategory PlaytimeCategory
+        {
+            get => GetPlayTimeCategory(Playtime);
+        }
+
+        #endregion Expanded
+
+        /// <summary>
+        /// Gets play time category.
+        /// </summary>
+        /// <param name="seconds">Play time in seconds.</param>
+        /// <returns></returns>
+        private PlaytimeCategory GetPlayTimeCategory(long seconds)
+        {
+            if (seconds == 0)
+            {
+                return PlaytimeCategory.NotPlayed;
+            }
+
+            var hours = seconds / 3600;
+            if (hours < 1)
+            {
+                return PlaytimeCategory.LessThenHour;
+            }
+            else if (hours >= 1 && hours <= 10)
+            {
+                return PlaytimeCategory.O1_10;
+            }
+            else if (hours >= 10 && hours <= 100)
+            {
+                return PlaytimeCategory.O10_100;
+            }
+            else if (hours >= 100 && hours <= 500)
+            {
+                return PlaytimeCategory.O100_500;
+            }
+            else if (hours >= 500 && hours <= 1000)
+            {
+                return PlaytimeCategory.O500_1000;
+            }
+            else
+            {
+                return PlaytimeCategory.O1000plus;
+            }
+        }
+
+        /// <summary>
+        /// Gets time segment.
+        /// </summary>
+        /// <param name="dateTime">Date time to be measured.</param>
+        /// <returns></returns>
+        private PastTimeSegment GetPastTimeSegment(DateTime? dateTime)
+        {
+            if (dateTime == null)
+            {
+                return PastTimeSegment.Never;
+            }
+            
+            if (dateTime.Value.Date == DateTime.Today)
+            {
+                return PastTimeSegment.Today;
+            }
+
+            if (dateTime.Value.Date.AddDays(1) == DateTime.Today)
+            {
+                return PastTimeSegment.Yesterday;
+            }
+
+            var diff = DateTime.Now - dateTime.Value;
+            if (diff.TotalDays < 7)
+            {
+                return PastTimeSegment.PastWeek;
+            }
+
+            if (diff.TotalDays < 31)
+            {
+                return PastTimeSegment.PastMonth;
+            }
+
+            if (diff.TotalDays < 365)
+            {
+                return PastTimeSegment.PastYear;
+            }
+
+            return PastTimeSegment.MoreThenYear;
+        }
+
+        /// <summary>
+        /// Gets score rating.
+        /// </summary>
+        /// <param name="score">Score.</param>
+        /// <returns></returns>
+        private ScoreRating GetScoreRating(int? score)
+        {
+            if (score == null)
+            {
+                return ScoreRating.None;
+            }
+            else if (score > 75)
+            {
+                return ScoreRating.Positive;
+            }
+            else if (score > 25)
+            {
+                return ScoreRating.Mixed;
+            }
+            else
+            {
+                return ScoreRating.Negative;
+            }
+        }
+
+        /// <summary>
+        /// Gets score group.
+        /// </summary>
+        /// <param name="score">Score.</param>
+        /// <returns></returns>
+        private ScoreGroup GetScoreGroup(int? score)
+        {
+            if (score >= 0 && score < 10)
+            {
+                return ScoreGroup.O0x;
+            }
+
+            if (score >= 10 && score < 20)
+            {
+                return ScoreGroup.O1x;
+            }
+
+            if (score >= 20 && score < 30)
+            {
+                return ScoreGroup.O2x;
+            }
+
+            if (score >= 30 && score < 40)
+            {
+                return ScoreGroup.O3x;
+            }
+
+            if (score >= 40 && score < 50)
+            {
+                return ScoreGroup.O4x;
+            }
+
+            if (score >= 50 && score < 60)
+            {
+                return ScoreGroup.O5x;
+            }
+
+            if (score >= 60 && score < 70)
+            {
+                return ScoreGroup.O6x;
+            }
+
+            if (score >= 70 && score < 80)
+            {
+                return ScoreGroup.O7x;
+            }
+
+            if (score >= 80 && score < 90)
+            {
+                return ScoreGroup.O8x;
+            }
+
+            if (score >= 90)
+            {
+                return ScoreGroup.O9x;
+            }
+
+            return ScoreGroup.None;
+        }
+
+        /// <summary>
+        /// Gets or sets game database reference.
+        /// </summary>
+        internal static IGameDatabase DatabaseReference
+        {
+            get; set;
         }
 
         /// <summary>
@@ -771,10 +1291,7 @@ namespace Playnite.SDK.Models
             Name = name;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return Name;

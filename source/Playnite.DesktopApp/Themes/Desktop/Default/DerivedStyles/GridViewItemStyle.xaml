@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="GridViewItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid Background="{DynamicResource GridItemBackgroundBrush}"
+                          Margin="{Settings ItemSpacingMargin}"
+                          x:Name="ItemGrid">
+                        <Border x:Name="SelectionBorder" BorderThickness="3" Margin="-3" />
+                        <ContentPresenter />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                            <Setter Property="Canvas.ZIndex" Value="90" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                            <Setter Property="Canvas.ZIndex" Value="90" />
+                        </Trigger>
+                        <DataTrigger Binding="{Settings ShowGridItemBackground}" Value="False">
+                            <Setter Property="Background" Value="Transparent" TargetName="ItemGrid" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

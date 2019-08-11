@@ -10,7 +10,7 @@ using LiteDB;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/gamesBySteamId")]
+    [Route("igdb/gamesBySteamId")]
     public class GamesBySteamIdController : Controller
     {
         private const string cacheDir = "steam_ids";
@@ -28,8 +28,8 @@ namespace PlayniteServices.Controllers.IGDB
                 return new ServicesResponse<ulong>(cache.igdbId);
             }
 
-            var url = string.Format(@"/games/?fields=name,id&filter[external.steam][eq]={0}&limit=1", gameId);
-            var libraryStringResult = await IGDB.SendStringRequest(url);
+            var libraryStringResult = await IGDB.SendStringRequest("games",
+                $"fields id; where external_games.uid = \"{gameId}\" & external_games.category = 1; limit 1;");
             var games = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
             if (games.Any())
             {

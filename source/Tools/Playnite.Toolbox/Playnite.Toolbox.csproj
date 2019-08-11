@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9C73C47E-64C2-4691-A602-A8463185E232}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Playnite.Toolbox</RootNamespace>
+    <AssemblyName>Toolbox</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommandLine, Version=2.5.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommandLineParser.2.5.0\lib\net461\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.4.9\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CmdLineOptions.cs" />
+    <Compile Include="Paths.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings.cs" />
+    <Compile Include="Themes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\references\Fonts\icofont.ttf">
+      <Link>Templates\Themes\Fonts\icofont.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\PlayStation4.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\PlayStation4.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-Black.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Black.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-Bold.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Bold.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-BoldItalic.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-BoldItalic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-ExtraLight.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-ExtraLight.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-ExtraLightItalic.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-ExtraLightItalic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-Italic.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Italic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-Light.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Light.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-LightItalic.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-LightItalic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-Regular.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Regular.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-SemiBold.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-SemiBold.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb-SemiBoldItalic.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-SemiBoldItalic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\references\Fonts\XBOXONE.ttf">
+      <Link>Templates\Themes\Fullscreen\Fonts\XBOXONE.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
+      <Project>{19BC9097-5705-4352-90E2-99F0C63230D0}</Project>
+      <Name>Playnite.SDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Playnite\Playnite.csproj">
+      <Project>{ad271e73-8a13-4c4e-bfdc-3076646b59e3}</Project>
+      <Name>Playnite</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\Extensions\" />
+    <Folder Include="Templates\Themes\Desktop\Fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite.DesktopApp\App.xaml">
+      <Link>Templates\Themes\Desktop\App.xaml</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite.FullscreenApp\App.xaml">
+      <Link>Templates\Themes\Fullscreen\App.xaml</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\Themes\Desktop\Theme.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Templates\Themes\Desktop\Theme.sln">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite\Localization\LocSource.xaml">
+      <Link>Templates\Themes\LocSource.xaml</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite.DesktopApp\GlobalResources.xaml">
+      <Link>Templates\Themes\Desktop\GlobalResources.xaml</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite.FullscreenApp\GlobalResources.xaml">
+      <Link>Templates\Themes\Fullscreen\GlobalResources.xaml</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\Themes\Fullscreen\Theme.csproj">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\Themes\Fullscreen\Theme.sln">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\Themes\ThemeChangeLog.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

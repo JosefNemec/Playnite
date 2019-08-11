@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NLog;
+using Playnite.Common;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;

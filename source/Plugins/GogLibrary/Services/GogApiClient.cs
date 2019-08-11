@@ -1,7 +1,7 @@
 ﻿using GogLibrary.Models;
 using Newtonsoft.Json;
+using Playnite.Common.Web;
 using Playnite.SDK;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +54,7 @@ namespace GogLibrary.Services
 
                 if (line.TrimStart().StartsWith("window.activeFeatures"))
                 {
-                    var desData = JsonConvert.DeserializeObject<StorePageResult>(stringData);
+                    var desData = JsonConvert.DeserializeObject<StorePageResult>(stringData.TrimEnd(';'));
                     if (desData.cardProduct == null)
                     {
                         return null;

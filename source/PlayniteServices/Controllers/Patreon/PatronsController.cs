@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.Patreon
 {
-    [Route("api/patreon/patrons")]
+    [Route("patreon/patrons")]
     public class PatronsController : Controller
     {
         public class ListCache

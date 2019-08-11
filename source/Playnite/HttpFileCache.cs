@@ -1,6 +1,7 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Common;
+using Playnite.Common.Web;
+using Playnite.SDK;
 using Playnite.Settings;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,12 +15,14 @@ namespace Playnite
     public class HttpFileCache
     {
         private static ILogger logger = LogManager.GetLogger();
+        private static readonly object cacheLock = new object();
 
         public static string CacheDirectory { get; set; } = PlaynitePaths.ImagesCachePath;
 
         private static string GetFileNameFromUrl(string url)
         {
-            var extension = Path.GetExtension(url);
+            var uri = new Uri(url);
+            var extension = Path.GetExtension(uri.Segments[uri.Segments.Length - 1]);
             var md5 = url.MD5();
             return md5 + extension;
         }
@@ -32,35 +35,38 @@ namespace Playnite
             }
 
             var cacheFile = Path.Combine(CacheDirectory, GetFileNameFromUrl(url));
-            if (File.Exists(cacheFile) && (new FileInfo(cacheFile)).Length != 0)
+            lock (cacheLock)
             {
-                logger.Debug($"Returning {url} from file cache {cacheFile}.");
-                return cacheFile;
-            }
-            else
-            {
-                FileSystem.CreateDirectory(CacheDirectory);
-
-                try
+                if (File.Exists(cacheFile) && (new FileInfo(cacheFile)).Length != 0)
                 {
-                    HttpDownloader.DownloadFile(url, cacheFile);
+                    logger.Debug($"Returning {url} from file cache {cacheFile}.");
                     return cacheFile;
                 }
-                catch (WebException e)
+                else
                 {
-                    if (e.Response == null)
-                    {
-                        throw;
-                    }
+                    FileSystem.CreateDirectory(CacheDirectory);
 
-                    var response = (HttpWebResponse)e.Response;
-                    if (response.StatusCode != HttpStatusCode.NotFound)
+                    try
                     {
-                        throw;
+                        HttpDownloader.DownloadFile(url, cacheFile);
+                        return cacheFile;
                     }
-                    else
+                    catch (WebException e)
                     {
-                        return string.Empty;
+                        if (e.Response == null)
+                        {
+                            throw;
+                        }
+
+                        var response = (HttpWebResponse)e.Response;
+                        if (response.StatusCode != HttpStatusCode.NotFound)
+                        {
+                            throw;
+                        }
+                        else
+                        {
+                            return string.Empty;
+                        }
                     }
                 }
             }
@@ -73,13 +79,15 @@ namespace Playnite
                 return;
             }
 
-            var cacheFile = Path.Combine(CacheDirectory, GetFileNameFromUrl(url));
-            if (File.Exists(cacheFile))
+            lock (cacheLock)
             {
-                logger.Debug($"Removing {url} from file cache: {cacheFile}");
-                FileSystem.DeleteFileSafe(cacheFile);
+                var cacheFile = Path.Combine(CacheDirectory, GetFileNameFromUrl(url));
+                if (File.Exists(cacheFile))
+                {
+                    logger.Debug($"Removing {url} from file cache: {cacheFile}");
+                    FileSystem.DeleteFileSafe(cacheFile);
+                }
             }
-
         }
     }
 }

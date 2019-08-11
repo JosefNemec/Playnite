@@ -1,0 +1,98 @@
+﻿<Application x:Class="Playnite.DesktopApp.App"            
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <!--
+    THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
+    -->
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Playnite;component/Localization/LocSource.xaml"/>
+                <ResourceDictionary Source="GlobalResources.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Constants.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Common.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Media.xaml" />
+                
+                <!--Default Controls-->
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Border.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/TextBlock.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/TextBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Button.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ComboBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ContextMenu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/DatePicker.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Expander.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/GridSplitter.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/GroupBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Hyperlink.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/CheckBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Label.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ListBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ListView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Menu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/PasswordBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Popup.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ProgressBar.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/RadioButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/RepeatButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/RichTextBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ScrollViewer.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Slider.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/TabControl.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Thumb.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ToggleButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ToolTip.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/TreeView.xaml" />
+
+                <!--Custom Controls-->
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedListBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedListView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/GameMenu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/HtmlTextView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/MainMenu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/TrayContextMenu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/NullableIntBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/NumericBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ViewSettingsMenu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
+
+                <!--Derived Styles-->
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/TextBlockGameScore.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/PropertyItemButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsScrollViewer.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/Simplebutton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemStyle.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemTemplate.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemTemplate.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewGroupStyle.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemStyle.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/StandardWindowStyle.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/WindowBarButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/BottomButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsHyperlink.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/HighlightBorder.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/ImageHighlightButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/MainWindowStyle.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/PlayButton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/NotificationMessage.xaml" />
+
+                <!--Views-->
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/Sidebar.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/ExplorerPanel.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/FilterPanel.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/MainPanel.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/NotificationPanel.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/DetailsViewGameOverview.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/GridViewGameOverview.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/LibraryDetailsView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/LibraryGridView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/LibraryListView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/Library.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/MainWindow.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

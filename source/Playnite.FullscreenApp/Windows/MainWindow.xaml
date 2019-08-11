@@ -1,0 +1,43 @@
+﻿<c:WindowBase x:Class="Playnite.FullscreenApp.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
+        xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+        mc:Ignorable="d"
+        Style="{StaticResource MainWindowStyle}"
+        d:DesignStyle="{StaticResource MainWindowStyle}"
+        Title="Playnite"
+        Width="{Binding WindowWidth, Mode=TwoWay}"
+        Height="{Binding WindowHeight, Mode=TwoWay}"
+        Left="{Binding WindowLeft, Mode=TwoWay}"             
+        Top="{Binding WindowTop, Mode=TwoWay}"
+        d:DesignWidth="1920"
+        d:DesignHeight="1080"
+        ResizeMode="NoResize">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="GotKeyboardFocus" >
+            <prism:InvokeCommandAction Command="{Binding WindowGotFocusCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <c:WindowBase.InputBindings>
+        <KeyBinding Gesture="ALT+ENTER" Command="{Binding ToggleFullscreenCommand}" />
+    </c:WindowBase.InputBindings>
+
+    <Viewbox>
+        <views:Main Focusable="False" />
+    </Viewbox>
+</c:WindowBase>

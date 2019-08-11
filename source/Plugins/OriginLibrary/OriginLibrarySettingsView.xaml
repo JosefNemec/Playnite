@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OriginLibrary"
-             xmlns:pui="clr-namespace:PlayniteUI"
+             xmlns:pcon="clr-namespace:Playnite.Converters"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="800">
@@ -16,7 +16,7 @@
     </d:DesignerProperties.DesignStyle>
 
     <UserControl.Resources>
-        <pui:NegateConverter x:Key="NegateConverter" />
+        <pcon:NegateConverter x:Key="NegateConverter" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
     </UserControl.Resources>
@@ -44,7 +44,7 @@
                         </PriorityBinding>
                     </TextBlock.Tag>
                     <TextBlock.Style>
-                        <Style TargetType="TextBlock">
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                             <Style.Triggers>
                                 <Trigger Property="Tag" Value="{StaticResource True}">
                                     <Setter Property="Text" Value="{DynamicResource LOCLoggedIn}" />

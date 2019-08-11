@@ -13,18 +13,16 @@ using System.Windows.Controls;
 
 namespace UplayLibrary
 {
-    public class UplayLibrary : ILibraryPlugin
+    public class UplayLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
+        private const string dbImportMessageId = "uplaylibImportError";
 
         internal UplayLibrarySettings LibrarySettings { get; private set; }
 
-        public UplayLibrary(IPlayniteAPI api)
+        public UplayLibrary(IPlayniteAPI api) : base(api)
         {
-            playniteApi = api;
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\uplayicon.png");
-            LibrarySettings = new UplayLibrarySettings(this, playniteApi);
+            LibrarySettings = new UplayLibrarySettings(this);
         }
 
         public GameAction GetGamePlayTask(string id)
@@ -37,9 +35,9 @@ namespace UplayLibrary
             };
         }
 
-        public List<Game> GetInstalledGames()
+        public List<GameInfo> GetInstalledGames()
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
 
             var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
             var installsKey = root.OpenSubKey(@"SOFTWARE\ubisoft\Launcher\Installs\");
@@ -59,10 +57,9 @@ namespace UplayLibrary
                 var gameData = installsKey.OpenSubKey(install);
                 var installDir = (gameData.GetValue("InstallDir") as string).Replace('/', Path.DirectorySeparatorChar);
 
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
                     GameId = install,
-                    PluginId = Id,
                     Source = "Uplay",
                     InstallDirectory = installDir,
                     PlayAction = GetGamePlayTask(install),
@@ -78,46 +75,56 @@ namespace UplayLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new UplayClient();
+        public override LibraryClient Client => new UplayClient();
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => Uplay.Icon;
 
-        public string Name { get; } = "Uplay";
+        public override string Name => "Uplay";
 
-        public Guid Id { get; } = Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5");
+        public override Guid Id => Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5");
 
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return firstRunSettings ? null : LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return firstRunView ? null : new UplayLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
             return new UplayGameController(this, game);
         }
 
-        public IEnumerable<Game> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
+            var allGames = new List<GameInfo>();
             if (LibrarySettings.ImportInstalledGames)
             {
-                return GetInstalledGames();
+                try
+                {
+                    var installed = GetInstalledGames();
+                    logger.Debug($"Found {installed.Count} installed Uplay games.");
+                    PlayniteApi.Notifications.Remove(dbImportMessageId);
+                    return installed;
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import uninstalled Uplay games.");
+                    PlayniteApi.Notifications.Add(
+                        dbImportMessageId,
+                        string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                        System.Environment.NewLine + e.Message,
+                        NotificationType.Error);
+                }
             }
 
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new UplayMetadataProvider();
         }

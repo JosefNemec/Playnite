@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,7 @@ namespace UplayLibrary.Tests
             var library = UplayLibraryTests.CreateLibrary();
             var provider = new UplayMetadataProvider();
             var games = library.GetInstalledGames();
-            var game = games.First();
-            var metadata = provider.GetMetadata(game);
+            var metadata = provider.GetMetadata(new Game() { GameId = games.First().GameId });
             Assert.IsNotNull(metadata.Icon);
         }
     }

@@ -1,0 +1,55 @@
+﻿<Application x:Class="Playnite.FullscreenApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Playnite;component/Localization/LocSource.xaml"/>
+                <ResourceDictionary Source="GlobalResources.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Constants.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Media.xaml" />
+                
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Images/ButtonPrompts/Xbox/Xbox.xaml" />
+
+                <!--Default Controls-->
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/TextBox.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/Slider.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/CheckBox.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/ComboBox.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/Button.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/ScrollViewer.xaml" />
+
+                <!--Custom Controls-->
+                <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterEnumListSelection.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterStringListSelection.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterDbItemtSelection.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/WindowBase.xaml" />
+
+                <!--Derived Styles-->
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/CheckBoxSettings.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonFilterNagivation.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonFilterNagivation.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonVirtualKeyboard.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonMessageBox.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonMainMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ListGameItem.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonBottomMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonTopMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ToggleButtonTopFilter.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/MainWindowStyle.xaml" />
+
+                <!--Views-->
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Notifications.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersAdditional.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Filters.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameDetails.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/SettingsMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/MainMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Main.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OriginLibrary.Models;
-using Playnite.Web;
+using Playnite.Common.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;

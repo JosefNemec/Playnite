@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -15,6 +16,7 @@ namespace OriginLibrary
 {
     public class OriginGameController : BaseGameController
     {
+        private ILogger logger = LogManager.GetLogger();
         private CancellationTokenSource watcherToken;
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
@@ -42,32 +44,36 @@ namespace OriginLibrary
         {
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
-            var runsViaOrigin = Origin.GetGameRequiresOrigin(Game);
-            var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
-            stopWatch = Stopwatch.StartNew();
-            procMon = new ProcessMonitor();
-            procMon.TreeDestroyed += ProcMon_TreeDestroyed;
-            procMon.TreeStarted += ProcMon_TreeStarted;
-            var proc = GameActionActivator.ActivateAction(playAction, Game);
-            StartRunningWatcher(runsViaOrigin);
-        }
-
-        public async void StartRunningWatcher(bool waitForOrigin)
-        {
-            if (waitForOrigin)
-            {
-                // Solves issues with game process being started/shutdown multiple times during startup via Origin
-                await Task.Delay(5000);
-            }            
-
             if (Directory.Exists(Game.InstallDirectory))
             {
-                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
+                stopWatch = Stopwatch.StartNew();
+                procMon = new ProcessMonitor();
+                procMon.TreeDestroyed += ProcMon_TreeDestroyed;
+                procMon.TreeStarted += ProcMon_TreeStarted;
+                GameActionActivator.ActivateAction(playAction);
+                StartRunningWatcher();
             }
             else
             {
                 OnStopped(this, new GameControllerEventArgs(this, 0));
             }
+        }
+
+        public async void StartRunningWatcher()
+        {
+            if (Origin.GetGameUsesEasyAntiCheat(Game.InstallDirectory))
+            {
+                // Games with EasyAntiCheat take longer to be re-executed by Origin
+                await Task.Delay(12000);
+            }
+            else if (Origin.GetGameRequiresOrigin(Game.InstallDirectory))
+            {
+                // Solves issues with game process being started/shutdown multiple times during startup via Origin
+                await Task.Delay(5000);
+            }  
+
+            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);         
         }
 
         public override void Install()
@@ -99,6 +105,13 @@ namespace OriginLibrary
         {
             watcherToken = new CancellationTokenSource();  
             var manifest = origin.GetLocalManifest(Game.GameId, null, true);
+            if (manifest.publishing == null)
+            {
+                logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping installation check.");
+                OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                return;
+            }
+
             var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
 
             while (true)
@@ -113,13 +126,13 @@ namespace OriginLibrary
                 {
                     if (File.Exists(executablePath))
                     {
-                        if (Game.PlayAction == null)
+                        var installInfo = new GameInfo()
                         {
-                            Game.PlayAction = origin.GetGamePlayTask(manifest);
-                        }
+                            PlayAction = origin.GetGamePlayTask(manifest),
+                            InstallDirectory = Path.GetDirectoryName(executablePath)
+                        };
 
-                        Game.InstallDirectory = Path.GetDirectoryName(executablePath);
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
+                        OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                         return;
                     }
                 }

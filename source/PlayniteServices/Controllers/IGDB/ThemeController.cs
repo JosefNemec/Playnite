@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/themes")]
+    [Route("igdb/themes")]
     public class ThemeController : IgdbItemController
     {
         private static readonly object CacheLock = new object();
@@ -19,6 +19,11 @@ namespace PlayniteServices.Controllers.IGDB
 
         [HttpGet("{themeId}")]
         public async Task<ServicesResponse<Theme>> Get(ulong themeId)
+        {
+            return await GetItem(themeId);
+        }
+
+        public static async Task<ServicesResponse<Theme>> GetItem(ulong themeId)
         {
             return new ServicesResponse<Theme>(await GetItem<Theme>(themeId, endpointPath, CacheLock));
         }

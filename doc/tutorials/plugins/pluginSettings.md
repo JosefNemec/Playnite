@@ -9,7 +9,7 @@ Plugins can provide configuration view that end users can use to change plugin's
 Implementation
 ---------------------
 
-Settings support requires implementation of `GetSettings` and `GetSettingsView` methods. If you don't want to provide any settings configuration then return `null` from both methods. `GetSettings` returns `ISettings` object containing the settings data, while `GetSettingsView` returns WPF `UserControl` used to display that data.
+Settings support requires that you override methods `GetSettings` and `GetSettingsView` methods. `GetSettings` returns `ISettings` object containing the settings data, while `GetSettingsView` returns WPF `UserControl` used to display that data.
 
 ### 1. Settings class
 
@@ -70,17 +70,7 @@ Following example show implementation of text field for our `Option1` value and 
 ```xml
 <UserControl x:Class="TestPlugin.TestPluginSettingsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
-    
-    <!-- Add this to show solid white background in WPF designer -->
-    <d:DesignerProperties.DesignStyle>
-        <Style TargetType="UserControl">
-            <Setter Property="Background" Value="White" />
-        </Style>
-    </d:DesignerProperties.DesignStyle>
-
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">  
     <StackPanel>
         <TextBlock Text="Description for Option1:" />
         <TextBox Text="{Binding Option1}" />
@@ -92,17 +82,17 @@ Following example show implementation of text field for our `Option1` value and 
 
 ### 4. Hooking everything to a plugin class
 
-As stated before, plugin class must return non-null values for `Settings` and `SettingsView` properties.
+As stated before, plugin class must override `GetSettings` and `GetSettingsView` methods.
 
 ```csharp
-public class TestPlugin : IGenericPlugin // or ILibraryPlugin for library plugins, implementation is the same.
+public class TestPlugin : Plugin // or LibraryPlugin for library plugins, implementation is the same.
 {    
-    public ISettings GetSettings
+    public override ISettings GetSettings
     {
         return new TestPluginSettings();
     }
     
-    public UserControl GetSettingsView
+    public override UserControl GetSettingsView
     {
         return new TestPluginSettingsView();
     }
@@ -114,13 +104,11 @@ Saving and loading settings
 
 To store your settings permanently you have to implement some logic that will store data into some permanent storage and load them then time your plugin is loaded. You can do this manually or use built-in method that Playnite provides for this purpose.
 
-Following example shows how to load and save values using Playnite's API.
+Following example shows how to load and save values for your plugin.
 
 ```csharp
 public class TestPluginSettings : ISettings
 {
-    private IPlayniteAPI api;
-
     private TestPlugin plugin;
 
     public string Option1 { get; set; } = string.Empty;
@@ -137,16 +125,13 @@ public class TestPluginSettings : ISettings
     {
     }
 
-    public TestPluginSettings(TestPlugin plugin, IPlayniteAPI api)
+    public TestPluginSettings(TestPlugin plugin)
     {
-        // Main Playnite API instance injected into original instance of your plugin.
-        this.api = api;
-
         // Injecting your plugin instance is required for Save/Load method because Playnite saves data to a location based on what plugin requested the operation.
         this.plugin = plugin;
 
         // Load saved settings.
-        var savedSettings = api.LoadPluginSettings<TestPluginSettings>(library);
+        var savedSettings = plugin.LoadPluginSettings<TestPluginSettings>();
 
         // LoadPluginSettings returns null if not saved data is available.
         if (savedSettings != null)
@@ -159,7 +144,7 @@ public class TestPluginSettings : ISettings
     // To save settings just call SavePluginSettings when user confirms changes.
     public void EndEdit()
     {
-        api.SavePluginSettings(library, this);
+        plugin.SavePluginSettings(this);
     }
 }
 

@@ -1,12 +1,11 @@
 ﻿using Microsoft.Win32;
-using Playnite;
-using Playnite.Common.System;
-using Playnite.SDK.Models;
+using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,8 +28,8 @@ namespace OriginLibrary
             get
             {
                 var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
-                var key = root.OpenSubKey(@"SOFTWARE\Origin");
-                if (key != null)
+                var key = root.OpenSubKey(@"SOFTWARE\Origin");             
+                if (key?.GetValueNames().Contains("ClientPath") == true)
                 {
                     return key.GetValue("ClientPath").ToString();
                 }
@@ -68,6 +67,8 @@ namespace OriginLibrary
             }
         }
 
+        public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\originicon.png");
+
         public static string GetCachePath(string rootPath)
         {
             return Path.Combine(rootPath, "origincache");
@@ -78,14 +79,25 @@ namespace OriginLibrary
             ProcessStarter.StartProcess(ClientExecPath, string.Empty);
         }
 
-        public static bool GetGameRequiresOrigin(Game game)
+        public static bool GetGameRequiresOrigin(string installDir)
         {
-            if (string.IsNullOrEmpty(game.InstallDirectory) || !Directory.Exists(game.InstallDirectory))
+            if (string.IsNullOrEmpty(installDir) || !Directory.Exists(installDir))
             {
                 return false;
             }
 
-            var fileEnumerator = new SafeFileEnumerator(game.InstallDirectory, "Activation.*", SearchOption.AllDirectories);
+            var fileEnumerator = new SafeFileEnumerator(installDir, "Activation.*", SearchOption.AllDirectories);
+            return fileEnumerator.Any() == true;
+        }
+
+        public static bool GetGameUsesEasyAntiCheat(string installDir)
+        {
+            if (string.IsNullOrEmpty(installDir) || !Directory.Exists(installDir))
+            {
+                return false;
+            }
+
+            var fileEnumerator = new SafeFileEnumerator(installDir, "EasyAntiCheat*.dll", SearchOption.AllDirectories);
             return fileEnumerator.Any() == true;
         }
     }

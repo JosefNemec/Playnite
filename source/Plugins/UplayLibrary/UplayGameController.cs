@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -19,6 +20,7 @@ namespace UplayLibrary
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
         private UplayLibrary uplay;
+        private static ILogger logger = LogManager.GetLogger();
 
         public UplayGameController(UplayLibrary library, Game game) : base(game)
         {
@@ -32,6 +34,7 @@ namespace UplayLibrary
 
         public void ReleaseResources()
         {
+            watcherToken?.Cancel();
             procMon?.Dispose();
         }
 
@@ -41,15 +44,15 @@ namespace UplayLibrary
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("uplay", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction, Game);
                 if (Directory.Exists(Game.InstallDirectory))
                 {
+                    var requiresUplay = Uplay.GetGameRequiresUplay(Game);
                     stopWatch = Stopwatch.StartNew();
                     procMon = new ProcessMonitor();
                     procMon.TreeStarted += ProcMon_TreeStarted;
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.TreeStarted += ProcMon_TreeStarted;
-                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                    GameActionActivator.ActivateAction(Game.PlayAction);
+                    StartRunningWatcher(requiresUplay);
                 }
                 else
                 {
@@ -59,6 +62,35 @@ namespace UplayLibrary
             else
             {
                 throw new Exception("Unknown Play action configuration.");
+            }
+        }
+
+        public async void StartRunningWatcher(bool waitForUplay)
+        {
+            if (waitForUplay)
+            {
+                logger.Debug("Game requires UbisoftGameLauncher to run, waiting for it to start properly.");
+                // Solves issues with game process being started/shutdown multiple times during startup via Uplay
+                watcherToken = new CancellationTokenSource();
+                while (true)
+                {
+                    if (watcherToken.IsCancellationRequested)
+                    {
+                        return;
+                    }
+
+                    if (ProcessExtensions.IsRunning("UbisoftGameLauncher"))
+                    {
+                        procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                        return;
+                    }
+
+                    await Task.Delay(5000);
+                }
+            }
+            else
+            {
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
             }
         }
 
@@ -101,13 +133,13 @@ namespace UplayLibrary
                 var installedGame = uplay.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
                 if (installedGame != null)
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo()
                     {
-                        Game.PlayAction = installedGame.PlayAction;
-                    }
+                        PlayAction = installedGame.PlayAction,
+                        InstallDirectory = installedGame.InstallDirectory
+                    };
 
-                    Game.InstallDirectory = installedGame.InstallDirectory;
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
                 }
 

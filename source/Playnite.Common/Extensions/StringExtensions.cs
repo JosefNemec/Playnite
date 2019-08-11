@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Playnite
+namespace System
 {
     public static class StringExtensions
     {
@@ -39,9 +39,19 @@ namespace Playnite
             return newName;
         }
 
-        public static string RemoveTrademarks(string str)
+        public static string RemoveTrademarks(this string str)
         {
+            if (str.IsNullOrEmpty())
+            {
+                return str;
+            }
+
             return Regex.Replace(str, @"[™©®]", string.Empty);
+        }
+
+        public static bool IsNullOrEmpty(this string source)
+        {
+            return string.IsNullOrEmpty(source);
         }
 
         public static string NormalizeGameName(string name)
@@ -58,7 +68,6 @@ namespace Playnite
             newName = Regex.Replace(newName, @"\[.*?\]", "");
             newName = Regex.Replace(newName, @"\(.*?\)", "");
             newName = Regex.Replace(newName, @"\s*:\s*", ": ");
-            newName = Regex.Replace(newName, @"\s*-\s*", ": ");
             newName = Regex.Replace(newName, @"\s+", " ");
             if (Regex.IsMatch(newName, @",\s*The$"))
             {
@@ -84,7 +93,7 @@ namespace Playnite
                 return string.Empty;
             }
 
-            return Regex.Replace(path, @"(\.[a-z0-9]+)+$", "");
+            return Regex.Replace(path, @"(\.[A-Za-z0-9]+)+$", "");
         }
 
         public static bool Contains(this string str, string value, StringComparison comparisonType)

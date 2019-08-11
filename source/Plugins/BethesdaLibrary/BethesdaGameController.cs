@@ -1,5 +1,5 @@
 ﻿using Playnite;
-using Playnite.SDK;
+using Playnite.Common;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
@@ -41,14 +41,13 @@ namespace BethesdaLibrary
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("bethesda", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction, Game);
+                GameActionActivator.ActivateAction(Game.PlayAction);
                 if (Directory.Exists(Game.InstallDirectory))
                 {
                     stopWatch = Stopwatch.StartNew();
                     procMon = new ProcessMonitor();
                     procMon.TreeStarted += ProcMon_TreeStarted;
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.TreeStarted += ProcMon_TreeStarted;
                     procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
                 }
                 else
@@ -101,13 +100,13 @@ namespace BethesdaLibrary
                 var installedGame = BethesdaLib.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
                 if (installedGame != null)
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo()
                     {
-                        Game.PlayAction = installedGame.PlayAction;
-                    }
-
-                    Game.InstallDirectory = installedGame.InstallDirectory;
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                        PlayAction = installedGame.PlayAction,
+                        InstallDirectory = installedGame.InstallDirectory
+                    };
+                    
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
                 }
 

@@ -11,7 +11,7 @@ using LiteDB;
 
 namespace PlayniteServices.Controllers.Steam
 {
-    [Route("api/steam/library")]
+    [Route("steam/library")]
     public class LibraryController : Controller
     {
         private static HttpClient httpClient = new HttpClient();

@@ -24,11 +24,11 @@ namespace Playnite
             get; private set;
         }
 
-        public event GameControllerEventHandler Starting;
-        public event GameControllerEventHandler Started;
-        public event GameControllerEventHandler Stopped;
-        public event GameControllerEventHandler Uninstalled;
-        public event GameControllerEventHandler Installed;
+        public event EventHandler<GameControllerEventArgs> Starting;
+        public event EventHandler<GameControllerEventArgs> Started;
+        public event EventHandler<GameControllerEventArgs> Stopped;
+        public event EventHandler<GameControllerEventArgs> Uninstalled;
+        public event EventHandler<GameInstalledEventArgs> Installed;
 
         public BaseGameController(Game game)
         {
@@ -68,7 +68,7 @@ namespace Playnite
             execContext.Post((a) => Uninstalled?.Invoke(sender, args), null);
         }
 
-        public virtual void OnInstalled(object sender, GameControllerEventArgs args)
+        public virtual void OnInstalled(object sender, GameInstalledEventArgs args)
         {
             execContext.Post((a) => Installed?.Invoke(sender, args), null);
         }

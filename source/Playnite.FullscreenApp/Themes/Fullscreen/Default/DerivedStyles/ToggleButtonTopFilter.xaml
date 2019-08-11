@@ -1,0 +1,46 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="ToggleButtonTopFilter" TargetType="ToggleButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="{TemplateBinding Background}"
+                            Margin="10,0,10,0">
+                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                   FontFamily="{DynamicResource FontTitilliumWeb}"
+                                   x:Name="TextContent">
+                            <StackPanel>
+                                <ContentPresenter />
+                                <TextBlock Text="&#x25CF;" Style="{DynamicResource TextBlockBaseStyle}"
+                                           FontSize="12"
+                                           HorizontalAlignment="Center"
+                                           x:Name="SelectionBullet" Visibility="Hidden"/>
+                            </StackPanel>
+                        </TextBlock>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="FontWeight" Value="SemiBold" TargetName="TextContent" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectionBullet" />
+                            <Setter Property="Effect" TargetName="TextContent">
+                                <Setter.Value>
+                                    <DropShadowEffect ShadowDepth="0"
+                                                      Color="White"
+                                                      Opacity="0.2"
+                                                      RenderingBias="Quality"
+                                                      BlurRadius="5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

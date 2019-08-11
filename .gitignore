@@ -272,3 +272,7 @@ tests/TestConfig.yaml
 
 # Don't share API keys with anyone :)
 source/PlayniteServices/customSettings.json
+
+# Not redistributable
+XBOXONE.ttf
+PlayStation4.ttf

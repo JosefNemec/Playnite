@@ -1,0 +1,64 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="{x:Type Filters}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Filters}">
+                    <StackPanel Focusable="False" Width="{DynamicResource FilterPanelWidth}"
+                                Background="{DynamicResource OverlayMenuBackgroundBrush}">
+                        <StackPanel.Resources>
+                            <Thickness x:Key="ItemMargin">15,5,15,5</Thickness>
+                        </StackPanel.Resources>
+
+                        <ButtonEx Content="{DynamicResource LOCClearLabel}"
+                                  Margin="{StaticResource ItemMargin}"
+                                  BorderThickness="2"
+                                  x:Name="PART_ButtonClear"/>
+
+                        <CheckBoxEx Content="{DynamicResource LOCGameIsInstalledTitle}"
+                                    Margin="{StaticResource ItemMargin}"
+                                    x:Name="PART_ToggleInstalled" />
+
+                        <CheckBoxEx Content="{DynamicResource LOCGameIsUnInstalledTitle}"
+                                    Margin="{StaticResource ItemMargin}"
+                                    x:Name="PART_ToggleUninstalled" />
+
+                        <CheckBoxEx Content="{DynamicResource LOCGameHiddenTitle}"
+                                    Margin="{StaticResource ItemMargin}"
+                                    x:Name="PART_ToggleHidden" />
+
+                        <CheckBoxEx Content="{DynamicResource LOCGameFavoriteTitle}"
+                                    Margin="{StaticResource ItemMargin}"
+                                    x:Name="PART_ToggleFavorite"/>
+
+                        <ButtonEx x:Name="PART_ButtonPlatforms"
+                                  Margin="{StaticResource ItemMargin}"
+                                  Content="{DynamicResource LOCPlatformTitle}"
+                                  Style="{DynamicResource ButtonFilterNagivation}" />
+
+                        <ButtonEx x:Name="PART_ButtonLibraries"
+                                  Margin="{StaticResource ItemMargin}"
+                                  Content="{DynamicResource LOCLibrary}"
+                                  Style="{DynamicResource ButtonFilterNagivation}" />
+
+                        <ButtonEx x:Name="PART_ButtonCategories"
+                                  Margin="{StaticResource ItemMargin}"
+                                  Content="{DynamicResource LOCCategoryLabel}"
+                                  Style="{DynamicResource ButtonFilterNagivation}" />
+
+                        <ButtonEx x:Name="PART_ButtonAdditional"
+                                  Margin="{StaticResource ItemMargin}"
+                                  Content="{DynamicResource LOCAditionalFilters}"
+                                  Style="{DynamicResource ButtonFilterNagivation}" />              
+
+                        <TextBlock Text="{DynamicResource LOCMenuSortByTitle}"
+                                   Style="{DynamicResource TextBlockBaseStyle}" Margin="15,20,15,5" />
+                        <ComboBoxEx x:Name="PART_SelectSortBy" Margin="{StaticResource ItemMargin}" />
+                        <ComboBoxEx x:Name="PART_SelectSortDirection" Margin="{StaticResource ItemMargin}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.DdItemListSelectionBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls"
+             xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+             mc:Ignorable="d"
+             d:DesignWidth="100"
+             SnapsToDevicePixels="True">
+    
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Border BorderThickness="{DynamicResource ControlBorderThickness}"
+            CornerRadius="{DynamicResource ControlCornerRadius}"
+            Style="{DynamicResource HighlightBorder}" Background="Transparent">
+        <Grid>
+            <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"         
+                          Focusable="False"
+                          Foreground="{DynamicResource TextBrush}">
+                <ToggleButton.Template>
+                    <ControlTemplate>                    
+                        <Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Viewbox Grid.Column="1" Width="20" Margin="0,0,2,0">
+                                    <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
+                                    VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding ItemsList.AsString, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                           TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
+                                           VerticalAlignment="Center"
+                                           Grid.Column="0" Margin="5,0,0,0"/>
+                                
+                                <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
+                                        BorderThickness="0" Padding="3,0,3,0" Margin="0"
+                                        FontFamily="Marlett" Content="r"
+                                        Click="ClearButton_Click">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
+                            <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
+                                   IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
+                                   MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">
+                                <Border Background="{DynamicResource PopupBackgroundBrush}"
+                                            BorderThickness="{DynamicResource PopupBorderThickness}"
+                                            BorderBrush="{DynamicResource PopupBorderBrush}">
+                                    <ItemsControl ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        ScrollViewer.CanContentScroll="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Contained"
+                                                        VirtualizingPanel.IsVirtualizing="True"
+                                                        VirtualizingPanel.VirtualizationMode="Recycling">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <CheckBox Padding="5" IsChecked="{Binding Selected}" Content="{Binding Item.Name}"
+                                                          IsThreeState="{Binding IsThreeState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.Template>
+                                            <ControlTemplate>
+                                                <ScrollViewer Focusable="False">
+                                                    <ItemsPresenter />
+                                                </ScrollViewer>
+                                            </ControlTemplate>
+                                        </ItemsControl.Template>
+                                    </ItemsControl>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+        </Grid>
+    </Border>
+</UserControl>

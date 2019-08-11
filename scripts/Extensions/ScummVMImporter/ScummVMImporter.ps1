@@ -53,7 +53,7 @@ function global:ImportScummVMGames()
         {
             $game = New-Object "Playnite.SDK.Models.Game" ($config[$key].description -replace "\(.*\)")
             $game.InstallDirectory = $config[$key].path
-            $game.State.Installed = $true
+            $game.IsInstalled = $true
 
             $playTask = New-Object "Playnite.SDK.Models.GameAction"
             $playTask.Type = "Emulator"

@@ -17,7 +17,7 @@ namespace Playnite.Database.OldModels.Ver6
     /// <summary>
     /// Represents Playnite game object.
     /// </summary>
-    public class Game : DatabaseObject
+    public class OldGame : DatabaseObject
     {
         private string backgroundImage;
         /// <summary>
@@ -222,24 +222,6 @@ namespace Playnite.Database.OldModels.Ver6
             set
             {
                 lastActivity = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string name;
-        /// <summary>
-        /// Gets or sets game name.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
                 OnPropertyChanged();
             }
         }
@@ -758,7 +740,7 @@ namespace Playnite.Database.OldModels.Ver6
         /// <summary>
         /// Creates new instance of a Game object.
         /// </summary>
-        public Game()
+        public OldGame()
         {
             Id = Guid.NewGuid();
             GameId = Guid.NewGuid().ToString();
@@ -768,7 +750,7 @@ namespace Playnite.Database.OldModels.Ver6
         /// Creates new instance of a Game object with specific name.
         /// </summary>
         /// <param name="name">Game name.</param>
-        public Game(string name) : this()
+        public OldGame(string name) : this()
         {
             Name = name;
         }

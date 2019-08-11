@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.Steam
 {
-    [Route("api/steam/store")]
+    [Route("steam/store")]
     public class StoreController : Controller
     {
         private static readonly object CacheLock = new object();
@@ -51,7 +51,7 @@ namespace PlayniteServices.Controllers.Steam
             var cachePath = Path.Combine(Steam.CacheDirectory, cacheDir, appId + ".json");
             lock (CacheLock)
             {
-                FileSystem.PrepareSaveFile(cachePath);
+                Playnite.Common.FileSystem.PrepareSaveFile(cachePath);
                 System.IO.File.WriteAllText(cachePath, data);
             }
 

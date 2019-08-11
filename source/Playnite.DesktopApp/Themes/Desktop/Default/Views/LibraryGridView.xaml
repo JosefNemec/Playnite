@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">    
+
+    <Style TargetType="{x:Type LibraryGridView}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type LibraryGridView}">
+                    <DockPanel Background="{TemplateBinding Background}"
+                               d:DesignWidth="1280" d:DesignHeight="960"
+                               d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
+                        <GridViewGameOverview x:Name="PART_ControlGameView"
+                                              Width="{Settings GrdiDetailsWitdh}"
+                                              DockPanel.Dock="{Settings GridViewDetailsPosition}" />                   
+                        <Grid DockPanel.Dock="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ExtendedListBox x:Name="PART_ListGames" Padding="5"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                             ScrollViewer.PanningMode="VerticalOnly"
+                                             ItemContainerStyle="{DynamicResource GridViewItemStyle}"
+                                             SelectionMode="Extended"
+                                             DockPanel.Dock="Left"
+                                             BorderThickness="0">
+                                <ExtendedListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <GameListItem Style="{StaticResource GridViewItemTemplate}" />
+                                    </DataTemplate>
+                                </ExtendedListBox.ItemTemplate>
+                            </ExtendedListBox>
+                            <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="1">
+                                <Label Content="{DynamicResource LOCZoomLabel}" Margin="10,0,10,0"/>
+                                <SliderWithPopup x:Name="PART_SliderZoom" />
+                            </StackPanel>
+                        </Grid>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

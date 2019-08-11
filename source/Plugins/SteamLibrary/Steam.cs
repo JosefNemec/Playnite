@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SteamKit2;
+using System.Reflection;
 
 namespace SteamLibrary
 {
@@ -32,7 +33,7 @@ namespace SteamLibrary
             {
                 using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
                 {
-                    if (key != null)
+                    if (key?.GetValueNames().Contains("SteamPath") == true)
                     {
                         return key.GetValue("SteamPath")?.ToString().Replace('/', '\\') ?? string.Empty;
                     }
@@ -48,7 +49,7 @@ namespace SteamLibrary
             {
                 using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
                 {
-                    if (key != null)
+                    if (key?.GetValueNames().Contains("ModInstallPath") == true)
                     {
                         return key.GetValue("ModInstallPath")?.ToString().Replace('/', '\\') ?? string.Empty;
                     }
@@ -64,7 +65,7 @@ namespace SteamLibrary
             {
                 using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
                 {
-                    if (key != null)
+                    if (key?.GetValueNames().Contains("SourceModInstallPath") == true)
                     {
                         return key.GetValue("SourceModInstallPath")?.ToString().Replace('/', '\\') ?? string.Empty;
                     }
@@ -89,9 +90,11 @@ namespace SteamLibrary
             }
         }
 
+        public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\steamicon.png");
+
         public static string GetWorkshopUrl(uint appId)
         {
-            return $"http://steamcommunity.com/app/{appId}/workshop/";
+            return $"https://steamcommunity.com/app/{appId}/workshop/";
         }
 
         public static AppState GetAppState(GameID id)

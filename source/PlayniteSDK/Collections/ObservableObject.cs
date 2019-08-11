@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,6 +15,15 @@ namespace System.Collections.Generic
     public abstract class ObservableObject : INotifyPropertyChanged
     {
         /// <summary>
+        /// If set to <c>true</c> no <see cref="PropertyChanged"/> events will be fired.
+        /// </summary>
+        [JsonIgnore]
+        public bool SuppressNotifications
+        {
+            get; set;
+        } = false;
+
+        /// <summary>
         /// Occurs when a property value changes
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,7 +34,10 @@ namespace System.Collections.Generic
         /// <param name="name">Name of property that changed.</param>
         public void OnPropertyChanged([CallerMemberName]string name = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            if (!SuppressNotifications)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }
