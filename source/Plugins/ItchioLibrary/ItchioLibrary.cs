@@ -148,6 +148,11 @@ namespace ItchioLibrary
                 foreach (var profile in profiles)
                 {
                     var keys = butler.GetOwnedKeys(profile.id);
+                    if (!keys.HasItems())
+                    {
+                        continue;
+                    }
+
                     foreach (var key in keys)
                     {
                         if (key.game == null)
@@ -218,7 +223,7 @@ namespace ItchioLibrary
                         logger.Debug($"Found {installedGames.Count} installed itch.io games.");
                         allGames.AddRange(installedGames.Values.ToList());
                     }
-                    catch (Exception e)
+                    catch (Exception e) when (!PlayniteApi.ApplicationInfo.ThrowAllErrors)
                     {
                         logger.Error(e, "Failed to import installed itch.io games.");
                         importError = e;
@@ -245,7 +250,7 @@ namespace ItchioLibrary
                             }
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception e) when (!PlayniteApi.ApplicationInfo.ThrowAllErrors)
                     {
                         logger.Error(e, "Failed to import uninstalled itch.io games.");
                         importError = e;

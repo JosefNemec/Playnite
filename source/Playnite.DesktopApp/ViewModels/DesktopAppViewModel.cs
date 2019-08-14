@@ -919,7 +919,7 @@ namespace Playnite.DesktopApp.ViewModels
             try
             {
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Run(async () =>
+                GlobalTaskHandler.ProgressTask = Task.Run(() =>
                 {
                     DatabaseFilters.IgnoreDatabaseUpdates = true;
                     var addedGames = new List<Game>();
@@ -953,7 +953,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
 
                     ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
-                    await Task.Delay(500);
+                    Thread.Sleep(500);
                                      
                     if (addedGames.Any() && metaForNewGames)
                     {
@@ -991,7 +991,7 @@ namespace Playnite.DesktopApp.ViewModels
             try
             {
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Run(async () =>
+                GlobalTaskHandler.ProgressTask = Task.Run(() =>
                 {
                     DatabaseFilters.IgnoreDatabaseUpdates = true;
                     var addedGames = new List<Game>();
@@ -1015,7 +1015,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
 
                     ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
-                    await Task.Delay(500);
+                    Thread.Sleep(500);
 
                     if (addedGames.Any() && AppSettings.DownloadMetadataOnImport)
                     {
