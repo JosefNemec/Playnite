@@ -14,6 +14,6 @@ def import_games_from_file():
     with open(filename) as fin:
         for game in fin:
             __logger.Info("Adding %s to the database" % game.strip())
-            PlayniteApi.Database.AddGame(Game(game.strip()))
+            PlayniteApi.Database.Games.Add(Game(game.strip()))
             __logger.Info("%s has been added to the database" % game.strip())
 

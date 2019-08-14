@@ -2,6 +2,7 @@
 using Playnite.Common;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.Extensions.Markup;
+using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
@@ -24,6 +25,7 @@ namespace Playnite.DesktopApp.Controls
     public class MainMenu : ContextMenu
     {
         private readonly DesktopAppViewModel mainModel;
+        private MenuItem extensionsItem;
 
         static MainMenu()
         {
@@ -43,7 +45,16 @@ namespace Playnite.DesktopApp.Controls
             else if (model != null)
             {
                 mainModel = model;
+                mainModel.Extensions.PropertyChanged += Extensions_PropertyChanged;
                 InitializeItems();
+            }
+        }
+
+        private void Extensions_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ExtensionFactory.ExportedFunctions))
+            {
+                InitializeExtensionsMenu();
             }
         }
 
@@ -92,6 +103,24 @@ namespace Playnite.DesktopApp.Controls
             return item;
         }
 
+        private void InitializeExtensionsMenu()
+        {
+            extensionsItem.Items.Clear();
+            AddMenuChild(extensionsItem.Items, "LOCReloadScripts", mainModel.ReloadScriptsCommand);
+            extensionsItem.Items.Add(new Separator());
+            foreach (var function in mainModel.Extensions.ExportedFunctions)
+            {
+                var item = new MenuItem
+                {
+                    Header = function.Name,
+                    Command = mainModel.InvokeExtensionFunctionCommand,
+                    CommandParameter = function
+                };
+
+                extensionsItem.Items.Add(item);
+            }
+        }
+
         public void InitializeItems()
         {
             // Add Game
@@ -129,20 +158,8 @@ namespace Playnite.DesktopApp.Controls
             }
 
             // Extensions
-            var extensionsItem = AddMenuChild(Items, "LOCExtensions", null);
-            AddMenuChild(extensionsItem.Items, "LOCReloadScripts", mainModel.ReloadScriptsCommand);
-            extensionsItem.Items.Add(new Separator());
-            foreach (var function in mainModel.Extensions.ExportedFunctions)
-            {
-                var item = new MenuItem
-                {
-                    Header = function.Name,
-                    Command = mainModel.InvokeExtensionFunctionCommand,
-                    CommandParameter = function
-                };
-
-                extensionsItem.Items.Add(item);
-            }
+            extensionsItem = AddMenuChild(Items, "LOCExtensions", null);
+            InitializeExtensionsMenu();
 
             // Open Client
             var openClientItem = AddMenuChild(Items, "LOCMenuOpenClient", null);

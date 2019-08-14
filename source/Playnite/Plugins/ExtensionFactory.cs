@@ -132,7 +132,7 @@ namespace Playnite.Plugins
                     {
                         script.Dispose();
                     }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
                         logger.Error(e, $"Failed to dispose script {script.Name}");
                     }
