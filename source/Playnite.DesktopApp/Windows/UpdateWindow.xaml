@@ -26,11 +26,12 @@
                 <ItemsControl Name="ItemsNotes" ItemsSource="{Binding ReleaseNotes}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <DockPanel Margin="0,5,0,0">
-                                <Border BorderThickness="0,0,0,2" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Top">
-                                    <Label Content="{Binding Version}"  Margin="15,5,0,5"/>
+                            <DockPanel Margin="10,5,10,15">
+                                <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Top">
+                                    <TextBlock Text="{Binding Version}"  Margin="0,5,0,5"
+                                               Style="{DynamicResource BaseTextBlockStyle}" FontWeight="Bold" />
                                 </Border>
-                                <html:HtmlPanel Text="{Binding Note}" Foreground="White" Margin="0,5,0,0"
+                                <html:HtmlPanel Text="{Binding Note}" Foreground="White" Margin="0,10,0,0"
                                             Background="Transparent" DockPanel.Dock="Top"
                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
