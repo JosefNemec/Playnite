@@ -50,7 +50,6 @@ namespace EpicLibrary.Services
                 try
                 {
                     var config = IniParser.Parse(File.ReadAllLines(EpicLauncher.PortalConfigPath));
-                    loginUrl = string.Format(loginUrlMask, config["Portal.Origin Prod"]["RegisterOrigin"].TrimEnd('/'));
                     oauthUrl = string.Format(oauthUrlMask, config["Portal.OnlineSubsystemMcp.OnlineIdentityMcp Prod"]["Domain"].TrimEnd('/'));
                     accountUrl = string.Format(accountUrlMask, config["Portal.OnlineSubsystemMcp.OnlineIdentityMcp Prod"]["Domain"].TrimEnd('/'));
                     assetsUrl = string.Format(assetsUrlMask, config["Portal.OnlineSubsystemMcp.BaseServiceMcp Prod"]["Domain"].TrimEnd('/'));
@@ -65,12 +64,13 @@ namespace EpicLibrary.Services
 
             if (!loadedFromConfig)
             {
-                loginUrl = string.Format(loginUrlMask, "accounts.launcher-website-prod07.ol.epicgames.com");
                 oauthUrl = string.Format(oauthUrlMask, "account-public-service-prod03.ol.epicgames.com");
                 accountUrl = string.Format(accountUrlMask, "account-public-service-prod03.ol.epicgames.com");
                 assetsUrl = string.Format(assetsUrlMask, "launcher-public-service-prod06.ol.epicgames.com");
                 catalogUrl = string.Format(catalogUrlMask, "catalog-public-service-prod06.ol.epicgames.com");
             }
+
+            loginUrl = string.Format(loginUrlMask, "accounts.launcher-website-prod07.ol.epicgames.com");
         }
 
         public void Login()
