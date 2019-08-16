@@ -100,13 +100,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<Uri> NavigateUrlCommand
-        {
-            get => new RelayCommand<Uri>((url) =>
-            {
-                NavigateUrl(url.AbsoluteUri);
-            });
-        }
+        public RelayCommand<object> NavigateUrlCommand => GlobalCommands.NavigateUrlCommand;
 
         public AboutViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
@@ -123,11 +117,6 @@ namespace Playnite.DesktopApp.ViewModels
         public void CloseView()
         {
             window.Close();
-        }
-
-        public void NavigateUrl(string url)
-        {
-            System.Diagnostics.Process.Start(url);
         }
 
         public void CreateDiagPackage()
