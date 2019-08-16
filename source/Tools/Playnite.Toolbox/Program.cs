@@ -245,12 +245,14 @@ namespace Playnite.Toolbox
                 }
             }
 
+            var apiVersion = mode == ApplicationMode.Desktop ? ThemeManager.DesktopApiVersion : ThemeManager.FullscreenApiVersion;
             var themeDesc = new ThemeDescription()
             {
                 Author = "Your Name Here",
                 Name = themeName,
                 Version = "1.0",
-                Mode = mode
+                Mode = mode,
+                ThemeApiVersion = apiVersion.ToString()
             };
 
             File.WriteAllText(Path.Combine(outDir, ThemeManager.ThemeManifestFileName), Serialization.ToYaml(themeDesc));

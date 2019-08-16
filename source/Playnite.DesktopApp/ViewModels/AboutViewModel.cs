@@ -33,7 +33,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return "SDK " + Playnite.SDK.Version.SDKVersion.ToString(3);
+                return "SDK: " + Playnite.SDK.Version.SDKVersion.ToString(3);
             }
         }
 
@@ -41,7 +41,9 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return "Theme API " + ThemeManager.ThemeApiVersion.ToString(3);
+                return "Theme API:\n" +
+                    $"Desktop: {ThemeManager.DesktopApiVersion.ToString(3)}\n" +
+                    $"Fullscreen: {ThemeManager.FullscreenApiVersion.ToString(3)}\n";
             }
         }
 

@@ -22,7 +22,7 @@ namespace Playnite
         public string Website { get; set; }
         public string Version { get; set; }
         public ApplicationMode Mode { get; set; }
-        public string ThemeApiVersion { get; set; } = ThemeManager.ThemeApiVersion.ToString(3);
+        public string ThemeApiVersion { get; set; }
         public string DirectoryPath { get; set; }
         public string DirectoryName { get; set; }
 
@@ -40,7 +40,8 @@ namespace Playnite
         private static ILogger logger = LogManager.GetLogger();
         public const string ThemeManifestFileName = "theme.yaml";
         public const string PackedThemeFileExtention = ".pthm";
-        public static System.Version ThemeApiVersion => new System.Version("1.1.0");
+        public static System.Version DesktopApiVersion => new System.Version("1.2.0");
+        public static System.Version FullscreenApiVersion => new System.Version("1.2.0");
         public static ThemeDescription CurrentTheme { get; private set; }
         public static ThemeDescription DefaultTheme { get; private set; } 
 
@@ -100,7 +101,8 @@ namespace Playnite
 
         public static bool ApplyTheme(Application app, ThemeDescription theme, ApplicationMode mode)
         {
-            if ((new System.Version(theme.ThemeApiVersion).Major != ThemeApiVersion.Major))
+            var apiVesion = mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
+            if ((new System.Version(theme.ThemeApiVersion).Major != apiVesion.Major))
             {
                 logger.Error($"Failed to apply {theme.Name} theme, unsupported API version {theme.ThemeApiVersion}.");
                 return false;

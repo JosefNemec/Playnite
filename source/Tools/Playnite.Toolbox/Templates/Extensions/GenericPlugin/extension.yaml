@@ -1,0 +1,6 @@
+﻿Name: Bethesda Library Importer
+Author: Playnite
+Version: 1.0
+Module: BethesdaLibrary.dll
+Type: GameLibrary
+Icon: Resources\bethesdaicon.png
