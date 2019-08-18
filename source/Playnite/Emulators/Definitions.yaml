@@ -1596,29 +1596,29 @@
     - Name: Sega - Game Gear
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sega Game Gear]
-      ImageExtensions: [zip, gg] 
+      ImageExtensions: [zip, gg]
       ExecutableLookup: ^higan.*\.exe$
 
     - Name: NEC - PC Engine
       DefaultArguments: '"{ImagePath}"'
-      Platforms: [NEC TurboGrafx 16]
-      ImageExtensions: [zip, pce] 
+      Platforms: [NEC TurboGrafx 16, NEC TurboGrafx-CD]
+      ImageExtensions: [zip, pce, cue, ccd, chd] 
       ExecutableLookup: ^higan.*\.exe$
 
     - Name: NEC - Supergrafx
       DefaultArguments: '"{ImagePath}"'
-      Platforms: [NEC PC Engine SuperGrafx, NEC TurboGrafx-CD]
-      ImageExtensions: [zip, cue, ccd, chd] 
+      Platforms: [NEC PC Engine SuperGrafx]
+      ImageExtensions: [zip, pce]
       ExecutableLookup: ^higan.*\.exe$
 
     - Name: Bandai - WonderSwan
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Bandai WonderSwan]
-      ImageExtensions: [zip, ws] 
+      ImageExtensions: [zip, ws]
       ExecutableLookup: ^higan.*\.exe$
 
     - Name: Bandai - WonderSwan Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Bandai WonderSwan Color]
-      ImageExtensions: [zip, wsc] 
+      ImageExtensions: [zip, wsc]
       ExecutableLookup: ^higan.*\.exe$
