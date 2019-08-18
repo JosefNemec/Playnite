@@ -1622,3 +1622,27 @@
       Platforms: [Bandai WonderSwan Color]
       ImageExtensions: [zip, wsc]
       ExecutableLookup: ^higan.*\.exe$
+
+- Name: SameBoy
+  Website: 'https://sameboy.github.io/'
+  Profiles:
+    - Name: Nintendo - Game Boy
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy]
+      ImageExtensions: [gb]  
+      ExecutableLookup: ^sameboy\.exe
+
+    - Name: Nintendo - Game Boy Color
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy Color]
+      ImageExtensions: [gbc] 
+      ExecutableLookup: ^sameboy\.exe
+
+- Name: bsnes-hd
+  Website: 'https://github.com/DerKoun/bsnes-hd'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System]
+      ImageExtensions: [sfc, smc, zip]
+      ExecutableLookup: ^bsnes-hd.*\.exe$
