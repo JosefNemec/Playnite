@@ -1520,3 +1520,105 @@
       Platforms: [Adobe Flash]
       ImageExtensions: [swf]
       ExecutableLookup: ^flashplayer_\d+_sa\.exe$
+
+- Name: bsnes
+  Website: 'https://bsnes.byuu.org/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System]
+      ImageExtensions: [sfc, smc, zip]
+      ExecutableLookup: ^bsnes\.exe
+
+- Name: Mesen-S
+  Website: 'https://github.com/SourMesen/Mesen-S'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System]
+      ImageExtensions: [sfc, smc, zip, 7z]
+      ExecutableLookup: ^Mesen-S\.exe
+
+- Name: melonDS
+  Website: 'http://melonds.kuribo64.net/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo DS]
+      ImageExtensions: [nds]
+      ExecutableLookup: ^melonDS\.exe
+
+- Name: higan
+  Website: 'https://higan.byuu.org/'
+  Profiles:
+    - Name: Nintendo - Famicom
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Entertainment System]
+      ImageExtensions: [zip, nes]  
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Nintendo - Super Famicom
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo, Nintendo Satellaview]
+      ImageExtensions: [sfc, smc, bs, zip] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Nintendo - Game Boy
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy]
+      ImageExtensions: [zip, gb] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Nintendo - Game Boy Color
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy Color]
+      ImageExtensions: [zip, gbc] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Nintendo - Game Boy Advance
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy Advance]
+      ImageExtensions: [zip, gba] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Sega - Master System
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sega Master System]
+      ImageExtensions: [zip, sms] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Sega - Mega Drive
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sega Genesis]
+      ImageExtensions: [zip, bin, smd, md] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Sega - Game Gear
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sega Game Gear]
+      ImageExtensions: [zip, gg] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: NEC - PC Engine
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [NEC TurboGrafx 16]
+      ImageExtensions: [zip, pce] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: NEC - Supergrafx
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [NEC PC Engine SuperGrafx, NEC TurboGrafx-CD]
+      ImageExtensions: [zip, cue, ccd, chd] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Bandai - WonderSwan
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Bandai WonderSwan]
+      ImageExtensions: [zip, ws] 
+      ExecutableLookup: ^higan.*\.exe$
+
+    - Name: Bandai - WonderSwan Color
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Bandai WonderSwan Color]
+      ImageExtensions: [zip, wsc] 
+      ExecutableLookup: ^higan.*\.exe$
