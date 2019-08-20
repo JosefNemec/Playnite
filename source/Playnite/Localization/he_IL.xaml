@@ -6,11 +6,11 @@
     
     <sys:String x:Key="LanguageName">עברית Hebrew</sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">שפה</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">יציאה</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">פילטר פועל</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">הסינון לא פעיל (לחץ כדי לחשוף את פאנל הסינון)</sys:String>
     <sys:String x:Key="LOCAditionalFilters">פילטרים נוספים</sys:String>
     <sys:String x:Key="LOCFilters">פילטרים</sys:String>
     <sys:String x:Key="LOCFilter">פילטר</sys:String>
@@ -29,26 +29,26 @@
     <sys:String x:Key="LOCCategorySetButton">הגדר קטגוריה</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">הוסף קטגוריה</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCNoCategory"></sys:String>
-    <sys:String x:Key="LOCNoPlatform"></sys:String>
+    <sys:String x:Key="LOCNoCategory">אין קטגוריה</sys:String>
+    <sys:String x:Key="LOCNoPlatform">אין פלטפורמה</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">אוי לא, משהו רע קרה…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashReportIssue"></sys:String>
-    <sys:String x:Key="LOCCrashRestartPlaynite"></sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">דווח על קריסה</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">הפעל מחדש את Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">צא מ-Playnite</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskTitle"></sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">מנהל ספרייה</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">הסר משחק(ים)?</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">לא יכול להסיר משחק שרץ או שמותקן/מוסר.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">לא יכול להסיר משחק שרץ.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
 
-    <sys:String x:Key="LOCSteamFriendsTooltip"></sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCSteamFriendsTooltip">חברים ב-Steam</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">המקטע מכיל שינויים לשמירה</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">מעדכן את מבנה ספריית המשחקים…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail"></sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
 
