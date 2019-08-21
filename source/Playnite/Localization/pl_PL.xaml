@@ -729,16 +729,17 @@ Podejmij poniższe kroki, aby naprawić problem:
     <sys:String x:Key="LOCPLaytime500to1000">500 do 1000 godzin</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Zainstalowano poprawnie.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Czy zainstalować rozszerzenie?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail">Nie udało się zainstalować rozszerzenia.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Czy chcesz dodać nowe rozszerzenie? Istniejące rozszerzenie zostanie nadpisane.
     
 {0}
 przez {1}
 Wersja {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail">Nie udało się zainstalować motywu.</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Czy chcesz dodać nowy motyw? Istniejący motyw zostanie nadpisany.
     
 {0}
