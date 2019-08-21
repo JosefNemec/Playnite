@@ -728,16 +728,17 @@ Du kan prova följande tips för att försöka avhjälpa felet:
     <sys:String x:Key="LOCPLaytime500to1000">500 till 1000 timmar</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installationen lyckades.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installera tillägg?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail">Misslyckades med att installera tillägg.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vill du installera den nya utökningen? Den existerande installationen kommer att skrivas över.
     
 {0}
 Av {1}
 Version {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail">Det gick inte att installera temat.</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Vill du installera det nya temat? Den existerande installationen kommer att skrivas över.
     
 {0}
