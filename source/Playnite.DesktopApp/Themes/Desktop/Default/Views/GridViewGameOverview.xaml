@@ -168,6 +168,7 @@
                                         </StackPanel>
 
                                         <HtmlTextView Name="PART_HtmlDescription" DockPanel.Dock="Top"
+                                                      Margin="5,5,0,5"
                                                       HtmlFontSize="{DynamicResource FontSize}"
                                                       HtmlFontFamily="{DynamicResource FontFamily}"
                                                       HtmlForeground="{DynamicResource TextColor}"
