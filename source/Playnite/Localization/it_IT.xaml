@@ -729,16 +729,17 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCPLaytime500to1000">da 500 a 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Più di 1000</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installazione avvenuta con successo.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installare l'estensione?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail">Installazione estensione fallita.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vuoi installare una nuova estensione? L'installazione esistente sarà sovrascritta.
     
 {0}
  {1}
 Versione {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail">Impossibile installare il tema.</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Vuoi installare una nuova estensione? L'installazione esistente sarà sovrascritta.
     
 {0}
