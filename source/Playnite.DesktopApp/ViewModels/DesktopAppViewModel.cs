@@ -1278,6 +1278,11 @@ namespace Playnite.DesktopApp.ViewModels
                             try
                             {
                                 var desc = ThemeManager.GetDescriptionFromPackedFile(path);
+                                if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
+                                {
+                                    throw new Exception(Resources.GetString("LOCGeneralExtensionInstallApiVersionFails"));
+                                }
+
                                 if (Dialogs.ShowMessage(
                                         string.Format(Resources.GetString("LOCThemeInstallPrompt"),
                                             desc.Name, desc.Author, desc.Version),
@@ -1292,7 +1297,7 @@ namespace Playnite.DesktopApp.ViewModels
                             {
                                 Logger.Error(e, "Failed to install theme.");
                                 Dialogs.ShowErrorMessage(
-                                    Resources.GetString("LOCThemeInstallFail"), "");
+                                    string.Format(Resources.GetString("LOCThemeInstallFail"), e.Message), "");
                             }
                         }
                         else

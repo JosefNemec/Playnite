@@ -22,10 +22,9 @@ namespace Playnite
         public string Author { get; set; }
         public string Website { get; set; }
         public string Version { get; set; }
-        public string ThemeApiVersion { get; set; }
-
-        [YamlIgnore]        
+        public string ThemeApiVersion { get; set; }     
         public ApplicationMode Mode { get; set; }
+
         [YamlIgnore]
         public string DirectoryPath { get; set; }
         [YamlIgnore]
