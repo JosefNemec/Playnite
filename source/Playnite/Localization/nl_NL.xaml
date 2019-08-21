@@ -729,16 +729,17 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCPLaytime500to1000">500 tot 1000 uur</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installatie is gelukt.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Extensie installeren?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail">Extensie installeren mislukt.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Wilt u nieuwe extensie installeren? Bestaande installatie zal overschreven worden.
     
 {0}
 Door {1}
 versie {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail">Thema installeren mislukt.</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Wilt u een nieuw thema installeren? Bestaande installatie zal overschreven worden.
     
 {0}
