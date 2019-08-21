@@ -725,11 +725,12 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCPLaytime500to1000">500～1000時間</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000時間以上</sys:String>
 
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">インストールが成功しました。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">拡張機能をインストールしますか？</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail">拡張機能のインストールに失敗しました。</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">新しい拡張機能をインストールしますか？既存のインストールは上書きします。    </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail">テーマのインストールに失敗しました。</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">新しいテーマをインストールしますか？既存のインストールは上書きします。    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">デフォルトのウェブブラウザを使って次のウェブページに行きます。続行しますか？</sys:String>
