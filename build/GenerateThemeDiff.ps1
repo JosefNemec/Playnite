@@ -39,7 +39,7 @@ function SaveDiffFile()
 
     New-FolderFromFilePath $targetPath
     Start-Process "git" "--no-pager show $($commitHash):$($filePath)" -NoNewWindow -Wait -RedirectStandardOutput $targetPath
-    (Get-FileHash $targetPath -Algorithm MD5).Hash | Out-File $targetPath
+    (Get-FileHash $targetPath -Algorithm MD5).Hash | Out-File $targetPath -NoNewline
 }
 
 function GetFileList

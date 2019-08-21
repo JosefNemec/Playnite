@@ -89,13 +89,27 @@
       <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
       <Name>Playnite.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
+      <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
+      <Name>Playnite.SDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Tools\Playnite.Toolbox\Playnite.Toolbox.csproj">
       <Project>{9c73c47e-64c2-4691-a602-a8463185e232}</Project>
       <Name>Playnite.Toolbox</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ThemeChangeLog.txt">
+    <None Include="Resources\Changelog\1.1.0-1.2.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Changelog\1.2.0-1.3.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Changelog\1.3.0-1.4.0.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -107,4 +121,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.11.0\build\NUnit.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(SolutionDir)\Tools\Playnite.Toolbox\Templates\Themes\Changelog" "$(TargetDir)\Templates\Themes\Changelog\" /e /y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

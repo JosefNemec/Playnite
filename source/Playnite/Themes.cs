@@ -12,6 +12,7 @@ using Playnite.Settings;
 using Playnite.Common;
 using Playnite.SDK;
 using System.IO.Compression;
+using YamlDotNet.Serialization;
 
 namespace Playnite
 {
@@ -21,9 +22,13 @@ namespace Playnite
         public string Author { get; set; }
         public string Website { get; set; }
         public string Version { get; set; }
-        public ApplicationMode Mode { get; set; }
         public string ThemeApiVersion { get; set; }
+
+        [YamlIgnore]        
+        public ApplicationMode Mode { get; set; }
+        [YamlIgnore]
         public string DirectoryPath { get; set; }
+        [YamlIgnore]
         public string DirectoryName { get; set; }
 
         public static ThemeDescription FromFile(string path)
@@ -43,7 +48,12 @@ namespace Playnite
         public static System.Version DesktopApiVersion => new System.Version("1.2.0");
         public static System.Version FullscreenApiVersion => new System.Version("1.2.0");
         public static ThemeDescription CurrentTheme { get; private set; }
-        public static ThemeDescription DefaultTheme { get; private set; } 
+        public static ThemeDescription DefaultTheme { get; private set; }
+
+        public static System.Version GetApiVersion(ApplicationMode mode)
+        {
+            return mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
+        }
 
         public static string GetThemeRootDir(ApplicationMode mode)
         {

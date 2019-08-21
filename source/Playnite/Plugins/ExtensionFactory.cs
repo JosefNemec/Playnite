@@ -232,7 +232,7 @@ namespace Playnite.Plugins
                 return false;
             }
 
-            if (sdkReference.Version.Major != SDK.Version.SDKVersion.Major)
+            if (sdkReference.Version.Major != SDK.SdkVersions.SDKVersion.Major)
             {
                 logger.Error($"Plugin doesn't support this version of Playnite SDK.");
                 return false;

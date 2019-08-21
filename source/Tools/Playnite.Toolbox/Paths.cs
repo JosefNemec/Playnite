@@ -30,6 +30,8 @@ namespace Playnite.Toolbox
             return Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Themes", fileName);
         }
 
+        public static string ChangeLogsDir => Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Themes", "Changelog");
+
         public static string GetNextBackupFolder(string rootFolder)
         {
             var latestBack = -1;

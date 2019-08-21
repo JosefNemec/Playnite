@@ -33,7 +33,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return "SDK: " + Playnite.SDK.Version.SDKVersion.ToString(3);
+                return "SDK: " + Playnite.SDK.SdkVersions.SDKVersion.ToString(3);
             }
         }
 
