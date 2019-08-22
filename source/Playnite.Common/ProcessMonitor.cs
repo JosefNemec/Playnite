@@ -38,6 +38,7 @@ namespace Playnite.Common
 
         public async void WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false)
         {
+            logger.Debug($"Watching dir processes {directory}, {alreadyRunning}, {byProcessNames}");
             // Get real path in case that original path is symlink or junction point
             var realPath = directory;
             try

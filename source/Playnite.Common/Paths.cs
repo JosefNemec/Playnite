@@ -20,6 +20,12 @@ namespace Playnite.Common
                 FileMode.Open,
                 Interop.FILE_FLAG_BACKUP_SEMANTICS,
                 IntPtr.Zero);
+
+            if (path.StartsWith(@"\\"))
+            {
+                return path;
+            }
+
             if (h == Interop.INVALID_HANDLE_VALUE)
             {
                 throw new Win32Exception();
