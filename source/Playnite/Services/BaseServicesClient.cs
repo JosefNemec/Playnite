@@ -20,9 +20,10 @@ namespace Playnite.Services
             Timeout = new TimeSpan(0, 0, 30)
         };
 
-        public BaseServicesClient(string endpoint)
+        public BaseServicesClient(string endpoint, Version playniteVersion)
         {
             Endpoint = endpoint.TrimEnd('/');
+            HttpClient.DefaultRequestHeaders.Add("Playnite-Version", playniteVersion.ToString(4));
         }
 
         public T ExecuteGetRequest<T>(string subUrl)

@@ -1,6 +1,7 @@
 ﻿using JsonApiSerializer;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using PlayniteServices.Filters;
 using PlayniteServices.Models.Patreon;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.Patreon
 {
+    [ServiceFilter(typeof(PlayniteVersionFilter))]
     [Route("patreon/patrons")]
     public class PatronsController : Controller
     {

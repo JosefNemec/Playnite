@@ -8,9 +8,11 @@ using Newtonsoft.Json;
 using System.Threading;
 using PlayniteServices.Models.Steam;
 using LiteDB;
+using PlayniteServices.Filters;
 
 namespace PlayniteServices.Controllers.Steam
 {
+    [ServiceFilter(typeof(PlayniteVersionFilter))]
     [Route("steam/library")]
     public class LibraryController : Controller
     {

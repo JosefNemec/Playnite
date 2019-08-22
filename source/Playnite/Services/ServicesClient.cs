@@ -20,7 +20,7 @@ namespace Playnite.Services
         {
         }
 
-        public ServicesClient(string endpoint) : base(endpoint)
+        public ServicesClient(string endpoint) : base(endpoint, Updater.GetCurrentVersion())
         {
         }
 
@@ -37,28 +37,10 @@ namespace Playnite.Services
             return ExecuteGetRequest<ulong>(url);
         }
 
-        public PlayniteServices.Models.IGDB.Game GetIGDBGame(UInt64 id, string apiKey = null)
-        {
-            var url = string.IsNullOrEmpty(apiKey) ? $"/igdb/game/{id}" : $"/igdb/game/{id}?apikey={apiKey}";
-            return ExecuteGetRequest<PlayniteServices.Models.IGDB.Game>(url);
-        }
-
         public PlayniteServices.Models.IGDB.ExpandedGame GetIGDBGameParsed(UInt64 id, string apiKey = null)
         {
             var url = string.IsNullOrEmpty(apiKey) ? $"/igdb/game_parsed/{id}" : $"/igdb/game_parsed/{id}?apikey={apiKey}";
             return ExecuteGetRequest<PlayniteServices.Models.IGDB.ExpandedGame>(url);
-        }
-
-        public PlayniteServices.Models.IGDB.Company GetIGDBCompany(UInt64 id, string apiKey = null)
-        {
-            var url = string.IsNullOrEmpty(apiKey) ? $"/igdb/company/{id}" : $"/igdb/company/{id}?apikey={apiKey}";
-            return ExecuteGetRequest<PlayniteServices.Models.IGDB.Company>(url);
-        }
-
-        public PlayniteServices.Models.IGDB.Genre GetIGDBGenre(UInt64 id, string apiKey = null)
-        {
-            var url = string.IsNullOrEmpty(apiKey) ? $"/igdb/genre/{id}" : $"/igdb/genre/{id}?apikey={apiKey}";
-            return ExecuteGetRequest<PlayniteServices.Models.IGDB.Genre>(url);
         }
 
         public List<string> GetPatrons()

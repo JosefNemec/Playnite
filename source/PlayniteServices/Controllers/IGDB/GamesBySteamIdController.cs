@@ -7,9 +7,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using LiteDB;
+using PlayniteServices.Filters;
 
 namespace PlayniteServices.Controllers.IGDB
 {
+    [ServiceFilter(typeof(PlayniteVersionFilter))]
     [Route("igdb/gamesBySteamId")]
     public class GamesBySteamIdController : Controller
     {

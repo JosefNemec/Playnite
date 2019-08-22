@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using PlayniteServices.Filters;
 using PlayniteServices.Models.IGDB;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
+    [ServiceFilter(typeof(PlayniteVersionFilter))]
     [Route("igdb/collections")]
     public class CollectionController : IgdbItemController
     {

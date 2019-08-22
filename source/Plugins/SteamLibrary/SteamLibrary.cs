@@ -38,7 +38,7 @@ namespace SteamLibrary
         {
             Initialize(api);
             config = GetPluginConfiguration<Configuration>();
-            ServicesClient = new SteamServicesClient(config.ServicesEndpoint);
+            ServicesClient = new SteamServicesClient(config.ServicesEndpoint, api.ApplicationInfo.ApplicationVersion);
         }
 
         public SteamLibrary(IPlayniteAPI api, SteamServicesClient client) : base(api)

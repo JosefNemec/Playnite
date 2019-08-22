@@ -15,7 +15,7 @@ namespace SteamLibrary.Services
     {
         private readonly ILogger logger = LogManager.GetLogger();
 
-        public SteamServicesClient(string endpoint) : base(endpoint)
+        public SteamServicesClient(string endpoint, Version playniteVersion) : base(endpoint, playniteVersion)
         {
         }
 

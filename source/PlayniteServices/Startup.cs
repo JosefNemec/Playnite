@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using PlayniteServices.Filters;
 
 namespace PlayniteServices
 {
@@ -44,6 +45,9 @@ namespace PlayniteServices
                 loggingBuilder.AddConsole();
                 loggingBuilder.AddDebug();
             });
+
+            services.Configure<AppSettings>(Configuration);
+            services.AddSingleton<PlayniteVersionFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
