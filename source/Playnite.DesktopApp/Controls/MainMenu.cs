@@ -105,20 +105,24 @@ namespace Playnite.DesktopApp.Controls
 
         private void InitializeExtensionsMenu()
         {
-            extensionsItem.Items.Clear();
-            AddMenuChild(extensionsItem.Items, "LOCReloadScripts", mainModel.ReloadScriptsCommand);
-            extensionsItem.Items.Add(new Separator());
-            foreach (var function in mainModel.Extensions.ExportedFunctions)
+            // Can be called from other thread via Extensions_PropertyChanged event hook
+            Dispatcher.Invoke(() =>
             {
-                var item = new MenuItem
+                extensionsItem.Items.Clear();
+                AddMenuChild(extensionsItem.Items, "LOCReloadScripts", mainModel.ReloadScriptsCommand);
+                extensionsItem.Items.Add(new Separator());
+                foreach (var function in mainModel.Extensions.ExportedFunctions)
                 {
-                    Header = function.Name,
-                    Command = mainModel.InvokeExtensionFunctionCommand,
-                    CommandParameter = function
-                };
+                    var item = new MenuItem
+                    {
+                        Header = function.Name,
+                        Command = mainModel.InvokeExtensionFunctionCommand,
+                        CommandParameter = function
+                    };
 
-                extensionsItem.Items.Add(item);
-            }
+                    extensionsItem.Items.Add(item);
+                }
+            });
         }
 
         public void InitializeItems()
