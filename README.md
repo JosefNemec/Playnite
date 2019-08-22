@@ -77,7 +77,7 @@ if (true)
 Roadmap
 ---------
 
-You can see the planned versions with their features in the [projects overview](https://github.com/JosefNemec/Playnite/projects).
+You can see the planned versions with their features in the [milestones overview](https://github.com/JosefNemec/Playnite/milestones).
 
 Development
 ---------
