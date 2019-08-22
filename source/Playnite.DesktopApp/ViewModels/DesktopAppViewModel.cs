@@ -1390,9 +1390,12 @@ namespace Playnite.DesktopApp.ViewModels
 
             CloseView();
             application.Quit();
-            var cmdline = new CmdLineOptions() { SkipLibUpdate = true };
+            var cmdline = new CmdLineOptions()
+            {
+                SkipLibUpdate = true
+            };
+
             ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, cmdline.ToString());
-            application.Quit();
         }
 
         public void OpenView()

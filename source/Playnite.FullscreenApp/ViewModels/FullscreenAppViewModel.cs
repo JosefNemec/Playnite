@@ -700,13 +700,14 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
 
                 CloseView();
+                application.Quit();
                 var cmdline = new CmdLineOptions()
                 {
                     SkipLibUpdate = true,
                     StartInDesktop = true
                 };
+
                 ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, cmdline.ToString());
-                application.Quit();
             });
 
             ShutdownSystemCommand = new RelayCommand<object>((a) =>
