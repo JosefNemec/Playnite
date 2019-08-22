@@ -343,7 +343,7 @@ namespace Playnite
             {
                 var curProcess = Process.GetCurrentProcess();
                 var processes = Process.GetProcessesByName(curProcess.ProcessName);
-                if (processes.Count() > 1 && processes.OrderBy(a => a.StartTime).First().Id != curProcess.Id)
+                if (processes.Count() > 1)
                 {
                     logger.Info("Another faster instance is already running, shutting down.");
                     resourcesReleased = true;
