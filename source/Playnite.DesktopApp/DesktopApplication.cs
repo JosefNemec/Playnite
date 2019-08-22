@@ -98,10 +98,10 @@ namespace Playnite.DesktopApp
             MainModel.WindowState = WindowState.Minimized;
         }
 
-        public override void ReleaseResources()
+        public override void ReleaseResources(bool releaseCefSharp = true)
         {
             trayIcon?.Dispose();
-            base.ReleaseResources();
+            base.ReleaseResources(releaseCefSharp);
         }
 
         public override void Restart()

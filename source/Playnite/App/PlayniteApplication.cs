@@ -217,9 +217,12 @@ namespace Playnite
         public abstract void ShowWindowsNotification(string title, string body, Action action);
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
-        {
+        {            
             logger.Info("Shutting down application because of session ending.");
-            Quit();
+            // Don't dispose CefSharp here because of bug in CefSharp during system shutdown
+            // https://github.com/JosefNemec/Playnite/issues/866
+            ReleaseResources(false);
+            CurrentNative.Shutdown(0);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
@@ -439,7 +442,7 @@ namespace Playnite
 
         public abstract void Restart(CmdLineOptions options);
 
-        public virtual void ReleaseResources()
+        public virtual void ReleaseResources(bool releaseCefSharp = true)
         {
             logger.Debug("Releasing Playnite resources...");
             if (resourcesReleased)
@@ -470,13 +473,16 @@ namespace Playnite
             progressModel.ActivateProgress();
 
             // This must run on main thread
-            CurrentNative.Dispatcher.Invoke(() =>
+            if (releaseCefSharp)
             {
-                if (CefTools.IsInitialized)
+                CurrentNative.Dispatcher.Invoke(() =>
                 {
-                    CefTools.Shutdown();
-                }
-            });
+                    if (CefTools.IsInitialized)
+                    {
+                        CefTools.Shutdown();
+                    }
+                });
+            }
 
             resourcesReleased = true;
         }
