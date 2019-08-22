@@ -349,7 +349,7 @@ namespace Playnite.Database
                 }
                 catch (WebException e)
                 {
-                    logger.Error(e, $"Failed to add {path} file to database.");
+                    logger.Error(e, $"Failed to add http {path} file to database.");
                     return null;
                 }
             }
@@ -363,8 +363,17 @@ namespace Playnite.Database
                 }
                 else
                 {
-                    fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
-                    FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
+                    try
+                    {
+                        fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
+                        FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, $"Failed to copy file {path} to database.");
+                        return null;
+                    }
+
                     dbPath = Path.Combine(parentId.ToString(), fileName);
                 }
             }
