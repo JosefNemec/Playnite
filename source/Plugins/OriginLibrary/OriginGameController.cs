@@ -1,4 +1,5 @@
-﻿using Playnite;
+﻿using OriginLibrary.Models;
+using Playnite;
 using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
@@ -103,9 +104,9 @@ namespace OriginLibrary
 
         public async void StartInstallWatcher()
         {
-            watcherToken = new CancellationTokenSource();  
+            watcherToken = new CancellationTokenSource();
             var manifest = origin.GetLocalManifest(Game.GameId, null, true);
-            if (manifest.publishing == null)
+            if (manifest?.publishing == null)
             {
                 logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping installation check.");
                 OnUninstalled(this, new GameControllerEventArgs(this, 0));
@@ -145,6 +146,13 @@ namespace OriginLibrary
         {
             watcherToken = new CancellationTokenSource();   
             var manifest = origin.GetLocalManifest(Game.GameId, null, true);
+            if (manifest?.publishing == null)
+            {
+                logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping uninstallation check.");
+                OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                return;
+            }
+
             var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
             var executablePath = origin.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
 
