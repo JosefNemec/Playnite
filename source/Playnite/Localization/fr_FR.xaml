@@ -727,16 +727,20 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime500to1000">500 à 1000 heures</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Thème/Extension utilise une version d'API non supportée.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installer l'extension ?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Échec de l'installation de l'extension.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Voulez-vous installer une nouvelle extension ? L'installation existante sera supprimée.
     
 {0}
 Par {1}
 Version {2}    </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Échec de l'installation de l'extension.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Voulez-vous installer un nouveau thème? L'installation existante sera supprimée.
     
 {0}
