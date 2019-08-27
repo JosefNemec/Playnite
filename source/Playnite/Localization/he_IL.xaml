@@ -20,15 +20,17 @@
     
     <sys:String x:Key="LOCAboutHomePageLink">אתר בית www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">הקוד נמצאה ב github</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">צור חבילה דיגנוסטית.</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">שלח מידע דיגנוסטית.</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">על 'playnite'</sys:String>
     <sys:String x:Key="LOCAboutAuthor">נוצר על ידי Josef Němec</sys:String>
 
     <sys:String x:Key="LOCCategoryWindowTitle">הצמד קטגוריה</sys:String>
     <sys:String x:Key="LOCCategorySetButton">הגדר קטגוריה</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">הוסף קטגוריה</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">בדוק - קצה קטגוריה
+לא בדוק - הסר קטגוריה
+ביניים - ללא שינוי (בעריכה של מספר משחקים)</sys:String>
     <sys:String x:Key="LOCNoCategory">אין קטגוריה</sys:String>
     <sys:String x:Key="LOCNoPlatform">אין פלטפורמה</sys:String>
 
