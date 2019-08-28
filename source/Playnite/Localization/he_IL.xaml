@@ -35,8 +35,13 @@
     <sys:String x:Key="LOCNoPlatform">אין פלטפורמה</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">אוי לא, משהו רע קרה…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">שגיעה בלתי תקינה.
+
+        
+אם תרצו לעזור לתקן את הבעיה הזאת, בבקה תצרו חבילה דיגנוסטית והשתמשו בכפתור "דווח קריסה" לאפשר לנו לדעת מה קרה. תודה.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">שגיעה בלתי תקינה.
+
+עם תרצו עזרה לתקן את הבעיה הזאת, בבקשה תשלחו מידע דיגנוסטית. תודה.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">דווח על קריסה</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">הפעל מחדש את Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">צא מ-Playnite</sys:String>
@@ -45,8 +50,12 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">הסר משחק(ים)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">לא יכול להסיר משחק שרץ או שמותקן/מוסר.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">לא יכול להסיר משחק שרץ.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">באמת תרצה להסיר את משחק זה?
+
+משחקים שמייבאים אוטומטית לספריה יכולים להופיע בפליינייט אחרי תהליך היבוא הבא (תלוי בהגדרות שלך).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">האם ברצונך באמת להסיר {0} משחקים?
+
+משחקים שמייבאים אוטומטית לספריה יכולים להופיע בפליינייט אחרי תהליך היבוא הבא (תלוי בהגדרות שלך).</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">חברים ב-Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">המקטע מכיל שינויים לשמירה</sys:String>
@@ -56,12 +65,12 @@
 
     <sys:String x:Key="LOCGameError">שגיאת משחק</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">הפעלת המשחק נכשלה. '{0}' לא נמצא במסד הנתונים.</sys:String>
-    <sys:String x:Key="LOCGameStartError"></sys:String>
-    <sys:String x:Key="LOCGameStartActionError"></sys:String>
-    <sys:String x:Key="LOCGameOpenLocationError"></sys:String>
-    <sys:String x:Key="LOCGameShortcutError"></sys:String>
-    <sys:String x:Key="LOCGameInstallError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallError"></sys:String>
+    <sys:String x:Key="LOCGameStartError">אי אפשר להתחיל משחק: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">אי אפשר להתחיל פעולה: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">אי אפשר לפתוח מיקום המשחק: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">נכשל ביצירת קיצור דרך: {0}</sys:String>
+    <sys:String x:Key="LOCGameInstallError">אי אפשר להתקין את המשחק: {0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">אי אפשר למחוק את המשחק: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
