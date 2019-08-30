@@ -218,7 +218,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCProgressBattleNetLibImport">Aktualisierungen der Battle.net-Bibliothek werden heruntergeladen …</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Metadaten werden heruntergeladen …</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Installierte Spiele werden importiert …</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">{0} Spiele werden importiert …</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">{0}-Spiele werden importiert …</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Bibliotheksaktualisierungen werden heruntergeladen …</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Bibliotheksaktualisierungen werden heruntergeladen …</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Bibliotheksaktualisierung abgeschlossen</sys:String>
