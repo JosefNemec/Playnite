@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Pàgina web a www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Codi font a GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Crear paquet de diagnosi</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Enviar informació del sistema</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Sobre Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Fet per Josef Němec i traduït al català per Adrià Martínez</sys:String>
 
@@ -34,14 +34,18 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sense categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sense plataforma</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Sembla que alguna cosa ha anat malament…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">S'ha produït un error irrecuperable i Playnite es tancarà.
+        
+Si vols ajudar-nos a solucionar aquest problema, crea un Paquet de diagnòstic i utilitza el botó "Reportar un problema" per fer-nos saber que ha passat. Gràcies.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">S'ha produït un error irrecuperable.
+
+Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació de diagnòstic. Gràcies.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar un problema</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reinicia Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Sortir de Playnite</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">Organitzador de Llibreria</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Eliminar joc(s)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">No es pot eliminar un joc que s'està executant o que està instal·lat/desinstal·lat.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">No es pot desinstal·lar un joc que s'està executant.</sys:String>
@@ -54,7 +58,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Amics de Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">La secció conté canvis per desar</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Actualitzant format de la biblioteca de jocs…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Ha fallat l’actualització de la base de dades, no es pot obrir el fitxer de base de dades.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">No es pot actualitzar la biblioteca de jocs. Es requereixen {0} MB d’espai lliure.</sys:String>
 
@@ -85,9 +89,9 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCDoneCapLabel">FET</sys:String>
     <sys:String x:Key="LOCBackCapLabel">ENRERE</sys:String>
     <sys:String x:Key="LOCClearCapLabel">NETEJAR</sys:String>
-    <sys:String x:Key="LOCClearLabel"></sys:String>
-    <sys:String x:Key="LOCDismiss"></sys:String>
-    <sys:String x:Key="LOCDismissAll"></sys:String>
+    <sys:String x:Key="LOCClearLabel">Esborra tot</sys:String>
+    <sys:String x:Key="LOCDismiss">Ometre</sys:String>
+    <sys:String x:Key="LOCDismissAll">Omet-ho tot</sys:String>
     <sys:String x:Key="LOCImportLabel">Importar</sys:String>
     <sys:String x:Key="LOCSourceLabel">Font</sys:String>
     <sys:String x:Key="LOCNameLabel">Nom</sys:String>
@@ -101,9 +105,9 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCMostPlayedLabel">Més Jugat</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Contador de Partides</sys:String>
     <sys:String x:Key="LOCAddedLabel">Afegit</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Data en què es va afegir</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificat</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Data de modificació</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Pàgina web</sys:String>
     <sys:String x:Key="LOCPathLabel">Drecera</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -120,7 +124,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCLinksLabel">Enllaços</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instal·lació</sys:String>
     <sys:String x:Key="LOCActionsLabel">Accions</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Descarregant…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipus</sys:String>
     <sys:String x:Key="LOCProfileLabel">Perfil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Perfils</sys:String>
@@ -135,16 +139,16 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCTagLabel">Etiqueta</sys:String>
     <sys:String x:Key="LOCTagsLabel">Etiquetes</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCListViewLabel">Vista de llista</sys:String>
     <sys:String x:Key="LOCCoversLabel">Cobertes</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Vista de quadrícula</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Vista detallada</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalitzat</sys:String>
     <sys:String x:Key="LOCURLLabel">Enllaç</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patró</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Llicència</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Col·laboradors</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Sortint de Playnite…</sys:String>
     <sys:String x:Key="LOCToday">Avui</sys:String>
     <sys:String x:Key="LOCYesterday">Ahir</sys:String>
     <sys:String x:Key="LOCMonday">Dilluns</sys:String>
@@ -157,16 +161,16 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCPastWeek">La setmana passada</sys:String>
     <sys:String x:Key="LOCPastMonth">El mes passat</sys:String>
     <sys:String x:Key="LOCPastYear">L'any passat</sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Fa més d'1 any</sys:String>
     <sys:String x:Key="LOCImportCompleted">La importació s'ha completat correctament.</sys:String>
     <sys:String x:Key="LOCAllGames">Tots els jocs</sys:String>
     <sys:String x:Key="LOCGameId">Id del joc</sys:String>
     <sys:String x:Key="LOCDatabaseId">Id de la base de dades</sys:String>
     <sys:String x:Key="LOCPresets">Ajustaments Predefinits</sys:String>
-    <sys:String x:Key="LOCColumn"></sys:String>
-    <sys:String x:Key="LOCColumns"></sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
+    <sys:String x:Key="LOCColumn">Columna</sys:String>
+    <sys:String x:Key="LOCColumns">Columnes</sys:String>
+    <sys:String x:Key="LOCRow">Filera</sys:String>
+    <sys:String x:Key="LOCRows">Fileres</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Les variables especials es poden utilitzar per afegir una cadena dinàmica:
 {InstallDir} - Directori d'instal·lació del joc
@@ -183,7 +187,7 @@ ResultaT: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">No es pot obtenir la icona si falta l’acció de Jugar o estàmarcat com URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Descarrega només bases de dades per a jocs</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Activar aquesta opció farà que s'ometi la descàrrega de metadades pels camps que ja contenen informació.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selecció de jocs</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Selecciona els jocs que s’actualitzaran amb les noves bases de dades:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Tots els jocs de la base de dades</sys:String>
@@ -194,7 +198,7 @@ ResultaT: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Botiga oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Botiga oficial > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Seleccioneu quins camps han de ser completats automàticament per Playnite i quines fonts s’utilitzaran per obtenir les dades.</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Si us plau considera fer clic al logo de dalt i aportar contribucions a la base de dades d'igdb.com per a millorar les dades que Playnite utilitza.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Botiga:
 Utilitza només dades de la botiga oficial.
     
@@ -208,9 +212,9 @@ Official Store > IGDB:
 Prioritza la informació de la botiga oficial i, si no, fes servir la base de dades de IGBD.com.</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">Descarregant actualitzacions de la biblioteca de Steam…</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">Descarregant actualitzacions de la biblioteca de GOG…</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Descarregant actualitzacions de la biblioteca d'Origin…</sys:String>
     <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
     <sys:String x:Key="LOCProgressMetadata"></sys:String>
     <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
