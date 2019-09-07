@@ -139,10 +139,10 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCTagLabel">Tagg</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagger</sys:String>
     <sys:String x:Key="LOCZoomLabel">Forstørr</sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCListViewLabel">Listevisning</sys:String>
     <sys:String x:Key="LOCCoversLabel">Omslag</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Rutenettvisning</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Detaljert visning</sys:String>
     <sys:String x:Key="LOCCustomLabel">Egendefinert</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
