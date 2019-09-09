@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Dil</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Çıkış</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Filtreleme Açık (gizle/göster)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filtreleme Kapalı (gizle/göster)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtreleme Açık (filtre panelini açmak/kapatmak için tıklayın)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtreleme Devre Dışı (filtre panelini açmak/kapatmak için tıklayın)</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Ek filtreler</sys:String>
     <sys:String x:Key="LOCFilters">Filtreler</sys:String>
     <sys:String x:Key="LOCFilter">Filtrele</sys:String>
@@ -19,9 +19,9 @@
     <sys:String x:Key="LOCSaveChangesAskTitle">Değişiklikler kaydedilsin mi?</sys:String>
     
     <sys:String x:Key="LOCAboutHomePageLink">Web Adresi: www.playnite.link</sys:String>
-    <sys:String x:Key="LOCAboutSourceLink">GitHub: Kaynak Kodu</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">Kaynak Kodu GitHub'ta</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Teşhis paketi oluştur</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton">Sorun giderme bilgisini gönder</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Teşhis bilgisini gönder</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Playnite Hakkında</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Josef Němec tarafından yapılmıştır</sys:String>
 
@@ -142,7 +142,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Kapak</sys:String>
     <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Ayrıntılı Görünüm</sys:String>
     <sys:String x:Key="LOCCustomLabel">Özel</sys:String>
     <sys:String x:Key="LOCURLLabel">Link</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Destekleyenler</sys:String>
@@ -258,12 +258,12 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Izgara öğesi sınır genişliği</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Kayıp oyun simgesi kaynağı</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Eksik oyun kapak kaynağı</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Oyun ayrıntılarına dikey boşluk</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Izgara görünümü ayrıntı konumu</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Ayrıntılı görünüm oyun listesi konumu</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Oyun kapağı resmi yüksekliği</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Oyun listesi simge yüksekliği</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filtre paneli konumu</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Tarayıcı Panel Konumu</sys:String>
@@ -276,7 +276,7 @@ Resmi mağazadan veri tercih edin ve mümkün olmadığında IGBD.com veritaban�
     <sys:String x:Key="LOCSettingsLabel">Ayarlar</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Genel</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Görünüm</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel">oyun detayları</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Oyun Ayrıntıları</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Düzen</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Gelişmiş</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Tam Ekran</sys:String>
@@ -561,7 +561,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
   • Farklı yükleme konumu deneyin</sys:String>
 
     <!--GameEdit-->
-    <sys:String x:Key="LOCGameEditWindowTitle">Oyun Detaylarını Düzenle</sys:String>
+    <sys:String x:Key="LOCGameEditWindowTitle">Oyun Ayrıntılarını Düzenle</sys:String>
     <sys:String x:Key="LOCUseExeIcon">Oynama işleminden</sys:String>
     <sys:String x:Key="LOCImageURL">Resim URL’si</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Link Ekle</sys:String>
