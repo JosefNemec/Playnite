@@ -104,9 +104,9 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCLastPlayedLabel">Son Oynanma</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">En Çok Oynanan</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Oynanma Sayısı</sys:String>
-    <sys:String x:Key="LOCAddedLabel">Eklendi</sys:String>
+    <sys:String x:Key="LOCAddedLabel">Eklenme</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Eklenme Tarihi</sys:String>
-    <sys:String x:Key="LOCModifiedLabel">Değiştirildi</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">Değiştirilme</sys:String>
     <sys:String x:Key="LOCDateModifiedLabel">Değiştirme Tarihi</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Web Sayfası</sys:String>
     <sys:String x:Key="LOCPathLabel">Yol</sys:String>
@@ -121,11 +121,11 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCAuthenticateLabel">Kimlik Doğrulaması</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Genel</sys:String>
     <sys:String x:Key="LOCMediaLabel">Medya</sys:String>
-    <sys:String x:Key="LOCLinksLabel">Linkler</sys:String>
+    <sys:String x:Key="LOCLinksLabel">Bağlantılar</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Kurulum</sys:String>
     <sys:String x:Key="LOCActionsLabel">Eylemler</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">İndiriliyor…</sys:String>
-    <sys:String x:Key="LOCTypeLabel">Tipi</sys:String>
+    <sys:String x:Key="LOCTypeLabel">Tür</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiller</sys:String>
     <sys:String x:Key="LOCRemoveLabel">Sil</sys:String>
@@ -144,7 +144,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCGridViewLabel">Izgara Görünümü</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel">Ayrıntılı Görünüm</sys:String>
     <sys:String x:Key="LOCCustomLabel">Özel</sys:String>
-    <sys:String x:Key="LOCURLLabel">Link</sys:String>
+    <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Destekleyenler</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisans</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Katkıda Bulunanlar</sys:String>
@@ -218,7 +218,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCProgressBattleNetLibImport">Battle.net kütüphane güncellemeleri indiriliyor…</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Meta veri indiriliyor…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Yüklü oyunları içeri aktarma...</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">{0}oyunları içe aktarılıyor…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">{0} oyunları içe aktarılıyor…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Kütüphane güncellemeleri indiriliyor…</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Kütüphane güncellemeleri indiriliyor…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Kütüphane güncellemesi bitti</sys:String>
@@ -253,7 +253,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Ayrıntılar panelinde görüntülenecek oyun alanları:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Öğe aralığı</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Izgara öğesi arkaplanını çiz</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Izgara öğesi arka planını çiz</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Izgara öğesi sınır genişliği</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Eksik oyun simgesi kaynağı</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Eksik oyun kapak kaynağı</sys:String>
@@ -298,7 +298,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Bilgisayar başladığında başlatmak için Playnite kaydı yapılamadı.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Tam ekran modunda başlat</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Steam, Origin ve diğerlerini içerir.</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">Görüntüleri arkaplanda yükle</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Görüntüleri arka planda yükle</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Daha yavaş görüntü yükleme süreleri karşılığında oyun listelerinin kaydırma düzgünlüğünü artırır.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Kapak resmi eksik olduğunda oyunun adını göster</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Oyun adlarını Kapak görünümünde göster</sys:String>
@@ -306,7 +306,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsShowGroupCount">Grup açıklamalarında öğe sayısını göster</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Donanım ivmesini devre dışı bırak</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Takılma veya benzeri kullanıcı arayüzü sorunları yaşarken kullanın</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI Ölçeklendirmeyi devre dışı bırak</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI Ölçeklendirmeyi Devre Dışı Bırak</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam arkadaşlar düğmesini göster</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Oyun arka planını pencere arka planı olarak kullan</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Arka planı bulanıklaştır</sys:String>
@@ -422,9 +422,9 @@ Ayrıca herhangi bir emülatörü daha sonra yapılandırma menüsü ile yapıla
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">İlk Kez Yapılandırma</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Bu sihirbaz, otomatik oyun alma işlemi ve harici oyun kütüphanelerinin yapılandırılması konusunda sana rehberlik edecekt. Playnite, Steam veya GOG gibi birden fazla oyun hizmetinden oyunları otomatik olarak alabilir ve uygulama başlatılırken otomatik olarak güncelleyerek kütüphanenizi güncel tutabilir.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Bu sihirbaz, otomatik oyun alma işlemi ve harici oyun kütüphanelerinin yapılandırılması konusunda sana rehberlik edecek. Playnite, Steam veya GOG gibi birden fazla oyun hizmetinden oyunları otomatik olarak alabilir ve uygulama başlatılırken otomatik olarak güncelleyerek kütüphaneni güncel tutabilir.
         
-Ana menüden 'Playnite' düğmesine tıklayarak herhangi bir platform için herhangi bir oyunu her zaman elle ekleyebileceğinizi unutma.   
+Ana menüden 'Playnite' düğmesine tıklayarak herhangi bir platform için herhangi bir oyunu her zaman elle ekleyebileceğini unutma.   
     </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Kütüphane veritabanı dosyası için konum seçin. Konum daha sonra Ayarlar menüsü aracılığıyla da değiştirilebilir.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Tüm kullanıcılar için varsayılan program veri konumu</sys:String>
@@ -464,7 +464,7 @@ Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana men�
     <sys:String x:Key="LOCSupportedPlatformsTitle">Desteklenen Platform(lar)</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Platform değişikliklerini kaydetmek ister misiniz?</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Emülatör değişikliklerini kaydetmek ister misiniz?</sys:String>
-    <sys:String x:Key="LOCExecutableTitle">Çalıştırılabilir</sys:String>
+    <sys:String x:Key="LOCExecutableTitle">Uygulama</sys:String>
     <sys:String x:Key="LOCArgumentsTitle">Değişkenler</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">Çalışma Dizini</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Desteklenen Dosya Türleri</sys:String>
@@ -493,7 +493,7 @@ Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana men�
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Simge</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Kapak Resmi</sys:String>
-    <sys:String x:Key="LOCGameBackgroundTitle">Arkaplan Resmi</sys:String>
+    <sys:String x:Key="LOCGameBackgroundTitle">Arka Plan Resmi</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sıralama İsmi</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Kütüphane</sys:String>
     <sys:String x:Key="LOCGameNameTitle">İsim</sys:String>
@@ -516,7 +516,7 @@ Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana men�
     <sys:String x:Key="LOCGameDescriptionTitle">Açıklama</sys:String>
     <sys:String x:Key="LOCGameInstallDirTitle">Kurulum Dizini</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Kapak Resmi</sys:String>
-    <sys:String x:Key="LOCGameLinksTitle">Linkler</sys:String>
+    <sys:String x:Key="LOCGameLinksTitle">Bağlantılar</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Image, ROM veya ISO Yolu</sys:String>
 
     <!--Errors-->
@@ -561,15 +561,15 @@ Sorunu çözmek için bunları deneyebilirsiniz:
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Oyun Ayrıntılarını Düzenle</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Oynama işleminden</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">Oyna eyleminden</sys:String>
     <sys:String x:Key="LOCImageURL">Resim URL’si</sys:String>
-    <sys:String x:Key="LOCAddLinkButton">Link Ekle</sys:String>
+    <sys:String x:Key="LOCAddLinkButton">Bağlantı Ekle</sys:String>
     <sys:String x:Key="LOCSaveChanges">Değişiklikleri Kaydet</sys:String>
-    <sys:String x:Key="LOCPlayAction">Oynama Eylemi</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Oynama Eylemi Ekle</sys:String>
+    <sys:String x:Key="LOCPlayAction">Oyna Eylemi</sys:String>
+    <sys:String x:Key="LOCAddPlayAction">Oyna Eylemi Ekle</sys:String>
     <sys:String x:Key="LOCAddAction">Eylem Ekle</sys:String>
     <sys:String x:Key="LOCDeleteAction">Eylemi Sil</sys:String>
-    <sys:String x:Key="LOCRemovePlayAction">Oynama Eylemini Sil</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">Oyna Eylemini Sil</sys:String>
     <sys:String x:Key="LOCOtherActions">Diğer Eylemler</sys:String>
     <sys:String x:Key="LOCAddGames">Oyunları Ekle</sys:String>
     <sys:String x:Key="LOCScanFolder">Klasörü Tara…</sys:String>
@@ -676,7 +676,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCGameDetails">Ayrıntılar</sys:String>
     <sys:String x:Key="LOCUninstallGame">Kaldır</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Kurulum Konumunu Aç</sys:String>
-    <sys:String x:Key="LOCCreateDesktopShortcut">Masaüstü kısayolu oluşturun</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">Masaüstü Kısayolu Oluştur</sys:String>
     <sys:String x:Key="LOCMoreAction">Daha Fazla</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">Kütüphane eklentisi tarafından yönetiliyor</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Oyunun başlangıç ​​süreci, bu oyundan sorumlu kütüphane eklentisi tarafından yönetilecektir.</sys:String>
@@ -717,7 +717,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCInstallDirNotFoundError">Oyunun kurulum dizini bulunamadı.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Geçersiz oyun eylemi yapılandırması.</sys:String>
 
-    <sys:String x:Key="LOCTroubleShootingAccountLink">Hesap senkronizasyonu sorunlarını giderme</sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Hesap eşitleme sorunlarını giderme</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Öğeyi yeniden adlandır</sys:String>
     <sys:String x:Key="LOCAddNewItem">Yeni öğe ekle</sys:String>
