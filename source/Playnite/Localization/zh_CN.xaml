@@ -249,6 +249,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuRestartSystem">重启系统</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">关闭系统</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">挂起系统</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">要显示的详细面板的游戏字段：</sys:String>
@@ -353,7 +354,7 @@ IGDB > 官方商店：
     
 任何当前活动的任务（数据下载）都将被取消</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">重新启动Playnite？</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">新的数据库文件位置将仅在重新启动应用程序后使用</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果设置了“关闭”动作，游戏时间将不会被记录</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">行数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">列数</sys:String>
@@ -730,6 +731,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCPLaytime500to1000">500 至 1000 小时</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安装成功。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">安装扩展？</sys:String>
