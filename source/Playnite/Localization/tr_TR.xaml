@@ -249,6 +249,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCMenuRestartSystem">Sistemi Yeniden Başlat</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Sistemi Kapat</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sistemi Yasakla</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Sistemi Hazırda Beklet</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Ayrıntılar panelinde görüntülenecek oyun alanları:</sys:String>
@@ -353,7 +354,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     
 Şu anda etkin olan tüm görevler (meta veri indirmeleri) iptal edilir.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Playnite yeniden başlatılsın mı?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Yeni veritabanı dosyası konumu ancak uygulama yeniden başlatıldıktan sonra kullanılacaktır.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"Kapat" eylemi ayarlanmışsa, oyun süresi kaydedilmeyecektir.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Satır sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sütun sayısı</sys:String>
@@ -731,6 +732,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCPLaytime500to1000">500-1000 saat</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000 saatten fazla</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Kurulumu tamamlamak için Playnite yeniden başlatılmalıdır. Şimdi yeniden başlatmak ister misin?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Uzantı, desteklenmeyen API sürümü kullanıyor.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Kurulum başarılı oldu.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Eklenti yükle</sys:String>
