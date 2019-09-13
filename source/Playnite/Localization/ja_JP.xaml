@@ -245,6 +245,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -349,7 +350,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     
 現在アクティブなタスク(メタデータのダウンロード)はキャンセルされます。</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Playniteを再起動しますか？</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">新しいデータベースファイルの場所は、アプリケーションの再起動後にのみ使用されます。</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">「閉じる」アクションが設定されている場合は、ゲームプレイ時間が記録されません。</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">行数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">列数</sys:String>
@@ -725,6 +726,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCPLaytime500to1000">500～1000時間</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000時間以上</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">インストールが成功しました。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">拡張機能をインストールしますか？</sys:String>
