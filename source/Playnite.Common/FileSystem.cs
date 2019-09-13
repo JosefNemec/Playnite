@@ -214,6 +214,12 @@ namespace Playnite.Common
             throw new IOException($"Failed to read {path}", ioException);
         }
 
+        public static void WriteStringToFile(string path, string content)
+        {
+            PrepareSaveFile(path);
+            File.WriteAllText(path, content);
+        }
+
         public static void WriteStringToFileSafe(string path, string content, int retryAttempts = 5)
         {
             IOException ioException = null;

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +23,22 @@ namespace Playnite.Common
 
         public static T FromYaml<T>(string yaml) where T : class
         {
-            var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
-            return deserializer.Deserialize<T>(yaml);
+            try
+            {
+                var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
+                return deserializer.Deserialize<T>(yaml);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to deserialize {typeof(T).FullName} from yaml:");
+                logger.Debug(yaml);
+                throw;
+            }
+        }
+
+        public static T FromYamlFile<T>(string filePath) where T : class
+        {
+            return FromYaml<T>(File.ReadAllText(filePath));
         }
 
         public static string ToJson(object obj, bool formatted = false)
@@ -49,6 +64,11 @@ namespace Playnite.Common
             }
         }
 
+        public static T FromJsonFile<T>(string filePath) where T : class
+        {
+            return FromJson<T>(File.ReadAllText(filePath));
+        }
+
         public static bool TryFromJson<T>(string json, out T deserialized) where T : class
         {
             try
@@ -65,7 +85,21 @@ namespace Playnite.Common
 
         public static T FromToml<T>(string toml) where T : class
         {
-            return Toml.ReadString<T>(toml);
+            try
+            {
+                return Toml.ReadString<T>(toml);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to deserialize {typeof(T).FullName} from toml:");
+                logger.Debug(toml);
+                throw;
+            }
+        }
+
+        public static T FromTomlFile<T>(string filePath) where T : class
+        {
+            return FromToml<T>(File.ReadAllText(filePath));
         }
     }
 }
