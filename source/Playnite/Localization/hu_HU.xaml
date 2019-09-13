@@ -243,6 +243,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -347,7 +348,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     
 Minden jelenlegi művelete (metaadatok letöltése) abba marad.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Újraindítja Playnite-ot?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Új adatbázis útvonal fájl alkalmazása csak az alkalmazás újraindításakor lesz érvényes.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Játékidő nem lesz feljegyezve ha "bezárás" művelet be van állítva.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns"></sys:String>
@@ -718,6 +719,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
     <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
