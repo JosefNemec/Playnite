@@ -249,6 +249,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCMenuRestartSystem">Systemomstart</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Slå Av System</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender Systemet</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spillfelt som vises i detaljepanelet:</sys:String>
@@ -351,7 +352,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Start Playnite om igjen?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Antall rader</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Antall kolonner</sys:String>
@@ -710,6 +711,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCPLaytime500to1000">500 til 1000 timer</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
