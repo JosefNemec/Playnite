@@ -249,6 +249,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -353,7 +354,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     
 현재 진행 중인 작업(메타데이터 다운로드)은 취소됩니다.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Playnite를 재시작하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">새로운 데이터베이스 파일 경로는 응용 프로그램이 재시작 된 후 적용됩니다.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"닫기" 액션이 설정되어있으면 게임 플레이 시간이 기록되지 않습니다.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">행 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">열 수</sys:String>
@@ -712,6 +713,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
     <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
