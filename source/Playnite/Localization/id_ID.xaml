@@ -242,6 +242,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -346,7 +347,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
 
 Tugas yang sekarang berjalan (unduhan metadata) akan dibatalkan.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Mulai Ulang Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Lokasi berkas basis data hanya akan dipakai setelah aplikasi dimulai ulang.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Waktu main tidak akan dicatat jika aksi "Tutup" diatur.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Jumlah baris</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Jumlah kolom</sys:String>
@@ -716,6 +717,7 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
     <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
