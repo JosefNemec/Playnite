@@ -135,12 +135,6 @@ namespace Playnite.DesktopApp.ViewModels
             get => System.Drawing.FontFamily.Families.Where(a => !a.Name.IsNullOrEmpty()).Select(a => a.Name).ToList();
         }
 
-        public bool DatabaseLocationChanged
-        {
-            get;
-            private set;
-        } = false;
-
         public List<SelectableTrayIcon> AvailableTrayIcons
         {
             get;
@@ -478,10 +472,10 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectDbFile()
         {
+            dialogs.ShowMessage(resources.GetString("LOCSettingsDBPathNotification"), "", MessageBoxButton.OK, MessageBoxImage.Warning);
             var path = dialogs.SelectFolder();
             if (!string.IsNullOrEmpty(path))
             {
-                dialogs.ShowMessage(resources.GetString("LOCSettingsDBPathNotification"));
                 Settings.DatabasePath = path;
             }
         }

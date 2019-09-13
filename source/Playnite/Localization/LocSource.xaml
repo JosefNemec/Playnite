@@ -354,7 +354,9 @@ Prefer data from official Store and where not available use IGBD.com database.</
     
 Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Restart Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">New database file location will only be used after application is restarted.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite doesn't move library files automatically, you must move/copy them before the location is changed. If no library is preset in target location, new one will be created.
+
+New database location will only be used after application is restarted.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Gameplay time will not be recorded if "Close" action is set.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Number of rows</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Number of columns</sys:String>
