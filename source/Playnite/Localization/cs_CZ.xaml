@@ -249,6 +249,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCMenuRestartSystem">Restartovat systém</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Vypnout systém</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Uspat systém</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Pole, která budou viditelná v zobrazení detailů:</sys:String>
@@ -353,7 +354,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     
 Všechny nyní prováděné úkony (jako stahování metadat) budou zrušeny.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Restartovat Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Nové umístění databáze bude použito po restartu aplikace.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Pokud je nastavena akce "zavření", nebude zaznamenáván čas hraní.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Počet řádků</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Počet sloupců</sys:String>
@@ -730,6 +731,7 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCPLaytime500to1000">500 až 1000 hodin</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motiv vzhledu/rozšíření používá nepodporovanou verzi API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalace byla úspěšná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainstalovat rozšíření?</sys:String>
