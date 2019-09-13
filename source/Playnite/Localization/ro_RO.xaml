@@ -247,6 +247,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCMenuRestartSystem">Repornire Sistem</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Închidere Sistem</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendare Sistem</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -351,7 +352,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     
 Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Repornire Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Directorul nou al fișierului ce conține baza de date va fi utilizat numai după repornirea aplicației.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Durata jocului nu va fi înregistrată dacă este setată acțiunea de "Închidere".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Număr de rânduri</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Număr de coloane</sys:String>
@@ -719,6 +720,7 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Între 500 și 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Mai mult de 1000 ore</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
