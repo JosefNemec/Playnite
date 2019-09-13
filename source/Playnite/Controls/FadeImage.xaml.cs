@@ -175,21 +175,22 @@ namespace Playnite.Controls
             var source = control.Source;
             var image = await Task.Factory.StartNew(() =>
             {
-                var tmp = ImageSourceManager.GetImage(control.Source, false);
+                var tmp = ImageSourceManager.GetImage(source, false);
                 if (tmp == null)
                 {
                     return null;
                 }
 
                 if (blurEnabled)
-                {
+                {                    
                     tmp = new GaussianBlur(tmp.ToBitmap()).Process(blurAmount).ToBitmapImage();
-                    // GaussianBlur uses quite of lot of memory that's not immediately released.
-                    GC.Collect();
                 }
 
                 return tmp;
             });
+            
+            // GaussianBlur uses quite of lot of memory that's not immediately released.
+            GC.Collect();
 
             if (control.currentImage == CurrentImage.Image1)
             {
@@ -209,11 +210,11 @@ namespace Playnite.Controls
 
         private async void LoadNewSource(string newSource, string oldSource)
         {
+            var blurAmount = BlurAmount;
+            var blurEnabled = IsBlurEnabled;
             BitmapImage image = null;
             if (!newSource.IsNullOrEmpty())
             {
-                var blurAmount = BlurAmount;
-                var blurEnabled = IsBlurEnabled;
                 image = await Task.Factory.StartNew(() =>
                 {
                     var tmp = ImageSourceManager.GetImage(newSource, false);
@@ -225,12 +226,16 @@ namespace Playnite.Controls
                     if (blurEnabled)
                     {
                         tmp = new GaussianBlur(tmp.ToBitmap()).Process(blurAmount).ToBitmapImage();
-                        // GaussianBlur uses quite of lot of memory that's not immediately released.
-                        GC.Collect();
-                    }
 
+                    }
                     return tmp;
                 });
+            }
+
+            if (blurEnabled)
+            {
+                // GaussianBlur uses quite of lot of memory that's not immediately released.
+                GC.Collect();
             }
 
             if (image == null)
