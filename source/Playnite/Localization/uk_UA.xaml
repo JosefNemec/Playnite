@@ -245,6 +245,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -349,7 +350,7 @@ IGDB > Офіційний магазин:
     
 Поточні активні завдання (завантаження метаданих)буде скасовано.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Перезавантажити Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Нове розташування файлу бази даних буде використано лише після перезапуску програми.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Час гри не буде записано, якщо обрати параметр "Закрити".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Кількість рядків</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Кількість стовпців</sys:String>
@@ -718,6 +719,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCPLaytime500to1000">Від 500 до 1000 годин</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
