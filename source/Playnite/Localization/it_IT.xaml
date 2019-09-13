@@ -249,6 +249,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCMenuRestartSystem">Riavvia il sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Arresta il sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sospendi il sistema</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Ibernare il sistema</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campi del gioco da visualizzare nel pannello dettagli:</sys:String>
@@ -353,7 +354,9 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     
 Tutte le attività attualmente attive (download di metadati) saranno annullate.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Riavviare Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">La nuova posizione del file del database verrà utilizzata solo dopo il riavvio dell'applicazione.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite non sposta automaticamente i file della libreria, devi spostarli/copiarli prima che la posizione sia cambiata. Se nessuna libreria è presente nella posizione di destinazione, ne verrà creata una nuova.
+
+Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applicazione.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Il tempo di gioco non sarà registrato se l'azione "Chiudi" è impostata.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Numero di righe</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Numero di colonne</sys:String>
@@ -729,6 +732,7 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCPLaytime500to1000">da 500 a 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Più di 1000</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Per completare l'installazione di Playnite deve essere riavviato. Vuoi riavviare ora?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Estensione sta usando una versione API non supportata.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installazione avvenuta con successo.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installare l'estensione?</sys:String>
