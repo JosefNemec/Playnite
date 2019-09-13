@@ -124,6 +124,8 @@ namespace Playnite.DesktopApp
                 {
                     CollectionView.SortDescriptions.Clear();
                     CollectionView.GroupDescriptions.Clear();
+                    CollectionView.LiveSortingProperties.Clear();
+                    CollectionView.LiveGroupingProperties.Clear();
                     SetViewDescriptions();
                 }
             }
@@ -165,6 +167,7 @@ namespace Playnite.DesktopApp
 
             currentGrouping = viewSettings.GroupingOrder;
             CollectionView.SortDescriptions.Add(new SortDescription(viewSettings.SortingOrder.ToString(), sortDirection));
+            CollectionView.LiveSortingProperties.Add(viewSettings.SortingOrder.ToString());
             if (viewSettings.SortingOrder != SortOrder.Name)
             {
                 CollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
@@ -173,11 +176,15 @@ namespace Playnite.DesktopApp
             if (viewSettings.GroupingOrder != GroupableField.None)
             {
                 CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(groupFields[viewSettings.GroupingOrder]));
+                CollectionView.LiveGroupingProperties.Add(groupFields[viewSettings.GroupingOrder]);
                 if (CollectionView.SortDescriptions.First().PropertyName != groupFields[viewSettings.GroupingOrder])
                 {
                     CollectionView.SortDescriptions.Insert(0, new SortDescription(groupFields[viewSettings.GroupingOrder], ListSortDirection.Ascending));
                 }
             }
+
+            CollectionView.IsLiveSorting = true;
+            CollectionView.IsLiveGrouping = viewSettings.GroupingOrder != GroupableField.None;
         }
 
         private Guid GetGroupingId(GroupableField orderField, Game sourceGame)
@@ -229,16 +236,14 @@ namespace Playnite.DesktopApp
                 return;
             }
 
-            Items.Clear();
+            ClearItems();
             switch (viewType)
             {
                 case GamesViewType.Standard:
-                    Items.Clear();
                     Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings)));
                     break;
 
                 case GamesViewType.ListGrouped:
-                    Items.Clear();
                     Items.AddRange(Database.Games.SelectMany(x =>
                     {
                         var ids = GetGroupingIds(viewSettings.GroupingOrder, x);
@@ -262,6 +267,16 @@ namespace Playnite.DesktopApp
             }
 
             this.viewType = viewType;
+        }
+
+        private void ClearItems()
+        {
+            foreach (var item in Items)
+            {
+                item.Dispose();
+            }
+
+            Items.Clear();
         }
 
         private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> e)
@@ -417,17 +432,7 @@ namespace Playnite.DesktopApp
                     }
                     else
                     {
-                        // Forces CollectionView to re-sort items without full list refresh.
-                        try
-                        {
-                            Items.OnItemMoved(existingItem, 0, 0);
-                        }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                        {
-                            // Another weird and rare "out of range" bug in System.Windows.Data.CollectionView.OnCollectionChanged.
-                            // No idea why it's happening.
-                            Logger.Error(e, "Items.OnItemMoved failed.");
-                        }
+                        // Handled by live sorting and filtering
                     }
                 }
             }
@@ -452,6 +457,7 @@ namespace Playnite.DesktopApp
                 {
                     foreach (var item in toRemove)
                     {
+                        item.Dispose();
                         Items.Remove(item);
                     }
                 }
