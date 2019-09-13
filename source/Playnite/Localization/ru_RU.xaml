@@ -249,6 +249,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuRestartSystem">Перезагрузка</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Завершение работы</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Спящий режим</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поля игр, отображаемые на панели подробностей:</sys:String>
@@ -341,7 +342,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Не удается импортировать последнюю запущенную игру, аккаунт для импорта не выбран.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Не удается импортировать последнюю запущенную игру, база данных не открыта.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Не удалось импортировать информацию Steam за последний раз: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheWarn"> Это приведет к выходу из всех связанных служб. Требуется перезапуск приложения, вы хотите продолжить?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">Это приведет к выходу из всех связанных служб. Требуется перезапуск приложения, вы хотите продолжить?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Очистить кэш?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">API-ключ необходим для приватных Steam-аккаунтов</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">Получить API-ключ</sys:String>
@@ -353,7 +354,9 @@ IGDB > Официальный магазин:
 
 Все активные задачи(в том числе скачивание метаданных) будут отменены.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Перезагрузить Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Новое расположение базы данных будет использоваться после перезагрузки программы.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite не перемещает файлы библиотеки автоматически, вы должны переместить/скопировать их, прежде чем местоположение будет изменено. Если в целевой папке нет библиотеки, будет создана новая.
+
+Новая база данных будет использоваться только после перезапуска приложения.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Время игры не забудет высчитываться если выбрать параметр "Закрыть".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Количество строк</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Количество столбцов</sys:String>
@@ -732,6 +735,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPLaytime500to1000">От 500 до 1000 часов</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Для завершения установки Playnite должен быть перезапущен. Вы хотите перезапустить сейчас?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема оформления/Расширение использует неподдерживаемую версию API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Установка прошла успешно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить расширение?</sys:String>
