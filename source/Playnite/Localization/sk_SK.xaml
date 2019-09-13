@@ -242,6 +242,7 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -344,7 +345,7 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle"></sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns"></sys:String>
@@ -714,6 +715,7 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
     <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
