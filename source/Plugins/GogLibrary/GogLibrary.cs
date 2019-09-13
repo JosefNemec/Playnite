@@ -120,9 +120,8 @@ namespace GogLibrary
                 {
                     throw new Exception("User is not logged in to GOG account.");
                 }
-
-                var accInfo = api.GetAccountInfo();                
-                var libGames = api.GetOwnedGames(accInfo);
+                            
+                var libGames = api.GetOwnedGamesLegacy();
                 if (libGames == null)
                 {
                     throw new Exception("Failed to obtain libary data.");

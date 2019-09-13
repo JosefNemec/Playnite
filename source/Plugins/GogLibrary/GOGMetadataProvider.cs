@@ -22,7 +22,7 @@ namespace GogLibrary
 
         public override GameMetadata GetMetadata(Game game)
         {
-            var storeData = DownloadGameMetadata(game.GameId);
+            var storeData = DownloadGameMetadata(game);
             if (storeData.GameDetails == null)
             {
                 logger.Warn($"Could not gather metadata for game {game.GameId}");
@@ -71,10 +71,21 @@ namespace GogLibrary
             return metadata;
         }
 
-        internal GogGameMetadata DownloadGameMetadata(string id)
+        internal GogGameMetadata DownloadGameMetadata(Game game)
         {
             var metadata = new GogGameMetadata();
-            var gameDetail = apiClient.GetGameDetails(id);
+            var gameDetail = apiClient.GetGameDetails(game.GameId);
+            if (gameDetail == null)
+            {
+                logger.Warn($"Product page for game {game.GameId} not found, using fallback search.");
+                var search = apiClient.GetStoreSearch(game.Name);
+                var match = search?.FirstOrDefault(a => a.title.Equals(game.Name, StringComparison.InvariantCultureIgnoreCase));
+                if (match != null)
+                {
+                    gameDetail = apiClient.GetGameDetails(match.id.ToString());
+                }
+            }
+
             metadata.GameDetails = gameDetail;
 
             if (gameDetail != null)

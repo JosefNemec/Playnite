@@ -1,5 +1,6 @@
 ﻿using GogLibrary.Models;
 using Newtonsoft.Json;
+using Playnite.Common;
 using Playnite.Common.Web;
 using Playnite.SDK;
 using System;
@@ -85,6 +86,23 @@ namespace GogLibrary.Services
             catch (WebException exc)
             {
                 logger.Warn(exc, "Failed to download GOG game details for " + id);
+                return null;
+            }
+        }
+
+        public List<StoreGamesFilteredListResponse.Product> GetStoreSearch(string searchTerm)
+        {
+            var baseUrl = @"https://www.gog.com/games/ajax/filtered?limit=20&search={0}";
+            var url = string.Format(baseUrl, WebUtility.UrlEncode(searchTerm));
+
+            try
+            {
+                var stringData = HttpDownloader.DownloadString(url);
+                return Serialization.FromJson<StoreGamesFilteredListResponse>(stringData)?.products;
+            }
+            catch (WebException exc)
+            {
+                logger.Warn(exc, "Failed to get GOG store search data for " + searchTerm);
                 return null;
             }
         }

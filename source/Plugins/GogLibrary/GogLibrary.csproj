@@ -76,6 +76,7 @@
     <Compile Include="Models\LibraryGameResponse.cs" />
     <Compile Include="Models\PagedResponse.cs" />
     <Compile Include="Models\ProductApiDetail.cs" />
+    <Compile Include="Models\StoreGamesFilteredListResponse.cs" />
     <Compile Include="Models\StorePageResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GogLibrarySettings.cs" />
