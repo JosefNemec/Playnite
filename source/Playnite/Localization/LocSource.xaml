@@ -250,6 +250,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuRestartSystem">Restart System</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Turn Off System</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspend System</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Hibernate System</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Game fields to be displayed on details panel:</sys:String>
@@ -733,6 +734,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCPLaytime500to1000">500 to 1000 hours</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif">To finish installation Playnite must be restarted. Do you want to restart now?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme/Extension is using unsupported API version.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install extension?</sys:String>

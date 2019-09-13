@@ -109,6 +109,26 @@ namespace Playnite
                 Name = defaultThemeName
             };
 
+            try
+            {
+                var installed = ExtensionInstaller.InstallExtensionQueue();
+                if (installed?.Mode == Mode)
+                {
+                    if (installed.Mode == ApplicationMode.Desktop)
+                    {
+                        AppSettings.Theme = installed.DirectoryName;
+                    }
+                    else
+                    {
+                        AppSettings.Fullscreen.Theme = installed.DirectoryName;
+                    }
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to finish installing extenions.");
+            }
+
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.

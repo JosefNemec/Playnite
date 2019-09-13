@@ -1289,8 +1289,17 @@ namespace Playnite.DesktopApp.ViewModels
                                         Resources.GetString("LOCGeneralExtensionInstallTitle"),
                                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                                 {
-                                    ThemeManager.InstallFromPackedFile(path);
-                                    Dialogs.ShowMessage(Resources.GetString("LOCGeneralExtensionInstallSuccess"));
+                                    ExtensionInstaller.QueueExetnsionInstall(path);
+                                    if (Dialogs.ShowMessage(
+                                        Resources.GetString("LOCExtInstallationRestartNotif"),
+                                        Resources.GetString("LOCSettingsRestartTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                    {
+                                        application.Restart(new CmdLineOptions()
+                                        {
+                                            SkipLibUpdate = true,
+                                        });
+                                    };
                                 }
                             }
                             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

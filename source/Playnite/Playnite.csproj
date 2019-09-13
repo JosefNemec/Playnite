@@ -294,6 +294,7 @@
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
     <Compile Include="ObservablePowerStatus.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
+    <Compile Include="Plugins\ExtensionInstaller.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
     <Compile Include="Scripting\IronPython\IronPythonScript.cs" />
     <Compile Include="Scripting\IScriptRuntime.cs" />

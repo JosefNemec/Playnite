@@ -224,14 +224,30 @@ namespace Playnite
             }
         }
 
-        public static void InstallFromPackedFile(string path)
+        public static ThemeDescription InstallFromPackedFile(string path)
         {
+            logger.Info($"Installing theme extenstion {path}");
             var desc = GetDescriptionFromPackedFile(path);
             var installDir = Paths.GetSafeFilename(desc.Name).Replace(" ", string.Empty)+ "_" + (desc.Name + desc.Author).MD5();
             var targetDir = PlayniteSettings.IsPortable ? PlaynitePaths.ThemesProgramPath : PlaynitePaths.ThemesUserDataPath;
             targetDir = Path.Combine(targetDir, desc.Mode.GetDescription(), installDir);
+            var oldBackPath = targetDir + "_old";
+
+            if (Directory.Exists(targetDir))
+            {
+                logger.Debug($"Replacing existing theme installation: {targetDir}.");
+                Directory.Move(targetDir, oldBackPath);
+            }
+
             FileSystem.CreateDirectory(targetDir, true);
             ZipFile.ExtractToDirectory(path, targetDir);
+
+            if (Directory.Exists(oldBackPath))
+            {
+                Directory.Delete(oldBackPath, true);
+            }
+
+            return ThemeDescription.FromFile(Path.Combine(targetDir, ThemeManifestFileName));
         }
     }
 }
