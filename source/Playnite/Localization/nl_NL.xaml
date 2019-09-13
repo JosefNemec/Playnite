@@ -249,6 +249,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCMenuRestartSystem">Opnieuw opstarten</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Systeem uitschakelen</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Systeem Onderbreken</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spelvelden weer te geven op detailspaneel:</sys:String>
@@ -351,7 +352,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsCreateLocalization">Voeg nieuwe vertaling toe</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Herstart Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">De nieuwe database bestandslocatie zal pas gebruikt worden na het herstarten van de applicatie.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Speeltijd zal niet worden bijgehouden als de "Sluit" actie is ingesteld.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Aantal rijen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Aantal kolommen</sys:String>
@@ -729,6 +730,7 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCPLaytime500to1000">500 tot 1000 uur</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installatie is gelukt.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Extensie installeren?</sys:String>
