@@ -248,6 +248,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuRestartSystem">Redémarrer l'ordinateur</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Arrêter l'ordinateur</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Mettre en veille</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Mettre en veille</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
@@ -350,7 +351,9 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuer à la traduction</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Les paramètres modifiés nécessitent le redémarrage de l'application. Voulez-vous continuer ? (les tâches en cours d'exécution seront annulées)</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Redémarrer Playnite ?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Le nouvel emplacement sera utilisé au prochain démarrage de l'application.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite ne déplace pas automatiquement les fichiers de la bibliothèque, vous devez les déplacer ou les copier avant que l'emplacement ne soit modifié. Si aucune bibliothèque n'existe dans l'emplacement cible, une nouvelle sera créée. 
+
+Le nouvel emplacement de la base de données ne sera utilisé qu'après le redémarrage de l'application.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">La durée de la session ne sera pas enregistrée si Playnite est fermé après le lancement du jeu.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de rangées</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de colonnes</sys:String>
@@ -727,6 +730,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime500to1000">500 à 1000 heures</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite doit être redémarré pour compléter l'installation. Voulez-vous redémarrer maintenant ?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Thème/Extension utilise une version d'API non supportée.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installer l'extension ?</sys:String>
