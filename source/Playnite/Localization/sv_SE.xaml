@@ -247,6 +247,7 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCMenuRestartSystem">Starta om systemet</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Stäng ner systemet</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sätt systemet i viloläge</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Infofält som visas på detaljpanelen:</sys:String>
@@ -351,7 +352,7 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     
 Alla just nu pågående bakgrundsjobb (ex. nedladdning av metadata) kommer att avbrytas.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Starta om Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Den nya databasfilen kommer endast att börja användas efter att applikationen har startats om.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Speltid kommer inte att sparas ifall en "Stäng"-spelhändelse är konfigurerad.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Antal rader</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Antal kolumner</sys:String>
@@ -728,6 +729,7 @@ Du kan prova följande tips för att försöka avhjälpa felet:
     <sys:String x:Key="LOCPLaytime500to1000">500 till 1000 timmar</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installationen lyckades.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installera tillägg?</sys:String>
