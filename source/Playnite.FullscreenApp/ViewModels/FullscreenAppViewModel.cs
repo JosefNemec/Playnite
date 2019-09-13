@@ -410,6 +410,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> ShutdownSystemCommand { get; private set; }
         public RelayCommand<object> RestartSystemCommand { get; private set; }
         public RelayCommand<object> HibernateSystemCommand { get; private set; }
+        public RelayCommand<object> SleepSystemCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> OpenAdditionalFiltersCommand { get; private set; }
         public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }        
@@ -723,6 +724,14 @@ namespace Playnite.FullscreenApp.ViewModels
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
                     Computer.Hibernate();
+                }
+            });
+
+            SleepSystemCommand = new RelayCommand<object>((a) =>
+            {
+                if (!PlayniteEnvironment.IsDebuggerAttached)
+                {
+                    Computer.Sleep();
                 }
             });
 

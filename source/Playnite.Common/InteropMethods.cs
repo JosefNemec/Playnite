@@ -54,5 +54,8 @@ namespace Playnite.Common
 
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern uint SizeofResource(IntPtr hModule, IntPtr hResInfo);
+
+        [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
     }
 }
