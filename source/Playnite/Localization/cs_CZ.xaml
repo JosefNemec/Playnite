@@ -184,7 +184,7 @@ Automaticky importované hry se mohou po dalším importování znovu objevit v 
 Příklad: -image "{ImagePath}" -fullscreen
 ...bude doplněno na: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Nelze získat ikonu, když chybí akce Hrát, nebo je nastavená na odkaz URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Nelze získat ikonu, když chybí akce hrát, nebo je nastavená na URL adresu.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Stáhnout metadata pouze pro hry, u kterých chybí</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Povolení této možnosti způsobí, že se přeskočí stahování metadat pro datová pole, která už informace obsahují.</sys:String>
@@ -570,8 +570,8 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCPlayAction">Akce hrát</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Přidat akci hrát</sys:String>
     <sys:String x:Key="LOCAddAction">Přidat akci</sys:String>
-    <sys:String x:Key="LOCDeleteAction">Akce při odstranění</sys:String>
-    <sys:String x:Key="LOCRemovePlayAction">Odstranit akci Hrát</sys:String>
+    <sys:String x:Key="LOCDeleteAction">Odstranit akci</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">Odstranit akci hrát</sys:String>
     <sys:String x:Key="LOCOtherActions">Další akce</sys:String>
     <sys:String x:Key="LOCAddGames">Přidat hry</sys:String>
     <sys:String x:Key="LOCScanFolder">Prohledat adresář…</sys:String>
