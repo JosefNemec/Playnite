@@ -249,7 +249,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar o sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Desligar o sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender o sistema</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Hibernar o sistema</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campos de jogo exibidos no painel de detalhes:</sys:String>
@@ -354,7 +354,8 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     
 Qualquer tarefa sendo executada (como a importação de metadados) será cancelada.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Reiniciar o Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">O Playnite não move os aquivos de bibliotecas automaticamente, você deve movê-los ou copiá-los antes que a localização seja alterada. Se nenhuma biblioteca estiver presente no local de destino, será criada uma nova biblioteca.
+A nova localização do banco de dados será usada somente após o aplicativo ser reiniciado.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">O tempo em jogo não será gravado se a ação "Fechar" for definida.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de linhas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de colunas</sys:String>
@@ -732,10 +733,10 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <sys:String x:Key="LOCExtInstallationRestartNotif">Para concluir a instalação, o Playnite deve ser reiniciado. Você quer reiniciar agora?</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema ou extensão está usando uma versão não suportada da API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalação bem-sucedida.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instalar extensão?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha em instalar a extensão. {0}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha ao instalar a extensão. {0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Você deseja instalar esta nova extensão? Qualquer instalação existente será substituída.
     
 {0}
