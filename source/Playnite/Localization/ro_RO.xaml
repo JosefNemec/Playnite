@@ -376,6 +376,7 @@ Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Butoane Gamepad</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Orientare</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nimic</sys:String>
     <sys:String x:Key="LOCStrechFill">Umplere</sys:String>
