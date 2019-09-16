@@ -378,6 +378,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">按钮提示</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">布局</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">水平滚动</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">无</sys:String>
     <sys:String x:Key="LOCStrechFill">填充</sys:String>
