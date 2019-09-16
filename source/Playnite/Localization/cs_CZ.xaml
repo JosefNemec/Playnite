@@ -380,6 +380,7 @@ Nové umístění databáze bude použito po restartu aplikace.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Popisky tlačítek</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Rozložení</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontální skrolování</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Vyberte jednu z podkategorií</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Žádný</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplnit</sys:String>
