@@ -378,6 +378,7 @@ Todas las tareas activas (descarga de metadatos) serán canceladas.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Indicaciones de botón</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Disposición</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Desplazamiento horizontal</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ninguno</sys:String>
     <sys:String x:Key="LOCStrechFill">Rellenar</sys:String>
