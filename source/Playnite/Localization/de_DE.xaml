@@ -380,6 +380,7 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Schaltflächenmeldungen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontales Scrollen</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Einen der Unterabschnitte auswählen</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
