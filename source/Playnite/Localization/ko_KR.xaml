@@ -378,6 +378,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
