@@ -7,204 +7,200 @@
              xmlns:pmp="clr-namespace:Playnite.Metadata;assembly=Playnite"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignWidth="600">
 
-    <DockPanel DataContext="{Binding Settings, RelativeSource={RelativeSource AncestorType=UserControl}}">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                      DockPanel.Dock="Left" Margin="0,15,0,0">
-            <Grid>
-                <Grid.Resources>
-                    <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
-                                                    x:Key="SourceEnumValues">
-                        <ObjectDataProvider.MethodParameters>
-                            <x:Type TypeName="pmp:MetadataSource" />
-                        </ObjectDataProvider.MethodParameters>
-                    </ObjectDataProvider>
-                    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="Margin" Value="5" />
-                    </Style>
-                    <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="HorizontalAlignment" Value="Center" />
-                        <Setter Property="Margin" Value="5" />
-                    </Style>
-                    <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="Margin" Value="5" />
-                    </Style>
-                    <ComboBox x:Key="ComboSourceSelection" x:Shared="False"
-                              SelectedValue="{Binding Source}"
-                              ItemsSource="{Binding Source={StaticResource SourceEnumValues}}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource ObjectToStringConverter}}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </Grid.Resources>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="175" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+    <DockPanel DataContext="{Binding Settings, RelativeSource={RelativeSource AncestorType=UserControl}}">  
+        <Grid DockPanel.Dock="Left" Margin="0,15,0,0">
+            <Grid.Resources>
+                <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                    x:Key="SourceEnumValues">
+                    <ObjectDataProvider.MethodParameters>
+                        <x:Type TypeName="pmp:MetadataSource" />
+                    </ObjectDataProvider.MethodParameters>
+                </ObjectDataProvider>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+                <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+                <ComboBox x:Key="ComboSourceSelection" x:Shared="False"
+                            SelectedValue="{Binding Source}"
+                            ItemsSource="{Binding Source={StaticResource SourceEnumValues}}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource ObjectToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="175" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <TextBlock Text="{DynamicResource LOCImportLabel}"
-                               Grid.Column="1" Grid.Row="0"/>
-                <TextBlock Text="{DynamicResource LOCSourceLabel}"
-                               Grid.Column="2" Grid.Row="0"/>
+            <TextBlock Text="{DynamicResource LOCImportLabel}"
+                            Grid.Column="1" Grid.Row="0"/>
+            <TextBlock Text="{DynamicResource LOCSourceLabel}"
+                            Grid.Column="2" Grid.Row="0"/>
 
-                <!--Name-->
-                <TextBlock Text="{DynamicResource LOCNameLabel}"
-                           Grid.Column="0" Grid.Row="1"/>
-                <CheckBox Grid.Column="1" Grid.Row="1"
-                          IsChecked="{Binding Name.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="1"
-                                DataContext="{Binding Name}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Name-->
+            <TextBlock Text="{DynamicResource LOCNameLabel}"
+                        Grid.Column="0" Grid.Row="1"/>
+            <CheckBox Grid.Column="1" Grid.Row="1"
+                        IsChecked="{Binding Name.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="1"
+                            DataContext="{Binding Name}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Genres-->
-                <TextBlock Text="{DynamicResource LOCGameGenresTitle}"
-                           Grid.Column="0" Grid.Row="2"/>
-                <CheckBox Grid.Column="1" Grid.Row="2"
-                          IsChecked="{Binding Genre.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="2"
-                                DataContext="{Binding Genre}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Genres-->
+            <TextBlock Text="{DynamicResource LOCGameGenresTitle}"
+                        Grid.Column="0" Grid.Row="2"/>
+            <CheckBox Grid.Column="1" Grid.Row="2"
+                        IsChecked="{Binding Genre.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="2"
+                            DataContext="{Binding Genre}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Release Date-->
-                <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
-                           Grid.Column="0" Grid.Row="3"/>
-                <CheckBox Grid.Column="1" Grid.Row="3"
-                          IsChecked="{Binding ReleaseDate.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="3"
-                                DataContext="{Binding ReleaseDate}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Release Date-->
+            <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
+                        Grid.Column="0" Grid.Row="3"/>
+            <CheckBox Grid.Column="1" Grid.Row="3"
+                        IsChecked="{Binding ReleaseDate.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="3"
+                            DataContext="{Binding ReleaseDate}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Developers-->
-                <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}"
-                           Grid.Column="0" Grid.Row="4"/>
-                <CheckBox Grid.Column="1" Grid.Row="4"
-                          IsChecked="{Binding Developer.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="4"
-                                DataContext="{Binding Developer}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Developers-->
+            <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}"
+                        Grid.Column="0" Grid.Row="4"/>
+            <CheckBox Grid.Column="1" Grid.Row="4"
+                        IsChecked="{Binding Developer.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="4"
+                            DataContext="{Binding Developer}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Publishers-->
-                <TextBlock Text="{DynamicResource LOCGamePublishersTitle}"
-                           Grid.Column="0" Grid.Row="5"/>
-                <CheckBox Grid.Column="1" Grid.Row="5"
-                          IsChecked="{Binding Publisher.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="5"
-                                DataContext="{Binding Publisher}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Publishers-->
+            <TextBlock Text="{DynamicResource LOCGamePublishersTitle}"
+                        Grid.Column="0" Grid.Row="5"/>
+            <CheckBox Grid.Column="1" Grid.Row="5"
+                        IsChecked="{Binding Publisher.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="5"
+                            DataContext="{Binding Publisher}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Tags/Features-->
-                <TextBlock Text="{DynamicResource LOCGameTagsTitle}"
-                           Grid.Column="0" Grid.Row="6"/>
-                <CheckBox Grid.Column="1" Grid.Row="6"
-                          IsChecked="{Binding Tag.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="6"
-                                DataContext="{Binding Tag}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Tags/Features-->
+            <TextBlock Text="{DynamicResource LOCGameTagsTitle}"
+                        Grid.Column="0" Grid.Row="6"/>
+            <CheckBox Grid.Column="1" Grid.Row="6"
+                        IsChecked="{Binding Tag.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="6"
+                            DataContext="{Binding Tag}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Description-->
-                <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}"
-                           Grid.Column="0" Grid.Row="7"/>
-                <CheckBox Grid.Column="1" Grid.Row="7"
-                          IsChecked="{Binding Description.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="7"
-                                DataContext="{Binding Description}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Description-->
+            <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}"
+                        Grid.Column="0" Grid.Row="7"/>
+            <CheckBox Grid.Column="1" Grid.Row="7"
+                        IsChecked="{Binding Description.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="7"
+                            DataContext="{Binding Description}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Links-->
-                <TextBlock Text="{DynamicResource LOCGameLinksTitle}"
-                           Grid.Column="0" Grid.Row="8"/>
-                <CheckBox Grid.Column="1" Grid.Row="8"
-                          IsChecked="{Binding Links.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="8"
-                                DataContext="{Binding Links}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Links-->
+            <TextBlock Text="{DynamicResource LOCGameLinksTitle}"
+                        Grid.Column="0" Grid.Row="8"/>
+            <CheckBox Grid.Column="1" Grid.Row="8"
+                        IsChecked="{Binding Links.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="8"
+                            DataContext="{Binding Links}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--CriticScore-->
-                <TextBlock Text="{DynamicResource LOCCriticScore}"
-                           Grid.Column="0" Grid.Row="9"/>
-                <CheckBox Grid.Column="1" Grid.Row="9"
-                          IsChecked="{Binding CriticScore.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="9"
-                                DataContext="{Binding CriticScore}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--CriticScore-->
+            <TextBlock Text="{DynamicResource LOCCriticScore}"
+                        Grid.Column="0" Grid.Row="9"/>
+            <CheckBox Grid.Column="1" Grid.Row="9"
+                        IsChecked="{Binding CriticScore.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="9"
+                            DataContext="{Binding CriticScore}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--CommunityScore-->
-                <TextBlock Text="{DynamicResource LOCCommunityScore}"
-                           Grid.Column="0" Grid.Row="10"/>
-                <CheckBox Grid.Column="1" Grid.Row="10"
-                          IsChecked="{Binding CommunityScore.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="10"
-                                DataContext="{Binding CommunityScore}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--CommunityScore-->
+            <TextBlock Text="{DynamicResource LOCCommunityScore}"
+                        Grid.Column="0" Grid.Row="10"/>
+            <CheckBox Grid.Column="1" Grid.Row="10"
+                        IsChecked="{Binding CommunityScore.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="10"
+                            DataContext="{Binding CommunityScore}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Cover-->
-                <TextBlock Text="{DynamicResource LOCGameCoverTitle}"
-                           Grid.Column="0" Grid.Row="11"/>
-                <CheckBox Grid.Column="1" Grid.Row="11"
-                          IsChecked="{Binding CoverImage.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="11"
-                                DataContext="{Binding CoverImage}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Cover-->
+            <TextBlock Text="{DynamicResource LOCGameCoverTitle}"
+                        Grid.Column="0" Grid.Row="11"/>
+            <CheckBox Grid.Column="1" Grid.Row="11"
+                        IsChecked="{Binding CoverImage.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="11"
+                            DataContext="{Binding CoverImage}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
-                <!--Icon-->
-                <TextBlock Text="{DynamicResource LOCGameIconTitle}"
-                           Grid.Column="0" Grid.Row="12"/>
-                <CheckBox Grid.Column="1" Grid.Row="12"
-                          IsChecked="{Binding Icon.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="12"
-                                DataContext="{Binding Icon}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+            <!--Icon-->
+            <TextBlock Text="{DynamicResource LOCGameIconTitle}"
+                        Grid.Column="0" Grid.Row="12"/>
+            <CheckBox Grid.Column="1" Grid.Row="12"
+                        IsChecked="{Binding Icon.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="12"
+                            DataContext="{Binding Icon}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
 
-                <!--Background Image-->
-                <TextBlock Text="{DynamicResource LOCGameBackgroundTitle}"
-                           Grid.Column="0" Grid.Row="13"/>
-                <CheckBox Grid.Column="1" Grid.Row="13"
-                          IsChecked="{Binding BackgroundImage.Import}"/>
-                <ContentControl Grid.Column="2" Grid.Row="13"
-                                DataContext="{Binding BackgroundImage}"
-                                Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
-            </Grid>
-        </ScrollViewer>
-        <ScrollViewer DockPanel.Dock="Left">
-            <StackPanel>
-                <TextBlock Text="{DynamicResource LOCMetaSourceSettingsDescription}"
-                       TextWrapping="Wrap" Margin="10"
-                       Foreground="{DynamicResource TextBrush}" />
-                <TextBlock Margin="10,10,0,0">
-                <Hyperlink Command="{x:Static GlobalCommands.NavigateUrlCommand}"
-                           CommandParameter="https://www.igdb.com">
-                        <Image Source="/Resources/igdbicon.png" RenderOptions.BitmapScalingMode="Fant"
-                               Width="64" Height="64" VerticalAlignment="Top"/>
-                </Hyperlink>
-                </TextBlock>
-                <TextBlock Foreground="{DynamicResource TextBrush}" TextWrapping="Wrap" Margin="10" VerticalAlignment="Top"
-                       Text="{DynamicResource LOCMetaIgdbContribNotif}" />
-            </StackPanel>
-        </ScrollViewer>
+            <!--Background Image-->
+            <TextBlock Text="{DynamicResource LOCGameBackgroundTitle}"
+                        Grid.Column="0" Grid.Row="13"/>
+            <CheckBox Grid.Column="1" Grid.Row="13"
+                        IsChecked="{Binding BackgroundImage.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="13"
+                            DataContext="{Binding BackgroundImage}"
+                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+        </Grid>
+        
+        <StackPanel DockPanel.Dock="Left">
+            <TextBlock Text="{DynamicResource LOCMetaSourceSettingsDescription}"
+                    TextWrapping="Wrap" Margin="10"
+                    Foreground="{DynamicResource TextBrush}" />
+            <TextBlock Margin="10,10,0,0">
+            <Hyperlink Command="{x:Static GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="https://www.igdb.com">
+                    <Image Source="/Resources/igdbicon.png" RenderOptions.BitmapScalingMode="Fant"
+                            Width="64" Height="64" VerticalAlignment="Top"/>
+            </Hyperlink>
+            </TextBlock>
+            <TextBlock Foreground="{DynamicResource TextBrush}" TextWrapping="Wrap" Margin="10" VerticalAlignment="Top"
+                    Text="{DynamicResource LOCMetaIgdbContribNotif}" />
+        </StackPanel>
     </DockPanel>
 </UserControl>

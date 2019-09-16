@@ -156,6 +156,39 @@
     <Compile Include="Controls\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\AppearanceAdvanced.xaml.cs">
+      <DependentUpon>AppearanceAdvanced.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\AppearanceDetailsView.xaml.cs">
+      <DependentUpon>AppearanceDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\AppearanceGeneral.xaml.cs">
+      <DependentUpon>AppearanceGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\AppearanceGridView.xaml.cs">
+      <DependentUpon>AppearanceGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\AppearanceLayout.xaml.cs">
+      <DependentUpon>AppearanceLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\EmptyParent.xaml.cs">
+      <DependentUpon>EmptyParent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Extensions.xaml.cs">
+      <DependentUpon>Extensions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\GeneralAdvanced.xaml.cs">
+      <DependentUpon>GeneralAdvanced.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Input.xaml.cs">
+      <DependentUpon>Input.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Metadata.xaml.cs">
+      <DependentUpon>Metadata.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SliderWithPopup.xaml.cs">
       <DependentUpon>SliderWithPopup.xaml</DependentUpon>
     </Compile>
@@ -445,6 +478,50 @@
     <Page Include="Controls\SearchBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\AppearanceAdvanced.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\AppearanceDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\AppearanceGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\AppearanceGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\AppearanceLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\EmptyParent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\Extensions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\GeneralAdvanced.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\Input.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\Metadata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SliderWithPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
