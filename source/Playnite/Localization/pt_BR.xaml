@@ -379,6 +379,7 @@ A nova localização do banco de dados será usada somente após o aplicativo se
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Aparência dos botões</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Esquema</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Rolagem horizontal</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Selecione uma das subseções</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preenchimento</sys:String>
