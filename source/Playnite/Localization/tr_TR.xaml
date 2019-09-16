@@ -378,6 +378,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Düğme İstemleri</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">düzen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Yatay Kaydırma</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiç biri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
