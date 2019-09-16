@@ -249,7 +249,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuRestartSystem">Перезагрузка</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Завершение работы</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Спящий режим</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Отправить систему в спящий режим</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поля игр, отображаемые на панели подробностей:</sys:String>
@@ -381,6 +381,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Подсказки для геймпада</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Настройка отображения</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Горизонтальная прокрутка</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Выберите один из подразделов</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нету</sys:String>
     <sys:String x:Key="LOCStrechFill">Заполнить</sys:String>
