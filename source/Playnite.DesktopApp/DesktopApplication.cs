@@ -72,7 +72,7 @@ namespace Playnite.DesktopApp
             InstantiateApp();
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
-            SetupInputs(AppSettings.EnableControllerInDesktop);
+            SetupInputs(false);
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
 #pragma warning disable CS4014
