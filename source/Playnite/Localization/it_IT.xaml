@@ -380,6 +380,7 @@ Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applica
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Funzioni dei pulsanti</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Modello</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Scorrimento orizzontale</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Niente</sys:String>
     <sys:String x:Key="LOCStrechFill">Riempi</sys:String>
