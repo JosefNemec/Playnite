@@ -249,7 +249,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCMenuRestartSystem">Zrestartuj system</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Wyłącz system</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Uśpij system</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Hibernacja systemu</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Wyświetlane pola gry w panelu szczegółowym:</sys:String>
@@ -374,7 +374,7 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Pokaż stan baterii</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Pozostała ilość baterii</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Pokaż czas</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Tylko zainstalowane gry w szybkim filtrowaniu</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Podpowiedzi przycisków</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Układ</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Przewijanie w poziomie</sys:String>
@@ -445,7 +445,7 @@ Pamiętaj, że zawsze możesz dodać dowolną niestandardową grę dla dowolnej 
 Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Otwórz przewodnik importowania emulatorów</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Układ widoku siatki</sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Wybierz preferowany układ w widoku siatki. Możesz to ustawienie zmienić, w tym opcje rozciągania obrazu.</sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfiguruj platformy i emulatory</sys:String>
@@ -730,18 +730,22 @@ Podejmij poniższe kroki, aby naprawić problem:
     <sys:String x:Key="LOCPLaytime500to1000">500 do 1000 godzin</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Do zakończenia instalacji, trzeba zrestartować Playnite. Czy chcesz teraz zrestartować?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motyw/Rozszerzenie używa niewspieranego API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Zainstalowano poprawnie.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Czy zainstalować rozszerzenie?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Błąd implementacji rozszerzenia.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Czy chcesz dodać nowe rozszerzenie? Istniejące rozszerzenie zostanie nadpisane.
     
 {0}
 przez {1}
 Wersja {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Błąd implementacji motywu.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Czy chcesz dodać nowy motyw? Istniejący motyw zostanie nadpisany.
     
 {0}
