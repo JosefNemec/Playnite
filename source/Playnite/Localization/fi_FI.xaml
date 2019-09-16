@@ -378,6 +378,7 @@ Kaikki aktiiviset tapahtumat (metadatan lataukset) peruutetaan.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Painikekehotteet</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Asettelu</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Vaakasuuntainen vieritys</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ei mitään</sys:String>
     <sys:String x:Key="LOCStrechFill">Täytä</sys:String>
