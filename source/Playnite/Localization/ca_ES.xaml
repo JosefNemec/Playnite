@@ -378,6 +378,7 @@ Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sy
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Accions de botons</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Disposició</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Desplaçament horitzontal</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
