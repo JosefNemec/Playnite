@@ -86,7 +86,7 @@ function ExportThemeFiles
 try
 {
     Start-Process "git" "--no-pager diff --name-status $OldCommit $NewCommit" -NoNewWindow -Wait -RedirectStandardOutput $gitOutPath
-    $changes = Get-Content $gitOutPath | Where {$_ -match "(DesktopApp|FullscreenApp)/Themes/(Desktop|Fullscreen)/Default"}
+    $changes = Get-Content $gitOutPath | Where { $_ -match "(DesktopApp|FullscreenApp)/Themes/(Desktop|Fullscreen)/Default" -and  $_ -notmatch "theme\.yaml$" }
     $changes | Out-File (Join-Path $changeBaseLogDir "$OldVersion-$NewVersion.txt")
 
     ExportThemeFiles $OldCommit "../source/Playnite.DesktopApp/Themes/Desktop/Default" $changeLogDir
