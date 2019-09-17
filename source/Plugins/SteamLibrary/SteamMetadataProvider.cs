@@ -293,10 +293,11 @@ namespace SteamLibrary
                 Name = downloadedMetadata.ProductDetails?["common"]["name"]?.Value ?? downloadedMetadata.GameInfo.Name,
                 Links = new List<Link>()
                 {
-                    new Link("Forum", $"https://steamcommunity.com/app/{appId}"),
+                    new Link("Community Hub", $"https://steamcommunity.com/app/{appId}"),
+                    new Link("Discussions", $"https://steamcommunity.com/app/{appId}/discussions/"),
                     new Link("News", $"https://store.steampowered.com/news/?appids={appId}"),
-                    new Link("Store", $"https://store.steampowered.com/app/{appId}"),
-                    new Link("Wiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
+                    new Link("Store Page", $"https://store.steampowered.com/app/{appId}"),
+                    new Link("PCGamingWiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
                 }
             };
 
