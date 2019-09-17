@@ -52,7 +52,7 @@ namespace GogLibrary
 
             if (!string.IsNullOrEmpty(storeData.GameDetails.links.product_card))
             {
-                gameInfo.Links.Add(new Link("Store", storeData.GameDetails.links.product_card));
+                gameInfo.Links.Add(new Link("Store Page", storeData.GameDetails.links.product_card));
             };
 
             if (storeData.StoreDetails != null)
