@@ -181,10 +181,10 @@ namespace Playnite.Controls
                     return null;
                 }
 
-                if (blurEnabled)
-                {                    
-                    tmp = new GaussianBlur(tmp.ToBitmap()).Process(blurAmount).ToBitmapImage();
-                }
+                //if (blurEnabled)
+                //{                    
+                //    tmp = new GaussianBlur(tmp.ToBitmap()).Process(blurAmount).ToBitmapImage();
+                //}
 
                 return tmp;
             });
@@ -223,11 +223,11 @@ namespace Playnite.Controls
                         return null;
                     }
 
-                    if (blurEnabled)
-                    {
-                        tmp = new GaussianBlur(tmp.ToBitmap()).Process(blurAmount).ToBitmapImage();
+                    //if (blurEnabled)
+                    //{
+                    //    tmp = new GaussianBlur(tmp.ToBitmap()).Process(blurAmount).ToBitmapImage();
 
-                    }
+                    //}
                     return tmp;
                 });
             }

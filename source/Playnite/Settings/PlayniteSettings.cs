@@ -69,7 +69,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 2;
+        } = 3;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -573,6 +573,21 @@ namespace Playnite
             }
         }
 
+        private bool highQualityBackgroundBlur = true;
+        public bool HighQualityBackgroundBlur
+        {
+            get
+            {
+                return highQualityBackgroundBlur;
+            }
+
+            set
+            {
+                highQualityBackgroundBlur = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool blurWindowBackgroundImage = true;
         public bool BlurWindowBackgroundImage
         {
@@ -588,7 +603,7 @@ namespace Playnite
             }
         }
 
-        private double backgroundImageBlurAmount = 17;
+        private double backgroundImageBlurAmount = 60;
         public double BackgroundImageBlurAmount
         {
             get
@@ -1301,6 +1316,12 @@ namespace Playnite
                 {
                     settings.BackgroundImageBlurAmount = 17;
                     settings.Version = 2;
+                }
+
+                if (settings.Version == 2)
+                {
+                    settings.BackgroundImageBlurAmount = 60;
+                    settings.Version = 3;
                 }
             }
 

@@ -83,10 +83,13 @@
                     IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
             <CheckBox Content="{DynamicResource LOCSettingsBlurWindowBackgrounImage}" 
                       IsChecked="{Binding Settings.BlurWindowBackgroundImage}"/>
-            <Slider Minimum="0" Maximum="50" TickFrequency="1" IsSnapToTickEnabled="True"
+            <Slider Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True"
                     Value="{Binding Settings.BackgroundImageBlurAmount}"
                     VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
                     IsEnabled="{Binding Settings.BlurWindowBackgroundImage}" />
+            <CheckBox IsChecked="{Binding Settings.HighQualityBackgroundBlur}"
+                      IsEnabled="{Binding Settings.BlurWindowBackgroundImage}"
+                      Content="{DynamicResource LOCSettingsBlurHighQuality}" Margin="15,0,0,0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
                     IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
