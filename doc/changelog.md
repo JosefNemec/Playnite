@@ -1,3 +1,11 @@
+### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
+
+
+#### 5.0.1
+
+* Removed reference to LiteDB package. You can remove it from your plugin project if it's present.
+
+
 #### 5.0.0
 
 * **Breaking Changes**:

@@ -29,6 +29,11 @@ namespace PlayniteServices
 
     public class ErrorResponse : GenericResponse
     {
+        public ErrorResponse(string error)
+        {
+            Error = error;
+        }
+
         public ErrorResponse(Exception error)
         {
             Error = error.Message;

@@ -98,6 +98,19 @@ namespace Playnite.Common
             });
         }
 
+        public static Program GetLnkShortcutData(string lnkPath)
+        {
+            var shell = new IWshRuntimeLibrary.WshShell();            
+            var link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(lnkPath);
+            return new Program()
+            {
+                Path = link.TargetPath,
+                Icon = link.IconLocation,
+                Arguments = link.Arguments,
+                WorkDir = link.WorkingDirectory
+            };
+        }
+
         public static async Task<List<Program>> GetShortcutProgramsFromFolder(string path, CancellationTokenSource cancelToken = null)
         {
             return await Task.Run(() =>

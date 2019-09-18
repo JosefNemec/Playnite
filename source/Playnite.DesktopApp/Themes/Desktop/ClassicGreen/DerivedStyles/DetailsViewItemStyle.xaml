@@ -4,7 +4,7 @@
     <Style x:Key="DetailsViewItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -16,7 +16,7 @@
                                                         CornerRadius="{DynamicResource ControlCornerRadius}"
                                                         Background="{DynamicResource HoverBrush}"/>
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent">
-                            <ContentPresenter Margin="3"/>
+                            <ContentPresenter Margin="2"/>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -26,19 +26,12 @@
                         <DataTrigger Binding="{Binding IsInstalled}" Value="False">
                             <Setter Property="Foreground" Value="{StaticResource TextBrushDarker}" />
                         </DataTrigger>
-                        <Trigger Property="IsFocused" Value="True">
+                        <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
                         </Trigger>
-                        <Trigger Property="IsSelected" Value="true">
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="True" />
-                                <Condition Property="Selector.IsSelected" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
-                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

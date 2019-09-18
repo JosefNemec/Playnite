@@ -37,7 +37,7 @@ namespace GogLibrary.Tests
             var gogLib = new GogMetadataProvider();
 
             // Existing store page - contains all data
-            var existingStore = gogLib.DownloadGameMetadata("1207658645");
+            var existingStore = gogLib.DownloadGameMetadata(new Game() { GameId = "1207658645" });
             Assert.IsNotNull(existingStore.GameDetails);
             Assert.IsNotNull(existingStore.StoreDetails);
             Assert.IsNotNull(existingStore.Icon.OriginalUrl);
@@ -45,7 +45,7 @@ namespace GogLibrary.Tests
             Assert.IsNotNull(existingStore.BackgroundImage.OriginalUrl);
 
             // Game with missing store link in api data
-            var customStore = gogLib.DownloadGameMetadata("1207662223");
+            var customStore = gogLib.DownloadGameMetadata(new Game() { GameId = "1207662223" });
             Assert.IsNotNull(customStore.GameDetails);
             Assert.IsNull(customStore.StoreDetails);
             Assert.IsNotNull(existingStore.Icon.OriginalUrl);
@@ -53,7 +53,7 @@ namespace GogLibrary.Tests
             Assert.IsNotNull(existingStore.BackgroundImage.OriginalUrl);
 
             // Existing game not present on store
-            var nonStore = gogLib.DownloadGameMetadata("2");
+            var nonStore = gogLib.DownloadGameMetadata(new Game() { GameId = "2" });
             Assert.IsNotNull(nonStore.GameDetails);
             Assert.IsNull(nonStore.StoreDetails);
             Assert.IsNotNull(existingStore.Icon.OriginalUrl);

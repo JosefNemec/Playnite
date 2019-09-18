@@ -14,6 +14,8 @@ using Playnite.SDK.Plugins;
 using System.Net;
 using Playnite.Common.Web;
 using System.Drawing.Imaging;
+using System.Threading;
+using System.Collections.Concurrent;
 
 namespace Playnite.Database
 {
@@ -24,7 +26,7 @@ namespace Playnite.Database
         #region Locks
 
         private readonly object databaseConfigFileLock = new object();
-        private readonly object fileFilesLock = new object();
+        private readonly ConcurrentDictionary<string, object> fileLocks = new ConcurrentDictionary<string, object>();
 
         #endregion Locks
 
@@ -341,35 +343,38 @@ namespace Playnite.Database
                 try
                 {
                     var extension = Path.GetExtension(new Uri(path).AbsolutePath);
-                    var fileName = Guid.NewGuid().ToString() + extension;
-                    lock (fileFilesLock)
-                    {
-                        HttpDownloader.DownloadFile(path, Path.Combine(targetDir, fileName));
-                        dbPath = Path.Combine(parentId.ToString(), fileName);
-                    }
+                    var fileName = Guid.NewGuid().ToString() + extension;               
+                    HttpDownloader.DownloadFile(path, Path.Combine(targetDir, fileName));
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
                 }
                 catch (WebException e)
                 {
-                    logger.Error(e, $"Failed to add {path} file to database.");
+                    logger.Error(e, $"Failed to add http {path} file to database.");
                     return null;
                 }
             }
             else
             {
                 var fileName = Path.GetFileName(path);
-                lock (fileFilesLock)
+                // Re-use file if already part of db folder, don't copy.
+                if (Paths.AreEqual(targetDir, Path.GetDirectoryName(path)))
                 {
-                    // Re-use file if already part of db folder, don't copy.
-                    if (Paths.AreEqual(targetDir, Path.GetDirectoryName(path)))
-                    {
-                        dbPath = Path.Combine(parentId.ToString(), fileName);
-                    }
-                    else
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
+                }
+                else
+                {
+                    try
                     {
                         fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
                         FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
-                        dbPath = Path.Combine(parentId.ToString(), fileName);
                     }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, $"Failed to copy file {path} to database.");
+                        return null;
+                    }
+
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
                 }
             }
 
@@ -382,12 +387,8 @@ namespace Playnite.Database
             CheckDbState();
             var dbPath = Path.Combine(parentId.ToString(), Guid.NewGuid().ToString() + Path.GetExtension(fileName));
             var targetPath = Path.Combine(FilesDirectoryPath, dbPath);
-            lock (fileFilesLock)
-            {
-                FileSystem.PrepareSaveFile(targetPath);
-                File.WriteAllBytes(targetPath, content);
-            }
-
+            FileSystem.PrepareSaveFile(targetPath);
+            File.WriteAllBytes(targetPath, content);
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Added));
             return dbPath;
         }
@@ -406,23 +407,31 @@ namespace Playnite.Database
                 return;
             }
 
-            lock (fileFilesLock)
-            {
-                FileSystem.DeleteFileSafe(filePath);
 
-                try
+            try
+            {
+                lock (GetFileLock(dbPath))
                 {
-                    var dir = Path.GetDirectoryName(filePath);
-                    if (FileSystem.IsDirectoryEmpty(dir))
+                    FileSystem.DeleteFileSafe(filePath);
+
+                    try
                     {
-                        FileSystem.DeleteDirectory(dir);
+                        var dir = Path.GetDirectoryName(filePath);
+                        if (FileSystem.IsDirectoryEmpty(dir))
+                        {
+                            FileSystem.DeleteDirectory(dir);
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        // Getting crash reports from Path.GetDirectoryName for some reason.
+                        logger.Error(e, "Failed to clean up directory after removing file");
                     }
                 }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    // Getting crash reports from Path.GetDirectoryName for some reason.
-                    logger.Error(e, "Failed to clean up directory after removing file");
-                }
+            }
+            finally
+            {
+                ReleaseFileLock(dbPath);
             }
 
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
@@ -437,23 +446,38 @@ namespace Playnite.Database
                 return null;
             }
 
-            lock (fileFilesLock)
+            try
             {
-                using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                lock (GetFileLock(dbPath))
                 {
-                    return BitmapExtensions.BitmapFromStream(fStream);
+                    using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                    {
+                        return BitmapExtensions.BitmapFromStream(fStream);
+                    }
                 }
+            }
+            finally
+            {
+                ReleaseFileLock(dbPath);
             }
         }
 
         public void CopyFile(string dbPath, string targetPath)
         {
             CheckDbState();
-            lock (fileFilesLock)
+            var filePath = GetFullFilePath(dbPath);
+
+            try
             {
-                var filePath = GetFullFilePath(dbPath);
-                FileSystem.PrepareSaveFile(targetPath);
-                File.Copy(filePath, targetPath);
+                lock (GetFileLock(dbPath))
+                {
+                    FileSystem.PrepareSaveFile(targetPath);
+                    File.Copy(filePath, targetPath);
+                }
+            }
+            finally
+            {
+                ReleaseFileLock(dbPath);
             }
         }
 
@@ -801,6 +825,25 @@ namespace Playnite.Database
             };
 
             database.Games.Add(designGame);
+        }
+
+        private object GetFileLock(string filePath)
+        {
+            if (fileLocks.TryGetValue(filePath, out object fileLock))
+            {
+                return fileLock;
+            }
+            else
+            {
+                var lc = new object();
+                fileLocks.TryAdd(filePath, lc);
+                return lc;
+            }
+        }
+
+        private void ReleaseFileLock(string filePath)
+        {
+            fileLocks.TryRemove(filePath, out var removed);
         }
     }
 }

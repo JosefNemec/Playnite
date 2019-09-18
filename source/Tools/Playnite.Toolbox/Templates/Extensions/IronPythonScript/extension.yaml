@@ -1,0 +1,8 @@
+Name: <name>
+Author: <author>
+Version: 1.0
+Module: PowerShellScript.ps1
+Type: Script
+Functions: 
+    - Description: <function name>
+      FunctionName: ExtensionFunction

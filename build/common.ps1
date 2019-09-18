@@ -137,6 +137,22 @@ function global:New-Folder()
     mkdir $Path | Out-Null
 }
 
+function global:New-FolderFromFilePath()
+{
+    param(
+        [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]
+        [string]$FilePath        
+    )
+
+    $dirPath = Split-Path $FilePath
+    if (Test-Path $dirPath)
+    {
+        return
+    }
+
+    mkdir $dirPath | Out-Null
+}
+
 function global:New-EmptyFolder()
 {
     param(
@@ -150,6 +166,23 @@ function global:New-EmptyFolder()
     }
 
     mkdir $Path | Out-Null
+}
+
+function global:New-ZipFromDirectory()
+{
+    param(
+        [string]$directory,
+        [string]$resultZipPath,
+        [bool]$includeBaseDirectory = $false
+    )
+
+    if (Test-path $resultZipPath)
+    {
+        Remove-Item $resultZipPath
+    }
+
+    Add-Type -assembly "System.IO.Compression.Filesystem" | Out-Null
+    [IO.Compression.ZipFile]::CreateFromDirectory($directory, $resultZipPath, "Optimal", $includeBaseDirectory) 
 }
 
 function global:Write-OperationLog()

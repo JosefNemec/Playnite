@@ -334,13 +334,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<Uri> NavigateUrlCommand
-        {
-            get => new RelayCommand<Uri>((url) =>
-            {
-                NavigateUrl(url.AbsoluteUri);
-            });
-        }
+        public RelayCommand<object> NavigateUrlCommand => GlobalCommands.NavigateUrlCommand;
 
         public RelayCommand<object> CancelProgressCommand
         {
@@ -533,11 +527,6 @@ namespace Playnite.DesktopApp.ViewModels
         public void GoPreviousScreen()
         {
             ViewTabIndex--;
-        }
-
-        public void NavigateUrl(string url)
-        {
-            System.Diagnostics.Process.Start(url);
         }
 
         public void VerifyAvailableEmulators(EmulatorsViewModel platforms)

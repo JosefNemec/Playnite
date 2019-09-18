@@ -231,6 +231,11 @@ namespace Playnite.DesktopApp.Controls
 
         private void CheckOverrideArgs_Checked(object sender, RoutedEventArgs e)
         {
+            if (GameTask == null)
+            {
+                return;
+            }
+
             NotifyRowChange();
 
             if (GameTask.OverrideDefaultArgs && !string.IsNullOrEmpty(SelectedEmulatorArguments))
@@ -241,6 +246,11 @@ namespace Playnite.DesktopApp.Controls
 
         private void ComboEmulator_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (GameTask == null)
+            {
+                return;
+            }
+
             if (Emulators == null || Emulators.Count == 0)
             {
                 return;
@@ -254,6 +264,11 @@ namespace Playnite.DesktopApp.Controls
 
         private void ComboEmulatorConfig_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (GameTask == null)
+            {
+                return;
+            }
+
             if (Emulators == null || Emulators.Count == 0)
             {
                 SelectedEmulatorArguments = string.Empty;

@@ -7,7 +7,8 @@
              xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
              mc:Ignorable="d"
              d:DesignWidth="100"
-             SnapsToDevicePixels="True">
+             SnapsToDevicePixels="True"
+             Height="24">
     
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -30,7 +31,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Viewbox Grid.Column="1" Width="20" Margin="0,0,2,0">
                                     <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
@@ -42,7 +43,7 @@
                                            Grid.Column="0" Margin="5,0,0,0"/>
                                 <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
                                         BorderThickness="0" Padding="3,0,3,0" Margin="0"
-                                        FontFamily="Marlett" Content="r"
+                                        Content="&#xef00;" FontFamily="{DynamicResource FontIcoFont}" FontSize="18"
                                         Click="ClearButton_Click">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">

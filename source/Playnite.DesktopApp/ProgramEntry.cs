@@ -4,6 +4,7 @@ using Playnite.SDK;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,8 @@ namespace Playnite.DesktopApp
             }
 
             SplashScreen splash = null;
-            if (cmdLine.Start.IsNullOrEmpty() && !cmdLine.HideSplashScreen)
+            var procCount = Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count();
+            if (cmdLine.Start.IsNullOrEmpty() && !cmdLine.HideSplashScreen && procCount == 1)
             {
                 splash = new SplashScreen("SplashScreen.png");
                 splash.Show(false);

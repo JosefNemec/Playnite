@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.Extensions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style TargetType="ContentControl" BasedOn="{StaticResource {x:Type ContentControl}}">
+            <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+            <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="-15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListExtensions}"
+                    Margin="10,5,0,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionCreatedBy}" />
+                <TextBlock Text="{Binding Description.Author}" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionVersion}" />
+                <TextBlock Text="{Binding Description.Version}" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionModule}" />
+                <TextBlock Text="{Binding Description.Module}" Margin="5,0,0,0" />
+            </StackPanel>
+            <CheckBox Content="{DynamicResource LOCEnabledTitle}" Margin="0,15,0,0"
+                      IsChecked="{Binding Selected}" />
+        </StackPanel>
+
+        <ListBox Grid.Column="0" Name="ListExtensions" SelectedIndex="0"
+                 ItemsSource="{Binding PluginsList}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <Setter Property="Opacity" Value="1" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Selected}" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image RenderOptions.BitmapScalingMode="Fant"
+                               VerticalAlignment="Center" Height="24" Margin="5"
+                               Source="{Binding PluginIcon}" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Margin="0,5,5,5"
+                                   Text="{Binding Description.Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

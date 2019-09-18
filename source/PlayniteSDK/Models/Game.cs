@@ -425,6 +425,7 @@ namespace Playnite.SDK.Models
             {
                 platformId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Platform));
             }
         }
 

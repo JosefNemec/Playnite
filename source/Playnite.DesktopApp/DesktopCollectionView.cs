@@ -229,16 +229,14 @@ namespace Playnite.DesktopApp
                 return;
             }
 
-            Items.Clear();
+            ClearItems();
             switch (viewType)
             {
                 case GamesViewType.Standard:
-                    Items.Clear();
                     Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings)));
                     break;
 
                 case GamesViewType.ListGrouped:
-                    Items.Clear();
                     Items.AddRange(Database.Games.SelectMany(x =>
                     {
                         var ids = GetGroupingIds(viewSettings.GroupingOrder, x);
@@ -262,6 +260,16 @@ namespace Playnite.DesktopApp
             }
 
             this.viewType = viewType;
+        }
+
+        private void ClearItems()
+        {
+            foreach (var item in Items)
+            {
+                item.Dispose();
+            }
+
+            Items.Clear();
         }
 
         private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> e)
@@ -452,6 +460,7 @@ namespace Playnite.DesktopApp
                 {
                     foreach (var item in toRemove)
                     {
+                        item.Dispose();
                         Items.Remove(item);
                     }
                 }

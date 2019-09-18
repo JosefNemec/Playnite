@@ -9,19 +9,19 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Språk</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Avsluta</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Filtret är aktiverat (klicka för att växla filterpanelen)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filtret är inaktiverat (klicka för att växla filterpanelen)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter är aktiverade (klicka för att växla filterpanelen)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filter är inaktiverade (klicka för att växla filterpanelen)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Ytterligare filter</sys:String>
+    <sys:String x:Key="LOCFilters">Filter</sys:String>
+    <sys:String x:Key="LOCFilter">Filter</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Ogiltiga data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Spara ändring?</sys:String>
     
     <sys:String x:Key="LOCAboutHomePageLink">Hemsida: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Källkod: GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">Skapa diag. packet</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Skapa diag. paket</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Skicka felsökningsinformation</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Om Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Skapad av Josef Němec</sys:String>
 
@@ -34,31 +34,35 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCNoCategory">Ingen kategori</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen plattform</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Rapportera problem</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Oh nej, något dumt inträffade…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite har stött på ett problem som den inte gick att lösa.
+        
+Om du vill hjälpa oss med detta fel, skapa ett felsökningspaket och använd "Rapportera en Krash" för att meddela oss om vad som hänt. Tack.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ett kritiskt fel har inträffat.
+        
+Om du vill hjälpa med att lösa detta fel, var vänlig och skicka in felsökningsinformation. Tack.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Rapportera en krasch</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Starta om Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Avsluta Playnite</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">Bibliotekshanterare</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Ta bort Spel?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Det går inte att ta bort ett spel som körs eller som håller på att installeras eller avinstalleras.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Det går inte att avinstallera ett spel som körs.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Är du säker på att du vill ta bort det här spelet?
         
-Automatiskt importerade spel kan visas igen i Playnite efter nästa import (beroende på dina inställningar).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Är du säker på att du vill ta bort {0}?
+Automatiskt importerade spel kan dyka upp igen i Playnite efter nästa import (beroende på dina inställningar).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Är du säker på att du vill ta bort {0} spel?
         
-Automatiskt importerade spel kan visas igen i Playnite efter nästa import (beroende på dina inställningar).</sys:String>
+Automatiskt importerade spel kan dyka upp igen i Playnite efter nästa import (beroende på dina inställningar).</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Vänner</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Avsnittet innehåller ändringar som ska sparas</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Uppdaterar databasversionen…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Databasuppdatering misslyckades, kan inte öppna databasfilen.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Det går inte att uppdatera spelbiblioteket. {0} MB ledigt diskutrymme krävs.</sys:String>
 
-    <sys:String x:Key="LOCGameError"></sys:String>
+    <sys:String x:Key="LOCGameError">SpelFel</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Kan inte starta spelet. '{0}' hittades inte i databasen.</sys:String>
     <sys:String x:Key="LOCGameStartError">Kan inte starta spelet: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Kan inte starta åtgärd: {0}</sys:String>
@@ -66,9 +70,9 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCGameShortcutError">Misslyckades med att skapa genväg: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan inte installera spel: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan inte avinstallera spel: {0}</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
-    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Den plugin tillhörande biblioteket som ansvarar för detta spel är inte installerad eller aktiverad.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Officiell nedladdningskälla för metadata är inte tällgänglig.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">Inget spel är markerat.</sys:String>
 
 
     <!--General-->
@@ -82,31 +86,31 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCFinishLabel">Klart</sys:String>
     <sys:String x:Key="LOCNextLabel">Nästa</sys:String>
     <sys:String x:Key="LOCBackLabel">Tillbaka</sys:String>
-    <sys:String x:Key="LOCDoneCapLabel"></sys:String>
-    <sys:String x:Key="LOCBackCapLabel"></sys:String>
-    <sys:String x:Key="LOCClearCapLabel"></sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">KLART</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">TILLBAKA</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">RENSA</sys:String>
     <sys:String x:Key="LOCClearLabel">Rensa</sys:String>
     <sys:String x:Key="LOCDismiss">Avfärda</sys:String>
     <sys:String x:Key="LOCDismissAll">Avfärda alla</sys:String>
     <sys:String x:Key="LOCImportLabel">Importera</sys:String>
     <sys:String x:Key="LOCSourceLabel">Källkod</sys:String>
     <sys:String x:Key="LOCNameLabel">Namn</sys:String>
-    <sys:String x:Key="LOCAuthorLabel"></sys:String>
-    <sys:String x:Key="LOCModuleLabel"></sys:String>
+    <sys:String x:Key="LOCAuthorLabel">Skapare</sys:String>
+    <sys:String x:Key="LOCModuleLabel">Modul</sys:String>
     <sys:String x:Key="LOCSeriesLabel">Serie</sys:String>
-    <sys:String x:Key="LOCVersionLabel"></sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel"></sys:String>
+    <sys:String x:Key="LOCVersionLabel">Version</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Åldersgränser</sys:String>
     <sys:String x:Key="LOCRegionLabel">Region</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Senast spelad</sys:String>
-    <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
-    <sys:String x:Key="LOCPlayCountLabel"></sys:String>
-    <sys:String x:Key="LOCAddedLabel"></sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
-    <sys:String x:Key="LOCModifiedLabel"></sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">Mest spelade</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Antal speltillfällen</sys:String>
+    <sys:String x:Key="LOCAddedLabel">Tillagd</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Tillagd datum</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">Ändrad</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Ändrad datum</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Hemsida</sys:String>
-    <sys:String x:Key="LOCPathLabel"></sys:String>
-    <sys:String x:Key="LOCOKLabel"></sys:String>
+    <sys:String x:Key="LOCPathLabel">Sökväg</sys:String>
+    <sys:String x:Key="LOCOKLabel">Ok</sys:String>
     <sys:String x:Key="LOCSaveLabel">Spara</sys:String>
     <sys:String x:Key="LOCCloseLabel">Stäng</sys:String>
     <sys:String x:Key="LOCCancelLabel">Avbryt</sys:String>
@@ -116,35 +120,35 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCLocalUserLabel">Lokal Användare</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel">Autentisera</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Allmän</sys:String>
-    <sys:String x:Key="LOCMediaLabel"></sys:String>
+    <sys:String x:Key="LOCMediaLabel">Media</sys:String>
     <sys:String x:Key="LOCLinksLabel">Länkar</sys:String>
-    <sys:String x:Key="LOCInstallationLabel"></sys:String>
+    <sys:String x:Key="LOCInstallationLabel">Installation</sys:String>
     <sys:String x:Key="LOCActionsLabel">Handlingar</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Laddar ner…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Typ</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiler</sys:String>
     <sys:String x:Key="LOCRemoveLabel">Ta bort</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Ladda ner</sys:String>
     <sys:String x:Key="LOCSearchLabel">Sök</sys:String>
-    <sys:String x:Key="LOCGenreLabel"></sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
+    <sys:String x:Key="LOCGenreLabel">Genre(r)</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Företag</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Utvecklare</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Utgivare</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
-    <sys:String x:Key="LOCTagLabel"></sys:String>
-    <sys:String x:Key="LOCTagsLabel"></sys:String>
-    <sys:String x:Key="LOCZoomLabel"></sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCTagLabel">Etikett</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Etiketter</sys:String>
+    <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Listvy</sys:String>
     <sys:String x:Key="LOCCoversLabel">Omslag</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Rutnätsvy</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Detaljvy</sys:String>
     <sys:String x:Key="LOCCustomLabel">Manuell</sys:String>
-    <sys:String x:Key="LOCURLLabel"></sys:String>
-    <sys:String x:Key="LOCPatronsLabel"></sys:String>
+    <sys:String x:Key="LOCURLLabel">URL</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licens</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bidragsgivare</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Avslutar Playnite…</sys:String>
     <sys:String x:Key="LOCToday">Idag</sys:String>
     <sys:String x:Key="LOCYesterday">Igår</sys:String>
     <sys:String x:Key="LOCMonday">Måndag</sys:String>
@@ -157,16 +161,16 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCPastWeek">Senaste veckan</sys:String>
     <sys:String x:Key="LOCPastMonth">Senaste månaden</sys:String>
     <sys:String x:Key="LOCPastYear">Senaste året</sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
-    <sys:String x:Key="LOCImportCompleted"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Mer än 1 år sedan</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Import slutfördes framgångsrikt.</sys:String>
     <sys:String x:Key="LOCAllGames">Alla spel</sys:String>
-    <sys:String x:Key="LOCGameId"></sys:String>
-    <sys:String x:Key="LOCDatabaseId"></sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
-    <sys:String x:Key="LOCColumn"></sys:String>
-    <sys:String x:Key="LOCColumns"></sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
+    <sys:String x:Key="LOCGameId">Spel-id</sys:String>
+    <sys:String x:Key="LOCDatabaseId">Databas-id</sys:String>
+    <sys:String x:Key="LOCPresets">Förinställningar</sys:String>
+    <sys:String x:Key="LOCColumn">Kolumn</sys:String>
+    <sys:String x:Key="LOCColumns">Kolumner</sys:String>
+    <sys:String x:Key="LOCRow">Rad</sys:String>
+    <sys:String x:Key="LOCRows">Rader</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Specilla variabler kan användas för att lägga till dynamisks sträng:
 {InstallDir} - Spelkatalog
@@ -178,21 +182,21 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
 Exempel: -image "{ImagePath}" -fullscreen
 Resulterar till: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Kan inte hämta ikon om Spel-händelsen, är tom eller inställd till en URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Ladda bara ner metadata för spel som saknar det</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Om detta alternativ är aktiverat så kommer nedladdning av metadata skippas helt för fält som redan innehåller information.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spelval</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Vänligen välj vilka spel som ska uppdateras med nya metadata:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Alla spel från databasen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Alla filtrerade spel</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Endast utvalda spel</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Officiell Butiken</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Officiell Butiken</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Officiell Butiken > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vänligen välj vilka fält som ska fyllas automatiskt av Playnite och vilka källor ska användas för att få data från.</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Vänligen överväg att klicka på logotypen ovan för att bidra med uppdateringar till databasen på igdb.com för att förbättra den data som Playnite använder.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Butik:
 Använd endast data från den officiella butiken.
     
@@ -206,119 +210,126 @@ Officiella Butiken > IGDB:
 Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.com-databasen.</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressMetadata"></sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
-    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">Hämtar Steam-biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">Hämtar GOG-biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Hämtar Origin-biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">Hämtar Battle.net-biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">Hämtar metadata…</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Importerar installerade spel…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importerar {0} spel…</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">Hämtar biblioteksuppdateringar…</sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport">Hämtar biblioteksuppdateringar…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Bibliotekets uppdatering slutförd</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">Frigör resurser…</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfiguration</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Inställningar…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plattformar och Emulatorer</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Konfigurera emulatorer…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Bibliotekshanterare…</sys:String>
     <sys:String x:Key="LOCMenuTools">Verktyg</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">Hämta Metadata…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Öppna extern Plattform</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Uppdatera Bibliotek</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Lägg till Spel</sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">Manuellt…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Installerade Spel…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Emulerade spel…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store- eller Xbox App-spel…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Skicka Feedback</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
-    <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
-    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
-    <sys:String x:Key="LOCSDKDocumentation"></sys:String>
-    <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
-    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
-    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Fullskärmsläge</sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Länkar</sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Hjälp</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Stöd Playnite på Patreon</sys:String>
+    <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentation</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem">Starta om systemet</sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">Stäng ner systemet</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">Sätt systemet i viloläge</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
-    <sys:String x:Key="LOCSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Infofält som visas på detaljpanelen:</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Marginal mellan rutorna</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Tjocklek på ram för rutnätet</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Saknar källa för spelikoner</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Saknar källa för spelomslagsbilder</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Lodrätt mellanrum för speldetaljer</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Plats för speldetaljer i rutnätsvy</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Plats för spellistan i detaljvyn</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Separator mellan paneler</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Höjd för spelomslag</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Ikonhöjd på spellistan</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Font</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">Plats för filterpanelen</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Plats för utforskarpanelen</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Visning spelomslagsbilder</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Målbildförhållande</sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">Tänj</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Omslag</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Låda</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* Kräver omstart för att tillämpa</sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Inställningar</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Allmänt</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Utseende</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Speldetaljer</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avancerat</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Distribuerare</sys:String>
-    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">Helskärm</sys:String>
+    <sys:String x:Key="LOCSettingsProvidersLabel">Leverantörer</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Inmatning</sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importera ändringar i bibliotek automatiskt</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importera installerade spel</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importera oinstallerade spel</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importera alla spel</sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importera alla spel (publikt kontonamn eller API-nyckel måste konfigureras)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Ogiltig databas sökväg, rätt filväg måste ställas in.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidAccountName"></sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">Kontonamnet får inte vara tomt.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Inget Steam-konto valt för bibliotekets import.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Inget Steam-konto valt för import av kategorier.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Hämta uppdateringar från tredje parts bibliotek vid start</sys:String>
-    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport"></sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError"></sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Ladda ner metadata efter import av spel</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Starta minimerad</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Starta Playnite när datorn startas</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Misslyckades att registrera Playnite att starta automatiskt när datorn startar.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Starta i Fullskärmsläge</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Innehåller Steam, Origin och andra.</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynkron laddning av bilder</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Förbättrar rullningsläge i spellistor i utbyte mot långsammare bildbelastningstider.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Visa spelnamn när spelomslag saknas</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover"></sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Visa spelnamn i rutnätsvyn</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Visa spelikoner i listvy</sys:String>
-    <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
-    <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Använd när du upplever stammar eller liknande användargränssnitt</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
-    <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
-    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
-    <sys:String x:Key="LOCSettingsSkin"></sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Visa räknare på titelfältet för gruppen</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration">Inaktivera hårdvaruacceleration</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Använd när du upplever hackande användargränssnitt eller liknande problem</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Inaktivera DPI-skalning</sys:String>
+    <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Visa knappen för att se dina Steam-vänner</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Använd spelets bakgrundsbild som bakgrund för fönstret</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Sudda bakgrundsbild</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Hög kvalitet</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Förmörka bakgrundsbild</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Visa i rutnätsvyn</sys:String>
+    <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Tema Profiler</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Fullskärms Teman</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Fullskärms Tema Färger</sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Fullskärms Tema Profil</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation">Sökväg till databas</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Vad är mitt kontonamn?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Inloggningsstatus:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite Inställningar</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
-    <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
-    <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportMetadata">Importera metadata från Steam-konto:</sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel">Importera Steam-kategorier</sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel">Importera senast spelat-information från Steam</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Rensa webbcache</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Kan lösa problem som uppstått vid länkning av konton.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Visa ikon i systemfältet</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Minimera till aktivitetsfältet</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Stäng ner till aktivitetsfältet</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">När spel startar:</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameClose"></sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameClose">Efter att ett spel avslutas:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Integrera med hjälp av Galaxy-klienten</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Aktiverar funktioner som cloud save, speltid etc.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">Detta kommer att skriva över aktuella kategorier på alla Steam-spel. Vill du fortsätta?</sys:String>
@@ -326,9 +337,9 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kan inte importera kategorier, konto för import är inte markerat.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kan inte importera kategorier, databasen inte aktiv.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Misslyckades med att importera Steam kategorier: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Kan inte importera information för senast spelat, konto för import är inte markerat.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Kan inte importera information för senast spelat, databasen är inte aktiv.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Kan inte importera information för senast spelat: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Det här loggar ut dig från alla länkade tjänster. Omstart av program krävs, vill du fortsätta?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Rensa Cache?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">API Nyckeln krävs för Steam-privata konton</sys:String>
@@ -337,78 +348,81 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCSettingsGetThemes">Skaffa fler teman</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Skapa nytt tema</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Bidra till ny lokalisering</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartTitle"></sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRows"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenColumns"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSource"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceImage"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceStore"></sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
-    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
-    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Några av de ändrade inställningarna kräver att Playnite startas om Vill du starta om Playnite nu?
+    
+Alla just nu pågående bakgrundsjobb (ex. nedladdning av metadata) kommer att avbrytas.</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">Starta om Playnite?</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Speltid kommer inte att sparas ifall en "Stäng"-spelhändelse är konfigurerad.</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">Antal rader</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">Antal kolumner</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Antalet rader i detaljvyn</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSource">Bakgrundskälla:</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">Bild på spelet</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Skärmdump från butiken</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">Bakgrundsbild från butiken</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Gäller ej retroaktivt för existerande spel i biblioteket utan att ladda ner metadata på nytt.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Tvinga synkronisering av speltid</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Ladda alltid ner information om speltid från tredjeparts-bibliotek under synkronisering, och ignorera den information om speltid som Playnite lagrar internt.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Aktivera stöd för spelkontroller i skrivbordsläge</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide-knappen öppnar Fullskärmsläget</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Konfigurera inställningar som används när metadata laddas ner automatiskt efter att nya spel har importerats.</sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor">Bildskärm</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Visa speltitlar</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus">Visa batteristatus</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage">Visa batteriprocent</sys:String>
+    <sys:String x:Key="LOCSettingsShowClock">Visa klocka</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Visa enbart installerade spel i snabbfilter</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Anpassade knapptexter</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Skrolla vågrätt</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
-    <sys:String x:Key="LOCStrechNone"></sys:String>
-    <sys:String x:Key="LOCStrechFill"></sys:String>
-    <sys:String x:Key="LOCStrechUniform"></sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
+    <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
+    <sys:String x:Key="LOCStrechFill">Fyll ut</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Enhetlig</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Fyll likformigt</sys:String>
 
-    <sys:String x:Key="LOCDockLeft"></sys:String>
-    <sys:String x:Key="LOCDockRight"></sys:String>
-    <sys:String x:Key="LOCDockTop"></sys:String>
-    <sys:String x:Key="LOCDockBottom"></sys:String>
+    <sys:String x:Key="LOCDockLeft">Vänster</sys:String>
+    <sys:String x:Key="LOCDockRight">Höger</sys:String>
+    <sys:String x:Key="LOCDockTop">Toppen</sys:String>
+    <sys:String x:Key="LOCDockBottom">Botten</sys:String>
 
     <sys:String x:Key="LOCImportError">Importerings fel</sys:String>
-    <sys:String x:Key="LOCLoginChecking"></sys:String>
+    <sys:String x:Key="LOCLoginChecking">Kontrollerar status på autentisering…</sys:String>
     <sys:String x:Key="LOCLoginRequired">Autentisering krävs</sys:String>
     <sys:String x:Key="LOCLoginFailed">Autentisering misslyckades</sys:String>
-    <sys:String x:Key="LOCLoggedIn"></sys:String>
-    <sys:String x:Key="LOCNotLoggedIn"></sys:String>
-    <sys:String x:Key="LOCNotLoggedInError"></sys:String>
+    <sys:String x:Key="LOCLoggedIn">Användaren är autentiserad</sys:String>
+    <sys:String x:Key="LOCNotLoggedIn">Kräver autentisering</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Det gick inte att autentisera användaren.</sys:String>
 
     <!--Meta Import-->
-    <sys:String x:Key="LOCMetaImportWindowTitle"></sys:String>
+    <sys:String x:Key="LOCMetaImportWindowTitle">Importera metadata</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Hämta Metadata</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Anger att den valda konfigurationen kommer att användas för alla framtida nedladdningar av metadata. Detta kan också konfigureras i applikationsinställningarna.</sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulerings Import Assistent</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Den här guiden leder dig genom en process av nedladdning och import av konsolemulator samt import av emulerade spel.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Tänk på att du alltid kan lägga till ytterligare emulatorer och / eller spel senare via huvudmenyn (under "Verktyg" -menyn för Emulator-inställningar och "Lägg till spel" -menyn för emulerade spel).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Du kan alltid lägga till ytterligare emulatorer och/eller spel senare via huvudmenyn (under "Verktyg" -menyn för Emulator-inställningar och "Lägg till spel" -menyn för emulerade spel).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Följande är listan över emulatorer Playnite kan känna igen och automatiskt konfigurera. Du kan ladda ner och installera dem genom att besöka deras hemsida. När du har installerat emulatorer fortsätter du till nästa skärm för att importera dem till Playnite.
         
 Du kan också konfigurera och importera någon anpassad emulator senare via konfigurationsmenyn.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">Du kan importera spel genom att trycka på "Sök katalog med Emulator" -knappen. Vald emulatorer kommer att berätta Playnite, vilka filtyper ska skannas och importeras. Du kan importera från flera kataloger genom att använda nämnda knapp flera gånger, spel kommer att läggas till längst ner i aktuell lista.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Det finns inga emulatorer för import. Du kommer inte att kunna importera några emulerade spel automatiskt utan att konfigurera emulatorer först. Är du säker på att du vill fortsätta och avsluta importprocessen?</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Det finns inga emulatorer som är konfigurerade i Playnite. Du kan inte importera spel utan att konfigurera emulatorn först. Vill du lägga till några emulatorer nu?</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Du kan importera emulatorer som är installerade genom att trycka på "Autodetektera från katalog…"" -knappen. Playnite söker efter vald katalog för alla kända emulatorer och ger möjlighet att importera dem. Du kan importera från flera kataloger genom att använda nämnda knapp flera gånger, emulatorer läggs till längst ner i aktuell lista.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Du kan importera spel genom att trycka på "Sök katalog med Emulator" -knappen. Vald emulatorer kommer att berätta Playnite, vilka filtyper som skannas och importeras. Du kan importera från flera kataloger genom att använda nämnda knapp flera gånger, spel kommer att läggas till längst ner i aktuell lista.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Det finns inga emulatorer för import. Du kommer inte att kunna importera emulerade spel automatiskt utan att konfigurera emulatorer först. Är du säker på att du vill fortsätta och avsluta importprocessen?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Det finns inga emulatorer som är konfigurerade i Playnite. Du kan inte importera spel utan att konfigurera en emulator först. Vill du lägga till emulatorer nu?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Skanna katalog med Emulator</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Välj filer</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Autodetektera från katalog…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Konfigurera emulatorer…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">Skannar…</sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Första Gången Konfiguration</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Den här guiden hjälper dig genom automatisk import av spel och konfiguration av externa spelbibliotek. Playnite kan automatiskt importera spel från flera distribuerare som Steam eller GOG, och även hålla ditt bibliotek uppdaterat genom att uppdatera det automatiskt under programstarten.
-        
-Tänk på att du alltid kan lägga till ett anpassat spel för någon plattform manuellt från huvudmenyn genom att klicka på "Playnite" -knappen.   
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Den här guiden hjälper dig genom automatisk import av spel och konfiguration av externa spelbibliotek. Playnite kan automatiskt importera spel från flera leverantörer som Steam eller GOG, och även hålla ditt bibliotek uppdaterat genom att uppdatera det automatiskt under programstart.
+       
+Du kan alltid lägga till ett anpassat spel för någon plattform manuellt från huvudmenyn genom att klicka på "Playnite" -knappen.   
     </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Välj plats för databas. Plats kan också ändras senare via inställningsmenyn.
 
@@ -416,29 +430,31 @@ Tips! Om du vill synkronisera ditt bibliotek mellan flera datorer ställer du in
     <sys:String x:Key="LOCFirstDBLocDefault">Standard plats för alla användare</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Anpassad plats</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Bibliotek Integration</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Importera automatiskt spel från följande tjänster. Alla senare speländringar (installationsstatus) uppdateras automatiskt vid Playnite-uppstart eller när den utlöses manuellt. Valda inställningar påverkar initial och all efterföljande import.</sys:String>
-    <sys:String x:Key="LOCFirstSteamIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstOriginIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstGOGIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstBattleNetIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstUplayIntegration"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Importera automatiskt spel från följande tjänster. Alla senare speländringar (installation) uppdateras automatiskt vid Playnite-uppstart eller när den utlöses manuellt. Valda inställningar påverkar denna första och all efterföljande import.</sys:String>
+    <sys:String x:Key="LOCFirstSteamIntegration">Steam-integration</sys:String>
+    <sys:String x:Key="LOCFirstOriginIntegration">Origin-integraion</sys:String>
+    <sys:String x:Key="LOCFirstGOGIntegration">GOG-integration</sys:String>
+    <sys:String x:Key="LOCFirstBattleNetIntegration">Battle.net-integration</sys:String>
+    <sys:String x:Key="LOCFirstUplayIntegration">Uplay-integration</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importera kategorier från konto:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Andra spel</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Klicka på knappen nedan för att importera andra installerade spel eller bläddra dem manuellt (inklusive Windows Store-spel).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importera spel</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguration Avslutad</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Förstagångskonfigurationen har slutförts. Kom ihåg att du kan ändra alla inställningar senare via Inställningar.
+
+Du kan också lägga till andra spel (inklusive Microsoft Store-spel) senare från huvudmenyn genom att klicka på Playnite-logotypen.</sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport">Öppnar en guide för att importera emulerade spel</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">Rutnätsvy</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Välj den önskade layouten för Playnites rutnätsvy. Utseendet för bilder kan ändras när som helst i applikationsinställningarna, inklusive inställningar för bildskalning.</sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfigurera Plattformar och Emulatorer</sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Konfigurera emulatorer</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Plattformar</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Plattform</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emulatorer</sys:String>
-    <sys:String x:Key="LOCEmulatorTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">Emulator</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Lägg till Plattform</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Välj Ikon</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Välj Omslag</sys:String>
@@ -452,8 +468,8 @@ Tips! Om du vill synkronisera ditt bibliotek mellan flera datorer ställer du in
     <sys:String x:Key="LOCArgumentsTitle">Argument</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">Katalog</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Filtyper</sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">Importera Emulatorer…</sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton">Hämta Emulatorer…</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Ladda argumenter förinställda från känd emulatorprofil</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Är du säker på att du vill ta bort {0} emulator?        
 Det används för närvarande av {1} spel.</sys:String>
@@ -462,17 +478,17 @@ Det används för närvarande av {1} spel and {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Inställningar hjälp</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">Sortera efter</sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Gruppera efter</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Stigande</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Fallande</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Gruppera inte</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">Gruppera efter Distribuerare</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Gruppera efter Kategori</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Gruppera efter Plattform</sys:String>
-    <sys:String x:Key="LOCViewType"></sys:String>
-    <sys:String x:Key="LOCMenuView"></sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
-    <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
+    <sys:String x:Key="LOCViewType">Typ av vy</sys:String>
+    <sys:String x:Key="LOCMenuView">Vy</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Utforskar-panel</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">Filter-panel</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Ikon</sys:String>
@@ -481,17 +497,17 @@ Det används för närvarande av {1} spel and {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sorteringsnamn</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Leverantör</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Titel</sys:String>
-    <sys:String x:Key="LOCGameAccountNameTitle"></sys:String>
+    <sys:String x:Key="LOCGameAccountNameTitle">Kontonamn</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plattform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategori(er)</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Genre(r)</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Utgivningsdatum</sys:String>
-    <sys:String x:Key="LOCGameReleaseYearTitle"></sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">Släpptes år</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Utvecklare</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Utgivare</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installerad</sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Installerad</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Avinstallerad</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Dold</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorit</sys:String>
@@ -506,11 +522,11 @@ Det används för närvarande av {1} spel and {2} emulator(er).</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Databas fel</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Misslyckades med att öppna bibliotekets databas.</sys:String>
-    <sys:String x:Key="LOCDatabaseNotOpenedError"></sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">Databasen är inte öppen.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Kan inte komma åt biblioteksdatabasen. Fil "{0}" används av en annan process eller är otillgängligt.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Misslyckades med att skapa diagnostikpaket.</sys:String>
-    <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
-    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">Misslyckades med att automatiskt ladda upp paket med felsökningsinformation.</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">Lyckades skicka felsökningsinformationen.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnostikpaket skapad.</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Misslyckades med att importera Steam kategorier.</sys:String>
@@ -527,15 +543,20 @@ Det används för närvarande av {1} spel and {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError">Det gick inte att ladda ner Origin bibliotek.</sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError">Det gick inte att ladda ner Uplay bibliotek.</sys:String>
     
-    <sys:String x:Key="LOCLibraryImportError"></sys:String>    
-    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Kan inte söka efter spel med vald emulatorns profil. Profilen innehåller inga filtillägg eller plattformar.</sys:String>
-    <sys:String x:Key="LOCStartGenericError">Playnite misslyckades med att starta. Vänligen stäng alla körinstanser och försök igen.</sys:String>
+    <sys:String x:Key="LOCLibraryImportError">Misslyckades med att importera spel från {0}.</sys:String>    
+    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Kan inte söka efter spel med den valda emulatorns profil. Profilen innehåller inga filtillägg eller plattformar.</sys:String>
+    <sys:String x:Key="LOCStartGenericError">Playnite misslyckades med att starta. Vänligen stäng alla instanser och försök igen.</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Misslyckades med att tillämpa tema "{0}", färgprofil "{1}"
         
 {1}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Kan inte öppna länk, URL är inte i giltigt format.</sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCAppStartupError">Misslyckades med att starta applikationen.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Misslyckades med att initiera web view-komponenten. Playnite kan inte slutföra uppstarten.
+        
+Du kan prova följande tips för att försöka avhjälpa felet:    
+  • Säkerställ att alla filer installerades korrekt. En ominstallation kan hjälpa.
+  • Säkerställ att ditt antivirus inte blockerar filer i Playnites katalog.
+  • Försök att installera Playnite i en annan katalog</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Redigera Speluppgifter</sys:String>
@@ -550,9 +571,9 @@ Det används för närvarande av {1} spel and {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Ta bort Startalternativ</sys:String>
     <sys:String x:Key="LOCOtherActions">Andra Åtgärder</sys:String>
     <sys:String x:Key="LOCAddGames">Lägg till Spel</sys:String>
-    <sys:String x:Key="LOCScanFolder"></sys:String>
-    <sys:String x:Key="LOCDetectInstalled"></sys:String>
-    <sys:String x:Key="LOCBrowse"></sys:String>
+    <sys:String x:Key="LOCScanFolder">Skanna katalog…</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">Uptäck installerade</sys:String>
+    <sys:String x:Key="LOCBrowse">Bläddra…</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Öpnna Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profilinställningar</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Spelnamnet kan inte vara tomt.</sys:String>
@@ -564,178 +585,197 @@ Det används för närvarande av {1} spel and {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCDownloadError">Hämtings fel</sys:String>
     <sys:String x:Key="LOCClearFilters">Rensa Filter</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Privat konto</sys:String>
-    <sys:String x:Key="LOCPublicAccount"></sys:String>
+    <sys:String x:Key="LOCPublicAccount">Allmän användare</sys:String>
     <sys:String x:Key="LOCAPIKey">API Nyckel</sys:String>
     <sys:String x:Key="LOCStartupError">Startfel</sys:String>
     <sys:String x:Key="LOCSkinError">Tema Fel</sys:String>
     <sys:String x:Key="LOCClearAll">Rensa allt</sys:String>
     <sys:String x:Key="LOCSetupRunning">Installation pågår...</sys:String>
-    <sys:String x:Key="LOCUninstalling"></sys:String>
-    <sys:String x:Key="LOCGameLaunching"></sys:String>
-    <sys:String x:Key="LOCGameRunning"></sys:String>
+    <sys:String x:Key="LOCUninstalling">Avinstallerar</sys:String>
+    <sys:String x:Key="LOCGameLaunching">Startar</sys:String>
+    <sys:String x:Key="LOCGameRunning">Körs</sys:String>
     <sys:String x:Key="LOCInvalidURL">Ogiltig URL</sys:String>
     <sys:String x:Key="LOCDoNothing">Gör inget</sys:String>
     <sys:String x:Key="LOCMinimize">Minimera</sys:String>
-    <sys:String x:Key="LOCRestoreWindow"></sys:String>
+    <sys:String x:Key="LOCRestoreWindow">Återställ fönster</sys:String>
     <sys:String x:Key="LOCClose">Stäng</sys:String>
-    <sys:String x:Key="LOCChange"></sys:String>
-    <sys:String x:Key="LOCAdvanced"></sys:String>
-    <sys:String x:Key="LOCNever"></sys:String>
-    <sys:String x:Key="LOCNotPlayed"></sys:String>
-    <sys:String x:Key="LOCPlayed"></sys:String>
-    <sys:String x:Key="LOCBeaten"></sys:String>
-    <sys:String x:Key="LOCCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatus"></sys:String>
-    <sys:String x:Key="LOCUserScore"></sys:String>
-    <sys:String x:Key="LOCCriticScore"></sys:String>
-    <sys:String x:Key="LOCCommunityScore"></sys:String>
-    <sys:String x:Key="LOCScripts"></sys:String>
-    <sys:String x:Key="LOCPlugins"></sys:String>
-    <sys:String x:Key="LOCExtensions"></sys:String>
-    <sys:String x:Key="LOCReloadScripts"></sys:String>
-    <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
-    <sys:String x:Key="LOCExitPlaynite"></sys:String>
-    <sys:String x:Key="LOCLibraries"></sys:String>
-    <sys:String x:Key="LOCUpdateAll"></sys:String>
-    <sys:String x:Key="LOCExtensionCreatedBy"></sys:String>
-    <sys:String x:Key="LOCExtensionVersion"></sys:String>
-    <sys:String x:Key="LOCExtensionModule"></sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
-    <sys:String x:Key="LOCAll"></sys:String>
-    <sys:String x:Key="LOCNone"></sys:String>
-    <sys:String x:Key="LOCNotifications"></sys:String>
-    <sys:String x:Key="LOCWidth"></sys:String>
-    <sys:String x:Key="LOCHeight"></sys:String>
-    <sys:String x:Key="LOCSize"></sys:String>
+    <sys:String x:Key="LOCChange">Ändra</sys:String>
+    <sys:String x:Key="LOCAdvanced">Avancerat</sys:String>
+    <sys:String x:Key="LOCNever">Aldrig</sys:String>
+    <sys:String x:Key="LOCNotPlayed">Aldrig spelat</sys:String>
+    <sys:String x:Key="LOCPlayed">Spelat</sys:String>
+    <sys:String x:Key="LOCBeaten">Klarat</sys:String>
+    <sys:String x:Key="LOCCompleted">Slutförd</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Status för avklarande</sys:String>
+    <sys:String x:Key="LOCUserScore">Användarbetyg</sys:String>
+    <sys:String x:Key="LOCCriticScore">Betyg från kritiker</sys:String>
+    <sys:String x:Key="LOCCommunityScore">Övriga användares betyg</sys:String>
+    <sys:String x:Key="LOCScripts">Skript</sys:String>
+    <sys:String x:Key="LOCPlugins">Plugins</sys:String>
+    <sys:String x:Key="LOCExtensions">Tillägg</sys:String>
+    <sys:String x:Key="LOCReloadScripts">Ladda om skript</sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess">Alla skript blev omladdade.</sys:String>
+    <sys:String x:Key="LOCNoGamesFound">Inga spel hittades</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Avsluta till skrivbordsläge</sys:String>
+    <sys:String x:Key="LOCExitPlaynite">Avsluta Playnite</sys:String>
+    <sys:String x:Key="LOCLibraries">Bibliotek</sys:String>
+    <sys:String x:Key="LOCUpdateAll">Uppdatera alla</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Skapad av:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
+    <sys:String x:Key="LOCLibrary">Bibliotek</sys:String>
+    <sys:String x:Key="LOCAll">Alla</sys:String>
+    <sys:String x:Key="LOCNone">Ingen</sys:String>
+    <sys:String x:Key="LOCNotifications">Aviseringar</sys:String>
+    <sys:String x:Key="LOCWidth">Bredd</sys:String>
+    <sys:String x:Key="LOCHeight">Höjd</sys:String>
+    <sys:String x:Key="LOCSize">Storlek</sys:String>
+    <sys:String x:Key="LOCFontSmall">Liten</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normal</sys:String>
+    <sys:String x:Key="LOCFontLarge">Stor</sys:String>
+    <sys:String x:Key="LOCFontLarger">Större</sys:String>
+    <sys:String x:Key="LOCFontLargest">Störst</sys:String>
+    <sys:String x:Key="LOCDefault">Standard</sys:String>
 
-
-    <sys:String x:Key="LOCEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCEmulatorArguments">Argument till Emulatorn</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ytterligare Emulator Arguments</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Skriv över Emulator Arguments</sys:String>
 
     <sys:String x:Key="LOCGameImportWindowTitle">Välj Spel för Import</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadata sök</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Uppdatering tillgänglig</sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Ändringar sedan senaste uppdateringen</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Installera uppdatering</sys:String>
-    <sys:String x:Key="LOCCheckForUpdates"></sys:String>
-    <sys:String x:Key="LOCUpdateError"></sys:String>
-    <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage"></sys:String>
-    <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Sök efter uppdateringar</sys:String>
+    <sys:String x:Key="LOCUpdateError">Uppdateringsfel</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Misslyckades med att söka efter en ny version.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Ingen ny version hittat, du har den senaste.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Misslyckades med att ladda ner och installera uppdatering.</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Bakgrundsjobb pågår just nu, vill du avbryta och fortsätta med uppgraderingen ändå?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Bakgrundsjobb pågår just nu, vill du avbryta och avsluta Playnite ändå?</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">En ny uppdatering för Playnite är tillgänglig</sys:String>
 
-    <sys:String x:Key="LOCThemeTestReloadList">Uppdatera temarlista</sys:String>
-    <sys:String x:Key="LOCThemeTestApplySkin">Applicera valt tema</sys:String>
+    <sys:String x:Key="LOCThemeTestReloadList">Uppdatera temalista</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">Tillämpa valt tema</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Titta på filändringar</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Använd automatiskt tema när källfilen ändras</sys:String>
 
     <!--Game actions-->
-    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
+    <sys:String x:Key="LOCSaveAsDefault">Spara som standard</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Lägg till i Favoriter</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Ta bort från Favoriter</sys:String>
     <sys:String x:Key="LOCHideGame">Dölj</sys:String>
     <sys:String x:Key="LOCUnHideGame">Visa i biblioteket</sys:String>
-    <sys:String x:Key="LOCEditGame"></sys:String>
-    <sys:String x:Key="LOCSetGameCategory"></sys:String>
+    <sys:String x:Key="LOCEditGame">Ändra…</sys:String>
+    <sys:String x:Key="LOCSetGameCategory">Ange Kategori…</sys:String>
     <sys:String x:Key="LOCRemoveGame">Ta Bort</sys:String>
     <sys:String x:Key="LOCPlayGame">Spela</sys:String>
     <sys:String x:Key="LOCInstallGame">Installera</sys:String>
     <sys:String x:Key="LOCGameOptions"></sys:String>
-    <sys:String x:Key="LOCGameDetails"></sys:String>
+    <sys:String x:Key="LOCGameDetails">Detaljer</sys:String>
     <sys:String x:Key="LOCUninstallGame">Avinstallera</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Bläddra bland Lokalafiler</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Skapa genväg på Skrivbordet</sys:String>
     <sys:String x:Key="LOCMoreAction">Mer</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">Hanteras av bibliotekets plugin</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">Spelets programprocess hanteras av den plugin som tillhör biblioteket som ansvarar för detta spel.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Hittade inte någon relevant information om spelet '{0}' på angiven sida.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tips! Du kan använda mer avancerad metadatahämtningsprocess medan du redigerar ett spel via menyn "Redigera".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Ej tillgänglig när annan process pågår.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Beskrivning text är HTML-syntax känslig</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Speltiden övervakas och lagras i sekundform.</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">Värde mellan 0 till 100 eller tom för inget betyg.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnites utveckling stöds av dessa patrons:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kod, lokalisering och andra bidragsgivare i ingen särskild ordning:</sys:String>
 
-    <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringAskTitle">Avbryt övervakning av spel?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">Övervakning av installation pågår, vill du avbryta processen och återgå till föregående tillstånd?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Övervakning av spelets verkställande pågår, vill du avbryta processen och återgå till föregående tillstånd?</sys:String>
     
-    <sys:String x:Key="LOCTimePlayed"></sys:String>
-    <sys:String x:Key="LOCLastPlayed"></sys:String>
-    <sys:String x:Key="LOCPlayedHours"></sys:String>
-    <sys:String x:Key="LOCPlayedMinutes"></sys:String>
-    <sys:String x:Key="LOCPlayedSeconds"></sys:String>
-    <sys:String x:Key="LOCPlayedNone"></sys:String>
+    <sys:String x:Key="LOCTimePlayed">Speltid</sys:String>
+    <sys:String x:Key="LOCLastPlayed">Senast spelat</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0} minuter</sys:String>
+    <sys:String x:Key="LOCPlayedSeconds">{0} sekunder</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Aldrig spelat</sys:String>
 
-    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
-    <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCInstallScript"></sys:String>
-    <sys:String x:Key="LOCScriptError"></sys:String>
-    <sys:String x:Key="LOCScriptExecutionError"></sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Öppnar skrivbordsläge…</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Öppnar helskrärmsläge…</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Laddar spelbibeliotek…</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Det gick inte att installera skriptfilen.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Skriptet har installerats.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Installera skript</sys:String>
+    <sys:String x:Key="LOCScriptError">Fel i skript</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">Kunde inte köra aktuell funktion i utökningen.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Öppna katalog för metadata</sys:String>
 
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0}-klienten är inte installerad.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0}-klienten kommer nu att öppnas. Var vänlig logga in där och stäng sedan detta meddelande.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Väntar på inloggning, var vänlig stäng detta fönster när du är färdig…</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Kunde inte hitta installationskatalogen för spelet.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Ogiltig konfiguration för spelhandlingar.</sys:String>
 
-    <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Felsökning gällande synkronisering av konto</sys:String>
 
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
+    <sys:String x:Key="LOCRenameItem">Ändra namn på post</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Lägg till en ny post</sys:String>
+    <sys:String x:Key="LOCEnterName">Ange namn</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Ange nytt namn</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Mindre än en timme</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 till 10 timmar</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 till 100 timmar</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 till 500 timmar</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 till 1000 timmar</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installationen lyckades.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installera tillägg?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vill du installera den nya utökningen? Den existerande installationen kommer att skrivas över.
+    
+{0}
+Av {1}
+Version {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Vill du installera det nya temat? Den existerande installationen kommer att skrivas över.
+    
+{0}
+Av {1}
+Version {2}
+    </sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Du håller på att lämna Playnite och navigera till den följande webbsidan med din standardwebbläsare. Vill du fortsätta?
+    
+{0}</sys:String>
 
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io-klienten kommer nu att öppnas. Var vänlig logga in i den och stäng sedan detta meddelande.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Väntar på att inloggning, var vänlig stäng detta fönster när du är färdig…</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Itch.io-klienten med version 25 eller senare är inte installerad.</sys:String>
 
     <!--GOG-->
-    <sys:String x:Key="LOCGOGUseLogin"></sys:String>
-    <sys:String x:Key="LOCGOGUseAccountName"></sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGOGUseLogin">Kontoinloggning</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Användarnamn</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Logga in till ditt konto eller använd ditt allmänna kontonamn för att synkronisera ditt bibliotek. Notera att alternativet för kontonamn endast fungerar för konton vars spelbibliotek har satts till att vara allmänt synliga i GOG-klienten.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
-    <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
-    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">Kontonamn</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Inloggad användare</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">Kontot är privat, API-nyckel krävs.</sys:String>
 
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
-    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
-    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">Förstagångskonfigurationen är inte färdigställd. Playnite kommer nu starta om i skrivbordsläge för att slutföra proceduren.</sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Senast spelade</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Favoriter</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">Mest spelade</sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames">Alla</sys:String>
 
-    <sys:String x:Key="LOCGameListFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+    <sys:String x:Key="LOCGameListFiltered">Filter är aktiva.</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Sökresultat för:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">En post med samma namn existerar redan.</sys:String>
 
 </ResourceDictionary>

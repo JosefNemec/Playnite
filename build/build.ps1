@@ -259,13 +259,7 @@ if ($Portable)
 {
     Write-OperationLog "Building portable package..."
     $packageName = Join-Path $BuildsStorageDir "Playnite$buildNumberPlain.zip"
-    if (Test-path $packageName)
-    {
-        Remove-Item $packageName
-    }
-
-    Add-Type -assembly "System.IO.Compression.Filesystem" | Out-Null
-    [IO.Compression.ZipFile]::CreateFromDirectory($OutputDir, $packageName, "Optimal", $false) 
+    New-ZipFromDirectory $OutputDir $packageName
 }
 
 if ($Sign)

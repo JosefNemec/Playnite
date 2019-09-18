@@ -18,7 +18,7 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            return string.Join(", ", ((IEnumerable<object>)value).ToArray());
+            return string.Join(",", ((IEnumerable<object>)value).ToArray());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.GeneralAdvanced"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style TargetType="ContentControl" BasedOn="{StaticResource {x:Type ContentControl}}">
+            <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+            <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        </Style>
+    </UserControl.Resources>
+    
+    <StackPanel>
+        <DockPanel>
+            <ContentControl Content="{DynamicResource LOCSettingsDBLocation}"
+                            ContentStringFormat="{}{0} *" 
+                            DockPanel.Dock="Left" VerticalAlignment="Center"/>
+            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
+                    DockPanel.Dock="Right" Padding="5,0,5,0"
+                    Command="{Binding SelectDbFileCommand}"/>
+            <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
+                    DockPanel.Dock="Left" Margin="10,0,10,0"
+                    IsReadOnly="True"/>
+        </DockPanel>
+        <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}"
+                ContentStringFormat="{}{0} *"
+                ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
+                Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
+                Margin="0,45,0,0"/>
+        <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
+                ContentStringFormat="{}{0} *"
+                Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
+                Margin="0,15,0,0"/>
+        <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}"
+                ContentStringFormat="{}{0} *"
+                ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
+                Margin="0,15,0,0"
+                Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
+        <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}"
+                HorizontalAlignment="Left" Margin="0,45,0,0"
+                ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
+                Command="{Binding ClearWebCacheCommand}"/>
+    </StackPanel>
+</UserControl>

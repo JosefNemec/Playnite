@@ -25,7 +25,7 @@
         </DockPanel>
         <TextBlock Text="{DynamicResource LOCCrashDescription}"
                    Margin="10,10,10,20"
-                   VerticalAlignment="Center" FontSize="14" DockPanel.Dock="Top" 
+                   VerticalAlignment="Center" DockPanel.Dock="Top" 
                    TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
     </DockPanel>
 </controls:WindowBase>

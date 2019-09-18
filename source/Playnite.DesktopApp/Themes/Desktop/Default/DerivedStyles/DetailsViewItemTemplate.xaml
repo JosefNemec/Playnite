@@ -12,7 +12,8 @@
                             d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
                         <DockPanel>
                             <Image Name="PART_ImageIcon"
-                                   Height="26" RenderOptions.BitmapScalingMode="Fant"
+                                   Height="{Settings DetailsViewListIconSize}"
+                                   RenderOptions.BitmapScalingMode="Fant"
                                    DockPanel.Dock="Left" Margin="0,0,8,0" />
                             <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
                                        VerticalAlignment="Center" DockPanel.Dock="Left">

@@ -94,9 +94,9 @@ namespace Playnite.Metadata.Providers
             return Roman.To(int.Parse(m.Value));
         }
 
-        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
+        public ICollection<MetadataSearchResult> SearchMetadata(string gameName)
         {
-            return client.GetIGDBGames(game.Name.RemoveTrademarks())?.Select(a => new MetadataSearchResult()
+            return client.GetIGDBGames(gameName)?.Select(a => new MetadataSearchResult()
             {
                 Id = a.id.ToString(),
                 Name = a.name.RemoveTrademarks(),
@@ -118,6 +118,12 @@ namespace Playnite.Metadata.Providers
             return new GameMetadata(game, null, image, null);
         }
 
+        public static string GetIgdbSearchString(string gameName)
+        {
+            var temp = gameName.Replace(":", " ").Replace("-", " ");
+            return Regex.Replace(temp, @"\s+", " ");
+        }
+
         public override GameMetadata GetMetadata(Game game)
         {
             if (game.PluginId == Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB"))
@@ -137,7 +143,7 @@ namespace Playnite.Metadata.Providers
             var copyGame = game.GetClone();
             copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
             var name = copyGame.Name;
-            var results = SearchMetadata(copyGame).ToList();
+            var results = SearchMetadata(GetIgdbSearchString(name)).ToList();
             results.ForEach(a => a.Name = StringExtensions.NormalizeGameName(a.Name));            
 
             GameMetadata data = null;
@@ -183,10 +189,10 @@ namespace Playnite.Metadata.Providers
                 return data;
             }
 
-            // Try removing all ":"
-            testName = Regex.Replace(testName, @"\s*:\s*", " ");
+            // Try removing all ":" and "-"
+            testName = Regex.Replace(name, @"\s*(:|-)\s*", " ");
             resCopy = results.GetClone();
-            resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*:\s*", " "));
+            resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*(:|-)\s*", " "));
             data = matchFun(game, testName, resCopy);
             if (data != null)
             {
@@ -226,11 +232,10 @@ namespace Playnite.Metadata.Providers
 
         private GameMetadata matchFun(Game game, string matchName, IEnumerable<MetadataSearchResult> list)
         {
-            var moddedMatchName = matchName.RemoveTrademarks();
-            var res = list.Where(a => string.Equals(moddedMatchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
+            var res = list.Where(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
             if (!res.Any())
             {
-                res = list.Where(a => a.AlternativeNames.ContainsString(moddedMatchName) == true);
+                res = list.Where(a => a.AlternativeNames.ContainsString(matchName) == true);
             }
 
             if (res.Any())

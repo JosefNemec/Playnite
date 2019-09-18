@@ -33,7 +33,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return "SDK " + Playnite.SDK.Version.SDKVersion.ToString(3);
+                return "SDK: " + Playnite.SDK.SdkVersions.SDKVersion.ToString(3);
             }
         }
 
@@ -41,7 +41,9 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return "Theme API " + ThemeManager.ThemeApiVersion.ToString(3);
+                return "Theme API:\n" +
+                    $"Desktop: {ThemeManager.DesktopApiVersion.ToString(3)}\n" +
+                    $"Fullscreen: {ThemeManager.FullscreenApiVersion.ToString(3)}\n";
             }
         }
 
@@ -100,13 +102,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<Uri> NavigateUrlCommand
-        {
-            get => new RelayCommand<Uri>((url) =>
-            {
-                NavigateUrl(url.AbsoluteUri);
-            });
-        }
+        public RelayCommand<object> NavigateUrlCommand => GlobalCommands.NavigateUrlCommand;
 
         public AboutViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
@@ -123,11 +119,6 @@ namespace Playnite.DesktopApp.ViewModels
         public void CloseView()
         {
             window.Close();
-        }
-
-        public void NavigateUrl(string url)
-        {
-            System.Diagnostics.Process.Start(url);
         }
 
         public void CreateDiagPackage()

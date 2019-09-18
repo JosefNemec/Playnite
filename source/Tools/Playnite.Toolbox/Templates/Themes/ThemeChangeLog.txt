@@ -1,8 +1,0 @@
-﻿1.1.0
-source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/ListBox.xaml
-source/Playnite.DesktopApp/Themes/Desktop/Default/DerivedStyles/GridViewItemStyle.xaml
-source/Playnite.DesktopApp/Themes/Desktop/Default/DerivedStyles/GridViewItemTemplate.xaml
-source/Playnite.DesktopApp/Themes/Desktop/Default/Views/DetailsViewGameOverview.xaml
-source/Playnite.DesktopApp/Themes/Desktop/Default/Views/Library.xaml
-source/Playnite.DesktopApp/Themes/Desktop/Default/Views/LibraryDetailsView.xaml
-source/Playnite.DesktopApp/Themes/Desktop/Default/Views/LibraryGridView.xaml

@@ -18,6 +18,9 @@
                                     <DataTrigger Binding="{Settings ExplorerPanelPosition}" Value="Left">
                                         <Setter Property="BorderThickness" Value="0,0,1,0" />
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>

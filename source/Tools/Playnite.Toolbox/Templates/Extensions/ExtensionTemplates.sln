@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryPlugin", "LibraryPlugin\LibraryPlugin.csproj", "{2351B5C1-6E28-4B79-A1D9-90FDA53B5417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericPlugin", "GenericPlugin\GenericPlugin.csproj", "{4FDF1E89-5BC3-4C72-8FDA-0D580E7A5D5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerShellScript", "PowerShellScript", "{8072DE03-C24F-4EC3-BBEE-313790A02113}"
+	ProjectSection(SolutionItems) = preProject
+		PowerShellScript\extension.yaml = PowerShellScript\extension.yaml
+		PowerShellScript\PowerShellScript.ps1 = PowerShellScript\PowerShellScript.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IronPythonScript", "IronPythonScript", "{4AEEF359-2C59-4F43-AAF9-EA1E20F47708}"
+	ProjectSection(SolutionItems) = preProject
+		IronPythonScript\extension.yaml = IronPythonScript\extension.yaml
+		IronPythonScript\IronPythonScript.py = IronPythonScript\IronPythonScript.py
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2351B5C1-6E28-4B79-A1D9-90FDA53B5417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2351B5C1-6E28-4B79-A1D9-90FDA53B5417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2351B5C1-6E28-4B79-A1D9-90FDA53B5417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2351B5C1-6E28-4B79-A1D9-90FDA53B5417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FDF1E89-5BC3-4C72-8FDA-0D580E7A5D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FDF1E89-5BC3-4C72-8FDA-0D580E7A5D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FDF1E89-5BC3-4C72-8FDA-0D580E7A5D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FDF1E89-5BC3-4C72-8FDA-0D580E7A5D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97B2CC8F-3472-4492-BA83-60BD93D06541}
+	EndGlobalSection
+EndGlobal

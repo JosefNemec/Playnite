@@ -31,6 +31,9 @@
         <i:EventTrigger EventName="GotKeyboardFocus" >
             <prism:InvokeCommandAction Command="{Binding WindowGotFocusCommand}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Drop" >
+            <prism:InvokeCommandAction Command="{Binding FileDroppedCommand}" />
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <c:WindowBase.InputBindings>

@@ -135,7 +135,7 @@ namespace Playnite.Emulators
             return await Task.Run(() =>
             {
                 logger.Info($"Looking for games in {path}, using {profile.Name} emulator profile.");
-                if (profile.ImageExtensions == null)
+                if (!profile.ImageExtensions.HasNonEmptyItems())
                 {
                     throw new Exception("Cannot scan for games, emulator doesn't support any file types.");
                 }
@@ -156,7 +156,12 @@ namespace Playnite.Emulators
 
                     foreach (var extension in profile.ImageExtensions)
                     {
-                        if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.OrdinalIgnoreCase))
+                        if (extension.IsNullOrEmpty())
+                        {
+                            continue;
+                        }
+
+                        if (string.Equals(file.Extension.TrimStart('.'), extension.Trim(), StringComparison.OrdinalIgnoreCase))
                         {
                             var newGame = new Game()
                             {

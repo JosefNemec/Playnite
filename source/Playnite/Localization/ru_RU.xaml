@@ -238,7 +238,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuAddGameManual">Вручную...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Автоматически...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Из эмулятора...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Игра из Microsoft Store или из приложения Xbox</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Из Microsoft Store или приложения Xbox…</sys:String>
     <sys:String x:Key="LOCMenuAbout">О Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Отправить отзыв</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Запустить полноэкранный режим</sys:String>
@@ -249,15 +249,22 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuRestartSystem">Перезагрузка</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Завершение работы</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Спящий режим</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Отправить систему в спящий режим</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поля игр, отображаемые на панели подробностей:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Расстояние между элементами</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Рисовать фон элемента сетки</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина рамки</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Отсутствует источник значка игры</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Отсутствует источник обложки игры</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Сместить описание игры вниз</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Расстояние по вертикали до описания игр</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Сетка просмотра деталей положения</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Положение списка игр</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Рисовать разделитель между панелями</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Высота обложки</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Высота значка списка игр</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Шрифт программы</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Положение панели фильтра</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Положение панели проводника</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Обложка рендеринга</sys:String>
@@ -294,7 +301,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Включает в себя Steam,Origin и прочие.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Асинхронная загрузка изображений</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Улучшает прокрутку игрового списка,но ухудшает скорость загрузки изображений.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показывать название игры при отсутствии обложки</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показывать название игры, если обложка отсутствует</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Показывать название игры в режиме обложек</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Отображать иконки в режиме списка</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Показывать количество элементов в описании групп</sys:String>
@@ -335,7 +342,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Не удается импортировать последнюю запущенную игру, аккаунт для импорта не выбран.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Не удается импортировать последнюю запущенную игру, база данных не открыта.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Не удалось импортировать информацию Steam за последний раз: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheWarn"> Это приведет к выходу из всех связанных служб. Требуется перезапуск приложения, вы хотите продолжить?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">Это приведет к выходу из всех связанных служб. Требуется перезапуск приложения, вы хотите продолжить?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Очистить кэш?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">API-ключ необходим для приватных Steam-аккаунтов</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">Получить API-ключ</sys:String>
@@ -347,7 +354,9 @@ IGDB > Официальный магазин:
 
 Все активные задачи(в том числе скачивание метаданных) будут отменены.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Перезагрузить Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Новое расположение базы данных будет использоваться после перезагрузки программы.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite не перемещает файлы библиотеки автоматически, вы должны переместить/скопировать их, прежде чем местоположение будет изменено. Если в целевой папке нет библиотеки, будет создана новая.
+
+Новая база данных будет использоваться только после перезапуска приложения.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Время игры не забудет высчитываться если выбрать параметр "Закрыть".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Количество строк</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Количество столбцов</sys:String>
@@ -361,7 +370,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительно синхронизировать время игры</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Всегда загружайте записанное время воспроизведения из удаленной библиотеки во время синхронизации библиотеки, игнорируя время, записанное Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Включить поддержку контроллера в режиме рабочего стола</sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide открывает полноэкр. режим</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Кнопка Guide открывает полноэкранный режим</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Настройка параметров, используемых при загрузке метаданных автоматически после импорта новых игр.</sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor">Выбор дисплея</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Показать заголовки игры</sys:String>
@@ -372,6 +381,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Подсказки для геймпада</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Настройка отображения</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Горизонтальная прокрутка</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Выберите один из подразделов</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нету</sys:String>
     <sys:String x:Key="LOCStrechFill">Заполнить</sys:String>
@@ -474,7 +484,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCEmulatorSettingsHelp">Настройки справки</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">Сортировать</sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle">Группа по</sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Группировать</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">По возрастанию</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">По убыванию</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Не группировать</sys:String>
@@ -626,7 +636,12 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCWidth">Ширина</sys:String>
     <sys:String x:Key="LOCHeight">Высота</sys:String>
     <sys:String x:Key="LOCSize">Размер</sys:String>
-
+    <sys:String x:Key="LOCFontSmall">Маленький</sys:String>
+    <sys:String x:Key="LOCFontNormal">Обычный</sys:String>
+    <sys:String x:Key="LOCFontLarge">Большой</sys:String>
+    <sys:String x:Key="LOCFontLarger">Очень большой</sys:String>
+    <sys:String x:Key="LOCFontLargest">Огромный</sys:String>
+    <sys:String x:Key="LOCDefault">По умолчанию</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Параметры для эмулятора</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Дополнительные параметры для эмулятора</sys:String>
@@ -662,8 +677,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCRemoveGame">Удалить</sys:String>
     <sys:String x:Key="LOCPlayGame">Играть</sys:String>
     <sys:String x:Key="LOCInstallGame">Установить</sys:String>
-    <sys:String x:Key="LOCGameOptions">Настройки</sys:String>
-    <sys:String x:Key="LOCGameDetails">Описание</sys:String>
+    <sys:String x:Key="LOCGameOptions">Настройки игры</sys:String>
+    <sys:String x:Key="LOCGameDetails">Подробная информация</sys:String>
     <sys:String x:Key="LOCUninstallGame">Установить</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Открыть расположение игры</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Создать ярлык на рабочем столе</sys:String>
@@ -721,16 +736,22 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPLaytime500to1000">От 500 до 1000 часов</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Для завершения установки Playnite должен быть перезапущен. Вы хотите перезапустить сейчас?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема оформления/Расширение использует неподдерживаемую версию API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Установка прошла успешно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить расширение?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail">Не удалось установить расширение.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Не удалось установить расширение.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Вы хотите установить новое расширение? Существующая установка будет перезаписана.
     
 {0}
  {1}
 Версия {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail">Не удалось установить тему.</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Не удалось установить расширение.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Вы хотите установить новую тему? Существующая установка будет перезаписана.
     
 {0}

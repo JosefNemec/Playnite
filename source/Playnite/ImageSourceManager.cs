@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Playnite
 {
@@ -36,7 +37,7 @@ namespace Playnite
             }
         }
 
-        public static object GetImage(string source, bool cached)
+        public static BitmapImage GetImage(string source, bool cached)
         {
             if (DesignerTools.IsInDesignMode)
             {
@@ -52,7 +53,7 @@ namespace Playnite
             {
                 if (cached && Cache.TryGet(source, out var image))
                 {
-                    return image;
+                    return image as BitmapImage;
                 }
                 else
                 {
@@ -137,7 +138,7 @@ namespace Playnite
                 {
                     if (cached && Cache.TryGet(source, out var image))
                     {
-                        return image;
+                        return image as BitmapImage;
                     }
 
                     var imageData = database.GetFileAsImage(source);

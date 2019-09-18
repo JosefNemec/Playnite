@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.AppearanceGeneral"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+        xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style TargetType="ContentControl" BasedOn="{StaticResource {x:Type ContentControl}}">
+            <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+            <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <ContentControl VerticalAlignment="Center"
+                            Content="{DynamicResource LOCSettingsSkin}"
+                            ContentStringFormat="{}{0} *"/>
+            <ComboBox Margin="10,0,0,0" MinWidth="150"
+                    ItemsSource="{Binding AvailableThemes}"
+                    SelectedValue="{Binding Settings.Theme}"
+                    SelectedValuePath="DirectoryName"
+                    DisplayMemberPath="Name" />
+            <!--TODO update links -->
+            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Themes">
+                    <Run Text="{DynamicResource LOCSettingsGetThemes}" />
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Themes">
+                    <Run Text="{DynamicResource LOCSettingsCreateThemes}" />
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
+            <ContentControl Content="{DynamicResource LOCSettingsInterfaceFont}" VerticalAlignment="Center"
+                            ContentStringFormat="{}{0} *" />
+            <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
+                      SelectedValue="{Binding Settings.FontFamilyName}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,0" >
+            <CheckBox Name="CheckEnableTray" VerticalAlignment="Center"
+                    IsChecked="{Binding Settings.EnableTray}"
+                    Content="{DynamicResource LOCSettingsShowTray}"
+                    ContentStringFormat="{}{0} *" />
+            <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
+                    ItemsSource="{Binding AvailableTrayIcons}"
+                    SelectedValue="{Binding Settings.TrayIcon}"
+                    SelectedValuePath="TrayIcon"
+                    IsEnabled="{Binding Settings.EnableTray}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image RenderOptions.BitmapScalingMode="Fant"
+                                VerticalAlignment="Center" Height="16" Margin="5"
+                                Source="{Binding ImageSource}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource LOCSettingsMinimizeToTray}" Margin="20,10,5,5"
+                IsChecked="{Binding Settings.MinimizeToTray}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}" />
+        <CheckBox Name="CheckCloseToTray" Content="{DynamicResource LOCSettingsCloseToTray}" Margin="20,5,5,5"
+                IsChecked="{Binding Settings.CloseToTray}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}" />
+
+        <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
+                  Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundWindowImage}" Margin="0,15,0,0"
+                  Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImageOnWindow}"/>
+        <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
+                    IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
+            <CheckBox Content="{DynamicResource LOCSettingsBlurWindowBackgrounImage}" 
+                      IsChecked="{Binding Settings.BlurWindowBackgroundImage}"/>
+            <Slider Minimum="0" Maximum="50" TickFrequency="1" IsSnapToTickEnabled="True"
+                    Value="{Binding Settings.BackgroundImageBlurAmount}"
+                    VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
+                    IsEnabled="{Binding Settings.BlurWindowBackgroundImage}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
+                    IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
+            <CheckBox Content="{DynamicResource LOCSettingsDarkenWindowBackghrounImage}" 
+                      IsChecked="{Binding Settings.DarkenWindowBackgroundImage}"/>
+            <Slider Minimum="0" Maximum="1"
+                    Value="{Binding Settings.BackgroundImageDarkAmount}"
+                    VerticalAlignment="Center" Margin="15,0,0,0" Width="200"
+                    IsEnabled="{Binding Settings.DarkenWindowBackgroundImage}" />
+        </StackPanel>
+
+        <CheckBox Content="{DynamicResource LOCSettingsShowBackImageOnGridView}" Margin="25,15,0,0"
+                IsChecked="{Binding Settings.ShowBackImageOnGridView}"
+                IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}"/>
+    </StackPanel>
+</UserControl>

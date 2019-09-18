@@ -358,6 +358,15 @@ namespace Playnite.DesktopApp.ViewModels
             var result = model.OpenView();
             if (result == true)
             {
+                AvailablePlatforms = new SelectableDbItemList(database.Platforms);
+                AvailablePlatforms.SelectionChanged += (s, e) =>
+                {
+                    if (selectedProfile != null)
+                    {
+                        selectedProfile.Platforms = AvailablePlatforms.GetSelectedIds().ToList();
+                    }
+                };
+
                 ReloadEmulatorsFromDb();
             }
         }

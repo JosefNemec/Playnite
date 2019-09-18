@@ -41,7 +41,7 @@ There's currently no official database with user made themes. We will be launchi
 
 # Updating Themes
 
-You will need to update themes from time to time to make sure they work with new Playnite versions properly.
+You will need to update themes from time to time to make sure they work with new Playnite versions properly. You can follow changes to theme files by subscribing to [change tracking GitHub issue](https://github.com/JosefNemec/Playnite/issues/1259).
 
 Updates are necessary in these two cases:
 
@@ -52,11 +52,17 @@ Updates are necessary in these two cases:
 * New functionality is added to Playnite that requires update in theme file.
   * This usually means that your theme will still work (unless update means breaking change to Theme API), but users won't be able to make use of new features until the theme is updated.
 
-You can follow changes to theme files by subscribing to [change tracking GitHub issue](https://github.com/JosefNemec/Playnite/issues/1259).
-
 Blend made themes
 ---------------------
 
 `Toolbox` utility can be used to automatically update theme files if you are developing themes in Blend.
 
-**Updating via Toolbox utility is currently not available and will be possible in first Playnite 5.x update with theme changes.**
+To update existing theme run Toolbox with following arguments:
+
+```
+Toolbox.exe update theme desktop <ThemeDirectoryName>
+```
+
+`<ThemeDirectoryName>` is name of the theme folder from `Themes\Desktop|Fullscreen` directory where you are developing the theme.
+
+Toolbox will try to update all files to latest version, but if you modified files that were also modified in the latest API change, you will need to update those files manually. You will get the list of all files requiring manual update after the update process is finished.

@@ -22,6 +22,7 @@ using Playnite.Common;
 using System.ComponentModel;
 using Playnite.Windows;
 using Polly;
+using System.Windows.Media;
 
 namespace Playnite
 {
@@ -108,6 +109,26 @@ namespace Playnite
                 Name = defaultThemeName
             };
 
+            try
+            {
+                var installed = ExtensionInstaller.InstallExtensionQueue();
+                if (installed?.Mode == Mode)
+                {
+                    if (installed.Mode == ApplicationMode.Desktop)
+                    {
+                        AppSettings.Theme = installed.DirectoryName;
+                    }
+                    else
+                    {
+                        AppSettings.Fullscreen.Theme = installed.DirectoryName;
+                    }
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to finish installing extenions.");
+            }
+
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
@@ -153,6 +174,56 @@ namespace Playnite
             {
                 logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
             }
+
+            if (mode == ApplicationMode.Desktop)
+            {
+                try
+                {
+                    if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.FontFamilyName))
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontFamily", new FontFamily(AppSettings.FontFamilyName));
+                    }
+                    else
+                    {
+                        logger.Error($"Cannot set font {AppSettings.FontFamilyName}, font not found.");
+                    }
+
+                    if (AppSettings.FontSize > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSize", AppSettings.FontSize);
+                    }
+
+                    if (AppSettings.FontSizeSmall > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeSmall", AppSettings.FontSizeSmall);
+                    }
+
+                    if (AppSettings.FontSizeLarge > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLarge", AppSettings.FontSizeLarge);
+                    }
+
+                    if (AppSettings.FontSizeLarger > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLarger", AppSettings.FontSizeLarger);
+                    }
+
+                    if (AppSettings.FontSizeLargest > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeLargest", AppSettings.FontSizeLargest);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
+                }
+            }
         }
 
         public abstract void InstantiateApp();
@@ -166,9 +237,12 @@ namespace Playnite
         public abstract void ShowWindowsNotification(string title, string body, Action action);
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
-        {
+        {            
             logger.Info("Shutting down application because of session ending.");
-            Quit();
+            // Don't dispose CefSharp here because of bug in CefSharp during system shutdown
+            // https://github.com/JosefNemec/Playnite/issues/866
+            ReleaseResources(false);
+            CurrentNative.Shutdown(0);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
@@ -289,7 +363,7 @@ namespace Playnite
             {
                 var curProcess = Process.GetCurrentProcess();
                 var processes = Process.GetProcessesByName(curProcess.ProcessName);
-                if (processes.Count() > 1 && processes.OrderBy(a => a.StartTime).First().Id != curProcess.Id)
+                if (processes.Count() > 1)
                 {
                     logger.Info("Another faster instance is already running, shutting down.");
                     resourcesReleased = true;
@@ -388,7 +462,7 @@ namespace Playnite
 
         public abstract void Restart(CmdLineOptions options);
 
-        public virtual void ReleaseResources()
+        public virtual void ReleaseResources(bool releaseCefSharp = true)
         {
             logger.Debug("Releasing Playnite resources...");
             if (resourcesReleased)
@@ -419,18 +493,21 @@ namespace Playnite
             progressModel.ActivateProgress();
 
             // This must run on main thread
-            CurrentNative.Dispatcher.Invoke(() =>
+            if (releaseCefSharp)
             {
-                if (CefTools.IsInitialized)
+                CurrentNative.Dispatcher.Invoke(() =>
                 {
-                    CefTools.Shutdown();
-                }
-            });
+                    if (CefTools.IsInitialized)
+                    {
+                        CefTools.Shutdown();
+                    }
+                });
+            }
 
             resourcesReleased = true;
         }
 
-        public async void StartUpdateCheckerAsync()
+        public async Task StartUpdateCheckerAsync()
         {
             if (PlayniteEnvironment.InOfflineMode)
             {
@@ -443,53 +520,57 @@ namespace Playnite
                 await GlobalTaskHandler.ProgressTask;
             }
 
-            var updater = new Updater(this);
-
-            while (true)
+#pragma warning disable CS4014
+            Task.Run(async () =>
             {
-                try
+                var updater = new Updater(this);
+                while (true)
                 {
-                    if (updater.IsUpdateAvailable)
+                    try
                     {
-                        var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
-                        var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
-                        if (!Current.IsActive)
+                        if (updater.IsUpdateAvailable)
                         {
-                            ShowWindowsNotification(updateTitle, updateBody, () =>
+                            var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
+                            var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
+                            if (!Current.IsActive)
                             {
-                                Restore();
-                                new UpdateViewModel(
-                                    updater,
-                                    new UpdateWindowFactory(),
-                                    new ResourceProvider(),
-                                    Dialogs).OpenView();
-                            });
+                                ShowWindowsNotification(updateTitle, updateBody, () =>
+                                {
+                                    Restore();
+                                    new UpdateViewModel(
+                                        updater,
+                                        new UpdateWindowFactory(),
+                                        new ResourceProvider(),
+                                        Dialogs).OpenView();
+                                });
+                            }
+
+                            Api.Notifications.Add(
+                                new NotificationMessage("UpdateAvailable",
+                                updateBody,
+                                NotificationType.Info, () =>
+                                {
+                                    new UpdateViewModel(
+                                        updater,
+                                        new UpdateWindowFactory(),
+                                        new ResourceProvider(),
+                                        Dialogs).OpenView();
+                                }));
+                            return;
                         }
-
-                        Api.Notifications.Add(
-                            new NotificationMessage("UpdateAvailable",
-                            updateBody,
-                            NotificationType.Info, () =>
-                            {
-                                new UpdateViewModel(
-                                    updater,
-                                    new UpdateWindowFactory(),
-                                    new ResourceProvider(),
-                                    Dialogs).OpenView();
-                            }));
-                        return;
                     }
-                }
-                catch (Exception exc)
-                {
-                    logger.Warn(exc, "Failed to process update.");
-                }
+                    catch (Exception exc)
+                    {
+                        logger.Warn(exc, "Failed to process update.");
+                    }
 
-                await Task.Delay(Common.Timer.HoursToMilliseconds(4));
-            }
+                    await Task.Delay(Common.Timer.HoursToMilliseconds(4));
+                }
+            });
+#pragma warning restore CS4014
         }
 
-        public async void SendUsageDataAsync()
+        public async Task SendUsageDataAsync()
         {
             if (PlayniteEnvironment.InOfflineMode)
             {

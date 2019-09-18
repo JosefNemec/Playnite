@@ -7,7 +7,8 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type Hyperlink}">
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="TextDecorations" Value="{x:Null}" />
         <Style.Triggers>

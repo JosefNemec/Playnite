@@ -410,6 +410,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> ShutdownSystemCommand { get; private set; }
         public RelayCommand<object> RestartSystemCommand { get; private set; }
         public RelayCommand<object> HibernateSystemCommand { get; private set; }
+        public RelayCommand<object> SleepSystemCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> OpenAdditionalFiltersCommand { get; private set; }
         public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }        
@@ -419,6 +420,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> PrevFilterViewCommand { get; private set; }
         public RelayCommand<object> SelectPrevGameCommand { get; private set; }
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
+        public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         #endregion Commands
 
         public FullscreenAppViewModel()
@@ -700,13 +702,14 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
 
                 CloseView();
+                application.Quit();
                 var cmdline = new CmdLineOptions()
                 {
                     SkipLibUpdate = true,
                     StartInDesktop = true
                 };
+
                 ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, cmdline.ToString());
-                application.Quit();
             });
 
             ShutdownSystemCommand = new RelayCommand<object>((a) =>
@@ -722,6 +725,14 @@ namespace Playnite.FullscreenApp.ViewModels
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
                     Computer.Hibernate();
+                }
+            });
+
+            SleepSystemCommand = new RelayCommand<object>((a) =>
+            {
+                if (!PlayniteEnvironment.IsDebuggerAttached)
+                {
+                    Computer.Sleep();
                 }
             });
 
@@ -947,6 +958,11 @@ namespace Playnite.FullscreenApp.ViewModels
                     GameDetailsFocused = true;
                 }
             }, (a) => Database?.IsOpen == true);
+
+            FileDroppedCommand = new RelayCommand<DragEventArgs>((args) =>
+            {
+                OnFileDropped(args);
+            });
         }
 
         private GamesCollectionViewEntry SelectClosestGameDetails()
@@ -1263,6 +1279,60 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 ProgressVisible = false;
                 DatabaseFilters.IgnoreDatabaseUpdates = false;
+            }
+        }
+
+        private void OnFileDropped(DragEventArgs args)
+        {
+            if (args.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])args.Data.GetData(DataFormats.FileDrop);
+                if (files.Count() == 1)
+                {
+                    Window.BringToForeground();
+
+                    var path = files[0];
+                    if (File.Exists(path))
+                    {
+                        var ext = Path.GetExtension(path).ToLower();
+                        if (ext.Equals(ThemeManager.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
+                        {
+                            try
+                            {
+                                var desc = ThemeManager.GetDescriptionFromPackedFile(path);
+                                if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
+                                {
+                                    throw new Exception(Resources.GetString("LOCGeneralExtensionInstallApiVersionFails"));
+                                }
+
+                                if (Dialogs.ShowMessage(
+                                        string.Format(Resources.GetString("LOCThemeInstallPrompt"),
+                                            desc.Name, desc.Author, desc.Version),
+                                        Resources.GetString("LOCGeneralExtensionInstallTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                {
+                                    ExtensionInstaller.QueueExetnsionInstall(path);
+                                    if (Dialogs.ShowMessage(
+                                        Resources.GetString("LOCExtInstallationRestartNotif"),
+                                        Resources.GetString("LOCSettingsRestartTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                    {
+                                        application.Restart(new CmdLineOptions()
+                                        {
+                                            SkipLibUpdate = true,
+                                        });
+                                    };
+                                }
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                Logger.Error(e, "Failed to install theme.");
+                                Dialogs.ShowErrorMessage(
+                                    string.Format(Resources.GetString("LOCThemeInstallFail"), e.Message), "");
+                            }
+                        }
+                    }
+                }
             }
         }
 

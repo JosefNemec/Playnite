@@ -43,6 +43,7 @@ import clr
 import os
 os.chdir('{0}')
 clr.AddReferenceToFile(""Playnite.SDK.dll"")
+clr.AddReference('PresentationFramework')
 from Playnite.SDK.Models import *
 ", PlaynitePaths.ProgramPath.Replace(Path.DirectorySeparatorChar, '/')), scope);
 

@@ -27,16 +27,17 @@
                                 </FadeImage.ImageOpacityMask>
                             </FadeImage>
 
-                            <Grid HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch" Margin="20,0,20,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="{Settings CalculatedGameDetailsIndentation}"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                             
-                                <DockPanel Margin="20,20,10,15" MaxWidth="1024" Grid.Row="1">
+                                <DockPanel Margin="0,20,0,15" MaxWidth="1024" Grid.Row="1">
                                     <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
-                                            DockPanel.Dock="Right" Height="170" Margin="0,0,10,0"
+                                            DockPanel.Dock="Right"
+                                            Height="{Settings GameDetailsCoverHeight}"
                                             StretchDirection="Both" Stretch="Uniform"
                                             RenderOptions.BitmapScalingMode="Fant" />
                                     <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
@@ -47,7 +48,7 @@
                                                     RenderOptions.BitmapScalingMode="Fant" />
                                             <TextBlock FontFamily="{DynamicResource FontFamily}"
                                                         Text="{Binding Game.DisplayName}" DockPanel.Dock="Left"
-                                                        FontSize="30" Margin="0,0,10,0" TextWrapping="Wrap"
+                                                        FontSize="{DynamicResource FontSizeLargest}" Margin="0,0,10,0" TextWrapping="Wrap"
                                                         VerticalAlignment="Center"
                                                         Foreground="{StaticResource TextBrush}">
                                                 <TextBlock.Effect>
@@ -69,7 +70,8 @@
                                 </DockPanel>
 
                                 <DockPanel MaxWidth="1024" Grid.Row="2">
-                                    <StackPanel Margin="20,0,0,0" DockPanel.Dock="Left" Width="300">
+                                    <StackPanel DockPanel.Dock="Left" Width="300"
+                                                Margin="2,0,0,0">
                                         <StackPanel.Resources>
                                             <Style TargetType="ItemsControl">
                                                 <Setter Property="VerticalAlignment" Value="Center" />
@@ -160,11 +162,13 @@
                                     </StackPanel>
 
                                     <StackPanel Name="PART_ElemDescription"
-                                                DockPanel.Dock="Right" Margin="5,0,5,0">
+                                                DockPanel.Dock="Right" Margin="10,0,2,0">
                                         <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,10"
                                                     Style="{DynamicResource BaseTextBlockStyle}" />
                                         <Separator Background="{DynamicResource PanelSeparatorBrush}" />
                                         <HtmlTextView x:Name="PART_HtmlDescription"
+                                                      Margin="0,5,0,5"
+                                                        HtmlFontSize="{DynamicResource FontSize}"
                                                         HtmlFontFamily="{DynamicResource FontFamily}"
                                                         HtmlForeground="{DynamicResource TextColor}"
                                                         LinkForeground="{DynamicResource GlyphColor}"                                      

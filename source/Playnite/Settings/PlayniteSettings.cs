@@ -50,7 +50,7 @@ namespace Playnite
         Library,
         [Description("LOCPlatformTitle")]
         Platform,
-        [Description("LOCGeneralLabel")]
+        [Description("Playnite")]
         General
     }
 
@@ -58,7 +58,7 @@ namespace Playnite
     {
         [Description("LOCPlatformTitle")]
         Platform,
-        [Description("LOCGeneralLabel")]
+        [Description("Playnite")]
         General
     }
 
@@ -69,7 +69,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 1;
+        } = 2;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -573,21 +573,6 @@ namespace Playnite
             }
         }
 
-        private bool highQualityBackgroundBlur = true;
-        public bool HighQualityBackgroundBlur
-        {
-            get
-            {
-                return highQualityBackgroundBlur;
-            }
-
-            set
-            {
-                highQualityBackgroundBlur = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool blurWindowBackgroundImage = true;
         public bool BlurWindowBackgroundImage
         {
@@ -603,7 +588,7 @@ namespace Playnite
             }
         }
 
-        private double backgroundImageBlurAmount = 60;
+        private double backgroundImageBlurAmount = 17;
         public double BackgroundImageBlurAmount
         {
             get
@@ -1104,6 +1089,142 @@ namespace Playnite
             }
         }
 
+        private bool showPanelSeparators = true;
+        public bool ShowPanelSeparators
+        {
+            get
+            {
+                return showPanelSeparators;
+            }
+
+            set
+            {
+                showPanelSeparators = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double gameDetailsCoverHeight = 170;
+        public double GameDetailsCoverHeight
+        {
+            get
+            {
+                return gameDetailsCoverHeight;
+            }
+
+            set
+            {
+                gameDetailsCoverHeight = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string fontFamilyName = "Trebuchet MS";
+        public string FontFamilyName
+        {
+            get
+            {
+                return fontFamilyName;
+            }
+
+            set
+            {
+                fontFamilyName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSize = 14;
+        public double FontSize
+        {
+            get
+            {
+                return fontSize;
+            }
+
+            set
+            {
+                fontSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeSmall = 12;
+        public double FontSizeSmall
+        {
+            get
+            {
+                return fontSizeSmall;
+            }
+
+            set
+            {
+                fontSizeSmall = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeLarge = 15;
+        public double FontSizeLarge
+        {
+            get
+            {
+                return fontSizeLarge;
+            }
+
+            set
+            {
+                fontSizeLarge = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeLarger = 20;
+        public double FontSizeLarger
+        {
+            get
+            {
+                return fontSizeLarger;
+            }
+
+            set
+            {
+                fontSizeLarger = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeLargest = 29;
+        public double FontSizeLargest
+        {
+            get
+            {
+                return fontSizeLargest;
+            }
+
+            set
+            {
+                fontSizeLargest = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double detailsViewListIconSize = 26;
+        public double DetailsViewListIconSize
+        {
+            get
+            {
+                return detailsViewListIconSize;
+            }
+
+            set
+            {
+                detailsViewListIconSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
         public MetadataDownloaderSettings DefaultMetadataSettings
         {
@@ -1169,10 +1290,18 @@ namespace Playnite
 
         public static PlayniteSettings LoadSettings()
         {
-            var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);  
+            var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);
             if (settings == null)
             {
                 settings = new PlayniteSettings();
+            }
+            else
+            {
+                if (settings.Version == 1)
+                {
+                    settings.BackgroundImageBlurAmount = 17;
+                    settings.Version = 2;
+                }
             }
 
             settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
@@ -1259,89 +1388,6 @@ namespace Playnite
 
         public static void MigrateSettingsConfig()
         {
-            void WriteConfig(string id, Dictionary<string, object> config)
-            {
-                var path = Path.Combine(PlaynitePaths.ExtensionsDataPath, id, "config.json");
-                if (!File.Exists(path))
-                {
-                    FileSystem.CreateDirectory(path);
-                    File.WriteAllText(path, JsonConvert.SerializeObject(config, Formatting.Indented));
-                }
-            }
-
-            try
-            {
-                if (!File.Exists(PlaynitePaths.ConfigFilePath))
-                {
-                    return;
-                }
-
-                var oldSettings = JsonConvert.DeserializeObject<Settings.OldSettings.Settings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
-                if (oldSettings.BattleNetSettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.BattleNetSettings.IntegrationEnabled },
-                        { "ImportUninstalledGames", oldSettings.BattleNetSettings.LibraryDownloadEnabled }
-                    };
-
-                    WriteConfig("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD", config);
-                }
-
-                if (oldSettings.OriginSettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.OriginSettings.IntegrationEnabled },
-                        { "ImportUninstalledGames", oldSettings.OriginSettings.LibraryDownloadEnabled }
-                    };
-
-                    WriteConfig("85DD7072-2F20-4E76-A007-41035E390724", config);
-                }
-
-                if (oldSettings.GOGSettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.GOGSettings.IntegrationEnabled },
-                        { "ImportUninstalledGames", oldSettings.GOGSettings.LibraryDownloadEnabled },
-                        { "StartGamesUsingGalaxy", oldSettings.GOGSettings.RunViaGalaxy }
-                    };
-
-                    WriteConfig("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E", config);
-                }
-
-                if (oldSettings.SteamSettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.SteamSettings.IntegrationEnabled },
-                        { "ImportUninstalledGames", oldSettings.SteamSettings.LibraryDownloadEnabled },
-                        { "PreferScreenshotForBackground", oldSettings.SteamSettings.PreferScreenshotForBackground },
-                        { "ApiKey", oldSettings.SteamSettings.APIKey },
-                        { "IsPrivateAccount", oldSettings.SteamSettings.PrivateAccount },
-                        { "AccountId", oldSettings.SteamSettings.AccountId },
-                        { "AccountName", oldSettings.SteamSettings.AccountName },
-                        { "IdSource", oldSettings.SteamSettings.IdSource }
-                    };
-
-                    WriteConfig("CB91DFC9-B977-43BF-8E70-55F46E410FAB", config);
-                }
-
-                if (oldSettings.UplaySettings != null)
-                {
-                    var config = new Dictionary<string, object>()
-                    {
-                        { "ImportInstalledGames", oldSettings.UplaySettings.IntegrationEnabled }
-                    };
-
-                    WriteConfig("C2F038E5-8B92-4877-91F1-DA9094155FC5", config);
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed to migrade plugin configuration.");
-            }
         }
 
         public static void SetBootupStateRegistration(bool runOnBootup)
@@ -1350,14 +1396,23 @@ namespace Playnite
             var shortcutPath = Path.Combine(startupPath, "Playnite.lnk");
             if (runOnBootup)
             {
-                FileSystem.DeleteFile(shortcutPath);
-
-                var hideSplashScreenOption = new CmdLineOptions()
+                var args = new CmdLineOptions()
                 {
                     HideSplashScreen = true
-                };
+                }.ToString();
+                                
+                if (File.Exists(shortcutPath))
+                {
+                    var existLnk = Programs.GetLnkShortcutData(shortcutPath);
+                    if (existLnk.Path == PlaynitePaths.DesktopExecutablePath &&
+                        existLnk.Arguments == args)
+                    {
+                        return;
+                    }
+                }
 
-                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, hideSplashScreenOption.ToString(), "", shortcutPath);
+                FileSystem.DeleteFile(shortcutPath);
+                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, args, "", shortcutPath);
             }
             else
             {

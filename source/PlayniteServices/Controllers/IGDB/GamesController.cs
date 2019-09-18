@@ -11,15 +11,25 @@ using System.IO;
 using Playnite;
 using System.Web;
 using Playnite.SDK;
+using Microsoft.Extensions.Options;
+using PlayniteServices.Filters;
 
 namespace PlayniteServices.Controllers.IGDB
 {
+    [ServiceFilter(typeof(PlayniteVersionFilter))]
     [Route("igdb/games")]
     public class GamesController : Controller
     {
         private static readonly object CacheLock = new object();
         private const string cacheDir = "game_search";
         private static ILogger logger = LogManager.GetLogger();
+
+        private IOptions<AppSettings> appSettings;
+
+        public GamesController(IOptions<AppSettings> settings)
+        {
+            appSettings = settings;
+        }
 
         [HttpGet("{gameName}")]
         public async Task<ServicesResponse<List<ExpandedGame>>> Get(string gameName)
@@ -51,7 +61,7 @@ namespace PlayniteServices.Controllers.IGDB
             }
 
             var finalResult = new List<ExpandedGame>();
-            using (var gameController = new GameController())
+            using (var gameController = new GameController(appSettings))
             {
                 for (int i = 0; i < searchResult.Count; i++)
                 {

@@ -3,10 +3,12 @@ using Playnite.Common;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -29,8 +31,7 @@ namespace Playnite.Toolbox
 
         public static void CopyThemeDirectory(string sourceDirName, string destDirName, List<string> approvedXamls)
         {
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-
+            var dir = new DirectoryInfo(sourceDirName);
             if (!dir.Exists)
             {
                 throw new DirectoryNotFoundException(
@@ -38,14 +39,14 @@ namespace Playnite.Toolbox
                     + sourceDirName);
             }
 
-            DirectoryInfo[] dirs = dir.GetDirectories();
+            var dirs = dir.GetDirectories();
             if (!Directory.Exists(destDirName))
             {
                 Directory.CreateDirectory(destDirName);
             }
 
-            FileInfo[] files = dir.GetFiles();
-            foreach (FileInfo file in files)
+            var files = dir.GetFiles();
+            foreach (var file in files)
             {
                 string temppath = Path.Combine(destDirName, file.Name);
                 if (file.Extension.Equals(".xaml", StringComparison.OrdinalIgnoreCase))
@@ -61,7 +62,7 @@ namespace Playnite.Toolbox
                 }
             }
     
-            foreach (DirectoryInfo subdir in dirs)
+            foreach (var subdir in dirs)
             {
                 string temppath = Path.Combine(destDirName, subdir.Name);
                 CopyThemeDirectory(subdir.FullName, temppath, approvedXamls);
@@ -77,8 +78,14 @@ namespace Playnite.Toolbox
                 return false;
             }
 
-            return FileSystem.GetMD5(file1) == FileSystem.GetMD5(file2);
-            // Check xaml content
+            if (file1Info.Extension.Equals(".xaml", StringComparison.OrdinalIgnoreCase))
+            {
+                return Xml.AreEqual(File.ReadAllText(file1), File.ReadAllText(file2));
+            }
+            else
+            {
+                return FileSystem.GetMD5(file1) == FileSystem.GetMD5(file2);
+            }
         }
 
         public static string PackageTheme(string themeDirectory, string targetPath, ApplicationMode mode)
@@ -124,26 +131,143 @@ namespace Playnite.Toolbox
             return targetPath;
         }
 
-        public static void UpdateTheme(string themeDirectory, ApplicationMode mode)
+        public static void BackupTheme(string themeDirectory, string destination)
         {
-            var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
-            foreach (var file in Directory.GetFiles(defaultThemeDir, "*.*", SearchOption.AllDirectories))
+            var dir = new DirectoryInfo(themeDirectory);
+            var dirs = dir.GetDirectories();
+            if (!Directory.Exists(destination))
             {
-                var subName = file.Replace(defaultThemeDir, "");
+                Directory.CreateDirectory(destination);
+            }
+
+            var files = dir.GetFiles();
+            foreach (var file in files)
+            {
+                var targetPath = Path.Combine(destination, file.Name);
+                file.CopyTo(targetPath, true);
+            }
+
+            foreach (var subdir in dirs)
+            {
+                if (!subdir.Name.StartsWith("backup_"))
+                {
+                    string targetPath = Path.Combine(destination, subdir.Name);
+                    BackupTheme(subdir.FullName, targetPath);
+                }
             }
         }
 
-        public static string GenerateNewTheme(ApplicationMode mode, string themeName)
+        public static void UpdateTheme(string themeDirectory, ApplicationMode mode)
         {
-            var themeDirName = Common.Paths.GetSafeFilename(themeName).Replace(" ", string.Empty);
-            var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
-            var outDir = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), themeDirName);
-            if (Directory.Exists(outDir))
+            var themeManifestPath = Path.Combine(themeDirectory, "theme.yaml");
+            var currentThemeMan = ThemeDescription.FromFile(themeManifestPath);
+            var origThemeApiVersion = new Version(currentThemeMan.ThemeApiVersion);
+
+            if (!File.Exists(Path.Combine(themeDirectory, Themes.ThemeProjName)))
             {
-                throw new Exception($"Theme directory \"{outDir}\" already exists.");
+                throw new Exception("Cannot update theme that was not generated via Toolbox utility.");
             }
 
-            FileSystem.CreateDirectory(outDir);
+            if (ThemeManager.GetApiVersion(mode) == origThemeApiVersion)
+            {
+                logger.Warn("Theme is already updated to current API version.");
+                return;
+            }
+
+            var folder = Paths.GetNextBackupFolder(themeDirectory);
+            BackupTheme(themeDirectory, Paths.GetNextBackupFolder(themeDirectory));
+            logger.Info($"Current theme backed up into \"{Path.GetFileName(folder)}\" folder.");
+
+            var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
+            var origFilesZip = Path.Combine(Paths.ChangeLogsDir, currentThemeMan.ThemeApiVersion + ".zip");
+            var themeChanges = Themes.GetThemeChangelog(origThemeApiVersion, mode);
+            if (!themeChanges.HasItems())
+            {
+                logger.Info("No files to update.");
+                return;
+            }
+
+            // Update files
+            var notUpdated = new List<string>();
+            using (var origFiles = ZipFile.OpenRead(origFilesZip))
+            {
+                foreach (var changedFile in themeChanges)
+                {
+                    var subpath = Common.Paths.FixSeparators(Regex.Replace(changedFile.Path, ".+Themes/(Desktop|Fullscreen)/Default/", ""));
+                    var curThemePath = Path.Combine(themeDirectory, subpath);
+                    var defaultPath = Path.Combine(defaultThemeDir, subpath);
+                    if (changedFile.ChangeType == "D")
+                    {
+                        FileSystem.DeleteFile(curThemePath);
+                    }
+                    else
+                    {
+                        var canUpdate = false;
+                        if (File.Exists(curThemePath))
+                        {
+                            var origEntry = origFiles.GetEntry(ThemeManager.GetThemeRootDir(mode) + "\\" + subpath);
+                            if (origEntry == null)
+                            {
+                                canUpdate = false;
+                            }
+                            else
+                            {
+                                var origContent = string.Empty;
+                                using (var reader = new StreamReader(origEntry.Open()))
+                                {
+                                    origContent = reader.ReadToEnd();
+                                }
+
+                                if (subpath.EndsWith(".xaml", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    if (Xml.AreEqual(origContent, File.ReadAllText(curThemePath)))
+                                    {
+                                        canUpdate = true;
+                                    }
+                                }
+                                else
+                                {
+                                    if (origContent == FileSystem.GetMD5(curThemePath))
+                                    {
+                                        canUpdate = true;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            canUpdate = true;
+                        }
+
+                        if (canUpdate)
+                        {
+                            FileSystem.CopyFile(defaultPath, curThemePath);
+                        }
+                        else
+                        {
+                            logger.Debug($"Can't update {subpath}.");
+                            notUpdated.Add(subpath);
+                        }
+                    }
+                }
+            }
+
+            if (notUpdated.HasItems())
+            {
+                logger.Warn("Couldn't update some theme files, please update them manually:");
+                notUpdated.ForEach(a => logger.Warn(a));
+            }
+
+            // Update common files
+            GenerateCommonThemeFiles(mode, themeDirectory);
+
+            // Update manifest
+            currentThemeMan.ThemeApiVersion = ThemeManager.GetApiVersion(mode).ToString(3);
+            File.WriteAllText(themeManifestPath, Serialization.ToYaml(currentThemeMan));
+        }
+
+        public static List<string> GenerateCommonThemeFiles(ApplicationMode mode, string outDir)
+        {
             var defaultThemeXamlFiles = new List<string>();
 
             // Modify paths in App.xaml
@@ -175,15 +299,13 @@ namespace Playnite.Toolbox
                                 new XElement(ns + "SubType", "Designer")));
             }
 
-            // Copy to output
-            CopyThemeDirectory(defaultThemeDir, outDir, defaultThemeXamlFiles.Select(a => Path.Combine(defaultThemeDir, a)).ToList());
             appXaml.Save(Path.Combine(outDir, Themes.AppXamlName));
             csproj.Save(Path.Combine(outDir, Themes.ThemeProjName));
 
             FileSystem.CopyFile(Paths.GetThemeTemplatePath(Themes.LocSourceName), Path.Combine(outDir, Themes.LocSourceName));
             FileSystem.CopyFile(Paths.GetThemeTemplateFilePath(mode, Themes.GlobalResourcesName), Path.Combine(outDir, Themes.GlobalResourcesName));
             FileSystem.CopyFile(Paths.GetThemeTemplateFilePath(mode, Themes.ThemeSlnName), Path.Combine(outDir, Themes.ThemeSlnName));
-
+                       
             var commonFontsDirs = Paths.GetThemeTemplatePath("Fonts");
             if (Directory.Exists(commonFontsDirs))
             {
@@ -204,12 +326,30 @@ namespace Playnite.Toolbox
                 }
             }
 
+            return defaultThemeXamlFiles;
+        }
+
+        public static string GenerateNewTheme(ApplicationMode mode, string themeName)
+        {
+            var themeDirName = Common.Paths.GetSafeFilename(themeName).Replace(" ", string.Empty);
+            var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
+            var outDir = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), themeDirName);
+            if (Directory.Exists(outDir))
+            {
+                throw new Exception($"Theme directory \"{outDir}\" already exists.");
+            }
+
+            FileSystem.CreateDirectory(outDir);
+            var defaultThemeXamlFiles = GenerateCommonThemeFiles(mode, outDir);
+            CopyThemeDirectory(defaultThemeDir, outDir, defaultThemeXamlFiles.Select(a => Path.Combine(defaultThemeDir, a)).ToList());
+
             var themeDesc = new ThemeDescription()
             {
                 Author = "Your Name Here",
                 Name = themeName,
                 Version = "1.0",
-                Mode = mode
+                Mode = mode,
+                ThemeApiVersion = ThemeManager.GetApiVersion(mode).ToString()
             };
 
             File.WriteAllText(Path.Combine(outDir, ThemeManager.ThemeManifestFileName), Serialization.ToYaml(themeDesc));
@@ -223,12 +363,18 @@ namespace Playnite.Toolbox
             logger.Debug(Environment.CommandLine);
 
             var cmdlineParser = new Parser(with => with.CaseInsensitiveEnumValues = true);
-            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions>(args)
+            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions, UpdateCmdLineOptions>(args)
                 .WithParsed<NewCmdLineOptions>(ProcessNewOptions)
-                .WithParsed<PackCmdLineOptions>(ProcessPackOptions);
+                .WithParsed<PackCmdLineOptions>(ProcessPackOptions)
+                .WithParsed<UpdateCmdLineOptions>(ProcessUpdateOptions);
             if (result.Tag == ParserResultType.NotParsed)
             {
                 logger.Error("No acceptable arguments given.");     
+            }
+
+            if (Debugger.IsAttached)
+            {
+                Console.ReadLine();
             }
         }
 
@@ -243,7 +389,7 @@ namespace Playnite.Toolbox
                     logger.Info($"Created new theme in \"{path}\"");
                     logger.Info($"Don't forget to update \"{ThemeManager.ThemeManifestFileName}\" with relevant information.");
                 }
-                catch (Exception e)
+                catch (Exception e) when (!Debugger.IsAttached)
                 {
                     logger.Error(e, "Failed to create new theme." + Environment.NewLine + e.Message);
                 }
@@ -261,11 +407,29 @@ namespace Playnite.Toolbox
                     var path = PackageTheme(sourceDir, options.DestinationPath, mode);
                     logger.Info($"Theme successfully packed in \"{path}\"");
                 }
-                catch (Exception e)
+                catch (Exception e) when (!Debugger.IsAttached)
                 {
                     logger.Error(e, "Failed to pack theme file." + Environment.NewLine + e.Message);
                 }
             }
+        }
+
+        public static void ProcessUpdateOptions(UpdateCmdLineOptions options)
+        {
+            if (options.Type == ItemType.Theme)
+            {
+                try
+                {
+                    var mode = options.TargetType.Equals("desktop", StringComparison.OrdinalIgnoreCase) ? ApplicationMode.Desktop : ApplicationMode.Fullscreen;
+                    var sourceDir = Path.Combine(Paths.GetThemesPath(mode), options.Name);
+                    UpdateTheme(sourceDir, mode);
+                    logger.Info($"Theme successfully updated.");
+                }
+                catch (Exception e) when (!Debugger.IsAttached)
+                {
+                    logger.Error(e, "Failed to update theme file." + Environment.NewLine + e.Message);
+                }
+        }
         }
     }
 }
