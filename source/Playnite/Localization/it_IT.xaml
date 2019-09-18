@@ -249,15 +249,22 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCMenuRestartSystem">Riavvia il sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Arresta il sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sospendi il sistema</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Ibernare il sistema</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campi del gioco da visualizzare nel pannello dettagli:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Spaziatura oggetti</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Disegna sfondo elemento griglia</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Larghezza del bordo dell'oggetto nella griglia</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fonte dell'icona del gioco mancante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte della copertina del gioco mancante</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Indenta i dettagli del gioco</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Spaziatura verticale ai dettagli del gioco</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posizione dettagli a griglia</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posizione lista dettagli</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Disegna separatore tra i pannelli</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Altezza immagine della copertina gioco</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Altezza icona lista giochi</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Carattere dell'applicazione</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posizione del pannello filtro</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posizione pannello Esplora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendering copertina</sys:String>
@@ -347,7 +354,9 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     
 Tutte le attività attualmente attive (download di metadati) saranno annullate.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Riavviare Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">La nuova posizione del file del database verrà utilizzata solo dopo il riavvio dell'applicazione.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite non sposta automaticamente i file della libreria, devi spostarli/copiarli prima che la posizione sia cambiata. Se nessuna libreria è presente nella posizione di destinazione, ne verrà creata una nuova.
+
+Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applicazione.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Il tempo di gioco non sarà registrato se l'azione "Chiudi" è impostata.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Numero di righe</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Numero di colonne</sys:String>
@@ -371,6 +380,7 @@ Tutte le attività attualmente attive (download di metadati) saranno annullate.<
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Funzioni dei pulsanti</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Modello</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Scorrimento orizzontale</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Seleziona una delle sottosezioni</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Niente</sys:String>
     <sys:String x:Key="LOCStrechFill">Riempi</sys:String>
@@ -623,7 +633,12 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCWidth">Larghezza</sys:String>
     <sys:String x:Key="LOCHeight">Altezza</sys:String>
     <sys:String x:Key="LOCSize">Dimensioni</sys:String>
-
+    <sys:String x:Key="LOCFontSmall">Piccolo</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normale</sys:String>
+    <sys:String x:Key="LOCFontLarge">Grande</sys:String>
+    <sys:String x:Key="LOCFontLarger">Più grande</sys:String>
+    <sys:String x:Key="LOCFontLargest">Massimo</sys:String>
+    <sys:String x:Key="LOCDefault">Predefinito</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argomenti dell'emulatore</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ulteriori argomenti dell'emulatore</sys:String>
@@ -659,7 +674,7 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCRemoveGame">Rimuovi</sys:String>
     <sys:String x:Key="LOCPlayGame">Gioca</sys:String>
     <sys:String x:Key="LOCInstallGame">Installa</sys:String>
-    <sys:String x:Key="LOCGameOptions">Opzioni</sys:String>
+    <sys:String x:Key="LOCGameOptions">Opzioni di Gioco</sys:String>
     <sys:String x:Key="LOCGameDetails">Dettagli</sys:String>
     <sys:String x:Key="LOCUninstallGame">Disinstalla</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Apri percorso gioco</sys:String>
@@ -718,16 +733,22 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCPLaytime500to1000">da 500 a 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Più di 1000</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Per completare l'installazione di Playnite deve essere riavviato. Vuoi riavviare ora?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Estensione sta usando una versione API non supportata.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installazione avvenuta con successo.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installare l'estensione?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail">Installazione estensione fallita.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Impossibile installare l'estensione.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vuoi installare una nuova estensione? L'installazione esistente sarà sovrascritta.
     
 {0}
  {1}
 Versione {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail">Impossibile installare il tema.</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Impossibile installare l'estensione.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Vuoi installare una nuova estensione? L'installazione esistente sarà sovrascritta.
     
 {0}

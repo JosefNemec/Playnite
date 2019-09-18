@@ -139,10 +139,10 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCTagLabel">Étiquettes</sys:String>
     <sys:String x:Key="LOCTagsLabel">Étiquette(s)</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCListViewLabel">Affichage en liste</sys:String>
     <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Affichage en grille</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Affichage détaillé</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personnalisé</sys:String>
     <sys:String x:Key="LOCURLLabel">Lien</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
@@ -248,15 +248,22 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuRestartSystem">Redémarrer l'ordinateur</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Arrêter l'ordinateur</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Mettre en veille</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Mettre en veille</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Afficher l'arrière-plan</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largeur des bordures</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Déplacer les informations en bas de page (affichage détaillé)</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails (affichage en grille)</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Position de la liste (affichage détaillé)</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Afficher un séparateur entre les panneaux</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Hauteur de la jaquette</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Hauteur des icônes (liste de jeux)</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Taille du texte</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position du panneau de filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position du panneau d'explorateur</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Propriétés de l'affichage en grille</sys:String>
@@ -344,7 +351,9 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuer à la traduction</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Les paramètres modifiés nécessitent le redémarrage de l'application. Voulez-vous continuer ? (les tâches en cours d'exécution seront annulées)</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Redémarrer Playnite ?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Le nouvel emplacement sera utilisé au prochain démarrage de l'application.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite ne déplace pas automatiquement les fichiers de la bibliothèque, vous devez les déplacer ou les copier avant que l'emplacement ne soit modifié. Si aucune bibliothèque n'existe dans l'emplacement cible, une nouvelle sera créée. 
+
+Le nouvel emplacement de la base de données ne sera utilisé qu'après le redémarrage de l'application.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">La durée de la session ne sera pas enregistrée si Playnite est fermé après le lancement du jeu.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de rangées</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de colonnes</sys:String>
@@ -368,6 +377,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Apparence des boutons</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Défilement Horizontal</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Sélectionnez une des sous-sections</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
@@ -618,10 +628,15 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCAll">[Tout]</sys:String>
     <sys:String x:Key="LOCNone">Indéterminé</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
-    <sys:String x:Key="LOCWidth"></sys:String>
-    <sys:String x:Key="LOCHeight"></sys:String>
-    <sys:String x:Key="LOCSize"></sys:String>
-
+    <sys:String x:Key="LOCWidth">Largeur</sys:String>
+    <sys:String x:Key="LOCHeight">Hauteur</sys:String>
+    <sys:String x:Key="LOCSize">Taille</sys:String>
+    <sys:String x:Key="LOCFontSmall">Réduite</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normale</sys:String>
+    <sys:String x:Key="LOCFontLarge">Grande</sys:String>
+    <sys:String x:Key="LOCFontLarger">Très grande</sys:String>
+    <sys:String x:Key="LOCFontLargest">Maximale</sys:String>
+    <sys:String x:Key="LOCDefault">Par défaut</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments d'émulateur supplémentaires</sys:String>
@@ -716,15 +731,21 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPLaytime500to1000">500 à 1000 heures</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite doit être redémarré pour compléter l'installation. Voulez-vous redémarrer maintenant ?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Thème/Extension utilise une version d'API non supportée.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail">L'installation de l'extension a échoué.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installer l'extension ?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Échec de l'installation de l'extension.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Voulez-vous installer une nouvelle extension ? L'installation existante sera supprimée.
     
 {0}
 Par {1}
 Version {2}    </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail">L'installation du thème a échoué.</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Échec de l'installation de l'extension.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Voulez-vous installer un nouveau thème? L'installation existante sera supprimée.
     
 {0}
