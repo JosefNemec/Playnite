@@ -97,7 +97,7 @@ Some fields are only stored as references in `Game` object and can't be directly
 
 Every reference field has it's own collection accessible in [Database](xref:Playnite.SDK.IPlayniteAPI.Database) API object. For example all series can be accessed via [Series](xref:Playnite.SDK.IGameDatabase.Series) collection.
 
-If you want to change name of the series then you will need to do it by updating series item from [Series](xref:Playnite.SDK.IGameDatabase.Series) collection. The change will be automatically propagated to all games using that series. All field collections are implemented via [IItemCollection](xref:Playnite.SDK.IItemCollection) meaning that the update is done via the same process like updating general game information via `Update` method on the specific collection.
+If you want to change name of the series then you will need to do it by updating series item from [Series](xref:Playnite.SDK.IGameDatabase.Series) collection. The change will be automatically propagated to all games using that series. All field collections are implemented via [IItemCollection](xref:Playnite.SDK.IItemCollection`1) meaning that the update is done via the same process like updating general game information via `Update` method on the specific collection.
 
 ### Adding references
 
