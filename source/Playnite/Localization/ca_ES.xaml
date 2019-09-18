@@ -249,7 +249,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCMenuRestartSystem">Reinicia el Sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Tanca el Sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspèn el sistema</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Hiberna sistema</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Camps de joc que es mostraran al panell de detalls:</sys:String>
