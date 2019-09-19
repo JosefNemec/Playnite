@@ -24,6 +24,8 @@ namespace TwitchLibrary
 
         public bool ImportInstalledGames { get; set; } = true;
 
+        public bool ConnectAccount { get; set; } = false;
+
         public bool ImportUninstalledGames { get; set; } = false;
 
         #endregion Settings
@@ -32,7 +34,7 @@ namespace TwitchLibrary
         public bool IsUserLoggedIn
         {
             get
-            {                
+            {
                 var token = library.GetAuthToken();
                 if (token.IsNullOrEmpty())
                 {

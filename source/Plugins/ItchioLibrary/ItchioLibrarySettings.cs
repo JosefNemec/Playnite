@@ -22,6 +22,8 @@ namespace ItchioLibrary
 
         public bool ImportInstalledGames { get; set; } = Itch.IsInstalled;
 
+        public bool ConnectAccount { get; set; } = false;
+
         public bool ImportUninstalledGames { get; set; } = false;
 
         #endregion Settings
@@ -39,7 +41,7 @@ namespace ItchioLibrary
                 using (var butler = new Butler())
                 {
                     return butler.GetProfiles().Count > 0;
-                }                    
+                }
             }
         }
 

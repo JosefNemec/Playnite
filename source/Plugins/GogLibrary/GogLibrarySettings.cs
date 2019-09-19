@@ -24,6 +24,8 @@ namespace GogLibrary
 
         public bool ImportInstalledGames { get; set; } = true;
 
+        public bool ConnectAccount { get; set; } = false;
+
         public bool ImportUninstalledGames { get; set; } = false;
 
         public string AccountName { get; set; }
