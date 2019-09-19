@@ -256,8 +256,8 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsGridItemSpacing">Elementabstände</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Hintergrund für Rasterelemente zeichnen</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Elementerandbreite in Rasteransicht</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource">Fehlende Quelle für Spielesymbole</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource">Fehlende Quelle für Spielecover</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Quelle für fehlende Spielsymbole</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Quelle für fehlende Spielecover</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikaler Abstand zu Spieldetails</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position der Detailleiste in Rasteransicht</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Spielelistenposition in Detailansicht</sys:String>
