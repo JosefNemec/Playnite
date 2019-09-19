@@ -40,13 +40,7 @@
                       Margin="0,10,0,0"
                       Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
 
-            <TextBlock Text="{DynamicResource LOCGOGAccountSyncDescription}"
-                       Margin="0,10,0,10" TextWrapping="Wrap" />
-
-            <RadioButton Content="{DynamicResource LOCGOGUseLogin}" Margin="5" Name="RadioGogPrivateAcc"
-                         IsChecked="{Binding UsePublicAccount, Converter={StaticResource NegateConverter}}"/>
-
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left" 
                         IsEnabled="{Binding IsChecked, ElementName=RadioGogPrivateAcc}"
                         Command="{Binding LoginCommand}" Margin="30,5,5,5"/>
@@ -73,13 +67,6 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-            </StackPanel>
-
-            <RadioButton Content="{DynamicResource LOCGOGUseAccountName}" Margin="5" Name="RadioGogPublicAcc"
-                         IsChecked="{Binding UsePublicAccount}"/>
-            <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsChecked, ElementName=RadioGogPublicAcc}">
-                <TextBox HorizontalAlignment="Left" Width="200"
-                         Text="{Binding AccountName}" Margin="30,5,5,5"/>
             </StackPanel>
 
             <TextBlock VerticalAlignment="Center" Margin="10">

@@ -121,11 +121,11 @@ namespace GogLibrary.Services
             {
                 logger.Error(e, $"Failed to library from new API for account {account.username}, falling back to legacy.");
                 logger.Debug(stringLibContent);
-                return GetOwnedGamesLegacy();
+                return GetOwnedGames();
             }
         }
 
-        public List<LibraryGameResponse> GetOwnedGamesLegacy()
+        public List<LibraryGameResponse> GetOwnedGames()
         {
             var games = new List<LibraryGameResponse>();
             var baseUrl = @"https://www.gog.com/account/getFilteredProducts?hiddenFlag=0&mediaType=1&page={0}&sortBy=title";

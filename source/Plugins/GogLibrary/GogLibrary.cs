@@ -108,11 +108,6 @@ namespace GogLibrary
 
         internal List<GameInfo> GetLibraryGames()
         {
-            if (LibrarySettings.UsePublicAccount)
-            {
-                return GetLibraryGames(LibrarySettings.AccountName);
-            }
-
             using (var view = PlayniteApi.WebViews.CreateOffscreenView())
             {
                 var api = new GogAccountClient(view);
@@ -121,7 +116,7 @@ namespace GogLibrary
                     throw new Exception("User is not logged in to GOG account.");
                 }
                             
-                var libGames = api.GetOwnedGamesLegacy();
+                var libGames = api.GetOwnedGames();
                 if (libGames == null)
                 {
                     throw new Exception("Failed to obtain libary data.");
@@ -220,7 +215,7 @@ namespace GogLibrary
             {
                 try
                 {
-                    var libraryGames = LibrarySettings.UsePublicAccount ? GetLibraryGames(LibrarySettings.AccountName) : GetLibraryGames();
+                    var libraryGames = GetLibraryGames();
                     logger.Debug($"Found {libraryGames.Count} library GOG games.");
 
                     if (!LibrarySettings.ImportUninstalledGames)
