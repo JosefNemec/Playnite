@@ -263,7 +263,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Afficher un séparateur entre les panneaux</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Hauteur de la jaquette</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Hauteur des icônes (liste de jeux)</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont">Taille du texte</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Police</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position du panneau de filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position du panneau d'explorateur</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Propriétés de l'affichage en grille</sys:String>
