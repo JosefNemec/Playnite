@@ -2331,14 +2331,9 @@ namespace Playnite.DesktopApp.ViewModels
 
             EditingGame.Icon = icon;
         }
-
-        public void SelectCover(string path = null) 
+        
+        public string PrepareImagePath(string path) 
         {
-            if (path == null) 
-            {
-                path = dialogs.SelectImagefile();
-            }
-
             if (!string.IsNullOrEmpty(path))
             {
                 if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
@@ -2346,61 +2341,68 @@ namespace Playnite.DesktopApp.ViewModels
                     path = SaveConvertedTgaToTemp(path);
                 }
 
+                return path;
+            }
+
+            return null;
+        }
+        
+        public string GetDroppedImage(DragEventArgs args) {
+            if (args.Data.GetDataPresent(DataFormats.FileDrop)) 
+            {
+                string[] files = (string[])args.Data.GetData(DataFormats.FileDrop);
+
+                if (files?.Length == 1) 
+                {
+                    string path = files[0];
+
+                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".png", ".gif", ".tga" }.Contains(Path.GetExtension(path).ToLower())) 
+                    {
+                        return path;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public void SelectCover() 
+        {
+            string path = PrepareImagePath(dialogs.SelectImagefile());
+            
+            if (path != null) 
+            {
                 EditingGame.CoverImage = path;
             }
         }
 
         public void DropCover(DragEventArgs args) 
         {
-            if (args.Data.GetDataPresent(DataFormats.FileDrop)) 
+            string path = PrepareImagePath(GetDroppedImage(args));
+
+            if (!path.IsNullOrEmpty()) 
             {
-                string[] files = (string[])args.Data.GetData(DataFormats.FileDrop);
-
-                if (files?.Length == 1) 
-                {
-                    string path = files[0];
-
-                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".png", ".gif", ".tga" }.Contains(Path.GetExtension(path).ToLower())) 
-                    {
-                        SelectCover(path);
-                    }
-                }
+                EditingGame.CoverImage = path;
             }
         }
 
-        public void SelectBackground(string path = null)
+        public void SelectBackground() 
         {
-            if (path == null)
+            string path = PrepareImagePath(dialogs.SelectImagefile());
+            
+            if (!path.IsNullOrEmpty())
             {
-                path = dialogs.SelectImagefile();
-            }
-
-            if (!string.IsNullOrEmpty(path))
-            {
-                if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
-                {
-                    path = SaveConvertedTgaToTemp(path);
-                }
-
                 EditingGame.BackgroundImage = path;
             }
         }
 
         public void DropBackground(DragEventArgs args) 
         {
-            if (args.Data.GetDataPresent(DataFormats.FileDrop)) 
+            string path = PrepareImagePath(GetDroppedImage(args));
+
+            if (!path.IsNullOrEmpty()) 
             {
-                string[] files = (string[])args.Data.GetData(DataFormats.FileDrop);
-
-                if (files?.Length == 1) 
-                {
-                    string path = files[0];
-
-                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".png", ".gif", ".tga" }.Contains(Path.GetExtension(path).ToLower())) 
-                    {
-                        SelectBackground(path);
-                    }
-                }
+                EditingGame.BackgroundImage = path;
             }
         }
 
