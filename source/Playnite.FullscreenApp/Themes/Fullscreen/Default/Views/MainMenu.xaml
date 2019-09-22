@@ -41,9 +41,13 @@
                                       Style="{DynamicResource ButtonMainMenu}"
                                       Content="{DynamicResource LOCMenuShutdownSystem}" />
 
-                            <ButtonEx x:Name="PART_ButtonHibernateSystem"
+                            <ButtonEx x:Name="PART_ButtonSleepSystem"
                                       Style="{DynamicResource ButtonMainMenu}"
                                       Content="{DynamicResource LOCMenuSuspendSystem}" />
+                            
+                            <ButtonEx x:Name="PART_ButtonHibernateSystem"
+                                      Style="{DynamicResource ButtonMainMenu}"
+                                      Content="{DynamicResource LOCMenuHibernateSystem}" />
 
                             <ButtonEx x:Name="PART_ButtonRestartSystem"
                                       Style="{DynamicResource ButtonMainMenu}"

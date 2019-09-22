@@ -94,6 +94,7 @@ namespace Playnite.FullscreenApp
                 {
                     foreach (var item in toRemove)
                     {
+                        item.Dispose();
                         Items.Remove(item);
                     }
                 }

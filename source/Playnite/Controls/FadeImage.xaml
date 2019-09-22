@@ -7,17 +7,27 @@
              Name="ControlRoot"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Storyboard x:Name="Anim" x:Key="Anim">
+        <Storyboard x:Key="Image1FadeIn">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                             Storyboard.TargetName="MainImage"
+                             Storyboard.TargetName="Image1"
                              From="0.0" To="1.0" Duration="0:0:0.5"/>
         </Storyboard>
-        <Storyboard x:Name="Anim2" x:Key="Anim2">
+        <Storyboard x:Key="Image2FadeIn">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                             Storyboard.TargetName="StagingImage"
+                             Storyboard.TargetName="Image2"
+                             From="0.0" To="1.0" Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Key="Image1FadeOut">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="Image1"
                              From="1.0" To="0.0" Duration="0:0:0.5"/>
         </Storyboard>
-        <Storyboard x:Name="BorderDarkenOut" x:Key="BorderDarkenOut">
+        <Storyboard x:Key="Image2FadeOut">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="Image2"
+                             From="1.0" To="0.0" Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Key="BorderDarkenFadeOut">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                              Storyboard.TargetName="BorderDarken"
                              FillBehavior="Stop"
@@ -26,13 +36,13 @@
     </UserControl.Resources>
 
     <Grid>
-        <Image x:Name="StagingImage"
+        <Image x:Name="Image1"
                HorizontalAlignment="{Binding ElementName=ControlRoot, Path=HorizontalAlignment}"
                VerticalAlignment="{Binding ElementName=ControlRoot, Path=VerticalAlignment}"
                RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"
                OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}">
         </Image>
-        <Image x:Name="MainImage"
+        <Image x:Name="Image2"
                HorizontalAlignment="{Binding ElementName=ControlRoot, Path=HorizontalAlignment}"
                VerticalAlignment="{Binding ElementName=ControlRoot, Path=VerticalAlignment}"
                RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"

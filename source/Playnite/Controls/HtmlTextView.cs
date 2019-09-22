@@ -23,11 +23,11 @@ namespace Playnite.Controls
     {
         private static string template = string.Empty;
 
-        public int HtmlFontSize
+        public double HtmlFontSize
         {
             get
             {
-                return (int)GetValue(HtmlFontSizeProperty);
+                return (double)GetValue(HtmlFontSizeProperty);
             }
 
             set
@@ -37,18 +37,20 @@ namespace Playnite.Controls
         }
 
         public static readonly DependencyProperty HtmlFontSizeProperty =
-            DependencyProperty.Register("HtmlFontSize", typeof(int), typeof(HtmlTextView), new PropertyMetadata(11, OnHtmlFontSizeChange));
+            DependencyProperty.Register("HtmlFontSize", typeof(double), typeof(HtmlTextView), new PropertyMetadata(11.0, OnHtmlFontSizeChange));
 
         private static void OnHtmlFontSizeChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as HtmlTextView;
-            var size = (int)e.NewValue;
-            var content = template;
-            content = content.Replace("{text}", obj.HtmlText);
-            content = content.Replace("{foreground}", obj.HtmlForeground.ToHtml());
-            content = content.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
-            content = content.Replace("{font_size}", size.ToString());
-            obj.Text = content.Replace("{font_family}", obj.HtmlFontFamily.ToString());
+            if (e.NewValue is double size)
+            {
+                var content = template;
+                content = content.Replace("{text}", obj.HtmlText);
+                content = content.Replace("{foreground}", obj.HtmlForeground.ToHtml());
+                content = content.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
+                content = content.Replace("{font_size}", size.ToString());
+                obj.Text = content.Replace("{font_family}", obj.HtmlFontFamily.ToString());
+            }
         }
 
         public FontFamily HtmlFontFamily
@@ -98,13 +100,15 @@ namespace Playnite.Controls
         private static void OnLinkForegroundChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as HtmlTextView;
-            var color = (Color)e.NewValue;
-            var content = template;
-            content = content.Replace("{text}", obj.HtmlText);
-            content = content.Replace("{foreground}", obj.HtmlForeground.ToHtml());
-            content = content.Replace("{font_family}", obj.HtmlFontFamily.ToString());
-            content = content.Replace("{font_size}", obj.HtmlFontSize.ToString());
-            obj.Text = content.Replace("{link_foreground}", color.ToHtml());
+            if (e.NewValue is Color color)
+            {
+                var content = template;
+                content = content.Replace("{text}", obj.HtmlText);
+                content = content.Replace("{foreground}", obj.HtmlForeground.ToHtml());
+                content = content.Replace("{font_family}", obj.HtmlFontFamily.ToString());
+                content = content.Replace("{font_size}", obj.HtmlFontSize.ToString());
+                obj.Text = content.Replace("{link_foreground}", color.ToHtml());
+            }
         }
 
         public Color HtmlForeground
@@ -126,13 +130,15 @@ namespace Playnite.Controls
         private static void OnHtmlForegroundChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as HtmlTextView;
-            var color = (Color)e.NewValue;
-            var content = template;
-            content = content.Replace("{text}", obj.HtmlText);
-            content = content.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
-            content = content.Replace("{font_family}", obj.HtmlFontFamily.ToString());
-            content = content.Replace("{font_size}", obj.HtmlFontSize.ToString());
-            obj.Text = content.Replace("{foreground}", color.ToHtml());
+            if (e.NewValue is Color color)
+            {
+                var content = template;
+                content = content.Replace("{text}", obj.HtmlText);
+                content = content.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
+                content = content.Replace("{font_family}", obj.HtmlFontFamily.ToString());
+                content = content.Replace("{font_size}", obj.HtmlFontSize.ToString());
+                obj.Text = content.Replace("{foreground}", color.ToHtml());
+            }
         }
 
         public string HtmlText

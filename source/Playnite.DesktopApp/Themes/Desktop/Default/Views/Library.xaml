@@ -26,28 +26,14 @@
                         <MainPanel DockPanel.Dock="Top" Grid.Row="0" />
                         
                         <DockPanel Grid.Row="1">
-                            <DockPanel.Resources>
-                                <Storyboard x:Key="VisibilityOn">
-                                    <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                Storyboard.TargetName="PART_FilterPanel"
-                                                From="0" To="230" Duration="0:0:0.10" />
-                                </Storyboard>
-                                <Storyboard x:Key="VisibilityOff">
-                                    <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                Storyboard.TargetName="PART_FilterPanel"
-                                                From="230" To="0" Duration="0:0:0.10" />
-                                </Storyboard>
-                            </DockPanel.Resources>
-
                             <FilterPanel x:Name="PART_FilterPanel"
-                                         DockPanel.Dock="{Settings FilterPanelPosition}" Width="250"
-                                         AnimatedVisibility.Visibility="{Settings FilterPanelVisible}"
-                                         AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
-                                         AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}" />
+                                         DockPanel.Dock="{Settings FilterPanelPosition}"
+                                         Width="{Settings FilterPanelWitdh}"
+                                         Visibility="{Settings FilterPanelVisible}"/>
 
                             <ExplorerPanel Visibility="{Settings ExplorerPanelVisible}"
                                            DockPanel.Dock="{Settings ExplorerPanelPosition}"
-                                           Width="280"/>
+                                           Width="{Settings ExplorerPanelWitdh}"/>
                             
                             <Grid DockPanel.Dock="Left">
                                 <LibraryDetailsView x:Name="PART_ViewDetails" />

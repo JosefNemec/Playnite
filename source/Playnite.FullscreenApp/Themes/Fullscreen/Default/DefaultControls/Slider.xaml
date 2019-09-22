@@ -1,6 +1,20 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Style x:Key="SliderTrackButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="SliderThumb" TargetType="Thumb">
         <Setter Property="Template">
             <Setter.Value>
@@ -31,8 +45,15 @@
                                 <Thumb Width="8" Foreground="{TemplateBinding Foreground}"
                                        Style="{StaticResource SliderThumb}"/>
                             </Track.Thumb>
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource SliderTrackButton}"
+                                              Command="Slider.DecreaseLarge" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource SliderTrackButton}"
+                                              Command="Slider.IncreaseLarge" />
+                            </Track.IncreaseRepeatButton>
                         </Track>
-
                         <Border x:Name="BorderFocus" Margin="-3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 BorderBrush="{DynamicResource SelectionBrush}"
                                 BorderThickness="3" Visibility="Hidden" />

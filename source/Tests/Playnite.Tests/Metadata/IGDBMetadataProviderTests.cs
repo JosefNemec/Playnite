@@ -19,7 +19,7 @@ namespace Playnite.Tests.Metadata
         [Test]
         public void StandardDownloadTest()
         {
-            var search = provider.SearchMetadata(new Game("Quake 3"));
+            var search = provider.SearchMetadata("Quake 3");
             CollectionAssert.IsNotEmpty(search);
             var metadata = search.First();
             var data = provider.GetMetadata(metadata.Id);
@@ -123,6 +123,23 @@ namespace Playnite.Tests.Metadata
             Assert.IsNotNull(result.GameInfo);
             Assert.IsNotNull(result.CoverImage);
             Assert.AreEqual("Dragon's Lair", result.GameInfo.Name);
+
+            // Hyphen vs. colon test
+            result = provider.GetMetadata(new Game("Legacy of Kain - Soul Reaver 2"));
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
+            Assert.AreEqual("Legacy of Kain: Soul Reaver 2", result.GameInfo.Name);
+
+            result = provider.GetMetadata(new Game("Legacy of Kain: Soul Reaver 2"));
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
+            Assert.AreEqual("Legacy of Kain: Soul Reaver 2", result.GameInfo.Name);
+
+            // Trademarks test
+            result = provider.GetMetadata(new Game("Dishonored®: Death of the Outsider™"));
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
+            Assert.AreEqual("Dishonored: Death of the Outsider", result.GameInfo.Name);
         }
     }
 }

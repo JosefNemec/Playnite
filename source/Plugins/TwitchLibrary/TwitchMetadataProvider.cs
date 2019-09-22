@@ -21,11 +21,10 @@ namespace TwitchLibrary
 
         public TwitchMetadataProvider(TwitchLibrary library)
         {
-            this.library = library;
-            
-                var token = library.GetAuthToken();
-                if (!token.IsNullOrEmpty())
-                {
+            this.library = library;            
+            var token = library.GetAuthToken();
+            if (!token.IsNullOrEmpty())
+            {
                 try
                 {
                     entitlements = AmazonEntitlementClient.GetAccountEntitlements(token);
@@ -84,7 +83,10 @@ namespace TwitchLibrary
                         metadata.CoverImage = new MetadataFile(entitlement.product.productDetail.iconUrl);
                     }
 
-                    if (entitlement.product.productDetail?.details?.backgroundUrl2 != null)
+                    // Ignore Getting Over It background, which is set if the publisher didn't assigned any
+                    // https://github.com/JosefNemec/Playnite/issues/1376
+                    var backgroundUrl = entitlement.product.productDetail?.details?.backgroundUrl2;
+                    if (!backgroundUrl.IsNullOrEmpty() && backgroundUrl != "https://images-na.ssl-images-amazon.com/images/I/A1VAra5JJvL.jpg")
                     {
                         metadata.BackgroundImage = new MetadataFile(entitlement.product.productDetail.details.backgroundUrl2);
                     }

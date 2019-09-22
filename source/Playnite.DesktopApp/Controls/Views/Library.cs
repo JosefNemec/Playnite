@@ -73,7 +73,8 @@ namespace Playnite.DesktopApp.Controls.Views
             else if (e.PropertyName == nameof(PlayniteSettings.DarkenWindowBackgroundImage) ||
                      e.PropertyName == nameof(PlayniteSettings.BlurWindowBackgroundImage) ||
                      e.PropertyName == nameof(PlayniteSettings.BackgroundImageBlurAmount) ||
-                     e.PropertyName == nameof(PlayniteSettings.BackgroundImageDarkAmount))
+                     e.PropertyName == nameof(PlayniteSettings.BackgroundImageDarkAmount) ||
+                     e.PropertyName == nameof(PlayniteSettings.HighQualityBackgroundBlur))
             {
                 SetBackgroundEffect();
             }
@@ -84,6 +85,18 @@ namespace Playnite.DesktopApp.Controls.Views
             base.OnApplyTemplate();
 
             ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
+            //if (ImageBackground != null)
+            //{
+            //    BindingTools.SetBinding(ImageBackground,
+            //        FadeImage.IsBlurEnabledProperty,
+            //        mainModel.AppSettings,
+            //        nameof(PlayniteSettings.BlurWindowBackgroundImage));
+            //    BindingTools.SetBinding(ImageBackground,
+            //        FadeImage.BlurAmountProperty,
+            //        mainModel.AppSettings,
+            //        nameof(PlayniteSettings.BackgroundImageBlurAmount));
+            //}
+
             SetBackgroundBinding();
             SetBackgroundEffect();
 
@@ -126,8 +139,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,
                     mainModel,
-                    $"{nameof(mainModel.SelectedGame)}.{nameof(GamesCollectionViewEntry.BackgroundImageObject)}",
-                    isAsync: true);
+                    $"{nameof(mainModel.SelectedGame)}.{nameof(GamesCollectionViewEntry.BackgroundImage)}");
             }
             else
             {
@@ -143,31 +155,31 @@ namespace Playnite.DesktopApp.Controls.Views
                 {
                     ImageBackground.Effect = new BlurEffect()
                     {
-                        KernelType = KernelType.Gaussian,
+                        KernelType = KernelType.Box,
                         Radius = mainModel.AppSettings.BackgroundImageBlurAmount,
-                        RenderingBias = RenderingBias.Quality
+                        RenderingBias = mainModel.AppSettings.HighQualityBackgroundBlur ? RenderingBias.Quality : RenderingBias.Performance
                     };
                 }
                 else
                 {
                     ImageBackground.Effect = null;
                 }
-            }
 
-            if (mainModel.AppSettings.DarkenWindowBackgroundImage)
-            {
-                ImageBackground.ImageDarkeningBrush = null;
-                ImageBackground.ImageDarkeningBrush = new SolidColorBrush(new Color()
+                if (mainModel.AppSettings.DarkenWindowBackgroundImage)
                 {
-                    ScA = mainModel.AppSettings.BackgroundImageDarkAmount,
-                    ScR = 0,
-                    ScG = 0,
-                    ScB = 0
-                });
-            }
-            else
-            {
-                ImageBackground.ImageDarkeningBrush = null;
+                    ImageBackground.ImageDarkeningBrush = null;
+                    ImageBackground.ImageDarkeningBrush = new SolidColorBrush(new Color()
+                    {
+                        ScA = mainModel.AppSettings.BackgroundImageDarkAmount,
+                        ScR = 0,
+                        ScG = 0,
+                        ScB = 0
+                    });
+                }
+                else
+                {
+                    ImageBackground.ImageDarkeningBrush = null;
+                }
             }
         }
     }

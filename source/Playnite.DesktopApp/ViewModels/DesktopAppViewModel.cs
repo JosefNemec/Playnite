@@ -32,6 +32,7 @@ namespace Playnite.DesktopApp.ViewModels
         public static ILogger Logger = LogManager.GetLogger();
         private static object gamesLock = new object();
         protected bool ignoreCloseActions = false;
+        protected bool ignoreSelectionChanges = false;
         private readonly SynchronizationContext context;
         private PlayniteApplication application;
 
@@ -71,6 +72,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => selectedGame;
             set
             {
+                if (ignoreSelectionChanges)
+                {
+                    return;
+                }
+
                 if (value == selectedGame && SelectedGameDetails?.Game == value)
                 {
                     return;
@@ -651,7 +657,15 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (SelectedGames?.Count() > 1)
                 {
-                    GamesEditor.EditGames(SelectedGames.Select(g => g.Game).ToList());
+                    ignoreSelectionChanges = true;
+                    try
+                    {
+                        GamesEditor.EditGames(SelectedGames.Select(g => g.Game).ToList());
+                    }
+                    finally
+                    {
+                        ignoreSelectionChanges = false;
+                    }
                 }
                 else
                 {
@@ -692,7 +706,15 @@ namespace Playnite.DesktopApp.ViewModels
 
             EditGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
-                GamesEditor.EditGames(a.ToList());
+                ignoreSelectionChanges = true;
+                try
+                {
+                    GamesEditor.EditGames(a.ToList());
+                }
+                finally
+                {
+                    ignoreSelectionChanges = false;
+                }
             });
 
             OpenGameLocationCommand = new RelayCommand<Game>((a) =>
@@ -897,7 +919,7 @@ namespace Playnite.DesktopApp.ViewModels
             try
             {
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Run(async () =>
+                GlobalTaskHandler.ProgressTask = Task.Run(() =>
                 {
                     DatabaseFilters.IgnoreDatabaseUpdates = true;
                     var addedGames = new List<Game>();
@@ -931,7 +953,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
 
                     ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
-                    await Task.Delay(500);
+                    Thread.Sleep(500);
                                      
                     if (addedGames.Any() && metaForNewGames)
                     {
@@ -969,7 +991,7 @@ namespace Playnite.DesktopApp.ViewModels
             try
             {
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Run(async () =>
+                GlobalTaskHandler.ProgressTask = Task.Run(() =>
                 {
                     DatabaseFilters.IgnoreDatabaseUpdates = true;
                     var addedGames = new List<Game>();
@@ -993,7 +1015,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
 
                     ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
-                    await Task.Delay(500);
+                    Thread.Sleep(500);
 
                     if (addedGames.Any() && AppSettings.DownloadMetadataOnImport)
                     {
@@ -1256,21 +1278,35 @@ namespace Playnite.DesktopApp.ViewModels
                             try
                             {
                                 var desc = ThemeManager.GetDescriptionFromPackedFile(path);
+                                if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
+                                {
+                                    throw new Exception(Resources.GetString("LOCGeneralExtensionInstallApiVersionFails"));
+                                }
+
                                 if (Dialogs.ShowMessage(
                                         string.Format(Resources.GetString("LOCThemeInstallPrompt"),
                                             desc.Name, desc.Author, desc.Version),
                                         Resources.GetString("LOCGeneralExtensionInstallTitle"),
                                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                                 {
-                                    ThemeManager.InstallFromPackedFile(path);
-                                    Dialogs.ShowMessage(Resources.GetString("LOCGeneralExtensionInstallSuccess"));
+                                    ExtensionInstaller.QueueExetnsionInstall(path);
+                                    if (Dialogs.ShowMessage(
+                                        Resources.GetString("LOCExtInstallationRestartNotif"),
+                                        Resources.GetString("LOCSettingsRestartTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                    {
+                                        application.Restart(new CmdLineOptions()
+                                        {
+                                            SkipLibUpdate = true,
+                                        });
+                                    };
                                 }
                             }
                             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                             {
                                 Logger.Error(e, "Failed to install theme.");
                                 Dialogs.ShowErrorMessage(
-                                    Resources.GetString("LOCThemeInstallFail"), "");
+                                    string.Format(Resources.GetString("LOCThemeInstallFail"), e.Message), "");
                             }
                         }
                         else
@@ -1363,9 +1399,12 @@ namespace Playnite.DesktopApp.ViewModels
 
             CloseView();
             application.Quit();
-            var cmdline = new CmdLineOptions() { SkipLibUpdate = true };
+            var cmdline = new CmdLineOptions()
+            {
+                SkipLibUpdate = true
+            };
+
             ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, cmdline.ToString());
-            application.Quit();
         }
 
         public void OpenView()

@@ -23,6 +23,7 @@ using Playnite.Windows;
 using System.Drawing.Imaging;
 using Playnite.DesktopApp.Windows;
 using Playnite.SDK.Plugins;
+using Playnite.Metadata.Providers;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -854,30 +855,17 @@ namespace Playnite.DesktopApp.ViewModels
             get;
         }
 
-        public bool IsOfficialMetadataAvailable
+        public bool IsOfficialMetadataAvailable => LibraryPluginMetadataDownloader != null;
+
+        public LibraryPlugin LibraryPlugin
         {
-            get
-            {
-                if (IsMultiGameEdit)
-                {
-                    return false;
-                }
-
-                if (Game.IsCustomGame)
-                {
-                    return false;
-                }
-
-                if (extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
-                {
-                    return ((LibraryPlugin)plugin.Plugin).GetMetadataDownloader() != null;
-                }
-
-                return false;
-            }
+            get; set;
         }
 
-        public LibraryPlugin LibraryPlugin => extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == game?.PluginId);
+        public LibraryMetadataProvider LibraryPluginMetadataDownloader
+        {
+            get; set;
+        }
 
         public RelayCommand<object> ConfirmCommand
         {
@@ -1176,6 +1164,12 @@ namespace Playnite.DesktopApp.ViewModels
             Platforms.Insert(0, new Platform() { Id = Guid.Empty, Name = string.Empty });
 
             Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
+
+            if (game != null)
+            {
+                LibraryPlugin = extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == game?.PluginId);
+                LibraryPluginMetadataDownloader = LibraryPlugin?.GetMetadataDownloader();
+            }
         }
 
         private void EditingGame_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1502,31 +1496,11 @@ namespace Playnite.DesktopApp.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseView()
+        public void CloseView(bool? result = false)
         {
-            try
-            {
-                if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
-                {
-                    FileSystem.DeleteFile(EditingGame.Icon);
-                }
-
-                if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
-                {
-                    FileSystem.DeleteFile(EditingGame.CoverImage);
-                }
-
-                if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
-                {
-                    FileSystem.DeleteFile(EditingGame.BackgroundImage);
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed to cleanup temporary files.");
-            }
-
-            window.Close(false);
+            CleanupTempFiles();
+            LibraryPluginMetadataDownloader?.Dispose();
+            window.Close(result);
         }
 
         public void ConfirmDialog()
@@ -1991,11 +1965,6 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         Game.Icon = database.AddFile(EditingGame.Icon, game.Id); ;
                     }
-
-                    if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
-                    {
-                        FileSystem.DeleteFile(EditingGame.Icon);
-                    }
                 }
             }
 
@@ -2027,11 +1996,6 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         Game.CoverImage = database.AddFile(EditingGame.CoverImage, Game.Id);
-                    }
-
-                    if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
-                    {
-                        FileSystem.DeleteFile(EditingGame.CoverImage);
                     }
                 }
             }
@@ -2087,11 +2051,6 @@ namespace Playnite.DesktopApp.ViewModels
                         {
                             Game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, Game.Id);
                         }
-
-                        if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
-                        {
-                            FileSystem.DeleteFile(EditingGame.BackgroundImage);
-                        }
                     }
                 }
             }
@@ -2137,7 +2096,32 @@ namespace Playnite.DesktopApp.ViewModels
                 database.Games.Update(Game);
             }
 
-            window.Close(true);
+            CloseView(true);
+        }
+
+        internal void CleanupTempFiles()
+        {
+            try
+            {
+                if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.Icon);
+                }
+
+                if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.CoverImage);
+                }
+
+                if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.BackgroundImage);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to cleanup temporary files.");
+            }
         }
 
         public void PreviewGameData(GameMetadata metadata)
@@ -2192,7 +2176,7 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.Description = metadata.GameInfo.Description;
             }
 
-            if (metadata.GameInfo.Links != null)
+            if (metadata.GameInfo.Links.HasItems())
             {
                 EditingGame.Links = metadata.GameInfo.Links.ToObservable();
             }
@@ -2562,7 +2546,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
             
-            model.SearchTerm = EditingGame.Name;
+            model.SearchTerm = IGDBMetadataProvider.GetIgdbSearchString(EditingGame.Name);
             if (model.OpenView() == true)
             {
                 ShowCheckBoxes = true;
@@ -2579,9 +2563,8 @@ namespace Playnite.DesktopApp.ViewModels
                 try
                 {
                     if (extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
-                    {                        
-                        var downloader = ((LibraryPlugin)plugin.Plugin).GetMetadataDownloader();
-                        if (downloader == null)
+                    {
+                        if (LibraryPluginMetadataDownloader == null)
                         {
                             dialogs.ShowErrorMessage(
                                 resources.GetString("LOCErrorNoMetadataDownloader"),
@@ -2589,17 +2572,10 @@ namespace Playnite.DesktopApp.ViewModels
                             return;
                         }
 
-                        try
+                        var metadata = LibraryPluginMetadataDownloader.GetMetadata(EditingGame);
+                        if (metadata != null)
                         {
-                            var metadata = downloader.GetMetadata(EditingGame);
-                            if (metadata != null)
-                            {
-                                Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
-                            }
-                        }
-                        finally
-                        {
-                            downloader.Dispose();
+                            Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
                         }
                     }
                     else

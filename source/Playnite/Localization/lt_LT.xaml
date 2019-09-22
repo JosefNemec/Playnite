@@ -135,10 +135,10 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCTagLabel">Žymė</sys:String>
     <sys:String x:Key="LOCTagsLabel">Žymės</sys:String>
     <sys:String x:Key="LOCZoomLabel">Keisti dydį</sys:String>
-    <sys:String x:Key="LOCListLabel">Sąrašas</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Viršeliai</sys:String>
-    <sys:String x:Key="LOCGridLabel">Tinklelis</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detalus</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Pasirinktinis</sys:String>
     <sys:String x:Key="LOCURLLabel">Nuoroda</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Rėmėjai</sys:String>
@@ -243,15 +243,22 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Papildomos informacijos pozicija tinklelio rėžimu</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filtrų skydelio pozicija</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Naršymo skydelio pozicija</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Viršelio paveikslėlio atvaizdavimas</sys:String>
@@ -288,7 +295,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Įtraukti Steam, Origin ir kitus.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asinchroninis paveikslėlių krovimas</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Pagreitina navigavimą žaidimų sąraše, bet sulėtina paveikslėlių krovimą.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover"> Rodyti žaidimo pavadinimą, kai nėra viršelio</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Rodyti žaidimo pavadinimą tinklelio rėžime</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList"> Rodyti žaidimų piktogramas sąrašo rodinyje</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Rodyti objektų skaičių grupės aprašyme</sys:String>
@@ -298,6 +305,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Rodyti Steam draugų mygtuką</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
@@ -340,7 +348,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     
 Visos dabar vykstančios užduotys (metadata atsisiuntimai) bus nutrauktos.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Paleisti Playnite iš naujo?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Nauja duombazės failo vieta įsigalios po paleidimo iš naujo.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif"> Žaidimo laikas nebus išsaugotas jei pasirinksite komandą "Uždaryti".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Eilučių skaičius</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Stulpelių skaičius</sys:String>
@@ -365,6 +373,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nieko</sys:String>
     <sys:String x:Key="LOCStrechFill">Užpildyti</sys:String>
@@ -613,7 +622,15 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCAll">Visi</sys:String>
     <sys:String x:Key="LOCNone">Nieko</sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
-
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
+    <sys:String x:Key="LOCFontSmall"></sys:String>
+    <sys:String x:Key="LOCFontNormal"></sys:String>
+    <sys:String x:Key="LOCFontLarge"></sys:String>
+    <sys:String x:Key="LOCFontLarger"></sys:String>
+    <sys:String x:Key="LOCFontLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emuliatoriaus argumentai</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Papildomi emuliatoriaus argumentai</sys:String>
@@ -708,11 +725,13 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCPLaytime500to1000">Nuo 500 iki 1000 valandų</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>

@@ -36,7 +36,7 @@ namespace OriginLibrary
                 ReleaseDate = storeMetadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate,
                 Links = new List<Link>()
                 {
-                    new Link("Store", @"https://www.origin.com/store" + storeMetadata.StoreDetails.offerPath),
+                    new Link("Store Page", @"https://www.origin.com/store" + storeMetadata.StoreDetails.offerPath),
                     new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name)
                 }
             };

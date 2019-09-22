@@ -23,3 +23,6 @@ Packaging theme for distribution
 ---------------------
 
 See [Distribution and Updates](distributionAndUpdates.md) page for more details.
+
+> [!WARNING] 
+> Please pay special attention to section about updating themes to make sure your custom theme always works with the latest Playnite version.

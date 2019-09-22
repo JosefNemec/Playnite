@@ -17,6 +17,9 @@
                                     <DataTrigger Binding="{Settings GridViewDetailsPosition}" Value="Left">
                                         <Setter Property="BorderThickness" Value="0,0,1,0" />
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
@@ -56,7 +59,7 @@
                                 <DockPanel DockPanel.Dock="Top">
                                     <Image Name="PART_ImageIcon" DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32"
                                            RenderOptions.BitmapScalingMode="Fant" Margin="0,0,10,0" />
-                                    <TextBlock Text="{Binding Game.DisplayName}" FontSize="20"
+                                    <TextBlock Text="{Binding Game.DisplayName}" FontSize="{DynamicResource FontSizeLarger}"
                                                TextWrapping="Wrap" DockPanel.Dock="Left"
                                                VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                                         <TextBlock.Effect>
@@ -163,8 +166,10 @@
                                                 <ItemsControl Name="PART_ItemsLinks" />
                                             </GridEx>
                                         </StackPanel>
-                                      
+
                                         <HtmlTextView Name="PART_HtmlDescription" DockPanel.Dock="Top"
+                                                      Margin="5,5,0,5"
+                                                      HtmlFontSize="{DynamicResource FontSize}"
                                                       HtmlFontFamily="{DynamicResource FontFamily}"
                                                       HtmlForeground="{DynamicResource TextColor}"
                                                       LinkForeground="{DynamicResource GlyphColor}"                                      

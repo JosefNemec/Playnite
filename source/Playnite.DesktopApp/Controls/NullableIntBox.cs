@@ -28,12 +28,12 @@ namespace Playnite.DesktopApp.Controls
         {
             get
             {
-                return (int)GetValue(MaxLongValueProperty);
+                return (int)GetValue(MaxValueProperty);
             }
 
             set
             {
-                SetValue(MaxLongValueProperty, value);
+                SetValue(MaxValueProperty, value);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Playnite.DesktopApp.Controls
             DependencyProperty.Register(nameof(MinValue), typeof(int?), typeof(NullableIntBox),
                 new PropertyMetadata(0, MinValuePropertyChanged));
 
-        public static readonly DependencyProperty MaxLongValueProperty =
+        public static readonly DependencyProperty MaxValueProperty =
             DependencyProperty.Register(nameof(MaxValue), typeof(int?), typeof(NullableIntBox),
                 new PropertyMetadata(int.MaxValue, MaxValuePropertyChanged));
 

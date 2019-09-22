@@ -124,11 +124,11 @@ namespace Playnite
 
     public enum ViewType : int
     {
-        [Description("LOCDetailsLabel")]
+        [Description("LOCDetailsViewLabel")]
         Details = 0,
-        [Description("LOCGridLabel")]
+        [Description("LOCGridViewLabel")]
         Grid = 1,
-        [Description("LOCListLabel")]
+        [Description("LOCListViewLabel")]
         List = 2
     }
 
@@ -153,7 +153,7 @@ namespace Playnite
             }
         }
 
-        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Descending;
+        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Ascending;
         public SortOrderDirection SortingOrderDirection
         {
             get

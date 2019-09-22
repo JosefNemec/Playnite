@@ -6,6 +6,20 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="d">
 
+    <Style x:Key="ScrollBarTrackButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
@@ -13,13 +27,21 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
                     <Track x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="True"
-                           Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                           Width="17">
                         <Track.Resources>
                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">42</sys:Double>
                         </Track.Resources>
                         <Track.Thumb>
                             <Thumb />
                         </Track.Thumb>
+                        <Track.DecreaseRepeatButton>
+                            <RepeatButton Style="{DynamicResource ScrollBarTrackButton}"
+                                          Command="ScrollBar.PageUpCommand" />
+                        </Track.DecreaseRepeatButton>
+                        <Track.IncreaseRepeatButton>
+                            <RepeatButton Style="{DynamicResource ScrollBarTrackButton}"
+                                          Command="ScrollBar.PageDownCommand" />
+                        </Track.IncreaseRepeatButton>
                     </Track>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Horizontal">
@@ -40,33 +62,36 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                    <Grid Background="{TemplateBinding Background}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <ScrollContentPresenter Grid.Column="0" Grid.Row="0"
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollContentPresenter Grid.Column="0" Grid.Row="0"
                                                 Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}"
                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                                 CanContentScroll="{TemplateBinding CanContentScroll}" />
-                        <Rectangle Grid.Column="1" Grid.Row="1" Fill="{DynamicResource ControlBackgroundBrush}" />
-                        <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="0" Grid.Row="1"
+                            <Rectangle Grid.Column="1" Grid.Row="1" Fill="{DynamicResource ControlBackgroundBrush}" />
+                            <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="0" Grid.Row="1"
                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
                                    Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                    ViewportSize="{TemplateBinding ViewportWidth}"
                                    Minimum="0" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal"
                                    AutomationProperties.AutomationId="HorizontalScrollBar" />
-                        <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="1" Grid.Row="0"
+                            <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="1" Grid.Row="0"
                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
                                    Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                    ViewportSize="{TemplateBinding ViewportHeight}"
                                    Minimum="0" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical"
                                    AutomationProperties.AutomationId="VerticalScrollBar" />
-                    </Grid>
+                        </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger SourceName="PART_VerticalScrollBar" Property="Visibility" Value="Visible">
                             <Setter Property="IsTabStop" Value="True"/>

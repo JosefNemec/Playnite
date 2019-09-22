@@ -19,6 +19,7 @@ using System.Windows.Controls;
 using Playnite.Windows;
 using Playnite.DesktopApp.Markup;
 using System.Text.RegularExpressions;
+using Playnite.DesktopApp.Controls;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -130,11 +131,10 @@ namespace Playnite.DesktopApp.ViewModels
             get => Localization.AvailableLanguages;
         }
 
-        public bool DatabaseLocationChanged
+        public List<string> AvailableFonts
         {
-            get;
-            private set;
-        } = false;
+            get => System.Drawing.FontFamily.Families.Where(a => !a.Name.IsNullOrEmpty()).Select(a => a.Name).ToList();
+        }
 
         public List<SelectableTrayIcon> AvailableTrayIcons
         {
@@ -174,6 +174,30 @@ namespace Playnite.DesktopApp.ViewModels
                 return genericPluginSettings;
             }
         }
+
+        private UserControl selectedSectionView;
+        public UserControl SelectedSectionView
+        {
+            get => selectedSectionView;
+            set
+            {
+                selectedSectionView = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private object selectedSectionItem;
+        public object SelectedSectionItem
+        {
+            get => selectedSectionItem;
+            set
+            {
+                selectedSectionItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private readonly Dictionary<int, UserControl> sectionViews;
 
         #region Commands
 
@@ -225,6 +249,26 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> SetDefaultFontSizes
+        {
+            get => new RelayCommand<object>((ratio) =>
+            {
+                Settings.FontSize = 14;
+                Settings.FontSizeSmall = 12;
+                Settings.FontSizeLarge = 15;
+                Settings.FontSizeLarger = 20;
+                Settings.FontSizeLargest = 29;
+            });
+        }
+
+        public RelayCommand<RoutedPropertyChangedEventArgs<object>> SettingsTreeSelectedItemChangedCommand
+        {
+            get => new RelayCommand<RoutedPropertyChangedEventArgs<object>>((a) =>
+            {
+                SettingsTreeSelectedItemChanged(a);
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -257,6 +301,43 @@ namespace Playnite.DesktopApp.ViewModels
                 .GetExtensionDescriptors()
                 .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.FolderName) != true, null, a))
                 .ToList();
+
+            sectionViews = new Dictionary<int, UserControl>()
+            {
+                { 0, new Controls.SettingsSections.General() { DataContext = this } },
+                { 1, new Controls.SettingsSections.AppearanceGeneral() { DataContext = this } },
+                { 2, new Controls.SettingsSections.AppearanceAdvanced() { DataContext = this } },
+                { 3, new Controls.SettingsSections.AppearanceDetailsView() { DataContext = this } },
+                { 4, new Controls.SettingsSections.AppearanceGridView() { DataContext = this } },
+                { 5, new Controls.SettingsSections.AppearanceLayout() { DataContext = this } },
+                { 6, new Controls.SettingsSections.GeneralAdvanced() { DataContext = this } },
+                { 7, new Controls.SettingsSections.Input() { DataContext = this } },
+                { 8, new Controls.SettingsSections.Extensions() { DataContext = this } },
+                { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
+                { 10, new Controls.SettingsSections.EmptyParent() { DataContext = this } }
+            };
+
+            SelectedSectionView = sectionViews[0];
+        }
+
+        private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
+        {
+            if (selectedItem.NewValue is TreeViewItem treeItem)
+            {
+                if (treeItem.Tag != null)
+                {
+                    var viewIndex = int.Parse(treeItem.Tag.ToString());
+                    SelectedSectionView = sectionViews[viewIndex];
+                }
+                else
+                {
+                    SelectedSectionView = null;
+                }
+            }
+            else if (selectedItem.NewValue is KeyValuePair<Guid, PluginSettings> plugin)
+            {
+                SelectedSectionView = plugin.Value.View;
+            }
         }
 
         private Dictionary<Guid, PluginSettings> GetGenericPluginSettings()
@@ -436,7 +517,13 @@ namespace Playnite.DesktopApp.ViewModels
                         nameof(Settings.EnableTray),
                         nameof(Settings.TrayIcon),
                         nameof(Settings.EnableControllerInDesktop),
-                        nameof(Settings.Language)
+                        nameof(Settings.Language),
+                        nameof(Settings.FontFamilyName),
+                        nameof(Settings.FontSize),
+                        nameof(Settings.FontSizeSmall),
+                        nameof(Settings.FontSizeLarge),
+                        nameof(Settings.FontSizeLarger),
+                        nameof(Settings.FontSizeLargest)
                     }))
                 {
                     if (dialogs.ShowMessage(
@@ -455,10 +542,10 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectDbFile()
         {
+            dialogs.ShowMessage(resources.GetString("LOCSettingsDBPathNotification"), "", MessageBoxButton.OK, MessageBoxImage.Warning);
             var path = dialogs.SelectFolder();
             if (!string.IsNullOrEmpty(path))
             {
-                dialogs.ShowMessage(resources.GetString("LOCSettingsDBPathNotification"));
                 Settings.DatabasePath = path;
             }
         }

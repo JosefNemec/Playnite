@@ -12,15 +12,14 @@ function global:ImportRaptr()
     }
 
     $updateCount = 0
-    $games = $PlayniteApi.Database.GetGames()
-    :mainLoop foreach ($game in $games)
+    :mainLoop foreach ($game in $PlayniteApi.Database.Games)
     {
         foreach ($raptrGame in $raptrGames)
         {
             if ($game.Name -eq $raptrGame.title)
             {
                 $game.PlayTime = $raptrGame.total_playtime_seconds
-                $PlayniteApi.Database.UpdateGame($game)
+                $PlayniteApi.Database.Games.Update($game)
                 $updateCount++
                 continue :mainLoop
             }

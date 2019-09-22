@@ -11,14 +11,15 @@
                     <DockPanel Background="{TemplateBinding Background}"
                                d:DesignWidth="1280" d:DesignHeight="960"
                                d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <GridViewGameOverview x:Name="PART_ControlGameView" Width="350"
+                        <GridViewGameOverview x:Name="PART_ControlGameView"
+                                              Width="{Settings GrdiDetailsWitdh}"
                                               DockPanel.Dock="{Settings GridViewDetailsPosition}" />                   
                         <Grid DockPanel.Dock="Left">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <ExtendedListBox x:Name="PART_ListGames"
+                            <ExtendedListBox x:Name="PART_ListGames" Padding="5"
                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                              ScrollViewer.PanningMode="VerticalOnly"
                                              ItemContainerStyle="{DynamicResource GridViewItemStyle}"

@@ -72,11 +72,13 @@ namespace Playnite.DesktopApp
             InstantiateApp();
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
-            SetupInputs(AppSettings.EnableControllerInDesktop);
+            SetupInputs(false);
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
+#pragma warning disable CS4014
             StartUpdateCheckerAsync();            
             SendUsageDataAsync();
+#pragma warning restore CS4014
             ProcessArguments();
             splashScreen?.Close(new TimeSpan(0));
         }
@@ -96,10 +98,10 @@ namespace Playnite.DesktopApp
             MainModel.WindowState = WindowState.Minimized;
         }
 
-        public override void ReleaseResources()
+        public override void ReleaseResources(bool releaseCefSharp = true)
         {
             trayIcon?.Dispose();
-            base.ReleaseResources();
+            base.ReleaseResources(releaseCefSharp);
         }
 
         public override void Restart()

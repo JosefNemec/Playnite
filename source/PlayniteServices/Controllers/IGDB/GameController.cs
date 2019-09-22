@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Playnite;
 using Playnite.Common;
 using Playnite.SDK;
+using PlayniteServices.Filters;
 using PlayniteServices.Models.IGDB;
 using System;
 using System.Collections.Generic;
@@ -21,12 +23,20 @@ namespace PlayniteServices.Controllers.IGDB
         private static readonly object CacheLock = new object();
         private const string endpointPath = "games";
 
+        private AppSettings appSettings;
+
+        public GameController(IOptions<AppSettings> settings)
+        {
+            appSettings = settings.Value;
+        }
+                
+        [ServiceFilter(typeof(PlayniteVersionFilter))]
         [HttpGet("{gameId}")]
         public async Task<ServicesResponse<Game>> Get(ulong gameId)
         {
             return new ServicesResponse<Game>(await GetItem<Game>(gameId, endpointPath, CacheLock));
         }
-        
+
         // Only use for IGDB webhook.
         [HttpPost]
         public ActionResult Post([FromBody]Game game)
@@ -36,6 +46,12 @@ namespace PlayniteServices.Controllers.IGDB
                 if (secret != IGDB.WebHookSecret)
                 {
                     return BadRequest();
+                }
+
+                if (game == null)
+                {
+                    logger.Error("Failed IGDB content serialization.");
+                    return Ok();
                 }
 
                 logger.Info($"Received game webhook from IGDB: {game.id}");
@@ -53,13 +69,21 @@ namespace PlayniteServices.Controllers.IGDB
         }
     }
 
+    [ServiceFilter(typeof(PlayniteVersionFilter))]
     [Route("igdb/game_parsed")]
     public class GameParsedController : Controller
     {
+        private IOptions<AppSettings> appSettings;
+
+        public GameParsedController(IOptions<AppSettings> settings)
+        {
+            appSettings = settings;
+        }
+
         [HttpGet("{gameId}")]
         public async Task<ServicesResponse<ExpandedGame>> Get(ulong gameId)
         {
-            var game = (await new GameController().Get(gameId)).Data;
+            var game = (await new GameController(appSettings).Get(gameId)).Data;
             if (game.id == 0)
             {
                 new ServicesResponse<ExpandedGame>(new ExpandedGame());

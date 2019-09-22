@@ -164,12 +164,6 @@ namespace Playnite.DesktopApp
             }
 
             currentGrouping = viewSettings.GroupingOrder;
-
-            if (viewSettings.SortingOrder == SortOrder.Name)
-            {
-                sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
-            }
-
             CollectionView.SortDescriptions.Add(new SortDescription(viewSettings.SortingOrder.ToString(), sortDirection));
             if (viewSettings.SortingOrder != SortOrder.Name)
             {
@@ -235,16 +229,14 @@ namespace Playnite.DesktopApp
                 return;
             }
 
-            Items.Clear();
+            ClearItems();
             switch (viewType)
             {
                 case GamesViewType.Standard:
-                    Items.Clear();
                     Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings)));
                     break;
 
                 case GamesViewType.ListGrouped:
-                    Items.Clear();
                     Items.AddRange(Database.Games.SelectMany(x =>
                     {
                         var ids = GetGroupingIds(viewSettings.GroupingOrder, x);
@@ -268,6 +260,16 @@ namespace Playnite.DesktopApp
             }
 
             this.viewType = viewType;
+        }
+
+        private void ClearItems()
+        {
+            foreach (var item in Items)
+            {
+                item.Dispose();
+            }
+
+            Items.Clear();
         }
 
         private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> e)
@@ -379,8 +381,8 @@ namespace Playnite.DesktopApp
                 case GroupableField.Developer:
                 case GroupableField.Publisher:
                 case GroupableField.Tag:
-                case GroupableField.Platform:
                     return ViewType == GamesViewType.ListGrouped && !GetGroupingIds(viewSettings.GroupingOrder, oldData).IsListEqual(GetGroupingIds(viewSettings.GroupingOrder, newData));
+                case GroupableField.Platform:
                 case GroupableField.Series:
                 case GroupableField.AgeRating:
                 case GroupableField.Region:
@@ -424,7 +426,16 @@ namespace Playnite.DesktopApp
                     else
                     {
                         // Forces CollectionView to re-sort items without full list refresh.
-                        Items.OnItemMoved(existingItem, 0, 0);
+                        try
+                        {
+                            Items.OnItemMoved(existingItem, 0, 0);
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            // Another weird and rare "out of range" bug in System.Windows.Data.CollectionView.OnCollectionChanged.
+                            // No idea why it's happening.
+                            Logger.Error(e, "Items.OnItemMoved failed.");
+                        }
                     }
                 }
             }
@@ -449,6 +460,7 @@ namespace Playnite.DesktopApp
                 {
                     foreach (var item in toRemove)
                     {
+                        item.Dispose();
                         Items.Remove(item);
                     }
                 }

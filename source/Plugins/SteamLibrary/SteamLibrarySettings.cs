@@ -233,7 +233,7 @@ namespace SteamLibrary
                     view.NavigationChanged += async (s, e) =>
                     {
                         var address = view.GetCurrentAddress();
-                        if (address.StartsWith(@"https://steamcommunity.com/id/"))
+                        if (address.Contains(@"steamcommunity.com"))
                         {
                             var source = await view.GetPageSourceAsync();
                             var idMatch = Regex.Match(source, @"g_steamID = ""(\d+)""");
@@ -248,7 +248,10 @@ namespace SteamLibrary
                                 userName = userMatch.Groups[1].Value;
                             }
 
-                            view.Close();
+                            if (idMatch.Success)
+                            {
+                                view.Close();
+                            }
                         }
                     };
 

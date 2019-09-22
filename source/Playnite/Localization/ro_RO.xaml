@@ -137,10 +137,10 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCTagLabel">Etichetă</sys:String>
     <sys:String x:Key="LOCTagsLabel">Etichete</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListLabel">Listă</sys:String>
+    <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Coperte</sys:String>
-    <sys:String x:Key="LOCGridLabel">Grilă</sys:String>
-    <sys:String x:Key="LOCDetailsLabel">Detalii</sys:String>
+    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizat</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
@@ -247,15 +247,22 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCMenuRestartSystem">Repornire Sistem</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Închidere Sistem</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendare Sistem</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Nu s-a putut găsi sursa iconiței jocului</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Nu s-a putut găsi sursa coperții jocului</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Indentați detaliile jocului</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Poziția panoului de detalii în modul de vizualizare copertă</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Poziția Panoului de Filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Poziția Panoului de Căutare</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Randează Coperta Jocului</sys:String>
@@ -292,7 +299,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Include Steam, Origin și altele.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Îmbunătățește performanța în scroll-ul listelor de jocuri, dar imaginile se vor încărca mai incet.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Redați numele în cazul în care nu există imagine</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Arata numele jocurile in modul "Grid" de redare</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Arata iconitele jocurilor in modul de redare "Detalii"</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Arata numarul de obiecte in descrierile grupurilor</sys:String>
@@ -302,6 +309,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Arata butonul pentru Prietenii pe Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
     <sys:String x:Key="LOCSettingsSkin"></sys:String>
@@ -344,7 +352,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     
 Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Repornire Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification">Directorul nou al fișierului ce conține baza de date va fi utilizat numai după repornirea aplicației.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Durata jocului nu va fi înregistrată dacă este setată acțiunea de "Închidere".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Număr de rânduri</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Număr de coloane</sys:String>
@@ -368,6 +376,7 @@ Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Butoane Gamepad</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Orientare</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nimic</sys:String>
     <sys:String x:Key="LOCStrechFill">Umplere</sys:String>
@@ -609,7 +618,15 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCAll">Toate</sys:String>
     <sys:String x:Key="LOCNone">Nimic</sys:String>
     <sys:String x:Key="LOCNotifications">Notificări</sys:String>
-
+    <sys:String x:Key="LOCWidth"></sys:String>
+    <sys:String x:Key="LOCHeight"></sys:String>
+    <sys:String x:Key="LOCSize"></sys:String>
+    <sys:String x:Key="LOCFontSmall"></sys:String>
+    <sys:String x:Key="LOCFontNormal"></sys:String>
+    <sys:String x:Key="LOCFontLarge"></sys:String>
+    <sys:String x:Key="LOCFontLarger"></sys:String>
+    <sys:String x:Key="LOCFontLargest"></sys:String>
+    <sys:String x:Key="LOCDefault"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumente Emulator</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumente adiționale la Emulator</sys:String>
@@ -645,7 +662,7 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCRemoveGame">Şterge</sys:String>
     <sys:String x:Key="LOCPlayGame">Jucați</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalaţi</sys:String>
-    <sys:String x:Key="LOCGameOptions">Opţiuni</sys:String>
+    <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails">Detalii</sys:String>
     <sys:String x:Key="LOCUninstallGame">Dezinstalați</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Deschide Directorul de Instalare</sys:String>
@@ -704,11 +721,13 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Între 500 și 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Mai mult de 1000 ore</sys:String>
 
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>

@@ -198,4 +198,7 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(SolutionDir)\Tools\Playnite.Toolbox\Templates\Themes\Changelog" "$(TargetDir)\Templates\Themes\Changelog\" /e /y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -98,7 +98,7 @@ namespace TwitchLibrary
                         }
                     }
                 }
-                catch (Exception e)
+                catch (Exception e) when (!PlayniteApi.ApplicationInfo.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed to get Twitch auth token.");
                 }
@@ -178,7 +178,7 @@ namespace TwitchLibrary
                     logger.Debug($"Found {installedGames.Count} installed Twitch games.");
                     allGames.AddRange(installedGames.Values.ToList());
                 }
-                catch (Exception e)
+                catch (Exception e) when (!PlayniteApi.ApplicationInfo.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed to import installed Twitch games.");
                     importError = e;
@@ -205,7 +205,7 @@ namespace TwitchLibrary
                         }
                     }
                 }
-                catch (Exception e)
+                catch (Exception e) when (!PlayniteApi.ApplicationInfo.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed to import uninstalled Twitch games.");
                     importError = e;

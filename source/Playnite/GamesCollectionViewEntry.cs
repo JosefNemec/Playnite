@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 
 namespace Playnite
 {
-    public class GamesCollectionViewEntry : INotifyPropertyChanged
+    public class GamesCollectionViewEntry : INotifyPropertyChanged, IDisposable
     {
         private PlayniteSettings settings;
         private readonly Type colGroupType;
@@ -164,6 +164,11 @@ namespace Playnite
             Game = game;
             Game.PropertyChanged += Game_PropertyChanged;
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
+        }
+
+        public void Dispose()
+        {
+            Game.PropertyChanged -= Game_PropertyChanged;
         }
 
         public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, Type colGroupType, Guid colGroupId, PlayniteSettings settings) : this(game, plugin, settings)

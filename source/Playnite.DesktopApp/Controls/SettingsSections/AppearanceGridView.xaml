@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.AppearanceGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+            xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+            xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+            xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+            xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+            xmlns:winMedia="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style TargetType="ContentControl" BasedOn="{StaticResource {x:Type ContentControl}}">
+            <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+            <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <StackPanel.Resources>
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                                        x:Key="CoverArtStretchValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="winMedia:Stretch" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ComboBox x:Key="ComboStrechOptions" x:Shared="False"
+                    SelectedValue="{Binding CoverArtStretch}"
+                    ItemsSource="{Binding Source={StaticResource CoverArtStretchValues}}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={pcon:StrechToStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel.Resources>
+
+        <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}"
+                  Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
+                  Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
+
+        <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />        
+        <Separator />
+
+        <controls:GridEx ColumnCount="2" RowCount="5"
+                         Margin="0,10,0,0">
+            <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
+                       VerticalAlignment="Center" Margin="0,10,0,10"
+                       Grid.Column="0" Grid.Row="0"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                        Grid.Column="1" Grid.Row="0">
+                <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
+                                        Margin="10,0,0,0"
+                                        Value="{Binding Settings.GridItemWidthRatio}"/>
+                <TextBlock Text=":" VerticalAlignment="Center"
+                           Margin="2,0,2,0"/>
+                <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
+                                       Value="{Binding Settings.GridItemHeightRatio}"/>
+
+                <Button Content="{DynamicResource LOCPresets}" Margin="15,0,0,0" Padding="2"
+                        pbeh:LeftClickContextMenuBehavior.Enabled="True">
+                    <Button.ContextMenu>
+                        <ContextMenu Placement="Bottom">
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectDVD}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="27:38"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteam}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="92:43"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+            </StackPanel>
+
+            <TextBlock Text="{DynamicResource LOCSettingsStrechModeLabel}"
+                        VerticalAlignment="Center" Margin="0,10,0,10"
+                        Grid.Column="0" Grid.Row="1"/>
+            <ContentControl DataContext="{Binding Settings}"
+                            Grid.Column="1" Grid.Row="1"
+                            Content="{StaticResource ComboStrechOptions}"
+                            MinWidth="140" Margin="10,0,0,0"
+                            VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}"
+                        VerticalAlignment="Center" Margin="0,10,0,10"
+                        Grid.Column="0" Grid.Row="2"/>
+            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+                                HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Value="{Binding Settings.GridItemSpacing}"
+                                Grid.Column="1" Grid.Row="2"/>
+
+            <TextBlock Text="{DynamicResource LOCSettingsGridItemCoverMargin}"
+                        VerticalAlignment="Center" Margin="0,10,0,10"
+                        Grid.Column="0" Grid.Row="3"/>
+            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+                                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Value="{Binding Settings.GridItemMargin}"
+                                    Grid.Column="1" Grid.Row="3"/>
+
+            <CheckBox Content="{DynamicResource LOCSettingsGridItemDrawBackground}"
+                    Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0"
+                    IsChecked="{Binding Settings.ShowGridItemBackground}"/>
+        </controls:GridEx>
+    </StackPanel>
+</UserControl>

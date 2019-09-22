@@ -231,7 +231,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 case MetadataProvider.IGDB:
                     var igdb = new IGDBMetadataProvider();
-                    foreach (var page in igdb.SearchMetadata(new Game(keyword)))
+                    foreach (var page in igdb.SearchMetadata(keyword))
                     {
                         searchList.Add(new SearchResult(
                             page.Id, 

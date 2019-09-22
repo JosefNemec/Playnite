@@ -45,5 +45,30 @@ namespace Playnite.SDK
         /// Gets variable for game's name.
         /// </summary>
         public const string Name = "{Name}";
+
+        /// <summary>
+        /// Gets variable for game's platform.
+        /// </summary>
+        public const string Platform = "{Platform}";
+
+        /// <summary>
+        /// Gets variable for game's ID.
+        /// </summary>
+        public const string GameId = "{GameId}";
+
+        /// <summary>
+        /// Gets variable for game's database ID.
+        /// </summary>
+        public const string DatabaseId = "{DatabaseId}";
+
+        /// <summary>
+        /// Gets variable for game's library plugin ID.
+        /// </summary>
+        public const string PluginId = "{PluginId}";
+
+        /// <summary>
+        /// Gets variable for game's version.
+        /// </summary>
+        public const string Version = "{Version}";
     }
 }

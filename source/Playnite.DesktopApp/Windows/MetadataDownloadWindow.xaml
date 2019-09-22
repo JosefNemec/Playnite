@@ -88,8 +88,9 @@
                               DockPanel.Dock="Bottom" Margin="0,0,20,10"
                               ToolTip="{DynamicResource LOCSaveDefaultTooltip}"
                               ToolTipService.InitialShowDelay="0"/>
-                    <pctrls:MetadataDownloadSettings Settings="{Binding Settings}"
-                                                     Margin="10,0,10,10" DockPanel.Dock="Top"/>
+                    <ScrollViewer Margin="10,0,10,10" DockPanel.Dock="Top">
+                        <pctrls:MetadataDownloadSettings Settings="{Binding Settings}" />
+                    </ScrollViewer>
                 </DockPanel>
             </TabItem>
         </TabControl>        

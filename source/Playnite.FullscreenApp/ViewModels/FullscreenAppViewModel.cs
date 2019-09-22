@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
@@ -141,6 +142,7 @@ namespace Playnite.FullscreenApp.ViewModels
             get => selectedGame;
             set
             {
+                // TODO completely rework and decouple selected game from main view and game details
                 if (value == selectedGame)
                 {
                     return;
@@ -158,9 +160,22 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 selectedGame = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(GameDetailsButtonVisible));                
+                OnPropertyChanged(nameof(GameDetailsButtonVisible));
+
+                if (GameDetailsVisible && (value == null || GameDetailsEntry != value))
+                {
+                    var selected = SelectClosestGameDetails();
+                    if (selected != null)
+                    {
+                        selectedGame = selected;
+                        OnPropertyChanged();
+                        OnPropertyChanged(nameof(GameDetailsButtonVisible));
+                    }
+                }
             }
         }
+
+        private int lastGameDetailsIndex = -1;
 
         private GamesCollectionViewEntry gameDetailsEntry;
         public GamesCollectionViewEntry GameDetailsEntry
@@ -168,6 +183,7 @@ namespace Playnite.FullscreenApp.ViewModels
             get => gameDetailsEntry;
             set
             {
+                // TODO completely rework and decouple selected game from main view and game details
                 SelectedGameDetails?.Dispose();
                 if (value == null)
                 {
@@ -179,10 +195,13 @@ namespace Playnite.FullscreenApp.ViewModels
                     {
                         SelectedGameDetails = null;
                     }
+
+                    lastGameDetailsIndex = -1;
                 }
                 else
                 {
                     SelectedGameDetails = new GameDetailsViewModel(value, Resources, GamesEditor, this, Dialogs);
+                    lastGameDetailsIndex = GamesView.CollectionView.IndexOf(value);
                 }
 
                 gameDetailsEntry = value;
@@ -391,6 +410,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> ShutdownSystemCommand { get; private set; }
         public RelayCommand<object> RestartSystemCommand { get; private set; }
         public RelayCommand<object> HibernateSystemCommand { get; private set; }
+        public RelayCommand<object> SleepSystemCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> OpenAdditionalFiltersCommand { get; private set; }
         public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }        
@@ -400,6 +420,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> PrevFilterViewCommand { get; private set; }
         public RelayCommand<object> SelectPrevGameCommand { get; private set; }
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
+        public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         #endregion Commands
 
         public FullscreenAppViewModel()
@@ -430,7 +451,6 @@ namespace Playnite.FullscreenApp.ViewModels
             Extensions = extensions;
             ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += FullscreenAppViewModel_ActivationRequested;
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
-            SetViewSizeAndPosition(IsFullScreen);
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);
@@ -492,7 +512,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     settings.FilterSettings.IsInstalled = settings.InstalledOnlyInQuickFilters;
                     settings.FilterSettings.Favorite = true;
                     settings.ViewSettings.SortingOrder = SortOrder.Name;
-                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Descending;
+                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Ascending;
                     break;
                 case ActiveFullscreenView.MostPlayed:
                     settings.FilterSettings.IsInstalled = settings.InstalledOnlyInQuickFilters;
@@ -504,7 +524,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     settings.FilterSettings.IsInstalled = false;
                     settings.FilterSettings.Favorite = false;
                     settings.ViewSettings.SortingOrder = SortOrder.Name;
-                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Descending;
+                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Ascending;
                     break;
                 //case ActiveFullscreenView.Explore:
                 //    break;
@@ -682,13 +702,14 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
 
                 CloseView();
+                application.Quit();
                 var cmdline = new CmdLineOptions()
                 {
                     SkipLibUpdate = true,
                     StartInDesktop = true
                 };
+
                 ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, cmdline.ToString());
-                application.Quit();
             });
 
             ShutdownSystemCommand = new RelayCommand<object>((a) =>
@@ -704,6 +725,14 @@ namespace Playnite.FullscreenApp.ViewModels
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
                     Computer.Hibernate();
+                }
+            });
+
+            SleepSystemCommand = new RelayCommand<object>((a) =>
+            {
+                if (!PlayniteEnvironment.IsDebuggerAttached)
+                {
+                    Computer.Sleep();
                 }
             });
 
@@ -929,6 +958,41 @@ namespace Playnite.FullscreenApp.ViewModels
                     GameDetailsFocused = true;
                 }
             }, (a) => Database?.IsOpen == true);
+
+            FileDroppedCommand = new RelayCommand<DragEventArgs>((args) =>
+            {
+                OnFileDropped(args);
+            });
+        }
+
+        private GamesCollectionViewEntry SelectClosestGameDetails()
+        {
+            var focusIndex = -1;
+            if (lastGameDetailsIndex == 0 && GamesView.CollectionView.Count > 0)
+            {
+                focusIndex = 0;
+            }
+            else if (lastGameDetailsIndex > 0 && GamesView.CollectionView.Count < lastGameDetailsIndex && GamesView.CollectionView.Count > 0)
+            {
+                focusIndex = GamesView.CollectionView.Count + 1;
+            }
+            else
+            {
+                focusIndex = lastGameDetailsIndex - 1;
+            }
+
+            if (focusIndex > -1)
+            {
+                GameDetailsFocused = false;
+                GameDetailsEntry = GamesView.CollectionView.GetItemAt(focusIndex) as GamesCollectionViewEntry;
+                GameDetailsFocused = true;
+                return GameDetailsEntry;
+            }
+            else
+            {
+                ToggleGameDetailsCommand.Execute(null);
+                return null;
+            }
         }
 
         private void SearchText_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1018,6 +1082,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
+            SetViewSizeAndPosition(IsFullScreen);
             InitializeView();
         }
 
@@ -1061,12 +1126,13 @@ namespace Playnite.FullscreenApp.ViewModels
             var screen = screens[screenIndex];
             var ratio = Sizes.GetAspectRatio(screen.Bounds);
             ViewportWidth = ratio.GetWidth(ViewportHeight);
+            var dpi = VisualTreeHelper.GetDpi(Window.Window);
             if (fullscreen)
             {
-                WindowWidth = screen.Bounds.Width;
-                WindowHeight = screen.Bounds.Height;
-                WindowLeft = screen.Bounds.X;
-                WindowTop = screen.Bounds.Y;
+                WindowLeft = screen.Bounds.X / dpi.DpiScaleX;
+                WindowTop = screen.Bounds.Y / dpi.DpiScaleY;
+                WindowWidth = screen.Bounds.Width / dpi.DpiScaleX;
+                WindowHeight = screen.Bounds.Height / dpi.DpiScaleY;
             }
             else
             {
@@ -1213,6 +1279,60 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 ProgressVisible = false;
                 DatabaseFilters.IgnoreDatabaseUpdates = false;
+            }
+        }
+
+        private void OnFileDropped(DragEventArgs args)
+        {
+            if (args.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])args.Data.GetData(DataFormats.FileDrop);
+                if (files.Count() == 1)
+                {
+                    Window.BringToForeground();
+
+                    var path = files[0];
+                    if (File.Exists(path))
+                    {
+                        var ext = Path.GetExtension(path).ToLower();
+                        if (ext.Equals(ThemeManager.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
+                        {
+                            try
+                            {
+                                var desc = ThemeManager.GetDescriptionFromPackedFile(path);
+                                if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
+                                {
+                                    throw new Exception(Resources.GetString("LOCGeneralExtensionInstallApiVersionFails"));
+                                }
+
+                                if (Dialogs.ShowMessage(
+                                        string.Format(Resources.GetString("LOCThemeInstallPrompt"),
+                                            desc.Name, desc.Author, desc.Version),
+                                        Resources.GetString("LOCGeneralExtensionInstallTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                {
+                                    ExtensionInstaller.QueueExetnsionInstall(path);
+                                    if (Dialogs.ShowMessage(
+                                        Resources.GetString("LOCExtInstallationRestartNotif"),
+                                        Resources.GetString("LOCSettingsRestartTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                    {
+                                        application.Restart(new CmdLineOptions()
+                                        {
+                                            SkipLibUpdate = true,
+                                        });
+                                    };
+                                }
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                Logger.Error(e, "Failed to install theme.");
+                                Dialogs.ShowErrorMessage(
+                                    string.Format(Resources.GetString("LOCThemeInstallFail"), e.Message), "");
+                            }
+                        }
+                    }
+                }
             }
         }
 

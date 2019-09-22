@@ -17,6 +17,7 @@ namespace Playnite.Tests
         {
             Assert.AreEqual(@"C:\Users", Paths.GetFinalPathName(@"c:\Documents and Settings"));
             Assert.AreEqual(@"C:\Users", Paths.GetFinalPathName(@"C:\Users"));
+            Assert.AreEqual(@"\\server\someunc\testpath", Paths.GetFinalPathName(@"\\server\someunc\testpath"));
         }
 
         [Test]

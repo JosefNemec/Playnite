@@ -59,7 +59,9 @@ namespace Playnite.Common
 
         private void ReleaseOldestItems()
         {
-            var items = cache.OrderBy(a => a.Value.LastAccess).ToList();
+            // ToArray reason:
+            // https://stackoverflow.com/questions/11692389/getting-argument-exception-in-concurrent-dictionary-when-sorting-and-displaying
+            var items = cache.ToArray().OrderBy(a => a.Value.LastAccess).ToList();
             foreach (var item in items)
             {
                 if (currentSize > memorySizeLimit)

@@ -119,9 +119,14 @@ namespace Playnite.Common
             ProcessStarter.StartProcess("shutdown.exe", "-r -t 0");
         }
 
-        public static void Hibernate()
+        public static bool Sleep()
         {
-            ProcessStarter.StartProcess("shutdown.exe", "-h -t 0");
+            return Interop.SetSuspendState(false, true, true);
+        }
+
+        public static bool Hibernate()
+        {
+            return Interop.SetSuspendState(true, true, true);
         }
     }
 }

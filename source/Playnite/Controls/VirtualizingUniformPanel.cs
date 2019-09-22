@@ -258,10 +258,19 @@ namespace Playnite.Controls
                 return new Size(0, 0);
             }
 
-            var totalRows = (int)Math.Ceiling(itemCount / (double)computedColumns);
-            return new Size(
-                viewport.Width,
-                totalRows * ItemHeight);
+            if (computedColumns == 0)
+            {
+                return new Size(
+                    viewport.Width,
+                    itemCount * ItemHeight);
+            }
+            else
+            {
+                var totalRows = (int)Math.Ceiling(itemCount / (double)computedColumns);
+                return new Size(
+                    viewport.Width,
+                    totalRows * ItemHeight);
+            }
         }
 
         #region IScrollInfo

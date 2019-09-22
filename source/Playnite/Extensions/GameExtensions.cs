@@ -73,6 +73,11 @@ namespace Playnite
             result = result.Replace(ExpandableVariables.ImageName, Path.GetFileName(game.GameImagePath));
             result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
             result = result.Replace(ExpandableVariables.Name, game.Name);
+            result = result.Replace(ExpandableVariables.Platform, game.Platform?.Name);
+            result = result.Replace(ExpandableVariables.PluginId, game.PluginId.ToString());
+            result = result.Replace(ExpandableVariables.GameId, game.GameId);
+            result = result.Replace(ExpandableVariables.DatabaseId, game.Id.ToString());
+            result = result.Replace(ExpandableVariables.Version, game.Version);
             return fixSeparators ? Paths.FixSeparators(result) : result;
         }
 

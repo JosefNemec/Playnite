@@ -526,7 +526,14 @@ namespace Playnite
             }
             else
             {
-                application.Minimize();
+                if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+                {
+                    application.Quit();
+                }
+                else
+                {
+                    application.Minimize();
+                }
             }
         }
 

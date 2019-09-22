@@ -11,9 +11,10 @@
                     <DockPanel d:DesignWidth="1280" d:DesignHeight="960"
                                d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
                         <ExtendedListBox x:Name="PART_ListGames"
-                                         SelectionMode="Extended" Width="350"
-                                         BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PanelSeparatorBrush}"
-                                         DockPanel.Dock="Left"
+                                         SelectionMode="Extended" 
+                                         Width="{Settings DetailsListWitdh}"
+                                         BorderBrush="{DynamicResource PanelSeparatorBrush}"
+                                         DockPanel.Dock="{Settings DetailsListPosition}"
                                          ItemContainerStyle="{DynamicResource DetailsViewItemStyle}"
                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                          ScrollViewer.PanningMode="VerticalOnly"
@@ -21,6 +22,19 @@
                                          VirtualizingPanel.CacheLength="5"
                                          VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                                          VirtualizingPanel.VirtualizationMode="Recycling">
+                            <ExtendedListBox.Style>
+                                <Style TargetType="ExtendedListBox" BasedOn="{StaticResource {x:Type ExtendedListBox}}">
+                                    <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Settings DetailsListPosition}" Value="Right">
+                                            <Setter Property="BorderThickness" Value="1,0,0,0" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ExtendedListBox.Style>
                             <ExtendedListBox.GroupStyle>
                                 <GroupStyle ContainerStyle="{StaticResource DetailsViewGroupStyle}"/>
                             </ExtendedListBox.GroupStyle>

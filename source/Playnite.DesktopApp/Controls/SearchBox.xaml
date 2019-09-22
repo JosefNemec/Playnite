@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
-             d:DesignWidth="300" d:DesignHeight="28">
-
+             d:DesignWidth="300"
+             MinHeight="24">
     <Grid>
         <TextBlock Text="⌕" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"
-                    Foreground="{DynamicResource TextBrushDarker}">
+                   Foreground="{DynamicResource TextBrushDarker}">
             <TextBlock.Style>
                 <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
                     <Setter Property="Visibility" Value="Hidden" />
@@ -29,7 +29,7 @@
             </TextBlock.Style>
         </TextBlock>
         <TextBox TabIndex="{Binding Path=TabIndex, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                 Name="TextFilter" VerticalContentAlignment="Center" FontSize="14"
+                 Name="TextFilter" VerticalContentAlignment="Center"
                  Text="{Binding Text, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
                  TextChanged="TextFilter_TextChanged">
             <TextBox.Style>
@@ -43,7 +43,8 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <TextBlock Text="⌫" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
+        <TextBlock Text="&#xef00;" FontFamily="{DynamicResource FontIcoFont}"
+                   FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
                    MouseUp="ClearImage_MouseUp" Foreground="{DynamicResource TextBrushDarker}">
             <TextBlock.Style>
                 <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">

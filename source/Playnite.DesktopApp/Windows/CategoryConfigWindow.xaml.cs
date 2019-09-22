@@ -16,9 +16,20 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class CategoryConfigWindow : WindowBase
     {
+        private WindowPositionHandler positionManager;
+
         public CategoryConfigWindow() : base()
         {
             InitializeComponent();
+            if (PlayniteApplication.Current.AppSettings != null)
+            {
+                positionManager = new WindowPositionHandler(this, "CategoryConfig", PlayniteApplication.Current.AppSettings.WindowPositions);
+            }
+        }
+
+        private void WindowCategories_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            positionManager?.RestoreSizeAndLocation();
         }
     }
 }

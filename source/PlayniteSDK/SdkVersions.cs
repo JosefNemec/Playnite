@@ -9,7 +9,7 @@ namespace Playnite.SDK
     /// <summary>
     /// Represents SDK version properties.
     /// </summary>
-    public static class Version
+    public static class SdkVersions
     {
         /// <summary>
         /// Gets SDK version.

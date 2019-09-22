@@ -1,0 +1,5 @@
+﻿M	source/Playnite.DesktopApp/Themes/Desktop/Default/1.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/6.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/7.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/14.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/15.xaml

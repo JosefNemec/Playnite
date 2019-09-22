@@ -8,7 +8,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid Background="{DynamicResource GridItemBackgroundBrush}"
-                          Margin="{Settings ItemSpacingMargin}">
+                          Margin="{Settings ItemSpacingMargin}"
+                          x:Name="ItemGrid">
                         <Border x:Name="SelectionBorder" BorderThickness="3" Margin="-3" />
                         <ContentPresenter />
                     </Grid>
@@ -21,6 +22,9 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
                             <Setter Property="Canvas.ZIndex" Value="90" />
                         </Trigger>
+                        <DataTrigger Binding="{Settings ShowGridItemBackground}" Value="False">
+                            <Setter Property="Background" Value="Transparent" TargetName="ItemGrid" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
