@@ -25,14 +25,14 @@
     <sys:String x:Key="LOCAboutWindowTitle">关于 Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">由 Josef Němec 制作，由 Albert Abdilim 汉化</sys:String>
 
-    <sys:String x:Key="LOCCategoryWindowTitle">分配类别</sys:String>
-    <sys:String x:Key="LOCCategorySetButton">设置类别</sys:String>
-    <sys:String x:Key="LOCCategoryAddCatButton">添加类别</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">选中 - 分配类别
-未选中 - 删除类别
-不确定 - 不变（编辑多个游戏时）</sys:String>
-    <sys:String x:Key="LOCNoCategory">无类别</sys:String>
-    <sys:String x:Key="LOCNoPlatform">无平台</sys:String>
+    <sys:String x:Key="LOCCategoryWindowTitle">指定分类</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">设置分类</sys:String>
+    <sys:String x:Key="LOCCategoryAddCatButton">添加分类</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">选中 - 指定分类
+未选中 - 删除分类
+不确定 - 不更改（编辑多个游戏时）</sys:String>
+    <sys:String x:Key="LOCNoCategory">没有分类</sys:String>
+    <sys:String x:Key="LOCNoPlatform">没有平台</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">哦不，发生了一些坏事...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">发生了不可恢复的错误。
@@ -42,7 +42,7 @@
         
 如果您想帮助我们解决此问题，请发送诊断信息。 谢谢！</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">报告问题</sys:String>
-    <sys:String x:Key="LOCCrashRestartPlaynite">重新启动Playnite</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">重启Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">退出Playnite</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">库管理器</sys:String>
@@ -262,9 +262,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">网格视图详细位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">详细视图游戏列表位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">游戏封面图片高度</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">应用程序字体</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">过滤面板位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">浏览器面板位置</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">封面艺术渲染</sys:String>
@@ -632,12 +632,12 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCWidth">宽度</sys:String>
     <sys:String x:Key="LOCHeight">高度</sys:String>
     <sys:String x:Key="LOCSize">大小</sys:String>
-    <sys:String x:Key="LOCFontSmall"></sys:String>
-    <sys:String x:Key="LOCFontNormal"></sys:String>
-    <sys:String x:Key="LOCFontLarge"></sys:String>
-    <sys:String x:Key="LOCFontLarger"></sys:String>
-    <sys:String x:Key="LOCFontLargest"></sys:String>
-    <sys:String x:Key="LOCDefault"></sys:String>
+    <sys:String x:Key="LOCFontSmall">小</sys:String>
+    <sys:String x:Key="LOCFontNormal">标准</sys:String>
+    <sys:String x:Key="LOCFontLarge">大</sys:String>
+    <sys:String x:Key="LOCFontLarger">较大</sys:String>
+    <sys:String x:Key="LOCFontLargest">最大</sys:String>
+    <sys:String x:Key="LOCDefault">默认</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">模拟器其他参数</sys:String>
@@ -673,7 +673,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCRemoveGame">移除</sys:String>
     <sys:String x:Key="LOCPlayGame">启动</sys:String>
     <sys:String x:Key="LOCInstallGame">安装</sys:String>
-    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameOptions">游戏选项</sys:String>
     <sys:String x:Key="LOCGameDetails">详细信息</sys:String>
     <sys:String x:Key="LOCUninstallGame">卸载</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">打开安装位置</sys:String>
@@ -736,14 +736,18 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安装成功。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">安装扩展？</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安装扩展失败。
+        
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">您想要安装新的扩展吗？现有安装将被覆盖。
     
 {0}
 By {1}
 版本 {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">安装主题失败。
+        
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">您想要安装新主题吗？现有安装将被覆盖。
     
 {0}
