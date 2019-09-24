@@ -69,7 +69,7 @@
                   Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
 
         <StackPanel Orientation="Horizontal"  Margin="0,20,0,0">
-            <ContentControl Content="Font sizes:" Margin="0,0,10,0"
+            <ContentControl Content="{DynamicResource LOCSettingsFontSizes}" Margin="0,0,10,0"
                             ContentStringFormat="{}{0} *" VerticalAlignment="Top" />
             <UniformGrid Rows="2">
                 <UniformGrid.Resources>
