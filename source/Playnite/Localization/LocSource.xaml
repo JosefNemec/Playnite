@@ -729,7 +729,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCEnterName">Enter name</sys:String>
     <sys:String x:Key="LOCEnterNewName">Enter new name</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Less then an hour</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Less than an hour</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 to 10 hours</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 to 100 hours</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 to 500 hours</sys:String>
