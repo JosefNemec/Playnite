@@ -51,7 +51,9 @@ namespace Playnite
         [Description("LOCPlatformTitle")]
         Platform,
         [Description("Playnite")]
-        General
+        General,
+        [Description("LOCNone")]
+        None
     }
 
     public enum DefaultCoverSourceOptions
@@ -59,7 +61,19 @@ namespace Playnite
         [Description("LOCPlatformTitle")]
         Platform,
         [Description("Playnite")]
-        General
+        General,
+        [Description("LOCNone")]
+        None
+    }
+
+    public enum DefaultBackgroundSourceOptions
+    {
+        [Description("LOCGameProviderTitle")]
+        Library,
+        [Description("LOCPlatformTitle")]
+        Platform,
+        [Description("LOCNone")]
+        None
     }
 
     public class PlayniteSettings : ObservableObject
@@ -112,6 +126,21 @@ namespace Playnite
             set
             {
                 defaultCoverSource = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DefaultBackgroundSourceOptions defaultBackgroundSource = DefaultBackgroundSourceOptions.None;
+        public DefaultBackgroundSourceOptions DefaultBackgroundSource
+        {
+            get
+            {
+                return defaultBackgroundSource;
+            }
+
+            set
+            {
+                defaultBackgroundSource = value;
                 OnPropertyChanged();
             }
         }

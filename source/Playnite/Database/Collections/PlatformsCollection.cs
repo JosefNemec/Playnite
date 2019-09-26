@@ -52,6 +52,7 @@ namespace Playnite.Database
             var dbItem = Get(id);
             db.RemoveFile(dbItem.Icon);
             db.RemoveFile(dbItem.Cover);
+            db.RemoveFile(dbItem.Background);
             return base.Remove(id);
         }
 
@@ -70,6 +71,7 @@ namespace Playnite.Database
                     var dbItem = Get(item.Id);
                     db.RemoveFile(dbItem.Icon);
                     db.RemoveFile(dbItem.Cover);
+                    db.RemoveFile(dbItem.Background);
                 }
             }
 
@@ -90,6 +92,11 @@ namespace Playnite.Database
                 {
                     db.RemoveFile(dbItem.Cover);
                 }
+
+                if (!dbItem.Background.IsNullOrEmpty() && dbItem.Background != item.Background)
+                {
+                    db.RemoveFile(dbItem.Background);
+                }
             }
 
             base.Update(items);
@@ -106,6 +113,11 @@ namespace Playnite.Database
             if (!dbItem.Cover.IsNullOrEmpty() && dbItem.Cover != item.Cover)
             {
                 db.RemoveFile(dbItem.Cover);
+            }
+
+            if (!dbItem.Background.IsNullOrEmpty() && dbItem.Background != item.Background)
+            {
+                db.RemoveFile(dbItem.Background);
             }
 
             base.Update(item);

@@ -22,19 +22,20 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <controls:GridEx ColumnCount="2" RowCount="12">
+        <controls:GridEx ColumnCount="2" RowCount="3">
             <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
                             ContentStringFormat="{}{0} *"
                             Grid.Column="0" Grid.Row="0"
                             Margin="0,10,10,10" VerticalAlignment="Center" />
             <ComboBox SelectedValue="{Binding Settings.DefaultIconSource}"
-                      VerticalAlignment="Center"
+                      VerticalAlignment="Center" MinWidth="110"
                       Grid.Column="1" Grid.Row="0">
                 <ComboBox.ItemsSource>
                     <x:Array Type="{x:Type sys:Enum}">
                         <p:DefaultIconSourceOptions>Library</p:DefaultIconSourceOptions>
                         <p:DefaultIconSourceOptions>Platform</p:DefaultIconSourceOptions>
                         <p:DefaultIconSourceOptions>General</p:DefaultIconSourceOptions>
+                        <p:DefaultIconSourceOptions>None</p:DefaultIconSourceOptions>
                     </x:Array>
                 </ComboBox.ItemsSource>
                 <ComboBox.ItemTemplate>
@@ -55,6 +56,28 @@
                     <x:Array Type="{x:Type sys:Enum}">
                         <p:DefaultCoverSourceOptions>Platform</p:DefaultCoverSourceOptions>
                         <p:DefaultCoverSourceOptions>General</p:DefaultCoverSourceOptions>
+                        <p:DefaultCoverSourceOptions>None</p:DefaultCoverSourceOptions>
+                    </x:Array>
+                </ComboBox.ItemsSource>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <ContentControl Content="{DynamicResource LOCSettingsDefaulBackgroundSource}"
+                            ContentStringFormat="{}{0} *"
+                            Grid.Column="0" Grid.Row="2"
+                            Margin="0,10,10,10" VerticalAlignment="Center" />
+            <ComboBox SelectedValue="{Binding Settings.DefaultBackgroundSource}"
+                      VerticalAlignment="Center"
+                      Grid.Column="1" Grid.Row="2">
+                <ComboBox.ItemsSource>
+                    <x:Array Type="{x:Type sys:Enum}">
+                        <p:DefaultBackgroundSourceOptions>Library</p:DefaultBackgroundSourceOptions>
+                        <p:DefaultBackgroundSourceOptions>Platform</p:DefaultBackgroundSourceOptions>
+                        <p:DefaultBackgroundSourceOptions>None</p:DefaultBackgroundSourceOptions>
                     </x:Array>
                 </ComboBox.ItemsSource>
                 <ComboBox.ItemTemplate>

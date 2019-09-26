@@ -30,6 +30,7 @@ namespace Playnite.Controls
         }
 
         private CurrentImage currentImage = CurrentImage.None;
+        private string currentSource = null;
 
         internal Storyboard Image1FadeIn;
         internal Storyboard Image2FadeIn;
@@ -213,6 +214,13 @@ namespace Playnite.Controls
             var blurAmount = BlurAmount;
             var blurEnabled = IsBlurEnabled;
             BitmapImage image = null;
+
+            if (newSource == currentSource)
+            {
+                return;
+            }
+
+            currentSource = newSource;
             if (!newSource.IsNullOrEmpty())
             {
                 image = await Task.Factory.StartNew(() =>

@@ -84,6 +84,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCAddTitle">Add</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Default Icon</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Default Cover Image</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">Default Background Image</sys:String>
     <sys:String x:Key="LOCFinishLabel">Finish</sys:String>
     <sys:String x:Key="LOCNextLabel">Next</sys:String>
     <sys:String x:Key="LOCBackLabel">Back</sys:String>
@@ -259,6 +260,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Grid item border width</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Missing game icon source</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Missing game background source</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertical spacing to game details</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Details view game list position</sys:String>
@@ -464,6 +466,7 @@ You can also add any other game (including Microsoft Store games) later from mai
     <sys:String x:Key="LOCAddPlatformTitle">Add Platform</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Select Icon</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Select Cover</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">Select Background</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Select File</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Select URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Add Emulator</sys:String>

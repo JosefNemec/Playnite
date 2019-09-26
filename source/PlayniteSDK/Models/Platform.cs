@@ -40,6 +40,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private string background;
+        /// <summary>
+        /// Gets or sets default game background image.
+        /// </summary>
+        public string Background
+        {
+            get => background;
+            set
+            {
+                background = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Creates new instance of Platform.
         /// </summary>
