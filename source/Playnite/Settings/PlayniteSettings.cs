@@ -19,6 +19,7 @@ using System.Windows;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using Playnite.Metadata;
+
 namespace Playnite
 {
     public enum AfterLaunchOptions
@@ -74,6 +75,26 @@ namespace Playnite
         Platform,
         [Description("LOCNone")]
         None
+    }
+
+    public enum TextRenderingModeOptions
+    {
+        [Description("LOCSettingsTextRenderingModeOptionAuto")]
+        Auto = 0,
+        [Description("LOCSettingsTextRenderingModeOptionAliased")]
+        Aliased = 1,
+        [Description("LOCSettingsTextRenderingModeOptionGrayscale")]
+        Grayscale = 2,
+        [Description("LOCSettingsTextRenderingModeOptionClearType")]
+        ClearType = 3
+    }
+
+    public enum TextFormattingModeOptions
+    {
+        [Description("LOCSettingsTextFormattingModeOptionIdeal")]
+        Ideal = 0,
+        [Description("LOCSettingsTextFormattingModeOptionDisplay")]
+        Display = 1
     }
 
     public class PlayniteSettings : ObservableObject
@@ -512,6 +533,7 @@ namespace Playnite
         }
 
         private bool disableHwAcceleration = false;
+        [RequiresRestart]
         public bool DisableHwAcceleration
         {
             get
@@ -527,6 +549,7 @@ namespace Playnite
         }
 
         private bool disableDpiAwareness = false;
+        [RequiresRestart]
         public bool DisableDpiAwareness
         {
             get
@@ -542,6 +565,7 @@ namespace Playnite
         }
 
         private bool asyncImageLoading = false;
+        [RequiresRestart]
         public bool AsyncImageLoading
         {
             get
@@ -768,6 +792,7 @@ namespace Playnite
         }
 
         private string databasePath;
+        [RequiresRestart]
         public string DatabasePath
         {
             get
@@ -919,6 +944,7 @@ namespace Playnite
         }
 
         private bool enableTray = true;
+        [RequiresRestart]
         public bool EnableTray
         {
             get
@@ -934,6 +960,7 @@ namespace Playnite
         }
 
         private string language = "english";
+        [RequiresRestart]
         public string Language
         {
             get
@@ -994,6 +1021,7 @@ namespace Playnite
         }
 
         private string theme = "Default";
+        [RequiresRestart]
         public string Theme
         {
             get
@@ -1009,6 +1037,7 @@ namespace Playnite
         }
 
         private TrayIconType trayIcon = TrayIconType.Default;
+        [RequiresRestart]
         public TrayIconType TrayIcon
         {
             get
@@ -1029,6 +1058,7 @@ namespace Playnite
         }
 
         private List<string> disabledPlugins = new List<string>();
+        [RequiresRestart]
         public List<string> DisabledPlugins
         {
             get
@@ -1104,6 +1134,7 @@ namespace Playnite
         }
 
         private bool enableControolerInDesktop = false;
+        [RequiresRestart]
         public bool EnableControllerInDesktop
         {
             get
@@ -1164,6 +1195,7 @@ namespace Playnite
         }
 
         private string fontFamilyName = "Trebuchet MS";
+        [RequiresRestart]
         public string FontFamilyName
         {
             get
@@ -1179,6 +1211,7 @@ namespace Playnite
         }
 
         private double fontSize = 14;
+        [RequiresRestart]
         public double FontSize
         {
             get
@@ -1194,6 +1227,7 @@ namespace Playnite
         }
 
         private double fontSizeSmall = 12;
+        [RequiresRestart]
         public double FontSizeSmall
         {
             get
@@ -1209,6 +1243,7 @@ namespace Playnite
         }
 
         private double fontSizeLarge = 15;
+        [RequiresRestart]
         public double FontSizeLarge
         {
             get
@@ -1224,6 +1259,7 @@ namespace Playnite
         }
 
         private double fontSizeLarger = 20;
+        [RequiresRestart]
         public double FontSizeLarger
         {
             get
@@ -1239,6 +1275,7 @@ namespace Playnite
         }
 
         private double fontSizeLargest = 29;
+        [RequiresRestart]
         public double FontSizeLargest
         {
             get
@@ -1268,6 +1305,37 @@ namespace Playnite
             }
         }
 
+        private TextFormattingModeOptions textFormattingMode = TextFormattingModeOptions.Ideal;
+        [RequiresRestart]
+        public TextFormattingModeOptions TextFormattingMode
+        {
+            get
+            {
+                return textFormattingMode;
+            }
+
+            set
+            {
+                textFormattingMode = value;
+                OnPropertyChanged();
+            }
+        } 
+
+        private TextRenderingModeOptions textRenderingMode = TextRenderingModeOptions.Auto;
+        [RequiresRestart]
+        public TextRenderingModeOptions TextRenderingMode
+        {
+            get
+            {
+                return textRenderingMode;
+            }
+
+            set
+            {
+                textRenderingMode = value;
+                OnPropertyChanged();
+            }
+        }
 
         private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
         public MetadataDownloaderSettings DefaultMetadataSettings

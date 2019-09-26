@@ -386,6 +386,14 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontal Scrolling</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Select one of the subsections</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Font sizes</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Auto</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliased</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Grayscale</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ideal</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Display</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">Text formatting mode</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">Text rendering mode</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>

@@ -224,6 +224,12 @@ namespace Playnite
                     logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
                 }
             }
+
+            // Only use this for Desktop mode. Non-default options look terrible in Fullscreen because of viewport scaling.
+            if (mode == ApplicationMode.Desktop)
+            {
+                Controls.WindowBase.SetTextRenderingOptions(AppSettings.TextFormattingMode, AppSettings.TextRenderingMode);
+            }
         }
 
         public abstract void InstantiateApp();

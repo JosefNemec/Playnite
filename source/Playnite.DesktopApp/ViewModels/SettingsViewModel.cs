@@ -503,36 +503,14 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (editedFields?.Any() == true)
+            if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true)
             {
-                if (editedFields.IntersectsExactlyWith(
-                    new List<string>()
-                    {
-                        nameof(Settings.Theme),
-                        nameof(Settings.AsyncImageLoading),
-                        nameof(Settings.DisableHwAcceleration),
-                        nameof(Settings.DisableDpiAwareness),
-                        nameof(Settings.DatabasePath),
-                        nameof(Settings.DisabledPlugins),
-                        nameof(Settings.EnableTray),
-                        nameof(Settings.TrayIcon),
-                        nameof(Settings.EnableControllerInDesktop),
-                        nameof(Settings.Language),
-                        nameof(Settings.FontFamilyName),
-                        nameof(Settings.FontSize),
-                        nameof(Settings.FontSizeSmall),
-                        nameof(Settings.FontSizeLarge),
-                        nameof(Settings.FontSizeLarger),
-                        nameof(Settings.FontSizeLargest)
-                    }))
+                if (dialogs.ShowMessage(
+                    resources.GetString("LOCSettingsRestartAskMessage"),
+                    resources.GetString("LOCSettingsRestartTitle"),
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    if (dialogs.ShowMessage(
-                        resources.GetString("LOCSettingsRestartAskMessage"),
-                        resources.GetString("LOCSettingsRestartTitle"),
-                        MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        application.Restart(new CmdLineOptions() { SkipLibUpdate = true });
-                    }
+                    application.Restart(new CmdLineOptions() { SkipLibUpdate = true });
                 }
             }
 

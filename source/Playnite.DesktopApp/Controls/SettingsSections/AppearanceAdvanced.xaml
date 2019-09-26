@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
-        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
-        xmlns:p="clr-namespace:Playnite;assembly=Playnite"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
-        xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+             xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+             xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:sm="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+             xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
     
@@ -119,5 +120,45 @@
             <Button Content="{DynamicResource LOCDefault}" VerticalAlignment="Bottom"
                     Margin="10,0,0,0" Command="{Binding SetDefaultFontSizes}"/>
         </StackPanel>
+
+        <GridEx ColumnCount="2" RowCount="2" Margin="0,20,0,0">
+            <ContentControl Content="{DynamicResource LOCSettingsTextRenderingMode}" Grid.Column="0" Grid.Row="0"
+                            Margin="0,10,10,10" VerticalAlignment="Center"
+                            ContentStringFormat="{}{0} *"/>
+            <ComboBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" MinWidth="100"
+                      SelectedValue="{Binding Settings.TextRenderingMode}">
+                <ComboBox.ItemsSource>
+                    <x:Array Type="{x:Type sys:Enum}">
+                        <p:TextRenderingModeOptions>Auto</p:TextRenderingModeOptions>
+                        <p:TextRenderingModeOptions>Aliased</p:TextRenderingModeOptions>
+                        <p:TextRenderingModeOptions>Grayscale</p:TextRenderingModeOptions>
+                        <p:TextRenderingModeOptions>ClearType</p:TextRenderingModeOptions>
+                    </x:Array>
+                </ComboBox.ItemsSource>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <ContentControl Content="{DynamicResource LOCSettingsTextFormattingMode}" Grid.Column="0" Grid.Row="1"
+                            Margin="0,10,10,10" VerticalAlignment="Center"
+                            ContentStringFormat="{}{0} *"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" MinWidth="100"
+                      SelectedValue="{Binding Settings.TextFormattingMode}">
+                <ComboBox.ItemsSource>
+                    <x:Array Type="{x:Type sys:Enum}">
+                        <p:TextFormattingModeOptions>Ideal</p:TextFormattingModeOptions>
+                        <p:TextFormattingModeOptions>Display</p:TextFormattingModeOptions>
+                    </x:Array>
+                </ComboBox.ItemsSource>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </GridEx>
     </StackPanel>
 </UserControl>

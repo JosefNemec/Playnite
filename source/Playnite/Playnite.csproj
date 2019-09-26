@@ -326,6 +326,7 @@
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\PlayniteSettings.cs" />
     <Compile Include="App\Updater.cs" />
+    <Compile Include="Settings\SettingsAttributes.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
     <Compile Include="Settings\WindowPositions.cs" />
     <Compile Include="Themes.cs" />
