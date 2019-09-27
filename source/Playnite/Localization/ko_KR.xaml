@@ -216,13 +216,13 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCProgressGOGLibImport">GOG 라이브러리 업데이트 중…</sys:String>
     <sys:String x:Key="LOCProgressOriginLibImport">Origin 라이브러리 업데이트 중…</sys:String>
     <sys:String x:Key="LOCProgressBattleNetLibImport">Battle.net 라이브러리 업데이트 중…</sys:String>
-    <sys:String x:Key="LOCProgressMetadata"></sys:String>
+    <sys:String x:Key="LOCProgressMetadata">메타데이터 다운로드 중...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">설치된 게임 가져오는 중…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">{0} 개의 게임을 가져오는 중…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">라이브러리 업데이트 중…</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">라이브러리 업데이트 중…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">라이브러리 업데이트 완료</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">리소스 해제 중...</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">설정</sys:String>
@@ -231,7 +231,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">에뮬레이터 설정…</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">라이브러리 관리…</sys:String>
     <sys:String x:Key="LOCMenuTools">도구</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">메타데이터 다운로드...</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">서드파티 클라이언트 열기</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">게임 라이브러리 업데이트</sys:String>
     <sys:String x:Key="LOCMenuAddGame">게임 추가</sys:String>
