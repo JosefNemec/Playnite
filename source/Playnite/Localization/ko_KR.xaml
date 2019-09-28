@@ -48,7 +48,7 @@
     <sys:String x:Key="LOCLibraryManager">라이브러리 관리자</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 제거 하시겠습니까?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">게임이 실행 중이거나 설치, 삭제되는 중에는 게임을 제거할 수 없습니다.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">게임이 실행 중일 때 삭제할 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">게임이 실행 중일 때 설치 제거를 할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">이 게임을 제거하시겠습니까?
         
 자동으로 불러진 게임은 다음 불러오기 작업때 다시 Playnite에 생겨납니다(설정에 따라 다름).</sys:String>
