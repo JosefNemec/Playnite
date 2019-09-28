@@ -198,7 +198,7 @@
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 공식 스토어</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">공식 스토어 > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">어떤 필드를 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하세요.</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif">위의 로고를 클락하여 Playnite가 사용하는 igdb.com의 데이터 베이스 강화에 기여해주십시오.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">위의 로고를 클릭하여 Playnite가 사용하는 igdb.com의 데이터 베이스 강화에 기여해주십시오.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">스토어:
 공식 스토어의 데이터만을 사용합니다.
     
@@ -339,8 +339,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">카테고리를 가져올 계정이 선택되지 않아 카테고리를 가져올 수 없습니다.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">데이터베이스를 열 수 없어 카테고리를 가져올 수 없습니다.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Steam 카테고리를 가져오지 못했습니다: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">가져올 계정이 선택되지 않아 최근 플레이를 가져올수 없습니다</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">가져올 계정이 선택되지 않아 최근 플레이를 가져올수 없습니다</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">가져올 계정이 선택되지 않아 최근 플레이를 가져올 수 없습니다</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">가져올 계정이 선택되지 않아 최근 플레이를 가져올 수 없습니다</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Steam에서 최근 플레이 정보를 가져오지 못했습니다: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">연동된 모든 서비스를 로그아웃시킵니다. 응용 프로그램을 재시작해야합니다. 계속하시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">캐시를 삭제하시겠습니까?</sys:String>
@@ -376,7 +376,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsShowBatteryStatus">배터리 상태 보기</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">배터리 잔량 % 표시</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">시계 표시</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">빠른 필터내 설치된 것만 표시</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">빠른 필터 내 설치된 것만 표시</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">버튼 표시</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">레이아웃</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">수평 스크롤</sys:String>
@@ -393,7 +393,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCDockBottom">하단</sys:String>
 
     <sys:String x:Key="LOCImportError">가져오기 오류</sys:String>
-    <sys:String x:Key="LOCLoginChecking">권한 상태 확인중...</sys:String>
+    <sys:String x:Key="LOCLoginChecking">권한 상태 확인 중...</sys:String>
     <sys:String x:Key="LOCLoginRequired">인증이 필요함</sys:String>
     <sys:String x:Key="LOCLoginFailed">인증 실패</sys:String>
     <sys:String x:Key="LOCLoggedIn">사용자 인증됨</sys:String>
@@ -404,7 +404,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMetaImportWindowTitle">메타데이터 가져오기</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">메타데이터 다운로드</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">선택된 설정을 모든 메타데이터 다운로드에 적용합니다.
-어플리케이션 세팅에서도 수정할 수 있습니다.</sys:String>
+설정에서도 수정할 수 있습니다.</sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">에뮬레이터 게임 가져오기 도구</sys:String>
