@@ -4,12 +4,12 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     
-    <sys:String x:Key="LanguageName"></sys:String>
+    <sys:String x:Key="LanguageName">中文（繁體）</sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">語言</sys:String>
 
-    <sys:String x:Key="LOCExitAppLabel"></sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCExitAppLabel">出口</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">過濾器已啟用（單擊以切換過濾器面板）</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters"></sys:String>
