@@ -249,21 +249,21 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuRestartSystem">重启系统</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">关闭系统</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">挂起系统</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">休眠系统</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">要在详情面板上显示的游戏字段：</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">项目间隔</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">绘制网格项目背景</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">网格项目边框宽度</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">缺少游戏图标源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺少游戏封面源</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">垂直间距到游戏详情</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">网格视图详情位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">详情视图游戏列表位置</sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">在面板之间绘制分隔符</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">游戏封面图片高度</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">游戏列表图标高度</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">应用程序字体</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">过滤面板位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">浏览器面板位置</sys:String>
@@ -301,7 +301,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">包括Steam, Origin和其他</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">异步图像正在加载</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提高游戏列表的滚动平滑度，以换取较慢的图片加载时间</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">如果缺少封面，请显示游戏名称</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在封面视图中显示游戏名称</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">在列表视图上显示游戏图标</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">在组描述中显示项目数量</sys:String>
@@ -354,7 +354,9 @@ IGDB > 官方商店：
     
 任何当前活动的任务（数据下载）都将被取消</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">重新启动Playnite？</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite不会自动移动库文件，您必须在更改位置之前移动/复制它们。如果目标位置中没有库，则将创建一个新库。
+
+新的数据库位置将仅在应用程序重新启动后使用。</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果设置了“关闭”动作，游戏时间将不会被记录</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">行数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">列数</sys:String>
@@ -378,7 +380,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">按钮提示</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">布局</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">水平滚动</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">选择一个小节</sys:String>
 
     <sys:String x:Key="LOCStrechNone">无</sys:String>
     <sys:String x:Key="LOCStrechFill">填充</sys:String>
@@ -732,8 +734,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCPLaytime500to1000">500 至 1000 小时</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">超过1000小时</sys:String>
 
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">要完成安装，必须重新启动Playnite。您要立即重新启动吗？</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">主题/扩展使用的是不受支持的API版本。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安装成功。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">安装扩展？</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安装扩展失败。
