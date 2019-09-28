@@ -148,7 +148,7 @@
     <sys:String x:Key="LOCPatronsLabel">赞助者</sys:String>
     <sys:String x:Key="LOCLicenseLabel">许可证</sys:String>
     <sys:String x:Key="LOCContributorsLabel">贡献者</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">正在退出 Playente…</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">正在退出 Playnite…</sys:String>
     <sys:String x:Key="LOCToday">今天</sys:String>
     <sys:String x:Key="LOCYesterday">昨天</sys:String>
     <sys:String x:Key="LOCMonday">星期一</sys:String>
