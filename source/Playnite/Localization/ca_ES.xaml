@@ -354,7 +354,9 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     
 Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Reiniciar Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite no mou els fitxers de biblioteca automàticament, cal moure-los / copiar-los abans de canviar la ubicació. Si no hi ha cap biblioteca a la ubicació de destinació, se’n crearà una de nova.
+
+La ubicació de la base de dades nova només s’utilitzarà després de reiniciar l’aplicació.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">El temps de joc no es gravarà si s'activa l'opció "Tanca".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de files</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de columnes</sys:String>
@@ -378,7 +380,7 @@ Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sy
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Accions de botons</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Disposició</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Desplaçament horitzontal</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Seleccioneu una de les subseccions</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
@@ -732,7 +734,7 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCPLaytime500to1000">500 a 1000 hores</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Per finalitzar la instal·lació, s’ha de reiniciar Playnite. Voleu reiniciar ara?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Aquest tema o extensió utilitza una versió de l'API que no té suport.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instal·lació s'ha realitzat correctament.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instal·la extensió?</sys:String>
