@@ -189,7 +189,7 @@ Sonuçları: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Sadece meta verileri olmayan oyunlar için indir</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Bu seçeneğin etkinleştirilmesi, zaten bilgi içeren veri alanları için meta verileri indirmeyi atlar.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Oyun Seçimi</sys:String>
-    <sys:String x:Key="LOCMetaGamesSourceDescription">Lütfen hangi oyunların yeni metaverilerle güncellenmesi gerektiğini seç:</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceDescription">Lütfen hangi oyunların yeni meta verilerle güncellenmesi gerektiğini seç:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Veritabanından Tüm Oyunlar</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Filtrelenmiş tüm oyunlar</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Sadece seçili oyunlar</sys:String>
@@ -293,7 +293,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Kütüphane içe aktarımı için Steam hesabı seçilmedi.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Kategori içe aktarımı için Steam hesabı seçilmedi.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Başlangıçta üçüncü parti kütüphane güncellemelerini indir</sys:String>
-    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Oyunları içeri aktardıktan sonra metaverilerini indir</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Oyunları içeri aktardıktan sonra meta verilerini indir</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Simge Durumunda Başlat</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Bilgisayar açıldığında başlat</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Bilgisayar başladığında başlatmak için Playnite kaydı yapılamadı.</sys:String>
@@ -327,7 +327,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCImportSteamLastActivityLabel">Steam En Son Oynananları İçeri Aktar</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Web önbelleğini temizle</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Hesapları bağlarken karşılaşılan sorunları çözebilir.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">Tepsi simgesini göster</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Tepsi Simgesini Göster</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Sistem tepsisine küçült</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Sistem tepsisine kapat</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Oyun başladığında:</sys:String>
@@ -382,10 +382,10 @@ Yeni veritabanı konumu ancak uygulama yeniden başlatıldıktan sonra kullanıl
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Yatay Kaydırma</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Alt bölümlerden birini seçin</sys:String>
 
-    <sys:String x:Key="LOCStrechNone">Hiç biri</sys:String>
+    <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
     <sys:String x:Key="LOCStrechUniform">üniforma</sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill">Doldurmak için üniforma</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Doldurmak için oranı koru</sys:String>
 
     <sys:String x:Key="LOCDockLeft">Sol</sys:String>
     <sys:String x:Key="LOCDockRight">Sağ</sys:String>
@@ -397,13 +397,13 @@ Yeni veritabanı konumu ancak uygulama yeniden başlatıldıktan sonra kullanıl
     <sys:String x:Key="LOCLoginRequired">Doğrulama gerekli</sys:String>
     <sys:String x:Key="LOCLoginFailed">Kimlik doğrulama başarısız oldu</sys:String>
     <sys:String x:Key="LOCLoggedIn">Kullanıcı kimliği doğrulandı</sys:String>
-    <sys:String x:Key="LOCNotLoggedIn">Kimlik doğrulama gerektirir</sys:String>
+    <sys:String x:Key="LOCNotLoggedIn">Kimlik doğrulama gerektiriyor</sys:String>
     <sys:String x:Key="LOCNotLoggedInError">Kullanıcı kimliği doğrulanamadı.</sys:String>
 
     <!--Meta Import-->
-    <sys:String x:Key="LOCMetaImportWindowTitle">Metaveriyi İçe Aktar</sys:String>
-    <sys:String x:Key="LOCDownloadMetaButton">Metaveri İndir</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">İlerideki metaveri yüklemeleri için seçili yapılandırmayı ayarla.
+    <sys:String x:Key="LOCMetaImportWindowTitle">Meta Veriyi İçe Aktar</sys:String>
+    <sys:String x:Key="LOCDownloadMetaButton">Meta Veri İndir</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">İlerideki meta veri yüklemeleri için seçili yapılandırmayı ayarla.
 Aynı zamanda uygulama ayarlarından da değiştirilebilir.</sys:String>
     
     <!--Emulator Import-->
@@ -413,7 +413,7 @@ Aynı zamanda uygulama ayarlarından da değiştirilebilir.</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Aşağıdaki listede bulunan emülatörleri Playnite tanıyabilir ve otomatik olarak konfigüre edilebilir. Bunları web sitelerini ziyaret ederek indirip yükleyebilirsiniz. Emülatörler kurulduktan sonra Playnite'a aktarmak için bir sonraki ekrana geçin.
         
 Ayrıca herhangi bir emülatörü daha sonra yapılandırma menüsü ile yapılandırabilir ve içe aktarabilirsiniz.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Bilgisayarınızda yüklü olan emülatörleri "Klasörden otomatik algıla ... " düğmesine basarak alabilirsiniz. Playnite , seçilen emülatörlerde seçilen klasörü arayacak ve içe aktarma seçeneği sunacaktır. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, öykünücüler geçerli listenin altına eklenir.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Bilgisayarınızda yüklü olan emülatörleri "Klasörden otomatik algıla…" düğmesine basarak içe aktarabilirsiniz. Playnite, bilinen emülatörler için seçilen klasörü arayacak ve içe aktarma seçeneği sunacak. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, emülatörler geçerli listenin altına eklenir.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">"Emulator kullanarak klasörü tara" düğmesine basarak oyunları içe aktarabilirsiniz. Uygun emülatörün seçilmesi, hangi dosya türlerinin taranıp içe aktarılması gerektiğini Playnite'a söyleyecektir. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, oyunlar geçerli listenin altına eklenir.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">İçe aktarma için seçilen emülatör yok. Emülatörü yapılandırmadan, oyunları otomatik olarak içe aktaramazsınız. İçe aktarma işlemini iptal ederek, devam etmek istediğinizden emin misiniz?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playnite'da yapılandırılmış emülatör yok. Önce emülatörü yapılandırmadan ve uygun dosya türlerini seçmeden oyunları içe aktaramazsınız. Şimdi bazı emülatörleri eklemek ister misiniz?</sys:String>
@@ -505,7 +505,7 @@ Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana men�
     <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategori(ler)</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Tür(ler)</sys:String>
-    <sys:String x:Key="LOCGameReleaseDateTitle">Yayın Tarihi</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">Çıkış Tarihi</sys:String>
     <sys:String x:Key="LOCGameReleaseYearTitle">Çıkış yılı</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Geliştirici(ler)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etiket(ler)</sys:String>
@@ -582,11 +582,11 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCOpenPlaynite">Playnite'ı Aç</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profil Ayarları</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Oyun adı boş bırakılamaz.</sys:String>
-    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Metaverileri aramadan önce oyun adı boş bırakılamaz.</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Meta verileri aramadan önce oyun adı boş bırakılamaz.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Geçersiz oyun verileri</sys:String>
     <sys:String x:Key="LOCURLInputInfo">http:// veya https:// ile başlayan geçerli web URL'si girin</sys:String>
     <sys:String x:Key="LOCURLInputInfoTitile">URL Seç</sys:String>
-    <sys:String x:Key="LOCMetadataDownloadError">Metaveriler indirilemedi: {0}</sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">Meta veriler indirilemedi: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">İndirme Hatası</sys:String>
     <sys:String x:Key="LOCClearFilters">Filtreleri Temizle</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Özel Hesap</sys:String>
@@ -630,7 +630,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCExtensionModule">Modül:</sys:String>
     <sys:String x:Key="LOCLibrary">Kütüphane</sys:String>
     <sys:String x:Key="LOCAll">Tümü</sys:String>
-    <sys:String x:Key="LOCNone">Hiç biri</sys:String>
+    <sys:String x:Key="LOCNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCNotifications">Bildirimler</sys:String>
     <sys:String x:Key="LOCWidth">Genişlik</sys:String>
     <sys:String x:Key="LOCHeight">Yükseklik</sys:String>
@@ -647,7 +647,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCOverrideEmulatorArguments">Emulator Argümanlarını Geçersiz Kıl</sys:String>
 
     <sys:String x:Key="LOCGameImportWindowTitle">İçe Aktarılacak Oyunları Seçin</sys:String>
-    <sys:String x:Key="LOCMetaLookupWindowTitle">Metaveri arama</sys:String>
+    <sys:String x:Key="LOCMetaLookupWindowTitle">Meta veri arama</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Güncelleme Mevcut</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Son güncellemeden bu yana yapılan değişiklikler</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Güncellemeyi İndir ve Yükle</sys:String>
@@ -686,12 +686,12 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Oyunun başlangıç ​​süreci, bu oyundan sorumlu kütüphane eklentisi tarafından yönetilecektir.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">Belirtilen sayfada '{0}' oyunu ile ilgili herhangi bir bilgi bulamadık .</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">İpucu: "Düzenle" menü seçeneğiyle tekli oyun düzenlerken daha gelişmiş metaveri indirme işlemini kullanabilirsiniz.</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">İpucu: "Düzenle" menü seçeneğiyle tekli oyun düzenlerken daha gelişmiş meta veri indirme işlemini kullanabilirsiniz.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Bazı işlem devam ederken kullanılamaz.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Açıklama metni HTML sözdizimine duyarlıdır.</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Oynanış süresi izlenir ve saniye biçiminde saklanır.</sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues">0'dan 100'e kadar olan bir değer girin yada boş bırakın.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite'ın gelişimi bu kullanıcılar tarafından desteklenir:</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">0'dan 100'e kadar olan bir değer girin ya da boş bırakın.</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite'ın gelişimi bu Patronlar tarafından desteklenir:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kod, yerelleştirme ve diğer katkıda bulunanlar özel bir düzende değildir:</sys:String>
 
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Oyun izleme iptal edilsin mi?</sys:String>
@@ -713,7 +713,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCInstallScript">Komut Dosyasını Yükle</sys:String>
     <sys:String x:Key="LOCScriptError">Komut Dosyası Hatası</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Uzantı işlevi yürütülemedi.</sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder">Metaveri klasörünü aç</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Meta veri klasörünü aç</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} istemci yüklenmemiş.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} müşteri şimdi açılacak. Lütfen oturum açın ve ardından bu mesajı kapatın.</sys:String>
