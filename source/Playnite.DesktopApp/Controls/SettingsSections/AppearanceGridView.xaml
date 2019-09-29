@@ -68,12 +68,24 @@
                         pbeh:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
                         <ContextMenu Placement="Bottom">
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectGenericSquare}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="1:1"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectDVD}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="27:38"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectNewGalaxyEpicGames}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="171:241"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectIgdbTwitch}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="3:4"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteam}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="92:43"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectNewSteamUI}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="2:3"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
