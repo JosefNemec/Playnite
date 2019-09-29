@@ -8,12 +8,12 @@
 
     <sys:String x:Key="LOCLanguageSettingsLabel">語言</sys:String>
 
-    <sys:String x:Key="LOCExitAppLabel">出口</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">過濾器已啟用（單擊以切換過濾器面板）</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">篩選已停止(點選以開合篩選面板)</sys:String>
-    <sys:String x:Key="LOCAditionalFilters">更多篩選條件</sys:String>
-    <sys:String x:Key="LOCFilters">篩選器</sys:String>
-    <sys:String x:Key="LOCFilter">篩選器</sys:String>
+    <sys:String x:Key="LOCExitAppLabel">離開</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">過濾器已啟用（點選以切換過濾器面板）</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">過濾器已停用（點選以切換過濾器面板）</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">更多過濾條件</sys:String>
+    <sys:String x:Key="LOCFilters">過濾器</sys:String>
+    <sys:String x:Key="LOCFilter">過濾器</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">資料無效</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">儲存變更?</sys:String>
@@ -37,10 +37,10 @@
     <sys:String x:Key="LOCCrashWindowTitle">喔不，出錯了...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">發生無法復原的錯誤。
 
-如果你願意幫助我們解決此問題，請創建診斷資料報告並使用 "回報錯誤" 按鈕讓我們知道發生了甚麼，謝謝。</sys:String>
+如果您願意幫助我們解決此問題，請創建診斷資料報告並使用 "回報錯誤" 按鈕讓我們知道發生了甚麼，謝謝。</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">發生無法復原的錯誤。
 
-如果你願意幫助我們解決此問題，請傳送診斷資料報告給我們，謝謝。</sys:String>
+如果您願意幫助我們解決此問題，請傳送診斷資料報告給我們，謝謝。</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">問題回報</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重新啟動Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">離開Playnite</sys:String>
@@ -49,10 +49,10 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">移除遊戲()?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">無法移除正在運行或正在進行安裝/移除的遊戲</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">無法移除正在運行中的遊戲</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">你確定要刪除這個遊戲?
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">您確定要刪除這個遊戲?
 
 自動匯入的遊戲可能會在下次進行匯入之後重新出現在Playnite中(根據個人設定不同有所差異)</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">你確定要刪除{0} 個遊戲嗎?
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">您確定要刪除{0} 個遊戲嗎?
 
 自動匯入的遊戲可能會在下次進行匯入之後重新出現在Playnite中(根據個人設定不同有所差異)</sys:String>
 
@@ -190,20 +190,20 @@
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">啟用此選項則已存有資料的儲存格不會從元資料更新數據。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">遊戲選擇</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">請選擇需要從元資料更新訊息的遊戲:</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceAll">資料庫中的所有遊戲</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceFiltered">所有目前篩選出的遊戲</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceAll">數據庫中的所有遊戲</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceFiltered">所有目前過濾出的遊戲</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">僅選中的遊戲</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">官方商店 > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">請選擇透過Playnite自動輸入的資料範圍以及資料來源</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif">請點擊上方圖示並協助更新Igdnb.com資料庫以助Playnite提供用戶更詳盡的資訊。</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">請點擊上方圖示並協助更新Igdb.com數據庫以助Playnite提供用戶更詳盡的資訊。</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">商店:
 只從官方商店下載資訊
 
 IGDB:
-只從IGDB資料庫下載資訊
+只從 IGDB 下載資訊
 
 IGDB > 官方商店
 優先從 IGDB 下載資訊，如無則使用官方商店資訊
@@ -257,15 +257,15 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">繪製網格化物件背景</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">網格化物件邊界寬度</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">找不到遊戲圖示來源</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource">找不到遊戲封面來源</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">到遊戲詳情的垂直間距</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">缺失遊戲封面來源</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">到遊戲詳細信息的垂直間距</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">網格檢視詳細資訊位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">列表檢視遊戲列表位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">在面板間繪製分隔線</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">遊戲封面圖片高度</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">遊戲列表圖示高度</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">程式字體</sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition">篩選面板位置</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">過濾面板位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">瀏覽面板位置</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">封面圖片渲染</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">目標長寬比</sys:String>
@@ -288,20 +288,20 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">匯入未安裝的遊戲</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">匯入所有遊戲</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">匯入所有遊戲(公開帳戶或提供API密鑰)</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidDBLocation"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidAccountName"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport"></sys:String>
+    <sys:String x:Key="LOCSettingsInvalidDBLocation">無效的數據庫位置，必須設定正確的文件路徑</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">帳號名稱不能為空白</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">未選擇要匯入資料庫的Steam帳號</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">未選擇要匯入分類的Steam帳號</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
-    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport"></sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError"></sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">在啟動時下載第三方資料庫更新</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">匯入遊戲後下載元資料</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">啟動時最小化</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">開機後自動執行Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">無法設定Playnite於開機後自動啟動</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">以全螢幕模式開始</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">包含Steam, Origin以及其他</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">載入非同步圖片中</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提升瀏覽遊戲列表時的滑鼠滾動順暢度，但圖片讀取速度相對較慢</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">如無封面圖片則顯示遊戲名稱</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在網格檢視中顯示遊戲名稱</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">在詳細檢視中顯示遊戲圖示</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">在分組描述中顯示遊戲數量</sys:String>
@@ -337,10 +337,10 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">即將覆蓋所有Steam遊戲分類。是否繼續?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">確定匯入分類?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">無法匯入分類，未選擇帳號。</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">無法匯入分類，未開啟資料庫。</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">無法匯入分類，未開啟數據庫。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">匯入Steam分類失敗: {0}</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">無法匯入最後遊玩資訊，未選擇匯入帳號</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">無法匯入最後遊玩資訊，未開啟資料庫</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">無法匯入最後遊玩資訊，未開啟數據庫</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">無法匯入Steam最後遊玩資訊: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">即將登出所有已連結服務並重啟程式，是否繼續?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">清除快取？</sys:String>
@@ -354,27 +354,29 @@ IGDB > 官方商店
 
 目前所有任務(元資料下載) 都將被取消。</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">重新啟動Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRows"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenColumns"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSource"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceImage"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceStore"></sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnitee不會自動搬移資料庫文件，您必須在更改位置前移動/複製這些資料。如果移動後的位置找不到資料庫文件，Playnite將會自動創建一個新的資料庫。
+
+新的資料庫位置將會在下次重新啟動程式之後被套用。</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果設定了"關閉"指令，則遊玩時間將不會被記錄</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">列數</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">欄數</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">列表檢視列數</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSource">背景圖片來源:</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">遊戲圖片</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截圖</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">商店背景</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下載元資料則不會往前套用於現有遊戲</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">強制同步遊玩時數</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">在資料庫同步時總是下載遠端資料庫的遊玩時數，覆蓋Playnite紀錄的遊玩時數</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">在桌面模式中啟用手把功能</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">導航按鍵開啟全螢幕模式</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">設定匯入新遊戲後自動下載元資料之選項</sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor">目標顯示器</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">顯示遊戲標題</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">顯示電池狀態</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">顯示剩餘電量百分比</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">顯示時鐘</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">快速篩選時只顯示已安裝遊戲</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">快速過濾時只顯示已安裝遊戲</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">按鈕提示</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">配置</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">水平捲軸</sys:String>
@@ -401,16 +403,19 @@ IGDB > 官方商店
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">匯入元資料</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">下載元資料</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">設定未來元資料下載的選項。
+之後可在設定中更改。</sys:String>
     
     <!--Emulator Import-->
-    <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardWindowTitle">模擬器匯入精靈</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">本精靈將導引您下載並匯入模擬器以及模擬器遊戲。</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">請留意，您可隨時透過主選單新增模擬器及/或遊戲(在"工具"選單中可找到模擬器設定，"新增遊戲"選單中新增模擬器遊戲)</sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">以下是Playnite可自動辨認及設定的模擬器清單。您可以透過模擬器官網下載並進行安裝。當您完成安裝之後，進到下一步以完成匯入Playnite的步驟。
+
+您也可以稍後透過"設定"選單設定並匯入任何自訂模擬器</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">您可以按下"從資料夾自動檢查..." 來匯入任何已安裝在您PC上的模擬器。Playnite會在點選的資料夾中搜尋任何已知的模擬器並提供匯入選項。您可以多次使用該按鈕從多個文件夾匯入，模擬器將會被新增在目前列表的底部</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">透過按下 "使用模擬器掃描資料夾" 按鈕，可自動匯入遊戲。如果選擇了適當的模擬器，Playnite將能自動辨識並匯入正確的檔案類型。您可以多次使用該按鈕從多重資料夾匯入，遊戲會被新增在目前清單的底部</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">未選擇要匯入的模擬器。如未設定模擬器則將無法自動匯入任何模擬器遊戲。是否確定要繼續並離開匯入程序?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">尚未設定任何模擬器於Playnite當中。如未設定模擬器並選擇適當的檔案類型則無法匯入遊戲。要新增模擬器嗎?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">掃描模擬器資料夾</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">選擇檔案</sys:String>
@@ -420,336 +425,365 @@ IGDB > 官方商店
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">首次配置</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">本精靈將帶領你完成遊戲匯入以及設定外部遊戲資料庫。Playnite可以自動從遊戲服務商如Steam或GOG匯入遊戲，並透過啟動時自動更新保持遊戲狀態同步。
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">本精靈將帶領您完成遊戲匯入以及設定外部遊戲資料庫。Playnite可以自動從遊戲服務商如Steam或GOG匯入遊戲，並透過啟動時自動更新保持遊戲狀態同步。
 
-請留意，你可隨時點擊"Playnite"按鈕，透過主選單手動新增任何平台上的自訂遊戲。    </sys:String>
+請留意，您可隨時點擊"Playnite"按鈕，透過主選單手動新增任何平台上的自訂遊戲。    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">選擇資料數據庫的位置。稍後也可於設定選單更改位置。</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">所有使用者的預設程式資料位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">自訂位置</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">資料庫整合</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstSteamIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstOriginIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstGOGIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstBattleNetIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstUplayIntegration"></sys:String>
-    <sys:String x:Key="LOCFirstSteamImportCategories"></sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesTitle"></sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesImportButton"></sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">自動從以下的服務匯入遊戲。以後Playnite啟動時將會自動更新遊戲狀態(安裝狀態) 或手動進行更新。此設定將會影響初次以及所有後續的匯入過程。</sys:String>
+    <sys:String x:Key="LOCFirstSteamIntegration">Steam整合</sys:String>
+    <sys:String x:Key="LOCFirstOriginIntegration">Origin整合</sys:String>
+    <sys:String x:Key="LOCFirstGOGIntegration">GOG整合</sys:String>
+    <sys:String x:Key="LOCFirstBattleNetIntegration">Battle.net整合</sys:String>
+    <sys:String x:Key="LOCFirstUplayIntegration">Uplay整合</sys:String>
+    <sys:String x:Key="LOCFirstSteamImportCategories">從帳號匯入分類:</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesTitle">其他遊戲</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">點選以下的按鈕以匯入或手動瀏覽其他已安裝的遊戲(包含Microsoft Store遊戲)</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesImportButton">匯入遊戲</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">完成設定</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始安裝已經完成。請記得您可以在"選項"選單中更改所有的設定。
+
+同時您也可以在之後透過點選Playnite主程式圖示開啟主選單，新增任何其他遊戲(包含Microsoft Store遊戲)</sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport">開啟模擬器匯入指南</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">網格檢視版面配置</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">選擇偏好的網格檢視版面配置。圖片配置方式可於之後在設定中進行更改，包含影像延伸選項。</sys:String>
 
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCPlatformTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorTitle"></sys:String>
-    <sys:String x:Key="LOCAddPlatformTitle"></sys:String>
-    <sys:String x:Key="LOCSelectIconTitle"></sys:String>
-    <sys:String x:Key="LOCSelectCoverTitle"></sys:String>
-    <sys:String x:Key="LOCSelectFileTitle"></sys:String>
-    <sys:String x:Key="LOCSelectUrlTitle"></sys:String>
-    <sys:String x:Key="LOCAddEmulatorTitle"></sys:String>
-    <sys:String x:Key="LOCSupportedPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle"></sys:String>
-    <sys:String x:Key="LOCExecutableTitle"></sys:String>
-    <sys:String x:Key="LOCArgumentsTitle"></sys:String>
-    <sys:String x:Key="LOCWorkingDirTitle"></sys:String>
-    <sys:String x:Key="LOCSupportedFilesTitle"></sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
-    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">設定平台以及模擬器</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">設定模擬器</sys:String>
+    <sys:String x:Key="LOCPlatformsTitle">平台</sys:String>
+    <sys:String x:Key="LOCPlatformTitle">平台</sys:String>
+    <sys:String x:Key="LOCEmulatorsTitle">模擬器</sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">模擬器</sys:String>
+    <sys:String x:Key="LOCAddPlatformTitle">新增平台</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">選擇圖示</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">選擇封面</sys:String>
+    <sys:String x:Key="LOCSelectFileTitle">選擇檔案</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">選擇網址</sys:String>
+    <sys:String x:Key="LOCAddEmulatorTitle">新增模擬器</sys:String>
+    <sys:String x:Key="LOCSupportedPlatformsTitle">支持的平台</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">是否儲存平台設定?</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">是否儲存模擬器設定?</sys:String>
+    <sys:String x:Key="LOCExecutableTitle">執行檔</sys:String>
+    <sys:String x:Key="LOCArgumentsTitle">引數</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">工作目錄</sys:String>
+    <sys:String x:Key="LOCSupportedFilesTitle">支援的檔案類型</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">匯入模擬器...</sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton">下載模擬器...</sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">從已知的模擬器描述檔加載預設引數</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">是否確定要移除 {0} 模擬器?        
+目前正被 {1} 個遊戲使用</sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">是否確定移除 {0} 平台?        
+目前該平台正被 {1} 個遊戲以及 {2} 個模擬器使用</sys:String>
+    <sys:String x:Key="LOCEmulatorSettingsHelp">設置指引</sys:String>
     
-    <sys:String x:Key="LOCMenuSortByTitle"></sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
-    <sys:String x:Key="LOCMenuSortAscending"></sys:String>
-    <sys:String x:Key="LOCMenuSortDescending"></sys:String>
-    <sys:String x:Key="LOCMenuGroupDont"></sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider"></sys:String>
+    <sys:String x:Key="LOCMenuSortByTitle">按... 排序</sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">按... 分組</sys:String>
+    <sys:String x:Key="LOCMenuSortAscending">由少至多</sys:String>
+    <sys:String x:Key="LOCMenuSortDescending">由多至少</sys:String>
+    <sys:String x:Key="LOCMenuGroupDont">不分組</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">按資料庫分組</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">按分類分組</sys:String>
-    <sys:String x:Key="LOCMenuGroupPlatform"></sys:String>
-    <sys:String x:Key="LOCViewType"></sys:String>
-    <sys:String x:Key="LOCMenuView"></sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
-    <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
+    <sys:String x:Key="LOCMenuGroupPlatform">按平台分組</sys:String>
+    <sys:String x:Key="LOCViewType">檢視類型</sys:String>
+    <sys:String x:Key="LOCMenuView">檢視</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">瀏覽面板</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">過濾面板</sys:String>
 
     <!--Game fields-->
-    <sys:String x:Key="LOCGameIconTitle"></sys:String>
-    <sys:String x:Key="LOCGameCoverImageTitle"></sys:String>
-    <sys:String x:Key="LOCGameBackgroundTitle"></sys:String>
-    <sys:String x:Key="LOCGameSortingNameTitle"></sys:String>
-    <sys:String x:Key="LOCGameProviderTitle"></sys:String>
-    <sys:String x:Key="LOCGameNameTitle"></sys:String>
-    <sys:String x:Key="LOCGameAccountNameTitle"></sys:String>
-    <sys:String x:Key="LOCGamePlatformTitle"></sys:String>
+    <sys:String x:Key="LOCGameIconTitle">圖示</sys:String>
+    <sys:String x:Key="LOCGameCoverImageTitle">封面圖片</sys:String>
+    <sys:String x:Key="LOCGameBackgroundTitle">背景圖片</sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">排序名稱</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">資料庫</sys:String>
+    <sys:String x:Key="LOCGameNameTitle">名稱</sys:String>
+    <sys:String x:Key="LOCGameAccountNameTitle">帳號名稱</sys:String>
+    <sys:String x:Key="LOCGamePlatformTitle">平台</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">分類</sys:String>
-    <sys:String x:Key="LOCGameGenresTitle"></sys:String>
-    <sys:String x:Key="LOCGameReleaseDateTitle"></sys:String>
-    <sys:String x:Key="LOCGameReleaseYearTitle"></sys:String>
-    <sys:String x:Key="LOCGameDevelopersTitle"></sys:String>
-    <sys:String x:Key="LOCGameTagsTitle"></sys:String>
-    <sys:String x:Key="LOCGamePublishersTitle"></sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle"></sys:String>
-    <sys:String x:Key="LOCGameFavoriteTitle"></sys:String>
-    <sys:String x:Key="LOCGameLastActivityTitle"></sys:String>
+    <sys:String x:Key="LOCGameGenresTitle">類型</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">發行日期</sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">發行年份</sys:String>
+    <sys:String x:Key="LOCGameDevelopersTitle">開發團隊</sys:String>
+    <sys:String x:Key="LOCGameTagsTitle">標籤</sys:String>
+    <sys:String x:Key="LOCGamePublishersTitle">發行商</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">已安裝</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">已安裝</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">未安裝</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">隱藏</sys:String>
+    <sys:String x:Key="LOCGameFavoriteTitle">我的最愛</sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle">最後遊玩</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">分類</sys:String>
-    <sys:String x:Key="LOCGameDescriptionTitle"></sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
-    <sys:String x:Key="LOCGameCoverTitle"></sys:String>
-    <sys:String x:Key="LOCGameLinksTitle"></sys:String>
-    <sys:String x:Key="LOCGameROMTitle"></sys:String>
+    <sys:String x:Key="LOCGameDescriptionTitle">描述</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">安裝目錄</sys:String>
+    <sys:String x:Key="LOCGameCoverTitle">封面圖片</sys:String>
+    <sys:String x:Key="LOCGameLinksTitle">連結</sys:String>
+    <sys:String x:Key="LOCGameROMTitle">圖片，ROM或ISO路徑</sys:String>
 
     <!--Errors-->
-    <sys:String x:Key="LOCDatabaseErroTitle"></sys:String>
-    <sys:String x:Key="LOCDatabaseOpenError"></sys:String>
-    <sys:String x:Key="LOCDatabaseNotOpenedError"></sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError"></sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationError"></sys:String>
-    <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
-    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDatabaseErroTitle">數據庫錯誤</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenError">無法開啟資料庫數據</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">未開啟數據庫</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">無法連接資料庫數據。檔案"{0}"正在被其他程式使用或位於無法連接的位置</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">創建診斷報告失敗</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">自動上傳診斷報告失敗</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">診斷訊息成功送出</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">已成功創建並發送診斷報告。
+請在回報內容中附上以下ID:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">匯入Steam分類失敗</sys:String>
     
-    <sys:String x:Key="LOCBnetInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCSteamInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCGOGInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCOriginInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCUplayInstalledImportError"></sys:String>
+    <sys:String x:Key="LOCBnetInstalledImportError">無法匯入已安裝的Battle.net遊戲</sys:String>
+    <sys:String x:Key="LOCSteamInstalledImportError">無法匯入已安裝的Steam遊戲</sys:String>
+    <sys:String x:Key="LOCGOGInstalledImportError">無法匯入已安裝的GOG遊戲</sys:String>
+    <sys:String x:Key="LOCOriginInstalledImportError">無法匯入已安裝的Origin遊戲</sys:String>
+    <sys:String x:Key="LOCUplayInstalledImportError">無法匯入已安裝的Uplay遊戲</sys:String>
 
-    <sys:String x:Key="LOCBnetLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCSteamLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCGOGLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCOriginLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCUplayLibraryImportError"></sys:String>
+    <sys:String x:Key="LOCBnetLibraryImportError">無法下載Battle.net資料庫</sys:String>
+    <sys:String x:Key="LOCSteamLibraryImportError">無法下載Steam資料庫</sys:String>
+    <sys:String x:Key="LOCGOGLibraryImportError">無法下載GOG資料庫</sys:String>
+    <sys:String x:Key="LOCOriginLibraryImportError">無法下載Origin資料庫</sys:String>
+    <sys:String x:Key="LOCUplayLibraryImportError">無法下載Uplay資料庫</sys:String>
     
-    <sys:String x:Key="LOCLibraryImportError"></sys:String>    
-    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError"></sys:String>
-    <sys:String x:Key="LOCStartGenericError"></sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCURLFormatError"></sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCLibraryImportError">從 {0} 匯入遊戲失敗。</sys:String>    
+    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">無法透過指定的模擬器描述檔搜尋遊戲。描述檔未包含任何副檔名或平台。</sys:String>
+    <sys:String x:Key="LOCStartGenericError">Playnite無法啟動。請關閉所有正在執行的程式並重試</sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">無法套用主題 "{0}", 色彩描述檔 "{1}"
+        
+{2}</sys:String>
+    <sys:String x:Key="LOCURLFormatError">無法開啟連結，網址格式不符。</sys:String>
+    <sys:String x:Key="LOCAppStartupError">無法開啟應用程式</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">無法初始化網頁瀏覽元件，Playnite無法繼續啟動。
+        
+您可以嘗試以下方法解決:        
+  • 檢查所有檔案是否已正確安裝，重新安裝可能有所幫助
+  • 檢查防毒軟體是否封鎖了Playnite資料夾內的檔案
+  • 嘗試安裝在不同的位置</sys:String>
 
     <!--GameEdit-->
-    <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUseExeIcon"></sys:String>
-    <sys:String x:Key="LOCImageURL"></sys:String>
-    <sys:String x:Key="LOCAddLinkButton"></sys:String>
-    <sys:String x:Key="LOCSaveChanges"></sys:String>
-    <sys:String x:Key="LOCPlayAction"></sys:String>
-    <sys:String x:Key="LOCAddPlayAction"></sys:String>
-    <sys:String x:Key="LOCAddAction"></sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
-    <sys:String x:Key="LOCRemovePlayAction"></sys:String>
-    <sys:String x:Key="LOCOtherActions"></sys:String>
-    <sys:String x:Key="LOCAddGames"></sys:String>
-    <sys:String x:Key="LOCScanFolder"></sys:String>
-    <sys:String x:Key="LOCDetectInstalled"></sys:String>
-    <sys:String x:Key="LOCBrowse"></sys:String>
-    <sys:String x:Key="LOCOpenPlaynite"></sys:String>
-    <sys:String x:Key="LOCProfileSettings"></sys:String>
-    <sys:String x:Key="LOCEmptyGameNameError"></sys:String>
-    <sys:String x:Key="LOCEmptyGameNameMetaSearchError"></sys:String>
-    <sys:String x:Key="LOCInvalidGameData"></sys:String>
-    <sys:String x:Key="LOCURLInputInfo"></sys:String>
-    <sys:String x:Key="LOCURLInputInfoTitile"></sys:String>
-    <sys:String x:Key="LOCMetadataDownloadError"></sys:String>
-    <sys:String x:Key="LOCDownloadError"></sys:String>
-    <sys:String x:Key="LOCClearFilters"></sys:String>
-    <sys:String x:Key="LOCPrivateAccount"></sys:String>
-    <sys:String x:Key="LOCPublicAccount"></sys:String>
-    <sys:String x:Key="LOCAPIKey"></sys:String>
-    <sys:String x:Key="LOCStartupError"></sys:String>
-    <sys:String x:Key="LOCSkinError"></sys:String>
-    <sys:String x:Key="LOCClearAll"></sys:String>
-    <sys:String x:Key="LOCSetupRunning"></sys:String>
-    <sys:String x:Key="LOCUninstalling"></sys:String>
-    <sys:String x:Key="LOCGameLaunching"></sys:String>
-    <sys:String x:Key="LOCGameRunning"></sys:String>
-    <sys:String x:Key="LOCInvalidURL"></sys:String>
-    <sys:String x:Key="LOCDoNothing"></sys:String>
-    <sys:String x:Key="LOCMinimize"></sys:String>
-    <sys:String x:Key="LOCRestoreWindow"></sys:String>
-    <sys:String x:Key="LOCClose"></sys:String>
-    <sys:String x:Key="LOCChange"></sys:String>
-    <sys:String x:Key="LOCAdvanced"></sys:String>
-    <sys:String x:Key="LOCNever"></sys:String>
-    <sys:String x:Key="LOCNotPlayed"></sys:String>
-    <sys:String x:Key="LOCPlayed"></sys:String>
-    <sys:String x:Key="LOCBeaten"></sys:String>
-    <sys:String x:Key="LOCCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatus"></sys:String>
-    <sys:String x:Key="LOCUserScore"></sys:String>
-    <sys:String x:Key="LOCCriticScore"></sys:String>
-    <sys:String x:Key="LOCCommunityScore"></sys:String>
-    <sys:String x:Key="LOCScripts"></sys:String>
-    <sys:String x:Key="LOCPlugins"></sys:String>
-    <sys:String x:Key="LOCExtensions"></sys:String>
-    <sys:String x:Key="LOCReloadScripts"></sys:String>
-    <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
-    <sys:String x:Key="LOCExitPlaynite"></sys:String>
-    <sys:String x:Key="LOCLibraries"></sys:String>
-    <sys:String x:Key="LOCUpdateAll"></sys:String>
-    <sys:String x:Key="LOCExtensionCreatedBy"></sys:String>
-    <sys:String x:Key="LOCExtensionVersion"></sys:String>
-    <sys:String x:Key="LOCExtensionModule"></sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
-    <sys:String x:Key="LOCAll"></sys:String>
-    <sys:String x:Key="LOCNone"></sys:String>
-    <sys:String x:Key="LOCNotifications"></sys:String>
-    <sys:String x:Key="LOCWidth"></sys:String>
-    <sys:String x:Key="LOCHeight"></sys:String>
-    <sys:String x:Key="LOCSize"></sys:String>
-    <sys:String x:Key="LOCFontSmall"></sys:String>
-    <sys:String x:Key="LOCFontNormal"></sys:String>
-    <sys:String x:Key="LOCFontLarge"></sys:String>
-    <sys:String x:Key="LOCFontLarger"></sys:String>
-    <sys:String x:Key="LOCFontLargest"></sys:String>
-    <sys:String x:Key="LOCDefault"></sys:String>
+    <sys:String x:Key="LOCGameEditWindowTitle">編輯遊戲詳細信息</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">來自啟動動作</sys:String>
+    <sys:String x:Key="LOCImageURL">圖片網址</sys:String>
+    <sys:String x:Key="LOCAddLinkButton">新增連結</sys:String>
+    <sys:String x:Key="LOCSaveChanges">儲存變更</sys:String>
+    <sys:String x:Key="LOCPlayAction">啟動動作</sys:String>
+    <sys:String x:Key="LOCAddPlayAction">新增啟動動作</sys:String>
+    <sys:String x:Key="LOCAddAction">新增動作</sys:String>
+    <sys:String x:Key="LOCDeleteAction">刪除動作</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">移除啟動動作</sys:String>
+    <sys:String x:Key="LOCOtherActions">其他動作</sys:String>
+    <sys:String x:Key="LOCAddGames">新增遊戲</sys:String>
+    <sys:String x:Key="LOCScanFolder">掃描資料夾...</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">找到已安裝</sys:String>
+    <sys:String x:Key="LOCBrowse">瀏覽...</sys:String>
+    <sys:String x:Key="LOCOpenPlaynite">打開Playnite</sys:String>
+    <sys:String x:Key="LOCProfileSettings">個人檔案設定</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameError">遊戲名不能為空白</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">搜尋元資料時遊戲名稱不能為空白</sys:String>
+    <sys:String x:Key="LOCInvalidGameData">無效的遊戲資料</sys:String>
+    <sys:String x:Key="LOCURLInputInfo">請使用包含 http:// 或 https:// 的有效網址格式</sys:String>
+    <sys:String x:Key="LOCURLInputInfoTitile">選擇網址</sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">下載元資料失敗: {0}</sys:String>
+    <sys:String x:Key="LOCDownloadError">下載錯誤</sys:String>
+    <sys:String x:Key="LOCClearFilters">清除過濾條件</sys:String>
+    <sys:String x:Key="LOCPrivateAccount">私人帳號</sys:String>
+    <sys:String x:Key="LOCPublicAccount">公開帳號</sys:String>
+    <sys:String x:Key="LOCAPIKey">API 密鑰</sys:String>
+    <sys:String x:Key="LOCStartupError">啟動錯誤</sys:String>
+    <sys:String x:Key="LOCSkinError">主題錯誤</sys:String>
+    <sys:String x:Key="LOCClearAll">全部清除</sys:String>
+    <sys:String x:Key="LOCSetupRunning">安裝中</sys:String>
+    <sys:String x:Key="LOCUninstalling">移除中</sys:String>
+    <sys:String x:Key="LOCGameLaunching">啟動中</sys:String>
+    <sys:String x:Key="LOCGameRunning">執行中</sys:String>
+    <sys:String x:Key="LOCInvalidURL">無效的網址</sys:String>
+    <sys:String x:Key="LOCDoNothing">不做任何事</sys:String>
+    <sys:String x:Key="LOCMinimize">最小化</sys:String>
+    <sys:String x:Key="LOCRestoreWindow">復原視窗</sys:String>
+    <sys:String x:Key="LOCClose">關閉</sys:String>
+    <sys:String x:Key="LOCChange">變更</sys:String>
+    <sys:String x:Key="LOCAdvanced">進階</sys:String>
+    <sys:String x:Key="LOCNever">從未</sys:String>
+    <sys:String x:Key="LOCNotPlayed">尚未遊玩</sys:String>
+    <sys:String x:Key="LOCPlayed">已遊玩</sys:String>
+    <sys:String x:Key="LOCBeaten">已通關</sys:String>
+    <sys:String x:Key="LOCCompleted">已完整通關</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">完成狀態</sys:String>
+    <sys:String x:Key="LOCUserScore">使用者評分</sys:String>
+    <sys:String x:Key="LOCCriticScore">專家評分</sys:String>
+    <sys:String x:Key="LOCCommunityScore">社群評分</sys:String>
+    <sys:String x:Key="LOCScripts">腳本</sys:String>
+    <sys:String x:Key="LOCPlugins">外掛</sys:String>
+    <sys:String x:Key="LOCExtensions">附加元件</sys:String>
+    <sys:String x:Key="LOCReloadScripts">重新載入腳本</sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess">已成功加載所有腳本</sys:String>
+    <sys:String x:Key="LOCNoGamesFound">找不到遊戲</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">回到桌面模式</sys:String>
+    <sys:String x:Key="LOCExitPlaynite">離開Playnite</sys:String>
+    <sys:String x:Key="LOCLibraries">資料庫</sys:String>
+    <sys:String x:Key="LOCUpdateAll">全部更新</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">建立者:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">版本:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">模組:</sys:String>
+    <sys:String x:Key="LOCLibrary">資料庫</sys:String>
+    <sys:String x:Key="LOCAll">全部</sys:String>
+    <sys:String x:Key="LOCNone">無</sys:String>
+    <sys:String x:Key="LOCNotifications">通知</sys:String>
+    <sys:String x:Key="LOCWidth">寬</sys:String>
+    <sys:String x:Key="LOCHeight">高</sys:String>
+    <sys:String x:Key="LOCSize">大小</sys:String>
+    <sys:String x:Key="LOCFontSmall">小</sys:String>
+    <sys:String x:Key="LOCFontNormal">普通</sys:String>
+    <sys:String x:Key="LOCFontLarge">大</sys:String>
+    <sys:String x:Key="LOCFontLarger">較大</sys:String>
+    <sys:String x:Key="LOCFontLargest">最大</sys:String>
+    <sys:String x:Key="LOCDefault">預設</sys:String>
 
-    <sys:String x:Key="LOCEmulatorArguments"></sys:String>
-    <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
-    <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCEmulatorArguments">模擬器引數</sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments">其他模擬器引數</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">覆寫模擬器引數</sys:String>
 
-    <sys:String x:Key="LOCGameImportWindowTitle"></sys:String>
-    <sys:String x:Key="LOCMetaLookupWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUpdaterWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate"></sys:String>
-    <sys:String x:Key="LOCCheckForUpdates"></sys:String>
-    <sys:String x:Key="LOCUpdateError"></sys:String>
-    <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage"></sys:String>
-    <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCGameImportWindowTitle">選擇要匯入的遊戲</sys:String>
+    <sys:String x:Key="LOCMetaLookupWindowTitle">搜尋元資料</sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle">有可用的更新</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">最後更新至今的變更</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">下載並安裝更新</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">檢查更新</sys:String>
+    <sys:String x:Key="LOCUpdateError">更新錯誤</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">無法檢查新版本</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">找不到新版本，您已是最新版本</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">無法下載並安裝更新</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">背景任務正在執行，是否要取消並進行更新檔安裝?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">目前有背景程式正在執行，是否要取消並關閉Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">有一個可用的Playnite更新</sys:String>
 
-    <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
-    <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChanges"></sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChangesTooltip"></sys:String>
+    <sys:String x:Key="LOCThemeTestReloadList">重新載入主題清單</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">套用選擇的主題</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChanges">閱讀檔案更動</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">當來源檔案更改時自動套用主題</sys:String>
 
     <!--Game actions-->
-    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
-    <sys:String x:Key="LOCFavoriteGame"></sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
-    <sys:String x:Key="LOCHideGame"></sys:String>
-    <sys:String x:Key="LOCUnHideGame"></sys:String>
-    <sys:String x:Key="LOCEditGame"></sys:String>
+    <sys:String x:Key="LOCSaveAsDefault">儲存為預設值</sys:String>
+    <sys:String x:Key="LOCFavoriteGame">新增至我的最愛</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">從「我的最愛」中移除</sys:String>
+    <sys:String x:Key="LOCHideGame">隱藏</sys:String>
+    <sys:String x:Key="LOCUnHideGame">在資料庫中顯示</sys:String>
+    <sys:String x:Key="LOCEditGame">編輯...</sys:String>
     <sys:String x:Key="LOCSetGameCategory">設定分類...</sys:String>
-    <sys:String x:Key="LOCRemoveGame"></sys:String>
-    <sys:String x:Key="LOCPlayGame"></sys:String>
-    <sys:String x:Key="LOCInstallGame"></sys:String>
-    <sys:String x:Key="LOCGameOptions"></sys:String>
-    <sys:String x:Key="LOCGameDetails"></sys:String>
-    <sys:String x:Key="LOCUninstallGame"></sys:String>
-    <sys:String x:Key="LOCOpenGameLocation"></sys:String>
-    <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
-    <sys:String x:Key="LOCMoreAction"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
+    <sys:String x:Key="LOCRemoveGame">移除</sys:String>
+    <sys:String x:Key="LOCPlayGame">啟動</sys:String>
+    <sys:String x:Key="LOCInstallGame">安裝</sys:String>
+    <sys:String x:Key="LOCGameOptions">遊戲選項</sys:String>
+    <sys:String x:Key="LOCGameDetails">詳細信息</sys:String>
+    <sys:String x:Key="LOCUninstallGame">移除</sys:String>
+    <sys:String x:Key="LOCOpenGameLocation">打開安裝位置</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">建立桌面捷徑</sys:String>
+    <sys:String x:Key="LOCMoreAction">更多</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">由資料庫外掛管理</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">遊戲的啟動過程將由相對應的資料庫外掛管理</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
-    <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">在指定頁面找不到遊戲 '{0}' 的相關資訊</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">提示: 您可以透過"編輯"選單編輯遊戲並執行更進階的元資料下載程序</sys:String>
+    <sys:String x:Key="LOCProgreessAvailabilityMessage">某些程式正在進行時無法使用</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本支持HTML語法</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">遊玩時間將被記錄並以秒為單位儲存</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">輸入0到100的值或者留白以表示無分數</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite的開發得到了這些贊助者的支持:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">代碼，本地化以及其他貢獻者(無特定順序):</sys:String>
 
-    <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringAskTitle">取消遊戲監控?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">安裝監控正在執行，是否要取消並將遊戲復原至之前的狀態?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">遊戲運行監控正在執行，是否要取消並將遊戲復原至之前的狀態?</sys:String>
     
-    <sys:String x:Key="LOCTimePlayed"></sys:String>
-    <sys:String x:Key="LOCLastPlayed"></sys:String>
-    <sys:String x:Key="LOCPlayedHours"></sys:String>
-    <sys:String x:Key="LOCPlayedMinutes"></sys:String>
-    <sys:String x:Key="LOCPlayedSeconds"></sys:String>
-    <sys:String x:Key="LOCPlayedNone"></sys:String>
+    <sys:String x:Key="LOCTimePlayed">遊玩時數</sys:String>
+    <sys:String x:Key="LOCLastPlayed">最後遊玩</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0}小時 {1}分鐘</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0} 分鐘</sys:String>
+    <sys:String x:Key="LOCPlayedSeconds">{0} 秒</sys:String>
+    <sys:String x:Key="LOCPlayedNone">尚未遊玩</sys:String>
 
-    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
-    <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCInstallScript"></sys:String>
-    <sys:String x:Key="LOCScriptError"></sys:String>
-    <sys:String x:Key="LOCScriptExecutionError"></sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">正在開啟桌面模式...</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">正在開啟全螢幕模式...</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">讀取遊戲資料庫中...</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">無法安裝腳本</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">成功安裝腳本</sys:String>
+    <sys:String x:Key="LOCInstallScript">安裝腳本</sys:String>
+    <sys:String x:Key="LOCScriptError">脚本錯誤</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">無法執行附加元件</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">開啟元資料目錄夾</sys:String>
 
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0} 未安裝客戶端程式</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} 客戶端程式即將啟動，請登入並關閉此訊息。</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">正在等候用戶登入，完成後請關閉此訊息...</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">找不到遊戲安裝資料夾</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">無效的遊戲動作設定</sys:String>
 
-    <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">解決帳號同步問題</sys:String>
 
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
+    <sys:String x:Key="LOCRenameItem">重新命名物件</sys:String>
+    <sys:String x:Key="LOCAddNewItem">新增物件</sys:String>
+    <sys:String x:Key="LOCEnterName">輸入名稱</sys:String>
+    <sys:String x:Key="LOCEnterNewName">輸入新的名稱</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">少於一小時</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1到10小時</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10到100小時</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100到500小時</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500到1000小時</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">要完成安裝，必須重新啟動Playnite。是否要立即重新啟動?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">主題/附加元件使用了未支援的API版本</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安裝成功</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">安裝附加元件?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安裝附加元件失敗。
+        
+{0}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">是否安裝新的附加元件? 舊的元件將被覆蓋。
+    
+{0}
+By {1}
+版本 {2}
+    </sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">安裝主題失敗。
+        
+{0}</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">是否要安裝新的主題? 舊有主題將被覆蓋。
+    
+{0}
+By {1}
+版本 {2}
+    </sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">即將離開Playnite並透過預設瀏覽器前往以下的網頁。是否繼續?
+    
+{0}</sys:String>
 
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io客戶端程式即將啟動，請登入然後關閉此訊息。</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">正在等候用戶登入，完成後請關閉此訊息...</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">未安裝Itch 客戶端 25 或以上之版本</sys:String>
 
     <!--GOG-->
-    <sys:String x:Key="LOCGOGUseLogin"></sys:String>
-    <sys:String x:Key="LOCGOGUseAccountName"></sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGOGUseLogin">帳號登入</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">帳號名稱</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">登入您的帳號或者使用您的公開帳號名稱以同步完整資料庫。
+請注意，帳號名稱選項只對曾在GOG隱私設定中設為公開的帳號有效。</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
-    <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
-    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">帳號網址名稱</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">已驗證的使用者</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">此為私人帳號，需要提供API密鑰</sys:String>
 
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
-    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
-    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">首次安裝尚未完成，Playnite將會重新啟動進入桌面模式完成安裝步驟。</sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近玩過</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">我的最愛</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">最常遊玩</sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames">全部</sys:String>
 
-    <sys:String x:Key="LOCGameListFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+    <sys:String x:Key="LOCGameListFiltered">已套用過濾條件</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">搜尋結果：</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">已存在相同名稱的物件</sys:String>
 
 </ResourceDictionary>
