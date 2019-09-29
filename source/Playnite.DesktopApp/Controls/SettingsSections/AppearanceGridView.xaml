@@ -68,9 +68,6 @@
                         pbeh:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
                         <ContextMenu Placement="Bottom">
-                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectGenericSquare}"
-                                    Command="{Binding SetCoverArtAspectRatioCommand}"
-                                    CommandParameter="1:1"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectDVD}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="27:38"/>
