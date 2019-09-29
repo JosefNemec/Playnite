@@ -272,7 +272,11 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Target aspect ratio</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Stretch mode</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Banner</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectNewSteamUI">Steam New UI</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Box</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGenericSquare">Generic Square</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectNewGalaxyEpicGames">GOG Galaxy 2.0 and Epic Games Store</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdbTwitch">IGDB and Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requires restart to apply</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Settings</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">General</sys:String>
