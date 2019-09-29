@@ -56,12 +56,12 @@
                        Grid.Column="0" Grid.Row="0"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
                         Grid.Column="1" Grid.Row="0">
-                <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
+                <pctrls:NullableIntBox MinValue="1" MaxValue="350" Width="30"
                                         Margin="10,0,0,0"
                                         Value="{Binding Settings.GridItemWidthRatio}"/>
                 <TextBlock Text=":" VerticalAlignment="Center"
                            Margin="2,0,2,0"/>
-                <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
+                <pctrls:NullableIntBox MinValue="1" MaxValue="350" Width="30"
                                        Value="{Binding Settings.GridItemHeightRatio}"/>
 
                 <Button Content="{DynamicResource LOCPresets}" Margin="15,0,0,0" Padding="2"
