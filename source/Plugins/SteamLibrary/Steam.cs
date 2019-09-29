@@ -99,7 +99,7 @@ namespace SteamLibrary
 
         public static string GetAchievementsUrl(uint appId)
         {
-            return $"steam://openurl/https://steamcommunity.com/stats/{appId}/achievements";
+            return $"https://steamcommunity.com/stats/{appId}/achievements";
         }
 
         public static AppState GetAppState(GameID id)
