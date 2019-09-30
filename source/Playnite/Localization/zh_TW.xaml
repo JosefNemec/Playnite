@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     
-    <sys:String x:Key="LanguageName">中文（繁體）</sys:String>
+    <sys:String x:Key="LanguageName">繁體中文</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">語言</sys:String>
 
