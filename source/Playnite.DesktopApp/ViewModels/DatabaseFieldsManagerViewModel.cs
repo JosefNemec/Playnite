@@ -551,7 +551,7 @@ namespace Playnite.DesktopApp.ViewModels
                 item.Name);
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
-                if (collection.Any(a => a.Name.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
+                if (collection.Any(a => a.Name.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase) && a.Id != item.Id))
                 {
                     dialogs.ShowErrorMessage(resources.GetString("LOCItemAlreadyExists"), "");
                 }
