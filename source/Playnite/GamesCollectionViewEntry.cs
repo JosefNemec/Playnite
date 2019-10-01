@@ -221,6 +221,11 @@ namespace Playnite
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CoverImageObject)));
             }
 
+            if (propertyName == nameof(Game.BackgroundImage))
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayBackgroundImage)));
+            }
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
@@ -295,7 +300,11 @@ namespace Playnite
             {
                 return null;
             }
-            if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Platform && Platform?.Background.IsNullOrEmpty() == false)
+            else if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Cover && !CoverImage.IsNullOrEmpty())
+            {
+                return CoverImage;
+            }
+            else if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Platform && Platform?.Background.IsNullOrEmpty() == false)
             {
                 return Platform.Background;
             }

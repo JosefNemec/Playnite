@@ -78,6 +78,7 @@
                     <x:Array Type="{x:Type sys:Enum}">
                         <p:DefaultBackgroundSourceOptions>Library</p:DefaultBackgroundSourceOptions>
                         <p:DefaultBackgroundSourceOptions>Platform</p:DefaultBackgroundSourceOptions>
+                        <p:DefaultBackgroundSourceOptions>Cover</p:DefaultBackgroundSourceOptions>
                         <p:DefaultBackgroundSourceOptions>None</p:DefaultBackgroundSourceOptions>
                     </x:Array>
                 </ComboBox.ItemsSource>

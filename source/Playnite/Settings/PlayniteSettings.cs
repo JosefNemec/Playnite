@@ -73,6 +73,8 @@ namespace Playnite
         Library,
         [Description("LOCPlatformTitle")]
         Platform,
+        [Description("LOCGameCoverTitle")]
+        Cover,
         [Description("LOCNone")]
         None
     }
