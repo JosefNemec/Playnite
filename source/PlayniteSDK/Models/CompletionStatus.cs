@@ -13,24 +13,44 @@ namespace Playnite.SDK.Models
     public enum CompletionStatus : int
     {
         /// <summary>
-        /// Game has not been played yet.
+        /// Represents "Not Played" completion status.
         /// </summary>
-        [Description("LOCNotPlayed")]
+        [Description("LOCCompletionStatusNotPlayed")]
         NotPlayed = 0,
         /// <summary>
-        /// Game has been played.
+        /// Represents Played completion status.
         /// </summary>
-        [Description("LOCPlayed")]
+        [Description("LOCCompletionStatusPlayed")]
         Played = 1,
         /// <summary>
-        /// Main storyline has been beaten.
+        /// Represents Beaten completion status.
         /// </summary>
-        [Description("LOCBeaten")]
+        [Description("LOCCompletionStatusBeaten")]
         Beaten = 2,
         /// <summary>
-        /// Game has been fully completed.
+        /// Represents Completed completion status.
         /// </summary>
-        [Description("LOCCompleted")]
-        Completed = 3
+        [Description("LOCCompletionStatusCompleted")]
+        Completed = 3,
+        /// <summary>
+        /// Represents Playing completion status.
+        /// </summary>
+        [Description("LOCCompletionStatusPlaying")]
+        Playing = 4,
+        /// <summary>
+        /// Represents Abandoned completion status.
+        /// </summary>
+        [Description("LOCCompletionStatusAbandoned")]
+        Abandoned = 5,
+        /// <summary>
+        /// Represents "On hold" completion status.
+        /// </summary>
+        [Description("LOCCompletionStatusOnHold")]
+        OnHold = 6,
+        /// <summary>
+        /// Represents "Plan to Play" completion status.
+        /// </summary>
+        [Description("LOCCompletionStatusPlanToPlay")]
+        PlanToPlay = 7
     }
 }

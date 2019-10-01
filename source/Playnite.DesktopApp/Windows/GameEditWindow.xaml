@@ -380,7 +380,7 @@
                                   ItemsSource="{Binding Source={StaticResource CompletionStatusEnumValues}}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={pcon:CompletionStatusToStringConverter}}"/>
+                                    <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>

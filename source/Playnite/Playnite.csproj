@@ -215,7 +215,6 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
     <Compile Include="Converters\BoolToYesNoConverter.cs" />
-    <Compile Include="Converters\CompletionStatusToStringConverter.cs" />
     <Compile Include="Converters\CoversZoomToPercentageConverter.cs" />
     <Compile Include="Converters\ImageStringToImageConverter.cs" />
     <Compile Include="Converters\DateTimeToLastPlayedConverter.cs" />
