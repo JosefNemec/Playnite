@@ -31,7 +31,7 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents executable game action.
     /// </summary>
-    public class GameAction : ObservableObject
+    public class GameAction : ObservableObject, IEquatable<GameAction>
     {
         private GameActionType type;
         /// <summary>
@@ -189,5 +189,82 @@ namespace Playnite.SDK.Models
                     return Path;
             }
         }
+
+        /// <inheritdoc/>
+        public bool Equals(GameAction other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            if (Type != other.Type)
+            {
+                return false;
+            }
+
+            if (!string.Equals(Arguments, other.Arguments, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(AdditionalArguments, other.AdditionalArguments, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(Path, other.Path, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(WorkingDir, other.WorkingDir, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(Name, other.Name, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (IsHandledByPlugin != other.IsHandledByPlugin)
+            {
+                return false;
+            }
+
+            if (EmulatorId != other.EmulatorId)
+            {
+                return false;
+            }
+
+            if (EmulatorProfileId != other.EmulatorProfileId)
+            {
+                return false;
+            }
+
+            if (OverrideDefaultArgs != other.OverrideDefaultArgs)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj) => Equals(obj as GameAction);
+
+        /// <inheritdoc/>
+        public override int GetHashCode() =>
+            Type.GetHashCode() ^
+            (Arguments == null ? 0 : Arguments.GetHashCode()) ^
+            (AdditionalArguments == null ? 0 : AdditionalArguments.GetHashCode()) ^
+            (Path == null ? 0 : Path.GetHashCode()) ^
+            (WorkingDir == null ? 0 : WorkingDir.GetHashCode()) ^
+            (Name == null ? 0 : Name.GetHashCode()) ^
+            IsHandledByPlugin.GetHashCode() ^
+            EmulatorId.GetHashCode() ^
+            EmulatorProfileId.GetHashCode() ^
+            OverrideDefaultArgs.GetHashCode();
     }
 }

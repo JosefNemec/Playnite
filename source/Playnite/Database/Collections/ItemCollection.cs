@@ -292,7 +292,7 @@ namespace Playnite.Database
                 var loadedItem = Get(itemToUpdate.Id);
                 if (!ReferenceEquals(loadedItem, itemToUpdate))
                 {
-                    itemToUpdate.CopyProperties(loadedItem, true, null, true);
+                    itemToUpdate.CopyDiffTo(loadedItem);
                 }
             }
 
@@ -329,7 +329,7 @@ namespace Playnite.Database
                     var loadedItem = Get(item.Id);
                     if (!ReferenceEquals(loadedItem, item))
                     {
-                        item.CopyProperties(loadedItem, true, null, true);
+                        item.CopyDiffTo(loadedItem);
                     }
 
                     updates.Add(new ItemUpdateEvent<TItem>(oldData, loadedItem));

@@ -612,15 +612,6 @@ namespace Playnite.SDK.Models
             }
         }
 
-        /// <summary>
-        /// Gets value indicating wheter the game is custom game.
-        /// </summary>
-        [JsonIgnore]
-        public bool IsCustomGame
-        {
-            get => PluginId == Guid.Empty;
-        }
-
         private long playtime = 0;
         /// <summary>
         /// Gets or sets played time in seconds.
@@ -1100,6 +1091,15 @@ namespace Playnite.SDK.Models
             get => GetPlayTimeCategory(Playtime);
         }
 
+        /// <summary>
+        /// Gets value indicating wheter the game is custom game.
+        /// </summary>
+        [JsonIgnore]
+        public bool IsCustomGame
+        {
+            get => PluginId == Guid.Empty;
+        }
+
         #endregion Expanded
 
         /// <summary>
@@ -1296,6 +1296,219 @@ namespace Playnite.SDK.Models
         public override string ToString()
         {
             return Name;
+        }
+
+        /// <inheritdoc/>
+        public override void CopyDiffTo(object target)
+        {
+            base.CopyDiffTo(target);
+
+            if (target is Game tro)
+            {
+                if (!string.Equals(BackgroundImage, tro.BackgroundImage, StringComparison.Ordinal))
+                {
+                    tro.BackgroundImage = BackgroundImage;
+                }
+
+                if (!string.Equals(Description, tro.Description, StringComparison.Ordinal))
+                {
+                    tro.Description = Description;
+                }
+
+                if (!GenreIds.IsListEqual(tro.GenreIds))
+                {
+                    tro.GenreIds = GenreIds;
+                }
+
+                if (Hidden != tro.Hidden)
+                {
+                    tro.Hidden = Hidden;
+                }
+
+                if (Favorite != tro.Favorite)
+                {
+                    tro.Favorite = Favorite;
+                }
+
+                if (!string.Equals(Icon, tro.Icon, StringComparison.Ordinal))
+                {
+                    tro.Icon = Icon;
+                }
+
+                if (!string.Equals(CoverImage, tro.CoverImage, StringComparison.Ordinal))
+                {
+                    tro.CoverImage = CoverImage;
+                }
+
+                if (!string.Equals(InstallDirectory, tro.InstallDirectory, StringComparison.Ordinal))
+                {
+                    tro.InstallDirectory = InstallDirectory;
+                }
+
+                if (!string.Equals(GameImagePath, tro.GameImagePath, StringComparison.Ordinal))
+                {
+                    tro.GameImagePath = GameImagePath;
+                }
+
+                if (LastActivity != tro.LastActivity)
+                {
+                    tro.LastActivity = LastActivity;
+                }
+
+                if (!string.Equals(SortingName, tro.SortingName, StringComparison.Ordinal))
+                {
+                    tro.SortingName = SortingName;
+                }
+
+                if (!string.Equals(GameId, tro.GameId, StringComparison.Ordinal))
+                {
+                    tro.GameId = GameId;
+                }
+
+                if (PluginId != tro.PluginId)
+                {
+                    tro.PluginId = PluginId;
+                }
+
+                if (!OtherActions.IsListEqualExact(tro.OtherActions))
+                {
+                    tro.OtherActions = OtherActions;
+                }
+
+                if (!PlayAction.Equals(tro.PlayAction))
+                {
+                    tro.PlayAction = PlayAction;
+                }
+
+                if (PlatformId != tro.PlatformId)
+                {
+                    tro.PlatformId = PlatformId;
+                }
+
+                if (!PublisherIds.IsListEqual(tro.PublisherIds))
+                {
+                    tro.PublisherIds = PublisherIds;
+                }
+
+                if (!DeveloperIds.IsListEqual(tro.DeveloperIds))
+                {
+                    tro.DeveloperIds = DeveloperIds;
+                }
+
+                if (ReleaseDate != tro.ReleaseDate)
+                {
+                    tro.ReleaseDate = ReleaseDate;
+                }
+
+                if (!CategoryIds.IsListEqual(tro.CategoryIds))
+                {
+                    tro.CategoryIds = CategoryIds;
+                }
+
+                if (!TagIds.IsListEqual(tro.TagIds))
+                {
+                    tro.TagIds = TagIds;
+                }
+
+                if (!Links.IsListEqualExact(tro.Links))
+                {
+                    tro.Links = Links;
+                }
+
+                if (IsInstalling != tro.IsInstalling)
+                {
+                    tro.IsInstalling = IsInstalling;
+                }
+
+                if (IsUninstalling != tro.IsUninstalling)
+                {
+                    tro.IsUninstalling = IsUninstalling;
+                }
+
+                if (IsLaunching != tro.IsLaunching)
+                {
+                    tro.IsLaunching = IsLaunching;
+                }
+
+                if (IsRunning != tro.IsRunning)
+                {
+                    tro.IsRunning = IsRunning;
+                }
+
+                if (IsInstalled != tro.IsInstalled)
+                {
+                    tro.IsInstalled = IsInstalled;
+                }
+
+                if (Playtime != tro.Playtime)
+                {
+                    tro.Playtime = Playtime;
+                }
+
+                if (Added != tro.Added)
+                {
+                    tro.Added = Added;
+                }
+
+                if (Modified != tro.Modified)
+                {
+                    tro.Modified = Modified;
+                }
+
+                if (PlayCount != tro.PlayCount)
+                {
+                    tro.PlayCount = PlayCount;
+                }
+
+                if (SeriesId != tro.SeriesId)
+                {
+                    tro.SeriesId = SeriesId;
+                }
+
+                if (Version != tro.Version)
+                {
+                    tro.Version = Version;
+                }
+
+                if (AgeRatingId != tro.AgeRatingId)
+                {
+                    tro.AgeRatingId = AgeRatingId;
+                }
+
+                if (RegionId != tro.RegionId)
+                {
+                    tro.RegionId = RegionId;
+                }
+
+                if (SourceId != tro.SourceId)
+                {
+                    tro.SourceId = SourceId;
+                }
+
+                if (CompletionStatus != tro.CompletionStatus)
+                {
+                    tro.CompletionStatus = CompletionStatus;
+                }
+
+                if (UserScore != tro.UserScore)
+                {
+                    tro.UserScore = UserScore;
+                }
+
+                if (CriticScore != tro.CriticScore)
+                {
+                    tro.CriticScore = CriticScore;
+                }
+
+                if (CommunityScore != tro.CommunityScore)
+                {
+                    tro.CommunityScore = CommunityScore;
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"Target object has to be of type {GetType().Name}");
+            }
         }
     }
 }
