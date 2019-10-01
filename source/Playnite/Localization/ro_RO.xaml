@@ -224,7 +224,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Configurare</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Setări...</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platforme și Emulatoare</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
