@@ -1375,7 +1375,7 @@ namespace Playnite.SDK.Models
                     tro.OtherActions = OtherActions;
                 }
 
-                if (!PlayAction.Equals(tro.PlayAction))
+                if (!GameAction.Equals(PlayAction, tro.PlayAction))
                 {
                     tro.PlayAction = PlayAction;
                 }

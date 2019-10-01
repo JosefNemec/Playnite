@@ -190,6 +190,17 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Compares two <see cref="GameAction"/> objects for equality.
+        /// </summary>
+        /// <param name="obj1"></param>
+        /// <param name="obj2"></param>
+        /// <returns></returns>
+        public static bool Equals(GameAction obj1, GameAction obj2)
+        {
+            return obj1?.Equals(obj2) == true;
+        }
+
         /// <inheritdoc/>
         public bool Equals(GameAction other)
         {
