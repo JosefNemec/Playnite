@@ -6,7 +6,7 @@
     
     <sys:String x:Key="LanguageName">繁體中文</sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel">語言</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">離開</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">過濾器已啟用（點選以切換過濾器面板）</sys:String>
