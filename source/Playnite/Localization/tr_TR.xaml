@@ -354,9 +354,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     
 Şu anda etkin olan tüm görevler (meta veri indirmeleri) iptal edilir.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Playnite yeniden başlatılsın mı?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite kütüphane dosyalarını otomatik olarak taşımaz, konum değiştirilmeden önce bunları taşımanız / kopyalamanız gerekir. Hedef konumda kitaplık yoksa, yenisi oluşturulacaktır.
-
-Yeni veritabanı konumu ancak uygulama yeniden başlatıldıktan sonra kullanılacaktır.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"Kapat" eylemi ayarlanmışsa, oyun süresi kaydedilmeyecektir.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Satır sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sütun sayısı</sys:String>
@@ -380,7 +378,7 @@ Yeni veritabanı konumu ancak uygulama yeniden başlatıldıktan sonra kullanıl
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Düğme İstemleri</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">düzen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Yatay Kaydırma</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection">Alt bölümlerden birini seçin</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
