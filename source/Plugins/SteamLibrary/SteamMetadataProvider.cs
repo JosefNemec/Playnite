@@ -293,11 +293,11 @@ namespace SteamLibrary
                 Name = downloadedMetadata.ProductDetails?["common"]["name"]?.Value ?? downloadedMetadata.GameInfo.Name,
                 Links = new List<Link>()
                 {
-                    new Link("Community Hub", $"https://steamcommunity.com/app/{appId}"),
-                    new Link("Discussions", $"https://steamcommunity.com/app/{appId}/discussions/"),
-                    new Link("News", $"https://store.steampowered.com/news/?appids={appId}"),
-                    new Link("Store Page", $"https://store.steampowered.com/app/{appId}"),
-                    new Link("PCGamingWiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
+                    new Link("{DynamicResource LOCSteamLinksCommunityHub}", $"https://steamcommunity.com/app/{appId}"),
+                    new Link("{DynamicResource LOCSteamLinksDiscussions}", $"https://steamcommunity.com/app/{appId}/discussions/"),
+                    new Link("{DynamicResource LOCSteamLinksNews}", $"https://store.steampowered.com/news/?appids={appId}"),
+                    new Link("{DynamicResource LOCSteamLinksStorePage}", $"https://store.steampowered.com/app/{appId}"),
+                    new Link("{DynamicResource LOCSteamLinksPCGW}", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
                 }
             };
 
@@ -313,12 +313,12 @@ namespace SteamLibrary
 
             if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 22) != null)
             {
-                gameInfo.Links.Add(new Link("Achievements", Steam.GetAchievementsUrl(appId)));
+                gameInfo.Links.Add(new Link("{LOCSteamLinksAchievements}", Steam.GetAchievementsUrl(appId)));
             }
 
             if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
             {
-                gameInfo.Links.Add(new Link("Workshop", Steam.GetWorkshopUrl(appId)));
+                gameInfo.Links.Add(new Link("{DynamicResource LOCSteamLinksWorkshop}", Steam.GetWorkshopUrl(appId)));
             }
 
             if (downloadedMetadata.StoreDetails != null)
