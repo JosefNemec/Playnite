@@ -26,7 +26,7 @@ namespace BethesdaLibrary
                 Links = new List<Link>(),
             };
 
-            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + gameInfo.Name));
+            gameInfo.Links.Add(new Link("{DynamicResource LOCBethesdaLinksPCGW}", @"http://pcgamingwiki.com/w/index.php?search=" + gameInfo.Name));
             var metadata = new GameMetadata()
             {
                 GameInfo = gameInfo
