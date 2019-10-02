@@ -48,7 +48,7 @@ namespace TwitchLibrary
                 GameInfo = gameInfo
             };
 
-            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name));
+            gameInfo.Links.Add(new Link("{DynamicResource LOCTwitchLinksPCGW}", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name));
 
             var program = Twitch.GetUninstallRecord(game.GameId);
             if (program != null)
