@@ -313,7 +313,7 @@ namespace SteamLibrary
 
             if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 22) != null)
             {
-                gameInfo.Links.Add(new Link("{LOCSteamLinksAchievements}", Steam.GetAchievementsUrl(appId)));
+                gameInfo.Links.Add(new Link("{DynamicResource LOCSteamLinksAchievements}", Steam.GetAchievementsUrl(appId)));
             }
 
             if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
