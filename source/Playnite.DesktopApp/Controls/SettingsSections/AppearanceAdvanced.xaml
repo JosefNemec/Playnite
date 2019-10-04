@@ -22,7 +22,7 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel Margin="20">
         <controls:GridEx ColumnCount="2" RowCount="3">
             <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
                             ContentStringFormat="{}{0} *"

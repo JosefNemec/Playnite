@@ -17,7 +17,7 @@
         </Style>
     </UserControl.Resources>
 
-    <DockPanel>
+    <DockPanel Margin="15">
         <TextBlock Text="{DynamicResource LOCSettingsDefaultMetadataDescription}"
                    DockPanel.Dock="Top" TextWrapping="Wrap" />
         <pctrls:MetadataDownloadSettings Settings="{Binding Settings.DefaultMetadataSettings}" />

@@ -22,7 +22,7 @@
         <sys:Boolean x:Key="False">False</sys:Boolean>
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel Margin="20">
         <CheckBox DockPanel.Dock="Top" Name="CheckGOGImportInstalled"
                   Margin="0,0,0,15"
                   IsChecked="{Binding ImportInstalledGames}"

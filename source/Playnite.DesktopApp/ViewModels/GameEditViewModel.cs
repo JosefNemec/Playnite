@@ -404,6 +404,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool useScriptChanges;
+        public bool UseScriptChanges
+        {
+            get
+            {
+                return useScriptChanges;
+            }
+
+            set
+            {
+                useScriptChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowLinksChangeNotif));
+            }
+        }
+
         private bool useLastActivityChanges;
         public bool UseLastActivityChanges
         {
@@ -1472,6 +1488,18 @@ namespace Playnite.DesktopApp.ViewModels
                         UseHiddenChanges = true;
                     }
                     break;
+                case nameof(Game.PreScript):
+                case nameof(Game.PostScript):
+                case nameof(Game.ActionsScriptLanguage):
+                    if (IsSingleGameEdit)
+                    {
+                        UseScriptChanges = GetScriptActionsChanged();
+                    }
+                    else
+                    {
+                        UseScriptChanges = true;
+                    }
+                    break;
             }
         }
 
@@ -2036,6 +2064,25 @@ namespace Playnite.DesktopApp.ViewModels
                             Game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, Game.Id);
                         }
                     }
+                }
+            }
+
+            if (UseScriptChanges)
+            {
+                if (IsMultiGameEdit)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.ActionsScriptLanguage = EditingGame.ActionsScriptLanguage;
+                        game.PreScript = EditingGame.PreScript;
+                        game.PostScript = EditingGame.PostScript;
+                    }
+                }
+                else
+                {
+                    Game.ActionsScriptLanguage = EditingGame.ActionsScriptLanguage;
+                    Game.PreScript = EditingGame.PreScript;
+                    Game.PostScript = EditingGame.PostScript;
                 }
             }
 
@@ -2724,6 +2771,26 @@ namespace Playnite.DesktopApp.ViewModels
         public void AddNewTags(List<string> tags)
         {
             tags?.ForEach(a => AddNewTag(a));
+        }
+
+        public bool GetScriptActionsChanged()
+        {
+            if (Game.ActionsScriptLanguage != EditingGame.ActionsScriptLanguage)
+            {
+                return true;
+            }
+
+            if (!string.Equals(Game.PreScript, EditingGame.PreScript, StringComparison.Ordinal))
+            {
+                return true;
+            }
+
+            if (!string.Equals(Game.PostScript, EditingGame.PostScript, StringComparison.Ordinal))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

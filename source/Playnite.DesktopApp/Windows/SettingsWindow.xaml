@@ -59,6 +59,7 @@
             <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
             <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8" />
             <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
+            <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
             <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" />
             <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10" DisplayMemberPath="Value.Name">
                 <TreeViewItem.Style>
@@ -86,8 +87,9 @@
             </TreeViewItem>
         </TreeView>
 
-        <ScrollViewer DockPanel.Dock="Left" BorderThickness="1,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
-            <ContentControl Content="{Binding SelectedSectionView}" Margin="20"/>
+        <ScrollViewer DockPanel.Dock="Left" BorderThickness="1,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"
+                      VerticalScrollBarVisibility="Auto">
+            <ContentControl Content="{Binding SelectedSectionView}"/>
         </ScrollViewer>
     </DockPanel>
 </controls:WindowBase>

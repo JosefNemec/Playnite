@@ -107,6 +107,7 @@
     <Compile Include="Plugins\LibraryPlugin.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptLanguage.cs" />
     <Compile Include="SdkVersions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -285,6 +285,7 @@
     <Compile Include="GamesCollectionViewEntry.cs" />
     <Compile Include="GamesEditor.cs" />
     <Compile Include="GaussianBlur.cs" />
+    <Compile Include="GlobalRandom.cs" />
     <Compile Include="GlobalTaskHandler.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="ImageSourceManager.cs" />
@@ -294,6 +295,7 @@
     <Compile Include="ObservablePowerStatus.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Plugins\ExtensionInstaller.cs" />
+    <Compile Include="Scripting\Batch\Batch.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
     <Compile Include="Scripting\IronPython\IronPythonScript.cs" />
     <Compile Include="Scripting\IScriptRuntime.cs" />

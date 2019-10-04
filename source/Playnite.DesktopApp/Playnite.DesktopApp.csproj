@@ -189,6 +189,9 @@
     <Compile Include="Controls\SettingsSections\Metadata.xaml.cs">
       <DependentUpon>Metadata.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\Scripting.xaml.cs">
+      <DependentUpon>Scripting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SliderWithPopup.xaml.cs">
       <DependentUpon>SliderWithPopup.xaml</DependentUpon>
     </Compile>
@@ -520,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SettingsSections\Metadata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\Scripting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

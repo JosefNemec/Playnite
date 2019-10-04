@@ -859,6 +859,48 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.Batch;
+        /// <summary>
+        /// Gets or sets scripting language for <see cref="PreScript"/> and <see cref="PostScript"/> scripts.
+        /// </summary>
+        public ScriptLanguage ActionsScriptLanguage
+        {
+            get => actionsScriptLanguage;
+            set
+            {
+                actionsScriptLanguage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string preScript;
+        /// <summary>
+        /// Gets or sets pre-action script.
+        /// </summary>
+        public string PreScript
+        {
+            get => preScript;
+            set
+            {
+                preScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string postScript;
+        /// <summary>
+        /// Gets or sets post-action script.
+        /// </summary>
+        public string PostScript
+        {
+            get => postScript;
+            set
+            {
+                postScript = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Expanded        
 
         /// <summary>
@@ -1503,6 +1545,21 @@ namespace Playnite.SDK.Models
                 if (CommunityScore != tro.CommunityScore)
                 {
                     tro.CommunityScore = CommunityScore;
+                }
+
+                if (!string.Equals(PreScript, tro.PreScript, StringComparison.Ordinal))
+                {
+                    tro.PreScript = PreScript;
+                }
+
+                if (!string.Equals(PostScript, tro.PostScript, StringComparison.Ordinal))
+                {
+                    tro.PostScript = PostScript;
+                }
+
+                if (ActionsScriptLanguage != tro.ActionsScriptLanguage)
+                {
+                    tro.ActionsScriptLanguage = ActionsScriptLanguage;
                 }
             }
             else

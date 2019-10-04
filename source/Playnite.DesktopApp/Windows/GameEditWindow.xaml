@@ -10,6 +10,7 @@
         xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"      
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+        xmlns:psdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
@@ -774,6 +775,49 @@
                         </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LOCScripts}">
+                <GridEx Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <CheckBox Content="{DynamicResource LOCSaveChanges}" Grid.Row="0" Margin="0,0,0,5"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseScriptChanges}" />
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock Text="{DynamicResource LOCScriptRuntime}" VerticalAlignment="Center" />
+                        <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
+                                  SelectedValue="{Binding EditingGame.ActionsScriptLanguage}">
+                            <ComboBox.ItemsSource>
+                                <x:Array Type="{x:Type sys:Enum}">
+                                    <psdk:ScriptLanguage>Batch</psdk:ScriptLanguage>
+                                    <psdk:ScriptLanguage>PowerShell</psdk:ScriptLanguage>
+                                    <psdk:ScriptLanguage>IronPython</psdk:ScriptLanguage>
+                                </x:Array>
+                            </ComboBox.ItemsSource>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <TextBlock Text="{DynamicResource LOCPreScriptDescription}" Grid.Row="2" Margin="0,5,0,5" />
+                    <TextBox AcceptsReturn="True" Grid.Row="3"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             Text="{Binding EditingGame.PreScript}" />
+
+                    <TextBlock Text="{DynamicResource LOCPostScriptDescription}" Grid.Row="4" Margin="0,5,0,5" />
+                    <TextBox AcceptsReturn="True" Grid.Row="5"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             Text="{Binding EditingGame.PostScript}"/>
+                </GridEx>
             </TabItem>
         </TabControl>
 

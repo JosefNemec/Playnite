@@ -19,6 +19,7 @@ using System.Windows;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using Playnite.Metadata;
+using Playnite.SDK;
 
 namespace Playnite
 {
@@ -1350,6 +1351,39 @@ namespace Playnite
             set
             {
                 defaultMetadataSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.Batch;
+        public ScriptLanguage ActionsScriptLanguage
+        {
+            get => actionsScriptLanguage;
+            set
+            {
+                actionsScriptLanguage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string preScript;
+        public string PreScript
+        {
+            get => preScript;
+            set
+            {
+                preScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string postScript;
+        public string PostScript
+        {
+            get => postScript;
+            set
+            {
+                postScript = value;
                 OnPropertyChanged();
             }
         }
