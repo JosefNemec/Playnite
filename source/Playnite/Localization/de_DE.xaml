@@ -255,7 +255,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsDetailsPanelItems">In der Detailleiste anzuzeigende Datenfelder:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Elementabstände</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Hintergrund für Rasterelemente zeichnen</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Elementerandbreite in Rasteransicht</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Elementrandbreite in Rasteransicht</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Quelle für fehlende Spielsymbole</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Quelle für fehlende Spielecover</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikaler Abstand zu Spieldetails</sys:String>
@@ -268,7 +268,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position der Filterleiste</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position der Explorerleiste</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Coverdarstellung</sys:String>
-    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Ausgabe-Seitenverhältnis</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Seitenverhältnis für Ausgabe</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Gestreckt</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-Banner</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD-Box</sys:String>
