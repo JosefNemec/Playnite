@@ -828,11 +828,13 @@
                         Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                         pbeh:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
-                        <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
-                            <MenuItem Header="IGDB" Command="{Binding DownloadIGDBMetadataCommand}"/>
-                            <MenuItem Header="Wiki" Command="{Binding DownloadWikiMetadataCommand}"/>
-                            <MenuItem Header="{DynamicResource LOCMetaSourceStore}" Command="{Binding DownloadStoreCommand}"
-                                      Visibility="{Binding IsOfficialMetadataAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}"
+                                     ItemsSource="{Binding MetadataDownloadOptions}">
+                            <ContextMenu.Resources>
+                                <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                    <Setter Property="Command" Value="{Binding DownloadCommand}" />
+                                </Style>
+                            </ContextMenu.Resources>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>

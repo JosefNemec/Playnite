@@ -147,6 +147,20 @@ namespace Playnite.DesktopApp.ViewModels
             get;
         }
 
+        private Dictionary<Guid, PluginSettings> metadataPluginSettings;
+        public Dictionary<Guid, PluginSettings> MetadataPluginSettings
+        {
+            get
+            {
+                if (metadataPluginSettings == null)
+                {
+                    metadataPluginSettings = GetMetadataPluginSettings();
+                }
+
+                return metadataPluginSettings;
+            }
+        }
+
         private Dictionary<Guid, PluginSettings> libraryPluginSettings;
         public Dictionary<Guid, PluginSettings> LibraryPluginSettings
         {
@@ -391,6 +405,31 @@ namespace Playnite.DesktopApp.ViewModels
 
             return allSettings;
         }
+
+        private Dictionary<Guid, PluginSettings> GetMetadataPluginSettings()
+        {
+            var allSettings = new Dictionary<Guid, PluginSettings>();
+            foreach (var plugin in Extensions.MetadataPlugins)
+            {
+                var provSetting = plugin.GetSettings(false);
+                var provView = plugin.GetSettingsView(false);
+                if (provSetting != null && provView != null)
+                {
+                    provView.DataContext = provSetting;
+                    provSetting.BeginEdit();
+                    var plugSetting = new PluginSettings()
+                    {
+                        Name = plugin.Name,
+                        Settings = provSetting,
+                        View = provView
+                    };
+
+                    allSettings.Add(plugin.Id, plugSetting);
+                }
+            }
+
+            return allSettings;
+        }                
 
         public bool? OpenView()
         {

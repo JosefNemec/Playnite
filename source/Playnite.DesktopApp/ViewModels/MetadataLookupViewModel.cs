@@ -11,42 +11,12 @@ using System.Threading.Tasks;
 using Playnite.Metadata.Providers;
 using Playnite.SDK.Metadata;
 using Playnite.Windows;
+using Playnite.SDK.Plugins;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public enum MetadataProvider
-    {
-        Wiki,
-        IGDB
-    }
-
     public class MetadataLookupViewModel : ObservableObject
     {
-        public class SearchResult
-        {
-            public string Id
-            {
-                get; set;
-            }
-
-            public string Name
-            {
-                get; set;
-            }
-
-            public string Description
-            {
-                get; set;
-            }
-
-            public SearchResult(string id, string name, string description)
-            {
-                Id = id;
-                Name = name;
-                Description = description;
-            }
-        }
-
         private bool isLoading;
         public bool IsLoading
         {
@@ -69,8 +39,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private ObservableCollection<SearchResult> searchResults = new ObservableCollection<SearchResult>();
-        public ObservableCollection<SearchResult> SearchResults
+        private ObservableCollection<MetadataSearchResult> searchResults = new ObservableCollection<MetadataSearchResult>();
+        public ObservableCollection<MetadataSearchResult> SearchResults
         {
             get
             {
@@ -84,8 +54,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private SearchResult selectedResult;
-        public SearchResult SelectedResult
+        private MetadataSearchResult selectedResult;
+        public MetadataSearchResult SelectedResult
         {
             get => selectedResult;
             set
@@ -124,15 +94,15 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => !string.IsNullOrEmpty(SearchTerm));
         }
 
-        private static ILogger logger = LogManager.GetLogger();
+        private static readonly ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
-        private MetadataProvider provider;
+        private MetadataPlugin plugin;
         private IResourceProvider resources;
 
-        public MetadataLookupViewModel(MetadataProvider provider, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public MetadataLookupViewModel(MetadataPlugin plugin, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
-            this.provider = provider;
+            this.plugin = plugin;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
@@ -151,7 +121,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public async void ConfirmDialog()
         {
-            var id = SelectedResult.Id;
             var success = false;
             IsLoading = true;
 
@@ -159,24 +128,12 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    switch (provider)
-                    {
-                        case MetadataProvider.Wiki:
-                            var wiki = new WikipediaMetadataProvider();
-                            var page = wiki.GetPage(id);
-                            MetadataData = wiki.ParseGamePage(page, searchTerm);
-                            break;
-                        case MetadataProvider.IGDB:
-                            var igdb = new IGDBMetadataProvider();
-                            MetadataData = igdb.GetMetadata(id);
-                            break;
-                    }
-
+                    MetadataData = plugin.GetMetadata(SelectedResult);
                     success = true;
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, "Failed to download metadata from meta page.");
+                    logger.Error(exc, $"GetMetadata method from plugin {plugin.Name} failed.");
                 }
                 finally
                 {
@@ -201,11 +158,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    SearchResults = SearchForResults(SearchTerm, provider);
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, "Failed to search for metadata.");
+                    SearchResults = SearchForResults(SearchTerm);
                 }
                 finally
                 {
@@ -214,32 +167,23 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        private ObservableCollection<SearchResult> SearchForResults(string keyword, MetadataProvider provider)
+        private ObservableCollection<MetadataSearchResult> SearchForResults(string keyword)
         {
-            var searchList = new ObservableCollection<SearchResult>();
+            var searchList = new ObservableCollection<MetadataSearchResult>();
+            List<MetadataSearchResult> result = null;
 
-            switch (provider)
+            try
             {
-                case MetadataProvider.Wiki:
-                    var wiki = new WikipediaMetadataProvider();
-                    foreach (var page in wiki.Search(keyword))
-                    {
-                        searchList.Add(new SearchResult(page.title, page.title, page.snippet));
-                    }
+                result = plugin.SearchMetadata(keyword);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, $"SearchMetadata method from plugin {plugin.Name} failed.");
+            }
 
-                    break;
-
-                case MetadataProvider.IGDB:
-                    var igdb = new IGDBMetadataProvider();
-                    foreach (var page in igdb.SearchMetadata(keyword))
-                    {
-                        searchList.Add(new SearchResult(
-                            page.Id, 
-                            page.Name + (page.ReleaseDate == null ? "" : $" ({page.ReleaseDate.Value.Year})"),
-                            string.Empty));
-                    }
-
-                    break;
+            if (result != null)
+            {
+                searchList.AddRange(result);
             }
 
             return searchList;

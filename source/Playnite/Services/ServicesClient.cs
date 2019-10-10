@@ -24,25 +24,6 @@ namespace Playnite.Services
         {
         }
 
-        public List<PlayniteServices.Models.IGDB.ExpandedGame> GetIGDBGames(string searchName, string apiKey = null)
-        {
-            var encoded = Uri.EscapeDataString(searchName);
-            var url = string.IsNullOrEmpty(apiKey) ? $"/igdb/games/{encoded}" : $"/igdb/games/{encoded}?apikey={apiKey}";
-            return ExecuteGetRequest<List<PlayniteServices.Models.IGDB.ExpandedGame>>(url);
-        }
-
-        public ulong GetIGDBGameBySteamId(string id, string apiKey = null)
-        {
-            var url = $"/igdb/gamesBySteamId/{id}";
-            return ExecuteGetRequest<ulong>(url);
-        }
-
-        public PlayniteServices.Models.IGDB.ExpandedGame GetIGDBGameParsed(UInt64 id, string apiKey = null)
-        {
-            var url = string.IsNullOrEmpty(apiKey) ? $"/igdb/game_parsed/{id}" : $"/igdb/game_parsed/{id}?apikey={apiKey}";
-            return ExecuteGetRequest<PlayniteServices.Models.IGDB.ExpandedGame>(url);
-        }
-
         public List<string> GetPatrons()
         {
             return ExecuteGetRequest<List<string>>("/patreon/patrons");

@@ -163,9 +163,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\PlayniteServices\Models\IGDB\IGDB.cs">
-      <Link>Services\Models\IGDB\IGDB.cs</Link>
-    </Compile>
     <Compile Include="..\PlayniteServices\Models\Playnite\Playnite.cs">
       <Link>Services\Models\Playnite\Playnite.cs</Link>
     </Compile>
@@ -311,7 +308,6 @@
     <Compile Include="Database\DatabaseStats.cs" />
     <Compile Include="Controllers\GameControllerFactory.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
-    <Compile Include="Metadata\Providers\IGDBMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />

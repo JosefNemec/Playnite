@@ -22,7 +22,57 @@ namespace Playnite.Tests.Metadata
     [TestFixture]
     public class MetadataDownloaderDownloadTests
     {
-        private static Guid storePluginId = Guid.NewGuid();
+        public class TestMetadataPlugin : MetadataPlugin
+        {
+            public const string DataString = "plugin";
+            public int CallCount = 0;
+            public override string Name => "TestMetadataPlugin";
+            public override Guid Id { get; } = Guid.NewGuid();
+            private List<GameField> supportedFields;
+            public override List<GameField> SupportedFields => supportedFields;
+            public GameMetadata ReturnMetadata { get; set; } = new GameMetadata
+            {
+                GameInfo = new GameInfo
+                {
+                    Description = DataString
+                }
+            };
+
+            public TestMetadataPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)
+            {
+            }
+
+            public override GameMetadata GetMetadata(Game game)
+            {
+                CallCount++;
+                return ReturnMetadata;
+            }
+
+            public void SetSupportedFields(List<GameField> fields)
+            {
+                supportedFields = fields;
+            }
+        }
+
+        public class TestLibraryMetadataProvider : LibraryMetadataProvider
+        {
+            public const string DataString = "store";
+            public int CallCount = 0;
+            public GameMetadata ReturnMetadata { get; set; } = new GameMetadata
+            {
+                GameInfo = new GameInfo
+                {
+                    Description = DataString
+                }
+            };
+
+            public override GameMetadata GetMetadata(Game game)
+            {
+                CallCount++;
+                return ReturnMetadata;
+            }
+        }
+
         private Random random = new Random();
         private byte[] randomFile
         {
@@ -34,359 +84,216 @@ namespace Playnite.Tests.Metadata
             }
         }
 
-        private IEnumerable<LibraryPlugin> GetLibraryPlugins(LibraryMetadataProvider provider, Guid libraryId)
+        private TestMetadataPlugin GetTestPlugin()
         {
-            var library = new Mock<LibraryPlugin>(MockBehavior.Loose, null);
-            library.Setup(a => a.Id).Returns(storePluginId);
-            library.Setup(a => a.GetMetadataDownloader()).Returns(provider);
-            return new List<LibraryPlugin>() { library.Object };
+            return new TestMetadataPlugin(null);
+        }
+
+        private TestLibraryMetadataProvider GetTestLibraryProvider()
+        {
+            return new TestLibraryMetadataProvider();
         }
 
         [Test]
-        public async Task IGDBSourceTest()
+        public void ProcessFieldTest()
         {
-            using (var temp = TempDirectory.Create())
+            var storeId = Guid.NewGuid();
+            var storeDownloader = GetTestLibraryProvider();
+            var testPlugin = GetTestPlugin();
+
+            List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
             {
-                var db = new GameDatabase(temp.TempPath);
-                db.OpenDatabase();
-                Game.DatabaseReference = db;
-                int callCount = 0;
-                var storeCalled = false;
+                testPlugin
+            };
 
-                var games = new List<Game>()
-                {
-                    new Game("Game1"),
-                    new Game("Game2") { PluginId = storePluginId, GameId = "Game2" },
-                    new Game("Game3")
-                };
-
-                db.Games.Add(games);
-
-                var igdbProvider = new Mock<LibraryMetadataProvider>();
-                igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-
-                    if (g.Name == "Game3")
-                    {
-                        return GameMetadata.GetEmptyData();
-                    }
-
-                    var gameId = g.Name;
-                    var game = new GameInfo()
-                    {
-                        Name = "IGDB Game " + gameId,
-                        Description = $"IGDB Description {gameId}",
-                        Developers = new List<string>() { $"IGDB Developer {gameId}" },
-                        Genres = new List<string>() { $"IGDB Genre {gameId}" },
-                        Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
-                        Publishers = new List<string>() { $"IGDB publisher {gameId}" },
-                        ReleaseDate = new DateTime(2012, 6, 6),
-                        Tags = new List<string>() { $"IGDB Tag {gameId}" }
-                    };
-                    var icon = new MetadataFile($"IGDBIconName{gameId}.file", randomFile);
-                    var image = new MetadataFile($"IGDBImageName{gameId}.file", randomFile);
-                    var background = new MetadataFile($"IGDB backgournd {gameId}");
-                    return new GameMetadata(game, icon, image, background);
-                });
-
-                var storeProvider = new Mock<LibraryMetadataProvider>();
-                storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-                    storeCalled = true;
-                    return GameMetadata.GetEmptyData();
-                });
-
-                var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
-                var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
-                settings.Name.Import = false;
-                settings.ConfigureFields(MetadataSource.IGDB, true);
-                await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, null, null);
-
-
-                Assert.IsFalse(storeCalled);
-                Assert.AreEqual(3, callCount);
-                var game1 = db.Games[games[0].Id];
-                Assert.AreEqual("IGDB Description Game1", game1.Description);
-                Assert.AreEqual("IGDB Developer Game1", game1.Developers[0].Name);
-                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0].Name);
-                Assert.AreEqual("IGDB link Game1", game1.Links[0].Name);
-                Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
-                Assert.AreEqual("IGDB Tag Game1", game1.Tags[0].Name);
-                Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
-                Assert.IsNotEmpty(game1.BackgroundImage);
-                Assert.IsNotEmpty(game1.Icon);
-                Assert.IsNotEmpty(game1.CoverImage);
-                var game2 = db.Games[games[1].Id];
-                Assert.AreEqual("IGDB Description Game2", game2.Description);
-
-                Assert.AreEqual(2, Directory.GetFiles(db.GetFileStoragePath(game1.Id)).Count());
-                Assert.AreEqual(2, Directory.GetFiles(db.GetFileStoragePath(game2.Id)).Count());
-            }
-        }
-
-        [Test]
-        public async Task StoreSourceTest()
-        {
-            using (var temp = TempDirectory.Create())
+            Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders = new Dictionary<Guid, LibraryMetadataProvider>()
             {
-                var db = new GameDatabase(temp.TempPath);
-                db.OpenDatabase();
-                Game.DatabaseReference = db;
-                int callCount = 0;
-                var igdbCalled = false;
+                { storeId, storeDownloader }
+            };
 
-                var games = new List<Game>()
-                {
-                    new Game("Game1"),
-                    new Game("Game2") { PluginId = storePluginId, GameId = "storeId" },
-                    new Game("Game3")
-                };
+            var existingMetadata = new Dictionary<Guid, GameMetadata>();
+            var fieldSettings = new MetadataFieldSettings();
+            var downloader = new MetadataDownloader(null, metadataDownloaders, libraryDownloaders);
+            var game = new Game();
 
-                db.Games.Add(games);
+            // Store is not called if custom game
+            var downloadedMetadata = downloader.ProcessField(
+                game,
+                new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
+                GameField.Description,
+                (a) => a.GameInfo?.Description,
+                existingMetadata);
 
-                var igdbProvider = new Mock<LibraryMetadataProvider>();
-                igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-                    igdbCalled = true;
-                    return GameMetadata.GetEmptyData();
-                });
+            Assert.IsNull(downloadedMetadata);
+            Assert.AreEqual(0, storeDownloader.CallCount);
+            Assert.AreEqual(0, testPlugin.CallCount);
+            Assert.AreEqual(0, existingMetadata.Count);
 
-                var storeProvider = new Mock<LibraryMetadataProvider>();
-                storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-                    var gameId = g.GameId;
-                    var game = new GameInfo()
-                    {
-                        Name = "Store Game " + gameId,
-                        Description = $"Store Description {gameId}",
-                        Developers = new List<string>() { $"Store Developer {gameId}" },
-                        Genres = new List<string>() { $"Store Genre {gameId}" },
-                        Links = new List<Link>() { new Link($"Store link {gameId}", $"Store link url {gameId}") },
-                        Publishers = new List<string>() { $"Store publisher {gameId}" },
-                        ReleaseDate = new DateTime(2016, 2, 2),
-                        Tags = new List<string>() { $"Store Tag {gameId}" }
-                    };
-                    var icon = new MetadataFile($"StoreIconName{gameId}.file", randomFile);
-                    var image = new MetadataFile($"StoreImageName{gameId}.file", randomFile);
-                    var background = new MetadataFile($"Store backgournd {gameId}");
-                    return new GameMetadata(game, icon, image, background);
-                });
 
-                var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
-                var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
-                settings.ConfigureFields(MetadataSource.Store, true);
-                await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, null, null);
-                
-                Assert.AreEqual(1, callCount);
-                Assert.IsFalse(igdbCalled);
-                var game2 = db.Games[games[1].Id];
-                Assert.AreEqual("Store Description storeId", game2.Description);
-                Assert.AreEqual("Store Developer storeId", game2.Developers[0].Name);
-                Assert.AreEqual("Store Genre storeId", game2.Genres[0].Name);
-                Assert.AreEqual("Store link storeId", game2.Links[0].Name);
-                Assert.AreEqual("Store link url storeId", game2.Links[0].Url);
-                Assert.AreEqual("Store publisher storeId", game2.Publishers[0].Name);
-                Assert.AreEqual("Store Tag storeId", game2.Tags[0].Name);
-                Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
-                Assert.IsNotEmpty(game2.BackgroundImage);
-                Assert.IsNotEmpty(game2.Icon);
-                Assert.IsNotEmpty(game2.CoverImage);
-                var game1 = db.Games[games[0].Id];
-                Assert.IsNull(game1.Description);
+            // Store download works
+            game.PluginId = storeId;
+            downloadedMetadata = downloader.ProcessField(
+                game,
+                new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
+                GameField.Description,
+                (a) => a.GameInfo?.Description,
+                existingMetadata);
 
-                Assert.AreEqual(2, Directory.GetFiles(db.GetFileStoragePath(game2.Id)).Count());
-                Assert.AreEqual(0, Directory.GetFiles(db.GetFileStoragePath(game1.Id)).Count());
-            }
-        }
+            Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
+            Assert.AreEqual(1, storeDownloader.CallCount);
+            Assert.AreEqual(0, testPlugin.CallCount);
+            Assert.AreEqual(1, existingMetadata.Count);
 
-        [Test]
-        public async Task IGDBStoreCombinedTest()
-        {
-            using (var temp = TempDirectory.Create())
-            {
-                var db = new GameDatabase(temp.TempPath);
-                db.OpenDatabase();
-                Game.DatabaseReference = db;
-                int callCount = 0;
-                var games = new List<Game>()
-                {
-                    new Game("Game1"),
-                    new Game("Game2") { PluginId = storePluginId, GameId = "Game2" },
-                    new Game("Game3")
-                };
+            // Already downloaded data are reqused
+            downloadedMetadata = downloader.ProcessField(
+                game,
+                new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
+                GameField.Description,
+                (a) => a.GameInfo?.Description,
+                existingMetadata);
 
-                db.Games.Add(games);
+            Assert.IsNotNull(downloadedMetadata);
+            Assert.AreEqual(1, storeDownloader.CallCount);
+            Assert.AreEqual(0, testPlugin.CallCount);
+            Assert.AreEqual(1, existingMetadata.Count);
 
-                var igdbProvider = new Mock<LibraryMetadataProvider>();
-                igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-                    var gameId = g.Name;
-                    var game = new GameInfo();
-                    game.Name = "IGDB Game " + gameId;
-                    game.Description = $"IGDB Description {gameId}";
-                    game.Genres = new List<string>() { $"IGDB Genre {gameId}" };
-                    game.Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") };
-                    game.Publishers = new List<string>() { $"IGDB publisher {gameId}" };
-                    game.ReleaseDate = new DateTime(2012, 6, 6);
-                    var icon = new MetadataFile($"IGDBIconName{gameId}.file", randomFile);
-                    var image = new MetadataFile($"IGDBImageName{gameId}.file", randomFile);
-                    var background = new MetadataFile($"IGDB backgournd {gameId}");
-                    return new GameMetadata(game, icon, image, background);
-                });
+            // Store is still used and plugin is not called
+            downloadedMetadata = downloader.ProcessField(
+                game,
+                new MetadataFieldSettings(true, new List<Guid> { Guid.Empty, testPlugin.Id }),
+                GameField.Description,
+                (a) => a.GameInfo?.Description,
+                existingMetadata);
 
-                var storeProvider = new Mock<LibraryMetadataProvider>();
-                storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-                    var gameId = g.GameId;
-                    var game = new GameInfo();
-                    game.Name = gameId;
-                    game.Description = $"Store Description {gameId}";
-                    game.Developers = new List<string>() { $"Store Developer {gameId}" };
-                    game.Links = new List<Link>() { new Link($"Store link {gameId}", $"Store link url {gameId}") };
-                    game.Publishers = new List<string>() { $"Store publisher {gameId}" };
-                    game.ReleaseDate = new DateTime(2016, 2, 2);
-                    var icon = new MetadataFile($"StoreIconName{gameId}.file", randomFile);
-                    var image = new MetadataFile($"StoreImageName{gameId}.file", randomFile);
-                    var background = new MetadataFile($"Store backgournd {gameId}");
-                    return new GameMetadata(game, icon, image, background);
-                });
+            Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
+            Assert.IsNotNull(downloadedMetadata);
+            Assert.AreEqual(1, storeDownloader.CallCount);
+            Assert.AreEqual(0, testPlugin.CallCount);
+            Assert.AreEqual(1, existingMetadata.Count);
 
-                var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
-                var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
+            // Plugin is not used if not supporting field
+            downloadedMetadata = downloader.ProcessField(
+                game,
+                new MetadataFieldSettings(true, new List<Guid> { Guid.Empty, testPlugin.Id }),
+                GameField.Description,
+                (a) => a.GameInfo?.Description,
+                existingMetadata);
 
-                // IGDB over Store
-                settings.ConfigureFields(MetadataSource.IGDBOverStore, true);
-                await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, null, null);
-                Assert.AreEqual(4, callCount);
-                                
-                var game1 = db.Games[games[0].Id];
-                Assert.AreEqual("IGDB Description Game1", game1.Description);
-                Assert.IsNull(game1.Developers);
-                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0].Name);
-                Assert.AreEqual("IGDB link Game1", game1.Links[0].Name);
-                Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
-                Assert.IsNull(game1.Tags);
-                Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
-                Assert.IsNotEmpty(game1.BackgroundImage);
-                Assert.IsNotEmpty(game1.Icon);
-                Assert.IsNotEmpty(game1.CoverImage);
+            Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
+            Assert.IsNotNull(downloadedMetadata);
+            Assert.AreEqual(1, storeDownloader.CallCount);
+            Assert.AreEqual(0, testPlugin.CallCount);
+            Assert.AreEqual(1, existingMetadata.Count);
 
-                var game2 = db.Games[games[1].Id];
-                Assert.AreEqual("IGDB Description Game2", game2.Description);
-                Assert.AreEqual("Store Developer Game2", game2.Developers[0].Name);
-                Assert.AreEqual("IGDB Genre Game2", game2.Genres[0].Name);
-                Assert.AreEqual("IGDB link Game2", game2.Links[0].Name);
-                Assert.AreEqual("IGDB link url Game2", game2.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game2", game2.Publishers[0].Name);
-                Assert.IsNull(game2.Tags);
-                Assert.AreEqual(2012, game2.ReleaseDate.Value.Year);
-                Assert.IsNotEmpty(game2.BackgroundImage);
-                Assert.IsNotEmpty(game2.Icon);
-                Assert.IsNotEmpty(game2.CoverImage);
+            // Plugin data is used
+            testPlugin.SetSupportedFields(new List<GameField> { GameField.Description });
+            downloadedMetadata = downloader.ProcessField(
+                game,
+                new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id, Guid.Empty }),
+                GameField.Description,
+                (a) => a.GameInfo?.Description,
+                existingMetadata);
 
-                // Store over IGDB
-                callCount = 0;
-                settings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
-                await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, null, null);
-                Assert.AreEqual(4, callCount);
+            Assert.AreEqual(TestMetadataPlugin.DataString, downloadedMetadata.GameInfo.Description);
+            Assert.IsNotNull(downloadedMetadata);
+            Assert.AreEqual(1, storeDownloader.CallCount);
+            Assert.AreEqual(1, testPlugin.CallCount);
+            Assert.AreEqual(2, existingMetadata.Count);
 
-                game1 = db.Games[games[0].Id];
-                Assert.AreEqual("IGDB Description Game1", game1.Description);
-                Assert.IsNull(game1.Developers);
-                Assert.AreEqual("IGDB Genre Game1", game1.Genres[0].Name);
-                Assert.AreEqual("IGDB link Game1", game1.Links[0].Name);
-                Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
-                Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
-                Assert.IsNull(game1.Tags);
-                Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
-                Assert.IsNotEmpty(game1.BackgroundImage);
-                Assert.IsNotEmpty(game1.Icon);
-                Assert.IsNotEmpty(game1.CoverImage);
+            // Not data are returned if specific fields doesn't have them
+            existingMetadata[testPlugin.Id].GameInfo.Description = null;
+            downloadedMetadata = downloader.ProcessField(
+                game,
+                new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id }),
+                GameField.Description,
+                (a) => a.GameInfo?.Description,
+                existingMetadata);
+            
+            Assert.IsNull(downloadedMetadata);
 
-                game2 = db.Games[games[1].Id];
-                Assert.AreEqual("Store Description Game2", game2.Description);
-                Assert.AreEqual("Store Developer Game2", game2.Developers[0].Name);
-                Assert.AreEqual("IGDB Genre Game2", game2.Genres[0].Name);
-                Assert.AreEqual("Store link Game2", game2.Links[0].Name);
-                Assert.AreEqual("Store link url Game2", game2.Links[0].Url);
-                Assert.AreEqual("Store publisher Game2", game2.Publishers[0].Name);
-                Assert.IsNull(game2.Tags);
-                Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
-                Assert.IsNotEmpty(game2.BackgroundImage);
-                Assert.IsNotEmpty(game2.Icon);
-                Assert.IsNotEmpty(game2.CoverImage);
-            }
+            // Second data are used if first doesn't have them
+            downloadedMetadata = downloader.ProcessField(
+                game,
+                new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id, Guid.Empty }),
+                GameField.Description,
+                (a) => a.GameInfo?.Description,
+                existingMetadata);
+
+            Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
         }
 
         [Test]
         public async Task MissingDataTest()
         {
+            // Tests that existing data are not overriden by empty metadata from external providers.
+            var storeId = Guid.NewGuid();
+            var storeDownloader = GetTestLibraryProvider();
+            storeDownloader.ReturnMetadata = GameMetadata.GetEmptyData();
+            var testPlugin = GetTestPlugin();
+            testPlugin.ReturnMetadata = GameMetadata.GetEmptyData();
+            testPlugin.SetSupportedFields(new List<GameField>
+            {
+                GameField.Description,
+                GameField.Icon,
+                GameField.CoverImage,
+                GameField.BackgroundImage,
+                GameField.Links,
+                GameField.Publishers,
+                GameField.Developers,
+                GameField.Tags,
+                GameField.Genres,
+                GameField.ReleaseDate
+            });
+
+            List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
+            {
+                testPlugin
+            };
+
+            Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders = new Dictionary<Guid, LibraryMetadataProvider>()
+            {
+                { storeId, storeDownloader }
+            };
+
             using (var temp = TempDirectory.Create())
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 Game.DatabaseReference = db;
-                int callCount = 0;
 
                 var importedGame = db.ImportGame(new GameInfo()
                 {
                     Name = "Game",
-                    GameId = "storeId",
+                    GameId = "storeId",                    
                     Genres = new List<string>() { "Genre" },
                     ReleaseDate = new DateTime(2012, 6, 6),
                     Developers = new List<string>() { "Developer" },
                     Publishers = new List<string>() { "Publisher" },
                     Tags = new List<string>() { "Tag" },
                     Description = "Description",
-                    Links = new List<Link>() { new Link() }                    
+                    Links = new List<Link>() { new Link() }
                 });
 
-                importedGame.PluginId = storePluginId;
+                importedGame.PluginId = storeId;
                 importedGame.Icon = "icon";
                 importedGame.CoverImage = "image";
                 importedGame.BackgroundImage = "backImage";
                 db.Games.Update(importedGame);
 
-                var igdbProvider = new Mock<LibraryMetadataProvider>();
-                igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-                    return GameMetadata.GetEmptyData();
-                });
-
-                var storeProvider = new Mock<LibraryMetadataProvider>();
-                storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-                    var gameId = g.GameId;
-                    return new GameMetadata(new GameInfo() { Name = "Store Game " + gameId }, null, null, null);
-                });
-
-                var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
+                var downloader = new MetadataDownloader(db, metadataDownloaders, libraryDownloaders);
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
 
                 var dbGames = db.Games.ToList();
                 var f = dbGames[0].ReleaseDate;
                 var s = importedGame.ReleaseDate;
 
-                settings.ConfigureFields(MetadataSource.Store, true);
+                settings.ConfigureFields(new List<Guid> { testPlugin.Id, Guid.Empty }, true);
                 await downloader.DownloadMetadataAsync(
                     db.Games.ToList(), settings, null, null);
 
                 dbGames = db.Games.ToList();
-                Assert.AreEqual(1, callCount);
+                Assert.AreEqual(1, testPlugin.CallCount);
+                Assert.AreEqual(1, storeDownloader.CallCount);
                 var game = dbGames[0];
                 Assert.AreEqual("Description", game.Description);
                 Assert.AreEqual("icon", game.Icon);
@@ -404,12 +311,49 @@ namespace Playnite.Tests.Metadata
         [Test]
         public async Task SkipExistingTest()
         {
+            // Tests that existing data are not overriden even if metadata provider has them.
+            var testPlugin = GetTestPlugin();
+            testPlugin.SetSupportedFields(new List<GameField>
+            {
+                GameField.Description,
+                GameField.Icon,
+                GameField.CoverImage,
+                GameField.BackgroundImage,
+                GameField.Links,
+                GameField.Publishers,
+                GameField.Developers,
+                GameField.Tags,
+                GameField.Genres,
+                GameField.ReleaseDate
+            });
+
+            var gameId = "Game1";
+            var icon = new MetadataFile($"IGDBIconName{gameId}.file", randomFile);
+            var image = new MetadataFile($"IGDBImageName{gameId}.file", randomFile);
+            var background = new MetadataFile($"IGDB backgournd {gameId}");
+            testPlugin.ReturnMetadata = new GameMetadata(new GameInfo()
+            {
+                Name = "IGDB Game " + gameId,
+                Description = $"IGDB Description {gameId}",
+                Developers = new List<string>() { $"IGDB Developer {gameId}" },
+                Genres = new List<string>() { $"IGDB Genre {gameId}" },
+                Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
+                Publishers = new List<string>() { $"IGDB publisher {gameId}" },
+                ReleaseDate = new DateTime(2012, 6, 6),
+                Tags = new List<string>() { $"IGDB Tag {gameId}" }
+            }, icon, image, background);
+
+
+            List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
+            {
+                testPlugin
+            };
+
             using (var temp = TempDirectory.Create())
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 Game.DatabaseReference = db;
-                int callCount = 0;
                 var addedGame = db.ImportGame(new GameInfo()
                 {
                     Name = "Game1",
@@ -429,38 +373,16 @@ namespace Playnite.Tests.Metadata
                 addedGame.CoverImage = "Image";
                 addedGame.BackgroundImage = "BackgroundImage";
 
-                var igdbProvider = new Mock<LibraryMetadataProvider>();
-                igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
-                {
-                    callCount++;
-                    var gameId = g.Name;
-                    var game = new GameInfo()
-                    {
-                        Name = "IGDB Game " + gameId,
-                        Description = $"IGDB Description {gameId}",
-                        Developers = new List<string>() { $"IGDB Developer {gameId}" },
-                        Genres = new List<string>() { $"IGDB Genre {gameId}" },
-                        Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
-                        Publishers = new List<string>() { $"IGDB publisher {gameId}" },
-                        ReleaseDate = new DateTime(2012, 6, 6),
-                        Tags = new List<string>() { $"IGDB Tag {gameId}" }
-                    };
-                    var icon = new MetadataFile($"IGDBIconName{gameId}.file", randomFile);
-                    var image = new MetadataFile($"IGDBImageName{gameId}.file", randomFile);
-                    var background = new MetadataFile($"IGDB backgournd {gameId}");
-                    return new GameMetadata(game, icon, image, background);
-                });
-
-                var downloader = new MetadataDownloader(db, igdbProvider.Object, null);
+                var downloader = new MetadataDownloader(db, metadataDownloaders, new List<LibraryPlugin>());
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = true };
 
                 // No download - all values are kept
-                settings.ConfigureFields(MetadataSource.IGDB, true);
+                settings.ConfigureFields(new List<Guid> { testPlugin.Id }, true);
                 await downloader.DownloadMetadataAsync(
                     db.Games.ToList(), settings, null, null);
 
                 var dbGames = db.Games.ToList();
-                Assert.AreEqual(0, callCount);
+                Assert.AreEqual(0, testPlugin.CallCount);
 
                 var game1 = dbGames[0];
                 Assert.AreEqual("Description", game1.Description);
@@ -481,7 +403,7 @@ namespace Playnite.Tests.Metadata
                     db.Games.ToList(), settings, null, null);
 
                 dbGames = db.Games.ToList();
-                Assert.AreEqual(1, callCount);
+                Assert.AreEqual(1, testPlugin.CallCount);
 
                 game1 = dbGames[0];
                 Assert.AreEqual("IGDB Description Game1", game1.Description);
@@ -497,7 +419,7 @@ namespace Playnite.Tests.Metadata
                 Assert.IsNotEmpty(game1.CoverImage);
 
                 // Single download - values are changed when skip enabled and values are not present
-                callCount = 0;
+                testPlugin.CallCount = 0;
                 settings.SkipExistingValues = true;
                 db.Games.Remove(game1);
                 db.Games.Add(new Game("Game1"));
@@ -506,7 +428,7 @@ namespace Playnite.Tests.Metadata
                     db.Games.ToList(), settings, null, null);
 
                 dbGames = db.Games.ToList();
-                Assert.AreEqual(1, callCount);
+                Assert.AreEqual(1, testPlugin.CallCount);
 
                 game1 = dbGames[0];
                 Assert.AreEqual("IGDB Description Game1", game1.Description);

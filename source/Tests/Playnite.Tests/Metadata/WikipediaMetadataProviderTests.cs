@@ -29,7 +29,7 @@ namespace Playnite.Tests.Metadata
         [Test]
         public void ParseGamePage_MetadataParsingTest()
         {
-            var wiki = new WikipediaMetadataProvider();
+            var wiki = new WikipediaMetadataPlugin(null);
 
             // Standard page
             var metadata = wiki.ParseGamePage(wiki.GetPage("Guild Wars 2"));

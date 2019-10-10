@@ -72,8 +72,21 @@
                         </Style.Triggers>
                     </Style>
                 </TreeViewItem.Style>
-            </TreeViewItem>
-            <TreeViewItem Header="{DynamicResource LOCPlugins}" Tag="10" DisplayMemberPath="Value.Name">
+            </TreeViewItem>            
+            <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="10" DisplayMemberPath="Value.Name">
+                <TreeViewItem.Style>
+                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                        <Setter Property="ItemsSource" Value="{StaticResource DummyArray}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsExpanded" Value="True">
+                                <Setter Property="ItemsSource" Value="{Binding MetadataPluginSettings}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TreeViewItem.Style>
+            </TreeViewItem>            
+            <TreeViewItem Header="{DynamicResource LOCPlugins}" Tag="10" DisplayMemberPath="Value.Name"
+                          Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TreeViewItem.Style>
                     <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                         <Setter Property="ItemsSource" Value="{StaticResource DummyArray}" />

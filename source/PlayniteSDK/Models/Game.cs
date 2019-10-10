@@ -121,7 +121,15 @@ namespace Playnite.SDK.Models
         /// 
         Source,
         /// 
-        ReleaseYear
+        ReleaseYear,
+        ///
+        ActionsScriptLanguage,
+        ///
+        PreScript,
+        ///
+        PostScript,
+        ///
+        Name
     }
 
     /// <summary>

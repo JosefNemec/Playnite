@@ -29,6 +29,50 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class GameEditViewModel : ObservableObject
     {
+        public class MetadataDownloadOption
+        {
+            private IDialogsFactory dialogs;
+            private IResourceProvider resources;
+            private GameEditViewModel editModel;
+
+            public object Downloader { get; set; }
+
+            public string Name { get; set; }
+
+            public RelayCommand<object> DownloadCommand
+            {
+                get => new RelayCommand<object>((a) =>
+                {
+                    if (Downloader is MetadataPlugin plugin)
+                    {
+                        var lookupModel = new MetadataLookupViewModel(
+                            plugin,
+                            new MetadataLookupWindowFactory(),
+                            dialogs,
+                            resources);
+                        lookupModel.SearchTerm = editModel.EditingGame.Name;
+                        editModel.DoMetadataLookup(lookupModel);
+                    }
+                    else if (Downloader is LibraryMetadataProvider provider)
+                    {
+                        editModel.DownloadStoreData();
+                    }
+                });
+            }
+
+            public MetadataDownloadOption(GameEditViewModel model, IDialogsFactory dialogs, IResourceProvider resources)
+            {
+                this.dialogs = dialogs;
+                this.resources = resources;
+                editModel = model;
+            }
+
+            public override string ToString()
+            {
+                return Name ?? base.ToString();
+            }
+        }
+
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
@@ -873,6 +917,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         public bool IsOfficialMetadataAvailable => LibraryPluginMetadataDownloader != null;
 
+        public List<MetadataDownloadOption> MetadataDownloadOptions
+        {
+            get; set;
+        }
+
         public LibraryPlugin LibraryPlugin
         {
             get; set;
@@ -1019,32 +1068,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> DownloadIGDBMetadataCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                var model = new MetadataLookupViewModel(MetadataProvider.IGDB, new MetadataLookupWindowFactory(), dialogs, resources);
-                DoMetadataLookup(model);
-            });
-        }
-
-        public RelayCommand<object> DownloadWikiMetadataCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                var model = new MetadataLookupViewModel(MetadataProvider.Wiki, new MetadataLookupWindowFactory(), dialogs, resources);
-                DoMetadataLookup(model);
-            });
-        }
-
-        public RelayCommand<object> DownloadStoreCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                DownloadStoreData();
-            });
-        }
-
         public RelayCommand<object> RemoveIconCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -1167,8 +1190,32 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (game != null)
             {
+                MetadataDownloadOptions = new List<MetadataDownloadOption>();
+                foreach (var plugin in extensions.MetadataPlugins)
+                {
+                    MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
+                    {
+                        Downloader = plugin,
+                        Name = plugin.Name
+                    });
+                }
+
+                MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
+                {
+                    Downloader = new WikipediaMetadataPlugin(null),
+                    Name = "Wikipedia"
+                });
+
                 LibraryPlugin = extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == game?.PluginId);
                 LibraryPluginMetadataDownloader = LibraryPlugin?.GetMetadataDownloader();
+                if (LibraryPluginMetadataDownloader != null)
+                {
+                    MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
+                    {
+                        Downloader = LibraryPluginMetadataDownloader,
+                        Name = resources.GetString("LOCMetaSourceStore")
+                    });
+                }
             }
         }
 
@@ -2532,8 +2579,7 @@ namespace Playnite.DesktopApp.ViewModels
                 dialogs.ShowMessage(resources.GetString("LOCEmptyGameNameMetaSearchError"), "", MessageBoxButton.OK);
                 return;
             }
-            
-            model.SearchTerm = IGDBMetadataProvider.GetIgdbSearchString(EditingGame.Name);
+
             if (model.OpenView() == true)
             {
                 ShowCheckBoxes = true;

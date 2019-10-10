@@ -9,16 +9,30 @@ using System.Web;
 using AngleSharp.Dom;
 using AngleSharp.Parser.Html;
 using Newtonsoft.Json;
-using NLog;
 using Playnite.Common.Web;
+using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 
 namespace Playnite.Metadata.Providers
 {
-    public class WikipediaMetadataProvider
+    public class WikipediaMetadataPlugin : MetadataPlugin
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
+
+        public override string Name => "Wikipedia";
+
+        public override List<GameField> SupportedFields { get; } = new List<GameField>
+        {
+            GameField.ReleaseDate,
+            GameField.Developers,
+            GameField.Publishers,
+            GameField.CoverImage,
+            GameField.Name
+        };
+
+        public override Guid Id { get; } = new Guid("88A920B3-B35C-4C30-A8E7-88BFCC2320EE");
 
         public class Error
         {
@@ -88,11 +102,11 @@ namespace Playnite.Metadata.Providers
             }
         }
 
-        public WikipediaMetadataProvider()
+        public WikipediaMetadataPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)
         {
         }
 
-        public List<SearchResult> Search(string searchTerm)
+        public override List<MetadataSearchResult> SearchMetadata(string searchTerm)
         {
             var url = string.Format(@"https://en.wikipedia.org/w/api.php?action=query&srsearch={0}&format=json&list=search&srlimit=50", HttpUtility.UrlEncode(searchTerm));
             var stringResult = HttpDownloader.DownloadString(url);
@@ -104,14 +118,26 @@ namespace Playnite.Metadata.Providers
             }
             else
             {
+                var ret = new List<MetadataSearchResult>();
                 var parser = new HtmlParser();
                 foreach (var searchResult in result.query.search)
                 {
-                    searchResult.snippet = parser.Parse(searchResult.snippet).DocumentElement.TextContent;
+                    ret.Add(new MetadataSearchResult(
+                        searchResult.title,
+                        searchResult.title,
+                        null,
+                        null,
+                        parser.Parse(searchResult.snippet).DocumentElement.TextContent));
                 }
 
-                return result.query.search;
+                return ret;
             }
+        }
+
+        public override GameMetadata GetMetadata(MetadataSearchResult searchResult)
+        {
+            var page = GetPage(searchResult.Id);
+            return ParseGamePage(page);
         }
 
         public WikiPage GetPage(string pageTitle)
@@ -321,6 +347,11 @@ namespace Playnite.Metadata.Providers
             }
 
             return metadata;
+        }
+
+        public override GameMetadata GetMetadata(Game game)
+        {
+            throw new NotImplementedException();
         }
     }
 }

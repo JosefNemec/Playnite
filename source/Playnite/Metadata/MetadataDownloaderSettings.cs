@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,18 +15,6 @@ namespace Playnite.Metadata
         AllFromDB,
         Selected,
         Filtered
-    }
-
-    public enum MetadataSource
-    {
-        [Description("LOCMetaSourceStore")]
-        Store,
-        [Description("LOCMetaSourceIGDB")]
-        IGDB,
-        [Description("LOCMetaSourceIGDBOverStore")]
-        IGDBOverStore,
-        [Description("LOCMetaSourceStoreOverIGDB")]
-        StoreOverIGDB
     }
 
     public class MetadataFieldSettings : ObservableObject
@@ -40,13 +30,13 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataSource source = MetadataSource.StoreOverIGDB;
-        public MetadataSource Source
+        private List<Guid> sources = new List<Guid>();
+        public List<Guid> Sources
         {
-            get => source;
+            get => sources;
             set
             {
-                source = value;
+                sources = value;
                 OnPropertyChanged();
             }
         }
@@ -55,10 +45,13 @@ namespace Playnite.Metadata
         {
         }
 
-        public MetadataFieldSettings(bool import, MetadataSource source)
+        public MetadataFieldSettings(bool import, List<Guid> sources)
         {
             Import = import;
-            Source = source;
+            if (sources != null)
+            {
+                Sources = sources;
+            }
         }
     }
 
@@ -96,7 +89,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings name = new MetadataFieldSettings(true, MetadataSource.Store);
+        private MetadataFieldSettings name = new MetadataFieldSettings();
         public MetadataFieldSettings Name
         {
             get => name;
@@ -239,32 +232,32 @@ namespace Playnite.Metadata
             }
         }
 
-        public void ConfigureFields(MetadataSource source, bool import)
+        public void ConfigureFields(List<Guid> sources, bool import)
         {
             Genre.Import = import;
-            Genre.Source = source;
+            Genre.Sources = sources;
             Description.Import = import;
-            Description.Source = source;
+            Description.Sources = sources;
             Developer.Import = import;
-            Developer.Source = source;
+            Developer.Sources = sources;
             Publisher.Import = import;
-            Publisher.Source = source;
+            Publisher.Sources = sources;
             Tag.Import = import;
-            Tag.Source = source;
+            Tag.Sources = sources;
             Links.Import = import;
-            Links.Source = source;
+            Links.Sources = sources;
             CoverImage.Import = import;
-            CoverImage.Source = source;
+            CoverImage.Sources = sources;
             BackgroundImage.Import = import;
-            BackgroundImage.Source = source;
+            BackgroundImage.Sources = sources;
             Icon.Import = import;
-            Icon.Source = source;
+            Icon.Sources = sources;
             ReleaseDate.Import = import;
-            ReleaseDate.Source = source;
+            ReleaseDate.Sources = sources;
             CommunityScore.Import = import;
-            CommunityScore.Source = source;
+            CommunityScore.Sources = sources;
             CriticScore.Import = import;
-            CriticScore.Source = source;
+            CriticScore.Sources = sources;
         }
     }
 }
