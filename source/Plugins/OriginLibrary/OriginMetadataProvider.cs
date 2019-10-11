@@ -37,7 +37,7 @@ namespace OriginLibrary
                 Links = new List<Link>()
                 {
                     new Link("{DynamicResource LOCOriginLinksStorePage}", @"https://www.origin.com/store" + storeMetadata.StoreDetails.offerPath),
-                    new Link("{DynamicResource LOCOriginLinksPCGW}", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name)
+                    new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name)
                 }
             };
 
