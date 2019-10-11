@@ -762,30 +762,21 @@ Version {2}
     
 {0}</sys:String>
 
-    <!--Battle.net-->
-    <sys:String x:Key="LOCBattleNetLinksPCGW">PCGamingWiki</sys:String>
-
-    <!--Bethesda-->
-    <sys:String x:Key="LOCBethesdaLinksPCGW">PCGamingWiki</sys:String>
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">Forum</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done…</sys:String>
     <sys:String x:Key="LOCItchioClientNotInstalledError">Itch client version 25 or newer is not installed.</sys:String>
-    <sys:String x:Key="LOCItchioLinksPCGW">PCGamingWiki</sys:String>
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Account Login</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Account Name</sys:String>
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Login to your account or use your public account name to sync your full library.
 Note that the Account Name option only works for accounts whose game libraries have been set in GOG's privacy settings to be publicly visible.</sys:String>
-    <sys:String x:Key="LOCGOGLinksPCGW">PCGamingWiki</sys:String>
-    <sys:String x:Key="LOCGOGLinksForum">Forum</sys:String>
-    <sys:String x:Key="LOCGOGLinksStorePage">Store Page</sys:String>
-
-    <!--Origin-->
-    <sys:String x:Key="LOCOriginLinksStorePage">Store Page</sys:String>
-    <sys:String x:Key="LOCOriginLinksPCGW">PCGamingWiki</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
@@ -794,16 +785,8 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCSteamLinksCommunityHub">Community Hub</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Discussions</sys:String>
     <sys:String x:Key="LOCSteamLinksNews">News</sys:String>
-    <sys:String x:Key="LOCSteamLinksStorePage">Store Page</sys:String>
-    <sys:String x:Key="LOCSteamLinksPCGW">PCGamingWiki</sys:String>
     <sys:String x:Key="LOCSteamLinksAchievements">Achievements</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
-
-    <!--Twitch-->
-    <sys:String x:Key="LOCTwitchLinksPCGW">PCGamingWiki</sys:String>
-
-    <!--Uplay-->
-    <sys:String x:Key="LOCUplayLinksPCGW">PCGamingWiki</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">First time setup is not complete. Playnite will now restart to Desktop mode to finish the procedure.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Recently Played</sys:String>
