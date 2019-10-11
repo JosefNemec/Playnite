@@ -27,7 +27,7 @@ namespace BattleNetLibrary
                 Links = new List<Link>(product.Links)
             };
 
-            gameInfo.Links.Add(new Link("{DynamicResource LOCBattleNetLinksPCGW}", @"http://pcgamingwiki.com/w/index.php?search=" + product.Name));
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + product.Name));
 
             var metadata = new GameMetadata()
             {
