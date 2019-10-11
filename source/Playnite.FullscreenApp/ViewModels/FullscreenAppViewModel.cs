@@ -710,7 +710,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 };
 
                 ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, cmdline.ToString());
-            });
+            }, new KeyGesture(Key.F11));
 
             ShutdownSystemCommand = new RelayCommand<object>((a) =>
             {
