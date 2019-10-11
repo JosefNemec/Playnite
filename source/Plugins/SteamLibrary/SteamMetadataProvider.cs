@@ -297,7 +297,7 @@ namespace SteamLibrary
                     new Link("{DynamicResource LOCSteamLinksDiscussions}", $"https://steamcommunity.com/app/{appId}/discussions/"),
                     new Link("{DynamicResource LOCSteamLinksNews}", $"https://store.steampowered.com/news/?appids={appId}"),
                     new Link("{DynamicResource LOCSteamLinksStorePage}", $"https://store.steampowered.com/app/{appId}"),
-                    new Link("{DynamicResource LOCSteamLinksPCGW}", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
+                    new Link("PCGamingWiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
                 }
             };
 
