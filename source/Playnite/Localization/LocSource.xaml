@@ -764,8 +764,7 @@ Version {2}
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
-    <sys:String x:Key="LOCCommonLinksStorePage">Forum</sys:String>
-    <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">Store Page</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
