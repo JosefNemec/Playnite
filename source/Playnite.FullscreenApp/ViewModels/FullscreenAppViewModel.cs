@@ -5,6 +5,7 @@ using Playnite.Controls;
 using Playnite.Database;
 using Playnite.FullscreenApp.Controls;
 using Playnite.FullscreenApp.Controls.Views;
+using Playnite.FullscreenApp.Windows;
 using Playnite.Metadata;
 using Playnite.Plugins;
 using Playnite.SDK;
@@ -421,6 +422,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SelectPrevGameCommand { get; private set; }
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
+        public RelayCommand<object> SelectRandomGameCommand { get; private set; }
         #endregion Commands
 
         public FullscreenAppViewModel()
@@ -963,6 +965,11 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 OnFileDropped(args);
             });
+
+            SelectRandomGameCommand = new RelayCommand<object>((a) =>
+            {
+                PlayRandomGame();
+            });
         }
 
         private GamesCollectionViewEntry SelectClosestGameDetails()
@@ -1332,6 +1339,28 @@ namespace Playnite.FullscreenApp.ViewModels
                             }
                         }
                     }
+                }
+            }
+        }
+
+        public void PlayRandomGame()
+        {
+            if (MainMenuVisible)
+            {
+                ToggleMainMenuCommand.Execute(null);
+            }
+
+            var model = new RandomGameSelectViewModel(
+                Database,
+                GamesView,
+                new RandomGameSelectWindowFactory(),
+                Resources);
+            if (model.OpenView() == true && model.SelectedGame != null)
+            {
+                var selection = GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
+                if (selection != null)
+                {
+                    GamesEditor.PlayGame(selection.Game);
                 }
             }
         }

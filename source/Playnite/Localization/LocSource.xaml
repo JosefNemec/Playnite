@@ -258,6 +258,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuShutdownSystem">Turn Off System</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspend System</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernate System</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Pick a Random Game</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Game fields to be displayed on details panel:</sys:String>
@@ -814,5 +815,7 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCGameListFiltered">There are filters applied.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Search results for:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">An item with the same name already exists.</sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Limit selection to current filter</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Pick another</sys:String>
 
 </ResourceDictionary>

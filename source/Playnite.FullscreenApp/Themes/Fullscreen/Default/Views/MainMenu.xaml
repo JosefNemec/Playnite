@@ -37,6 +37,12 @@
 
                             <Canvas Height="75" />
 
+                            <ButtonEx x:Name="PART_ButtonPickRandomGame"
+                                      Style="{DynamicResource ButtonMainMenu}"
+                                      Content="{DynamicResource LOCMenuSelectRandomGame}" />
+
+                            <Canvas Height="75" />
+
                             <ButtonEx x:Name="PART_ButtonShutdownSystem"
                                       Style="{DynamicResource ButtonMainMenu}"
                                       Content="{DynamicResource LOCMenuShutdownSystem}" />

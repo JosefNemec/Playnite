@@ -343,11 +343,12 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<IEnumerable<Game>> SetAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }        
         public RelayCommand<Game> AssignGameCategoryCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> AssignGamesCategoryCommand { get; private set; }
         public RelayCommand<Game> RemoveGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
+        public RelayCommand<object> SelectRandomGameCommand { get; private set; }
         #endregion
 
         public DesktopAppViewModel()
@@ -780,6 +781,11 @@ namespace Playnite.DesktopApp.ViewModels
             RemoveAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
                 GamesEditor.SetHideGames(a.ToList(), false);
+            });
+
+            SelectRandomGameCommand = new RelayCommand<object>((a) =>
+            {
+                PlayRandomGame();
             });
         }
 
@@ -1405,6 +1411,24 @@ namespace Playnite.DesktopApp.ViewModels
             };
 
             ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, cmdline.ToString());
+        }
+
+        public void PlayRandomGame()
+        {
+            var model = new RandomGameSelectViewModel(
+                Database,
+                GamesView,
+                new RandomGameSelectWindowFactory(),
+                Resources);
+            if (model.OpenView() == true && model.SelectedGame != null)
+            {
+                var selection = GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
+                if (selection != null)
+                {
+                    SelectedGame = selection;
+                    GamesEditor.PlayGame(selection.Game);
+                }
+            }
         }
 
         public void OpenView()

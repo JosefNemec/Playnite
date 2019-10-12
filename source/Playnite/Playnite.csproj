@@ -333,6 +333,7 @@
     <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
     <Compile Include="ViewModels\MainViewModelBase.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
+    <Compile Include="ViewModels\RandomGameSelectViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="WebView\OffscreenWebView.cs" />
     <Compile Include="WebView\WebView.cs" />
