@@ -504,7 +504,7 @@ Diese wird derzeit von {1} Spielen und {2} Emulatoren verwendet.</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plattform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategorie</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Genre</sys:String>
-    <sys:String x:Key="LOCGameReleaseDateTitle">Erscheinungsdatum</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">Veröffentlichung</sys:String>
     <sys:String x:Key="LOCGameReleaseYearTitle">Erscheinungsjahr</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Entwickler</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Schlagwort</sys:String>
