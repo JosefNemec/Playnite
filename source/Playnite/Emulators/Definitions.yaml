@@ -870,6 +870,13 @@
       RequiredFiles: ['cores\fbalpha_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
+    - Name: FinalBurn Neo
+      DefaultArguments: '-L ".\cores\fbneo_libretro.dll" "{ImagePath}"'
+      Platforms: [Various]
+      ImageExtensions: [iso, zip, 7z]
+      RequiredFiles: ['cores\fbneo_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
     - Name: FCEUmm
       DefaultArguments: '-L ".\cores\fceumm_libretro.dll" "{ImagePath}"'
       Platforms: [Nintendo Entertainment System, Nintendo Family Computer Disk System]
