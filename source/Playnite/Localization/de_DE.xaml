@@ -65,13 +65,13 @@ Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, b
     <sys:String x:Key="LOCGameError">Spielfehler</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Spiel kann nicht gestartet werden: »{0}« wurde in der Datenbank nicht gefunden.</sys:String>
     <sys:String x:Key="LOCGameStartError">Spiel kann nicht gestartet werden: {0}</sys:String>
-    <sys:String x:Key="LOCGameStartActionError">Fehler beim Ausführen der Aktion: {0}</sys:String>
-    <sys:String x:Key="LOCGameOpenLocationError">Fehler beim Öffnen des Installationspfades: {0}</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Fehler beim Erstellen der Verknüpfung: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Aktion kann nicht gestartet werden: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">Installationspfad kann nicht geöffnet werden: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Verknüpfung konnte nicht erstellt werden: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Spiel kann nicht installiert werden: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Spiel kann nicht deinstalliert werden: {0}</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Das Bibliotheks-Plugin für dieses Spiel ist nicht installiert oder deaktiviert.</sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader">Keine offizielle Unterstützung zum Herunterladen von Metadaten verfügbar.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Das Bibliotheks-Plugin für dieses Spiel ist deaktiviert oder nicht installiert.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Offizielle Metadaten zum Herunterladen sind nicht verfügbar.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Kein Spiel ausgewählt.</sys:String>
 
 
@@ -259,9 +259,9 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsDefaulIconSource">Quelle für fehlende Spielsymbole</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Quelle für fehlende Spielecover</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikaler Abstand zu Spieldetails</sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position der Detailleiste in Rasteransicht</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detailleistenposition in Rasteransicht</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Spielelistenposition in Detailansicht</sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Trennzeichen zwischen den Segmenten einfügen</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Trennlinien zwischen Leisten zeichnen</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Höhe der Spieletitelbilder</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Symbolhöhe der Spieleliste</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Anwendungsschriftart</sys:String>
@@ -362,9 +362,9 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsFullscreenColumns">Spaltenanzahl</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Zeilenanzahl in Detailansicht</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Quelle für Hintergrundbilder:</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceImage">Bild des Spiels</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Screenshot vom Steam Store</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceStore">Hintergrundbild vom Steam Store</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">Spielebild</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Store-Screenshot</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">Store-Hintergrund</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Hat ohne erneutes Herunterladen der Metadaten keinen Einfluss auf bereits in der Bibliothek befindliche Spiele.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Spielzeit mit Anbieterbibliothek synchronisieren</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Synchronisiert automatisch die Spielzeit mit der Bibliothek von Steam, Origin und anderen. Playnite wird die Spielzeit von betroffenen Spielen anschließend nicht mehr selbst überwachen.</sys:String>
@@ -380,7 +380,7 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Schaltflächenmeldungen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontales Scrollen</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection">Einen der Unterabschnitte auswählen</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Wähle einen der Unterabschnitte aus</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
@@ -504,7 +504,7 @@ Diese wird derzeit von {1} Spielen und {2} Emulatoren verwendet.</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plattform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategorie</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Genre</sys:String>
-    <sys:String x:Key="LOCGameReleaseDateTitle">Veröffentlichung</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">Erscheinungsdatum</sys:String>
     <sys:String x:Key="LOCGameReleaseYearTitle">Erscheinungsjahr</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Entwickler</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Schlagwort</sys:String>
