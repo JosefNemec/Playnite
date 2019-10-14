@@ -37,6 +37,75 @@ namespace Playnite
             }
         }
 
+        public static string GetImagePath(string source)
+        {
+            if (source.IsNullOrEmpty())
+            {
+                return null;
+            }
+
+            if (source.StartsWith("resources:") || source.StartsWith("pack://"))
+            {
+                try
+                {
+                    var imagePath = source;
+                    if (source.StartsWith("resources:"))
+                    {
+                        imagePath = source.Replace("resources:", "pack://application:,,,");
+                    }
+
+                    return imagePath;
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to create bitmap from resources " + source);
+                    return null;
+                }
+            }
+
+            if (StringExtensions.IsHttpUrl(source))
+            {
+                try
+                {
+                    var cachedFile = HttpFileCache.GetWebFile(source);
+                    if (string.IsNullOrEmpty(cachedFile))
+                    {
+                        logger.Warn("Web file not found: " + source);
+                        return null;
+                    }
+
+                    return cachedFile;
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, $"Failed to create bitmap from {source} file.");
+                    return null;
+                }
+            }
+
+            if (File.Exists(source))
+            {
+                return source;
+            }
+
+            if (database == null)
+            {
+                logger.Error("Cannot load database image, database not found.");
+                return null;
+            }
+
+            try
+            {
+                return database.GetFullFilePath(source);
+
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, $"Failed to get bitmap from {source} database file.");
+                return null;
+            }
+        }
+
         public static BitmapImage GetImage(string source, bool cached)
         {
             if (DesignerTools.IsInDesignMode)

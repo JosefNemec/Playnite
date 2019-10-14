@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -135,6 +137,22 @@ namespace Playnite.Controls
 
         #endregion IsBlurEnabled
 
+        #region HighQualityBlur
+
+        public static readonly DependencyProperty HighQualityBlurProperty = DependencyProperty.Register(
+            nameof(HighQualityBlurProperty),
+            typeof(bool),
+            typeof(FadeImage),
+            new PropertyMetadata(false, BlurSettingChanged));
+
+        public bool HighQualityBlur
+        {
+            get { return (bool)GetValue(HighQualityBlurProperty); }
+            set { SetValue(HighQualityBlurProperty, value); }
+        }
+
+        #endregion HighQualityBlur
+
         public FadeImage()
         {
             InitializeComponent();
@@ -173,25 +191,26 @@ namespace Playnite.Controls
 
             var blurAmount = control.BlurAmount;
             var blurEnabled = control.IsBlurEnabled;
+            var highQuality = control.HighQualityBlur;
             var source = control.Source;
             var image = await Task.Factory.StartNew(() =>
             {
-                var tmp = ImageSourceManager.GetImage(source, false);
-                if (tmp == null)
-                {
-                    return null;
-                }
-
-                //if (blurEnabled)
-                //{                    
-                //    tmp = new GaussianBlur(tmp.ToBitmap()).Process(blurAmount).ToBitmapImage();
-                //}
-
-                return tmp;
+                return ImageSourceManager.GetImage(source, false);
             });
-            
-            // GaussianBlur uses quite of lot of memory that's not immediately released.
-            GC.Collect();
+
+            if (blurEnabled)
+            {                
+                control.ImageHolder.Effect = new BlurEffect()
+                {
+                    KernelType = KernelType.Gaussian,
+                    Radius = blurAmount,
+                    RenderingBias = highQuality ? RenderingBias.Quality : RenderingBias.Performance
+                };
+            }
+            else
+            {
+                control.ImageHolder.Effect = null;
+            }
 
             if (control.currentImage == CurrentImage.Image1)
             {
@@ -213,6 +232,7 @@ namespace Playnite.Controls
         {
             var blurAmount = BlurAmount;
             var blurEnabled = IsBlurEnabled;
+            var highQuality = HighQualityBlur;
             BitmapImage image = null;
 
             if (newSource == currentSource)
@@ -225,26 +245,31 @@ namespace Playnite.Controls
             {
                 image = await Task.Factory.StartNew(() =>
                 {
-                    var tmp = ImageSourceManager.GetImage(newSource, false);
-                    if (tmp == null)
-                    {
-                        return null;
-                    }
-
-                    //if (blurEnabled)
-                    //{
-                    //    tmp = new GaussianBlur(tmp.ToBitmap()).Process(blurAmount).ToBitmapImage();
-
-                    //}
-                    return tmp;
+                    return ImageSourceManager.GetImage(newSource, false);
                 });
             }
 
             if (blurEnabled)
             {
-                // GaussianBlur uses quite of lot of memory that's not immediately released.
-                GC.Collect();
+                if (ImageHolder.Effect == null)
+                {
+                    ImageHolder.Effect = new BlurEffect()
+                    {
+                        KernelType = KernelType.Gaussian,
+                        Radius = blurAmount,
+                        RenderingBias = highQuality ? RenderingBias.Quality : RenderingBias.Performance
+                    };
+                }
             }
+            else
+            {
+                if (ImageHolder.Effect != null)
+                {
+                    ImageHolder.Effect = null;
+                }
+            }
+
+            GC.Collect();
 
             if (image == null)
             {
