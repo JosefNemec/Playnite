@@ -49,6 +49,9 @@
                         </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsInstalled}" Value="False">
+                            <Setter Property="Content" Value="&#xef08;" TargetName="PART_ButtonPlay" />
+                        </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding CoverImage}" Value="{x:Null}" />
