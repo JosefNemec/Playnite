@@ -1145,14 +1145,14 @@ namespace Playnite.DesktopApp.ViewModels
             Database.Games.Add(newGame);
             if (GamesEditor.EditGame(newGame) == true)
             {
-                var viewEntry = GamesView.Items.First(a => a.Game.GameId == newGame.GameId);
+                var viewEntry = GamesView.Items.First(a => a.Game.Id == newGame.Id);
                 SelectedGame = viewEntry;
             }
             else
             {
                 Database.Games.Remove(newGame);
             }
-        }
+}
 
         public async void ImportWindowsStoreGames(InstalledGamesViewModel model)
         {

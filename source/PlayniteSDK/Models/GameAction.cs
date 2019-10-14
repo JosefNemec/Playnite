@@ -198,7 +198,14 @@ namespace Playnite.SDK.Models
         /// <returns></returns>
         public static bool Equals(GameAction obj1, GameAction obj2)
         {
-            return obj1?.Equals(obj2) == true;
+            if (obj1 == null && obj2 == null)
+            {
+                return true;
+            }
+            else
+            {
+                return obj1?.Equals(obj2) == true;
+            }
         }
 
         /// <inheritdoc/>

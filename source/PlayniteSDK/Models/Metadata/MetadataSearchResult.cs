@@ -39,6 +39,13 @@ namespace Playnite.SDK.Metadata
         /// <summary>
         /// Creates new instance of <see cref="MetadataSearchResult"/>.
         /// </summary>
+        public MetadataSearchResult()
+        {
+        }
+
+        /// <summary>
+        /// Creates new instance of <see cref="MetadataSearchResult"/>.
+        /// </summary>
         /// <param name="id"></param>
         /// <param name="name"></param>
         public MetadataSearchResult(string id, string name)

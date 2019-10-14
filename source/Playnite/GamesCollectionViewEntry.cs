@@ -166,11 +166,6 @@ namespace Playnite
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
         }
 
-        public void Dispose()
-        {
-            Game.PropertyChanged -= Game_PropertyChanged;
-        }
-
         public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, Type colGroupType, Guid colGroupId, PlayniteSettings settings) : this(game, plugin, settings)
         {
             this.colGroupType = colGroupType;
@@ -196,6 +191,11 @@ namespace Playnite
             {
                 Category = game.Categories?.FirstOrDefault(a => a.Id == colGroupId);
             }
+        }
+
+        public void Dispose()
+        {
+            Game.PropertyChanged -= Game_PropertyChanged;
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -546,7 +546,7 @@
                                         Command="{Binding SelectIconCommand}" />
                                     <Button Name="ButtonUseExeIcon" Content="{DynamicResource LOCUseExeIcon}" 
                                         Command="{Binding UseExeIconCommand}"
-                                        Visibility="{Binding Game, Converter={StaticResource NullToVisibilityConverter}}"
+                                        Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Margin="5,0,0,0"/>
                                     <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveIconCommand}" />

@@ -781,34 +781,14 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private Game game;
         public Game Game
         {
-            get
-            {
-                return game;
-            }
-
-            set
-            {
-                game = value;
-                OnPropertyChanged();
-            }
+            get; set;
         }
 
-        private IEnumerable<Game> games;
         public IEnumerable<Game> Games
         {
-            get
-            {
-                return games;
-            }
-
-            set
-            {
-                games = value;
-                OnPropertyChanged();
-            }
+            get; set;
         }
 
         private bool progressVisible = false;
@@ -1188,7 +1168,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
 
-            if (game != null)
+            if (IsSingleGameEdit)
             {
                 MetadataDownloadOptions = new List<MetadataDownloadOption>();
                 foreach (var plugin in extensions.MetadataPlugins)
@@ -1206,7 +1186,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Name = "Wikipedia"
                 });
 
-                LibraryPlugin = extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == game?.PluginId);
+                LibraryPlugin = extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == Game?.PluginId);
                 LibraryPluginMetadataDownloader = LibraryPlugin?.GetMetadataDownloader();
                 if (LibraryPluginMetadataDownloader != null)
                 {
@@ -2022,7 +2002,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else
                     {
-                        Game.Icon = database.AddFile(EditingGame.Icon, game.Id); ;
+                        Game.Icon = database.AddFile(EditingGame.Icon, Game.Id); ;
                     }
                 }
             }
@@ -2170,7 +2150,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                game.Modified = DateTime.Today;
+                Game.Modified = DateTime.Today;
                 database.Games.Update(Game);
             }
 
@@ -2394,7 +2374,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var path = game.GetRawExecutablePath();
+            var path = Game.GetRawExecutablePath();
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
             {
                 logger.Error($"Can't find executable for icon extraction, file {path}");
@@ -2595,7 +2575,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    if (extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
+                    if (extensions.Plugins.TryGetValue(Game.PluginId, out var plugin))
                     {
                         if (LibraryPluginMetadataDownloader == null)
                         {
@@ -2623,7 +2603,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", game.PluginId, game.GameId));
+                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
                     dialogs.ShowMessage(
                         string.Format(resources.GetString("LOCMetadataDownloadError"), exc.Message),
                         resources.GetString("LOCDownloadError"),

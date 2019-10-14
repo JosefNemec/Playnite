@@ -206,7 +206,7 @@ namespace Playnite.Metadata
                         game = database.Games[games[i].Id]?.GetClone();
                         if (game == null)
                         {
-                            logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");
+                            logger.Warn($"Game {game.Id} no longer in DB, skipping metadata download.");
                             progressCallback?.Invoke(null, i, games.Count);
                             continue;
                         }
@@ -396,18 +396,18 @@ namespace Playnite.Metadata
                         //}
 
                         // Just to be sure check if somebody didn't remove game while downloading data
-                        if (database.Games.FirstOrDefault(a => a.GameId == games[i].GameId) != null)
+                        if (database.Games.FirstOrDefault(a => a.Id == games[i].Id) != null)
                         {
                             database.Games.Update(game);
                         }
                         else
                         {
-                            logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata update in DB.");
+                            logger.Warn($"Game {game.Id} no longer in DB, skipping metadata update in DB.");
                         }
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
-                        logger.Error(e, $"Failed to download metadata for game {game?.Name}, {game?.GameId}");
+                        logger.Error(e, $"Failed to download metadata for game {game?.Name}, {game?.Id}");
                     }
                     finally
                     {

@@ -98,9 +98,9 @@ namespace Playnite
 
             try
             {
-                if (game.IsRunning)
+                if (game.IsRunning || game.IsLaunching)
                 {
-                    logger.Warn("Failed to start the game, game is already running.");
+                    logger.Warn("Failed to start the game, game is already running/launching.");
                     return;
                 }
 
