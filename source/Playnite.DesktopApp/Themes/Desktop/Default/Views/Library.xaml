@@ -36,6 +36,12 @@
                                            Width="{Settings ExplorerPanelWitdh}"/>
                             
                             <Grid DockPanel.Dock="Left">
+                                <TextBlock FontSize="{StaticResource FontSizeLarger}"
+                                           Style="{StaticResource BaseTextBlockStyle}"
+                                           Text="{DynamicResource LOCNoGamesFound}"
+                                           TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Name="PART_ElemNoGamesNotif" />
+                                
                                 <LibraryDetailsView x:Name="PART_ViewDetails" />
                                 <LibraryGridView x:Name="PART_ViewGrid" />
                                 <LibraryListView x:Name="PART_ViewList" />

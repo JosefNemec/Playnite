@@ -231,6 +231,7 @@
     <Compile Include="Converters\OpacityBoolConverter.cs" />
     <Compile Include="Converters\SortingOrderToStringConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToBoolConverter.cs" />
+    <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />

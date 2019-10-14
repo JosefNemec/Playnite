@@ -10,8 +10,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Language</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Exit</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter Active</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filter Disabled</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Additional filters</sys:String>
     <sys:String x:Key="LOCFilters">Filters</sys:String>
     <sys:String x:Key="LOCFilter">Filter</sys:String>
@@ -645,7 +645,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCExtensions">Extensions</sys:String>
     <sys:String x:Key="LOCReloadScripts">Reload Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">No Games Found</sys:String>
+    <sys:String x:Key="LOCNoGamesFound">No games found for specified search/filter criteria</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Exit to Desktop Mode</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Exit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Libraries</sys:String>

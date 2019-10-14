@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
@@ -23,6 +24,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ViewDetails", Type = typeof(Control))]
     [TemplatePart(Name = "PART_ViewGrid", Type = typeof(Control))]
     [TemplatePart(Name = "PART_ViewList", Type = typeof(Control))]
+    [TemplatePart(Name = "PART_ElemNoGamesNotif", Type = typeof(FrameworkElement))]
     public class Library : Control
     {
         private readonly DesktopAppViewModel mainModel;
@@ -30,6 +32,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private Control ViewDetails;
         private Control ViewGrid;
         private Control ViewList;
+        private FrameworkElement ElemNoGamesNotif;
 
         static Library()
         {
@@ -96,6 +99,18 @@ namespace Playnite.DesktopApp.Controls.Views
             //        mainModel.AppSettings,
             //        nameof(PlayniteSettings.BackgroundImageBlurAmount));
             //}
+
+            ElemNoGamesNotif = Template.FindName("PART_ElemNoGamesNotif", this) as FrameworkElement;
+            if (ElemNoGamesNotif != null)
+            {
+
+                BindingTools.SetBinding(ElemNoGamesNotif,
+                    Control.VisibilityProperty,
+                    mainModel,
+                    $"{nameof(mainModel.GamesView)}.{nameof(mainModel.GamesView.CollectionView)}.{nameof(mainModel.GamesView.Items.Count)}",
+                    converter: new IntToVisibilityConverter(),
+                    converterParameter: 0);
+            }
 
             SetBackgroundBinding();
             SetBackgroundEffect();
