@@ -230,7 +230,7 @@ namespace Playnite.Controls
                     RemoveInternalChildRange(args.Position.Index, args.ItemUICount);
                     break;
                 case NotifyCollectionChangedAction.Move:
-                    if (args.Position.Index < 0)
+                    if (args.OldPosition.Index < 0)
                     {
                         InvalidateMeasure();
                         ScrollOwner?.InvalidateScrollInfo();
