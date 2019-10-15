@@ -21,23 +21,28 @@ namespace TwitchLibrary
 
         public TwitchMetadataProvider(TwitchLibrary library)
         {
-            this.library = library;            
-            var token = library.GetAuthToken();
-            if (!token.IsNullOrEmpty())
-            {
-                try
-                {
-                    entitlements = AmazonEntitlementClient.GetAccountEntitlements(token);
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, "Failed to get entitlements for Twitch metadata.");
-                }
-            }
+            this.library = library;
         }
 
         public override GameMetadata GetMetadata(Game game)
         {
+            if (entitlements == null)
+            {
+                var token = library.GetAuthToken();
+                if (!token.IsNullOrEmpty())
+                {
+                    try
+                    {
+                        entitlements = AmazonEntitlementClient.GetAccountEntitlements(token);
+                    }
+                    catch (Exception e)
+                    {
+                        entitlements = new List<Entitlement>();
+                        logger.Error(e, "Failed to get entitlements for Twitch metadata.");
+                    }
+                }
+            }
+
             var gameInfo = new GameInfo
             {
                 Links = new List<Link>()
