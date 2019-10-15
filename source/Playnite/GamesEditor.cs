@@ -104,6 +104,14 @@ namespace Playnite
                     return;
                 }
 
+                if (game.PlayAction == null)
+                {
+                    Dialogs.ShowErrorMessage(
+                        resources.GetString("LOCErrorNoPlayAction"),
+                        resources.GetString("LOCGameError"));
+                    return;
+                }
+
                 if (game.PlayAction.IsHandledByPlugin)
                 {
                     logger.Info("Using library plugin to start the game.");
