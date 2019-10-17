@@ -37,13 +37,13 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Oh tidak, sesuatu yang buruk terjadi…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Terjadi galat yang tidak dapat diperbaiki.
 
-Jika Anda ingin membantu memperbaiki masalah ini, tolong buar diagnosa paket dan gunakan tombol 'Laporkan Kerusakan' untuk memberitahu kami apa yang terjadi. Terimakasih.</sys:String>
+Jika Kamu ingin membantu memperbaiki masalah ini, tolong buat diagnosa paket dan gunakan tombol 'Laporkan Kerusakan' untuk memberitahu kami apa yang terjadi. Terimakasih.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Laporkan Masalah</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Muat Ulang Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Keluar Playnite</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">Pengelola Pustaka</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Hapus Game yang dipilih?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Tidak dapat menghapus gim yang sedang berjalan atau dalam proses instalasi/pencopotan.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Tidak dapat mencopot gim yang sedang berjalan.</sys:String>
@@ -56,7 +56,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Teman di Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Ada perubahan yang belum disimpan</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Memperbarui format pustaka gim…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Update database gagal, gagal membuka file database.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Tidak dapat memperbaharui pustaka gim. {0} MB ruang bebas diperlukan.</sys:String>
 
@@ -74,9 +74,9 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
 
 
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle"></sys:String>
+    <sys:String x:Key="LOCEnabledTitle">Aktifkan</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Hapus</sys:String>
-    <sys:String x:Key="LOCRenameTitle"></sys:String>
+    <sys:String x:Key="LOCRenameTitle">Ubah Nama</sys:String>
     <sys:String x:Key="LOCCopyTitle">Salin</sys:String>
     <sys:String x:Key="LOCAddTitle">Tambah</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Ikon Default</sys:String>
@@ -87,9 +87,9 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCDoneCapLabel">SELESAI</sys:String>
     <sys:String x:Key="LOCBackCapLabel">KEMBALI</sys:String>
     <sys:String x:Key="LOCClearCapLabel">BERSIHKAN</sys:String>
-    <sys:String x:Key="LOCClearLabel"></sys:String>
-    <sys:String x:Key="LOCDismiss"></sys:String>
-    <sys:String x:Key="LOCDismissAll"></sys:String>
+    <sys:String x:Key="LOCClearLabel">Bersihkan</sys:String>
+    <sys:String x:Key="LOCDismiss">Abaikan</sys:String>
+    <sys:String x:Key="LOCDismissAll">Abaikan Semua</sys:String>
     <sys:String x:Key="LOCImportLabel">Impor</sys:String>
     <sys:String x:Key="LOCSourceLabel">Sumber</sys:String>
     <sys:String x:Key="LOCNameLabel">Nama</sys:String>
@@ -103,7 +103,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCMostPlayedLabel">Paling sering dimainkan</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Jumlah Main</sys:String>
     <sys:String x:Key="LOCAddedLabel">Ditambahkan</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Tanggal Ditambahkan</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Dimodifikasi</sys:String>
     <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Situs web</sys:String>
@@ -122,7 +122,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCLinksLabel">Link</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instalasi</sys:String>
     <sys:String x:Key="LOCActionsLabel">Aksi</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Mengunduh…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipe</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profil</sys:String>
@@ -137,16 +137,16 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCTagLabel">Tag</sys:String>
     <sys:String x:Key="LOCTagsLabel"></sys:String>
     <sys:String x:Key="LOCZoomLabel">Perbesaran</sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCListViewLabel">Tampilan Daftar</sys:String>
     <sys:String x:Key="LOCCoversLabel">Sampul</sys:String>
     <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Tampilan Detail</sys:String>
     <sys:String x:Key="LOCCustomLabel">Kustom</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patron</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisensi</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Kontributor</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Keluar Playnite…</sys:String>
     <sys:String x:Key="LOCToday">Hari Ini</sys:String>
     <sys:String x:Key="LOCYesterday">Kemarin</sys:String>
     <sys:String x:Key="LOCMonday">Senin</sys:String>
@@ -158,17 +158,17 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCSunday">Minggu</sys:String>
     <sys:String x:Key="LOCPastWeek">Minggu lalu</sys:String>
     <sys:String x:Key="LOCPastMonth">Bulan lalu</sys:String>
-    <sys:String x:Key="LOCPastYear"></sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
+    <sys:String x:Key="LOCPastYear">Tahun Terakhir</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Lebih dari 1 tahun yang lalu</sys:String>
     <sys:String x:Key="LOCImportCompleted"></sys:String>
-    <sys:String x:Key="LOCAllGames"></sys:String>
+    <sys:String x:Key="LOCAllGames">Semua gim</sys:String>
     <sys:String x:Key="LOCGameId"></sys:String>
     <sys:String x:Key="LOCDatabaseId"></sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
-    <sys:String x:Key="LOCColumn"></sys:String>
-    <sys:String x:Key="LOCColumns"></sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
+    <sys:String x:Key="LOCPresets">Prasetel</sys:String>
+    <sys:String x:Key="LOCColumn">Kolom</sys:String>
+    <sys:String x:Key="LOCColumns">Kolom</sys:String>
+    <sys:String x:Key="LOCRow">Baris</sys:String>
+    <sys:String x:Key="LOCRows">Baris</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Variable spesial bisa digunakan untuk menambah dynamic string:
 {InstallDir} - Direktori instalasi game
@@ -221,10 +221,10 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfigurasi</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Pengaturan…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platform dan Emulator</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Setel Emulator…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Pengelola Pustaka…</sys:String>
     <sys:String x:Key="LOCMenuTools">Alat</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Buka Client Pihak Ketiga</sys:String>
@@ -259,7 +259,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Fon aplikasi</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
@@ -268,10 +268,10 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
-    <sys:String x:Key="LOCSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Pengaturan</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Umum</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Penampilan</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Detail Gim</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Opsi Lanjut</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
