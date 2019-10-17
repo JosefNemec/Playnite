@@ -35,7 +35,9 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Tidak ada Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh tidak, sesuatu yang buruk terjadi…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Terjadi galat yang tidak dapat diperbaiki.
+
+Jika Anda ingin membantu memperbaiki masalah ini, tolong buar diagnosa paket dan gunakan tombol 'Laporkan Kerusakan' untuk memberitahu kami apa yang terjadi. Terimakasih.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Laporkan Masalah</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Muat Ulang Playnite</sys:String>
