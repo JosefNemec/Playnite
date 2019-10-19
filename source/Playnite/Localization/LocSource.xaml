@@ -372,8 +372,8 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Store Screenshot</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Store Background</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Doesn't apply retrospectively to existing games without re-downloading metadata.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Force sync play time</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Always download recorded play time from remote library during library sync, ignoring time recorded by Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Force sync Play Time for supported libraries</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Always download recorded Play Time from remote library during library sync, ignoring time recorded by Playnite. GOG, Origin and Steam libraries are supported when the user is authenticated.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Enable controller support in Desktop mode</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide button opens Fullscreen mode</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Configure settings used when metadata are being downloaded automatically after new games are imported.</sys:String>
@@ -694,7 +694,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Playtime is tracked and stored in seconds.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Play Time is tracked and stored in seconds.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Values from 0 to 100 or empty for no score.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Code, localization and other contributors in no particular order:</sys:String>
