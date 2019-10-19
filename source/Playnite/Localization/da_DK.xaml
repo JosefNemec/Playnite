@@ -4,25 +4,25 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     
-    <sys:String x:Key="LanguageName"></sys:String>
+    <sys:String x:Key="LanguageName">Engelsk</sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Sprog</sys:String>
 
-    <sys:String x:Key="LOCExitAppLabel"></sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCExitAppLabel">Afslut</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter er slået til (tryk for at skifte filterpanel)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filter er slået fra (tryk for at skifte filterpanel)</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Yderligere filtrer</sys:String>
+    <sys:String x:Key="LOCFilters">Filtre</sys:String>
+    <sys:String x:Key="LOCFilter">Filter</sys:String>
 
-    <sys:String x:Key="LOCInvalidDataTitle"></sys:String>
-    <sys:String x:Key="LOCSaveChangesAskTitle"></sys:String>
+    <sys:String x:Key="LOCInvalidDataTitle">Ugyldig data</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">Gem ændringer?</sys:String>
     
-    <sys:String x:Key="LOCAboutHomePageLink"></sys:String>
-    <sys:String x:Key="LOCAboutSourceLink"></sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutWindowTitle"></sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Hjemmeside på www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">Se kildekoden på GitHub</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Opret diag. pakke</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Send diagnose-information</sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">Om Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor"></sys:String>
 
     <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
