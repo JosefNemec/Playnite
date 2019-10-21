@@ -309,79 +309,79 @@ namespace Playnite.DesktopApp.Controls
             control.NameSettings = control.SetupField(settings.Name, GameField.Name, plugins);
             control.NameSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.Name.Sources = control.NameSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.Name.Sources = control.NameSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.GenresSettings = control.SetupField(settings.Genre, GameField.Genres, plugins);
             control.GenresSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.Genre.Sources = control.GenresSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.Genre.Sources = control.GenresSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.ReleaseDateSettings = control.SetupField(settings.ReleaseDate, GameField.ReleaseDate, plugins);
             control.ReleaseDateSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.ReleaseDate.Sources = control.ReleaseDateSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.ReleaseDate.Sources = control.ReleaseDateSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.DevelopersSettings = control.SetupField(settings.Developer, GameField.Developers, plugins);
             control.DevelopersSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.Developer.Sources = control.DevelopersSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.Developer.Sources = control.DevelopersSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.PublishersSettings = control.SetupField(settings.Publisher, GameField.Publishers, plugins);
             control.PublishersSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.Publisher.Sources = control.PublishersSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.Publisher.Sources = control.PublishersSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.TagsSettings = control.SetupField(settings.Tag, GameField.Tags, plugins);
             control.TagsSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.Tag.Sources = control.TagsSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.Tag.Sources = control.TagsSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.DescriptionSettings = control.SetupField(settings.Description, GameField.Description, plugins);
             control.DescriptionSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.Description.Sources = control.DescriptionSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.Description.Sources = control.DescriptionSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.LinksSettings = control.SetupField(settings.Links, GameField.Links, plugins);
             control.LinksSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.Links.Sources = control.LinksSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.Links.Sources = control.LinksSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.CriticScoreSettings = control.SetupField(settings.CriticScore, GameField.CriticScore, plugins);
             control.CriticScoreSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.CriticScore.Sources = control.CriticScoreSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.CriticScore.Sources = control.CriticScoreSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.CommunityScoreSettings = control.SetupField(settings.CommunityScore, GameField.CommunityScore, plugins);
             control.CommunityScoreSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.CommunityScore.Sources = control.CommunityScoreSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.CommunityScore.Sources = control.CommunityScoreSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.CoverSettings = control.SetupField(settings.CoverImage, GameField.CoverImage, plugins);
             control.CoverSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.CoverImage.Sources = control.CoverSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.CoverImage.Sources = control.CoverSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.IconSettings = control.SetupField(settings.Icon, GameField.Icon, plugins);
             control.IconSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.Icon.Sources = control.IconSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.Icon.Sources = control.IconSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.BackgroundImageSettings = control.SetupField(settings.BackgroundImage, GameField.BackgroundImage, plugins);
             control.BackgroundImageSettings.SettingsChanged += (_, __) =>
             {
-                control.Settings.BackgroundImage.Sources = control.BackgroundImageSettings.Sources.Select(a => a.Id).ToList();
+                control.Settings.BackgroundImage.Sources = control.BackgroundImageSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
         }
 

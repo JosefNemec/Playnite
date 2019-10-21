@@ -543,6 +543,14 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            if (metadataPluginSettings.HasItems())
+            {
+                foreach (var plugin in metadataPluginSettings.Keys)
+                {
+                    metadataPluginSettings[plugin].Settings.EndEdit();
+                }
+            }
+
             if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true)
             {
                 if (dialogs.ShowMessage(
