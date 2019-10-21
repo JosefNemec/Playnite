@@ -360,20 +360,27 @@ namespace Playnite.DesktopApp.ViewModels
             var allSettings = new Dictionary<Guid, PluginSettings>();
             foreach (var plugin in Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin))
             {
-                var provSetting = plugin.Plugin.GetSettings(false);
-                var provView = plugin.Plugin.GetSettingsView(false);
-                if (provSetting != null && provView != null)
+                try
                 {
-                    provView.DataContext = provSetting;
-                    provSetting.BeginEdit();
-                    var plugSetting = new PluginSettings()
+                    var provSetting = plugin.Plugin.GetSettings(false);
+                    var provView = plugin.Plugin.GetSettingsView(false);
+                    if (provSetting != null && provView != null)
                     {
-                        Name = plugin.Description.Name,
-                        Settings = provSetting,
-                        View = provView
-                    };
+                        provView.DataContext = provSetting;
+                        provSetting.BeginEdit();
+                        var plugSetting = new PluginSettings()
+                        {
+                            Name = plugin.Description.Name,
+                            Settings = provSetting,
+                            View = provView
+                        };
 
-                    allSettings.Add(plugin.Plugin.Id, plugSetting);
+                        allSettings.Add(plugin.Plugin.Id, plugSetting);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to load generic plugin settings, {plugin.Description.Name}");
                 }
             }
 
@@ -385,21 +392,28 @@ namespace Playnite.DesktopApp.ViewModels
             var allSettings = new Dictionary<Guid, PluginSettings>();
             foreach (var library in Extensions.LibraryPlugins)
             {
-                var provSetting = library.GetSettings(false);
-                var provView = library.GetSettingsView(false);
-                if (provSetting != null && provView != null)
+                try
                 {
-                    provView.DataContext = provSetting;
-                    provSetting.BeginEdit();
-                    var plugSetting = new PluginSettings()
+                    var provSetting = library.GetSettings(false);
+                    var provView = library.GetSettingsView(false);
+                    if (provSetting != null && provView != null)
                     {
-                        Name = library.Name,
-                        Settings = provSetting,
-                        View = provView,
-                        Icon = library.LibraryIcon
-                    };
+                        provView.DataContext = provSetting;
+                        provSetting.BeginEdit();
+                        var plugSetting = new PluginSettings()
+                        {
+                            Name = library.Name,
+                            Settings = provSetting,
+                            View = provView,
+                            Icon = library.LibraryIcon
+                        };
 
-                    allSettings.Add(library.Id, plugSetting);
+                        allSettings.Add(library.Id, plugSetting);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to load library plugin settings, {library.Name}");
                 }
             }
 
@@ -411,20 +425,27 @@ namespace Playnite.DesktopApp.ViewModels
             var allSettings = new Dictionary<Guid, PluginSettings>();
             foreach (var plugin in Extensions.MetadataPlugins)
             {
-                var provSetting = plugin.GetSettings(false);
-                var provView = plugin.GetSettingsView(false);
-                if (provSetting != null && provView != null)
+                try
                 {
-                    provView.DataContext = provSetting;
-                    provSetting.BeginEdit();
-                    var plugSetting = new PluginSettings()
+                    var provSetting = plugin.GetSettings(false);
+                    var provView = plugin.GetSettingsView(false);
+                    if (provSetting != null && provView != null)
                     {
-                        Name = plugin.Name,
-                        Settings = provSetting,
-                        View = provView
-                    };
+                        provView.DataContext = provSetting;
+                        provSetting.BeginEdit();
+                        var plugSetting = new PluginSettings()
+                        {
+                            Name = plugin.Name,
+                            Settings = provSetting,
+                            View = provView
+                        };
 
-                    allSettings.Add(plugin.Id, plugSetting);
+                        allSettings.Add(plugin.Id, plugSetting);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to load metadata plugin settings, {plugin.Name}");
                 }
             }
 
