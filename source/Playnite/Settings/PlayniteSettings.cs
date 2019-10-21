@@ -1441,6 +1441,7 @@ namespace Playnite
             var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);
             if (settings == null)
             {
+                logger.Info("No existing settings found, creating default ones.");
                 settings = new PlayniteSettings();
             }
             else
@@ -1461,12 +1462,14 @@ namespace Playnite
             settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
             if (settings.WindowPositions == null)
             {
+                logger.Info("No existing WindowPositions settings found, creating default ones.");
                 settings.WindowPositions = new WindowPositions();
             }
 
             settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath);
             if (settings.Fullscreen == null)
             {
+                logger.Info("No existing fullscreen settings found, creating default ones.");
                 settings.Fullscreen = new FullscreenSettings();
             }
             
