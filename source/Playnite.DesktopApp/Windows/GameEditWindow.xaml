@@ -17,7 +17,7 @@
         Title="{DynamicResource LOCGameEditWindowTitle}"
         Height="720" Width="850"
         WindowStartupLocation="CenterOwner"
-        x:Name="mainWindow" Loaded="Window_Loaded"
+        x:Name="mainWindow"
         AutomationProperties.AutomationId="WindowGameEdit">
 
     <controls:WindowBase.Resources>

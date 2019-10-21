@@ -14,16 +14,16 @@ namespace Playnite.Windows
 {
     public class WindowPositionHandler
     {
-        private Window Window;
-        private string WindowName;
-        private bool IgnoreChanges = false;
-        private WindowPositions Configuration;
+        private readonly Window window;
+        private readonly string windowName;
+        private readonly WindowPositions configuration;
+        private bool ignoreChanges = false;
 
         public WindowPositionHandler(Window window, string windowName, WindowPositions settings)
         {
-            Window = window;
-            WindowName = windowName;
-            Configuration = settings;
+            this.window = window;
+            this.windowName = windowName;
+            configuration = settings;
             window.SizeChanged += Window_SizeChanged;
             window.LocationChanged += Window_LocationChanged;
             window.StateChanged += Window_StateChanged;
@@ -32,37 +32,13 @@ namespace Playnite.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Check window bounds only if this window has no configuration yet, ie. first run.
-            if (!Configuration.Positions.ContainsKey(WindowName))
-            {
-                CheckWindowBounds();
-            }
-            Window.Loaded -= Window_Loaded;
-        }
-
-        private void CheckWindowBounds()
-        {
-            Screen screenBounds = Screen.FromRectangle(new Rectangle(
-                (int) Window.Left, (int) Window.Top,
-                (int) Window.Width, (int) Window.Height));
-            
-            if (Window.Height > screenBounds.WorkingArea.Height)
-            {
-                Window.Height = screenBounds.WorkingArea.Height;
-            }
-            if (Window.Width > screenBounds.WorkingArea.Width)
-            {
-                Window.Width = screenBounds.WorkingArea.Width;
-            }
-            if (Window.Top < screenBounds.WorkingArea.Top)
-            {
-                Window.Top = screenBounds.WorkingArea.Top;
-            }
+            RestoreSizeAndLocation();
+            window.Loaded -= Window_Loaded;
         }
 
         private void Window_StateChanged(object sender, EventArgs e)
         {
-            if (Window.IsLoaded)
+            if (window.IsLoaded)
             {
                 SaveState();
             }
@@ -70,7 +46,7 @@ namespace Playnite.Windows
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            if (Window.IsLoaded)
+            if (window.IsLoaded)
             {
                 SavePosition();
             }
@@ -78,7 +54,7 @@ namespace Playnite.Windows
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (Window.IsLoaded)
+            if (window.IsLoaded)
             {
                 SaveSize();
             }
@@ -86,113 +62,104 @@ namespace Playnite.Windows
 
         private void MakeSureConfigEntryExists()
         {
-            if (!Configuration.Positions.ContainsKey(WindowName))
+            if (!configuration.Positions.ContainsKey(windowName))
             {
-                Configuration.Positions[WindowName] = new WindowPosition();
+                configuration.Positions[windowName] = new WindowPosition();
             }
         }
 
-        public void SaveState()
+        private void SaveState()
         {
-            if (Configuration == null || IgnoreChanges)
+            if (configuration == null || ignoreChanges)
             {
                 return;
             }
 
             // Don't save minimized state. It would not be very user friendly if user exit Playnite while minimized
             // and it would then open minimized on next startup.
-            if (Window.WindowState == WindowState.Minimized)
+            if (window.WindowState == WindowState.Minimized)
             {
                 return;
             }
 
             MakeSureConfigEntryExists();
-            Configuration.Positions[WindowName].State = Window.WindowState;
+            configuration.Positions[windowName].State = window.WindowState;
         }
 
-        public void SaveSize()
+        private void SaveSize()
         {
-            if (Configuration == null || IgnoreChanges)
+            if (configuration == null || ignoreChanges)
             {
                 return;
             }
 
             // Don't save size if windows is maximized, it would be too large when it would restore back to normal state.
             // Don't save size if windows is minimized becuase it has no size :)
-            if (Window.WindowState != WindowState.Normal)
+            if (window.WindowState != WindowState.Normal)
             {
                 return;
             }
 
             MakeSureConfigEntryExists();
-            Configuration.Positions[WindowName].Size = new WindowPosition.Point()
+            configuration.Positions[windowName].Size = new WindowPosition.Point()
             {
-                X = Window.Width,
-                Y = Window.Height
+                X = window.Width,
+                Y = window.Height
             };
         }
 
-        public void SavePosition()
+        private void SavePosition()
         {
-            if (Configuration == null || IgnoreChanges)
+            if (configuration == null || ignoreChanges)
             {
                 return;
             }
 
             MakeSureConfigEntryExists();
-            Configuration.Positions[WindowName].Position = new WindowPosition.Point()
+            configuration.Positions[windowName].Position = new WindowPosition.Point()
             {
-                X = Window.Left,
-                Y = Window.Top
+                X = window.Left,
+                Y = window.Top
             };
         }
 
-        public void RestoreSizeAndLocation()
+        private void RestoreSizeAndLocation()
         {
-            if (!Configuration.Positions.ContainsKey(WindowName))
+            if (!configuration.Positions.ContainsKey(windowName))
             {
                 return;
             }
 
-            IgnoreChanges = true;
+            ignoreChanges = true;
 
             try
             {
-                var data = Configuration.Positions[WindowName];
-
+                var data = configuration.Positions[windowName];
                 if (data.Position != null)
                 {
-                    if (data.State == WindowState.Maximized)
+                    // Make sure that position is part of at least one connected screen
+                    foreach (var monitor in Computer.GetMonitors())
                     {
-                        Window.Left = data.Position.X;
-                        Window.Top = data.Position.Y;
-                    }
-                    else
-                    {
-                        // Make sure that position is part of at least one connected screen
-                        foreach (var monitor in Computer.GetMonitors())
+                        if (monitor.WorkingArea.Contains((int)data.Position.X, (int)data.Position.Y))
                         {
-                            if (monitor.WorkingArea.Contains((int)data.Position.X, (int)data.Position.Y))
-                            {
-                                Window.Left = data.Position.X;
-                                Window.Top = data.Position.Y;
-                                break;
-                            }
+                            window.Left = data.Position.X;
+                            window.Top = data.Position.Y;
+                            break;
                         }
                     }
                 }
 
                 if (data.Size != null)
                 {
-                    Window.Width = data.Size.X;
-                    Window.Height = data.Size.Y;
+                    window.Width = data.Size.X;
+                    window.Height = data.Size.Y;
                 }
 
-                Window.WindowState = data.State;
+                window.WindowState = data.State;
             }
             finally
             {
-                IgnoreChanges = false;
+                ignoreChanges = false;
             }
         }
     }
