@@ -232,7 +232,8 @@
     <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
-    <Compile Include="ViewModels\MetadataLookupViewModel.cs" />
+    <Compile Include="ViewModels\ImageSelectionViewModel.cs" />
+    <Compile Include="ViewModels\ItemSelectionWithSearchViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
@@ -273,8 +274,11 @@
     <Compile Include="Windows\MetadataDownloadWindow.xaml.cs">
       <DependentUpon>MetadataDownloadWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MetadataLookupWindow.xaml.cs">
-      <DependentUpon>MetadataLookupWindow.xaml</DependentUpon>
+    <Compile Include="Windows\ImageSelectionWindow.xaml.cs">
+      <DependentUpon>ImageSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ItemSelectionWithSearchWindow.xaml.cs">
+      <DependentUpon>ItemSelectionWithSearchWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
@@ -947,7 +951,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\MetadataLookupWindow.xaml">
+    <Page Include="Windows\ImageSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ItemSelectionWithSearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -64,6 +64,8 @@
     <Compile Include="IgdbMetadataSettingsView.xaml.cs">
       <DependentUpon>IgdbMetadataSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImageSizes.cs" />
+    <Compile Include="Models\MetadataSearchResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IgdbServiceClient.cs" />
   </ItemGroup>

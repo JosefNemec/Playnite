@@ -96,7 +96,6 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Metadata\GameMetadata.cs" />
     <Compile Include="Models\Metadata\MetadataFile.cs" />
-    <Compile Include="Models\Metadata\MetadataSearchResult.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="Models\Emulator.cs" />
     <Compile Include="Models\Game.cs" />

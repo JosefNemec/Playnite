@@ -42,7 +42,7 @@ namespace Playnite.Tests.Metadata
             {
             }
 
-            public override GameMetadata GetMetadata(Game game)
+            public override GameMetadata GetMetadata(MetadataRequestOptions options)
             {
                 CallCount++;
                 return ReturnMetadata;

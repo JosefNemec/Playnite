@@ -106,6 +106,7 @@
     <Compile Include="Extensions\IconExtension.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="GlobalRandom.cs" />
     <Compile Include="Images.cs" />
     <Compile Include="IniParser.cs" />
     <Compile Include="InteropMethods.cs" />

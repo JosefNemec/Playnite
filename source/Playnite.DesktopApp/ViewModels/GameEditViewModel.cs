@@ -45,13 +45,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (Downloader is MetadataPlugin plugin)
                     {
-                        var lookupModel = new MetadataLookupViewModel(
-                            plugin,
-                            new MetadataLookupWindowFactory(),
-                            dialogs,
-                            resources);
-                        lookupModel.SearchTerm = editModel.EditingGame.Name;
-                        editModel.DoMetadataLookup(lookupModel);
+                        editModel.DownloadPluginData(plugin);
                     }
                     else if (Downloader is LibraryMetadataProvider provider)
                     {
@@ -77,6 +71,7 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
+        private IPlayniteAPI playniteApi;
         private GameDatabase database;
         private ExtensionFactory extensions;
 
@@ -1086,7 +1081,8 @@ namespace Playnite.DesktopApp.ViewModels
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            ExtensionFactory extensions)
+            ExtensionFactory extensions,
+            IPlayniteAPI playniteApi)
         {
             Game = game.GetClone();
             IsSingleGameEdit = true;
@@ -1097,7 +1093,7 @@ namespace Playnite.DesktopApp.ViewModels
             ShowLinks = true;
             ShowActions = true;
             ShowInstallation = true;
-            Init(database, window, dialogs, resources, extensions);
+            Init(database, window, dialogs, resources, extensions, playniteApi);
         }
 
         public GameEditViewModel(
@@ -1106,7 +1102,8 @@ namespace Playnite.DesktopApp.ViewModels
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            ExtensionFactory extensions)
+            ExtensionFactory extensions,
+            IPlayniteAPI playniteApi)
         {
             Games = games.Select(a => a.GetClone()).ToList();
             IsSingleGameEdit = false;
@@ -1117,7 +1114,7 @@ namespace Playnite.DesktopApp.ViewModels
             ShowLinks = false;
             ShowActions = false;
             ShowInstallation = false;
-            Init(database, window, dialogs, resources, extensions, EditingGame as MultiEditGame);
+            Init(database, window, dialogs, resources, extensions, playniteApi, EditingGame as MultiEditGame);
         }
 
         private void Init(
@@ -1126,6 +1123,7 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
+            IPlayniteAPI playniteApi,
             MultiEditGame multiEditData = null)
         {
             this.database = database;
@@ -1133,6 +1131,7 @@ namespace Playnite.DesktopApp.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.extensions = extensions;
+            this.playniteApi = playniteApi;
 
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
 
@@ -1182,7 +1181,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
                 {
-                    Downloader = new WikipediaMetadataPlugin(null),
+                    Downloader = new WikipediaMetadataPlugin(playniteApi),
                     Name = "Wikipedia"
                 });
 
@@ -2552,20 +2551,36 @@ namespace Playnite.DesktopApp.ViewModels
             EditingGame.BackgroundImage = null;
         }
 
-        public void DoMetadataLookup(MetadataLookupViewModel model)
+        public async void DownloadPluginData(MetadataPlugin plugin)
         {
-            if (string.IsNullOrEmpty(EditingGame.Name))
-            {
-                dialogs.ShowMessage(resources.GetString("LOCEmptyGameNameMetaSearchError"), "", MessageBoxButton.OK);
-                return;
-            }
+            ProgressVisible = true;
 
-            if (model.OpenView() == true)
+            await Task.Run(() =>
             {
-                ShowCheckBoxes = true;
-                PreviewGameData(model.MetadataData);
-            }
-        }       
+                try
+                {
+                    var metadata = plugin.GetMetadata(new MetadataRequestOptions(EditingGame, false));
+                    if (metadata != null)
+                    {
+                        Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
+                    }
+
+                    ShowCheckBoxes = true;
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
+                    dialogs.ShowMessage(
+                        string.Format(resources.GetString("LOCMetadataDownloadError"), exc.Message),
+                        resources.GetString("LOCDownloadError"),
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    ProgressVisible = false;
+                }
+            });
+        }
 
         public async void DownloadStoreData()
         {

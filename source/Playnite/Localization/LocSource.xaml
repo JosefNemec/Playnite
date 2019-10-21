@@ -134,6 +134,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCInstallationLabel">Installation</sys:String>
     <sys:String x:Key="LOCActionsLabel">Actions</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Downloading…</sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Loading…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Type</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profile</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiles</sys:String>
@@ -195,7 +196,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">Only download metadata for games missing them</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Only download missing metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Enabling this option will skip downloading metadata for data fields that already contain information.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Games selection</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Please select which games should to be updated with new metadata:</sys:String>
@@ -482,6 +483,8 @@ You can also add any other game (including Microsoft Store games) later from mai
     <sys:String x:Key="LOCAddPlatformTitle">Add Platform</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Select Icon</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Select Cover</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Select Image</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Select Item</sys:String>
     <sys:String x:Key="LOCSelectBackgroundTitle">Select Background</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Select File</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Select URL</sys:String>
@@ -667,6 +670,10 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCFontLarger">Larger</sys:String>
     <sys:String x:Key="LOCFontLargest">Largest</sys:String>
     <sys:String x:Key="LOCDefault">Default</sys:String>
+    <sys:String x:Key="LOCSelect">Select</sys:String>
+    <sys:String x:Key="LOCFirst">First</sys:String>
+    <sys:String x:Key="LOCRandom">Random</sys:String>
+    <sys:String x:Key="LOCUserSelect">User select</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -818,5 +825,9 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCItemAlreadyExists">An item with the same name already exists.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limit selection to current filter</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Pick another</sys:String>
-
+    
+    <!--IGDB-->
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Use screenshots if artwork is not available</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">If multiple images are available then use:</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Select background image for {0}</sys:String>
 </ResourceDictionary>

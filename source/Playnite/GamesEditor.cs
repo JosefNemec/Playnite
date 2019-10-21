@@ -27,8 +27,8 @@ namespace Playnite
         private IResourceProvider resources = new ResourceProvider();        
         private PlayniteSettings appSettings;
         private GameControllerFactory controllers;
-        private PlayniteApplication application;
 
+        public PlayniteApplication Application;
         public ExtensionFactory Extensions { get; private set; }
         public GameDatabase Database { get; private set; }
         public IDialogsFactory Dialogs { get; private set; }
@@ -53,7 +53,7 @@ namespace Playnite
             this.Database = database;
             this.appSettings = appSettings;
             this.Extensions = extensions;
-            this.application = app;
+            this.Application = app;
             controllers = controllerFactory;
             controllers.Installed += Controllers_Installed;
             controllers.Uninstalled += Controllers_Uninstalled;
@@ -509,8 +509,8 @@ namespace Playnite
                 jumpList.ShowFrequentCategory = false;
                 jumpList.ShowRecentCategory = false;
             }
-            
-            JumpList.SetJumpList(Application.Current, jumpList);
+
+            JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
         }
 
         public void CancelGameMonitoring(Game game)
@@ -565,26 +565,26 @@ namespace Playnite
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
-            if (application.Mode == ApplicationMode.Desktop)
+            if (Application.Mode == ApplicationMode.Desktop)
             {
                 if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
                 {
-                    application.Quit();
+                    Application.Quit();
                 }
                 else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
                 {
-                    application.Minimize();
+                    Application.Minimize();
                 }
             }
             else
             {
                 if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
                 {
-                    application.Quit();
+                    Application.Quit();
                 }
                 else
                 {
-                    application.Minimize();
+                    Application.Minimize();
                 }
             }
         }
@@ -600,16 +600,16 @@ namespace Playnite
             dbGame.Playtime += args.EllapsedTime;
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
-            if (application.Mode == ApplicationMode.Desktop)
+            if (Application.Mode == ApplicationMode.Desktop)
             {
                 if (appSettings.AfterGameClose == AfterGameCloseOptions.Restore)
                 {
-                    application.Restore();
+                    Application.Restore();
                 }
             }
             else
             {
-                application.Restore();
+                Application.Restore();
             }
 
             if (!game.PostScript.IsNullOrWhiteSpace())

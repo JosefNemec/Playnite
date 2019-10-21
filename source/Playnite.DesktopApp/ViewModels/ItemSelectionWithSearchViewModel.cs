@@ -15,8 +15,10 @@ using Playnite.SDK.Plugins;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public class MetadataLookupViewModel : ObservableObject
+    public class ItemSelectionWithSearchViewModel : ObservableObject
     {
+        public string WindowTitle { get; set; }
+
         private bool isLoading;
         public bool IsLoading
         {
@@ -39,8 +41,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private ObservableCollection<MetadataSearchResult> searchResults = new ObservableCollection<MetadataSearchResult>();
-        public ObservableCollection<MetadataSearchResult> SearchResults
+        private ObservableCollection<GenericItemOption> searchResults = new ObservableCollection<GenericItemOption>();
+        public ObservableCollection<GenericItemOption> SearchResults
         {
             get
             {
@@ -54,8 +56,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private MetadataSearchResult selectedResult;
-        public MetadataSearchResult SelectedResult
+        private GenericItemOption selectedResult;
+        public GenericItemOption SelectedResult
         {
             get => selectedResult;
             set
@@ -63,11 +65,6 @@ namespace Playnite.DesktopApp.ViewModels
                 selectedResult = value;
                 OnPropertyChanged();
             }
-        }        
-
-        public GameMetadata MetadataData
-        {
-            get; set;
         }
 
         public RelayCommand<object> CloseCommand
@@ -95,17 +92,26 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         private static readonly ILogger logger = LogManager.GetLogger();
-        private IWindowFactory window;
-        private IDialogsFactory dialogs;
-        private MetadataPlugin plugin;
-        private IResourceProvider resources;
+        private readonly IWindowFactory window;
+        private readonly Func<string, List<GenericItemOption>> searchFunction;
 
-        public MetadataLookupViewModel(MetadataPlugin plugin, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public ItemSelectionWithSearchViewModel(
+            IWindowFactory window,
+            Func<string, List<GenericItemOption>> searchFunction,
+            string defaultSearch = null,
+            string caption = null)
         {
-            this.plugin = plugin;
             this.window = window;
-            this.dialogs = dialogs;
-            this.resources = resources;
+            this.searchFunction = searchFunction;
+            SearchTerm = defaultSearch;
+            if (caption.IsNullOrEmpty())
+            {
+                WindowTitle = ResourceProvider.GetString("LOCSelectItemTitle");
+            }
+            else
+            {
+                WindowTitle = caption;
+            }
         }
 
         public bool? OpenView()
@@ -119,36 +125,9 @@ namespace Playnite.DesktopApp.ViewModels
             window.Close(result);
         }
 
-        public async void ConfirmDialog()
+        public void ConfirmDialog()
         {
-            var success = false;
-            IsLoading = true;
-
-            await Task.Run(() =>
-            {
-                try
-                {
-                    MetadataData = plugin.GetMetadata(SelectedResult);
-                    success = true;
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, $"GetMetadata method from plugin {plugin.Name} failed.");
-                }
-                finally
-                {
-                    IsLoading = false;
-                }
-            });
-
-            if (!success)
-            {
-                dialogs.ShowMessage(string.Format(resources.GetString("LOCMetadownloadNoResultsMessage"), searchTerm));
-            }
-            else
-            {
-                CloseView(true);
-            }
+            CloseView(true);
         }
 
         public async void Search()
@@ -167,26 +146,20 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        private ObservableCollection<MetadataSearchResult> SearchForResults(string keyword)
+        private ObservableCollection<GenericItemOption> SearchForResults(string keyword)
         {
-            var searchList = new ObservableCollection<MetadataSearchResult>();
-            List<MetadataSearchResult> result = null;
+            List<GenericItemOption> result = null;
 
             try
             {
-                result = plugin.SearchMetadata(keyword);
+                result = searchFunction(keyword);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(exc, $"SearchMetadata method from plugin {plugin.Name} failed.");
+                logger.Error(exc, $"searchFunction method failed.");
             }
 
-            if (result != null)
-            {
-                searchList.AddRange(result);
-            }
-
-            return searchList;
+            return result?.ToObservable();
         }
     }
 }

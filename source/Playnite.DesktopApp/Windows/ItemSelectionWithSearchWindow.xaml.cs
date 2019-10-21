@@ -3,20 +3,20 @@ using Playnite.Windows;
 
 namespace Playnite.DesktopApp.Windows
 {
-    public class MetadataLookupWindowFactory : WindowFactory
+    public class ItemSelectionWithSearchWindowFactory : WindowFactory
     {
         public override WindowBase CreateNewWindowInstance()
         {
-            return new MetadataLookupWindow();
+            return new ItemSelectionWithSearchWindow();
         }
     }
 
     /// <summary>
     /// Interaction logic for MetadataLookupWindow.xaml
     /// </summary>
-    public partial class MetadataLookupWindow : WindowBase
+    public partial class ItemSelectionWithSearchWindow : WindowBase
     {
-        public MetadataLookupWindow() : base()
+        public ItemSelectionWithSearchWindow() : base()
         {
             InitializeComponent();
         }

@@ -9,6 +9,39 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
+    /// Represents options for game metadata download.
+    /// </summary>
+    public class MetadataRequestOptions
+    {
+        /// <summary>
+        /// Gets or sets game data are being requested for.
+        /// </summary>
+        public Game GameData
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Gets or sets value indicating whether the request is part of bulk metadata download.
+        /// </summary>
+        public bool IsBackgroundDownload
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Creates new instance of <see cref="MetadataRequestOptions"/>.
+        /// </summary>
+        /// <param name="gameData"></param>
+        /// <param name="backgroundDownload"></param>
+        public MetadataRequestOptions(Game gameData, bool backgroundDownload)
+        {
+            GameData = gameData;
+            IsBackgroundDownload = backgroundDownload;
+        }
+    }
+
+    /// <summary>
     /// Represents plugin providing game metadata.
     /// </summary>
     public abstract class MetadataPlugin : Plugin
@@ -34,28 +67,8 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         /// Gets metadata for specific game.
         /// </summary>
-        /// <param name="game"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
-        public abstract GameMetadata GetMetadata(Game game);
-
-        /// <summary>
-        /// Gets metadata based on specific metadata search result.
-        /// </summary>
-        /// <param name="searchResult"></param>
-        /// <returns></returns>
-        public virtual GameMetadata GetMetadata(MetadataSearchResult searchResult)
-        {
-            return null;
-        }
-
-        /// <summary>
-        /// Gets possible metadata results for search term.
-        /// </summary>
-        /// <param name="searchTerm"></param>
-        /// <returns></returns>
-        public virtual List<MetadataSearchResult> SearchMetadata(string searchTerm)
-        {
-            return new List<MetadataSearchResult>();
-        }
+        public abstract GameMetadata GetMetadata(MetadataRequestOptions options);
     }
 }

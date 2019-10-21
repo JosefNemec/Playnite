@@ -93,7 +93,7 @@ namespace Playnite.Metadata
             var downloader = metadataDownloaders.FirstOrDefault(a => a.Id == pluginId);
             try
             {
-                return downloader?.GetMetadata(game);
+                return downloader?.GetMetadata(new MetadataRequestOptions(game, true));
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {

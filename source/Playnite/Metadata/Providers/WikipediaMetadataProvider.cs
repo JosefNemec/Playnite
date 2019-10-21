@@ -19,6 +19,11 @@ namespace Playnite.Metadata.Providers
 {
     public class WikipediaMetadataPlugin : MetadataPlugin
     {
+        public class WikiSearchItem : GenericItemOption
+        {
+            public string Title { get; set; }
+        }
+
         private static ILogger logger = LogManager.GetLogger();
 
         public override string Name => "Wikipedia";
@@ -106,8 +111,13 @@ namespace Playnite.Metadata.Providers
         {
         }
 
-        public override List<MetadataSearchResult> SearchMetadata(string searchTerm)
+        public List<GenericItemOption> SearchMetadata(string searchTerm)
         {
+            if (searchTerm.IsNullOrEmpty())
+            {
+                return new List<GenericItemOption>();
+            }
+
             var url = string.Format(@"https://en.wikipedia.org/w/api.php?action=query&srsearch={0}&format=json&list=search&srlimit=50", HttpUtility.UrlEncode(searchTerm));
             var stringResult = HttpDownloader.DownloadString(url);
             var result = JsonConvert.DeserializeObject<SearchResponse>(stringResult);
@@ -118,26 +128,20 @@ namespace Playnite.Metadata.Providers
             }
             else
             {
-                var ret = new List<MetadataSearchResult>();
+                var ret = new List<GenericItemOption>();
                 var parser = new HtmlParser();
                 foreach (var searchResult in result.query.search)
                 {
-                    ret.Add(new MetadataSearchResult(
-                        searchResult.title,
-                        searchResult.title,
-                        null,
-                        null,
-                        parser.Parse(searchResult.snippet).DocumentElement.TextContent));
+                    ret.Add(new WikiSearchItem
+                    {
+                        Title = searchResult.title,
+                        Name = searchResult.title,
+                        Description = parser.Parse(searchResult.snippet).DocumentElement.TextContent
+                    });
                 }
 
                 return ret;
             }
-        }
-
-        public override GameMetadata GetMetadata(MetadataSearchResult searchResult)
-        {
-            var page = GetPage(searchResult.Id);
-            return ParseGamePage(page);
         }
 
         public WikiPage GetPage(string pageTitle)
@@ -349,9 +353,25 @@ namespace Playnite.Metadata.Providers
             return metadata;
         }
 
-        public override GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(MetadataRequestOptions options)
         {
-            throw new NotImplementedException();
+            if (options.IsBackgroundDownload)
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                var item = PlayniteApi.Dialogs.ChooseItemWithSearch(null, (a) => SearchMetadata(a), options.GameData.Name);
+                if (item == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var searchItem = item as WikiSearchItem;
+                    return ParseGamePage(GetPage(searchItem.Title));
+                }
+            }
         }
     }
 }

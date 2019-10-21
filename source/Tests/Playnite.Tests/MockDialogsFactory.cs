@@ -79,5 +79,15 @@ namespace Playnite.Tests
         {
             
         }
+
+        public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null)
+        {
+            return null;
+        }
+
+        public GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null)
+        {
+            return null;
+        }
     }
 }

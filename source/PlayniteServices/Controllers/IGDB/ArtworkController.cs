@@ -12,22 +12,22 @@ using System.Threading.Tasks;
 namespace PlayniteServices.Controllers.IGDB
 {
     [ServiceFilter(typeof(PlayniteVersionFilter))]
-    //[Route("igdb/covers")]
-    public class CoverController : IgdbItemController
+    //[Route("igdb/artworks")]
+    public class ArtworkController : IgdbItemController
     {
         private static readonly object CacheLock = new object();
 
-        private const string endpointPath = "covers";
+        private const string endpointPath = "artworks";
 
-        //[HttpGet("{coverId}")]
-        public async Task<ServicesResponse<GameImage>> Get(ulong coverId)
+        //[HttpGet("{artworkId}")]
+        public async Task<ServicesResponse<GameImage>> Get(ulong artworkId)
         {
-            return await GetItem(coverId);
+            return await GetItem(artworkId);
         }
 
-        public static async Task<ServicesResponse<GameImage>> GetItem(ulong coverId)
+        public static async Task<ServicesResponse<GameImage>> GetItem(ulong artworkId)
         {
-            return new ServicesResponse<GameImage>(await GetItem<GameImage>(coverId, endpointPath, CacheLock));
+            return new ServicesResponse<GameImage>(await GetItem<GameImage>(artworkId, endpointPath, CacheLock));
         }
     }
 }

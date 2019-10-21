@@ -282,8 +282,6 @@
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="GamesCollectionViewEntry.cs" />
     <Compile Include="GamesEditor.cs" />
-    <Compile Include="GaussianBlur.cs" />
-    <Compile Include="GlobalRandom.cs" />
     <Compile Include="GlobalTaskHandler.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="ImageSourceManager.cs" />
