@@ -2183,6 +2183,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void PreviewGameData(GameMetadata metadata)
         {
+            ShowCheckBoxes = true;
+
             if (!string.IsNullOrEmpty(metadata.GameInfo.Name))
             {
                 EditingGame.Name = metadata.GameInfo.Name;
@@ -2564,8 +2566,6 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
                     }
-
-                    ShowCheckBoxes = true;
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -2613,8 +2613,6 @@ namespace Playnite.DesktopApp.ViewModels
                             resources.GetString("LOCGameError"));
                         return;
                     }
-
-                    ShowCheckBoxes = true;
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -2760,7 +2758,7 @@ namespace Playnite.DesktopApp.ViewModels
             CreateNewItemInCollection<Category>(Categories);
         }
 
-        public void AddNewPublisher(string publisher = null)
+        public Company AddNewPublisher(string publisher = null)
         {
             var newItem = CreateNewItemInCollection<Company>(Publishers, publisher);
             if (newItem != null)
@@ -2770,14 +2768,21 @@ namespace Playnite.DesktopApp.ViewModels
                     Developers.Add(newItem);
                 }
             }
+
+            return newItem;
         }
 
         public void AddNewPublishers(List<string> publishers)
         {
-            publishers?.ForEach(a => AddNewPublisher(a));
+            var added = new List<Company>();
+            publishers?.ForEach(a => added.Add(AddNewPublisher(a)));
+            if (added.Any())
+            {
+                Publishers.SetSelection(added.Select(a => a.Id).ToList());
+            }
         }
 
-        public void AddNewDeveloper(string developer = null)
+        public Company AddNewDeveloper(string developer = null)
         {
             var newItem = CreateNewItemInCollection<Company>(Developers, developer);
             if (newItem != null)
@@ -2787,31 +2792,48 @@ namespace Playnite.DesktopApp.ViewModels
                     Publishers.Add(newItem);
                 }
             }
+
+            return newItem;
         }
 
         public void AddNewDevelopers(List<string> developers)
         {
-            developers?.ForEach(a => AddNewDeveloper(a));
+            var added = new List<Company>();
+            developers?.ForEach(a => added.Add(AddNewDeveloper(a)));
+            if (added.Any())
+            {
+                Developers.SetSelection(added.Select(a => a.Id).ToList());
+            }
         }
 
-        public void AddNewGenre(string genre = null)
+        public Genre AddNewGenre(string genre = null)
         {
-            CreateNewItemInCollection<Genre>(Genres, genre);
+            return CreateNewItemInCollection<Genre>(Genres, genre);
         }
 
         public void AddNewGenres(List<string> genres)
         {
-            genres?.ForEach(a => AddNewGenre(a));
+            var added = new List<Genre>();
+            genres?.ForEach(a => added.Add(AddNewGenre(a)));
+            if (added.Any())
+            {
+                Genres.SetSelection(added.Select(a => a.Id).ToList());
+            }
         }
 
-        public void AddNewTag(string tag = null)
+        public Tag AddNewTag(string tag = null)
         {
-            CreateNewItemInCollection<Tag>(Tags, tag);
+            return CreateNewItemInCollection<Tag>(Tags, tag);
         }
 
         public void AddNewTags(List<string> tags)
         {
-            tags?.ForEach(a => AddNewTag(a));
+            var added = new List<Tag>();
+            tags?.ForEach(a => added.Add(AddNewTag(a)));
+            if (added.Any())
+            {
+                Tags.SetSelection(added.Select(a => a.Id).ToList());
+            }
         }
 
         public bool GetScriptActionsChanged()
