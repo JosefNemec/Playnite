@@ -74,6 +74,12 @@ if (true)
     DoSomething()
 ```
 
+Branches
+---------
+* `master` - default branch representing state of currently released build.
+* `devel` - development branch containing latest changes. All pull requests should be made against `devel` branch.
+* `devel*` - development branches for specific features/versions.
+
 Roadmap
 ---------
 
