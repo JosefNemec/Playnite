@@ -70,7 +70,7 @@
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">مفعل</sys:String>
@@ -251,8 +251,13 @@
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
     <sys:String x:Key="LOCSettingsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel"></sys:String>
