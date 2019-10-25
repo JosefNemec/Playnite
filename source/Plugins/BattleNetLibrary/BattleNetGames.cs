@@ -81,7 +81,7 @@ namespace BattleNetLibrary
                 ApiId = 1465140039,
                 ProductId = "WTCG",
                 InternalId = "hs_beta",
-                IconUrl = @"https://blznav.akamaized.net/img/games/logo-hs-beb1a37bc84beefb.png",
+                IconUrl = @"https://blznav.akamaized.net/img/games/logo-hs-93512467e87f82c6.png",
                 BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//fac/895ca992a21d9c960bd30f9738d7bfb8-prod-mobile-bg.jpg",
                 CoverUrl = "http://bnetproduct-a.akamaihd.net//f89/c074270c5024a5bb627d46cddf024dad-prod-card-tall.jpg",
                 Name = "Hearthstone",
@@ -113,7 +113,7 @@ namespace BattleNetLibrary
                 ApiId = 5272175,
                 ProductId = "Pro",
                 InternalId = "prometheus",
-                IconUrl = @"https://blznav.akamaized.net/img/games/logo-ow-1dd54d69712651a9.png",
+                IconUrl = @"https://blznav.akamaized.net/img/games/logo-ow-4be5755bc0a4cbaf.png",
                 BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//fc3/e21df4ac2fd75cd9884a55744a1786c3-prod-mobile-bg.jpg",
                 CoverUrl = "http://bnetproduct-a.akamaihd.net//4c/c358d897f1348281ed0b21ea2027059b-prod-card-tall.jpg",
                 Name = "Overwatch",
@@ -176,7 +176,7 @@ namespace BattleNetLibrary
             {
                 ProductId = "W3",
                 InternalId = "Warcraft III",
-                IconUrl = @"https://bneteu-a.akamaihd.net/account/static/local-common/images/game-icons/war3-32.1N2FK.png",
+                IconUrl = @"https://blznav.akamaized.net/img/games/logo-w3r-c8a76eea272dbd55.png",
                 BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//11/b924dd7257d4728f314822837d9a5e68-prod-mobile-bg.jpg",
                 CoverUrl = "http://bnetproduct-a.akamaihd.net//42/a4e5b0ccd23d09ad34e7c0a074bb4c11-prod-card-tall.jpg",
                 Name = "Warcraft III: Reign of Chaos",
@@ -192,7 +192,7 @@ namespace BattleNetLibrary
             {
                 ProductId = "W3X",
                 InternalId = "Warcraft III",
-                IconUrl = @"https://bneteu-a.akamaihd.net/account/static/local-common/images/game-icons/w3xp-32.15Wgr.png",
+                IconUrl = @"https://blznav.akamaized.net/img/games/logo-w3r-c8a76eea272dbd55.png",
                 BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//7/f79aee74f037d9c3a44736ecccc4373a-prod-mobile-bg.jpg",
                 CoverUrl = "http://bnetproduct-a.akamaihd.net//fd9/a4b9e92295e20508bb62a0756577e925-prod-card-tall.jpg",
                 Name = "Warcraft III: The Frozen Throne",
@@ -209,7 +209,7 @@ namespace BattleNetLibrary
                 ApiId = 1447645266,
                 ProductId = "VIPR",
                 InternalId = "viper",
-                IconUrl = @"https://bneteu-a.akamaihd.net/account/static/images/dashboard/callOfDutyBlackOps4/A8E38BEC-B3F0-4C46-A870-D377FC6602DC/logo-32.4a1nD.png",
+                IconUrl = @"https://blznav.akamaized.net/img/games/logo-codbo4-7794ee86f3e8be3e.png",
                 BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//5d/411c53766cdf6155fcc952f79f304b4a-prod-mobile-bg.jpg",
                 CoverUrl = "http://bnetproduct-a.akamaihd.net//62/a346ee691a8d0829c5a895200dd17cbf-prod-card-tall-v2.jpg",
                 Name = "Call of Duty: Black Ops 4",
@@ -218,6 +218,22 @@ namespace BattleNetLibrary
                 {
                     new Link("Homepage", "https://www.callofduty.com/"),
                     new Link("Forums", "https://community.callofduty.com/t5/Call-of-Duty-Black-Ops-4-Forum/ct-p/cod-blackops4-forums")
+                }
+            },
+            new BNetApp()
+            {
+                ApiId = 1329875278,
+                ProductId = "ODIN",
+                InternalId = "odin",
+                IconUrl = @"https://blznav.akamaized.net/img/games/logo-codmw-d57b296321d6b444.png",
+                BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//59/326ed260bc958ddd26713761683a4489-_Kronos-Bnet_Game-Shop_Background_Desktop-2280x910.jpg",
+                CoverUrl = "https://bnetproduct-a.akamaihd.net//5e/294eb830c6db1959b3db3b4cbbcfe7fc-_Kronos-Bnet_Game-Card_Product_Vert-700x850.jpg",
+                Name = "Call of Duty: Modern Warfare",
+                Type = BNetAppType.Default,
+                Links = new List<Link>()
+                {
+                    new Link("Homepage", "https://www.callofduty.com/"),
+                    new Link("Forums", "https://community.callofduty.com/t5/Modern-Warfare-Forum/bd-p/cod-mw-forum")
                 }
             }
         };
