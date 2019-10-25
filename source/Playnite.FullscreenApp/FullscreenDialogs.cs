@@ -120,7 +120,7 @@ namespace Playnite.FullscreenApp
             return ShowMessage(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null)
+        public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180)
         {
             throw new NotImplementedException();
         }

@@ -80,7 +80,7 @@ namespace Playnite.Tests
             
         }
 
-        public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null)
+        public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180)
         {
             return null;
         }

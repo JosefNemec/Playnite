@@ -37,10 +37,11 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="4" Background="#77000000">
-                        <Image Width="140" Height="100"
-                           Source="{Binding Path}"
-                           Stretch="Uniform" StretchDirection="Both" />
+                    <Border Margin="4" Background="#33000000">
+                        <Image Width="{Binding DataContext.ItemWidth, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
+                               Height="{Binding DataContext.ItemHeight, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
+                               Source="{Binding Path}"
+                               Stretch="Uniform" StretchDirection="Both" />
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftDoubleClick"
                                           Command="{Binding DataContext.ItemDoubleClickCommand, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}" />

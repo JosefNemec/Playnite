@@ -212,14 +212,16 @@ namespace Playnite.SDK
         /// <param name="defaultInput">String added into selectable field.</param>
         /// <returns>Selection result.</returns>
         void ShowSelectableString(string messageBoxText, string caption, string defaultInput);
-        
+
         /// <summary>
         /// Displays dialog with an option to choose single image.
         /// </summary>
         /// <param name="files"></param>
         /// <param name="caption"></param>
+        /// <param name="itemWidth"></param>
+        /// <param name="itemHeight"></param>
         /// <returns>Null if dialog was canceled otherwise selected <see cref="ImageFileOption"/> object.</returns>
-        ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null);
+        ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180);
 
         /// <summary>
         /// Displays dialog with an option to choose single item and option to search for different items.

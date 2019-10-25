@@ -121,11 +121,11 @@ namespace Playnite.DesktopApp
             return ShowMessage(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null)
+        public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180)
         {
             return Invoke(() =>
             {
-                var model = new ImageSelectionViewModel(files, new ImageSelectionWindowFactory(), caption);
+                var model = new ImageSelectionViewModel(files, new ImageSelectionWindowFactory(), caption, itemWidth, itemHeight);
                 if (model.OpenView() == true)
                 {
                     return model.SelectedImage;

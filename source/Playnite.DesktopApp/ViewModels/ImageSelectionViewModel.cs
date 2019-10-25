@@ -12,6 +12,8 @@ namespace Playnite.DesktopApp.ViewModels
     public class ImageSelectionViewModel : ObservableObject
     {
         public string WindowTitle { get; set; }
+        public double ItemWidth { get; set; } = 240;
+        public double ItemHeight { get; set; } = 180;
 
         private List<ImageFileOption> images = new List<ImageFileOption>();
         public List<ImageFileOption> Images
@@ -69,7 +71,9 @@ namespace Playnite.DesktopApp.ViewModels
         public ImageSelectionViewModel(
             List<ImageFileOption> images,
             IWindowFactory window,
-            string caption = null)
+            string caption = null,
+            double itemWidth = 240,
+            double itemHeight = 180)
         {
             Images = images;
             this.window = window;
@@ -81,6 +85,9 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 WindowTitle = caption;
             }
+
+            ItemWidth = itemWidth;
+            ItemHeight = itemHeight;
         }
 
         public bool? OpenView()
