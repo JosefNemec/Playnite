@@ -76,7 +76,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCErrorNoGameSelected">Yhtään peliä ei ole valittu.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Päällä</sys:String>
@@ -277,8 +277,13 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kansitaiteen renderöinti</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Kuvasuhdetavoite</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Venytetty</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-juliste</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD-laatikko</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-juliste</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Käyttöönotto vaatii uudelleenkäynnistyksen</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Asetukset</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Yleiset</sys:String>
