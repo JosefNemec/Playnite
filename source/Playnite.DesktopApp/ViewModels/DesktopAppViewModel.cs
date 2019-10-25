@@ -1284,6 +1284,11 @@ namespace Playnite.DesktopApp.ViewModels
                             try
                             {
                                 var desc = ThemeManager.GetDescriptionFromPackedFile(path);
+                                if (desc == null)
+                                {
+                                    throw new FileNotFoundException("Theme manifest not found.");
+                                }
+
                                 if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
                                 {
                                     throw new Exception(Resources.GetString("LOCGeneralExtensionInstallApiVersionFails"));

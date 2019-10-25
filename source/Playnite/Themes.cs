@@ -216,6 +216,11 @@ namespace Playnite
             using (var zip = ZipFile.OpenRead(path))
             {
                 var manifest = zip.GetEntry(ThemeManifestFileName);
+                if (manifest == null)
+                {
+                    return null;
+                }
+
                 using (var logStream = manifest.Open())
                 {
                     using (TextReader tr = new StreamReader(logStream))
@@ -231,6 +236,11 @@ namespace Playnite
         {
             logger.Info($"Installing theme extenstion {path}");
             var desc = GetDescriptionFromPackedFile(path);
+            if (desc == null)
+            {
+                throw new FileNotFoundException("Theme manifest not found.");
+            }
+
             var installDir = Paths.GetSafeFilename(desc.Name).Replace(" ", string.Empty)+ "_" + (desc.Name + desc.Author).MD5();
             var targetDir = PlayniteSettings.IsPortable ? PlaynitePaths.ThemesProgramPath : PlaynitePaths.ThemesUserDataPath;
             targetDir = Path.Combine(targetDir, desc.Mode.GetDescription(), installDir);
