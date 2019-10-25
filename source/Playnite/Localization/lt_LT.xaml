@@ -72,7 +72,7 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Įgalinta</sys:String>
@@ -271,8 +271,13 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Viršelio paveikslėlio atvaizdavimas</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Pageidaujamas vaizdo santykis</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Ištempto vaizdo rėžimas</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam baneris</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Žaidimo dėžutė</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam baneris</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
     <sys:String x:Key="LOCSettingsLabel">Nustatymai</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Bendri</sys:String>
