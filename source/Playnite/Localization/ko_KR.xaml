@@ -76,7 +76,7 @@
     <sys:String x:Key="LOCErrorNoGameSelected">선택한 게임이 없습니다.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">활성화</sys:String>
@@ -277,8 +277,13 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">커버 아트 렌더링</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">고정 비율 설정</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">늘이기 모드</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 베너</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD 박스</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 베너</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">*변경사항을 적용하려면 재시작이 필요합니다</sys:String>
     <sys:String x:Key="LOCSettingsLabel">설정</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">일반</sys:String>
