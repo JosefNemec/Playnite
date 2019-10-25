@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Dil</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Çıkış</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Filtreleme Açık (filtre panelini açmak/kapatmak için tıklayın)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filtreleme Devre Dışı (filtre panelini açmak/kapatmak için tıklayın)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters">Ek filtreler</sys:String>
     <sys:String x:Key="LOCFilters">Filtreler</sys:String>
     <sys:String x:Key="LOCFilter">Filtrele</sys:String>
@@ -70,9 +70,12 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCGameShortcutError">Kısayol oluşturulamadı: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Oyun yüklenemiyor: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Oyun kaldırılamıyor: {0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bu oyundan sorumlu kütüphane eklentisi kurulu değil veya etkin değil.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Resmi meta veri yüklemesi mevcut değil.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Seçili Oyun Yok.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
 
 
     <!--General-->
@@ -83,6 +86,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCAddTitle">Ekle</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Varsayılan Simge</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Varsayılan Kapak Resmi</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCFinishLabel">Bitir</sys:String>
     <sys:String x:Key="LOCNextLabel">İleri</sys:String>
     <sys:String x:Key="LOCBackLabel">Geri</sys:String>
@@ -125,6 +129,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCInstallationLabel">Kurulum</sys:String>
     <sys:String x:Key="LOCActionsLabel">Eylemler</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">İndiriliyor…</sys:String>
+    <sys:String x:Key="LOCLoadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">Tür</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiller</sys:String>
@@ -186,7 +191,7 @@ Sonuçları: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Oynatma işlemi eksikse veya URL'ye ayarlanmışsa simge alınamıyor.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">Sadece meta verileri olmayan oyunlar için indir</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Bu seçeneğin etkinleştirilmesi, zaten bilgi içeren veri alanları için meta verileri indirmeyi atlar.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Oyun Seçimi</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Lütfen hangi oyunların yeni meta verilerle güncellenmesi gerektiğini seç:</sys:String>
@@ -250,6 +255,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCMenuShutdownSystem">Sistemi Kapat</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sistemi Yasakla</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Sistemi Hazırda Beklet</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Ayrıntılar panelinde görüntülenecek oyun alanları:</sys:String>
@@ -258,6 +264,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Izgara öğesi sınır genişliği</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Eksik oyun simgesi kaynağı</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Eksik oyun kapak kaynağı</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Oyun ayrıntılarına dikey boşluk</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Izgara görünümü ayrıntı konumu</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Ayrıntılı görünüm oyun listesi konumu</sys:String>
@@ -285,6 +292,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsMetadataLabel">Meta veri</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Kütüphanedeki değişiklikleri otomatik olarak içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Yüklü oyunları içeri aktar</sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Kaldırılan oyunları içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Tüm oyunları içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Tüm oyunları içeri aktar (Genel hesap veya API anahtarı gerekli)</sys:String>
@@ -381,6 +389,15 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsFullscreenLayout">düzen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Yatay Kaydırma</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Alt bölümlerden birini seçin</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
@@ -462,6 +479,9 @@ Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana men�
     <sys:String x:Key="LOCAddPlatformTitle">Platform Ekle</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Simge Seç</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Kapak Seç</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
+    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Dosya Seç</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">URL Seç</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Emülatör Ekle</sys:String>
@@ -607,20 +627,25 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCChange">Değiştir</sys:String>
     <sys:String x:Key="LOCAdvanced">Gelişmiş</sys:String>
     <sys:String x:Key="LOCNever">Asla</sys:String>
-    <sys:String x:Key="LOCNotPlayed">Oynanmadı</sys:String>
-    <sys:String x:Key="LOCPlayed">Oynandı</sys:String>
-    <sys:String x:Key="LOCBeaten">Yenildi</sys:String>
-    <sys:String x:Key="LOCCompleted">Tamamlandı</sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
     <sys:String x:Key="LOCCompletionStatus">Tamamlanma Durumu</sys:String>
     <sys:String x:Key="LOCUserScore">Kullanıcı Puanı</sys:String>
     <sys:String x:Key="LOCCriticScore">Kritik Puanı</sys:String>
     <sys:String x:Key="LOCCommunityScore">Topluluk Puanı</sys:String>
     <sys:String x:Key="LOCScripts">Komut Dosyaları</sys:String>
     <sys:String x:Key="LOCPlugins">Eklentiler</sys:String>
+    <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions">Uzantılar</sys:String>
     <sys:String x:Key="LOCReloadScripts">Komut Dosyalarını Yeniden Yükle</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Tüm komut dosyaları başarıyla yeniden yüklendi.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">Oyun Bulunamadı</sys:String>
+    <sys:String x:Key="LOCNoGamesFound"></sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Masaüstü Moduna Çık</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite'ı Kapat</sys:String>
     <sys:String x:Key="LOCLibraries">Kütüphaneler</sys:String>
@@ -641,6 +666,10 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCFontLarger">Daha büyük</sys:String>
     <sys:String x:Key="LOCFontLargest">En büyük</sys:String>
     <sys:String x:Key="LOCDefault">Varsayılan</sys:String>
+    <sys:String x:Key="LOCSelect"></sys:String>
+    <sys:String x:Key="LOCFirst"></sys:String>
+    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCUserSelect"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argümanları</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ek Emulator Argümanları</sys:String>
@@ -664,6 +693,9 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCThemeTestApplySkin">Seçilen temayı uygula</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Dosya değişikliklerini izle</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Kaynak dosya değiştiğinde temayı otomatik olarak uygula</sys:String>
+    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Varsayılan olarak kaydet</sys:String>
@@ -728,7 +760,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCEnterName">İsim gir</sys:String>
     <sys:String x:Key="LOCEnterNewName">Yeni isim gir</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Bir saatten az</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 ila 10 saat</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 ila 100 saat</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100-500 saat</sys:String>
@@ -784,5 +816,11 @@ Sürüm {2}
     <sys:String x:Key="LOCGameListFiltered">Uygulanan filtreler var.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Arama Sonuçları:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Aynı ada sahip bir öğe zaten var.</sys:String>
-
+    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    
+    <!--IGDB-->
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
 </ResourceDictionary>
