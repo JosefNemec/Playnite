@@ -542,7 +542,7 @@
                                     </StackPanel>
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
-                            <DockPanel LastChildFill="True">
+                            <DockPanel LastChildFill="True" Background="Transparent" AllowDrop="True">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" DockPanel.Dock="Top">
                                     <Button Name="ButtonSelectIcon" Content="{DynamicResource LOCSelectIconTitle}"
                                         Command="{Binding SelectIconCommand}" />
@@ -555,8 +555,13 @@
                                 </StackPanel>
                                 <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
-                                       DockPanel.Dock="Top" MaxHeight="64"
+                                       DockPanel.Dock="Top" Height="64"
                                        AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Drop" >
+                                        <prism:InvokeCommandAction Command="{Binding DropIconCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </DockPanel>
                         </GroupBox>
                         <GroupBox Grid.Column="0" Grid.Row="1" Header="{DynamicResource LOCGameCoverImageTitle}" Margin="0,5,0,0">

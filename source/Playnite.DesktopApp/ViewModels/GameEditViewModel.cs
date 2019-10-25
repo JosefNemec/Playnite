@@ -939,6 +939,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<DragEventArgs> DropIconCommand
+        {
+            get => new RelayCommand<DragEventArgs>((args) =>
+            {
+                DropIcon(args);
+            });
+        }
+
         public RelayCommand<DragEventArgs> DropCoverCommand 
         {
             get => new RelayCommand<DragEventArgs>((args) => 
@@ -2422,16 +2430,15 @@ namespace Playnite.DesktopApp.ViewModels
             return null;
         }
         
-        public string GetDroppedImage(DragEventArgs args) {
+        public string GetDroppedImage(DragEventArgs args)
+        {
             if (args.Data.GetDataPresent(DataFormats.FileDrop)) 
             {
-                string[] files = (string[])args.Data.GetData(DataFormats.FileDrop);
-
+                var files = (string[])args.Data.GetData(DataFormats.FileDrop);
                 if (files?.Length == 1) 
                 {
-                    string path = files[0];
-
-                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".png", ".gif", ".tga" }.Contains(Path.GetExtension(path).ToLower())) 
+                    var path = files[0];
+                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga" }.Contains(Path.GetExtension(path).ToLower())) 
                     {
                         return path;
                     }
@@ -2441,10 +2448,18 @@ namespace Playnite.DesktopApp.ViewModels
             return null;
         }
 
+        public void DropIcon(DragEventArgs args)
+        {
+            var path = PrepareImagePath(GetDroppedImage(args));
+            if (!path.IsNullOrEmpty())
+            {
+                EditingGame.Icon = path;
+            }
+        }
+
         public void SelectCover() 
         {
-            string path = PrepareImagePath(dialogs.SelectImagefile());
-            
+            var path = PrepareImagePath(dialogs.SelectImagefile());            
             if (path != null) 
             {
                 EditingGame.CoverImage = path;
@@ -2453,8 +2468,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropCover(DragEventArgs args) 
         {
-            string path = PrepareImagePath(GetDroppedImage(args));
-
+            var path = PrepareImagePath(GetDroppedImage(args));
             if (!path.IsNullOrEmpty()) 
             {
                 EditingGame.CoverImage = path;
@@ -2463,8 +2477,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectBackground() 
         {
-            string path = PrepareImagePath(dialogs.SelectImagefile());
-            
+            var path = PrepareImagePath(dialogs.SelectImagefile());            
             if (!path.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = path;
@@ -2473,8 +2486,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropBackground(DragEventArgs args) 
         {
-            string path = PrepareImagePath(GetDroppedImage(args));
-
+            var path = PrepareImagePath(GetDroppedImage(args));
             if (!path.IsNullOrEmpty()) 
             {
                 EditingGame.BackgroundImage = path;
