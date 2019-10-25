@@ -76,7 +76,7 @@
     <sys:String x:Key="LOCErrorNoGameSelected">Игра не выбрана.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Включено</sys:String>
@@ -277,8 +277,13 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Обложка рендеринга</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Целевое соотношение сторон</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Растянутый режим</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Баннер Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Box</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Баннер Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Необходим перезапуск для применения настроек</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Настройки</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Основные</sys:String>
@@ -811,7 +816,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSteamLoggedInUser">Аутентифицированный пользователь</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Аккаунт приватный, требуется API ключ.</sys:String>
 
-    <sys:String x:Key="LOCFullscreenFirstTimeError">Первая настройка не завершена. Playnite будет запущен в обычном режиме, чтобы закончить процедуру.</sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">Первичная настройка не завершена. Playnite будет запущен в обычном режиме, чтобы закончить процедуру.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Последние запущенные</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Избранные</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Часто играемые</sys:String>
