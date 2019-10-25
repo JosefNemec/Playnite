@@ -91,6 +91,14 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => !string.IsNullOrEmpty(SearchTerm));
         }
 
+        public RelayCommand<object> ItemDoubleClickCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ConfirmDialog();
+            });
+        }
+
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly IWindowFactory window;
         private readonly Func<string, List<GenericItemOption>> searchFunction;

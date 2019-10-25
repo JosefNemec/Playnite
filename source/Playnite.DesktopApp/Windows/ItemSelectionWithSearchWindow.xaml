@@ -32,11 +32,15 @@
                      ItemsSource="{Binding SearchResults}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <DockPanel>
+                        <DockPanel Background="Transparent">
                             <TextBlock Text="{Binding Name}" DockPanel.Dock="Top" Margin="5" FontWeight="Bold" />
                             <TextBlock Text="{Binding Description}" DockPanel.Dock="Top" Margin="5,0,5,5"
                                        FontStyle="Italic" FontSize="12" TextWrapping="Wrap"
                                        Visibility="{Binding Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                            <DockPanel.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick"
+                                              Command="{Binding DataContext.ItemDoubleClickCommand, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}" />
+                            </DockPanel.InputBindings>
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

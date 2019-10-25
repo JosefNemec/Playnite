@@ -54,7 +54,15 @@ namespace Playnite.DesktopApp.ViewModels
                 ConfirmDialog();
             }, (a) => SelectedImage != null);
         }
-        
+
+        public RelayCommand<object> ItemDoubleClickCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ConfirmDialog();
+            });
+        }
+
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly IWindowFactory window;
 
