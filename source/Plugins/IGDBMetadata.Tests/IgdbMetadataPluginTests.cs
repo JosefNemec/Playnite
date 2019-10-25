@@ -24,5 +24,14 @@ namespace IGDBMetadata.Tests
                 "https://images.igdb.com/igdb/image/upload/t_720p/fh5txlnfczqruy55bo6i.jpg",
                 IgdbMetadataPlugin.GetImageUrl(image, ImageSizes.p720));
         }
+
+        [Test]
+        public void GetGameInfoFromUrlTest()
+        {
+            Assert.AreEqual("333",
+                IgdbMetadataPlugin.GetGameInfoFromUrl(@"https://www.igdb.com/games/quake"));
+            Assert.AreEqual("793",
+                IgdbMetadataPlugin.GetGameInfoFromUrl(@"https://www.igdb.com/games/mobil-1-rally-championship"));
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using IGDBMetadata.Models;
 using IGDBMetadata.Services;
 using Playnite.Common;
+using Playnite.Common.Web;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
@@ -25,6 +26,7 @@ namespace IGDBMetadata
 
         private IgdbServiceClient client;
 
+        private static readonly ILogger logger = LogManager.GetLogger();
         public override string Name { get; } = "IGDB";
         public override Guid Id { get; } = Guid.Parse("000001DB-DBD1-46C6-B5D0-B1BA559D10E4");
         internal readonly IgdbMetadataSettings Settings;
@@ -55,8 +57,25 @@ namespace IGDBMetadata
             {
                 var item = PlayniteApi.Dialogs.ChooseItemWithSearch(null, (a) =>
                 {
-                    var res = SearchMetadata(a);
-                    return res.Select(b => b as GenericItemOption).ToList();
+                    if (a.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                    {
+                        try
+                        {
+                            var gameId = GetGameInfoFromUrl(a);
+                            var data = GetMetadata(gameId);
+                            return new List<GenericItemOption> { new SearchResult(gameId, data.GameInfo.Name) };
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, $"Failed to get game data from {a}");
+                            return new List<GenericItemOption>();
+                        }
+                    }
+                    else
+                    {
+                        var res = SearchMetadata(a);
+                        return res.Select(b => b as GenericItemOption).ToList();
+                    }
                 }, options.GameData.Name);
 
                 if (item == null)
@@ -348,6 +367,21 @@ namespace IGDBMetadata
         {
             var temp = gameName.Replace(":", " ").Replace("-", " ");
             return Regex.Replace(temp, @"\s+", " ");
+        }
+
+        internal static string GetGameInfoFromUrl(string url)
+        {
+            var data = HttpDownloader.DownloadString(url);
+            var regex = Regex.Match(data, @"games\/(\d+)\/rates");
+            if (regex.Success)
+            {
+                return regex.Groups[1].Value;
+            }
+            else
+            {
+                logger.Error($"Failed to get game id from {url}");
+                return string.Empty;
+            }
         }
 
         private GameMetadata matchFun(Game game, string matchName, IEnumerable<SearchResult> list)
