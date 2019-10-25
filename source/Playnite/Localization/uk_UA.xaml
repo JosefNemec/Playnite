@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Мова</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Вихід</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Фільтр увімкнено (натисніть щоб перемкнути панель фільтрів)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Фільтр вимкнено (натисніть щоб перемкнути панель фільтрів)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters"></sys:String>
     <sys:String x:Key="LOCFilter"></sys:String>
@@ -66,9 +66,12 @@
     <sys:String x:Key="LOCGameShortcutError">Невдалося створити ярлик: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Не вдається встановити гру: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Не вдається видалити гру: {0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Плагін для бібліотеки відповідальний за запуск гри не встановлено або не ввімкнено.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
 
 
     <!--General-->
@@ -79,6 +82,7 @@
     <sys:String x:Key="LOCAddTitle">Додати</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Типова піктограма</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Типова обкладинка</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCFinishLabel">Фініш</sys:String>
     <sys:String x:Key="LOCNextLabel">Далі</sys:String>
     <sys:String x:Key="LOCBackLabel">Назад</sys:String>
@@ -121,6 +125,7 @@
     <sys:String x:Key="LOCInstallationLabel">Встановлення</sys:String>
     <sys:String x:Key="LOCActionsLabel">Дії</sys:String>
     <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">Тип</sys:String>
     <sys:String x:Key="LOCProfileLabel">Профіль</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Профілі</sys:String>
@@ -182,7 +187,7 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Неможливо отримати піктограму якщо дія Грати відсутня або вибрано URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">Завантажити метадані лише для тих ігор, які їх бракують</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Вибір ігор</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Будь ласка, оберіть які ігри потребують оновлення метаданих:</sys:String>
@@ -246,6 +251,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -254,6 +260,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
@@ -281,6 +288,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Автоматично імпортувати зміни в бібліотеці</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Імпортувати встановлені ігри</sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Імпортувати видалені ігри</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Імпортувати всі ігри</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Імпортувати всі ігри (Акаунт повинен бути публічним або має бути вказаним ключ API )</sys:String>
@@ -375,6 +383,15 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нічого</sys:String>
     <sys:String x:Key="LOCStrechFill">Заповнення</sys:String>
@@ -452,6 +469,9 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCAddPlatformTitle">Додати платформу</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Обрати піктограму</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Обрати обкладинку</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
+    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Обрати файл</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Обрати URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Додати емулятор</sys:String>
@@ -592,20 +612,25 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCChange">Змінити</sys:String>
     <sys:String x:Key="LOCAdvanced">Розширені</sys:String>
     <sys:String x:Key="LOCNever">Ніколи</sys:String>
-    <sys:String x:Key="LOCNotPlayed">Не зіграно</sys:String>
-    <sys:String x:Key="LOCPlayed">Зіграно</sys:String>
-    <sys:String x:Key="LOCBeaten">Побито</sys:String>
-    <sys:String x:Key="LOCCompleted">Завершено</sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
     <sys:String x:Key="LOCCompletionStatus">Статус завершення</sys:String>
     <sys:String x:Key="LOCUserScore">Оцінка користувачів</sys:String>
     <sys:String x:Key="LOCCriticScore">Оцінка критиків</sys:String>
     <sys:String x:Key="LOCCommunityScore">Оцінка спільноти</sys:String>
     <sys:String x:Key="LOCScripts">Скрипти</sys:String>
     <sys:String x:Key="LOCPlugins">Плагіни</sys:String>
+    <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions">Розширення</sys:String>
     <sys:String x:Key="LOCReloadScripts">Перезавантажити скрипти</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Всі скрипти перезавантажено успішно.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">Ігор не знайдено</sys:String>
+    <sys:String x:Key="LOCNoGamesFound"></sys:String>
     <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Вийти з Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Бібліотеки</sys:String>
@@ -626,6 +651,10 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCFontLarger"></sys:String>
     <sys:String x:Key="LOCFontLargest"></sys:String>
     <sys:String x:Key="LOCDefault"></sys:String>
+    <sys:String x:Key="LOCSelect"></sys:String>
+    <sys:String x:Key="LOCFirst"></sys:String>
+    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCUserSelect"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Аргументи емулятора</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Додаткові аргументи емулятора</sys:String>
@@ -649,6 +678,9 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCThemeTestApplySkin">Застосувати вибрану тему</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Дивитися зміни файлу</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Автоматично застосовувати тему при зміні вихідного файлу</sys:String>
+    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault"></sys:String>
@@ -755,5 +787,11 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
     <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
-
+    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    
+    <!--IGDB-->
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
 </ResourceDictionary>
