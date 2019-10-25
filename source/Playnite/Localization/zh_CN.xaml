@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">语言</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">退出</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">筛选条件已启用（单击开关筛选条件面板）</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">筛选条件已停用（单击开关筛选条件面板）</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters">其他筛选条件</sys:String>
     <sys:String x:Key="LOCFilters">筛选条件</sys:String>
     <sys:String x:Key="LOCFilter">筛选条件</sys:String>
@@ -70,9 +70,12 @@
     <sys:String x:Key="LOCGameShortcutError">无法创建快捷方式: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">无法安装游戏: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">无法卸载游戏: {0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">未安装或启用负责此游戏的库插件</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">官方资料数据下载不可用。</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">未选定任何游戏。</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
 
 
     <!--General-->
@@ -83,6 +86,7 @@
     <sys:String x:Key="LOCAddTitle">添加</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">默认图标</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">默认封面图片</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCFinishLabel">_完成</sys:String>
     <sys:String x:Key="LOCNextLabel">_下一步</sys:String>
     <sys:String x:Key="LOCBackLabel">_返回</sys:String>
@@ -125,6 +129,7 @@
     <sys:String x:Key="LOCInstallationLabel">安装</sys:String>
     <sys:String x:Key="LOCActionsLabel">操作</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">正在下载…</sys:String>
+    <sys:String x:Key="LOCLoadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">类型</sys:String>
     <sys:String x:Key="LOCProfileLabel">简介</sys:String>
     <sys:String x:Key="LOCProfilesLabel">简介</sys:String>
@@ -186,7 +191,7 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">如果启动操作缺失或设置为链接，则无法获取图标</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">只为丢失数据的游戏下载数据</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">启用此选项将跳过下载已经包含信息的元数据。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">游戏选择</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">请选择使用新数据更新哪些游戏：</sys:String>
@@ -250,6 +255,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuShutdownSystem">关闭系统</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">挂起系统</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">要在详情面板上显示的游戏字段：</sys:String>
@@ -258,6 +264,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">网格项目边框宽度</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">缺少游戏图标源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺少游戏封面源</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">垂直间距到游戏详情</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">网格视图详情位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">详情视图游戏列表位置</sys:String>
@@ -285,6 +292,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsMetadataLabel">资料数据</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">自动导入游戏库中的更改</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">导入已安装的游戏</sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">导入未安装的游戏</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">导入所有游戏</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">导入所有游戏（必须为公开账户或提供API密钥）</sys:String>
@@ -379,6 +387,15 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsFullscreenLayout">布局</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">水平滚动</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">无</sys:String>
     <sys:String x:Key="LOCStrechFill">填充</sys:String>
@@ -459,6 +476,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCAddPlatformTitle">添加平台</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">选择图标</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">选择封面</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
+    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">选择文件</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">选择网址</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">添加模拟器</sys:String>
@@ -604,20 +624,25 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCChange">更改</sys:String>
     <sys:String x:Key="LOCAdvanced">高级</sys:String>
     <sys:String x:Key="LOCNever">从不</sys:String>
-    <sys:String x:Key="LOCNotPlayed">没有玩过</sys:String>
-    <sys:String x:Key="LOCPlayed">玩过</sys:String>
-    <sys:String x:Key="LOCBeaten">拍</sys:String>
-    <sys:String x:Key="LOCCompleted">已完成</sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
     <sys:String x:Key="LOCCompletionStatus">完成状态</sys:String>
     <sys:String x:Key="LOCUserScore">用户分数</sys:String>
     <sys:String x:Key="LOCCriticScore">评论员分数</sys:String>
     <sys:String x:Key="LOCCommunityScore">社区分数</sys:String>
     <sys:String x:Key="LOCScripts">脚本</sys:String>
     <sys:String x:Key="LOCPlugins">插件</sys:String>
+    <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions">扩展</sys:String>
     <sys:String x:Key="LOCReloadScripts">重新加载脚本</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">所有脚本都成功重新加载</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">没有找到游戏</sys:String>
+    <sys:String x:Key="LOCNoGamesFound"></sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">退出到桌面模式</sys:String>
     <sys:String x:Key="LOCExitPlaynite">退出Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">库</sys:String>
@@ -638,6 +663,10 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCFontLarger">较大</sys:String>
     <sys:String x:Key="LOCFontLargest">最大</sys:String>
     <sys:String x:Key="LOCDefault">默认</sys:String>
+    <sys:String x:Key="LOCSelect"></sys:String>
+    <sys:String x:Key="LOCFirst"></sys:String>
+    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCUserSelect"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">模拟器其他参数</sys:String>
@@ -661,6 +690,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCThemeTestApplySkin">应用选定的主题</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">观看文件更改</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">源文件更改时自动应用主题</sys:String>
+    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">保存为默认</sys:String>
@@ -725,7 +757,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCEnterName">输入名称</sys:String>
     <sys:String x:Key="LOCEnterNewName">输入新名称</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour">小于 1 小时</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 到 10 小时</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 至 100 小时</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 至 500 小时</sys:String>
@@ -784,5 +816,11 @@ By {1}
     <sys:String x:Key="LOCGameListFiltered">已应用筛选条件。</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">搜索结果：</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">已存在同一个名称的项目。</sys:String>
-
+    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    
+    <!--IGDB-->
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
 </ResourceDictionary>
