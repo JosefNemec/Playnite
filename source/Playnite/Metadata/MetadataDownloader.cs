@@ -211,6 +211,11 @@ namespace Playnite.Metadata
                             continue;
                         }
 
+                        if (game != null)
+                        {
+                            progressCallback?.Invoke(game, i, games.Count);
+                        }
+
                         logger.Debug($"Downloading metadata for {game.Name}, {game.GameId}, {game.PluginId}");
 
                         // Name
@@ -408,13 +413,6 @@ namespace Playnite.Metadata
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
                         logger.Error(e, $"Failed to download metadata for game {game?.Name}, {game?.Id}");
-                    }
-                    finally
-                    {
-                        if (game != null)
-                        {
-                            progressCallback?.Invoke(game, i, games.Count);
-                        }
                     }
                 }
             });
