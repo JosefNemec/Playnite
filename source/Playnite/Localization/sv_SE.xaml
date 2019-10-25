@@ -76,7 +76,7 @@ Automatiskt importerade spel kan dyka upp igen i Playnite efter nästa import (b
     <sys:String x:Key="LOCErrorNoGameSelected">Inget spel är markerat.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktiverad</sys:String>
@@ -275,8 +275,13 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Visning spelomslagsbilder</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Målbildförhållande</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Tänj</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Omslag</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Låda</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Omslag</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Kräver omstart för att tillämpa</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Inställningar</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Allmänt</sys:String>
