@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Idioma</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Sortir</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">El filtre està habilitat (feu clic per canviar el panell de filtre)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">El filtre està desactivat (feu clic per canviar el panell de filtre)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters">Filtres addicionals</sys:String>
     <sys:String x:Key="LOCFilters">Filtres</sys:String>
     <sys:String x:Key="LOCFilter">Filtre</sys:String>
@@ -70,9 +70,12 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCGameShortcutError">No s’ha pogut crear la drecera: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">No es pot instal·lar el joc: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">No es pot desinstal·lar el joc: {0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">El plugin de biblioteca responsable d'aquest joc no està instal·lat ni activat.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Descàrrega de metadades oficials no disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No hi ha cap joc seleccionat.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
 
 
     <!--General-->
@@ -83,6 +86,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCAddTitle">Afegir</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Icona per defecte</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Imatge de la coberta per defecte</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCFinishLabel">Acabar</sys:String>
     <sys:String x:Key="LOCNextLabel">Següent</sys:String>
     <sys:String x:Key="LOCBackLabel">Enrere</sys:String>
@@ -125,6 +129,7 @@ Els jocs importats automàticament poden tornar a aparèixer a Playnite després
     <sys:String x:Key="LOCInstallationLabel">Instal·lació</sys:String>
     <sys:String x:Key="LOCActionsLabel">Accions</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Descarregant…</sys:String>
+    <sys:String x:Key="LOCLoadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipus</sys:String>
     <sys:String x:Key="LOCProfileLabel">Perfil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Perfils</sys:String>
@@ -186,7 +191,7 @@ ResultaT: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">No es pot obtenir la icona si falta l’acció de Jugar o estàmarcat com URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">Descarrega només bases de dades per a jocs</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Activar aquesta opció farà que s'ometi la descàrrega de metadades pels camps que ja contenen informació.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selecció de jocs</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Selecciona els jocs que s’actualitzaran amb les noves bases de dades:</sys:String>
@@ -250,6 +255,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCMenuShutdownSystem">Tanca el Sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspèn el sistema</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hiberna sistema</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Camps de joc que es mostraran al panell de detalls:</sys:String>
@@ -258,6 +264,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Amplada d'ítem de la quadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Falta una font per la icona del joc</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Falta una font per la caràtula del joc</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espai vertical dels detalls del joc</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detalls de posició en vista de graella</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posició de la llista de jocs en vista de detalls</sys:String>
@@ -285,6 +292,7 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadades</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importa els canvis a la biblioteca automàticament</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importa jocs instal·lats</sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importa els jocs desinstal·lats</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importa tots els jocs</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importa tots els jocs (cal proporcionar un compte públic o la clau API)</sys:String>
@@ -379,6 +387,15 @@ Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sy
     <sys:String x:Key="LOCSettingsFullscreenLayout">Disposició</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Desplaçament horitzontal</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
@@ -459,6 +476,9 @@ També pots afegir qualsevol altre joc (incloent els de Microsoft Store) al men�
     <sys:String x:Key="LOCAddPlatformTitle">Afegeix plataforma</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Selecciona icona</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Selecciona imatge de coberta</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
+    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Selecciona arxiu</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Selecciona URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Afegeix emulador</sys:String>
@@ -604,20 +624,25 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCChange">Canviar</sys:String>
     <sys:String x:Key="LOCAdvanced">Avançat</sys:String>
     <sys:String x:Key="LOCNever">Mai</sys:String>
-    <sys:String x:Key="LOCNotPlayed">No jugat</sys:String>
-    <sys:String x:Key="LOCPlayed">Jugat</sys:String>
-    <sys:String x:Key="LOCBeaten">Finalitzat</sys:String>
-    <sys:String x:Key="LOCCompleted">Completat</sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
     <sys:String x:Key="LOCCompletionStatus">Estat de completació</sys:String>
     <sys:String x:Key="LOCUserScore">Puntuació dels usuaris</sys:String>
     <sys:String x:Key="LOCCriticScore">Puntuació de la crítica</sys:String>
     <sys:String x:Key="LOCCommunityScore">Puntuació de la comunitat</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
     <sys:String x:Key="LOCPlugins">Plugins</sys:String>
+    <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions">Extensions</sys:String>
     <sys:String x:Key="LOCReloadScripts">Recarregar Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Tots els scripts s'han carregat correctament.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">No s’ha trobat cap joc</sys:String>
+    <sys:String x:Key="LOCNoGamesFound"></sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Tornar al mode d'escriptori</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Sortir de Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Biblioteques</sys:String>
@@ -638,6 +663,10 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCFontLarger">Més gran</sys:String>
     <sys:String x:Key="LOCFontLargest">La més gran</sys:String>
     <sys:String x:Key="LOCDefault">Predeterminat</sys:String>
+    <sys:String x:Key="LOCSelect"></sys:String>
+    <sys:String x:Key="LOCFirst"></sys:String>
+    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCUserSelect"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments adicionals de l'emulador</sys:String>
@@ -661,6 +690,9 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCThemeTestApplySkin">Aplica el tema seleccionat</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Mira els canvis dels fitxers</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Aplicar automàticament el tema quan canvïi el fitxer font</sys:String>
+    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Desa com a valor per defecte</sys:String>
@@ -725,7 +757,7 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCEnterName">Introdueix el nom</sys:String>
     <sys:String x:Key="LOCEnterNewName">Introdueix el nou nom</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Menys d'una hora</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 a 10 hores</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 a 100 hores</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 a 500 hores</sys:String>
@@ -783,5 +815,11 @@ Versió {2}
     <sys:String x:Key="LOCGameListFiltered">S'han aplicat filtres.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Resultats de la cerca per:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Ja existeix un fitxer amb el mateix nom.</sys:String>
-
+    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    
+    <!--IGDB-->
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
 </ResourceDictionary>
