@@ -83,15 +83,19 @@ function global:Get-MsBuildPath()
         }
     }
 
-    $path = & $VSWHERE_CMD -version "[15.0,16.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe"
-    if (Test-Path $path)
+    $path = & $VSWHERE_CMD -version "[15.0,16.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe" -latest | Select-Object -First 1
+    if ($path -and (Test-Path $path))
     {
         return $path
     }
-    else
+
+    $path = & $VSWHERE_CMD -version "[16.0,17.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe" -latest | Select-Object -First 1
+    if ($path -and (Test-Path $path))
     {
-        throw "MS Build not found."
+        return $path
     }
+
+    throw "MS Build not found."
 }
 
 function global:Stop-SigningWatcher()

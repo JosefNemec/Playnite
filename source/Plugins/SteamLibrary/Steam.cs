@@ -97,6 +97,11 @@ namespace SteamLibrary
             return $"https://steamcommunity.com/app/{appId}/workshop/";
         }
 
+        public static string GetAchievementsUrl(uint appId)
+        {
+            return $"https://steamcommunity.com/stats/{appId}/achievements";
+        }
+
         public static AppState GetAppState(GameID id)
         {
             var state = new AppState();

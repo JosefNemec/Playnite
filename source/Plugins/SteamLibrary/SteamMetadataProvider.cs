@@ -311,6 +311,11 @@ namespace SteamLibrary
                 BackgroundImage = downloadedMetadata.BackgroundImage
             };
 
+            if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 22) != null)
+            {
+                gameInfo.Links.Add(new Link("Achievements", Steam.GetAchievementsUrl(appId)));
+            }
+
             if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
             {
                 gameInfo.Links.Add(new Link("Workshop", Steam.GetWorkshopUrl(appId)));
