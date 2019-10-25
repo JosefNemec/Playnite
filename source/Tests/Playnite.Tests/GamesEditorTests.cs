@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Playnite.Common;
+using Playnite.Controllers;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -45,7 +46,8 @@ f.close()", executeScriptActionTestFileName));
                     InstallDirectory = tempDir.TempPath
                 };
 
-                GamesEditor.ExecuteScriptAction(language, script, game);
+                var editor = new GamesEditor(null, new GameControllerFactory(null), null, null, null, null);
+                editor.ExecuteScriptAction(language, script, game);
                 var testPath = Path.Combine(tempDir.TempPath, executeScriptActionTestFileName);
                 var content = File.ReadAllText(testPath);
                 Assert.AreEqual(language.ToString(), content.Trim());    

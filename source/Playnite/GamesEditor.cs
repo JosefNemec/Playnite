@@ -686,8 +686,13 @@ namespace Playnite
             controllers.RemoveController(args.Controller);
         }
 
-        internal static void ExecuteScriptAction(ScriptLanguage language, string script, Game game)
+        internal void ExecuteScriptAction(ScriptLanguage language, string script, Game game)
         {
+            if (language == ScriptLanguage.PowerShell && !Scripting.PowerShell.PowerShellRuntime.IsInstalled)
+            {
+                throw new Exception(resources.GetString("LOCErrorPowerShellNotInstalled"));
+            }
+
             logger.Info($"Executing script action in {language} runtime.");
             IScriptRuntime runtime = null;
             switch (language)
