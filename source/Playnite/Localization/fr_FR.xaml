@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Quitter</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtre Actif</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtre Désactivé</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Autres filtres</sys:String>
     <sys:String x:Key="LOCFilters">Filtres</sys:String>
     <sys:String x:Key="LOCFilter">Filtre</sys:String>
@@ -70,13 +70,13 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCGameShortcutError">Impossible de créer un raccourci : {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Erreur : Impossible d'installer le jeu : {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Impossible de désinstaller le jeu : {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Action de jeu non configuré.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Le client en charge de ce jeu n'est pas installé ou activé.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Téléchargement des métadonnées officielles non disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Aucun jeu sélectionné.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Échec de l’exécution du script du jeu: {0}</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Échec de l’exécution du script global: {0}</sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 ou plus récent n'est pas installé.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Activé</sys:String>
@@ -86,7 +86,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCAddTitle">Ajouter</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Icône par défaut</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Jaquette par défaut</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">Arrière-plan par défaut</sys:String>
     <sys:String x:Key="LOCFinishLabel">Terminer</sys:String>
     <sys:String x:Key="LOCNextLabel">Suivant</sys:String>
     <sys:String x:Key="LOCBackLabel">Retour</sys:String>
@@ -276,8 +276,13 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Propriétés de l'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Format d'affichage</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Mise à l'échelle</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Bannière Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Boîtier DVD</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Bannière Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Redémarrage nécessaire</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Paramètres</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Général</sys:String>
