@@ -76,7 +76,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCErrorNoGameSelected">Seçili Oyun Yok.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Etkin</sys:String>
@@ -277,8 +277,13 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kapak fotoğrafı işleme</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Hedef boy oranı</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Streç modu</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Kapağı</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD kutusu</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Kapağı</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Uygulanması için yeniden başlatmak gerekir</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ayarlar</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Genel</sys:String>
