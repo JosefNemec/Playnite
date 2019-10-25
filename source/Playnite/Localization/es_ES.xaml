@@ -76,7 +76,7 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
     <sys:String x:Key="LOCErrorNoGameSelected">Ningún juego seleccionado.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Habilitado</sys:String>
@@ -277,8 +277,13 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderización del arte de la portada</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Relación de aspecto objetivo</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Modo de estiramiento</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner de Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Caja de DVD</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner de Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requiere reiniciar para aplicar</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ajustes</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">General</sys:String>
