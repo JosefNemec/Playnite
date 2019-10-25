@@ -28,7 +28,7 @@
         </DataTemplate>        
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel Margin="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

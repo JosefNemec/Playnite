@@ -163,9 +163,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\PlayniteServices\Models\IGDB\IGDB.cs">
-      <Link>Services\Models\IGDB\IGDB.cs</Link>
-    </Compile>
     <Compile Include="..\PlayniteServices\Models\Playnite\Playnite.cs">
       <Link>Services\Models\Playnite\Playnite.cs</Link>
     </Compile>
@@ -215,7 +212,6 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
     <Compile Include="Converters\BoolToYesNoConverter.cs" />
-    <Compile Include="Converters\CompletionStatusToStringConverter.cs" />
     <Compile Include="Converters\CoversZoomToPercentageConverter.cs" />
     <Compile Include="Converters\ImageStringToImageConverter.cs" />
     <Compile Include="Converters\DateTimeToLastPlayedConverter.cs" />
@@ -235,6 +231,7 @@
     <Compile Include="Converters\OpacityBoolConverter.cs" />
     <Compile Include="Converters\SortingOrderToStringConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToBoolConverter.cs" />
+    <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
@@ -285,7 +282,6 @@
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="GamesCollectionViewEntry.cs" />
     <Compile Include="GamesEditor.cs" />
-    <Compile Include="GaussianBlur.cs" />
     <Compile Include="GlobalTaskHandler.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="ImageSourceManager.cs" />
@@ -295,6 +291,7 @@
     <Compile Include="ObservablePowerStatus.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Plugins\ExtensionInstaller.cs" />
+    <Compile Include="Scripting\Batch\Batch.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
     <Compile Include="Scripting\IronPython\IronPythonScript.cs" />
     <Compile Include="Scripting\IScriptRuntime.cs" />
@@ -310,7 +307,6 @@
     <Compile Include="Database\DatabaseStats.cs" />
     <Compile Include="Controllers\GameControllerFactory.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
-    <Compile Include="Metadata\Providers\IGDBMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
@@ -326,6 +322,7 @@
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\PlayniteSettings.cs" />
     <Compile Include="App\Updater.cs" />
+    <Compile Include="Settings\SettingsAttributes.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
     <Compile Include="Settings\WindowPositions.cs" />
     <Compile Include="Themes.cs" />
@@ -335,6 +332,7 @@
     <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
     <Compile Include="ViewModels\MainViewModelBase.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
+    <Compile Include="ViewModels\RandomGameSelectViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="WebView\OffscreenWebView.cs" />
     <Compile Include="WebView\WebView.cs" />

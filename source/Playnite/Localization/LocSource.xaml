@@ -10,8 +10,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Language</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Exit</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter Active</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filter Disabled</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Additional filters</sys:String>
     <sys:String x:Key="LOCFilters">Filters</sys:String>
     <sys:String x:Key="LOCFilter">Filter</sys:String>
@@ -71,9 +71,16 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCGameShortcutError">Failed to create shortcut: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Cannot install game: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Cannot un-install game: {0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Play action is not configured.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Library plugin responsible for this game is not installed or enabled.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Official metadata download is not available.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No game is selected.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Game's script action execution failed:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Global script action execution failed:
+    
+{0}</sys:String>
 
 
     <!--General-->
@@ -84,6 +91,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCAddTitle">Add</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Default Icon</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Default Cover Image</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">Default Background Image</sys:String>
     <sys:String x:Key="LOCFinishLabel">Finish</sys:String>
     <sys:String x:Key="LOCNextLabel">Next</sys:String>
     <sys:String x:Key="LOCBackLabel">Back</sys:String>
@@ -126,6 +134,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCInstallationLabel">Installation</sys:String>
     <sys:String x:Key="LOCActionsLabel">Actions</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Downloading…</sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Loading…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Type</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profile</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiles</sys:String>
@@ -187,7 +196,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">Only download metadata for games missing them</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Only download missing metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Enabling this option will skip downloading metadata for data fields that already contain information.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Games selection</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Please select which games should to be updated with new metadata:</sys:String>
@@ -251,6 +260,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuShutdownSystem">Turn Off System</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspend System</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernate System</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Pick a Random Game</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Game fields to be displayed on details panel:</sys:String>
@@ -259,6 +269,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Grid item border width</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Missing game icon source</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Missing game background source</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertical spacing to game details</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Details view game list position</sys:String>
@@ -286,6 +297,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Import installed games</sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount">Connect account</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Import uninstalled games</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Import all games</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Import all games (Public account or API key must be provided)</sys:String>
@@ -382,6 +394,15 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontal Scrolling</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Select one of the subsections</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">Font sizes</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Auto</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliased</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Grayscale</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ideal</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Display</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">Text formatting mode</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">Text rendering mode</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
@@ -462,6 +483,9 @@ You can also add any other game (including Microsoft Store games) later from mai
     <sys:String x:Key="LOCAddPlatformTitle">Add Platform</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Select Icon</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Select Cover</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Select Image</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Select Item</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">Select Background</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Select File</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Select URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Add Emulator</sys:String>
@@ -607,20 +631,25 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCChange">Change</sys:String>
     <sys:String x:Key="LOCAdvanced">Advanced</sys:String>
     <sys:String x:Key="LOCNever">Never</sys:String>
-    <sys:String x:Key="LOCNotPlayed">Not Played</sys:String>
-    <sys:String x:Key="LOCPlayed">Played</sys:String>
-    <sys:String x:Key="LOCBeaten">Beaten</sys:String>
-    <sys:String x:Key="LOCCompleted">Completed</sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">Not Played</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">Played</sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten">Beaten</sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Completed</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">Playing</sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned">Abandoned</sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold">On Hold</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">Plan to Play</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Completion Status</sys:String>
     <sys:String x:Key="LOCUserScore">User Score</sys:String>
     <sys:String x:Key="LOCCriticScore">Critic Score</sys:String>
     <sys:String x:Key="LOCCommunityScore">Community Score</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
     <sys:String x:Key="LOCPlugins">Plugins</sys:String>
+    <sys:String x:Key="LOCMetadataProviders">Metadata Sources</sys:String>
     <sys:String x:Key="LOCExtensions">Extensions</sys:String>
     <sys:String x:Key="LOCReloadScripts">Reload Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">No Games Found</sys:String>
+    <sys:String x:Key="LOCNoGamesFound">No games found for specified search/filter criteria</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Exit to Desktop Mode</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Exit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Libraries</sys:String>
@@ -641,6 +670,10 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCFontLarger">Larger</sys:String>
     <sys:String x:Key="LOCFontLargest">Largest</sys:String>
     <sys:String x:Key="LOCDefault">Default</sys:String>
+    <sys:String x:Key="LOCSelect">Select</sys:String>
+    <sys:String x:Key="LOCFirst">First</sys:String>
+    <sys:String x:Key="LOCRandom">Random</sys:String>
+    <sys:String x:Key="LOCUserSelect">User select</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -664,6 +697,9 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCThemeTestApplySkin">Apply selected theme</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Watch file changes</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Automatically apply theme when the source file changes</sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Script runtime</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Execute before starting game</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Execute after exiting game</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Save as default</sys:String>
@@ -728,7 +764,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCEnterName">Enter name</sys:String>
     <sys:String x:Key="LOCEnterNewName">Enter new name</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Less then an hour</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Less than an hour</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 to 10 hours</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 to 100 hours</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 to 500 hours</sys:String>
@@ -787,5 +823,11 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCGameListFiltered">There are filters applied.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Search results for:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">An item with the same name already exists.</sys:String>
-
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Limit selection to current filter</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Pick another</sys:String>
+    
+    <!--IGDB-->
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Use screenshots if artwork is not available</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">If multiple images are available then use:</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Select background image for {0}</sys:String>
 </ResourceDictionary>

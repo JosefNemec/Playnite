@@ -156,6 +156,24 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.cover_v3 = (await CoverController.GetItem(game.cover)).Data;
             }
 
+            if (game.artworks?.Any() == true)
+            {
+                parsedGame.artworks = new List<GameImage>();
+                foreach (var artworkId in game.artworks)
+                {
+                    parsedGame.artworks.Add((await ArtworkController.GetItem(artworkId)).Data);
+                }
+            }
+
+            if (game.screenshots?.Any() == true)
+            {
+                parsedGame.screenshots = new List<GameImage>();
+                foreach (var screenshotId in game.screenshots)
+                {
+                    parsedGame.screenshots.Add((await ScreenshotController.GetItem(screenshotId)).Data);
+                }
+            }
+
             // fallback properties for 4.x
             parsedGame.cover = parsedGame.cover_v3?.url;
             parsedGame.publishers = parsedGame.involved_companies?.Where(a => a.publisher == true).Select(a => a.company.name).ToList();

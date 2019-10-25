@@ -52,39 +52,56 @@ namespace Playnite.Scripting.PowerShell
             return new PowerShellRuntime();
         }
 
-        public object Execute(string script)
+        public object Execute(string script, string workDir = null)
         {
-            return Execute(script, null);
+            return Execute(script, null, workDir);
         }
 
-        public object Execute(string script, Dictionary<string, object> variables)
+        public object Execute(string script, Dictionary<string, object> variables, string workDir = null)
         {
-            using (var pipe = runspace.CreatePipeline(script))
+            if (!workDir.IsNullOrEmpty())
             {
-                if (variables != null)
+                runspace.SessionStateProxy.Path.PushCurrentLocation("main");
+                runspace.SessionStateProxy.Path.SetLocation(workDir);
+            }
+
+            try
+            {
+                using (var pipe = runspace.CreatePipeline(script))
                 {
-                    foreach (var key in variables.Keys)
-                    {                        
-                        runspace.SessionStateProxy.SetVariable(key, variables[key]);
+                    if (variables != null)
+                    {
+                        foreach (var key in variables.Keys)
+                        {
+                            runspace.SessionStateProxy.SetVariable(key, variables[key]);
+                        }
+                    }
+
+                    var result = pipe.Invoke();
+                    if (result.Count == 1)
+                    {
+                        return result[0].BaseObject;
+                    }
+                    else
+                    {
+                        return result.Select(a => a?.BaseObject).ToList();
                     }
                 }
 
-                var result = pipe.Invoke();
-                if (result.Count == 1)
+            }
+            finally
+            {
+                if (!workDir.IsNullOrEmpty())
                 {
-                    return result[0].BaseObject;
-                }
-                else
-                {
-                    return result.Select(a => a?.BaseObject).ToList();
+                    runspace.SessionStateProxy.Path.PopLocation("main");
                 }
             }
         }
 
-        public object ExecuteFile(string path)
+        public object ExecuteFile(string path, string workDir = null)
         {
             var content = File.ReadAllText(path);
-            return Execute(content);
+            return Execute(content, null, workDir);
         }
 
         public void SetVariable(string name, object value)

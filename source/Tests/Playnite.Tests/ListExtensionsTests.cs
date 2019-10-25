@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Playnite;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace Playnite.Tests
             Assert.IsTrue((new List<string> { "test", "test2" }).IntersectsPartiallyWith(new List<string> { "Test2" }));
             Assert.IsFalse((new List<string> { "test", "test2" }).IntersectsPartiallyWith(new List<string> { string.Empty }));
             Assert.IsFalse((new List<string> { "test", "test2" }).IntersectsPartiallyWith(null));
+            Assert.IsFalse((new List<string> { "test", "test2" }).IntersectsPartiallyWith(new List<string> { "aaaa" }));
             Assert.IsFalse(((List<string>)null).IntersectsPartiallyWith(new List<string> { "test", "test2" }));
         }
 
@@ -102,6 +104,31 @@ namespace Playnite.Tests
             Assert.IsFalse(
                 new List<int> { 1 }.IsListEqual(
                 new List<int> { 1, 2, 3 }));
+        }
+
+        [Test]
+        public void IsListEqualExactTest()
+        {
+            Assert.IsTrue(
+                new List<int> { 1, 2, 3 }.IsListEqualExact(
+                new List<int> { 1, 2, 3 }));
+            Assert.IsFalse(
+                new List<int> { 1, 2, 3 }.IsListEqualExact(
+                new List<int> { 3, 2, 1 }));
+            Assert.IsFalse(
+                new List<int> { 1, 2, 3 }.IsListEqualExact(
+                new List<int> { 1, }));
+            Assert.IsFalse(
+                new List<int> { 1 }.IsListEqualExact(
+                new List<int> { 1, 2, 3 }));
+
+            Assert.IsTrue(
+                new List<GameAction> { new GameAction() { Name = "1" }, new GameAction() { Name = "2" }}.IsListEqualExact(
+                new List<GameAction> { new GameAction() { Name = "1" }, new GameAction() { Name = "2" } }));
+
+            Assert.IsFalse(
+                new List<GameAction> { new GameAction() { Name = "1" }, new GameAction() { Name = "2" } }.IsListEqualExact(
+                new List<GameAction> { new GameAction() { Name = "2" }, new GameAction() { Name = "1" } }));
         }
 
         [Test]

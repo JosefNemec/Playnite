@@ -136,13 +136,13 @@ namespace TwitchLibrary
                 games.Add(game);
             }
 
-            return games;            
+            return games;
         }
 
         #region ILibraryPlugin
 
         public override LibraryClient Client => new TwitchClient();
-        
+
         public override string Name => "Twitch";
 
         public override string LibraryIcon => Twitch.Icon;
@@ -185,14 +185,19 @@ namespace TwitchLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
                 try
                 {
-                    var uninstalled = GetLibraryGames();
-                    logger.Debug($"Found {uninstalled.Count} library Twitch games.");
+                    var libraryGames = GetLibraryGames();
+                    logger.Debug($"Found {libraryGames.Count} library Twitch games.");
 
-                    foreach (var game in uninstalled)
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -207,7 +212,7 @@ namespace TwitchLibrary
                 }
                 catch (Exception e) when (!PlayniteApi.ApplicationInfo.ThrowAllErrors)
                 {
-                    logger.Error(e, "Failed to import uninstalled Twitch games.");
+                    logger.Error(e, "Failed to import linked account Twitch games details.");
                     importError = e;
                 }
             }

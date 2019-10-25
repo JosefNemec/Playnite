@@ -9,7 +9,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"              
              d:DesignHeight="400" d:DesignWidth="600">
-    
+
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White" />
@@ -38,21 +38,27 @@
         </ComboBox>
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel Margin="20">
         <CheckBox DockPanel.Dock="Top" Name="CheckSteamImportInstalled"
                   Margin="0,0,0,15"
                   IsChecked="{Binding ImportInstalledGames}"
                   Content="{DynamicResource LOCSettingsImportInstalledLabel}"/>
 
-        <CheckBox DockPanel.Dock="Top" Name="CheckSteamImportUninstalled"
-                  IsChecked="{Binding ImportUninstalledGames}"
-                  Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+        <CheckBox DockPanel.Dock="Top" Name="CheckSteamConnectAccount"
+                  IsChecked="{Binding ConnectAccount}"
+                  Content="{DynamicResource LOCSettingsConnectAccount}"/>
 
-        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckSteamImportUninstalled}">
+        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckSteamConnectAccount}">
+
+            <CheckBox DockPanel.Dock="Top" Name="CheckSteamImportUninstalled"
+                      IsChecked="{Binding ImportUninstalledGames}"
+                      Margin="0,10,0,0"
+                      Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+
             <StackPanel Orientation="Horizontal"
                         DockPanel.Dock="Top" Margin="0,15,5,5" HorizontalAlignment="Left">
                 <Button Content="{DynamicResource LOCAuthenticateLabel}"
-                        Command="{Binding LoginCommand}"/>                
+                        Command="{Binding LoginCommand}"/>
                 <TextBlock VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock.Tag>
                         <PriorityBinding>
@@ -83,7 +89,7 @@
                     </TextBlock.Style>
                 </TextBlock>
             </StackPanel>
-            
+
             <CheckBox Content="{DynamicResource LOCPrivateAccount}"
                       IsChecked="{Binding IsPrivateAccount}"
                       DockPanel.Dock="Top" Margin="0,15,0,0"

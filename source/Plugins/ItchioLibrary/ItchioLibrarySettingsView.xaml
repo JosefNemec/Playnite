@@ -8,7 +8,7 @@
              xmlns:pcon="clr-namespace:Playnite.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="400">
-    
+
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White" />
@@ -21,20 +21,27 @@
         <sys:Boolean x:Key="False">False</sys:Boolean>
     </UserControl.Resources>
 
-    <StackPanel>
-        <CheckBox DockPanel.Dock="Top" Name="CheckEpicImportInstalled"
+    <StackPanel Margin="20">
+        <CheckBox DockPanel.Dock="Top" Name="CheckItchioImportInstalled"
                   Margin="0,0,0,15"
                   IsChecked="{Binding ImportInstalledGames}"
                   Content="{DynamicResource LOCSettingsImportInstalledLabel}"/>
 
-        <CheckBox DockPanel.Dock="Top" Name="CheckEpicImportUninstalled"
-                  IsChecked="{Binding ImportUninstalledGames}"
-                  Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+        <CheckBox DockPanel.Dock="Top" Name="CheckItchioConnectAccount"
+                  IsChecked="{Binding ConnectAccount}"
+                  Content="{DynamicResource LOCSettingsConnectAccount}"/>
 
         <StackPanel DockPanel.Dock="Top" Margin="40,5,5,5"
-                    IsEnabled="{Binding IsChecked, ElementName=CheckEpicImportUninstalled}">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left" Margin="5"
+                    IsEnabled="{Binding IsChecked, ElementName=CheckItchioConnectAccount}">
+
+            <CheckBox DockPanel.Dock="Top" Name="CheckItchioImportUninstalled"
+                      IsChecked="{Binding ImportUninstalledGames}"
+                      Margin="0,10,0,0"
+                      Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+
+            <StackPanel Orientation="Horizontal"
+                        DockPanel.Dock="Top" Margin="0,15,5,5" HorizontalAlignment="Left">
+                <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left"
                         Command="{Binding LoginCommand}"/>
                 <TextBlock VerticalAlignment="Center" Margin="10,5,5,5">
                     <TextBlock.Tag>

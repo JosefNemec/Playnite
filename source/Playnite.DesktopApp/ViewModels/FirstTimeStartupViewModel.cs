@@ -200,10 +200,12 @@ namespace Playnite.DesktopApp.ViewModels
                 plugin.Plugin.Dispose();
             }
 
+            var igdbPluginId = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata);
+            Settings.DefaultMetadataSettings = new Metadata.MetadataDownloaderSettings();
+            Settings.DefaultMetadataSettings.ConfigureFields(new List<Guid> { Guid.Empty, igdbPluginId }, true);
             if (IsBannerLayoutSelected)
             {
-                Settings.DefaultMetadataSettings = new Metadata.MetadataDownloaderSettings();
-                Settings.DefaultMetadataSettings.CoverImage.Source = Metadata.MetadataSource.StoreOverIGDB;
+                Settings.DefaultMetadataSettings.CoverImage.Sources = new List<Guid> { Guid.Empty, igdbPluginId };
                 Settings.GridItemWidthRatio = 92;
                 Settings.GridItemHeightRatio = 43;
                 Settings.Fullscreen.HorizontalLayout = false;
@@ -211,8 +213,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                Settings.DefaultMetadataSettings = new Metadata.MetadataDownloaderSettings();
-                Settings.DefaultMetadataSettings.CoverImage.Source = Metadata.MetadataSource.IGDBOverStore;
+                Settings.DefaultMetadataSettings.CoverImage.Sources = new List<Guid> { igdbPluginId, Guid.Empty };
                 Settings.GridItemWidthRatio = 27;
                 Settings.GridItemHeightRatio = 38;
                 Settings.Fullscreen.HorizontalLayout = false;

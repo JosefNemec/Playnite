@@ -71,6 +71,8 @@ namespace SteamLibrary
 
         public bool ImportInstalledGames { get; set; } = true;
 
+        public bool ConnectAccount { get; set; } = false;
+
         public bool ImportUninstalledGames { get; set; } = false;
 
         public BackgroundSource BackgroundSource { get; set; } = BackgroundSource.Image;
@@ -85,7 +87,7 @@ namespace SteamLibrary
                 if (UserId.IsNullOrEmpty())
                 {
                     return AuthStatus.AuthRequired;
-                }                    
+                }
 
                 try
                 {
@@ -181,7 +183,7 @@ namespace SteamLibrary
             if (settings != null)
             {
                 LoadValues(settings);
-            }            
+            }
         }
 
         public void BeginEdit()

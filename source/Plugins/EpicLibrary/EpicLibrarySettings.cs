@@ -27,6 +27,8 @@ namespace EpicLibrary
 
         public bool ImportInstalledGames { get; set; } = EpicLauncher.IsInstalled;
 
+        public bool ConnectAccount { get; set; } = false;
+
         public bool ImportUninstalledGames { get; set; } = false;
 
         #endregion Settings

@@ -17,6 +17,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Shell;
+using Playnite.Scripting;
 
 namespace Playnite
 {
@@ -26,8 +27,8 @@ namespace Playnite
         private IResourceProvider resources = new ResourceProvider();        
         private PlayniteSettings appSettings;
         private GameControllerFactory controllers;
-        private PlayniteApplication application;
 
+        public PlayniteApplication Application;
         public ExtensionFactory Extensions { get; private set; }
         public GameDatabase Database { get; private set; }
         public IDialogsFactory Dialogs { get; private set; }
@@ -52,7 +53,7 @@ namespace Playnite
             this.Database = database;
             this.appSettings = appSettings;
             this.Extensions = extensions;
-            this.application = app;
+            this.Application = app;
             controllers = controllerFactory;
             controllers.Installed += Controllers_Installed;
             controllers.Uninstalled += Controllers_Uninstalled;
@@ -97,9 +98,17 @@ namespace Playnite
 
             try
             {
-                if (game.IsRunning)
+                if (game.IsRunning || game.IsLaunching)
                 {
-                    logger.Warn("Failed to start the game, game is already running.");
+                    logger.Warn("Failed to start the game, game is already running/launching.");
+                    return;
+                }
+
+                if (game.PlayAction == null)
+                {
+                    Dialogs.ShowErrorMessage(
+                        resources.GetString("LOCErrorNoPlayAction"),
+                        resources.GetString("LOCGameError"));
                     return;
                 }
 
@@ -125,6 +134,49 @@ namespace Playnite
                 controllers.RemoveController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
+
+                if (!appSettings.PreScript.IsNullOrWhiteSpace())
+                {
+                    try
+                    {
+                        ExecuteScriptAction(appSettings.ActionsScriptLanguage, appSettings.PreScript, game);
+                    }
+                    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(exc, "Failed to execute global pre-script action.");
+                        logger.Error(appSettings.PreScript);
+                        Dialogs.ShowMessage(
+                            string.Format(resources.GetString("LOCErrorGlobalScriptAction"), exc.Message),
+                            resources.GetString("LOCGameError"),
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                        controllers.RemoveController(game.Id);
+                        UpdateGameState(game.Id, null, null, null, null, false);
+                        return;
+                    }
+                }
+
+                if (!game.PreScript.IsNullOrWhiteSpace())
+                {
+                    try
+                    {
+                        ExecuteScriptAction(game.ActionsScriptLanguage, game.PreScript, game);
+                    }
+                    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(exc, "Failed to execute game's pre-script action.");
+                        logger.Error(game.PreScript);
+                        Dialogs.ShowMessage(
+                            string.Format(resources.GetString("LOCErrorGameScriptAction"), exc.Message),
+                            resources.GetString("LOCGameError"),
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                        controllers.RemoveController(game.Id);
+                        UpdateGameState(game.Id, null, null, null, null, false);
+                        return;
+                    }
+                }
+
                 controller.Play();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -457,8 +509,8 @@ namespace Playnite
                 jumpList.ShowFrequentCategory = false;
                 jumpList.ShowRecentCategory = false;
             }
-            
-            JumpList.SetJumpList(Application.Current, jumpList);
+
+            JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
         }
 
         public void CancelGameMonitoring(Game game)
@@ -513,26 +565,26 @@ namespace Playnite
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
-            if (application.Mode == ApplicationMode.Desktop)
+            if (Application.Mode == ApplicationMode.Desktop)
             {
                 if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
                 {
-                    application.Quit();
+                    Application.Quit();
                 }
                 else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
                 {
-                    application.Minimize();
+                    Application.Minimize();
                 }
             }
             else
             {
                 if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
                 {
-                    application.Quit();
+                    Application.Quit();
                 }
                 else
                 {
-                    application.Minimize();
+                    Application.Minimize();
                 }
             }
         }
@@ -548,16 +600,52 @@ namespace Playnite
             dbGame.Playtime += args.EllapsedTime;
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
-            if (application.Mode == ApplicationMode.Desktop)
+            if (Application.Mode == ApplicationMode.Desktop)
             {
                 if (appSettings.AfterGameClose == AfterGameCloseOptions.Restore)
                 {
-                    application.Restore();
+                    Application.Restore();
                 }
             }
             else
             {
-                application.Restore();
+                Application.Restore();
+            }
+
+            if (!game.PostScript.IsNullOrWhiteSpace())
+            {
+                try
+                {
+                    ExecuteScriptAction(game.ActionsScriptLanguage, game.PostScript, game);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to execute game's post-script action.");
+                    logger.Error(game.PostScript);
+                    Dialogs.ShowMessage(
+                        string.Format(resources.GetString("LOCErrorGameScriptAction"), exc.Message),
+                        resources.GetString("LOCGameError"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+            }
+
+            if (!appSettings.PostScript.IsNullOrWhiteSpace())
+            {
+                try
+                {
+                    ExecuteScriptAction(appSettings.ActionsScriptLanguage, appSettings.PostScript, game);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to execute global post-script action.");
+                    logger.Error(appSettings.PostScript);
+                    Dialogs.ShowMessage(
+                        string.Format(resources.GetString("LOCErrorGlobalScriptAction"), exc.Message),
+                        resources.GetString("LOCGameError"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
             }
         }
 
@@ -596,6 +684,37 @@ namespace Playnite
             dbGame.InstallDirectory = string.Empty;
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
+        }
+
+        internal static void ExecuteScriptAction(ScriptLanguage language, string script, Game game)
+        {
+            logger.Info($"Executing script action in {language} runtime.");
+            IScriptRuntime runtime = null;
+            switch (language)
+            {
+                case ScriptLanguage.PowerShell:
+                    runtime = new Scripting.PowerShell.PowerShellRuntime();
+                    break;
+                case ScriptLanguage.IronPython:
+                    runtime = new Scripting.IronPython.IronPythonRuntime();
+                    break;
+                case ScriptLanguage.Batch:
+                    runtime = new Scripting.Batch.BatchRuntime();
+                    break;
+            }
+
+            using (runtime)
+            {
+                var dir = game.ExpandVariables(game.InstallDirectory, true);
+                if (!dir.IsNullOrEmpty() && Directory.Exists(dir))
+                {
+                    runtime.Execute(script, dir);
+                }
+                else
+                {
+                    runtime.Execute(script);
+                }
+            }
         }
     }
 }

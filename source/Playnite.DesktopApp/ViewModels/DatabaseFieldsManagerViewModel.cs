@@ -170,6 +170,14 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => a?.Count == 1);
         }
 
+        public RelayCommand<IList<object>> SelectPlatformBackgroundCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                SelectPlatformBackground(a.First() as Platform);
+            }, (a) => a?.Count == 1);
+        }
+
         public RelayCommand<IList<object>> RemovePlatformIconCommand
         {
             get => new RelayCommand<IList<object>>((a) =>
@@ -183,6 +191,14 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<IList<object>>((a) =>
             {
                 RemovePlatformCover(a.First() as Platform);
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<IList<object>> RemovePlatformBackgroundCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemovePlatformBackground(a.First() as Platform);
             }, (a) => a?.Count == 1);
         }
 
@@ -473,7 +489,12 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     platform.Cover = addNewFile(platform.Cover, dbPlatform.Id);
                 }
-                
+
+                if (!string.IsNullOrEmpty(platform.Background) && File.Exists(platform.Background))
+                {
+                    platform.Background = addNewFile(platform.Background, dbPlatform.Id);
+                }
+
                 database.Platforms.Update(platform);
             }
 
@@ -492,6 +513,11 @@ namespace Playnite.DesktopApp.ViewModels
                 if (!string.IsNullOrEmpty(addedPlatform.Cover))
                 {
                     addedPlatform.Cover = addNewFile(addedPlatform.Cover, addedPlatform.Id);
+                }
+
+                if (!string.IsNullOrEmpty(addedPlatform.Background))
+                {
+                    addedPlatform.Background = addNewFile(addedPlatform.Background, addedPlatform.Id);
                 }
 
                 database.Platforms.Add(addedPlatform);
@@ -525,7 +551,7 @@ namespace Playnite.DesktopApp.ViewModels
                 item.Name);
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
-                if (collection.Any(a => a.Name.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
+                if (collection.Any(a => a.Name.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase) && a.Id != item.Id))
                 {
                     dialogs.ShowErrorMessage(resources.GetString("LOCItemAlreadyExists"), "");
                 }
@@ -577,6 +603,15 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public void SelectPlatformBackground(Platform platform)
+        {
+            var path = dialogs.SelectIconFile();
+            if (!string.IsNullOrEmpty(path))
+            {
+                platform.Background = path;
+            }
+        }
+
         public void RemovePlatformIcon(Platform platform)
         {
             platform.Icon = null;
@@ -585,6 +620,11 @@ namespace Playnite.DesktopApp.ViewModels
         public void RemovePlatformCover(Platform platform)
         {
             platform.Cover = null;
+        }
+
+        public void RemovePlatformBackground(Platform platform)
+        {
+            platform.Background = null;
         }
     }
 }

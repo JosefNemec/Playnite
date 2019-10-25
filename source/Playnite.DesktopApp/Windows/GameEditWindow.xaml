@@ -10,13 +10,14 @@
         xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"      
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+        xmlns:psdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCGameEditWindowTitle}"
         Height="720" Width="850"
         WindowStartupLocation="CenterOwner"
-        x:Name="mainWindow" Loaded="Window_Loaded"
+        x:Name="mainWindow"
         AutomationProperties.AutomationId="WindowGameEdit">
 
     <controls:WindowBase.Resources>
@@ -380,7 +381,7 @@
                                   ItemsSource="{Binding Source={StaticResource CompletionStatusEnumValues}}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={pcon:CompletionStatusToStringConverter}}"/>
+                                    <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
@@ -545,7 +546,7 @@
                                         Command="{Binding SelectIconCommand}" />
                                     <Button Name="ButtonUseExeIcon" Content="{DynamicResource LOCUseExeIcon}" 
                                         Command="{Binding UseExeIconCommand}"
-                                        Visibility="{Binding Game, Converter={StaticResource NullToVisibilityConverter}}"
+                                        Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Margin="5,0,0,0"/>
                                     <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveIconCommand}" />
@@ -775,6 +776,49 @@
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
+
+            <TabItem Header="{DynamicResource LOCScripts}">
+                <GridEx Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <CheckBox Content="{DynamicResource LOCSaveChanges}" Grid.Row="0" Margin="0,0,0,5"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseScriptChanges}" />
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock Text="{DynamicResource LOCScriptRuntime}" VerticalAlignment="Center" />
+                        <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
+                                  SelectedValue="{Binding EditingGame.ActionsScriptLanguage}">
+                            <ComboBox.ItemsSource>
+                                <x:Array Type="{x:Type sys:Enum}">
+                                    <psdk:ScriptLanguage>Batch</psdk:ScriptLanguage>
+                                    <psdk:ScriptLanguage>PowerShell</psdk:ScriptLanguage>
+                                    <psdk:ScriptLanguage>IronPython</psdk:ScriptLanguage>
+                                </x:Array>
+                            </ComboBox.ItemsSource>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <TextBlock Text="{DynamicResource LOCPreScriptDescription}" Grid.Row="2" Margin="0,5,0,5" />
+                    <TextBox AcceptsReturn="True" Grid.Row="3"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             Text="{Binding EditingGame.PreScript}" />
+
+                    <TextBlock Text="{DynamicResource LOCPostScriptDescription}" Grid.Row="4" Margin="0,5,0,5" />
+                    <TextBox AcceptsReturn="True" Grid.Row="5"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             Text="{Binding EditingGame.PostScript}"/>
+                </GridEx>
+            </TabItem>
         </TabControl>
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
@@ -784,11 +828,13 @@
                         Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                         pbeh:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
-                        <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
-                            <MenuItem Header="IGDB" Command="{Binding DownloadIGDBMetadataCommand}"/>
-                            <MenuItem Header="Wiki" Command="{Binding DownloadWikiMetadataCommand}"/>
-                            <MenuItem Header="{DynamicResource LOCMetaSourceStore}" Command="{Binding DownloadStoreCommand}"
-                                      Visibility="{Binding IsOfficialMetadataAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}"
+                                     ItemsSource="{Binding MetadataDownloadOptions}">
+                            <ContextMenu.Resources>
+                                <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                    <Setter Property="Command" Value="{Binding DownloadCommand}" />
+                                </Style>
+                            </ContextMenu.Resources>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>

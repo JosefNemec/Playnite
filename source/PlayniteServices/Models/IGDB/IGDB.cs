@@ -1,5 +1,4 @@
-﻿using LiteDB;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,14 +81,6 @@ namespace PlayniteServices.Models.IGDB
         OperatingSystem = 4,
         PortableConsole = 5,
         Computer = 6,
-    }
-
-    public class SteamIdGame
-    {
-        [BsonId(false)]
-        public ulong steamId { get; set; }
-        public ulong igdbId { get; set; }
-        public DateTime creation_time { get; set; }
     }
 
     public class Website : IgdbItem

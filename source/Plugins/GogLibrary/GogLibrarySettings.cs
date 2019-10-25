@@ -24,11 +24,9 @@ namespace GogLibrary
 
         public bool ImportInstalledGames { get; set; } = true;
 
+        public bool ConnectAccount { get; set; } = false;
+
         public bool ImportUninstalledGames { get; set; } = false;
-
-        public string AccountName { get; set; }
-
-        public bool UsePublicAccount { get; set; } = false;
 
         public bool StartGamesUsingGalaxy { get; set; } = false;
 
@@ -91,13 +89,6 @@ namespace GogLibrary
         {
             var allValid = true;
             errors = new List<string>();
-
-            if (ImportUninstalledGames && UsePublicAccount && string.IsNullOrEmpty(AccountName))
-            {
-                errors.Add(api.Resources.GetString("LOCSettingsInvalidAccountName"));
-                allValid = false;
-            }
-
             return allValid;
         }
 

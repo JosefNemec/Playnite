@@ -19,8 +19,8 @@
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         </Style>
     </UserControl.Resources>
-    
-    <StackPanel>
+
+    <StackPanel Margin="20">
         <StackPanel.Resources>
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
                                 x:Key="AfterLaunchOptionsEnumValues">

@@ -103,5 +103,34 @@ namespace Playnite.SDK.Models
         {
             return Name ?? string.Empty;
         }
+
+        /// <summary>
+        /// Copies differential properties to target object intance.
+        /// </summary>
+        /// <param name="target">Target object instance to receive new data.</param>
+        public virtual void CopyDiffTo(object target)
+        {
+            if (target == null)
+            {
+                throw new ArgumentNullException("Cannot copy data to a null object.");
+            }
+
+            if (ReferenceEquals(this, target))
+            {
+                throw new ReferenceException("Cannot copy data to itself.");
+            }
+
+            if (target is DatabaseObject dbo)
+            {
+                if (!string.Equals(Name, dbo.Name, StringComparison.Ordinal))
+                {
+                    dbo.Name = Name;
+                }
+            }
+            else
+            {
+                throw new TypeMismatchException($"Target object has to be of type {GetType().Name}");
+            }
+        }
     }
 }

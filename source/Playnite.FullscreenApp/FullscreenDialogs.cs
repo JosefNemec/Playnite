@@ -119,5 +119,15 @@ namespace Playnite.FullscreenApp
         {
             return ShowMessage(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

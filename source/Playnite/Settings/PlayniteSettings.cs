@@ -19,6 +19,8 @@ using System.Windows;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using Playnite.Metadata;
+using Playnite.SDK;
+
 namespace Playnite
 {
     public enum AfterLaunchOptions
@@ -51,7 +53,9 @@ namespace Playnite
         [Description("LOCPlatformTitle")]
         Platform,
         [Description("Playnite")]
-        General
+        General,
+        [Description("LOCNone")]
+        None
     }
 
     public enum DefaultCoverSourceOptions
@@ -59,7 +63,41 @@ namespace Playnite
         [Description("LOCPlatformTitle")]
         Platform,
         [Description("Playnite")]
-        General
+        General,
+        [Description("LOCNone")]
+        None
+    }
+
+    public enum DefaultBackgroundSourceOptions
+    {
+        [Description("LOCGameProviderTitle")]
+        Library,
+        [Description("LOCPlatformTitle")]
+        Platform,
+        [Description("LOCGameCoverTitle")]
+        Cover,
+        [Description("LOCNone")]
+        None
+    }
+
+    public enum TextRenderingModeOptions
+    {
+        [Description("LOCSettingsTextRenderingModeOptionAuto")]
+        Auto = 0,
+        [Description("LOCSettingsTextRenderingModeOptionAliased")]
+        Aliased = 1,
+        [Description("LOCSettingsTextRenderingModeOptionGrayscale")]
+        Grayscale = 2,
+        [Description("LOCSettingsTextRenderingModeOptionClearType")]
+        ClearType = 3
+    }
+
+    public enum TextFormattingModeOptions
+    {
+        [Description("LOCSettingsTextFormattingModeOptionIdeal")]
+        Ideal = 0,
+        [Description("LOCSettingsTextFormattingModeOptionDisplay")]
+        Display = 1
     }
 
     public class PlayniteSettings : ObservableObject
@@ -69,7 +107,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 2;
+        } = 3;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -112,6 +150,21 @@ namespace Playnite
             set
             {
                 defaultCoverSource = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DefaultBackgroundSourceOptions defaultBackgroundSource = DefaultBackgroundSourceOptions.None;
+        public DefaultBackgroundSourceOptions DefaultBackgroundSource
+        {
+            get
+            {
+                return defaultBackgroundSource;
+            }
+
+            set
+            {
+                defaultBackgroundSource = value;
                 OnPropertyChanged();
             }
         }
@@ -483,6 +536,7 @@ namespace Playnite
         }
 
         private bool disableHwAcceleration = false;
+        [RequiresRestart]
         public bool DisableHwAcceleration
         {
             get
@@ -498,6 +552,7 @@ namespace Playnite
         }
 
         private bool disableDpiAwareness = false;
+        [RequiresRestart]
         public bool DisableDpiAwareness
         {
             get
@@ -513,6 +568,7 @@ namespace Playnite
         }
 
         private bool asyncImageLoading = false;
+        [RequiresRestart]
         public bool AsyncImageLoading
         {
             get
@@ -573,6 +629,21 @@ namespace Playnite
             }
         }
 
+        private bool highQualityBackgroundBlur = true;
+        public bool HighQualityBackgroundBlur
+        {
+            get
+            {
+                return highQualityBackgroundBlur;
+            }
+
+            set
+            {
+                highQualityBackgroundBlur = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool blurWindowBackgroundImage = true;
         public bool BlurWindowBackgroundImage
         {
@@ -588,7 +659,7 @@ namespace Playnite
             }
         }
 
-        private double backgroundImageBlurAmount = 17;
+        private double backgroundImageBlurAmount = 60;
         public double BackgroundImageBlurAmount
         {
             get
@@ -724,6 +795,7 @@ namespace Playnite
         }
 
         private string databasePath;
+        [RequiresRestart]
         public string DatabasePath
         {
             get
@@ -875,6 +947,7 @@ namespace Playnite
         }
 
         private bool enableTray = true;
+        [RequiresRestart]
         public bool EnableTray
         {
             get
@@ -890,6 +963,7 @@ namespace Playnite
         }
 
         private string language = "english";
+        [RequiresRestart]
         public string Language
         {
             get
@@ -950,6 +1024,7 @@ namespace Playnite
         }
 
         private string theme = "Default";
+        [RequiresRestart]
         public string Theme
         {
             get
@@ -965,6 +1040,7 @@ namespace Playnite
         }
 
         private TrayIconType trayIcon = TrayIconType.Default;
+        [RequiresRestart]
         public TrayIconType TrayIcon
         {
             get
@@ -985,6 +1061,7 @@ namespace Playnite
         }
 
         private List<string> disabledPlugins = new List<string>();
+        [RequiresRestart]
         public List<string> DisabledPlugins
         {
             get
@@ -1060,6 +1137,7 @@ namespace Playnite
         }
 
         private bool enableControolerInDesktop = false;
+        [RequiresRestart]
         public bool EnableControllerInDesktop
         {
             get
@@ -1120,6 +1198,7 @@ namespace Playnite
         }
 
         private string fontFamilyName = "Trebuchet MS";
+        [RequiresRestart]
         public string FontFamilyName
         {
             get
@@ -1135,6 +1214,7 @@ namespace Playnite
         }
 
         private double fontSize = 14;
+        [RequiresRestart]
         public double FontSize
         {
             get
@@ -1150,6 +1230,7 @@ namespace Playnite
         }
 
         private double fontSizeSmall = 12;
+        [RequiresRestart]
         public double FontSizeSmall
         {
             get
@@ -1165,6 +1246,7 @@ namespace Playnite
         }
 
         private double fontSizeLarge = 15;
+        [RequiresRestart]
         public double FontSizeLarge
         {
             get
@@ -1180,6 +1262,7 @@ namespace Playnite
         }
 
         private double fontSizeLarger = 20;
+        [RequiresRestart]
         public double FontSizeLarger
         {
             get
@@ -1195,6 +1278,7 @@ namespace Playnite
         }
 
         private double fontSizeLargest = 29;
+        [RequiresRestart]
         public double FontSizeLargest
         {
             get
@@ -1224,6 +1308,37 @@ namespace Playnite
             }
         }
 
+        private TextFormattingModeOptions textFormattingMode = TextFormattingModeOptions.Ideal;
+        [RequiresRestart]
+        public TextFormattingModeOptions TextFormattingMode
+        {
+            get
+            {
+                return textFormattingMode;
+            }
+
+            set
+            {
+                textFormattingMode = value;
+                OnPropertyChanged();
+            }
+        } 
+
+        private TextRenderingModeOptions textRenderingMode = TextRenderingModeOptions.Auto;
+        [RequiresRestart]
+        public TextRenderingModeOptions TextRenderingMode
+        {
+            get
+            {
+                return textRenderingMode;
+            }
+
+            set
+            {
+                textRenderingMode = value;
+                OnPropertyChanged();
+            }
+        }
 
         private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
         public MetadataDownloaderSettings DefaultMetadataSettings
@@ -1236,6 +1351,39 @@ namespace Playnite
             set
             {
                 defaultMetadataSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.Batch;
+        public ScriptLanguage ActionsScriptLanguage
+        {
+            get => actionsScriptLanguage;
+            set
+            {
+                actionsScriptLanguage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string preScript;
+        public string PreScript
+        {
+            get => preScript;
+            set
+            {
+                preScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string postScript;
+        public string PostScript
+        {
+            get => postScript;
+            set
+            {
+                postScript = value;
                 OnPropertyChanged();
             }
         }
@@ -1293,6 +1441,7 @@ namespace Playnite
             var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);
             if (settings == null)
             {
+                logger.Info("No existing settings found, creating default ones.");
                 settings = new PlayniteSettings();
             }
             else
@@ -1302,17 +1451,25 @@ namespace Playnite
                     settings.BackgroundImageBlurAmount = 17;
                     settings.Version = 2;
                 }
+
+                if (settings.Version == 2)
+                {
+                    settings.BackgroundImageBlurAmount = 60;
+                    settings.Version = 3;
+                }
             }
 
             settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
             if (settings.WindowPositions == null)
             {
+                logger.Info("No existing WindowPositions settings found, creating default ones.");
                 settings.WindowPositions = new WindowPositions();
             }
 
             settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath);
             if (settings.Fullscreen == null)
             {
+                logger.Info("No existing fullscreen settings found, creating default ones.");
                 settings.Fullscreen = new FullscreenSettings();
             }
             

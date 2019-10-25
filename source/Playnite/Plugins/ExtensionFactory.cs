@@ -42,9 +42,14 @@ namespace Playnite.Plugins
             get;
         } = new Dictionary<Guid, LoadedPlugin>();
 
-        public IEnumerable<LibraryPlugin> LibraryPlugins
+        public List<LibraryPlugin> LibraryPlugins
         {
-            get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.GameLibrary).Select(a => (LibraryPlugin)a.Value.Plugin);
+            get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.GameLibrary).Select(a => (LibraryPlugin)a.Value.Plugin).ToList();
+        }
+
+        public List<MetadataPlugin> MetadataPlugins
+        {
+            get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.MetadataProvider).Select(a => (MetadataPlugin)a.Value.Plugin).ToList();
         }
 
         public  List<PlayniteScript> Scripts

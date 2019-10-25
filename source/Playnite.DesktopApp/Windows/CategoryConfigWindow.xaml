@@ -6,7 +6,6 @@
         xmlns:p="clr-namespace:Playnite;assembly=Playnite"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         mc:Ignorable="d"
-        Loaded="WindowCategories_Loaded"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCCategoryWindowTitle}" Height="320" Width="340"

@@ -16,7 +16,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="-15">
+    <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="250" />

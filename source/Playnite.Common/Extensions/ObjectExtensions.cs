@@ -48,5 +48,18 @@ namespace System
             Type resultType = genericTypeDefinition.MakeGenericType(genericType);
             return Activator.CreateInstance(resultType, parameters);
         }
+
+        public static bool HasPropertyAttribute<TAttribute>(this Type type, string propertyName) where TAttribute : Attribute
+        {
+            var prop = type.GetProperty(propertyName);
+            if (prop == null)
+            {
+                return false;
+            }
+            else
+            {
+                return prop.GetCustomAttribute(typeof(TAttribute)) != null;
+            }
+        }
     }
 }

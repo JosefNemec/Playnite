@@ -26,6 +26,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonShutdownSystem", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonSleepSystem", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonHibernateSystem", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ButtonPickRandomGame", Type = typeof(ButtonBase))]
     public class MainMenu : Control
     {
         private FullscreenAppViewModel mainModel;
@@ -39,6 +40,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private ButtonBase ButtonShutdownSystem;
         private ButtonBase ButtonSleepSystem;
         private ButtonBase ButtonHibernateSystem;
+        private ButtonBase ButtonPickRandomGame;
 
         static MainMenu()
         {
@@ -98,6 +100,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                 if (ButtonSwitchToDesktop != null)
                 {
                     ButtonSwitchToDesktop.Command = mainModel.SwitchToDesktopCommand;
+                }
+
+                ButtonPickRandomGame = Template.FindName("PART_ButtonPickRandomGame", this) as ButtonBase;
+                if (ButtonPickRandomGame != null)
+                {
+                    ButtonPickRandomGame.Command = mainModel.SelectRandomGameCommand;
                 }
 
                 ButtonPatreon = Template.FindName("PART_ButtonPatreon", this) as ButtonBase;

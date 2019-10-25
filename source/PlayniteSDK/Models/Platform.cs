@@ -40,6 +40,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private string background;
+        /// <summary>
+        /// Gets or sets default game background image.
+        /// </summary>
+        public string Background
+        {
+            get => background;
+            set
+            {
+                background = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Creates new instance of Platform.
         /// </summary>
@@ -66,5 +80,33 @@ namespace Playnite.SDK.Models
         /// Gets empty platform.
         /// </summary>
         public static readonly Platform Empty = new Platform { Id = Guid.Empty, Name = string.Empty };
+
+        /// <inheritdoc/>
+        public override void CopyDiffTo(object target)
+        {
+            base.CopyDiffTo(target);
+
+            if (target is Platform tro)
+            {
+                if (!string.Equals(Icon, tro.Icon, StringComparison.Ordinal))
+                {
+                    tro.Icon = Icon;
+                }
+
+                if (!string.Equals(Cover, tro.Cover, StringComparison.Ordinal))
+                {
+                    tro.Cover = Cover;
+                }
+
+                if (!string.Equals(Background, tro.Background, StringComparison.Ordinal))
+                {
+                    tro.Background = Background;
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"Target object has to be of type {GetType().Name}");
+            }
+        }
     }
 }

@@ -111,10 +111,13 @@ namespace Playnite
         public static bool ApplyTheme(Application app, ThemeDescription theme, ApplicationMode mode)
         {
             var apiVesion = mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
-            if ((new System.Version(theme.ThemeApiVersion).Major != apiVesion.Major))
+            if (!theme.ThemeApiVersion.IsNullOrEmpty())
             {
-                logger.Error($"Failed to apply {theme.Name} theme, unsupported API version {theme.ThemeApiVersion}.");
-                return false;
+                if ((new System.Version(theme.ThemeApiVersion).Major != apiVesion.Major))
+                {
+                    logger.Error($"Failed to apply {theme.Name} theme, unsupported API version {theme.ThemeApiVersion}.");
+                    return false;
+                }
             }
 
             var allLoaded = true;

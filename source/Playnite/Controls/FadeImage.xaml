@@ -4,8 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             Name="ControlRoot"
+             Name="ControlRoot"             
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.CacheMode>
+        <BitmapCache EnableClearType="False" 
+                     RenderAtScale="1" 
+                     SnapsToDevicePixels="False" />
+    </UserControl.CacheMode>
+
     <UserControl.Resources>
         <Storyboard x:Key="Image1FadeIn">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
@@ -35,7 +42,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Name="ImageHolder">        
         <Image x:Name="Image1"
                HorizontalAlignment="{Binding ElementName=ControlRoot, Path=HorizontalAlignment}"
                VerticalAlignment="{Binding ElementName=ControlRoot, Path=VerticalAlignment}"
@@ -46,7 +53,7 @@
                HorizontalAlignment="{Binding ElementName=ControlRoot, Path=HorizontalAlignment}"
                VerticalAlignment="{Binding ElementName=ControlRoot, Path=VerticalAlignment}"
                RenderOptions.BitmapScalingMode="Fant" Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=UserControl}}"
-               OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}">          
+               OpacityMask="{Binding ImageOpacityMask, ElementName=ControlRoot}">
         </Image>
         <Border x:Name="BorderDarken" Background="{Binding ImageDarkeningBrush, ElementName=ControlRoot}" />
     </Grid>

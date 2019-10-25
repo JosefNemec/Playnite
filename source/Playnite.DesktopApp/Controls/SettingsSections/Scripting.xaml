@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.Scripting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:psdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"             
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    </UserControl.Resources>
+
+    <DockPanel Margin="10">
+        <GridEx DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <TextBlock Text="{DynamicResource LOCScriptRuntime}" VerticalAlignment="Center" />
+                <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
+                                  SelectedValue="{Binding Settings.ActionsScriptLanguage}">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type sys:Enum}">
+                            <psdk:ScriptLanguage>Batch</psdk:ScriptLanguage>
+                            <psdk:ScriptLanguage>PowerShell</psdk:ScriptLanguage>
+                            <psdk:ScriptLanguage>IronPython</psdk:ScriptLanguage>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+            </StackPanel>
+
+            <TextBlock Text="{DynamicResource LOCPreScriptDescription}" Grid.Row="1" Margin="0,5,0,5" />
+            <TextBox AcceptsReturn="True" Grid.Row="2"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             Text="{Binding Settings.PreScript}" />
+
+            <TextBlock Text="{DynamicResource LOCPostScriptDescription}" Grid.Row="3" Margin="0,5,0,5" />
+            <TextBox AcceptsReturn="True" Grid.Row="4"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             Text="{Binding Settings.PostScript}"/>
+        </GridEx>
+    </DockPanel>
+</UserControl>

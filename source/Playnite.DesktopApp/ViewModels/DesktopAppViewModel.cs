@@ -343,11 +343,12 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<IEnumerable<Game>> SetAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }        
         public RelayCommand<Game> AssignGameCategoryCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> AssignGamesCategoryCommand { get; private set; }
         public RelayCommand<Game> RemoveGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
+        public RelayCommand<object> SelectRandomGameCommand { get; private set; }
         #endregion
 
         public DesktopAppViewModel()
@@ -781,6 +782,11 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 GamesEditor.SetHideGames(a.ToList(), false);
             });
+
+            SelectRandomGameCommand = new RelayCommand<object>((a) =>
+            {
+                PlayRandomGame();
+            });
         }
 
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
@@ -961,7 +967,7 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressValue = 0;
                         ProgressTotal = addedGames.Count;
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
+                        using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
                             downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
                                 (g, i, t) =>
@@ -1023,7 +1029,7 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressValue = 0;
                         ProgressTotal = addedGames.Count;
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
+                        using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
                             downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
                                 (g, i, t) =>
@@ -1065,7 +1071,7 @@ namespace Playnite.DesktopApp.ViewModels
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.GetString("LOCProgressMetadata");
 
-                using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
+                using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                 {
                     GlobalTaskHandler.ProgressTask =
                         downloader.DownloadMetadataAsync(games, settings,
@@ -1139,14 +1145,14 @@ namespace Playnite.DesktopApp.ViewModels
             Database.Games.Add(newGame);
             if (GamesEditor.EditGame(newGame) == true)
             {
-                var viewEntry = GamesView.Items.First(a => a.Game.GameId == newGame.GameId);
+                var viewEntry = GamesView.Items.First(a => a.Game.Id == newGame.Id);
                 SelectedGame = viewEntry;
             }
             else
             {
                 Database.Games.Remove(newGame);
             }
-        }
+}
 
         public async void ImportWindowsStoreGames(InstalledGamesViewModel model)
         {
@@ -1405,6 +1411,24 @@ namespace Playnite.DesktopApp.ViewModels
             };
 
             ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, cmdline.ToString());
+        }
+
+        public void PlayRandomGame()
+        {
+            var model = new RandomGameSelectViewModel(
+                Database,
+                GamesView,
+                new RandomGameSelectWindowFactory(),
+                Resources);
+            if (model.OpenView() == true && model.SelectedGame != null)
+            {
+                var selection = GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
+                if (selection != null)
+                {
+                    SelectedGame = selection;
+                    GamesEditor.PlayGame(selection.Game);
+                }
+            }
         }
 
         public void OpenView()

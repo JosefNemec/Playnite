@@ -268,6 +268,7 @@ namespace Playnite.Database
         public virtual void Update(TItem itemToUpdate)
         {            
             TItem oldData;
+            TItem loadedItem;
             lock (collectionLock)
             {
                 if (isPersistent)
@@ -289,14 +290,14 @@ namespace Playnite.Database
                     SaveItemData(itemToUpdate);
                 }
 
-                var loadedItem = Get(itemToUpdate.Id);
+                loadedItem = Get(itemToUpdate.Id);
                 if (!ReferenceEquals(loadedItem, itemToUpdate))
                 {
-                    itemToUpdate.CopyProperties(loadedItem, true, null, true);
+                    itemToUpdate.CopyDiffTo(loadedItem);
                 }
             }
 
-            OnItemUpdated(new List<ItemUpdateEvent<TItem>>() { new ItemUpdateEvent<TItem>(oldData, itemToUpdate) });
+            OnItemUpdated(new List<ItemUpdateEvent<TItem>>() { new ItemUpdateEvent<TItem>(oldData, loadedItem) });
         }
 
         public virtual void Update(IEnumerable<TItem> itemsToUpdate)
@@ -329,7 +330,7 @@ namespace Playnite.Database
                     var loadedItem = Get(item.Id);
                     if (!ReferenceEquals(loadedItem, item))
                     {
-                        item.CopyProperties(loadedItem, true, null, true);
+                        item.CopyDiffTo(loadedItem);
                     }
 
                     updates.Add(new ItemUpdateEvent<TItem>(oldData, loadedItem));
