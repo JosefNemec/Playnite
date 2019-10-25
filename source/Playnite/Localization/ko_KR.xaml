@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">언어</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">종료</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">필터가 활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">필터가 비활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters">추가 필터</sys:String>
     <sys:String x:Key="LOCFilters">필터</sys:String>
     <sys:String x:Key="LOCFilter">필터</sys:String>
@@ -70,9 +70,12 @@
     <sys:String x:Key="LOCGameShortcutError">바로가기를 생성하지 못했습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">게임을 설치할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">게임을 삭제할 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">이 게임을 담당하는 라이브러리 플러그인이 설치되거나 활성화되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">공식 메타데이터 다운로드를 사용할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">선택한 게임이 없습니다.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
 
 
     <!--General-->
@@ -83,6 +86,7 @@
     <sys:String x:Key="LOCAddTitle">추가</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">기본 아이콘</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">기본 커버 이미지</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCFinishLabel">완료</sys:String>
     <sys:String x:Key="LOCNextLabel">다음</sys:String>
     <sys:String x:Key="LOCBackLabel">이전</sys:String>
@@ -125,6 +129,7 @@
     <sys:String x:Key="LOCInstallationLabel">설치</sys:String>
     <sys:String x:Key="LOCActionsLabel">액션</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">다운로드 중…</sys:String>
+    <sys:String x:Key="LOCLoadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">유형</sys:String>
     <sys:String x:Key="LOCProfileLabel">프로필</sys:String>
     <sys:String x:Key="LOCProfilesLabel">프로필</sys:String>
@@ -186,7 +191,7 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">실행 액션이 손실되었거나 실행 액션이 URL로 설정된 경우 아이콘을 불러올 수 없습니다.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">메타데이터가 손실된 게임에 한해 다운로드</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">이 옵션을 활성화할 경우 이미 다운로드 받은 정보는 다운로드하지 않습니다.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">게임 선택</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">새 메타데이터로 업데이트할 게임을 선택하세요:</sys:String>
@@ -250,6 +255,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuShutdownSystem">시스템 종료</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">시스템 정지</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">시스템 최대 절전</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">상세보기에 표시할 게임 정보</sys:String>
@@ -258,6 +264,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">테두리 두께</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">게임 아이콘 없음</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">게임 이미지 없음</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">상세보기 세로 간격</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">바둑판식 방식에서 상세정보 위치</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">상세보기에서 게임 목록 위치</sys:String>
@@ -285,6 +292,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsMetadataLabel">메타데이터</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">라이브러리 변경 사항을 자동으로 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">설치된 게임 가져오기</sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">설치되지 않은 게임 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">모든 게임 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">모든 게임 가져오기 (공개된 계정이나 API 키가 필요합니다)</sys:String>
@@ -381,6 +389,15 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenLayout">레이아웃</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">수평 스크롤</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">하위 섹션 중 하나 선택</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
@@ -461,6 +478,9 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCAddPlatformTitle">플랫폼 추가</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">아이콘 선택</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">커버 선택</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
+    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">파일 선택</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">URL 선택</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">에뮬레이터 추가</sys:String>
@@ -606,20 +626,25 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCChange">변경</sys:String>
     <sys:String x:Key="LOCAdvanced">고급 설정</sys:String>
     <sys:String x:Key="LOCNever">안함</sys:String>
-    <sys:String x:Key="LOCNotPlayed">플레이 하지 않음</sys:String>
-    <sys:String x:Key="LOCPlayed">플레이함</sys:String>
-    <sys:String x:Key="LOCBeaten">끝냄</sys:String>
-    <sys:String x:Key="LOCCompleted">완료함</sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
     <sys:String x:Key="LOCCompletionStatus">완료 상황</sys:String>
     <sys:String x:Key="LOCUserScore">유저 점수</sys:String>
     <sys:String x:Key="LOCCriticScore">크리틱 점수</sys:String>
     <sys:String x:Key="LOCCommunityScore">커뮤니티 점수</sys:String>
     <sys:String x:Key="LOCScripts">스크립트</sys:String>
     <sys:String x:Key="LOCPlugins">플러그인</sys:String>
+    <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions">확장</sys:String>
     <sys:String x:Key="LOCReloadScripts">스크립트를 다시 로드</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">모든 스크립트 다시 로드 성공.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">게임을 찾지 못했습니다</sys:String>
+    <sys:String x:Key="LOCNoGamesFound"></sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">데스크탑 모드로 나가기</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite 나가기</sys:String>
     <sys:String x:Key="LOCLibraries">라이브러리</sys:String>
@@ -640,6 +665,10 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCFontLarger">더 크게</sys:String>
     <sys:String x:Key="LOCFontLargest">가장 크게</sys:String>
     <sys:String x:Key="LOCDefault">기본</sys:String>
+    <sys:String x:Key="LOCSelect"></sys:String>
+    <sys:String x:Key="LOCFirst"></sys:String>
+    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCUserSelect"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">에뮬레이터 실행 변수</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">추가 에뮬레이터 변수</sys:String>
@@ -663,6 +692,9 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">선택된 테마 적용</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">파일 변화 감시</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">감시 파일이 변경되었을 경우 자동으로 테마 적용</sys:String>
+    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">기본값으로 저장</sys:String>
@@ -727,7 +759,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCEnterName">이름 입력</sys:String>
     <sys:String x:Key="LOCEnterNewName">새로운 이름 입력</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour">1시간 미만</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1시간에서 10시간</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10시간에서 100시간</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100시간에서 500시간</sys:String>
@@ -784,5 +816,11 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCGameListFiltered">필터 적용됨.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">검색 결과:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">같은 이름이 이미 사용중입니다.</sys:String>
-
+    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    
+    <!--IGDB-->
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
 </ResourceDictionary>
