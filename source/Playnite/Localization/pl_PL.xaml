@@ -76,7 +76,7 @@ Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od us
     <sys:String x:Key="LOCErrorNoGameSelected">Nie wybrano gry.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktywuj</sys:String>
@@ -277,8 +277,13 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderowanie okładki</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Współczynnik proporcji</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Tryb rozciągania</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Baner Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Pudełko DVD</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Baner Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Wymaga restartu aplikacji, żeby zastosować zmiany</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ustawienia</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Ogólne</sys:String>
