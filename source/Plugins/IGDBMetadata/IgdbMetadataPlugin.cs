@@ -218,32 +218,39 @@ namespace IGDBMetadata
             if (possibleBackgrounds.HasItems())
             {
                 PlayniteServices.Models.IGDB.GameImage selected = null;
-                if (Settings.ImageSelectionPriority == MultiImagePriority.First)
+                if (possibleBackgrounds.Count == 1)
                 {
                     selected = possibleBackgrounds[0];
                 }
-                else if (Settings.ImageSelectionPriority == MultiImagePriority.Random ||
-                    (Settings.ImageSelectionPriority == MultiImagePriority.Select && PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Fullscreen))
+                else
                 {
-                    var index = GlobalRandom.Next(0, possibleBackgrounds.Count - 1);
-                    selected = possibleBackgrounds[index];
-                }
-                else if (Settings.ImageSelectionPriority == MultiImagePriority.Select && PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
-                {
-                    var selection = new List<ImageFileOption>();
-                    foreach (var artwork in possibleBackgrounds)
+                    if (Settings.ImageSelectionPriority == MultiImagePriority.First)
                     {
-                        selection.Add(new IgdbImageOption
-                        {
-                            Path = GetImageUrl(artwork, ImageSizes.screenshot_med),
-                            Image = artwork
-                        });
+                        selected = possibleBackgrounds[0];
                     }
+                    else if (Settings.ImageSelectionPriority == MultiImagePriority.Random ||
+                        (Settings.ImageSelectionPriority == MultiImagePriority.Select && PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Fullscreen))
+                    {
+                        var index = GlobalRandom.Next(0, possibleBackgrounds.Count - 1);
+                        selected = possibleBackgrounds[index];
+                    }
+                    else if (Settings.ImageSelectionPriority == MultiImagePriority.Select && PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
+                    {
+                        var selection = new List<ImageFileOption>();
+                        foreach (var artwork in possibleBackgrounds)
+                        {
+                            selection.Add(new IgdbImageOption
+                            {
+                                Path = GetImageUrl(artwork, ImageSizes.screenshot_med),
+                                Image = artwork
+                            });
+                        }
 
-                    var sel = PlayniteApi.Dialogs.ChooseImageFile(
-                        selection,
-                        string.Format(PlayniteApi.Resources.GetString("LOCIgdbSelectBackgroundTitle"), dbGame.name)) as IgdbImageOption;
-                    selected = sel?.Image;
+                        var sel = PlayniteApi.Dialogs.ChooseImageFile(
+                            selection,
+                            string.Format(PlayniteApi.Resources.GetString("LOCIgdbSelectBackgroundTitle"), dbGame.name)) as IgdbImageOption;
+                        selected = sel?.Image;
+                    }
                 }
 
                 if (selected != null)
