@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Jazyk</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Ukončit</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtr aktivován</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtr Deaktivován</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Další filtry</sys:String>
     <sys:String x:Key="LOCFilters">Filtry</sys:String>
     <sys:String x:Key="LOCFilter">Filtr</sys:String>
@@ -76,7 +76,7 @@ Automaticky importované hry se mohou po dalším importování znovu objevit v 
     <sys:String x:Key="LOCErrorNoGameSelected">Není vybrána žádná hra.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Povoleno</sys:String>
@@ -277,8 +277,13 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Vykreslování obrázků obálek</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Cílový poměr stran</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Způsob roztáhnutí</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam banner</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD box</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam banner</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Toto nastavení se projeví až po restartu</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Nastavení</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Obecné</sys:String>
