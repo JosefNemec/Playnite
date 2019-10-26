@@ -70,7 +70,7 @@ Spil som er importeret til Playnite automatisk, kan komme frem igen efter næste
     <sys:String x:Key="LOCErrorNoGameSelected">Intet spil valgt.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 eller nyere er ikke installeret.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktivér</sys:String>
