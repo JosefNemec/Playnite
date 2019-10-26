@@ -70,13 +70,17 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCGameShortcutError">Falha ao criar o atalho: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Não foi possível instalar o jogo: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Não foi possível desinstalar o jogo: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Ação de executar não configurada.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">A extensão da biblioteca responsável por este jogo não está instalado ou habilitado.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">O baixador de metadados oficial não está disponível.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nenhum jogo foi selecionado.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">A execução do script da ação do jogo falhou:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">A execução do script da ação global falhou:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 ou mais recente não está instalado.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Habilitado</sys:String>
@@ -264,7 +268,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largura das bordas no esquema de grade</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Fonte do ícone do jogo ausente</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte da capa do jogo ausente</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Fonte do fundo do jogo ausente</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espaçamento vertical nos detalhes do jogo</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posição dos detalhes no esquema de grade</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posição da lista de jogos no esquema de detalhes</sys:String>
@@ -278,12 +282,12 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Proporção correta</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Modo de ampliação</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Caixa do DVD</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner do Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Interface nova do Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requer reinicialização para aplicar</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Configurações</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Geral</sys:String>
@@ -696,7 +700,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCThemeTestApplySkin">Aplicar o tema selecionado</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Verificar alterações em arquivos</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Aplicar o tema automaticamente quando algum arquivo for alterado</sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Tempo de execução do script</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Executar antes de iniciar o jogo</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Executar depois de fechar o jogo</sys:String>
 
