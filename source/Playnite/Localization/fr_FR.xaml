@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Quitter</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Filtre Actif</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filtre Désactivé</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Des filtres sont activés (cliquez pour basculer le panneau filtre)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Les filtres sont désactivés (cliquez pour basculer le panneau filtre)</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Autres filtres</sys:String>
     <sys:String x:Key="LOCFilters">Filtres</sys:String>
     <sys:String x:Key="LOCFilter">Filtre</sys:String>
@@ -70,7 +70,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCGameShortcutError">Impossible de créer un raccourci : {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Erreur : Impossible d'installer le jeu : {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Impossible de désinstaller le jeu : {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction">Action de jeu non configuré.</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Action de jeu non configurée.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Le client en charge de ce jeu n'est pas installé ou activé.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Téléchargement des métadonnées officielles non disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Aucun jeu sélectionné.</sys:String>
@@ -129,7 +129,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCInstallationLabel">Installation</sys:String>
     <sys:String x:Key="LOCActionsLabel">Actions</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Téléchargement...</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Chargement…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Type</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profils</sys:String>
@@ -190,7 +190,7 @@ Résultats dans : -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Impossible d'obtenir l'icône si une action de lancement est manquante ou définie sur une URL</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Télécharger les métadonnées uniquement lorsqu'elles sont manquantes</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Cette option ne téléchargera des métadonnées que pour les champs vides.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Sélection de jeux</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Veuillez sélectionner les jeux qui doivent être mis à jour avec les nouvelles métadonnées :</sys:String>
@@ -254,7 +254,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuShutdownSystem">Arrêter l'ordinateur</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Mettre en veille</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Mettre en veille</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Choisir un jeu au hasard</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
@@ -263,7 +263,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largeur des bordures</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Image de fond par défaut</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Déplacer les informations en bas de page (affichage détaillé)</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails (affichage en grille)</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Position de la liste (affichage détaillé)</sys:String>
@@ -277,12 +277,12 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Format d'affichage</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Mise à l'échelle</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Boîtier DVD</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Bannière Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam (nouvelle interface)</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Redémarrage nécessaire</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Paramètres</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Général</sys:String>
@@ -296,7 +296,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsMetadataLabel">Métadonnées</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importer les modifications dans la bibliothèque automatiquement</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer les jeux installés</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount">Connexion à un compte</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importer les jeux non installés</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importer tous les jeux</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importer tous les jeux (nécessite un profil public ou une clé API)</sys:String>
@@ -390,16 +390,16 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Apparence des boutons</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Défilement Horizontal</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection">Sélectionnez une des sous-sections</sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Sélectionner une sous-section</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">Taille du texte</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatique</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliasé</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Niveaux de gris</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Optimal</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Affichage</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">Formatage du texte</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">Mode de rendu du texte</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
@@ -481,9 +481,9 @@ Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ord
     <sys:String x:Key="LOCAddPlatformTitle">Ajouter une plateforme</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Sélectionner</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Sélectionner</sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Sélectionner</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Sélectionner</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">Sélectionner un arrière-plan</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Sélectionner le Fichier</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Ajouter l'URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Ajouter un émulateur</sys:String>
@@ -628,25 +628,25 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCChange">Changer</sys:String>
     <sys:String x:Key="LOCAdvanced">Avancé</sys:String>
     <sys:String x:Key="LOCNever">[Indéterminé]</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">[Pas encore lancé]</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">Commencé</sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten">Terminé</sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Terminé (100%)</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">En cours</sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned">Abandonné</sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold">En suspend</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">À lancer</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Progression</sys:String>
     <sys:String x:Key="LOCUserScore">Ma note</sys:String>
     <sys:String x:Key="LOCCriticScore">Note presse</sys:String>
     <sys:String x:Key="LOCCommunityScore">Note communauté</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
     <sys:String x:Key="LOCPlugins">Extensions</sys:String>
-    <sys:String x:Key="LOCMetadataProviders"></sys:String>
+    <sys:String x:Key="LOCMetadataProviders">Sources de métadonnées</sys:String>
     <sys:String x:Key="LOCExtensions">Extensions</sys:String>
     <sys:String x:Key="LOCReloadScripts">Actualiser les scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Scripts chargés avec succès.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
+    <sys:String x:Key="LOCNoGamesFound">Aucun jeu trouvé avec les critères spécifiés</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Retour au bureau</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Quitter Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Clients de jeu</sys:String>
@@ -667,10 +667,10 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCFontLarger">Très grande</sys:String>
     <sys:String x:Key="LOCFontLargest">Maximale</sys:String>
     <sys:String x:Key="LOCDefault">Par défaut</sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
-    <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCSelect">Sélectionner</sys:String>
+    <sys:String x:Key="LOCFirst">Premier</sys:String>
+    <sys:String x:Key="LOCRandom">Aléatoire</sys:String>
+    <sys:String x:Key="LOCUserSelect">Sélection de l'utilisateur</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments d'émulateur supplémentaires</sys:String>
@@ -694,9 +694,9 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCThemeTestApplySkin">Appliquer le thème sélectionnée</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Actualiser les changements de fichiers</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Appliquer automatiquement le thème lorsque le fichier source change</sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Exécution de script</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Exécuter avant le lancement du jeu</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Exécuter après avoir quitté le jeu</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Enregistrer comme réglage par défaut</sys:String>
@@ -761,7 +761,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCEnterName">Saisir un nom</sys:String>
     <sys:String x:Key="LOCEnterNewName">Saisir un nouveau nom</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Moins d'une heure</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 à 10 heures</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 à 100 heures</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 à 500 heures</sys:String>
@@ -818,11 +818,11 @@ Version {2}
     <sys:String x:Key="LOCGameListFiltered">Des filtres sont actifs.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Résultats de la recherche :</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Ce nom est déjà utilisé par un autre élément.</sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Limiter la sélection au filtrage actuel</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Autre choix</sys:String>
     
     <!--IGDB-->
-    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Utiliser des captures d'écran si aucune image de fond n'est disponible</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">À choisir si plusieurs images sont disponibles :</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Sélectionner une image de fond pour {0}</sys:String>
 </ResourceDictionary>
