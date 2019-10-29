@@ -13,6 +13,7 @@ using System.Web;
 using Playnite.SDK;
 using Microsoft.Extensions.Options;
 using PlayniteServices.Filters;
+using System.Text.RegularExpressions;
 
 namespace PlayniteServices.Controllers.IGDB
 {
@@ -35,7 +36,8 @@ namespace PlayniteServices.Controllers.IGDB
         public async Task<ServicesResponse<List<ExpandedGame>>> Get(string gameName)
         {
             List<Game> searchResult = null;
-            gameName = gameName.ToLower();
+            gameName = gameName.ToLower().Trim();
+            gameName = Regex.Replace(gameName, @"\s+", " ");
             var cachePath = Path.Combine(IGDB.CacheDirectory, cacheDir, Playnite.Common.Paths.GetSafeFilename(gameName) + ".json");
             lock (CacheLock)
             {
