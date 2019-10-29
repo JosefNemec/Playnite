@@ -37,6 +37,11 @@ namespace Playnite
             theme.DirectoryName = Path.GetFileNameWithoutExtension(theme.DirectoryPath);
             return theme;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public class ThemeManager

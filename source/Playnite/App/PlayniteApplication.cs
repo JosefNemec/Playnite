@@ -163,6 +163,7 @@ namespace Playnite
                 if (!ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode))
                 {
                     ThemeManager.SetCurrentTheme(null);
+                    logger.Error($"Failed to load theme {customTheme.Name}.");
                 }
             }
 
