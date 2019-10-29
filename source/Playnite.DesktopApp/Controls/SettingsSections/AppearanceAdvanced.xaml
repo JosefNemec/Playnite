@@ -161,5 +161,8 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </GridEx>
+
+        <TextBlock Text="{DynamicResource LOCSettingsTextRenderingNotice}"
+                   TextWrapping="Wrap" Margin="0,10,0,0"/>
     </StackPanel>
 </UserControl>

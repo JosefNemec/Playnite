@@ -408,6 +408,7 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Display</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Text formatting mode</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Text rendering mode</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Text rendering and formation options currently don't apply to game's description text.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
