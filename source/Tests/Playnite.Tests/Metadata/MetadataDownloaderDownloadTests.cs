@@ -22,15 +22,94 @@ namespace Playnite.Tests.Metadata
     [TestFixture]
     public class MetadataDownloaderDownloadTests
     {
+        public class OnDemandTestMetadataProvider : OnDemandMetadataProvider
+        {
+            public override List<MetadataField> AvailableFields => availableFields;
+
+            private List<MetadataField> availableFields;
+            private GameMetadata metadata;
+
+            public OnDemandTestMetadataProvider(ref GameMetadata metadata, ref List<MetadataField> availableFields)
+            {
+                this.metadata = metadata;
+                this.availableFields = availableFields;
+            }
+
+            public override MetadataFile GetBackgroundImage()
+            {
+                return metadata.BackgroundImage;
+            }
+
+            public override int? GetCommunityScore()
+            {
+                return metadata.GameInfo.CommunityScore;
+            }
+
+            public override MetadataFile GetCoverImage()
+            {
+                return metadata.CoverImage;
+            }
+
+            public override int? GetCriticScore()
+            {
+                return metadata.GameInfo?.CriticScore;
+            }
+
+            public override string GetDescription()
+            {
+                return metadata.GameInfo?.Description;
+            }
+
+            public override List<string> GetDevelopers()
+            {
+                return metadata.GameInfo?.Developers;
+            }
+
+            public override List<string> GetGenres()
+            {
+                return metadata.GameInfo?.Genres;
+            }
+
+            public override MetadataFile GetIcon()
+            {
+                return metadata.Icon;
+            }
+
+            public override List<Link> GetLinks()
+            {
+                return metadata.GameInfo?.Links;
+            }
+
+            public override string GetName()
+            {
+                return metadata.GameInfo?.Name;
+            }
+
+            public override List<string> GetPublishers()
+            {
+                return metadata.GameInfo?.Publishers;
+            }
+
+            public override DateTime? GetReleaseDate()
+            {
+                return metadata.GameInfo?.ReleaseDate;
+            }
+
+            public override List<string> GetTags()
+            {
+                return metadata.GameInfo?.Tags;
+            }
+        }
+
         public class TestMetadataPlugin : MetadataPlugin
         {
+            public int CallCount { get; set; } = 0;
             public const string DataString = "plugin";
-            public int CallCount = 0;
             public override string Name => "TestMetadataPlugin";
             public override Guid Id { get; } = Guid.NewGuid();
-            private List<GameField> supportedFields;
-            public override List<GameField> SupportedFields => supportedFields;
-            public GameMetadata ReturnMetadata { get; set; } = new GameMetadata
+            private List<MetadataField> supportedFields;
+            public override List<MetadataField> SupportedFields => supportedFields;
+            public GameMetadata ReturnMetadata = new GameMetadata
             {
                 GameInfo = new GameInfo
                 {
@@ -42,13 +121,13 @@ namespace Playnite.Tests.Metadata
             {
             }
 
-            public override GameMetadata GetMetadata(MetadataRequestOptions options)
+            public override OnDemandMetadataProvider GetMetadataProvider(MetadataRequestOptions options)
             {
                 CallCount++;
-                return ReturnMetadata;
+                return new OnDemandTestMetadataProvider(ref ReturnMetadata, ref supportedFields);
             }
 
-            public void SetSupportedFields(List<GameField> fields)
+            public void SetSupportedFields(List<MetadataField> fields)
             {
                 supportedFields = fields;
             }
@@ -112,6 +191,7 @@ namespace Playnite.Tests.Metadata
             };
 
             var existingMetadata = new Dictionary<Guid, GameMetadata>();
+            var existingPluginData = new Dictionary<Guid, OnDemandMetadataProvider>();
             var fieldSettings = new MetadataFieldSettings();
             var downloader = new MetadataDownloader(null, metadataDownloaders, libraryDownloaders);
             var game = new Game();
@@ -120,24 +200,25 @@ namespace Playnite.Tests.Metadata
             var downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
-                GameField.Description,
+                MetadataField.Description,
                 (a) => a.GameInfo?.Description,
-                existingMetadata);
+                existingMetadata,
+                existingPluginData);
 
             Assert.IsNull(downloadedMetadata);
             Assert.AreEqual(0, storeDownloader.CallCount);
             Assert.AreEqual(0, testPlugin.CallCount);
             Assert.AreEqual(0, existingMetadata.Count);
 
-
             // Store download works
             game.PluginId = storeId;
             downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
-                GameField.Description,
+                MetadataField.Description,
                 (a) => a.GameInfo?.Description,
-                existingMetadata);
+                existingMetadata,
+                existingPluginData);
 
             Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
             Assert.AreEqual(1, storeDownloader.CallCount);
@@ -148,9 +229,10 @@ namespace Playnite.Tests.Metadata
             downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
-                GameField.Description,
+                MetadataField.Description,
                 (a) => a.GameInfo?.Description,
-                existingMetadata);
+                existingMetadata,
+                existingPluginData);
 
             Assert.IsNotNull(downloadedMetadata);
             Assert.AreEqual(1, storeDownloader.CallCount);
@@ -161,9 +243,10 @@ namespace Playnite.Tests.Metadata
             downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty, testPlugin.Id }),
-                GameField.Description,
+                MetadataField.Description,
                 (a) => a.GameInfo?.Description,
-                existingMetadata);
+                existingMetadata,
+                existingPluginData);
 
             Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
             Assert.IsNotNull(downloadedMetadata);
@@ -175,9 +258,10 @@ namespace Playnite.Tests.Metadata
             downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty, testPlugin.Id }),
-                GameField.Description,
+                MetadataField.Description,
                 (a) => a.GameInfo?.Description,
-                existingMetadata);
+                existingMetadata,
+                existingPluginData);
 
             Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
             Assert.IsNotNull(downloadedMetadata);
@@ -186,38 +270,41 @@ namespace Playnite.Tests.Metadata
             Assert.AreEqual(1, existingMetadata.Count);
 
             // Plugin data is used
-            testPlugin.SetSupportedFields(new List<GameField> { GameField.Description });
+            testPlugin.SetSupportedFields(new List<MetadataField> { MetadataField.Description });
             downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id, Guid.Empty }),
-                GameField.Description,
+                MetadataField.Description,
                 (a) => a.GameInfo?.Description,
-                existingMetadata);
+                existingMetadata,
+                existingPluginData);
 
             Assert.AreEqual(TestMetadataPlugin.DataString, downloadedMetadata.GameInfo.Description);
             Assert.IsNotNull(downloadedMetadata);
             Assert.AreEqual(1, storeDownloader.CallCount);
             Assert.AreEqual(1, testPlugin.CallCount);
-            Assert.AreEqual(2, existingMetadata.Count);
+            Assert.AreEqual(1, existingPluginData.Count);
 
             // Not data are returned if specific fields doesn't have them
-            existingMetadata[testPlugin.Id].GameInfo.Description = null;
+            testPlugin.ReturnMetadata.GameInfo.Description = null;
             downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id }),
-                GameField.Description,
+                MetadataField.Description,
                 (a) => a.GameInfo?.Description,
-                existingMetadata);
-            
+                existingMetadata,
+                existingPluginData);
+
             Assert.IsNull(downloadedMetadata);
 
             // Second data are used if first doesn't have them
             downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id, Guid.Empty }),
-                GameField.Description,
+                MetadataField.Description,
                 (a) => a.GameInfo?.Description,
-                existingMetadata);
+                existingMetadata,
+                existingPluginData);
 
             Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
         }
@@ -231,18 +318,18 @@ namespace Playnite.Tests.Metadata
             storeDownloader.ReturnMetadata = GameMetadata.GetEmptyData();
             var testPlugin = GetTestPlugin();
             testPlugin.ReturnMetadata = GameMetadata.GetEmptyData();
-            testPlugin.SetSupportedFields(new List<GameField>
+            testPlugin.SetSupportedFields(new List<MetadataField>
             {
-                GameField.Description,
-                GameField.Icon,
-                GameField.CoverImage,
-                GameField.BackgroundImage,
-                GameField.Links,
-                GameField.Publishers,
-                GameField.Developers,
-                GameField.Tags,
-                GameField.Genres,
-                GameField.ReleaseDate
+                MetadataField.Description,
+                MetadataField.Icon,
+                MetadataField.CoverImage,
+                MetadataField.BackgroundImage,
+                MetadataField.Links,
+                MetadataField.Publishers,
+                MetadataField.Developers,
+                MetadataField.Tags,
+                MetadataField.Genres,
+                MetadataField.ReleaseDate
             });
 
             List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
@@ -264,7 +351,7 @@ namespace Playnite.Tests.Metadata
                 var importedGame = db.ImportGame(new GameInfo()
                 {
                     Name = "Game",
-                    GameId = "storeId",                    
+                    GameId = "storeId",
                     Genres = new List<string>() { "Genre" },
                     ReleaseDate = new DateTime(2012, 6, 6),
                     Developers = new List<string>() { "Developer" },
@@ -313,18 +400,18 @@ namespace Playnite.Tests.Metadata
         {
             // Tests that existing data are not overriden even if metadata provider has them.
             var testPlugin = GetTestPlugin();
-            testPlugin.SetSupportedFields(new List<GameField>
+            testPlugin.SetSupportedFields(new List<MetadataField>
             {
-                GameField.Description,
-                GameField.Icon,
-                GameField.CoverImage,
-                GameField.BackgroundImage,
-                GameField.Links,
-                GameField.Publishers,
-                GameField.Developers,
-                GameField.Tags,
-                GameField.Genres,
-                GameField.ReleaseDate
+                MetadataField.Description,
+                MetadataField.Icon,
+                MetadataField.CoverImage,
+                MetadataField.BackgroundImage,
+                MetadataField.Links,
+                MetadataField.Publishers,
+                MetadataField.Developers,
+                MetadataField.Tags,
+                MetadataField.Genres,
+                MetadataField.ReleaseDate
             });
 
             var gameId = "Game1";

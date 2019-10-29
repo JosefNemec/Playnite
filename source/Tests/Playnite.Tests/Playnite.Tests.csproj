@@ -131,7 +131,6 @@
     <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />
     <Compile Include="LocalizationTests.cs" />
-    <Compile Include="Metadata\IGDBMetadataProviderTests.cs" />
     <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
     <Compile Include="Metadata\WikipediaMetadataProviderTests.cs" />
     <Compile Include="MockDialogsFactory.cs" />
@@ -167,6 +166,7 @@
       <Link>Resources\extension.yaml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\GOG\library_unreleased.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

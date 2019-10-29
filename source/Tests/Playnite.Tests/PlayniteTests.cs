@@ -72,6 +72,7 @@ namespace Playnite.Tests
         {            
             var api = new Mock<IPlayniteAPI>();
             api.Setup(a => a.Paths).Returns(new PlaynitePathsAPI());
+            api.Setup(a => a.ApplicationInfo).Returns(new PlayniteInfoAPI());
             return api;
         }
     }

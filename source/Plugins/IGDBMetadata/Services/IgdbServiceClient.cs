@@ -17,6 +17,10 @@ namespace IGDBMetadata.Services
         {
         }
 
+        public IgdbServiceClient(Version playniteVersion, string endpoint) : base(endpoint, playniteVersion)
+        {
+        }
+
         public List<PlayniteServices.Models.IGDB.ExpandedGame> GetIGDBGames(string searchName, string apiKey = null)
         {
             var encoded = Uri.EscapeDataString(searchName);

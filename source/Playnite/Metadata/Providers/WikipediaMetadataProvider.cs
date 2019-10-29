@@ -17,24 +17,159 @@ using Playnite.SDK.Plugins;
 
 namespace Playnite.Metadata.Providers
 {
-    public class WikipediaMetadataPlugin : MetadataPlugin
+
+    public class WikipediaSearchItem : GenericItemOption
     {
-        public class WikiSearchItem : GenericItemOption
+        public string Title { get; set; }
+    }
+
+    public class OnDemandWikipediaMetadata : OnDemandMetadataProvider
+    {
+        private readonly WikipediaMetadataPlugin plugin;
+        private readonly MetadataRequestOptions options;
+        private GameMetadata gameData;
+
+        private List<MetadataField> availableFields;
+        public override List<MetadataField> AvailableFields
         {
-            public string Title { get; set; }
+            get
+            {
+                if (availableFields == null)
+                {
+                    availableFields = GetAvailableFields();
+                }
+
+                return availableFields;
+            }
         }
 
+        public OnDemandWikipediaMetadata(WikipediaMetadataPlugin plugin, MetadataRequestOptions options)
+        {
+            this.options = options;
+            this.plugin = plugin;
+        }
+
+        public override DateTime? GetReleaseDate()
+        {
+            if (AvailableFields.Contains(MetadataField.ReleaseDate))
+            {
+                return gameData.GameInfo.ReleaseDate;
+            }
+
+            return base.GetReleaseDate();
+        }
+
+        public override List<string> GetDevelopers()
+        {
+            if (AvailableFields.Contains(MetadataField.Developers))
+            {
+                return gameData.GameInfo.Developers;
+            }
+
+            return base.GetDevelopers();
+        }
+
+        public override List<string> GetPublishers()
+        {
+            if (AvailableFields.Contains(MetadataField.Publishers))
+            {
+                return gameData.GameInfo.Publishers;
+            }
+
+            return base.GetPublishers();
+        }
+
+        public override MetadataFile GetCoverImage()
+        {
+            if (AvailableFields.Contains(MetadataField.ReleaseDate))
+            {
+                return gameData.CoverImage;
+            }
+
+            return base.GetCoverImage();
+        }
+
+        public override string GetName()
+        {
+            if (AvailableFields.Contains(MetadataField.Name))
+            {
+                return gameData.GameInfo.Name;
+            }
+
+            return base.GetName();
+        }
+
+        private List<MetadataField> GetAvailableFields()
+        {
+            var fields = new List<MetadataField>();
+            if (gameData == null)
+            {
+                GetData();
+            }
+
+            if (!gameData.IsEmpty)
+            {
+                fields.Add(MetadataField.Name);
+                if (gameData.GameInfo.Publishers.HasItems())
+                {
+                    fields.Add(MetadataField.Publishers);
+                }
+
+                if (gameData.GameInfo.Developers.HasItems())
+                {
+                    fields.Add(MetadataField.Developers);
+                }
+
+                if (gameData.GameInfo.ReleaseDate != null)
+                {
+                    fields.Add(MetadataField.ReleaseDate);
+                }
+
+                if (gameData.CoverImage != null)
+                {
+                    fields.Add(MetadataField.CoverImage);
+                }
+            }
+
+            return fields;
+        }
+
+
+        private void GetData()
+        {
+            if (options.IsBackgroundDownload)
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                var item = plugin.PlayniteApi.Dialogs.ChooseItemWithSearch(null, (a) => plugin.SearchMetadata(a), options.GameData.Name);
+                if (item == null)
+                {
+                    gameData = GameMetadata.GetEmptyData();
+                }
+                else
+                {
+                    var searchItem = item as WikipediaSearchItem;
+                    gameData = plugin.ParseGamePage(plugin.GetPage(searchItem.Title));
+                }
+            }
+        }
+    }
+
+    public class WikipediaMetadataPlugin : MetadataPlugin
+    {
         private static ILogger logger = LogManager.GetLogger();
 
         public override string Name => "Wikipedia";
 
-        public override List<GameField> SupportedFields { get; } = new List<GameField>
+        public override List<MetadataField> SupportedFields { get; } = new List<MetadataField>
         {
-            GameField.ReleaseDate,
-            GameField.Developers,
-            GameField.Publishers,
-            GameField.CoverImage,
-            GameField.Name
+            MetadataField.ReleaseDate,
+            MetadataField.Developers,
+            MetadataField.Publishers,
+            MetadataField.CoverImage,
+            MetadataField.Name
         };
 
         public override Guid Id { get; } = new Guid("88A920B3-B35C-4C30-A8E7-88BFCC2320EE");
@@ -132,7 +267,7 @@ namespace Playnite.Metadata.Providers
                 var parser = new HtmlParser();
                 foreach (var searchResult in result.query.search)
                 {
-                    ret.Add(new WikiSearchItem
+                    ret.Add(new WikipediaSearchItem
                     {
                         Title = searchResult.title,
                         Name = searchResult.title,
@@ -353,25 +488,9 @@ namespace Playnite.Metadata.Providers
             return metadata;
         }
 
-        public override GameMetadata GetMetadata(MetadataRequestOptions options)
+        public override OnDemandMetadataProvider GetMetadataProvider(MetadataRequestOptions options)
         {
-            if (options.IsBackgroundDownload)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                var item = PlayniteApi.Dialogs.ChooseItemWithSearch(null, (a) => SearchMetadata(a), options.GameData.Name);
-                if (item == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    var searchItem = item as WikiSearchItem;
-                    return ParseGamePage(GetPage(searchItem.Title));
-                }
-            }
+            return new OnDemandWikipediaMetadata(this, options);
         }
     }
 }

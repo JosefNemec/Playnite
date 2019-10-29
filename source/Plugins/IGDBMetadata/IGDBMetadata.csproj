@@ -59,6 +59,7 @@
     <Compile Include="..\..\Playnite\Services\GenericResponse.cs">
       <Link>Services\GenericResponse.cs</Link>
     </Compile>
+    <Compile Include="IgdbLazyMetadataProvider.cs" />
     <Compile Include="IgdbMetadataPlugin.cs" />
     <Compile Include="IgdbMetadataSettings.cs" />
     <Compile Include="IgdbMetadataSettingsView.xaml.cs">

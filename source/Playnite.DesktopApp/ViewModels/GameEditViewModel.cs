@@ -2635,9 +2635,31 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    var metadata = plugin.GetMetadata(new MetadataRequestOptions(EditingGame, false));
-                    if (metadata != null)
+                    var provider = plugin.GetMetadataProvider(new MetadataRequestOptions(EditingGame, false));
+                    if (provider != null)
                     {
+                        var gameInfo = new GameInfo
+                        {
+                            Name = provider.GetName(),
+                            Genres = provider.GetGenres(),
+                            ReleaseDate = provider.GetReleaseDate(),
+                            Developers = provider.GetDevelopers(),
+                            Publishers = provider.GetPublishers(),
+                            Tags = provider.GetTags(),
+                            Description = provider.GetDescription(),
+                            Links = provider.GetLinks(),
+                            CriticScore = provider.GetCriticScore(),
+                            CommunityScore = provider.GetCommunityScore()
+                        };
+
+                        var metadata = new GameMetadata
+                        {
+                            GameInfo = gameInfo,
+                            Icon = provider.GetIcon(),
+                            CoverImage = provider.GetCoverImage(),
+                            BackgroundImage = provider.GetBackgroundImage()
+                        };                       
+
                         Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
                     }
                 }
