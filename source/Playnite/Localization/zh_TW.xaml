@@ -370,7 +370,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnitee不會自動搬移資料庫文件，您必須在更改位置前移動/複製這些資料。如果移動後的位置找不到資料庫文件，Playnite將會自動創建一個新的資料庫。
 
 新的資料庫位置將會在下次重新啟動程式之後被套用。</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果設定了"關閉"指令，則遊玩時間將不會被記錄</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">列數</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">欄數</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">列表檢視列數</sys:String>
@@ -379,7 +379,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截圖</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">商店背景</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下載元資料則不會往前套用於現有遊戲</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">強制同步遊玩時數</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">在資料庫同步時總是下載遠端資料庫的遊玩時數，覆蓋Playnite紀錄的遊玩時數</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">在桌面模式中啟用手把功能</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">導航按鍵開啟全螢幕模式</sys:String>
@@ -725,7 +725,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示: 您可以透過"編輯"選單編輯遊戲並執行更進階的元資料下載程序</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些程式正在進行時無法使用</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本支持HTML語法</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">遊玩時間將被記錄並以秒為單位儲存</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">輸入0到100的值或者留白以表示無分數</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite的開發得到了這些贊助者的支持:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">代碼，本地化以及其他貢獻者(無特定順序):</sys:String>
