@@ -374,7 +374,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite 不会自动移动库文件，您必须在更改位置之前移动/复制它们。 如果目标位置中没有库，则将创建一个新库。
 
 新的数据库位置将仅在应用程序重新启动后使用。</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果设置了“关闭”动作，游戏时间将不会被记录</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">行数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">列数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">详情视图行数</sys:String>
@@ -383,7 +383,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截图</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">商店背景</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下载元数据，则不会应用追溯于现有游戏</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">强制同步游戏时间</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">始终在库同步期间从远程库下载记录的游戏时间，忽略Playnite记录的时间</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">在桌面模式下启用控制器支持</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">指南按钮打开全屏模式</sys:String>
@@ -730,7 +730,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示：您可以通过“编辑”菜单选项编辑单个游戏时使用更高级的数据下载过程</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些操作正在进行时不可用</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本是HTML语法敏感的</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">游戏时间被追踪并以秒存储</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">分值从0到100或为空以不计分</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite的开发得到了这些赞助者的支持：</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">代码，本地化和其他贡献者（没有特定的顺序）：</sys:String>
