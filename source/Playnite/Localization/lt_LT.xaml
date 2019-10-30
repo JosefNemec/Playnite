@@ -362,7 +362,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
 Visos dabar vykstančios užduotys (metadata atsisiuntimai) bus nutrauktos.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Paleisti Playnite iš naujo?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"> Žaidimo laikas nebus išsaugotas jei pasirinksite komandą "Uždaryti".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Eilučių skaičius</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Stulpelių skaičius</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Detalaus rodinio eilučių skaičius</sys:String>
@@ -372,7 +372,7 @@ Visos dabar vykstančios užduotys (metadata atsisiuntimai) bus nutrauktos.</sys
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Saugoti fono paveikslėlį</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite kaip foną naudos turimas žaidimo nuotraukas, o ne paveikslėlius gautus iš duombazės.
 Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Priverstinai sinchronizuoti žaidimo laiką</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Visada ignoruoti Playnite išsaugotą žaidimo laiką ir bibliotekos sinchronizacijos metu atsiųsti įšsaugotą žaidimo laiką iš nuotolinės bibliotekos.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
@@ -717,7 +717,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Patarimas: Detalesnis metadata atsisiuntimo valdymas pavieniui žaidimui galimas pasirinkus punktą "Keisti" .</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Negalimas, kai vyksta veiksmas fone.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Aprašymo tekstas yra jautrus HTML sintaksei</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Žaidimo laikas stebimas ir įrašomas sekundėmis.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Vertė nuo 0 iki 100 arba tuščią kai nėra rezultato.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite kūrimą parėmė:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Prie kodo, lokalizacijos ir kito tobulinimo prisidėjo:</sys:String>
