@@ -362,7 +362,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
 Minden jelenlegi művelete (metaadatok letöltése) abba marad.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Újraindítja Playnite-ot?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Játékidő nem lesz feljegyezve ha "bezárás" művelet be van állítva.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
@@ -712,7 +712,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Használhat egy haladóbb metaadat letöltési folyamatot miközben egy játékot szerkeszt "Szerkesztés" menüpont alatt.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nem elérhető néhány folyamat alatt.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Leírás szöveg HTML syntax érzékeny</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Játékidő rögzítve másodpercekben.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Értékek lehetnek 0-tól 100-ig vagy üres ha nincs..</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite fejlesztése köszönhető ezeknek a patronoknak:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kód, fordítás és többi körzeműködés minden sorrend nélkül:</sys:String>
