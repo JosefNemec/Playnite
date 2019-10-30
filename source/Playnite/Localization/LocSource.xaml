@@ -763,7 +763,9 @@ Version {2}
 {0}</sys:String>
 
     <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">News</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">Store Page</sys:String>
 
     <!--itch.io-->
@@ -783,8 +785,6 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCSteamRequiresApiKey">Account is private, API Key is required.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub">Community Hub</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Discussions</sys:String>
-    <sys:String x:Key="LOCSteamLinksNews">News</sys:String>
-    <sys:String x:Key="LOCSteamLinksAchievements">Achievements</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">First time setup is not complete. Playnite will now restart to Desktop mode to finish the procedure.</sys:String>
