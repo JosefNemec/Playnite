@@ -368,7 +368,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
 Kaikki aktiiviset tapahtumat (metadatan lataukset) peruutetaan.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Uudelleenkäynnistä Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Peliaikaa ei kirjata jos "Sulje"-toiminto on asetettu.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Rivien määrä</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sarakkeiden määrä</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Lisätietonäkymän rivien määrä</sys:String>
@@ -377,7 +377,7 @@ Kaikki aktiiviset tapahtumat (metadatan lataukset) peruutetaan.</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Kaupan kuvakaappaus</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Kaupan taustakuva</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Ei oteta takautuvasti käyttöön olemassa olevissa peleissä ilman että metadataa ladataan uudelleen.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Pakota peliajan synkronointi</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Lataa kirjattu peliaika aina etäkirjastosta kirjaston synkronoinnin aikana äläkä huomioi Playniten kirjaamaa peliaikaa.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Ota peliohjaintuki käyttöön työpöytätilassa</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Opas-näppäin avaa koko näytön tilan</sys:String>
@@ -723,7 +723,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Vihje: Voit käyttää edistyneempää metadatan latausprosessia muokatessasi yksittäisen pelin tietoja valikon "Muokkaa"-vaihtoehdon kautta.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Ei saatavilla kun jokin toiminto on käynnissä.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Kuvausteksti huomioi HTML-syntaksin</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Peliaikaa seurataan ja tallennetaan sekuntien tarkkuudella.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Luku välillä 0 ja 100 tai tyhjä jos ei pisteytystä.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playniten kehitystä ovat tukeneet:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Ohjelmoinnissa, lokalisoinnissa ja muussa avustaneet, ei missään erityisessä järjestyksessä:</sys:String>
