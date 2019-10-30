@@ -375,7 +375,7 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite doesn't move library files automatically, you must move/copy them before the location is changed. If no library is present in target location, new one will be created.
 
 New database location will only be used after application is restarted.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Gameplay time will not be recorded if "Close" action is set.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Play time will not be recorded if "Close" action is set.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Number of rows</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Number of columns</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Number of detail view rows</sys:String>
@@ -384,7 +384,7 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Store Screenshot</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Store Background</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Doesn't apply retrospectively to existing games without re-downloading metadata.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Force sync play time</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Prioritize play time for supported libraries</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Always download recorded play time from remote library during library sync, ignoring time recorded by Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Enable controller support in Desktop mode</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide button opens Fullscreen mode</sys:String>
@@ -731,7 +731,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Playtime is tracked and stored in seconds.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Play time is tracked and stored in seconds.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Values from 0 to 100 or empty for no score.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Code, localization and other contributors in no particular order:</sys:String>
