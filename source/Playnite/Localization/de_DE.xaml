@@ -407,6 +407,7 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modus für Textformatierung</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modus für Textrendering</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Optionen für Textrendering und -formatierung haben derzeit keine Auswirkung auf Spielbeschreibungen.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
