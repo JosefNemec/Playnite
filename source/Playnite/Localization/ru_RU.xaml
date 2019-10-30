@@ -70,7 +70,7 @@
     <sys:String x:Key="LOCGameShortcutError">Не удалось создать ярлык: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Не удалось установить игру: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Не удалось удалить игру: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Игровое действие не настроено.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Плагин библиотеки, ответственный за эту игру, не установлен или не включен.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Официальная загрузка метаданных недоступна.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Игра не выбрана.</sys:String>
@@ -86,7 +86,7 @@
     <sys:String x:Key="LOCAddTitle">Добавить</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Стандартная иконка</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Стандартная обложка</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">Фоновое изображение по умолчанию</sys:String>
     <sys:String x:Key="LOCFinishLabel">Закончить</sys:String>
     <sys:String x:Key="LOCNextLabel">Далее</sys:String>
     <sys:String x:Key="LOCBackLabel">Назад</sys:String>
@@ -278,12 +278,12 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Целевое соотношение сторон</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Растянутый режим</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Box</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Баннер Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam New UI</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Необходим перезапуск для применения настроек</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Настройки</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Основные</sys:String>
@@ -297,7 +297,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsMetadataLabel">Метаданные</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Автоматически импортировать изменения</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Импортировать установленные игры</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount">Подключить аккаунт</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Импорт неустановленных игр</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Импортировать все игры</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Импортировать все игры (В настройках приватности аккаунта должно быть выбрано "Публичный" или должен быть указан API-ключ)</sys:String>
@@ -370,7 +370,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite не перемещает файлы библиотеки автоматически, вы должны переместить/скопировать их, прежде чем местоположение будет изменено. Если в целевой папке нет библиотеки, будет создана новая.
 
 Новая база данных будет использоваться только после перезапуска приложения.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Время игры не забудет высчитываться если выбрать параметр "Закрыть".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Количество строк</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Количество столбцов</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Количество строк в детальном режиме</sys:String>
@@ -380,7 +380,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Фон из магазина</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite будет использовать доступные игровые скриншоты как фон, взамен фоновых изображений из магазина.
 Не применяется ретроспективно к существующим играм.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительно синхронизировать время игры</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Всегда загружайте записанное время воспроизведения из удаленной библиотеки во время синхронизации библиотеки, игнорируя время, записанное Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Включить поддержку контроллера в режиме рабочего стола</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Кнопка Guide открывает полноэкранный режим</sys:String>
@@ -648,7 +648,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCCommunityScore">Оценка сообщества</sys:String>
     <sys:String x:Key="LOCScripts">Скрипты</sys:String>
     <sys:String x:Key="LOCPlugins">Плагины</sys:String>
-    <sys:String x:Key="LOCMetadataProviders"></sys:String>
+    <sys:String x:Key="LOCMetadataProviders">Источники метаданных</sys:String>
     <sys:String x:Key="LOCExtensions">Расширения</sys:String>
     <sys:String x:Key="LOCReloadScripts">Перезагрузить скрипты</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Все скрипты успешно перезагружены.</sys:String>
@@ -728,7 +728,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Время игры отслеживается и сохраняется в секундах.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Введите значение от 0 до 100(либо оставьте пустое если не хотите оценивать)</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Разработка Playnite осуществляется благодаря средствам этих людей:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Люди, принимающие участие в написании кода, локализаций и т.д.:</sys:String>
