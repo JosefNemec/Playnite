@@ -364,7 +364,7 @@ IGDB> Επίσημο κατάστημα:
 Όλες οι τρέχουσες ενεργές εργασίες (λήψεις metadata) θα ακυρωθούν.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Επανεκκινήση Playnite;</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Ο χρόνος παιχνιδιού δεν θα καταγραφεί εάν έχει οριστεί η εντολή "Κλείσιμο".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Αριθμός σειρών</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Αριθμός στηλών</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Αριθμός γραμμών λεπτομερής προβολής</sys:String>
