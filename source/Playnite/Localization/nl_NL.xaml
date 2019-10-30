@@ -366,7 +366,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Herstart Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite verplaatst bibliotheek bestanden niet automatisch, verplaats/kopieer ze voor dat de locatie is veranderd. Als er geen bibliotheek aanwezig is op de aangewezen locatie zal er een nieuwe gemaakt worden.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Speeltijd zal niet worden bijgehouden als de "Sluit" actie is ingesteld.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Aantal rijen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Aantal kolommen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Aantal detailweergave rijen</sys:String>
@@ -375,7 +375,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Sla Screenshot Op</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Sla Achtergrond Op</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Geldt niet retrospectief voor bestaande spellen zonder metadata opnieuw te downloaden.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forceer sync speeltijd</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Download altijd de opgenomen speeltijd van de externe bibliotheek tijdens bibliotheek sync, waarbij de tijd die door Playnite is geregistreerd wordt genegeerd.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activeer controller ondersteuning in Desktop modus</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Gids knop opent volledig scherm modus</sys:String>
@@ -723,7 +723,7 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Je kan een geavanceerder metadata download proces gebruiken wanneer je een individueel spel bewerkt via de "Bewerken" menu optie.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Niet beschikbaar als sommige acties nog bezig zijn.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Beschrijvingstekst is HTML syntax sensitief</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Speeltijd wordt bijgehouden en opgeslagen in seconden.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Waarden van 0 tot 100 of leeg voor geen score.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's ontwikkeling is ondersteund door de volgende patrons:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Code, lokalisatie en andere and other bijdragers in willekeurige volgorde:</sys:String>
