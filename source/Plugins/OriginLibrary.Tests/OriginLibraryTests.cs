@@ -12,6 +12,7 @@ using Playnite.SDK;
 using Playnite.SDK.Plugins;
 using Playnite.API;
 using Playnite.Tests;
+using Playnite.Common;
 
 namespace OriginLibrary.Tests
 {
@@ -50,9 +51,11 @@ namespace OriginLibrary.Tests
         public void GetInstalledGamesCacheTest()
         {
             var originLib = CreateLibrary();
+            var cachePath = Origin.GetCachePath(originLib.GetPluginUserDataPath());
+            FileSystem.DeleteDirectory(cachePath);
             var games = originLib.GetInstalledGames(true);
-            var cacheFiles = Directory.GetFiles(Origin.GetCachePath(originLib.GetPluginUserDataPath()), "*.json");
-            Assert.IsTrue(cacheFiles.Count() > 0);
+            var cacheFiles = Directory.GetFiles(cachePath, "*.json");
+            CollectionAssert.IsNotEmpty(cacheFiles);
         }
 
         [Test]

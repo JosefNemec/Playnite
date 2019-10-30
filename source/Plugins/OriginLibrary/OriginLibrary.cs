@@ -102,17 +102,10 @@ namespace OriginLibrary
             return HttpUtility.ParseQueryString(data);
         }
 
-        internal GameLocalDataResponse GetLocalManifest(string id, string packageName = null, bool useDataCache = false)
+        internal GameLocalDataResponse GetLocalManifest(string id, bool useDataCache = false)
         {
-            var package = packageName;
             var cachePath = Origin.GetCachePath(GetPluginUserDataPath());
-
-            if (string.IsNullOrEmpty(package))
-            {
-                package = id.Replace(":", "");
-            }
-
-            var cacheFile = Path.Combine(cachePath, Path.GetFileNameWithoutExtension(package) + ".json");
+            var cacheFile = Path.Combine(cachePath, id.Replace(":", "") + ".json");
             if (useDataCache == true && File.Exists(cacheFile))
             {
                 return JsonConvert.DeserializeObject<GameLocalDataResponse>(File.ReadAllText(cacheFile, Encoding.UTF8));
@@ -229,11 +222,16 @@ namespace OriginLibrary
 
                         try
                         {
-                            localData = GetLocalManifest(gameId, package, useDataCache);
+                            localData = GetLocalManifest(gameId, useDataCache);
                         }
                         catch (Exception e) when (!Environment.IsDebugBuild)
                         {
                             logger.Error(e, $"Failed to get Origin manifest for a {gameId}, {package}");
+                            continue;
+                        }
+
+                        if (localData == null)
+                        {
                             continue;
                         }
 
@@ -347,12 +345,27 @@ namespace OriginLibrary
                     {
                         logger.Error(e, $"Failed to get usage data for {game.offerId}");
                     }
+                    
+                    var gameName = game.offerId;
+                    try
+                    {
+                        var localData = GetLocalManifest(game.offerId,  true);
+                        if (localData != null)
+                        {
+                            gameName = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
+                        }
+                    }
+                    catch (Exception e) when (!Environment.IsDebugBuild)
+                    {
+                        logger.Error(e, $"Failed to get Origin manifest for a {game.offerId}");
+                        continue;
+                    }
 
                     games.Add(new GameInfo()
                     {
                         Source = "Origin",
                         GameId = game.offerId,
-                        Name = game.offerId,
+                        Name = gameName,
                         LastActivity = usage?.lastSessionEndTimeStamp,
                         Playtime = usage?.total ?? 0
                     });
