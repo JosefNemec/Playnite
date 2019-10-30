@@ -383,7 +383,7 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Store-Screenshot</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Store-Hintergrund</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Hat ohne erneutes Herunterladen der Metadaten keinen Einfluss auf bereits in der Bibliothek befindliche Spiele.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Spielzeit mit Anbieterbibliothek synchronisieren</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Spielzeit nach unterstützten Bibliotheken priorisieren</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Synchronisiert automatisch die Spielzeit mit der Bibliothek von Steam, Origin und anderen. Playnite wird die Spielzeit von betroffenen Spielen anschließend nicht mehr selbst überwachen.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Controllerunterstützung im Desktopmodus aktivieren</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide-Taste öffnet Vollbildmodus</sys:String>
