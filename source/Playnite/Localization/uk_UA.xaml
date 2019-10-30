@@ -364,7 +364,7 @@ IGDB > Офіційний магазин:
 Поточні активні завдання (завантаження метаданих)буде скасовано.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Перезавантажити Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Час гри не буде записано, якщо обрати параметр "Закрити".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Кількість рядків</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Кількість стовпців</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Кількість рядків детального перегляду</sys:String>
@@ -712,7 +712,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Порада: Ви можете використовувати більш просунутий процес завантаження метаданих під час редагування однієї гри за допомогою опції меню "Редагувати".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, коли виконується деяка дія.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст опису чутливий до синтаксису HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Ігровий час записується в секундах.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Значення від 0 до 100 або порожнє, якщо нема оцінки.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Розробку Playnite підтримують такі меценати:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Ті, хто приймали участь в написанні коду, локалізації і т.д.:</sys:String>
