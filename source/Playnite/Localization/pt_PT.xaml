@@ -373,7 +373,7 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de ecrã da Loja</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Imagem de Fundo da Loja</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forçar sincronização</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Ativar suporte de comando no modo Desktop</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
