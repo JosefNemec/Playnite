@@ -76,7 +76,22 @@ $ignoreList = @(
     "thepowdertoy_libretro.info",
     "reminiscence_libretro.info",
     "mpv_libretro.info",
-    "cannonball_libretro.info"
+    "cannonball_libretro.info",
+    "dhewm3_libretro.info",
+    "freechaf_libretro.info",
+    "mu_libretro.info",
+    "oberon_libretro.info",
+    "quasi88_libretro.info",
+    "redbook_libretro.info",
+    "simcp_libretro.info",
+    "squirreljme_libretro.info",
+    "tic80_libretro.info",
+    "vitaquake2_libretro.info",
+    "vitaquake2-rogue_libretro.info",
+    "vitaquake2-xatrix_libretro.info",
+    "vitaquake2-zaero_libretro.info",
+    "vitaquake3_libretro.info",
+    "vitavoyager_libretro.info"
 )
 
 $platformsTranslate = @{
@@ -88,12 +103,17 @@ $platformsTranslate = @{
     "RPG Maker 2000" = "RPG Maker";
     "RPG Maker 2003" = "RPG Maker";
     "FB Alpha Arcade Games" = "Various";
+    "FBNeo Arcade Games" = "Various";
     "MAME 2000" = "Various";
     "MAME 2003" = "Various";
     "MAME 2003 (Midway)" = "Various";
     "MAME 2009" = "Various";
     "MAME 2010" = "Various";
+    "MAME 2011" = "Various";
+    "MAME 2012" = "Various";
+    "MAME 2013" = "Various";
     "MAME 2014" = "Various";
+    "MAME 2015" = "Various";
     "MAME 2016" = "Various";
     "MAME" = "Various";
     "Nintendo Game Boy Advance (e Cards)" = "Nintendo Game Boy Advance";
@@ -105,7 +125,9 @@ $platformsTranslate = @{
     "PC 98" = "NEC PC-9801";
     "NEC PC Engine TurboGrafx 16" = "NEC TurboGrafx 16";
     "NEC PC Engine CD TurboGrafx CD" = "NEC TurboGrafx-CD";
+    "NEC PC Engine SuperGrafx" = "NEC SuperGrafx";
     "NEC PC FX" = "NEC PC-FX";
+    "Nintendo Wii (Digital)" = "Nintendo Wii"
 }
 
 $profileTemplate = '

@@ -621,10 +621,9 @@
       ImageExtensions: [chd, cue, 7z, zip]  
       ExecutableLookup: ^mame.*\.exe$  
 
-
 - Name: RetroArch
   Website: 'http://www.retroarch.com/'
-  Profiles:    
+  Profiles:
     - Name: 4DO
       DefaultArguments: '-L ".\cores\4do_libretro.dll" "{ImagePath}"'
       Platforms: [3DO Interactive Multiplayer]
@@ -667,18 +666,25 @@
       RequiredFiles: ['cores\bnes_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: bsnes/higan Accuracy
-      DefaultArguments: '-L ".\cores\bsnes_accuracy_libretro.dll" "{ImagePath}"'
+    - Name: bsnes 2014 Accuracy
+      DefaultArguments: '-L ".\cores\bsnes2014_accuracy_libretro.dll" "{ImagePath}"'
       Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo]
       ImageExtensions: [sfc, smc, bml, zip, 7z]
-      RequiredFiles: ['cores\bsnes_accuracy_libretro.dll']
+      RequiredFiles: ['cores\bsnes2014_accuracy_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: bsnes/higan Balanced
-      DefaultArguments: '-L ".\cores\bsnes_balanced_libretro.dll" "{ImagePath}"'
+    - Name: bsnes 2014 Balanced
+      DefaultArguments: '-L ".\cores\bsnes2014_balanced_libretro.dll" "{ImagePath}"'
       Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo]
       ImageExtensions: [sfc, smc, bml, zip, 7z]
-      RequiredFiles: ['cores\bsnes_balanced_libretro.dll']
+      RequiredFiles: ['cores\bsnes2014_balanced_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: bsnes 2014 Performance
+      DefaultArguments: '-L ".\cores\bsnes2014_performance_libretro.dll" "{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo]
+      ImageExtensions: [sfc, smc, bml, zip, 7z]
+      RequiredFiles: ['cores\bsnes2014_performance_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: bsnes C++98 (v085)
@@ -686,6 +692,13 @@
       Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo]
       ImageExtensions: [sfc, smc, zip, 7z]
       RequiredFiles: ['cores\bsnes_cplusplus98_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: bsnes
+      DefaultArguments: '-L ".\cores\bsnes_libretro.dll" "{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo]
+      ImageExtensions: [sfc, smc, gb, gbc, zip, 7z]
+      RequiredFiles: ['cores\bsnes_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: bsnes-mercury Accuracy
@@ -707,13 +720,6 @@
       Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo]
       ImageExtensions: [sfc, smc, bml, zip, 7z]
       RequiredFiles: ['cores\bsnes_mercury_performance_libretro.dll']
-      ExecutableLookup: ^retroarch\.exe$
-
-    - Name: bsnes/higan Performance
-      DefaultArguments: '-L ".\cores\bsnes_performance_libretro.dll" "{ImagePath}"'
-      Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo]
-      ImageExtensions: [sfc, smc, bml, zip, 7z]
-      RequiredFiles: ['cores\bsnes_performance_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Caprice32
@@ -767,7 +773,7 @@
 
     - Name: Dolphin Launcher
       DefaultArguments: '-L ".\cores\dolphin_launcher_libretro.dll" "{ImagePath}"'
-      Platforms: [Nintendo Wii, Nintendo GameCube]
+      Platforms: [Nintendo GameCube, Nintendo Wii]
       ImageExtensions: [elf, dol, gcm, iso, wbfs, ciso, gcz, wad, zip, 7z]
       RequiredFiles: ['cores\dolphin_launcher_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
@@ -787,16 +793,23 @@
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: DOSBox-SVN
-      DefaultArguments: '-L ".\cores\dosbox_svn_libretro.dll" "{ImagePath}"'
+      DefaultArguments: '-L ".\cores\dosbox_svn_glide_libretro.dll" "{ImagePath}"'
       Platforms: [DOS]
       ImageExtensions: [exe, com, bat, conf, zip, 7z]
+      RequiredFiles: ['cores\dosbox_svn_glide_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: DOSBox-SVN
+      DefaultArguments: '-L ".\cores\dosbox_svn_libretro.dll" "{ImagePath}"'
+      Platforms: [DOS]
+      ImageExtensions: [exe, com, bat, conf, cue, iso, zip, 7z]
       RequiredFiles: ['cores\dosbox_svn_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: EasyRPG
+    - Name: EasyRPG Player
       DefaultArguments: '-L ".\cores\easyrpg_libretro.dll" "{ImagePath}"'
       Platforms: [RPG Maker]
-      ImageExtensions: [ini, zip, 7z]
+      ImageExtensions: [ldb, zip, 7z]
       RequiredFiles: ['cores\easyrpg_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -863,11 +876,11 @@
       RequiredFiles: ['cores\fbalpha2012_neogeo_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: FB Alpha
-      DefaultArguments: '-L ".\cores\fbalpha_libretro.dll" "{ImagePath}"'
+    - Name: FinalBurn Neo
+      DefaultArguments: '-L ".\cores\fbneo_libretro.dll" "{ImagePath}"'
       Platforms: [Various]
-      ImageExtensions: [iso, zip, 7z]
-      RequiredFiles: ['cores\fbalpha_libretro.dll']
+      ImageExtensions: [zip, 7z, cue]
+      RequiredFiles: ['cores\fbneo_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: FCEUmm
@@ -889,6 +902,13 @@
       Platforms: [Nintendo Entertainment System, Nintendo Family Computer Disk System]
       ImageExtensions: [nes, fds, qd, nsf, zip, 7z]
       RequiredFiles: ['cores\fixnes_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: Flycast
+      DefaultArguments: '-L ".\cores\flycast_libretro.dll" "{ImagePath}"'
+      Platforms: [Sega Dreamcast, Sega NAOMI]
+      ImageExtensions: [chd, cdi, iso, elf, bin, cue, gdi, lst, zip, dat, 7z, m3u]
+      RequiredFiles: ['cores\flycast_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: fMSX
@@ -942,8 +962,8 @@
 
     - Name: Gearsystem
       DefaultArguments: '-L ".\cores\gearsystem_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega Game Gear, Sega Master System]
-      ImageExtensions: [sms, gg, bin, rom, zip, 7z]
+      Platforms: [Sega Game Gear, Sega Master System, Sega SG 1000]
+      ImageExtensions: [sms, gg, sg, bin, rom, zip, 7z]
       RequiredFiles: ['cores\gearsystem_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1003,6 +1023,20 @@
       RequiredFiles: ['cores\ishiiruka_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
+    - Name: Kronos
+      DefaultArguments: '-L ".\cores\kronos_libretro.dll" "{ImagePath}"'
+      Platforms: [Sega Saturn, Sega ST V]
+      ImageExtensions: [cue, iso, mds, ccd, zip, chd, 7z]
+      RequiredFiles: ['cores\kronos_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: NeoCD
+      DefaultArguments: '-L ".\cores\libneocd_libretro.dll" "{ImagePath}"'
+      Platforms: [SNK Neo Geo CD]
+      ImageExtensions: [cue, chd, zip, 7z]
+      RequiredFiles: ['cores\libneocd_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
     - Name: MAME 2000 (0.37b5)
       DefaultArguments: '-L ".\cores\mame2000_libretro.dll" "{ImagePath}"'
       Platforms: [Various]
@@ -1024,7 +1058,7 @@
       RequiredFiles: ['cores\mame2003_midway_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: MAME 2003 Plus
+    - Name: MAME 2003-Plus
       DefaultArguments: '-L ".\cores\mame2003_plus_libretro.dll" "{ImagePath}"'
       Platforms: [MAME 2003 Plus]
       ImageExtensions: [zip, 7z]
@@ -1045,11 +1079,11 @@
       RequiredFiles: ['cores\mame2010_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: MAME 2014 (0.159)
-      DefaultArguments: '-L ".\cores\mame2014_libretro.dll" "{ImagePath}"'
+    - Name: MAME 2015 (0.160)
+      DefaultArguments: '-L ".\cores\mame2015_libretro.dll" "{ImagePath}"'
       Platforms: [Various]
       ImageExtensions: [zip, chd, 7z, cmd]
-      RequiredFiles: ['cores\mame2014_libretro.dll']
+      RequiredFiles: ['cores\mame2015_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: MAME 2016 (0.174)
@@ -1083,7 +1117,7 @@
     - Name: Beetle NeoPop
       DefaultArguments: '-L ".\cores\mednafen_ngp_libretro.dll" "{ImagePath}"'
       Platforms: [SNK Neo Geo Pocket, SNK Neo Geo Pocket Color]
-      ImageExtensions: [ngp, ngc, ngpc, zip, 7z]
+      ImageExtensions: [ngp, ngc, ngpc, npc, zip, 7z]
       RequiredFiles: ['cores\mednafen_ngp_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1092,6 +1126,13 @@
       Platforms: [NEC TurboGrafx 16, NEC TurboGrafx-CD]
       ImageExtensions: [pce, cue, ccd, iso, img, bin, chd, zip, 7z]
       RequiredFiles: ['cores\mednafen_pce_fast_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: Beetle PCE
+      DefaultArguments: '-L ".\cores\mednafen_pce_libretro.dll" "{ImagePath}"'
+      Platforms: [NEC SuperGrafx, NEC TurboGrafx 16, NEC TurboGrafx-CD]
+      ImageExtensions: [pce, cue, ccd, iso, img, bin, chd, zip, 7z]
+      RequiredFiles: ['cores\mednafen_pce_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Beetle PC-FX
@@ -1131,7 +1172,7 @@
 
     - Name: Beetle SGX
       DefaultArguments: '-L ".\cores\mednafen_supergrafx_libretro.dll" "{ImagePath}"'
-      Platforms: [NEC PC Engine SuperGrafx, NEC TurboGrafx 16, NEC TurboGrafx-CD]
+      Platforms: [NEC SuperGrafx, NEC TurboGrafx 16, NEC TurboGrafx-CD]
       ImageExtensions: [pce, sgx, cue, ccd, chd, zip, 7z]
       RequiredFiles: ['cores\mednafen_supergrafx_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
@@ -1157,6 +1198,13 @@
       RequiredFiles: ['cores\melonds_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
+    - Name: Mesen-S
+      DefaultArguments: '-L ".\cores\mesen-s_libretro.dll" "{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System]
+      ImageExtensions: [sfc, smc, fig, swc, zip, 7z]
+      RequiredFiles: ['cores\mesen-s_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
     - Name: Mesen
       DefaultArguments: '-L ".\cores\mesen_libretro.dll" "{ImagePath}"'
       Platforms: [Nintendo Entertainment System, Nintendo Family Computer Disk System]
@@ -1164,11 +1212,11 @@
       RequiredFiles: ['cores\mesen_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: MESS 2014 (Git)
-      DefaultArguments: '-L ".\cores\mess2014_libretro.dll" "{ImagePath}"'
+    - Name: MESS 2015 (0.160)
+      DefaultArguments: '-L ".\cores\mess2015_libretro.dll" "{ImagePath}"'
       Platforms: [Various]
       ImageExtensions: [zip, chd, 7z]
-      RequiredFiles: ['cores\mess2014_libretro.dll']
+      RequiredFiles: ['cores\mess2015_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Meteor
@@ -1185,18 +1233,18 @@
       RequiredFiles: ['cores\mgba_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: Mupen64Plus
-      DefaultArguments: '-L ".\cores\mupen64plus_gles3_libretro.dll" "{ImagePath}"'
+    - Name: Mupen64Plus-Next GLES3
+      DefaultArguments: '-L ".\cores\mupen64plus_next_gles3_libretro.dll" "{ImagePath}"'
       Platforms: [Nintendo 64, Nintendo 64DD]
       ImageExtensions: [n64, v64, z64, bin, u1, ndd, zip, 7z]
-      RequiredFiles: ['cores\mupen64plus_gles3_libretro.dll']
+      RequiredFiles: ['cores\mupen64plus_next_gles3_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: Mupen64Plus OpenGL
-      DefaultArguments: '-L ".\cores\mupen64plus_libretro.dll" "{ImagePath}"'
+    - Name: Mupen64Plus-Next
+      DefaultArguments: '-L ".\cores\mupen64plus_next_libretro.dll" "{ImagePath}"'
       Platforms: [Nintendo 64, Nintendo 64DD]
       ImageExtensions: [n64, v64, z64, bin, u1, ndd, zip, 7z]
-      RequiredFiles: ['cores\mupen64plus_libretro.dll']
+      RequiredFiles: ['cores\mupen64plus_next_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Neko Project II
@@ -1258,21 +1306,21 @@
     - Name: PCSX ReARMed [Interpreter]
       DefaultArguments: '-L ".\cores\pcsx_rearmed_interpreter_libretro.dll" "{ImagePath}"'
       Platforms: [Sony PlayStation]
-      ImageExtensions: [bin, cue, img, mdf, pbp, cbn, toc, zip, 7z]
+      ImageExtensions: [bin, cue, img, mdf, pbp, cbn, toc, chd, zip, 7z]
       RequiredFiles: ['cores\pcsx_rearmed_interpreter_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: PCSX ReARMed
+    - Name: PCSX-ReARMed
       DefaultArguments: '-L ".\cores\pcsx_rearmed_libretro.dll" "{ImagePath}"'
       Platforms: [Sony PlayStation]
-      ImageExtensions: [bin, cue, img, mdf, pbp, toc, cbn, m3u, zip, 7z]
+      ImageExtensions: [bin, cue, img, mdf, pbp, toc, cbn, m3u, ccd, chd, zip, 7z]
       RequiredFiles: ['cores\pcsx_rearmed_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: PCSX ReARMed [NEON]
       DefaultArguments: '-L ".\cores\pcsx_rearmed_libretro_neon.dll" "{ImagePath}"'
       Platforms: [Sony PlayStation]
-      ImageExtensions: [bin, cue, img, mdf, pbp, toc, cbn, m3u, zip, 7z]
+      ImageExtensions: [bin, cue, img, mdf, pbp, toc, cbn, m3u, chd, zip, 7z]
       RequiredFiles: ['cores\pcsx_rearmed_libretro_neon.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1281,6 +1329,13 @@
       Platforms: [Sega Master System, Sega CD, Sega Genesis, Sega PICO, Sega 32X]
       ImageExtensions: [bin, gen, smd, md, 32x, cue, iso, sms, 68k, zip, 7z]
       RequiredFiles: ['cores\picodrive_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: Play!
+      DefaultArguments: '-L ".\cores\play_libretro.dll" "{ImagePath}"'
+      Platforms: [Sony PlayStation 2]
+      ImageExtensions: [iso, isz, cso, bin, elf, zip, 7z]
+      RequiredFiles: ['cores\play_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: PPSSPP
@@ -1300,7 +1355,7 @@
     - Name: PUAE
       DefaultArguments: '-L ".\cores\puae_libretro.dll" "{ImagePath}"'
       Platforms: [Commodore Amiga]
-      ImageExtensions: [adf, dms, fdi, ipf, zip, uae, 7z]
+      ImageExtensions: [adf, dms, fdi, ipf, zip, hdf, hdz, m3u, uae, 7z]
       RequiredFiles: ['cores\puae_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1323,27 +1378,6 @@
       Platforms: [Sega Dreamcast]
       ImageExtensions: [gdi, chd, cdi, zip, 7z]
       RequiredFiles: ['cores\redream_libretro.dll']
-      ExecutableLookup: ^retroarch\.exe$
-
-    - Name: Reicast
-      DefaultArguments: '-L ".\cores\reicast_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega Dreamcast, Sega NAOMI]
-      ImageExtensions: [chd, cdi, iso, elf, bin, cue, gdi, lst, zip, 7z]
-      RequiredFiles: ['cores\reicast_libretro.dll']
-      ExecutableLookup: ^retroarch\.exe$
-
-    - Name: Reicast NAOMI
-      DefaultArguments: '-L ".\cores\reicast_naomi_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega NAOMI]
-      ImageExtensions: [chd, cdi, iso, elf, bin, cue, gdi, zip, 7z]
-      RequiredFiles: ['cores\reicast_naomi_libretro.dll']
-      ExecutableLookup: ^retroarch\.exe$
-
-    - Name: Reicast OIT
-      DefaultArguments: '-L ".\cores\reicast_oit_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega Dreamcast, Sega NAOMI]
-      ImageExtensions: [chd, cdi, iso, elf, bin, cue, gdi, lst, zip, 7z]
-      RequiredFiles: ['cores\reicast_oit_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Rustation
@@ -1395,6 +1429,13 @@
       RequiredFiles: ['cores\snes9x_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
+    - Name: Stella 2014
+      DefaultArguments: '-L ".\cores\stella2014_libretro.dll" "{ImagePath}"'
+      Platforms: [Atari 2600]
+      ImageExtensions: [a26, bin, zip, 7z]
+      RequiredFiles: ['cores\stella2014_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
     - Name: Stella
       DefaultArguments: '-L ".\cores\stella_libretro.dll" "{ImagePath}"'
       Platforms: [Atari 2600]
@@ -1416,10 +1457,10 @@
       RequiredFiles: ['cores\tgbdual_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: Theodore
+    - Name: theodore
       DefaultArguments: '-L ".\cores\theodore_libretro.dll" "{ImagePath}"'
-      Platforms: [Thomson TO8D]
-      ImageExtensions: [fd, sap, k7, m7, rom, zip, 7z]
+      Platforms: [Thomson MOTO]
+      ImageExtensions: [fd, sap, k7, m7, m5, rom, zip, 7z]
       RequiredFiles: ['cores\theodore_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1430,11 +1471,11 @@
       RequiredFiles: ['cores\uae4arm_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: UME 2014 (Git)
-      DefaultArguments: '-L ".\cores\ume2014_libretro.dll" "{ImagePath}"'
+    - Name: UME 2015 (0.160)
+      DefaultArguments: '-L ".\cores\ume2015_libretro.dll" "{ImagePath}"'
       Platforms: [Various]
       ImageExtensions: [zip, chd, 7z]
-      RequiredFiles: ['cores\ume2014_libretro.dll']
+      RequiredFiles: ['cores\ume2015_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: uzem
@@ -1446,8 +1487,8 @@
 
     - Name: VBA-M
       DefaultArguments: '-L ".\cores\vbam_libretro.dll" "{ImagePath}"'
-      Platforms: [Nintendo Game Boy Advance]
-      ImageExtensions: [gba, zip, 7z]
+      Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
+      ImageExtensions: [dmg, gb, gbc, cgb, sgb, gba, zip, 7z]
       RequiredFiles: ['cores\vbam_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1475,28 +1516,49 @@
     - Name: VICE
       DefaultArguments: '-L ".\cores\vice_x128_libretro.dll" "{ImagePath}"'
       Platforms: [Commodore C128]
-      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z, cmd, m3u]
       RequiredFiles: ['cores\vice_x128_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: VICE
+      DefaultArguments: '-L ".\cores\vice_x64sc_libretro.dll" "{ImagePath}"'
+      Platforms: [Commodore 64]
+      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z, cmd, m3u]
+      RequiredFiles: ['cores\vice_x64sc_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: VICE
       DefaultArguments: '-L ".\cores\vice_x64_libretro.dll" "{ImagePath}"'
       Platforms: [Commodore 64]
-      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z, cmd, m3u]
       RequiredFiles: ['cores\vice_x64_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: VICE
+      DefaultArguments: '-L ".\cores\vice_xcbm2_libretro.dll" "{ImagePath}"'
+      Platforms: [Commodore CBM2]
+      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z, cmd, m3u]
+      RequiredFiles: ['cores\vice_xcbm2_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: VICE
+      DefaultArguments: '-L ".\cores\vice_xpet_libretro.dll" "{ImagePath}"'
+      Platforms: [Commodore PET]
+      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z, cmd, m3u]
+      RequiredFiles: ['cores\vice_xpet_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: VICE
       DefaultArguments: '-L ".\cores\vice_xplus4_libretro.dll" "{ImagePath}"'
       Platforms: [Commodore PLUS4]
-      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z, cmd, m3u]
       RequiredFiles: ['cores\vice_xplus4_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: VICE
       DefaultArguments: '-L ".\cores\vice_xvic_libretro.dll" "{ImagePath}"'
       Platforms: [Commodore VIC20]
-      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+      ImageExtensions: [20, 40, 60, a0, b0, d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z, cmd, m3u]
       RequiredFiles: ['cores\vice_xvic_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1514,10 +1576,17 @@
       RequiredFiles: ['cores\x64sdl_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
+    - Name: YabaSanshiro
+      DefaultArguments: '-L ".\cores\yabasanshiro_libretro.dll" "{ImagePath}"'
+      Platforms: [Sega Saturn]
+      ImageExtensions: [cue, iso, mds, ccd, zip, chd, 7z]
+      RequiredFiles: ['cores\yabasanshiro_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
     - Name: Yabause
       DefaultArguments: '-L ".\cores\yabause_libretro.dll" "{ImagePath}"'
       Platforms: [Sega Saturn]
-      ImageExtensions: [bin, cue, iso, zip, 7z]
+      ImageExtensions: [cue, iso, mds, ccd, zip, chd, 7z]
       RequiredFiles: ['cores\yabause_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
