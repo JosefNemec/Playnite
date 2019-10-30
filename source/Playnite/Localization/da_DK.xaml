@@ -383,6 +383,7 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Udfyld</sys:String>
