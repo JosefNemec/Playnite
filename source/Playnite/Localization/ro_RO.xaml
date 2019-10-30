@@ -366,7 +366,7 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
 Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Repornire Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Durata jocului nu va fi înregistrată dacă este setată acțiunea de "Închidere".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Număr de rânduri</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Număr de coloane</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Număr de rânduri în modul de vizualizare îndetaliat</sys:String>
@@ -375,7 +375,7 @@ Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Poză Magazin</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Fundal Magazin</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Nu se aplică retroactiv jocurilor existente fără re-descărcarea metadatelor.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forțează sincronizarea duratei de joacă</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Butonul Guide al gamepad-ului deschide modul Fullscreen</sys:String>
@@ -713,7 +713,7 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Sfat: Puteți folosi un proces mai avansat de descărcare a metadatelor în timpul editării unui joc prin opțiunea de "Editare" din meniu.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nedisponibil când se execută o acțiune.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Textul descrierii trebuie să conțină o sintaxă HTML senzitivă</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Durata de joacă este urmărită și înregistrată în secunde.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Pentru a nu acorda un scor folosiți valori între 0 și 100 sau lăsați gol.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Dezvoltarea programului Playnite este sprijinită de următorii patroni:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Cod, localizare și alți contribuabili în nici o ordine particulară:</sys:String>
