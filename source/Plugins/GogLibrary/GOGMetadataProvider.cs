@@ -44,15 +44,15 @@ namespace GogLibrary
                 BackgroundImage = storeData.BackgroundImage
             };
 
-            gameInfo.Links.Add(new Link("{DynamicResource LOCGOGLinksPCGW}", @"http://pcgamingwiki.com/w/index.php?search=" + storeData.GameDetails.title));
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + storeData.GameDetails.title));
             if (!string.IsNullOrEmpty(storeData.GameDetails.links.forum))
             {
-                gameInfo.Links.Add(new Link("{DynamicResource LOCGOGLinksForum}", storeData.GameDetails.links.forum));
+                gameInfo.Links.Add(new Link("Forum", storeData.GameDetails.links.forum));
             };
 
             if (!string.IsNullOrEmpty(storeData.GameDetails.links.product_card))
             {
-                gameInfo.Links.Add(new Link("{DynamicResource LOCGOGLinksStorePage}", storeData.GameDetails.links.product_card));
+                gameInfo.Links.Add(new Link("Store Page", storeData.GameDetails.links.product_card));
             };
 
             if (storeData.StoreDetails != null)
