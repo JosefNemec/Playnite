@@ -383,7 +383,7 @@ Nové umístění databáze bude použito po restartu aplikace.</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Snímek obrazovky z obchodu</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Pozadí z obchodu</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Neaplikuje se na hry, co už existují -- pro ty je třeba znovu stáhnout metadata.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Vynutit synchronizaci odehraného času</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Upřednostnit čas hraní pro podporované knihovny</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Vždy stáhnout odehraný čas ze vzdálené knihovny, ignorovat čas zaznamenaný Playnitem.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Povolit podporu ovladače v režimu plochy</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Tlačítko Průvodce otevírá režim celé obrazovky</sys:String>
