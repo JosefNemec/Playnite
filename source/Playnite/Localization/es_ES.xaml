@@ -407,6 +407,7 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Pantalla</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modo de formato de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderizado de texto</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Las opciones de formato y renderizado de texto actualmente no se aplican al texto de la descripción del juego.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ninguno</sys:String>
     <sys:String x:Key="LOCStrechFill">Rellenar</sys:String>
