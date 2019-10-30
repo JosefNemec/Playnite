@@ -1,5 +1,6 @@
 ﻿using EpicLibrary.Models;
 using EpicLibrary.Services;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -67,6 +68,7 @@ namespace EpicLibrary
 
         internal List<GameInfo> GetLibraryGames()
         {
+            var cacheDir = GetCachePath("catalogcache");
             var games = new List<GameInfo>();
             var accountApi = new EpicAccountClient(playniteApi, TokensPath);
             var assets = accountApi.GetAssets();
@@ -77,7 +79,21 @@ namespace EpicLibrary
 
             foreach (var gameAsset in assets.Where(a => a.@namespace != "ue"))
             {
-                var catalogItem = accountApi.GetCatalogItem(gameAsset.@namespace, gameAsset.catalogItemId);
+                var cacheFile = Paths.GetSafeFilename($"{gameAsset.@namespace}_{gameAsset.catalogItemId}_{gameAsset.buildVersion}.json");
+                cacheFile = Path.Combine(cacheDir, cacheFile);
+                CatalogItem catalogItem = null;
+
+                if (File.Exists(cacheFile))
+                {
+                    catalogItem = Serialization.FromJsonFile<CatalogItem>(cacheFile);
+                }
+                else
+                {
+                    catalogItem = accountApi.GetCatalogItem(gameAsset.@namespace, gameAsset.catalogItemId);
+                    FileSystem.PrepareSaveFile(cacheFile);
+                    File.WriteAllText(cacheFile, Serialization.ToJson(catalogItem));
+                }
+
                 if (catalogItem?.categories?.Where(a => a.path == "applications").Any() != true)
                 {
                     continue;
@@ -192,6 +208,11 @@ namespace EpicLibrary
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new EpicMetadataProvider(this, PlayniteApi);
+        }
+
+        public string GetCachePath(string dirName)
+        {
+            return Path.Combine(GetPluginUserDataPath(), dirName);
         }
 
         #endregion ILibraryPlugin
