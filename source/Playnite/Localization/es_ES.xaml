@@ -374,7 +374,7 @@ Todas las tareas activas (descarga de metadatos) serán canceladas.</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite no mueve los archivos de la biblioteca automáticamente, debes moverlos / copiarlos antes de cambiar la ubicación. Si no hay una biblioteca presente en la ubicación de destino, se creará una nueva.
 
 La nueva ubicación de la base de datos solo se usará después de reiniciar la aplicación.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">El tiempo de juego no se registrará si se establece la acción "Cerrar".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de filas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de columnas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Número de filas en la Vista de Detalles</sys:String>
@@ -383,7 +383,7 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de pantalla de la tienda</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Imagen de fondo de la tienda</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">No se aplica a juegos existentes sin volver a descargar los metadatos.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forzar sincronización del tiempo de juego</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Descargar siempre el tiempo de juego guardado por la biblioteca remota durante la sincronización de biblioteca, ignorando el tiempo guardado por Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activar soporte de mando en el modo Escritorio</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Botón guía abre el modo pantalla completa</sys:String>
@@ -730,7 +730,7 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Sugerencia: puede usar un proceso de descarga de metadatos más avanzado mientras edita un solo juego a través de la opción de menú "Editar".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">No disponible cuando alguna acción está en proceso.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">El texto de descripción es sensible a la sintaxis HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">El tiempo de juego se registra y guarda en segundos.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valores entre 0 y 100 o dejar vacio para no indicar puntuación.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">El desarrollo de Playnite es apoyado por estos patrocinadores:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Código, traductores y otros contribuyentes en ningún orden en particular:</sys:String>
