@@ -400,6 +400,7 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Formatage du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Mode de rendu du texte</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Les options de rendu et de formatage du texte ne s'appliquent pas actuellement au texte de description du jeu.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
