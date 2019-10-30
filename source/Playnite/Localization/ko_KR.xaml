@@ -370,7 +370,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite는 자동으로 데이터베이스 파일을 이동시킬 수 없습니다. 데이터베이스 파일 위치가 변경된 경우 수동으로 이동/복사 하여야 합니다. 만약 데이터베이스가 지정된 위치에 없다면 새로 생성합니다.
 
 새로운 데이터베이스 위치는 재시작후 적용됩니다.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"닫기" 액션이 설정되어있으면 게임 플레이 시간이 기록되지 않습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">행 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">열 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">자세히 보기 방식의 열 수</sys:String>
@@ -379,7 +379,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">스토어 스크린샷</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">스토어 배경</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">메타데이터를 다시 다운로드하지 않으면 기존 게임에는 소급 적용되지 않습니다.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">강제로 플레이 시간 동기화</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">라이브러리 동기화 중에 Playnite가 기록한 플레이 시간을 적용하는 대신 원격 라이브러리에서 기록된 플레이 시간을 다운로드합니다.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">데스크탑 모드에서 컨트롤러 지원 활성화</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">가이드 버튼을 전체 화면으로 열기</sys:String>
@@ -726,7 +726,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">팁: 하나의 게임 정보를 편집하는동안 편집 메뉴에서 고급 메타데이터 다운로드를 이용할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">다른 절차가 진행중일 경우 사용할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">설명은 html 구문에 민감합니다.</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">플레이 시간은 초단위로 측정 및 저장됩니다.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0에서 100사이의 값 또는 점수가 없으면 빈칸.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 개발은 다음의 후원자에 지원을 받습니다.</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">코드, 번역 및 기타 기여는 특별한 순서가 없습니다:</sys:String>
