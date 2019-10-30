@@ -379,7 +379,7 @@ Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applica
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Screenshot Negozio</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Sfondo Negozio</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Non si applica retroattivamente ai giochi esistenti senza dover riscaricare i metadati.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forza la sincronizzazione del tempo di gioco</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Dare la priorità al tempo di gioco per le librerie supportate</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Scaricare sempre il tempo di gioco registrato dalla libreria remota durante la sincronizzazione della libreria, ignorando il tempo registrato da Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Abilita il supporto del controller in modalità Desktop</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Il pulsante guida apre la modalità a schermo intero</sys:String>
@@ -725,7 +725,7 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Consiglio: puoi utilizzare un processo di scaricamento del metadata più avanzato durante la modifica del gioco attraverso l'opzione del menu "Modifica".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Non disponibile mentre alcune azioni sono in corso.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">La descrizione del testo è sensibile alla sintassi HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Il tempo di gioco è tracciato e conservato in secondi.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Il tempo di gioco è registrato e conservato in secondi.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">I valori da 0 a 100 o nulli per nessun punteggio.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Lo sviluppo di Playnite è sostenuto da questi patrons:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Codice, traduzione e altri contributori in nessun ordine particolare:</sys:String>
