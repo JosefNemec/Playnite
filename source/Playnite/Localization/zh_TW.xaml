@@ -798,6 +798,12 @@ By {1}
     
 {0}</sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
+    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io客戶端程式即將啟動，請登入然後關閉此訊息。</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">正在等候用戶登入，完成後請關閉此訊息...</sys:String>
@@ -813,6 +819,9 @@ By {1}
     <sys:String x:Key="LOCSteamCustomUrlName">帳號網址名稱</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">已驗證的使用者</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">此為私人帳號，需要提供API密鑰</sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">首次安裝尚未完成，Playnite將會重新啟動進入桌面模式完成安裝步驟。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近玩過</sys:String>
