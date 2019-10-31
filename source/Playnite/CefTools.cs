@@ -20,8 +20,17 @@ namespace Playnite
             FileSystem.CreateDirectory(PlaynitePaths.BrowserCachePath);
             var settings = new CefSettings();
             settings.WindowlessRenderingEnabled = true;
-            settings.CefCommandLineArgs.Add("disable-gpu", "1");
-            settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
+
+            if (!settings.CefCommandLineArgs.ContainsKey("disable-gpu"))
+            {
+                settings.CefCommandLineArgs.Add("disable-gpu", "1");
+            }
+
+            if (!settings.CefCommandLineArgs.ContainsKey("disable-gpu-compositing"))
+            {
+                settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
+            }
+
             settings.CachePath = PlaynitePaths.BrowserCachePath;
             settings.PersistSessionCookies = true;
             settings.LogFile = Path.Combine(PlaynitePaths.ConfigRootPath, "cef.log");
