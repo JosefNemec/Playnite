@@ -261,7 +261,7 @@ namespace GogLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new GogMetadataProvider();
+            return new GogMetadataProvider(this);
         }
 
         #endregion ILibraryPlugin

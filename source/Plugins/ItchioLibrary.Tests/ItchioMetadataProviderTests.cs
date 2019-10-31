@@ -14,7 +14,7 @@ namespace ItchioLibrary.Tests
         [Test]
         public void GetMetadataTest()
         {
-            var provider = new ItchioMetadataProvider();
+            var provider = new ItchioMetadataProvider(ItchioLibraryTets.CreateLibrary());
             var metadata = provider.GetMetadata(new Game { GameId = "356189" });
         }
     }

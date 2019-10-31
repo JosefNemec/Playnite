@@ -1194,13 +1194,16 @@ namespace Playnite.DesktopApp.ViewModels
             if (IsSingleGameEdit)
             {
                 MetadataDownloadOptions = new List<MetadataDownloadOption>();
-                foreach (var plugin in extensions.MetadataPlugins)
+                if (extensions?.MetadataPlugins != null)
                 {
-                    MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
+                    foreach (var plugin in extensions.MetadataPlugins)
                     {
-                        Downloader = plugin,
-                        Name = plugin.Name
-                    });
+                        MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
+                        {
+                            Downloader = plugin,
+                            Name = plugin.Name
+                        });
+                    }
                 }
 
                 MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)

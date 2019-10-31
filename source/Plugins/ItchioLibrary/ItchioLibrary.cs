@@ -286,7 +286,7 @@ namespace ItchioLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new ItchioMetadataProvider();
+            return new ItchioMetadataProvider(this);
         }
 
         public override ISettings GetSettings(bool firstRunSettings)

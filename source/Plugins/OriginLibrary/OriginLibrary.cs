@@ -471,7 +471,7 @@ namespace OriginLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new OriginMetadataProvider(PlayniteApi);
+            return new OriginMetadataProvider(this);
         }
 
         #endregion ILibraryPlugin

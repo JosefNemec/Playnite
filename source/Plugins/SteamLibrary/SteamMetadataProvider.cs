@@ -286,6 +286,7 @@ namespace SteamLibrary
 
         internal GameMetadata GetGameMetadata(GameID gameId)
         {
+            var resources = library.PlayniteApi.Resources;
             var appId = gameId.AppID;
             var downloadedMetadata = DownloadGameMetadata(appId, library.LibrarySettings.BackgroundSource);
             var gameInfo = new GameInfo
@@ -293,10 +294,10 @@ namespace SteamLibrary
                 Name = downloadedMetadata.ProductDetails?["common"]["name"]?.Value ?? downloadedMetadata.GameInfo.Name,
                 Links = new List<Link>()
                 {
-                    new Link("Community Hub", $"https://steamcommunity.com/app/{appId}"),
-                    new Link("Discussions", $"https://steamcommunity.com/app/{appId}/discussions/"),
-                    new Link("News", $"https://store.steampowered.com/news/?appids={appId}"),
-                    new Link("Store Page", $"https://store.steampowered.com/app/{appId}"),
+                    new Link(resources.GetString("LOCSteamLinksCommunityHub"), $"https://steamcommunity.com/app/{appId}"),
+                    new Link(resources.GetString("LOCSteamLinksDiscussions"), $"https://steamcommunity.com/app/{appId}/discussions/"),
+                    new Link(resources.GetString("LOCCommonLinksNews"), $"https://store.steampowered.com/news/?appids={appId}"),
+                    new Link(resources.GetString("LOCCommonLinksStorePage"), $"https://store.steampowered.com/app/{appId}"),
                     new Link("PCGamingWiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
                 }
             };
@@ -313,12 +314,12 @@ namespace SteamLibrary
 
             if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 22) != null)
             {
-                gameInfo.Links.Add(new Link("Achievements", Steam.GetAchievementsUrl(appId)));
+                gameInfo.Links.Add(new Link(resources.GetString("LOCCommonLinksAchievements"), Steam.GetAchievementsUrl(appId)));
             }
 
             if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
             {
-                gameInfo.Links.Add(new Link("Workshop", Steam.GetWorkshopUrl(appId)));
+                gameInfo.Links.Add(new Link(resources.GetString("LOCSteamLinksWorkshop"), Steam.GetWorkshopUrl(appId)));
             }
 
             if (downloadedMetadata.StoreDetails != null)

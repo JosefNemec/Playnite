@@ -18,10 +18,12 @@ namespace ItchioLibrary
     public class ItchioMetadataProvider : LibraryMetadataProvider
     {
         private Butler butler;
+        private ItchioLibrary library;
 
-        public ItchioMetadataProvider()
+        public ItchioMetadataProvider(ItchioLibrary library)
         {
             butler = new Butler();
+            this.library = library;
         }
 
         public override void Dispose()
@@ -55,7 +57,9 @@ namespace ItchioLibrary
 
             if (!string.IsNullOrEmpty(itchGame.url))
             {
-                gameData.Links.Add(new Link("Store Page", itchGame.url));
+                gameData.Links.Add(new Link(
+                    library.PlayniteApi.Resources.GetString("LOCCommonLinksStorePage"),
+                    itchGame.url));
                 var gamePageSrc = HttpDownloader.DownloadString(itchGame.url);
                 var parser = new HtmlParser();
                 var gamePage = parser.Parse(gamePageSrc);

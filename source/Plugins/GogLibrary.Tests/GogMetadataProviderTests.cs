@@ -15,7 +15,7 @@ namespace GogLibrary.Tests
         [Test]
         public void StandardDownloadTest()
         {
-            var provider = new GogMetadataProvider();
+            var provider = new GogMetadataProvider(GogLibraryTests.CreateLibrary());
             var data = provider.GetMetadata(new Game() { GameId = "1207659012" });
             Assert.IsNotNull(data.GameInfo);
             Assert.IsNotNull(data.Icon);
@@ -34,7 +34,7 @@ namespace GogLibrary.Tests
         [Test]
         public void DownloadGameMetadataTest()
         {
-            var gogLib = new GogMetadataProvider();
+            var gogLib = new GogMetadataProvider(GogLibraryTests.CreateLibrary());
 
             // Existing store page - contains all data
             var existingStore = gogLib.DownloadGameMetadata(new Game() { GameId = "1207658645" });

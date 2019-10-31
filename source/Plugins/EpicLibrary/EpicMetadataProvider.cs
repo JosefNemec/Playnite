@@ -27,10 +27,10 @@ namespace EpicLibrary
 
         public override GameMetadata GetMetadata(Game game)
         {
-            var gameInfo = new GameInfo();
+            var gameInfo = new GameInfo() { Links = new List<Link>() };
             var metadata = new GameMetadata()
             {
-                GameInfo = gameInfo,
+                GameInfo = gameInfo                
             };
 
             using (var client = new WebStoreClient())
@@ -44,13 +44,20 @@ namespace EpicLibrary
                         var page = product.pages[0];
                         gameInfo.Description = page.data.about.description;
                         gameInfo.Developers = new List<string>() { page.data.about.developerAttribution };
-                        metadata.BackgroundImage = new MetadataFile(page.data.hero.backgroundImageUrl);
+                        metadata.BackgroundImage = new MetadataFile(page.data.hero.backgroundImageUrl);             
+                        gameInfo.Links.Add(new Link(
+                            library.PlayniteApi.Resources.GetString("LOCCommonLinksStorePage"),
+                            "https://www.epicgames.com/store/en-US/product/" + catalogs[0].productSlug));
 
                         if (page.data.socialLinks.HasItems())
                         {
-                            gameInfo.Links = page.data.socialLinks.
-                                Where(a => a.Key.StartsWith("link")).
+                            var links = page.data.socialLinks.
+                                Where(a => a.Key.StartsWith("link") && !a.Value.IsNullOrEmpty()).
                                 Select(a => new Link(a.Key.Replace("link", ""), a.Value)).ToList();
+                            if (links.HasItems())
+                            {
+                                gameInfo.Links.AddRange(links);
+                            }
                         }
 
                         if (!gameInfo.Description.IsNullOrEmpty())
@@ -60,6 +67,8 @@ namespace EpicLibrary
                     }
                 }
             }
+
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name));
 
             // There's not icon available on Epic servers so we will load one from EXE
             if (game.IsInstalled && string.IsNullOrEmpty(game.Icon))
