@@ -1329,15 +1329,28 @@ namespace Playnite.DesktopApp.ViewModels
                             }
 
                             var game = GameExtensions.GetGameFromExecutable(path);
-                            var exePath = game.GetRawExecutablePath();
-                            if (!string.IsNullOrEmpty(exePath))
+                            var icoPath = game.Icon;
+                            if (icoPath.IsNullOrEmpty())
                             {
-                                var ico = IconExtension.ExtractIconFromExe(exePath, true);
+                                var exePath = game.GetRawExecutablePath();
+                                if (!string.IsNullOrEmpty(exePath))
+                                {
+                                    icoPath = exePath;
+                                }
+                            }
+
+                            if (icoPath?.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true)
+                            {
+                                var ico = IconExtension.ExtractIconFromExe(icoPath, true);
                                 if (ico != null)
                                 {
                                     var iconName = Guid.NewGuid().ToString() + ".png";
                                     game.Icon = Database.AddFile(iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png), game.Id);
                                 }
+                            }
+                            else if (!icoPath.IsNullOrEmpty())
+                            {
+                                game.Icon = Database.AddFile(icoPath, game.Id);
                             }
 
                             Database.Games.Add(game);

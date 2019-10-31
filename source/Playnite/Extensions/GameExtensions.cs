@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Playnite
@@ -22,22 +23,49 @@ namespace Playnite
             }
 
             var game = new Game();
-
             if (string.Equals(Path.GetExtension(path), ".lnk", StringComparison.OrdinalIgnoreCase))
             {
                 var prog = Programs.ParseShortcut(path);
-                var file = new FileInfo(prog.Path);
-                var versionInfo = FileVersionInfo.GetVersionInfo(prog.Path);
-                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
-                game.Name = programName;
-                game.InstallDirectory = prog.WorkDir;
+                var fileInfo = new FileInfo(prog.Path);
+                if (!fileInfo.Exists && prog.Path.Contains("Program Files (x86)"))
+                {
+                    var newPath = prog.Path.Replace("Program Files (x86)", "Program Files");
+                    if (File.Exists(newPath))
+                    {
+                        fileInfo = new FileInfo(newPath);
+                        if (prog.WorkDir.Contains("Program Files (x86)"))
+                        {
+                            prog.WorkDir.Replace("Program Files (x86)", "Program Files");
+                        }
+                    }
+                }
+                
+                game.Name = Path.GetFileNameWithoutExtension(path);
+                game.InstallDirectory = prog.WorkDir.IsNullOrEmpty() ? fileInfo.Directory.FullName : prog.WorkDir;
                 game.PlayAction = new GameAction()
                 {
                     Type = GameActionType.File,
                     WorkingDir = ExpandableVariables.InstallationDirectory,
-                    Path = prog.Path.Substring(game.InstallDirectory.Length).Trim(Path.DirectorySeparatorChar),
+                    Path = fileInfo.FullName.Substring(game.InstallDirectory.Length).Trim(Path.DirectorySeparatorChar),
                     Arguments = prog.Arguments
                 };
+
+                if (!prog.Icon.IsNullOrEmpty())
+                {
+                    var iconPath = Regex.Replace(prog.Icon, @",\d+$", "");
+                    if (File.Exists(iconPath))
+                    {
+                        game.Icon = iconPath;
+                    }
+                    else if (iconPath.Contains("Program Files (x86)"))
+                    {
+                        iconPath = iconPath.Replace("Program Files (x86)", "Program Files");
+                        if (File.Exists(iconPath))
+                        {
+                            game.Icon = iconPath;
+                        }
+                    }
+                }
             }
             else
             {
