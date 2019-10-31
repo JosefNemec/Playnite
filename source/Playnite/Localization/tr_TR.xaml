@@ -802,6 +802,12 @@ Sürüm {2}
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Varsayılan web tarayıcınızı kullanarak Playnite'den ayrılmak ve aşağıdaki web sayfasına geçmek üzeresiniz. Devam etmek istiyor musun</sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements">Başarımlar</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">Haberler</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">Mağaza Sayfası</sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io istemcisi şimdi açılacak. Lütfen oturum açın ve ardından bu mesajı kapatın.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Kullanıcının oturum açmasını bekleyin, tamamladığınızda lütfen bunu kapatın...</sys:String>
@@ -816,6 +822,9 @@ Sürüm {2}
     <sys:String x:Key="LOCSteamCustomUrlName">Hesap URL Adı</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Doğrulanmış Kullanıcı</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Hesap gizli, API Anahtarı gerekli.</sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub">Topluluk Merkezi</sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">Tartışmalar</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">Atölye</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">İlk kez kurulumu tamamlanamadı. Playnite şimdi işlemi tamamlamak için Masaüstü moduna sıfırlanıcak.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">En Son Oynananlar</sys:String>
