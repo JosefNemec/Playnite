@@ -797,6 +797,12 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
 
 {0}</sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
+    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io 클라이언트가 열립니다. 가입한뒤 이 메세지를 닫아주십시오.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">로그인을 기다리고 있습니다. 로그인 후 이 창을 닫아주십시오...</sys:String>
@@ -812,6 +818,9 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">계정 URL 이름</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">인증됨</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">계정이 비공개 입니다. API 키가 필요합니다.</sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">최초 설치가 완료되지 않았습니다. 최초 설치를 완료하기 위하여 Playnite가 데스크탑 모드로 재실행됩니다.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">최근 플레이</sys:String>
