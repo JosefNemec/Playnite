@@ -446,20 +446,6 @@ namespace Playnite.Metadata
                             }
                         }
 
-                        // TODO move this to separate plugins
-                        // Only update them if they don't exist yet
-                        //if (game.OtherActions?.Any() != true && storeData != null)
-                        //{
-                        //    if (storeData?.GameInfo?.OtherActions?.Any() == true)
-                        //    {
-                        //        game.OtherActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>();
-                        //        foreach (var task in storeData.GameInfo.OtherActions)
-                        //        {
-                        //            game.OtherActions.Add(task);
-                        //        }
-                        //    }
-                        //}
-
                         // Just to be sure check if somebody didn't remove game while downloading data
                         if (database.Games.FirstOrDefault(a => a.Id == games[i].Id) != null)
                         {

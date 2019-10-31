@@ -16,8 +16,6 @@
     <Compile Include="..\Playnite.Common\Serialization.cs" Link="Common\Serialization.cs" />
     <Compile Include="..\Playnite.Common\FileSystem.cs" Link="Common\FileSystem.cs" />
     <Compile Include="..\Playnite.Common\Paths.cs" Link="Common\Paths.cs" />
-    <Compile Include="..\PlayniteSDK\ILogger.cs" Link="SDK\ILogger.cs" />
-    <Compile Include="..\PlayniteSDK\LogManager.cs" Link="SDK\LogManager.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +35,10 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="SDK\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj" />
   </ItemGroup>
 
 </Project>
