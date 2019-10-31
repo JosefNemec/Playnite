@@ -804,6 +804,12 @@ Version {2}
     
 {0}</sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">News</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">Store Page</sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done…</sys:String>
@@ -819,6 +825,9 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Account is private, API Key is required.</sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub">Community Hub</sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">Discussions</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">First time setup is not complete. Playnite will now restart to Desktop mode to finish the procedure.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Recently Played</sys:String>
