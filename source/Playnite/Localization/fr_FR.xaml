@@ -367,7 +367,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite ne déplace pas automatiquement les fichiers de la bibliothèque, vous devez les déplacer ou les copier avant que l'emplacement ne soit modifié. Si aucune bibliothèque n'existe dans l'emplacement cible, une nouvelle sera créée. 
 
 Le nouvel emplacement de la base de données ne sera utilisé qu'après le redémarrage de l'application.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">La durée de la session ne sera pas enregistrée si Playnite est fermé après le lancement du jeu.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de rangées</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de colonnes</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Nbr. de rangées (Détails)</sys:String>
@@ -376,7 +376,7 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Capture d'écran (magasin)</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Image de fond (magasin)</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Ne peut s'appliquer rétroactivement (à moins de retélécharger les métadonnées).</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forcer la synchronisation du temps de jeu</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Télécharger systématiquement le temps de jeu des librairies distantes lors de la synchronisation, ignorant le temps de jeu enregistré par Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activer le support des manettes Xinput en mode bureau</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Le bouton Guide ouvre le mode plein écran</sys:String>
@@ -723,7 +723,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Conseil : Vous pouvez utiliser un processus de téléchargement des métadonnées plus poussé via l'option "Modifier les propriétés".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Indisponible lorsqu'une action est en cours.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Le texte de description est sensible à la syntaxe HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Le temps de jeu est indiqué en secondes.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Note entre 0 et 100.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Le développement de Playnite est soutenu par ces patrons :</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Code, traduction et autres contributions sans ordre particulier :</sys:String>
