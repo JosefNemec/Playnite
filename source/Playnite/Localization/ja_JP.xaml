@@ -776,6 +776,12 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">デフォルトのウェブブラウザを使って次のウェブページに行きます。続行しますか？</sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
+    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.ioクライアントが開きます。サインインしてからこのメッセージを閉じてください。</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">ユーザーがログインするのを待っています。完了したら閉じてください。</sys:String>
@@ -791,6 +797,9 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCSteamCustomUrlName">アカウントURL名</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">認証済みユーザー</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">非公開アカウントにはAPIキーが必要です</sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">初回設定はまだ完了していません。Playniteは今から手順を済むためにデスクトップモードに再起動します。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近のプレイ</sys:String>
