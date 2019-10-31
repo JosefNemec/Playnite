@@ -38,13 +38,14 @@ Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, something bad happened…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Unrecoverable error occurred.
         
-If you want to help us fix this issue, please create diagnostics package and use 'Report Crash' button to let us know what happened. Thank you.</sys:String>
+If you want to help us fix this issue, please briefly describe actions taken before the crash, create a diagnostics package, and use the 'Report Crash' button to let us know what happened. Thank you.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Unrecoverable error occurred.
         
 If you want to help us fix this issue, please send diagnostic information. Thank you.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Report Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Exit Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Actions taken before the crash:</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Library Manager</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remove Game(s)?</sys:String>
