@@ -797,6 +797,12 @@ Versió {2}
     
 {0}</sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
+    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Ara s'obrirà el client de itch.io. Inicia sessió i tanca aquest missatge.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Esperant que l'usuari iniciï la sessió. Si us plau, tanca aquest missatge quan ho hagis fet…</sys:String>
@@ -811,6 +817,9 @@ Versió {2}
     <sys:String x:Key="LOCSteamCustomUrlName">Nom de l’URL del compte</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Usuari autenticat</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">El compte és privat, es requereix la clau de l'API.</sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">La configuració del primer cop d'ús no s'ha completat. Playnite es reiniciarà en mode d'escriptori per a finalitzar el procés.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jugat Recentment</sys:String>
