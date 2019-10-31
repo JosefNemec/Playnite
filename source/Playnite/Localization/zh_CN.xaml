@@ -803,6 +803,12 @@ By {1}
     
 {0}</sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
+    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io客户端现在将打开，请登录然后关闭此消息</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">正在等待用户登录，请在完成后关闭...</sys:String>
@@ -818,6 +824,9 @@ By {1}
     <sys:String x:Key="LOCSteamCustomUrlName">账户URL名称</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">已身份认证用户</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">账户为私密，需要API密钥。</sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">首次设置未完成。Playentin 现在将重新启动到桌面模式以完成相关步骤。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近玩过</sys:String>
