@@ -70,7 +70,6 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.BackgroundImage))
             {
-                // TODO use pngs once IGBD resize issue is fixed
                 List<IgdbServerModels.GameImage> possibleBackgrounds = null;
                 if (IgdbData.artworks.HasItems())
                 {
@@ -81,7 +80,6 @@ namespace IGDBMetadata
                     possibleBackgrounds = IgdbData.screenshots;
                 }
 
-                // TODO use pngs for sub 1080p images
                 if (possibleBackgrounds.HasItems())
                 {
                     IgdbServerModels.GameImage selected = null;
@@ -118,11 +116,11 @@ namespace IGDBMetadata
                     {
                         if (selected.height > 1080)
                         {
-                            return new MetadataFile(IgdbMetadataPlugin.GetImageUrl(selected, ImageSizes.p1080));
+                            return new MetadataFile(GetImageUrl(selected, ImageSizes.p1080));
                         }
                         else
                         {
-                            return new MetadataFile(IgdbMetadataPlugin.GetImageUrl(selected, ImageSizes.original));
+                            return new MetadataFile(GetImageUrl(selected, ImageSizes.original));
                         }
                     }
                 }
@@ -145,9 +143,14 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.CoverImage))
             {
-                // TODO use pngs in original size
-                var coverImage = IgdbMetadataPlugin.GetImageUrl(IgdbData.cover_v3, ImageSizes.cover_big);
-                return new MetadataFile(coverImage);
+                if (IgdbData.cover_v3.height > 1080)
+                {
+                    return new MetadataFile(GetImageUrl(IgdbData.cover_v3, ImageSizes.p1080));
+                }
+                else
+                {
+                    return new MetadataFile(GetImageUrl(IgdbData.cover_v3, ImageSizes.original));
+                }
             }
 
             return base.GetCoverImage();
@@ -362,6 +365,10 @@ namespace IGDBMetadata
                 {
                     var searchItem = item as SearchResult;
                     IgdbData = plugin.Client.GetIGDBGameParsed(ulong.Parse(searchItem.Id));
+                }
+                else
+                {
+                    IgdbData = new IgdbServerModels.ExpandedGame() { id = 0 };
                 }
             }
             else

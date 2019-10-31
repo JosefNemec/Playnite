@@ -75,12 +75,26 @@ namespace IGDBMetadata
 
         public List<SearchResult> GetSearchResults(string gameName)
         {
-            return Client.GetIGDBGames(gameName)?.Select(a => new SearchResult(
-                a.id.ToString(),
-                a.name.RemoveTrademarks(),
-                a.first_release_date == 0 ? (DateTime?)null : DateTimeOffset.FromUnixTimeMilliseconds(a.first_release_date).DateTime,
-                a.alternative_names?.Any() == true ? a.alternative_names.Select(name => name.name.RemoveTrademarks()).ToList() : null,
-                null)).ToList();
+            var results = new List<SearchResult>();
+            foreach (var game in Client.GetIGDBGames(gameName))
+            {
+                DateTime? releaseDate = null;
+                string description = null;
+                if (game.first_release_date != 0)
+                {
+                    releaseDate = DateTimeOffset.FromUnixTimeMilliseconds(game.first_release_date).DateTime;
+                    description = $"({releaseDate.Value.Year})";
+                }
+
+                results.Add(new SearchResult(
+                    game.id.ToString(),
+                    game.name.RemoveTrademarks(),
+                    releaseDate,
+                    game.alternative_names?.Any() == true ? game.alternative_names.Select(name => name.name.RemoveTrademarks()).ToList() : null,
+                    description));
+            }
+
+            return results;
         }
 
         public string GetIgdbSearchString(string gameName)
