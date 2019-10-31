@@ -770,6 +770,12 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
+    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">se va deschide clientul itch.io. Vă rugăm să vă logați și să închideți mesajul acesta.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
@@ -785,6 +791,9 @@ De menționat că opțiunea pentru Numele Contului este funcțională doar pentr
     <sys:String x:Key="LOCSteamCustomUrlName">Nume Cont URL</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Utilizator Autentificat</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jucat Recent</sys:String>
