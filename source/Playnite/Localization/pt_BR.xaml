@@ -798,6 +798,12 @@ Versão {2}
     
 {0}</sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements">Conquistas</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Fórum</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">Notícias</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">Página na loja</sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">O cliente do itch.io será executado agora. Inicie a sessão e então feche esta janela.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Aguardando que o usuário inicie a sessão, feche esta janela quando terminar…</sys:String>
@@ -812,6 +818,9 @@ Versão {2}
     <sys:String x:Key="LOCSteamCustomUrlName">Nome da conta na URL</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Usuário autenticado</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Esta conta é privada, uma chave de API é necessária.</sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub">Central da comunidade</sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">Discussões</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">Oficina</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">A configuração inicial não foi concluída. O Playnite irá reiniciar no modo janela para que o processo seja concluído.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jogados recentemente</sys:String>
