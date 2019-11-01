@@ -32,7 +32,7 @@ game = PlayniteApi.Database.Games[SomeGuidId]
 
 ### Adding New Game
 
-To add a new game create new instance of [GameInfo](xref:Playnite.SDK.Models.GameInfo) class and call `Add` method from [Games](xref:Playnite.SDK.IGameDatabase.Games) collection.
+To add a new game create new instance of [Game](xref:Playnite.SDK.Models.Game) class and call `Add` method from [Games](xref:Playnite.SDK.IGameDatabase.Games) collection.
 
 **PowerShell**:
 
