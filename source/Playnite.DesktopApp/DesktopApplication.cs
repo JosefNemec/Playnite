@@ -196,7 +196,7 @@ namespace Playnite.DesktopApp
             if (isFirstStart)
             {
                 await MainModel.UpdateDatabase(false);
-                await MainModel.DownloadMetadata(AppSettings.DefaultMetadataSettings);
+                await MainModel.DownloadMetadata(AppSettings.MetadataSettings);
             }
             else
             {
@@ -241,9 +241,6 @@ namespace Playnite.DesktopApp
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
-                    AppSettings.GridItemWidthRatio = settings.GridItemWidthRatio;
-                    AppSettings.GridItemHeightRatio = settings.GridItemHeightRatio;
-                    AppSettings.DefaultMetadataSettings = settings.DefaultMetadataSettings;
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
                     AppSettings.SaveSettings();

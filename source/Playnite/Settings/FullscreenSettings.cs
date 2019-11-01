@@ -163,7 +163,7 @@ namespace Playnite
             }
         }
 
-        private int rows = 4;
+        private int rows = 2;
         public int Rows
         {
             get

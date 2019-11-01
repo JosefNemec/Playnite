@@ -421,7 +421,7 @@ namespace Playnite.DesktopApp.Controls
                 else
                 {
                     var plugin = plugins.FirstOrDefault(a => a.Id == src);
-                    if (plugin != null)
+                    if (plugin?.SupportedFields.Contains(field) == true)
                     {
                         sources.Add(new MetadataSource
                         {

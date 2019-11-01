@@ -969,7 +969,7 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
                         using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
@@ -1031,7 +1031,7 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
                         using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
@@ -1121,7 +1121,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public async void DownloadMetadata(MetadataDownloadViewModel model)
         {
-            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Manual, AppSettings.DefaultMetadataSettings.GetClone()) != true)
+            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Manual, AppSettings.MetadataSettings.GetClone()) != true)
             {
                 return;
             }
@@ -1163,7 +1163,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (!GlobalTaskHandler.IsActive)
                     {
-                        await DownloadMetadata(AppSettings.DefaultMetadataSettings, addedGames);
+                        await DownloadMetadata(AppSettings.MetadataSettings, addedGames);
                     }
                     else
                     {
@@ -1182,7 +1182,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (!GlobalTaskHandler.IsActive)
                     {
-                        await DownloadMetadata(AppSettings.DefaultMetadataSettings, addedGames);
+                        await DownloadMetadata(AppSettings.MetadataSettings, addedGames);
                     }
                     else
                     {
@@ -1200,7 +1200,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (!GlobalTaskHandler.IsActive)
                     {
-                        await DownloadMetadata(AppSettings.DefaultMetadataSettings, model.ImportedGames);
+                        await DownloadMetadata(AppSettings.MetadataSettings, model.ImportedGames);
                     }
                     else
                     {

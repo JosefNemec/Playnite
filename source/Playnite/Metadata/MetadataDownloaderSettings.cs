@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Playnite.SDK;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -48,9 +49,9 @@ namespace Playnite.Metadata
         public MetadataFieldSettings(bool import, List<Guid> sources)
         {
             Import = import;
-            if (sources != null)
+            if (sources.HasItems())
             {
-                Sources = sources;
+                Sources = sources.ToList();
             }
         }
     }
@@ -232,32 +233,35 @@ namespace Playnite.Metadata
             }
         }
 
+        public MetadataDownloaderSettings()
+        {
+        }
+
+        public static MetadataDownloaderSettings GetDefaultSettings()
+        {
+            var igdbPluginId = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata);
+            var settings = new MetadataDownloaderSettings();
+            settings.ConfigureFields(new List<Guid> { Guid.Empty, igdbPluginId }, true);
+            settings.CoverImage.Sources = new List<Guid> { igdbPluginId, Guid.Empty };            
+            settings.Name.Import = false;
+            return settings;
+        }
+
         public void ConfigureFields(List<Guid> sources, bool import)
         {
-            Genre.Import = import;
-            Genre.Sources = sources;
-            Description.Import = import;
-            Description.Sources = sources;
-            Developer.Import = import;
-            Developer.Sources = sources;
-            Publisher.Import = import;
-            Publisher.Sources = sources;
-            Tag.Import = import;
-            Tag.Sources = sources;
-            Links.Import = import;
-            Links.Sources = sources;
-            CoverImage.Import = import;
-            CoverImage.Sources = sources;
-            BackgroundImage.Import = import;
-            BackgroundImage.Sources = sources;
-            Icon.Import = import;
-            Icon.Sources = sources;
-            ReleaseDate.Import = import;
-            ReleaseDate.Sources = sources;
-            CommunityScore.Import = import;
-            CommunityScore.Sources = sources;
-            CriticScore.Import = import;
-            CriticScore.Sources = sources;
+            Name = new MetadataFieldSettings(import, sources);
+            Genre = new MetadataFieldSettings(import, sources);
+            Description = new MetadataFieldSettings(import, sources);
+            Developer = new MetadataFieldSettings(import, sources);
+            Publisher = new MetadataFieldSettings(import, sources);
+            Tag = new MetadataFieldSettings(import, sources);
+            Links = new MetadataFieldSettings(import, sources);
+            CoverImage = new MetadataFieldSettings(import, sources);
+            BackgroundImage = new MetadataFieldSettings(import, sources);
+            Icon = new MetadataFieldSettings(import, sources);
+            ReleaseDate = new MetadataFieldSettings(import, sources);
+            CommunityScore = new MetadataFieldSettings(import, sources);
+            CriticScore = new MetadataFieldSettings(import, sources);
         }
     }
 }

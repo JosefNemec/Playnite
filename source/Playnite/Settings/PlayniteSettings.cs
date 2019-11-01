@@ -1340,17 +1340,17 @@ namespace Playnite
             }
         }
 
-        private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
-        public MetadataDownloaderSettings DefaultMetadataSettings
+        private MetadataDownloaderSettings metadataSettings;
+        public MetadataDownloaderSettings MetadataSettings
         {
             get
             {
-                return defaultMetadataSettings;
+                return metadataSettings;
             }
 
             set
             {
-                defaultMetadataSettings = value;
+                metadataSettings = value;
                 OnPropertyChanged();
             }
         }
@@ -1442,7 +1442,6 @@ namespace Playnite
             if (settings == null)
             {
                 logger.Info("No existing settings found, creating default ones.");
-                settings = new PlayniteSettings();
             }
             else
             {
@@ -1472,7 +1471,12 @@ namespace Playnite
                 logger.Info("No existing fullscreen settings found, creating default ones.");
                 settings.Fullscreen = new FullscreenSettings();
             }
-            
+
+            if (settings.MetadataSettings == null)
+            {
+                settings.MetadataSettings = MetadataDownloaderSettings.GetDefaultSettings();
+            }
+
             return settings;
         }
 
@@ -1582,12 +1586,7 @@ namespace Playnite
         public bool ShouldSerializeDisabledPlugins()
         {
             return DisabledPlugins.HasItems();
-        }
-
-        public bool ShouldSerializeDefaultMetadataSettings()
-        {
-            return DefaultMetadataSettings != null;
-        }        
+        }       
 
         #endregion Serialization Conditions
     }

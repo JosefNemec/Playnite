@@ -26,8 +26,8 @@ namespace Playnite.DesktopApp.ViewModels
             public const int Intro = 0;
             public const int ProviderSelect = 1;
             public const int ProviderConfig = 2;
-            public const int Layout = 3;
-            public const int Finish = 4;
+            //public const int Layout = 3;
+            public const int Finish = 3;
         }
 
         private static ILogger logger = LogManager.GetLogger();
@@ -58,9 +58,6 @@ namespace Playnite.DesktopApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public bool IsBannerLayoutSelected { get; set; } = true;
-        public bool IsBoxLayoutSelected { get; set; } = false;
 
         private int selectedIndex = 0;
         public int SelectedIndex
@@ -198,26 +195,6 @@ namespace Playnite.DesktopApp.ViewModels
             foreach (var plugin in LibraryPlugins)
             {
                 plugin.Plugin.Dispose();
-            }
-
-            var igdbPluginId = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata);
-            Settings.DefaultMetadataSettings = new Metadata.MetadataDownloaderSettings();
-            Settings.DefaultMetadataSettings.ConfigureFields(new List<Guid> { Guid.Empty, igdbPluginId }, true);
-            if (IsBannerLayoutSelected)
-            {
-                Settings.DefaultMetadataSettings.CoverImage.Sources = new List<Guid> { Guid.Empty, igdbPluginId };
-                Settings.GridItemWidthRatio = 92;
-                Settings.GridItemHeightRatio = 43;
-                Settings.Fullscreen.HorizontalLayout = false;
-                Settings.Fullscreen.Rows = 4;
-            }
-            else
-            {
-                Settings.DefaultMetadataSettings.CoverImage.Sources = new List<Guid> { igdbPluginId, Guid.Empty };
-                Settings.GridItemWidthRatio = 27;
-                Settings.GridItemHeightRatio = 38;
-                Settings.Fullscreen.HorizontalLayout = false;
-                Settings.Fullscreen.Rows = 2;
             }
 
             window.Close(result);
