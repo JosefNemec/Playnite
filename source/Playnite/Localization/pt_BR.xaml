@@ -371,9 +371,10 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     
 Qualquer tarefa sendo executada (como a importação de metadados) será cancelada.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Reiniciar o Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">O Playnite não move os aquivos de bibliotecas automaticamente, você deve movê-los ou copiá-los antes que a localização seja alterada. Se nenhuma biblioteca estiver presente no local de destino, será criada uma nova biblioteca.
-A nova localização do banco de dados será usada somente após o aplicativo ser reiniciado.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">O Playnite não move os aquivos da biblioteca automaticamente, você deve movê-los ou copiá-los antes que o local seja alterado. Se nenhuma biblioteca estiver presente no local de destino, uma nova biblioteca será criada.
+
+O novo local do banco de dados será usado somente após o aplicativo ser reiniciado.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">O tempo de jogo não será gravado se a ação "Fechar" for definida.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de linhas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de colunas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Número de linhas no esquema de detalhes</sys:String>
@@ -382,7 +383,7 @@ A nova localização do banco de dados será usada somente após o aplicativo se
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de tela da loja</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Imagem de fundo da loja</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Não se aplica retroativamente a jogos existentes sem baixar novamente os metadados.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Priorizar o tempo de jogo de bibliotecas compatíveis</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Sempre importar o tempo de jogo registrado na biblioteca remota durante a sincronização de bibliotecas, ignorando o tempo registrado pelo Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Habilitar suporte para controles no modo janela</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Botão Painel abre o modo Tela Cheia</sys:String>
@@ -729,7 +730,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Dica: você pode usar um processo mais avançado para baixar metadados ao editar um único jogo através da opção "Editar..." no menu de contexto.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Indisponível enquanto houver alguma ação em andamento.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">O texto de descrição é sensível à sintaxe HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">O tempo de jogo é monitorado e armazenado em segundos.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valores de 0 a 100. Deixe vazio para não definir uma avaliação.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">O desenvolvimento do Playnite é apoiado por estes patronos:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Programadores, tradutores e demais colaboradores sem uma ordem específica:</sys:String>
@@ -775,18 +776,22 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCPLaytime500to1000">500 a 1000 horas</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCExtInstallationRestartNotif">Para concluir a instalação, o Playnite deve ser reiniciado. Você quer reiniciar agora?</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema ou extensão está usando uma versão não suportada da API.</sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Para concluir a instalação, o Playnite deve ser reiniciado. Você deseja reiniciar agora?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">O tema ou extensão está usando uma versão não compatível da API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalação bem-sucedida.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instalar extensão?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha ao instalar a extensão. {0}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha ao instalar a extensão:
+        
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Você deseja instalar esta nova extensão? Qualquer instalação existente será substituída.
     
 {0}
 Por {1}
 Versão {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Falha ao instalar o tema. {0}</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Falha ao instalar o tema.
+        
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Você deseja instalar este novo tema? Qualquer instalação existente será substituída.
     
 {0}
