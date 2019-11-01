@@ -14,11 +14,13 @@ Extensions fall under several categories of extended functionality that are avai
 | -- | :--: | :--: |
 | Executable menu entry | • | • |
 | Reacting to game events | • | • |
-| Library importer  |  | • |
+| Library importer |  | • |
+| Metadata provider |  | • |
 
 - `Executable menu entry` - adds new executable menu entry under main menu's `Scripts` sub sections.
 - `Reacting to game events` - executes code when various game events occurs, like when game is started or stopped for example.
 - `Library importer` - provides automatic import of games from various sources. For example all currently supported external clients (Steam, GOG, Origin etc.) [are implemented](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins) via this extension type.
+- `Metadata provider` - provides metadata for games in Playnite. Our default metadata provider, IGDB.com, is also [implemented as a metadata plugin](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins/IGDBMetadata).
 
 Creating Extensions
 ---------------------

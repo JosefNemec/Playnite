@@ -17,6 +17,8 @@ There are currently two types of plugins:
 
 - `Library plugins`: Add ability to import games automatically as well as methods for metadata download for those games.
 
+- `Metadata plugins`: Add ability to import game metadata.
+
 Creating plugins
 ---------------------
 
@@ -33,6 +35,7 @@ Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. 
 
 - `Generic plugins` - see generic plugins [documentation page](genericPlugins.md).
 - `Library plugins` - see library plugins [documentation page](libraryPlugins.md).
+- `Metadata plugins` - see metadata plugins [documentation page](metadataPlugins.md).
 
 ### 3. Create manifest file
 
@@ -41,7 +44,7 @@ Described in [introduction section](../intro.md) to extensions.
 Plugin settings
 ---------------------
 
-If you want to provider user with an ability to change plugin behavior, you can do that by implementing appropriate properties from `ILibraryPlugin` interface. Including ability to add fully customizable UI for your configuration that will be accessible in Playnite's settings windows. To add plugin settings support to your plugin follow [Plugin settings guide](pluginSettings.md).
+If you want to give user ability to change plugin behavior, you can do that by implementing appropriate settings overrides from `Plugin` abstract class. Including ability to add fully customizable UI for your configuration that will be accessible in Playnite's settings windows. To add plugin settings support to your plugin follow [Plugin settings guide](pluginSettings.md).
 
 Examples
 ---------------------

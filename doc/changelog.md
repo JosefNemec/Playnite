@@ -1,5 +1,11 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 5.1.0
+
+* New
+  * Added support for creating metadata providers via [plugins](tutorials/plugins/metadataPlugins.md).
+  * [ChooseImageFile](xref:Playnite.SDK.IDialogsFactory) method for dialogs API. **Only available in Desktop mode.**
+  * [ChooseItemWithSearch](xref:Playnite.SDK.IDialogsFactory) method for dialogs API. **Only available in Desktop mode.**
 
 #### 5.0.1
 
