@@ -195,14 +195,7 @@ namespace Playnite
                 return;
             }
 
-            try
-            {
-                UpdateJumpList();                
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to set jump list data: ");
-            }
+            UpdateJumpList();
         }
 
         public void ActivateAction(Game game, GameAction action)
@@ -482,35 +475,42 @@ namespace Playnite
 
         public void UpdateJumpList()
         {           
-            OnPropertyChanged(nameof(LastGames));
-            var jumpList = new JumpList();
-            foreach (var lastGame in LastGames)
+            try
             {
-                var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
-                JumpTask task = new JumpTask
+                OnPropertyChanged(nameof(LastGames));
+                var jumpList = new JumpList();
+                foreach (var lastGame in LastGames)
                 {
-                    Title = lastGame.Name,
-                    Arguments = args,
-                    Description = string.Empty,
-                    CustomCategory = "Recent",
-                    ApplicationPath = PlaynitePaths.DesktopExecutablePath
-                };
+                    var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
+                    JumpTask task = new JumpTask
+                    {
+                        Title = lastGame.Name,
+                        Arguments = args,
+                        Description = string.Empty,
+                        CustomCategory = "Recent",
+                        ApplicationPath = PlaynitePaths.DesktopExecutablePath
+                    };
 
-                if (lastGame.Icon?.EndsWith(".ico", StringComparison.OrdinalIgnoreCase) == true)
-                {
-                    task.IconResourcePath = Database.GetFullFilePath(lastGame.Icon);
-                }
-                else if (lastGame.PlayAction?.Type == GameActionType.File)
-                {
-                    task.IconResourcePath = lastGame.GetRawExecutablePath();
+                    if (lastGame.Icon?.EndsWith(".ico", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        task.IconResourcePath = Database.GetFullFilePath(lastGame.Icon);
+                    }
+                    else if (lastGame.PlayAction?.Type == GameActionType.File)
+                    {
+                        task.IconResourcePath = lastGame.GetRawExecutablePath();
+                    }
+
+                    jumpList.JumpItems.Add(task);
+                    jumpList.ShowFrequentCategory = false;
+                    jumpList.ShowRecentCategory = false;
                 }
 
-                jumpList.JumpItems.Add(task);
-                jumpList.ShowFrequentCategory = false;
-                jumpList.ShowRecentCategory = false;
+                JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
             }
-
-            JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to set jump list data.");
+            }
         }
 
         public void CancelGameMonitoring(Game game)

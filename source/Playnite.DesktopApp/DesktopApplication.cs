@@ -156,19 +156,24 @@ namespace Playnite.DesktopApp
 
         private void LoadTrayIcon()
         {
-            if (!AppSettings.EnableTray)
+            if (AppSettings.EnableTray)
             {
-                return;
+                try
+                {
+                    trayIcon = new TaskbarIcon
+                    {
+                        MenuActivation = PopupActivationMode.LeftOrRightClick,
+                        DoubleClickCommand = MainModel.ShowWindowCommand,
+                        Icon = GetTrayIcon(),
+                        Visibility = Visibility.Visible,
+                        ContextMenu = new TrayContextMenu(MainModel)
+                    };
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to initialize tray icon.");
+                }
             }
-
-            trayIcon = new TaskbarIcon
-            {
-                MenuActivation = PopupActivationMode.LeftOrRightClick,
-                DoubleClickCommand = MainModel.ShowWindowCommand,
-                Icon = GetTrayIcon(),
-                Visibility = Visibility.Visible,
-                ContextMenu = new TrayContextMenu(MainModel)
-            };
         }
 
         private async void OpenMainViewAsync(bool isFirstStart)
