@@ -200,8 +200,6 @@
     <sys:String x:Key="LOCMetaGameSourceSelected">Только выбранные игры</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Официальный магазин</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Официальный магазин</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Официальный магазин > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Выберите, какие поля должны быть автоматически заполнены Playnite и какие источники должны использоваться для получения данных.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Пожалуйста, нажмите на логотип выше и внесите изменения в базу данных IGDB.com, чтобы улучшить данные, используемые Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Магазин:
@@ -802,10 +800,10 @@ IGDB > Официальный магазин:
 {0}</sys:String>
 
     <!--Common Library-->
-    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
-    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
-    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
-    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+    <sys:String x:Key="LOCCommonLinksAchievements">Достижения</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Форум</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">Новости</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">Страница в магазине</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">теперь откроется клиент itch.io. Пожалуйста, войдите в систему и закройте это сообщение.</sys:String>
@@ -822,9 +820,10 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSteamCustomUrlName">URL-адрес аккаунта</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Аутентифицированный пользователь</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Аккаунт приватный, требуется API ключ.</sys:String>
-    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
-    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
-    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub">Центр сообщества</sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">Обсуждения</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">Мастерская</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Первичная настройка не завершена. Playnite будет запущен в обычном режиме, чтобы закончить процедуру.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Последние запущенные</sys:String>
