@@ -10,7 +10,7 @@
 
     <sys:String x:Key="LOCExitAppLabel">Esci</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro attivo</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filtro Disattivato</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtro disattivato</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Filtri aggiuntivi</sys:String>
     <sys:String x:Key="LOCFilters">Filtri</sys:String>
     <sys:String x:Key="LOCFilter">Filtro</sys:String>
@@ -29,8 +29,8 @@
     <sys:String x:Key="LOCCategorySetButton">Imposta categorie</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Aggiungi una categoria</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Selezionato - Assegna categoria
-Non Selezionato - Rimuovi categoria
-Indeterminato - Nessuna Modifica (durante la modifica di più giochi)</sys:String>
+Non selezionato - Rimuovi categoria
+Indeterminato - Nessuna modifica (mentre si modificano di più giochi)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nessuna categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Nessuna piattaforma</sys:String>
 
@@ -40,7 +40,7 @@ Indeterminato - Nessuna Modifica (durante la modifica di più giochi)</sys:Strin
 Se vuoi aiutarci a risolvere il problema, si prega di creare un pacchetto di diagnostica e di usare il tasto "Segnala crash" per farci sapere cosa è successo. Grazie.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Si è verificato un errore fatale.
         
-Se vuoi aiutarci a risolvere questo problema, per favore invia informazioni diagnostiche. Grazie.</sys:String>
+Se vuoi aiutarci a risolvere questo problema, invia informazioni diagnostiche. Grazie.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Segnala crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Riavvia Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Esci da Playnite</sys:String>
@@ -103,7 +103,7 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCModuleLabel">Modulo</sys:String>
     <sys:String x:Key="LOCSeriesLabel">Serie</sys:String>
     <sys:String x:Key="LOCVersionLabel">Versione</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">Classificazione</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Classificazione di età</sys:String>
     <sys:String x:Key="LOCRegionLabel">Regione</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Giocato l'ultima volta</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Più giocato</sys:String>
@@ -200,8 +200,6 @@ Risultati in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Solo i giochi selezionati</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Negozio ufficiale</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Negozio ufficiale</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Negozio ufficiale > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selezionare quali campi dovrebbero essere automaticamente popolati da Playnite e da quali fonti dovrebbero essere usati per ricavare i dati.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Si prega di considerare di cliccare sul logo sopra e di contribuire agli aggiornamenti al database igdb.com per migliorare l'uso dei dati da Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Negozio:
@@ -822,6 +820,7 @@ Nota che l'opzione Nome Account funziona solo per gli account le cui librerie di
     <sys:String x:Key="LOCSteamLinksCommunityHub">Centro comunità</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Discussioni</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Scaricare le immagini di copertina verticali</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">La prima configurazione non è completa. Playnite ora si riavvierà alla modalità Desktop per terminare la procedura.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Giocati di recente</sys:String>
