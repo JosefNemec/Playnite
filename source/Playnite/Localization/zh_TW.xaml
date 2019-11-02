@@ -200,8 +200,6 @@
     <sys:String x:Key="LOCMetaGameSourceSelected">僅選中的遊戲</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 官方商店</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">官方商店 > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">請選擇透過Playnite自動輸入的資料範圍以及資料來源</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">請點擊上方圖示並協助更新Igdb.com數據庫以助Playnite提供用戶更詳盡的資訊。</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">商店:
@@ -822,6 +820,7 @@ By {1}
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">首次安裝尚未完成，Playnite將會重新啟動進入桌面模式完成安裝步驟。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近玩過</sys:String>
