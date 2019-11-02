@@ -184,8 +184,6 @@
     <sys:String x:Key="LOCMetaGameSourceSelected"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore"></sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore"></sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB"></sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
@@ -758,6 +756,7 @@
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
