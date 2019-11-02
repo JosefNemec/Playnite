@@ -204,8 +204,6 @@
     <sys:String x:Key="LOCMetaGameSourceSelected">只有所选游戏</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 官方商店</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">官方商店 > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">请选择哪些字段应该由Playnite自动填充，以及应使用哪些源来获取数据</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">请考虑点击上面的标志并贡献更新 igdb.com 数据库，以改进Playnite数据。</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">官方商店:
@@ -827,6 +825,7 @@ By {1}
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">首次设置未完成。Playentin 现在将重新启动到桌面模式以完成相关步骤。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近玩过</sys:String>
