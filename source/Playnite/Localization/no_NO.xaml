@@ -200,8 +200,6 @@ Blir til: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Bare valgte spill</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Offisiell Butikk</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGBD > Offisiell Butikk</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Offisiell Butikk > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vennligst velg hvilke felt som skal automatisk bli fylt av Playnite og kildene som skal brukes for å hente denne dataen.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Butikk:
@@ -784,6 +782,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Nylig Spilt</sys:String>
