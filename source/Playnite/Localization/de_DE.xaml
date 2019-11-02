@@ -204,8 +204,6 @@ Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Ausgewählte Spiele</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Offizieller Shop</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Offizieller Shop</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Offizieller Shop > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Bitte wähle die von Playnite automatisch auszufüllenden Felder und die hierfür zu verwendenden Quellen aus.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Zur Verbesserung der von Playnite verwendeten Daten kannst du auf das oben dargestellte Logo klicken und Aktualisierungen zur igdb.com-Datenbank beitragen.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Offizieller Shop:
@@ -828,6 +826,7 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
     <sys:String x:Key="LOCSteamLinksCommunityHub">Communityhub</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Diskussionen</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Die Ersteinrichtung ist nicht abgeschlossen. Playnite wird nun im Desktopmodus neu gestartet, um die Einrichtung abzuschließen.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Zuletzt gespielt</sys:String>
