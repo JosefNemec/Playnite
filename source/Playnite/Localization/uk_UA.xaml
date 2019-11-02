@@ -196,8 +196,6 @@
     <sys:String x:Key="LOCMetaGameSourceSelected">Лише обрані ігри</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Офіційний магазин</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Офіційний магазин</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Офіційний магазин > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Виберіть, які поля повинні бути автоматично заповнені Playnite і які джерела повинні використовуватися для отримання даних.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Магазин:
@@ -792,6 +790,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
