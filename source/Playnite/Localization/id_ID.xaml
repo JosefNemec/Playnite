@@ -195,8 +195,6 @@ Hasil : -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Hanya game yang dipilih</sys:String>
     <sys:String x:Key="LOCMetaSourceStore"></sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore"></sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB"></sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Silahkan pilih baris mana yang akan otomatis diisi oleh Playnite dan source mana yang akan digunakan sebagai sumber data.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Store:
@@ -792,6 +790,7 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
