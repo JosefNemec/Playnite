@@ -193,8 +193,6 @@ Výsledok: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Iba vybrané hry</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Oficiálny Obchod</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Oficiálny Obchod</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Oficiálny Obchod > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vyberte, ktoré položky budú automaticky vyplnené aplikáciou Playnite a ktoré zdroje majú byť použité na získanie dát z.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Obchod:
@@ -788,6 +786,7 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
