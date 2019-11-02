@@ -194,8 +194,6 @@ Rezultatas: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Tik pasirinkti žaidimai</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Oficiali parduotuvė</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Oficiali parduotuvė</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Oficiali parduotuvė > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Pasirinkite laukus, kuriuos Playnite užpildys automatiškai, ir  šaltinį, iš kurio Playnite gaus informaciją.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Parduotuvė:
@@ -797,6 +795,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
