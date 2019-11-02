@@ -194,7 +194,7 @@ namespace SteamLibrary
             return null;
         }
 
-        internal SteamGameMetadata DownloadGameMetadata(uint appId, BackgroundSource backgroundSource)
+        internal SteamGameMetadata DownloadGameMetadata(uint appId, SteamLibrarySettings settings)
         {
             var metadata = new SteamGameMetadata();
             var productInfo = GetAppInfo(appId);
@@ -237,28 +237,47 @@ namespace SteamLibrary
             }
 
             // Image
-            var imageRoot = @"https://steamcdn-a.akamaihd.net/steam/apps/{0}/header.jpg";
-            var imageUrl = string.Format(imageRoot, appId);
-            if (HttpDownloader.GetResponseCode(imageUrl) == HttpStatusCode.OK)
+            var useBanner = false;
+            if (settings.DownloadVerticalCovers)
             {
-                metadata.CoverImage = new MetadataFile(imageUrl);
+                var imageRoot = @"https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_600x900_2x.jpg";
+                var imageUrl = string.Format(imageRoot, appId);
+                if (HttpDownloader.GetResponseCode(imageUrl) == HttpStatusCode.OK)
+                {
+                    metadata.CoverImage = new MetadataFile(imageUrl);
+                }
+                else
+                {
+                    useBanner = true;
+                }
             }
-            else
+
+            if (useBanner || !settings.DownloadVerticalCovers)
+            {
+                var imageRoot = @"https://steamcdn-a.akamaihd.net/steam/apps/{0}/header.jpg";
+                var imageUrl = string.Format(imageRoot, appId);
+                if (HttpDownloader.GetResponseCode(imageUrl) == HttpStatusCode.OK)
+                {
+                    metadata.CoverImage = new MetadataFile(imageUrl);
+                }
+            }
+
+            if (metadata.CoverImage == null)
             {
                 if (productInfo != null)
                 {
-                    imageRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
+                    var imageRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
                     var image = productInfo["common"]["logo"];
                     if (!string.IsNullOrEmpty(image.Value))
                     {
-                        imageUrl = string.Format(imageRoot, appId, image.Value);
+                        var imageUrl = string.Format(imageRoot, appId, image.Value);
                         metadata.CoverImage = new MetadataFile(imageUrl);
                     }
                 }
             }
 
             // Background Image
-            switch (backgroundSource)
+            switch (settings.BackgroundSource)
             {
                 case BackgroundSource.Image:
                     metadata.BackgroundImage = new MetadataFile(GetGameBackground(appId));
@@ -288,7 +307,7 @@ namespace SteamLibrary
         {
             var resources = library.PlayniteApi.Resources;
             var appId = gameId.AppID;
-            var downloadedMetadata = DownloadGameMetadata(appId, library.LibrarySettings.BackgroundSource);
+            var downloadedMetadata = DownloadGameMetadata(appId, library.LibrarySettings);
             var gameInfo = new GameInfo
             {
                 Name = downloadedMetadata.ProductDetails?["common"]["name"]?.Value ?? downloadedMetadata.GameInfo.Name,

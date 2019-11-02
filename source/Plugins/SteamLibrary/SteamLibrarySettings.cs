@@ -69,6 +69,8 @@ namespace SteamLibrary
             }
         }
 
+        public bool DownloadVerticalCovers { get; set; } = true;
+
         public bool ImportInstalledGames { get; set; } = true;
 
         public bool ConnectAccount { get; set; } = false;
