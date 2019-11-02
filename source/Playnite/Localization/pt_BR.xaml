@@ -204,8 +204,6 @@ Resulta em: -image "c:\pasta\imagem.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Todos os jogos selecionados</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Loja oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Loja oficial</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Loja oficial > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selecione quais campos devem ser preenchidos automaticamente pelo Playnite e quais fontes devem ser usadas para obter os dados.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Por favor, considere clicar no logo acima e contribuir com informações para o banco de dados do igdb.com para melhorar os dados utilizados pelo Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Loja oficial:
@@ -826,6 +824,7 @@ Versão {2}
     <sys:String x:Key="LOCSteamLinksCommunityHub">Central da comunidade</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Discussões</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Oficina</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">A configuração inicial não foi concluída. O Playnite irá reiniciar no modo janela para que o processo seja concluído.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jogados recentemente</sys:String>
