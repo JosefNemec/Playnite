@@ -200,8 +200,6 @@ Resulta em: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Apenas os jogos selecionados</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Loja Oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Loja Oficial</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Loja Oficial > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Por favor, seleciona quais os campos devem ser preenchidos, automaticamente, pelo Playnite e quais fontes devem ser usadas para obter os dados.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Loja:
@@ -782,6 +780,7 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
