@@ -204,8 +204,6 @@ Příklad: -image "{ImagePath}" -fullscreen
     <sys:String x:Key="LOCMetaGameSourceSelected">Vybrané hry</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Oficiální obchod</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Oficiální obchod</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Oficiální obchod > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vyberte, která pole by měla být automaticky doplněna Playnitem a které zdroje by měly být použity k získání údajů.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Prosím zvažte přispění aktualizace do databáze igdb.com (klinutím na logo výše), čímž zlepšíte data, která Playnite používá.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Oficiální obchod:
@@ -827,6 +825,7 @@ Pozor že možnost zadání jména účtu funguje pouze pro ty účty, které ma
     <sys:String x:Key="LOCSteamLinksCommunityHub">Komunitní centrum</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Diskuze</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Dílna</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Stáhnout svislé obrázky obálek</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Nastavení po prvním spuštění není dokončeno. Playnite se proto nyní přepne do režimu plochy, aby bylo nastavení dokončeno.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Nedávno hrané</sys:String>
