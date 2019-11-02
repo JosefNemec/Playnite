@@ -194,8 +194,6 @@ Eredménye: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Csak kiválasztott játékok</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Eredeti áruházból</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > eredeti áruház</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Eredeti áruház > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Kérem válassza ki mely mezőket frissítse Playnite automatikusan, és milyen forrásból.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Áruház:
@@ -792,6 +790,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
