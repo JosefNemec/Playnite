@@ -204,8 +204,6 @@
     <sys:String x:Key="LOCMetaGameSourceSelected">선택한 게임만</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">공식 스토어</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 공식 스토어</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">공식 스토어 > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">어떤 필드를 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하세요.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">위의 로고를 클릭하여 Playnite가 사용하는 igdb.com의 데이터 베이스 강화에 기여해주십시오.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">스토어:
@@ -259,7 +257,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuShutdownSystem">시스템 종료</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">시스템 정지</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">시스템 최대 절전</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame">랜덤 게임 선택하기</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">무작위로 게임 고르기</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">상세보기에 표시할 게임 정보</sys:String>
@@ -268,7 +266,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">테두리 두께</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">게임 아이콘 없음</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">게임 이미지 없음</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">게임 배경 출처 없음</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">상세보기 세로 간격</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">바둑판식 방식에서 상세정보 위치</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">상세보기에서 게임 목록 위치</sys:String>
@@ -383,7 +381,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">스토어 스크린샷</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">스토어 배경</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">메타데이터를 다시 다운로드하지 않으면 기존 게임에는 소급 적용되지 않습니다.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">지원 라이브러리의 게임 시간을 우선하기</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">라이브러리 동기화 중에 Playnite가 기록한 플레이 시간을 적용하는 대신 원격 라이브러리에서 기록된 플레이 시간을 다운로드합니다.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">데스크탑 모드에서 컨트롤러 지원 활성화</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">가이드 버튼을 전체 화면으로 열기</sys:String>
@@ -398,16 +396,16 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenLayout">레이아웃</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">수평 스크롤</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">하위 섹션 중 하나 선택</sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">글꼴 크기</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">자동</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">별칭</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">회색조</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">적합함</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">디스플레이</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">텍스트 서식 지정 모드</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">텍스트 렌더링 모드</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">텍스트 렌더링 및 서식 지정 설정은 현재 게임 설명 텍스트에 적용되지 않습니다.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
@@ -488,9 +486,9 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCAddPlatformTitle">플랫폼 추가</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">아이콘 선택</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">커버 선택</sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">이미지 선택</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">항목 선택</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">배경 선택</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">파일 선택</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">URL 선택</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">에뮬레이터 추가</sys:String>
@@ -636,25 +634,25 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCChange">변경</sys:String>
     <sys:String x:Key="LOCAdvanced">고급 설정</sys:String>
     <sys:String x:Key="LOCNever">안함</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">플레이하지 않음</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">플레이함</sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten">승리</sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">완료</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">플레이 중</sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned">포기함</sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold">보류</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">플레이 예정</sys:String>
     <sys:String x:Key="LOCCompletionStatus">완료 상황</sys:String>
     <sys:String x:Key="LOCUserScore">유저 점수</sys:String>
     <sys:String x:Key="LOCCriticScore">크리틱 점수</sys:String>
     <sys:String x:Key="LOCCommunityScore">커뮤니티 점수</sys:String>
     <sys:String x:Key="LOCScripts">스크립트</sys:String>
     <sys:String x:Key="LOCPlugins">플러그인</sys:String>
-    <sys:String x:Key="LOCMetadataProviders"></sys:String>
+    <sys:String x:Key="LOCMetadataProviders">메타데이터 출처</sys:String>
     <sys:String x:Key="LOCExtensions">확장</sys:String>
     <sys:String x:Key="LOCReloadScripts">스크립트를 다시 로드</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">모든 스크립트 다시 로드 성공.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
+    <sys:String x:Key="LOCNoGamesFound">특정 검색/필터 기준에 맞는 게임이 없음</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">데스크탑 모드로 나가기</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite 나가기</sys:String>
     <sys:String x:Key="LOCLibraries">라이브러리</sys:String>
@@ -675,10 +673,10 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCFontLarger">더 크게</sys:String>
     <sys:String x:Key="LOCFontLargest">가장 크게</sys:String>
     <sys:String x:Key="LOCDefault">기본</sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
-    <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCSelect">선택</sys:String>
+    <sys:String x:Key="LOCFirst">첫번째</sys:String>
+    <sys:String x:Key="LOCRandom">무작위</sys:String>
+    <sys:String x:Key="LOCUserSelect">유저 선택</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">에뮬레이터 실행 변수</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">추가 에뮬레이터 변수</sys:String>
@@ -702,9 +700,9 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">선택된 테마 적용</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">파일 변화 감시</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">감시 파일이 변경되었을 경우 자동으로 테마 적용</sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">스크립트 런타임</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">게임 시작하기 전에 실행</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">게임이 끝난 후에 실행</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">기본값으로 저장</sys:String>
@@ -730,7 +728,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">팁: 하나의 게임 정보를 편집하는동안 편집 메뉴에서 고급 메타데이터 다운로드를 이용할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">다른 절차가 진행중일 경우 사용할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">설명은 html 구문에 민감합니다.</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">플레이 시간은 초단위로 측정 및 저장됩니다.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0에서 100사이의 값 또는 점수가 없으면 빈칸.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 개발은 다음의 후원자에 지원을 받습니다.</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">코드, 번역 및 기타 기여는 특별한 순서가 없습니다:</sys:String>
@@ -769,7 +767,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCEnterName">이름 입력</sys:String>
     <sys:String x:Key="LOCEnterNewName">새로운 이름 입력</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">1시간 미만</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1시간에서 10시간</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10시간에서 100시간</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100시간에서 500시간</sys:String>
@@ -802,10 +800,10 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
 {0}</sys:String>
 
     <!--Common Library-->
-    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
-    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
-    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
-    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+    <sys:String x:Key="LOCCommonLinksAchievements">도전 과제</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">포럼</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">소식</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">상점 페이지</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io 클라이언트가 열립니다. 가입한뒤 이 메세지를 닫아주십시오.</sys:String>
@@ -822,9 +820,10 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">계정 URL 이름</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">인증됨</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">계정이 비공개 입니다. API 키가 필요합니다.</sys:String>
-    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
-    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
-    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub">커뮤니티 허브</sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">토론</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">창작마당</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">최초 설치가 완료되지 않았습니다. 최초 설치를 완료하기 위하여 Playnite가 데스크탑 모드로 재실행됩니다.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">최근 플레이</sys:String>
@@ -835,11 +834,11 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCGameListFiltered">필터 적용됨.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">검색 결과:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">같은 이름이 이미 사용중입니다.</sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">현재 필터로 선택 제한</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">다른 거 고르기</sys:String>
     
     <!--IGDB-->
-    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">아트워크가 없을 때 스크린샷 사용</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">다수의 이미지를 사용할 수 있을 때 사용하기:</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} 배경 이미지 선택</sys:String>
 </ResourceDictionary>
