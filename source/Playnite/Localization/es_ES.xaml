@@ -204,8 +204,6 @@ Resulta en: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Solo Juego Seleccionados</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Tienda oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Tienda oficial</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Tienda oficial > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Por favor seleccione que campos debe rellenar automáticamente Playnite y que fuentes utilizar para obtener los datos</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Por favor considere hacer clic en el logotipo de arriba y contribuir actualizaciones a la base de datos de igdb.com para mejorar los datos que utiliza Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Tienda:
@@ -827,6 +825,7 @@ La opción de Nombre de Cuenta solo aparece para cuentas cuyas librerías de jue
     <sys:String x:Key="LOCSteamLinksCommunityHub">Punto de encuentro</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Discusiones</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Descargar imágenes de portada verticales</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Configuración de primera vez no completada. Playnite se reiniciará en modo escritorio para terminar el proceso.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jugado recientemente</sys:String>
