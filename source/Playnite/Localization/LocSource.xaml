@@ -205,8 +205,6 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Selected games only</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Official Store</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Official Store</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Official Store > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Please select which fields should be automatically populated by Playnite and which sources should be used to obtain the data from.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Please consider clicking on the logo above and contribute updates to igdb.com database in order to improve data Playnite uses.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Store:

@@ -415,7 +415,7 @@ namespace Playnite.DesktopApp.Controls
                     {
                         Id = Guid.Empty,
                         Enabled = true,
-                        Name = "Store" // TODO: Localize
+                        Name = ResourceProvider.GetString("LOCMetaSourceStore")
                     });
                 }
                 else
@@ -439,7 +439,7 @@ namespace Playnite.DesktopApp.Controls
                 {
                     Id = Guid.Empty,
                     Enabled = false,
-                    Name = "Store" // TODO: Localize
+                    Name = ResourceProvider.GetString("LOCMetaSourceStore")
                 });
             }
 
