@@ -196,8 +196,6 @@
     <sys:String x:Key="LOCMetaGameSourceSelected">選択されたゲームのみ</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">公式ストア</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 公式ストア</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">公式ストア > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Playniteによって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">公式ストア:
@@ -800,6 +798,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">初回設定はまだ完了していません。Playniteは今から手順を済むためにデスクトップモードに再起動します。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近のプレイ</sys:String>
