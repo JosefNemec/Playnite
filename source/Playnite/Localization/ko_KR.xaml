@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">언어</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">종료</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">필터 활성화됨</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">필터 비활성화됨</sys:String>
     <sys:String x:Key="LOCAditionalFilters">추가 필터</sys:String>
     <sys:String x:Key="LOCFilters">필터</sys:String>
     <sys:String x:Key="LOCFilter">필터</sys:String>
@@ -70,13 +70,17 @@
     <sys:String x:Key="LOCGameShortcutError">바로가기를 생성하지 못했습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">게임을 설치할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">게임을 삭제할 수 없습니다: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">시작 액션이 설정되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">이 게임을 담당하는 라이브러리 플러그인이 설치되거나 활성화되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">공식 메타데이터 다운로드를 사용할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">선택한 게임이 없습니다.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">게임의 스크립트 액션 실행 실패함:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">글로벌 스크립트 액션 실행 실패함:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 또는 그 이후 버전이 설치되어 있지 않습니다.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">활성화</sys:String>
@@ -86,7 +90,7 @@
     <sys:String x:Key="LOCAddTitle">추가</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">기본 아이콘</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">기본 커버 이미지</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">기본 배경 이미지</sys:String>
     <sys:String x:Key="LOCFinishLabel">완료</sys:String>
     <sys:String x:Key="LOCNextLabel">다음</sys:String>
     <sys:String x:Key="LOCBackLabel">이전</sys:String>
@@ -129,7 +133,7 @@
     <sys:String x:Key="LOCInstallationLabel">설치</sys:String>
     <sys:String x:Key="LOCActionsLabel">액션</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">다운로드 중…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">로딩 중…</sys:String>
     <sys:String x:Key="LOCTypeLabel">유형</sys:String>
     <sys:String x:Key="LOCProfileLabel">프로필</sys:String>
     <sys:String x:Key="LOCProfilesLabel">프로필</sys:String>
@@ -191,7 +195,7 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">실행 액션이 손실되었거나 실행 액션이 URL로 설정된 경우 아이콘을 불러올 수 없습니다.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">잃어버린 메타데이터만 다운로드</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">이 옵션을 활성화할 경우 이미 다운로드 받은 정보는 다운로드하지 않습니다.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">게임 선택</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">새 메타데이터로 업데이트할 게임을 선택하세요:</sys:String>
@@ -255,7 +259,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCMenuShutdownSystem">시스템 종료</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">시스템 정지</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">시스템 최대 절전</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">랜덤 게임 선택하기</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">상세보기에 표시할 게임 정보</sys:String>
@@ -278,12 +282,12 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">고정 비율 설정</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">늘이기 모드</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD 박스</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">에픽게임즈 스토어</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 베너</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam 신규 UI</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">*변경사항을 적용하려면 재시작이 필요합니다</sys:String>
     <sys:String x:Key="LOCSettingsLabel">설정</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">일반</sys:String>
@@ -297,7 +301,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsMetadataLabel">메타데이터</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">라이브러리 변경 사항을 자동으로 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">설치된 게임 가져오기</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount">계정 연결</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">설치되지 않은 게임 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">모든 게임 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">모든 게임 가져오기 (공개된 계정이나 API 키가 필요합니다)</sys:String>
@@ -370,7 +374,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite는 자동으로 데이터베이스 파일을 이동시킬 수 없습니다. 데이터베이스 파일 위치가 변경된 경우 수동으로 이동/복사 하여야 합니다. 만약 데이터베이스가 지정된 위치에 없다면 새로 생성합니다.
 
 새로운 데이터베이스 위치는 재시작후 적용됩니다.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"닫기" 액션이 설정되어있으면 플레이 시간이 기록되지 않습니다.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">행 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">열 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">자세히 보기 방식의 열 수</sys:String>
