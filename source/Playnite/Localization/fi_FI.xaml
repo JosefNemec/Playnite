@@ -200,8 +200,6 @@ Tuottaa tuloksen: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Vain valitut pelit</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Virallinen kauppa</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Virallinen kauppa</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Virallinen kauppa > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Valitse kentät jotka Playniten tulisi automaattisesti täyttää ja mitä lähteitä datan hakemiseen tulisi käyttää.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Parantaaksesi Playniten käyttämää dataa, harkitse yllä olevan logon klikkaamista ja osallistumista igdb.com-tietokannan päivittämiseen.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Store:
@@ -816,6 +814,7 @@ Huomioi, että tunnuksen nimen käyttäminen toimii vain tunnuksilla, jotka on a
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Ensimmäisen käynnistyksen asennus ei ole valmis. Toiminnon viimeistelemiseksi Playnite käynnistyy nyt uudelleen työpöytätilassa.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Viimeksi pelatut</sys:String>
