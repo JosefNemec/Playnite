@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">語言</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">離開</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">過濾器已啟用</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">過濾器已停用</sys:String>
     <sys:String x:Key="LOCAditionalFilters">更多過濾條件</sys:String>
     <sys:String x:Key="LOCFilters">過濾器</sys:String>
     <sys:String x:Key="LOCFilter">過濾器</sys:String>
@@ -70,13 +70,17 @@
     <sys:String x:Key="LOCGameShortcutError">無法創建捷徑: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">無法安裝遊戲: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">無法移除遊戲: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">尚未配置開始動作</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">未安裝或啟用本遊戲使用的資料庫外掛程式</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">無法下載官方元資料</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">未選擇任何項目。</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">遊戲腳本動作執行失敗:
+
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">全域腳本動作執行失敗
+
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">尚未安裝PowerShell 3.0 或更新版本</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">啟用</sys:String>
@@ -86,7 +90,7 @@
     <sys:String x:Key="LOCAddTitle">新增</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">預設圖示</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">預設封面圖片</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">預設背景圖片</sys:String>
     <sys:String x:Key="LOCFinishLabel">完成</sys:String>
     <sys:String x:Key="LOCNextLabel">繼續</sys:String>
     <sys:String x:Key="LOCBackLabel">返回</sys:String>
@@ -129,7 +133,7 @@
     <sys:String x:Key="LOCInstallationLabel">安裝</sys:String>
     <sys:String x:Key="LOCActionsLabel">動作</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">下載中....</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">載入中...</sys:String>
     <sys:String x:Key="LOCTypeLabel">類型</sys:String>
     <sys:String x:Key="LOCProfileLabel">基本資料</sys:String>
     <sys:String x:Key="LOCProfilesLabel">基本資料</sys:String>
@@ -191,7 +195,7 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">若啟動指令未設置或被設定為網址，則無法取得圖示</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">只下載缺失的原數據</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">啟用此選項則已存有資料的儲存格不會從元資料更新數據。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">遊戲選擇</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">請選擇需要從元資料更新訊息的遊戲:</sys:String>
@@ -253,7 +257,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCMenuShutdownSystem">關閉系統</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">系統睡眠</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">系統休眠</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">選擇隨機遊戲</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">會顯示在詳細面板上的遊戲資訊:</sys:String>
@@ -262,7 +266,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">網格化物件邊界寬度</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">找不到遊戲圖示來源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺失遊戲封面來源</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">缺失遊戲背景圖片來源</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">到遊戲詳細信息的垂直間距</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">網格檢視詳細資訊位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">列表檢視遊戲列表位置</sys:String>
@@ -276,12 +280,12 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">目標長寬比</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">延展模式</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD 盒</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 標題</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam 新式介面</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* 重新啟動以套用</sys:String>
     <sys:String x:Key="LOCSettingsLabel">設定</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">一般</sys:String>
@@ -295,7 +299,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsMetadataLabel">元資料</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">自動匯入資料庫的改動</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">匯入已安裝的遊戲</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount">連結帳號</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">匯入未安裝的遊戲</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">匯入所有遊戲</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">匯入所有遊戲(公開帳戶或提供API密鑰)</sys:String>
@@ -368,7 +372,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnitee不會自動搬移資料庫文件，您必須在更改位置前移動/複製這些資料。如果移動後的位置找不到資料庫文件，Playnite將會自動創建一個新的資料庫。
 
 新的資料庫位置將會在下次重新啟動程式之後被套用。</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果設定了"關閉"指令，則遊玩時間將不會被記錄</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">列數</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">欄數</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">列表檢視列數</sys:String>
@@ -377,7 +381,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截圖</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">商店背景</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下載元資料則不會往前套用於現有遊戲</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">為支援的媒體庫設定遊玩時間優先等級</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">在資料庫同步時總是下載遠端資料庫的遊玩時數，覆蓋Playnite紀錄的遊玩時數</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">在桌面模式中啟用手把功能</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">導航按鍵開啟全螢幕模式</sys:String>
@@ -392,11 +396,11 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsFullscreenLayout">配置</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">水平捲軸</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">選擇一個小節</sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">字型大小</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">自動</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">鋸齒化</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">灰階</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">清除類型</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
@@ -762,7 +766,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCEnterName">輸入名稱</sys:String>
     <sys:String x:Key="LOCEnterNewName">輸入新的名稱</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">少於1小時</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1到10小時</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10到100小時</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100到500小時</sys:String>
@@ -797,10 +801,10 @@ By {1}
 {0}</sys:String>
 
     <!--Common Library-->
-    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
-    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
-    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
-    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+    <sys:String x:Key="LOCCommonLinksAchievements">成就</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">論壇</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">最新消息</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">商店頁面</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io客戶端程式即將啟動，請登入然後關閉此訊息。</sys:String>
@@ -817,10 +821,10 @@ By {1}
     <sys:String x:Key="LOCSteamCustomUrlName">帳號網址名稱</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">已驗證的使用者</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">此為私人帳號，需要提供API密鑰</sys:String>
-    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
-    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
-    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub">社群中心</sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">討論區</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">工作坊</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">下載縱式封面圖片</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">首次安裝尚未完成，Playnite將會重新啟動進入桌面模式完成安裝步驟。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近玩過</sys:String>
@@ -831,11 +835,11 @@ By {1}
     <sys:String x:Key="LOCGameListFiltered">已套用過濾條件</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">搜尋結果：</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">已存在相同名稱的物件</sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">將選擇限於目前過濾結果</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">選擇另一個</sys:String>
     
     <!--IGDB-->
-    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">如無圖片則使用擷圖</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">如有多張圖片則使用:</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">選擇 {0} 的背景圖片</sys:String>
 </ResourceDictionary>
