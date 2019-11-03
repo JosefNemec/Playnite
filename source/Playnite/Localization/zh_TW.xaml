@@ -401,11 +401,11 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">鋸齒化</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">灰階</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">清除類型</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">理想</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">顯示</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">文本格式化模式</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">文本渲染模式</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">文本渲染以及格式化選項尚未應用至遊戲敘述文本</sys:String>
 
     <sys:String x:Key="LOCStrechNone">無</sys:String>
     <sys:String x:Key="LOCStrechFill">填滿</sys:String>
@@ -485,9 +485,9 @@ IGDB > 官方商店
     <sys:String x:Key="LOCAddPlatformTitle">新增平台</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">選擇圖示</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">選擇封面</sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">選擇圖片</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">選擇項目</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">選擇背景</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">選擇檔案</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">選擇網址</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">新增模擬器</sys:String>
@@ -633,25 +633,25 @@ IGDB > 官方商店
     <sys:String x:Key="LOCChange">變更</sys:String>
     <sys:String x:Key="LOCAdvanced">進階</sys:String>
     <sys:String x:Key="LOCNever">從未</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">尚未遊玩</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">已遊玩</sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten">已通關</sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">已完整通關</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">正在遊玩</sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned">已放棄</sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold">保留</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">計畫遊玩</sys:String>
     <sys:String x:Key="LOCCompletionStatus">完成狀態</sys:String>
     <sys:String x:Key="LOCUserScore">使用者評分</sys:String>
     <sys:String x:Key="LOCCriticScore">專家評分</sys:String>
     <sys:String x:Key="LOCCommunityScore">社群評分</sys:String>
     <sys:String x:Key="LOCScripts">腳本</sys:String>
     <sys:String x:Key="LOCPlugins">外掛</sys:String>
-    <sys:String x:Key="LOCMetadataProviders"></sys:String>
+    <sys:String x:Key="LOCMetadataProviders">原數據來源</sys:String>
     <sys:String x:Key="LOCExtensions">附加元件</sys:String>
     <sys:String x:Key="LOCReloadScripts">重新載入腳本</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">已成功加載所有腳本</sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
+    <sys:String x:Key="LOCNoGamesFound">找不到指定搜尋/過濾器條件的遊戲</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">回到桌面模式</sys:String>
     <sys:String x:Key="LOCExitPlaynite">離開Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">資料庫</sys:String>
@@ -672,10 +672,10 @@ IGDB > 官方商店
     <sys:String x:Key="LOCFontLarger">較大</sys:String>
     <sys:String x:Key="LOCFontLargest">最大</sys:String>
     <sys:String x:Key="LOCDefault">預設</sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
-    <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCSelect">選取</sys:String>
+    <sys:String x:Key="LOCFirst">首項</sys:String>
+    <sys:String x:Key="LOCRandom">隨機</sys:String>
+    <sys:String x:Key="LOCUserSelect">使用者選擇</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">模擬器引數</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">其他模擬器引數</sys:String>
@@ -699,9 +699,9 @@ IGDB > 官方商店
     <sys:String x:Key="LOCThemeTestApplySkin">套用選擇的主題</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">閱讀檔案更動</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">當來源檔案更改時自動套用主題</sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">腳本執行階段</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">開始遊戲前執行</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">離開遊戲後執行</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">儲存為預設值</sys:String>
@@ -727,7 +727,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示: 您可以透過"編輯"選單編輯遊戲並執行更進階的元資料下載程序</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些程式正在進行時無法使用</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本支持HTML語法</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">遊玩時間將被記錄並以秒為單位儲存</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">輸入0到100的值或者留白以表示無分數</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite的開發得到了這些贊助者的支持:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">代碼，本地化以及其他貢獻者(無特定順序):</sys:String>
