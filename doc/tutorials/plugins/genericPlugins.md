@@ -3,6 +3,7 @@ Generic Plugins
 
 To implement generic plugin:
 
+* Read the introduction to [extensions](../intro.md) and [plugins](plugins.md).
 * Create new public class inheriting from [Plugin](xref:Playnite.SDK.Plugins.Plugin) abstract class.
 * Add implementation for mandatory abstract members.
 
