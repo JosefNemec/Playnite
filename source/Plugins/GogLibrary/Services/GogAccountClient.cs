@@ -30,6 +30,7 @@ namespace GogLibrary.Services
         public void Login()
         {
             var loginUrl = Gog.GetLoginUrl();
+            loginUrl = Regex.Replace(loginUrl, $"&gog_lc=.+$", "&gog_lc=" + Gog.EnStoreLocaleString);
             webView.NavigationChanged += (s, e) =>
             {
                 if (webView.GetCurrentAddress().Contains("/on_login_success"))
@@ -38,7 +39,6 @@ namespace GogLibrary.Services
                 }
             };
 
-            ForceWebLanguage(Gog.EnStoreLocaleString);
             webView.Navigate(loginUrl);
             webView.OpenDialog();
         }
