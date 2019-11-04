@@ -470,6 +470,7 @@ namespace Playnite
             {
                 gridItemSpacing = value;
                 OnPropertyChanged();
+                ItemSpacingMargin = GetItemSpacingMargin();
                 OnPropertyChanged(nameof(ItemSpacingMargin));
             }
         }
@@ -501,6 +502,7 @@ namespace Playnite
             {
                 fullscreenItemSpacing = value;
                 OnPropertyChanged();
+                FullscreenItemSpacingMargin = GetFullscreenItemSpacingMargin();
                 OnPropertyChanged(nameof(FullscreenItemSpacingMargin));
             }
         }
@@ -508,18 +510,13 @@ namespace Playnite
         [JsonIgnore]
         public Thickness ItemSpacingMargin
         {
-            get => new Thickness(GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2);
+            get; private set;
         }
 
         [JsonIgnore]
         public Thickness FullscreenItemSpacingMargin
         {
-            get
-            {
-                int marginX = FullscreenItemSpacing / 2;
-                int marginY = ((int)CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2);
-                return new Thickness(marginY, marginX, 0, 0);
-            }
+            get; private set;
         }
 
         private bool firstTimeWizardComplete;
@@ -1414,6 +1411,8 @@ namespace Playnite
         public PlayniteSettings()
         {
             InstallInstanceId = Guid.NewGuid().ToString();
+            ItemSpacingMargin = GetItemSpacingMargin();
+            FullscreenItemSpacingMargin = GetFullscreenItemSpacingMargin();
         }
 
         private static T LoadSettingFile<T>(string path) where T : class
@@ -1582,6 +1581,18 @@ namespace Playnite
             {
                 FileSystem.DeleteFile(shortcutPath);
             }
+        }
+
+        private Thickness GetItemSpacingMargin()
+        {
+            return new Thickness(GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2);;
+        }
+
+        private Thickness GetFullscreenItemSpacingMargin()
+        {
+            int marginX = FullscreenItemSpacing / 2;
+            int marginY = ((int)CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2);
+            return new Thickness(marginY, marginX, 0, 0);
         }
 
         #region Serialization Conditions
