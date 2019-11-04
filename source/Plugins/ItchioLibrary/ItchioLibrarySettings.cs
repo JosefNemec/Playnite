@@ -18,7 +18,9 @@ namespace ItchioLibrary
         private ItchioLibrary library;
         private IPlayniteAPI api;
 
-        #region Settings      
+        #region Settings   
+
+        public int Version { get; set; }
 
         public bool ImportInstalledGames { get; set; } = Itch.IsInstalled;
 
@@ -66,6 +68,16 @@ namespace ItchioLibrary
             var settings = library.LoadPluginSettings<ItchioLibrarySettings>();
             if (settings != null)
             {
+                if (settings.Version == 0)
+                {
+                    logger.Debug("Updating itch settings from version 0.");
+                    if (settings.ImportUninstalledGames)
+                    {
+                        settings.ConnectAccount = true;
+                    }
+                }
+
+                settings.Version = 1;
                 LoadValues(settings);
             }
         }

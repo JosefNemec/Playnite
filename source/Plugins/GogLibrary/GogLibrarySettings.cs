@@ -22,6 +22,8 @@ namespace GogLibrary
 
         #region Settings
 
+        public int Version { get; set; }
+
         public bool ImportInstalledGames { get; set; } = true;
 
         public bool ConnectAccount { get; set; } = false;
@@ -66,6 +68,16 @@ namespace GogLibrary
             var settings = library.LoadPluginSettings<GogLibrarySettings>();
             if (settings != null)
             {
+                if (settings.Version == 0)
+                {
+                    logger.Debug("Updating GOG settings from version 0.");
+                    if (settings.ImportUninstalledGames)
+                    {
+                        settings.ConnectAccount = true;
+                    }
+                }
+
+                settings.Version = 1;
                 LoadValues(settings);
             }
         }
