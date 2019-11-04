@@ -392,7 +392,9 @@ namespace IGDBMetadata
 
                 var copyGame = game.GetClone();
                 copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
-                var name = copyGame.Name;
+                var name = copyGame.Name
+                    .Replace(" RHCP", "", StringComparison.OrdinalIgnoreCase)
+                    .Replace(" RU", "", StringComparison.OrdinalIgnoreCase);
                 var results = plugin.GetSearchResults(plugin.GetIgdbSearchString(name)).ToList();
                 results.ForEach(a => a.Name = StringExtensions.NormalizeGameName(a.Name));
                 string testName = string.Empty;
