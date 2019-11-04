@@ -470,7 +470,6 @@ namespace Playnite
             {
                 gridItemSpacing = value;
                 OnPropertyChanged();
-                ItemSpacingMargin = new Thickness(GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2);
                 OnPropertyChanged(nameof(ItemSpacingMargin));
             }
         }
@@ -507,7 +506,10 @@ namespace Playnite
         }
 
         [JsonIgnore]
-        public Thickness ItemSpacingMargin { get; private set; }
+        public Thickness ItemSpacingMargin
+        {
+            get => new Thickness(GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2);
+        }
 
         [JsonIgnore]
         public Thickness FullscreenItemSpacingMargin
@@ -1442,6 +1444,7 @@ namespace Playnite
             if (settings == null)
             {
                 logger.Info("No existing settings found, creating default ones.");
+                settings = new PlayniteSettings();
             }
             else
             {
