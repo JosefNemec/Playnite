@@ -34,7 +34,7 @@ namespace IGDBMetadata
             }
         }
 
-        private bool useScreenshotsIfNecessary = false;
+        private bool useScreenshotsIfNecessary = true;
         public bool UseScreenshotsIfNecessary
         {
             get => useScreenshotsIfNecessary;
