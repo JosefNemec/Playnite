@@ -44,9 +44,10 @@ namespace PlayniteServices.Controllers.IGDB
                 if (System.IO.File.Exists(cachePath))
                 {
                     var fileInfo = new FileInfo(cachePath);
-                    if ((fileInfo.LastWriteTime - DateTime.Now).TotalHours <= IGDB.SearchCacheTimeout)
+                    fileInfo.Refresh();
+                    if ((DateTime.Now - fileInfo.LastWriteTime).TotalHours <= IGDB.SearchCacheTimeout)
                     {
-                        searchResult = JsonConvert.DeserializeObject<List<Game>>(System.IO.File.ReadAllText(cachePath));                        
+                        searchResult = JsonConvert.DeserializeObject<List<Game>>(System.IO.File.ReadAllText(cachePath));
                     }
                 }
             }
