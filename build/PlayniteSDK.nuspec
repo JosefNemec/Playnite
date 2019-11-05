@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0"?>
-<package >
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>PlayniteSDK</id>
     <version>{Version}</version>
     <title>Playnite SDK</title>
     <authors>Josef Nemec</authors>
     <owners>JosefNemec</owners>
-    <licenseUrl>https://github.com/JosefNemec/Playnite/blob/master/LICENSE.md</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/JosefNemec/Playnite</projectUrl>
-    <iconUrl>https://playnite.link/applogo.png</iconUrl>
+    <icon>images\applogo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>SDK plugin library for Playnite video game library manager.</description>
     <releaseNotes>https://playnite.link/docs/changelog.html</releaseNotes>
@@ -21,5 +21,6 @@
   <files>
     <file src="{OutDir}\Playnite.SDK.dll" target="lib\net462\Playnite.SDK.dll" />
     <file src="{OutDir}\Playnite.SDK.xml" target="lib\net462\Playnite.SDK.xml" />
+    <file src="..\source\Playnite.DesktopApp\Themes\Desktop\Default\Images\applogo.png" target="images\" />
 </files>
 </package>
