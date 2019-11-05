@@ -105,7 +105,7 @@ namespace OriginLibrary
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            var manifest = origin.GetLocalManifest(Game.GameId, null, true);
+            var manifest = origin.GetLocalManifest(Game.GameId, true);
             if (manifest?.publishing == null)
             {
                 logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping installation check.");
@@ -145,7 +145,7 @@ namespace OriginLibrary
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();   
-            var manifest = origin.GetLocalManifest(Game.GameId, null, true);
+            var manifest = origin.GetLocalManifest(Game.GameId, true);
             if (manifest?.publishing == null)
             {
                 logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping uninstallation check.");

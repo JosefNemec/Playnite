@@ -36,7 +36,7 @@ namespace Playnite.SDK
         /// <returns>String resource.</returns>
         public static string GetString(string key)
         {
-            var resource = Application.Current.TryFindResource(key);
+            var resource = Application.Current?.TryFindResource(key);
             return resource == null ? $"<!{key}!>" : resource as string;
         }
 
@@ -47,7 +47,7 @@ namespace Playnite.SDK
         /// <returns>Application resource.</returns>
         public static object GetResource(string key)
         {
-            return Application.Current.TryFindResource(key);
+            return Application.Current?.TryFindResource(key);
         }
     }
 }

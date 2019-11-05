@@ -13,7 +13,7 @@
         </Style>
     </d:DesignerProperties.DesignStyle>
 
-    <StackPanel>
+    <StackPanel Margin="20">
         <CheckBox DockPanel.Dock="Top" Name="CheckUplayImportInstalled"
                   Margin="0,0,0,15"
                   IsChecked="{Binding ImportInstalledGames}"

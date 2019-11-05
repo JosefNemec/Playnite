@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Playnite.Controls
 {
@@ -18,6 +19,9 @@ namespace Playnite.Controls
         private Button MaximizeButton;
         private Button CloseButton;
         private TextBlock TextTitle;
+
+        public static TextFormattingMode TextFormattingMode { get; private set; } = TextFormattingMode.Ideal;
+        public static TextRenderingMode TextRenderingMode { get; private set; } = TextRenderingMode.Auto;
 
         public bool ShowMinimizeButton
         {
@@ -92,6 +96,15 @@ namespace Playnite.Controls
             {
                 Style = defaultStyle;
             }
+
+            TextOptions.SetTextFormattingMode(this, TextFormattingMode);
+            TextOptions.SetTextRenderingMode(this, TextRenderingMode);
+        }
+
+        public static void SetTextRenderingOptions(TextFormattingModeOptions formatting, TextRenderingModeOptions rendering)
+        {
+            TextFormattingMode = (TextFormattingMode)formatting;
+            TextRenderingMode = (TextRenderingMode)rendering;
         }
 
         public override void OnApplyTemplate()

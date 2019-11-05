@@ -20,6 +20,7 @@ namespace Playnite.DesktopApp.Controls
 {
     public class TrayContextMenu : ContextMenu
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private DesktopAppViewModel mainModel;
 
         static TrayContextMenu()
@@ -42,7 +43,14 @@ namespace Playnite.DesktopApp.Controls
         {
             if (e.PropertyName == nameof(GamesEditor.LastGames))
             {
-                InitializeItems();
+                try
+                {
+                    InitializeItems();
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to reinitialize tray menu items.");
+                }
             }
         }
 
@@ -59,7 +67,11 @@ namespace Playnite.DesktopApp.Controls
                 CommandParameter = commandParameter
             };
 
-            if (locString.StartsWith("LOC"))
+            if (locString.IsNullOrEmpty())
+            {
+                item.Header = "<NO_STRING>";
+            }
+            else if (locString.StartsWith("LOC"))
             {
                 item.SetResourceReference(MenuItem.HeaderProperty, locString);
             }

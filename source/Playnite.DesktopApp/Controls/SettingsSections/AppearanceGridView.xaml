@@ -22,7 +22,7 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel Margin="20">
         <StackPanel.Resources>
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
                                                         x:Key="CoverArtStretchValues">
@@ -56,12 +56,12 @@
                        Grid.Column="0" Grid.Row="0"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
                         Grid.Column="1" Grid.Row="0">
-                <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
+                <pctrls:NullableIntBox MinValue="1" MaxValue="999" Width="30"
                                         Margin="10,0,0,0"
                                         Value="{Binding Settings.GridItemWidthRatio}"/>
                 <TextBlock Text=":" VerticalAlignment="Center"
                            Margin="2,0,2,0"/>
-                <pctrls:NullableIntBox MinValue="1" MaxValue="100" Width="30"
+                <pctrls:NullableIntBox MinValue="1" MaxValue="999" Width="30"
                                        Value="{Binding Settings.GridItemHeightRatio}"/>
 
                 <Button Content="{DynamicResource LOCPresets}" Margin="15,0,0,0" Padding="2"
@@ -71,9 +71,24 @@
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectDVD}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="27:38"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectEpicGamesStore}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="171:241"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectGogGalaxy2}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="171:241"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectIgdb}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="3:4"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteam}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="92:43"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteamNewUI}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="2:3"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectTwitch}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="3:4"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>

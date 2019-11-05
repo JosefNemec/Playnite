@@ -34,6 +34,12 @@ namespace Playnite.SDK.Plugins
         public virtual string LibraryIcon { get; }
 
         /// <summary>
+        /// Gets library background image or null if no background is available.
+        /// </summary>
+        /// <returns></returns>
+        public virtual string LibraryBackground { get; }
+
+        /// <summary>
         /// Gets library client application or null of no client is associated with this library.
         /// </summary>
         public virtual LibraryClient Client { get; }

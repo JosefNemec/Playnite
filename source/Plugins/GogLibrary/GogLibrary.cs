@@ -90,7 +90,7 @@ namespace GogLibrary
                     Name = program.DisplayName,
                     IsInstalled = true
                 };
-   
+
                 var tasks = GetGameTasks(game.GameId, game.InstallDirectory);
                 // Empty play task = DLC
                 if (tasks.Item1 == null)
@@ -108,11 +108,6 @@ namespace GogLibrary
 
         internal List<GameInfo> GetLibraryGames()
         {
-            if (LibrarySettings.UsePublicAccount)
-            {
-                return GetLibraryGames(LibrarySettings.AccountName);
-            }
-
             using (var view = PlayniteApi.WebViews.CreateOffscreenView())
             {
                 var api = new GogAccountClient(view);
@@ -121,7 +116,7 @@ namespace GogLibrary
                     throw new Exception("User is not logged in to GOG account.");
                 }
                             
-                var libGames = api.GetOwnedGamesLegacy();
+                var libGames = api.GetOwnedGames();
                 if (libGames == null)
                 {
                     throw new Exception("Failed to obtain libary data.");
@@ -211,19 +206,24 @@ namespace GogLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import installed Origin games.");
+                    logger.Error(e, "Failed to import installed GOG games.");
                     importError = e;
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
                 try
                 {
-                    var uninstalled = LibrarySettings.UsePublicAccount ? GetLibraryGames(LibrarySettings.AccountName) : GetLibraryGames();
-                    logger.Debug($"Found {uninstalled.Count} library GOG games.");
+                    var libraryGames = GetLibraryGames();
+                    logger.Debug($"Found {libraryGames.Count} library GOG games.");
 
-                    foreach (var game in uninstalled)
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -238,7 +238,7 @@ namespace GogLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled GOG games.");
+                    logger.Error(e, "Failed to import linked account GOG games details.");
                     importError = e;
                 }
             }
@@ -261,7 +261,7 @@ namespace GogLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new GogMetadataProvider();
+            return new GogMetadataProvider(this);
         }
 
         #endregion ILibraryPlugin

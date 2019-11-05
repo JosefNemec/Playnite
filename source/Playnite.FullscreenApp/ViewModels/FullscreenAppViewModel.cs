@@ -5,6 +5,7 @@ using Playnite.Controls;
 using Playnite.Database;
 using Playnite.FullscreenApp.Controls;
 using Playnite.FullscreenApp.Controls.Views;
+using Playnite.FullscreenApp.Windows;
 using Playnite.Metadata;
 using Playnite.Plugins;
 using Playnite.SDK;
@@ -421,6 +422,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SelectPrevGameCommand { get; private set; }
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
+        public RelayCommand<object> SelectRandomGameCommand { get; private set; }
         #endregion Commands
 
         public FullscreenAppViewModel()
@@ -710,7 +712,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 };
 
                 ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, cmdline.ToString());
-            });
+            }, new KeyGesture(Key.F11));
 
             ShutdownSystemCommand = new RelayCommand<object>((a) =>
             {
@@ -962,6 +964,11 @@ namespace Playnite.FullscreenApp.ViewModels
             FileDroppedCommand = new RelayCommand<DragEventArgs>((args) =>
             {
                 OnFileDropped(args);
+            });
+
+            SelectRandomGameCommand = new RelayCommand<object>((a) =>
+            {
+                PlayRandomGame();
             });
         }
 
@@ -1260,9 +1267,9 @@ namespace Playnite.FullscreenApp.ViewModels
                         ProgressValue = 0;
                         ProgressTotal = addedGames.Count;
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
+                        using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.DefaultMetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
@@ -1300,6 +1307,11 @@ namespace Playnite.FullscreenApp.ViewModels
                             try
                             {
                                 var desc = ThemeManager.GetDescriptionFromPackedFile(path);
+                                if (desc == null)
+                                {
+                                    throw new FileNotFoundException("Theme manifest not found.");
+                                }
+
                                 if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
                                 {
                                     throw new Exception(Resources.GetString("LOCGeneralExtensionInstallApiVersionFails"));
@@ -1332,6 +1344,28 @@ namespace Playnite.FullscreenApp.ViewModels
                             }
                         }
                     }
+                }
+            }
+        }
+
+        public void PlayRandomGame()
+        {
+            if (MainMenuVisible)
+            {
+                ToggleMainMenuCommand.Execute(null);
+            }
+
+            var model = new RandomGameSelectViewModel(
+                Database,
+                GamesView,
+                new RandomGameSelectWindowFactory(),
+                Resources);
+            if (model.OpenView() == true && model.SelectedGame != null)
+            {
+                var selection = GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
+                if (selection != null)
+                {
+                    GamesEditor.PlayGame(selection.Game);
                 }
             }
         }

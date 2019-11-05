@@ -15,8 +15,8 @@
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         </Style>
     </UserControl.Resources>
-    
-    <StackPanel>
+
+    <StackPanel Margin="20">
         <DockPanel>
             <ContentControl Content="{DynamicResource LOCSettingsDBLocation}"
                             ContentStringFormat="{}{0} *" 

@@ -8,6 +8,67 @@ using System.Windows;
 namespace Playnite.SDK
 {
     /// <summary>
+    /// Represents item for image selection dialog.
+    /// </summary>
+    public class ImageFileOption : GenericItemOption
+    {
+        /// <summary>
+        /// Gets or sets image path or URL.
+        /// </summary>
+        public string Path { get; set; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="ImageFileOption"/>.
+        /// </summary>
+        public ImageFileOption() : base()
+        {
+        }
+
+        /// <summary>
+        /// Creates new instance of <see cref="ImageFileOption"/>.
+        /// </summary>
+        /// <param name="path"></param>
+        public ImageFileOption(string path)
+        {
+            Path = path;
+        }
+    }
+
+    /// <summary>
+    /// Represents item for item selection dialogs.
+    /// </summary>
+    public class GenericItemOption
+    {
+        /// <summary>
+        /// Gets or sets game name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets search result's description.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GenericItemOption"/>.
+        /// </summary>
+        public GenericItemOption()
+        {
+        }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GenericItemOption"/>.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        public GenericItemOption(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
+    }
+
+    /// <summary>
     /// Refresents result of selection string dialog operation.
     /// </summary>
     public class StringSelectionDialogResult
@@ -151,5 +212,25 @@ namespace Playnite.SDK
         /// <param name="defaultInput">String added into selectable field.</param>
         /// <returns>Selection result.</returns>
         void ShowSelectableString(string messageBoxText, string caption, string defaultInput);
+
+        /// <summary>
+        /// Displays dialog with an option to choose single image.
+        /// </summary>
+        /// <param name="files"></param>
+        /// <param name="caption"></param>
+        /// <param name="itemWidth"></param>
+        /// <param name="itemHeight"></param>
+        /// <returns>Null if dialog was canceled otherwise selected <see cref="ImageFileOption"/> object.</returns>
+        ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180);
+
+        /// <summary>
+        /// Displays dialog with an option to choose single item and option to search for different items.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="searchFunction"></param>
+        /// <param name="defaultSearch"></param>
+        /// <param name="caption"></param>
+        /// <returns>Null if dialog was canceled otherwise selected <see cref="GenericItemOption"/> object.</returns>
+        GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null);
     }
 }

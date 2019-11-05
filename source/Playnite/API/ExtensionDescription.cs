@@ -12,7 +12,8 @@ namespace Playnite.API
     {
         GenericPlugin,
         GameLibrary,
-        Script
+        Script,
+        MetadataProvider
     }
 
     public class ExtensionDescription

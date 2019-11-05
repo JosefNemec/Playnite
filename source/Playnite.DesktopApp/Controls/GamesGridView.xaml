@@ -21,7 +21,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <pcon:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
         <pcon:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
-        <pcon:CompletionStatusToStringConverter x:Key="CompletionStatusToStringConverter" />
+        <pcon:ObjectToStringConverter x:Key="ObjectToStringConverter" />
         <pcon:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
             <pcon:EnumToBooleanConverter/>
             <pcon:BooleanToHiddenConverter />
@@ -514,7 +514,7 @@
                     </GridViewColumn.Header>
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding CompletionStatus, Mode=OneWay, Converter={StaticResource CompletionStatusToStringConverter}}" />
+                            <TextBlock Text="{Binding CompletionStatus, Mode=OneWay, Converter={StaticResource ObjectToStringConverter}}" />
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>

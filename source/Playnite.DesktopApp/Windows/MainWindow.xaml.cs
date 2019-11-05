@@ -26,10 +26,5 @@ namespace Playnite.DesktopApp.Windows
                 positionManager = new WindowPositionHandler(this, "Main", PlayniteApplication.Current.AppSettings.WindowPositions);
             }
         }
-
-        private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            positionManager?.RestoreSizeAndLocation();
-        }
     }
 }

@@ -19,9 +19,16 @@ namespace GogLibrary
     {
         private GogApiClient apiClient = new GogApiClient();
         private ILogger logger = LogManager.GetLogger();
+        private GogLibrary library;
+
+        public GogMetadataProvider(GogLibrary library)
+        {
+            this.library = library;
+        }
 
         public override GameMetadata GetMetadata(Game game)
         {
+            var resources = library.PlayniteApi.Resources;
             var storeData = DownloadGameMetadata(game);
             if (storeData.GameDetails == null)
             {
@@ -44,16 +51,17 @@ namespace GogLibrary
                 BackgroundImage = storeData.BackgroundImage
             };
 
-            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + storeData.GameDetails.title));
             if (!string.IsNullOrEmpty(storeData.GameDetails.links.forum))
             {
-                gameInfo.Links.Add(new Link("Forum", storeData.GameDetails.links.forum));
+                gameInfo.Links.Add(new Link(resources.GetString("LOCCommonLinksForum"), storeData.GameDetails.links.forum));
             };
 
             if (!string.IsNullOrEmpty(storeData.GameDetails.links.product_card))
             {
-                gameInfo.Links.Add(new Link("Store Page", storeData.GameDetails.links.product_card));
+                gameInfo.Links.Add(new Link(resources.GetString("LOCCommonLinksStorePage"), storeData.GameDetails.links.product_card));
             };
+
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + storeData.GameDetails.title));
 
             if (storeData.StoreDetails != null)
             {

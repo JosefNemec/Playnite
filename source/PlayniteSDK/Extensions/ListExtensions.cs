@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace System.Collections.Generic
 {
+    /// <summary>
+    /// Represents class with various extension methods for IEnumerable lists.
+    /// </summary>
     public static class ListExtensions
     {
+        /// <summary>
+        /// Converts collection to <see cref="ObservableCollection{T}"/> collection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static ObservableCollection<T> ToObservable<T>(this IEnumerable<T> source)
         {
             if (source == null)
@@ -19,16 +28,34 @@ namespace System.Collections.Generic
             return new ObservableCollection<T>(source);
         }
 
+        /// <summary>
+        /// Check if collection has any items.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static bool HasItems<T>(this IEnumerable<T> source)
         {
             return source?.Any() == true;
         }
 
+        /// <summary>
+        /// Checks if collection has any non-empty string items.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static bool HasNonEmptyItems(this IEnumerable<string> source)
         {
-            return source?.Any(a => !a.IsNullOrEmpty()) == true;
+            return source?.Any(a => !string.IsNullOrEmpty(a)) == true;
         }
 
+        /// <summary>
+        /// Checks if source collection contains any items from target one, even if just partially.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <param name="comparison"></param>
+        /// <returns>True of target collection contains items that are also part of source collection.</returns>
         public static bool IntersectsPartiallyWith(this IEnumerable<string> source, IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             if (source == null && target == null)
@@ -53,6 +80,13 @@ namespace System.Collections.Generic
             return intersects;
         }
 
+        /// <summary>
+        /// Checks if source collection contains any items from target one.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <param name="comparison"></param>
+        /// <returns>True of target collection contains items that are also part of source collection.</returns>
         public static bool IntersectsExactlyWith(this IEnumerable<string> source, IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             if (source == null && target == null)
@@ -116,6 +150,11 @@ namespace System.Collections.Generic
                 return false;
             }
 
+            if (source.Count() != target.Count())
+            {
+                return false;
+            }
+
             var firstNotSecond = source.Except(target).ToList();
             if (firstNotSecond.Count != 0)
             {
@@ -129,6 +168,29 @@ namespace System.Collections.Generic
             }
 
             return true;
+        }
+        
+        /// <summary>
+        /// Checks if two collections contain the same items in the same order.
+        /// </summary>
+        public static bool IsListEqualExact<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        {
+            if (source == null && target == null)
+            {
+                return true;
+            }
+
+            if ((source == null && target != null) || (source != null && target == null))
+            {
+                return false;
+            }
+
+            if (source.Count() != target.Count())
+            {
+                return false;
+            }
+
+            return source.SequenceEqual(target);
         }
 
         /// <summary>

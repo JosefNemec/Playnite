@@ -134,7 +134,8 @@ namespace Playnite.Common
 
         public static string GetSafeFilename(string filename)
         {
-            return string.Join(" ", filename.Split(Path.GetInvalidFileNameChars()));
+            var path = string.Join(" ", filename.Split(Path.GetInvalidFileNameChars()));
+            return Regex.Replace(path, @"\s+", " ").Trim();
         }
 
         public static bool IsFullPath(string path)

@@ -9,15 +9,9 @@
              mc:Ignorable="d" 
              d:DesignWidth="600">
 
-    <DockPanel DataContext="{Binding Settings, RelativeSource={RelativeSource AncestorType=UserControl}}">  
+    <DockPanel DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">  
         <Grid DockPanel.Dock="Left" Margin="0,15,0,0">
             <Grid.Resources>
-                <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
-                                    x:Key="SourceEnumValues">
-                    <ObjectDataProvider.MethodParameters>
-                        <x:Type TypeName="pmp:MetadataSource" />
-                    </ObjectDataProvider.MethodParameters>
-                </ObjectDataProvider>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="Margin" Value="5" />
@@ -31,15 +25,81 @@
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="Margin" Value="5" />
                 </Style>
-                <ComboBox x:Key="ComboSourceSelection" x:Shared="False"
-                            SelectedValue="{Binding Source}"
-                            ItemsSource="{Binding Source={StaticResource SourceEnumValues}}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource ObjectToStringConverter}}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                <Style TargetType="ContentControl">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+                <ControlTemplate TargetType="ContentControl" x:Key="SourceSelector">
+                    <Border BorderThickness="{DynamicResource ControlBorderThickness}"
+                            CornerRadius="{DynamicResource ControlCornerRadius}"
+                            Style="{DynamicResource HighlightBorder}" Background="Transparent">
+                        <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"         
+                                      Focusable="False"
+                                      Foreground="{DynamicResource TextBrush}">
+                            <ToggleButton.Template>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding SelectionText}" TextTrimming="CharacterEllipsis"
+                                                   Grid.Column="0" VerticalAlignment="Center" Margin="4,0,2,0"/>
+                                        <Viewbox Grid.Column="1" Width="20">
+                                            <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
+                                                       VerticalAlignment="Center"/>
+                                        </Viewbox>
+                                        <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
+                                               IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
+                                               MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">
+                                            <Border Background="{DynamicResource PopupBackgroundBrush}"
+                                                    BorderThickness="{DynamicResource PopupBorderThickness}"
+                                                    BorderBrush="{DynamicResource PopupBorderBrush}">
+                                                <ItemsControl ItemsSource="{Binding Sources}"
+                                                          ScrollViewer.CanContentScroll="True"
+                                                          KeyboardNavigation.DirectionalNavigation="Contained"
+                                                          VirtualizingPanel.IsVirtualizing="True"
+                                                          VirtualizingPanel.VirtualizationMode="Recycling">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <DockPanel>
+                                                                <Button Content="6" FontFamily="Marlett" Margin="2,0,2,0"
+                                                                        DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
+                                                                        Command="{Binding DataContext.MoveSourceDownCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                                                        CommandParameter="{Binding}" />
+                                                                <Button Content="5" FontFamily="Marlett"
+                                                                        DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
+                                                                        Command="{Binding DataContext.MoveSourceUpCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                                                        CommandParameter="{Binding}" />
+                                                                <CheckBox IsChecked="{Binding Enabled}" DockPanel.Dock="Left"
+                                                                          Content="{Binding Name}"
+                                                                          Margin="3,2,3,2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                                                            </DockPanel>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <VirtualizingStackPanel />
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.Template>
+                                                        <ControlTemplate>
+                                                            <ScrollViewer Focusable="False" VerticalScrollBarVisibility="Auto">
+                                                                <ItemsPresenter />
+                                                            </ScrollViewer>
+                                                        </ControlTemplate>
+                                                    </ItemsControl.Template>
+                                                </ItemsControl>
+                                            </Border>
+                                        </Popup>
+                                    </Grid>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                    </Border>
+                </ControlTemplate>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -73,126 +133,122 @@
             <TextBlock Text="{DynamicResource LOCNameLabel}"
                         Grid.Column="0" Grid.Row="1"/>
             <CheckBox Grid.Column="1" Grid.Row="1"
-                        IsChecked="{Binding Name.Import}"/>
+                      IsChecked="{Binding Settings.Name.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="1"
-                            DataContext="{Binding Name}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding NameSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Genres-->
             <TextBlock Text="{DynamicResource LOCGameGenresTitle}"
                         Grid.Column="0" Grid.Row="2"/>
             <CheckBox Grid.Column="1" Grid.Row="2"
-                        IsChecked="{Binding Genre.Import}"/>
+                        IsChecked="{Binding Settings.Genre.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="2"
-                            DataContext="{Binding Genre}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding GenresSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Release Date-->
-            <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
+             <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
                         Grid.Column="0" Grid.Row="3"/>
             <CheckBox Grid.Column="1" Grid.Row="3"
-                        IsChecked="{Binding ReleaseDate.Import}"/>
+                        IsChecked="{Binding Settings.ReleaseDate.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="3"
-                            DataContext="{Binding ReleaseDate}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding ReleaseDateSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Developers-->
             <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}"
                         Grid.Column="0" Grid.Row="4"/>
             <CheckBox Grid.Column="1" Grid.Row="4"
-                        IsChecked="{Binding Developer.Import}"/>
+                        IsChecked="{Binding Settings.Developer.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="4"
-                            DataContext="{Binding Developer}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding DevelopersSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Publishers-->
             <TextBlock Text="{DynamicResource LOCGamePublishersTitle}"
                         Grid.Column="0" Grid.Row="5"/>
             <CheckBox Grid.Column="1" Grid.Row="5"
-                        IsChecked="{Binding Publisher.Import}"/>
+                        IsChecked="{Binding Settings.Publisher.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="5"
-                            DataContext="{Binding Publisher}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding PublishersSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Tags/Features-->
             <TextBlock Text="{DynamicResource LOCGameTagsTitle}"
                         Grid.Column="0" Grid.Row="6"/>
             <CheckBox Grid.Column="1" Grid.Row="6"
-                        IsChecked="{Binding Tag.Import}"/>
+                        IsChecked="{Binding Settings.Tag.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="6"
-                            DataContext="{Binding Tag}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding TagsSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Description-->
             <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}"
                         Grid.Column="0" Grid.Row="7"/>
             <CheckBox Grid.Column="1" Grid.Row="7"
-                        IsChecked="{Binding Description.Import}"/>
+                        IsChecked="{Binding Settings.Description.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="7"
-                            DataContext="{Binding Description}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding DescriptionSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Links-->
             <TextBlock Text="{DynamicResource LOCGameLinksTitle}"
                         Grid.Column="0" Grid.Row="8"/>
             <CheckBox Grid.Column="1" Grid.Row="8"
-                        IsChecked="{Binding Links.Import}"/>
+                        IsChecked="{Binding Settings.Links.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="8"
-                            DataContext="{Binding Links}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding LinksSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--CriticScore-->
             <TextBlock Text="{DynamicResource LOCCriticScore}"
                         Grid.Column="0" Grid.Row="9"/>
             <CheckBox Grid.Column="1" Grid.Row="9"
-                        IsChecked="{Binding CriticScore.Import}"/>
+                        IsChecked="{Binding Settings.CriticScore.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="9"
-                            DataContext="{Binding CriticScore}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding CriticScoreSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--CommunityScore-->
             <TextBlock Text="{DynamicResource LOCCommunityScore}"
                         Grid.Column="0" Grid.Row="10"/>
             <CheckBox Grid.Column="1" Grid.Row="10"
-                        IsChecked="{Binding CommunityScore.Import}"/>
+                        IsChecked="{Binding Settings.CommunityScore.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="10"
-                            DataContext="{Binding CommunityScore}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding CommunityScoreSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Cover-->
             <TextBlock Text="{DynamicResource LOCGameCoverTitle}"
                         Grid.Column="0" Grid.Row="11"/>
             <CheckBox Grid.Column="1" Grid.Row="11"
-                        IsChecked="{Binding CoverImage.Import}"/>
+                        IsChecked="{Binding Settings.CoverImage.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="11"
-                            DataContext="{Binding CoverImage}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding CoverSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
             <!--Icon-->
             <TextBlock Text="{DynamicResource LOCGameIconTitle}"
                         Grid.Column="0" Grid.Row="12"/>
             <CheckBox Grid.Column="1" Grid.Row="12"
-                        IsChecked="{Binding Icon.Import}"/>
+                        IsChecked="{Binding Settings.Icon.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="12"
-                            DataContext="{Binding Icon}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding IconSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
 
-
-            <!--Background Image-->
+            <!--BackgroundImage-->
             <TextBlock Text="{DynamicResource LOCGameBackgroundTitle}"
                         Grid.Column="0" Grid.Row="13"/>
             <CheckBox Grid.Column="1" Grid.Row="13"
-                        IsChecked="{Binding BackgroundImage.Import}"/>
+                        IsChecked="{Binding Settings.BackgroundImage.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="13"
-                            DataContext="{Binding BackgroundImage}"
-                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
+                            DataContext="{Binding BackgroundImageSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
         </Grid>
         
         <StackPanel DockPanel.Dock="Left">
-            <TextBlock Text="{DynamicResource LOCMetaSourceSettingsDescription}"
-                    TextWrapping="Wrap" Margin="10"
-                    Foreground="{DynamicResource TextBrush}" />
-            <TextBlock Margin="10,10,0,0">
+            <TextBlock Margin="10,10,0,0" HorizontalAlignment="Center">
             <Hyperlink Command="{x:Static GlobalCommands.NavigateUrlCommand}"
                         CommandParameter="https://www.igdb.com">
                     <Image Source="/Resources/igdbicon.png" RenderOptions.BitmapScalingMode="Fant"

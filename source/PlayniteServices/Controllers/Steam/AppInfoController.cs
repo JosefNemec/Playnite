@@ -28,7 +28,8 @@ namespace PlayniteServices.Controllers.Steam
                 if (System.IO.File.Exists(cachePath))
                 {
                     var fileInfo = new FileInfo(cachePath);
-                    if ((fileInfo.LastWriteTime - DateTime.Now).TotalHours <= Steam.AppInfoCacheTimeout)
+                    fileInfo.Refresh();
+                    if ((DateTime.Now - fileInfo.LastWriteTime).TotalHours <= Steam.AppInfoCacheTimeout)
                     {
                         return new ServicesResponse<string>(System.IO.File.ReadAllText(cachePath));
                     }

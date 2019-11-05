@@ -1,0 +1,63 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.ImageSelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+        mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
+        Title="{Binding WindowTitle}"
+        Height="600" Width="830"
+        ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="WindowMetaSearch">
+
+    <controls:WindowBase.Resources>
+        <pcon:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+        <pcon:NegateConverter x:Key="NegateConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </controls:WindowBase.Resources>
+
+    <Grid Margin="0,4,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListBox ItemsSource="{Binding Images}" SelectedItem="{Binding SelectedImage}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    BorderThickness="0"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="4" Background="#33000000">
+                        <Image Width="{Binding DataContext.ItemWidth, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
+                               Height="{Binding DataContext.ItemHeight, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
+                               Source="{Binding Path}"
+                               Stretch="Uniform" StretchDirection="Both" />
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick"
+                                          Command="{Binding DataContext.ItemDoubleClickCommand, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}" />
+                        </Border.InputBindings>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="2" Margin="5,0,5,5">
+            <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding CloseCommand}"/>
+            <Button Name="ButtonOK" Content="{DynamicResource LOCSelect}" DockPanel.Dock="Right"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding ConfirmCommand}"/>
+        </DockPanel>
+    </Grid>
+</controls:WindowBase>

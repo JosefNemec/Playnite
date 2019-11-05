@@ -194,9 +194,9 @@ namespace ItchioLibrary
         public override string LibraryIcon => Itch.Icon;
 
         public override string Name => "itch.io";
-        
+
         public override Guid Id => Guid.Parse("00000001-EBB2-4EEC-ABCB-7C89937A42BB");
-               
+
         public override IGameController GetGameController(Game game)
         {
             return new ItchioGameController(game, PlayniteApi);
@@ -230,14 +230,19 @@ namespace ItchioLibrary
                     }
                 }
 
-                if (LibrarySettings.ImportUninstalledGames)
+                if (LibrarySettings.ConnectAccount)
                 {
                     try
                     {
-                        var uninstalled = GetLibraryGames();
-                        logger.Debug($"Found {uninstalled.Count} library itch.io games.");
+                        var libraryGames = GetLibraryGames();
+                        logger.Debug($"Found {libraryGames.Count} library itch.io games.");
 
-                        foreach (var game in uninstalled)
+                        if (!LibrarySettings.ImportUninstalledGames)
+                        {
+                            libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                        }
+
+                        foreach (var game in libraryGames)
                         {
                             if (installedGames.TryGetValue(game.GameId, out var installed))
                             {
@@ -252,7 +257,7 @@ namespace ItchioLibrary
                     }
                     catch (Exception e) when (!PlayniteApi.ApplicationInfo.ThrowAllErrors)
                     {
-                        logger.Error(e, "Failed to import uninstalled itch.io games.");
+                        logger.Error(e, "Failed to import linked account itch.io games details.");
                         importError = e;
                     }
                 }
@@ -281,7 +286,7 @@ namespace ItchioLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new ItchioMetadataProvider();
+            return new ItchioMetadataProvider(this);
         }
 
         public override ISettings GetSettings(bool firstRunSettings)

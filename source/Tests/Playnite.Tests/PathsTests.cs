@@ -70,5 +70,11 @@ namespace Playnite.Tests
             Assert.IsFalse(Paths.IsFullPath(@"\test.exe"));
             Assert.IsFalse(Paths.IsFullPath(@".\test.exe"));
         }
+
+        [Test]
+        public void GetSafeFilenameTest()
+        {
+            Assert.AreEqual("test aaa", Paths.GetSafeFilename("test >> aaa "));
+        }
     }
 }

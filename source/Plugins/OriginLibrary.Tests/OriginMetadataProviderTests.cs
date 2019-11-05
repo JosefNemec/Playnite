@@ -15,7 +15,7 @@ namespace OriginLibrary.Tests
         [Test]
         public void StandardDownloadTest()
         {
-            var provider = new OriginMetadataProvider(new PlayniteAPI(null, null, null, null, null, null, null, null));
+            var provider = new OriginMetadataProvider(OriginLibraryTests.CreateLibrary());
             var data = provider.GetMetadata(new Game() { GameId = "Origin.OFR.50.0000557" });
             Assert.IsNotNull(data.GameInfo);
             Assert.IsNotNull(data.CoverImage);

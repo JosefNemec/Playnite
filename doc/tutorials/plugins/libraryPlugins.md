@@ -3,6 +3,7 @@ Library Plugins
 
 To implement library plugin:
 
+* Read the introduction to [extensions](../intro.md) and [plugins](plugins.md).
 * Create new public class inheriting from [LibraryPlugin](xref:Playnite.SDK.Plugins.LibraryPlugin) abstract class.
 * Add implementation for mandatory abstract members.
 

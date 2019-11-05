@@ -1,0 +1,36 @@
+﻿<WindowBase x:Class="Playnite.DesktopApp.Windows.RandomGameSelectWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            ShowMinimizeButton="False" ShowMaximizeButton="False"
+            SizeToContent="Height" Width="350"
+            d:DesignStyle="{StaticResource WindowDesignStyle}"
+            Style="{DynamicResource StandardWindowStyle}"
+            WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <StackPanel Margin="0,10,0,20">
+        <Image Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
+               Height="200" HorizontalAlignment="Center">
+            <Image.Source>
+                <PriorityBinding>
+                    <Binding Path="SelectedGame.CoverImage" Converter="{StaticResource ImageStringToImageConverterCached}" />
+                    <Binding Source="{StaticResource DefaultGameCover}" />
+                </PriorityBinding>
+            </Image.Source>
+        </Image>
+        <TextBlock Text="{Binding SelectedGame.Name}" HorizontalAlignment="Center" Margin="0,10,0,20" 
+                   Style="{StaticResource BaseTextBlockStyle}" FontSize="{StaticResource FontSizeLarge}"
+                   TextTrimming="CharacterEllipsis" />
+        <CheckBox Content="{DynamicResource LOCRandomGameLimistToFilter}" HorizontalAlignment="Center"
+                  IsChecked="{Binding IsLimitedToFilter}"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                    Margin="0,15,0,0">
+            <Button Content="{DynamicResource LOCPlayGame}" HorizontalAlignment="Center"
+                    Command="{Binding PlayGameCommand}" MinWidth="110"
+                    Style="{StaticResource PlayButton}" />
+            <Button Content="{DynamicResource LOCRandomGamePickAnother}" Margin="10,0,0,0" MinWidth="110"
+                    Command="{Binding PickAnotherCommand}" />
+        </StackPanel>        
+    </StackPanel>
+</WindowBase>

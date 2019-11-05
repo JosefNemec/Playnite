@@ -18,9 +18,13 @@ namespace BattleNetLibrary
         private BattleNetLibrary library;
         private IPlayniteAPI api;
 
-        #region Settings      
+        #region Settings   
+
+        public int Version { get; set; }
 
         public bool ImportInstalledGames { get; set; } = true;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -60,6 +64,16 @@ namespace BattleNetLibrary
             var settings = library.LoadPluginSettings<BattleNetLibrarySettings>();
             if (settings != null)
             {
+                if (settings.Version == 0)
+                {
+                    logger.Debug("Updating battle.net settings from version 0.");
+                    if (settings.ImportUninstalledGames)
+                    {
+                        settings.ConnectAccount = true;
+                    }
+                }
+
+                settings.Version = 1;
                 LoadValues(settings);
             }
         }

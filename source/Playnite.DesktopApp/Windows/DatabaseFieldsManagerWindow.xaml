@@ -9,7 +9,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
-        Title="{DynamicResource LOCLibraryManager}" Height="500" Width="650">
+        Title="{DynamicResource LOCLibraryManager}" Height="600" Width="750">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -40,11 +40,15 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <DockPanel Grid.Column="1" Grid.Row="0">
-                            <GroupBox Header="{DynamicResource LOCDefaultIconTitle}"
-                                      DockPanel.Dock="Top" Margin="5">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+                            <GroupBox Header="{DynamicResource LOCGameIconTitle}" Margin="5" Grid.Row="0">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                                         <Button Content="{DynamicResource LOCSelectIconTitle}"
                                             Margin="5" MaxWidth="160" HorizontalAlignment="Left"
                                             Command="{Binding SelectPlatformIconCommand}"
@@ -53,13 +57,13 @@
                                                 Command="{Binding RemovePlatformIconCommand}"
                                                 CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
                                     </StackPanel>
-                                    <Image Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" MaxHeight="64"
+                                    <Image Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" DockPanel.Dock="Top"
                                            Source="{Binding SelectedItem.Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}, ElementName=ListPlatforms}" />
-                                </StackPanel>
+                                </DockPanel>
                             </GroupBox>
-                            <GroupBox Header="{DynamicResource LOCDefaultCoverTitle}" Margin="5">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                            <GroupBox Header="{DynamicResource LOCGameCoverImageTitle}" Margin="5" Grid.Row="1">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                                         <Button Content="{DynamicResource LOCSelectCoverTitle}"
                                             Margin="5" MaxWidth="160" HorizontalAlignment="Left"
                                             Command="{Binding SelectPlatformCoverCommand}"
@@ -68,11 +72,26 @@
                                                 Command="{Binding RemovePlatformCoverCommand}"
                                                 CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
                                     </StackPanel>
-                                    <Image Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
+                                    <Image Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" DockPanel.Dock="Top"
                                            Source="{Binding SelectedItem.Cover, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}, ElementName=ListPlatforms}"/>
-                                </StackPanel>
+                                </DockPanel>
                             </GroupBox>
-                        </DockPanel>
+                            <GroupBox Header="{DynamicResource LOCGameBackgroundTitle}" Margin="5" Grid.Row="2">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                        <Button Content="{DynamicResource LOCSelectBackgroundTitle}"
+                                            Margin="5" MaxWidth="160" HorizontalAlignment="Left"
+                                            Command="{Binding SelectPlatformBackgroundCommand}"
+                                            CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
+                                        <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5"
+                                                Command="{Binding RemovePlatformBackgroundCommand}"
+                                                CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
+                                    </StackPanel>
+                                    <Image Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" DockPanel.Dock="Top"
+                                           Source="{Binding SelectedItem.Background, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}, ElementName=ListPlatforms}"/>
+                                </DockPanel>
+                            </GroupBox>
+                        </Grid>
                         <ListBox Name="ListPlatforms" Grid.Column="0" Grid.Row="0"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
                              ItemsSource="{Binding EditingPlatforms}" DisplayMemberPath="Name" />

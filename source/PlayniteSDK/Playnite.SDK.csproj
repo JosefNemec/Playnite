@@ -51,16 +51,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationMode.cs" />
+    <Compile Include="BuiltInExtensions.cs" />
     <Compile Include="Collections\ComparableList.cs" />
     <Compile Include="Collections\ObservableConcurrentDictionary.cs" />
     <Compile Include="Collections\ObservableObject.cs" />
     <Compile Include="Collections\RangeObservableCollection.cs" />
     <Compile Include="Database\IGameDatabase.cs" />
     <Compile Include="Database\IItemCollection.cs" />
+    <Compile Include="Exceptions\TypeMismatchException.cs" />
+    <Compile Include="Exceptions\ReferenceException.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\PastTimeSegment.cs" />
     <Compile Include="Models\PlaytimeCategory.cs" />
     <Compile Include="Models\ScoreGroup.cs" />
+    <Compile Include="Plugins\MetadataPlugin.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="Events\GameInstalledEvent.cs" />
@@ -91,7 +96,6 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Metadata\GameMetadata.cs" />
     <Compile Include="Models\Metadata\MetadataFile.cs" />
-    <Compile Include="Models\Metadata\MetadataSearchResult.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="Models\Emulator.cs" />
     <Compile Include="Models\Game.cs" />
@@ -104,6 +108,7 @@
     <Compile Include="Plugins\LibraryPlugin.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptLanguage.cs" />
     <Compile Include="SdkVersions.cs" />
   </ItemGroup>
   <ItemGroup>

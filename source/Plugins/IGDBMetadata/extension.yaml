@@ -1,0 +1,6 @@
+﻿Name: IGDB metadata provider
+Author: Playnite
+Version: 1.0
+Module: IGDBMetadata.dll
+Type: MetadataProvider
+Icon: Resources\igdbicon.png

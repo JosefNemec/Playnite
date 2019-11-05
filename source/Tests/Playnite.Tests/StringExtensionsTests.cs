@@ -61,5 +61,17 @@ namespace Playnite.Tests
             Assert.IsFalse(@"ftp://www.playnite.link".IsHttpUrl());
             Assert.IsFalse(@"www.playnite.link".IsHttpUrl());
         }
+
+        [Test]
+        public void IsNullOrWhiteSpaceTest()
+        {
+            var multiLine = @"
+
+   
+
+";
+            Assert.IsTrue(multiLine.IsNullOrWhiteSpace());
+        }
+
     }
 }

@@ -11,12 +11,6 @@ using System.Threading.Tasks;
 
 namespace Playnite.Scripting
 {
-    public enum ScriptLanguage
-    {
-        PowerShell,
-        IronPython
-    }
-
     public class ScriptFunctionExport : ExtensionFunction
     {
         public string FunctionName

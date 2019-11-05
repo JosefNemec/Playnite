@@ -122,7 +122,7 @@ namespace SteamLibrary
         internal List<GameInfo> GetInstalledGoldSrcModsFromFolder(string path)
         {
             var games = new List<GameInfo>();
-            var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve"};
+            var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve" };
             var dirInfo = new DirectoryInfo(path);
 
             foreach (var folder in dirInfo.GetDirectories().Where(a => !firstPartyMods.Contains(a.Name)).Select(a => a.FullName))
@@ -402,7 +402,7 @@ namespace SteamLibrary
                 throw new Exception("No games found on specified Steam account.");
             }
 
-            IDictionary<string, DateTime> lastActivity = null;      
+            IDictionary<string, DateTime> lastActivity = null;
             try
             {
                 lastActivity = GetGamesLastActivity(userId);
@@ -712,14 +712,19 @@ namespace SteamLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
                 try
                 {
-                    var uninstalled = GetLibraryGames(LibrarySettings);
-                    logger.Debug($"Found {uninstalled.Count} library Steam games.");
+                    var libraryGames = GetLibraryGames(LibrarySettings);
+                    logger.Debug($"Found {libraryGames.Count} library Steam games.");
 
-                    foreach (var game in uninstalled)
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -734,7 +739,7 @@ namespace SteamLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled Steam games.");
+                    logger.Error(e, "Failed to import linked account Steam games details.");
                     importError = e;
                 }
             }

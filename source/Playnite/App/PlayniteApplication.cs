@@ -163,6 +163,7 @@ namespace Playnite
                 if (!ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode))
                 {
                     ThemeManager.SetCurrentTheme(null);
+                    logger.Error($"Failed to load theme {customTheme.Name}.");
                 }
             }
 
@@ -223,6 +224,12 @@ namespace Playnite
                 {
                     logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
                 }
+            }
+
+            // Only use this for Desktop mode. Non-default options look terrible in Fullscreen because of viewport scaling.
+            if (mode == ApplicationMode.Desktop)
+            {
+                Controls.WindowBase.SetTextRenderingOptions(AppSettings.TextFormattingMode, AppSettings.TextRenderingMode);
             }
         }
 

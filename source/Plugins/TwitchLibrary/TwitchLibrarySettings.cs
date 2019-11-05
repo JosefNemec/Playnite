@@ -20,9 +20,13 @@ namespace TwitchLibrary
         private TwitchLibrary library;
         private IPlayniteAPI api;
 
-        #region Settings      
+        #region Settings  
+
+        public int Version { get; set; }
 
         public bool ImportInstalledGames { get; set; } = true;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -32,7 +36,7 @@ namespace TwitchLibrary
         public bool IsUserLoggedIn
         {
             get
-            {                
+            {
                 var token = library.GetAuthToken();
                 if (token.IsNullOrEmpty())
                 {
@@ -74,6 +78,16 @@ namespace TwitchLibrary
             var settings = library.LoadPluginSettings<TwitchLibrarySettings>();
             if (settings != null)
             {
+                if (settings.Version == 0)
+                {
+                    logger.Debug("Updating Twitch settings from version 0.");
+                    if (settings.ImportUninstalledGames)
+                    {
+                        settings.ConnectAccount = true;
+                    }
+                }
+
+                settings.Version = 1;
                 LoadValues(settings);
             }
         }

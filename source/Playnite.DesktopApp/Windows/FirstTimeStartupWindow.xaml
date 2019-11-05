@@ -93,7 +93,7 @@
             </TabItem>
 
             <!-- Layout -->
-            <TabItem Visibility="Collapsed">
+            <!--<TabItem Visibility="Collapsed">
                 <StackPanel Margin="20">
                     <TextBlock Text="{DynamicResource LOCFirstConfigGridViewLayout}"
                                VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
@@ -163,7 +163,7 @@
                         </RadioButton>
                     </StackPanel>
                 </StackPanel>             
-            </TabItem>
+            </TabItem>-->
 
             <!-- Finish -->
             <TabItem Header="Done" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">

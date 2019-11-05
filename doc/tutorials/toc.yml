@@ -22,6 +22,8 @@
       href: plugins/genericPlugins.md
     - name: Library Plugins
       href: plugins/libraryPlugins.md
+    - name: Metadata Plugins
+      href: plugins/metadataPlugins.md
     - name: Plugin settings
       href: plugins/pluginSettings.md
 

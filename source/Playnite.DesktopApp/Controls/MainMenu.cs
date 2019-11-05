@@ -184,6 +184,8 @@ namespace Playnite.DesktopApp.Controls
                 openClientItem.Items.Add(item);
             }
 
+            // Random game select            
+            AddMenuChild(Items, "LOCMenuSelectRandomGame", mainModel.SelectRandomGameCommand, null, ResourceProvider.GetResource("DiceIcon"));
 
             // Settings
             AddMenuChild(Items, "LOCMenuPlayniteSettingsTitle", mainModel.OpenSettingsCommand, null, ResourceProvider.GetResource("SettingsIcon"));

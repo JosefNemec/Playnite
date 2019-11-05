@@ -1,5 +1,4 @@
-﻿using LiteDB;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +21,9 @@ namespace PlayniteServices.Models.IGDB
         Android = 12,
         Steam = 13,
         Reddit = 14,
-        Discord = 15,
-        GooglePlus = 16,
-        Tumblr = 17,
+        Itch = 15,
+        Epic = 16,
+        GOG = 17,
         LinkedIn = 18,
         Pinterest = 19,
         SoundCloud = 20,
@@ -82,14 +81,6 @@ namespace PlayniteServices.Models.IGDB
         OperatingSystem = 4,
         PortableConsole = 5,
         Computer = 6,
-    }
-
-    public class SteamIdGame
-    {
-        [BsonId(false)]
-        public ulong steamId { get; set; }
-        public ulong igdbId { get; set; }
-        public DateTime creation_time { get; set; }
     }
 
     public class Website : IgdbItem

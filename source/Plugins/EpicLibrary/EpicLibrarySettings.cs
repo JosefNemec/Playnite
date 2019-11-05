@@ -25,7 +25,11 @@ namespace EpicLibrary
 
         #region Settings      
 
+        public int Version { get; set; }
+
         public bool ImportInstalledGames { get; set; } = EpicLauncher.IsInstalled;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -61,6 +65,16 @@ namespace EpicLibrary
             var settings = library.LoadPluginSettings<EpicLibrarySettings>();
             if (settings != null)
             {
+                if (settings.Version == 0)
+                {
+                    logger.Debug("Updating Epic settings from version 0.");
+                    if (settings.ImportUninstalledGames)
+                    {
+                        settings.ConnectAccount = true;
+                    }
+                }
+
+                settings.Version = 1;
                 LoadValues(settings);
             }
         }

@@ -141,7 +141,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             if (success && SaveAsDefault)
             {
-                PlayniteApplication.Current.AppSettings.DefaultMetadataSettings = Settings;
+                PlayniteApplication.Current.AppSettings.MetadataSettings = Settings;
                 PlayniteApplication.Current.AppSettings.SaveSettings();
             }
 

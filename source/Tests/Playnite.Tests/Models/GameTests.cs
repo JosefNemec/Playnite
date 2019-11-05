@@ -5,6 +5,7 @@ using Playnite.SDK.Models;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -67,6 +68,58 @@ namespace Playnite.Tests.Models
             var game1 = new Game();
             Assert.IsFalse(string.IsNullOrEmpty(game1.GameId));
             Assert.AreNotEqual(game1.GameId, new Game().GameId);
+        }
+
+        [Test]
+        public void CopyDiffToTest()
+        {
+            var game = new Game()
+            {
+                Name = "Name",
+                InstallDirectory = "InstallDirectory",
+                GameImagePath = "GameImagePath",
+                PlatformId = new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+                Version = "Version",
+                PluginId = new Guid(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
+                GameId = "GameId",
+                Id = new Guid(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
+                Added = new DateTime(10),
+                AgeRatingId = new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4),
+                BackgroundImage = "BackgroundImage",
+                CategoryIds = new List<Guid> { new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) },
+                CommunityScore = 10,
+                CompletionStatus = CompletionStatus.Beaten,
+                CoverImage = "CoverImage",
+                CriticScore = 20,
+                Description = "Description",
+                DeveloperIds = new List<Guid> { new Guid(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2) },
+                Favorite = false,
+                GenreIds = new List<Guid> { new Guid(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3) },
+                Hidden = false,
+                Icon = "Icon",
+                IsInstalled = false,
+                IsInstalling = false,
+                IsLaunching = false,
+                IsRunning = false,
+                IsUninstalling = false,
+                LastActivity = new DateTime(20),
+                Links = new ObservableCollection<Link> { new Link("1", "2") },
+                Modified = new DateTime(30),
+                PlayCount = 1,
+                Playtime = 10,
+                PublisherIds = new List<Guid> { new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4) },
+                RegionId = new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+                ReleaseDate = new DateTime(40),
+                SeriesId = new Guid(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6),
+                SortingName = "SortingName",
+                SourceId = new Guid(7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7),
+                TagIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
+                UserScore = 30,
+                PlayAction = new GameAction(),
+                OtherActions = new ObservableCollection<GameAction> { new GameAction() }
+            };
+
+            Assert.Fail();
         }
     }
 }

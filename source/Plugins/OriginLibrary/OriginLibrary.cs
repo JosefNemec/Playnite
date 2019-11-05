@@ -44,7 +44,7 @@ namespace OriginLibrary
             var matchPath = Regex.Match(path, @"\[(.*?)\\(.*)\\(.*)\](.*)");
             if (!matchPath.Success)
             {
-                logger.Warn("Uknown path format " + path);
+                logger.Warn("Unknown path format " + path);
                 return string.Empty;
             }
 
@@ -62,7 +62,7 @@ namespace OriginLibrary
                     break;
 
                 default:
-                    throw new Exception("Unknown registr root entry " + root);
+                    throw new Exception("Unknown registry root entry " + root);
             }
 
             var subPath = matchPath.Groups[2].Value.Trim(Path.DirectorySeparatorChar);
@@ -102,17 +102,10 @@ namespace OriginLibrary
             return HttpUtility.ParseQueryString(data);
         }
 
-        internal GameLocalDataResponse GetLocalManifest(string id, string packageName = null, bool useDataCache = false)
+        internal GameLocalDataResponse GetLocalManifest(string id, bool useDataCache = false)
         {
-            var package = packageName;
             var cachePath = Origin.GetCachePath(GetPluginUserDataPath());
-
-            if (string.IsNullOrEmpty(package))
-            {
-                package = id.Replace(":", "");
-            }
-
-            var cacheFile = Path.Combine(cachePath, Path.GetFileNameWithoutExtension(package) + ".json");
+            var cacheFile = Path.Combine(cachePath, id.Replace(":", "") + ".json");
             if (useDataCache == true && File.Exists(cacheFile))
             {
                 return JsonConvert.DeserializeObject<GameLocalDataResponse>(File.ReadAllText(cacheFile, Encoding.UTF8));
@@ -134,7 +127,7 @@ namespace OriginLibrary
                     var data = new GameLocalDataResponse()
                     {
                         offerId = id,
-                        offerType = "Doesn't exists"
+                        offerType = "Doesn't exist"
                     };
 
                     File.WriteAllText(cacheFile, JsonConvert.SerializeObject(data), Encoding.UTF8);
@@ -152,7 +145,7 @@ namespace OriginLibrary
             var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
             var playAction = new GameAction()
             {
-                IsHandledByPlugin = true                
+                IsHandledByPlugin = true
             };
 
             if (string.IsNullOrEmpty(platform.fulfillmentAttributes.executePathOverride))
@@ -229,11 +222,16 @@ namespace OriginLibrary
 
                         try
                         {
-                            localData = GetLocalManifest(gameId, package, useDataCache);
+                            localData = GetLocalManifest(gameId, useDataCache);
                         }
                         catch (Exception e) when (!Environment.IsDebugBuild)
                         {
                             logger.Error(e, $"Failed to get Origin manifest for a {gameId}, {package}");
+                            continue;
+                        }
+
+                        if (localData == null)
+                        {
                             continue;
                         }
 
@@ -347,12 +345,27 @@ namespace OriginLibrary
                     {
                         logger.Error(e, $"Failed to get usage data for {game.offerId}");
                     }
+                    
+                    var gameName = game.offerId;
+                    try
+                    {
+                        var localData = GetLocalManifest(game.offerId,  true);
+                        if (localData != null)
+                        {
+                            gameName = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
+                        }
+                    }
+                    catch (Exception e) when (!Environment.IsDebugBuild)
+                    {
+                        logger.Error(e, $"Failed to get Origin manifest for a {game.offerId}");
+                        continue;
+                    }
 
                     games.Add(new GameInfo()
                     {
                         Source = "Origin",
                         GameId = game.offerId,
-                        Name = game.offerId,
+                        Name = gameName,
                         LastActivity = usage?.lastSessionEndTimeStamp,
                         Playtime = usage?.total ?? 0
                     });
@@ -408,14 +421,19 @@ namespace OriginLibrary
                 }
             }
 
-            if (LibrarySettings.ImportUninstalledGames)
+            if (LibrarySettings.ConnectAccount)
             {
                 try
                 {
-                    var uninstalled = GetLibraryGames();
-                    logger.Debug($"Found {uninstalled.Count} library Origin games.");
+                    var libraryGames = GetLibraryGames();
+                    logger.Debug($"Found {libraryGames.Count} library Origin games.");
 
-                    foreach (var game in uninstalled)
+                    if (!LibrarySettings.ImportUninstalledGames)
+                    {
+                        libraryGames = libraryGames.Where(lg => installedGames.ContainsKey(lg.GameId)).ToList();
+                    }
+
+                    foreach (var game in libraryGames)
                     {
                         if (installedGames.TryGetValue(game.GameId, out var installed))
                         {
@@ -430,7 +448,7 @@ namespace OriginLibrary
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, "Failed to import uninstalled Origin games.");
+                    logger.Error(e, "Failed to import linked account Origin games details.");
                     importError = e;
                 }
             }
@@ -453,7 +471,7 @@ namespace OriginLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new OriginMetadataProvider(PlayniteApi);
+            return new OriginMetadataProvider(this);
         }
 
         #endregion ILibraryPlugin

@@ -21,12 +21,10 @@ namespace Playnite.DesktopApp.Windows
         public GameEditWindow() : base()
         {
             InitializeComponent();
-            positionManager = new WindowPositionHandler(this, "EditGame", PlayniteApplication.Current.AppSettings.WindowPositions);
-        }
-
-        private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            positionManager.RestoreSizeAndLocation();
+            if (PlayniteApplication.Current.AppSettings != null)
+            {
+                positionManager = new WindowPositionHandler(this, "EditGame", PlayniteApplication.Current.AppSettings.WindowPositions);
+            }
         }
     }
 }

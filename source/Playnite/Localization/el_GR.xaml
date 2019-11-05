@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Γλώσσα</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Εξοδος</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Το φιλτρο ειναι ενεργό(κλικ για εναλλαγή πανελ φίλτρων)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Το φιλτρο ειναι ανενεργο (κλικ για εναλλαγή πανελ φίλτρων)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters"></sys:String>
     <sys:String x:Key="LOCFilter"></sys:String>
@@ -66,10 +66,13 @@
     <sys:String x:Key="LOCGameShortcutError">Δεν ήταν δυνατή η δημιουργία συντόμευσης: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Δεν είναι δυνατή η εγκατάσταση του παιχνιδιού: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Δεν είναι δυνατή η απεγκατάσταση του παιχνιδιού: {0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
-
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle"></sys:String>
@@ -79,6 +82,7 @@
     <sys:String x:Key="LOCAddTitle">Προσθήκη</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Προεπιλεγμένο εικονίδιο</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Προκαθορισμένη εικόνα εξώφυλλου</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCFinishLabel">Τερματισμός</sys:String>
     <sys:String x:Key="LOCNextLabel">Επόμενο</sys:String>
     <sys:String x:Key="LOCBackLabel">Πίσω</sys:String>
@@ -121,6 +125,7 @@
     <sys:String x:Key="LOCInstallationLabel">Εγκατάσταση</sys:String>
     <sys:String x:Key="LOCActionsLabel">Ενέργειες</sys:String>
     <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel">Τύπος</sys:String>
     <sys:String x:Key="LOCProfileLabel">Προφίλ</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Προφίλ</sys:String>
@@ -182,7 +187,7 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Δεν είναι δυνατή η λήψη εικονιδίου αν η εντολή Αναπαραγωγή λείπει ή έχει οριστεί διεύθυνση URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">Λήψη metadata μόνο για παιχνίδια που δεν έχουν</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Επιλογή παιχνιδιών</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Επιλέξτε ποια παιχνίδια θα ενημερωθούν με νέα metadata:</sys:String>
@@ -191,8 +196,6 @@
     <sys:String x:Key="LOCMetaGameSourceSelected">Μόνο επιλεγμένα παιχνίδια</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Επίσημο κατάστημα</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Επίσημο κατάστημα</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Επίσημο κατάστημα > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Επιλέξτε ποια πεδία πρέπει να συμπληρωθούν αυτόματα από το Playnite και ποιες πηγές θα πρέπει να χρησιμοποιηθούν για την απόκτηση των δεδομένων.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Κατάστημα:
@@ -246,6 +249,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -254,6 +258,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
@@ -266,8 +271,13 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
     <sys:String x:Key="LOCSettingsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Γενικά</sys:String>
@@ -281,6 +291,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Αυτόματη εισαγωγή στη βιβλιοθήκη</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Εισαγωγή εγκατεστημένων παιχνιδιών</sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Εισαγωγή όλων των παιχνιδιών</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Εισαγωγή όλων των παιχνιδιών (Πρέπει να παρέχετε κλειδί δημόσιου λογαριασμού ή API)</sys:String>
@@ -351,7 +362,7 @@ IGDB> Επίσημο κατάστημα:
 Όλες οι τρέχουσες ενεργές εργασίες (λήψεις metadata) θα ακυρωθούν.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Επανεκκινήση Playnite;</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Ο χρόνος παιχνιδιού δεν θα καταγραφεί εάν έχει οριστεί η εντολή "Κλείσιμο".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Αριθμός σειρών</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Αριθμός στηλών</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Αριθμός γραμμών λεπτομερής προβολής</sys:String>
@@ -376,6 +387,16 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -450,6 +471,9 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCAddPlatformTitle">Προσθήκη πλατφόρμας</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Επιλογή εικονιδίου</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Επιλογή εξώφυλλου</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
+    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Επιλογή αρχείου</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Επιλογή URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Προσθήκη εξομοιωτή</sys:String>
@@ -589,20 +613,25 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCChange">αλλαγή</sys:String>
     <sys:String x:Key="LOCAdvanced">Προχωρημένα</sys:String>
     <sys:String x:Key="LOCNever">Ποτέ</sys:String>
-    <sys:String x:Key="LOCNotPlayed">Δεν παίχτηκε</sys:String>
-    <sys:String x:Key="LOCPlayed">Παίχτηκε</sys:String>
-    <sys:String x:Key="LOCBeaten">Κέρδισε</sys:String>
-    <sys:String x:Key="LOCCompleted">Ολοκληρώθηκε</sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
     <sys:String x:Key="LOCCompletionStatus">Κατάσταση ολοκλήρωσης</sys:String>
     <sys:String x:Key="LOCUserScore">Βαθμολογία χρηστών</sys:String>
     <sys:String x:Key="LOCCriticScore">βαθμολογία κριτικών</sys:String>
     <sys:String x:Key="LOCCommunityScore">Βαθμολογία κοινότητας</sys:String>
     <sys:String x:Key="LOCScripts"></sys:String>
     <sys:String x:Key="LOCPlugins"></sys:String>
+    <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions">Επεκτάσεις</sys:String>
     <sys:String x:Key="LOCReloadScripts">Επαναφόρτωση Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Όλα τα scripts επαναφορτώθηκαν επιτυχημένα.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">Δεν βρέθηκαν παιχνίδια</sys:String>
+    <sys:String x:Key="LOCNoGamesFound"></sys:String>
     <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Εξοδος Playnite</sys:String>
     <sys:String x:Key="LOCLibraries"></sys:String>
@@ -623,6 +652,10 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCFontLarger"></sys:String>
     <sys:String x:Key="LOCFontLargest"></sys:String>
     <sys:String x:Key="LOCDefault"></sys:String>
+    <sys:String x:Key="LOCSelect"></sys:String>
+    <sys:String x:Key="LOCFirst"></sys:String>
+    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCUserSelect"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
@@ -646,6 +679,9 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCThemeTestApplySkin">Εφαρμογή επιλεγμένου θέματος</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges"></sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Αυτόματη εφαρμογή του θέματος όταν αλλάζει το αρχείο προέλευσης</sys:String>
+    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault"></sys:String>
@@ -728,6 +764,12 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
+    <!--Common Library-->
+    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
+    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
@@ -742,6 +784,10 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
@@ -752,5 +798,11 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
     <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
-
+    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    
+    <!--IGDB-->
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
 </ResourceDictionary>

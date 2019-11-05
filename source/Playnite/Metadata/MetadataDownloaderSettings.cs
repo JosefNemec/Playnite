@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Playnite.SDK;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,18 +16,6 @@ namespace Playnite.Metadata
         AllFromDB,
         Selected,
         Filtered
-    }
-
-    public enum MetadataSource
-    {
-        [Description("LOCMetaSourceStore")]
-        Store,
-        [Description("LOCMetaSourceIGDB")]
-        IGDB,
-        [Description("LOCMetaSourceIGDBOverStore")]
-        IGDBOverStore,
-        [Description("LOCMetaSourceStoreOverIGDB")]
-        StoreOverIGDB
     }
 
     public class MetadataFieldSettings : ObservableObject
@@ -40,13 +31,13 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataSource source = MetadataSource.StoreOverIGDB;
-        public MetadataSource Source
+        private List<Guid> sources = new List<Guid>();
+        public List<Guid> Sources
         {
-            get => source;
+            get => sources;
             set
             {
-                source = value;
+                sources = value;
                 OnPropertyChanged();
             }
         }
@@ -55,10 +46,13 @@ namespace Playnite.Metadata
         {
         }
 
-        public MetadataFieldSettings(bool import, MetadataSource source)
+        public MetadataFieldSettings(bool import, List<Guid> sources)
         {
             Import = import;
-            Source = source;
+            if (sources.HasItems())
+            {
+                Sources = sources.ToList();
+            }
         }
     }
 
@@ -96,7 +90,7 @@ namespace Playnite.Metadata
             }
         }
 
-        private MetadataFieldSettings name = new MetadataFieldSettings(true, MetadataSource.Store);
+        private MetadataFieldSettings name = new MetadataFieldSettings();
         public MetadataFieldSettings Name
         {
             get => name;
@@ -239,32 +233,35 @@ namespace Playnite.Metadata
             }
         }
 
-        public void ConfigureFields(MetadataSource source, bool import)
+        public MetadataDownloaderSettings()
         {
-            Genre.Import = import;
-            Genre.Source = source;
-            Description.Import = import;
-            Description.Source = source;
-            Developer.Import = import;
-            Developer.Source = source;
-            Publisher.Import = import;
-            Publisher.Source = source;
-            Tag.Import = import;
-            Tag.Source = source;
-            Links.Import = import;
-            Links.Source = source;
-            CoverImage.Import = import;
-            CoverImage.Source = source;
-            BackgroundImage.Import = import;
-            BackgroundImage.Source = source;
-            Icon.Import = import;
-            Icon.Source = source;
-            ReleaseDate.Import = import;
-            ReleaseDate.Source = source;
-            CommunityScore.Import = import;
-            CommunityScore.Source = source;
-            CriticScore.Import = import;
-            CriticScore.Source = source;
+        }
+
+        public static MetadataDownloaderSettings GetDefaultSettings()
+        {
+            var igdbPluginId = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata);
+            var settings = new MetadataDownloaderSettings();
+            settings.ConfigureFields(new List<Guid> { Guid.Empty, igdbPluginId }, true);
+            settings.CoverImage.Sources = new List<Guid> { igdbPluginId, Guid.Empty };            
+            settings.Name.Import = false;
+            return settings;
+        }
+
+        public void ConfigureFields(List<Guid> sources, bool import)
+        {
+            Name = new MetadataFieldSettings(import, sources);
+            Genre = new MetadataFieldSettings(import, sources);
+            Description = new MetadataFieldSettings(import, sources);
+            Developer = new MetadataFieldSettings(import, sources);
+            Publisher = new MetadataFieldSettings(import, sources);
+            Tag = new MetadataFieldSettings(import, sources);
+            Links = new MetadataFieldSettings(import, sources);
+            CoverImage = new MetadataFieldSettings(import, sources);
+            BackgroundImage = new MetadataFieldSettings(import, sources);
+            Icon = new MetadataFieldSettings(import, sources);
+            ReleaseDate = new MetadataFieldSettings(import, sources);
+            CommunityScore = new MetadataFieldSettings(import, sources);
+            CriticScore = new MetadataFieldSettings(import, sources);
         }
     }
 }

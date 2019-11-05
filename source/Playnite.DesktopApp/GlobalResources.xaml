@@ -20,7 +20,6 @@
     <pcon:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <pcon:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />
     <pcon:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
-    <pcon:CompletionStatusToStringConverter x:Key="CompletionStatusToStringConverter" />
     <pcon:CoversZoomToPercentageConverter x:Key="CoversZoomToPercentageConverter" />
     <pcon:DateTimeToLastPlayedConverter x:Key="DateTimeToLastPlayedConverter" />
     <pcon:DockToStringConverter x:Key="DockToStringConverter" />

@@ -41,6 +41,8 @@ namespace SteamLibrary
 
         #region Settings
 
+        public int Version { get; set; }
+
         public string UserName { get; set; } = string.Empty;
 
         public string UserId { get; set; } = string.Empty;
@@ -69,7 +71,11 @@ namespace SteamLibrary
             }
         }
 
+        public bool DownloadVerticalCovers { get; set; } = true;
+
         public bool ImportInstalledGames { get; set; } = true;
+
+        public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
@@ -85,7 +91,7 @@ namespace SteamLibrary
                 if (UserId.IsNullOrEmpty())
                 {
                     return AuthStatus.AuthRequired;
-                }                    
+                }
 
                 try
                 {
@@ -180,8 +186,18 @@ namespace SteamLibrary
             var settings = library.LoadPluginSettings<SteamLibrarySettings>();
             if (settings != null)
             {
+                if (settings.Version == 0)
+                {
+                    logger.Debug("Updating Steam settings from version 0.");
+                    if (settings.ImportUninstalledGames)
+                    {
+                        settings.ConnectAccount = true;
+                    }
+                }
+
+                settings.Version = 1;
                 LoadValues(settings);
-            }            
+            }
         }
 
         public void BeginEdit()

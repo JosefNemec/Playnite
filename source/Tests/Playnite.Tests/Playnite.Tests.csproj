@@ -108,6 +108,9 @@
     <Compile Include="Api\PluginDescriptionTests.cs" />
     <Compile Include="App\UpdateTests.cs" />
     <Compile Include="CloneObjectTests.cs" />
+    <Compile Include="Database\EmulatorsCollectionTests.cs" />
+    <Compile Include="Extensions\ObjectExtensionsTests.cs" />
+    <Compile Include="GamesEditorTests.cs" />
     <Compile Include="ImageSourceManagerTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />
@@ -122,10 +125,12 @@
     <Compile Include="GamesStatsTests.cs" />
     <Compile Include="IniParserTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />
+    <Compile Include="Models\DatabaseObjectTests.cs" />
+    <Compile Include="Models\GameActionTests.cs" />
+    <Compile Include="Scripting\Batch\BatchTests.cs" />
     <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />
     <Compile Include="LocalizationTests.cs" />
-    <Compile Include="Metadata\IGDBMetadataProviderTests.cs" />
     <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
     <Compile Include="Metadata\WikipediaMetadataProviderTests.cs" />
     <Compile Include="MockDialogsFactory.cs" />
@@ -161,6 +166,7 @@
       <Link>Resources\extension.yaml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\GOG\library_unreleased.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

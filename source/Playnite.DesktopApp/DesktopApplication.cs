@@ -156,19 +156,24 @@ namespace Playnite.DesktopApp
 
         private void LoadTrayIcon()
         {
-            if (!AppSettings.EnableTray)
+            if (AppSettings.EnableTray)
             {
-                return;
+                try
+                {
+                    trayIcon = new TaskbarIcon
+                    {
+                        MenuActivation = PopupActivationMode.LeftOrRightClick,
+                        DoubleClickCommand = MainModel.ShowWindowCommand,
+                        Icon = GetTrayIcon(),
+                        Visibility = Visibility.Visible,
+                        ContextMenu = new TrayContextMenu(MainModel)
+                    };
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to initialize tray icon.");
+                }
             }
-
-            trayIcon = new TaskbarIcon
-            {
-                MenuActivation = PopupActivationMode.LeftOrRightClick,
-                DoubleClickCommand = MainModel.ShowWindowCommand,
-                Icon = GetTrayIcon(),
-                Visibility = Visibility.Visible,
-                ContextMenu = new TrayContextMenu(MainModel)
-            };
         }
 
         private async void OpenMainViewAsync(bool isFirstStart)
@@ -191,7 +196,7 @@ namespace Playnite.DesktopApp
             if (isFirstStart)
             {
                 await MainModel.UpdateDatabase(false);
-                await MainModel.DownloadMetadata(AppSettings.DefaultMetadataSettings);
+                await MainModel.DownloadMetadata(AppSettings.MetadataSettings);
             }
             else
             {
@@ -236,9 +241,6 @@ namespace Playnite.DesktopApp
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
-                    AppSettings.GridItemWidthRatio = settings.GridItemWidthRatio;
-                    AppSettings.GridItemHeightRatio = settings.GridItemHeightRatio;
-                    AppSettings.DefaultMetadataSettings = settings.DefaultMetadataSettings;
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
                     AppSettings.SaveSettings();
