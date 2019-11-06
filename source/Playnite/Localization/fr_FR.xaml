@@ -9,7 +9,7 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Quitter</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Des filtres sont activés (cliquez pour basculer le panneau filtre)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Des filtres sont actifs</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Les filtres sont désactivés (cliquez pour basculer le panneau filtre)</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Autres filtres</sys:String>
     <sys:String x:Key="LOCFilters">Filtres</sys:String>
@@ -294,7 +294,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsMetadataLabel">Métadonnées</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importer les modifications dans la bibliothèque automatiquement</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer les jeux installés</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount">Connexion à un compte</sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount">Connecter un compte</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importer les jeux non installés</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importer tous les jeux</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importer tous les jeux (nécessite un profil public ou une clé API)</sys:String>
@@ -824,7 +824,7 @@ Version {2}
     <sys:String x:Key="LOCQuickFilterMostPlayed">Temps de jeu</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Tous</sys:String>
 
-    <sys:String x:Key="LOCGameListFiltered">Des filtres sont actifs.</sys:String>
+    <sys:String x:Key="LOCGameListFiltered">Des filtres sont actifs</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Résultats de la recherche :</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Ce nom est déjà utilisé par un autre élément.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limiter la sélection au filtrage actuel</sys:String>
