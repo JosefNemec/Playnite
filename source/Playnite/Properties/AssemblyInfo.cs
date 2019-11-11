@@ -35,7 +35,7 @@ using System.Windows.Markup;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("5.8.0.*")]
+[assembly: AssemblyVersion("6.0.0.*")]
 [assembly: InternalsVisibleTo("Playnite.Tests")]
 
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Playnite")]

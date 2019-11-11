@@ -1,6 +1,9 @@
 Metadata Plugins
 =====================
 
+> [!NOTE]
+> Playnite 6.0 and newer is required for custom metadata support.
+
 To implement metadata plugin:
 
 * Read the introduction to [extensions](../intro.md) and [plugins](plugins.md).
