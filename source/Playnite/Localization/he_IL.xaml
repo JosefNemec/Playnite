@@ -202,8 +202,8 @@
     <sys:String x:Key="LOCMetaGameSourceSelected">משחקים נבחרים בלבד</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">חנות רשמית</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">אנא בחרו אילו שדות יאוכלסו אוטומטית על ידי Playnite ובאילו מקורות להשתמש כדי להשיג את הנתונים.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">אנא שיקלו ללחוץ על הלוגו מעל ולתרום עדכונים לבסיס הנתונים של igdb.com כדי לשפר את המידע שבשימוש Playnite.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">חנות:
 השתמש רק במידע מהחנות הרשמית.
     
@@ -300,16 +300,16 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsConnectAccount">חבר חשבון</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">ייבא משחקים שהוסרו</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">יבא את כל המשחקים</sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidDBLocation"></sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">ייבא את כל המשחקים (חובה לציין חשבון ציבורי או מפתח API)</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidDBLocation">מיקום קובץ בסיס נתונים לא תקין, חובה לספק מיקום קובץ מתאים.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">שם חשבון אינו יכול להיות ריק.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport"></sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">לא נבחר חשבון Steam עבור ייבוא ספריה.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">לא נבחר חשבון Steam עבור ייבוא קטגוריה.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">הורד עדכוני ספריות צד שלישי בעלייה</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">הורד נתונים לאחר יבוא משחקים</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">הפעל ממוזער</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">הרץ את Playnite כשהמחשב עולה</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError"></sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">נכשל ברישום Playnite לרוץ בהפעלת המחשב.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">הפעל במסך מלא</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">כלול Steam, Origin ואחרים.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">טעינת תמונות ברקע</sys:String>
@@ -349,12 +349,12 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">יאפשר תכונות כגון שמירה בענן, ספירת זמן משחק ועוד.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">זה ידרוס את הקטגוריות הנוכחיות על כל משחקי Steam. האם ברצונך להמשיך?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">לייבא קטגוריות?</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportError"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">לא ניתן לייבא קטגוריות, לא נבחר חשבון לייבוא.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">לא ניתן לייבא קטגוריות, בסיס הנתונים אינו פתוח.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportError">נכשל בייבוא קטגוריות Steam: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">לא ניתן לייבא מידע על משחק אחרון, לא נבחר חשבון לייבוא.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">לא ניתן לייבא מידע על משחק אחרון, בסיס הנתונים אינו פתוח.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">נכשל בייבוא מידע על משחק אחרון Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">לנקות מטמון?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">מפתח API דרוש לחשבונות פרטיים ב Steam</sys:String>
@@ -366,7 +366,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">הפעל מחדש את Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">משך זמן משחק לא יירשם אם פעולת "סגירה" נקבעה.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">מספר שורות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">מספר עמודות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">מספר שורות תצוגה מפורטת</sys:String>
@@ -375,9 +375,9 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">צילום מסך חנות</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">רקע חנות</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">קבע סדר עדיפויות משך זמן משחק לספריות נתמכות</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">אפשר תמיכה בבקר במצב שולחן עבודה</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">כפתור מנחה פותח מצב מסך מלא</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor">צג יעד</sys:String>
@@ -545,10 +545,10 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">חבילת אבחון נוצרה ונשלחה בהצלחה.
 אבא צרף את המזהה הבא לדוח הקריסה:</sys:String>
 
-    <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
+    <sys:String x:Key="LOCSteamCategoryImportError">נכשל בייבוא קטגוריות Steam.</sys:String>
     
-    <sys:String x:Key="LOCBnetInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCSteamInstalledImportError"></sys:String>
+    <sys:String x:Key="LOCBnetInstalledImportError">נכשל בייבוא משחקי Battle.net מותקנים.</sys:String>
+    <sys:String x:Key="LOCSteamInstalledImportError">נכשל בייבוא משחקי Steam מותקנים.</sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError">נכשל בייבוא משחקי GOG מותקנים.</sys:String>
     <sys:String x:Key="LOCOriginInstalledImportError">נכשל בייבוא משחקי Origin מותקנים.</sys:String>
     <sys:String x:Key="LOCUplayInstalledImportError">נכשל בייבוא משחקי Uplay מותקנים.</sys:String>
@@ -620,7 +620,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCNever">לעולם לא</sys:String>
     <sys:String x:Key="LOCCompletionStatusNotPlayed">לא שוחקו</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayed">שוחקו</sys:String>
-    <sys:String x:Key="LOCCompletionStatusBeaten">סוימו</sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten">הובס</sys:String>
     <sys:String x:Key="LOCCompletionStatusCompleted">הושלמו</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlaying">משחק כעת</sys:String>
     <sys:String x:Key="LOCCompletionStatusAbandoned">ננטש</sys:String>
@@ -709,12 +709,12 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">טיפ: ניתן להשתמש בתהליך הורדת נתונים מתקדם יותר בעת עריכת משחק בודד על ידי התפריט "עריכה".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">לא זמין כאשר פעולה כלשהי בתהליך.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">טקסט התיאור הינו רגיש לתחביר HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">זמן משחק נרשם ונשמר בשניות.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">ערכים בין 0 ל 100 או ריק לללא ציון.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">פיתוח Playnite נתמך על יד הפטרונים הבאים:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">תורמים לקוד, תרגום ואחרים לא בסדר כלשהו:</sys:String>
 
     <sys:String x:Key="LOCCancelMonitoringAskTitle">בטל ניטור משחקים?</sys:String>
@@ -740,7 +740,7 @@ IGDB > חנות רשמית:
 
     <sys:String x:Key="LOCClientNotInstalledError">תוכנת {0} אינה מותקנת.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">תוכנת {0} תפתח כעת. אנא התחבר ואז סגור את הודעה זו.</sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">מחכה להתחברות משתמש, אנא סגרו את זה בסיום…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">תיקיית התקנת משחק לא נמצאה.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">תצורת פעולת משחק לא תקינה.</sys:String>
 
@@ -781,7 +781,9 @@ IGDB > חנות רשמית:
 גירסה {2}
     </sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">אתם עומדים לעזוב את Playnite ולנווט לדף אינטרנט על ידי דפדפן ברירת המחדל. האם ברצונך להמשיך?
+    
+{0}</sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">הישגים</sys:String>
