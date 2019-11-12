@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">אתר הבית ב www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">קוד המקור ב github</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">צור חבילה דיאגנוסטית</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton">שלח מידע דאיגנוסטי</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">שלח מידע דיאגנוסטי</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">אודות Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">נוצר על ידי Josef Němec</sys:String>
 
@@ -433,25 +433,31 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCEmuWizardWindowTitle">אשף ייבוא האמולציה</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">אשף זה ילווה אותך בתהליך הורדה וייבוא של אמולטור קונסולה, וכמו כן ייבוא של משחקי אמולציה.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">זכור שתמיד באפשרותך להוסיף אמולטורים ו\או משחקים נוספים מאוחר יותר דרך התפריט הראשי (תחת תפריט "כלים" של הגדרות אמולטורים ותפריט "הוסף משחקים" עבור משחקי אמולציה).</sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">הרשימה הבאה היא של האמולטורים ש Playnite יכול לזהות ולהגדיר אוטומוטית. ניתן להוריד ולהתקין אותם על ידי ביקור באתר אינטרנט שלהם. כשהאמולטורים מותקנים, המשיכו למסך הבא לייבא אותם ל Playnite.
+        
+ניתן גם להגדיר ולייבא כל אמולטור מותאם אישית מאוחר יותר דרך תפריט ההגדרה.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">ניתן לייבא כל אמולטור המותקן על המחשב על ידי לחיצה על כפתור "זיהוי אוטומטי מתיקיה…". Playnite יחפש בתיקיה הנבחרת עבור אמולטורים ידועים ויספק אפשרות לייבא אותם.
+ניתן לייבא ממספר תיקיות על ידי שימוש בכפתור הנ"ל מספר פעמים, אמולטורים יתווספו לתחתית הרשימה.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">ניתן לייבא משחקים על ידי לחיצה על כפתור "סרוק תיקיה על ידי אמולטור". בחירת אמולטור נכון יאמר ל Playnite, אילו סוגי קבצים צריכים להיסרק ולייבא. ניתן לייבא מכמה תיקיות על ידי הכפתור הנ"ל כמה פעמים, המשחקים יתווספו לתחתית הרשימה הנוכחית.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">אין אמולטורים שנבחרו לייבוא. לא תוכלו לייבא אוטומטית משחקים בלי להגדיר קודם אמולטורים. האם אתה בטוח שברצונך להמשיך ולצאת מתהליך הייבוא?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">אין אמולטורים שהוגדרו ב Playnite. אין באפשרותך לייבא משחקים בלי להגדיר ראשית אמולטורים ולבחור את סוגי הקבצים הרלוונטיים. האם ברצונך להוסיף אמולטורים כעת?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">סרוק תיקיה באמצעות אמולטור</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">בחר קבצים</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">זיהוי אוטומטי מהתיקיה…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">זיהוי אוטומטי מתיקיה…</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">הגדר אמולטורים…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">סורק…</sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">הגדרת הפעם הראשונה</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">האשף ינחה אתכם בתהליך ייבוא משחק אוטומטי והגדרה של ספריות משחק חיצוניות. Playnite יכול לייבא אוטומטית משחקים ממספר שירותים כמו Steam או GOG, וגם לשמור על הספריה שלכם מעודכנת על ידי עדכון אוטומטי בעליית האפליקציה.
+        
+זכרו שתמיד ניתן להוסיף משחק מותאם אישית לכל פלטפורמה ידנית מהתפריט הראשי על ידי לחיצה על כפתור ה 'Playnite'.
+    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">בחר מיקום לקובץ בסיס נתוני הספריה. ניתן לשנות את המיקום מאוחר יותר בתפריט ההגדרות.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">מיקום ברירת מחדל עבור מידע התוכנה לכל המשתמשים</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">מיקום מותאם אישית</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">אינטגרציית ספריה</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">ייבוא אוטומטי של משחקים מהשירותים הבאים. שינויי משחק עתידיים (מצב התקנה) יעודכנו אוטומטית בעליה של Playnite או שיופעלו ידנית. האפשרויות הנבחרות ישפיעו על הייבוא הראשוני וכל והבאים אחריו.</sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration">אינטגרציית Steam</sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration">אינטגרציית Origin</sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration">אינטגרציית GOG</sys:String>
