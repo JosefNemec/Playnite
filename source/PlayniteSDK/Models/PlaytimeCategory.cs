@@ -15,7 +15,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Not playtime.
         /// </summary>
-        [Description("LOCNotPlayed")]
+        [Description("LOCPlayedNone")]
         NotPlayed = 0,
 
         /// <summary>
