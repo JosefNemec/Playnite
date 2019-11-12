@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,6 +96,11 @@ namespace Playnite.Controls
             if (defaultStyle != null)
             {
                 Style = defaultStyle;
+            }
+            
+            if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+            {
+                FlowDirection = FlowDirection.RightToLeft;
             }
 
             TextOptions.SetTextFormattingMode(this, TextFormattingMode);

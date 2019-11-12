@@ -178,6 +178,9 @@ namespace Playnite.Controls
         public HtmlTextView()
         {
             Background = Brushes.Transparent;
+
+            // Set to always left-to-right
+            FlowDirection = FlowDirection.LeftToRight;
         }
 
         public override void OnApplyTemplate()

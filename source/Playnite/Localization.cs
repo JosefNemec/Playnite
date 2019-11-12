@@ -46,6 +46,16 @@ namespace Playnite
             get; private set;
         } = SourceLanguageId;
 
+        public static CultureInfo CultureInfo
+        {
+            get; private set;
+        } = CultureInfo.CurrentCulture;
+
+        public static bool IsRightToLeft
+        {
+            get; private set;
+        } = false;
+
         public static List<PlayniteLanguage> GetLanguagesFromFolder(string path)
         {
             var langs = new List<PlayniteLanguage>() {
@@ -127,6 +137,10 @@ namespace Playnite
                 }
 
                 dictionaries.Add(res);
+
+                CultureInfo culture = new CultureInfo(language.Replace("_", "-"), false);
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
             }
 
             CurrentLanguage = language;
