@@ -406,6 +406,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsTextFormattingMode">텍스트 서식 지정 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">텍스트 렌더링 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">텍스트 렌더링 및 서식 지정 설정은 현재 게임 설명 텍스트에 적용되지 않습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
