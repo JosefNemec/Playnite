@@ -382,7 +382,7 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsTargetMonitor">Affichage à utiliser</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Afficher le nom des jeux</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Afficher l'état de la batterie</sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryPercentage">Afficher le pourcentage de batterie restant</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage">Afficher le pourcentage de batterie</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Afficher l'heure du système</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Tri rapide : jeux installés uniquement</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Apparence des boutons</sys:String>
@@ -399,6 +399,8 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsTextFormattingMode">Formatage du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Mode de rendu du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Les options de rendu et de formatage du texte ne s'appliquent pas actuellement au texte de description du jeu.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
@@ -617,7 +619,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCClearAll">Tout effacer</sys:String>
     <sys:String x:Key="LOCSetupRunning">Installation en cours...</sys:String>
     <sys:String x:Key="LOCUninstalling">Désinstallation en cours...</sys:String>
-    <sys:String x:Key="LOCGameLaunching">En cours de démarrage</sys:String>
+    <sys:String x:Key="LOCGameLaunching">Démarrage...</sys:String>
     <sys:String x:Key="LOCGameRunning">En cours d'exécution</sys:String>
     <sys:String x:Key="LOCInvalidURL">URL invalide</sys:String>
     <sys:String x:Key="LOCDoNothing">Ne rien faire</sys:String>
