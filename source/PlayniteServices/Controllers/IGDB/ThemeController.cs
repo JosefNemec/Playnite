@@ -12,14 +12,12 @@ using System.Threading.Tasks;
 namespace PlayniteServices.Controllers.IGDB
 {
     [ServiceFilter(typeof(PlayniteVersionFilter))]
-    [Route("igdb/themes")]
     public class ThemeController : IgdbItemController
     {
         private static readonly object CacheLock = new object();
 
         private const string endpointPath = "themes";
 
-        [HttpGet("{themeId}")]
         public async Task<ServicesResponse<Theme>> Get(ulong themeId)
         {
             return await GetItem(themeId);

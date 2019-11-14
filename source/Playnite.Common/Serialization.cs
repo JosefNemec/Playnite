@@ -11,6 +11,14 @@ using YamlDotNet.Serialization;
 
 namespace Playnite.Common
 {
+    public static class SerializationExtensions
+    {
+        public static string ToJson(this object obj, bool formatted = false)
+        {
+            return Serialization.ToJson(obj, formatted);
+        }
+    }
+
     public static class Serialization
     {
         private static ILogger logger = LogManager.GetLogger();

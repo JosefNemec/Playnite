@@ -12,14 +12,12 @@ using System.Threading.Tasks;
 namespace PlayniteServices.Controllers.IGDB
 {
     [ServiceFilter(typeof(PlayniteVersionFilter))]
-    //[Route("igdb/artworks")]
     public class ArtworkController : IgdbItemController
     {
         private static readonly object CacheLock = new object();
 
         private const string endpointPath = "artworks";
 
-        //[HttpGet("{artworkId}")]
         public async Task<ServicesResponse<GameImage>> Get(ulong artworkId)
         {
             return await GetItem(artworkId);

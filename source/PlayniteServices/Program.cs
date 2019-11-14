@@ -31,7 +31,6 @@ namespace PlayniteServices
                 .Build();
 
             Database = new Database(Database.Path);
-            Database.GetCollection(Controllers.IGDB.GamesBySteamIdController.DbCollectionName).EnsureIndex(nameof(Models.IGDB.SteamIdGame.steamId));
             return host;
         }
 

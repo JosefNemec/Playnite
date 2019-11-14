@@ -12,14 +12,12 @@ using System.Threading.Tasks;
 namespace PlayniteServices.Controllers.IGDB
 {
     [ServiceFilter(typeof(PlayniteVersionFilter))]
-    [Route("igdb/screenshots")]
     public class ScreenshotController : IgdbItemController
     {
         private static readonly object CacheLock = new object();
 
         private const string endpointPath = "screenshots";
 
-        [HttpGet("{screenshotId}")]
         public async Task<ServicesResponse<GameImage>> Get(ulong screenshotId)
         {
             return await GetItem(screenshotId);

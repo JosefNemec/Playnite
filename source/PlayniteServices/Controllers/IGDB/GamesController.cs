@@ -35,10 +35,14 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpGet("{gameName}")]
         public async Task<ServicesResponse<List<ExpandedGame>>> Get(string gameName)
         {
+            return new ServicesResponse<List<ExpandedGame>>(await GetSearchResults(gameName));
+        }
+
+        public static async Task<List<ExpandedGame>> GetSearchResults(string searchString)
+        {
             List<Game> searchResult = null;
-            gameName = gameName.ToLower().Trim();
-            gameName = Regex.Replace(gameName, @"\s+", " ");
-            var cachePath = Path.Combine(IGDB.CacheDirectory, cacheDir, Playnite.Common.Paths.GetSafeFilename(gameName) + ".json");
+            searchString = ModelsUtils.GetIgdbSearchString(searchString);
+            var cachePath = Path.Combine(IGDB.CacheDirectory, cacheDir, Playnite.Common.Paths.GetSafeFilename(searchString) + ".json");
             lock (CacheLock)
             {
                 if (System.IO.File.Exists(cachePath))
@@ -54,7 +58,7 @@ namespace PlayniteServices.Controllers.IGDB
 
             if (searchResult == null)
             {
-                var libraryStringResult = await IGDB.SendStringRequest("games", $"search \"{HttpUtility.UrlDecode(gameName)}\"; fields id; limit 40;");
+                var libraryStringResult = await IGDB.SendStringRequest("games", $"search \"{HttpUtility.UrlDecode(searchString)}\"; fields id; limit 40;");
                 searchResult = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
                 lock (CacheLock)
                 {
@@ -64,47 +68,44 @@ namespace PlayniteServices.Controllers.IGDB
             }
 
             var finalResult = new List<ExpandedGame>();
-            using (var gameController = new GameController(appSettings))
+            for (int i = 0; i < searchResult.Count; i++)
             {
-                for (int i = 0; i < searchResult.Count; i++)
+                Game result = null;
+                try
                 {
-                    Game result = null;
-                    try
-                    {
-                        result = (await gameController.Get(searchResult[i].id)).Data;
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, $"Failed to get game {searchResult[i].id}");
-                        continue;
-                    }
-
-                    if (result.id == 0)
-                    {
-                        continue;
-                    }
-
-                    var xpanded = new ExpandedGame()
-                    {
-                        id = result.id,
-                        name = result.name,
-                        first_release_date = result.first_release_date * 1000
-                    };
-
-                    if (result.alternative_names?.Any() == true)
-                    {
-                        xpanded.alternative_names = new List<AlternativeName>();
-                        foreach (var nameId in result.alternative_names)
-                        {
-                            xpanded.alternative_names.Add((await AlternativeNameController.GetItem(nameId)).Data);
-                        }
-                    }
-
-                    finalResult.Add(xpanded);
+                    result = (await GameController.GetItem(searchResult[i].id)).Data;
                 }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to get game {searchResult[i].id}");
+                    continue;
+                }
+
+                if (result.id == 0)
+                {
+                    continue;
+                }
+
+                var xpanded = new ExpandedGame()
+                {
+                    id = result.id,
+                    name = result.name,
+                    first_release_date = result.first_release_date * 1000
+                };
+
+                if (result.alternative_names?.Any() == true)
+                {
+                    xpanded.alternative_names = new List<AlternativeName>();
+                    foreach (var nameId in result.alternative_names)
+                    {
+                        xpanded.alternative_names.Add((await AlternativeNameController.GetItem(nameId)).Data);
+                    }
+                }
+
+                finalResult.Add(xpanded);
             }
 
-            return new ServicesResponse<List<ExpandedGame>>(finalResult);
+            return finalResult;
         }
     }
 }

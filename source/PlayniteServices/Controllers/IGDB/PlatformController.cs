@@ -11,14 +11,12 @@ using System.Threading.Tasks;
 namespace PlayniteServices.Controllers.IGDB
 {
     [ServiceFilter(typeof(PlayniteVersionFilter))]
-    [Route("igdb/platforms")]
     public class PlatformController : IgdbItemController
     {
         private static readonly object CacheLock = new object();
 
         private const string endpointPath = "platforms";
 
-        [HttpGet("{platformId}")]
         public async Task<ServicesResponse<Platform>> Get(ulong platformId)
         {
             return new ServicesResponse<Platform>(await GetItem<Platform>(platformId, endpointPath, CacheLock));

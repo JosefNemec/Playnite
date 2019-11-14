@@ -11,14 +11,12 @@ using System.Threading.Tasks;
 namespace PlayniteServices.Controllers.IGDB
 {
     [ServiceFilter(typeof(PlayniteVersionFilter))]
-    [Route("igdb/alternative_names")]
     public class AlternativeNameController : IgdbItemController
     {
         private static readonly object CacheLock = new object();
 
         private const string endpointPath = "alternative_names";
 
-        [HttpGet("{nameId}")]
         public async Task<ServicesResponse<AlternativeName>> Get(ulong nameId)
         {
             return await GetItem(nameId);

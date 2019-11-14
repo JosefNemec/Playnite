@@ -3,14 +3,14 @@ using System.IO;
 using System.Net.Http;
 using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using PlayniteServices.Databases;
 using Xunit;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 
 namespace PlayniteServicesTests
 {
@@ -22,13 +22,11 @@ namespace PlayniteServicesTests
     public class TestFixture<TStartup> : IDisposable
     {
         private readonly TestServer server;
+        public HttpClient Client { get; }
+        public Database Database { get; }
 
         public TestFixture() : this(Path.Combine("source"))
         {
-            if (File.Exists(Database.Path))
-            {
-                File.Delete(Database.Path);
-            }
         }
 
         protected TestFixture(string solutionRelativeTargetProjectParentDir)
@@ -40,17 +38,22 @@ namespace PlayniteServicesTests
                 .ConfigureServices(InitializeServices)
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-                    config.AddJsonFile("customSettings.json", optional: false, reloadOnChange: true);
+                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                    config.AddJsonFile("customSettings.json", optional: true, reloadOnChange: true);
+                    config.AddJsonFile("patreonTokens.json", optional: true, reloadOnChange: true);
                 });
 
             server = new TestServer(builder);
-
             Client = server.CreateClient();
             Client.BaseAddress = new Uri("http://localhost");
-        }
 
-        public HttpClient Client { get; }
+            if (File.Exists(Database.Path))
+            {
+                File.Delete(Database.Path);
+            }
+
+            Database = new Database(Database.Path);
+        }
 
         public void Dispose()
         {
