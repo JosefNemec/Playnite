@@ -1387,6 +1387,17 @@ namespace Playnite
             }
         }
 
+        private bool downloadBackgroundsImmediately = true;
+        public bool DownloadBackgroundsImmediately
+        {
+            get => downloadBackgroundsImmediately;
+            set
+            {
+                downloadBackgroundsImmediately = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

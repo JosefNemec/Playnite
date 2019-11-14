@@ -243,6 +243,7 @@ namespace Playnite.DesktopApp
                     var settings = wizardModel.Settings;
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
+                    AppSettings.DownloadBackgroundsImmediately = wizardModel.DownloadBackgroundsImmediately;
                     AppSettings.SaveSettings();
                 }
                 else

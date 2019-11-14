@@ -19,7 +19,17 @@
 
     <DockPanel Margin="15">
         <TextBlock Text="{DynamicResource LOCSettingsDefaultMetadataDescription}"
-                   DockPanel.Dock="Top" TextWrapping="Wrap" />
+                   DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0,0,0,10" />
+        <CheckBox Content="{DynamicResource LOCSettingsImmediateBackgroundDownload}"
+                  ToolTipService.InitialShowDelay="0"
+                  ToolTipService.ShowDuration="30000"
+                  IsChecked="{Binding Settings.DownloadBackgroundsImmediately}"
+                  DockPanel.Dock="Top">
+            <CheckBox.ToolTip>
+                <TextBlock MaxWidth="600" TextWrapping="Wrap"
+                           Text="{DynamicResource LOCSettingsImmediateBackgroundDownloadTooltip}" />
+            </CheckBox.ToolTip>
+        </CheckBox>
         <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}" />
     </DockPanel>
 </UserControl>
