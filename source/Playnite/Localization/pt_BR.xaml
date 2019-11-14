@@ -406,6 +406,8 @@ O novo local do banco de dados será usado somente após o aplicativo ser reinic
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modo de formatação de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderização de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Atualmente, as opções de renderização e formatação de texto não se aplicam ao texto na descrição dos jogos.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preenchimento</sys:String>
