@@ -63,6 +63,7 @@ namespace Playnite.Windows
                 }
 
                 asDialog = true;
+                WindowManager.NotifyChildOwnershipChanges();
                 result = Window.ShowDialog();
             }, null);
 
@@ -79,6 +80,7 @@ namespace Playnite.Windows
                     Window = CreateNewWindowInstance();
                 }
 
+                WindowManager.NotifyChildOwnershipChanges();
                 Window.DataContext = dataContext;
                 Window.Show();
             }, null);
@@ -113,7 +115,8 @@ namespace Playnite.Windows
                 {
                     Window.DialogResult = result;
                 }
-                Window.Close();                
+                Window.Close();
+                WindowManager.NotifyChildOwnershipChanges();
             }, null);
         }
     }
