@@ -402,6 +402,8 @@ Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applica
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modalità della formattazione del testo</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modalità di rendering del testo</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Le opzioni di rendering e di formattazione non sono al momento applicabili al testo di descrizione del gioco.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Niente</sys:String>
     <sys:String x:Key="LOCStrechFill">Riempi</sys:String>
