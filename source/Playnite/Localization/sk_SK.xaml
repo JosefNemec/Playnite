@@ -391,6 +391,8 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
