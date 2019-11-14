@@ -254,9 +254,9 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCMenuPatreonSupport">Auf Patreon unterstützen</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-Dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">System neu starten</sys:String>
-    <sys:String x:Key="LOCMenuShutdownSystem">System ausschalten</sys:String>
-    <sys:String x:Key="LOCMenuSuspendSystem">Ruhezustand</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem">Ruhezustand</sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">System herunterfahren</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">System-Standby</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">System-Ruhezustand</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Zufälliges Spiel auswählen</sys:String>
 
     <!--Settings Window-->
@@ -406,6 +406,8 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modus für Textformatierung</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modus für Textrendering</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Optionen für Textrendering und -formatierung haben derzeit keine Auswirkung auf Spielbeschreibungen.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
@@ -732,7 +734,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Spielzeit wird in Sekunden gemessen und gespeichert.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Werte von 0 bis 100 oder leer für keine Bewertung.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnites Entwicklung wird finanziell unterstützt durch:</sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage">Code, Lokalisierung und andere Mitwirkende:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">Mitwirkende bei Code, Lokalisierung etc:</sys:String>
 
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Spielüberwachung beenden?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Das Spiel wird gerade installiert. Soll die Spielüberwachung beendet und der alte Spielstatus wiederhergestellt werden?</sys:String>
