@@ -406,6 +406,8 @@ Nové umístění databáze bude použito po restartu aplikace.</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Režim formátování textu</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Režim vykreslování textu</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Nastavení vykreslování a formátování textu v současnosti neovlivní text popisků her.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Žádný</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplnit</sys:String>
