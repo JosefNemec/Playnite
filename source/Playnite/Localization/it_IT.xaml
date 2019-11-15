@@ -402,8 +402,10 @@ Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applica
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modalità della formattazione del testo</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modalità di rendering del testo</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Le opzioni di rendering e di formattazione non sono al momento applicabili al testo di descrizione del gioco.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Scarica le immagini dello sfondo immediatamente</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se disattivato, Playnite scaricherà l'immagine dello sfondo durante lo scaricamento del metadata.  Utilizzando più spazio del disco e rendendo l'immagine disponibile quando non è connesso.
+        
+Se disattivato, l'immagine dello sfondo sarà scaricato soltanto quando sarà richiesto.  Utilizza meno spazio, ma potrebbe causare un ritardo prima di mostrare lo sfondo e alcune immagini potrebbero essere non disponibili quando non è connesso.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Niente</sys:String>
     <sys:String x:Key="LOCStrechFill">Riempi</sys:String>
