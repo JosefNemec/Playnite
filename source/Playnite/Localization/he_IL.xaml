@@ -404,8 +404,10 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsTextFormattingMode">מצב עיצוב טקסט</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">מצב עיבוד טקסט</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">אפשרויות עיבוד ועיצוב טקסט לא מופעלות על טקסט תיאור המשחק כעת.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">הורד תמונות רקע מיד</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">אם דלוק, Playnite יוריד אומנות רקע במזן הורדת נתונים. עושה שימוש ביותר מקום דיסק והופך אומנות לזמינה במצב לא מקוון.
+        
+אם כבוי, אומנות רקע תורד רק כאשר נדרשת לראשונה. נעשה שימוש בפחות מקום דיסק, אך יכול לגרום להמתנה עד שהאומנות תוצג ויכול להיות שתמונות מסוימות לא יהיו זמינות במצב לא מקוון.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">ללא</sys:String>
     <sys:String x:Key="LOCStrechFill">מילוי</sys:String>
