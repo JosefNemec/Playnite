@@ -406,8 +406,10 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modus für Textformatierung</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modus für Textrendering</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Optionen für Textrendering und -formatierung haben derzeit keine Auswirkung auf Spielbeschreibungen.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Hintergrundbilder sofort herunterladen</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Falls aktiviert, wird Playnite Hintergrundbilder gleichzeitig mit den Metadaten herunterladen. Dies verbraucht mehr Speicherplatz auf der Festplatte, macht die Bilder jedoch auch offline verfügbar.
+        
+Falls deaktiviert, werden Hintergrundbilder erst dann heruntergeladen, wenn sie zum ersten Mal benötigt werden. Dies verbraucht weniger Speicherplatz auf der Festplatte, führt jedoch möglicherweise zu einer Verzögerung vor dem Anzeigen der Bilder, und einige Bilder sind offline eventuell nicht verfügbar.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
