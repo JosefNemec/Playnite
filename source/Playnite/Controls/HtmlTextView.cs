@@ -179,7 +179,7 @@ namespace Playnite.Controls
         {
             Background = Brushes.Transparent;
 
-            // Set to always left-to-right
+            // Always use LTR because HtmlPanel doesn't support RTL properly
             FlowDirection = FlowDirection.LeftToRight;
         }
 
