@@ -38,9 +38,9 @@ Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, something bad happened…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">An unrecoverable error occurred.
         
-If you want to help us fix this issue, please briefly describe actions taken before the crash and then create a diagnostics package. If you are online, the package will get uploaded to the Playnite API.
+If you want to help us fix this issue, please briefly describe actions taken before the crash and then create a diagnostics package. If you are online, the package will get uploaded to the Playnite server for analysis.
 
-Alternatively, you can use the 'Report Crash' button to create a new issue on GitHub.
+Alternatively, you can use the 'Report Crash' button to create a new issue on GitHub and report the crash manually.
 
 Thank you for your help.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Unrecoverable error occurred.
