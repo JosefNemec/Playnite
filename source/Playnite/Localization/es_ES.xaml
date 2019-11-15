@@ -406,8 +406,10 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modo de formato de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderizado de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Las opciones de formato y renderizado de texto actualmente no se aplican al texto de la descripción del juego.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Descargar imágenes de fondo inmediatamente</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Si está habilitado, Playnite descargará ilustraciones de fondo mientras descarga metadatos. Se usará más espacio en disco y hace que las ilustraciones estén disponibles sin conexión.
+        
+Si está deshabilitado, las ilustraciones de fondo se descargan solo cuando es necesario.  Se usará menos espacio, pero puede provocar un retraso antes de que se muestre la ilustración y algunas imágenes pueden no estar disponibles sin conexión.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ninguno</sys:String>
     <sys:String x:Key="LOCStrechFill">Rellenar</sys:String>
