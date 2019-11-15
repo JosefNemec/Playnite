@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SdkModels = Playnite.SDK.Models;
 
 namespace PlayniteServices.Models.IGDB
 {
@@ -266,5 +268,14 @@ namespace PlayniteServices.Models.IGDB
         public List<ulong> videos { get; set; }
         public List<ulong> platforms { get; set; }
         public List<ulong> release_dates { get; set; }
+    }
+
+    public static class ModelsUtils
+    {
+        public static string GetIgdbSearchString(string gameName)
+        {
+            var temp = gameName.Replace(":", " ").Replace("-", " ").ToLower().Trim();
+            return Regex.Replace(temp, @"\s+", " ");
+        }
     }
 }

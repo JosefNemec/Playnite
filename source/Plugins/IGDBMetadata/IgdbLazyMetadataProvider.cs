@@ -19,7 +19,6 @@ namespace IGDBMetadata
     public class IgdbLazyMetadataProvider : OnDemandMetadataProvider
     {
         private static readonly ILogger logger = LogManager.GetLogger();
-        private readonly ulong gameId = 0;
         private readonly MetadataRequestOptions options;
         private readonly IgdbMetadataPlugin plugin;
         internal IgdbServerModels.ExpandedGame IgdbData { get; private set; }
@@ -41,12 +40,6 @@ namespace IGDBMetadata
         public IgdbLazyMetadataProvider(MetadataRequestOptions options, IgdbMetadataPlugin plugin)
         {
             this.options = options;
-            this.plugin = plugin;
-        }
-
-        public IgdbLazyMetadataProvider(ulong gameId, IgdbMetadataPlugin plugin)
-        {
-            this.gameId = gameId;
             this.plugin = plugin;
         }
 
@@ -330,12 +323,6 @@ namespace IGDBMetadata
                 return;
             }
 
-            if (gameId != 0)
-            {
-                IgdbData = plugin.Client.GetIGDBGameParsed(gameId);
-                return;
-            }
-
             if (!options.IsBackgroundDownload)
             {
                 var item = plugin.PlayniteApi.Dialogs.ChooseItemWithSearch(null, (a) =>
@@ -373,155 +360,16 @@ namespace IGDBMetadata
             }
             else
             {
-                var game = options.GameData;
-                if (BuiltinExtensions.GetExtensionFromId(game.PluginId) == BuiltinExtension.SteamLibrary)
+                var metadata = plugin.Client.GetMetadata(options.GameData);
+                if (metadata.id > 0)
                 {
-                    var igdbId = plugin.Client.GetIGDBGameBySteamId(game.GameId);
-                    if (igdbId != 0)
-                    {
-                        IgdbData = plugin.Client.GetIGDBGameParsed(igdbId);
-                        return;
-                    }
-                }
-
-                if (game.Name.IsNullOrEmpty())
-                {
-                    IgdbData = new IgdbServerModels.ExpandedGame() { id = 0 };
-                    return;
-                }
-
-                var copyGame = game.GetClone();
-                copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
-                var name = copyGame.Name
-                    .Replace(" RHCP", "", StringComparison.OrdinalIgnoreCase)
-                    .Replace(" RU", "", StringComparison.OrdinalIgnoreCase);
-                var results = plugin.GetSearchResults(plugin.GetIgdbSearchString(name)).ToList();
-                results.ForEach(a => a.Name = StringExtensions.NormalizeGameName(a.Name));
-                string testName = string.Empty;
-
-                // Direct comparison
-                IgdbData = matchFun(game, name, results);
-                if (IgdbData != null)
-                {
-                    return;
-                }
-
-                // Try replacing roman numerals: 3 => III
-                testName = Regex.Replace(name, @"\d+", ReplaceNumsForRomans);
-                IgdbData = matchFun(game, testName, results);
-                if (IgdbData != null)
-                {
-                    return;
-                }
-
-                // Try adding The
-                testName = "The " + name;
-                IgdbData = matchFun(game, testName, results);
-                if (IgdbData != null)
-                {
-                    return;
-                }
-
-                // Try chaning & / and
-                testName = Regex.Replace(name, @"\s+and\s+", " & ", RegexOptions.IgnoreCase);
-                IgdbData = matchFun(game, testName, results);
-                if (IgdbData != null)
-                {
-                    return;
-                }
-
-                // Try removing apostrophes
-                var resCopy = results.GetClone();
-                resCopy.ForEach(a => a.Name = a.Name.Replace("'", ""));
-                IgdbData = matchFun(game, name, resCopy);
-                if (IgdbData != null)
-                {
-                    return;
-                }
-
-                // Try removing all ":" and "-"
-                testName = Regex.Replace(name, @"\s*(:|-)\s*", " ");
-                resCopy = results.GetClone();
-                resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*(:|-)\s*", " "));
-                IgdbData = matchFun(game, testName, resCopy);
-                if (IgdbData != null)
-                {
-                    return;
-                }
-
-                // Try without subtitle
-                var testResult = results.OrderBy(a => a.ReleaseDate).FirstOrDefault(a =>
-                {
-                    if (a.ReleaseDate == null)
-                    {
-                        return false;
-                    }
-
-                    if (!string.IsNullOrEmpty(a.Name) && a.Name.Contains(":"))
-                    {
-                        return string.Equals(name, a.Name.Split(':')[0], StringComparison.InvariantCultureIgnoreCase);
-                    }
-
-                    return false;
-                });
-
-                if (testResult != null)
-                {
-                    IgdbData = plugin.Client.GetIGDBGameParsed(ulong.Parse(testResult.Id));
-                    return;
-                }
-
-                // No match found
-                IgdbData = new IgdbServerModels.ExpandedGame() { id = 0 };
-            }
-        }
-
-        private IgdbServerModels.ExpandedGame matchFun(Game game, string matchName, IEnumerable<SearchResult> list)
-        {
-            var res = list.Where(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
-            if (!res.Any())
-            {
-                res = list.Where(a => a.AlternativeNames.ContainsString(matchName) == true);
-            }
-
-            if (res.Any())
-            {
-                if (res.Count() == 1)
-                {
-                    return plugin.Client.GetIGDBGameParsed(ulong.Parse(res.First().Id));
+                    IgdbData = metadata;
                 }
                 else
                 {
-                    if (game.ReleaseDate != null)
-                    {
-                        var igdbGame = res.FirstOrDefault(a => a.ReleaseDate?.Year == game.ReleaseDate.Value.Year);
-                        if (igdbGame != null)
-                        {
-                            return plugin.Client.GetIGDBGameParsed(ulong.Parse(igdbGame.Id));
-                        }
-                    }
-                    else
-                    {
-                        // If multiple matches are found and we don't have release date then prioritize older game
-                        if (res.All(a => a.ReleaseDate == null))
-                        {
-                            return plugin.Client.GetIGDBGameParsed(ulong.Parse(res.First().Id));
-                        }
-                        else
-                        {
-                            var igdbGame = res.OrderBy(a => a.ReleaseDate?.Year).First(a => a.ReleaseDate != null);
-                            return plugin.Client.GetIGDBGameParsed(ulong.Parse(igdbGame.Id));
-                        }
-                    }
+                    IgdbData = new IgdbServerModels.ExpandedGame() { id = 0 };
                 }
             }
-
-            return null;
-        }
-
-        private string ReplaceNumsForRomans(Match m)
-        {
-            return Roman.To(int.Parse(m.Value));
         }
     }
 }

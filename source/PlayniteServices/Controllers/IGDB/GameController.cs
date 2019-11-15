@@ -34,6 +34,11 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpGet("{gameId}")]
         public async Task<ServicesResponse<Game>> Get(ulong gameId)
         {
+            return await GetItem(gameId);
+        }
+
+        public static async Task<ServicesResponse<Game>> GetItem(ulong gameId)
+        {
             return new ServicesResponse<Game>(await GetItem<Game>(gameId, endpointPath, CacheLock));
         }
 
@@ -83,10 +88,15 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpGet("{gameId}")]
         public async Task<ServicesResponse<ExpandedGame>> Get(ulong gameId)
         {
-            var game = (await new GameController(appSettings).Get(gameId)).Data;
+            return new ServicesResponse<ExpandedGame>(await GetExpandedGame(gameId));
+        }
+
+        public async static Task<ExpandedGame> GetExpandedGame(ulong gameId)
+        {
+            var game = (await GameController.GetItem(gameId)).Data;
             if (game.id == 0)
             {
-                new ServicesResponse<ExpandedGame>(new ExpandedGame());
+                new ExpandedGame();
             }
 
             var parsedGame = new ExpandedGame()
@@ -100,7 +110,7 @@ namespace PlayniteServices.Controllers.IGDB
                 popularity = game.popularity,
                 version_title = game.version_title,
                 category = game.category,
-                first_release_date = game.first_release_date,
+                first_release_date = game.first_release_date * 1000,
                 rating = game.rating,
                 aggregated_rating = game.aggregated_rating,
                 total_rating = game.total_rating
@@ -180,9 +190,7 @@ namespace PlayniteServices.Controllers.IGDB
             parsedGame.developers = parsedGame.involved_companies?.Where(a => a.developer == true).Select(a => a.company.name).ToList();
             parsedGame.genres = parsedGame.genres_v3?.Select(a => a.name).ToList();
             parsedGame.game_modes = parsedGame.game_modes_v3?.Select(a => a.name).ToList();
-            parsedGame.first_release_date = parsedGame.first_release_date * 1000;
-
-            return new ServicesResponse<ExpandedGame>(parsedGame);
+            return parsedGame;
         }
     }
 }

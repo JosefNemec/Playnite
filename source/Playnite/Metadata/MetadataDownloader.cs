@@ -236,6 +236,7 @@ namespace Playnite.Metadata
         public Task DownloadMetadataAsync(
             List<Game> games,
             MetadataDownloaderSettings settings,
+            PlayniteSettings playniteSettings,
             Action<Game, int, int> progressCallback,
             CancellationTokenSource cancelToken)
         {
@@ -407,7 +408,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.BackgroundImage, MetadataField.BackgroundImage, (a) => a.BackgroundImage, existingStoreData, existingPluginData);
                                 if (gameData?.BackgroundImage != null)
                                 {
-                                    if (gameData.BackgroundImage.HasContent)
+                                    if (playniteSettings.DownloadBackgroundsImmediately || gameData.BackgroundImage.HasContent)
                                     {
                                         game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
                                     }

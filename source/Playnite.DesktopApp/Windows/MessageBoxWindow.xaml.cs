@@ -20,11 +20,9 @@ namespace Playnite.DesktopApp.Windows
     /// <summary>
     /// Interaction logic for MessageBoxWindow.xaml
     /// </summary>
-    public partial class MessageBoxWindow : WindowBase, INotifyPropertyChanged
+    public partial class MessageBoxWindow : WindowBase
     {
         private MessageBoxResult result;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private string text = string.Empty;
         public string Text
@@ -136,18 +134,11 @@ namespace Playnite.DesktopApp.Windows
                 OnPropertyChanged(nameof(IsTextReadOnly));
             }
         }
-
         
         public MessageBoxWindow() : base()
         {
             InitializeComponent();
         }
-
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
 
         public void ShowInputReadOnly(Window owner, string messageBoxText, string caption, string inputText)
         {

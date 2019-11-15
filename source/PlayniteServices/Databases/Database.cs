@@ -1,4 +1,5 @@
 ﻿using LiteDB;
+using PlayniteServices.Models.IGDB;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Databases
 {
-    public class Database
+    public class Database : IDisposable
     {
+        public const string SteamIgdbMatchCollectionName = "IGBDSteamIdCache";
+        public const string IGBDGameIdMatchesCollectionName = "IGBDGameIdMatches";
+        public const string IGDBSearchIdMatchesCollectionName = "IGDBSearchIdMatches";
+
+        public static LiteCollection<GameIdMatch> IGBDGameIdMatches { get; private set; }
+        public static LiteCollection<SearchIdMatch> IGDBSearchIdMatches { get; private set; }
+        public static LiteCollection<SteamIdGame> SteamIgdbMatches { get; private set; }
+
         public static string Path
         {
             get
@@ -30,6 +39,20 @@ namespace PlayniteServices.Databases
         public Database(string path)
         {
             liteDB =  new LiteDatabase(string.Format("Filename={0}", path));
+
+            IGBDGameIdMatches = liteDB.GetCollection<GameIdMatch>(IGBDGameIdMatchesCollectionName);
+            IGBDGameIdMatches.EnsureIndex(nameof(GameIdMatch.Id));
+
+            IGDBSearchIdMatches = liteDB.GetCollection<SearchIdMatch>(IGDBSearchIdMatchesCollectionName);
+            IGDBSearchIdMatches.EnsureIndex(nameof(SearchIdMatch.Id));
+
+            SteamIgdbMatches = liteDB.GetCollection<SteamIdGame>(SteamIgdbMatchCollectionName);
+            SteamIgdbMatches.EnsureIndex(nameof(SteamIdGame.steamId));
+        }
+
+        public void Dispose()
+        {
+            liteDB.Dispose();
         }
 
         public LiteCollection<T> GetCollection<T>(string name)

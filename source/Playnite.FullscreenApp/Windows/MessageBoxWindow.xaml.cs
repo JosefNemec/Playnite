@@ -17,11 +17,9 @@ using System.Windows.Shapes;
 
 namespace Playnite.FullscreenApp.Windows
 {
-    public partial class MessageBoxWindow : WindowBase, INotifyPropertyChanged
+    public partial class MessageBoxWindow : WindowBase
     {
         private MessageBoxResult result;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private string text = string.Empty;
         public string Text
@@ -126,11 +124,6 @@ namespace Playnite.FullscreenApp.Windows
         public MessageBoxWindow() : base()
         {
             InitializeComponent();
-        }
-
-        public void OnPropertyChanged([CallerMemberName]string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)

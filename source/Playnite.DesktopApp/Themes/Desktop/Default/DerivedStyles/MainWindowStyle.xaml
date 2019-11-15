@@ -40,20 +40,14 @@
                         </Border>
                     </AdornerDecorator>
                     <ControlTemplate.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False" />
-                                <Condition Binding="{Binding IsActive, Source={x:Static PlayniteApplication.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Opacity" Value="0.4" />
-                        </MultiDataTrigger>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter Property="Content" Value="2" TargetName="PART_ButtonMaximize"/>
                             <Setter Property="Padding" Value="8" TargetName="WindowBorder"/>
                         </Trigger>
-                        <Trigger Property="IsActive" Value="False">
+                        <DataTrigger Binding="{Binding HasChildWindow, Mode=OneWay, RelativeSource={RelativeSource Self}, TargetNullValue=False}" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" TargetName="WindowBorder"/>
-                        </Trigger>
+                            <Setter Property="Opacity" Value="0.4" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

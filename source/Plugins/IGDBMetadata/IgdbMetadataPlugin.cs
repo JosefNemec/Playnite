@@ -97,12 +97,6 @@ namespace IGDBMetadata
             return results;
         }
 
-        public string GetIgdbSearchString(string gameName)
-        {
-            var temp = gameName.Replace(":", " ").Replace("-", " ");
-            return Regex.Replace(temp, @"\s+", " ");
-        }
-
         internal static string GetGameInfoFromUrl(string url)
         {
             var data = HttpDownloader.DownloadString(url);

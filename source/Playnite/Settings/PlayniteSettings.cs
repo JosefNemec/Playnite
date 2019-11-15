@@ -409,7 +409,7 @@ namespace Playnite
         [JsonIgnore]
         public AspectRatio CoverAspectRatio => new AspectRatio(GridItemWidthRatio, GridItemHeightRatio);
 
-        private int gridItemWidthRatio = 27;
+        private int gridItemWidthRatio = 3;
         public int GridItemWidthRatio
         {
             get
@@ -426,7 +426,7 @@ namespace Playnite
             }
         }
 
-        private int gridItemHeightRatio = 38;
+        private int gridItemHeightRatio = 4;
         public int GridItemHeightRatio
         {
             get
@@ -1383,6 +1383,17 @@ namespace Playnite
             set
             {
                 postScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool downloadBackgroundsImmediately = true;
+        public bool DownloadBackgroundsImmediately
+        {
+            get => downloadBackgroundsImmediately;
+            set
+            {
+                downloadBackgroundsImmediately = value;
                 OnPropertyChanged();
             }
         }

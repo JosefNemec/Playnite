@@ -823,7 +823,7 @@ Sürüm {2}
     <sys:String x:Key="LOCSteamLinksCommunityHub">Topluluk Merkezi</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Tartışmalar</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Atölye</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Dikey kapak resimlerini indir</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">İlk kez kurulumu tamamlanamadı. Playnite şimdi işlemi tamamlamak için Masaüstü moduna sıfırlanıcak.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">En Son Oynananlar</sys:String>
