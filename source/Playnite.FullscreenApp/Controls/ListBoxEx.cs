@@ -21,9 +21,6 @@ namespace Playnite.FullscreenApp.Controls
         {
             SelectionChanged += ListBoxEx_SelectionChanged;
             this.GotFocus += ListBoxEx_GotFocus;
-
-            // Set to always left-to-right
-            FlowDirection = FlowDirection.LeftToRight;
         }
 
         private void ListBoxEx_GotFocus(object sender, RoutedEventArgs e)

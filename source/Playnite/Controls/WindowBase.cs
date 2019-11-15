@@ -107,7 +107,7 @@ namespace Playnite.Controls
                 Style = defaultStyle;
             }
             
-            if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+            if (Localization.IsRightToLeft)
             {
                 FlowDirection = FlowDirection.RightToLeft;
             }
