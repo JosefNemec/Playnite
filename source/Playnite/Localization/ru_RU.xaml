@@ -129,7 +129,7 @@
     <sys:String x:Key="LOCInstallationLabel">Настройки</sys:String>
     <sys:String x:Key="LOCActionsLabel">Действия</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Загрузка…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Загрузка…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Тип</sys:String>
     <sys:String x:Key="LOCProfileLabel">Профиль</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Профили</sys:String>
@@ -191,7 +191,7 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Невозможно получить иконку если отсутствует "Игровое действие" или выбран URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Загрузить только отсутствующие метаданные</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Включение этой опции пропустит загрузку метаданных для полей данных, которые уже содержат информацию.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Выбор игр</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Пожалуйста выберите у какой игры вы хотите обновить метаданные:</sys:String>
@@ -253,7 +253,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuShutdownSystem">Завершение работы</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Спящий режим</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Отправить систему в спящий режим</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Выбрать случайную игру</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поля игр, отображаемые на панели подробностей:</sys:String>
@@ -487,9 +487,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCAddPlatformTitle">Добавить</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Выбрать иконку</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Выбрать обложку</sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Выбрать изображение</sys:String>
     <sys:String x:Key="LOCSelectItemTitle"></sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">Выбрать фон</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Выбрать файл</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Выбрать URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Добавить</sys:String>
@@ -634,14 +634,14 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCChange">Изменено</sys:String>
     <sys:String x:Key="LOCAdvanced">Продвинутый</sys:String>
     <sys:String x:Key="LOCNever">Никогда</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">Не играл</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">Играл</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Завершил</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">Играю</sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned">Забросил</sys:String>
     <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">Планирую играть</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Статус</sys:String>
     <sys:String x:Key="LOCUserScore">Оценка пользователей</sys:String>
     <sys:String x:Key="LOCCriticScore">Оценка критиков</sys:String>
@@ -767,7 +767,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCEnterName">Введите имя</sys:String>
     <sys:String x:Key="LOCEnterNewName">Введите новое имя</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Менее часа</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">От 1 до 10 часов</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">От 10 до 100 часов</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">От 100 до 500 часов</sys:String>
@@ -841,6 +841,6 @@ IGDB > Официальный магазин:
     
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Если доступно несколько изображений, то используйте:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
 </ResourceDictionary>
