@@ -40,6 +40,7 @@
     <sys:String x:Key="LOCCrashReportIssue">クラッシュレポート</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite を再起動</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">ゲームを削除しますか？</sys:String>
