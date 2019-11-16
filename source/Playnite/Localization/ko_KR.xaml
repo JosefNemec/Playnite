@@ -35,15 +35,14 @@
     <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">이런, 문제가 발생했습니다…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
-        
-이 문제를 수정하는 것을 돕고 싶으시다면, 진단 패키지를 생성하고 ‘오류 보고’ 버튼을 통해 무슨 일이 일어났는지 알려주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
         
 이 문제를 수정하는 것을 돕고 싶으시다면, 분석 정보를 보내주세요. 감사합니다.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite 나가기</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">라이브러리 관리자</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 제거 하시겠습니까?</sys:String>
