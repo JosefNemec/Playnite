@@ -1,26 +1,19 @@
-﻿using System;
+﻿using Playnite.Common;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
-using System.Diagnostics;
-using Newtonsoft.Json;
-using Playnite.Common;
-using Playnite.Settings;
 
 namespace Playnite
 {
     public static class Diagnostic
     {
-        public static void CreateDiagPackage(string path)
+        public static void CreateDiagPackage(string path, string userActionsDescription)
         {
             var diagTemp = Path.Combine(PlaynitePaths.TempPath, "diag");
             FileSystem.CreateDirectory(diagTemp, true);
-            FileSystem.DeleteFile(path);    
-            
-            ZipFile.CreateFromDirectory(diagTemp, path);            
+            FileSystem.DeleteFile(path);
+
+            ZipFile.CreateFromDirectory(diagTemp, path);
             using (FileStream zipToOpen = new FileStream(path, FileMode.Open))
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
@@ -77,6 +70,14 @@ namespace Playnite
 
                     File.WriteAllText(playnitePath, Serialization.ToYaml(playniteInfo));
                     archive.CreateEntryFromFile(playnitePath, Path.GetFileName(playnitePath));
+
+                    // User actions description
+                    if (!string.IsNullOrWhiteSpace(userActionsDescription))
+                    {
+                        var descriptionPath = Path.Combine(diagTemp, "userActions.txt");
+                        File.WriteAllText(descriptionPath, userActionsDescription);
+                        archive.CreateEntryFromFile(descriptionPath, Path.GetFileName(descriptionPath));
+                    }
                 }
             }
 

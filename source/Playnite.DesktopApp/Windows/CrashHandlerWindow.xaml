@@ -24,8 +24,12 @@
                     Command="{Binding ReportIssueCommand}"/>
         </DockPanel>
         <TextBlock Text="{DynamicResource LOCCrashDescription}"
-                   Margin="10,10,10,20"
+                   Margin="10,10,10,10"
                    VerticalAlignment="Center" DockPanel.Dock="Top" 
                    TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
+        <Label Content="{DynamicResource LOCCrashUserActionsDescription}" DockPanel.Dock="Top"
+               Margin="10,10,10,0" FontSize="12"/>
+        <TextBox Name="TextBoxDescription" Text="{Binding Description}" Margin="10,10,10,10" MinLines="3"
+                 TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True"/>
     </DockPanel>
 </controls:WindowBase>
