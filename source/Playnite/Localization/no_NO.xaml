@@ -35,15 +35,14 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Uff da, her skjedde det noe feil…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Det skjedde en uoprettelig feil.
-
-Hvis du vil hjelpe oss å fikse problemet, vennligst opprett en diagnostikkpakke og trykk på 'Rapporter Kræsj' for å la oss vite hva som skjedde. Takk.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Det skjedde en uoprettelig feil.
 
 Hvis du vil hjelpe oss å fikse problemet, vennligst send diagnostikk-informasjon. Takk.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporter Programstopp</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Omstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Lukk Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Biblioteksbehandler</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern(e) spill?</sys:String>
