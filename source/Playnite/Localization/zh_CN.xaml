@@ -35,15 +35,14 @@
     <sys:String x:Key="LOCNoPlatform">没有平台</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">哦不，发生了一些坏事...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">发生了不可恢复的错误。
-        
-如果您想帮助我们解决此问题，请创建诊断包并使用“报告崩溃”按钮告诉我们发生了什么。 谢谢！</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">发生了不可恢复的错误。
         
 如果您想帮助我们解决此问题，请发送诊断信息。 谢谢！</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">报告问题</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重启Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">退出Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">库管理器</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">删除游戏？</sys:String>
