@@ -35,15 +35,14 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Brak platformy</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">O nie, stało się coś złego…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Wystąpił nieodwracalny błąd.
-        
-Jeśli chcesz nam pomóc rozwiązać ten problem, utwórz pakiet diagnostyczny i użyj przycisku "Zgłoś awarię", aby poinformować nas, co się stało. Dziękujemy.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Wystąpił nieodwracalny błąd.
         
 Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostyczne. Dziękujemy.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Zgłoś awarię</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Wyjdź z Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Zarządzanie biblioteką</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć grę/y?</sys:String>
