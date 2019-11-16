@@ -35,15 +35,20 @@ Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platform Yok</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh hayır, kötü bir şey oldu…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kurtarılamaz hata oluştu ve Playnite çöktü.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kurtarılamaz bir hata oluştu.
         
-Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen sorun giderme paketi oluşturun ve ne olduğunu bize bildirmek için 'Hatayı Rapor Et' düğmesini kullanın. Teşekkürler.</sys:String>
+Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen çökmeden önce gerçekleştirilen eylemleri kısaca açıklayın ve ardından bir tanı paketi oluşturun. Çevrimiçiyseniz, paket, analiz için Playnite sunucusuna yüklenecektir.
+
+Alternatif olarak, GitHub'da yeni bir sorun oluşturmak ve çöküşü elle bildirmek için 'Hata Bildir' düğmesini kullanabilirsiniz.
+
+Yardımınız için teşekkürler.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz hata oluştu.
         
 Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgilerini gönderin. Teşekkür ederim.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Çökmeyi Rapor Et</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite'ı Yeniden Başlat</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite'dan Çık</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Çökmeden önce yapılan eylemler (İngilizce):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Kütüphane Yöneticisi</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Oyun(lar) Kaldırılsın mı?</sys:String>
@@ -405,9 +410,11 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Ekran</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Metin biçimlendirme kipi</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Yazı işleme kipi</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Metin oluşturma ve biçimlendirme seçenekleri şimdilik oyunun açıklama metnine uygulanamaz.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Arka plan resimlerini hemen indir</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Etkinleştirilirse, Playnite üst verileri indirirken arka plan resmini indirir. Bu şekilde daha fazla disk alanı kullanır ancak resmi çevrimdışı kullanılabilir kılar.
+        
+Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğunda indirilir. Daha az alan kullanır, ancak resim gösterilmeden önce bir gecikmeye neden olabilir ve bazı resimler çevrimdışı olunduğunda kullanılamayabilir.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
@@ -841,6 +848,6 @@ Sürüm {2}
     
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Resim kullanılamıyorsa ekran görüntüsü kullan</sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Birden fazla resim mevcutsa, şunu kullan:</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} için arka plan resmi seç</sys:String>
 </ResourceDictionary>
