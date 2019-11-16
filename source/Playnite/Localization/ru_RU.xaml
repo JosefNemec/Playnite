@@ -35,15 +35,14 @@
     <sys:String x:Key="LOCNoPlatform">Нет платформы</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">О нет, что-то пошло не так…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Произошла неисправимая ошибка.
-        
-Если вы хотите помочь нам исправить эту проблему, пожалуйста, отправьте нам пакет данных для диагностики и используйте кнопку 'Сообщить об ошибке', чтобы сообщить нам, что случилось. Спасибо.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Произошла неисправимая ошибка.
 
 Чтобы помочь нам исправить эту проблему, пожалуйста, отправьте диагностическую информацию. Спасибо.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Сообщить о проблеме</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Перезагрузить</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Закрыть Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Менеджер библиотеки</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Убрать игру(ы)?</sys:String>
