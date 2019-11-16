@@ -35,15 +35,14 @@ Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Bez platformy</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Ale ne, stalo se něco špatného…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Objevila se fatální chyba.
-        
-Pokud nám chcete pomoci tento problém napravit, vytvořte prosím diagnostický balíček a použijte tlačítko 'Nahlásit pád', abyste nám dali vědět, co se stalo. Děkujeme.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Objevila se fatální chyba.
         
 Pokud nám chcete pomoci tento problém napravit, odešlete prosím diagnostický balíček. Děkujeme.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Nahlásit pád</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartovat Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Opustit Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Správce knihovny</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Odstranit hru(y)?</sys:String>
