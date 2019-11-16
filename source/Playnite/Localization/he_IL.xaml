@@ -35,15 +35,20 @@
     <sys:String x:Key="LOCNoPlatform">אין פלטפורמה</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">אוי לא, משהו רע קרה…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">שגיאה הלא ניתנת להתאוששות.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">קרתה שגיאה שלא ניתנת להתאוששות.
         
-אם תרצו לעזור לתקן את הבעיה הזאת, אנא צרו חבילת אבחון והשתמשו בכפתור "דווח קריסה" כדי לאפשר לנו לדעת מה קרה. תודה.</sys:String>
+אם ברצונך לעזור לנו לתקן את הבעיה, אנא תאר בקצרה את הפעולות שנעשו לפני הקריסה ואז צור חבילת אבחון. אם אתם מקוונים, החבילה תועלה לשרתי Playnite לתחקור.
+
+ניתן גם להשתמש בכפתור "דווח על קריסה" ליצירת באג חדש ב GitHub ולדווח על הקריסה ידנית.
+
+תודה על העזרה.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">שגיאה הלא ניתנת להתאוששות.
         
 אם תרצו לעזור לתקן את הבעיה הזאת, אנא שלחו מידע אבחון. תודה.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">דווח על קריסה</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">הפעל מחדש את Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">צא מ Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">פעולות שקרו לפני הקריסה (באנגלית):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">מנהל ספרייה</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">הסר משחק(ים)?</sys:String>
