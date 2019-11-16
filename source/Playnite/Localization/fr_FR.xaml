@@ -35,15 +35,14 @@ Indéterminé - Aucun changement</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sans plateforme</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh non, quelque chose s'est mal passé…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Une erreur est survenue.
-        
-Si vous souhaitez nous aider à corriger ce problème, veuillez créer un paquet diagnostique et utiliser le bouton 'Signaler un Bug' pour nous signaler le problème. Merci.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Une erreur est survenue.
         
 Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rapport de bug. Merci.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Signaler un Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Relancer Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Quitter Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gestionnaire de bibliothèque</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Supprimer le(s) jeu(x) ?</sys:String>
