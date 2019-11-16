@@ -406,8 +406,10 @@ O novo local do banco de dados será usado somente após o aplicativo ser reinic
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modo de formatação de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderização de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Atualmente, as opções de renderização e formatação de texto não se aplicam ao texto na descrição dos jogos.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Baixar imagens de fundo imediatamente</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se habilitado, o Playnite baixará as imagens de fundo enquanto baixa os metadados, usando mais espaço em disco e disponibilizando as imagens mesmo quando estiver offline.
+        
+Se desabilitado, as imagens de fundo só serão baixadas quando necessário, usando menos espaço, mas podendo resultar em atrasos na exibição das imagens e algumas imagens podem não estar disponíveis quando estiver offline.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preenchimento</sys:String>
@@ -789,7 +791,7 @@ Você pode tentar corrigir o problema:
 Por {1}
 Versão {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Falha ao instalar o tema.
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Falha ao instalar tema.
         
 {0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Você deseja instalar este novo tema? Qualquer instalação existente será substituída.
@@ -826,7 +828,7 @@ Versão {2}
     <sys:String x:Key="LOCSteamLinksCommunityHub">Central da comunidade</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Discussões</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Oficina</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers">Baixar imagem de capa vertical</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Baixar imagens de capa verticais</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">A configuração inicial não foi concluída. O Playnite irá reiniciar no modo janela para que o processo seja concluído.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jogados recentemente</sys:String>
