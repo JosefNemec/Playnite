@@ -40,6 +40,7 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Pranešti apie problemą</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Iš naujo paleisti Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Uždaryti Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Bibliotekos vedlys</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Pašalinti žaidimą(us)?</sys:String>
