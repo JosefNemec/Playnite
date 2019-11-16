@@ -35,15 +35,14 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Geen Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nee! Er is iets misgegaan…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Onherstelbare fout opgetreden.
-        
-Als u ons wilt helpen dit probleem op te lossen, maak dan een diagnostisch pakket aan en gebruik de 'Rapporteer Crash' knop om ons te laten weten wat er is gebeurd. Dank u.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
         
 Als u ons wilt helpen dit probleem op te lossen, stuur dan diagnostische informatie. Dank u.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporteer Probleem</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Herstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sluit Playnite af</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Bibliotheek Beheerder</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
