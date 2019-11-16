@@ -35,15 +35,14 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen plattform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nej, något dumt inträffade…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite har stött på ett problem som den inte gick att lösa.
-        
-Om du vill hjälpa oss med detta fel, skapa ett felsökningspaket och använd "Rapportera en Krash" för att meddela oss om vad som hänt. Tack.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ett kritiskt fel har inträffat.
         
 Om du vill hjälpa med att lösa detta fel, var vänlig och skicka in felsökningsinformation. Tack.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapportera en krasch</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Starta om Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Avsluta Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Bibliotekshanterare</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Ta bort Spel?</sys:String>
