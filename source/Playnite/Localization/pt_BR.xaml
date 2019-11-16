@@ -37,13 +37,18 @@ Indeterminada - Nenhuma alteração (quando editando vários jogos)</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Opa, isso não deveria ter acontecido…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ocorreu um erro irrecuperável.
         
-Se você deseja nos ajudar a corrigir esse problema, crie um pacote de diagnósticos e use o botão "Relatar falha" para nos informar sobre o que aconteceu. Obrigado.</sys:String>
+Se você deseja nos ajudar a corrigir este problema, por favor descreva brevemente as ações executadas antes do travamento e então crie um pacote de diagnóstico. Se você estiver online, o pacote será enviado aos servidores do Playnite para análise.
+
+Ou também, você pode usar o botão "Relatar falha" para criar um tópico no Github e relatar o travamento manualmente.
+
+Agradecemos a sua ajuda.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ocorreu um erro irrecuperável.
         
 Se você deseja nos ajudar a corrigir este problema, por favor envie informações de diagnóstico. Obrigado.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Relatar falha</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar o Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sair do Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Ações executadas antes do travamento (em inglês):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gerenciador da biblioteca</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remover Jogo(s)?</sys:String>
