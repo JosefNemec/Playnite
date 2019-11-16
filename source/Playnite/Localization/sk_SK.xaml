@@ -40,6 +40,7 @@ Neurčité - Žiadné zmeny (počas upravovania viacerích hier)</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Nahlásiť chybu</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reštartovať Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Zmazať Hru(y)?</sys:String>
