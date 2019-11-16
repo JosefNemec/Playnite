@@ -35,15 +35,14 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sense plataforma</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Sembla que alguna cosa ha anat malament…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">S'ha produït un error irrecuperable i Playnite es tancarà.
-        
-Si vols ajudar-nos a solucionar aquest problema, crea un Paquet de diagnòstic i utilitza el botó "Reportar un problema" per fer-nos saber que ha passat. Gràcies.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">S'ha produït un error irrecuperable.
 
 Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació de diagnòstic. Gràcies.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar un problema</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reinicia Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sortir de Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Organitzador de Llibreria</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Eliminar joc(s)?</sys:String>
