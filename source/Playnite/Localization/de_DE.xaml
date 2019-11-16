@@ -36,14 +36,19 @@ Unentschieden - Keine Änderung (bei Bearbeitung mehrerer Spiele)</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nein, das hätte nicht passieren dürfen …</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ein schwerwiegendes Problem ist aufgetreten.
+        
+Falls du uns beim Beheben dieses Problems helfen möchtest, beschreibe bitte kurz die vor dem Absturz unternommenen Aktionen und erstelle dann die Diagnosedaten. Falls du online bist, werden diese zur Analyse auf den Playnite-Server hochgeladen.
 
-Falls du uns beim Beheben dieses Problems helfen möchtest, erstelle bitte Diagnosedaten und teile uns mittels der Schaltfläche »Absturz melden« mit, was passiert ist. Danke!</sys:String>
+Ersatzweise kannst du die Schaltfläche »Absturz melden« verwenden, um einen neuen Fehlerbericht auf GitHub zu erstellen und den Absturz manuell melden.
+
+Vielen Dank für deine Hilfe.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ein schwerwiegendes Problem ist aufgetreten.
         
 Falls du uns beim Beheben dieses Problems helfen möchtest, sende bitte Diagnoseinformationen. Vielen Dank.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Absturz melden</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite neu starten</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite beenden</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Unternommene Aktionen vor dem Absturz (in Englisch):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Bibliotheksverwaltung</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Spiel(e) entfernen?</sys:String>
@@ -559,12 +564,11 @@ Diese wird derzeit von {1} Spielen und {2} Emulatoren verwendet.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Fehler beim Öffnen der Datenbank.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Fehler beim Import: Datenbank ist nicht geöffnet.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Kein Zugriff auf Bibliotheksdatenbank: Datei »{0}« wird von einem anderen Prozess verwendet oder befindet sich an einem unerreichbaren Speicherort.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationError">Fehler beim Erstellen von Diagnosedaten.</sys:String>
-    <sys:String x:Key="LOCDiagPackageUploadError">Fehler beim Hochladen von Diagnosedaten.</sys:String>
-    <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnoseinformationen wurden erfolgreich versendet.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">Diagnosedaten konnte nicht erstellt werden.</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">Diagnosedaten konnten nicht automatisch hochgeladen werden.</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnosedaten wurden erfolgreich versendet.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnosedaten wurden erfolgreich erstellt und hochgeladen.
-   
-Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die Kennung deiner Diagnosedaten:</sys:String>
+Bitte ergänze deinen Absturzbericht um die folgende Kennung:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Fehler beim Import der Steam-Kategorien.</sys:String>
     
