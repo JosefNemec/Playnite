@@ -35,15 +35,20 @@ Indeterminato - Nessuna modifica (mentre si modificano di più giochi)</sys:Stri
     <sys:String x:Key="LOCNoPlatform">Nessuna piattaforma</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, è successo qualcosa di brutto…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Si è verificato un errore fatale.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">È accaduto un'errore irrecuperabile.
+        
+Se desideri aiutarci a risolvere questo problema, descrivici brevemente le azioni avvenute prima dell'arresto per poi creare un pacchetto diagnostico.  Se sei collegato online, il pacchetto sarà caricato al server di Playnite per l'analisi.
 
-Se vuoi aiutarci a risolvere il problema, si prega di creare un pacchetto di diagnostica e di usare il tasto "Segnala crash" per farci sapere cosa è successo. Grazie.</sys:String>
+Alternativamente, puoi utilizzare il tasto "Segnalazione Arresto' per creare un nuovo topic su Github e segnalare l'arresto manualmente.
+
+Grazie per il tuo aiuto.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Si è verificato un errore fatale.
         
 Se vuoi aiutarci a risolvere questo problema, invia informazioni diagnostiche. Grazie.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Segnala crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Riavvia Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Esci da Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Azioni eseguite prima dell'arresto (in inglese):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gestione libreria</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Rimuovere gioco/i?</sys:String>
