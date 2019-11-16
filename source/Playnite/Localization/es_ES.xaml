@@ -35,15 +35,14 @@ Indeterminado - Sin Cambios (al editar múltiples juegos)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sin plataforma</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, ha ocurrido algo malo…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ha ocurrido un error irrecuperable.
-
-Si quieres ayudarnos a arreglar el problema, por favor, crea un paquete de diagnóstico y usa el botón de "Reportar Crash" para hacernos saber que ha pasado. Gracias.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ha ocurrido un error irrecuperable.
 
 Si quieres ayudarnos a arreglar el problema, por favor, envíanos la información de diagnóstico. Gracias.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Salir de Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Administrador de biblioteca</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">¿Eliminar Juego(s)?</sys:String>
