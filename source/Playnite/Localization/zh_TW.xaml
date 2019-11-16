@@ -35,15 +35,14 @@
     <sys:String x:Key="LOCNoPlatform">沒有平台</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">喔不，出錯了...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">發生無法復原的錯誤。
-
-如果您願意幫助我們解決此問題，請創建診斷資料報告並使用 "回報錯誤" 按鈕讓我們知道發生了甚麼，謝謝。</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">發生無法復原的錯誤。
 
 如果您願意幫助我們解決此問題，請傳送診斷資料報告給我們，謝謝。</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">問題回報</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重新啟動Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">離開Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">資料庫管理員</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">移除遊戲()?</sys:String>
