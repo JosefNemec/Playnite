@@ -805,6 +805,17 @@ Versione {2}
     
 {0}</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">L'immagine/le immagini selezionato/te potrebbero essere troppo grandi per la prestazione ottimale. Usare immagini molto grandi potrebbe risultare in una responsività della UI pesantemente peggiorata e un'aumento dell'utilizzo della memoria.
+
+Dimensioni massime raccomandate:
+Icone: 256px altezza
+Copertine: 800px altezza
+Sfondi: 1080px altezza
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Avviso di prestazione</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Non mostrare più</sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Traguardi</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
