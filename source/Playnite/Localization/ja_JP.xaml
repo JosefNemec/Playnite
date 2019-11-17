@@ -777,6 +777,11 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">デフォルトのウェブブラウザを使って次のウェブページに行きます。続行しますか？</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
     <sys:String x:Key="LOCCommonLinksForum"></sys:String>
