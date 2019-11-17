@@ -35,14 +35,20 @@ Indéterminé - Aucun changement</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sans plateforme</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh non, quelque chose s'est mal passé…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Une erreur est survenue.
+        
+Si vous souhaitez nous aider à corriger ce problème, vous pouvez brièvement décrire ce que vous faisiez au moment du crash puis créer un dossier de diagnostic. Si vous êtes connecté à internet, le rapport généré sera automatiquement envoyé aux serveurs de Playnite pour être analysé.
+
+Vous pouvez également cliquer sur le bouton 'Signaler un Crash' pour créer une nouvelle entrée dans GitHub et rédiger le rapport de crash manuellement. 
+
+Merci de votre aide.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Une erreur est survenue.
         
 Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rapport de bug. Merci.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Signaler un Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Relancer Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Quitter Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Actions au moment du crash (à rédiger en anglais) :</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gestionnaire de bibliothèque</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Supprimer le(s) jeu(x) ?</sys:String>
@@ -398,8 +404,10 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsTextFormattingMode">Formatage du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Mode de rendu du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Les options de rendu et de formatage du texte ne s'appliquent pas actuellement au texte de description du jeu.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Téléchargement les images de fond immédiatement</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Lorsque cette option est active, Playnite téléchargera les images de fond en même temps que le reste des métadonnées. Cela nécessitera davantage d'espace disque mais rendra les images de fond disponible lorsque vous êtes hors-ligne.
+        
+Si cette option est désactivée, les images de fond ne seront téléchargées que lorsqu'elles sont sollicitées. Cela nécessitera moins d'espace disque mais les images de fond pourraient ne pas être disponibles lorsque vous êtes hors-ligne.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
