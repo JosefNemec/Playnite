@@ -810,6 +810,11 @@ Versão {2}
     
 {0}</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Não mostrar novamente</sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Conquistas</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Fórum</sys:String>
