@@ -809,6 +809,11 @@ IGDB > חנות רשמית:
     
 {0}</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">אזהרת ביצועים</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">אל תציג שוב</sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">הישגים</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">פורום</sys:String>
