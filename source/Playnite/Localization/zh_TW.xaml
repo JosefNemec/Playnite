@@ -803,6 +803,11 @@ By {1}
     
 {0}</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">成就</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">論壇</sys:String>
