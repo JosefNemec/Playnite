@@ -810,6 +810,17 @@ Version {2}
     
 {0}</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Die ausgewählten Bilder sind möglicherweise zu groß für optimale Leistung. Das Verwenden sehr großer Bilder führt unter Umständen zu einer deutlich schlechteren Reaktionsfähigkeit der Benutzeroberfläche und erhöhtem Speicherbedarf.
+
+Empfohlene Maximalgrößen:
+Symbole: 256 px hoch
+Cover: 800 px hoch
+Hintergründe: 1080 px hoch
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Leistungswarnung</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Nicht erneut zeigen</sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Errungenschaften</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
