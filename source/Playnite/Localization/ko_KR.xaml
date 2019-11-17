@@ -800,6 +800,11 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
 
 {0}</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">도전 과제</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">포럼</sys:String>
