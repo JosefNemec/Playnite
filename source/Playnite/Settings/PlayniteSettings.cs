@@ -1398,6 +1398,17 @@ namespace Playnite
             }
         }
 
+        private bool showImagePerformanceWarning = true;
+        public bool ShowImagePerformanceWarning
+        {
+            get => showImagePerformanceWarning;
+            set
+            {
+                showImagePerformanceWarning = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

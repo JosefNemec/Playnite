@@ -54,7 +54,8 @@ namespace Playnite.DesktopApp
                             Dialogs,
                             new ResourceProvider(),
                             Extensions,
-                            Application.Api);
+                            Application.Api,
+                            AppSettings);
             return model.OpenView();
         }
 
@@ -67,7 +68,8 @@ namespace Playnite.DesktopApp
                             Dialogs,
                             new ResourceProvider(),
                             Extensions,
-                            Application.Api);
+                            Application.Api,
+                            AppSettings);
             return model.OpenView();
         }
     }

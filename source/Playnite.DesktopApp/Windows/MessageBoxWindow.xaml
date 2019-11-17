@@ -64,7 +64,8 @@
                  IsReadOnly="{Binding IsTextReadOnly, ElementName=WindowMessageBox}"
                  Text="{Binding InputText, ElementName=WindowMessageBox}"
                  Visibility="{Binding ShowInputField, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal"
+                    Name="StackButtons">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
                     <Style.Triggers>

@@ -553,6 +553,7 @@
                                     <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveIconCommand}" />
                                 </StackPanel>
+                                <TextBlock Text="{Binding IconMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
                                 <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
                                        DockPanel.Dock="Top" Height="64"
@@ -583,6 +584,7 @@
                                     <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveImageCommand}" />
                                 </StackPanel>
+                                <TextBlock Text="{Binding CoverMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
                                 <Image Source="{Binding EditingGame.CoverImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}"
                                        Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top"
@@ -621,6 +623,7 @@
                                     <TextBox IsReadOnly="True" DockPanel.Dock="Left" Margin="5,0,0,0"
                                          Text="{Binding EditingGame.BackgroundImage}" />
                                 </DockPanel>
+                                <TextBlock Text="{Binding BackgroundMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
                                 <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}"
                                    Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
                                    DockPanel.Dock="Top"

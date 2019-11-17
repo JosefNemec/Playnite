@@ -450,7 +450,7 @@ namespace Playnite.Database
             {
                 lock (GetFileLock(dbPath))
                 {
-                    using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                    using (var fStream = FileSystem.OpenReadFileStreamSafe(filePath))
                     {
                         return BitmapExtensions.BitmapFromStream(fStream);
                     }

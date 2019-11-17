@@ -23,6 +23,7 @@ namespace Playnite.DesktopApp.Windows
     public partial class MessageBoxWindow : WindowBase
     {
         private MessageBoxResult result;
+        private object resultCustom;
 
         private string text = string.Empty;
         public string Text
@@ -140,7 +141,11 @@ namespace Playnite.DesktopApp.Windows
             InitializeComponent();
         }
 
-        public void ShowInputReadOnly(Window owner, string messageBoxText, string caption, string inputText)
+        public void ShowInputReadOnly(
+            Window owner,
+            string messageBoxText,
+            string caption,
+            string inputText)
         {
             if (owner == null)
             {
@@ -162,7 +167,11 @@ namespace Playnite.DesktopApp.Windows
             ShowDialog();
         }
 
-        public StringSelectionDialogResult ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)
+        public StringSelectionDialogResult ShowInput(
+            Window owner,
+            string messageBoxText,
+            string caption,
+            string defaultInput)
         {
             if (owner == null)
             {
@@ -193,7 +202,14 @@ namespace Playnite.DesktopApp.Windows
             }
         }
 
-        public MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
+        public MessageBoxResult Show(
+            Window owner,
+            string messageBoxText,
+            string caption,
+            MessageBoxButton button,
+            MessageBoxImage icon,
+            MessageBoxResult defaultResult,
+            MessageBoxOptions options)
         {
             if (owner == null)
             {
@@ -242,7 +258,57 @@ namespace Playnite.DesktopApp.Windows
             return result;
         }
 
-        private void ButtonOK_Click(object sender, RoutedEventArgs e)
+        public object ShowCustom(
+            Window owner,
+            string messageBoxText,
+            string caption,
+            MessageBoxImage icon,
+            List<object> options,
+            List<string> optionsTitles)
+        {
+            if (owner == null)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            }
+
+            if (this != owner)
+            {
+                Owner = owner;
+            }
+
+            Text = messageBoxText;
+            Caption = caption;
+            DisplayIcon = icon;
+
+            ShowOKButton = false;
+            ShowYesButton = false;
+            ShowNoButton = false;
+            ShowCancelButton = false;
+            ShowInputField = false;
+
+            for (int i = 0; i < options.Count; i++)
+            {
+                var option = options[i];
+                var title = optionsTitles[i];
+
+                var button = new Button();
+                button.Content = title;
+                button.Style = ResourceProvider.GetResource("BottomButton") as Style;
+                button.Tag = option;
+                button.Click += (s, __) =>
+                {
+                    resultCustom = (s as Button).Tag;
+                    Close();
+                };
+
+                StackButtons.Children.Add(button);
+            }
+
+            ShowDialog();
+            return resultCustom;
+        }
+
+            private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             result = MessageBoxResult.OK;
             Close();
