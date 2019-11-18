@@ -806,6 +806,11 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
             }
+            else if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType))
+            {
+                SelectedGame = null;
+                SelectedGameDetails = null;
+            }
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
