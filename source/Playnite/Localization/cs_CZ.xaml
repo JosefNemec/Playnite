@@ -35,14 +35,20 @@ Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Bez platformy</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Ale ne, stalo se něco špatného…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Stala se závažná chyba.
+        
+Pokud nám chcete pomoci chybu opravit, prosím krátce popište vaše akce před tím, než program spadl, a poté vytvořte diagnostický balíček. Pokud jste připojeni k internetu, tento balíček bude nahrán na servery Playnite k analýze.
+
+Alternativně můžete použít tlačítko 'Nahlásit pád' pro vytvoření nové issue na GitHubu a nahlášení chyby manuálně.
+
+Děkujeme za pomoc.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Objevila se fatální chyba.
         
 Pokud nám chcete pomoci tento problém napravit, odešlete prosím diagnostický balíček. Děkujeme.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Nahlásit pád</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartovat Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Opustit Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Akce provedené před pádem programu (v angličtině):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Správce knihovny</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Odstranit hru(y)?</sys:String>
@@ -804,9 +810,15 @@ Verze {2}
     
 {0}</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Obrázek/obrázky, co jste vybrali, může být příliš velký pro optimální výkon. Použití příliš velkých obrázků může vést k výrazně zhoršené plynulosti UI a zvýšenému použití paměti RAM.
+
+Maximální doporučené velikosti:
+Ikony: 256px výška
+Obálky: 800px výška
+Pozadí: 1080p výška
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Varování o výkonu</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Příště nezobrazovat</sys:String>
 
 
     <!--Common Library-->
