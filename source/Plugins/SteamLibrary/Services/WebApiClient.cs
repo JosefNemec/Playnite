@@ -20,7 +20,7 @@ namespace SteamLibrary.Services
 
         public static string GetRawStoreAppDetail(uint appId)
         {
-            var url = $"https://store.steampowered.com/api/appdetails?appids={appId}";
+            var url = $"https://store.steampowered.com/api/appdetails?appids={appId}&l=english";
             return HttpDownloader.DownloadString(url);
         }
 
