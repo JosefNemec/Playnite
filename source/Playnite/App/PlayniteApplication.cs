@@ -61,6 +61,7 @@ namespace Playnite
         public PlayniteAPI Api { get; set; }
         public GameControllerFactory Controllers { get; set; }
         public CmdLineOptions CmdLine { get; set; }
+        public DpiScale DpiScale { get; set; }
 
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }

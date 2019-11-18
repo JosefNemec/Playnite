@@ -554,7 +554,7 @@
                                         Command="{Binding RemoveIconCommand}" />
                                 </StackPanel>
                                 <TextBlock Text="{Binding IconMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
-                                <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}"
+                                <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
                                        DockPanel.Dock="Top" Height="64"
                                        AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
@@ -585,7 +585,7 @@
                                         Command="{Binding RemoveImageCommand}" />
                                 </StackPanel>
                                 <TextBlock Text="{Binding CoverMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
-                                <Image Source="{Binding EditingGame.CoverImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}"
+                                <Image Source="{Binding EditingGame.CoverImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top"
                                        AutomationProperties.HelpText="{Binding EditingGame.CoverImage, TargetNullValue=''}"/>

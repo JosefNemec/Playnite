@@ -1089,6 +1089,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
+            application.DpiScale = VisualTreeHelper.GetDpi(Window.Window);
             SetViewSizeAndPosition(IsFullScreen);
             InitializeView();
         }

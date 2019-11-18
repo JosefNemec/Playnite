@@ -237,10 +237,12 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(ImageCover,
                     Image.SourceProperty,
                     GetGameBindingPath(nameof(GamesCollectionViewEntry.CoverImageObject)),
-                    converter: new NullToDependencyPropertyUnsetConverter());
+                    converter: new NullToDependencyPropertyUnsetConverter(),
+                    mode: BindingMode.OneWay);
                 BindingTools.SetBinding(ImageCover,
                     Image.VisibilityProperty,
-                    nameof(GameDetailsViewModel.CoverVisibility));
+                    nameof(GameDetailsViewModel.CoverVisibility),
+                    mode: BindingMode.OneWay);
             }
 
             ImageIcon = Template.FindName("PART_ImageIcon", this) as Image;
@@ -250,18 +252,21 @@ namespace Playnite.DesktopApp.Controls.Views
                 sourceBinding.Bindings.Add(new Binding()
                 {
                     Path = new PropertyPath(GetGameBindingPath(nameof(GamesCollectionViewEntry.IconObject))),
-                    Converter = new NullToDependencyPropertyUnsetConverter()
+                    Converter = new NullToDependencyPropertyUnsetConverter(),
+                    Mode = BindingMode.OneWay
                 });
                 sourceBinding.Bindings.Add(new Binding()
                 {
                     Path = new PropertyPath(GetGameBindingPath(nameof(GamesCollectionViewEntry.DefaultIconObject))),
-                    Converter = new NullToDependencyPropertyUnsetConverter()
+                    Converter = new NullToDependencyPropertyUnsetConverter(),
+                    Mode = BindingMode.OneWay
                 });
 
                 BindingOperations.SetBinding(ImageIcon, Image.SourceProperty, sourceBinding);
                 BindingTools.SetBinding(ImageIcon,
                     Image.VisibilityProperty,
-                    nameof(GameDetailsViewModel.IconVisibility));
+                    nameof(GameDetailsViewModel.IconVisibility),
+                    mode: BindingMode.OneWay);
             }
 
             ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
@@ -270,7 +275,8 @@ namespace Playnite.DesktopApp.Controls.Views
                 SetBackgroundBinding();
                 BindingTools.SetBinding(ImageBackground,
                     Image.VisibilityProperty,
-                    nameof(GameDetailsViewModel.BackgroundVisibility));
+                    nameof(GameDetailsViewModel.BackgroundVisibility),
+                    mode: BindingMode.OneWay);
             }
 
             SetElemVisibility(ref ElemPlayTime, "PART_ElemPlayTime", nameof(GameDetailsViewModel.PlayTimeVisibility));

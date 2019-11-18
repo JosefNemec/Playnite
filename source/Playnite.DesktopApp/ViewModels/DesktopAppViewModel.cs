@@ -1452,6 +1452,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
+            application.DpiScale = System.Windows.Media.VisualTreeHelper.GetDpi(Window.Window);
             if (AppSettings.StartMinimized)
             {
                 WindowState = WindowState.Minimized;

@@ -2381,7 +2381,10 @@ namespace Playnite.DesktopApp.ViewModels
             if (ico != null)
             {
                 FileSystem.PrepareSaveFile(tempPath);
-                ico.ToBitmap().Save(tempPath, ImageFormat.Png);
+                using (var bitmap = ico.ToBitmap())
+                {
+                    bitmap.Save(tempPath, ImageFormat.Png);
+                }
             }
 
             return tempPath;
@@ -2986,14 +2989,22 @@ namespace Playnite.DesktopApp.ViewModels
 
         private string GetImageProperties(string image)
         {
-            var imagePath = ImageSourceManager.GetImagePath(image);
-            if (!imagePath.IsNullOrEmpty())
+            try
             {
-                var props = Images.GetImageProperties(imagePath);
-                return $"{props?.Width}x{props.Height}px";
+                var imagePath = ImageSourceManager.GetImagePath(image);
+                if (!imagePath.IsNullOrEmpty())
+                {
+                    var props = Images.GetImageProperties(imagePath);
+                    return $"{props?.Width}x{props.Height}px";
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
-            else
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                logger.Error(e, $"Failed to get metadata from image  {image}");
                 return string.Empty;
             }
         }

@@ -588,7 +588,10 @@ namespace Playnite.DesktopApp.ViewModels
 
                 path = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
                 FileSystem.PrepareSaveFile(path);
-                ico.ToBitmap().Save(path, System.Drawing.Imaging.ImageFormat.Png);
+                using (var bitmap = ico.ToBitmap())
+                {
+                    bitmap.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+                }
             }
 
             platform.Icon = path;

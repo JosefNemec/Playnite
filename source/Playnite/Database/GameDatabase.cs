@@ -437,7 +437,7 @@ namespace Playnite.Database
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
         }
 
-        public BitmapImage GetFileAsImage(string dbPath)
+        public BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null)
         {
             CheckDbState();
             var filePath = GetFullFilePath(dbPath);
@@ -452,7 +452,7 @@ namespace Playnite.Database
                 {
                     using (var fStream = FileSystem.OpenReadFileStreamSafe(filePath))
                     {
-                        return BitmapExtensions.BitmapFromStream(fStream);
+                        return BitmapExtensions.BitmapFromStream(fStream, loadProperties);
                     }
                 }
             }
