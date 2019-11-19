@@ -398,7 +398,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Дисплей</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
@@ -639,7 +639,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCCompletionStatusCompleted">Завершил</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlaying">Играю</sys:String>
     <sys:String x:Key="LOCCompletionStatusAbandoned">Забросил</sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold">В ожидании</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlanToPlay">Планирую играть</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Статус</sys:String>
     <sys:String x:Key="LOCUserScore">Оценка пользователей</sys:String>
@@ -700,8 +700,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCThemeTestWatchChanges">Посмотреть изменения файла</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Автоматически применить тему при изменении исходного файла</sys:String>
     <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Выполнить перед запуском игры</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Выполнить после выхода из игры</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Сохранить по умолчанию</sys:String>
@@ -802,7 +802,7 @@ IGDB > Официальный магазин:
 
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Не показывать снова</sys:String>
 
 
     <!--Common Library-->
@@ -829,7 +829,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSteamLinksCommunityHub">Центр сообщества</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Обсуждения</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Мастерская</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Загружать вертикальные обложки</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Первичная настройка не завершена. Playnite будет запущен в обычном режиме, чтобы закончить процедуру.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Последние запущенные</sys:String>
@@ -840,11 +840,11 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCGameListFiltered">Применена сортировка.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Результаты поиска для:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Элемент с таким именем уже существует.</sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Ограничить подбор текущим фильтром</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Подобрать другую</sys:String>
     
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Если доступно несколько изображений, то используйте:</sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Выбрать фоновое изображение для: {0}</sys:String>
 </ResourceDictionary>
