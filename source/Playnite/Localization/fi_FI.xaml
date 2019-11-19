@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Kieli</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Poistu</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Suodatin käytössä</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Suodatin pois käytöstä</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Muut suodattimet</sys:String>
     <sys:String x:Key="LOCFilters">Suodattimet</sys:String>
     <sys:String x:Key="LOCFilter">Suodatin</sys:String>
@@ -128,7 +128,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCInstallationLabel">Asenna</sys:String>
     <sys:String x:Key="LOCActionsLabel">Toiminnot</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Ladataan…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Ladataan…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tyyppi</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profiili</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiilit</sys:String>
@@ -190,7 +190,7 @@ Tuottaa tuloksen: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Kuvaketta ei voida hakea, jos Pelaa-toiminto puuttuu tai se on asetettu URL:ksi.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Lataa vain puuttuva metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ottamalla tämän valinnan käyttöön metadataa ei ladata niille kentille, jotka jo sisältävät tietoa.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Pelikokoelma</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Valitse pelit jotka tulisi päivittää uudella metadatalla:</sys:String>
@@ -252,7 +252,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCMenuShutdownSystem">Sammuta järjestelmä</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Aseta järjestelmä valmiustilaan</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Valitse satunnainen peli</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Lisätietopaneelissa näytettävät kentät:</sys:String>
@@ -294,7 +294,7 @@ Suosi virallisen kaupan dataa ja jos ei saatavilla, käytä IGDB.com tietokantaa
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Tuo kirjaston muutokset automaattisesti</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Tuo asennetut pelit</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount">Yhdistä tili</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Tuo poistetut pelit</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Tuo kaikki pelit</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Tuo kaikki pelit (julkinen tunnus tai API avain vaaditaan)</sys:String>
@@ -480,8 +480,8 @@ Voit myös myöhemmin lisätä minkä tahansa pelin (mukaan lukien Microsoft Sto
     <sys:String x:Key="LOCAddPlatformTitle">Lisää alusta</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Valitse kuvake</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Valitse kansi</sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Valitse kuva</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Valitse kohde</sys:String>
     <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Valitse tiedosto</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Valitse URL</sys:String>
@@ -646,7 +646,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCExtensions">Laajennukset</sys:String>
     <sys:String x:Key="LOCReloadScripts">Lataa skriptit uudelleen</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Kaikki skriptit on ladattu uudelleen onnistuneesti.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
+    <sys:String x:Key="LOCNoGamesFound">Hakua/suodatinta vastaavia pelejä ei löytynyt</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Poistu työpöytätilaan</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Poistu Playnitesta</sys:String>
     <sys:String x:Key="LOCLibraries">Kirjastot</sys:String>
@@ -793,13 +793,13 @@ Versio {2}
 
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Älä näytä uudelleen</sys:String>
 
 
     <!--Common Library-->
-    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
-    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
-    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksAchievements">Saavutukset</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Keskustelupalsta</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">Uutiset</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
 
     <!--itch.io-->
@@ -818,8 +818,8 @@ Huomioi, että tunnuksen nimen käyttäminen toimii vain tunnuksilla, jotka on a
     <sys:String x:Key="LOCSteamLoggedInUser">Todennettu käyttäjä</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Tili on yksityinen, API-avain vaaditaan.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
-    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
-    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">Keskustelut</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Ensimmäisen käynnistyksen asennus ei ole valmis. Toiminnon viimeistelemiseksi Playnite käynnistyy nyt uudelleen työpöytätilassa.</sys:String>
@@ -832,7 +832,7 @@ Huomioi, että tunnuksen nimen käyttäminen toimii vain tunnuksilla, jotka on a
     <sys:String x:Key="LOCGameListSearchResults">Tulokset haulle:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Annettu nimi on jo käytössä.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Valitse toinen</sys:String>
     
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
