@@ -2489,7 +2489,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty())
             {
                 EditingGame.Icon = path;
-                CheckImagePerformanceRestrains(path, 256);
+                CheckImagePerformanceRestrains(path, 512);
             }
         }
 
@@ -2499,7 +2499,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (path != null) 
             {
                 EditingGame.CoverImage = path;
-                CheckImagePerformanceRestrains(path, 800);
+                CheckImagePerformanceRestrains(path, 1080);
             }
         }
 
@@ -2509,7 +2509,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty()) 
             {
                 EditingGame.CoverImage = path;
-                CheckImagePerformanceRestrains(path, 800);
+                CheckImagePerformanceRestrains(path, 1080);
             }
         }
 
@@ -2519,7 +2519,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = path;
-                CheckImagePerformanceRestrains(path, 1080);
+                CheckImagePerformanceRestrains(path, 1600);
             }
         }
 
@@ -2529,7 +2529,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty()) 
             {
                 EditingGame.BackgroundImage = path;
-                CheckImagePerformanceRestrains(path, 1080);
+                CheckImagePerformanceRestrains(path, 1600);
             }
         }
 
@@ -3011,30 +3011,33 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void CheckImagePerformanceRestrains(string imagePath, int maxHeight)
         {
-            if (!appSettings.ShowImagePerformanceWarning)
-            {
-                return;
-            }
+            // Temporarily disabled since it shouldn't be needed anymore bacause of latest performance changes.
+            // Enable back again if people start complaining about performance.
 
-            if (imagePath != null && Images.GetImageProperties(imagePath)?.Height > maxHeight)
-            {
-                var ask = new MessageBoxWindow();
-                var result = ask.ShowCustom(
-                    window.Window,
-                    resources.GetString("LOCGameImageSizeWarning"),
-                    resources.GetString("LOCPerformanceWarningTitle"),
-                    MessageBoxImage.Warning,
-                    new List<object> { true, false },
-                    new List<string>
-                    {
-                        resources.GetString("LOCOKLabel"),
-                        resources.GetString("LOCDontShowAgainTitle")
-                    });
-                if ((result as bool?) == false)
-                {
-                    appSettings.ShowImagePerformanceWarning = false;
-                }                
-            }
+            //if (!appSettings.ShowImagePerformanceWarning)
+            //{
+            //    return;
+            //}
+
+            //if (imagePath != null && Images.GetImageProperties(imagePath)?.Height > maxHeight)
+            //{
+            //    var ask = new MessageBoxWindow();
+            //    var result = ask.ShowCustom(
+            //        window.Window,
+            //        resources.GetString("LOCGameImageSizeWarning"),
+            //        resources.GetString("LOCPerformanceWarningTitle"),
+            //        MessageBoxImage.Warning,
+            //        new List<object> { true, false },
+            //        new List<string>
+            //        {
+            //            resources.GetString("LOCOKLabel"),
+            //            resources.GetString("LOCDontShowAgainTitle")
+            //        });
+            //    if ((result as bool?) == false)
+            //    {
+            //        appSettings.ShowImagePerformanceWarning = false;
+            //    }                
+            //}
         }
     }
 }

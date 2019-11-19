@@ -18,10 +18,12 @@ namespace Playnite
     public class GamesCollectionViewEntry : INotifyPropertyChanged, IDisposable
     {
         private PlayniteSettings settings;
+        private PlayniteApplication application;
         private readonly Type colGroupType;
         private readonly Guid colGroupId;
         private BitmapLoadProperties iconLoadProperties;
         private BitmapLoadProperties coverLoadProperties;
+        private BitmapLoadProperties backgroundLoadProperties;
 
         public LibraryPlugin LibraryPlugin { get; }
         public Guid Id => Game.Id;
@@ -94,6 +96,7 @@ namespace Playnite
         public object DefaultCoverImageObjectCached => GetDefaultCoverImage(true, coverLoadProperties);
 
         public string DisplayBackgroundImage => GetBackgroundImage();
+        public object DisplayBackgroundImageObject => GetBackgroundImageObject(backgroundLoadProperties);
 
         public Series Series
         {
@@ -171,14 +174,22 @@ namespace Playnite
             settings.PropertyChanged += Settings_PropertyChanged;
 
             // Use optimized rendering only for Desktop mode where we know pixel perfect data
-            if (PlayniteApplication.Current?.Mode == ApplicationMode.Desktop)
+            application = PlayniteApplication.Current;
+            if (application?.Mode == ApplicationMode.Desktop)
             {
                 iconLoadProperties = new BitmapLoadProperties(
                     Convert.ToInt32(settings.DetailsViewListIconSize),
-                    PlayniteApplication.Current.DpiScale);
+                    application.DpiScale);
                 coverLoadProperties = new BitmapLoadProperties(
                     Convert.ToInt32(settings.GridItemWidth),
-                    PlayniteApplication.Current.DpiScale);
+                    application.DpiScale);
+            }
+
+            if (application != null)
+            {
+                backgroundLoadProperties = new BitmapLoadProperties(
+                    application.CurrentScreen.WorkingArea.Width,
+                    application.DpiScale);
             }
 
             LibraryPlugin = plugin;
@@ -258,16 +269,19 @@ namespace Playnite
             if (propertyName == nameof(Game.Icon))
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IconObject)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IconObjectCached)));
             }
 
             if (propertyName == nameof(Game.CoverImage))
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CoverImageObject)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CoverImageObjectCached)));
             }
 
             if (propertyName == nameof(Game.BackgroundImage))
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayBackgroundImage)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayBackgroundImageObject)));
             }
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -338,6 +352,29 @@ namespace Playnite
             }
 
             return null;
+        }
+
+        public object GetBackgroundImageObject(BitmapLoadProperties loadProperties = null)
+        {
+            var imagePath = GetBackgroundImage();
+            if (imagePath.IsNullOrEmpty())
+            {
+                return null;
+            }
+            else
+            {
+                if (loadProperties == null)
+                {
+                    return new BitmapLoadProperties(0) { Source = imagePath };
+                }
+                else
+                {
+                    return new BitmapLoadProperties(loadProperties.MaxDecodePixelWidth, loadProperties.DpiScale)
+                    {
+                        Source = imagePath
+                    };
+                }
+            }
         }
 
         public override string ToString()

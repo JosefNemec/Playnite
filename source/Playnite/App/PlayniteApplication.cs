@@ -61,7 +61,8 @@ namespace Playnite
         public PlayniteAPI Api { get; set; }
         public GameControllerFactory Controllers { get; set; }
         public CmdLineOptions CmdLine { get; set; }
-        public DpiScale DpiScale { get; set; }
+        public DpiScale DpiScale { get; set; } = new DpiScale(1, 1);
+        public ComputerScreen CurrentScreen { get; set; } = Computer.GetPrimaryScreen();
 
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
@@ -705,6 +706,21 @@ namespace Playnite
             }
 
             return true;
+        }
+
+        public void UpdateScreenInformation(Controls.WindowBase window)
+        {
+            try
+            {
+                DpiScale = VisualTreeHelper.GetDpi(window);
+                CurrentScreen = window.GetScreen();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                DpiScale = new DpiScale(1, 1);
+                CurrentScreen = Computer.GetPrimaryScreen();
+                logger.Error(e, $"Failed to get window information for main {Mode} window.");
+            }
         }
     }
 }

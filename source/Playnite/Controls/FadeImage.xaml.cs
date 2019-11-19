@@ -32,7 +32,7 @@ namespace Playnite.Controls
         }
 
         private CurrentImage currentImage = CurrentImage.None;
-        private string currentSource = null;
+        private object currentSource = null;
 
         internal Storyboard Image1FadeIn;
         internal Storyboard Image2FadeIn;
@@ -45,13 +45,13 @@ namespace Playnite.Controls
 
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
             nameof(Source),
-            typeof(string),
+            typeof(object),
             typeof(FadeImage),
             new PropertyMetadata(null, SourceChanged));
 
-        public string Source
+        public object Source
         {
-            get { return (string)GetValue(SourceProperty); }
+            get { return GetValue(SourceProperty); }
             set { SetValue(SourceProperty, value); }
         }
 
@@ -184,7 +184,7 @@ namespace Playnite.Controls
         private static async void BlurSettingChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (FadeImage)obj;
-            if (control.Source.IsNullOrEmpty())
+            if (control.Source == null)
             {
                 return;
             }
@@ -195,7 +195,18 @@ namespace Playnite.Controls
             var source = control.Source;
             var image = await Task.Factory.StartNew(() =>
             {
-                return ImageSourceManager.GetImage(source, false);
+                if (source is string str)
+                {
+                    return ImageSourceManager.GetImage(str, false);
+                }
+                else if (source is BitmapLoadProperties props)
+                {
+                    return ImageSourceManager.GetImage(props.Source, false, props);
+                }
+                else
+                {
+                    return null;
+                }
             });
 
             if (blurEnabled)
@@ -212,6 +223,8 @@ namespace Playnite.Controls
                 control.ImageHolder.Effect = null;
             }
 
+            GC.Collect();
+
             if (control.currentImage == CurrentImage.Image1)
             {
                 control.Image1.Source = image;
@@ -225,10 +238,10 @@ namespace Playnite.Controls
         private static void SourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (FadeImage)obj;
-            control.LoadNewSource((string)args.NewValue, (string)args.OldValue);
+            control.LoadNewSource(args.NewValue, args.OldValue);
         }
 
-        private async void LoadNewSource(string newSource, string oldSource)
+        private async void LoadNewSource(object newSource, object oldSource)
         {
             var blurAmount = BlurAmount;
             var blurEnabled = IsBlurEnabled;
@@ -241,11 +254,22 @@ namespace Playnite.Controls
             }
 
             currentSource = newSource;
-            if (!newSource.IsNullOrEmpty())
+            if (newSource != null)
             {
                 image = await Task.Factory.StartNew(() =>
                 {
-                    return ImageSourceManager.GetImage(newSource, false);
+                    if (newSource is string str)
+                    {
+                        return ImageSourceManager.GetImage(str, false);
+                    }
+                    else if (newSource is BitmapLoadProperties props)
+                    {
+                        return ImageSourceManager.GetImage(props.Source, false, props);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 });
             }
 

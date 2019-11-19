@@ -20,13 +20,14 @@ namespace System.Drawing.Imaging
     {
         public DpiScale? DpiScale { get; set; }
         public int MaxDecodePixelWidth { get; set; } = 0;
+        public string Source { get; set; }
 
         public BitmapLoadProperties(int decodePixelWidth)
         {
             MaxDecodePixelWidth = decodePixelWidth;
         }
 
-        public BitmapLoadProperties(int decodePixelWidth, DpiScale dpiScale)
+        public BitmapLoadProperties(int decodePixelWidth, DpiScale? dpiScale)
         {
             MaxDecodePixelWidth = decodePixelWidth;
             DpiScale = dpiScale;

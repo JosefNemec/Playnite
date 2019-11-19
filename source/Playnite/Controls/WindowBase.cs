@@ -101,7 +101,7 @@ namespace Playnite.Controls
 
         public WindowBase() : base()
         {
-            Style defaultStyle = (Style)Application.Current.TryFindResource(typeof(WindowBase));
+            Style defaultStyle = (Style)Application.Current?.TryFindResource(typeof(WindowBase));
             if (defaultStyle != null)
             {
                 Style = defaultStyle;

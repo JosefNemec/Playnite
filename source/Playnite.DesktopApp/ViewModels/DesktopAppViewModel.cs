@@ -1457,7 +1457,9 @@ namespace Playnite.DesktopApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
-            application.DpiScale = System.Windows.Media.VisualTreeHelper.GetDpi(Window.Window);
+            application.UpdateScreenInformation(Window.Window);
+            Window.Window.LocationChanged += Window_LocationChanged;
+
             if (AppSettings.StartMinimized)
             {
                 WindowState = WindowState.Minimized;
@@ -1493,6 +1495,12 @@ namespace Playnite.DesktopApp.ViewModels
             GamesView?.Dispose();
             GamesStats?.Dispose();
             AppSettings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
+            Window.Window.LocationChanged -= Window_LocationChanged;
+        }
+
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            application.UpdateScreenInformation(Window.Window);
         }
     }
 }
