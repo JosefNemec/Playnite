@@ -809,9 +809,15 @@ Sürüm {2}
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Varsayılan web tarayıcınızı kullanarak Playnite'den ayrılmak ve aşağıdaki web sayfasına geçmek üzeresiniz. Devam etmek istiyor musun</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Seçilen resimler en iyi performans için çok büyük olabilir. Çok büyük görüntülerin kullanılması, önemli ölçüde daha kötü arayüz yanıtı ve artan bellek kullanımı ile sonuçlanabilir.
+
+Tavsiye edilen maksimum boyutlar:
+Simgeler: 256px yükseklik
+Kapaklar: 800px yükseklik
+Arka planlar: 1080px yükseklik
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Performans Uyarısı</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Bir Daha Gösterme</sys:String>
 
 
     <!--Common Library-->
