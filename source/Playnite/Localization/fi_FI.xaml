@@ -85,7 +85,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCAddTitle">Lisää</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Oletuskuvake</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Oletuskansikuva</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">Oletustaustakuva</sys:String>
     <sys:String x:Key="LOCFinishLabel">Valmis</sys:String>
     <sys:String x:Key="LOCNextLabel">Seuraava</sys:String>
     <sys:String x:Key="LOCBackLabel">Takaisin</sys:String>
@@ -391,11 +391,11 @@ Kaikki aktiiviset tapahtumat (metadatan lataukset) peruutetaan.</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Pehmentämätön</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Harmaasävy</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ihanteellinen</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Näyttö</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
@@ -667,9 +667,9 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCFontLarger">Suurempi</sys:String>
     <sys:String x:Key="LOCFontLargest">Suurin</sys:String>
     <sys:String x:Key="LOCDefault">Oletus</sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
-    <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCSelect">Valitse</sys:String>
+    <sys:String x:Key="LOCFirst">Ensimmäinen</sys:String>
+    <sys:String x:Key="LOCRandom">Satunnainen</sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulaattorien argumentit</sys:String>
@@ -761,7 +761,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCEnterName">Anna nimi</sys:String>
     <sys:String x:Key="LOCEnterNewName">Syötä uusi nimi</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Alle tunti</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1-10 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10-100 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100-500 tuntia</sys:String>
@@ -837,5 +837,5 @@ Huomioi, että tunnuksen nimen käyttäminen toimii vain tunnuksilla, jotka on a
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Valitse taustakuva kohteelle {0}</sys:String>
 </ResourceDictionary>
