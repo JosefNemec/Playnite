@@ -561,7 +561,7 @@ Diese wird derzeit von {1} Spielen und {2} Emulatoren verwendet.</sys:String>
 
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Datenbankfehler</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenError">Fehler beim Öffnen der Datenbank.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenError">Datenbank konnte nicht geöffnet werden.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Fehler beim Import: Datenbank ist nicht geöffnet.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Kein Zugriff auf Bibliotheksdatenbank: Datei »{0}« wird von einem anderen Prozess verwendet oder befindet sich an einem unerreichbaren Speicherort.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Diagnosedaten konnte nicht erstellt werden.</sys:String>
@@ -570,33 +570,33 @@ Diese wird derzeit von {1} Spielen und {2} Emulatoren verwendet.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnosedaten wurden erfolgreich erstellt und hochgeladen.
 Bitte ergänze deinen Absturzbericht um die folgende Kennung:</sys:String>
 
-    <sys:String x:Key="LOCSteamCategoryImportError">Fehler beim Import der Steam-Kategorien.</sys:String>
+    <sys:String x:Key="LOCSteamCategoryImportError">Steam-Kategorien konnten nicht importiert werden.</sys:String>
     
-    <sys:String x:Key="LOCBnetInstalledImportError">Fehler beim Import der installierten Battle.net-Spiele.</sys:String>
-    <sys:String x:Key="LOCSteamInstalledImportError">Fehler beim Import der installierten Steam-Spiele.</sys:String>
-    <sys:String x:Key="LOCGOGInstalledImportError">Fehler beim Import der installierten GOG-Spiele.</sys:String>
-    <sys:String x:Key="LOCOriginInstalledImportError">Fehler beim Import der installierten Origin-Spiele.</sys:String>
-    <sys:String x:Key="LOCUplayInstalledImportError">Fehler beim Import der installierten Uplay-Spiele.</sys:String>
+    <sys:String x:Key="LOCBnetInstalledImportError">Installierte Battle.net-Spiele konnten nicht importiert werden.</sys:String>
+    <sys:String x:Key="LOCSteamInstalledImportError">Installierte Steam-Spiele konnten nicht importiert werden.</sys:String>
+    <sys:String x:Key="LOCGOGInstalledImportError">Installierte GOG-Spiele konnten nicht importiert werden.</sys:String>
+    <sys:String x:Key="LOCOriginInstalledImportError">Installierte Origin-Spiele konnten nicht importiert werden.</sys:String>
+    <sys:String x:Key="LOCUplayInstalledImportError">Installierte Uplay-Spiele konnten nicht importiert werden.</sys:String>
 
-    <sys:String x:Key="LOCBnetLibraryImportError">Fehler beim Import der Battle.net-Bibliothek.</sys:String>
-    <sys:String x:Key="LOCSteamLibraryImportError">Fehler beim Import der Steam-Bibliothek.</sys:String>
-    <sys:String x:Key="LOCGOGLibraryImportError">Fehler beim Import der GOG-Bibliothek.</sys:String>
-    <sys:String x:Key="LOCOriginLibraryImportError">Fehler beim Import der Origin-Bibliothek.</sys:String>
-    <sys:String x:Key="LOCUplayLibraryImportError">Fehler beim Import der Uplay-Bibliothek.</sys:String>
+    <sys:String x:Key="LOCBnetLibraryImportError">Battle.net-Bibliothek konnte nicht heruntergeladen werden.</sys:String>
+    <sys:String x:Key="LOCSteamLibraryImportError">Steam-Bibliothek konnte nicht heruntergeladen werden.</sys:String>
+    <sys:String x:Key="LOCGOGLibraryImportError">GOG-Bibliothek konnte nicht heruntergeladen werden.</sys:String>
+    <sys:String x:Key="LOCOriginLibraryImportError">Origin-Bibliothek konnte nicht heruntergeladen werden.</sys:String>
+    <sys:String x:Key="LOCUplayLibraryImportError">Uplay-Bibliothek konnte nicht heruntergeladen werden.</sys:String>
     
-    <sys:String x:Key="LOCLibraryImportError">Fehler beim Import von {0}-Spielen.</sys:String>    
+    <sys:String x:Key="LOCLibraryImportError">Spiele von {0} konnten nicht importiert werden.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Mit dem ausgewählten Emulatorprofil kann nicht nach Spielen gesucht werden, da es keine Dateinamenerweiterungen oder Plattformen enthält.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite konnte nicht gestartet werden. Bitte beende alle laufenden Instanzen von Playnite und versuche es erneut.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Fehler beim Anwenden des Themes »{0}« mit Farbprofil »{1}«
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Theme »{0}« mit Farbprofil »{1}« konnte nicht angewendet werden
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Fehler beim Öffnen des Links: URL ist ungültig.</sys:String>
-    <sys:String x:Key="LOCAppStartupError">Fehler beim Starten der Anwendung.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Fehler bei der Initialisierung der WebView-Komponente.
+    <sys:String x:Key="LOCAppStartupError">Anwendung konnte nicht gestartet werden.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Die WebView-Komponente konnte nicht initialisiert werden und Playnite daher den Start nicht fortsetzen.
 
-Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den Fehler zu beheben: 
+Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben: 
   • Überprüfe die Installation von Playnite und wiederhole diese gegebenenfalls
-  • Überprüfe ob ein Antivirusprogramm Playnite beim Start behindert
+  • Überprüfe, ob ein Antivirusprogramm Dateien in Playnites Verzeichnis blockiert
   • Installiere Playnite in ein anderes Verzeichnis</sys:String>
 
     <!--GameEdit-->
@@ -622,7 +622,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCInvalidGameData">Ungültige Metadaten</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Bitte gib eine gültige, mit »http://« oder »https://« beginnende URL ein</sys:String>
     <sys:String x:Key="LOCURLInputInfoTitile">URL auswählen</sys:String>
-    <sys:String x:Key="LOCMetadataDownloadError">Fehler beim Herunterladen der Metadaten: {0}</sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">Metadaten konnten nicht heruntergeladen werden: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">Download-Fehler</sys:String>
     <sys:String x:Key="LOCClearFilters">Filter leeren</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Privates Konto</sys:String>
@@ -700,7 +700,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCUpdateError">Fehler beim Aktualisieren</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Fehler bei der Suche nach Aktualisierungen.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Keine neue Version gefunden, Playnite ist aktuell.</sys:String>
-    <sys:String x:Key="LOCGeneralUpdateFailMessage">Fehler beim Aktualisieren von Playnite:</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Aktualisierung konnte nicht heruntergeladen und installiert werden.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Im Hintergrund wird gerade ein Prozess ausgeführt. Soll dieser beendet und die Aktualisierung fortgesetzt werden?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Im Hintergrund wird gerade ein Prozess ausgeführt. Sollen dieser und Playnite beendet werden?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Für Playnite ist eine neue Aktualisierung verfügbar</sys:String>
@@ -756,11 +756,11 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Desktopmodus wird geöffnet …</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Vollbildmodus wird geöffnet …</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Spielebibliothek wird geladen …</sys:String>
-    <sys:String x:Key="LOCScriptInstallFail">Fehler beim Installieren des Skripts.</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Skriptdatei konnte nicht installiert werden.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Skript wurde erfolgreich installiert.</sys:String>
     <sys:String x:Key="LOCInstallScript">Skript installieren</sys:String>
     <sys:String x:Key="LOCScriptError">Skriptfehler</sys:String>
-    <sys:String x:Key="LOCScriptExecutionError">Beim ausführen des Skripts ist ein Fehler aufgetreten.</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">Erweiterungsfunktion konnte nicht ausgeführt werden.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Metadatenverzeichnis öffnen</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0}-Client ist nicht installiert.</sys:String>
@@ -770,6 +770,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCInvalidGameActionSettings">Ungültige Aktion für dieses Spiel.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Problembehebung zur Kontensynchronisation</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Eintrag umbenennen</sys:String>
     <sys:String x:Key="LOCAddNewItem">Neuen Eintrag hinzufügen</sys:String>
@@ -787,7 +788,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme/Erweiterung verwendet eine nicht unterstützte API-Version.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation war erfolgreich.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Erweiterung installieren?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Die Erweiterung konnte nicht installiert werden.
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Erweiterung konnte nicht installiert werden.
         
 {0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Möchtest du eine neue Erweiterung installieren? Die bestehende Installation wird überschrieben.
@@ -796,7 +797,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
 Von {1}
 Version {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Das Theme konnte nicht installiert werden.
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Theme konnte nicht installiert werden.
         
 {0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Möchtest du ein neues Theme installieren? Die bestehende Installation wird überschrieben.
