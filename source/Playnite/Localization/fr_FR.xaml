@@ -763,6 +763,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuration invalide.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Régler les problèmes de synchronisation</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renommer l'élément</sys:String>
     <sys:String x:Key="LOCAddNewItem">Ajouter un nouvel élément</sys:String>
