@@ -369,6 +369,8 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Se requiere reiniciar Playnite cuando se cambia el tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Obtener más temas</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Crear un tema nuevo</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Obtener más extensiones</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Crear nueva extensión</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuir nueva traducción</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Algunos cambios de configuración requieren que se reinicie Playnite. ¿Desea hacerlo ahora?
     
@@ -770,7 +772,7 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuración de acción de juego inválida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Resolución de problemas de sincronización de cuentas</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Solucionar problemas</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renombrar elemento</sys:String>
     <sys:String x:Key="LOCAddNewItem">Añadir nuevo elemento</sys:String>
