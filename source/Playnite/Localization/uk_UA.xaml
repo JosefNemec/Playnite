@@ -746,6 +746,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Перейменувати</sys:String>
     <sys:String x:Key="LOCAddNewItem">Додати елемент</sys:String>
