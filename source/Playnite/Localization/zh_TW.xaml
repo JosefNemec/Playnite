@@ -363,6 +363,8 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite需要重新啟動以套用新的主題</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">取得更多主題</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">建立新的主題</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">提供新的本地化翻譯</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">部分變更需要重啟Playnite，是否立即重新啟動?
 
