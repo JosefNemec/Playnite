@@ -369,6 +369,8 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsSkinChangeRestart">É necessário reiniciar o Playnite para aplicar um novo tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Baixar mais temas</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Como criar um novo tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Obter mais extensões</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Criar uma nova extensão</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Como traduzir para o seu idioma</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Algumas das configurações alteradas requerem que o Playnite seja reiniciado. Você deseja reiniciar o Playnite agora?
     
@@ -770,7 +772,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuração de ação do jogo inválida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Solução de problemas de sincronização de contas</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Solucionando problemas</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renomear item</sys:String>
     <sys:String x:Key="LOCAddNewItem">Adicionar novo item</sys:String>
@@ -811,8 +813,14 @@ Versão {2}
     
 {0}</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">As imagens selecionadas podem ser grandes demais para um desempenho ideal. O uso de imagens muito grandes pode resultar em uma perda significativa na responsividade da interface e um aumento no uso de memória.
+
+Tamanhos máximos recomendados:
+Ícones: 256px de altura
+Capas: 800px de altura
+Imagens de fundo: 1080px de altura
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Aviso de desempenho</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Não mostrar novamente</sys:String>
 
 
