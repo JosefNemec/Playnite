@@ -367,6 +367,8 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsSkinChangeRestart">אתחול Playnite דרוש להחלת ערכת נושא חדשה</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">קבל ערכות נושא נוספות</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">צור ערכת נושא חדשה</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">השג הרחבות נוספות</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">צור הרחבה חדשה</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">תרום לתרגום חדש</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">חלק משינויי הגדרות דורשים אתחול של Playnite. האם לאתחל את Playnite כעת?
     
@@ -769,7 +771,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCInvalidGameActionSettings">תצורת פעולת משחק לא תקינה.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">טיפול בתקלות סנכרון חשבון</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">פתרון בעיות</sys:String>
 
     <sys:String x:Key="LOCRenameItem">שנה שם פריט</sys:String>
     <sys:String x:Key="LOCAddNewItem">הוסף פריט חדש</sys:String>
