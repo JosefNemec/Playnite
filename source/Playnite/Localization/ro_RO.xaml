@@ -357,6 +357,8 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Repornirea programului este necesară pentru aplicarea noii teme</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Căutați mai multe teme</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Creează o temă nouă</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuiți la o localizare nouă</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Unele dintre setările schimbate necesită o repornire a programului. Doriți să reporniți Playnite acum?
     
