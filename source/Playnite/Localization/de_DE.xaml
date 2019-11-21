@@ -369,6 +369,8 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Die Änderung des Themes erfordert einen Neustart von Playnite</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Mehr Themes beziehen</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Neues Theme erstellen</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Weitere Erweiterungen beziehen</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Neue Erweiterung erstellen</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Playnite übersetzen</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Um die Änderungen anzuwenden muss Playnite neu gestartet werden. Soll Planite jetzt neu gestartet werden?
 
@@ -770,7 +772,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCInvalidGameActionSettings">Ungültige Aktion für dieses Spiel.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Problembehebung zur Kontensynchronisation</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Problembehandlung</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Eintrag umbenennen</sys:String>
     <sys:String x:Key="LOCAddNewItem">Neuen Eintrag hinzufügen</sys:String>
