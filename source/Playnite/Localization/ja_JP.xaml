@@ -753,6 +753,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCInvalidGameActionSettings">無効なゲームアクション設定。</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">アカウント同期問題のトラブルシューティング</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">アイテムの名前を変更</sys:String>
     <sys:String x:Key="LOCAddNewItem">新しいアイテムの追加</sys:String>
