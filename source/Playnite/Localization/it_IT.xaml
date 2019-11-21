@@ -765,6 +765,7 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCInvalidGameActionSettings">Configurazione dell'azione del gioco non valida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Troubleshooting dei problemi di sincronizzazione dell'account</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Rinomina oggetto</sys:String>
     <sys:String x:Key="LOCAddNewItem">Aggiungi nuovo elemento</sys:String>
