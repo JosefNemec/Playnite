@@ -357,6 +357,8 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Απαιτείται επανεκκίνηση του Playnite για την εφαρμογή νέου θέματος</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Λήψη περισσότερων θεμάτων</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Δημιουργία νέου θέματος</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Συνεισφέρετε νέο Localization</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?
     
