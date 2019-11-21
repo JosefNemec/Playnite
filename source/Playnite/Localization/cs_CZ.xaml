@@ -369,6 +369,8 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Pro změnu vzhledu je třeba restartovat Playnite</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Získat více motivů</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Vytvořit nový motiv</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Získat více rozšíření</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Vytvořit nové rozšíření</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Pomoci s překladem</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Některé ze změn vyžadují restart Playnite. Chcete jej provést nyní?
     
