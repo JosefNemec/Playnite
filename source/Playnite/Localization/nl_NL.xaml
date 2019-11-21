@@ -755,6 +755,7 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCInvalidGameActionSettings">Ongeldige spel-actie configuratie.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Probleemoplossingen account sync</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Item hernoemen</sys:String>
     <sys:String x:Key="LOCAddNewItem">Nieuw item toevoegen</sys:String>
