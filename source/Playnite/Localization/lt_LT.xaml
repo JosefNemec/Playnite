@@ -355,6 +355,8 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Pritaikius naują temą Playnite reikės paleisti iš naujo</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Gauti daugiau temų</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Sukurti naują temą</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Prisidėti prie lokalizacijos</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Norint, kad pakeitimai įsigaliotų reikia Playnite paleisti iš naujo. Ar norite tęsti?
     
