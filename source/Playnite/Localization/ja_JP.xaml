@@ -357,6 +357,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsSkinChangeRestart">新しいテーマを適用するにはPlayniteの再起動が必要です。</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">その他のテーマを入手</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">新しいテーマの作成</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">新しいローカライズに貢献する</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">変更された設定のいくつかはPlayniteを再起動する必要があります。 今すぐPlayniteを再起動しますか？
     
