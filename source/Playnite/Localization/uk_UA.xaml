@@ -357,6 +357,8 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Щоб застосувати нову тему, потрібно перезапустити Playnite</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Отримати більше тем</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Створити нову тему</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Посприяти перекладу</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Деякі змінені налаштування потребують перезапуску Playnite. Ви хочете перезапустити Playnite?
     
