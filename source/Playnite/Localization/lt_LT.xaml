@@ -751,6 +751,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCInvalidGameActionSettings">Neteisingai nustatytas žaidimo veiksmas.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Spręsti vartotojo sinchronizacijos problemas</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Pervadinti objektą</sys:String>
     <sys:String x:Key="LOCAddNewItem">Pridėti objektą</sys:String>
