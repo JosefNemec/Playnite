@@ -369,6 +369,8 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Yeni temayı uygulamak için playnite yeniden başlatılmalıdır</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Daha fazla tema edin</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Yeni tema oluştur</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Yeni yerelleştirmeye katkıda bulun</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Değiştirilen ayarlardan bazıları Playnite'ın yeniden başlatılmasını gerektiriyor. Playnite'ı şimdi yeniden başlatmak ister misin?
     
