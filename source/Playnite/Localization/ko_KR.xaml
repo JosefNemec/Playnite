@@ -363,6 +363,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsSkinChangeRestart">새로운 테마를 적용하기 위해선 Playnite를 재시작해야합니다</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">더 많은 테마</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">새로운 테마 생성</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">번역에 기여하기</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">일부 변경된 설정을 적용하기 위해선 Playnite를 재시작해야합니다. Playnite를 재시작하시겠습니까?
     
