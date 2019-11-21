@@ -202,7 +202,7 @@ Résultats dans : -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Tous les jeux de la base de données</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tous les jeux actuellement filtrés</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Le ou les jeux actuellement sélectionnés</sys:String>
-    <sys:String x:Key="LOCMetaSourceStore">Boutique Officielle</sys:String>
+    <sys:String x:Key="LOCMetaSourceStore">Magasin officiel</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Veuillez sélectionner les champs qui doivent être automatiquement remplis par Playnite et les sources à utiliser pour obtenir les données.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Vous pouvez cliquer sur le logo ci-dessus et contribuer à la mise à jour de la base de données igdb.com afin d'améliorer les données utilisées par Playnite.</sys:String>
@@ -364,6 +364,8 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Redémarrage nécessaire pour appliquer un nouveau thème</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Chercher des thèmes</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Créer un nouveau thème</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Obtenir plus d'extensions</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Créer une nouvelle extension</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuer à la traduction</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Les paramètres modifiés nécessitent le redémarrage de l'application. Voulez-vous continuer ? (les tâches en cours d'exécution seront annulées)</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Redémarrer Playnite ?</sys:String>
@@ -763,7 +765,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuration invalide.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Régler les problèmes de synchronisation</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Résolution des problèmes</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renommer l'élément</sys:String>
     <sys:String x:Key="LOCAddNewItem">Ajouter un nouvel élément</sys:String>
