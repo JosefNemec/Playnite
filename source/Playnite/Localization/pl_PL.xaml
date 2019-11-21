@@ -757,6 +757,7 @@ Podejmij poniższe kroki, aby naprawić problem:
     <sys:String x:Key="LOCInvalidGameActionSettings">Nieprawidłowa konfiguracja akcji odtwarzania.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Rozwiązywanie problemów z synchronizacją konta</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Zmień nazwę elementu</sys:String>
     <sys:String x:Key="LOCAddNewItem">Dodaj nowy element</sys:String>
