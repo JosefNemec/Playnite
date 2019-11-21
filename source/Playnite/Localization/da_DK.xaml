@@ -722,6 +722,7 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Omdøb genstand</sys:String>
     <sys:String x:Key="LOCAddNewItem"></sys:String>
