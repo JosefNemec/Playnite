@@ -354,6 +354,8 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite harus dimuat ulang untuk mengganti tema.</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Cari tema baru</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Buat tema baru</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Kontribusi lokalisasi baru</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Beberapa pengaturan yang diubah membutuhkan Playnite untuk dimulai ulang. Apakah kamu mau menghidupkan ulang Playnite sekarang?
 
