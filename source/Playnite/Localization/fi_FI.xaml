@@ -755,6 +755,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCInvalidGameActionSettings">Virheellinen pelitoiminnon määritys.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Tilin synkronointiongelmien vianmääritys</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Nimeä uudelleen</sys:String>
     <sys:String x:Key="LOCAddNewItem">Lisää uusi kohde</sys:String>
