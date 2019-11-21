@@ -359,6 +359,8 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Es requereix reiniciar Playnite per a aplicar el tema nou</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Aconsegueix més temes</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Crea un nou tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Afegiu una nova localització</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Algunes de les configuracions modificades requereixen que es reiniciï Playnite. Voleu reiniciar-lo ara?
     
