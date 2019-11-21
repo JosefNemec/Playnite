@@ -355,6 +355,8 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite újraindítása szükséges a téma alkalmazásához</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Témák beszerzése</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Új téma készítése</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Segítsen fordításban</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Néhány beállítás változtatásához Playnite újraindítása szükséges. Elvégzi most?
     
