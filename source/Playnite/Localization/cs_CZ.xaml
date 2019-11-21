@@ -770,6 +770,7 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCInvalidGameActionSettings">Neplatná konfigurace akcí hry.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Řešení problémů se synchronizací účtu</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Řešení potíží</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Přejmenovat položku</sys:String>
     <sys:String x:Key="LOCAddNewItem">Přidat novou položku</sys:String>
