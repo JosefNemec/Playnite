@@ -770,6 +770,7 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuración de acción de juego inválida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Resolución de problemas de sincronización de cuentas</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renombrar elemento</sys:String>
     <sys:String x:Key="LOCAddNewItem">Añadir nuevo elemento</sys:String>
