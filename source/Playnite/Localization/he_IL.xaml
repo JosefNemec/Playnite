@@ -769,6 +769,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCInvalidGameActionSettings">תצורת פעולת משחק לא תקינה.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">טיפול בתקלות סנכרון חשבון</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">שנה שם פריט</sys:String>
     <sys:String x:Key="LOCAddNewItem">הוסף פריט חדש</sys:String>
