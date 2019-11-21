@@ -369,6 +369,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite требуется перезапуск при смене темы</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Получить больше тем</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Создать новую тему</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Добавить новую локализацию</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Некоторые измененные настройки требуют перезагрузки Playnite. Вы хотите перезагрузить Playnite сейчас?
 
