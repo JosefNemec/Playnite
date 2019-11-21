@@ -756,6 +756,7 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuració d’acció de joc no vàlida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Resolució de problemes de sincronització del compte</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renomenar Ítem</sys:String>
     <sys:String x:Key="LOCAddNewItem">Afegeix nou element</sys:String>
