@@ -355,6 +355,8 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsSkinChangeRestart">É necessário reiniciar o Playnite para aplicar o novo tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Obter mais temas</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Criar novo tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuir com a nova localização</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Algumas das definidas alteradas requerem que o Playnite seja reiniciado. Desejas reiniciar o Playnite agora?
     
