@@ -359,6 +359,8 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Wymagany restart Playnite do ustawienia nowego motywu</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Uzyskaj więcej motywów</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Utwórz nowy motyw</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Dodaj nową lokalizację</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Niektóre zmiany ustawień wymagają restartu Playnite. Czy chcesz teraz zrestartować Playnite?
     
