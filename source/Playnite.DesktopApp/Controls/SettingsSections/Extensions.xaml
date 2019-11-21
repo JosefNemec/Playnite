@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
@@ -25,23 +26,37 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListExtensions}"
-                    Margin="10,5,0,0">
-            <StackPanel Orientation="Horizontal">
+        <DockPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListExtensions}"
+                   Margin="10,5,0,0" LastChildFill="False">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                 <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionCreatedBy}" />
                 <TextBlock Text="{Binding Description.Author}" Margin="5,0,0,0" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" DockPanel.Dock="Top">
                 <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionVersion}" />
                 <TextBlock Text="{Binding Description.Version}" Margin="5,0,0,0" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" DockPanel.Dock="Top">
                 <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionModule}" />
                 <TextBlock Text="{Binding Description.Module}" Margin="5,0,0,0" />
             </StackPanel>
             <CheckBox Content="{DynamicResource LOCEnabledTitle}" Margin="0,15,0,0"
-                      IsChecked="{Binding Selected}" />
-        </StackPanel>
+                      IsChecked="{Binding Selected}" DockPanel.Dock="Top" />
+
+            <TextBlock Margin="5,0,0,10"  DockPanel.Dock="Bottom">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                            CommandParameter="https://playnite.link/forum/forum-3.html">
+                    <Run Text="{DynamicResource LOCSettingsGetExtensions}" />
+                </Hyperlink>
+            </TextBlock>
+
+            <TextBlock Margin="5,10,0,10"  DockPanel.Dock="Bottom">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                            CommandParameter="https://playnite.link/docs/tutorials/intro.html">
+                    <Run Text="{DynamicResource LOCSettingsCreateExtensions}" />
+                </Hyperlink>
+            </TextBlock>
+        </DockPanel>
 
         <ListBox Grid.Column="0" Name="ListExtensions" SelectedIndex="0"
                  ItemsSource="{Binding PluginsList}">
