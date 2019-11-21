@@ -377,7 +377,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite не перемещает файлы библиотеки автоматически, вы должны переместить/скопировать их, прежде чем местоположение будет изменено. Если в целевой папке нет библиотеки, будет создана новая.
 
 Новая база данных будет использоваться только после перезапуска приложения.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Время игры не забудет высчитываться если выбрать параметр "Закрыть".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Время игры не будет высчитываться если выбрать параметр "Закрыть".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Количество строк</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Количество столбцов</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Количество строк в детальном режиме</sys:String>
@@ -772,6 +772,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCInvalidGameActionSettings">Неправильная конфигурация игрового действия.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Устранение неполадок синхронизации учетной записи</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Переименовать элемент</sys:String>
     <sys:String x:Key="LOCAddNewItem">Добавить новый предмет</sys:String>
