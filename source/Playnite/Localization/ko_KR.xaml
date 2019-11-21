@@ -762,6 +762,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">잘못된 액션 설정.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">계정 연동 문제 가이드</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">항목 이름 재설정</sys:String>
     <sys:String x:Key="LOCAddNewItem">새 항목 추가</sys:String>
