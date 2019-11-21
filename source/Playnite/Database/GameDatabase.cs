@@ -700,11 +700,7 @@ namespace Playnite.Database
             toAdd.Name = toAdd.Name.RemoveTrademarks();
             toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
             toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
-            if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
-            {
-                toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
-            }
-
+            toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
             Games.Add(toAdd);
             return toAdd;
         }

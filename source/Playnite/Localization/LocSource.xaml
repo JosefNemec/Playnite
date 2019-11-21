@@ -771,6 +771,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCInvalidGameActionSettings">Invalid game action configuration.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Troubleshooting account sync issues</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Troubleshooting issues</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Rename item</sys:String>
     <sys:String x:Key="LOCAddNewItem">Add new item</sys:String>

@@ -13,9 +13,11 @@ namespace UplayLibrary
         private UplayLibrarySettings editingClone;
         private UplayLibrary library;
 
-        #region Settings      
+        #region Settings
 
         public bool ImportInstalledGames { get; set; } = true;
+
+        public bool ImportUninstalledGames { get; set; } = Uplay.IsInstalled;
 
         #endregion Settings
 

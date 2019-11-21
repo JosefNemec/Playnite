@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pcmd="clr-namespace:Playnite.Commands"
              xmlns:local="clr-namespace:UplayLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="800">
@@ -14,9 +15,19 @@
     </d:DesignerProperties.DesignStyle>
 
     <StackPanel Margin="20">
-        <CheckBox DockPanel.Dock="Top" Name="CheckUplayImportInstalled"
+        <CheckBox Name="CheckUplayImportInstalled"
                   Margin="0,0,0,15"
                   IsChecked="{Binding ImportInstalledGames}"
-                  Content="{DynamicResource LOCSettingsImportInstalledLabel}"/>        
+                  Content="{DynamicResource LOCSettingsImportInstalledLabel}"/>
+        <CheckBox Name="CheckUplayImportUninstalled"
+                  IsChecked="{Binding ImportUninstalledGames}"
+                  Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+        <TextBlock VerticalAlignment="Center" Margin="0,25,0,0">
+            <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/Uplay-troubleshooting"
+                       Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                       CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                <Run Text="{DynamicResource LOCTroubleShootingIssues}" />
+            </Hyperlink>
+        </TextBlock>
     </StackPanel>
 </UserControl>
