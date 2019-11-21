@@ -345,6 +345,8 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart"></sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Find flere temaer</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Opret et nyt tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Genstart Playnite?</sys:String>
