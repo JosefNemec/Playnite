@@ -75,7 +75,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCErrorNoGameSelected">Yhtään peliä ei ole valittu.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 tai uudempi ei ole asennettuna.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Päällä</sys:String>
@@ -359,6 +359,8 @@ Suosi virallisen kaupan dataa. Jos ei saatavilla, käytä IGDB.com-tietokantaa.<
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playniten uudelleenkäynnistys vaaditaan teeman käyttöön ottamiseksi</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Hanki lisää teemoja</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Luo uusi teema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Hanki lisää laajennuksia</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Luo uusi laajennus</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Avusta käännöksissä</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Jotkut muutetut asetukset vaativat Playniten uudelleenkäynnistyksen. Haluatko käynnistää Playniten uudelleen nyt?
 
@@ -755,7 +757,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCInvalidGameActionSettings">Virheellinen pelitoiminnon määritys.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Tilin synkronointiongelmien vianmääritys</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Ongelmien vianmääritys</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Nimeä uudelleen</sys:String>
     <sys:String x:Key="LOCAddNewItem">Lisää uusi kohde</sys:String>
@@ -831,7 +833,7 @@ Huomioi, että Tilin nimi -vaihtoehdon käyttäminen toimii vain tileillä, jotk
     <sys:String x:Key="LOCSteamLinksCommunityHub">Yhteisökeskus</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Keskustelut</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Lataa pystysuuntaiset kansikuvat</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Ensimmäisen käynnistyksen asennus ei ole valmis. Toiminnon viimeistelemiseksi Playnite käynnistyy nyt uudelleen työpöytätilassa.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Viimeksi pelatut</sys:String>
