@@ -762,6 +762,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCInvalidGameActionSettings">无效的游戏动作配置</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">解决账户同步问题</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">重命名项目</sys:String>
     <sys:String x:Key="LOCAddNewItem">添加新项目</sys:String>
