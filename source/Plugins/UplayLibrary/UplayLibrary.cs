@@ -76,7 +76,8 @@ namespace UplayLibrary
                     GameId = item.uplay_id.ToString(),
                     BackgroundImage = item.root.background_image,
                     Icon = item.root.icon_image,
-                    CoverImage = item.root.thumb_image
+                    CoverImage = item.root.thumb_image,
+                    Source = "Uplay"
                 };
 
                 games.Add(newGame);
