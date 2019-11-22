@@ -369,8 +369,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite требуется перезапуск при смене темы</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Получить больше тем</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Создать новую тему</sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Получить больше расширений</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Создать новое расширение</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Добавить новую локализацию</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Некоторые измененные настройки требуют перезагрузки Playnite. Вы хотите перезагрузить Playnite сейчас?
 
@@ -774,7 +774,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCInvalidGameActionSettings">Неправильная конфигурация игрового действия.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Устранение неполадок синхронизации учетной записи</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Устранение неисправностей</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Переименовать элемент</sys:String>
     <sys:String x:Key="LOCAddNewItem">Добавить новый предмет</sys:String>
