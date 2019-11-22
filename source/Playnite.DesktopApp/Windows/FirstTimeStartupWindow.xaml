@@ -174,11 +174,6 @@
                     <CheckBox Content="{DynamicResource LOCFirstConfigOpenEmuImport}"
                               IsChecked="{Binding StartEmulatorWizard}"
                               DockPanel.Dock="Bottom" Margin="0,0,0,20"/>
-                    <CheckBox Content="{DynamicResource LOCSettingsImmediateBackgroundDownload}"
-                              ToolTip="{DynamicResource LOCSettingsImmediateBackgroundDownloadTooltip}"
-                              ToolTipService.InitialShowDelay="0"
-                              IsChecked="{Binding DownloadBackgroundsImmediately}"
-                              Margin="0,0,0,15" DockPanel.Dock="Bottom" />
                 </DockPanel>
             </TabItem>
         </TabControl>

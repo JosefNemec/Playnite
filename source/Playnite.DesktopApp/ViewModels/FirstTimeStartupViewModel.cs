@@ -90,21 +90,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool downloadBackgroundsImmediately = true;
-        public bool DownloadBackgroundsImmediately
-        {
-            get
-            {
-                return downloadBackgroundsImmediately;
-            }
-
-            set
-            {
-                downloadBackgroundsImmediately = value;
-                OnPropertyChanged();
-            }
-        }
-
         private UserControl selectedProviderSettingsView;
         public UserControl SelectedProviderSettingsView
         {
