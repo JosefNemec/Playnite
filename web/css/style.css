@@ -1,1 +1,21 @@
-# Empty CSS file for your own CSS
+a.navbar-logo {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar{
+    background-color:#1c1e22;
+}
+
+.navbar-inverse {
+    background-image: linear-gradient(#1c1e22, #1c1e22 60%, #1c1e22)
+}
+
+.navbar-links {
+    float: right;
+    margin-top: 13px;    
+}
+
+.glyphicon-download-alt {
+    margin-right: 10px;
+}
