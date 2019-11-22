@@ -35,13 +35,12 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Tidak ada Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh tidak, sesuatu yang buruk terjadi…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Terjadi galat yang tidak dapat diperbaiki.
-
-Jika Kamu ingin membantu memperbaiki masalah ini, tolong buat diagnosa paket dan gunakan tombol 'Laporkan Kerusakan' untuk memberitahu kami apa yang terjadi. Terimakasih.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Laporkan Masalah</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Muat Ulang Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Keluar Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Pengelola Pustaka</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Hapus Game yang dipilih?</sys:String>
@@ -355,6 +354,8 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite harus dimuat ulang untuk mengganti tema.</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Cari tema baru</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Buat tema baru</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Kontribusi lokalisasi baru</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Beberapa pengaturan yang diubah membutuhkan Playnite untuk dimulai ulang. Apakah kamu mau menghidupkan ulang Playnite sekarang?
 
@@ -395,6 +396,8 @@ Tugas yang sekarang berjalan (unduhan metadata) akan dibatalkan.</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Tidak ada</sys:String>
     <sys:String x:Key="LOCStrechFill">Isi</sys:String>
@@ -743,6 +746,7 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem"></sys:String>
     <sys:String x:Key="LOCAddNewItem"></sys:String>
@@ -766,6 +770,11 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

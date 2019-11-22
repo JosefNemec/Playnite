@@ -35,15 +35,14 @@
     <sys:String x:Key="LOCNoPlatform">沒有平台</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">喔不，出錯了...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">發生無法復原的錯誤。
-
-如果您願意幫助我們解決此問題，請創建診斷資料報告並使用 "回報錯誤" 按鈕讓我們知道發生了甚麼，謝謝。</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">發生無法復原的錯誤。
 
 如果您願意幫助我們解決此問題，請傳送診斷資料報告給我們，謝謝。</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">問題回報</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重新啟動Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">離開Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">資料庫管理員</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">移除遊戲()?</sys:String>
@@ -364,6 +363,8 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite需要重新啟動以套用新的主題</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">取得更多主題</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">建立新的主題</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">提供新的本地化翻譯</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">部分變更需要重啟Playnite，是否立即重新啟動?
 
@@ -406,6 +407,10 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsTextFormattingMode">文本格式化模式</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">文本渲染模式</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">文本渲染以及格式化選項尚未應用至遊戲敘述文本</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">立即下載背景圖片</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">若啟用本功能則Playnite會於下載原數據時一併下載背景圖片。將佔用額外的硬碟空間且可於離線時瀏覽圖片。
+        
+若禁用本功能則僅會於首次使用時下載背景圖片。可節省硬碟空間但可能造成圖片讀取速度緩慢且某些圖片可能無法於離線時觀看。</sys:String>
 
     <sys:String x:Key="LOCStrechNone">無</sys:String>
     <sys:String x:Key="LOCStrechFill">填滿</sys:String>
@@ -760,6 +765,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCInvalidGameActionSettings">無效的遊戲動作設定</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">解決帳號同步問題</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">重新命名物件</sys:String>
     <sys:String x:Key="LOCAddNewItem">新增物件</sys:String>
@@ -799,6 +805,11 @@ By {1}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">即將離開Playnite並透過預設瀏覽器前往以下的網頁。是否繼續?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">成就</sys:String>

@@ -40,6 +40,7 @@
     <sys:String x:Key="LOCCrashReportIssue">Сповістити про проблему</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Перезавантажити Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Прибрати ігри?</sys:String>
@@ -356,6 +357,8 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Щоб застосувати нову тему, потрібно перезапустити Playnite</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Отримати більше тем</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Створити нову тему</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Посприяти перекладу</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Деякі змінені налаштування потребують перезапуску Playnite. Ви хочете перезапустити Playnite?
     
@@ -396,6 +399,8 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нічого</sys:String>
     <sys:String x:Key="LOCStrechFill">Заповнення</sys:String>
@@ -743,6 +748,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Перейменувати</sys:String>
     <sys:String x:Key="LOCAddNewItem">Додати елемент</sys:String>
@@ -766,6 +772,11 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

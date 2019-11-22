@@ -35,15 +35,14 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Uff da, her skjedde det noe feil…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Det skjedde en uoprettelig feil.
-
-Hvis du vil hjelpe oss å fikse problemet, vennligst opprett en diagnostikkpakke og trykk på 'Rapporter Kræsj' for å la oss vite hva som skjedde. Takk.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Det skjedde en uoprettelig feil.
 
 Hvis du vil hjelpe oss å fikse problemet, vennligst send diagnostikk-informasjon. Takk.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporter Programstopp</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Omstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Lukk Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Biblioteksbehandler</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern(e) spill?</sys:String>
@@ -360,6 +359,8 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsSkinChangeRestart"></sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Skaff deg flere tema</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Start Playnite om igjen?</sys:String>
@@ -398,6 +399,8 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Fyll</sys:String>
@@ -735,6 +738,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Omdøp gjenstand</sys:String>
     <sys:String x:Key="LOCAddNewItem">Legg til ny gjenstand</sys:String>
@@ -758,6 +762,11 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Язык</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Выход</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Фильтр активен</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Фильтр отключен</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Дополнительные фильтры</sys:String>
     <sys:String x:Key="LOCFilters">Фильтры</sys:String>
     <sys:String x:Key="LOCFilter">Фильтр</sys:String>
@@ -37,13 +37,18 @@
     <sys:String x:Key="LOCCrashWindowTitle">О нет, что-то пошло не так…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Произошла неисправимая ошибка.
         
-Если вы хотите помочь нам исправить эту проблему, пожалуйста, отправьте нам пакет данных для диагностики и используйте кнопку 'Сообщить об ошибке', чтобы сообщить нам, что случилось. Спасибо.</sys:String>
+Если вы хотите помочь нам исправить эту проблему, кратко опишите действия, предпринятые до сбоя, а затем создайте пакет диагностики. Если вы подключены к интернету, пакет будет загружен на сервер Playnite для анализа.
+
+Кроме того, вы можете использовать кнопку «Отправить отзыв», чтобы создать новую проблему на GitHub и сообщить о сбое вручную.
+
+Спасибо за вашу помощь.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Произошла неисправимая ошибка.
 
 Чтобы помочь нам исправить эту проблему, пожалуйста, отправьте диагностическую информацию. Спасибо.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Сообщить о проблеме</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Перезагрузить</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Закрыть Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Действия, предпринятые до сбоя (на английском языке):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Менеджер библиотеки</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Убрать игру(ы)?</sys:String>
@@ -74,9 +79,13 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Плагин библиотеки, ответственный за эту игру, не установлен или не включен.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Официальная загрузка метаданных недоступна.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Игра не выбрана.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Не удалось выполнить скрипт для игры:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Не удалось выполнить глобальный скрипт:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell версии 3.0 или выше не установлен.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Включено</sys:String>
@@ -129,7 +138,7 @@
     <sys:String x:Key="LOCInstallationLabel">Настройки</sys:String>
     <sys:String x:Key="LOCActionsLabel">Действия</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Загрузка…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Загрузка…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Тип</sys:String>
     <sys:String x:Key="LOCProfileLabel">Профиль</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Профили</sys:String>
@@ -191,7 +200,7 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Невозможно получить иконку если отсутствует "Игровое действие" или выбран URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Загрузить только отсутствующие метаданные</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Включение этой опции пропустит загрузку метаданных для полей данных, которые уже содержат информацию.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Выбор игр</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Пожалуйста выберите у какой игры вы хотите обновить метаданные:</sys:String>
@@ -253,7 +262,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMenuShutdownSystem">Завершение работы</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Спящий режим</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Отправить систему в спящий режим</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Подобрать случайную игру</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поля игр, отображаемые на панели подробностей:</sys:String>
@@ -262,7 +271,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина рамки</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Отсутствует источник значка игры</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Отсутствует источник обложки игры</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Источник при отсутствии изображения игры</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Расстояние по вертикали до описания игр</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Сетка просмотра деталей положения</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Положение списка игр</sys:String>
@@ -360,6 +369,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite требуется перезапуск при смене темы</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Получить больше тем</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Создать новую тему</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Добавить новую локализацию</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Некоторые измененные настройки требуют перезагрузки Playnite. Вы хотите перезагрузить Playnite сейчас?
 
@@ -368,7 +379,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite не перемещает файлы библиотеки автоматически, вы должны переместить/скопировать их, прежде чем местоположение будет изменено. Если в целевой папке нет библиотеки, будет создана новая.
 
 Новая база данных будет использоваться только после перезапуска приложения.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Время игры не будет высчитываться если выбрать параметр "Закрыть".</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Количество строк</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Количество столбцов</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Количество строк в детальном режиме</sys:String>
@@ -378,7 +389,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Фон из магазина</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite будет использовать доступные игровые скриншоты как фон, взамен фоновых изображений из магазина.
 Не применяется ретроспективно к существующим играм.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительная синхронизация сыгранного времени со сторонними библиотеками</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Всегда загружайте записанное время воспроизведения из удаленной библиотеки во время синхронизации библиотеки, игнорируя время, записанное Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Включить поддержку контроллера в режиме рабочего стола</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Кнопка Guide открывает полноэкранный режим</sys:String>
@@ -393,16 +404,20 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsFullscreenLayout">Настройка отображения</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Горизонтальная прокрутка</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Выберите один из подразделов</sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">Размеры шрифта</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Авто</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Без сглаживания</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">В оттенках серого</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Идеальный</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Обычный</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">Режим форматирования текста</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">Режим отрисовки текста</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Настройки режимов отрисовки и форматирования текста не применяются к тексту описания игры.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Загружать фоновые изображения немедленно</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Если включено, Playnite будет загружать фоновые изображения при загрузке метаданных. Используется больше дискового пространства, но обеспечивается доступность изображений в автономном режиме.
+        
+Если выключено, фоновые изображения загружаются только при необходимости. Используется меньше дискового пространства, но может привести к задержке перед отображением изображения, а также некоторые изображения могут быть недоступны в автономном режиме.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нету</sys:String>
     <sys:String x:Key="LOCStrechFill">Заполнить</sys:String>
@@ -485,9 +500,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCAddPlatformTitle">Добавить</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Выбрать иконку</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Выбрать обложку</sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Выбрать изображение</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Выберите элемент</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">Выбрать фон</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Выбрать файл</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Выбрать URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Добавить</sys:String>
@@ -632,14 +647,14 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCChange">Изменено</sys:String>
     <sys:String x:Key="LOCAdvanced">Продвинутый</sys:String>
     <sys:String x:Key="LOCNever">Никогда</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">Не играл</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">Играл</sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten">Полностью завершена</sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Завершил</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">Играю</sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned">Забросил</sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold">В ожидании</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">Планирую играть</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Статус</sys:String>
     <sys:String x:Key="LOCUserScore">Оценка пользователей</sys:String>
     <sys:String x:Key="LOCCriticScore">Оценка критиков</sys:String>
@@ -650,7 +665,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCExtensions">Расширения</sys:String>
     <sys:String x:Key="LOCReloadScripts">Перезагрузить скрипты</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Все скрипты успешно перезагружены.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
+    <sys:String x:Key="LOCNoGamesFound">Не найдено игр по заданным критериям поиска/фильтра</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Выйти из полноэкранного режима</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Закрыть Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Библиотеки</sys:String>
@@ -671,10 +686,10 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCFontLarger">Очень большой</sys:String>
     <sys:String x:Key="LOCFontLargest">Огромный</sys:String>
     <sys:String x:Key="LOCDefault">По умолчанию</sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
-    <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCSelect">Выбрать</sys:String>
+    <sys:String x:Key="LOCFirst">Первое</sys:String>
+    <sys:String x:Key="LOCRandom">Случайное</sys:String>
+    <sys:String x:Key="LOCUserSelect">Выбрать</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Параметры для эмулятора</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Дополнительные параметры для эмулятора</sys:String>
@@ -698,9 +713,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCThemeTestApplySkin">Принять выбранную тему</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Посмотреть изменения файла</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Автоматически применить тему при изменении исходного файла</sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Тип скрипта</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Выполнить перед запуском игры</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Выполнить после выхода из игры</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Сохранить по умолчанию</sys:String>
@@ -726,7 +741,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Сыгранное время отслеживается и сохраняется в секундах.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Введите значение от 0 до 100(либо оставьте пустое если не хотите оценивать)</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Разработка Playnite осуществляется благодаря средствам этих людей:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Люди, принимающие участие в написании кода, локализаций и т.д.:</sys:String>
@@ -759,13 +774,14 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCInvalidGameActionSettings">Неправильная конфигурация игрового действия.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Устранение неполадок синхронизации учетной записи</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Переименовать элемент</sys:String>
     <sys:String x:Key="LOCAddNewItem">Добавить новый предмет</sys:String>
     <sys:String x:Key="LOCEnterName">Введите имя</sys:String>
     <sys:String x:Key="LOCEnterNewName">Введите новое имя</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Менее часа</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">От 1 до 10 часов</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">От 10 до 100 часов</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">От 100 до 500 часов</sys:String>
@@ -799,6 +815,17 @@ IGDB > Официальный магазин:
     
 {0}</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Одно или несколько изображений, возможно, слишком большое для оптимальной производительности. Использование очень больших изображений может привести к плохой отзывчивости пользовательского интерфейса и увеличению использования памяти.
+
+Максимальные рекомендуемые размеры:
+Иконки: 256px по высоте
+Обложки: 800px по высоте
+Фон: 1080px по высоте
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Предупреждение о падении производительности</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Не показывать снова</sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Достижения</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Форум</sys:String>
@@ -823,7 +850,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSteamLinksCommunityHub">Центр сообщества</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Обсуждения</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Мастерская</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Загружать вертикальные обложки</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Первичная настройка не завершена. Playnite будет запущен в обычном режиме, чтобы закончить процедуру.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Последние запущенные</sys:String>
@@ -834,11 +861,11 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCGameListFiltered">Применена сортировка.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Результаты поиска для:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Элемент с таким именем уже существует.</sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Ограничить подбор текущим фильтром</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Подобрать другую</sys:String>
     
     <!--IGDB-->
-    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Использовать скриншоты игры в подборе изображения</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Если доступно несколько изображений, то используйте:</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Выбрать фоновое изображение для: {0}</sys:String>
 </ResourceDictionary>

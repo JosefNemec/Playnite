@@ -40,6 +40,7 @@
     <sys:String x:Key="LOCCrashReportIssue">クラッシュレポート</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite を再起動</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">ゲームを削除しますか？</sys:String>
@@ -356,6 +357,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsSkinChangeRestart">新しいテーマを適用するにはPlayniteの再起動が必要です。</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">その他のテーマを入手</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">新しいテーマの作成</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">新しいローカライズに貢献する</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">変更された設定のいくつかはPlayniteを再起動する必要があります。 今すぐPlayniteを再起動しますか？
     
@@ -396,6 +399,8 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">無し</sys:String>
     <sys:String x:Key="LOCStrechFill">埋める</sys:String>
@@ -750,6 +755,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCInvalidGameActionSettings">無効なゲームアクション設定。</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">アカウント同期問題のトラブルシューティング</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">アイテムの名前を変更</sys:String>
     <sys:String x:Key="LOCAddNewItem">新しいアイテムの追加</sys:String>
@@ -773,6 +779,11 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">新しいテーマをインストールしますか？既存のインストールは上書きします。    </sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">デフォルトのウェブブラウザを使って次のウェブページに行きます。続行しますか？</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

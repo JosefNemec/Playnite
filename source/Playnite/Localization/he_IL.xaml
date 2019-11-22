@@ -35,15 +35,20 @@
     <sys:String x:Key="LOCNoPlatform">אין פלטפורמה</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">אוי לא, משהו רע קרה…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">שגיאה הלא ניתנת להתאוששות.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">קרתה שגיאה שלא ניתנת להתאוששות.
         
-אם תרצו לעזור לתקן את הבעיה הזאת, אנא צרו חבילת אבחון והשתמשו בכפתור "דווח קריסה" כדי לאפשר לנו לדעת מה קרה. תודה.</sys:String>
+אם ברצונך לעזור לנו לתקן את הבעיה, אנא תאר בקצרה את הפעולות שנעשו לפני הקריסה ואז צור חבילת אבחון. אם אתם מקוונים, החבילה תועלה לשרתי Playnite לתחקור.
+
+ניתן גם להשתמש בכפתור "דווח על קריסה" ליצירת באג חדש ב GitHub ולדווח על הקריסה ידנית.
+
+תודה על העזרה.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">שגיאה הלא ניתנת להתאוששות.
         
 אם תרצו לעזור לתקן את הבעיה הזאת, אנא שלחו מידע אבחון. תודה.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">דווח על קריסה</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">הפעל מחדש את Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">צא מ Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">פעולות שקרו לפני הקריסה (באנגלית):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">מנהל ספרייה</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">הסר משחק(ים)?</sys:String>
@@ -362,6 +367,8 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsSkinChangeRestart">אתחול Playnite דרוש להחלת ערכת נושא חדשה</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">קבל ערכות נושא נוספות</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">צור ערכת נושא חדשה</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">השג הרחבות נוספות</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">צור הרחבה חדשה</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">תרום לתרגום חדש</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">חלק משינויי הגדרות דורשים אתחול של Playnite. האם לאתחל את Playnite כעת?
     
@@ -404,6 +411,10 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsTextFormattingMode">מצב עיצוב טקסט</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">מצב עיבוד טקסט</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">אפשרויות עיבוד ועיצוב טקסט לא מופעלות על טקסט תיאור המשחק כעת.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">הורד תמונות רקע מיד</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">אם דלוק, Playnite יוריד אומנות רקע במזן הורדת נתונים. עושה שימוש ביותר מקום דיסק והופך אומנות לזמינה במצב לא מקוון.
+        
+אם כבוי, אומנות רקע תורד רק כאשר נדרשת לראשונה. נעשה שימוש בפחות מקום דיסק, אך יכול לגרום להמתנה עד שהאומנות תוצג ויכול להיות שתמונות מסוימות לא יהיו זמינות במצב לא מקוון.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">ללא</sys:String>
     <sys:String x:Key="LOCStrechFill">מילוי</sys:String>
@@ -760,6 +771,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCInvalidGameActionSettings">תצורת פעולת משחק לא תקינה.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">טיפול בתקלות סנכרון חשבון</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">פתרון בעיות</sys:String>
 
     <sys:String x:Key="LOCRenameItem">שנה שם פריט</sys:String>
     <sys:String x:Key="LOCAddNewItem">הוסף פריט חדש</sys:String>
@@ -799,6 +811,11 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">אתם עומדים לעזוב את Playnite ולנווט לדף אינטרנט על ידי דפדפן ברירת המחדל. האם ברצונך להמשיך?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">אזהרת ביצועים</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">אל תציג שוב</sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">הישגים</sys:String>

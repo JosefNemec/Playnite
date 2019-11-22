@@ -35,15 +35,14 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Geen Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nee! Er is iets misgegaan…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Onherstelbare fout opgetreden.
-        
-Als u ons wilt helpen dit probleem op te lossen, maak dan een diagnostisch pakket aan en gebruik de 'Rapporteer Crash' knop om ons te laten weten wat er is gebeurd. Dank u.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
         
 Als u ons wilt helpen dit probleem op te lossen, stuur dan diagnostische informatie. Dank u.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporteer Probleem</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Herstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sluit Playnite af</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Bibliotheek Beheerder</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
@@ -360,6 +359,8 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Om het thema toe te passen moet Playnite opnieuw opgestart worden</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Vind meer thema's</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Maak nieuw thema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Voeg nieuwe vertaling toe</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Herstart Playnite?</sys:String>
@@ -398,6 +399,8 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Geen</sys:String>
     <sys:String x:Key="LOCStrechFill">Vullen</sys:String>
@@ -754,6 +757,7 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCInvalidGameActionSettings">Ongeldige spel-actie configuratie.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Probleemoplossingen account sync</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Item hernoemen</sys:String>
     <sys:String x:Key="LOCAddNewItem">Nieuw item toevoegen</sys:String>
@@ -793,6 +797,11 @@ versie {2}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">U staat op het punt om Playnite te verlaten en te navigeren naar de volgende webpagina met behulp van uw standaard webbrowser. Wilt u doorgaan?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

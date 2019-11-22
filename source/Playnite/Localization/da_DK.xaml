@@ -38,6 +38,7 @@
     <sys:String x:Key="LOCCrashReportIssue">Anmeld crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Genstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Luk Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Administrer bibliotek</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern spil?</sys:String>
@@ -344,6 +345,8 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart"></sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Find flere temaer</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Opret et nyt tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Genstart Playnite?</sys:String>
@@ -382,6 +385,8 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Udfyld</sys:String>
@@ -719,6 +724,7 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Omdøb genstand</sys:String>
     <sys:String x:Key="LOCAddNewItem"></sys:String>
@@ -742,6 +748,11 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

@@ -40,6 +40,7 @@ Négyzet - Ne változzon (több játék állításakor)</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Hiba jelentése</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite újraindítása</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Listából való törlés megerősítése</sys:String>
@@ -354,6 +355,8 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite újraindítása szükséges a téma alkalmazásához</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Témák beszerzése</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Új téma készítése</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Segítsen fordításban</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Néhány beállítás változtatásához Playnite újraindítása szükséges. Elvégzi most?
     
@@ -395,6 +398,8 @@ Minden jelenlegi művelete (metaadatok letöltése) abba marad.</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -743,6 +748,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem"></sys:String>
     <sys:String x:Key="LOCAddNewItem"></sys:String>
@@ -766,6 +772,11 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
