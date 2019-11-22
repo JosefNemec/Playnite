@@ -95,6 +95,7 @@ namespace Playnite.ViewModels
 
         public void PickGame()
         {
+            var lastSelection = SelectedGame;
             if (IsLimitedToFilter)
             {
                 var count = collection.CollectionView.Count;
@@ -104,8 +105,14 @@ namespace Playnite.ViewModels
                 }
                 else if (count > 1)
                 {
-                    var index = random.Next(0, count - 1);
-                    SelectedGame = (collection.CollectionView.GetItemAt(index) as GamesCollectionViewEntry).Game;
+                    var newSelection = lastSelection;
+                    while (newSelection == lastSelection)
+                    {
+                        var index = random.Next(0, count);
+                        newSelection = (collection.CollectionView.GetItemAt(index) as GamesCollectionViewEntry).Game;
+                    }
+
+                    SelectedGame = newSelection;
                 }
                 else
                 {
@@ -121,8 +128,14 @@ namespace Playnite.ViewModels
                 }
                 else if (count > 1)
                 {
-                    var index = random.Next(0, count - 1);
-                    SelectedGame = database.Games.ElementAt(index);
+                    var newSelection = lastSelection;
+                    while (newSelection == lastSelection)
+                    {
+                        var index = random.Next(0, count);
+                        newSelection = database.Games.ElementAt(index);
+                    }
+
+                    SelectedGame = newSelection;
                 }
                 else
                 {

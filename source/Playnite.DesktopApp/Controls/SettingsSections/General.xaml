@@ -67,7 +67,7 @@
                       ItemsSource="{Binding AvailableLanguages}"/>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Translations">
+                            CommandParameter="https://crowdin.com/project/playnite">
                     <Run Text="{DynamicResource LOCSettingsCreateLocalization}" />
                 </Hyperlink>
             </TextBlock>

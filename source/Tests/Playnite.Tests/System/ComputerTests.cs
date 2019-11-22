@@ -14,7 +14,7 @@ namespace Playnite.Tests
         [Test]
         public void GetMonitorsTest()
         {
-            var screens = Computer.GetMonitors();
+            var screens = Computer.GetScreens();
             CollectionAssert.IsNotEmpty(screens);
             Assert.IsTrue(screens.Any(a => a.Primary));
         }

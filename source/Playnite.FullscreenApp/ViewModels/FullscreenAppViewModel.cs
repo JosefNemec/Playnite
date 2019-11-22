@@ -1090,6 +1090,8 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Window.Show(this);
             SetViewSizeAndPosition(IsFullScreen);
+            application.UpdateScreenInformation(Window.Window);
+            Window.Window.LocationChanged += Window_LocationChanged;
             InitializeView();
         }
 
@@ -1124,7 +1126,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public void SetViewSizeAndPosition(bool fullscreen)
         {
             var screenIndex = AppSettings.Fullscreen.Monitor;
-            var screens = Computer.GetMonitors();
+            var screens = Computer.GetScreens();
             if (screenIndex + 1 > screens.Count)
             {
                 screenIndex = 0;
@@ -1269,7 +1271,7 @@ namespace Playnite.FullscreenApp.ViewModels
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
                         using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
@@ -1383,6 +1385,12 @@ namespace Playnite.FullscreenApp.ViewModels
         public void Dispose()
         {
             GamesView?.Dispose();
+            Window.Window.LocationChanged -= Window_LocationChanged;
+        }
+
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            application.UpdateScreenInformation(Window.Window);
         }
     }
 }

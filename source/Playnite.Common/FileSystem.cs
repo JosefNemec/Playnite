@@ -194,14 +194,14 @@ namespace Playnite.Common
             throw new IOException($"Failed to read {path}", ioException);
         }
 
-        public static Stream OpenFileStreamSafe(string path, int retryAttempts = 5)
+        public static Stream OpenReadFileStreamSafe(string path, int retryAttempts = 5)
         {
             IOException ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
                 try
                 {
-                    return new FileStream(path, FileMode.Open);
+                    return new FileStream(path, FileMode.Open, FileAccess.Read);
                 }
                 catch (IOException exc)
                 {

@@ -21,7 +21,29 @@ namespace Playnite.Common
 
         public List<string> Gpus { get; set; }
 
-        public List<Screen> Monitors { get; set; }
+        public List<ComputerScreen> Screens { get; set; }
+    }
+
+    public class ComputerScreen
+    {
+        public System.Drawing.Rectangle WorkingArea { get; private set; }
+        public bool Primary { get; private set; }
+        public string DeviceName { get; private set; }
+        public System.Drawing.Rectangle Bounds { get; private set; }
+        public int BitsPerPixel { get; private set; }
+
+        public ComputerScreen()
+        {
+        }
+
+        public ComputerScreen(Screen screen)
+        {
+            WorkingArea = screen.WorkingArea;
+            Primary = screen.Primary;
+            DeviceName = screen.DeviceName;
+            Bounds = screen.Bounds;
+            BitsPerPixel = screen.BitsPerPixel;
+        }
     }
 
     public enum WindowsVersion
@@ -100,13 +122,18 @@ namespace Playnite.Common
                 }
             }
 
-            info.Monitors = GetMonitors();
+            info.Screens = GetScreens();
             return info;
         }
 
-        public static List<Screen> GetMonitors()
+        public static List<ComputerScreen> GetScreens()
         {
-            return Screen.AllScreens.ToList();
+            return Screen.AllScreens.Select(a => a.ToComputerScreen()).ToList();
+        }
+
+        public static ComputerScreen GetPrimaryScreen()
+        {
+            return Screen.PrimaryScreen?.ToComputerScreen();
         }
 
         public static void Shutdown()
@@ -127,6 +154,18 @@ namespace Playnite.Common
         public static bool Hibernate()
         {
             return Interop.SetSuspendState(true, true, true);
+        }
+
+        public static ComputerScreen ToComputerScreen(this Screen screen)
+        {
+            if (screen == null)
+            {
+                return null;
+            }
+            else
+            {
+                return new ComputerScreen(screen);
+            }
         }
     }
 }

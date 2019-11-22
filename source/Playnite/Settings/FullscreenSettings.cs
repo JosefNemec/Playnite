@@ -110,7 +110,7 @@ namespace Playnite
     public class FullscreenSettings : ObservableObject
     {
         [JsonIgnore]
-        public List<Screen> AvailableScreens => Computer.GetMonitors();
+        public List<ComputerScreen> AvailableScreens => Computer.GetScreens();
 
         [JsonIgnore]
         public List<ThemeDescription> AvailableThemes => ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen);

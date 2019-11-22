@@ -35,15 +35,20 @@ Indeterminato - Nessuna modifica (mentre si modificano di più giochi)</sys:Stri
     <sys:String x:Key="LOCNoPlatform">Nessuna piattaforma</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, è successo qualcosa di brutto…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Si è verificato un errore fatale.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">È accaduto un'errore irrecuperabile.
+        
+Se desideri aiutarci a risolvere questo problema, descrivici brevemente le azioni avvenute prima dell'arresto per poi creare un pacchetto diagnostico.  Se sei collegato online, il pacchetto sarà caricato al server di Playnite per l'analisi.
 
-Se vuoi aiutarci a risolvere il problema, si prega di creare un pacchetto di diagnostica e di usare il tasto "Segnala crash" per farci sapere cosa è successo. Grazie.</sys:String>
+Alternativamente, puoi utilizzare il tasto "Segnalazione Arresto' per creare un nuovo topic su Github e segnalare l'arresto manualmente.
+
+Grazie per il tuo aiuto.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Si è verificato un errore fatale.
         
 Se vuoi aiutarci a risolvere questo problema, invia informazioni diagnostiche. Grazie.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Segnala crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Riavvia Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Esci da Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Azioni eseguite prima dell'arresto (in inglese):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gestione libreria</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Rimuovere gioco/i?</sys:String>
@@ -360,6 +365,8 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsSkinChangeRestart">E' richiesto il riavvio di Playnite per applicare il nuovo tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Ottieni più temi</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Crea un nuovo tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuisci a una nuova localizzazione</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Alcune delle impostazioni cambiate richiedono il riavvio di Playnite. Vuoi riavviare Playnite ora?
     
@@ -402,6 +409,10 @@ Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applica
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modalità della formattazione del testo</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modalità di rendering del testo</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Le opzioni di rendering e di formattazione non sono al momento applicabili al testo di descrizione del gioco.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Scarica le immagini dello sfondo immediatamente</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se disattivato, Playnite scaricherà l'immagine dello sfondo durante lo scaricamento del metadata.  Utilizzando più spazio del disco e rendendo l'immagine disponibile quando non è connesso.
+        
+Se disattivato, l'immagine dello sfondo sarà scaricato soltanto quando sarà richiesto.  Utilizza meno spazio, ma potrebbe causare un ritardo prima di mostrare lo sfondo e alcune immagini potrebbero essere non disponibili quando non è connesso.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Niente</sys:String>
     <sys:String x:Key="LOCStrechFill">Riempi</sys:String>
@@ -756,6 +767,7 @@ Puoi provare i seguenti :
     <sys:String x:Key="LOCInvalidGameActionSettings">Configurazione dell'azione del gioco non valida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Troubleshooting dei problemi di sincronizzazione dell'account</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Risoluzione dei problemi</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Rinomina oggetto</sys:String>
     <sys:String x:Key="LOCAddNewItem">Aggiungi nuovo elemento</sys:String>
@@ -795,6 +807,17 @@ Versione {2}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Stai per lasciare Playnite e navigare nella pagina web seguente utilizzando il browser web predefinito. Vuoi continuare?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">L'immagine/le immagini selezionato/te potrebbero essere troppo grandi per la prestazione ottimale. Usare immagini molto grandi potrebbe risultare in una responsività della UI pesantemente peggiorata e un'aumento dell'utilizzo della memoria.
+
+Dimensioni massime raccomandate:
+Icone: 256px altezza
+Copertine: 800px altezza
+Sfondi: 1080px altezza
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Avviso di prestazione</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Non mostrare più</sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Traguardi</sys:String>

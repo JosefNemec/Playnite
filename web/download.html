@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Playnite - video game library manager</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+
+	<meta name="description" content="Playnite is an open source video game library manager with one simple goal: To provide a unified interface for all of your games.">
+	<meta name="author" content="Playnite">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/darktheme.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<style type="text/css">
+		.center-block {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.carousel-control.left,
+		.carousel-control.right {
+			background-image: none;
+		}
+	</style>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+	<script>
+		$( document ).ready(function() {
+			var items = $('#carousel-711607 .item'), //grab all slides
+			heights = [], //create empty array to store height values
+			tallest; //create variable to make note of the tallest slide
+	
+			if (items.length) {
+				function normalizeHeights() {
+					items.each(function() { //add heights to array
+						heights.push($(this).height()); 
+					});
+					tallest = Math.max.apply(null, heights); //cache largest value
+					items.each(function() {
+						$(this).css('min-height',tallest + 'px');
+					});
+				};
+				normalizeHeights();
+	
+				$(window).on('resize orientationchange', function () {
+					tallest = 0, heights.length = 0; //reset vars
+					items.each(function() {
+						$(this).css('min-height','0'); //reset min-height
+					}); 
+					normalizeHeights(); //run it again 
+				});
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<div class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">	
+				<a class="navbar-logo" href="/"><img src="applogo.png" height="48"></a>
+			</div>
+			<div class="navbar-collapse">
+				<ul class="nav navbar-nav pull-left">
+					<li><a href="/download.html">Download</a></li>
+					<li><a href="/forum/forum-11.html">News</a></li>
+					<li><a href="/forum/">Forum</a></li>
+					<li><a href="https://github.com/JosefNemec/Playnite/">Github</a></li>
+					<li><a href="https://github.com/JosefNemec/Playnite/wiki">Wiki</a></li>
+					<li><a href="https://playnite.link/docs/">SDK</a></li>
+				</ul>
+				<span class="navbar-links">
+					<a href="https://twitter.com/AppPlaynite"><img src="twitter.png" height="24" style="margin-right:20px"/></a>
+					<a href="https://discord.gg/hSFvmN6"><img src="discord.png" height="24" style="margin-right:20px" /></a>
+					<a href="https://www.patreon.com/playnite"><img src="patreon.png" height="24" style="margin-right:20px" /></a>
+				</span>
+			</div>					
+		</div>
+	</div>				
+	<br>
+	<div class="container">
+		<div class="row">
+			Windows 7, 8.1 or 10 is required.
+			<br>
+			<br>
+			Latest version <span class="text-info">6.1</span>, released 22/11/2019. <a href="">Changelog</a>
+			<br>
+			<br>
+			<a href="https://github.com/JosefNemec/Playnite/releases" type="button" class="btn btn-success" style="width:300px">
+				<i class="glyphicon glyphicon-download-alt"></i>Download Installer			
+			</a>
+			<br>
+			<br>
+			<a href="https://github.com/JosefNemec/Playnite" type="button" type="button" class="btn btn-success" style="width:300px">
+				<i class="glyphicon glyphicon-download-alt"></i>Download Portable
+			</a>
+		</div>
+	</div>
+</body>
+</html>

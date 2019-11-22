@@ -10,15 +10,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Playnite.Common
-{
-   
+{   
     public class CacheItem
     {
-        private object cacheItem;
+        public object CacheObject
+        {
+            get;
+        }
 
         public DateTime LastAccess
         {
-            get; private set;
+            get; internal set;
         }
 
         public DateTime CachedTime
@@ -31,18 +33,22 @@ namespace Playnite.Common
             get;
         }
 
+        public Dictionary<string, object> Metadata
+        {
+            get;
+        } = new Dictionary<string, object>();
+
         public CacheItem(object item, long size)
         {
-            cacheItem = item;
+            CacheObject = item;
             CachedTime = DateTime.Now;
             LastAccess = CachedTime;
             Size = size;
         }
 
-        public object GetItem()
+        public CacheItem(object item, long size, Dictionary<string, object> metadata) : this (item, size)
         {
-            LastAccess = DateTime.Now;
-            return cacheItem;            
+            Metadata = metadata;
         }
     }
 
@@ -75,7 +81,7 @@ namespace Playnite.Common
             }
         }
 
-        public bool TryAdd(string id, object item, long size)
+        public bool TryAdd(string id, object item, long size, Dictionary<string, object> metadata = null)
         {
             currentSize += size;
             if (currentSize > memorySizeLimit)
@@ -83,14 +89,21 @@ namespace Playnite.Common
                 ReleaseOldestItems();
             }
 
-            return cache.TryAdd(id, new CacheItem(item, size));
+            if (metadata == null)
+            {
+                return cache.TryAdd(id, new CacheItem(item, size));
+            }
+            else
+            {
+                return cache.TryAdd(id, new CacheItem(item, size, metadata));
+            }
         }
 
-        public bool TryRemove(string id, out object item)
+        public bool TryRemove(string id, out CacheItem item)
         {
             if (cache.TryRemove(id, out var cacheItem))
             {
-                item = cacheItem.GetItem();
+                item = cacheItem;
                 currentSize -= cacheItem.Size;
                 return true;
             }
@@ -101,11 +114,25 @@ namespace Playnite.Common
             }
         }
 
-        public bool TryGet(string id, out object item)
+        public bool TryRemove(string id)
+        {
+            if (cache.TryRemove(id, out var cacheItem))
+            {
+                currentSize -= cacheItem.Size;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool TryGet(string id, out CacheItem item)
         {
             if (cache.TryGetValue(id, out var cacheItem))
             {
-                item = cacheItem.GetItem();
+                cacheItem.LastAccess = DateTime.Now;
+                item = cacheItem;
                 return true;
             }
             else

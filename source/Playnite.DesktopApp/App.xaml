@@ -57,6 +57,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/NullableIntBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/NumericBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ViewSettingsMenu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SliderEx.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
 
                 <!--Derived Styles-->

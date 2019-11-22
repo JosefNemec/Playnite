@@ -135,7 +135,7 @@ namespace EpicLibrary.Services
 
             try
             {
-                var account = invokeRequest<AccountResponse>(accountUrl + tokens.account_id, tokens).GetAwaiter().GetResult();
+                var account = InvokeRequest<AccountResponse>(accountUrl + tokens.account_id, tokens).GetAwaiter().GetResult().Item2;
                 return account.id == tokens.account_id;
             }
             catch (Exception e)
@@ -144,7 +144,7 @@ namespace EpicLibrary.Services
                 {
                     renewToknes(tokens.refresh_token);
                     tokens = loadTokens();
-                    var account = invokeRequest<AccountResponse>(accountUrl + tokens.account_id, tokens).GetAwaiter().GetResult();
+                    var account = InvokeRequest<AccountResponse>(accountUrl + tokens.account_id, tokens).GetAwaiter().GetResult().Item2;
                     return account.id == tokens.account_id;
                 }
                 else
@@ -162,18 +162,29 @@ namespace EpicLibrary.Services
                 throw new Exception("User is not authenticated.");
             }
 
-            return invokeRequest<List<Asset>>(assetsUrl, loadTokens()).GetAwaiter().GetResult();
+            return InvokeRequest<List<Asset>>(assetsUrl, loadTokens()).GetAwaiter().GetResult().Item2;
         }
 
-        public CatalogItem GetCatalogItem(string nameSpace, string id)
+        public CatalogItem GetCatalogItem(string nameSpace, string id, string cachePath)
         {
-            if (!GetIsUserLoggedIn())
+            Dictionary<string, CatalogItem> result = null;
+            if (!cachePath.IsNullOrEmpty() && File.Exists(cachePath))
             {
-                throw new Exception("User is not authenticated.");
+                result = Serialization.FromJsonFile<Dictionary<string, CatalogItem>>(cachePath);
+            }
+            else
+            {
+                if (!GetIsUserLoggedIn())
+                {
+                    throw new Exception("User is not authenticated.");
+                }
+
+                var url = string.Format("{0}/bulk/items?id={1}&country=US&locale=en-US", nameSpace, id);
+                var catalogResponse = InvokeRequest<Dictionary<string, CatalogItem>>(catalogUrl + url, loadTokens()).GetAwaiter().GetResult();
+                result = catalogResponse.Item2;
+                FileSystem.WriteStringToFile(cachePath, catalogResponse.Item1);
             }
 
-            var url = string.Format("{0}/bulk/items?id={1}&country=US&locale=en-US", nameSpace, id);
-            var result = invokeRequest<Dictionary<string, CatalogItem>>(catalogUrl + url, loadTokens()).GetAwaiter().GetResult();
             if (result.TryGetValue(id, out var catalogItem))
             {
                 return catalogItem;
@@ -202,7 +213,7 @@ namespace EpicLibrary.Services
             }
         }
 
-        private async Task<T> invokeRequest<T>(string url, OauthResponse tokens) where T : class
+        private async Task<Tuple<string, T>> InvokeRequest<T>(string url, OauthResponse tokens) where T : class
         {
             using (var httpClient = new HttpClient())
             {
@@ -217,7 +228,7 @@ namespace EpicLibrary.Services
                 }
                 else
                 {
-                    return Serialization.FromJson<T>(str);
+                    return new Tuple<string, T>(str, Serialization.FromJson<T>(str));
                 }
             }
         }

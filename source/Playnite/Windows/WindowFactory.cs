@@ -50,6 +50,7 @@ namespace Playnite.Windows
             context.Send((a) =>
             {
                 Window = CreateNewWindowInstance();
+                Window.Closed += (_, __) => WindowManager.NotifyChildOwnershipChanges();
                 Window.DataContext = dataContext;
                 if (Window != WindowManager.CurrentWindow)
                 {
@@ -63,6 +64,7 @@ namespace Playnite.Windows
                 }
 
                 asDialog = true;
+                WindowManager.NotifyChildOwnershipChanges();
                 result = Window.ShowDialog();
             }, null);
 
@@ -77,6 +79,7 @@ namespace Playnite.Windows
                 if (Window == null)
                 {
                     Window = CreateNewWindowInstance();
+                    Window.Closed += (_, __) => WindowManager.NotifyChildOwnershipChanges();
                 }
 
                 Window.DataContext = dataContext;
@@ -113,7 +116,8 @@ namespace Playnite.Windows
                 {
                     Window.DialogResult = result;
                 }
-                Window.Close();                
+                Window.Close();
+                WindowManager.NotifyChildOwnershipChanges();
             }, null);
         }
     }

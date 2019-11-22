@@ -35,13 +35,12 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Nicio Platformă</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">A avut loc o eroare irecuperabilă. Playnite s-a închis.
-
-Dacă dorești să ne ajuți, te rog generează un pachet de diagnostic și foloșeste butonul 'Raportează o Eroare' pentru a afla ce s-a întâmplat. Vă mulțumesc.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Raportează o eroare</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartează Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Managerul Librăriei</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Înlătură Joc(uri)?</sys:String>
@@ -358,6 +357,8 @@ Preferați datele de pe magazinul oficial, dacă cele de pe IGDB.com nu sunt dis
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Repornirea programului este necesară pentru aplicarea noii teme</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Căutați mai multe teme</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Creează o temă nouă</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuiți la o localizare nouă</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Unele dintre setările schimbate necesită o repornire a programului. Doriți să reporniți Playnite acum?
     
@@ -398,6 +399,8 @@ Toate sarcinile active vor fi anulate (incluzând descărcările de metadata).</
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nimic</sys:String>
     <sys:String x:Key="LOCStrechFill">Umplere</sys:String>
@@ -744,6 +747,7 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Setarea acțiunii jocului este invalidă.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Depanarea problemelor de sincronizare a contului</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Redenumește articol</sys:String>
     <sys:String x:Key="LOCAddNewItem">Adauga articol nou</sys:String>
@@ -767,6 +771,11 @@ Vă rugăm să atașați ID-ul următor la raportul erorii:</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

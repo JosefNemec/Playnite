@@ -138,7 +138,7 @@ namespace Playnite.Windows
                 if (data.Position != null)
                 {
                     // Make sure that position is part of at least one connected screen
-                    foreach (var monitor in Computer.GetMonitors())
+                    foreach (var monitor in Computer.GetScreens())
                     {
                         if (monitor.WorkingArea.Contains((int)data.Position.X, (int)data.Position.Y))
                         {

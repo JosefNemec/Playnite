@@ -58,6 +58,16 @@ namespace Playnite.SDK
         };
 
         /// <summary>
+        /// Returns if specified plugin is built-in plugin.
+        /// </summary>
+        /// <param name="pluginId"></param>
+        /// <returns></returns>
+        public static bool GetIsBuiltInPlugin(Guid pluginId)
+        {
+            return ExtensionList.ContainsKey(pluginId);
+        }
+
+        /// <summary>
         /// Gets extension plugin by plugin's ID.
         /// </summary>
         /// <param name="id"></param>

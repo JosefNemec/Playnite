@@ -37,13 +37,18 @@ Indeterminada - Nenhuma alteração (quando editando vários jogos)</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Opa, isso não deveria ter acontecido…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ocorreu um erro irrecuperável.
         
-Se você deseja nos ajudar a corrigir esse problema, crie um pacote de diagnósticos e use o botão "Relatar falha" para nos informar sobre o que aconteceu. Obrigado.</sys:String>
+Se você deseja nos ajudar a corrigir este problema, por favor descreva brevemente as ações executadas antes do travamento e então crie um pacote de diagnóstico. Se você estiver online, o pacote será enviado aos servidores do Playnite para análise.
+
+Ou também, você pode usar o botão "Relatar falha" para criar um tópico no Github e relatar o travamento manualmente.
+
+Agradecemos a sua ajuda.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ocorreu um erro irrecuperável.
         
 Se você deseja nos ajudar a corrigir este problema, por favor envie informações de diagnóstico. Obrigado.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Relatar falha</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar o Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sair do Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Ações executadas antes do travamento (em inglês):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gerenciador da biblioteca</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remover Jogo(s)?</sys:String>
@@ -364,6 +369,8 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsSkinChangeRestart">É necessário reiniciar o Playnite para aplicar um novo tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Baixar mais temas</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Como criar um novo tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Obter mais extensões</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Criar uma nova extensão</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Como traduzir para o seu idioma</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Algumas das configurações alteradas requerem que o Playnite seja reiniciado. Você deseja reiniciar o Playnite agora?
     
@@ -406,6 +413,10 @@ O novo local do banco de dados será usado somente após o aplicativo ser reinic
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modo de formatação de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderização de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Atualmente, as opções de renderização e formatação de texto não se aplicam ao texto na descrição dos jogos.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Baixar imagens de fundo imediatamente</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se habilitado, o Playnite baixará as imagens de fundo enquanto baixa os metadados, usando mais espaço em disco e disponibilizando as imagens mesmo quando estiver offline.
+        
+Se desabilitado, as imagens de fundo só serão baixadas quando necessário, usando menos espaço, mas podendo resultar em atrasos na exibição das imagens e algumas imagens podem não estar disponíveis quando estiver offline.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preenchimento</sys:String>
@@ -761,6 +772,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuração de ação do jogo inválida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Solução de problemas de sincronização de contas</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Solucionando problemas</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renomear item</sys:String>
     <sys:String x:Key="LOCAddNewItem">Adicionar novo item</sys:String>
@@ -787,7 +799,7 @@ Você pode tentar corrigir o problema:
 Por {1}
 Versão {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Falha ao instalar o tema.
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Falha ao instalar tema.
         
 {0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Você deseja instalar este novo tema? Qualquer instalação existente será substituída.
@@ -800,6 +812,17 @@ Versão {2}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Você está prestes a deixar o Playnite e abrir a seguinte página da web usando o seu navegador padrão. Você deseja continuar?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">As imagens selecionadas podem ser grandes demais para um desempenho ideal. O uso de imagens muito grandes pode resultar em uma perda significativa na responsividade da interface e um aumento no uso de memória.
+
+Tamanhos máximos recomendados:
+Ícones: 256px de altura
+Capas: 800px de altura
+Imagens de fundo: 1080px de altura
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Aviso de desempenho</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Não mostrar novamente</sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Conquistas</sys:String>
@@ -824,7 +847,7 @@ Versão {2}
     <sys:String x:Key="LOCSteamLinksCommunityHub">Central da comunidade</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Discussões</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Oficina</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers">Baixar imagem de capa vertical</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Baixar imagens de capa verticais</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">A configuração inicial não foi concluída. O Playnite irá reiniciar no modo janela para que o processo seja concluído.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jogados recentemente</sys:String>

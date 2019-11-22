@@ -49,8 +49,8 @@ namespace Playnite
         private static ILogger logger = LogManager.GetLogger();
         public const string ThemeManifestFileName = "theme.yaml";
         public const string PackedThemeFileExtention = ".pthm";
-        public static System.Version DesktopApiVersion => new System.Version("1.3.0");
-        public static System.Version FullscreenApiVersion => new System.Version("1.3.0");
+        public static System.Version DesktopApiVersion => new System.Version("1.4.0");
+        public static System.Version FullscreenApiVersion => new System.Version("1.4.0");
         public static ThemeDescription CurrentTheme { get; private set; }
         public static ThemeDescription DefaultTheme { get; private set; }
 

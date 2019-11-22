@@ -121,7 +121,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 {
                     BindingTools.SetBinding(ImageBackground,
                         FadeImage.SourceProperty,
-                        nameof(GamesCollectionViewEntry.DisplayBackgroundImage));
+                        nameof(GamesCollectionViewEntry.DisplayBackgroundImageObject));
                 }
             }
         }

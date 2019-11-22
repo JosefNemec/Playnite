@@ -437,7 +437,7 @@ namespace Playnite.Database
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
         }
 
-        public BitmapImage GetFileAsImage(string dbPath)
+        public BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null)
         {
             CheckDbState();
             var filePath = GetFullFilePath(dbPath);
@@ -450,9 +450,9 @@ namespace Playnite.Database
             {
                 lock (GetFileLock(dbPath))
                 {
-                    using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                    using (var fStream = FileSystem.OpenReadFileStreamSafe(filePath))
                     {
-                        return BitmapExtensions.BitmapFromStream(fStream);
+                        return BitmapExtensions.BitmapFromStream(fStream, loadProperties);
                     }
                 }
             }
@@ -700,11 +700,7 @@ namespace Playnite.Database
             toAdd.Name = toAdd.Name.RemoveTrademarks();
             toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
             toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
-            if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
-            {
-                toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
-            }
-
+            toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
             Games.Add(toAdd);
             return toAdd;
         }

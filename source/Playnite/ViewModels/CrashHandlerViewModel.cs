@@ -1,18 +1,11 @@
-﻿using Playnite;
-using Playnite.Common;
+﻿using Playnite.Common;
 using Playnite.SDK;
 using Playnite.Services;
-using Playnite.Settings;
-using Playnite.Commands;
+using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Playnite.Windows;
 
 namespace Playnite.ViewModels
 {
@@ -32,6 +25,17 @@ namespace Playnite.ViewModels
             set
             {
                 exception = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string description;
+        public string Description
+        {
+            get => description;
+            set
+            {
+                description = value;
                 OnPropertyChanged();
             }
         }
@@ -125,7 +129,7 @@ namespace Playnite.ViewModels
 
             try
             {
-                Diagnostic.CreateDiagPackage(diagPath);
+                Diagnostic.CreateDiagPackage(diagPath, Description);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {

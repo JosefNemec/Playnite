@@ -35,15 +35,14 @@ Indeterminado - Sem alterações (quando editar vários jogos)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sem Plataforma</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh não, algo inesperado aconteceu…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ocorreu um erro irrecuperável.
-
-Se quiseres ajudar-nos a corrigir este problema, por favor cria um pacote de diagnósticos e usa o botão "Reportar Falha" para nos informar sobre o que se sucedeu. Obrigado.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ocorreu um erro irrecuperável.
 
 Se quiseres ajudar-nos a corrigir este problema, por favor envia um diagnóstico de sistema. Obrigado.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar Crache</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sair do Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gestor da Bibliotecas</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remover jogo(s)?</sys:String>
@@ -356,6 +355,8 @@ Dados preferidos da Loja oficial e onde não há base de dados disponíveis.</sy
     <sys:String x:Key="LOCSettingsSkinChangeRestart">É necessário reiniciar o Playnite para aplicar o novo tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Obter mais temas</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Criar novo tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuir com a nova localização</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Algumas das definidas alteradas requerem que o Playnite seja reiniciado. Desejas reiniciar o Playnite agora?
     
@@ -396,6 +397,8 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preencher</sys:String>
@@ -733,6 +736,7 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renomear item</sys:String>
     <sys:String x:Key="LOCAddNewItem">Adicionar novo item</sys:String>
@@ -756,6 +760,11 @@ Qualquer tarefa a ser executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

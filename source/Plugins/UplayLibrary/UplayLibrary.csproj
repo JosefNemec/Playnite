@@ -33,11 +33,17 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="protobuf-net, Version=2.4.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\protobuf-net.2.4.4\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Abstractions, Version=2.1.0.227, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.IO.Abstractions.2.1.0.227\lib\net40\System.IO.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,9 +57,14 @@
     <Compile Include="..\..\Playnite\BaseGameController.cs">
       <Link>BaseGameController.cs</Link>
     </Compile>
+    <Compile Include="..\..\playnite\commands\GlobalCommands.cs">
+      <Link>Commands\GlobalCommands.cs</Link>
+    </Compile>
     <Compile Include="..\..\Playnite\GameActionActivator.cs">
       <Link>GameActionActivator.cs</Link>
     </Compile>
+    <Compile Include="Models\LocalCache.cs" />
+    <Compile Include="Models\ProductSchema.cs" />
     <Compile Include="UplayLibrarySettings.cs" />
     <Compile Include="UplayClient.cs" />
     <Compile Include="Uplay.cs" />

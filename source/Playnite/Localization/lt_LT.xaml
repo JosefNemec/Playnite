@@ -40,6 +40,7 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Pranešti apie problemą</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Iš naujo paleisti Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Uždaryti Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Bibliotekos vedlys</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Pašalinti žaidimą(us)?</sys:String>
@@ -354,6 +355,8 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Pritaikius naują temą Playnite reikės paleisti iš naujo</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Gauti daugiau temų</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Sukurti naują temą</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Prisidėti prie lokalizacijos</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Norint, kad pakeitimai įsigaliotų reikia Playnite paleisti iš naujo. Ar norite tęsti?
     
@@ -395,6 +398,8 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nieko</sys:String>
     <sys:String x:Key="LOCStrechFill">Užpildyti</sys:String>
@@ -748,6 +753,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCInvalidGameActionSettings">Neteisingai nustatytas žaidimo veiksmas.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Spręsti vartotojo sinchronizacijos problemas</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Pervadinti objektą</sys:String>
     <sys:String x:Key="LOCAddNewItem">Pridėti objektą</sys:String>
@@ -771,6 +777,11 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

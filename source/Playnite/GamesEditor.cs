@@ -25,13 +25,13 @@ namespace Playnite
     {
         private static ILogger logger = LogManager.GetLogger();
         private IResourceProvider resources = new ResourceProvider();        
-        private PlayniteSettings appSettings;
         private GameControllerFactory controllers;
 
         public PlayniteApplication Application;
         public ExtensionFactory Extensions { get; private set; }
         public GameDatabase Database { get; private set; }
         public IDialogsFactory Dialogs { get; private set; }
+        public PlayniteSettings AppSettings { get; private set; }
 
         public List<Game> LastGames
         {
@@ -51,7 +51,7 @@ namespace Playnite
         {
             this.Dialogs = dialogs;
             this.Database = database;
-            this.appSettings = appSettings;
+            this.AppSettings = appSettings;
             this.Extensions = extensions;
             this.Application = app;
             controllers = controllerFactory;
@@ -135,16 +135,16 @@ namespace Playnite
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
 
-                if (!appSettings.PreScript.IsNullOrWhiteSpace())
+                if (!AppSettings.PreScript.IsNullOrWhiteSpace())
                 {
                     try
                     {
-                        ExecuteScriptAction(appSettings.ActionsScriptLanguage, appSettings.PreScript, game);
+                        ExecuteScriptAction(AppSettings.ActionsScriptLanguage, AppSettings.PreScript, game);
                     }
                     catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
                         logger.Error(exc, "Failed to execute global pre-script action.");
-                        logger.Error(appSettings.PreScript);
+                        logger.Error(AppSettings.PreScript);
                         Dialogs.ShowMessage(
                             string.Format(resources.GetString("LOCErrorGlobalScriptAction"), exc.Message),
                             resources.GetString("LOCGameError"),
@@ -567,18 +567,18 @@ namespace Playnite
             UpdateGameState(game.Id, null, true, null, null, false);
             if (Application.Mode == ApplicationMode.Desktop)
             {
-                if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+                if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
                 {
                     Application.Quit();
                 }
-                else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
+                else if (AppSettings.AfterLaunch == AfterLaunchOptions.Minimize)
                 {
                     Application.Minimize();
                 }
             }
             else
             {
-                if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+                if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
                 {
                     Application.Quit();
                 }
@@ -602,7 +602,7 @@ namespace Playnite
             controllers.RemoveController(args.Controller);
             if (Application.Mode == ApplicationMode.Desktop)
             {
-                if (appSettings.AfterGameClose == AfterGameCloseOptions.Restore)
+                if (AppSettings.AfterGameClose == AfterGameCloseOptions.Restore)
                 {
                     Application.Restore();
                 }
@@ -630,16 +630,16 @@ namespace Playnite
                 }
             }
 
-            if (!appSettings.PostScript.IsNullOrWhiteSpace())
+            if (!AppSettings.PostScript.IsNullOrWhiteSpace())
             {
                 try
                 {
-                    ExecuteScriptAction(appSettings.ActionsScriptLanguage, appSettings.PostScript, game);
+                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, AppSettings.PostScript, game);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(exc, "Failed to execute global post-script action.");
-                    logger.Error(appSettings.PostScript);
+                    logger.Error(AppSettings.PostScript);
                     Dialogs.ShowMessage(
                         string.Format(resources.GetString("LOCErrorGlobalScriptAction"), exc.Message),
                         resources.GetString("LOCGameError"),

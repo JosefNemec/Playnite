@@ -35,15 +35,14 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sense plataforma</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Sembla que alguna cosa ha anat malament…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">S'ha produït un error irrecuperable i Playnite es tancarà.
-        
-Si vols ajudar-nos a solucionar aquest problema, crea un Paquet de diagnòstic i utilitza el botó "Reportar un problema" per fer-nos saber que ha passat. Gràcies.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">S'ha produït un error irrecuperable.
 
 Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació de diagnòstic. Gràcies.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar un problema</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reinicia Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sortir de Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Organitzador de Llibreria</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Eliminar joc(s)?</sys:String>
@@ -360,6 +359,8 @@ Prioritza la informació de la botiga oficial i, si no, fes servir la base de da
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Es requereix reiniciar Playnite per a aplicar el tema nou</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Aconsegueix més temes</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Crea un nou tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Afegiu una nova localització</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Algunes de les configuracions modificades requereixen que es reiniciï Playnite. Voleu reiniciar-lo ara?
     
@@ -400,6 +401,8 @@ Totes les tasques actives (descàrregues de bases de dades) s’anul·laran.</sy
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
@@ -755,6 +758,7 @@ Pots provar aixó per solucionar el problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuració d’acció de joc no vàlida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Resolució de problemes de sincronització del compte</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renomenar Ítem</sys:String>
     <sys:String x:Key="LOCAddNewItem">Afegeix nou element</sys:String>
@@ -794,6 +798,11 @@ Versió {2}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Ara sortiràs de Playnite i navegaràs a la pàgina web següent utilitzant el teu navegador per defecte. Vols continuar?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

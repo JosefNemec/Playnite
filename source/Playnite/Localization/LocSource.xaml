@@ -36,15 +36,20 @@ Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="LOCNoPlatform">No Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, something bad happened…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Unrecoverable error occurred.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">An unrecoverable error occurred.
         
-If you want to help us fix this issue, please create diagnostics package and use 'Report Crash' button to let us know what happened. Thank you.</sys:String>
+If you want to help us fix this issue, please briefly describe actions taken before the crash and then create a diagnostics package. If you are online, the package will get uploaded to the Playnite server for analysis.
+
+Alternatively, you can use the 'Report Crash' button to create a new issue on GitHub and report the crash manually.
+
+Thank you for your help.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Unrecoverable error occurred.
         
 If you want to help us fix this issue, please send diagnostic information. Thank you.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Report Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Exit Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Actions taken before the crash (in English):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Library Manager</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remove Game(s)?</sys:String>
@@ -365,6 +370,8 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite restart is required to apply new theme</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Get more themes</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Create new theme</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Get more extensions</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Create new extension</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribute new localization</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?
     
@@ -407,6 +414,10 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsTextFormattingMode">Text formatting mode</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Text rendering mode</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Text rendering and formatting options currently don't apply to game's description text.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Download background images immediately</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">If enabled, Playnite will download background artwork while downloading metadata. Using more disk space and making artwork available when offline.
+        
+If disabled, background artwork is downloaded only when first needed. Using less space, but may result in a delay before artwork is displayed and some images might not be available when offline.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
@@ -762,6 +773,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCInvalidGameActionSettings">Invalid game action configuration.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Troubleshooting account sync issues</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Troubleshooting issues</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Rename item</sys:String>
     <sys:String x:Key="LOCAddNewItem">Add new item</sys:String>
@@ -801,6 +813,17 @@ Version {2}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">You are about to leave Playnite and navigate to following web page using your default web browser. Do you want to continue?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Selected image(s) might be too large for optimal performance. Using very large images may result in significantly worse UI responsiveness and increased memory usage.
+
+Maximum recommended sizes:
+Icons: 256px height
+Covers: 800px height
+Backgrounds: 1080px height
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Performance Warning</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Don't Show Again</sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>

@@ -208,10 +208,10 @@
                                     RenderOptions.BitmapScalingMode="HighQuality">
                                 <Image.Source>
                                     <PriorityBinding>
-                                        <Binding Path="IconObject"
+                                        <Binding Path="IconObjectCached"
                                                  IsAsync="{pmrk:Settings AsyncImageLoading, DirectValue=True}"
                                                  Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
-                                        <Binding Path="DefaultIconObject" Mode="OneWay" />
+                                        <Binding Path="DefaultIconObjectCached" Mode="OneWay" />
                                     </PriorityBinding>
                                 </Image.Source>
                             </Image>

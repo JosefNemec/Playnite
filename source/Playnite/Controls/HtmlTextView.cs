@@ -178,6 +178,9 @@ namespace Playnite.Controls
         public HtmlTextView()
         {
             Background = Brushes.Transparent;
+
+            // Always use LTR because HtmlPanel doesn't support RTL properly
+            FlowDirection = FlowDirection.LeftToRight;
         }
 
         public override void OnApplyTemplate()

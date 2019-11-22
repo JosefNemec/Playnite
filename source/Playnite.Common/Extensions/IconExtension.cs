@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System;   
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -78,28 +78,32 @@ namespace System.Drawing
         {
             using (var stream = new MemoryStream())
             {
-                icon.ToBitmap().Save(stream, format);
-                return stream.ToArray();
+                using (var bitmap = icon.ToBitmap())
+                {
+                    bitmap.Save(stream, format);
+                    return stream.ToArray();
+                }
             }
         }
 
         public static BitmapSource ToImageSource(this Icon icon)
         {
-            Bitmap bitmap = icon.ToBitmap();
-            IntPtr hBitmap = bitmap.GetHbitmap();
-
-            BitmapSource wpfBitmap = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                hBitmap,
-                IntPtr.Zero,
-                Int32Rect.Empty,
-                BitmapSizeOptions.FromEmptyOptions());
-
-            if (!Interop.DeleteObject(hBitmap))
+            using (Bitmap bitmap = icon.ToBitmap())
             {
-                throw new Win32Exception();
-            }
+                IntPtr hBitmap = bitmap.GetHbitmap();                
+                BitmapSource wpfBitmap = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                    hBitmap,
+                    IntPtr.Zero,
+                    Int32Rect.Empty,
+                    BitmapSizeOptions.FromEmptyOptions());
 
-            return wpfBitmap;
+                if (!Interop.DeleteObject(hBitmap))
+                {
+                    throw new Win32Exception();
+                }
+
+                return wpfBitmap;
+            }
         }
     }
 }

@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Página Web en www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Código fuente en GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Crear paquete diag.</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton">Enviar info. diagnóstico</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Enviar información diagnóstica</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Acerca de Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Hecho por Josef Němec</sys:String>
 
@@ -36,14 +36,19 @@ Indeterminado - Sin Cambios (al editar múltiples juegos)</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, ha ocurrido algo malo…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ha ocurrido un error irrecuperable.
+        
+Si quieres ayudarnos a solucionar este problema, describe brevemente las acciones tomadas antes del crash y luego cree un paquete de diagnóstico. Si estas conectado a internet, el paquete se cargará en el servidor de Playnite para su análisis.
 
-Si quieres ayudarnos a arreglar el problema, por favor, crea un paquete de diagnóstico y usa el botón de "Reportar Crash" para hacernos saber que ha pasado. Gracias.</sys:String>
+Alternativamente, puedes usar el botón 'Reportar Crash' para crear un nuevo problema en GitHub y reportar el crash manualmente.
+
+Gracias por tu ayuda.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ha ocurrido un error irrecuperable.
 
 Si quieres ayudarnos a arreglar el problema, por favor, envíanos la información de diagnóstico. Gracias.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Salir de Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Acciones tomadas antes del crash (en inglés):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Administrador de biblioteca</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">¿Eliminar Juego(s)?</sys:String>
@@ -364,6 +369,8 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Se requiere reiniciar Playnite cuando se cambia el tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Obtener más temas</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Crear un tema nuevo</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Obtener más extensiones</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Crear nueva extensión</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuir nueva traducción</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Algunos cambios de configuración requieren que se reinicie Playnite. ¿Desea hacerlo ahora?
     
@@ -406,6 +413,10 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modo de formato de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderizado de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Las opciones de formato y renderizado de texto actualmente no se aplican al texto de la descripción del juego.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Descargar imágenes de fondo inmediatamente</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Si está habilitado, Playnite descargará ilustraciones de fondo mientras descarga metadatos. Se usará más espacio en disco y hace que las ilustraciones estén disponibles sin conexión.
+        
+Si está deshabilitado, las ilustraciones de fondo se descargan solo cuando es necesario.  Se usará menos espacio, pero puede provocar un retraso antes de que se muestre la ilustración y algunas imágenes pueden no estar disponibles sin conexión.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ninguno</sys:String>
     <sys:String x:Key="LOCStrechFill">Rellenar</sys:String>
@@ -559,7 +570,7 @@ Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:Str
     <sys:String x:Key="LOCDiagPackageUploadError">Error al enviar automáticamente el paquete de diagnósticos.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">La información de diagnóstico se ha enviado correctamente.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">El paquete de diagnóstico se ha creado y subido correctamente.
-Por favor, adjunta el siguiente ID a tu informe del Crash:</sys:String>
+Por favor, adjunta el siguiente ID a tu reporte del Crash:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Error al importar las categorías de Steam.</sys:String>
     
@@ -761,6 +772,7 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuración de acción de juego inválida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Resolución de problemas de sincronización de cuentas</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Solucionar problemas</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renombrar elemento</sys:String>
     <sys:String x:Key="LOCAddNewItem">Añadir nuevo elemento</sys:String>
@@ -800,6 +812,17 @@ Versión {2}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Estás a punto de salir de Playnite y navegar a la siguiente página web usando tu navegador web predeterminado. ¿Quieres continuar?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">La imagen o imágenes seleccionadas pueden ser demasiado grandes para un rendimiento óptimo. El uso de imágenes muy grandes puede provocar una responsividad de la interfaz de usuario significativamente peor y un mayor uso de memoria.
+
+Tamaños máximos recomendados:
+Iconos: 256px de altura
+Portadas: 800px de altura
+Fondos: 1080px de altura
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Advertencia de rendimiento</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">No mostrar de nuevo</sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Logros</sys:String>

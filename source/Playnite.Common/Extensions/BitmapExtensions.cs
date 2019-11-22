@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Common;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,24 @@ using TGASharpLib;
 
 namespace System.Drawing.Imaging
 {
+    public class BitmapLoadProperties
+    {
+        public DpiScale? DpiScale { get; set; }
+        public int MaxDecodePixelWidth { get; set; } = 0;
+        public string Source { get; set; }
+
+        public BitmapLoadProperties(int decodePixelWidth)
+        {
+            MaxDecodePixelWidth = decodePixelWidth;
+        }
+
+        public BitmapLoadProperties(int decodePixelWidth, DpiScale? dpiScale)
+        {
+            MaxDecodePixelWidth = decodePixelWidth;
+            DpiScale = dpiScale;
+        }
+    }
+
     public static class BitmapExtensions
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -36,12 +55,23 @@ namespace System.Drawing.Imaging
 
         public static byte[] ToPngArray(this BitmapSource image)
         {
-            BitmapEncoder encoder = new PngBitmapEncoder();
+            var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(image));
             using (var stream = new MemoryStream())
             {
                 encoder.Save(stream);
                 return stream.ToArray();
+            }
+        }
+
+        public static BitmapImage GetClone(this BitmapImage image, BitmapLoadProperties loadProperties = null)
+        {
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image));
+            using (var stream = new MemoryStream())
+            {
+                encoder.Save(stream);
+                return BitmapExtensions.BitmapFromStream(stream, loadProperties);
             }
         }
 
@@ -56,18 +86,14 @@ namespace System.Drawing.Imaging
             return image;
         }
 
-        public static BitmapImage BitmapFromFile(string imagePath)
+        public static BitmapImage BitmapFromFile(string imagePath, BitmapLoadProperties loadProperties = null)
         {
             try
             {
-                var bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-                bitmap.UriSource = new Uri(imagePath);
-                bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.EndInit();
-                bitmap.Freeze();            
-                return bitmap;
+                using (var fStream = FileSystem.OpenReadFileStreamSafe(imagePath))
+                {
+                    return BitmapFromStream(fStream, loadProperties);
+                }
             }
             catch (Exception e)
             {
@@ -76,12 +102,25 @@ namespace System.Drawing.Imaging
             }
         }
 
-        public static BitmapImage BitmapFromStream(Stream stream)
+        public static BitmapImage BitmapFromStream(Stream stream, BitmapLoadProperties loadProperties = null)
         {
             try
             {
+                var properties = Images.GetImageProperties(stream);
+                stream.Seek(0, SeekOrigin.Begin);
                 var bitmap = new BitmapImage();
                 bitmap.BeginInit();
+                if (loadProperties?.MaxDecodePixelWidth > 0 && properties?.Width > loadProperties?.MaxDecodePixelWidth)
+                {
+                    if (loadProperties.DpiScale != null)
+                    {
+                        bitmap.DecodePixelWidth = Convert.ToInt32(loadProperties.MaxDecodePixelWidth * loadProperties.DpiScale.Value.DpiScaleX);
+                    }
+                    else
+                    {
+                        bitmap.DecodePixelWidth = loadProperties.MaxDecodePixelWidth;
+                    }
+                }
                 bitmap.StreamSource = stream;
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
@@ -104,18 +143,20 @@ namespace System.Drawing.Imaging
         {
             try
             {
-                var tgaBitmap = tga.ToBitmap();
-                using (var memory = new MemoryStream())
+                using (var tgaBitmap = tga.ToBitmap())
                 {
-                    tgaBitmap.Save(memory, ImageFormat.Png);
-                    memory.Position = 0;
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.BeginInit();
-                    bitmapImage.StreamSource = memory;
-                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmapImage.EndInit();
-                    bitmapImage.Freeze();
-                    return bitmapImage;
+                    using (var memory = new MemoryStream())
+                    {
+                        tgaBitmap.Save(memory, ImageFormat.Png);
+                        memory.Position = 0;
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.StreamSource = memory;
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.EndInit();
+                        bitmapImage.Freeze();
+                        return bitmapImage;
+                    }
                 }
             }
             catch (Exception e)
@@ -129,7 +170,7 @@ namespace System.Drawing.Imaging
         {
             using (MemoryStream outStream = new MemoryStream())
             {
-                BitmapEncoder enc = new BmpBitmapEncoder();
+                var enc = new BmpBitmapEncoder();
                 enc.Frames.Add(BitmapFrame.Create(bitmapImage));
                 enc.Save(outStream);
                 Bitmap bitmap = new Bitmap(outStream);
@@ -137,14 +178,24 @@ namespace System.Drawing.Imaging
             }
         }
 
-        public static BitmapImage ToBitmapImage(this Bitmap bitmap)
+        public static BitmapImage ToBitmapImage(this Bitmap bitmap, BitmapLoadProperties loadProperties = null)
         {
             using (var memory = new MemoryStream())
             {
                 bitmap.Save(memory, ImageFormat.Png);
-                memory.Position = 0;
+                memory.Seek(0, SeekOrigin.Begin);
+                var properties = Images.GetImageProperties(memory);
+                memory.Seek(0, SeekOrigin.Begin);
                 var bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
+                if (loadProperties.DpiScale != null)
+                {
+                    bitmapImage.DecodePixelWidth = Convert.ToInt32(loadProperties.MaxDecodePixelWidth * loadProperties.DpiScale.Value.DpiScaleX);
+                }
+                else
+                {
+                    bitmapImage.DecodePixelWidth = loadProperties.MaxDecodePixelWidth;
+                }
                 bitmapImage.StreamSource = memory;
                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
                 bitmapImage.EndInit();

@@ -81,19 +81,7 @@ namespace EpicLibrary
             {
                 var cacheFile = Paths.GetSafeFilename($"{gameAsset.@namespace}_{gameAsset.catalogItemId}_{gameAsset.buildVersion}.json");
                 cacheFile = Path.Combine(cacheDir, cacheFile);
-                CatalogItem catalogItem = null;
-
-                if (File.Exists(cacheFile))
-                {
-                    catalogItem = Serialization.FromJsonFile<CatalogItem>(cacheFile);
-                }
-                else
-                {
-                    catalogItem = accountApi.GetCatalogItem(gameAsset.@namespace, gameAsset.catalogItemId);
-                    FileSystem.PrepareSaveFile(cacheFile);
-                    File.WriteAllText(cacheFile, Serialization.ToJson(catalogItem));
-                }
-
+                var catalogItem = accountApi.GetCatalogItem(gameAsset.@namespace, gameAsset.catalogItemId, cacheFile);
                 if (catalogItem?.categories?.Where(a => a.path == "applications").Any() != true)
                 {
                     continue;

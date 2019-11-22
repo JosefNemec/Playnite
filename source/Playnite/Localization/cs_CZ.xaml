@@ -35,15 +35,20 @@ Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Bez platformy</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Ale ne, stalo se něco špatného…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Objevila se fatální chyba.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Stala se závažná chyba.
         
-Pokud nám chcete pomoci tento problém napravit, vytvořte prosím diagnostický balíček a použijte tlačítko 'Nahlásit pád', abyste nám dali vědět, co se stalo. Děkujeme.</sys:String>
+Pokud nám chcete pomoci chybu opravit, prosím krátce popište vaše akce před tím, než program spadl, a poté vytvořte diagnostický balíček. Pokud jste připojeni k internetu, tento balíček bude nahrán na servery Playnite k analýze.
+
+Alternativně můžete použít tlačítko 'Nahlásit pád' pro vytvoření nové issue na GitHubu a nahlášení chyby manuálně.
+
+Děkujeme za pomoc.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Objevila se fatální chyba.
         
 Pokud nám chcete pomoci tento problém napravit, odešlete prosím diagnostický balíček. Děkujeme.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Nahlásit pád</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartovat Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Opustit Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Akce provedené před pádem programu (v angličtině):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Správce knihovny</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Odstranit hru(y)?</sys:String>
@@ -364,6 +369,8 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Pro změnu vzhledu je třeba restartovat Playnite</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Získat více motivů</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Vytvořit nový motiv</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Získat více rozšíření</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Vytvořit nové rozšíření</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Pomoci s překladem</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Některé ze změn vyžadují restart Playnite. Chcete jej provést nyní?
     
@@ -406,6 +413,10 @@ Nové umístění databáze bude použito po restartu aplikace.</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Režim formátování textu</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Režim vykreslování textu</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Nastavení vykreslování a formátování textu v současnosti neovlivní text popisků her.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Stáhnout obrázky na pozadí ihned</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Pokud je povoleno, Playnite stáhne obrázky na pozadí při stahování metadat. Bude použito více místa na disku a obrázky budou dostupné offline.
+        
+Pokud není povoleno, obrázky na pozadí jsou staženy jen, když jsou potřeba. Je použito méně místa na disku, ale před zobrazením obrázku na pozadí může dojít k prodlevě a některé obrázky nemusejí být dostupné offline.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Žádný</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplnit</sys:String>
@@ -761,6 +772,7 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCInvalidGameActionSettings">Neplatná konfigurace akcí hry.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Řešení problémů se synchronizací účtu</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Řešení potíží</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Přejmenovat položku</sys:String>
     <sys:String x:Key="LOCAddNewItem">Přidat novou položku</sys:String>
@@ -800,6 +812,17 @@ Verze {2}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Chystáte se opustit Playnite a otevřít následující stránku ve vašem výchozím webovém prohlížeči. Chcete pokračovat?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Obrázek/obrázky, co jste vybrali, může být příliš velký pro optimální výkon. Použití příliš velkých obrázků může vést k výrazně zhoršené plynulosti UI a zvýšenému použití paměti RAM.
+
+Maximální doporučené velikosti:
+Ikony: 256px výška
+Obálky: 800px výška
+Pozadí: 1080p výška
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Varování o výkonu</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Příště nezobrazovat</sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Úspěchy</sys:String>

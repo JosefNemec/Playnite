@@ -40,6 +40,7 @@ Neurčité - Žiadné zmeny (počas upravovania viacerích hier)</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Nahlásiť chybu</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reštartovať Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Zmazať Hru(y)?</sys:String>
@@ -353,6 +354,8 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Pri zmene vzhľadu sa vyžaduje reštart aplikácie Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes"></sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle"></sys:String>
@@ -391,6 +394,8 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -739,6 +744,7 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem"></sys:String>
     <sys:String x:Key="LOCAddNewItem"></sys:String>
@@ -762,6 +768,11 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

@@ -40,6 +40,26 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Adds new item to the list only if it's not already part of the list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="item"></param>
+        /// <returns>True if item was added, false if it's already part of the list.</returns>
+        public static bool AddMissing<T>(this IList<T> source, T item)
+        {
+            if (!source.Contains(item))
+            {
+                source.Add(item);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Checks if collection has any non-empty string items.
         /// </summary>
         /// <param name="source"></param>

@@ -19,11 +19,9 @@ using System.Runtime.CompilerServices;
 
 namespace Playnite.FullscreenApp.Windows
 {
-    public partial class TextInputWindow : WindowBase, INotifyPropertyChanged
+    public partial class TextInputWindow : WindowBase
     {
         private MessageBoxResult result;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private string text = string.Empty;
         public string Text
@@ -83,11 +81,6 @@ namespace Playnite.FullscreenApp.Windows
         {
             InitializeComponent();
             DataContext = this;
-        }
-
-        public void OnPropertyChanged([CallerMemberName]string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public StringSelectionDialogResult ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)

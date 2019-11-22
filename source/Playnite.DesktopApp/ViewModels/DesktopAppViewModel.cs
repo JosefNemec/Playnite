@@ -806,6 +806,11 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
             }
+            else if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType))
+            {
+                SelectedGame = null;
+                SelectedGameDetails = null;
+            }
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -969,7 +974,7 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
                         using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
@@ -1031,7 +1036,7 @@ namespace Playnite.DesktopApp.ViewModels
                         ProgressStatus = Resources.GetString("LOCProgressMetadata");
                         using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings,
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
@@ -1074,7 +1079,7 @@ namespace Playnite.DesktopApp.ViewModels
                 using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                 {
                     GlobalTaskHandler.ProgressTask =
-                        downloader.DownloadMetadataAsync(games, settings,
+                        downloader.DownloadMetadataAsync(games, settings, AppSettings,
                             (g, i, t) =>
                             {
                                 ProgressValue = i + 1;
@@ -1452,6 +1457,9 @@ namespace Playnite.DesktopApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
+            application.UpdateScreenInformation(Window.Window);
+            Window.Window.LocationChanged += Window_LocationChanged;
+
             if (AppSettings.StartMinimized)
             {
                 WindowState = WindowState.Minimized;
@@ -1487,6 +1495,12 @@ namespace Playnite.DesktopApp.ViewModels
             GamesView?.Dispose();
             GamesStats?.Dispose();
             AppSettings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
+            Window.Window.LocationChanged -= Window_LocationChanged;
+        }
+
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            application.UpdateScreenInformation(Window.Window);
         }
     }
 }

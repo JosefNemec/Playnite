@@ -91,7 +91,7 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.5.2.1\lib\net45\YamlDotNet.dll</HintPath>
+      <HintPath>..\packages\YamlDotNet.5.4.0\lib\net45\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -104,8 +104,10 @@
     <Compile Include="Extensions\Enums.cs" />
     <Compile Include="Extensions\ItemsControlExtensions.cs" />
     <Compile Include="Extensions\IconExtension.cs" />
+    <Compile Include="Extensions\LongExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GlobalRandom.cs" />
     <Compile Include="Images.cs" />
     <Compile Include="IniParser.cs" />

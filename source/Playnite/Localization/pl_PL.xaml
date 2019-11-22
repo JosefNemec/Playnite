@@ -35,15 +35,14 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Brak platformy</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">O nie, stało się coś złego…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Wystąpił nieodwracalny błąd.
-        
-Jeśli chcesz nam pomóc rozwiązać ten problem, utwórz pakiet diagnostyczny i użyj przycisku "Zgłoś awarię", aby poinformować nas, co się stało. Dziękujemy.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Wystąpił nieodwracalny błąd.
         
 Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostyczne. Dziękujemy.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Zgłoś awarię</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Wyjdź z Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Zarządzanie biblioteką</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć grę/y?</sys:String>
@@ -360,6 +359,8 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Wymagany restart Playnite do ustawienia nowego motywu</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Uzyskaj więcej motywów</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Utwórz nowy motyw</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Dodaj nową lokalizację</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Niektóre zmiany ustawień wymagają restartu Playnite. Czy chcesz teraz zrestartować Playnite?
     
@@ -402,6 +403,8 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Żaden</sys:String>
     <sys:String x:Key="LOCStrechFill">Wypełnienie</sys:String>
@@ -756,6 +759,7 @@ Podejmij poniższe kroki, aby naprawić problem:
     <sys:String x:Key="LOCInvalidGameActionSettings">Nieprawidłowa konfiguracja akcji odtwarzania.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Rozwiązywanie problemów z synchronizacją konta</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Zmień nazwę elementu</sys:String>
     <sys:String x:Key="LOCAddNewItem">Dodaj nowy element</sys:String>
@@ -794,6 +798,11 @@ Wersja {2}    </sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Czy chcesz opuścić Playnite i przejść do następującej strony internetowej?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>

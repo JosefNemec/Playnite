@@ -35,15 +35,20 @@ Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platform Yok</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh hayır, kötü bir şey oldu…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kurtarılamaz hata oluştu ve Playnite çöktü.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kurtarılamaz bir hata oluştu.
         
-Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen sorun giderme paketi oluşturun ve ne olduğunu bize bildirmek için 'Hatayı Rapor Et' düğmesini kullanın. Teşekkürler.</sys:String>
+Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen çökmeden önce gerçekleştirilen eylemleri kısaca açıklayın ve ardından bir tanı paketi oluşturun. Çevrimiçiyseniz, paket, analiz için Playnite sunucusuna yüklenecektir.
+
+Alternatif olarak, GitHub'da yeni bir sorun oluşturmak ve çöküşü elle bildirmek için 'Hata Bildir' düğmesini kullanabilirsiniz.
+
+Yardımınız için teşekkürler.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz hata oluştu.
         
 Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgilerini gönderin. Teşekkür ederim.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Çökmeyi Rapor Et</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite'ı Yeniden Başlat</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite'dan Çık</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Çökmeden önce yapılan eylemler (İngilizce):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Kütüphane Yöneticisi</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Oyun(lar) Kaldırılsın mı?</sys:String>
@@ -364,6 +369,8 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Yeni temayı uygulamak için playnite yeniden başlatılmalıdır</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Daha fazla tema edin</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Yeni tema oluştur</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Yeni yerelleştirmeye katkıda bulun</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Değiştirilen ayarlardan bazıları Playnite'ın yeniden başlatılmasını gerektiriyor. Playnite'ı şimdi yeniden başlatmak ister misin?
     
@@ -405,7 +412,11 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Ekran</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Metin biçimlendirme kipi</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Yazı işleme kipi</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Metin oluşturma ve biçimlendirme seçenekleri şimdilik oyunun açıklama metnine uygulanamaz.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Arka plan resimlerini hemen indir</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Etkinleştirilirse, Playnite üst verileri indirirken arka plan resmini indirir. Bu şekilde daha fazla disk alanı kullanır ancak resmi çevrimdışı kullanılabilir kılar.
+        
+Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğunda indirilir. Daha az alan kullanır, ancak resim gösterilmeden önce bir gecikmeye neden olabilir ve bazı resimler çevrimdışı olunduğunda kullanılamayabilir.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
@@ -762,6 +773,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCInvalidGameActionSettings">Geçersiz oyun eylemi yapılandırması.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Hesap eşitleme sorunlarını giderme</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Öğeyi yeniden adlandır</sys:String>
     <sys:String x:Key="LOCAddNewItem">Yeni öğe ekle</sys:String>
@@ -800,6 +812,17 @@ Sürüm {2}
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Varsayılan web tarayıcınızı kullanarak Playnite'den ayrılmak ve aşağıdaki web sayfasına geçmek üzeresiniz. Devam etmek istiyor musun</sys:String>
 
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Seçilen resimler en iyi performans için çok büyük olabilir. Çok büyük görüntülerin kullanılması, önemli ölçüde daha kötü arayüz yanıtı ve artan bellek kullanımı ile sonuçlanabilir.
+
+Tavsiye edilen maksimum boyutlar:
+Simgeler: 256px yükseklik
+Kapaklar: 800px yükseklik
+Arka planlar: 1080px yükseklik
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Performans Uyarısı</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Bir Daha Gösterme</sys:String>
+
+
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Başarımlar</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
@@ -823,7 +846,7 @@ Sürüm {2}
     <sys:String x:Key="LOCSteamLinksCommunityHub">Topluluk Merkezi</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Tartışmalar</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Atölye</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Dikey kapak resimlerini indir</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">İlk kez kurulumu tamamlanamadı. Playnite şimdi işlemi tamamlamak için Masaüstü moduna sıfırlanıcak.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">En Son Oynananlar</sys:String>
@@ -839,6 +862,6 @@ Sürüm {2}
     
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Resim kullanılamıyorsa ekran görüntüsü kullan</sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Birden fazla resim mevcutsa, şunu kullan:</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} için arka plan resmi seç</sys:String>
 </ResourceDictionary>

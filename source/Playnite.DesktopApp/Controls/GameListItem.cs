@@ -90,14 +90,16 @@ namespace Playnite.DesktopApp.Controls
                 var sourceBinding = new PriorityBinding();
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.IconObject)),
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.IconObjectCached)),
                     IsAsync = mainModel.AppSettings.AsyncImageLoading,
-                    Converter = new NullToDependencyPropertyUnsetConverter()
+                    Converter = new NullToDependencyPropertyUnsetConverter(),
+                    Mode = BindingMode.OneWay
                 });
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultIconObject)),
-                    Converter = new NullToDependencyPropertyUnsetConverter()
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultIconObjectCached)),
+                    Converter = new NullToDependencyPropertyUnsetConverter(),
+                    Mode = BindingMode.OneWay
                 });
 
                 BindingOperations.SetBinding(ImageIcon, Image.SourceProperty, sourceBinding);
@@ -109,14 +111,16 @@ namespace Playnite.DesktopApp.Controls
                 var sourceBinding = new PriorityBinding();
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.CoverImageObject)),
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.CoverImageObjectCached)),
                     IsAsync = mainModel.AppSettings.AsyncImageLoading,
-                    Converter = new NullToDependencyPropertyUnsetConverter()
+                    Converter = new NullToDependencyPropertyUnsetConverter(),
+                    Mode = BindingMode.OneWay
                 });
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultCoverImageObject)),
-                    Converter = new NullToDependencyPropertyUnsetConverter()
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultCoverImageObjectCached)),
+                    Converter = new NullToDependencyPropertyUnsetConverter(),
+                    Mode = BindingMode.OneWay
                 });
 
                 BindingOperations.SetBinding(ImageCover, Image.SourceProperty, sourceBinding);

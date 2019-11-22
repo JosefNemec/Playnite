@@ -35,15 +35,14 @@
     <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">이런, 문제가 발생했습니다…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
-        
-이 문제를 수정하는 것을 돕고 싶으시다면, 진단 패키지를 생성하고 ‘오류 보고’ 버튼을 통해 무슨 일이 일어났는지 알려주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
         
 이 문제를 수정하는 것을 돕고 싶으시다면, 분석 정보를 보내주세요. 감사합니다.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite 나가기</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">라이브러리 관리자</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 제거 하시겠습니까?</sys:String>
@@ -364,6 +363,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsSkinChangeRestart">새로운 테마를 적용하기 위해선 Playnite를 재시작해야합니다</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">더 많은 테마</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">새로운 테마 생성</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">번역에 기여하기</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">일부 변경된 설정을 적용하기 위해선 Playnite를 재시작해야합니다. Playnite를 재시작하시겠습니까?
     
@@ -406,6 +407,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsTextFormattingMode">텍스트 서식 지정 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">텍스트 렌더링 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">텍스트 렌더링 및 서식 지정 설정은 현재 게임 설명 텍스트에 적용되지 않습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
@@ -761,6 +764,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">잘못된 액션 설정.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">계정 연동 문제 가이드</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">항목 이름 재설정</sys:String>
     <sys:String x:Key="LOCAddNewItem">새 항목 추가</sys:String>
@@ -798,6 +802,11 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Playnite를 벗어나고 있습니다. 기본 인터넷 브라우저를 통하여 다음으로 이동합니다 계속하시겠습니까?
 
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">도전 과제</sys:String>

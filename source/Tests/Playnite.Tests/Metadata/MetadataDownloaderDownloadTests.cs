@@ -376,7 +376,7 @@ namespace Playnite.Tests.Metadata
 
                 settings.ConfigureFields(new List<Guid> { testPlugin.Id, Guid.Empty }, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, null, null);
+                    db.Games.ToList(), settings, new PlayniteSettings(), null, null);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, testPlugin.CallCount);
@@ -466,7 +466,7 @@ namespace Playnite.Tests.Metadata
                 // No download - all values are kept
                 settings.ConfigureFields(new List<Guid> { testPlugin.Id }, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, null, null);
+                    db.Games.ToList(), settings, new PlayniteSettings(), null, null);
 
                 var dbGames = db.Games.ToList();
                 Assert.AreEqual(0, testPlugin.CallCount);
@@ -487,7 +487,7 @@ namespace Playnite.Tests.Metadata
                 // Single download - values are changed even when present
                 settings.SkipExistingValues = false;
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, null, null);
+                    db.Games.ToList(), settings, new PlayniteSettings(), null, null);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, testPlugin.CallCount);
@@ -512,7 +512,7 @@ namespace Playnite.Tests.Metadata
                 db.Games.Add(new Game("Game1"));
 
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, null, null);
+                    db.Games.ToList(), settings, new PlayniteSettings(), null, null);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, testPlugin.CallCount);

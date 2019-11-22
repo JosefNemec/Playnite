@@ -35,6 +35,56 @@ namespace UplayLibrary
             };
         }
 
+        public List<GameInfo> GetLibraryGames()
+        {
+            var games = new List<GameInfo>();
+            var dlcsToIgnore = new List<uint>();
+            foreach (var item in Uplay.GetLocalProductCache())
+            {
+                if (item.root.addons.HasItems())
+                {
+                    foreach (var dlc in item.root.addons.Select(a => a.id))
+                    {
+                        dlcsToIgnore.AddMissing(dlc);
+                    }
+                }
+
+                if (item.root.third_party_platform != null)
+                {
+                    continue;
+                }
+
+                if (item.root.is_ulc)
+                {
+                    dlcsToIgnore.AddMissing(item.uplay_id);
+                    continue;
+                }
+
+                if (dlcsToIgnore.Contains(item.uplay_id))
+                {
+                    continue;
+                }
+
+                if (item.root.start_game == null)
+                {
+                    continue;
+                }
+
+                var newGame = new GameInfo
+                {
+                    Name = item.root.name,
+                    GameId = item.uplay_id.ToString(),
+                    BackgroundImage = item.root.background_image,
+                    Icon = item.root.icon_image,
+                    CoverImage = item.root.thumb_image
+                };
+
+                games.Add(newGame);
+            }
+
+            return games;
+        }
+
         public List<GameInfo> GetInstalledGames()
         {
             var games = new List<GameInfo>();
@@ -101,23 +151,50 @@ namespace UplayLibrary
         public override IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
+            var installedGames = new List<GameInfo>();
+            Exception importError = null;
+
             if (LibrarySettings.ImportInstalledGames)
             {
                 try
                 {
-                    var installed = GetInstalledGames();
-                    logger.Debug($"Found {installed.Count} installed Uplay games.");
-                    PlayniteApi.Notifications.Remove(dbImportMessageId);
-                    return installed;
+                    installedGames = GetInstalledGames();
+                    logger.Debug($"Found {installedGames.Count} installed Uplay games.");
+                    allGames.AddRange(installedGames);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import installed Uplay games.");
+                    importError = e;
+                }
+            }
+
+            if (LibrarySettings.ImportUninstalledGames)
+            {
+                try
+                {
+                    var libraryGames = GetLibraryGames();
+                    logger.Debug($"Found {libraryGames.Count} library Uplay games.");
+                    foreach (var libGame in libraryGames)
+                    {
+                        var installed = installedGames.FirstOrDefault(a => a.GameId == libGame.GameId);
+                        if (installed != null)
+                        {
+                            installed.Icon = libGame.Icon;
+                            installed.BackgroundImage = libGame.BackgroundImage;
+                            installed.CoverImage = libGame.CoverImage;
+                        }
+                        else
+                        {
+                            allGames.Add(libGame);
+                        }
+                    }                    
+
                 }
                 catch (Exception e)
                 {
                     logger.Error(e, "Failed to import uninstalled Uplay games.");
-                    PlayniteApi.Notifications.Add(
-                        dbImportMessageId,
-                        string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
-                        System.Environment.NewLine + e.Message,
-                        NotificationType.Error);
+                    importError = e;
                 }
             }
 

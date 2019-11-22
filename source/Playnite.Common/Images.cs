@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.IO;
 
 namespace Playnite.Common
 {
+    public class ImageProperties
+    {
+        public int Height { get; set; }
+        public int Width { get; set; }
+    }
+
     public class Images
     {
         public static Image GetImageFromResource(string path, string assemblyName, BitmapScalingMode scaling = BitmapScalingMode.HighQuality, double height = 16, double width = 16)
@@ -44,6 +51,33 @@ namespace Playnite.Common
                 Height = height,
                 Width = width
             };
+        }
+
+        public static ImageProperties GetImageProperties(string imagePath)
+        {
+            return GetImageProperties(BitmapDecoder.Create(new Uri(imagePath), BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default));
+        }
+
+        public static ImageProperties GetImageProperties(Stream imageStream)
+        {
+            return GetImageProperties(BitmapDecoder.Create(imageStream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default));
+        }
+
+        public static ImageProperties GetImageProperties(BitmapDecoder decoder)
+        {
+            if (decoder.Frames.Count > 0)
+            {
+                var encoders = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+                return new ImageProperties
+                {
+                    Height = decoder.Frames[0].PixelHeight,
+                    Width = decoder.Frames[0].PixelWidth,
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

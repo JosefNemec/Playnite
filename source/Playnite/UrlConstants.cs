@@ -16,5 +16,6 @@ namespace Playnite
         public const string Reddit = @"https://www.reddit.com/r/playnite/";
         public const string SdkDocs = @"https://playnite.link/docs/";
         public const string Wiki = @"https://github.com/JosefNemec/Playnite/wiki";
+        public const string Forum = @"https://playnite.link/forum/";
     }
 }

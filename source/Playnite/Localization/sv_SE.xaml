@@ -35,15 +35,14 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen plattform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nej, något dumt inträffade…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite har stött på ett problem som den inte gick att lösa.
-        
-Om du vill hjälpa oss med detta fel, skapa ett felsökningspaket och använd "Rapportera en Krash" för att meddela oss om vad som hänt. Tack.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ett kritiskt fel har inträffat.
         
 Om du vill hjälpa med att lösa detta fel, var vänlig och skicka in felsökningsinformation. Tack.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapportera en krasch</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Starta om Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Avsluta Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Bibliotekshanterare</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Ta bort Spel?</sys:String>
@@ -358,6 +357,8 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite omstart krävs för att tillämpa nytt tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Skaffa fler teman</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Skapa nytt tema</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Bidra till ny lokalisering</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Några av de ändrade inställningarna kräver att Playnite startas om Vill du starta om Playnite nu?
     
@@ -398,6 +399,8 @@ Alla just nu pågående bakgrundsjobb (ex. nedladdning av metadata) kommer att a
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Fyll ut</sys:String>
@@ -753,6 +756,7 @@ Du kan prova följande tips för att försöka avhjälpa felet:
     <sys:String x:Key="LOCInvalidGameActionSettings">Ogiltig konfiguration för spelhandlingar.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Felsökning gällande synkronisering av konto</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
 
     <sys:String x:Key="LOCRenameItem">Ändra namn på post</sys:String>
     <sys:String x:Key="LOCAddNewItem">Lägg till en ny post</sys:String>
@@ -788,6 +792,11 @@ Version {2}
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Du håller på att lämna Playnite och navigera till den följande webbsidan med din standardwebbläsare. Vill du fortsätta?
     
 {0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
