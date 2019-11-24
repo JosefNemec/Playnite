@@ -969,7 +969,7 @@ namespace Playnite.FullscreenApp.ViewModels
             SelectRandomGameCommand = new RelayCommand<object>((a) =>
             {
                 PlayRandomGame();
-            });
+            }, new KeyGesture(Key.F6));
         }
 
         private GamesCollectionViewEntry SelectClosestGameDetails()
