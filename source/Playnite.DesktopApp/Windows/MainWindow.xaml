@@ -70,6 +70,9 @@
         <KeyBinding Command="{Binding OpenDbFieldsManagerCommand}"
                 Key ="{Binding OpenDbFieldsManagerCommand.Gesture.Key}"
                 Modifiers="{Binding OpenDbFieldsManagerCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding SelectRandomGameCommand}"
+                Key ="{Binding SelectRandomGameCommand.Gesture.Key}"
+                Modifiers="{Binding SelectRandomGameCommand.Gesture.Modifiers}" />
         <pin:XInputBinding Button="Guide" Command="{Binding OpenFullScreenFromControllerCommand}" />
     </c:WindowBase.InputBindings>
 
