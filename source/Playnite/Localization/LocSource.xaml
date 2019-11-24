@@ -659,6 +659,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCCriticScore">Critic Score</sys:String>
     <sys:String x:Key="LOCCommunityScore">Community Score</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
+    <sys:String x:Key="LOCScriptsGlobal">Global Scripts</sys:String>
     <sys:String x:Key="LOCPlugins">Plugins</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Metadata Sources</sys:String>
     <sys:String x:Key="LOCExtensions">Extensions</sys:String>
