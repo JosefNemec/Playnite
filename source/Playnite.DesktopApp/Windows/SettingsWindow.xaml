@@ -59,7 +59,7 @@
             <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
             <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8" />
             <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
-            <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
+            <TreeViewItem Header="{DynamicResource LOCScriptsGlobal}" Tag="11" />
             <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" />
             <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10" DisplayMemberPath="Value.Name">
                 <TreeViewItem.Style>
