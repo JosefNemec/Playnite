@@ -1506,10 +1506,18 @@ namespace Playnite
 
         public void SaveSettings()
         {
-            FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
-            SaveSettingFile(this, PlaynitePaths.ConfigFilePath);
-            SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
-            SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
+
+            try
+            {
+                FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
+                SaveSettingFile(this, PlaynitePaths.ConfigFilePath);
+                SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
+                SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to save application settings.");
+            }
         }
 
         [OnError]
