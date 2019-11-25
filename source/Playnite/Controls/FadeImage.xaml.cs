@@ -41,6 +41,22 @@ namespace Playnite.Controls
         internal Storyboard stateAnim;
         internal Storyboard BorderDarkenFadeOut;
 
+        #region AnimationEnabled
+
+        public static readonly DependencyProperty AnimationEnabledProperty = DependencyProperty.Register(
+            nameof(AnimationEnabled),
+            typeof(bool),
+            typeof(FadeImage),
+            new PropertyMetadata(true));
+
+        public bool AnimationEnabled
+        {
+            get { return (bool)GetValue(AnimationEnabledProperty); }
+            set { SetValue(AnimationEnabledProperty, value); }
+        }
+
+        #endregion AnimationEnabled
+
         #region Source
 
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
@@ -295,56 +311,70 @@ namespace Playnite.Controls
 
             GC.Collect();
 
-            if (image == null)
+            if (AnimationEnabled)
             {
-                if (currentImage == CurrentImage.None)
+                if (image == null)
                 {
-                    return;
-                }
+                    if (currentImage == CurrentImage.None)
+                    {
+                        return;
+                    }
 
-                if (currentImage == CurrentImage.Image1)
-                {
-                    Image1FadeOut.Begin();
-                    BorderDarkenFadeOut.Begin();
-                }
-                else if (currentImage == CurrentImage.Image2)
-                {
-                    Image2FadeOut.Begin();
-                    BorderDarkenFadeOut.Begin();
-                }
+                    if (currentImage == CurrentImage.Image1)
+                    {
+                        Image1FadeOut.Begin();
+                        BorderDarkenFadeOut.Begin();
+                    }
+                    else if (currentImage == CurrentImage.Image2)
+                    {
+                        Image2FadeOut.Begin();
+                        BorderDarkenFadeOut.Begin();
+                    }
 
-                currentImage = CurrentImage.None;
+                    currentImage = CurrentImage.None;
+                }
+                else
+                {
+                    if (currentImage == CurrentImage.None)
+                    {
+                        Image1FadeOut.Stop();
+                        Image1.Source = image;
+                        Image1FadeIn.Begin();
+                        BorderDarken.Opacity = 1;
+                        BorderDarkenFadeOut.Stop();
+                        currentImage = CurrentImage.Image1;
+                    }
+                    else if (currentImage == CurrentImage.Image1)
+                    {
+                        Image2FadeOut.Stop();
+                        Image2.Source = image;
+                        Image2FadeIn.Begin();
+                        Image1FadeOut.Begin();
+                        BorderDarken.Opacity = 1;
+                        BorderDarkenFadeOut.Stop();
+                        currentImage = CurrentImage.Image2;
+                    }
+                    else if (currentImage == CurrentImage.Image2)
+                    {
+                        Image1FadeOut.Stop();
+                        Image1.Source = image;
+                        Image1FadeIn.Begin();
+                        Image2FadeOut.Begin();
+                        BorderDarken.Opacity = 1;
+                        BorderDarkenFadeOut.Stop();
+                        currentImage = CurrentImage.Image1;
+                    }
+                }
             }
             else
             {
-                if (currentImage == CurrentImage.None)
+                if (currentImage == CurrentImage.Image1)
                 {
-                    Image1FadeOut.Stop();
                     Image1.Source = image;
-                    Image1FadeIn.Begin();
-                    BorderDarken.Opacity = 1;
-                    BorderDarkenFadeOut.Stop();
-                    currentImage = CurrentImage.Image1;
-                }
-                else if (currentImage == CurrentImage.Image1)
-                {
-                    Image2FadeOut.Stop();
-                    Image2.Source = image;
-                    Image2FadeIn.Begin();
-                    Image1FadeOut.Begin();
-                    BorderDarken.Opacity = 1;
-                    BorderDarkenFadeOut.Stop();
-                    currentImage = CurrentImage.Image2;
                 }
                 else if (currentImage == CurrentImage.Image2)
                 {
-                    Image1FadeOut.Stop();
-                    Image1.Source = image;
-                    Image1FadeIn.Begin();
-                    Image2FadeOut.Begin();
-                    BorderDarken.Opacity = 1;
-                    BorderDarkenFadeOut.Stop();
-                    currentImage = CurrentImage.Image1;
+                    Image2.Source = image;
                 }
             }
         }

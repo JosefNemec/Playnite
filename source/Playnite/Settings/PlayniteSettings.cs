@@ -1409,6 +1409,17 @@ namespace Playnite
             }
         }
 
+        private bool backgroundImageAnimation = !Computer.GetGpuVendors().Contains(HwCompany.Intel);
+        public bool BackgroundImageAnimation
+        {
+            get => backgroundImageAnimation;
+            set
+            {
+                backgroundImageAnimation = value;
+                OnPropertyChanged();
+            }
+        }        
+
         [JsonIgnore]
         public static bool IsPortable
         {
