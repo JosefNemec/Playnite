@@ -96,29 +96,29 @@ namespace UplayLibrary
             {
                 root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
                 installsKey = root.OpenSubKey(@"SOFTWARE\ubisoft\Launcher\Installs\");
-
-                if (installsKey == null)
-                {
-                    return games;
-                }
             }
 
-            foreach (var install in installsKey.GetSubKeyNames())
+            if (installsKey != null)
             {
-                var gameData = installsKey.OpenSubKey(install);
-                var installDir = (gameData.GetValue("InstallDir") as string).Replace('/', Path.DirectorySeparatorChar);
-
-                var newGame = new GameInfo()
+                foreach (var install in installsKey.GetSubKeyNames())
                 {
-                    GameId = install,
-                    Source = "Uplay",
-                    InstallDirectory = installDir,
-                    PlayAction = GetGamePlayTask(install),
-                    Name = Path.GetFileName(installDir.TrimEnd(Path.DirectorySeparatorChar)),
-                    IsInstalled = true
-                };
+                    var gameData = installsKey.OpenSubKey(install);
+                    var installDir = (gameData.GetValue("InstallDir") as string)?.Replace('/', Path.DirectorySeparatorChar);
+                    if (!installDir.IsNullOrEmpty())
+                    {
+                        var newGame = new GameInfo()
+                        {
+                            GameId = install,
+                            Source = "Uplay",
+                            InstallDirectory = installDir,
+                            PlayAction = GetGamePlayTask(install),
+                            Name = Path.GetFileName(installDir.TrimEnd(Path.DirectorySeparatorChar)),
+                            IsInstalled = true
+                        };
 
-                games.Add(newGame);
+                        games.Add(newGame);
+                    }
+                }
             }
 
             return games;
