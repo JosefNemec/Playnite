@@ -21,9 +21,9 @@ namespace Playnite
         private PlayniteApplication application;
         private readonly Type colGroupType;
         private readonly Guid colGroupId;
-        private BitmapLoadProperties iconLoadProperties;
-        private BitmapLoadProperties coverLoadProperties;
-        private BitmapLoadProperties backgroundLoadProperties;
+        private BitmapLoadProperties detailsListIconProperties;
+        private BitmapLoadProperties gridViewCoverProperties;
+        private BitmapLoadProperties backgroundImageProperties;
 
         public LibraryPlugin LibraryPlugin { get; }
         public Guid Id => Game.Id;
@@ -90,13 +90,18 @@ namespace Playnite
         public object DefaultIconObject => GetDefaultIcon(false);
         public object DefaultCoverImageObject => GetDefaultCoverImage(false);
 
-        public object IconObjectCached => GetImageObject(Game.Icon, true, iconLoadProperties);
-        public object CoverImageObjectCached => GetImageObject(Game.CoverImage, true, coverLoadProperties);
-        public object DefaultIconObjectCached => GetDefaultIcon(true, iconLoadProperties);
-        public object DefaultCoverImageObjectCached => GetDefaultCoverImage(true, coverLoadProperties);
+        public object IconObjectCached => GetImageObject(Game.Icon, true);
+        public object CoverImageObjectCached => GetImageObject(Game.CoverImage, true);
+        public object DefaultIconObjectCached => GetDefaultIcon(true);
+        public object DefaultCoverImageObjectCached => GetDefaultCoverImage(true);
 
         public string DisplayBackgroundImage => GetBackgroundImage();
-        public object DisplayBackgroundImageObject => GetBackgroundImageObject(backgroundLoadProperties);
+        public object DisplayBackgroundImageObject => GetBackgroundImageObject(backgroundImageProperties);
+
+        public object DetailsListIconObjectCached => GetImageObject(Game.Icon, true, detailsListIconProperties);
+        public object GridViewCoverObjectCached => GetImageObject(Game.CoverImage, true, gridViewCoverProperties);
+        public object DefaultDetailsListIconObjectCached => GetDefaultIcon(true, detailsListIconProperties);
+        public object DefaultGridViewCoverObjectCached => GetDefaultCoverImage(true, gridViewCoverProperties);
 
         public Series Series
         {
@@ -177,18 +182,21 @@ namespace Playnite
             application = PlayniteApplication.Current;
             if (application?.Mode == ApplicationMode.Desktop)
             {
-                iconLoadProperties = new BitmapLoadProperties(
+                detailsListIconProperties = new BitmapLoadProperties(
+                    0,
                     Convert.ToInt32(settings.DetailsViewListIconSize),
                     application.DpiScale);
-                coverLoadProperties = new BitmapLoadProperties(
+                gridViewCoverProperties = new BitmapLoadProperties(
                     Convert.ToInt32(settings.GridItemWidth),
+                    0,
                     application.DpiScale);
             }
 
             if (application != null)
             {
-                backgroundLoadProperties = new BitmapLoadProperties(
+                backgroundImageProperties = new BitmapLoadProperties(
                     application.CurrentScreen.WorkingArea.Width,
+                    0,
                     application.DpiScale);
             }
 
@@ -204,18 +212,24 @@ namespace Playnite
             {
                 if (e.PropertyName == nameof(PlayniteSettings.DetailsViewListIconSize))
                 {
-                    iconLoadProperties = new BitmapLoadProperties(
+                    detailsListIconProperties = new BitmapLoadProperties(
+                        0,
                         Convert.ToInt32(settings.DetailsViewListIconSize),
-                    PlayniteApplication.Current.DpiScale);
-                    OnPropertyChanged(nameof(IconObjectCached));
+                        PlayniteApplication.Current.DpiScale);
+                    OnPropertyChanged(nameof(DetailsListIconObjectCached));
+                    OnPropertyChanged(nameof(DefaultDetailsListIconObjectCached));
                 }
 
-                if (e.PropertyName == nameof(PlayniteSettings.GridItemWidth))
+                if (e.PropertyName == nameof(PlayniteSettings.GridItemWidth) ||
+                    e.PropertyName == nameof(PlayniteSettings.CoverAspectRatio) ||
+                    e.PropertyName == nameof(PlayniteSettings.CoverArtStretch))
                 {
-                    coverLoadProperties = new BitmapLoadProperties(
+                    gridViewCoverProperties = new BitmapLoadProperties(
                         Convert.ToInt32(settings.GridItemWidth),
-                    PlayniteApplication.Current.DpiScale);
-                    OnPropertyChanged(nameof(CoverImageObjectCached));
+                        0,
+                        PlayniteApplication.Current.DpiScale);
+                    OnPropertyChanged(nameof(GridViewCoverObjectCached));
+                    OnPropertyChanged(nameof(DefaultGridViewCoverObjectCached));
                 }
             }
         }
@@ -270,12 +284,14 @@ namespace Playnite
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IconObject)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IconObjectCached)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DetailsListIconObjectCached)));
             }
 
             if (propertyName == nameof(Game.CoverImage))
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CoverImageObject)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CoverImageObjectCached)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridViewCoverObjectCached)));
             }
 
             if (propertyName == nameof(Game.BackgroundImage))
@@ -365,11 +381,11 @@ namespace Playnite
             {
                 if (loadProperties == null)
                 {
-                    return new BitmapLoadProperties(0) { Source = imagePath };
+                    return new BitmapLoadProperties(0, 0) { Source = imagePath };
                 }
                 else
                 {
-                    return new BitmapLoadProperties(loadProperties.MaxDecodePixelWidth, loadProperties.DpiScale)
+                    return new BitmapLoadProperties(loadProperties.MaxDecodePixelWidth, 0, loadProperties.DpiScale)
                     {
                         Source = imagePath
                     };

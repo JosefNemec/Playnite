@@ -166,7 +166,7 @@ namespace Playnite
                     existingMetadata = (BitmapLoadProperties)metaValue;
                 }
 
-                if (existingMetadata?.MaxDecodePixelWidth == loadProperties?.MaxDecodePixelWidth)
+                if (existingMetadata == loadProperties)
                 {
                     return image.CacheObject as BitmapImage;
                 }

@@ -377,17 +377,7 @@ namespace Playnite
         [JsonIgnore]
         public double GridItemHeight
         {
-            get
-            {
-                if (GridItemWidth != 0)
-                {
-                    return GridItemWidth * ((double)gridItemHeightRatio / GridItemWidthRatio);
-                }
-                else
-                {
-                    return 0;
-                }
-            }
+            get; private set;
         }
 
         private double gridItemWidth = ViewSettings.DefaultGridItemWidth;
@@ -400,9 +390,9 @@ namespace Playnite
 
             set
             {
-                gridItemWidth = value;
+                gridItemWidth = Math.Round(value);
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(GridItemHeight));
+                UpdateGridItemHeight();
             }
         }
 
@@ -421,7 +411,7 @@ namespace Playnite
             {
                 gridItemWidthRatio = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(GridItemHeight));
+                UpdateGridItemHeight();
                 OnPropertyChanged(nameof(CoverAspectRatio));
             }
         }
@@ -438,7 +428,7 @@ namespace Playnite
             {
                 gridItemHeightRatio = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(GridItemHeight));
+                UpdateGridItemHeight();
                 OnPropertyChanged(nameof(CoverAspectRatio));
             }
         }
@@ -1634,6 +1624,20 @@ namespace Playnite
             int marginX = FullscreenItemSpacing / 2;
             int marginY = ((int)CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2);
             return new Thickness(marginY, marginX, 0, 0);
+        }
+
+        private void UpdateGridItemHeight()
+        {
+            if (GridItemWidth != 0)
+            {
+                GridItemHeight = Math.Round(GridItemWidth * ((double)gridItemHeightRatio / GridItemWidthRatio));
+            }
+            else
+            {
+                GridItemHeight = 0;
+            }
+
+            OnPropertyChanged(nameof(GridItemHeight));
         }
 
         #region Serialization Conditions

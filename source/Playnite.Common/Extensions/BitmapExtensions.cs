@@ -16,21 +16,77 @@ using TGASharpLib;
 
 namespace System.Drawing.Imaging
 {
-    public class BitmapLoadProperties
+    public class BitmapLoadProperties: IEquatable<BitmapLoadProperties>
     {
         public DpiScale? DpiScale { get; set; }
         public int MaxDecodePixelWidth { get; set; } = 0;
+        public int MaxDecodePixelHeight { get; set; } = 0;
         public string Source { get; set; }
 
-        public BitmapLoadProperties(int decodePixelWidth)
+        public BitmapLoadProperties(int decodePixelWidth, int decodePixelHeight)
         {
             MaxDecodePixelWidth = decodePixelWidth;
+            MaxDecodePixelHeight = decodePixelHeight;
         }
 
-        public BitmapLoadProperties(int decodePixelWidth, DpiScale? dpiScale)
+        public BitmapLoadProperties(int decodePixelWidth, int decodePixelHeight, DpiScale? dpiScale)
         {
             MaxDecodePixelWidth = decodePixelWidth;
+            MaxDecodePixelHeight = decodePixelHeight;
             DpiScale = dpiScale;
+        }        
+        
+        public bool Equals(BitmapLoadProperties other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            if (DpiScale?.Equals(other.DpiScale) == false)
+            {
+                return false;
+            }
+
+            if (MaxDecodePixelWidth != other.MaxDecodePixelWidth)
+            {
+                return false;
+            }
+
+            if (MaxDecodePixelHeight != other.MaxDecodePixelHeight)
+            {
+                return false;
+            }
+
+            if (!string.Equals(Source, other.Source, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public override bool Equals(object obj) => Equals(obj as BitmapLoadProperties);
+
+        public override int GetHashCode() =>
+            (Source == null ? 0 : Source.GetHashCode()) ^
+            (DpiScale == null ? 0 : DpiScale.GetHashCode()) ^
+            MaxDecodePixelWidth.GetHashCode() ^
+            MaxDecodePixelHeight.GetHashCode();
+
+        public static bool operator ==(BitmapLoadProperties obj1, BitmapLoadProperties obj2)
+        {
+            return obj1?.Equals(obj2) == true;
+        }
+
+        public static bool operator !=(BitmapLoadProperties obj1, BitmapLoadProperties obj2)
+        {
+            return obj1?.Equals(obj2) == false;
+        }
+
+        public override string ToString()
+        {
+            return $"{MaxDecodePixelWidth}x{MaxDecodePixelHeight};{DpiScale?.DpiScaleX}x{DpiScale?.DpiScaleY};{Source}";
         }
     }
 
@@ -107,21 +163,45 @@ namespace System.Drawing.Imaging
             try
             {
                 var properties = Images.GetImageProperties(stream);
+                var aspect = new AspectRatio(properties.Width, properties.Height);
                 stream.Seek(0, SeekOrigin.Begin);
                 var bitmap = new BitmapImage();
                 bitmap.BeginInit();
+
                 if (loadProperties?.MaxDecodePixelWidth > 0 && properties?.Width > loadProperties?.MaxDecodePixelWidth)
                 {
                     if (loadProperties.DpiScale != null)
                     {
-                        bitmap.DecodePixelWidth = Convert.ToInt32(loadProperties.MaxDecodePixelWidth * loadProperties.DpiScale.Value.DpiScaleX);
+                        bitmap.DecodePixelWidth = (int)Math.Round(loadProperties.MaxDecodePixelWidth * loadProperties.DpiScale.Value.DpiScaleX);
                     }
                     else
                     {
                         bitmap.DecodePixelWidth = loadProperties.MaxDecodePixelWidth;
                     }
                 }
-                bitmap.StreamSource = stream;
+
+                if (loadProperties?.MaxDecodePixelHeight > 0 && properties?.Height > loadProperties?.MaxDecodePixelHeight)
+                {
+                    if (loadProperties.DpiScale != null)
+                    {
+                        bitmap.DecodePixelHeight = Convert.ToInt32(loadProperties.MaxDecodePixelHeight * loadProperties.DpiScale.Value.DpiScaleY);
+                    }
+                    else
+                    {
+                        bitmap.DecodePixelHeight = loadProperties.MaxDecodePixelHeight;
+                    }
+                }
+
+                if (bitmap.DecodePixelHeight != 0 && bitmap.DecodePixelWidth == 0)
+                {
+                    bitmap.DecodePixelWidth = (int)Math.Round(aspect.GetWidth(bitmap.DecodePixelHeight));
+                }
+                else if (bitmap.DecodePixelWidth != 0 && bitmap.DecodePixelHeight == 0)
+                {
+                    bitmap.DecodePixelHeight = (int)Math.Round(aspect.GetHeight(bitmap.DecodePixelWidth));
+                }
+
+                bitmap.StreamSource = stream;                                        
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
                 bitmap.Freeze();
@@ -175,32 +255,6 @@ namespace System.Drawing.Imaging
                 enc.Save(outStream);
                 Bitmap bitmap = new Bitmap(outStream);
                 return new Bitmap(bitmap);
-            }
-        }
-
-        public static BitmapImage ToBitmapImage(this Bitmap bitmap, BitmapLoadProperties loadProperties = null)
-        {
-            using (var memory = new MemoryStream())
-            {
-                bitmap.Save(memory, ImageFormat.Png);
-                memory.Seek(0, SeekOrigin.Begin);
-                var properties = Images.GetImageProperties(memory);
-                memory.Seek(0, SeekOrigin.Begin);
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                if (loadProperties.DpiScale != null)
-                {
-                    bitmapImage.DecodePixelWidth = Convert.ToInt32(loadProperties.MaxDecodePixelWidth * loadProperties.DpiScale.Value.DpiScaleX);
-                }
-                else
-                {
-                    bitmapImage.DecodePixelWidth = loadProperties.MaxDecodePixelWidth;
-                }
-                bitmapImage.StreamSource = memory;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
-                bitmapImage.Freeze();
-                return bitmapImage;
             }
         }
 

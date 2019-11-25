@@ -109,6 +109,7 @@
     <Compile Include="App\UpdateTests.cs" />
     <Compile Include="CloneObjectTests.cs" />
     <Compile Include="Database\EmulatorsCollectionTests.cs" />
+    <Compile Include="Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
     <Compile Include="ImageSourceManagerTests.cs" />

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Name="SliderGrid">
-        <ctrls:SliderEx x:Name="Slider" SmallChange="1"
+        <ctrls:SliderEx x:Name="Slider" SmallChange="1" LargeChange="10"
                         FinalValue="{Binding SliderValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" 
                         Maximum="{Binding SliderMaximumValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneTime}"
                         Minimum="{Binding SliderMinimumValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneTime}"
