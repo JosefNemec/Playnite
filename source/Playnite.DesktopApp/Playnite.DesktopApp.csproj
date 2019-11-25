@@ -171,6 +171,9 @@
     <Compile Include="Controls\SettingsSections\AppearanceLayout.xaml.cs">
       <DependentUpon>AppearanceLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\NoSettingsAvailable.xaml.cs">
+      <DependentUpon>NoSettingsAvailable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\EmptyParent.xaml.cs">
       <DependentUpon>EmptyParent.xaml</DependentUpon>
     </Compile>
@@ -509,6 +512,10 @@
     <Page Include="Controls\SettingsSections\AppearanceLayout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\NoSettingsAvailable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\EmptyParent.xaml">
       <SubType>Designer</SubType>

@@ -1354,7 +1354,7 @@ namespace Playnite
             }
         }
 
-        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.Batch;
+        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.PowerShell;
         public ScriptLanguage ActionsScriptLanguage
         {
             get => actionsScriptLanguage;

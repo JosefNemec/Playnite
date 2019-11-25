@@ -61,43 +61,16 @@
             <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
             <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
             <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" />
-            <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10" DisplayMemberPath="Value.Name">
-                <TreeViewItem.Style>
-                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                        <Setter Property="ItemsSource" Value="{StaticResource DummyArray}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsExpanded" Value="True">
-                                <Setter Property="ItemsSource" Value="{Binding LibraryPluginSettings}" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TreeViewItem.Style>
-            </TreeViewItem>            
-            <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="10" DisplayMemberPath="Value.Name">
-                <TreeViewItem.Style>
-                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                        <Setter Property="ItemsSource" Value="{StaticResource DummyArray}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsExpanded" Value="True">
-                                <Setter Property="ItemsSource" Value="{Binding MetadataPluginSettings}" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TreeViewItem.Style>
-            </TreeViewItem>            
-            <TreeViewItem Header="{DynamicResource LOCPlugins}" Tag="10" DisplayMemberPath="Value.Name"
-                          Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TreeViewItem.Style>
-                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                        <Setter Property="ItemsSource" Value="{StaticResource DummyArray}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsExpanded" Value="True">
-                                <Setter Property="ItemsSource" Value="{Binding GenericPluginSettings}" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TreeViewItem.Style>
-            </TreeViewItem>
+            <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10"
+                          DisplayMemberPath="Name"
+                          ItemsSource="{Binding Extensions.LibraryPlugins}" />
+            <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="10"
+                          DisplayMemberPath="Name"
+                          ItemsSource="{Binding Extensions.MetadataPlugins}"/>
+            <TreeViewItem Header="{DynamicResource LOCPlugins}" Tag="10"
+                          DisplayMemberPath="Name"
+                          ItemsSource="{Binding Extensions.MetadataPlugins}"
+                          Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </TreeView>
 
         <ScrollViewer DockPanel.Dock="Left" BorderThickness="1,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"

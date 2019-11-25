@@ -404,6 +404,8 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontal Scrolling</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Select one of the subsections</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">No settings available</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">These scripts are executed for every game in the library. Individual scripts can be assigned to each game separately while editing game details.</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Font sizes</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Auto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliased</sys:String>

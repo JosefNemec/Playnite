@@ -52,6 +52,11 @@ namespace Playnite.Plugins
             get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.MetadataProvider).Select(a => (MetadataPlugin)a.Value.Plugin).ToList();
         }
 
+        public List<Plugin> GenericPlugins
+        {
+            get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.GenericPlugin).Select(a => (Plugin)a.Value.Plugin).ToList();
+        }
+
         public  List<PlayniteScript> Scripts
         {
             get;

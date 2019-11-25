@@ -823,6 +823,11 @@
                                     <psdk:ScriptLanguage>IronPython</psdk:ScriptLanguage>
                                 </x:Array>
                             </ComboBox.ItemsSource>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
                     </StackPanel>
 

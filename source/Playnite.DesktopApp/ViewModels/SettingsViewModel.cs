@@ -98,6 +98,7 @@ namespace Playnite.DesktopApp.ViewModels
         private PlayniteApplication application;
         private PlayniteSettings originalSettings;
         private List<string> editedFields = new List<string>();
+        private Dictionary<Guid, PluginSettings> loadedPluginSettings = new Dictionary<Guid, PluginSettings>();
 
         public ExtensionFactory Extensions { get; set; }
 
@@ -118,7 +119,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public bool AnyGenericPluginSettings
         {
-            get => GenericPluginSettings?.Any() == true;
+            get => Extensions?.GenericPlugins.HasItems() == true;
         }
 
         public List<ThemeDescription> AvailableThemes
@@ -145,48 +146,6 @@ namespace Playnite.DesktopApp.ViewModels
         public List<SelectablePlugin> PluginsList
         {
             get;
-        }
-
-        private Dictionary<Guid, PluginSettings> metadataPluginSettings;
-        public Dictionary<Guid, PluginSettings> MetadataPluginSettings
-        {
-            get
-            {
-                if (metadataPluginSettings == null)
-                {
-                    metadataPluginSettings = GetMetadataPluginSettings();
-                }
-
-                return metadataPluginSettings;
-            }
-        }
-
-        private Dictionary<Guid, PluginSettings> libraryPluginSettings;
-        public Dictionary<Guid, PluginSettings> LibraryPluginSettings
-        {
-            get
-            {
-                if (libraryPluginSettings == null)
-                {
-                    libraryPluginSettings = GetLibraryPluginSettings();
-                }
-
-                return libraryPluginSettings;
-            }
-        }
-
-        private Dictionary<Guid, PluginSettings> genericPluginSettings;
-        public Dictionary<Guid, PluginSettings> GenericPluginSettings
-        {
-            get
-            {
-                if (genericPluginSettings == null)
-                {
-                    genericPluginSettings = GetGenericPluginSettings();
-                }
-
-                return genericPluginSettings;
-            }
         }
 
         private UserControl selectedSectionView;
@@ -349,108 +308,47 @@ namespace Playnite.DesktopApp.ViewModels
                     SelectedSectionView = null;
                 }
             }
-            else if (selectedItem.NewValue is KeyValuePair<Guid, PluginSettings> plugin)
+            else if (selectedItem.NewValue is Plugin plugin)
             {
-                SelectedSectionView = plugin.Value.View;
+                SelectedSectionView = GetPluginSettingsView(plugin.Id);
             }
         }
 
-        private Dictionary<Guid, PluginSettings> GetGenericPluginSettings()
+        private UserControl GetPluginSettingsView(Guid pluginId)
         {
-            var allSettings = new Dictionary<Guid, PluginSettings>();
-            foreach (var plugin in Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin))
+            if (loadedPluginSettings.TryGetValue(pluginId, out var settings))
             {
-                try
-                {
-                    var provSetting = plugin.Plugin.GetSettings(false);
-                    var provView = plugin.Plugin.GetSettingsView(false);
-                    if (provSetting != null && provView != null)
-                    {
-                        provView.DataContext = provSetting;
-                        provSetting.BeginEdit();
-                        var plugSetting = new PluginSettings()
-                        {
-                            Name = plugin.Description.Name,
-                            Settings = provSetting,
-                            View = provView
-                        };
-
-                        allSettings.Add(plugin.Plugin.Id, plugSetting);
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, $"Failed to load generic plugin settings, {plugin.Description.Name}");
-                }
+                return settings.View;
             }
 
-            return allSettings;
+            try
+            {
+                var plugin = Extensions.Plugins.Values.First(a => a.Plugin.Id == pluginId);
+                var provSetting = plugin.Plugin.GetSettings(false);
+                var provView = plugin.Plugin.GetSettingsView(false);
+                if (provSetting != null && provView != null)
+                {
+                    provView.DataContext = provSetting;
+                    provSetting.BeginEdit();
+                    var plugSetting = new PluginSettings()
+                    {
+                        Name = plugin.Description.Name,
+                        Settings = provSetting,
+                        View = provView
+                    };
+
+                    loadedPluginSettings.Add(pluginId, plugSetting);
+                    return provView;
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to load generic plugin settings, {pluginId}");
+            }
+
+            return new Controls.SettingsSections.NoSettingsAvailable();
         }
 
-        private Dictionary<Guid, PluginSettings> GetLibraryPluginSettings()
-        {
-            var allSettings = new Dictionary<Guid, PluginSettings>();
-            foreach (var library in Extensions.LibraryPlugins)
-            {
-                try
-                {
-                    var provSetting = library.GetSettings(false);
-                    var provView = library.GetSettingsView(false);
-                    if (provSetting != null && provView != null)
-                    {
-                        provView.DataContext = provSetting;
-                        provSetting.BeginEdit();
-                        var plugSetting = new PluginSettings()
-                        {
-                            Name = library.Name,
-                            Settings = provSetting,
-                            View = provView,
-                            Icon = library.LibraryIcon
-                        };
-
-                        allSettings.Add(library.Id, plugSetting);
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, $"Failed to load library plugin settings, {library.Name}");
-                }
-            }
-
-            return allSettings;
-        }
-
-        private Dictionary<Guid, PluginSettings> GetMetadataPluginSettings()
-        {
-            var allSettings = new Dictionary<Guid, PluginSettings>();
-            foreach (var plugin in Extensions.MetadataPlugins)
-            {
-                try
-                {
-                    var provSetting = plugin.GetSettings(false);
-                    var provView = plugin.GetSettingsView(false);
-                    if (provSetting != null && provView != null)
-                    {
-                        provView.DataContext = provSetting;
-                        provSetting.BeginEdit();
-                        var plugSetting = new PluginSettings()
-                        {
-                            Name = plugin.Name,
-                            Settings = provSetting,
-                            View = provView
-                        };
-
-                        allSettings.Add(plugin.Id, plugSetting);
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, $"Failed to load metadata plugin settings, {plugin.Name}");
-                }
-            }
-
-            return allSettings;
-        }                
 
         public bool? OpenView()
         {
@@ -459,20 +357,9 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CloseView()
         {
-            if (libraryPluginSettings.HasItems())
+            foreach (var plugin in loadedPluginSettings.Values)
             {
-                foreach (var provider in libraryPluginSettings.Keys)
-                {
-                    libraryPluginSettings[provider].Settings.CancelEdit();
-                }
-            }
-
-            if (genericPluginSettings.HasItems())
-            {
-                foreach (var provider in genericPluginSettings.Keys)
-                {
-                    genericPluginSettings[provider].Settings.CancelEdit();
-                }
+                plugin.Settings.CancelEdit();
             }
 
             WindowClosing(true);
@@ -502,27 +389,12 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ConfirmDialog()
         {
-            if (libraryPluginSettings.HasItems())
+            foreach (var plugin in loadedPluginSettings.Values)
             {
-                foreach (var provider in libraryPluginSettings.Keys)
+                if (!plugin.Settings.VerifySettings(out var errors))
                 {
-                    if (!libraryPluginSettings[provider].Settings.VerifySettings(out var errors))
-                    {
-                        dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), libraryPluginSettings[provider].Name);
-                        return;
-                    }
-                }
-            }
-
-            if (genericPluginSettings.HasItems())
-            {
-                foreach (var plugin in genericPluginSettings.Keys)
-                {
-                    if (!genericPluginSettings[plugin].Settings.VerifySettings(out var errors))
-                    {
-                        dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), genericPluginSettings[plugin].Name);
-                        return;
-                    }
+                    dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), plugin.Name);
+                    return;
                 }
             }
 
@@ -548,28 +420,9 @@ namespace Playnite.DesktopApp.ViewModels
 
             EndEdit();
             originalSettings.SaveSettings();
-            if (libraryPluginSettings.HasItems())
+            foreach (var plugin in loadedPluginSettings.Values)
             {
-                foreach (var provider in libraryPluginSettings.Keys)
-                {
-                    libraryPluginSettings[provider].Settings.EndEdit();
-                }
-            }
-
-            if (genericPluginSettings.HasItems())
-            {
-                foreach (var plugin in genericPluginSettings.Keys)
-                {
-                    genericPluginSettings[plugin].Settings.EndEdit();
-                }
-            }
-
-            if (metadataPluginSettings.HasItems())
-            {
-                foreach (var plugin in metadataPluginSettings.Keys)
-                {
-                    metadataPluginSettings[plugin].Settings.EndEdit();
-                }
+                plugin.Settings.EndEdit();
             }
 
             if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true)
