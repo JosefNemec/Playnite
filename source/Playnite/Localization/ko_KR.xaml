@@ -397,6 +397,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenLayout">레이아웃</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">수평 스크롤</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">하위 섹션 중 하나 선택</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">글꼴 크기</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">자동</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">별칭</sys:String>
