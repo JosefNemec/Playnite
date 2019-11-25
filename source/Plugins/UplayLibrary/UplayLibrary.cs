@@ -76,7 +76,8 @@ namespace UplayLibrary
                     GameId = item.uplay_id.ToString(),
                     BackgroundImage = item.root.background_image,
                     Icon = item.root.icon_image,
-                    CoverImage = item.root.thumb_image
+                    CoverImage = item.root.thumb_image,
+                    Source = "Uplay"
                 };
 
                 games.Add(newGame);
@@ -135,12 +136,12 @@ namespace UplayLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
-            return firstRunSettings ? null : LibrarySettings;
+            return LibrarySettings;
         }
 
         public override UserControl GetSettingsView(bool firstRunView)
         {
-            return firstRunView ? null : new UplayLibrarySettingsView();
+            return new UplayLibrarySettingsView();
         }
 
         public override IGameController GetGameController(Game game)

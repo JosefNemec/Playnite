@@ -40,7 +40,7 @@ Questions, issues etc.
 ---------
 If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach a diagnostics package, which can be created from inside the "About Playnite..." submenu.
 
-General discussion lives on [Reddit](https://www.reddit.com/r/playnite/) and you can also ask a question directly on [Discord](https://discord.gg/hSFvmN6) or follow [@AppPlaynite](https://twitter.com/AppPlaynite) for updates.
+General discussion lives on our [Forum](https://playnite.link/forum) and [Discord](https://discord.gg/hSFvmN6) or you can follow [@AppPlaynite](https://twitter.com/AppPlaynite) for updates.
 
 Contributions
 ---------

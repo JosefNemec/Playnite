@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Playnite
@@ -185,19 +186,23 @@ namespace Playnite
                         imagePath = source.Replace("resources:", "pack://application:,,,");
                     }
 
-                    var imageData = BitmapExtensions.BitmapFromFile(imagePath, loadProperties);
-                    if (imageData != null)
+                    var streamInfo = Application.GetResourceStream(new Uri(imagePath));
+                    using (var stream = streamInfo.Stream)
                     {
-                        if (cached)
+                        var imageData = BitmapExtensions.BitmapFromStream(stream, loadProperties);
+                        if (imageData != null)
                         {
-                            Cache.TryAdd(source, imageData, imageData.GetSizeInMemory(),
-                                new Dictionary<string, object>
-                                {
+                            if (cached)
+                            {
+                                Cache.TryAdd(source, imageData, imageData.GetSizeInMemory(),
+                                    new Dictionary<string, object>
+                                    {
                                     { btmpPropsFld, loadProperties }
-                                });
-                        }
+                                    });
+                            }
 
-                        return imageData;
+                            return imageData;
+                        }
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

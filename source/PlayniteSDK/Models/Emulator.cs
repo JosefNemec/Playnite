@@ -146,7 +146,7 @@ namespace Playnite.SDK.Models
 
         /// <inheritdoc/>
         public override int GetHashCode() =>
-            (Platforms == null ? 0 : Arguments.GetHashCode()) ^
+            (Platforms == null ? 0 : Platforms.GetHashCode()) ^
             (ImageExtensions == null ? 0 : ImageExtensions.GetHashCode()) ^
             (Executable == null ? 0 : Executable.GetHashCode()) ^
             (Arguments == null ? 0 : Arguments.GetHashCode()) ^

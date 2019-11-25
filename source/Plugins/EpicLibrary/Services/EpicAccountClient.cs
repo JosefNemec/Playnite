@@ -170,9 +170,17 @@ namespace EpicLibrary.Services
             Dictionary<string, CatalogItem> result = null;
             if (!cachePath.IsNullOrEmpty() && File.Exists(cachePath))
             {
-                result = Serialization.FromJsonFile<Dictionary<string, CatalogItem>>(cachePath);
-            }
-            else
+                try
+                {
+                    result = Serialization.FromJsonFile<Dictionary<string, CatalogItem>>(cachePath);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to load Epic catalog cache.");
+                }
+            }            
+
+            if (result == null)
             {
                 if (!GetIsUserLoggedIn())
                 {
