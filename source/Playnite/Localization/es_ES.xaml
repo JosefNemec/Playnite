@@ -403,6 +403,8 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsFullscreenLayout">Disposición</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Desplazamiento horizontal</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Selecciona una de las subsecciones</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Tamaño de letra</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Auto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliased</sys:String>
