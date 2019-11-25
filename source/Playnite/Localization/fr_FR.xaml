@@ -20,7 +20,7 @@
     
     <sys:String x:Key="LOCAboutHomePageLink">www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Code source sur GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">Rapport de bug</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Créer un dossier de diagnostic</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Envoyer un dossier de diagnostic</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">À propos de Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Créé par Josef Nemec</sys:String>
@@ -48,7 +48,7 @@ Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rappor
     <sys:String x:Key="LOCCrashReportIssue">Signaler un Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Relancer Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Quitter Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription">Actions au moment du crash (à rédiger en anglais) :</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Activité au moment du crash (à rédiger en anglais) :</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Gestionnaire de bibliothèque</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Supprimer le(s) jeu(x) ?</sys:String>
@@ -396,6 +396,8 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsFullscreenLayout">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Défilement Horizontal</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Sélectionner une sous-section</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Taille du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatique</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliasé</sys:String>
@@ -405,7 +407,7 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Formatage du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Mode de rendu du texte</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice">Les options de rendu et de formatage du texte ne s'appliquent pas actuellement au texte de description du jeu.</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Les options de rendu et de formatage du texte ne s'appliquent pas actuellement aux textes de description des jeux.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Téléchargement les images de fond immédiatement</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Lorsque cette option est active, Playnite téléchargera les images de fond en même temps que le reste des métadonnées. Cela nécessitera davantage d'espace disque mais rendra les images de fond disponible lorsque vous êtes hors-ligne.
         
