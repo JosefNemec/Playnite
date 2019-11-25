@@ -312,7 +312,14 @@ namespace Playnite
                 return;
             }
 
-            Database.Games.Remove(game);
+            if (Database.Games[game.Id] == null)
+            {
+                logger.Warn($"Failed to remove game {game.Name} {game.Id}, game doesn't exists anymore.");
+            }
+            else
+            {
+                Database.Games.Remove(game);
+            }
         }
 
         public void RemoveGames(List<Game> games)
@@ -334,6 +341,15 @@ namespace Playnite
                 MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
                 return;
+            }
+
+            foreach (var game in games.ToList())
+            {
+                if (Database.Games[game.Id] == null)
+                {
+                    logger.Warn($"Failed to remove game {game.Name} {game.Id}, game doesn't exists anymore.");
+                    games.Remove(game);
+                }
             }
 
             Database.Games.Remove(games);
