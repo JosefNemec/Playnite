@@ -404,8 +404,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsFullscreenLayout">Настройка отображения</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Горизонтальная прокрутка</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Выберите один из подразделов</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Нет доступных настроек</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Эти скрипты выполняются для каждой игры в библиотеке. Скрипты для конкретной игры можно настроить при редактировании деталей игры.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Анимировать смену фонового изображения</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Размеры шрифта</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Авто</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Без сглаживания</sys:String>
