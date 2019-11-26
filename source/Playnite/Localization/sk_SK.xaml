@@ -9,109 +9,121 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Jazyk</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Odísť</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter je aktívny</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filter je vypnutý</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Dodatočné filtre</sys:String>
+    <sys:String x:Key="LOCFilters">Filtre</sys:String>
+    <sys:String x:Key="LOCFilter">Filter</sys:String>
 
-    <sys:String x:Key="LOCInvalidDataTitle">Chybné údaje</sys:String>
+    <sys:String x:Key="LOCInvalidDataTitle">Neplatné údaje</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Uložiť zmeny?</sys:String>
     
     <sys:String x:Key="LOCAboutHomePageLink">Stránka aplikácie na www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Zdrojový kód na GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Vytvoriť diagnostický balíček</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Odoslať diagnostický balíček</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">O Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Vytvoril Josef Němec</sys:String>
 
     <sys:String x:Key="LOCCategoryWindowTitle">Priradiť kategóriu</sys:String>
-    <sys:String x:Key="LOCCategorySetButton">Určiť kategórie</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">Nastaviť kategórie</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Pridať kategóriu</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Označené - Priradiť kategóriu
-Neoznačené - Odstrániť kategóriu
-Neurčité - Žiadné zmeny (počas upravovania viacerích hier)</sys:String>
-    <sys:String x:Key="LOCNoCategory"></sys:String>
-    <sys:String x:Key="LOCNoPlatform"></sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Zaškrtnuté - priraďte kategóriu
+Nezačiarknuté - Odobrať kategóriu
+Neurčité - Žiadne zmeny (pri úprave viacerých hier)</sys:String>
+    <sys:String x:Key="LOCNoCategory">Bez kategórie</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Bez platformy</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Ale nie, stalo sa niečo zlé…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Stala sa závažná chyba.
+
+Ak nám chcete pomôcť chybu opraviť, opíšte prosím v skratke vaše akcie, ktoré viedli k pádu programu a potom vytvorte diagnostický balíček. Ak ste pripojení na internet, tento balíček sa nahrá na servery Playnite a bude podrobený analýze.
+
+Prípadne môžete tiež použiť tlačítko 'Nahlásiť pád' a tým sa vytvorí nový záznam o chybe na GitHube kde budete môcť uviesť problém sami.
+
+Ďakujeme za pomoc.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Vyskytla sa neopraviteľná chyba.
+
+Ak nám chcete pomôcť tento problém opraviť, odošlite prosím diagnostický balíček. Ďakujeme.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Nahlásiť chybu</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reštartovať Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Ukončiť Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Akcie uskutočnené pred pádom programu (v angličtine):</sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskTitle">Zmazať Hru(y)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Určite Chceš Zmazať Túto Hru?
+    <sys:String x:Key="LOCLibraryManager">Správca knižnice</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">Odstrániť Hru(y)?</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Nie je možné odstrániť hru, ktorá je spustená alebo sa práve inštaluje/odinštaluje.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Nie je možné odinštalovať hru, ktorá je spustená.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Naozaj chcete odstrániť túto hru?
         
-Hry, ktoré sa automatický importovaly sa môžu znova objaviť v aplikácií Playnite po ďaľšom importovaní (závisí na vaších nastaveniach).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Naozaj chceš odstrániť {0} hier?
+Automaticky importované hry sa môžu znovu objaviť v Playnite po ďalšom behu importu (v závislosti od vašich nastavení).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Naozaj chcete odstrániť {0} hier?
         
-Hry, ktoré sa automatický importovaly sa môžu znova objaviť v aplikácií Playnite po ďaľšom importovaní (závisí na vaších nastaveniach).</sys:String>
+Automaticky importované hry sa môžu znovu objaviť v Playnite po ďalšom behu importu (v závislosti od vašich nastavení).</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Priatelia v službe Steam</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif">Výber obsahuje zmeny na uloženie</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Aktualizácia databázy zlyhala, súbor sa nedá otvoriť.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Sekcia obsahuje zmeny, ktoré je potrebné uložiť</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Aktualizuje sa formát knižnice hier…</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Aktualizácie databázy zlyhala.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Nie je možné aktualizovať knižnicu hier. Je potrebných {0} MB voľného priestoru na disku.</sys:String>
 
     <sys:String x:Key="LOCGameError">Chyba hry</sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame">Hra nebola spustená. '{0}' nebol nájdený v databáze.</sys:String>
-    <sys:String x:Key="LOCGameStartError">Hra nebola spustená: {0}</sys:String>
-    <sys:String x:Key="LOCGameStartActionError">Akcia sa nedá vykonať: {0}</sys:String>
-    <sys:String x:Key="LOCGameOpenLocationError">Priečinok s hrou sa nedá otvoriť: {0}</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Vytvorenie skratky zlyhalo: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">Hra sa nedá spustiť. '{0}' sa nenachádza v databáze.</sys:String>
+    <sys:String x:Key="LOCGameStartError">Hra sa neda spustiť: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Akcia sa nedá spustiť: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">Nie je možné otvoriť umiestnenie hry: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Nepodarilo sa vytvoriť odkaz: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Hra sa nedá nainštalovať: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Hra sa nedá odinštalovať: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
-    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Akcia hrať nie je nakonfigurovaná.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Nie je nainštalovaný alebo povolený doplnok knižnice, ktorý je zodpovedný za túto hru.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Prevzatie oficiálnych metadát nie je k dispozícii.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">Nie je vybraná žiadna hra.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Spustenie akcie herného skriptu zlyhalo:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Spustenie akcie globálneho skriptu zlyhalo:
+    
+{0}</sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">Nie je nainštalovaný PowerShell 3.0 alebo novší.</sys:String>
 
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle"></sys:String>
-    <sys:String x:Key="LOCRemoveTitle">Zmazať</sys:String>
-    <sys:String x:Key="LOCRenameTitle"></sys:String>
+    <sys:String x:Key="LOCEnabledTitle">Povolené</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">Odstrániť</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Premenovať</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopírovať</sys:String>
     <sys:String x:Key="LOCAddTitle">Pridať</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Pôvodná ikona</sys:String>
-    <sys:String x:Key="LOCDefaultCoverTitle">Pôvodný obal</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">Predvolený obrázok obalu</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">Predvolený obrázok pozadia</sys:String>
     <sys:String x:Key="LOCFinishLabel">Dokončiť</sys:String>
     <sys:String x:Key="LOCNextLabel">Ďalej</sys:String>
     <sys:String x:Key="LOCBackLabel">Späť</sys:String>
-    <sys:String x:Key="LOCDoneCapLabel"></sys:String>
-    <sys:String x:Key="LOCBackCapLabel"></sys:String>
-    <sys:String x:Key="LOCClearCapLabel"></sys:String>
-    <sys:String x:Key="LOCClearLabel"></sys:String>
-    <sys:String x:Key="LOCDismiss"></sys:String>
-    <sys:String x:Key="LOCDismissAll"></sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">HOTOVO</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">SPÄŤ</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">VYČISTIŤ</sys:String>
+    <sys:String x:Key="LOCClearLabel">Vyčistiť</sys:String>
+    <sys:String x:Key="LOCDismiss">Zamietnuť</sys:String>
+    <sys:String x:Key="LOCDismissAll">Odmietnuť všetko</sys:String>
     <sys:String x:Key="LOCImportLabel">Importovať</sys:String>
     <sys:String x:Key="LOCSourceLabel">Zdroj</sys:String>
     <sys:String x:Key="LOCNameLabel">Názov</sys:String>
-    <sys:String x:Key="LOCAuthorLabel"></sys:String>
-    <sys:String x:Key="LOCModuleLabel"></sys:String>
-    <sys:String x:Key="LOCSeriesLabel"></sys:String>
-    <sys:String x:Key="LOCVersionLabel"></sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel"></sys:String>
-    <sys:String x:Key="LOCRegionLabel"></sys:String>
-    <sys:String x:Key="LOCLastPlayedLabel"></sys:String>
-    <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
-    <sys:String x:Key="LOCPlayCountLabel"></sys:String>
-    <sys:String x:Key="LOCAddedLabel"></sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
-    <sys:String x:Key="LOCModifiedLabel"></sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
-    <sys:String x:Key="LOCWebsiteLabel">Web</sys:String>
-    <sys:String x:Key="LOCPathLabel">Cieľ</sys:String>
-    <sys:String x:Key="LOCOKLabel"></sys:String>
+    <sys:String x:Key="LOCAuthorLabel">Autor</sys:String>
+    <sys:String x:Key="LOCModuleLabel">Modul</sys:String>
+    <sys:String x:Key="LOCSeriesLabel">Séria</sys:String>
+    <sys:String x:Key="LOCVersionLabel">Verzia</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Vekové obmedzenie</sys:String>
+    <sys:String x:Key="LOCRegionLabel">Región</sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">Naposledný hrané</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">Najhranejšie</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Počet zahratí</sys:String>
+    <sys:String x:Key="LOCAddedLabel">Pridané</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Dátum pridania</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">Zmenené</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Dátum zmeny</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">Webové stránky</sys:String>
+    <sys:String x:Key="LOCPathLabel">Cesta</sys:String>
+    <sys:String x:Key="LOCOKLabel">OK</sys:String>
     <sys:String x:Key="LOCSaveLabel">Uložiť</sys:String>
     <sys:String x:Key="LOCCloseLabel">Zavrieť</sys:String>
     <sys:String x:Key="LOCCancelLabel">Zrušiť</sys:String>
@@ -119,69 +131,72 @@ Hry, ktoré sa automatický importovaly sa môžu znova objaviť v aplikácií P
     <sys:String x:Key="LOCNoLabel">Nie</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Vitajte</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Miestný použivateľ</sys:String>
-    <sys:String x:Key="LOCAuthenticateLabel">Overenie</sys:String>
+    <sys:String x:Key="LOCAuthenticateLabel">Autentizovať</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Všeobecné</sys:String>
-    <sys:String x:Key="LOCMediaLabel">Média</sys:String>
+    <sys:String x:Key="LOCMediaLabel">Médiá</sys:String>
     <sys:String x:Key="LOCLinksLabel">Odkazy</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Inštalácia</sys:String>
     <sys:String x:Key="LOCActionsLabel">Akcie</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Sťahuje sa…</sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Načítava sa…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Typ</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profily</sys:String>
-    <sys:String x:Key="LOCRemoveLabel">Zmazať</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">Odstrániť</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Stiahnuť</sys:String>
     <sys:String x:Key="LOCSearchLabel">Hľadať</sys:String>
     <sys:String x:Key="LOCGenreLabel">Žáner</sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Spoločnosť</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Vývojár</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Vydavateľ</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategória</sys:String>
-    <sys:String x:Key="LOCTagLabel">Označenie</sys:String>
-    <sys:String x:Key="LOCTagsLabel"></sys:String>
-    <sys:String x:Key="LOCZoomLabel">Priblížiť</sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCTagLabel">Štítok</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Štítky</sys:String>
+    <sys:String x:Key="LOCZoomLabel">Priblíženie</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Zobrazenie zoznamu</sys:String>
     <sys:String x:Key="LOCCoversLabel">Obaly</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Zobrazenie mriežky</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Zobrazenie podrobností</sys:String>
     <sys:String x:Key="LOCCustomLabel">Vlastné</sys:String>
-    <sys:String x:Key="LOCURLLabel"></sys:String>
-    <sys:String x:Key="LOCPatronsLabel"></sys:String>
-    <sys:String x:Key="LOCLicenseLabel"></sys:String>
-    <sys:String x:Key="LOCContributorsLabel"></sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
-    <sys:String x:Key="LOCToday"></sys:String>
-    <sys:String x:Key="LOCYesterday"></sys:String>
-    <sys:String x:Key="LOCMonday"></sys:String>
-    <sys:String x:Key="LOCTuesday"></sys:String>
-    <sys:String x:Key="LOCWednesday"></sys:String>
-    <sys:String x:Key="LOCThursday"></sys:String>
-    <sys:String x:Key="LOCFriday"></sys:String>
-    <sys:String x:Key="LOCSaturday"></sys:String>
-    <sys:String x:Key="LOCSunday"></sys:String>
-    <sys:String x:Key="LOCPastWeek"></sys:String>
-    <sys:String x:Key="LOCPastMonth"></sys:String>
-    <sys:String x:Key="LOCPastYear"></sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
-    <sys:String x:Key="LOCImportCompleted"></sys:String>
-    <sys:String x:Key="LOCAllGames"></sys:String>
-    <sys:String x:Key="LOCGameId"></sys:String>
-    <sys:String x:Key="LOCDatabaseId"></sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
-    <sys:String x:Key="LOCColumn"></sys:String>
-    <sys:String x:Key="LOCColumns"></sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
+    <sys:String x:Key="LOCURLLabel">URL</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">Patróni</sys:String>
+    <sys:String x:Key="LOCLicenseLabel">Licencia</sys:String>
+    <sys:String x:Key="LOCContributorsLabel">Prispievatelia</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Ukončuje sa Playnite…</sys:String>
+    <sys:String x:Key="LOCToday">Dnes</sys:String>
+    <sys:String x:Key="LOCYesterday">Včera</sys:String>
+    <sys:String x:Key="LOCMonday">Pondelok</sys:String>
+    <sys:String x:Key="LOCTuesday">Utorok</sys:String>
+    <sys:String x:Key="LOCWednesday">Streda</sys:String>
+    <sys:String x:Key="LOCThursday">Štvrtok</sys:String>
+    <sys:String x:Key="LOCFriday">Piatok</sys:String>
+    <sys:String x:Key="LOCSaturday">Sobota</sys:String>
+    <sys:String x:Key="LOCSunday">Nedeľa</sys:String>
+    <sys:String x:Key="LOCPastWeek">Minulý týždeň</sys:String>
+    <sys:String x:Key="LOCPastMonth">Minulý mesiac</sys:String>
+    <sys:String x:Key="LOCPastYear">Za posledný rok</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Pred viac než rokom</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Import bol úspešne dokončený.</sys:String>
+    <sys:String x:Key="LOCAllGames">Všetky hry</sys:String>
+    <sys:String x:Key="LOCGameId">ID hry</sys:String>
+    <sys:String x:Key="LOCDatabaseId">ID databázy</sys:String>
+    <sys:String x:Key="LOCPresets">Prednastavené</sys:String>
+    <sys:String x:Key="LOCColumn">Stĺpec</sys:String>
+    <sys:String x:Key="LOCColumns">Stĺpce</sys:String>
+    <sys:String x:Key="LOCRow">Riadok</sys:String>
+    <sys:String x:Key="LOCRows">Riadky</sys:String>
     
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
-{InstallDir} - Umiestnenie inštalácie hry
-{ImagePath} - Cieľ súboru ISO/ROM ak je určený
-{ImageName} - Názov ISO/ROM súboru
-{ImageNameNoExt} - Názov ISO/ROM súboru bez prípon
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Na pridanie dynamických reťazcov možno použiť špeciálne premenné:
+{InstallDir} - Umiestnenie s hrou
+{InstallDirName} - Názov adresára s hrou
+{ImagePath} - ISO/ROM hry, ak existuje
+{ImageName} - názov súboru ISO/ROM
+{ImageNameNoExt} - názov súboru ISO/ROM, bez prípony
+{PlayniteDir} - inštalačný adresár Playnite
+{Name} - Názov hry
         
 Príklad: -image "{ImagePath}" -fullscreen
-Výsledok: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Sa zobrazí ako: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Ikona sa nedá nastaviť pokiaľ chýba akcia Hrať alebo je nastavená na odkaz URL.</sys:String>
 
@@ -386,6 +401,7 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
