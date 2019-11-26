@@ -396,8 +396,9 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsFullscreenLayout">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Défilement Horizontal</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Sélectionner une sous-section</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Aucun paramètre n'est disponible</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Ces scripts s'appliquent à la totalité des jeux de la bibliothèque. Des scripts individuels peuvent être assignés de manière indépendante en modifiant les propriétés de chaque jeu.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animer les transitions des images de fond</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Taille du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatique</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliasé</sys:String>
