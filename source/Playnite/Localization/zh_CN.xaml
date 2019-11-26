@@ -399,6 +399,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsSelectChildSection">选择其中一个子选项：</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">字体大小</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">自动</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">别名</sys:String>
