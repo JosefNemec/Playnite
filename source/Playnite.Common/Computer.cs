@@ -60,6 +60,7 @@ namespace Playnite.Common
         Intel,
         AMD,
         Nvidia,
+        VMware,
         Uknown
     }
 
@@ -205,6 +206,10 @@ namespace Playnite.Common
                     else if (gpu.Contains("amd", StringComparison.OrdinalIgnoreCase))
                     {
                         vendors.AddMissing(HwCompany.AMD);
+                    }
+                    else if (gpu.Contains("vmware", StringComparison.OrdinalIgnoreCase))
+                    {
+                        vendors.AddMissing(HwCompany.VMware);
                     }
                     else
                     {

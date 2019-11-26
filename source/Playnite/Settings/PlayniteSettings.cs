@@ -1399,7 +1399,7 @@ namespace Playnite
             }
         }
 
-        private bool backgroundImageAnimation = !Computer.GetGpuVendors().Contains(HwCompany.Intel);
+        private bool backgroundImageAnimation = true;
         public bool BackgroundImageAnimation
         {
             get => backgroundImageAnimation;
@@ -1433,6 +1433,12 @@ namespace Playnite
 
         public PlayniteSettings()
         {
+            var gpus = Computer.GetGpuVendors();
+            if (gpus.Contains(HwCompany.Intel) || gpus.Contains(HwCompany.VMware))
+            {
+                BackgroundImageAnimation = false;
+            }
+
             InstallInstanceId = Guid.NewGuid().ToString();
             ItemSpacingMargin = GetItemSpacingMargin();
             FullscreenItemSpacingMargin = GetFullscreenItemSpacingMargin();

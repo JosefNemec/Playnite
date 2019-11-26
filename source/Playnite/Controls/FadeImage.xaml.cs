@@ -249,6 +249,11 @@ namespace Playnite.Controls
             {
                 control.Image2.Source = image;
             }
+            else
+            {
+                control.Image1.Source = image;
+                control.currentImage = CurrentImage.Image1;
+            }
         }
 
         private static void SourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
@@ -375,6 +380,11 @@ namespace Playnite.Controls
                 else if (currentImage == CurrentImage.Image2)
                 {
                     Image2.Source = image;
+                }
+                else
+                {
+                    Image1.Source = image;
+                    currentImage = CurrentImage.Image1;
                 }
             }
         }
