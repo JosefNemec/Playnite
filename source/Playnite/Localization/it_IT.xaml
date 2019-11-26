@@ -399,8 +399,9 @@ Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applica
     <sys:String x:Key="LOCSettingsFullscreenLayout">Modello</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Scorrimento orizzontale</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Seleziona una delle sottosezioni</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Nessuna impostazione disponibile</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Questi script sono eseguiti per ogni gioco nella libreria. I singoli script possono essere assegnati a ogni gioco separatamente mentre si modificano i dettagli del gioco.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Transizione per le immagini di sfondo animate</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Dimensione caratteri</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatico</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Con alias</sys:String>
