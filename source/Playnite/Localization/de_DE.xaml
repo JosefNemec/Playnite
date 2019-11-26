@@ -403,8 +403,9 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontales Scrollen</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Wähle einen der Unterabschnitte aus</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Keine Einstellungen verfügbar</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Diese Skripte werden für jedes Spiel der Bibliothek ausgeführt. Individuelle Skripte können für jedes Spiel beim Bearbeiten der Spieldetails separat zugewiesen werden.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Übergänge von Hintergrundbildern animieren</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Schriftgrößen</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatisch</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliased</sys:String>
