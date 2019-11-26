@@ -815,10 +815,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != nameof(AppSettings.FilterSettings.IsActive))
-            {
-                AppSettings.SaveSettings();   
-            }
         }
 
         public void StartThirdPartyTool(ThirdPartyTool tool)

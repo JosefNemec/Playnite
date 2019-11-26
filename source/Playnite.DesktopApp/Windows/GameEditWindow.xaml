@@ -624,7 +624,7 @@
                                          Text="{Binding EditingGame.BackgroundImage}" />
                                 </DockPanel>
                                 <TextBlock Text="{Binding BackgroundMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
-                                <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}"
+                                <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
                                    Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
                                    DockPanel.Dock="Top"
                                    AutomationProperties.HelpText="{Binding EditingGame.BackgroundImage, TargetNullValue=''}"/>
@@ -823,6 +823,11 @@
                                     <psdk:ScriptLanguage>IronPython</psdk:ScriptLanguage>
                                 </x:Array>
                             </ComboBox.ItemsSource>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
                     </StackPanel>
 

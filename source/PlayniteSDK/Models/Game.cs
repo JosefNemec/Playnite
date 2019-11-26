@@ -867,7 +867,7 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.Batch;
+        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.PowerShell;
         /// <summary>
         /// Gets or sets scripting language for <see cref="PreScript"/> and <see cref="PostScript"/> scripts.
         /// </summary>

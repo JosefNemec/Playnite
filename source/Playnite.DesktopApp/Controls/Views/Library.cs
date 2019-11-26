@@ -102,6 +102,11 @@ namespace Playnite.DesktopApp.Controls.Views
                     mainModel.AppSettings,
                     nameof(PlayniteSettings.HighQualityBackgroundBlur),
                     mode: BindingMode.OneWay);
+                BindingTools.SetBinding(ImageBackground,
+                    FadeImage.AnimationEnabledProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.BackgroundImageAnimation),
+                    mode: BindingMode.OneWay);
             }
 
             ElemNoGamesNotif = Template.FindName("PART_ElemNoGamesNotif", this) as FrameworkElement;

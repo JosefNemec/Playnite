@@ -19,7 +19,7 @@ namespace Playnite.ViewModels
         private readonly BaseCollectionView collection;
         private readonly GameDatabase database;
 
-        private bool isLimitedToFilter = false;
+        private bool isLimitedToFilter = true;
         public bool IsLimitedToFilter
         {
             get => isLimitedToFilter;

@@ -50,17 +50,7 @@ namespace Playnite.Common
             Height = height;
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is AspectRatio other)
-            {
-                return other.Height == Height && other.Width == Width;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public override bool Equals(object obj) => Equals(obj as AspectRatio);
 
         public bool Equals(AspectRatio other)
         {
@@ -71,10 +61,17 @@ namespace Playnite.Common
 
         public override int GetHashCode()
         {
-            var hashCode = 859600377;
-            hashCode = hashCode * -1521134295 + Width.GetHashCode();
-            hashCode = hashCode * -1521134295 + Height.GetHashCode();
-            return hashCode;
+            return Height.GetHashCode() ^ Width.GetHashCode();
+        }
+
+        public static bool operator ==(AspectRatio obj1, AspectRatio obj2)
+        {
+            return obj1?.Equals(obj2) == true;
+        }
+
+        public static bool operator !=(AspectRatio obj1, AspectRatio obj2)
+        {
+            return obj1?.Equals(obj2) == false;
         }
 
         public override string ToString()

@@ -277,6 +277,11 @@ namespace Playnite.DesktopApp.Controls.Views
                     Image.VisibilityProperty,
                     nameof(GameDetailsViewModel.BackgroundVisibility),
                     mode: BindingMode.OneWay);
+                BindingTools.SetBinding(ImageBackground,
+                    FadeImage.AnimationEnabledProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.BackgroundImageAnimation),
+                    mode: BindingMode.OneWay);
             }
 
             SetElemVisibility(ref ElemPlayTime, "PART_ElemPlayTime", nameof(GameDetailsViewModel.PlayTimeVisibility));

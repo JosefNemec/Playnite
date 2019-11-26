@@ -90,14 +90,14 @@ namespace Playnite.DesktopApp.Controls
                 var sourceBinding = new PriorityBinding();
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.IconObjectCached)),
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DetailsListIconObjectCached)),
                     IsAsync = mainModel.AppSettings.AsyncImageLoading,
                     Converter = new NullToDependencyPropertyUnsetConverter(),
                     Mode = BindingMode.OneWay
                 });
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultIconObjectCached)),
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultDetailsListIconObjectCached)),
                     Converter = new NullToDependencyPropertyUnsetConverter(),
                     Mode = BindingMode.OneWay
                 });
@@ -111,14 +111,14 @@ namespace Playnite.DesktopApp.Controls
                 var sourceBinding = new PriorityBinding();
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.CoverImageObjectCached)),
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.GridViewCoverObjectCached)),
                     IsAsync = mainModel.AppSettings.AsyncImageLoading,
                     Converter = new NullToDependencyPropertyUnsetConverter(),
                     Mode = BindingMode.OneWay
                 });
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultCoverImageObjectCached)),
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultGridViewCoverObjectCached)),
                     Converter = new NullToDependencyPropertyUnsetConverter(),
                     Mode = BindingMode.OneWay
                 });

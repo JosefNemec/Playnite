@@ -403,6 +403,9 @@ O novo local do banco de dados será usado somente após o aplicativo ser reinic
     <sys:String x:Key="LOCSettingsFullscreenLayout">Esquema</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Rolagem horizontal</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Selecione uma das subseções</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Não há configurações disponíveis</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Estes scripts serão executados para todos os jogo na sua biblioteca. Scripts individuais podem ser atribuídos a cada jogo separadamente ao editar os detalhes de um jogo.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Transições para imagens de fundo animadas</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Tamanhos das fontes</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automático</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Sem suavização</sys:String>

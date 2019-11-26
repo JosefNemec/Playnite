@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,8 +55,18 @@ namespace Playnite.Common
         Win10
     }
 
+    public enum HwCompany
+    {
+        Intel,
+        AMD,
+        Nvidia,
+        VMware,
+        Uknown
+    }
+
     public static class Computer
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         public static WindowsVersion WindowsVersion
         {
             get
@@ -166,6 +177,57 @@ namespace Playnite.Common
             {
                 return new ComputerScreen(screen);
             }
+        }
+
+        public static List<HwCompany> GetGpuVendors()
+        {
+            var gpus = new List<string>();
+            var vendors = new List<HwCompany>();
+            try
+            {
+                using (var video = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController"))
+                {
+                    foreach (var obj in video.Get())
+                    {
+                        gpus.Add(obj["Name"].ToString());
+                    }
+                }
+
+                foreach (var gpu in gpus)
+                {
+                    if (gpu.Contains("intel", StringComparison.OrdinalIgnoreCase))
+                    {
+                        vendors.AddMissing(HwCompany.Intel);
+                    }
+                    else if (gpu.Contains("nvidia", StringComparison.OrdinalIgnoreCase))
+                    {
+                        vendors.AddMissing(HwCompany.Nvidia);
+                    }
+                    else if (gpu.Contains("amd", StringComparison.OrdinalIgnoreCase))
+                    {
+                        vendors.AddMissing(HwCompany.AMD);
+                    }
+                    else if (gpu.Contains("vmware", StringComparison.OrdinalIgnoreCase))
+                    {
+                        vendors.AddMissing(HwCompany.VMware);
+                    }
+                    else
+                    {
+                        return new List<HwCompany> { HwCompany.Uknown };
+                    }
+                }
+
+                if (vendors.Count > 0)
+                {
+                    return vendors;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to get GPU vendor.");
+            }
+
+            return new List<HwCompany> { HwCompany.Uknown };
         }
     }
 }

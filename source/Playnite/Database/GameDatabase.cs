@@ -412,7 +412,14 @@ namespace Playnite.Database
             {
                 lock (GetFileLock(dbPath))
                 {
-                    FileSystem.DeleteFileSafe(filePath);
+                    try
+                    {
+                        FileSystem.DeleteFileSafe(filePath);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to remove old database file {dbPath}.");
+                    }
 
                     try
                     {

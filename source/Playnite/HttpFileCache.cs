@@ -85,7 +85,14 @@ namespace Playnite
                 if (File.Exists(cacheFile))
                 {
                     logger.Debug($"Removing {url} from file cache: {cacheFile}");
-                    FileSystem.DeleteFileSafe(cacheFile);
+                    try
+                    {
+                        FileSystem.DeleteFileSafe(cacheFile);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to remove {url} from cache.");
+                    }
                 }
             }
         }
