@@ -365,8 +365,8 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsSkinChangeRestart">E' richiesto il riavvio di Playnite per applicare il nuovo tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Ottieni più temi</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Crea un nuovo tema</sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Scarica altre estensioni</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Crea una Nuova Estensione</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuisci a una nuova localizzazione</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Alcune delle impostazioni cambiate richiedono il riavvio di Playnite. Vuoi riavviare Playnite ora?
     
@@ -399,6 +399,9 @@ Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applica
     <sys:String x:Key="LOCSettingsFullscreenLayout">Modello</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Scorrimento orizzontale</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Seleziona una delle sottosezioni</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Nessuna impostazione disponibile</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Questi script sono eseguiti per ogni gioco nella libreria. I singoli script possono essere assegnati a ogni gioco separatamente mentre si modificano i dettagli del gioco.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Transizione per le immagini di sfondo animate</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Dimensione caratteri</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatico</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Con alias</sys:String>

@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Homepage: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Quellcode auf GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Diagnosedaten erstellen</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton">Diag.-Informationen senden</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Diagnosedaten senden</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Über Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">von Josef Němec</sys:String>
 
@@ -372,9 +372,9 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsGetExtensions">Weitere Erweiterungen beziehen</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Neue Erweiterung erstellen</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Playnite übersetzen</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Um die Änderungen anzuwenden muss Playnite neu gestartet werden. Soll Planite jetzt neu gestartet werden?
-
-Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abgebrochen.</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Für einige der geänderten Einstellungen muss Playnite neu gestartet werden. Möchtest du Playnite jetzt neu starten?
+    
+Jegliche aktuell laufenden Aufgaben (Herunterladen von Metadaten) werden abgebrochen.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Playnite neu starten?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite verschiebt die Bibliotheksdateien nicht automatisch, du musst diese daher vor dem Wechsel des Speicherorts verschieben/kopieren. Ist am Zielort keine Bibliothek vorhanden, wird eine neue erstellt.
 
@@ -403,6 +403,9 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontales Scrollen</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Wähle einen der Unterabschnitte aus</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Keine Einstellungen verfügbar</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Diese Skripte werden für jedes Spiel der Bibliothek ausgeführt. Individuelle Skripte können für jedes Spiel beim Bearbeiten der Spieldetails separat zugewiesen werden.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Übergänge von Hintergrundbildern animieren</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Schriftgrößen</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatisch</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliased</sys:String>
@@ -638,7 +641,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCGameLaunching">Wird gestartet …</sys:String>
     <sys:String x:Key="LOCGameRunning">Im Spiel</sys:String>
     <sys:String x:Key="LOCInvalidURL">Ungültige URL</sys:String>
-    <sys:String x:Key="LOCDoNothing">Nichts unternehmen</sys:String>
+    <sys:String x:Key="LOCDoNothing">Nichts tun</sys:String>
     <sys:String x:Key="LOCMinimize">Minimieren</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Wiederherstellen</sys:String>
     <sys:String x:Key="LOCClose">Schließen</sys:String>
@@ -657,7 +660,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCUserScore">Benutzerwertung</sys:String>
     <sys:String x:Key="LOCCriticScore">Expertenwertung</sys:String>
     <sys:String x:Key="LOCCommunityScore">Communitywertung</sys:String>
-    <sys:String x:Key="LOCScripts">[UNUSED]</sys:String>
+    <sys:String x:Key="LOCScripts">Skripte</sys:String>
     <sys:String x:Key="LOCPlugins">Plugins</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Metadatenquellen</sys:String>
     <sys:String x:Key="LOCExtensions">Erweiterungen</sys:String>
@@ -741,7 +744,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Beschreibungstext muss HTML-Syntax verwenden</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Spielzeit wird in Sekunden gemessen und gespeichert.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Werte von 0 bis 100 oder leer für keine Bewertung.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnites Entwicklung wird finanziell unterstützt durch:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnites Entwicklung wird finanziell unterstützt von:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Mitwirkende bei Code, Lokalisierung etc:</sys:String>
 
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Spielüberwachung beenden?</sys:String>

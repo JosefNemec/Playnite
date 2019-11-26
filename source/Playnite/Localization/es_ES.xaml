@@ -403,6 +403,9 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsFullscreenLayout">Disposición</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Desplazamiento horizontal</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Selecciona una de las subsecciones</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">No hay ajustes disponibles</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Estos scripts son ejecutados para todos los juegos en la libreria. Scripts individuales pueden ser asignados a cada juego por separado mientras editas los detalles del juego.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animar transiciones de imágenes de fondo</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Tamaño de letra</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Auto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliased</sys:String>

@@ -403,6 +403,9 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsFullscreenLayout">düzen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Yatay Kaydırma</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Alt bölümlerden birini seçin</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Yazı tipi boyutları</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Otomatik</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Takma Adlı</sys:String>

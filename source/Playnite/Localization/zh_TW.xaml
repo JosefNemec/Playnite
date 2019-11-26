@@ -35,14 +35,20 @@
     <sys:String x:Key="LOCNoPlatform">沒有平台</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">喔不，出錯了...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">發生無法復原的錯誤。
+
+若您願意協助我們修復此問題，請簡短地描述當機前您所進行的動作並創建診斷包。若您可連上網路則診斷包將被上傳至Playnite伺服器進行分析。
+
+除此之外，您也可使用"回報當機"按鈕於Github上手動建立新問題並回報本次錯誤。
+
+感謝您的協助。</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">發生無法復原的錯誤。
 
 如果您願意幫助我們解決此問題，請傳送診斷資料報告給我們，謝謝。</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">問題回報</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重新啟動Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">離開Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">當機之前進行的行為(以英文描述)</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">資料庫管理員</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">移除遊戲()?</sys:String>
@@ -363,8 +369,8 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite需要重新啟動以套用新的主題</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">取得更多主題</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">建立新的主題</sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">取得更多附加元件</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">添增新的附加元件</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">提供新的本地化翻譯</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">部分變更需要重啟Playnite，是否立即重新啟動?
 
@@ -397,6 +403,9 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsFullscreenLayout">配置</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">水平捲軸</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">選擇一個小節</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">字型大小</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">自動</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">鋸齒化</sys:String>
@@ -765,7 +774,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCInvalidGameActionSettings">無效的遊戲動作設定</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">解決帳號同步問題</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">疑難排解</sys:String>
 
     <sys:String x:Key="LOCRenameItem">重新命名物件</sys:String>
     <sys:String x:Key="LOCAddNewItem">新增物件</sys:String>
@@ -806,9 +815,15 @@ By {1}
     
 {0}</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">已選擇的圖片過大，可能導致效能無法最佳化。使用大型圖片可能會造成使用者介面嚴重延遲並增加記憶體使用率。
+
+建議最大尺寸:
+圖標: 高度 256px
+封面: 高度 800px
+背景: 高度 1080px
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">效能警告</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">不再顯示</sys:String>
 
 
     <!--Common Library-->

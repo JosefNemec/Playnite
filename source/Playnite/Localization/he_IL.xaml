@@ -401,6 +401,9 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsFullscreenLayout">פריסה</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">גלילה אופקית</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">בחר אחד מתתי הסעיפים</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">גודלי גופנים</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">אוטומטי</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">מוחלק</sys:String>
