@@ -403,8 +403,9 @@ Nové umístění databáze bude použito po restartu aplikace.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Rozložení</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontální skrolování</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Vyberte jednu z podkategorií</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Nejsou dostupná žádná nastavení</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Tyto skripty jsou spuštěny pro každou hru v knihovně. Jednotlivé skripty mohou být přiřazeny ke každé hře zvlášť, v úpravách detailů hry.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animovat přechody mezi obrázky na pozadí</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Velikosti písma</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automaticky</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Vyhlazené</sys:String>
