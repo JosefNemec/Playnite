@@ -395,6 +395,7 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsSelectChildSection">Wybierz jedną z podsekcji</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
