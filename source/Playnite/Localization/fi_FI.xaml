@@ -393,6 +393,7 @@ Kaikki aktiiviset tapahtumat (metadatan lataukset) peruutetaan.</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Valitse yksi alakohdista</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Kirjasinkoot</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automaattinen</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Pehmentämätön</sys:String>
