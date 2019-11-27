@@ -369,8 +369,8 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Yeni temayı uygulamak için playnite yeniden başlatılmalıdır</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Daha fazla tema edin</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Yeni tema oluştur</sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Daha fazla uzantı al</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Yeni uzantı oluştur</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Yeni yerelleştirmeye katkıda bulun</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Değiştirilen ayarlardan bazıları Playnite'ın yeniden başlatılmasını gerektiriyor. Playnite'ı şimdi yeniden başlatmak ister misin?
     
@@ -403,9 +403,9 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsFullscreenLayout">düzen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Yatay Kaydırma</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Alt bölümlerden birini seçin</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Kullanılabilir ayar yok</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Bu betikler kütüphanedeki her oyun için çalıştırılır. Oyun ayrıntıları değiştirilerek, her oyuna ayrı bir betik ataması da yapılabilir.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Arka plan resim geçişini canlandır</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Yazı tipi boyutları</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Otomatik</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Takma Adlı</sys:String>
@@ -776,7 +776,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCInvalidGameActionSettings">Geçersiz oyun eylemi yapılandırması.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Hesap eşitleme sorunlarını giderme</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Sorunları giderme</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Öğeyi yeniden adlandır</sys:String>
     <sys:String x:Key="LOCAddNewItem">Yeni öğe ekle</sys:String>
