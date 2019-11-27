@@ -50,7 +50,19 @@ namespace Playnite.Common
 
     public class Programs
     {
+        private static readonly string[] uninstallerMasks = new string[]
+        {
+            "uninst",
+            "setup",
+            @"unins\d+"
+        };
+
         private static ILogger logger = LogManager.GetLogger();
+
+        public static bool IsPathUninstaller(string path)
+        {
+            return uninstallerMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
+        }
 
         public static void CreateShortcut(string executablePath, string arguments, string iconPath, string shortcutPath)
         {
@@ -78,6 +90,11 @@ namespace Playnite.Common
                     }
 
                     if (file.Attributes.HasFlag(FileAttributes.Directory))
+                    {
+                        continue;
+                    }
+
+                    if (IsPathUninstaller(file.FullName))
                     {
                         continue;
                     }
@@ -126,16 +143,10 @@ namespace Playnite.Common
                     @"\Microsoft ",
                 };
 
-                var nameExceptions = new string[]
-                {
-                "uninstall",
-                "setup"
-                };
-
                 var pathExceptions = new string[]
                 {
-                @"\system32\",
-                @"\windows\",
+                    @"\system32\",
+                    @"\windows\",
                 };
 
                 var shell = new IWshRuntimeLibrary.WshShell();
@@ -162,15 +173,16 @@ namespace Playnite.Common
                         continue;
                     }
 
-                    if (nameExceptions.FirstOrDefault(a => shortcut.FullName.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
-                    {
-                        continue;
-                    }
-
                     var link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(shortcut.FullName);
                     var target = link.TargetPath;
 
                     if (pathExceptions.FirstOrDefault(a => target.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
+                    {
+                        continue;
+                    }
+
+                    // Ignore uninstallers
+                    if (IsPathUninstaller(target))
                     {
                         continue;
                     }
