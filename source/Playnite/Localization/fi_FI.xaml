@@ -35,11 +35,16 @@ Määrittelemätön - Ei muutoksia (kun muokataan useita pelejä)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ei alustaa</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Voi ei! Jotain pahaa tapahtui…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Tapahtui peruuttamaton virhe.
+
+Jos haluat auttaa meitä korjaamaan tämän ongelman, kirjoita lyhyt kuvaus siitä, mitä teit ennen virheen tapahtumista ja luo
+ongelman määrityspaketti. Jos olet yhdistettynä verkkoon, tämä paketti lähetetään Playnite palvelimelle tutkimusta varten.
+
+Vaihtoehtoisesti, voit painaa alla olevaa nappia ja luoda Githubiin uuden korjausehdotuksen ja raportoida virheen suoraan sinne.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Peruuttamaton virhe tapahtui.
 
 Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diagnostiikkatiedot. Kiitos.</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Raportoi kaatuminen</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Ilmoita virheestä</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Uudelleenkäynnistä Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Poistu Playnitesta</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
@@ -391,8 +396,8 @@ Kaikki aktiiviset tapahtumat (metadatan lataukset) peruutetaan.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Asettelu</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Vaakasuuntainen vieritys</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Valitse yksi alakohdista</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Ei asetuksia</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Nämä skriptit suoritetaa jokaiselle kirjaston pelille. Jokaiseen peliin voi liittää yksilöityjä skriptejä muokkaamalla pelin tietoja.</sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Kirjasinkoot</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automaattinen</sys:String>
@@ -557,8 +562,8 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCDiagPackageCreationError">Diagnostiikkapaketin luominen epäonnistui.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Automaattinen diagnostiikkapaketin lähettäminen epäonnistui.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnostiikkatietojen lähetys onnistui.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnostiikkapaketti luotiin ja lähetettiin onnistuneesti.
-Lisää oheinen tunnus kaatumisraporttiisi:</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Ongelmanmäärityspaketti lähetettiin onnistuneesti.
+Lisää oheinen tunniste kaatumisraporttiisi:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Steam-kategorioiden tuonti epäonnistui.</sys:String>
     
@@ -636,12 +641,12 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCCompletionStatusNotPlayed">Ei pelattu</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayed">Pelattu</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten">Voitettu</sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Loppuun viety</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlaying">Pelataan</sys:String>
     <sys:String x:Key="LOCCompletionStatusAbandoned">Hylätty</sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold">Odottamassa</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
-    <sys:String x:Key="LOCCompletionStatus">Toteutumisen tila</sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold">Odottaa</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">Suunnitelmissa</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Edistyminen</sys:String>
     <sys:String x:Key="LOCUserScore">Pisteesi</sys:String>
     <sys:String x:Key="LOCCriticScore">Kriitikoiden pisteet</sys:String>
     <sys:String x:Key="LOCCommunityScore">Yhteisön pisteet</sys:String>
