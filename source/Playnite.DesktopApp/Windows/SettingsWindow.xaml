@@ -68,8 +68,8 @@
                           DisplayMemberPath="Name"
                           ItemsSource="{Binding Extensions.MetadataPlugins}"/>
             <TreeViewItem Header="{DynamicResource LOCPlugins}" Tag="10"
-                          DisplayMemberPath="Name"
-                          ItemsSource="{Binding Extensions.MetadataPlugins}"
+                          DisplayMemberPath="Description.Name"
+                          ItemsSource="{Binding GenericPlugins}"
                           Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </TreeView>
 

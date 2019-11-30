@@ -117,6 +117,11 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public List<LoadedPlugin> GenericPlugins
+        {
+            get => Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin).ToList();
+        }
+
         public bool AnyGenericPluginSettings
         {
             get => Extensions?.GenericPlugins.HasItems() == true;
@@ -311,6 +316,10 @@ namespace Playnite.DesktopApp.ViewModels
             else if (selectedItem.NewValue is Plugin plugin)
             {
                 SelectedSectionView = GetPluginSettingsView(plugin.Id);
+            }
+            else if (selectedItem.NewValue is LoadedPlugin ldPlugin)
+            {
+                SelectedSectionView = GetPluginSettingsView(ldPlugin.Plugin.Id);
             }
         }
 
