@@ -175,6 +175,11 @@ namespace GogLibrary
 
         public override Guid Id => Guid.Parse("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E");
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;

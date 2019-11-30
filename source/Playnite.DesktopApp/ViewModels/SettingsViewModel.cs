@@ -117,6 +117,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public List<SelectableItem<LibraryPlugin>> AutoCloseClientsList { get; } = new List<SelectableItem<LibraryPlugin>>();      
+
         public bool AnyGenericPluginSettings
         {
             get => Extensions?.GenericPlugins.HasItems() == true;
@@ -288,10 +290,18 @@ namespace Playnite.DesktopApp.ViewModels
                 { 8, new Controls.SettingsSections.Extensions() { DataContext = this } },
                 { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
                 { 10, new Controls.SettingsSections.EmptyParent() { DataContext = this } },
-                { 11, new Controls.SettingsSections.Scripting() { DataContext = this } }
+                { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
+                { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
+            foreach (var plugin in extensions.LibraryPlugins.Where(a => a.Capabilities?.CanShutdownClient == true))
+            {
+                AutoCloseClientsList.Add(new SelectableItem<LibraryPlugin>(plugin)
+                {
+                    Selected = settings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id)
+                });
+            }
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
@@ -417,6 +427,9 @@ namespace Playnite.DesktopApp.ViewModels
                         + Environment.NewLine + e.Message, "");
                 }
             }
+
+            var shutdownPlugins = AutoCloseClientsList.Where(a => a.Selected == true).Select(a => a.Item.Id).ToList();
+            Settings.ClientAutoShutdown.ShutdownPlugins = shutdownPlugins;
 
             EndEdit();
             originalSettings.SaveSettings();

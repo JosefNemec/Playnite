@@ -1408,7 +1408,18 @@ namespace Playnite
                 backgroundImageAnimation = value;
                 OnPropertyChanged();
             }
-        }        
+        }
+
+        private AutoClientShutdownSettings clientAutoShutdown = new AutoClientShutdownSettings();
+        public AutoClientShutdownSettings ClientAutoShutdown
+        {
+            get => clientAutoShutdown;
+            set
+            {
+                clientAutoShutdown = value;
+                OnPropertyChanged();
+            }
+        }
 
         [JsonIgnore]
         public static bool IsPortable

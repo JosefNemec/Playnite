@@ -108,6 +108,11 @@ namespace EpicLibrary
 
         public override Guid Id => Guid.Parse("00000002-DBD1-46C6-B5D0-B1BA559D10E4");
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;

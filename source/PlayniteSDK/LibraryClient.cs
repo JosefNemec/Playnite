@@ -25,5 +25,12 @@ namespace Playnite.SDK
         /// Open client application.
         /// </summary>
         public abstract void Open();
+
+        /// <summary>
+        /// Shuts down client application
+        /// </summary>
+        public virtual void Shutdown()
+        {
+        }
     }
 }

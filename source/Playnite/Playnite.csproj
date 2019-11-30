@@ -308,6 +308,7 @@
     <Compile Include="Controllers\GameControllerFactory.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
+    <Compile Include="Settings\AutoClientShutdownSettings.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Settings\OldSettings\Plugins.cs" />

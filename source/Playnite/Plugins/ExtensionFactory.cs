@@ -530,5 +530,10 @@ namespace Playnite.Plugins
                 }
             }
         }
+
+        public LibraryPlugin GetLibraryPlugin(Guid pluginId)
+        {
+            return LibraryPlugins.FirstOrDefault(a => a.Id == pluginId);
+        }
     }
 }

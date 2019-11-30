@@ -75,6 +75,11 @@ namespace BethesdaLibrary
 
         public override Guid Id => Guid.Parse("0E2E793E-E0DD-4447-835C-C44A1FD506EC");
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override ISettings GetSettings(bool firstRunSettings)
         {
             return firstRunSettings ? null : LibrarySettings;

@@ -149,6 +149,11 @@ namespace TwitchLibrary
 
         public override Guid Id => Guid.Parse("E2A7D494-C138-489D-BB3F-1D786BEEB675");
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;

@@ -675,6 +675,11 @@ namespace SteamLibrary
 
         public override string LibraryIcon => Steam.Icon;
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override void Dispose()
         {
             apiClient.Logout();

@@ -421,6 +421,11 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">If enabled, Playnite will download background artwork while downloading metadata. Using more disk space and making artwork available when offline.
         
 If disabled, background artwork is downloaded only when first needed. Using less space, but may result in a delay before artwork is displayed and some images might not be available when offline.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatically close launcher after game exits</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Client shutdown grace period (in seconds)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Don't close after game sessions shorter then (in seconds)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automatically close following clients:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Auto Close Launchers</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
