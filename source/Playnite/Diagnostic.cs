@@ -51,13 +51,13 @@ namespace Playnite
 
                     // System Info
                     var infoPath = Path.Combine(diagTemp, "sysinfo.txt");
-                    File.WriteAllText(infoPath, Serialization.ToYaml(Computer.GetSystemInfo()));
+                    File.WriteAllText(infoPath, Serialization.ToJson(Computer.GetSystemInfo(), true));
                     archive.CreateEntryFromFile(infoPath, Path.GetFileName(infoPath));
 
                     // Uninstall regkey export
                     var regKeyPath = Path.Combine(diagTemp, "uninstall.txt");
                     var programs = Programs.GetUnistallProgramsList();
-                    File.WriteAllText(regKeyPath, Serialization.ToYaml(programs));
+                    File.WriteAllText(regKeyPath, Serialization.ToJson(programs, true));
                     archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
 
                     // Playnite info
@@ -68,7 +68,7 @@ namespace Playnite
                         { "Portable", PlayniteSettings.IsPortable }
                     };
 
-                    File.WriteAllText(playnitePath, Serialization.ToYaml(playniteInfo));
+                    File.WriteAllText(playnitePath, Serialization.ToJson(playniteInfo, true));
                     archive.CreateEntryFromFile(playnitePath, Path.GetFileName(playnitePath));
 
                     // User actions description
