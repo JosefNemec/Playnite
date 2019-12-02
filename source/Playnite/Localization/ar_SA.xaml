@@ -39,7 +39,7 @@
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">تبليغ الانهيار</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">إعادة تشغيل Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">إغلاق Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
@@ -66,7 +66,7 @@
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
-    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">لم يتم تحديد أي لعبة.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
@@ -74,12 +74,12 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">مفعل</sys:String>
     <sys:String x:Key="LOCRemoveTitle">إزالة</sys:String>
-    <sys:String x:Key="LOCRenameTitle"></sys:String>
+    <sys:String x:Key="LOCRenameTitle">إعادة تسمية</sys:String>
     <sys:String x:Key="LOCCopyTitle">نسخ</sys:String>
     <sys:String x:Key="LOCAddTitle">إضافة</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">الأيقونة الافتراضية</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">صورة الغلاف الافتراضية</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">الخلفية الإفتراضية</sys:String>
     <sys:String x:Key="LOCFinishLabel">انهاء</sys:String>
     <sys:String x:Key="LOCNextLabel">التالي</sys:String>
     <sys:String x:Key="LOCBackLabel">السابق</sys:String>
@@ -98,22 +98,22 @@
     <sys:String x:Key="LOCVersionLabel">النسخة</sys:String>
     <sys:String x:Key="LOCAgeRatingLabel">التقييم العمري</sys:String>
     <sys:String x:Key="LOCRegionLabel">المنطقة</sys:String>
-    <sys:String x:Key="LOCLastPlayedLabel"></sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">اخر تشغيل</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
-    <sys:String x:Key="LOCPlayCountLabel"></sys:String>
-    <sys:String x:Key="LOCAddedLabel"></sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">مرات اللعب</sys:String>
+    <sys:String x:Key="LOCAddedLabel">أضيف</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">تاريخ الإضافة</sys:String>
     <sys:String x:Key="LOCModifiedLabel"></sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
-    <sys:String x:Key="LOCWebsiteLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">تاريخ التعديل</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">الموقع الالكتروني</sys:String>
     <sys:String x:Key="LOCPathLabel"></sys:String>
-    <sys:String x:Key="LOCOKLabel"></sys:String>
-    <sys:String x:Key="LOCSaveLabel"></sys:String>
-    <sys:String x:Key="LOCCloseLabel"></sys:String>
-    <sys:String x:Key="LOCCancelLabel"></sys:String>
-    <sys:String x:Key="LOCYesLabel"></sys:String>
-    <sys:String x:Key="LOCNoLabel"></sys:String>
-    <sys:String x:Key="LOCWelcomeLabel"></sys:String>
+    <sys:String x:Key="LOCOKLabel">موافق</sys:String>
+    <sys:String x:Key="LOCSaveLabel">حفظ</sys:String>
+    <sys:String x:Key="LOCCloseLabel">إغلاق</sys:String>
+    <sys:String x:Key="LOCCancelLabel">إلغاء</sys:String>
+    <sys:String x:Key="LOCYesLabel">نعم</sys:String>
+    <sys:String x:Key="LOCNoLabel">لا</sys:String>
+    <sys:String x:Key="LOCWelcomeLabel">مرحبًا</sys:String>
     <sys:String x:Key="LOCLocalUserLabel"></sys:String>
     <sys:String x:Key="LOCAuthenticateLabel"></sys:String>
     <sys:String x:Key="LOCGeneralLabel"></sys:String>
