@@ -291,7 +291,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-Banner</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Neues Steam-UI</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">* Erfordert zum Anwenden Neustart</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* Zum Anwenden Neustart erforderlich</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Einstellungen</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Allgemein</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Darstellung</sys:String>
@@ -388,8 +388,8 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Shop-Screenshot</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Shop-Hintergrund</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Hat ohne erneutes Herunterladen der Metadaten keinen Einfluss auf bereits in der Bibliothek befindliche Spiele.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Spielzeit nach unterstützten Bibliotheken priorisieren</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Synchronisiert automatisch die Spielzeit mit der Bibliothek von Steam, Origin und anderen. Playnite wird die Spielzeit von betroffenen Spielen anschließend nicht mehr selbst überwachen.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Spielzeit priorisieren für unterstützten Bibliotheken</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Erfasste Spielzeit während der Bibliothekssynchronisation immer von der Anbieterbibliothek herunterladen und damit die von Playnite erfasste Spielzeit ignorieren.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Controllerunterstützung im Desktopmodus aktivieren</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide-Taste öffnet Vollbildmodus</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Konfiguriere die verwendeten Einstellungen für das automatische Herunterladen von Metadaten nach dem Importieren neuer Spiele.</sys:String>
@@ -405,14 +405,14 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsSelectChildSection">Wähle einen der Unterabschnitte aus</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Keine Einstellungen verfügbar</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">Diese Skripte werden für jedes Spiel der Bibliothek ausgeführt. Individuelle Skripte können für jedes Spiel beim Bearbeiten der Spieldetails separat zugewiesen werden.</sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Übergänge von Hintergrundbildern animieren</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Wechsel von Hintergrundbildern animieren</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Schriftgrößen</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatisch</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Aliased</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Graustufen</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ideal</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Anzeigen</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Optimal</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Bildschirm</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modus für Textformatierung</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modus für Textrendering</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Optionen für Textrendering und -formatierung haben derzeit keine Auswirkung auf Spielbeschreibungen.</sys:String>
@@ -436,7 +436,7 @@ Falls deaktiviert, werden Hintergrundbilder erst dann heruntergeladen, wenn sie 
     <sys:String x:Key="LOCLoginRequired">Authentifizierung erforderlich</sys:String>
     <sys:String x:Key="LOCLoginFailed">Authentifizierung fehlgeschlagen</sys:String>
     <sys:String x:Key="LOCLoggedIn">Benutzer ist authentifiziert</sys:String>
-    <sys:String x:Key="LOCNotLoggedIn">Erfordert Authentifizierung</sys:String>
+    <sys:String x:Key="LOCNotLoggedIn">Authentifizierung erforderlich</sys:String>
     <sys:String x:Key="LOCNotLoggedInError">Benutzer konnte nicht authentifiziert werden.</sys:String>
 
     <!--Meta Import-->
@@ -774,7 +774,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCInstallDirNotFoundError">Installationsverzeichnis des Spiels nicht gefunden.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Ungültige Aktion für dieses Spiel.</sys:String>
 
-    <sys:String x:Key="LOCTroubleShootingAccountLink">Problembehebung zur Kontensynchronisation</sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Problembehebung bei der Kontosynchronisation</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Problembehandlung</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Eintrag umbenennen</sys:String>
@@ -867,6 +867,6 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
     
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Screenshots verwenden, falls kein Bildmaterial verfügbar</sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Falls mehrere Bilder verfügbar, Folgendes verwenden:</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Falls mehrere Bilder verfügbar, das folgende verwenden:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Hintergrundbild für {0} auswählen</sys:String>
 </ResourceDictionary>
