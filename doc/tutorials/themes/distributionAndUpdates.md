@@ -37,7 +37,7 @@ Toolbox.exe pack theme desktop "SuperClearModern" "c:\somedir"
 
 # Uploading themes
 
-There's currently no official database with user made themes. We will be launching new forums soon (probably by the end July), which will be used as official theme database.
+The best place to share themes is official Playnite forum, specifically [extension database](https://playnite.link/forum/forum-3.html) sub-forum.
 
 # Updating Themes
 

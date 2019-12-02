@@ -123,14 +123,14 @@ namespace OriginLibrary
                 }
 
                 var executablePath = origin.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-                if (!string.IsNullOrEmpty(executablePath))
+                if (!executablePath?.CompletePath.IsNullOrEmpty() != null)
                 {
-                    if (File.Exists(executablePath))
+                    if (File.Exists(executablePath.CompletePath))
                     {
                         var installInfo = new GameInfo()
                         {
                             PlayAction = origin.GetGamePlayTask(manifest),
-                            InstallDirectory = Path.GetDirectoryName(executablePath)
+                            InstallDirectory = Path.GetDirectoryName(executablePath.CompletePath)
                         };
 
                         OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
@@ -163,14 +163,14 @@ namespace OriginLibrary
                     return;
                 }
 
-                if (string.IsNullOrEmpty(executablePath))
+                if (executablePath?.CompletePath == null)
                 {
                     OnUninstalled(this, new GameControllerEventArgs(this, 0));
                     return;
                 }
                 else
                 {
-                    if (!File.Exists(executablePath))
+                    if (!File.Exists(executablePath.CompletePath))
                     {
                         OnUninstalled(this, new GameControllerEventArgs(this, 0));
                         return;

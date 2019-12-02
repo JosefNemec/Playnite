@@ -18,13 +18,34 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Controls;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace OriginLibrary
 {
     public class OriginLibrary : LibraryPlugin
     {
-        private ILogger logger = LogManager.GetLogger();
+        public class PlatformPath
+        {
+            public string CompletePath { get; set; }
+            public string Root { get; set; }
+            public string Path { get; set; }
+
+            public PlatformPath(string completePath)
+            {
+                CompletePath = completePath;
+            }
+
+            public PlatformPath(string root, string path)
+            {
+                Root = root;
+                Path = path;
+                CompletePath = System.IO.Path.Combine(root, path);
+            }
+        }
+
+        private readonly static ILogger logger = LogManager.GetLogger();
         private const string dbImportMessageId = "originlibImportError";
 
         internal OriginLibrarySettings LibrarySettings { get; private set; }
@@ -34,18 +55,18 @@ namespace OriginLibrary
             LibrarySettings = new OriginLibrarySettings(this, PlayniteApi);
         }
 
-        internal string GetPathFromPlatformPath(string path, RegistryView platformView)
+        internal PlatformPath GetPathFromPlatformPath(string path, RegistryView platformView)
         {
             if (!path.StartsWith("["))
             {
-                return path;
+                return new PlatformPath(path);
             }
 
             var matchPath = Regex.Match(path, @"\[(.*?)\\(.*)\\(.*)\](.*)");
             if (!matchPath.Success)
             {
                 logger.Warn("Unknown path format " + path);
-                return string.Empty;
+                return null;
             }
 
             var root = matchPath.Groups[1].Value;
@@ -71,23 +92,22 @@ namespace OriginLibrary
             var subKey = rootKey.OpenSubKey(subPath);
             if (subKey == null)
             {
-                return string.Empty;
+                return null;
             }
 
             var keyValue = rootKey.OpenSubKey(subPath).GetValue(key);
             if (keyValue == null)
             {
-                return string.Empty;
+                return null;
             }
 
-            return Path.Combine(keyValue.ToString(), executable);
+            return new PlatformPath(keyValue.ToString(), executable);
         }
 
-        internal string GetPathFromPlatformPath(string path)
+        internal PlatformPath GetPathFromPlatformPath(string path)
         {
             var resultPath = GetPathFromPlatformPath(path, RegistryView.Registry64);
-
-            if (string.IsNullOrEmpty(resultPath))
+            if (resultPath == null)
             {
                 resultPath = GetPathFromPlatformPath(path, RegistryView.Registry32);
             }
@@ -100,6 +120,48 @@ namespace OriginLibrary
             var text = File.ReadAllText(path);
             var data = HttpUtility.UrlDecode(text);
             return HttpUtility.ParseQueryString(data);
+        }
+
+        internal static GameInstallerData GetGameInstallerData(string dataPath)
+        {
+            try
+            {
+                if (File.Exists(dataPath))
+                {
+                    var ser = new XmlSerializer(typeof(GameInstallerData));
+                    return (GameInstallerData)ser.Deserialize(XmlReader.Create(dataPath));
+                }
+                else
+                {
+                    var rootDir = dataPath;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var target = Path.Combine(rootDir, "__Installer");
+                        if (Directory.Exists(target))
+                        {
+                            rootDir = target;
+                            break;
+                        }
+                        else
+                        {
+                            rootDir = Path.Combine(rootDir, "..");
+                        }
+                    }
+
+                    var instPath = Path.Combine(rootDir, "installerdata.xml");
+                    if (File.Exists(instPath))
+                    {
+                        var ser = new XmlSerializer(typeof(GameInstallerData));
+                        return (GameInstallerData)ser.Deserialize(XmlReader.Create(instPath));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to deserialize game installer xml {dataPath}.");
+            }
+
+            return null;
         }
 
         internal GameLocalDataResponse GetLocalManifest(string id, bool useDataCache = false)
@@ -140,6 +202,48 @@ namespace OriginLibrary
             }
         }
 
+        public GameAction GetGamePlayTask(string installerDataPath)
+        {
+            var data = GetGameInstallerData(installerDataPath);
+            if (data == null)
+            {
+                return null;
+            }
+            else
+            {
+                var paths = GetPathFromPlatformPath(data.runtime.launchers.Last().filePath);
+                if (paths.CompletePath.Contains(@"://"))
+                {
+                    return new GameAction
+                    {
+                        Type = GameActionType.URL,
+                        Path = paths.CompletePath,
+                        IsHandledByPlugin = true
+                    };
+                }
+                else
+                {
+                    var action = new GameAction
+                    {
+                        Type = GameActionType.File,
+                        IsHandledByPlugin = true
+                    };
+                    if (paths.Path.IsNullOrEmpty())
+                    {
+                        action.Path = Path.GetFileName(paths.CompletePath);
+                        action.WorkingDir = Path.GetDirectoryName(paths.CompletePath);
+                    }
+                    else
+                    {
+                        action.Path = paths.Path;
+                        action.WorkingDir = paths.Root;
+                    }
+
+                    return action;
+                }
+            }
+        }
+
         public GameAction GetGamePlayTask(GameLocalDataResponse manifest)
         {
             var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
@@ -161,23 +265,17 @@ namespace OriginLibrary
             else
             {
                 var executePath = GetPathFromPlatformPath(platform.fulfillmentAttributes.executePathOverride);
-                if (executePath.EndsWith("installerdata.xml", StringComparison.OrdinalIgnoreCase))
+                if (executePath != null)
                 {
-                    var doc = XDocument.Load(executePath);
-                    var root = XElement.Parse(doc.ToString());
-                    var elem = root.Element("runtime")?.Element("launcher")?.Element("filePath");
-                    var path = elem?.Value;
-                    if (path != null)
+                    if (executePath.CompletePath.EndsWith("installerdata.xml", StringComparison.OrdinalIgnoreCase))
                     {
-                        executePath = GetPathFromPlatformPath(path);
-                        playAction.WorkingDir = Path.GetDirectoryName(executePath);
-                        playAction.Path = executePath;
+                        return GetGamePlayTask(executePath.CompletePath);
                     }
-                }
-                else
-                {
-                    playAction.WorkingDir = Path.GetDirectoryName(GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride));
-                    playAction.Path = executePath;
+                    else
+                    {
+                        playAction.WorkingDir = executePath.Root;
+                        playAction.Path = executePath.Path;
+                    }
                 }
             }
 
@@ -250,7 +348,9 @@ namespace OriginLibrary
                         }
 
                         var installPath = GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-                        if (string.IsNullOrEmpty(installPath) || !File.Exists(installPath))
+                        if (installPath == null ||
+                            installPath.CompletePath.IsNullOrEmpty() ||
+                            !File.Exists(installPath.CompletePath))
                         {
                             continue;
                         }
@@ -264,7 +364,16 @@ namespace OriginLibrary
                         }
                         else
                         {
-                            newGame.InstallDirectory = Path.GetDirectoryName(installPath);
+                            newGame.InstallDirectory = Path.GetDirectoryName(installPath.CompletePath);
+                        }
+
+                        // For games like Sims 4
+                        if (newGame.PlayAction?.Path.EndsWith("exe", StringComparison.OrdinalIgnoreCase) == false)
+                        {
+                            var task = GetGamePlayTask(newGame.InstallDirectory);                            
+                            newGame.InstallDirectory = task.WorkingDir;
+                            newGame.PlayAction.WorkingDir = task.WorkingDir.Replace(newGame.InstallDirectory, ExpandableVariables.InstallationDirectory);
+                            newGame.PlayAction.Path = task.Path.Replace(newGame.InstallDirectory, "").Trim(new char[] { '\\', '/' });
                         }
 
                         // If game uses EasyAntiCheat then use executable referenced by it
@@ -273,7 +382,11 @@ namespace OriginLibrary
                             var eac = EasyAntiCheat.GetLauncherSettings(newGame.InstallDirectory);
                             if (newGame.PlayAction == null)
                             {
-                                newGame.PlayAction = new GameAction { Type = GameActionType.File };
+                                newGame.PlayAction = new GameAction
+                                {
+                                    Type = GameActionType.File,
+                                    IsHandledByPlugin = true
+                                };
                             }
 
                             newGame.PlayAction.Path = eac.Executable;
