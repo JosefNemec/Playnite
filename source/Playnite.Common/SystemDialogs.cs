@@ -3,6 +3,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,12 +90,17 @@ namespace Playnite.Common
             return SelectFiles(null, filter);
         }
 
-        public static string SelectFile(Window owner, string filter)
+        public static string SelectFile(Window owner, string filter, string initialDir = null)
         {
             var dialog = new OpenFileDialog()
             {
                 Filter = filter
             };
+
+            if (!initialDir.IsNullOrEmpty() && Directory.Exists(initialDir))
+            {
+                dialog.InitialDirectory = initialDir;
+            }
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
             if (dialogResult == true)

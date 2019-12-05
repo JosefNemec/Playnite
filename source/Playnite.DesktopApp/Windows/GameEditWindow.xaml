@@ -747,7 +747,8 @@
                                           Visibility="{Binding EditingGame.IsCustomGame, Converter={pcon:InvertedBooleanToVisibilityConverter}}"
                                           Margin="5"/>
                                 <pctrls:GameTaskView x:Name="TaskPlay" Margin="5,0,5,5" DataContext="{Binding EditingGame.PlayAction}" 
-                                                  Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}">
+                                                     Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"
+                                                     DefaultSelectionDir="{Binding Data.EditingGame.InstallDirectory, Mode=OneWay, Source={StaticResource Proxy}}">
                                     <pctrls:GameTaskView.Style>
                                         <Style TargetType="{x:Type pctrls:GameTaskView}">
                                             <Setter Property="Visibility" Value="Visible" />
@@ -772,7 +773,8 @@
                                             <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
                                                 <StackPanel Margin="10">
                                                     <pctrls:GameTaskView x:Name="TaskCustom" ShowNameRow="True"
-                                                                      Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"/>
+                                                                         Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"
+                                                                         DefaultSelectionDir="{Binding Data.EditingGame.InstallDirectory, Mode=OneWay, Source={StaticResource Proxy}}"/>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                                                         <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0"
                                                                 Command="{Binding Data.MoveUpActionCommand, Source={StaticResource Proxy}}"
