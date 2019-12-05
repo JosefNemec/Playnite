@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.SDK.Models;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 
 namespace Playnite.Scripting.IronPython
 {
@@ -101,6 +102,17 @@ namespace Playnite.Scripting.IronPython
                 Runtime.Execute("on_game_uninstalled(__game)", new Dictionary<string, object>()
                 {
                     { "__game", game }
+                });
+            }
+        }
+
+        public override void OnGameSelected(GameSelectionEventArgs args)
+        {
+            if (Runtime.GetFunctionExits("on_game_selected"))
+            {
+                Runtime.Execute("on_game_selected(__event_args)", new Dictionary<string, object>()
+                {
+                    { "__event_args", args }
                 });
             }
         }

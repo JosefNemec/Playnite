@@ -1,5 +1,6 @@
 ﻿using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Events;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -100,6 +101,17 @@ namespace Playnite.Scripting.PowerShell
                 Runtime.Execute("OnGameUninstalled $__game", new Dictionary<string, object>()
                 {
                     { "__game", game }
+                });
+            }
+        }
+
+        public override void OnGameSelected(GameSelectionEventArgs args)
+        {
+            if (Runtime.GetFunctionExits("OnGameSelected"))
+            {
+                Runtime.Execute("OnGameSelected $__eventArgs", new Dictionary<string, object>()
+                {
+                    { "__eventArgs", args }
                 });
             }
         }

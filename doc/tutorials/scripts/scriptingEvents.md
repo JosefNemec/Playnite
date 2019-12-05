@@ -17,6 +17,7 @@ Available Events
 | OnGameStopped | on_game_stopped | Game stopped running.  | [Game](xref:Playnite.SDK.Models.Game) and session length in seconds |
 | OnGameInstalled | on_game_installed | Game is installed. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameUninstalled | on_game_uninstalled | Game is uninstalled. | [Game](xref:Playnite.SDK.Models.Game) |
+| OnGameSelected | on_game_selected | Game selection changed. | [GameSelectionEventArgs](xref:Playnite.SDK.Events.GameSelectionEventArgs) |
 
 Example - Handling start/stop events
 ---------------------

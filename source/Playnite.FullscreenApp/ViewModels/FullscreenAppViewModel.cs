@@ -143,6 +143,7 @@ namespace Playnite.FullscreenApp.ViewModels
             get => selectedGame;
             set
             {
+                var oldValue = selectedGame;
                 // TODO completely rework and decouple selected game from main view and game details
                 if (value == selectedGame)
                 {
@@ -173,6 +174,10 @@ namespace Playnite.FullscreenApp.ViewModels
                         OnPropertyChanged(nameof(GameDetailsButtonVisible));
                     }
                 }
+
+                Extensions.InvokeOnGameSelected(
+                    oldValue == null ? null : new List <Game> { oldValue.Game },
+                    selectedGame == null ? null : new List<Game> { selectedGame.Game });
             }
         }
 

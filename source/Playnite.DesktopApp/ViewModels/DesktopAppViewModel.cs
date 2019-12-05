@@ -105,16 +105,14 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public new IEnumerable<GamesCollectionViewEntry> SelectedGames
+        private List<GamesCollectionViewEntry> selectedGames;
+        public new List<GamesCollectionViewEntry> SelectedGames
         {
-            get
+            get => selectedGames;
+            set
             {
-                if (selectedGamesBinder == null)
-                {
-                    return null;
-                }
-
-                return selectedGamesBinder.Cast<GamesCollectionViewEntry>();
+                selectedGames = value;
+                OnPropertyChanged();
             }
         }
 
@@ -124,9 +122,21 @@ namespace Playnite.DesktopApp.ViewModels
             get => selectedGamesBinder;
             set
             {
+                var oldValue = SelectedGames;
                 selectedGamesBinder = value;
+                if (selectedGamesBinder == null)
+                {
+                    SelectedGames = null;
+                }
+                else
+                {
+                    SelectedGames = selectedGamesBinder.Cast<GamesCollectionViewEntry>().ToList();
+                }
+
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(SelectedGames));
+                Extensions.InvokeOnGameSelected(
+                    oldValue?.Select(a => a.Game).ToList(),
+                    SelectedGames?.Select(a => a.Game).ToList());
             }
         }
 

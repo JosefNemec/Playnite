@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -106,6 +107,14 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="game">Game that's been uninstalled.</param>
         public virtual void OnGameUninstalled(Game game)
+        {
+        }
+
+        /// <summary>
+        /// Called when game selection changed.
+        /// </summary>
+        /// <param name="args"></param>
+        public virtual void OnGameSelected(GameSelectionEventArgs args)
         {
         }
 
