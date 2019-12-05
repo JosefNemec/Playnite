@@ -46,5 +46,10 @@ namespace Playnite.API.DesignData
         {
             throw new NotImplementedException();
         }
+
+        public void StartGame(Guid gameId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

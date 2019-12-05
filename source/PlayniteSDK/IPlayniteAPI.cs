@@ -81,5 +81,11 @@ namespace Playnite.SDK
         /// </summary>
         /// <returns>Logger object.</returns>
         ILogger CreateLogger();
+
+        /// <summary>
+        /// Starts game.
+        /// </summary>
+        /// <param name="gameId">Game's database ID.</param>
+        void StartGame(Guid gameId);
     }
 }

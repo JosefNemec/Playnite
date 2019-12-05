@@ -76,15 +76,6 @@ namespace Playnite.FullscreenApp
         {
             Database = new GameDatabase();
             Controllers = new GameControllerFactory(Database);
-            Api = new PlayniteAPI(
-                new DatabaseAPI(Database),
-                Dialogs,
-                null,
-                new PlayniteInfoAPI(),
-                new PlaynitePathsAPI(),
-                new WebViewFactory(),
-                new ResourceProvider(),
-                new NotificationsAPI());
             Extensions = new ExtensionFactory(Database, Controllers);
             GamesEditor = new GamesEditor(
                 Database,
@@ -93,6 +84,16 @@ namespace Playnite.FullscreenApp
                 Dialogs,
                 Extensions,
                 this);
+            Api = new PlayniteAPI(
+                new DatabaseAPI(Database),
+                Dialogs,
+                null,
+                new PlayniteInfoAPI(),
+                new PlaynitePathsAPI(),
+                new WebViewFactory(),
+                new ResourceProvider(),
+                new NotificationsAPI(),
+                GamesEditor);
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new FullscreenAppViewModel(
