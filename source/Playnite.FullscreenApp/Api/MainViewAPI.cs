@@ -33,5 +33,10 @@ namespace Playnite.FullscreenApp.API
         {
             this.mainModel = mainModel;
         }
+
+        public bool OpenPluginSettings(Guid pluginId)
+        {
+            throw new NotSupportedException("Cannot open plugin settings in Fullscreen mode.");
+        }
     }
 }

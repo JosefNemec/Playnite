@@ -197,5 +197,19 @@ namespace Playnite.SDK.Plugins
             var strConf = JsonConvert.SerializeObject(settings, Formatting.Indented);
             File.WriteAllText(setFile, strConf);
         }
+
+        /// <summary>
+        /// Opens plugin's settings view. Only works in Desktop application mode!
+        /// </summary>
+        /// <returns>True if user saved any changes, False if dialog was canceled.</returns>
+        public bool OpenSettingsView()
+        {
+            if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Fullscreen)
+            {
+                return false;
+            }
+
+            return PlayniteApi.MainView.OpenPluginSettings(Id);
+        }
     }
 }

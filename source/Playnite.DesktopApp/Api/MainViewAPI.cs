@@ -33,5 +33,10 @@ namespace Playnite.DesktopApp.API
         {
             this.mainModel = mainModel;
         }
+
+        public bool OpenPluginSettings(Guid pluginId)
+        {
+            return mainModel.OpenPluginSettings(pluginId);
+        }
     }
 }

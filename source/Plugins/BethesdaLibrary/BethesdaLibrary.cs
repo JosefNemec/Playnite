@@ -110,11 +110,12 @@ namespace BethesdaLibrary
                 catch (Exception e)
                 {
                     logger.Error(e, "Failed to import uninstalled Bethesda games.");
-                    PlayniteApi.Notifications.Add(
+                    PlayniteApi.Notifications.Add(new NotificationMessage(
                         dbImportMessageId,
                         string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                         System.Environment.NewLine + e.Message,
-                        NotificationType.Error);
+                        NotificationType.Error,
+                        () => OpenSettingsView()));
                 }
             }
 

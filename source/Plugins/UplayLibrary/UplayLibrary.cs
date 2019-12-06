@@ -204,6 +204,20 @@ namespace UplayLibrary
                 }
             }
 
+            if (importError != null)
+            {
+                PlayniteApi.Notifications.Add(new NotificationMessage(
+                    dbImportMessageId,
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                    System.Environment.NewLine + importError.Message,
+                    NotificationType.Error,
+                    () => OpenSettingsView()));
+            }
+            else
+            {
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
+            }
+
             return allGames;
         }
 

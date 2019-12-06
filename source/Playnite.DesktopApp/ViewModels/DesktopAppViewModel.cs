@@ -1508,5 +1508,22 @@ namespace Playnite.DesktopApp.ViewModels
         {
             application.UpdateScreenInformation(Window.Window);
         }
+
+        public bool OpenPluginSettings(Guid pluginId)
+        {
+            if (!Extensions.Plugins.ContainsKey(pluginId))
+            {
+                Logger.Error($"Cannot open plugin settings, plugin is not loaded {pluginId}");
+                return false;
+            }
+
+            var model = new PluginSettingsViewModel(
+                new PluginSettingsWindowFactory(),
+                Resources,
+                Dialogs,
+                Extensions,
+                pluginId);
+            return model.OpenView() ?? false;
+        }
     }
 }

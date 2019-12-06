@@ -184,11 +184,12 @@ namespace EpicLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                playniteApi.Notifications.Add(new NotificationMessage(
                     dbImportMessageId,
                     string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
-                    NotificationType.Error);
+                    NotificationType.Error,
+                    () => OpenSettingsView()));
             }
             else
             {

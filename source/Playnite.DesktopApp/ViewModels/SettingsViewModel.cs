@@ -99,17 +99,14 @@ namespace Playnite.DesktopApp.ViewModels
         private PlayniteSettings originalSettings;
         private List<string> editedFields = new List<string>();
         private Dictionary<Guid, PluginSettings> loadedPluginSettings = new Dictionary<Guid, PluginSettings>();
+        private bool closingHanled = false;
 
         public ExtensionFactory Extensions { get; set; }
 
         private PlayniteSettings settings;
         public PlayniteSettings Settings
         {
-            get
-            {
-                return settings;
-            }
-
+            get => settings;
             set
             {
                 settings = value;
@@ -196,7 +193,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                WindowClosing(false);
+                WindowClosing();
             });
         }
 
@@ -353,7 +350,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(e, $"Failed to load generic plugin settings, {pluginId}");
+                logger.Error(e, $"Failed to load plugin settings, {pluginId}");
             }
 
             return new Controls.SettingsSections.NoSettingsAvailable();
@@ -372,15 +369,18 @@ namespace Playnite.DesktopApp.ViewModels
                 plugin.Settings.CancelEdit();
             }
 
-            WindowClosing(true);
+            closingHanled = true;
             window.Close(false);
         }
 
-        public void WindowClosing(bool closingHandled)
+        public void WindowClosing()
         {
-            if (closingHandled)
+            if (!closingHanled)
             {
-                return;
+                foreach (var plugin in loadedPluginSettings.Values)
+                {
+                    plugin.Settings.CancelEdit();
+                }
             }
         }
  
@@ -449,7 +449,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            WindowClosing(true);
+            closingHanled = true;
             window.Close(true);
         }
 

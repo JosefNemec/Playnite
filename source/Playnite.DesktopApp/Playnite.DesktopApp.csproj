@@ -241,6 +241,7 @@
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ImageSelectionViewModel.cs" />
     <Compile Include="ViewModels\ItemSelectionWithSearchViewModel.cs" />
+    <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
@@ -286,6 +287,9 @@
     </Compile>
     <Compile Include="Windows\ItemSelectionWithSearchWindow.xaml.cs">
       <DependentUpon>ItemSelectionWithSearchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PluginSettingsWindow.xaml.cs">
+      <DependentUpon>PluginSettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
@@ -978,6 +982,10 @@
     <Page Include="Windows\ItemSelectionWithSearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PluginSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ProgressWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
