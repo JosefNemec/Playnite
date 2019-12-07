@@ -1003,6 +1003,22 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> SetIconUrlCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SetIconUrl();
+            });
+        }
+
+        public RelayCommand<object> SetCoverUrlCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SetCoverUrl();
+            });
+        }
+
         public RelayCommand<object> AddLinkCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -1112,6 +1128,30 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 OpenMetadataFolder();
+            });
+        }
+
+        public RelayCommand<object> SelectGoogleIconCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SelectGoogleIcon();
+            });
+        }
+
+        public RelayCommand<object> SelectGoogleCoverCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SelectGoogleCover();
+            });
+        }
+
+        public RelayCommand<object> SelectGoogleBackgroundCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SelectGoogleBackground();
             });
         }
 
@@ -2535,18 +2575,52 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SetBackgroundUrl()
         {
+            var image = SelectUrlImage();
+            if (!image.IsNullOrEmpty())
+            {
+                EditingGame.BackgroundImage = image;
+            }
+        }
+
+        public void SetIconUrl()
+        {
+            var image = SelectUrlImage();
+            if (!image.IsNullOrEmpty())
+            {
+                EditingGame.Icon = image;
+            }
+        }
+
+        public void SetCoverUrl()
+        {
+            var image = SelectUrlImage();
+            if (!image.IsNullOrEmpty())
+            {
+                EditingGame.CoverImage = image;
+            }
+        }
+
+        public string SelectUrlImage()
+        {
             var url = dialogs.SelectString(
                 resources.GetString("LOCURLInputInfo"),
                 resources.GetString("LOCURLInputInfoTitile"),
                 string.Empty);
-
             if (url.Result)
             {
-                var path = PrepareImagePath(url.SelectedString);
-                EditingGame.BackgroundImage = path;
-                CheckImagePerformanceRestrains(path, 1080);
+                try
+                {
+                    return PrepareImagePath(url.SelectedString);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to download image from url {url.SelectedString}");
+                }
             }
+
+            return null;
         }
+
 
         public void AddPlayAction()
         {
@@ -3038,6 +3112,56 @@ namespace Playnite.DesktopApp.ViewModels
             //        appSettings.ShowImagePerformanceWarning = false;
             //    }                
             //}
+        }
+
+        public void SelectGoogleIcon()
+        {
+            var image = SelectGoogleImage($"{EditingGame.Name} icon", 128, 128);
+            if (!image.IsNullOrEmpty())
+            {
+                EditingGame.Icon = image;
+            }
+        }
+
+        public void SelectGoogleCover()
+        {
+            var image = SelectGoogleImage($"{EditingGame.Name} cover");
+            if (!image.IsNullOrEmpty())
+            {
+                EditingGame.CoverImage = image;
+            }
+        }
+
+        public void SelectGoogleBackground()
+        {
+            var image = SelectGoogleImage($"{EditingGame.Name} artwork");
+            if (!image.IsNullOrEmpty())
+            {
+                EditingGame.BackgroundImage = image;
+            }
+        }
+
+        public string SelectGoogleImage(string searchTerm, double imageWidth = 0, double imageHeight = 0)
+        {
+            var model = new GoogleImageDownloadViewModel(
+                new GoogleImageDownloadWindowFactory(),
+                resources,
+                searchTerm,
+                imageWidth,
+                imageHeight);
+            if (model.OpenView() == true)
+            {
+                try
+                {
+                    return PrepareImagePath(model.SelectedImage?.ImageUrl);                    
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to use google image {model.SelectedImage?.ImageUrl}.");
+                }
+            }
+
+            return null;
         }
     }
 }

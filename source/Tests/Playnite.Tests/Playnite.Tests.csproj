@@ -112,6 +112,7 @@
     <Compile Include="Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
+    <Compile Include="GoogleImageDownloaderTests.cs" />
     <Compile Include="ImageSourceManagerTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />

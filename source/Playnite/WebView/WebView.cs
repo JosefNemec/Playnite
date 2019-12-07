@@ -74,6 +74,11 @@ namespace Playnite.WebView
             return address;
         }
 
+        public Task<string> GetPageTextAsync()
+        {
+            return window.Browser.GetTextAsync();
+        }
+
         public string GetPageText()
         {
             var text = string.Empty;

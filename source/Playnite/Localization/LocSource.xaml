@@ -697,6 +697,8 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCFirst">First</sys:String>
     <sys:String x:Key="LOCRandom">Random</sys:String>
     <sys:String x:Key="LOCUserSelect">User select</sys:String>
+    <sys:String x:Key="LOCLoadMore">Load more</sys:String>
+    <sys:String x:Key="LOCTransparent">Transparent</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>

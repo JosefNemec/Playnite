@@ -283,6 +283,7 @@
     <Compile Include="GamesCollectionViewEntry.cs" />
     <Compile Include="GamesEditor.cs" />
     <Compile Include="GlobalTaskHandler.cs" />
+    <Compile Include="GoogleImageDownloader.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="ImageSourceManager.cs" />
     <Compile Include="Input\MouseWheelGesture.cs" />

@@ -544,20 +544,33 @@
                             </GroupBox.HeaderTemplate>
                             <DockPanel LastChildFill="True" Background="Transparent" AllowDrop="True">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" DockPanel.Dock="Top">
-                                    <Button Name="ButtonSelectIcon" Content="{DynamicResource LOCSelectIconTitle}"
-                                        Command="{Binding SelectIconCommand}" />
-                                    <Button Name="ButtonUseExeIcon" Content="{DynamicResource LOCUseExeIcon}" 
-                                        Command="{Binding UseExeIconCommand}"
-                                        Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                        Margin="5,0,0,0"/>
-                                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
-                                        Command="{Binding RemoveIconCommand}" />
+                                    <Button ToolTip="{DynamicResource LOCSelectIconTitle}"
+                                            Content="&#xec3e;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            Command="{Binding SelectIconCommand}" />
+                                    <Button ToolTip="{DynamicResource LOCSelectUrlTitle}" Margin="5,0,0,0"
+                                            Content="&#xef71;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            Command="{Binding SetIconUrlCommand}" />
+                                    <Button ToolTip="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
+                                            Content="&#xec53;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            Command="{Binding RemoveIconCommand}" />
+                                    <Button Content="G" Margin="5,0,0,0"
+                                            ToolTip="Google Images"
+                                            Command="{Binding SelectGoogleIconCommand}" />
+                                    <Button Name="ButtonUseExeIcon"
+                                            Content="&#xec74;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            ToolTip="{DynamicResource LOCUseExeIcon}" 
+                                            Command="{Binding UseExeIconCommand}"
+                                            Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            Margin="5,0,0,0"/>
                                 </StackPanel>
                                 <TextBlock Text="{Binding IconMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
                                 <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
-                                       DockPanel.Dock="Top" Height="64"
-                                       AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
+                                       DockPanel.Dock="Top" Height="64"/>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Drop" >
                                         <prism:InvokeCommandAction Command="{Binding DropIconCommand}" />
@@ -578,11 +591,22 @@
                             </GroupBox.HeaderTemplate>
                             <DockPanel LastChildFill="True" Background="Transparent" AllowDrop="True">
                                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
-                                    <Button Name="ButtonSelectImage" Content="{DynamicResource LOCSelectCoverTitle}" 
-                                        HorizontalAlignment="Left"
-                                        Command="{Binding SelectCoverCommand}"/>
-                                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
-                                        Command="{Binding RemoveImageCommand}" />
+                                    <Button Content="&#xec3e;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            ToolTip="{DynamicResource LOCSelectCoverTitle}" 
+                                            HorizontalAlignment="Left"
+                                            Command="{Binding SelectCoverCommand}"/>
+                                    <Button ToolTip="{DynamicResource LOCSelectUrlTitle}" Margin="5,0,0,0"
+                                            Content="&#xef71;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            Command="{Binding SetCoverUrlCommand}" />
+                                    <Button ToolTip="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
+                                            Content="&#xec53;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            Command="{Binding RemoveImageCommand}" />
+                                    <Button Content="G" Margin="5,0,0,0"
+                                            ToolTip="Google Images"
+                                            Command="{Binding SelectGoogleCoverCommand}" />
                                 </StackPanel>
                                 <TextBlock Text="{Binding CoverMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
                                 <Image Source="{Binding EditingGame.CoverImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
@@ -610,12 +634,22 @@
                             </GroupBox.HeaderTemplate>
                             <DockPanel DockPanel.Dock="Top" Background="Transparent" AllowDrop="True">
                                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
-                                    <Button Content="{DynamicResource LOCSelectFileTitle}" HorizontalAlignment="Left"
-                                        Command="{Binding SelectBackgroundCommand}"/>
-                                    <Button Content="{DynamicResource LOCSelectUrlTitle}" Margin="5,0,0,0" HorizontalAlignment="Left"
-                                        Command="{Binding SetBackgroundUrlCommand}"/>
-                                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
-                                        Command="{Binding RemoveBackgroundCommand}" />
+                                    <Button Content="&#xec3e;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            ToolTip="{DynamicResource LOCSelectCoverTitle}" 
+                                            HorizontalAlignment="Left"
+                                            Command="{Binding SelectBackgroundCommand}"/>
+                                    <Button ToolTip="{DynamicResource LOCSelectUrlTitle}" Margin="5,0,0,0"
+                                            Content="&#xef71;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            Command="{Binding SetBackgroundUrlCommand}" />
+                                    <Button ToolTip="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
+                                            Content="&#xec53;"
+                                            FontFamily="{DynamicResource FontIcoFont}"
+                                            Command="{Binding RemoveBackgroundCommand}" />
+                                    <Button Content="G" Margin="5,0,0,0"
+                                            ToolTip="Google Images"
+                                            Command="{Binding SelectGoogleBackgroundCommand}" />
                                 </StackPanel>
                                 <DockPanel DockPanel.Dock="Top" Margin="5,5,0,5"
                                        Visibility="{Binding ShowBackgroundUrl, Converter={StaticResource BooleanToVisibilityConverter}}">

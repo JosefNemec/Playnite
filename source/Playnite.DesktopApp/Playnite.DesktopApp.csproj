@@ -236,6 +236,7 @@
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\GameEditViewModel.cs" />
+    <Compile Include="ViewModels\GoogleImageDownloadViewModel.cs" />
     <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
@@ -269,6 +270,9 @@
     </Compile>
     <Compile Include="Windows\GameEditWindow.xaml.cs">
       <DependentUpon>GameEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GoogleImageDownloadWindow.xaml.cs">
+      <DependentUpon>GoogleImageDownloadWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\InstalledGamesWindow.xaml.cs">
       <DependentUpon>InstalledGamesWindow.xaml</DependentUpon>
@@ -956,6 +960,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\GameEditWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\GoogleImageDownloadWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
