@@ -73,7 +73,7 @@
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">مفعل</sys:String>
-    <sys:String x:Key="LOCRemoveTitle">إزالة</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">حذف</sys:String>
     <sys:String x:Key="LOCRenameTitle">إعادة تسمية</sys:String>
     <sys:String x:Key="LOCCopyTitle">نسخ</sys:String>
     <sys:String x:Key="LOCAddTitle">إضافة</sys:String>
@@ -84,7 +84,7 @@
     <sys:String x:Key="LOCNextLabel">التالي</sys:String>
     <sys:String x:Key="LOCBackLabel">السابق</sys:String>
     <sys:String x:Key="LOCDoneCapLabel">تم</sys:String>
-    <sys:String x:Key="LOCBackCapLabel">الخلف</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">السابق</sys:String>
     <sys:String x:Key="LOCClearCapLabel">محو</sys:String>
     <sys:String x:Key="LOCClearLabel">محو</sys:String>
     <sys:String x:Key="LOCDismiss">استبعاد</sys:String>
@@ -113,7 +113,7 @@
     <sys:String x:Key="LOCCancelLabel">إلغاء</sys:String>
     <sys:String x:Key="LOCYesLabel">نعم</sys:String>
     <sys:String x:Key="LOCNoLabel">لا</sys:String>
-    <sys:String x:Key="LOCWelcomeLabel">مرحبًا</sys:String>
+    <sys:String x:Key="LOCWelcomeLabel">أهلا وسهلا بكم</sys:String>
     <sys:String x:Key="LOCLocalUserLabel"></sys:String>
     <sys:String x:Key="LOCAuthenticateLabel"></sys:String>
     <sys:String x:Key="LOCGeneralLabel"></sys:String>
@@ -131,14 +131,14 @@
     <sys:String x:Key="LOCSearchLabel">بحث</sys:String>
     <sys:String x:Key="LOCGenreLabel">النوع</sys:String>
     <sys:String x:Key="LOCCompanyLabel">الشركة</sys:String>
-    <sys:String x:Key="LOCDeveloperLabel">المطور</sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">المبرمج</sys:String>
     <sys:String x:Key="LOCPublisherLabel">الناشر</sys:String>
     <sys:String x:Key="LOCCategoryLabel">الفئة</sys:String>
     <sys:String x:Key="LOCTagLabel">وسم</sys:String>
     <sys:String x:Key="LOCTagsLabel">وسوم</sys:String>
     <sys:String x:Key="LOCZoomLabel"></sys:String>
     <sys:String x:Key="LOCListViewLabel"></sys:String>
-    <sys:String x:Key="LOCCoversLabel">غلاف</sys:String>
+    <sys:String x:Key="LOCCoversLabel">أغلفة</sys:String>
     <sys:String x:Key="LOCGridViewLabel"></sys:String>
     <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
     <sys:String x:Key="LOCCustomLabel"></sys:String>
