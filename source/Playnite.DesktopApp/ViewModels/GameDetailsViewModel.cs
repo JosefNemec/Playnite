@@ -17,7 +17,7 @@ namespace Playnite.DesktopApp.ViewModels
     {        
         private IResourceProvider resources;
         private IDialogsFactory dialogs;
-        private GamesEditor editor;
+        private DesktopGamesEditor editor;
         private PlayniteSettings settings;
 
         public bool ShowInfoPanel
@@ -411,6 +411,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> EditGameCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                EditGame();
+            });
+        }
+
         public RelayCommand<object> ContextActionCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -440,7 +448,7 @@ namespace Playnite.DesktopApp.ViewModels
             Game = game;
         }
 
-        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, GamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, DesktopGamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.resources = resources;
             this.dialogs = dialogs;
@@ -568,6 +576,11 @@ namespace Playnite.DesktopApp.ViewModels
         public void Install()
         {
             editor.InstallGame(game.Game);
+        }
+
+        public void EditGame()
+        {
+            editor.EditGame(game.Game);
         }
 
         public void CheckSetup()

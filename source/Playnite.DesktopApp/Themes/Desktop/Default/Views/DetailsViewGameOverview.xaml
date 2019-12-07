@@ -33,8 +33,9 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                            
-                                <DockPanel Margin="0,20,0,15" MaxWidth="1024" Grid.Row="1">
+
+                                <DockPanel Margin="0,20,0,15" MaxWidth="1024" Grid.Row="1"
+                                           Background="Transparent">
                                     <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
                                             DockPanel.Dock="Right"
                                             Height="{Settings GameDetailsCoverHeight}"
@@ -65,6 +66,20 @@
                                             <Button Name="PART_ButtonMoreActions"
                                                     Content="{DynamicResource LOCMoreAction}"
                                                     Width="150" Height="40" Margin="10,0,0,0" />
+                                            <Button x:Name="PART_ButtonEditGame"
+                                                    Margin="10,0,0,0" Height="40" Focusable="False"
+                                                    Content="&#xeded;" FontFamily="{DynamicResource FontIcoFont}">
+                                                <Button.Style>
+                                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                                        <Setter Property="Visibility" Value="Hidden" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=DockPanel}}"  Value="True">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
                                         </StackPanel>
                                     </StackPanel>
                                 </DockPanel>
