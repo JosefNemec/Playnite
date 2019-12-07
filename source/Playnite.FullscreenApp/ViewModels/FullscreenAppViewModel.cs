@@ -1132,7 +1132,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             var screenIndex = AppSettings.Fullscreen.Monitor;
             var screens = Computer.GetScreens();
-            if (screenIndex + 1 > screens.Count)
+            if (screenIndex + 1 > screens.Count || screenIndex < 0)
             {
                 screenIndex = 0;
             }

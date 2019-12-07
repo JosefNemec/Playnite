@@ -69,7 +69,17 @@ namespace EpicLibrary
 
         internal static string GetExecutablePath(string rootPath)
         {
-            return Path.Combine(rootPath, "Launcher", "Portal", "Binaries", Environment.Is64BitOperatingSystem ? "Win64" : "Win32", "EpicGamesLauncher.exe");
+            // Always prefer 32bit executable
+            // https://github.com/JosefNemec/Playnite/issues/1552
+            var p32 = Path.Combine(rootPath, "Launcher", "Portal", "Binaries", "Win32", "EpicGamesLauncher.exe");
+            if (File.Exists(p32))
+            {
+                return p32;
+            }
+            else
+            {
+                return Path.Combine(rootPath, "Launcher", "Portal", "Binaries", "Win64", "EpicGamesLauncher.exe");
+            }
         }
 
         public static List<LauncherInstalled.InstalledApp> GetInstalledAppList()

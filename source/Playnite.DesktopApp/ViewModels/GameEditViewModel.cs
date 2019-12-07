@@ -2494,7 +2494,7 @@ namespace Playnite.DesktopApp.ViewModels
                     path = ProcessMetadataFile(new MetadataFile(path));
                 }
 
-                if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                if (!path.IsNullOrEmpty() && path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
                 {
                     path = SaveConvertedTgaToTemp(path);
                 }
@@ -2606,7 +2606,7 @@ namespace Playnite.DesktopApp.ViewModels
                 resources.GetString("LOCURLInputInfo"),
                 resources.GetString("LOCURLInputInfoTitile"),
                 string.Empty);
-            if (url.Result)
+            if (url.Result && !url.SelectedString.IsNullOrEmpty())
             {
                 try
                 {

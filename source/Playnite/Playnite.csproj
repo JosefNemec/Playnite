@@ -547,6 +547,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>vcruntime140.dll</TargetPath>
     </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\msvcr110.dll">
+      <Link>Dependencies\msvcr110.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>msvcr110.dll</TargetPath>
+    </ContentWithTargetPath>
     <ContentWithTargetPath Include="..\..\references\IronPythonStdLib.zip">
       <Link>Dependencies\IronPythonStdLib.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

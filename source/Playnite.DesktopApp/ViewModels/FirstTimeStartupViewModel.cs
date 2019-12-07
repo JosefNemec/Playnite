@@ -238,7 +238,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (SelectedIndex == Pages.ProviderConfig)
+            if (SelectedIndex == Pages.ProviderConfig && SelectedLibraryPlugin != null)
             {
                 if (SelectedLibraryPlugin.Settings.VerifySettings(out var errors))
                 {
@@ -263,7 +263,14 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void NavigateBack()
         {
-            SelectedIndex--;
+            if (SelectedIndex == Pages.Finish)
+            {
+                SelectedIndex = Pages.ProviderSelect;
+            }
+            else
+            {
+                SelectedIndex--;
+            }
         }
     }
 }

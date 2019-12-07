@@ -28,7 +28,7 @@ namespace OriginLibrary.Tests
         public void GetInstalledGamesTest()
         {
             var originLib = CreateLibrary();
-            var games = originLib.GetInstalledGames(false);
+            var games = originLib.GetInstalledGames(true);
             Assert.AreNotEqual(0, games.Count);
 
             var game = games.Values.First();
@@ -63,10 +63,10 @@ namespace OriginLibrary.Tests
         {
             var originLib = CreateLibrary();
             var path = originLib.GetPathFromPlatformPath(@"[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PowerShell\\3\\PowerShellEngine\\ApplicationBase]\\powershell.exe");
-            Assert.IsTrue(File.Exists(path));
+            Assert.IsTrue(File.Exists(path.CompletePath));
 
             path = originLib.GetPathFromPlatformPath(@"[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PowerShell\\3\\PowerShellEngine\\ApplicatioBase]\\powershell.exe");
-            Assert.IsTrue(string.IsNullOrEmpty(path));
+            Assert.IsTrue(string.IsNullOrEmpty(path.CompletePath));
         }
     }
 }
