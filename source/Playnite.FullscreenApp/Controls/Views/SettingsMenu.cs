@@ -26,6 +26,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ToggleBatteryPercentage", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ToggleInstalledInQFilter", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ToggleHorizontalLayout", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "PART_ToggleDarkenUninstalled", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_SliderColumns", Type = typeof(Slider))]
     [TemplatePart(Name = "PART_SliderRows", Type = typeof(Slider))]
     [TemplatePart(Name = "PART_SliderItemSpacing", Type = typeof(Slider))]
@@ -43,6 +44,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private ToggleButton ToggleBatteryPercentage;
         private ToggleButton ToggleInstalledInQFilter;
         private ToggleButton ToggleHorizontalLayout;
+        private ToggleButton ToggleDarkenUninstalled;
         private Slider SliderColumns;
         private Slider SliderRows;
         private Slider SliderItemSpacing;
@@ -261,6 +263,18 @@ namespace Playnite.FullscreenApp.Controls.Views
                        ToggleButton.IsCheckedProperty,
                        mainModel.AppSettings.Fullscreen,
                        nameof(FullscreenSettings.HorizontalLayout),
+                       BindingMode.TwoWay,
+                       UpdateSourceTrigger.PropertyChanged);
+                }
+
+                ToggleDarkenUninstalled = Template.FindName("PART_ToggleDarkenUninstalled", this) as ToggleButton;
+                if (ToggleDarkenUninstalled != null)
+                {
+                    BindingTools.SetBinding(
+                       ToggleDarkenUninstalled,
+                       ToggleButton.IsCheckedProperty,
+                       mainModel.AppSettings.Fullscreen,
+                       nameof(FullscreenSettings.DarkenUninstalledGamesGrid),
                        BindingMode.TwoWay,
                        UpdateSourceTrigger.PropertyChanged);
                 }

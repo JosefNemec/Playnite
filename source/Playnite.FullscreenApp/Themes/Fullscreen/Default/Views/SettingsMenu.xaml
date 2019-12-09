@@ -53,6 +53,11 @@
                                            Margin="{StaticResource ItemMargin}"
                                            Style="{DynamicResource TextBlockBaseStyle}"/>
 
+                                <CheckBoxEx x:Name="PART_ToggleDarkenUninstalled"
+                                            Margin="{StaticResource ItemMargin}"
+                                            Style="{DynamicResource CheckBoxSettings}"
+                                            Content="{DynamicResource LOCSettingsDarkenUninstalledGridCovers}" />
+
                                 <CheckBoxEx x:Name="PART_ToggleHorizontalLayout"
                                             Margin="{StaticResource ItemMargin}"
                                             Style="{DynamicResource CheckBoxSettings}"
