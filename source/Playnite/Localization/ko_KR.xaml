@@ -35,14 +35,20 @@
     <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">이런, 문제가 발생했습니다…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구할 수 없는 오류가 발생헀습니다.
+        
+이 문제를 해결할 수 있도록 도와주시려면 어떻게 하다가 문제가 발생했는지를 설명해주시고 통계 패키지를 생성해주세요. 온라인이라면 패키지는 분석을 위해서 Playnite 서버로 업로드됩니다.
+
+아니면 '충돌 보고' 버튼을 눌러서 GitHub에 새 이슈를 만든 다음 수동으로 충돌을 보고할 수도 있습니다.
+
+도와주셔서 감사합니다.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">복구 불가능한 에러가 발생했습니다.
         
 이 문제를 수정하는 것을 돕고 싶으시다면, 분석 정보를 보내주세요. 감사합니다.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite 나가기</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">충돌이 발생하기 전의 행동 (영어로 작성):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">라이브러리 관리자</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 제거 하시겠습니까?</sys:String>
@@ -363,8 +369,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsSkinChangeRestart">새로운 테마를 적용하기 위해선 Playnite를 재시작해야합니다</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">더 많은 테마</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">새로운 테마 생성</sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">더 많은 확장프로그램 받기</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">새 확장 만들기</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">번역에 기여하기</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">일부 변경된 설정을 적용하기 위해선 Playnite를 재시작해야합니다. Playnite를 재시작하시겠습니까?
     
@@ -397,7 +403,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenLayout">레이아웃</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">수평 스크롤</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">하위 섹션 중 하나 선택</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">사용 가능한 설정이 없습니다</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">글꼴 크기</sys:String>
