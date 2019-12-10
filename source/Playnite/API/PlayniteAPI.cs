@@ -28,7 +28,8 @@ namespace Playnite.API
             IWebViewFactory webViewFactory,
             IResourceProvider resources,
             INotificationsAPI notifications,
-            GamesEditor gameEditor)
+            GamesEditor gameEditor,
+            IUriHandlerAPI uriHandler)
         {
             WebViews = webViewFactory;
             Paths = pathsApi;
@@ -39,6 +40,7 @@ namespace Playnite.API
             Resources = resources;
             Notifications = notifications;
             this.gameEditor = gameEditor;
+            UriHandler = uriHandler;
         }
 
         public IDialogsFactory Dialogs { get; }
@@ -56,6 +58,8 @@ namespace Playnite.API
         public IResourceProvider Resources { get; }
 
         public INotificationsAPI Notifications { get; }
+
+        public IUriHandlerAPI UriHandler { get; }
 
         public string ExpandGameVariables(Game game, string inputString)
         {

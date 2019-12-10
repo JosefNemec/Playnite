@@ -130,6 +130,7 @@
     <Compile Include="Models\DatabaseObjectTests.cs" />
     <Compile Include="Models\GameActionTests.cs" />
     <Compile Include="ImagesTests.cs" />
+    <Compile Include="PlayniteUriHandlerTests.cs" />
     <Compile Include="ProcessStarterTests.cs" />
     <Compile Include="Scripting\Batch\BatchTests.cs" />
     <Compile Include="XmlTests.cs" />

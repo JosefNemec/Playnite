@@ -26,6 +26,8 @@
       href: plugins/metadataPlugins.md
     - name: Plugin settings
       href: plugins/pluginSettings.md
+    - name: Playnite URI support
+      href: plugins/uriSupport.md
 
 - name: Themes
   items:

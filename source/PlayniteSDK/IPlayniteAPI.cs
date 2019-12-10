@@ -51,7 +51,12 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets resources API.
         /// </summary>
-        IResourceProvider Resources { get; }        
+        IResourceProvider Resources { get; }
+
+        /// <summary>
+        /// Gets URI handler API.
+        /// </summary>
+        IUriHandlerAPI UriHandler { get; }
 
         /// <summary>
         /// Expands dynamic game variables in specified string.

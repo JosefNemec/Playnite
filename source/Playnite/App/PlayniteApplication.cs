@@ -23,6 +23,7 @@ using System.ComponentModel;
 using Playnite.Windows;
 using Polly;
 using System.Windows.Media;
+using Playnite.SDK.Events;
 
 namespace Playnite
 {
@@ -311,6 +312,10 @@ namespace Playnite
 
                     break;
 
+                case CmdlineCommand.UriRequest:
+                    (Api.UriHandler as PlayniteUriHandler).ProcessUri(args.Args);
+                    break;
+
                 default:
                     logger.Warn("Unknown command received");
                     break;
@@ -348,6 +353,10 @@ namespace Playnite
                             if (!CmdLine.Start.IsNullOrEmpty())
                             {
                                 client.InvokeCommand(CmdlineCommand.Start, CmdLine.Start);
+                            }
+                            else if (!CmdLine.UriData.IsNullOrEmpty())
+                            {
+                                client.InvokeCommand(CmdlineCommand.UriRequest, CmdLine.UriData);
                             }
                             else
                             {
@@ -438,14 +447,47 @@ namespace Playnite
             {
                 logger.Error(exc, "Failed to register Playnite to start on boot.");
             }
+
+            try
+            {
+                PlayniteSettings.RegisterPlayniteUriProtocol();
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to register playnite URI scheme.");
+            }
         }
 
         public void ProcessArguments()
         {
+            (Api.UriHandler as PlayniteUriHandler).Handlers.Add("playnite", ProcessUriRequest);
             if (!CmdLine.Start.IsNullOrEmpty())
             {
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Start, CmdLine.Start));
             }
+            else if (!CmdLine.UriData.IsNullOrEmpty())
+            {
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.UriRequest, CmdLine.UriData));
+            }
+        }
+
+        internal void ProcessUriRequest(PlayniteUriEventArgs args)
+        {
+            var arguments = args.Arguments;
+            if (arguments.Count() == 2 && arguments[0].Equals("start", StringComparison.OrdinalIgnoreCase))
+            {
+                if (Guid.TryParse(arguments[1], out var gameId))
+                {
+                    var game = Database.Games[gameId];
+                    if (game != null)
+                    {
+                        GamesEditor.PlayGame(game);
+                        return;
+                    }
+                }                
+            }
+
+            logger.Warn($"Failed to process playnite URI arguments {string.Join(",", arguments)}");
         }
 
         public void SetupInputs(bool enableXinput)

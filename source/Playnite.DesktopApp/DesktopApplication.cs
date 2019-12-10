@@ -139,7 +139,8 @@ namespace Playnite.DesktopApp
                 new WebViewFactory(),
                 new ResourceProvider(),
                 new NotificationsAPI(),
-                GamesEditor);
+                GamesEditor,
+                new PlayniteUriHandler());
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new DesktopAppViewModel(

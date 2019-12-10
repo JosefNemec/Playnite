@@ -9,6 +9,7 @@ namespace Playnite
     public enum CmdlineCommand : int
     {
         Start = 0,
-        Focus = 1
+        Focus = 1,
+        UriRequest = 2
     }
 }

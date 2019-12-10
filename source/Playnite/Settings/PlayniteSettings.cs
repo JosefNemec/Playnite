@@ -20,6 +20,7 @@ using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using Playnite.Metadata;
 using Playnite.SDK;
+using Microsoft.Win32;
 
 namespace Playnite
 {
@@ -1610,6 +1611,29 @@ namespace Playnite
 
         public static void MigrateSettingsConfig()
         {
+        }
+
+        public static void RegisterPlayniteUriProtocol()
+        {
+            var view = RegistryView.Registry32;
+            if (Environment.Is64BitOperatingSystem)
+            {
+                view = RegistryView.Registry64;
+            }
+
+            using (var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, view))
+            {
+                using (var classes = root.OpenSubKey(@"Software\Classes", true))
+                {
+                    var newEntry = classes.CreateSubKey("Playnite");                    
+                    newEntry.SetValue(string.Empty, "URL:playnite");
+                    newEntry.SetValue("URL Protocol", string.Empty);
+                    using (var command = newEntry.CreateSubKey(@"shell\open\command"))
+                    {
+                        command.SetValue(string.Empty, $"\"{PlaynitePaths.DesktopExecutablePath}\" --uridata \"%1\"");
+                    }
+                }
+            }            
         }
 
         public static void SetBootupStateRegistration(bool runOnBootup)
