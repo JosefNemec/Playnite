@@ -404,8 +404,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">수평 스크롤</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">하위 섹션 중 하나 선택</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">사용 가능한 설정이 없습니다</sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">이 스크립트는 라이브러리의 모든 게임에서 실행됩니다. 독립된 스크립트는 각각의 게임에 게임 자세한 정보 설정을 통해서 지정할 수 있습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">배경 이미지 애니메이션 전환</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">글꼴 크기</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">자동</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">별칭</sys:String>
@@ -416,8 +416,11 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsTextFormattingMode">텍스트 서식 지정 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">텍스트 렌더링 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">텍스트 렌더링 및 서식 지정 설정은 현재 게임 설명 텍스트에 적용되지 않습니다.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">배경 이미지 즉시 다운로드</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">활성화되면 Playnite는 메타데이터를 다운로드하는 중에 배경 아트워크를 다운로드합니다.
+디스크 사용량이 늘어나며 오프라인에서 아트워크를 사용할 수 있습니다.
+        
+비활성화하면 배경 아트워크는 처음에 필요할 때에만 다운로드됩니다. 더 작은 공간을 사용하지만 아트워크가 표시되기 전까지 지연이 생길 수 있으며 몇몇 이미지는 오프라인에서 사용할 수 없을 수도 있습니다.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
@@ -773,7 +776,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">잘못된 액션 설정.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">계정 연동 문제 가이드</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">문제 해결</sys:String>
 
     <sys:String x:Key="LOCRenameItem">항목 이름 재설정</sys:String>
     <sys:String x:Key="LOCAddNewItem">새 항목 추가</sys:String>
@@ -812,9 +815,15 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
 
 {0}</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">선택한 이미지는 최적화에 나쁠 수도 있습니다. 매우 큰 이미지를 사용하는 것은 UI 반응형을 상당히 안좋게 하며 메모리 사용량이 증가합니다.
+
+최대 권장 크기:
+아이콘: 256px
+커버: 높이 800px
+배경: 1080px 높이
+</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">퍼포먼스 주의</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">다시 표시 안함</sys:String>
 
 
     <!--Common Library-->
@@ -841,7 +850,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub">커뮤니티 허브</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">토론</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">창작마당</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">수직 커버 이미지 다운로드</sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">최초 설치가 완료되지 않았습니다. 최초 설치를 완료하기 위하여 Playnite가 데스크탑 모드로 재실행됩니다.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">최근 플레이</sys:String>
