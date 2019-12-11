@@ -377,7 +377,7 @@ namespace Playnite
         {
             try
             {
-                var path = Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Paths.GetSafeFilename(game.Name) + ".lnk"));
+                var path = Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Paths.GetSafeFilename(game.Name) + ".url"));
                 string icon = string.Empty;
 
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")
@@ -389,8 +389,13 @@ namespace Playnite
                     icon = game.GetRawExecutablePath();
                 }
 
+                if (!File.Exists(icon))
+                {
+                    icon = PlaynitePaths.DesktopExecutablePath;
+                }
+
                 var args = new CmdLineOptions() { Start = game.Id.ToString() }.ToString();
-                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, args, icon, path);
+                Programs.CreateUrlShortcut($"playnite://playnite/start/{game.Id}", icon, path);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

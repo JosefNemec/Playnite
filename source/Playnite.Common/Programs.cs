@@ -64,6 +64,20 @@ namespace Playnite.Common
             return uninstallerMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
         }
 
+        public static void CreateUrlShortcut(string url, string iconPath, string shortcutPath)
+        {
+            FileSystem.PrepareSaveFile(shortcutPath);
+            var content = @"[InternetShortcut]
+IconIndex=0";
+            if (!iconPath.IsNullOrEmpty())
+            {
+                content += Environment.NewLine + $"IconFile={iconPath}";
+            }
+
+            content += Environment.NewLine + $"URL={url}";
+            File.WriteAllText(shortcutPath, content);
+        }
+
         public static void CreateShortcut(string executablePath, string arguments, string iconPath, string shortcutPath)
         {
             var shell = new IWshRuntimeLibrary.WshShell();
