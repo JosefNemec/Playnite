@@ -1625,12 +1625,20 @@ namespace Playnite
             {
                 using (var classes = root.OpenSubKey(@"Software\Classes", true))
                 {
+                    var openString = $"\"{PlaynitePaths.DesktopExecutablePath}\" --uridata \"%1\"";
+                    var existing = classes.OpenSubKey(@"Playnite\shell\open\command");
+                    if (existing != null && existing.GetValue(string.Empty)?.ToString() == openString)
+                    {
+                        existing.Dispose();
+                        return;
+                    }
+
                     var newEntry = classes.CreateSubKey("Playnite");                    
                     newEntry.SetValue(string.Empty, "URL:playnite");
                     newEntry.SetValue("URL Protocol", string.Empty);
                     using (var command = newEntry.CreateSubKey(@"shell\open\command"))
                     {
-                        command.SetValue(string.Empty, $"\"{PlaynitePaths.DesktopExecutablePath}\" --uridata \"%1\"");
+                        command.SetValue(string.Empty, openString);
                     }
                 }
             }            
