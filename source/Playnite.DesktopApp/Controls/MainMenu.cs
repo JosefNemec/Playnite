@@ -22,7 +22,7 @@ using System.Windows.Media.Imaging;
 
 namespace Playnite.DesktopApp.Controls
 {
-    public class MainMenu : ContextMenu
+    public class MainMenu : ContextMenu, IDisposable
     {
         private readonly DesktopAppViewModel mainModel;
         private MenuItem extensionsItem;
@@ -56,6 +56,12 @@ namespace Playnite.DesktopApp.Controls
             {
                 InitializeExtensionsMenu();
             }
+        }
+
+        public void Dispose()
+        {
+            mainModel.Extensions.PropertyChanged -= Extensions_PropertyChanged;
+            Items.Clear();
         }
 
         public static MenuItem AddMenuChild(

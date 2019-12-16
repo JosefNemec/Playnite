@@ -44,16 +44,24 @@ namespace Playnite.DesktopApp.Controls
         private static void ItemsListPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as DdItemListSelectionBox;
-            var list = (SelectableDbItemList)e.NewValue;
-            list.SelectionChanged += (s, a) =>
+            var oldVal = (SelectableDbItemList)e.NewValue;
+            if (oldVal != null)
             {
-                if (!obj.IgnoreChanges)
-                {
-                    obj.IgnoreChanges = true;
-                    obj.BoundIds = list.GetSelectedIds();
-                    obj.IgnoreChanges = false;
-                }
-            };
+                oldVal.SelectionChanged -= obj.List_SelectionChanged;
+            }
+
+            var list = (SelectableDbItemList)e.NewValue;
+            list.SelectionChanged += obj.List_SelectionChanged;
+        }
+
+        private void List_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreChanges)
+            {
+                IgnoreChanges = true;
+                BoundIds = ItemsList.GetSelectedIds();
+                IgnoreChanges = false;
+            }
         }
 
         public object BoundIds
@@ -109,6 +117,15 @@ namespace Playnite.DesktopApp.Controls
         public DdItemListSelectionBox()
         {
             InitializeComponent();
+            Unloaded += DdItemListSelectionBox_Unloaded;
+        }
+
+        private void DdItemListSelectionBox_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (ItemsList != null)
+            {
+                ItemsList.SelectionChanged -= List_SelectionChanged;
+            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

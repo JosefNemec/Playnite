@@ -43,6 +43,12 @@ namespace Playnite.DesktopApp.Controls.Views
 
             this.viewType = viewType;
             this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            Unloaded += BaseGamesView_Unloaded;
+        }
+
+        private void BaseGamesView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.ViewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)

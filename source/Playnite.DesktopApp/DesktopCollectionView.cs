@@ -94,6 +94,7 @@ namespace Playnite.DesktopApp
 
         public override void Dispose()
         {
+            ClearItems();
             base.Dispose();
             Database.Games.ItemCollectionChanged -= Database_GamesCollectionChanged;
             Database.Games.ItemUpdated -= Database_GameUpdated;
@@ -264,12 +265,15 @@ namespace Playnite.DesktopApp
 
         private void ClearItems()
         {
-            foreach (var item in Items)
+            if (Items.HasItems())
             {
-                item.Dispose();
-            }
+                foreach (var item in Items)
+                {
+                    item.Dispose();
+                }
 
-            Items.Clear();
+                Items.Clear();
+            }
         }
 
         private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> e)

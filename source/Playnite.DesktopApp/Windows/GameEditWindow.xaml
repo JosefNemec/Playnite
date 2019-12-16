@@ -611,8 +611,7 @@
                                 <TextBlock Text="{Binding CoverMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
                                 <Image Source="{Binding EditingGame.CoverImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
-                                       DockPanel.Dock="Top"
-                                       AutomationProperties.HelpText="{Binding EditingGame.CoverImage, TargetNullValue=''}"/>
+                                       DockPanel.Dock="Top"/>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Drop" >
                                         <prism:InvokeCommandAction Command="{Binding DropCoverCommand}" />
@@ -660,8 +659,7 @@
                                 <TextBlock Text="{Binding BackgroundMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
                                 <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
                                    Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
-                                   DockPanel.Dock="Top"
-                                   AutomationProperties.HelpText="{Binding EditingGame.BackgroundImage, TargetNullValue=''}"/>
+                                   DockPanel.Dock="Top"/>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Drop" >
                                         <prism:InvokeCommandAction Command="{Binding DropBackgroundCommand}" />
