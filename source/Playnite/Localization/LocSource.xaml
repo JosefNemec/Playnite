@@ -302,6 +302,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Providers</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Performance</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Import installed games</sys:String>

@@ -61,7 +61,9 @@
             <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
             <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
             <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="12" />
-            <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" />
+            <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" IsExpanded="True">
+                <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="13" />
+            </TreeViewItem>
             <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10"
                           DisplayMemberPath="Name"
                           ItemsSource="{Binding Extensions.LibraryPlugins}" />
@@ -75,7 +77,7 @@
         </TreeView>
 
         <ScrollViewer DockPanel.Dock="Left" BorderThickness="1,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"
-                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                      VerticalScrollBarVisibility="Auto">
             <ContentControl Content="{Binding SelectedSectionView}"/>
         </ScrollViewer>
     </DockPanel>
