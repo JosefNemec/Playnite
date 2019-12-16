@@ -160,6 +160,16 @@ if (!$SkipBuild)
             Join-Path $OutputDir "PlayniteUI.exe" | SignFile
         }
     }
+
+    # Copy extension templates
+    $templatesDir = Join-Path $OutputDir "Templates\Extensions\"
+    $tempFiles = Get-Content "..\source\Tools\Playnite.Toolbox\Templates\Extensions\BuildInclude.txt" | Where { ![string]::IsNullOrEmpty($_) }
+    foreach ($file in $tempFiles)
+    {
+        $target = Join-Path $templatesDir $file
+        New-FolderFromFilePath $target
+        Copy-Item (Join-Path "..\source\Tools\Playnite.Toolbox\Templates\Extensions\" $file) $target
+    }
 }
 
 # -------------------------------------------

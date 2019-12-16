@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibraryPlugin
+namespace CustomMetadataPlugin
 {
     /// <summary>
-    /// Interaction logic for LibraryPluginSettingsView.xaml
+    /// Interaction logic for CustomMetadataSettingsView.xaml
     /// </summary>
-    public partial class LibraryPluginSettingsView : UserControl
+    public partial class CustomMetadataSettingsView : UserControl
     {
-        public LibraryPluginSettingsView()
+        public CustomMetadataSettingsView()
         {
             InitializeComponent();
         }

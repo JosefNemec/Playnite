@@ -87,12 +87,12 @@ As stated before, plugin class must override `GetSettings` and `GetSettingsView`
 ```csharp
 public class TestPlugin : Plugin // or LibraryPlugin for library plugins, implementation is the same.
 {    
-    public override ISettings GetSettings
+    public override ISettings GetSettings(bool firstRunSettings)
     {
         return new TestPluginSettings();
     }
     
-    public override UserControl GetSettingsView
+    public override UserControl GetSettingsView(bool firstRunSettings)
     {
         return new TestPluginSettingsView();
     }
