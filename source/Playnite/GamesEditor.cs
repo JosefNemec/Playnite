@@ -157,7 +157,8 @@ namespace Playnite
                 {
                     try
                     {
-                        ExecuteScriptAction(AppSettings.ActionsScriptLanguage, AppSettings.PreScript, game);
+                        var expanded = game.ExpandVariables(AppSettings.PreScript);
+                        ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
                     }
                     catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -178,7 +179,8 @@ namespace Playnite
                 {
                     try
                     {
-                        ExecuteScriptAction(game.ActionsScriptLanguage, game.PreScript, game);
+                        var expanded = game.ExpandVariables(game.PreScript);
+                        ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
                     }
                     catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -655,7 +657,8 @@ namespace Playnite
             {
                 try
                 {
-                    ExecuteScriptAction(game.ActionsScriptLanguage, game.PostScript, game);
+                    var expanded = game.ExpandVariables(game.PostScript);
+                    ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -673,7 +676,8 @@ namespace Playnite
             {
                 try
                 {
-                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, AppSettings.PostScript, game);
+                    var expanded = game.ExpandVariables(AppSettings.PostScript);
+                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
