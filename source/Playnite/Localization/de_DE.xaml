@@ -195,8 +195,8 @@ Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, b
 {PlayniteDir} - Playnites Installationsverzeichnis
 {Name} - Name des Spiels
         
-Beispiel: -image "{ImagePath}" -fullscreen
-Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Beispiel: -image &quot;{ImagePath}&quot; -fullscreen
+Ergebnis: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Symbol nicht abrufbar, da keine »Spielen«-Aktion definiert oder diese auf eine URL festgelegt wurde.</sys:String>
 
@@ -217,10 +217,10 @@ Nur Daten des offiziellen Shops des Anbieters verwenden.
 IGDB:
 Nur Daten der IGDB.com-Datenbank verwenden.
     
-IGDB > Offizieller Shop:
+IGDB &gt; Offizieller Shop:
 Daten der IGDB.com-Datenbank bevorzugen. Falls nicht verfügbar, offiziellen Shop des Anbieters verwenden.
     
-Offizieller Shop > IGDB:
+Offizieller Shop &gt; IGDB:
 Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IGDB.com-Datenbank verwenden.</sys:String>
 
     <!--Progess string-->
@@ -388,7 +388,7 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Shop-Screenshot</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Shop-Hintergrund</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Hat ohne erneutes Herunterladen der Metadaten keinen Einfluss auf bereits in der Bibliothek befindliche Spiele.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Spielzeit unterstützter Bibliotheken priorisieren</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Spielzeit priorisieren für unterstützte Bibliotheken</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Erfasste Spielzeit während der Bibliothekssynchronisation immer von der Anbieterbibliothek herunterladen und damit die von Playnite erfasste Spielzeit ignorieren.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Controllerunterstützung im Desktopmodus aktivieren</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide-Taste öffnet Vollbildmodus</sys:String>
@@ -448,7 +448,7 @@ Kann auch in den Anwendungseinstellungen geändert werden.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Assistent für Emulationsimport</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Dieser Assistent wird dich durch den Import von Emulatoren leiten - vom Download des Emulators bis hin zum Hinzufügen von Spielen.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Denke daran, dass du später jederzeit weitere Emulatoren und Spiele hinzufügen kannst - verwende hierzu die Emulatoreinstellungen unter "Tools" oder den "Spiel hinzufügen"-Dialog im Playnite-Menü.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Denke daran, dass du später jederzeit weitere Emulatoren und Spiele hinzufügen kannst - verwende hierzu die Emulatoreinstellungen unter &quot;Tools&quot; oder den &quot;Spiel hinzufügen&quot;-Dialog im Playnite-Menü.</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Die nachfolgende Liste enthält alle Emulatoren die von Playnite automatisch erkannt und konfiguriert werden können. Lade den Emulator von der Webseite des Anbieters herunter und installiere diese. Anschließend kannst du die Emulatoren zu Playnite hinzufügen.
 
 Denke daran, dass du über das Playnite-Menü jederzeit noch weitere Emulatoren hinzufügen kannst.</sys:String>
@@ -466,7 +466,7 @@ Denke daran, dass du über das Playnite-Menü jederzeit noch weitere Emulatoren 
     <sys:String x:Key="LOCFirstWindowTitle">Einrichtungsassistent</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Dieser Assistent wird dich durch die Konfiguration von externen Bibliotheken (wie Steam, Origin und anderen) und dem Import von Spielen leiten. Playnite erlaubt dir auch den vollautomatischen Import deiner Steam- oder GOG-Spiele und synchronisiert sich beim Start automatisch mit diesen externen Bibliotheken.
 
-Zudem kannst du natürlich auch jederzeit selbst ein Spiel zu deiner Playnite-Bibliothek hinzufügen - ja, selbst Emulatoren werden unterstützt! Wähle hierzu einfach "Spiel hinzufügen" im Menü.</sys:String>
+Zudem kannst du natürlich auch jederzeit selbst ein Spiel zu deiner Playnite-Bibliothek hinzufügen - ja, selbst Emulatoren werden unterstützt! Wähle hierzu einfach &quot;Spiel hinzufügen&quot; im Menü.</sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Bitte wähle den Speicherort für die Playnite-Datenbank. Du kannst den Pfad natürlich später jederzeit über die Einstellungen wieder ändern.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Standardmäßiger Programmpfad für alle Benutzer</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Benutzerdefinierter Programmpfad</sys:String>
