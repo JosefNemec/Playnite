@@ -442,7 +442,7 @@ Falls deaktiviert, werden Hintergrundbilder erst dann heruntergeladen, wenn sie 
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadatenimport</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Metadaten herunterladen</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Lege die ausgewählte Konfiguration für alle zukünftigen Metadatendownloads fest.
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Gewählte Konfiguration für alle zukünftigen Metadatendownloads festlegen.
 Kann auch in den Anwendungseinstellungen geändert werden.</sys:String>
     
     <!--Emulator Import-->
