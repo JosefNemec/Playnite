@@ -28,9 +28,9 @@
     <sys:String x:Key="LOCCategoryWindowTitle">Kategorie zuweisen</sys:String>
     <sys:String x:Key="LOCCategorySetButton">Kategorien festlegen</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Kategorie hinzufügen</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Aktiv - Spiel zur Kategorie hinzufügen
-Inaktiv - Spiel aus Kategorie entfernen
-Unentschieden - Keine Änderung (bei Bearbeitung mehrerer Spiele)</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Aktiviert - Kategorie zuweisen
+Deaktiviert - Kategorie entfernen
+Unentschieden - Keine Änderungen (beim Bearbeiten mehrerer Spiele)</sys:String>
     <sys:String x:Key="LOCNoCategory">Keine Kategorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Keine Plattform</sys:String>
 
@@ -464,9 +464,10 @@ Denke daran, dass du über das Playnite-Menü jederzeit noch weitere Emulatoren 
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Einrichtungsassistent</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Dieser Assistent wird dich durch die Konfiguration von externen Bibliotheken (wie Steam, Origin und anderen) und dem Import von Spielen leiten. Playnite erlaubt dir auch den vollautomatischen Import deiner Steam- oder GOG-Spiele und synchronisiert sich beim Start automatisch mit diesen externen Bibliotheken.
-
-Zudem kannst du natürlich auch jederzeit selbst ein Spiel zu deiner Playnite-Bibliothek hinzufügen - ja, selbst Emulatoren werden unterstützt! Wähle hierzu einfach &quot;Spiel hinzufügen&quot; im Menü.</sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Dieser Assistent wird dich durch das automatische Importieren von Spielen und die Konfiguration externer Spielebibliotheken leiten. Playnite kann Spiele von mehreren Spieleplattformen wie Steam oder GOG automatisch importieren und zudem durch automatisches Aktualisieren während des Programmstarts deine Bibliothek aktuell halten.
+        
+Natürlich kannst du auch jederzeit Spiele sämtlicher Plattformen manuell hinzufügen. Wähle hierfür einfach im Hauptmenü das Playnite-Symbol und dann »Spiel hinzufügen«.   
+    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Bitte wähle den Speicherort für die Playnite-Datenbank. Du kannst den Pfad natürlich später jederzeit über die Einstellungen wieder ändern.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Standardmäßiger Programmpfad für alle Benutzer</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Benutzerdefinierter Programmpfad</sys:String>
