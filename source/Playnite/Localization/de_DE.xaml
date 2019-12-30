@@ -399,7 +399,7 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Akkuladung in Prozent anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Uhr anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Nur in Schnellfilter installiert</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Schaltflächenmeldungen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Tastenbezeichnungen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontales Scrollen</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Wähle einen der Unterabschnitte aus</sys:String>
