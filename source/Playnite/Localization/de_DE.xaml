@@ -152,7 +152,7 @@ Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, b
     <sys:String x:Key="LOCCategoryLabel">Kategorie</sys:String>
     <sys:String x:Key="LOCTagLabel">Schlagwort</sys:String>
     <sys:String x:Key="LOCTagsLabel">Schlagwörter</sys:String>
-    <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
+    <sys:String x:Key="LOCZoomLabel">Vergrößerung</sys:String>
     <sys:String x:Key="LOCListViewLabel">Listenansicht</sys:String>
     <sys:String x:Key="LOCCoversLabel">Cover</sys:String>
     <sys:String x:Key="LOCGridViewLabel">Rasteransicht</sys:String>
@@ -260,7 +260,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSDKDocumentation">SDK-Dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">System neu starten</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">System herunterfahren</sys:String>
-    <sys:String x:Key="LOCMenuSuspendSystem">System-Standby</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">System-Stand-by</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">System-Ruhezustand</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Zufälliges Spiel auswählen</sys:String>
 
@@ -320,13 +320,13 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsStartInFullscreen">Im Vollbildmodus starten</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Aktualisiert automatisch die Bibliothek von Steam, Origin und anderen.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchrones Laden von Bildern</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Ermöglicht weicheres Scrolling zum Preis einer längeren Ladezeit.</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Ermöglicht weicheres Scrolling der Spielelisten zum Preis längerer Bildladezeiten.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Spielename anzeigen falls Titelbild fehlt</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Name des Spiels unterhalb Cover anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Spielsymbole in Detailansichtsliste anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Spieleanzahl in Gruppenbeschreibung anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Hardwarebeschleunigung deaktivieren</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Wähle diese Option bei Problemen mit der Oberfläche.</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Bei Ruckeln oder ähnlichen Problemen der Benutzeroberfläche verwenden</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI-Skalierung deaktivieren</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Schaltfläche für Steam-Freunde anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Hintergrundbild des Spiels als Fensterhintergrund verwenden</sys:String>
@@ -334,10 +334,10 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsBlurHighQuality">Hohe Qualität</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Hintergrund abdunkeln</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">In Rasteransicht anzeigen</sys:String>
-    <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColor">Theme-Profil</sys:String>
-    <sys:String x:Key="LOCSettingsSkinFullscreen">Vollbild-Theme</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Themeprofil für Vollbildmodus</sys:String>
+    <sys:String x:Key="LOCSettingsSkin">Design</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColor">Designprofil</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">Design für Vollbildmodus</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Designprofil für Vollbildmodus</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Speicherort der Datenbank</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Wie lautet mein Kontoname?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Login-Status:</sys:String>    
@@ -357,18 +357,18 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">Dies wird die derzeitigen Kategorien aller Steam-Spiele überschreiben. Möchtest du wirklich fortfahren?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Kategorien importieren?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kategorien können nicht importiert werden, da kein Konto für Importe ausgewählt.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Fehler beim Import der Steam-Kategorien: Datenbank ist nicht geöffnet</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportError">Fehler beim Import der Steam-Kategorien: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kategorien können nicht importiert werden, da Datenbank nicht geöffnet.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportError">Steam-Kategorien konnten nicht importiert werden: {0}</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">»Zuletzt gespielt«-Informationen können nicht importiert werden, da kein Benutzerkonto ausgewählt wurde.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">»Zuletzt gespielt«-Informationen können nicht importiert werden, da die Datenbank nicht geöffnet ist.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Fehler beim Importieren von Steams »Zuletzt gespielt«-Informationen: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Dies wird dich von allen verbundenen Diensten abmelden und einen Neustart erforderlich machen. Möchtest du fortfahren?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Cache leeren?</sys:String>
-    <sys:String x:Key="LOCSettingsApiKeyTooltip">Für private Steam-Konten ist ein API-Key notwendig</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyTooltip">Für private Steam-Konten ist ein API-Schlüssel notwendig</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">API-Schlüssel beziehen</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart">Die Änderung des Themes erfordert einen Neustart von Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsGetThemes">Mehr Themes beziehen</sys:String>
-    <sys:String x:Key="LOCSettingsCreateThemes">Neues Theme erstellen</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Anwenden eines neuen Designs erfordert einen Playnite-Neustart</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">Mehr Designs beziehen</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">Neues Design erstellen</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Weitere Erweiterungen beziehen</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Neue Erweiterung erstellen</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Playnite übersetzen</sys:String>
@@ -398,8 +398,8 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Akkustatus anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Akkuladung in Prozent anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Uhr anzeigen</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Nur in Schnellfilter installiert</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Tastenbezeichnungen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Nur Installierte in Schnellfilter</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Beschriftung der Controllertasten</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horizontales Scrollen</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Wähle einen der Unterabschnitte aus</sys:String>
@@ -447,7 +447,7 @@ Kann auch in den Anwendungseinstellungen geändert werden.</sys:String>
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Assistent für Emulationsimport</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro">Dieser Assistent wird dich durch den Import von Emulatoren leiten - vom Download des Emulators bis hin zum Hinzufügen von Spielen.</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Dieser Assistent wird dich durch den Prozess des Herunterladens und Importierens von Konsolenemulatoren leiten, weiterhin des Importierens von emulierten Spielen.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">Denke daran, dass du später jederzeit weitere Emulatoren und Spiele hinzufügen kannst - verwende hierzu die Emulatoreinstellungen unter &quot;Tools&quot; oder den &quot;Spiel hinzufügen&quot;-Dialog im Playnite-Menü.</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Die nachfolgende Liste enthält alle Emulatoren die von Playnite automatisch erkannt und konfiguriert werden können. Lade den Emulator von der Webseite des Anbieters herunter und installiere diese. Anschließend kannst du die Emulatoren zu Playnite hinzufügen.
 
@@ -593,7 +593,7 @@ Bitte ergänze deinen Absturzbericht um die folgende Kennung:</sys:String>
     <sys:String x:Key="LOCLibraryImportError">Spiele von {0} konnten nicht importiert werden.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Mit dem ausgewählten Emulatorprofil kann nicht nach Spielen gesucht werden, da es keine Dateinamenerweiterungen oder Plattformen enthält.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite konnte nicht gestartet werden. Bitte beende alle laufenden Instanzen von Playnite und versuche es erneut.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Theme »{0}« mit Farbprofil »{1}« konnte nicht angewendet werden
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Design »{0}« mit Farbprofil »{1}« konnte nicht angewendet werden
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Fehler beim Öffnen des Links: URL ist ungültig.</sys:String>
@@ -635,7 +635,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCPublicAccount">Öffentliches Konto</sys:String>
     <sys:String x:Key="LOCAPIKey">API-Schlüssel</sys:String>
     <sys:String x:Key="LOCStartupError">Fehler beim Starten von Playnite</sys:String>
-    <sys:String x:Key="LOCSkinError">Theme-Fehler</sys:String>
+    <sys:String x:Key="LOCSkinError">Fehler beim Anwenden des Designs</sys:String>
     <sys:String x:Key="LOCClearAll">Alle leeren</sys:String>
     <sys:String x:Key="LOCSetupRunning">Wird installiert …</sys:String>
     <sys:String x:Key="LOCUninstalling">Wird deinstalliert …</sys:String>
@@ -711,10 +711,10 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Im Hintergrund wird gerade ein Prozess ausgeführt. Sollen dieser und Playnite beendet werden?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Für Playnite ist eine neue Aktualisierung verfügbar</sys:String>
 
-    <sys:String x:Key="LOCThemeTestReloadList">Themeliste erneut laden</sys:String>
-    <sys:String x:Key="LOCThemeTestApplySkin">Ausgewähltes Theme anwenden</sys:String>
+    <sys:String x:Key="LOCThemeTestReloadList">Designliste erneut laden</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">Ausgewähltes Design anwenden</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Dateiänderungen überwachen</sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Theme bei Änderung der Quelldatei automatisch anwenden</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Design bei Änderung der Quelldatei automatisch anwenden</sys:String>
     <sys:String x:Key="LOCScriptRuntime">Skriptlaufzeit</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Vor Spielstart ausführen</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Nach Verlassen des Spiels ausführen</sys:String>
@@ -791,7 +791,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCPLaytime1000plus">Mehr als 1.000 Stunden</sys:String>
 
     <sys:String x:Key="LOCExtInstallationRestartNotif">Zum Abschließen der Installation muss Playnite neu gestartet werden. Jetzt neu starten?</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme/Erweiterung verwendet eine nicht unterstützte API-Version.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Design/Erweiterung verwendet eine nicht unterstützte API-Version.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation war erfolgreich.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Erweiterung installieren?</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Erweiterung konnte nicht installiert werden.
@@ -803,10 +803,10 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
 Von {1}
 Version {2}
     </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Theme konnte nicht installiert werden.
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Design konnte nicht installiert werden.
         
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Möchtest du ein neues Theme installieren? Die bestehende Installation wird überschrieben.
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Möchtest du das neue Design installieren? Die bestehende Installation wird überschrieben.
     
 {0}
 Von {1}
