@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Språk</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Avslutt</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter Aktiv</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filter Deaktivert</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Flere filtre</sys:String>
     <sys:String x:Key="LOCFilters">Filtre</sys:String>
     <sys:String x:Key="LOCFilter">Filter</sys:String>
@@ -35,14 +35,20 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Uff da, her skjedde det noe feil…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">En uopprettelig feil oppstod.
+
+Hvis du vil hjelpe oss med å løse dette problemet, kan du kort beskrive handlingene som ble utført før krasjet, og deretter opprette en diagnosepakke. Hvis du er online, blir pakken lastet opp til Playnite-serveren for analyse.
+
+Alternativt kan du bruke 'Rapporter krasj' -knappen for å opprette en ny utgave på GitHub og rapportere krasjen manuelt.
+
+Takk for din hjelp.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Det skjedde en uoprettelig feil.
 
 Hvis du vil hjelpe oss å fikse problemet, vennligst send diagnostikk-informasjon. Takk.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporter Programstopp</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Omstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Lukk Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Handlinger som ble tatt før krasjet (på engelsk):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Biblioteksbehandler</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern(e) spill?</sys:String>
@@ -69,11 +75,11 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
     <sys:String x:Key="LOCGameShortcutError">Feilet i opprettelsen av snarvei: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan ikke installere spill: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan ikke avinstallere spill: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Spilleaksjonen er ikke konfigurert.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekplugin som er ansvarlig for dette spillet er ikke installert eller slått på.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Offisielle metadatanedlastning er ikke tilgjengelig.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Inget spill er valgt.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Utførelsen av spillets skripthandling mislyktes</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
@@ -185,8 +191,8 @@ Automatiske importerte spill kan dukke opp i Playnite etter neste importprosedyr
 {PlayniteDir} - Installasjonsmappen til Playnite
 {Name} - Spillnavn
 
-Eksempel: -image "{ImagePath}" -fullscreen
-Blir til: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Eksempel: -image &quot;{ImagePath}&quot; -fullscreen
+Blir til: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
 
@@ -207,10 +213,10 @@ Bare bruk data fra offisiell Butikk.
 IGDB:
 Bare bruk data fra IGDB.com databasen.
 
-IGDB > Offisiell Butikk:
+IGDB &gt; Offisiell Butikk:
 Foretrekk data fra IGDB.com databasen og når det ikke er tilgjengelig, bruk data fra en offisiell Butikk.
 
-Offisiell Butikk > IGDB:
+Offisiell Butikk &gt; IGDB:
 Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk data fra IGDB.com databasen.</sys:String>
 
     <!--Progess string-->
