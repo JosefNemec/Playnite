@@ -95,7 +95,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCFinishLabel">Terminer</sys:String>
     <sys:String x:Key="LOCNextLabel">Suivant</sys:String>
     <sys:String x:Key="LOCBackLabel">Retour</sys:String>
-    <sys:String x:Key="LOCDoneCapLabel">FIN</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">OK</sys:String>
     <sys:String x:Key="LOCBackCapLabel">RET.</sys:String>
     <sys:String x:Key="LOCClearCapLabel">EFF.</sys:String>
     <sys:String x:Key="LOCClearLabel">Effacer</sys:String>
@@ -190,8 +190,8 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
 {ImageNameNoExt} - Nom du fichier ISO/ROM du jeu sans extension
 {PlayniteDir} - Le répertoire d'installation de Playnite
 {Name} - Nom du jeu
-Exemple : -image "{ImagePath}" -fullscreen
-Résultats dans : -image "c:\folder\image.iso" -fullscreen</sys:String>
+Exemple : -image &quot;{ImagePath}&quot; -fullscreen
+Résultats dans : -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Impossible d'obtenir l'icône si une action de lancement est manquante ou définie sur une URL</sys:String>
 
@@ -212,10 +212,10 @@ Utiliser uniquement les données fournies par les boutiques officielles.
 IGDB:
 Utiliser uniquement les données de la base de données IGDB.com.
 
-IGDB > Boutique officielle:
+IGDB &gt; Boutique officielle:
 Préférer les données de la base de données IGDB.com et, lorsqu'elles ne sont pas disponibles, utiliser les données des boutiques officielles.
         
-Boutique Officielle > IGDB:
+Boutique Officielle &gt; IGDB:
 Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas disponibles, utiliser la base de données IGBD.com.</sys:String>
 
     <!--Progess string-->
@@ -262,7 +262,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Afficher l'arrière-plan</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Afficher le cadre</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largeur des bordures</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
@@ -339,7 +339,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsWindowTitle">Paramètres de Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata">Importer les métadonnées depuis le compte Steam :</sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel">Importer les catégories de Steam</sys:String>
-    <sys:String x:Key="LOCImportSteamLastActivityLabel">Importer "Dernière utilisation"</sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel">Importer &quot;Dernière utilisation&quot;</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Effacer le cache Web</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Peut résoudre les problèmes rencontrés lors de la liaison de profils.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Réduire dans la barre d'état</sys:String>
@@ -441,12 +441,12 @@ Peut également être modifié dans le menu de paramètres.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Assistant d'importation d'émulation</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Cet assistant vous guidera à travers un processus de téléchargement et d'importation d'émulateurs de consoles de jeu. Il vous aidera également à importer les copies de sauvegarde de vos jeux à émuler.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Gardez à l'esprit que vous pourrez toujours ajouter des émulateurs supplémentaires et/ou des jeux plus tard via le menu principal (sous le menu "Outils" pour les paramètres de l'émulateur et le menu "Ajouter des jeux" pour les jeux émulés).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Gardez à l'esprit que vous pourrez toujours ajouter des émulateurs supplémentaires et/ou des jeux plus tard via le menu principal (sous le menu &quot;Outils&quot; pour les paramètres de l'émulateur et le menu &quot;Ajouter des jeux&quot; pour les jeux émulés).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Voici la liste des émulateurs que Playnite peut reconnaître et configurer automatiquement. Vous pouvez les télécharger et les installer en visitant leur site Web. Une fois que vous avez installé les émulateurs, passez à l'écran suivant pour les importer dans Playnite.
 
 Par la suite, vous pourrez également configurer et importer tout émulateur personnalisé via le menu de configuration.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Vous pouvez importer les émulateurs installés sur votre PC en cliquant sur le bouton "Scanner un dossier". Playnite analysera le dossier sélectionné ainsi que ses sous-dossiers à la recherche d'émulateurs reconnus par l'application et vous permettra de les importer automatiquement. Vous pouvez importer à partir de plusieurs dossiers différents. Les émulateurs seront triés puis ajoutés au bas de la liste actuelle.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">Vous pouvez importer des jeux en cliquant sur le bouton "Scanner un dossier à l'aide d'un émulateur...". La sélection de l'émulateur indique à Playnite quels types de fichiers doivent être analysés et importés. Vous pouvez importer à partir de plusieurs dossiers différents. Les jeux seront triés puis ajoutés au bas de la liste actuelle.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Vous pouvez importer les émulateurs installés sur votre PC en cliquant sur le bouton &quot;Scanner un dossier&quot;. Playnite analysera le dossier sélectionné ainsi que ses sous-dossiers à la recherche d'émulateurs reconnus par l'application et vous permettra de les importer automatiquement. Vous pouvez importer à partir de plusieurs dossiers différents. Les émulateurs seront triés puis ajoutés au bas de la liste actuelle.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Vous pouvez importer des jeux en cliquant sur le bouton &quot;Scanner un dossier à l'aide d'un émulateur...&quot;. La sélection de l'émulateur indique à Playnite quels types de fichiers doivent être analysés et importés. Vous pouvez importer à partir de plusieurs dossiers différents. Les jeux seront triés puis ajoutés au bas de la liste actuelle.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Aucun émulateur n'est sélectionné pour l'importation. Vous ne pourrez pas importer automatiquement les jeux émulés sans d'abord configurer les émulateurs. Êtes-vous sûr de vouloir continuer et quitter le processus d'importation ?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Aucun émulateur n'est configuré dans Playnite. Vous ne pouvez pas importer de jeux sans d'abord configurer l'émulateur et les types de fichiers appropriés. Voulez-vous ajouter des émulateurs maintenant ?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Scanner un dossier à l'aide d'un émulateur...</sys:String>
@@ -479,7 +479,7 @@ Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ord
     <sys:String x:Key="LOCFirstOtherGamesText">Cliquez sur le bouton ci-dessous pour importer d'autres jeux installés ou les rechercher manuellement (y compris les jeux du Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importer des jeux</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration terminée</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu "Paramètres".</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu &quot;Paramètres&quot;.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Ouvrir le guide d'importation d'émulation</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Disposition (affichage en grille)</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Sélectionner le mode de mise à l'échelle des images pour l'affichage en grille. Ce paramètre peut être modifié à tout moment.</sys:String>
@@ -521,10 +521,10 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendant</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendant</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Ne pas grouper</sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider">Grouper par Fournisseur</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">Grouper par Bibliothèque</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Grouper par Catégorie</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Grouper par Plateforme</sys:String>
-    <sys:String x:Key="LOCViewType">"Type d'affichage"</sys:String>
+    <sys:String x:Key="LOCViewType">&quot;Type d'affichage&quot;</sys:String>
     <sys:String x:Key="LOCMenuView">Afficher</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">Explorateur</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Filtres</sys:String>
@@ -534,7 +534,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Jaquette</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Image de fond</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Nom de tri</sys:String>
-    <sys:String x:Key="LOCGameProviderTitle">Fournisseur</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">Bibliothèque</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Nom</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Nom du compte</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plateforme</sys:String>
@@ -562,7 +562,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCDatabaseErroTitle">Erreur de la Base de Données</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Erreur : Impossible d'ouvrir la base de données de la bibliothèque.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">La base de données n'est pas ouverte.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">Erreur : Impossible d'accéder à la base de données de la bibliothèque. Le fichier "{0}" est utilisé par un autre processus ou dans un emplacement inaccessible.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">Erreur : Impossible d'accéder à la base de données de la bibliothèque. Le fichier &quot;{0}&quot; est utilisé par un autre processus ou dans un emplacement inaccessible.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Erreur : Impossible de créer le dossier de diagnostic.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Impossible d'envoyer le dossier de diagnostic automatiquement .</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Le dossier de diagnostic a été créé et mis en ligne avec succès.</sys:String>
@@ -585,7 +585,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCLibraryImportError">Echec de l'importation depuis {0}.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Impossible de rechercher des jeux par profil d'émulateur sélectionné. Le profil ne contient aucune extension de fichier ou plateformes.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite n'a pas pu démarrer. Veuillez fermer toutes les instances en cours et réessayer.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Echec de l'application du thème "{0}", profil de couleur "{1}"
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Echec de l'application du thème &quot;{0}&quot;, profil de couleur &quot;{1}&quot;
 
 {1}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Impossible d'ouvrir le lien, l'URL n'est pas au format valide.</sys:String>
@@ -732,7 +732,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Le client en charge de ce jeu est responsable du processus de lancement.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">Pas d'informations pertinentes trouvées pour le jeu '{0}' sur la page spécifiée.</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">Conseil : Vous pouvez utiliser un processus de téléchargement des métadonnées plus poussé via l'option "Modifier les propriétés".</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">Conseil : Vous pouvez utiliser un processus de téléchargement des métadonnées plus poussé via l'option &quot;Modifier les propriétés&quot;.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Indisponible lorsqu'une action est en cours.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Le texte de description est sensible à la syntaxe HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Le temps de jeu est indiqué en secondes.</sys:String>
@@ -833,7 +833,7 @@ Images de fond : 1080px (hauteur)
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Connexion au compte</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nom d'utilisateur</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous directement à votre compte ou indiquez votre nom d'utilisateur pour synchroniser la bibliothèque. Notez que le nom d'utilisateur ne peut être utilisé que si les paramètres de visibilité du compte sont réglés sur "public".</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous directement à votre compte ou indiquez votre nom d'utilisateur pour synchroniser la bibliothèque. Notez que le nom d'utilisateur ne peut être utilisé que si les paramètres de visibilité du compte sont réglés sur &quot;public&quot;.</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">URL perso.</sys:String>
