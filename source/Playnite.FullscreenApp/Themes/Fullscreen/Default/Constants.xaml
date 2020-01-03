@@ -17,8 +17,10 @@
     <Color x:Key="ControlBackgroundColorDark">#FF121830</Color>
 
     <Color x:Key="TextColor">#FFEBEBEB</Color>
+    <Color x:Key="TextColorDark">#FF757575</Color>
 
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
     <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
     <SolidColorBrush x:Key="GlyphLightBrush" Color="{DynamicResource GlyphLightColor}" />
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{DynamicResource ControlBackgroundColor}" />
