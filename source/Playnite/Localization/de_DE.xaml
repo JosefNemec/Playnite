@@ -64,7 +64,7 @@ Automatisch importierte Spiele erscheinen, abhängig von deinen Einstellungen, b
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam-Freunde</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Abschnitt enthält zu speichernde Änderungen</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Spieleibliotheksformat wird aktualisiert …</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Fehler bei der Datenbankaktualisierung.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Datenbank konnte nicht aktualisiert werden.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Spielebibliothek kann nicht aktualisiert werden. Es werden {0} MB freier Speicherplatz benötigt.</sys:String>
 
     <sys:String x:Key="LOCGameError">Spielfehler</sys:String>
@@ -316,7 +316,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Metadaten nach Spieleimport herunterladen</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Playnite minimiert starten</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Playnite mit Windows starten</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Fehler beim Registrieren des Autostart-Eintrags für Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Autostart für Playnite konnte nicht registriert werden.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Im Vollbildmodus starten</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Aktualisiert automatisch die Bibliothek von Steam, Origin und anderen.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchrones Laden von Bildern</sys:String>
@@ -361,7 +361,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsSteamCatImportError">Steam-Kategorien konnten nicht importiert werden: {0}</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">»Zuletzt gespielt«-Informationen können nicht importiert werden, da kein Benutzerkonto ausgewählt wurde.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">»Zuletzt gespielt«-Informationen können nicht importiert werden, da die Datenbank nicht geöffnet ist.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Fehler beim Importieren von Steams »Zuletzt gespielt«-Informationen: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Steams »Zuletzt gespielt«-Informationen konnten nicht importiert werden: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Dies wird dich von allen verbundenen Diensten abmelden und einen Neustart erforderlich machen. Möchtest du fortfahren?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Cache leeren?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Für private Steam-Konten ist ein API-Schlüssel notwendig</sys:String>
