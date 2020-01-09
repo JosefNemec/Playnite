@@ -67,6 +67,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonPlayAction", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonContextAction", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonMoreActions", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_ButtonEditGame", Type = typeof(Button))]
     [TemplatePart(Name = "PART_HtmlDescription", Type = typeof(HtmlTextView))]
     [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageIcon", Type = typeof(Image))]
@@ -114,6 +115,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private Button ButtonPlayAction;
         private Button ButtonContextAction;
         private Button ButtonMoreActions;
+        private Button ButtonEditGame;
         private HtmlTextView HtmlDescription;
         private Image ImageCover;
         private Image ImageIcon;
@@ -143,6 +145,13 @@ namespace Playnite.DesktopApp.Controls.Views
             this.viewType = viewType;
             this.mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            Unloaded += GameOverview_Unloaded;
+        }
+
+        private void GameOverview_Unloaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
+            mainModel.AppSettings.ViewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -218,6 +227,14 @@ namespace Playnite.DesktopApp.Controls.Views
                         mainModel,
                         nameof(DesktopAppViewModel.SelectedGame));
                 }
+            }
+
+            ButtonEditGame = Template.FindName("PART_ButtonEditGame", this) as Button;
+            if (ButtonEditGame != null)
+            {
+                BindingTools.SetBinding(ButtonEditGame,
+                    Button.CommandProperty,
+                    nameof(GameDetailsViewModel.EditGameCommand));
             }
 
             HtmlDescription = Template.FindName("PART_HtmlDescription", this) as HtmlTextView;

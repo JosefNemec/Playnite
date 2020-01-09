@@ -15,9 +15,13 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets list of currently selected games.
         /// </summary>
-        IEnumerable<Game> SelectedGames
-        {
-            get;
-        }
+        IEnumerable<Game> SelectedGames { get; }
+
+        /// <summary>
+        /// Opens settings view for specified plugin.
+        /// </summary>
+        /// <param name="pluginId">Plugin ID.</param>
+        /// <returns>True if user saved any changes, False if dialog was canceled.</returns>
+        bool OpenPluginSettings(Guid pluginId);
     }
 }

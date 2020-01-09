@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Playnite.Common
 {   
@@ -61,6 +62,12 @@ namespace Playnite.Common
         public MemoryCache(long memoryLimit)
         {            
             memorySizeLimit = memoryLimit;
+        }
+
+        public void Clear()
+        {
+            cache.Clear();
+            currentSize = 0;
         }
 
         private void ReleaseOldestItems()

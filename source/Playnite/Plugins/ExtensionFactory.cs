@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Common;
+using Playnite.SDK.Models;
 
 namespace Playnite.Plugins
 {
@@ -503,6 +504,34 @@ namespace Playnite.Plugins
             }
         }
 
+        public void InvokeOnGameSelected(List<Game> oldValue, List<Game> newValue)
+        {
+            var args = new GameSelectionEventArgs(oldValue, newValue);
+            foreach (var script in Scripts)
+            {
+                try
+                {
+                    script.OnGameSelected(args);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameSelected method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnGameSelected(args);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameSelected method from {plugin.Description.Name} plugin.");
+                }
+            }
+        }
+
         public void NotifiyOnApplicationStarted()
         {
             foreach (var script in Scripts)
@@ -529,6 +558,11 @@ namespace Playnite.Plugins
                     logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Description.Name} plugin.");
                 }
             }
+        }
+
+        public LibraryPlugin GetLibraryPlugin(Guid pluginId)
+        {
+            return LibraryPlugins.FirstOrDefault(a => a.Id == pluginId);
         }
     }
 }

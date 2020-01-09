@@ -63,6 +63,11 @@ namespace Playnite.WebView
             return browser.GetTextAsync().GetAwaiter().GetResult();
         }
 
+        public Task<string> GetPageTextAsync()
+        {
+            return browser.GetTextAsync();
+        }
+
         public string GetPageSource()
         {
             return browser.GetSourceAsync().GetAwaiter().GetResult();

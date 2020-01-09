@@ -171,6 +171,12 @@
     <Compile Include="Controls\SettingsSections\AppearanceLayout.xaml.cs">
       <DependentUpon>AppearanceLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\ClientShutdown.xaml.cs">
+      <DependentUpon>ClientShutdown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Performance.xaml.cs">
+      <DependentUpon>Performance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\NoSettingsAvailable.xaml.cs">
       <DependentUpon>NoSettingsAvailable.xaml</DependentUpon>
     </Compile>
@@ -233,11 +239,13 @@
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\GameEditViewModel.cs" />
+    <Compile Include="ViewModels\GoogleImageDownloadViewModel.cs" />
     <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ImageSelectionViewModel.cs" />
     <Compile Include="ViewModels\ItemSelectionWithSearchViewModel.cs" />
+    <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
@@ -266,6 +274,9 @@
     <Compile Include="Windows\GameEditWindow.xaml.cs">
       <DependentUpon>GameEditWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\GoogleImageDownloadWindow.xaml.cs">
+      <DependentUpon>GoogleImageDownloadWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\InstalledGamesWindow.xaml.cs">
       <DependentUpon>InstalledGamesWindow.xaml</DependentUpon>
     </Compile>
@@ -283,6 +294,9 @@
     </Compile>
     <Compile Include="Windows\ItemSelectionWithSearchWindow.xaml.cs">
       <DependentUpon>ItemSelectionWithSearchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PluginSettingsWindow.xaml.cs">
+      <DependentUpon>PluginSettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
@@ -512,6 +526,14 @@
     <Page Include="Controls\SettingsSections\AppearanceLayout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\ClientShutdown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\Performance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\NoSettingsAvailable.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -948,6 +970,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\GoogleImageDownloadWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\InstalledGamesWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -971,6 +997,10 @@
     <Page Include="Windows\ItemSelectionWithSearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PluginSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ProgressWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

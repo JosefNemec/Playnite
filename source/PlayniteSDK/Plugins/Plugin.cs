@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -110,6 +111,14 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called when game selection changed.
+        /// </summary>
+        /// <param name="args"></param>
+        public virtual void OnGameSelected(GameSelectionEventArgs args)
+        {
+        }
+
+        /// <summary>
         /// Called when appliaction is started and initialized.
         /// </summary>
         public virtual void OnApplicationStarted()
@@ -187,6 +196,20 @@ namespace Playnite.SDK.Plugins
 
             var strConf = JsonConvert.SerializeObject(settings, Formatting.Indented);
             File.WriteAllText(setFile, strConf);
+        }
+
+        /// <summary>
+        /// Opens plugin's settings view. Only works in Desktop application mode!
+        /// </summary>
+        /// <returns>True if user saved any changes, False if dialog was canceled.</returns>
+        public bool OpenSettingsView()
+        {
+            if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Fullscreen)
+            {
+                return false;
+            }
+
+            return PlayniteApi.MainView.OpenPluginSettings(Id);
         }
     }
 }

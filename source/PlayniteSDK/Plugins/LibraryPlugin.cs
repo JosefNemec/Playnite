@@ -10,6 +10,17 @@ using System.Windows.Controls;
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
+    /// Represents capabilities of a library plugin.
+    /// </summary>
+    public class LibraryPluginCapabilities
+    {
+        /// <summary>
+        /// Gets or sets value indicating whether plugin is capable of closing down original game client.
+        /// </summary>
+        public bool CanShutdownClient { get; set; }
+    }
+
+    /// <summary>
     /// Represents base game library plugin.
     /// </summary>
     public abstract class LibraryPlugin : Plugin
@@ -43,6 +54,11 @@ namespace Playnite.SDK.Plugins
         /// Gets library client application or null of no client is associated with this library.
         /// </summary>
         public virtual LibraryClient Client { get; }
+
+        /// <summary>
+        /// Gets plugin's library capabilities.
+        /// </summary>
+        public virtual LibraryPluginCapabilities Capabilities { get; }
 
         /// <summary>
         /// Gets library games.

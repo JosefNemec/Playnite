@@ -17,7 +17,7 @@ namespace Playnite
     {
         private static ILogger logger = LogManager.GetLogger();
         private static GameDatabase database;
-        internal static MemoryCache Cache = new MemoryCache(Units.MegaBytesToBytes(100));
+        public static MemoryCache Cache = new MemoryCache(Units.MegaBytesToBytes(100));
         private const string btmpPropsFld = "bitmappros";
 
         public static void SetDatabase(GameDatabase db)

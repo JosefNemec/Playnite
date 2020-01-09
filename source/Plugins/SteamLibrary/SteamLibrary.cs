@@ -675,6 +675,11 @@ namespace SteamLibrary
 
         public override string LibraryIcon => Steam.Icon;
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override void Dispose()
         {
             apiClient.Logout();
@@ -746,11 +751,12 @@ namespace SteamLibrary
 
             if (importError != null)
             {
-                PlayniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(new NotificationMessage(
                     dbImportMessageId,
                     string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
-                    NotificationType.Error);
+                    NotificationType.Error,
+                    () => OpenSettingsView()));
             }
             else
             {

@@ -1,6 +1,6 @@
-﻿Name: Bethesda Library Importer
-Author: Playnite
+﻿Name: Custom Library Importer
+Author: John Doe
 Version: 1.0
-Module: BethesdaLibrary.dll
+Module: CustomLibraryPlugin.dll
 Type: GameLibrary
-Icon: Resources\bethesdaicon.png
+Icon: icon.png

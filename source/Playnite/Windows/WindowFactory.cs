@@ -11,6 +11,8 @@ namespace Playnite.Windows
 {
     public interface IWindowFactory
     {
+        bool IsClosed { get; }
+
         bool? CreateAndOpenDialog(object dataContext);
 
         void Show(object dataContext);
@@ -30,6 +32,7 @@ namespace Playnite.Windows
     {
         private readonly SynchronizationContext context;
         private bool asDialog = false;
+        public bool IsClosed { get; private set; } = true;
 
         public WindowBase Window
         {
@@ -50,7 +53,7 @@ namespace Playnite.Windows
             context.Send((a) =>
             {
                 Window = CreateNewWindowInstance();
-                Window.Closed += (_, __) => WindowManager.NotifyChildOwnershipChanges();
+                Window.Closed += Window_Closed;
                 Window.DataContext = dataContext;
                 if (Window != WindowManager.CurrentWindow)
                 {
@@ -65,6 +68,7 @@ namespace Playnite.Windows
 
                 asDialog = true;
                 WindowManager.NotifyChildOwnershipChanges();
+                IsClosed = false;
                 result = Window.ShowDialog();
             }, null);
 
@@ -76,15 +80,22 @@ namespace Playnite.Windows
             context.Send((a) =>
             {
                 asDialog = false;
-                if (Window == null)
+                if (IsClosed)
                 {
                     Window = CreateNewWindowInstance();
-                    Window.Closed += (_, __) => WindowManager.NotifyChildOwnershipChanges();
+                    Window.Closed += Window_Closed;
                 }
 
                 Window.DataContext = dataContext;
+                IsClosed = false;
                 Window.Show();
             }, null);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            WindowManager.NotifyChildOwnershipChanges();
+            IsClosed = true;
         }
 
         public void BringToForeground()
@@ -116,6 +127,7 @@ namespace Playnite.Windows
                 {
                     Window.DialogResult = result;
                 }
+
                 Window.Close();
                 WindowManager.NotifyChildOwnershipChanges();
             }, null);

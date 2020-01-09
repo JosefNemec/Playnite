@@ -1,0 +1,35 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.PluginSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playnite.DesktopApp.Windows"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        mc:Ignorable="d"
+        Style="{DynamicResource StandardWindowStyle}"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Title}" Height="450" Width="600">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
+                    Style="{StaticResource BottomButton}" IsCancel="True"
+                    Command="{Binding CancelCommand}"/>
+            <Button Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right" 
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding ConfirmCommand}"/>
+        </DockPanel>        
+        <ScrollViewer DockPanel.Dock="Top"
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <ContentControl Content="{Binding SettingsView}"/>
+        </ScrollViewer>
+    </DockPanel>
+</controls:WindowBase>

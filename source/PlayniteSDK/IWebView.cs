@@ -42,6 +42,12 @@ namespace Playnite.SDK
         string GetPageText();
 
         /// <summary>
+        /// Gets page text.
+        /// </summary>
+        /// <returns>Page text.</returns>
+        Task<string> GetPageTextAsync();
+
+        /// <summary>
         /// Gets document source.
         /// </summary>
         /// <returns>Document source.</returns>

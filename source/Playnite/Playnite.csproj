@@ -283,12 +283,14 @@
     <Compile Include="GamesCollectionViewEntry.cs" />
     <Compile Include="GamesEditor.cs" />
     <Compile Include="GlobalTaskHandler.cs" />
+    <Compile Include="GoogleImageDownloader.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="ImageSourceManager.cs" />
     <Compile Include="Input\MouseWheelGesture.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
     <Compile Include="ObservablePowerStatus.cs" />
+    <Compile Include="PlayniteUriHandler.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Plugins\ExtensionInstaller.cs" />
     <Compile Include="Scripting\Batch\Batch.cs" />
@@ -308,6 +310,7 @@
     <Compile Include="Controllers\GameControllerFactory.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
+    <Compile Include="Settings\AutoClientShutdownSettings.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Settings\OldSettings\Plugins.cs" />

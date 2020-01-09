@@ -27,6 +27,10 @@
                                       Style="{DynamicResource ButtonMainMenu}"
                                       Content="{DynamicResource LOCSettingsLabel}" />
 
+                            <ButtonEx x:Name="PART_ButtonUpdateLibrary"
+                                      Style="{DynamicResource ButtonMainMenu}"
+                                      Content="{DynamicResource LOCMenuReloadLibrary}" />
+
                             <ButtonEx x:Name="PART_ButtonExitPlaynite"
                                       Style="{DynamicResource ButtonMainMenu}"
                                       Content="{DynamicResource LOCExitPlaynite}" />

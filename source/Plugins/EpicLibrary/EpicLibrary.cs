@@ -108,6 +108,11 @@ namespace EpicLibrary
 
         public override Guid Id => Guid.Parse("00000002-DBD1-46C6-B5D0-B1BA559D10E4");
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
@@ -179,11 +184,12 @@ namespace EpicLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                playniteApi.Notifications.Add(new NotificationMessage(
                     dbImportMessageId,
                     string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
-                    NotificationType.Error);
+                    NotificationType.Error,
+                    () => OpenSettingsView()));
             }
             else
             {

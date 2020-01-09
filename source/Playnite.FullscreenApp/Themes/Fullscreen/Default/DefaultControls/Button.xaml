@@ -43,6 +43,9 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus" />
                             <Setter Property="Visibility" Value="Hidden" TargetName="BorderStandard" />
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -498,6 +498,11 @@ namespace OriginLibrary
 
         public override Guid Id => Guid.Parse("85DD7072-2F20-4E76-A007-41035E390724");
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
@@ -568,11 +573,12 @@ namespace OriginLibrary
 
             if (importError != null)
             {
-                PlayniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(new NotificationMessage(
                     dbImportMessageId,
                     string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
-                    NotificationType.Error);
+                    NotificationType.Error,
+                    () => OpenSettingsView()));
             }
             else
             {

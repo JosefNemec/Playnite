@@ -49,6 +49,17 @@ namespace Playnite.FullscreenApp.ViewModels
         public ObservableTime CurrentTime { get; } = new ObservableTime();
         public ObservablePowerStatus PowerStatus { get; } = new ObservablePowerStatus();
 
+        private bool databaseUpdateRunning = false;
+        public bool DatabaseUpdateRunning
+        {
+            get => databaseUpdateRunning;
+            set
+            {
+                databaseUpdateRunning = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double windowLeft = 0;
         public double WindowLeft
         {
@@ -143,6 +154,7 @@ namespace Playnite.FullscreenApp.ViewModels
             get => selectedGame;
             set
             {
+                var oldValue = selectedGame;
                 // TODO completely rework and decouple selected game from main view and game details
                 if (value == selectedGame)
                 {
@@ -173,6 +185,10 @@ namespace Playnite.FullscreenApp.ViewModels
                         OnPropertyChanged(nameof(GameDetailsButtonVisible));
                     }
                 }
+
+                Extensions.InvokeOnGameSelected(
+                    oldValue == null ? null : new List <Game> { oldValue.Game },
+                    selectedGame == null ? null : new List<Game> { selectedGame.Game });
             }
         }
 
@@ -423,6 +439,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         public RelayCommand<object> SelectRandomGameCommand { get; private set; }
+        public RelayCommand<object> UpdateGamesCommand { get; private set; }
         #endregion Commands
 
         public FullscreenAppViewModel()
@@ -970,6 +987,16 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 PlayRandomGame();
             });
+
+            UpdateGamesCommand = new RelayCommand<object>(async (a) =>
+            {
+                if (MainMenuVisible)
+                {
+                    ToggleMainMenuCommand.Execute(null);
+                }
+
+                await UpdateDatabase(AppSettings.DownloadMetadataOnImport);
+            }, (a) => !DatabaseUpdateRunning);
         }
 
         private GamesCollectionViewEntry SelectClosestGameDetails()
@@ -1227,6 +1254,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             try
             {
+                DatabaseUpdateRunning = true;
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 GlobalTaskHandler.ProgressTask = Task.Run(async () =>
                 {
@@ -1286,6 +1314,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             finally
             {
+                DatabaseUpdateRunning = false;
                 ProgressVisible = false;
                 DatabaseFilters.IgnoreDatabaseUpdates = false;
             }

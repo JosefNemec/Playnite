@@ -1,6 +1,7 @@
 ﻿using Playnite.Scripting.IronPython;
 using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -107,5 +108,6 @@ namespace Playnite.Scripting
         public abstract void OnGameStopped(Game game, long ellapsedSeconds);
         public abstract void OnGameInstalled(Game game);
         public abstract void OnGameUninstalled(Game game);
+        public abstract void OnGameSelected(GameSelectionEventArgs args);
     }
 }

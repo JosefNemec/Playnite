@@ -20,6 +20,7 @@ using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using Playnite.Metadata;
 using Playnite.SDK;
+using Microsoft.Win32;
 
 namespace Playnite
 {
@@ -1408,7 +1409,29 @@ namespace Playnite
                 backgroundImageAnimation = value;
                 OnPropertyChanged();
             }
-        }        
+        }
+
+        private AutoClientShutdownSettings clientAutoShutdown = new AutoClientShutdownSettings();
+        public AutoClientShutdownSettings ClientAutoShutdown
+        {
+            get => clientAutoShutdown;
+            set
+            {
+                clientAutoShutdown = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool darkenUninstalledGamesGrid = false;
+        public bool DarkenUninstalledGamesGrid
+        {
+            get => darkenUninstalledGamesGrid;
+            set
+            {
+                darkenUninstalledGamesGrid = value;
+                OnPropertyChanged();
+            }
+        }
 
         [JsonIgnore]
         public static bool IsPortable
@@ -1588,6 +1611,37 @@ namespace Playnite
 
         public static void MigrateSettingsConfig()
         {
+        }
+
+        public static void RegisterPlayniteUriProtocol()
+        {
+            var view = RegistryView.Registry32;
+            if (Environment.Is64BitOperatingSystem)
+            {
+                view = RegistryView.Registry64;
+            }
+
+            using (var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, view))
+            {
+                using (var classes = root.OpenSubKey(@"Software\Classes", true))
+                {
+                    var openString = $"\"{PlaynitePaths.DesktopExecutablePath}\" --uridata \"%1\"";
+                    var existing = classes.OpenSubKey(@"Playnite\shell\open\command");
+                    if (existing != null && existing.GetValue(string.Empty)?.ToString() == openString)
+                    {
+                        existing.Dispose();
+                        return;
+                    }
+
+                    var newEntry = classes.CreateSubKey("Playnite");                    
+                    newEntry.SetValue(string.Empty, "URL:playnite");
+                    newEntry.SetValue("URL Protocol", string.Empty);
+                    using (var command = newEntry.CreateSubKey(@"shell\open\command"))
+                    {
+                        command.SetValue(string.Empty, openString);
+                    }
+                }
+            }            
         }
 
         public static void SetBootupStateRegistration(bool runOnBootup)

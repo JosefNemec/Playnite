@@ -327,5 +327,16 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool darkenUninstalledGamesGrid = false;
+        public bool DarkenUninstalledGamesGrid
+        {
+            get => darkenUninstalledGamesGrid;
+            set
+            {
+                darkenUninstalledGamesGrid = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

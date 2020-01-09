@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibraryPlugin
+namespace Playnite.DesktopApp.Controls.SettingsSections
 {
     /// <summary>
-    /// Interaction logic for LibraryPluginSettingsView.xaml
+    /// Interaction logic for EmptyParent.xaml
     /// </summary>
-    public partial class LibraryPluginSettingsView : UserControl
+    public partial class ClientShutdown : UserControl
     {
-        public LibraryPluginSettingsView()
+        public ClientShutdown()
         {
             InitializeComponent();
         }

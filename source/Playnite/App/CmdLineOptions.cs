@@ -12,6 +12,9 @@ namespace Playnite
         [Option("start")]
         public string Start { get; set; }
 
+        [Option("uridata")]
+        public string UriData { get; set; }
+
         [Option("nolibupdate")]
         public bool SkipLibUpdate { get; set; }
 

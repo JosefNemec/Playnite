@@ -14,6 +14,11 @@ namespace Playnite.Common
         public const uint FILE_READ_EA = 0x0008;
         public const uint FILE_FLAG_BACKUP_SEMANTICS = 0x2000000;
 
+        public const uint WM_QUERYENDSESSION = 0x11;
+        public const uint WM_ENDSESSION = 0x16;
+
+        public const uint ENDSESSION_CLOSEAPP = 0x1;
+
         [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public extern static uint GetFinalPathNameByHandle(IntPtr hFile, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszFilePath, uint cchFilePath, uint dwFlags);
 
@@ -57,5 +62,20 @@ namespace Playnite.Common
 
         [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, StringBuilder lParam);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, ref IntPtr lParam);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, IntPtr lParam);
     }
 }
