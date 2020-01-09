@@ -181,10 +181,10 @@ Autommatiškai įtrauktus žaidimus, kuriuos pašalinote Playnite  gali  įtrauk
 {ImageNameNoExt} - Žaidimo ISO/ROM failo vardas be plėtinio
 {PlayniteDir} - Playnite direktorija
 
-Pavyzdys: -image "{ImagePath}" -fullscreen
-Rezultatas: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Pavyzdys: -image &quot;{ImagePath}&quot; -fullscreen
+Rezultatas: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Nepavyksta gauti piktogramos jei veiksmo "Žaisti" nėra arba jis veda į URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Nepavyksta gauti piktogramos jei veiksmo &quot;Žaisti&quot; nėra arba jis veda į URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
@@ -203,10 +203,10 @@ Naudoti duomenis tik iš oficialios parduotuvės.
 IGDB:
 Naudoti duomenis tik iš IGDB.com duombazės.
     
-IGDB > Oficiali parduotuvė:
+IGDB &gt; Oficiali parduotuvė:
 Teikti pirmenybę duomenims iš IGDB.com, neradus ieškoti oficialioje parduotuvėje.
     
-Oficiali parduotuvė > IGDB:
+Oficiali parduotuvė &gt; IGDB:
 Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.com duombazėje.</sys:String>
 
     <!--Progess string-->
@@ -287,13 +287,14 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsFullscreenLabel">Viso ekrano rėžimas</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Šaltiniai</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Įtraukti bibliotekos pakeitimus automatiškai</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Įtraukti įrašytus žaidimus</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importuoti neįrašytus žaidimus</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Įtraukti visus žaidimus</sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Įtraukti visus žaidimus (Vartotojo privatumo nustatymai turi būti nustatyti į viešus("Public") arba turi būti nurodytas API raktas)</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Įtraukti visus žaidimus (Vartotojo privatumo nustatymai turi būti nustatyti į viešus(&quot;Public&quot;) arba turi būti nurodytas API raktas)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Neteisinga duombazės failo vieta, nurtodykite tikslų kelią iki failo.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Vartotojo vardas negali būti tuščias.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Nepasirinktas Steam vartotojas bibliotekos įtraukimui.</sys:String>
@@ -309,6 +310,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Pagreitina navigavimą žaidimų sąraše, bet sulėtina paveikslėlių krovimą.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Rodyti žaidimo pavadinimą tinklelio rėžime</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList"> Rodyti žaidimų piktogramas sąrašo rodinyje</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Rodyti objektų skaičių grupės aprašyme</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
@@ -403,6 +405,11 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nieko</sys:String>
     <sys:String x:Key="LOCStrechFill">Užpildyti</sys:String>
@@ -430,12 +437,12 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emuliacijos importavimo vedlys</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Šis vedlys atsisiųsti ir sukonfigūruoti konsolės emuliatorių bei įtraukti emuliuojamus žaidimus.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Nepamirškite, kad papildomus emuliatorius ir/ arba žadimus galite įtraukti pagrindiniame meniu (pasirinkus "Įrankiai" norint įtraukti emuliatorių ir "Pridėti žaidimą" norint pridėti emuliuojamą žaidimą).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Toliaus matysite sąrašą emuliatorių, kuriuos Playnite atpažįsta ir gali automatiškai sukonfiguruoti. Emuliatorius galite atsisiųsti ir įsirašyti apsilankę jų tiklalapiuose. Kai emuliatoriai bus įrašyti, tęskite perėję į kitą žingsnį ir įtraukite juos į Playnite.
         
 Kitus emuliatorius įtraukti galite bet kada, pasinaudoję konfigūracijos meniu.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Emuliatorių, kuris jau įrašytas Jūsų kompiuteryje, galite įtraukti paspaudus mygtuką "Automatiškai surasti aplanke...". Playnite ieškos visų žinomų emuliatorių ir suteiks pasirinkimą juos įtraukti. aspaudus mygtuką keletą kartų gali įtrauti daugiau nei vieną aplanką, emuliatorius bus pridėtas į šio sąrašo apačią.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">Žaidimus galite įtraukti paspaudę mygtuką "Ieškoti aplanke naudojant emulatorių". Pasirinkus atitinkamą emuliatorių Playnite pradės ieškoti failų, kurie turi būti įtraukti. Paspaudus mygtuką keletą kartų gali įtrauti daugiau nei vieną aplanką, žaidimas bus pridėtas į šio sąrašo apačią.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Emuliatorių, kuris jau įrašytas Jūsų kompiuteryje, galite įtraukti paspaudus mygtuką &quot;Automatiškai surasti aplanke...&quot;. Playnite ieškos visų žinomų emuliatorių ir suteiks pasirinkimą juos įtraukti. aspaudus mygtuką keletą kartų gali įtrauti daugiau nei vieną aplanką, emuliatorius bus pridėtas į šio sąrašo apačią.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Žaidimus galite įtraukti paspaudę mygtuką &quot;Ieškoti aplanke naudojant emulatorių&quot;. Pasirinkus atitinkamą emuliatorių Playnite pradės ieškoti failų, kurie turi būti įtraukti. Paspaudus mygtuką keletą kartų gali įtrauti daugiau nei vieną aplanką, žaidimas bus pridėtas į šio sąrašo apačią.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Nėra pasirinkta emuliatorių įtraukimui. Negalėsite automatiškai įtraukti emuliuojamų žaidimų kol nesukonfiguruotas emuliatorius. Ar tikrai nori tęsti ir nutraukti emuliatoriaus įtraukimo procedūrą?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playnite nėra sukonfiguruotų emuliatorių. Negalima įtraukti žaidimų kol nėra sukonfiguruotas emuliatorius ir nepasirinktas atitinkamas failo tipas. Ar norite pridėti naują emuliatorių dabar?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Ieškoti aplanke naudojant emulatorių</sys:String>
@@ -446,10 +453,7 @@ Kitus emuliatorius įtraukti galite bet kada, pasinaudoję konfigūracijos meniu
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Pirminė konfigūracija</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Šis vedlys padės automatiškai įtraukti žaidimus ir sukonfigūruoti išorines žaidymų bibliotekas. Playnite gali automatiškai gali įtarukti žaidimus iš Steam, GOG ir kitų bibliotekų ir jas antnaujinti.
-        
-Kitą žaidimą(us)bet kada galite pridėti paspaudus Playnite programos logotipą.   
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Pasirinkite bibliotekos duombazės failo vietą. Failo vietą bet kada galėsite pakeisti nustatymų meniu.
 
 Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,rekomenduojame duombazės vietą nustatyti debesyje (Google Drive, Dropbox ir t.t.)</sys:String>
@@ -550,11 +554,11 @@ Ją šiuo metu naudoja {1} žaidimas(ai) ir {2} emulatorius(iai).</sys:String>
     <sys:String x:Key="LOCDatabaseErroTitle">Duombazės klaida</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Nepavyko atidaryti bibliotekos duombazės.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Duombazė neatidaryta.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">Nepavyko pasiekti bibliotekos duombazės. Failas "{0}" yra nepasiekiamas arba jį naudoja kitas procesas.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">Nepavyko pasiekti bibliotekos duombazės. Failas &quot;{0}&quot; yra nepasiekiamas arba jį naudoja kitas procesas.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Nepavyko sukurti diagnostinio paketo.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Nepavyko automatiškai patalpinti diagnostikos paketo.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnostinis paketas sukurtas sėkmingai.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Nepavyko įtraukti steam kategorijų.</sys:String>
     
@@ -573,7 +577,7 @@ Ją šiuo metu naudoja {1} žaidimas(ai) ir {2} emulatorius(iai).</sys:String>
     <sys:String x:Key="LOCLibraryImportError">Importuoti žaidimus iš {0}.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Nepavyko surasti žaidimų pasirinktam emuliatoriaus profiliui.Nenurodytas failo tipas arba platforma.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite nepavyko paleisti. Uždarykite visas atidarytas sesijas ir pabandykite iš naujo.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Nepavyko pritaikyti temos "{0}", spalvų profilio "{1}"
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Nepavyko pritaikyti temos &quot;{0}&quot;, spalvų profilio &quot;{1}&quot;
         
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Nepavyko atidaryti nuorodos, netinkamas URL formatas.</sys:String>
@@ -672,6 +676,8 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom"></sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emuliatoriaus argumentai</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Papildomi emuliatoriaus argumentai</sys:String>
@@ -720,7 +726,7 @@ Bandykite pašalinti problemą:
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Žaidimo paleidimo procesą valdys bibliotekos įskiepis atsakingas už šį žaidimą.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">Patarimas: Detalesnis metadata atsisiuntimo valdymas pavieniui žaidimui galimas pasirinkus punktą "Keisti" .</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">Patarimas: Detalesnis metadata atsisiuntimo valdymas pavieniui žaidimui galimas pasirinkus punktą &quot;Keisti&quot; .</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Negalimas, kai vyksta veiksmas fone.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Aprašymo tekstas yra jautrus HTML sintaksei</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
