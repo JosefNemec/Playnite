@@ -265,6 +265,7 @@
     <sys:String x:Key="LOCSettingsFullscreenLabel">شاشة كاملة</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">المزودين</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">الإدخال</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">البيانات الوصفية</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel"></sys:String>
@@ -287,6 +288,7 @@
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList"></sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
@@ -378,6 +380,11 @@
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -631,6 +638,8 @@
     <sys:String x:Key="LOCFirst">الأول</sys:String>
     <sys:String x:Key="LOCRandom">عشوائي</sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
