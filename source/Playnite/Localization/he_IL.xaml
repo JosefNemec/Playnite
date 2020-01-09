@@ -39,7 +39,7 @@
         
 אם ברצונך לעזור לנו לתקן את הבעיה, אנא תאר בקצרה את הפעולות שנעשו לפני הקריסה ואז צור חבילת אבחון. אם אתם מקוונים, החבילה תועלה לשרתי Playnite לתחקור.
 
-ניתן גם להשתמש בכפתור "דווח על קריסה" ליצירת באג חדש ב GitHub ולדווח על הקריסה ידנית.
+ניתן גם להשתמש בכפתור &quot;דווח על קריסה&quot; ליצירת באג חדש ב GitHub ולדווח על הקריסה ידנית.
 
 תודה על העזרה.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">שגיאה הלא ניתנת להתאוששות.
@@ -193,8 +193,8 @@
 {PlayniteDir} - תיקיית התקנת Playnite
 {Name} - שם המשחק
         
-דוגמא: -image "{ImagePath}" -fullscreen
-יתפרש כ: -image "c:\folder\image.iso" -fullscreen</sys:String>
+דוגמא: -image &quot;{ImagePath}&quot; -fullscreen
+יתפרש כ: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">לא ניתן להשיג סמל אם פעולת המשחק אינה קיימת או נקבעה ל URL.</sys:String>
 
@@ -215,10 +215,10 @@
 IGDB:
 השתמש רק במידע מבסיס הנתונים של IGDB.com.
     
-IGDB > חנות רשמית:
+IGDB &gt; חנות רשמית:
 העדף מידע מ IGDB.com וכשלא זמין השתמש במידע מהחנות הרשמית.
     
-חנות רשמית > IGDB:
+חנות רשמית &gt; IGDB:
 העדף מידע מחנות רשמית וכשאינו זמין השתמש ב IGDB.com.</sys:String>
 
     <!--Progess string-->
@@ -299,6 +299,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsFullscreenLabel">מסך מלא</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">ספקים</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">קלט</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">נתונים</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">ייבא אוטומטית שינויים בספרייה</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">ייבא משחקים שהותקנו</sys:String>
@@ -321,6 +322,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">משפר החלקת גלילה של רשימת משחקים בתמורה לטעינה איטית יותר של תמונות.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">הצג את שם המשחק אם העטיפה אינה זמינה</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">הצג שמות משחקים בתצוגת רשת</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">הצג סמלי משחקים בתצוגה מפורטת</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">הצג כמות פריטים בתיאור קבוצות</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">בטל האצת חומרה</sys:String>
@@ -377,7 +379,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite אינו מזיז קבצי ספריות אוטומטית, נדרש להעתיק\להזיז את הקבצים לפני שהמיקום משתנה. אם שום ספריה לא קיימת במיקום היעד, ספריה חדשה תיווצר.
 
 ייעשה שימוש במיקום מסד נתונים חדש רק לאחר אתחול האפליקציה.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">משך זמן משחק לא יירשם אם פעולת "סגירה" נקבעה.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">משך זמן משחק לא יירשם אם פעולת &quot;סגירה&quot; נקבעה.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">מספר שורות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">מספר עמודות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">מספר שורות תצוגה מפורטת</sys:String>
@@ -418,6 +420,11 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">אם דלוק, Playnite יוריד אומנות רקע במזן הורדת נתונים. עושה שימוש ביותר מקום דיסק והופך אומנות לזמינה במצב לא מקוון.
         
 אם כבוי, אומנות רקע תורד רק כאשר נדרשת לראשונה. נעשה שימוש בפחות מקום דיסק, אך יכול לגרום להמתנה עד שהאומנות תוצג ויכול להיות שתמונות מסוימות לא יהיו זמינות במצב לא מקוון.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">ללא</sys:String>
     <sys:String x:Key="LOCStrechFill">מילוי</sys:String>
@@ -446,13 +453,13 @@ IGDB > חנות רשמית:
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">אשף ייבוא האמולציה</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">אשף זה ילווה אותך בתהליך הורדה וייבוא של אמולטור קונסולה, וכמו כן ייבוא של משחקי אמולציה.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">זכור שתמיד באפשרותך להוסיף אמולטורים ו\או משחקים נוספים מאוחר יותר דרך התפריט הראשי (תחת תפריט "כלים" של הגדרות אמולטורים ותפריט "הוסף משחקים" עבור משחקי אמולציה).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">הרשימה הבאה היא של האמולטורים ש Playnite יכול לזהות ולהגדיר אוטומוטית. ניתן להוריד ולהתקין אותם על ידי ביקור באתר אינטרנט שלהם. כשהאמולטורים מותקנים, המשיכו למסך הבא לייבא אותם ל Playnite.
         
 ניתן גם להגדיר ולייבא כל אמולטור מותאם אישית מאוחר יותר דרך תפריט ההגדרה.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">ניתן לייבא כל אמולטור המותקן על המחשב על ידי לחיצה על כפתור "זיהוי אוטומטי מתיקיה…". Playnite יחפש בתיקיה הנבחרת עבור אמולטורים ידועים ויספק אפשרות לייבא אותם.
-ניתן לייבא ממספר תיקיות על ידי שימוש בכפתור הנ"ל מספר פעמים, אמולטורים יתווספו לתחתית הרשימה.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">ניתן לייבא משחקים על ידי לחיצה על כפתור "סרוק תיקיה על ידי אמולטור". בחירת אמולטור נכון יאמר ל Playnite, אילו סוגי קבצים צריכים להיסרק ולייבא. ניתן לייבא מכמה תיקיות על ידי הכפתור הנ"ל כמה פעמים, המשחקים יתווספו לתחתית הרשימה הנוכחית.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">ניתן לייבא כל אמולטור המותקן על המחשב על ידי לחיצה על כפתור &quot;זיהוי אוטומטי מתיקיה…&quot;. Playnite יחפש בתיקיה הנבחרת עבור אמולטורים ידועים ויספק אפשרות לייבא אותם.
+ניתן לייבא ממספר תיקיות על ידי שימוש בכפתור הנ&quot;ל מספר פעמים, אמולטורים יתווספו לתחתית הרשימה.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">ניתן לייבא משחקים על ידי לחיצה על כפתור &quot;סרוק תיקיה על ידי אמולטור&quot;. בחירת אמולטור נכון יאמר ל Playnite, אילו סוגי קבצים צריכים להיסרק ולייבא. ניתן לייבא מכמה תיקיות על ידי הכפתור הנ&quot;ל כמה פעמים, המשחקים יתווספו לתחתית הרשימה הנוכחית.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">אין אמולטורים שנבחרו לייבוא. לא תוכלו לייבא אוטומטית משחקים בלי להגדיר קודם אמולטורים. האם אתה בטוח שברצונך להמשיך ולצאת מתהליך הייבוא?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">אין אמולטורים שהוגדרו ב Playnite. אין באפשרותך לייבא משחקים בלי להגדיר ראשית אמולטורים ולבחור את סוגי הקבצים הרלוונטיים. האם ברצונך להוסיף אמולטורים כעת?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">סרוק תיקיה באמצעות אמולטור</sys:String>
@@ -463,10 +470,7 @@ IGDB > חנות רשמית:
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">הגדרת הפעם הראשונה</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">האשף ינחה אתכם בתהליך ייבוא משחק אוטומטי והגדרה של ספריות משחק חיצוניות. Playnite יכול לייבא אוטומטית משחקים ממספר שירותים כמו Steam או GOG, וגם לשמור על הספריה שלכם מעודכנת על ידי עדכון אוטומטי בעליית האפליקציה.
-        
-זכרו שתמיד ניתן להוסיף משחק מותאם אישית לכל פלטפורמה ידנית מהתפריט הראשי על ידי לחיצה על כפתור ה 'Playnite'.
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">בחר מיקום לקובץ בסיס נתוני הספריה. ניתן לשנות את המיקום מאוחר יותר בתפריט ההגדרות.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">מיקום ברירת מחדל עבור מידע התוכנה לכל המשתמשים</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">מיקום מותאם אישית</sys:String>
@@ -482,7 +486,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCFirstOtherGamesText">לחץ על הכפתור מתחת כדי לייבא משחקים מותקנים אחרים או לחפש אחריהם ידנית (כולל משחקי Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">ייבא משחקים</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">הסתיימה ההגדרה</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">התקנה ראשונית הסתיימה. זכור שביכולתך לשנות את כל ההגדרות מאוחר יותר על ידי תפריט ה"הגדרות".
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">התקנה ראשונית הסתיימה. זכור שביכולתך לשנות את כל ההגדרות מאוחר יותר על ידי תפריט ה&quot;הגדרות&quot;.
 
 תוכלו גם להוסיף כל משחק אחר (כולל משחקי Microsoft Store) מאוחר יותר מהתפריט הראשי על ידי לחיצה על לוגו האפליקציה של Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">פתח מנחה ייבוא אמולציה</sys:String>
@@ -567,12 +571,11 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCDatabaseErroTitle">שגיאת בסיס נתונים</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">כשלון בטעינת בסיס נתוני הספריה.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">בסיס הנתונים אינו פתוח.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">לא ניתן לגשת לקובץ בסיס נתוני הספריה. הקובץ "{0}" נמצא בשימוש על ידי תהליך אחר או נמצא במקום לא נגיש.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">לא ניתן לגשת לקובץ בסיס נתוני הספריה. הקובץ &quot;{0}&quot; נמצא בשימוש על ידי תהליך אחר או נמצא במקום לא נגיש.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">נכשל ביצירת חבילת אבחון.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">נכשל בהעלאה אוטומטית של חבילת אבחון.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">מידע אבחון נשלח בהצלחה.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">חבילת אבחון נוצרה ונשלחה בהצלחה.
-אבא צרף את המזהה הבא לדוח הקריסה:</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">נכשל בייבוא קטגוריות Steam.</sys:String>
     
@@ -591,7 +594,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCLibraryImportError">נכשל ביבוא משחקים מ {0}.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">לא ניתן לחפש עבור משחקים על ידי פרופיל האמולטור הנבחר. הפרופיל לא מכיל סיומות קבצים או פלטפורמות.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite נכשל להתחיל. אנא סגרו את כל המופעים הרצים של האפליקציה ונסו שוב.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">כישלון בהחלת ערכת נושא "{0}", פרופיל צבע "{1}"
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">כישלון בהחלת ערכת נושא &quot;{0}&quot;, פרופיל צבע &quot;{1}&quot;
         
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">לא ניתן לפתוח קישור, URL לא תקין.</sys:String>
@@ -690,6 +693,8 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCFirst">ראשון</sys:String>
     <sys:String x:Key="LOCRandom">אקראי</sys:String>
     <sys:String x:Key="LOCUserSelect">בחירת משתמש</sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">ארגומנטים לאמולטור</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">ארגומנטים נוספים לאמולטור</sys:String>
@@ -738,7 +743,7 @@ IGDB > חנות רשמית:
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">תהליך הרצת המשחק ינוהל על ידי התוסף תיקיה האחראי על משחק זה.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">לא נמצאו נתונים רלוונטיים על המשחק '{0}' בדף שהוזן.</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">טיפ: ניתן להשתמש בתהליך הורדת נתונים מתקדם יותר בעת עריכת משחק בודד על ידי התפריט "עריכה".</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">טיפ: ניתן להשתמש בתהליך הורדת נתונים מתקדם יותר בעת עריכת משחק בודד על ידי התפריט &quot;עריכה&quot;.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">לא זמין כאשר פעולה כלשהי בתהליך.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">טקסט התיאור הינו רגיש לתחביר HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">זמן משחק נרשם ונשמר בשניות.</sys:String>
