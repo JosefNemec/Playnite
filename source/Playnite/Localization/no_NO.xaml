@@ -301,6 +301,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fullskjerm</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Leverandør</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Inndata</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importer endringer i biblioteket automatisk</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer installerte spill</sys:String>
@@ -323,6 +324,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Forbedrer rullingens glatthet i spillelister i bytte mot tregere belastningstider for bilder.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Vis spillnavn hvis omslagskunst mangler</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Vis spillnavn på rutenettvisning</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Vis spillikoner på detaljvisningslisten</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Vis antall gjenstander på gruppebeskrivelser</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Deaktiver maskinvareakselerasjon</sys:String>
@@ -420,6 +422,11 @@ Ny databaseplassering vil bare bli brukt etter at applikasjonen er startet på n
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Hvis aktivert, vil Playnite laste ned bakgrunnsbilder mens du laster ned metadata. Bruker mer diskplass og gjør illustrasjoner tilgjengelig når du er frakoblet.
 
 Hvis den er deaktivert, lastes bakgrunnsbilder bare ned når det trengs. Bruker mindre plass, men kan føre til en forsinkelse før illustrasjoner vises og noen bilder kanskje ikke er tilgjengelige når de er frakoblet.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Fyll</sys:String>
@@ -448,7 +455,7 @@ Kan også endres i applikasjonsinnstillinger.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Veiviser for emulering</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Denne veiviseren vil guide deg gjennom en prosess med nedlastning og import av konsollemulator, samt import av emulerte spill.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Husk at du alltid kan legge til flere emulatorer og / eller spill senere via hovedmenyen (under &quot;Verktøy&quot; -menyen for emulatorinnstillinger og &quot;Legg til spill&quot; -menyen for emulerte spill).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Følgende er listen over emulatorer Playnite kan gjenkjenne og konfigurere automatisk. Du kan laste ned og installere dem ved å besøke hjemmesiden deres. Når du har installert emulatorer, fortsetter du til neste skjermbilde for å importere dem til Playnite.
 
 Du kan også konfigurere og importere enhver tilpasset emulator senere via konfigurasjonsmenyen.</sys:String>
@@ -464,9 +471,7 @@ Du kan også konfigurere og importere enhver tilpasset emulator senere via konfi
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Første gangs konfigurering</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Denne veiviseren vil guide deg gjennom automatisk prosessimportprosess og konfigurasjon av eksterne spillbiblioteker. Playnite kan automatisk importere spill fra flere spilltjenester som Steam eller GOG, og også holde biblioteket ditt oppdatert ved å oppdatere det automatisk under oppstart av applikasjonen.
-
-Husk at du alltid kan legge til et hvilket som helst tilpasset spill for en hvilken som helst plattform manuelt fra hovedmenyen ved å klikke på 'Playnite' -knappen.    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Velg sted for bibliotekdatabasefil. Plassering kan også endres senere via Innstillinger-menyen.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Standard programdataplassering for alle brukere</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Egendefinert plassering</sys:String>
@@ -571,8 +576,7 @@ Det brukes for øyeblikket av {1} spill (er) og {2} emulator (er).</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Kunne ikke lage diagnosepakke.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Kunne ikke laste opp diagnosepakke automatisk.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnostisk informasjon har blitt sendt.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnostikkpakke ble opprettet og lastet opp.
-Vennligst legg ved følgende ID til krasjrapporten din:</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Kunne ikke importere Steam-kategorier.</sys:String>
     
@@ -690,6 +694,8 @@ Du kan prøve disse for å løse problemet:
     <sys:String x:Key="LOCFirst">Først</sys:String>
     <sys:String x:Key="LOCRandom">Tilfeldig</sys:String>
     <sys:String x:Key="LOCUserSelect">Brukervalg</sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argumenter</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ytterligere emulator argumenter</sys:String>
