@@ -181,8 +181,8 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
 {ImageNameNoExt} - Játék ISO/ROM neve kiterjesztés nélkül
 {PlayniteDir} - Playnite telepítési útvonala
         
-Példa: -image "{ImagePath}" -fullscreen
-Eredménye: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Példa: -image &quot;{ImagePath}&quot; -fullscreen
+Eredménye: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
 
@@ -203,10 +203,10 @@ Csak eredeti áruházból tartalmazó adatokat.
 IGDB:
 Csak IGDB.com-ról származó adatokat.
     
-IGDB > Official Store:
+IGDB &gt; Official Store:
 IGDB adatait használja, de ha nem elérhető akkor használja az eredeti áruházat
     
-Official Store > IGDB:
+Official Store &gt; IGDB:
 Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-t.</sys:String>
 
     <!--Progess string-->
@@ -287,6 +287,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Kliensek</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Könyvtár változások automatikus importálása</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Telepített játékok importálása</sys:String>
@@ -309,6 +310,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Játékok listájának görgetése simább, de a képek ezért lassabban töltenek.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Játékok ikonjainak kijelzése a lista nézetben</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
@@ -403,6 +405,11 @@ Minden jelenlegi művelete (metaadatok letöltése) abba marad.</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -430,12 +437,12 @@ Minden jelenlegi művelete (metaadatok letöltése) abba marad.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulálás importálási segéd</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Ez a varázsló átvezeti a konzol emulátorok letöltésének és importálásának folyamatán, valamint emulált játékok importálásán.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Tartsa észben hogy bármikor hozzá adhat kézileg is emulátort a főmenüben ("Eszközök" menu az emulátor beállításokhoz és"Játék hozzáadása" menu az emulált játékokhoz).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">A következőkben megjelenik a Playnite által felismert és automatikusan konfigurált emulátorok listája. Letöltheti és telepítheti azokat a weboldaluk látogatásával. Miután telepítette az emulátorokat, folytassa a következő képernyőt, hogy importálja őket a Playnite-ba.
         
 Az egyedi emulátorokat később is konfigurálhatja és importálhatja a konfiguráció menüből.</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">Importálhat játékokat ha megnyomja a "Mappa beolvasása Emulátorokhoz" gombot. Megfelelő emulátor kiválasztásával megadja Playnite-nak, hogy mely fájl típusok legyenek beolvasva és importálva. Ennek a gombnak többszöri használatával több játékot is hozzáadhat a jelenlegi listához</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Importálhat játékokat ha megnyomja a &quot;Mappa beolvasása Emulátorokhoz&quot; gombot. Megfelelő emulátor kiválasztásával megadja Playnite-nak, hogy mely fájl típusok legyenek beolvasva és importálva. Ennek a gombnak többszöri használatával több játékot is hozzáadhat a jelenlegi listához</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Nincs kiválasztva emulátor az importáláshoz. Nem tud automatikusan importálni egy emulált játékot sem anélkül hogy beállítana először emulátort. Biztos hogy folytatja és abba hagyja az importálási folyamatot?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Nincs egy emulátor se beállítva Playnite-ban. Nem tud importálni játékokat anélkül hogy konfigurálna emulátort először, és kiválasztana megfelelő fájl típust. Hozzá akar adni most emulátorokat?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Mappa beolvasása Emulátorokhoz</sys:String>
@@ -446,10 +453,7 @@ Az egyedi emulátorokat később is konfigurálhatja és importálhatja a konfig
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Első használatkori konfigurálás</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Ez a varázsló átvezeti önt az automatikus játék importálás folyamatán és külső játék könyvtárak konfigurálásán. Playnite automatikusan tud importálni játékokat több játék szolgáltatón keresztül mint például Steam vagy GOG, és napra készen tudja tartani azokat, az indításkor való frissítéskor.
-        
-Tartsa észben hogy bármikor hozzá adhat kézileg játékot bármelyik platformhoz ha a főmenüben rányom a "Playnite" gombra.   
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Válasszon útvonalat az adatbázis helyéhez. Ezt később megtudja változtatni bármikor.
 
 Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, akkor online tárhelyre állítsa az adatbázist(Google Drive, Dropbox stb.)</sys:String>
@@ -550,11 +554,11 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCDatabaseErroTitle">Adatbázis hiba</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Hiba a könyvtár adatbázis megnyitásakor.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError"></sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">Nem lehet hozzáférni a könyvtár adatbázishoz. A fájl "{0}" egy másik művelet által van használatban, vagy nem lehet hozzáférni.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">Nem lehet hozzáférni a könyvtár adatbázishoz. A fájl &quot;{0}&quot; egy másik művelet által van használatban, vagy nem lehet hozzáférni.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Hiba történt diagnosztika csomag készítésekor</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnosztika csomag sikeresen elkészült.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Hiba steam könyvtárak importálásakor.</sys:String>
     
@@ -573,7 +577,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCLibraryImportError"></sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Nem lehet keresni játékot a kiválasztott emulátor profil alapján. Nem tartalmaz egy platformot  vagy kiterjesztést sem.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite már fut, zárja be a folyamatot majd próbálja meg újra.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"> "{0}" téma alkalmazásakor hiba lépett fel, "{1}" profilban
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"> &quot;{0}&quot; téma alkalmazásakor hiba lépett fel, &quot;{1}&quot; profilban
         
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Link megnyitásakor hiba történt, az URL nem megfelelő formátum.</sys:String>
@@ -667,6 +671,8 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom"></sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulátor parancsok</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Egyéb emulátor parancsok</sys:String>
@@ -715,7 +721,7 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Használhat egy haladóbb metaadat letöltési folyamatot miközben egy játékot szerkeszt "Szerkesztés" menüpont alatt.</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Használhat egy haladóbb metaadat letöltési folyamatot miközben egy játékot szerkeszt &quot;Szerkesztés&quot; menüpont alatt.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nem elérhető néhány folyamat alatt.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Leírás szöveg HTML syntax érzékeny</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
