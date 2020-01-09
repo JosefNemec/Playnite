@@ -195,8 +195,8 @@
 {PlayniteDir} - Playnite 설치 경로
 {Name} - 게임 이름
         
-예시: -image "{ImagePath}" -fullscreen
-결과: -image "c:\folder\image.iso" -fullscreen</sys:String>
+예시: -image &quot;{ImagePath}&quot; -fullscreen
+결과: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">실행 액션이 손실되었거나 실행 액션이 URL로 설정된 경우 아이콘을 불러올 수 없습니다.</sys:String>
 
@@ -217,10 +217,10 @@
 IGDB:
 IGDB.com 데이터베이스만을 사용합니다.
     
-IGDB > 공식 스토어:
+IGDB &gt; 공식 스토어:
 IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 경우 공식 스토어의 데이터를 사용합니다.
     
-공식 스토어 > IGDB:
+공식 스토어 &gt; IGDB:
 공식 스토어의 데이터를 우선 적용하며, 이를 사용할 수 없을 경우 IGDB.com 데이터베이스를 사용합니다.</sys:String>
 
     <!--Progess string-->
@@ -301,6 +301,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenLabel">전체 화면</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">공급자</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">입력</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">메타데이터</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">라이브러리 변경 사항을 자동으로 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">설치된 게임 가져오기</sys:String>
@@ -323,6 +324,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">이미지 로드 시간을 늦추는 대신 게임 목록의 스크롤이 더 부드러워집니다.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">커버 아트가 손실된 경우 게임 이름 표시</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">바둑판식 보기에서 게임 이름 표시</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">자세히 보기 방식의 목록에서 게임 아이콘 표시</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">그룹 설명에 항목 수 표시</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">하드웨어 가속 비활성화</sys:String>
@@ -379,7 +381,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite는 자동으로 데이터베이스 파일을 이동시킬 수 없습니다. 데이터베이스 파일 위치가 변경된 경우 수동으로 이동/복사 하여야 합니다. 만약 데이터베이스가 지정된 위치에 없다면 새로 생성합니다.
 
 새로운 데이터베이스 위치는 재시작후 적용됩니다.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"닫기" 액션이 설정되어있으면 플레이 시간이 기록되지 않습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">&quot;닫기&quot; 액션이 설정되어있으면 플레이 시간이 기록되지 않습니다.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">행 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">열 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">자세히 보기 방식의 열 수</sys:String>
@@ -421,6 +423,11 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
 디스크 사용량이 늘어나며 오프라인에서 아트워크를 사용할 수 있습니다.
         
 비활성화하면 배경 아트워크는 처음에 필요할 때에만 다운로드됩니다. 더 작은 공간을 사용하지만 아트워크가 표시되기 전까지 지연이 생길 수 있으며 몇몇 이미지는 오프라인에서 사용할 수 없을 수도 있습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
@@ -449,12 +456,12 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">에뮬레이터 게임 가져오기 도구</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">이 도구는 콘솔 에뮬레이터를 다운로드하고 가져오는 작업과, 에뮬레이터 게임을 가져오는 작업을 안내합니다.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">추가적인 에뮬레이터나 게임을 언제든 메인 메뉴에서 추가할 수 있다는 것을 기억하십시오. (에뮬레이터 설정은 도구 메뉴에서 가능하며 에뮬레이터 게임은 게임 추가 메뉴에서 가능합니다.)</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">다음 목록에 해당하는 에뮬레이터는 Playnite가 감지하며 자동으로 설정합니다. 에뮬레이터 홈페이지를 방문하여 다운로드 및 설치 할 수 있습니다. 에뮬레이터가 설치되면 Playnite로 불러오기 위하여 다음 화면의 절차를 진행하십시오.
 
 설정 메뉴에서 언제든 에뮬레이터를 설정하거나 custom 에뮬레이터를 불러올 수 있습니다.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">"폴더에서 자동감지" 버튼을 눌러 PC에 설치된 에뮬레이터를 불러올 수 있습니다. Playnite가 선택된 폴더에서 알려진 에뮬레이터를 찾고 불러오기 옵션을 제공할 것입니다. "폴더에서 자동감지" 버튼을 통하여 아래의 현재 리스트에 여러개의 에뮬레이터를 추가 할 수 있습니다.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">"에뮬레이터를 사용하여 폴더 스캔" 버튼을 통하여 게임을 불러올 수 있습니다. 에뮬레이터를 선택하면 어떤 파일 형식을 스캔하고 불러와야하는지 Playnite에 제공합니다. "에뮬레이터를 사용하여 폴더 스캔" 버튼을 통하여 아래의 현재 리스트에 여러개의 게임을 추가 할 수 있습니다.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">&quot;폴더에서 자동감지&quot; 버튼을 눌러 PC에 설치된 에뮬레이터를 불러올 수 있습니다. Playnite가 선택된 폴더에서 알려진 에뮬레이터를 찾고 불러오기 옵션을 제공할 것입니다. &quot;폴더에서 자동감지&quot; 버튼을 통하여 아래의 현재 리스트에 여러개의 에뮬레이터를 추가 할 수 있습니다.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">&quot;에뮬레이터를 사용하여 폴더 스캔&quot; 버튼을 통하여 게임을 불러올 수 있습니다. 에뮬레이터를 선택하면 어떤 파일 형식을 스캔하고 불러와야하는지 Playnite에 제공합니다. &quot;에뮬레이터를 사용하여 폴더 스캔&quot; 버튼을 통하여 아래의 현재 리스트에 여러개의 게임을 추가 할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">불러오기 위한 에뮬레이터가 선택되지 않았습니다. 에뮬레이터 설정 없이 자동으로 에뮬레이터 게임을 불러올 수 없습니다. 불러오기 과정을 계속 진행하시겠습니까?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playnite에 에뮬레이터 설정이 없습니다. 에뮬레이터 설정과 파일 형식 없이 게임을 불러올 수 없습니다. 에뮬레이터를 추가하시겠습니까?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">에뮬레이터를 사용하여 폴더 스캔</sys:String>
@@ -465,9 +472,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">처음 설정</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">외부 게임 라이브러리에서 자동 게임 불러오기 과정과 설정을 안내합니다. Playnite는 Steam, GOG와 같은 다수의 게임 서비스에서 자동으로 게임을 불러올 수 있습니다. 또한 프로그램이 시작될 때 자동으로 당신의 게임 라이브러리를 갱신합니다.
-
-메인 메뉴의 Playnite 버튼을 통하여 어떠한 플랫폼의 게임이라도 수동으로 추가 할 수 있습니다.    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">라이브러리 데이터베이스 파일의 위치를 선택합니다. 데이터 베이스 파일의 위치는 설정 메뉴에서 변경가능합니다.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">모든 유저를 위한 기본 프로그램 데이터 위치</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">변경 위치</sys:String>
@@ -569,12 +574,11 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCDatabaseErroTitle">데이터베이스 오류</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">라이브러리 데이터 베이스 열기 실패</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">데이터베이스가 열리지 않았습니다.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">라이브러리 데이터베이스에 접근 할 수 없습니다. "{0}" 파일이 다른 프로세서에 의하여 사용되고 있거나 접근할 수 없는 경로에 있습니다.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">라이브러리 데이터베이스에 접근 할 수 없습니다. &quot;{0}&quot; 파일이 다른 프로세서에 의하여 사용되고 있거나 접근할 수 없는 경로에 있습니다.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">진단 패키지 생성 실패.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">진단 패키지 자동 업로드 실패.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">진단 정보가 성공적으로 보내졌습니다.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">진단 패키지의 생성 및 업로드 완료되었습니다.
-Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Steam 카테고리 불러오기 실패.</sys:String>
     
@@ -593,7 +597,7 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCLibraryImportError">{0} 으로부터 게임 불러오기 실패.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">선택된 에뮬레이터 프로파일로 부터 게임을 찾을 수 없습니다. 프로파일이 파일 확장자나 플랫폼 정보를 포함 하고 있지 않습니다.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite 실행 실패. 실행 중인 프로그램을 모두 종료하고 다시 시도해 보십시오.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">"{0}" 테마 및 색깔 설정"{1}" 적용실패
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">&quot;{0}&quot; 테마 및 색깔 설정&quot;{1}&quot; 적용실패
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">링크를 열 수 없습니다. URL이 올바른 포맷이 아닙니다.</sys:String>
@@ -692,6 +696,8 @@ Crash 보고서에 위하여 다음의 ID를 첨부하십시오.</sys:String>
     <sys:String x:Key="LOCFirst">첫번째</sys:String>
     <sys:String x:Key="LOCRandom">무작위</sys:String>
     <sys:String x:Key="LOCUserSelect">유저 선택</sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">에뮬레이터 실행 변수</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">추가 에뮬레이터 변수</sys:String>
