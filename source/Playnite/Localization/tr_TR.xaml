@@ -195,8 +195,8 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
 {PlayniteDir} - Playnite kurulum dizini
 {Name} - Oyun ismi
         
-Örnek: -image "{ImagePath}" -fullscreen
-Sonuçları: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Örnek: -image &quot;{ImagePath}&quot; -fullscreen
+Sonuçları: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Oynatma işlemi eksikse veya URL'ye ayarlanmışsa simge alınamıyor.</sys:String>
 
@@ -217,10 +217,10 @@ Sadece Resmi Mağaza verilerini kullan.
 IGDB:
 Sadece IGDB.com verilerini kullan.
     
-IGDB > Resmi Mağaza:
+IGDB &gt; Resmi Mağaza:
 IGDB.com veritabanındaki verileri tercih et ve mümkün olmadığında resmi mağaza verilerini kullan.
     
-Resmi Mağaza > IGDB:
+Resmi Mağaza &gt; IGDB:
 Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanını kullan.</sys:String>
 
     <!--Progess string-->
@@ -234,7 +234,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCProgressLibraryGames">Kütüphane güncellemeleri indiriliyor…</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Kütüphane güncellemeleri indiriliyor…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Kütüphane güncellemesi bitti</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources">Kaynakları serbest bırakma…</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">Kaynaklar serbest bırakılıyor…</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Yapılandırma</sys:String>
@@ -301,7 +301,8 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsFullscreenLabel">Tam Ekran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Sağlayıcılar</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Girdi</sys:String>
-    <sys:String x:Key="LOCSettingsMetadataLabel">Üst veri</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsMetadataLabel">Üst Veri</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Kütüphanedeki değişiklikleri otomatik olarak içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Yüklü oyunları içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">Hesap bağla</sys:String>
@@ -323,11 +324,12 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Daha yavaş görüntü yükleme süreleri karşılığında oyun listelerinin kaydırma düzgünlüğünü artırır.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Kapak resmi eksik olduğunda oyunun adını göster</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Oyun adlarını Kapak görünümünde göster</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Oyun simgelerini Liste görünümünde göster</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Grup açıklamalarında öğe sayısını göster</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Donanım ivmesini devre dışı bırak</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Takılma veya benzeri kullanıcı arayüzü sorunları yaşarken kullanın</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI Ölçeklendirmeyi Devre Dışı Bırak</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI ölçeklendirmeyi devre dışı bırak</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam arkadaşlar düğmesini göster</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Oyun arka planını pencere arka planı olarak kullan</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Arka planı bulanıklaştır</sys:String>
@@ -379,7 +381,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite kütüphane dosyalarını otomatik olarak taşımaz; konumu değişmeden önce kendini taşımalısınız/kopyalamalısınız. Hedef konumda kütüphane bulunamazsa, yeni bir tane oluşturulacak.
 
 Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kullanılabilir.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">"Kapat" eylemi ayarlı ise, oynama zamanı kaydedilmeyecek.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">&quot;Kapat&quot; eylemi ayarlı ise, oynama zamanı kaydedilmeyecek.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Satır sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sütun sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Ayrıntı görünümü satır sayısı</sys:String>
@@ -420,6 +422,11 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Etkinleştirilirse, Playnite üst verileri indirirken arka plan resmini indirir. Bu şekilde daha fazla disk alanı kullanır ancak resmi çevrimdışı kullanılabilir kılar.
         
 Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğunda indirilir. Daha az alan kullanır, ancak resim gösterilmeden önce bir gecikmeye neden olabilir ve bazı resimler çevrimdışı olunduğunda kullanılamayabilir.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
@@ -448,12 +455,12 @@ Aynı zamanda uygulama ayarlarından da değiştirilebilir.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emülatör İçe Aktarma Sihirbazı</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Bu sihirbaz, konsol emülatör indirme ve içe aktarma işlemlerinin yanı sıra emülatör oyunların içe aktarılması sürecinde size rehberlik edecektir.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Her zaman daha sonra ana menüden ek emülatörler ve/veya oyunlar ekleyebileceğinizi unutmayın (Emülatör ayarları için "Araçlar" menüsü ve emülatör oyunlar için "Oyun Ekle" menüsü altında).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Aşağıdaki listede bulunan emülatörleri Playnite tanıyabilir ve otomatik olarak konfigüre edilebilir. Bunları web sitelerini ziyaret ederek indirip yükleyebilirsiniz. Emülatörler kurulduktan sonra Playnite'a aktarmak için bir sonraki ekrana geçin.
         
 Ayrıca herhangi bir emülatörü daha sonra yapılandırma menüsü ile yapılandırabilir ve içe aktarabilirsiniz.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Bilgisayarınızda yüklü olan emülatörleri "Klasörden otomatik algıla…" düğmesine basarak içe aktarabilirsiniz. Playnite, bilinen emülatörler için seçilen klasörü arayacak ve içe aktarma seçeneği sunacak. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, emülatörler geçerli listenin altına eklenir.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">"Emulator kullanarak klasörü tara" düğmesine basarak oyunları içe aktarabilirsiniz. Uygun emülatörün seçilmesi, hangi dosya türlerinin taranıp içe aktarılması gerektiğini Playnite'a söyleyecektir. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, oyunlar geçerli listenin altına eklenir.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Bilgisayarınızda yüklü olan emülatörleri &quot;Klasörden otomatik algıla…&quot; düğmesine basarak içe aktarabilirsiniz. Playnite, bilinen emülatörler için seçilen klasörü arayacak ve içe aktarma seçeneği sunacak. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, emülatörler geçerli listenin altına eklenir.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">&quot;Emulator kullanarak klasörü tara&quot; düğmesine basarak oyunları içe aktarabilirsiniz. Uygun emülatörün seçilmesi, hangi dosya türlerinin taranıp içe aktarılması gerektiğini Playnite'a söyleyecektir. Söz konusu düğmeyi birçok kez kullanarak birden fazla klasörden içe aktarabilirsiniz, oyunlar geçerli listenin altına eklenir.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">İçe aktarma için seçilen emülatör yok. Emülatörü yapılandırmadan, oyunları otomatik olarak içe aktaramazsınız. İçe aktarma işlemini iptal ederek, devam etmek istediğinizden emin misiniz?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playnite'da yapılandırılmış emülatör yok. Önce emülatörü yapılandırmadan ve uygun dosya türlerini seçmeden oyunları içe aktaramazsınız. Şimdi bazı emülatörleri eklemek ister misiniz?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Emülatör kullanarak klasörü tara</sys:String>
@@ -465,10 +472,7 @@ Ayrıca herhangi bir emülatörü daha sonra yapılandırma menüsü ile yapıla
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">İlk Kez Yapılandırma</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Bu sihirbaz, otomatik oyun alma işlemi ve harici oyun kütüphanelerinin yapılandırılması konusunda sana rehberlik edecek. Playnite, Steam veya GOG gibi birden fazla oyun hizmetinden oyunları otomatik olarak alabilir ve uygulama başlatılırken otomatik olarak güncelleyerek kütüphaneni güncel tutabilir.
-        
-Ana menüden 'Playnite' düğmesine tıklayarak herhangi bir platform için herhangi bir oyunu her zaman elle ekleyebileceğini unutma.   
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Kütüphane veritabanı dosyası için konum seçin. Konum daha sonra Ayarlar menüsü aracılığıyla da değiştirilebilir.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Tüm kullanıcılar için varsayılan program veri konumu</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Özel konum</sys:String>
@@ -569,12 +573,11 @@ Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana men�
     <sys:String x:Key="LOCDatabaseErroTitle">Veritabanı Hatası</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Kütüphane veritabanı açılamadı.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Veritabanı açılmadı.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">Kütüphane veritabanına erişilemiyor. "{0}" dosyası başka bir işlem tarafından kullanılıyor veya erişilemeyen bir konumda.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">Kütüphane veritabanına erişilemiyor. &quot;{0}&quot; dosyası başka bir işlem tarafından kullanılıyor veya erişilemeyen bir konumda.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Tanılama paketi oluşturulamadı.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Tanılama paketi otomatik olarak yüklenemedi.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Form bilgisi başarılı bir şekilde gönderildi.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Tanılama paketi başarıyla oluşturuldu ve yüklendi.
-Lütfen kilitlenme raporunuza aşağıdaki kimliği ekleyin:</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Steam kategorileri alınamadı.</sys:String>
     
@@ -593,7 +596,7 @@ Lütfen kilitlenme raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCLibraryImportError">{0} konumundan oyun içe aktarılamadı.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Seçilen emülatör profiline göre oyunlar aranamıyor. Profilde herhangi bir dosya uzantısı veya platform bulunmuyor.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite başlatılamadı. Lütfen çalışan tüm örnekleri kapatın ve tekrar deneyin.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">"{0}" teması, renkli profil "{1}" uygulanamadı
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">&quot;{0}&quot; teması, renkli profil &quot;{1}&quot; uygulanamadı
         
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Bağlantı açılamıyor, URL geçerli biçimde değil.</sys:String>
@@ -692,6 +695,8 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCFirst">İlk</sys:String>
     <sys:String x:Key="LOCRandom">Rastgele</sys:String>
     <sys:String x:Key="LOCUserSelect">Kullanıcı seçimi</sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argümanları</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ek Emulator Argümanları</sys:String>
@@ -740,7 +745,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Oyunun başlangıç ​​süreci, bu oyundan sorumlu kütüphane eklentisi tarafından yönetilecektir.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">Belirtilen sayfada '{0}' oyunu ile ilgili herhangi bir bilgi bulamadık .</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">İpucu: "Düzenle" menü seçeneğiyle tekli oyun düzenlerken daha gelişmiş üst veri indirme işlemini kullanabilirsiniz.</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">İpucu: &quot;Düzenle&quot; menü seçeneğiyle tekli oyun düzenlerken daha gelişmiş üst veri indirme işlemini kullanabilirsiniz.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Bazı işlem devam ederken kullanılamaz.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Açıklama metni HTML sözdizimine duyarlıdır.</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Oynama zamanı izlenir ve saniye olarak kaydedilir.</sys:String>
