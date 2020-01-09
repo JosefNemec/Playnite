@@ -181,10 +181,10 @@ Spil som er importeret til Playnite automatisk, kan komme frem igen efter næste
 {PlayniteDir} - Playnite's installationsmappe
 {Name} - Spillets navn
         
-Eksempel: -image "{ImagePath}" -fullscreen
-Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
+Eksempel: -image &quot;{ImagePath}&quot; -fullscreen
+Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Kan ikke indhente ikon, hvis "Play action" mangler eller er sat til en URL-adresse.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Kan ikke indhente ikon, hvis &quot;Play action&quot; mangler eller er sat til en URL-adresse.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
@@ -277,6 +277,7 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fuld skærm</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Udbydere</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel"></sys:String>
@@ -299,6 +300,7 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList"></sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
@@ -390,6 +392,11 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Udfyld</sys:String>
@@ -643,6 +650,8 @@ Bliver: -image "c:\mappe\billede.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom"></sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
