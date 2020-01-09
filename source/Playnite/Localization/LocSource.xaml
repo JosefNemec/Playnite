@@ -425,7 +425,7 @@ New database location will only be used after application is restarted.</sys:Str
 If disabled, background artwork is downloaded only when first needed. Using less space, but may result in a delay before artwork is displayed and some images might not be available when offline.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatically close launcher after game exits</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Client shutdown grace period (in seconds)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Don't close after game sessions shorter then (in seconds)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Don't close after game sessions shorter than (in seconds)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automatically close following clients:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Auto Close Launchers</sys:String>
 
@@ -456,7 +456,7 @@ Can also be changed in application settings.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulation Import Wizard</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">This wizard will guide you through a process of console emulator download and import, as well as import of emulated games.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Keep in mind that you can always add additional emulators and/or games later via main menu (under "Tools" menu for Emulator settings and "Add Games" menu for emulated games).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Keep in mind that you can always add additional emulators and/or games later via main menu (under "Library" menu for Emulator settings and "Add Games" menu for emulated games).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Following is the list of emulators Playnite can recognize and automatically configure. You can download and install them by visiting their website. Once you have emulators installed, proceed to next screen to import them into Playnite.
         
 You can also configure and import any custom emulator later via configuration menu.</sys:String>
@@ -472,7 +472,7 @@ You can also configure and import any custom emulator later via configuration me
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">First Time Configuration</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">This wizard will guide you through automatic game import process and configuration of external game libraries. Playnite can automatically import games from multiple game services like Steam or GOG, and also keep your library up to date by updating it automaticaly during application startup.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">This wizard will guide you through automatic game import process and configuration of external game libraries. Playnite can automatically import games from multiple game services like Steam or GOG, and also keep your library up to date by updating it automatically during application startup.
         
 Keep in mind that you can always add any custom game for any platform manually from main menu by clicking on 'Playnite' button.   
     </sys:String>
@@ -581,7 +581,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Failed to automatically upload diagnostics package.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnostics information was sent successfully.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Diagnostics package was created and uploaded successfully.
-Please attach following ID to your crash report:</sys:String>
+Please attach following ID to your issue report:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Failed to import Steam categories.</sys:String>
     
