@@ -62,7 +62,7 @@
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">无法更新游戏库，{0}需要MB的可用空间</sys:String>
 
     <sys:String x:Key="LOCGameError">游戏错误</sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame">无法启动游戏， 在数据库中找不到"{0}"</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">无法启动游戏， 在数据库中找不到&quot;{0}&quot;</sys:String>
     <sys:String x:Key="LOCGameStartError">无法启动游戏: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">无法启动操作: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">无法打开游戏位置: {0}</sys:String>
@@ -189,8 +189,8 @@
 {PlayniteDir} - Playnite的安装目录
 {Name} - 游戏名称
         
-例如： -image "{ImagePath}" -fullscreen
-结果在： -image "c:\folder\image.iso" -fullscreen</sys:String>
+例如： -image &quot;{ImagePath}&quot; -fullscreen
+结果在： -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">如果启动操作缺失或设置为链接，则无法获取图标</sys:String>
 
@@ -211,10 +211,10 @@
 IGDB：
 只使用 IGDB.com 数据库的数据
     
-IGDB > 官方商店：
+IGDB &gt; 官方商店：
 首选 IGDB.com 数据库中的数据。若无法使用，则选择官方商店数据库中的数据
     
-官方商店 > IGDB：
+官方商店 &gt; IGDB：
 首选官方商店的数据。若无法使用，则选择 IGDB.com 数据库中的数据</sys:String>
 
     <!--Progess string-->
@@ -295,6 +295,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsFullscreenLabel">全屏</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">提供商</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">输入</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">资料数据</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">自动导入游戏库中的更改</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">导入已安装的游戏</sys:String>
@@ -317,6 +318,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提高游戏列表的滚动平滑度，以换取较慢的图片加载时间</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">封面缺失时显示游戏名</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在封面视图中显示游戏名称</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">在列表视图上显示游戏图标</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">在组描述中显示项目数量</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">禁用硬件加速</sys:String>
@@ -412,6 +414,11 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">无</sys:String>
     <sys:String x:Key="LOCStrechFill">填充</sys:String>
@@ -440,7 +447,7 @@ IGDB > 官方商店：
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">模拟器导入向导</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">此向导将引导您完成控制台模拟器下载和导入过程，以及导入模拟游戏</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">请记住，你随后可以通过主菜单添加另外的模拟器或游戏（在“工具”，“平台和模拟器”，“模拟器”，“添加”）</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">以下是Playnite可识别和自动配置的模拟器列表， 您可以通过访问他们的网站下载并安装它们。一旦你安装了模拟器，进入下一个屏幕将它们导入到Playnite中。
         
 您也可以稍后通过配置菜单配置和导入任何自定义模拟器</sys:String>
@@ -456,10 +463,7 @@ IGDB > 官方商店：
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">首次配置</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">T该向导将引导您完成游戏自动导入过程和外部游戏库的配置。 Playnite可以自动从Steam或GOG等多种游戏服务中导入游戏，也可以通过在应用程序启动过程中自动更新游戏库来保持游戏库的最新状态。
-        
-请记住，您可以随时通过点击“Playnite”按钮在主菜单中手动为任何平台添加任何自定义游戏 
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">选择数据库文件的位置。 稍后也可以通过“设置”菜单更改位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">针对所有用户的默认程序数据位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">自定义位置</sys:String>
@@ -564,8 +568,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCDiagPackageCreationError">创建诊断数据包失败。</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">无法自动上传诊断包</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">诊断信息发送成功。</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">已成功创建并上传诊断包。
-请在崩溃报告中附上以下ID：</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">导入Steam分类失败。</sys:String>
     
@@ -683,6 +686,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCFirst">第一项</sys:String>
     <sys:String x:Key="LOCRandom">随机</sys:String>
     <sys:String x:Key="LOCUserSelect">用户选择</sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">模拟器其他参数</sys:String>
@@ -725,7 +730,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCGameDetails">详细信息</sys:String>
     <sys:String x:Key="LOCUninstallGame">卸载</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">打开安装位置</sys:String>
-    <sys:String x:Key="LOCCreateDesktopShortcut">>创建桌面快捷方式</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">&gt;创建桌面快捷方式</sys:String>
     <sys:String x:Key="LOCMoreAction">更多</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">由库插件管理</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">游戏的启动过程将由负责此游戏的库插件管理</sys:String>
