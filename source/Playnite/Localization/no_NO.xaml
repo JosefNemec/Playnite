@@ -301,7 +301,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fullskjerm</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Leverandør</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Inndata</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Ytelse</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importer endringer i biblioteket automatisk</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer installerte spill</sys:String>
@@ -324,7 +324,7 @@ Foretrekk data fra en offisiell Butikk og når det ikke er tilgjengelig, bruk da
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Forbedrer rullingens glatthet i spillelister i bytte mot tregere belastningstider for bilder.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Vis spillnavn hvis omslagskunst mangler</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Vis spillnavn på rutenettvisning</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Mørklegg avinstallerte spill</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Vis spillikoner på detaljvisningslisten</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Vis antall gjenstander på gruppebeskrivelser</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Deaktiver maskinvareakselerasjon</sys:String>
@@ -422,8 +422,8 @@ Ny databaseplassering vil bare bli brukt etter at applikasjonen er startet på n
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Hvis aktivert, vil Playnite laste ned bakgrunnsbilder mens du laster ned metadata. Bruker mer diskplass og gjør illustrasjoner tilgjengelig når du er frakoblet.
 
 Hvis den er deaktivert, lastes bakgrunnsbilder bare ned når det trengs. Bruker mindre plass, men kan føre til en forsinkelse før illustrasjoner vises og noen bilder kanskje ikke er tilgjengelige når de er frakoblet.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Lukk launcher etter spillet er avsluttet</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Avsluttningsperiode for klient (i sekunder)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
