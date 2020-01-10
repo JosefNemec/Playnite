@@ -299,7 +299,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsFullscreenLabel">מסך מלא</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">ספקים</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">קלט</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">ביצועים</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">נתונים</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">ייבא אוטומטית שינויים בספרייה</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">ייבא משחקים שהותקנו</sys:String>
@@ -322,7 +322,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">משפר החלקת גלילה של רשימת משחקים בתמורה לטעינה איטית יותר של תמונות.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">הצג את שם המשחק אם העטיפה אינה זמינה</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">הצג שמות משחקים בתצוגת רשת</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">השחר משחקים שהוסרו</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">הצג סמלי משחקים בתצוגה מפורטת</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">הצג כמות פריטים בתיאור קבוצות</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">בטל האצת חומרה</sys:String>
@@ -403,7 +403,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsFullscreenLayout">פריסה</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">גלילה אופקית</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">בחר אחד מתתי הסעיפים</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">אין אפשרויות זמינות</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">גודלי גופנים</sys:String>
@@ -423,8 +423,8 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">סגור אוטומטית את התוכנות הבאות:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">סגור מפעילים אוטומטית</sys:String>
 
     <sys:String x:Key="LOCStrechNone">ללא</sys:String>
     <sys:String x:Key="LOCStrechFill">מילוי</sys:String>
@@ -693,8 +693,8 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCFirst">ראשון</sys:String>
     <sys:String x:Key="LOCRandom">אקראי</sys:String>
     <sys:String x:Key="LOCUserSelect">בחירת משתמש</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">טען עוד</sys:String>
+    <sys:String x:Key="LOCTransparent">שקיפות</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">ארגומנטים לאמולטור</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">ארגומנטים נוספים לאמולטור</sys:String>
