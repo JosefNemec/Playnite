@@ -455,7 +455,7 @@ IGDB &gt; 官方商店
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">模擬器匯入精靈</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">本精靈將導引您下載並匯入模擬器以及模擬器遊戲。</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">請留意，您可隨時透過主選單新增模擬器及/或遊戲(在&quot;媒體庫&quot;選單中可找到模擬器設定，&quot;新增遊戲&quot;選單中可新增模擬器遊戲)</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">以下是Playnite可自動辨認及設定的模擬器清單。您可以透過模擬器官網下載並進行安裝。當您完成安裝之後，進到下一步以完成匯入Playnite的步驟。
 
 您也可以稍後透過&quot;設定&quot;選單設定並匯入任何自訂模擬器</sys:String>
@@ -471,7 +471,9 @@ IGDB &gt; 官方商店
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">首次配置</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">本精靈將帶領您完成遊戲匯入以及設定外部遊戲資料庫。Playnite可以自動從遊戲服務商如Steam或GOG匯入遊戲，並透過啟動時自動更新保持遊戲狀態同步。
+
+請留意，您可隨時點擊&quot;Playnite&quot;按鈕，透過主選單手動新增任何平台上的自訂遊戲。    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">選擇資料數據庫的位置。稍後也可於設定選單更改位置。</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">所有使用者的預設程式資料位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">自訂位置</sys:String>
@@ -576,7 +578,8 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCDiagPackageCreationError">創建診斷報告失敗</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">自動上傳診斷報告失敗</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">診斷訊息成功送出</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">已成功創建並發送診斷報告。
+請在回報內容中附上以下ID:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">匯入Steam分類失敗</sys:String>
     
@@ -694,8 +697,8 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCFirst">首項</sys:String>
     <sys:String x:Key="LOCRandom">隨機</sys:String>
     <sys:String x:Key="LOCUserSelect">使用者選擇</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">加載更多</sys:String>
+    <sys:String x:Key="LOCTransparent">透明</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">模擬器引數</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">其他模擬器引數</sys:String>
