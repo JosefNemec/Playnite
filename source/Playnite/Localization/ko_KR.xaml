@@ -301,7 +301,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsFullscreenLabel">전체 화면</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">공급자</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">입력</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">성능</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">메타데이터</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">라이브러리 변경 사항을 자동으로 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">설치된 게임 가져오기</sys:String>
@@ -324,7 +324,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">이미지 로드 시간을 늦추는 대신 게임 목록의 스크롤이 더 부드러워집니다.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">커버 아트가 손실된 경우 게임 이름 표시</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">바둑판식 보기에서 게임 이름 표시</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">삭제한 게임 어둡게 표시하기</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">자세히 보기 방식의 목록에서 게임 아이콘 표시</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">그룹 설명에 항목 수 표시</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">하드웨어 가속 비활성화</sys:String>
@@ -423,11 +423,11 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
 디스크 사용량이 늘어나며 오프라인에서 아트워크를 사용할 수 있습니다.
         
 비활성화하면 배경 아트워크는 처음에 필요할 때에만 다운로드됩니다. 더 작은 공간을 사용하지만 아트워크가 표시되기 전까지 지연이 생길 수 있으며 몇몇 이미지는 오프라인에서 사용할 수 없을 수도 있습니다.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">게임을 종료하면 자동으로 런처를 종료</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">클라이언트 종료까지 남은 시간 (초)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">게임 세션이 다음보다 짧으면 닫지 마세요 (초)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">다음 클라이언트 자동으로 닫기:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">런처 자동으로 닫기</sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
@@ -456,7 +456,7 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">에뮬레이터 게임 가져오기 도구</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">이 도구는 콘솔 에뮬레이터를 다운로드하고 가져오는 작업과, 에뮬레이터 게임을 가져오는 작업을 안내합니다.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">추가적인 에뮬레이터나 게임을 언제든 메인 메뉴에서 추가할 수 있다는 것을 기억하십시오. (에뮬레이터 설정은 &quot;라이브러리&quot; 메뉴에서 가능하며 에뮬레이터 게임은 &quot;게임 추가&quot; 메뉴에서 가능합니다.)</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">다음 목록에 해당하는 에뮬레이터는 Playnite가 감지하며 자동으로 설정합니다. 에뮬레이터 홈페이지를 방문하여 다운로드 및 설치 할 수 있습니다. 에뮬레이터가 설치되면 Playnite로 불러오기 위하여 다음 화면의 절차를 진행하십시오.
 
 설정 메뉴에서 언제든 에뮬레이터를 설정하거나 custom 에뮬레이터를 불러올 수 있습니다.</sys:String>
@@ -472,7 +472,9 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">처음 설정</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">외부 게임 라이브러리에서 자동 게임 불러오기 과정과 설정을 안내합니다. Playnite는 Steam, GOG와 같은 다수의 게임 서비스에서 자동으로 게임을 불러올 수 있습니다. 또한 프로그램이 시작될 때 자동으로 당신의 게임 라이브러리를 갱신합니다.
+
+메인 메뉴의 'Playnite' 버튼을 통하여 어떠한 플랫폼의 게임이라도 수동으로 추가 할 수 있습니다.    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">라이브러리 데이터베이스 파일의 위치를 선택합니다. 데이터 베이스 파일의 위치는 설정 메뉴에서 변경가능합니다.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">모든 유저를 위한 기본 프로그램 데이터 위치</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">변경 위치</sys:String>
@@ -578,7 +580,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCDiagPackageCreationError">진단 패키지 생성 실패.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">진단 패키지 자동 업로드 실패.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">진단 정보가 성공적으로 보내졌습니다.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">분석 패키지가 성공적으로 생성되었으며 업로드되었습니다.
+다음 아이디를 이슈 리포트에 첨부해주세요:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Steam 카테고리 불러오기 실패.</sys:String>
     
@@ -696,8 +699,8 @@ IGDB.com 데이터베이스를 우선 적용하며, 이를 사용할 수 없을 
     <sys:String x:Key="LOCFirst">첫번째</sys:String>
     <sys:String x:Key="LOCRandom">무작위</sys:String>
     <sys:String x:Key="LOCUserSelect">유저 선택</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">더 보기</sys:String>
+    <sys:String x:Key="LOCTransparent">투명</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">에뮬레이터 실행 변수</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">추가 에뮬레이터 변수</sys:String>
