@@ -25,6 +25,9 @@ namespace Playnite
         public static string ConfigFilePath => Path.Combine(ConfigRootPath, "config.json");
         public static string FullscreenConfigFilePath => Path.Combine(ConfigRootPath, "fullscreenConfig.json");
         public static string WindowPositionsPath => Path.Combine(ConfigRootPath, "windowPositions.json");
+        public static string BackupConfigFilePath => Path.Combine(ConfigRootPath, "Backup", "config.json");
+        public static string BackupFullscreenConfigFilePath => Path.Combine(ConfigRootPath, "Backup", "fullscreenConfig.json");
+        public static string BackupWindowPositionsPath => Path.Combine(ConfigRootPath, "Backup", "windowPositions.json");
         public static string DataCachePath => Path.Combine(ConfigRootPath, "cache");        
         public static string ImagesCachePath => Path.Combine(DataCachePath, "images");
         public static string UserProgramDataPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
