@@ -324,7 +324,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提升瀏覽遊戲列表時的滑鼠滾動順暢度，但圖片讀取速度相對較慢</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">如無封面圖片則顯示遊戲名稱</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在網格檢視中顯示遊戲名稱</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">以暗色顯示未安裝遊戲</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">在詳細檢視中顯示遊戲圖示</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">在分組描述中顯示遊戲數量</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">停用硬體加速</sys:String>
@@ -422,11 +422,11 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">若啟用本功能則Playnite會於下載原數據時一併下載背景圖片。將佔用額外的硬碟空間且可於離線時瀏覽圖片。
         
 若禁用本功能則僅會於首次使用時下載背景圖片。可節省硬碟空間但可能造成圖片讀取速度緩慢且某些圖片可能無法於離線時觀看。</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">退出遊戲時自動關閉遊戲啟動器</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">延緩客戶端關閉時間(秒)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">當遊戲時間低於(秒) 則不關閉</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自動關閉以下客戶端:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉遊戲啟動器</sys:String>
 
     <sys:String x:Key="LOCStrechNone">無</sys:String>
     <sys:String x:Key="LOCStrechFill">填滿</sys:String>
