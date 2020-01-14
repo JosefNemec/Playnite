@@ -408,13 +408,18 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.BackgroundImage, MetadataField.BackgroundImage, (a) => a.BackgroundImage, existingStoreData, existingPluginData);
                                 if (gameData?.BackgroundImage != null)
                                 {
-                                    if (playniteSettings.DownloadBackgroundsImmediately || gameData.BackgroundImage.HasContent)
+                                    if (playniteSettings.DownloadBackgroundsImmediately && gameData.BackgroundImage.HasImageData)
                                     {
                                         game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
                                     }
-                                    else
+                                    else if (!playniteSettings.DownloadBackgroundsImmediately &&
+                                             !gameData.BackgroundImage.OriginalUrl.IsNullOrEmpty())
                                     {
                                         game.BackgroundImage = gameData.BackgroundImage.OriginalUrl;
+                                    }
+                                    else if (gameData.BackgroundImage.HasImageData)
+                                    {
+                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
                                     }
                                 }
                             }

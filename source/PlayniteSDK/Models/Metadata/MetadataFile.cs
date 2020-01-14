@@ -21,6 +21,14 @@ namespace Playnite.SDK.Metadata
         }
 
         /// <summary>
+        /// Indicates whether there's some source information for the file (content or URL).
+        /// </summary>
+        public bool HasImageData
+        {
+            get => HasContent || !string.IsNullOrEmpty(OriginalUrl);
+        }
+
+        /// <summary>
         /// Gets or sets file name.
         /// </summary>
         public string FileName
