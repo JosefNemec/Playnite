@@ -105,7 +105,7 @@ namespace IGDBMetadata
                         }
                     }
 
-                    if (selected != null)
+                    if (selected != null && !selected.url.IsNullOrEmpty())
                     {
                         if (selected.height > 1080)
                         {
@@ -134,7 +134,7 @@ namespace IGDBMetadata
 
         public override MetadataFile GetCoverImage()
         {
-            if (AvailableFields.Contains(MetadataField.CoverImage))
+            if (AvailableFields.Contains(MetadataField.CoverImage) && !IgdbData.cover_v3.url.IsNullOrEmpty())
             {
                 if (IgdbData.cover_v3.height > 1080)
                 {
