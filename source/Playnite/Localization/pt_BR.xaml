@@ -301,7 +301,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsFullscreenLabel">Tela cheia</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Provedores</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Desempenho</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadados</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importar alterações na biblioteca automaticamente</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importar jogos instalados</sys:String>
@@ -324,7 +324,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Melhora a suavidade da rolagem nas listas de jogos, mas as imagens podem carregar mais lentamente.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar o nome do jogo quando não houver capa</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar o nome dos jogos no esquema de grade</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Escurecer jogos não instalados</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostrar o ícone dos jogos no esquema de detalhes</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostrar um contador de itens nas descrições de grupos</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desabilitar a aceleração de hardware</sys:String>
@@ -422,11 +422,11 @@ O novo local do banco de dados será usado somente após o aplicativo ser reinic
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se habilitado, o Playnite baixará as imagens de fundo enquanto baixa os metadados, usando mais espaço em disco e disponibilizando as imagens mesmo quando estiver offline.
         
 Se desabilitado, as imagens de fundo só serão baixadas quando necessário, usando menos espaço, mas podendo resultar em atrasos na exibição das imagens e algumas imagens podem não estar disponíveis quando estiver offline.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Fechar automaticamente o lançador ao fechar o jogo</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Período de tolerância ao fechar o cliente (em segundos)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Não fechar após sessões mais curtas do que (em segundos)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fechar automaticamente os seguintes clientes:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Fechar lançadores automaticamente</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preenchimento</sys:String>
@@ -455,7 +455,7 @@ Esta opção também pode ser alterada nas configurações do aplicativo.</sys:S
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Assistente de Importação de Emuladores</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Este assistente lhe ajudará a baixar e importar emuladores de consoles, bem como a importar os jogos emulados.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Tenha em mente que você sempre pode adicionar outros emuladores e/ou jogos mais tarde através do menu principal (no menu &quot;Biblioteca&quot; para configurações de emuladores e no menu &quot;Adicionar jogos&quot; para jogos emulados).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">A seguir está a lista de emuladores que o Playnite reconhece e configura automaticamente. Você pode baixá-los e instalá-los visitando seus respectivos sites. Assim que estiver com os emuladores instalados, vá para a próxima tela para importá-los para o Playnite.
         
 Você também poderá configurar e importar emuladores personalizados posteriormente através do menu de configurações.</sys:String>
@@ -471,7 +471,10 @@ Você também poderá configurar e importar emuladores personalizados posteriorm
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Configuração Inicial</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Este assistente lhe ajudará no processo de importação automática de jogos e configuração de bibliotecas de jogos externas. O Playnite pode importar automaticamente jogos de vários serviços de jogos como o Steam ou o GOG, além de manter a sua biblioteca sempre atualizada, atualizando-os de forma automática durante a inicialização do programa.
+        
+Tenha em mente que você sempre pode adicionar jogos personalizados de qualquer plataforma manualmente através do menu principal, clicando no botão &quot;Playnite&quot;.   
+    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Selecione o local onde o arquivo de banco de dados da biblioteca ficará guardado. Este local poderá ser alterado posteriormente através do menu Configurações.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Local padrão dos dados do programa para todos os usuários</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Local personalizado</sys:String>
@@ -576,7 +579,8 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Falha ao criar o pacote de diagnóstico.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Falha ao enviar automaticamente o pacote de diagnósticos.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">As informações de diagnóstico foram enviadas com sucesso.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">O pacote de diagnósticos foi criado e enviado com sucesso.
+Anexe a seguinte ID ao seu relatório de falha:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Falha ao importar as categorias do Steam.</sys:String>
     
@@ -694,8 +698,8 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCFirst">Primeiro</sys:String>
     <sys:String x:Key="LOCRandom">Aleatório</sys:String>
     <sys:String x:Key="LOCUserSelect">Selecionar usuário</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">Carregar mais</sys:String>
+    <sys:String x:Key="LOCTransparent">Transparente</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos adicionais do emulador</sys:String>
