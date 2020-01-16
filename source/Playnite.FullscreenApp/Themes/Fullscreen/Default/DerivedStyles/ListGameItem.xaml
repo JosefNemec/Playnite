@@ -47,7 +47,7 @@
                                 </PriorityBinding>
                             </Image.Source>
                         </Image>
-                        <Border Background="#CC000000" x:Name="BorderDarken" Visibility="Collapsed" />
+                        <Border Background="#AA000000" x:Name="BorderDarken" Visibility="Collapsed" />
                         <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
                                    Visibility="{Settings Fullscreen.ShowGameTitles}"
                                    Style="{DynamicResource TextBlockBaseStyle}" FontSize="18"
