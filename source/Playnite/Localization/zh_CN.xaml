@@ -416,9 +416,9 @@ IGDB &gt; 官方商店：
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">退出游戏后自动关闭启动器</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">游戏时间短于该时间时不关闭（单位：秒）</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自动关闭以下客户端：</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">自动关闭启动器</sys:String>
 
     <sys:String x:Key="LOCStrechNone">无</sys:String>
     <sys:String x:Key="LOCStrechFill">填充</sys:String>
@@ -568,7 +568,8 @@ IGDB &gt; 官方商店：
     <sys:String x:Key="LOCDiagPackageCreationError">创建诊断数据包失败。</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">无法自动上传诊断包</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">诊断信息发送成功。</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">诊断数据包已成功创建并上传。
+请在你的问题报告中附上以下ID：</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">导入Steam分类失败。</sys:String>
     
@@ -686,8 +687,8 @@ IGDB &gt; 官方商店：
     <sys:String x:Key="LOCFirst">第一项</sys:String>
     <sys:String x:Key="LOCRandom">随机</sys:String>
     <sys:String x:Key="LOCUserSelect">用户选择</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">加载更多</sys:String>
+    <sys:String x:Key="LOCTransparent">透明</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">模拟器其他参数</sys:String>
@@ -700,37 +701,37 @@ IGDB &gt; 官方商店：
     <sys:String x:Key="LOCUpdaterInstallUpdate">下载并安装更新</sys:String>
     <sys:String x:Key="LOCCheckForUpdates">检查更新</sys:String>
     <sys:String x:Key="LOCUpdateError">更新错误</sys:String>
-    <sys:String x:Key="LOCUpdateCheckFailMessage">无法检查新版本</sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">找不到新版本，您已是最新版本</sys:String>
-    <sys:String x:Key="LOCGeneralUpdateFailMessage">无法下载并安装更新</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">后台任务当前正在运行，是否要取消它并使用更新安装进行处理？</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">后台任务当前正在运行，您要取消它并关闭Playnite吗？</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">检查新版本失败。</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">未发现新版本，你已更新至最新版本。</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">下载并安装更新失败。</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">目前有后台任务正在运行，你想要取消并开始安装更新吗？</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">目前有后台任务正在运行，你想要取消并关闭Playnite吗？</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">一个新的更新可用于Playtion</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">重新加载主题列表</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">应用选定的主题</sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChanges">观看文件更改</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChanges">监视文件更改</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">源文件更改时自动应用主题</sys:String>
-    <sys:String x:Key="LOCScriptRuntime">脚本运行库</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription">开始游戏前执行</sys:String>
-    <sys:String x:Key="LOCPostScriptDescription">开始结束后执行</sys:String>
+    <sys:String x:Key="LOCScriptRuntime">脚本运行时</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">启动游戏前执行</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">退出游戏后执行</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">保存为默认</sys:String>
-    <sys:String x:Key="LOCFavoriteGame">添加到收藏夹</sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame">从收藏夹中删除</sys:String>
+    <sys:String x:Key="LOCFavoriteGame">添加至收藏</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">从收藏中删除</sys:String>
     <sys:String x:Key="LOCHideGame">隐藏</sys:String>
     <sys:String x:Key="LOCUnHideGame">在游戏库中显示</sys:String>
     <sys:String x:Key="LOCEditGame">编辑…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">设置分类…</sys:String>
-    <sys:String x:Key="LOCRemoveGame">移除</sys:String>
+    <sys:String x:Key="LOCRemoveGame">删除</sys:String>
     <sys:String x:Key="LOCPlayGame">开始游戏</sys:String>
     <sys:String x:Key="LOCInstallGame">安装</sys:String>
     <sys:String x:Key="LOCGameOptions">游戏选项</sys:String>
-    <sys:String x:Key="LOCGameDetails">详细信息</sys:String>
+    <sys:String x:Key="LOCGameDetails">详情</sys:String>
     <sys:String x:Key="LOCUninstallGame">卸载</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">打开安装位置</sys:String>
-    <sys:String x:Key="LOCCreateDesktopShortcut">&gt;创建桌面快捷方式</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">创建桌面快捷方式</sys:String>
     <sys:String x:Key="LOCMoreAction">更多</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">由库插件管理</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">游戏的启动过程将由负责此游戏的库插件管理</sys:String>
@@ -739,7 +740,7 @@ IGDB &gt; 官方商店：
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示：您可以通过“编辑”菜单选项编辑单个游戏时使用更高级的数据下载过程</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些操作正在进行时不可用</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本是HTML语法敏感的</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">游戏时间以秒为单位追踪并储存。</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">分值从0到100或为空以不计分</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite的开发得到了这些赞助者的支持：</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">代码，本地化和其他贡献者（没有特定的顺序）：</sys:String>
@@ -815,7 +816,7 @@ By {1}
 
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">性能警告</sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">不再显示</sys:String>
 
 
     <!--Common Library-->
