@@ -7,17 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace CustomMetadataPlugin
+namespace _namespace_
 {
-    public class CustomMetadataPlugin : MetadataPlugin
+    public class _name_ : MetadataPlugin
     {
         private static readonly ILogger logger = LogManager.GetLogger();
 
-        private CustomMetadataSettings settings { get; set; }
+        private _name_Settings settings { get; set; }
 
-        // Change this ID to unique non-empty GUID
         public override Guid Id { get; } = Guid.Parse("00000000-0000-0000-0000-000000000001");
-                
+
         public override List<MetadataField> SupportedFields { get; } = new List<MetadataField>
         {
             MetadataField.Description
@@ -27,14 +26,14 @@ namespace CustomMetadataPlugin
         // Change to something more appropriate
         public override string Name => "Custom Metadata";
 
-        public CustomMetadataPlugin(IPlayniteAPI api) : base(api)
+        public _name_(IPlayniteAPI api) : base(api)
         {
-            settings = new CustomMetadataSettings(this);
+            settings = new _name_Settings(this);
         }
 
         public override OnDemandMetadataProvider GetMetadataProvider(MetadataRequestOptions options)
         {
-            return new CustomMetadataProvider(options, this);
+            return new _name_Provider(options, this);
         }
 
         public override ISettings GetSettings(bool firstRunSettings)
@@ -44,7 +43,7 @@ namespace CustomMetadataPlugin
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            return new CustomMetadataSettingsView();
+            return new _name_SettingsView();
         }
     }
 }

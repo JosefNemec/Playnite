@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomLibraryPlugin
+namespace _namespace_
 {
-    public class CustomLibrarySettings : ISettings
+    public class _name_Settings : ISettings
     {
-        private readonly CustomLibraryPlugin plugin;
+        private readonly _name_ plugin;
 
         public string Option1 { get; set; } = string.Empty;
 
@@ -22,17 +22,17 @@ namespace CustomLibraryPlugin
         public bool OptionThatWontBeSaved { get; set; } = false;
 
         // Parameterless constructor must exist if you want to use LoadPluginSettings method.
-        public CustomLibrarySettings()
+        public _name_Settings()
         {
         }
 
-        public CustomLibrarySettings(CustomLibraryPlugin plugin)
+        public _name_Settings(_name_ plugin)
         {
             // Injecting your plugin instance is required for Save/Load method because Playnite saves data to a location based on what plugin requested the operation.
             this.plugin = plugin;
 
             // Load saved settings.
-            var savedSettings = plugin.LoadPluginSettings<CustomLibrarySettings>();
+            var savedSettings = plugin.LoadPluginSettings<_name_Settings>();
 
             // LoadPluginSettings returns null if not saved data is available.
             if (savedSettings != null)

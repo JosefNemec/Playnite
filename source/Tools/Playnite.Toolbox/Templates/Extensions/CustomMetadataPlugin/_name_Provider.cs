@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomMetadataPlugin
+namespace _namespace_
 {
-    public class CustomMetadataProvider : OnDemandMetadataProvider
+    public class _name_Provider : OnDemandMetadataProvider
     {
         private readonly MetadataRequestOptions options;
 
         public override List<MetadataField> AvailableFields => throw new NotImplementedException();
 
-        public CustomMetadataProvider(MetadataRequestOptions options, CustomMetadataPlugin plugin)
+        public _name_Provider(MetadataRequestOptions options, _name_ plugin)
         {
             this.options = options;
         }

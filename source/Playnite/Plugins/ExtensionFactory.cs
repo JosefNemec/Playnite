@@ -36,8 +36,6 @@ namespace Playnite.Plugins
         private IGameDatabase database;
         private GameControllerFactory controllers;
 
-        public const string ExtensionManifestFileName = "extension.yaml";
-
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
             get;
@@ -185,6 +183,11 @@ namespace Playnite.Plugins
             }
         }
 
+        public static ExtensionDescription GetExtensionDescriptor(string path)
+        {
+            return Serialization.FromYaml<ExtensionDescription>(File.ReadAllText(path));
+        }
+
         public List<ExtensionDescription> GetExtensionDescriptors()
         {
             var descs = new List<ExtensionDescription>();
@@ -211,9 +214,9 @@ namespace Playnite.Plugins
 
             if (!PlayniteSettings.IsPortable && Directory.Exists(PlaynitePaths.ExtensionsUserDataPath))
             {
-                var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsUserDataPath, ExtensionManifestFileName, SearchOption.AllDirectories);
+                var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)
-                {       
+                {
                     plugins.Add(desc.FullName);
                     var info = new FileInfo(desc.FullName);
                     added.Add(info.Directory.Name);
@@ -222,7 +225,7 @@ namespace Playnite.Plugins
 
             if (Directory.Exists(PlaynitePaths.ExtensionsProgramPath))
             {
-                var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsProgramPath, ExtensionManifestFileName, SearchOption.AllDirectories);
+                var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)
                 {
                     plugins.Add(desc.FullName);
@@ -283,8 +286,8 @@ namespace Playnite.Plugins
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {scriptPath}");
                     continue;
-                }                
-                
+                }
+
                 Scripts.Add(script);
                 logger.Info($"Loaded script extension: {scriptPath}");
 
@@ -308,8 +311,8 @@ namespace Playnite.Plugins
                 {
                     var plugins = LoadPlugins(desc, injectingApi);
                     foreach (var plugin in plugins)
-                    {                        
-                        Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));                        
+                    {
+                        Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
                         var plugFunc = plugin.GetFunctions();
                         if (plugFunc?.Any() == true)
                         {
@@ -327,7 +330,7 @@ namespace Playnite.Plugins
 
             PluginFunctions = funcs;
         }
-        
+
         public IEnumerable<Plugin> LoadPlugins(ExtensionDescription descriptor, IPlayniteAPI injectingApi)
         {
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);

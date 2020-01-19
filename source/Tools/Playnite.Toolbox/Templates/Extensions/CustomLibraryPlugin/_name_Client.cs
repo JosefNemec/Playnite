@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomLibraryPlugin
+namespace _namespace_
 {
-    public class CustomClient : LibraryClient
+    public class _name_Client : LibraryClient
     {
         public override bool IsInstalled => true;
 

@@ -8,26 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace CustomLibraryPlugin
+namespace _namespace_
 {
-    public class CustomLibraryPlugin : LibraryPlugin
+    public class _name_ : LibraryPlugin
     {
         private static readonly ILogger logger = LogManager.GetLogger();
 
-        private CustomLibrarySettings settings { get; set; }
+        private _name_Settings settings { get; set; }
+
+        public override Guid Id { get; } = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
         // Change to something more appropriate
         public override string Name => "Custom Library";
 
-        // Change this ID to unique non-empty GUID
-        public override Guid Id { get; } = Guid.Parse("00000000-0000-0000-0000-000000000001");
-
         // Implementing Client adds ability to open it via special menu in playnite.
-        public override LibraryClient Client { get; } = new CustomClient();
+        public override LibraryClient Client { get; } = new _name_Client();
 
-        public CustomLibraryPlugin(IPlayniteAPI api) : base(api)
+        public _name_(IPlayniteAPI api) : base(api)
         {
-            settings = new CustomLibrarySettings(this);
+            settings = new _name_Settings(this);
         }
 
         public override IEnumerable<GameInfo> GetGames()
@@ -70,7 +69,7 @@ namespace CustomLibraryPlugin
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            return new CustomLibrarySettingsView();
+            return new _name_SettingsView();
         }
     }
 }

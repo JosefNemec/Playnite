@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomLibraryPlugin", "LibraryPlugin\CustomLibraryPlugin.csproj", "{2351B5C1-6E28-4B79-A1D9-90FDA53B5417}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomLibraryPlugin", "CustomLibraryPlugin\CustomLibraryPlugin.csproj", "{2351B5C1-6E28-4B79-A1D9-90FDA53B5417}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericPlugin", "GenericPlugin\GenericPlugin.csproj", "{4FDF1E89-5BC3-4C72-8FDA-0D580E7A5D5F}"
 EndProject

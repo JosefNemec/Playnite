@@ -13,14 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GenericPlugin
+namespace _namespace_
 {
-    /// <summary>
-    /// Interaction logic for GenericPluginSettingsView.xaml
-    /// </summary>
-    public partial class GenericPluginSettingsView : UserControl
+    public partial class _name_SettingsView : UserControl
     {
-        public GenericPluginSettingsView()
+        public _name_SettingsView()
         {
             InitializeComponent();
         }

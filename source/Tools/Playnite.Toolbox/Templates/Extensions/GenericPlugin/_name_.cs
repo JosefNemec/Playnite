@@ -8,20 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace GenericPlugin
+namespace _namespace_
 {
-    public class GenericPlugin : Plugin
+    public class _name_ : Plugin
     {
         private static readonly ILogger logger = LogManager.GetLogger();
 
-        private GenericPluginSettings settings { get; set; }
+        private _name_Settings settings { get; set; }
 
-        // Change this ID to unique non-empty GUID
         public override Guid Id { get; } = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
-        public GenericPlugin(IPlayniteAPI api) : base(api)
+        public _name_(IPlayniteAPI api) : base(api)
         {
-            settings = new GenericPluginSettings(this);
+            settings = new _name_Settings(this);
         }
 
         public override IEnumerable<ExtensionFunction> GetFunctions()
@@ -75,7 +74,7 @@ namespace GenericPlugin
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            return new GenericPluginSettingsView();
+            return new _name_SettingsView();
         }
     }
 }

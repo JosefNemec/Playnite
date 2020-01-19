@@ -13,14 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CustomLibraryPlugin
+namespace _namespace_
 {
-    /// <summary>
-    /// Interaction logic for CustomLibraryView.xaml
-    /// </summary>
-    public partial class CustomLibrarySettingsView : UserControl
+    public partial class _name_SettingsView : UserControl
     {
-        public CustomLibrarySettingsView()
+        public _name_SettingsView()
         {
             InitializeComponent();
         }
