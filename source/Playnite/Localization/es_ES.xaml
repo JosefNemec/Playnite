@@ -301,7 +301,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pantalla Completa</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Proveedores</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Rendimiento</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadatos</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importar cambios en la biblioteca automáticamente</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importar juegos instalados</sys:String>
@@ -324,7 +324,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Mejora la suavidad de desplazamiento de las listas de juegos a cambio de tiempos de carga de imágenes más lentos.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar nombre del juego si falta arte de portada</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar nombres de juegos en la vista de Cuadrícula</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Oscurecer juegos desinstalados</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostrar iconos de juegos en la lista de Vista de Detalles</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostrar recuento de elementos en las descripciones de los grupos</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desactivar aceleración por hardware</sys:String>
@@ -694,8 +694,8 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCFirst">Primero</sys:String>
     <sys:String x:Key="LOCRandom">Aleatorio</sys:String>
     <sys:String x:Key="LOCUserSelect">Selección de usuario</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">Cargar más</sys:String>
+    <sys:String x:Key="LOCTransparent">Transparente</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos del Emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos del Emulador Adicionales</sys:String>
