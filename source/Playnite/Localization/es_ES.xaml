@@ -422,11 +422,11 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Si está habilitado, Playnite descargará ilustraciones de fondo mientras descarga metadatos. Se usará más espacio en disco y hace que las ilustraciones estén disponibles sin conexión.
         
 Si está deshabilitado, las ilustraciones de fondo se descargan solo cuando es necesario.  Se usará menos espacio, pero puede provocar un retraso antes de que se muestre la ilustración y algunas imágenes pueden no estar disponibles sin conexión.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Cerrar automáticamente el cliente después de salir del juego</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Periodo de gracia de cierre del cliente (en segundos)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">No cerrar después de sesiones de juego más cortas que (en segundos)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Cerrar automáticamente los siguientes clientes:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Cerrar automáticamente clientes</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ninguno</sys:String>
     <sys:String x:Key="LOCStrechFill">Rellenar</sys:String>
@@ -455,7 +455,7 @@ También puede cambiarse en las opciones de aplicación.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Asistente de Importación de Emulación</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Este asistente lo guiará a través del proceso de descarga e importación de emuladores de consolas, así como de importación de juegos emulados.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Ten en cuenta que siempre puede agregar emuladores y/o juegos adicionales más tarde a través del menú principal (en el menú &quot;Biblioteca&quot; para la configuración del emulador y el menú &quot;Agregar juegos&quot; para juegos emulados).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">A continuación se muestra la lista de emuladores que Playnite puede reconocer y configurar automáticamente. Puede descargarlos e instalarlos visitando su sitio web. Una vez que tenga instalados los emuladores, pase a la pantalla siguiente para importarlos a Playnite.
         
 También puede configurar e importar cualquier emulador personalizado más tarde a través del menú de configuración.</sys:String>
@@ -471,7 +471,10 @@ También puede configurar e importar cualquier emulador personalizado más tarde
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Configuración de primera vez</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Este asistente te guiará a través del proceso de importación automática de juegos y la configuración de bibliotecas de juegos externas. Playnite puede importar automáticamente juegos de múltiples servicios de juegos como Steam o GOG y también puede mantener su biblioteca actualizada actualizándola automáticamente durante el inicio de la aplicación.
+        
+Ten en cuenta que siempre puede agregar cualquier juego personalizado para cualquier plataforma manualmente desde el menú principal haciendo clic en el botón 'Playnite'.  
+    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Elija la ubicación para el archivo de base de datos de la biblioteca. La ubicación también puede cambiarse más tarde a través del menú Configuración.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Ubicación de datos de programa predeterminada para todos los usuarios</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Ubicación personalizada</sys:String>
@@ -576,7 +579,8 @@ Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:Str
     <sys:String x:Key="LOCDiagPackageCreationError">Error al crear el paquete de diagnósticos.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Error al enviar automáticamente el paquete de diagnósticos.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">La información de diagnóstico se ha enviado correctamente.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">El paquete de diagnóstico se creó y se subió correctamente.
+Por favor adjunte la siguiente ID a su informe de problema:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Error al importar las categorías de Steam.</sys:String>
     
