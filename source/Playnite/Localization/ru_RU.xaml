@@ -301,7 +301,7 @@ IGDB &gt; Официальный магазин:
     <sys:String x:Key="LOCSettingsFullscreenLabel">Полноэкранный режим</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Сторонние клиенты</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Ввод</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Производительность</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Метаданные</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Автоматически импортировать изменения</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Импортировать установленные игры</sys:String>
@@ -324,7 +324,7 @@ IGDB &gt; Официальный магазин:
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Улучшает прокрутку игрового списка,но ухудшает скорость загрузки изображений.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показывать название игры, если обложка отсутствует</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Показывать название игры в режиме обложек</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Затемнять неустановленные игры</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Отображать иконки в режиме списка</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Показывать количество элементов в описании групп</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Выключить аппаратное ускорение</sys:String>
@@ -423,7 +423,7 @@ IGDB &gt; Официальный магазин:
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Если включено, Playnite будет загружать фоновые изображения при загрузке метаданных. Используется больше дискового пространства, но обеспечивается доступность изображений в автономном режиме.
         
 Если выключено, фоновые изображения загружаются только при необходимости. Используется меньше дискового пространства, но может привести к задержке перед отображением изображения, а также некоторые изображения могут быть недоступны в автономном режиме.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Автоматически закрывать сторонний клиент после выхода из игры</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
