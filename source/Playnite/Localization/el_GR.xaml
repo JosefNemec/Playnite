@@ -183,8 +183,8 @@
 {PlayniteDir} - Τοποθεσία εγκατάστασης του Playnite
 {Name} - Όνομα παιχνιδιού
         
-Παράδειγμα: -image "{ImagePath}" -fullscreen
-Εχει ως αποτέλεσμα: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Παράδειγμα: -image &quot;{ImagePath}&quot; -fullscreen
+Εχει ως αποτέλεσμα: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Δεν είναι δυνατή η λήψη εικονιδίου αν η εντολή Αναπαραγωγή λείπει ή έχει οριστεί διεύθυνση URL.</sys:String>
 
@@ -205,10 +205,10 @@
 IGDB:
 Χρησιμοποιείτε δεδομένα μόνο από τη βάση δεδομένων IGDB.com.
     
-IGDB> Επίσημο κατάστημα:
+IGDB&gt; Επίσημο κατάστημα:
 Προτιμήστε τα δεδομένα από τη βάση δεδομένων IGDB.com και, όπου δεν είναι διαθέσιμα, χρησιμοποιήστε επίσημα δεδομένα καταστήματος.
     
-Επίσημο Κατάστημα> IGDB:
+Επίσημο Κατάστημα&gt; IGDB:
 Προτιμήστε τα δεδομένα από το επίσημο κατάστημα και, όπου δεν είναι διαθέσιμα, χρησιμοποιήστε τη βάση δεδομένων IGBD.com.</sys:String>
 
     <!--Progess string-->
@@ -289,6 +289,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsFullscreenLabel">Πλήρης οθόνη</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Πάροχοι</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Αυτόματη εισαγωγή στη βιβλιοθήκη</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Εισαγωγή εγκατεστημένων παιχνιδιών</sys:String>
@@ -311,6 +312,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Εμφάνιση ονομάτων παιχνιδιού στην προβολή εξωφύλλου</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Εμφάνιση εικονιδίων παιχνιδιού στην προβολή λίστας</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
@@ -405,6 +407,11 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -547,11 +554,11 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCDatabaseErroTitle">Σφάλμα βάσης δεδομένων</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Αποτυχία ανοίγματος βάσης δεδομένων βιβλιοθήκης.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Η βάση δεδομένων δεν έχει ανοίξει.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">Δεν είναι δυνατή η πρόσβαση στη βάση δεδομένων της βιβλιοθήκης. File "{0}" is being used by another process or it's in inaccessible location.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">Δεν είναι δυνατή η πρόσβαση στη βάση δεδομένων της βιβλιοθήκης. File &quot;{0}&quot; is being used by another process or it's in inaccessible location.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Αποτυχία δημιουργίας πακέτου διαγνωστικών.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Το πακέτο διαγνωστικών δημιουργήθηκε με επιτυχία.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Αποτυχία εισαγωγής κατηγοριών Steam.</sys:String>
     
@@ -570,7 +577,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCLibraryImportError"></sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Δεν είναι δυνατή η αναζήτηση παιχνιδιών στο επιλεγμένο προφίλ εξομοιωτή. Το προφίλ δεν περιέχει επεκτάσεις αρχείων ή πλατφόρμες.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Το Playnite απέτυχε να ξεκινήσει. Κλείστε όλες τις τρέχουσες περιπτώσεις και δοκιμάστε ξανά.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Αποτυχία εφαρμογής του θέματος "{0}", προφίλ χρωμάτων "{1}"
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Αποτυχία εφαρμογής του θέματος &quot;{0}&quot;, προφίλ χρωμάτων &quot;{1}&quot;
         
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Δεν είναι δυνατή η σύνδεση, η διεύθυνση URL δεν είναι σε έγκυρη μορφή.</sys:String>
@@ -664,6 +671,8 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom"></sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>

@@ -39,7 +39,7 @@
         
 Если вы хотите помочь нам исправить эту проблему, кратко опишите действия, предпринятые до сбоя, а затем создайте пакет диагностики. Если вы подключены к интернету, пакет будет загружен на сервер Playnite для анализа.
 
-Кроме того, вы можете использовать кнопку «Отправить отзыв», чтобы создать новую проблему на GitHub и сообщить о сбое вручную.
+Кроме того, вы можете использовать кнопку «Отправить отзыв», чтобы сообщить о проблеме на GitHub вручную.
 
 Спасибо за вашу помощь.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Произошла неисправимая ошибка.
@@ -195,10 +195,10 @@
 {PlayniteDir} - Директория установки Playnite
 {Name} - Название игры
 
-Пример: -image "{ImagePath}" -fullscreen
-Результат: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Пример: -image &quot;{ImagePath}&quot; -fullscreen
+Результат: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Невозможно получить иконку если отсутствует "Игровое действие" или выбран URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Невозможно получить иконку если отсутствует &quot;Игровое действие&quot; или выбран URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Загрузить только отсутствующие метаданные</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Включение этой опции пропустит загрузку метаданных для полей данных, которые уже содержат информацию.</sys:String>
@@ -217,10 +217,10 @@
 IGDB:
 Использовать данные из IGDB.com.
 
-IGDB > Официальный магазин:
+IGDB &gt; Официальный магазин:
 Предпочтение данным из IGDB.com, когда отсутствуют - использовать из магазина.
 
-Официальный магазин > IGDB:
+Официальный магазин &gt; IGDB:
 Предпочтение данным из магазина, когда отсутствуют - использовать из IGDB.com.</sys:String>
 
     <!--Progess string-->
@@ -301,13 +301,14 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsFullscreenLabel">Полноэкранный режим</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Сторонние клиенты</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Ввод</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Производительность</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Метаданные</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Автоматически импортировать изменения</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Импортировать установленные игры</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">Подключить аккаунт</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Импорт неустановленных игр</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Импортировать все игры</sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Импортировать все игры (В настройках приватности аккаунта должно быть выбрано "Публичный" или должен быть указан API-ключ)</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Импортировать все игры (В настройках приватности аккаунта должно быть выбрано &quot;Публичный&quot; или должен быть указан API-ключ)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Не найдено расположение базы данных, должен быть указан верный путь.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Имя учетной записи не может быть пустым.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Не выбран Steam-аккаунт для импорта библиотеки.</sys:String>
@@ -323,6 +324,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Улучшает прокрутку игрового списка,но ухудшает скорость загрузки изображений.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показывать название игры, если обложка отсутствует</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Показывать название игры в режиме обложек</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Затемнять неустановленные игры</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Отображать иконки в режиме списка</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Показывать количество элементов в описании групп</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Выключить аппаратное ускорение</sys:String>
@@ -379,7 +381,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite не перемещает файлы библиотеки автоматически, вы должны переместить/скопировать их, прежде чем местоположение будет изменено. Если в целевой папке нет библиотеки, будет создана новая.
 
 Новая база данных будет использоваться только после перезапуска приложения.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Время игры не будет высчитываться если выбрать параметр "Закрыть".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Время игры не будет высчитываться если выбрать параметр &quot;Закрыть&quot;.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Количество строк</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Количество столбцов</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Количество строк в детальном режиме</sys:String>
@@ -421,6 +423,11 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Если включено, Playnite будет загружать фоновые изображения при загрузке метаданных. Используется больше дискового пространства, но обеспечивается доступность изображений в автономном режиме.
         
 Если выключено, фоновые изображения загружаются только при необходимости. Используется меньше дискового пространства, но может привести к задержке перед отображением изображения, а также некоторые изображения могут быть недоступны в автономном режиме.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Автоматически закрывать сторонний клиент после выхода из игры</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нету</sys:String>
     <sys:String x:Key="LOCStrechFill">Заполнить</sys:String>
@@ -449,12 +456,12 @@ IGDB > Официальный магазин:
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Помощник импортирования эмуляторов</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Этот помощник проведет вас через процесс загрузки и импорта эмулятора консоли, а также импорта эмулируемых игр.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Имейте в виду, что вы всегда можете добавить дополнительные эмуляторы и/или игры позже через главное меню (в меню "Инструменты" для настроек эмулятора и меню "Добавить игры" для эмулируемых игр).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Ниже приведен список эмуляторов, которые Playnite может распознавать и автоматически настраивать. Вы можете загрузить и установить их, посетив их веб-сайт. После установки эмуляторов перейдите к следующему экрану, чтобы импортировать их в Playnite.
 
 Вы также можете настроить и импортировать любой пользовательский эмулятор позже через меню конфигурации.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Вы можете импортировать любые эмуляторы, установленные на вашем ПК, нажав кнопку "Автообнаружение из папки...". Playnite будет искать выбранную папку для любых известных эмуляторов и даст возможность импортировать их. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, эмуляторы будут добавлены в нижнюю часть текущего списка.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">Вы можете импортировать игры, нажав кнопку "Сканировать папку с помощью эмулятора". Выбранный эмулятор сообщит Playnite, какие типы файлов следует сканировать и импортировать. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, игры будут добавлены в нижнюю часть текущего списка.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Вы можете импортировать любые эмуляторы, установленные на вашем ПК, нажав кнопку &quot;Автообнаружение из папки...&quot;. Playnite будет искать выбранную папку для любых известных эмуляторов и даст возможность импортировать их. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, эмуляторы будут добавлены в нижнюю часть текущего списка.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Вы можете импортировать игры, нажав кнопку &quot;Сканировать папку с помощью эмулятора&quot;. Выбранный эмулятор сообщит Playnite, какие типы файлов следует сканировать и импортировать. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, игры будут добавлены в нижнюю часть текущего списка.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Нет подходящих эмуляторов для импортирования. Вы не сможете автоматически импортировать какие-либо эмулированные игры, предварительно не настроив эмулятор. Вы действительно хотите продолжить и выйти из процесса импортирования?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">В Playnite нет настроенных эмуляторов. Вы не можете импортировать игры без предварительной настройки эмулятора и выбора соответствующих типов файлов. Вы хотите добавить эмуляторы сейчас?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Сканировать папку с помощью эмулятора</sys:String>
@@ -465,10 +472,7 @@ IGDB > Официальный магазин:
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Конфигурация при первом запуске</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Этот помощник проведет вас через автоматический процесс импорта игр и настройку внешних игровых библиотек. Playnite может автоматически импортировать игры из нескольких игровых клиентов, таких как Steam или GOG, а также обновлять свою библиотеку, автоматически обновляя ее во время запуска приложения.
-
-Имейте в виду, что вы всегда можете добавить какую-либо игру для любой платформы вручную из главного меню, нажав кнопку "Playnite".
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Выберите местоположение для файла базы данных библиотеки. Местоположение может быть изменено позже через меню настроек.
 
 Совет: Если вы хотите синхронизировать свою библиотеку между несколькими компьютерами, установите местоположение базы данных в облачном хранилище (Google Drive, Dropbox и т.д.).</sys:String>
@@ -571,11 +575,11 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCDatabaseErroTitle">Ошибка базы данных</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Не удалось открыть базу данных библиотеки.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">База данных не открыта.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">Отсутствует доступ к базе данных библиотеки. Файл "{0}" используется другим процессом или находится в недоступном месте.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">Отсутствует доступ к базе данных библиотеки. Файл &quot;{0}&quot; используется другим процессом или находится в недоступном месте.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Не удалось создать файл с диагностикой.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Не удалось автоматически загрузить пакет диагностики.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Диагностическая информация была успешно отправлена.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Файл с диагностикой успешно создан.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Не удалось импортировать Steam-категории.</sys:String>
     
@@ -594,7 +598,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCLibraryImportError">Не удалось импортировать игры из {0}.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Невозможно выполнить поиск игр по выбранному профилю эмулятора. Профиль не содержит расширений или платформ.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Не удалось запустить Playnite. Пожалуйста закройте все запущенные экземпляры и попробуйте вновь.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Не удалось выбрать тему "{0}", цвет надписей "{1}"
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Не удалось выбрать тему &quot;{0}&quot;, цвет надписей &quot;{1}&quot;
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Не получается открыть ссылку, URL содержит неверный формат.</sys:String>
@@ -693,6 +697,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCFirst">Первое</sys:String>
     <sys:String x:Key="LOCRandom">Случайное</sys:String>
     <sys:String x:Key="LOCUserSelect">Выбрать</sys:String>
+    <sys:String x:Key="LOCLoadMore">Загрузить ещё</sys:String>
+    <sys:String x:Key="LOCTransparent">Прозрачность</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Параметры для эмулятора</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Дополнительные параметры для эмулятора</sys:String>
@@ -741,7 +747,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Процесс запуска игры будет управляться библиотечным плагином, ответственным за эту игру.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">Не найдено никакой соответствующей информации об игре '{0}' на указанной странице.</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню &quot;Редактировать&quot;.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Сыгранное время отслеживается и сохраняется в секундах.</sys:String>

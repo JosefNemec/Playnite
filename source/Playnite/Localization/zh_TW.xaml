@@ -39,7 +39,7 @@
 
 若您願意協助我們修復此問題，請簡短地描述當機前您所進行的動作並創建診斷包。若您可連上網路則診斷包將被上傳至Playnite伺服器進行分析。
 
-除此之外，您也可使用"回報當機"按鈕於Github上手動建立新問題並回報本次錯誤。
+除此之外，您也可使用&quot;回報當機&quot;按鈕於Github上手動建立新問題並回報本次錯誤。
 
 感謝您的協助。</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">發生無法復原的錯誤。
@@ -195,8 +195,8 @@
 {PlayniteDir} - Playnite 安裝資料夾
 {Name} - 遊戲名稱
         
-範例: -image "{ImagePath}" -fullscreen
-結果: -image "c:\folder\image.iso" -fullscreen</sys:String>
+範例: -image &quot;{ImagePath}&quot; -fullscreen
+結果: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">若啟動指令未設置或被設定為網址，則無法取得圖示</sys:String>
 
@@ -217,10 +217,10 @@
 IGDB:
 只從 IGDB 下載資訊
 
-IGDB > 官方商店
+IGDB &gt; 官方商店
 優先從 IGDB 下載資訊，如無則使用官方商店資訊
 
-官方商店 > IGDB
+官方商店 &gt; IGDB
 優先從官方商店下載資訊，如無則使用 IGDB 資訊</sys:String>
 
     <!--Progess string-->
@@ -301,6 +301,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsFullscreenLabel">全螢幕</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">提供商</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">輸入</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">元資料</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">自動匯入資料庫的改動</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">匯入已安裝的遊戲</sys:String>
@@ -323,6 +324,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提升瀏覽遊戲列表時的滑鼠滾動順暢度，但圖片讀取速度相對較慢</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">如無封面圖片則顯示遊戲名稱</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在網格檢視中顯示遊戲名稱</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">以暗色顯示未安裝遊戲</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">在詳細檢視中顯示遊戲圖示</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">在分組描述中顯示遊戲數量</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">停用硬體加速</sys:String>
@@ -379,7 +381,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnitee不會自動搬移資料庫文件，您必須在更改位置前移動/複製這些資料。如果移動後的位置找不到資料庫文件，Playnite將會自動創建一個新的資料庫。
 
 新的資料庫位置將會在下次重新啟動程式之後被套用。</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果設定了"關閉"指令，則遊玩時間將不會被記錄</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果設定了&quot;關閉&quot;指令，則遊玩時間將不會被記錄</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">列數</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">欄數</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">列表檢視列數</sys:String>
@@ -420,6 +422,11 @@ IGDB > 官方商店
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">若啟用本功能則Playnite會於下載原數據時一併下載背景圖片。將佔用額外的硬碟空間且可於離線時瀏覽圖片。
         
 若禁用本功能則僅會於首次使用時下載背景圖片。可節省硬碟空間但可能造成圖片讀取速度緩慢且某些圖片可能無法於離線時觀看。</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">退出遊戲時自動關閉遊戲啟動器</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">延緩客戶端關閉時間(秒)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">當遊戲時間低於(秒) 則不關閉</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自動關閉以下客戶端:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉遊戲啟動器</sys:String>
 
     <sys:String x:Key="LOCStrechNone">無</sys:String>
     <sys:String x:Key="LOCStrechFill">填滿</sys:String>
@@ -448,12 +455,12 @@ IGDB > 官方商店
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">模擬器匯入精靈</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">本精靈將導引您下載並匯入模擬器以及模擬器遊戲。</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">請留意，您可隨時透過主選單新增模擬器及/或遊戲(在"工具"選單中可找到模擬器設定，"新增遊戲"選單中新增模擬器遊戲)</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">請留意，您可隨時透過主選單新增模擬器及/或遊戲(在&quot;媒體庫&quot;選單中可找到模擬器設定，&quot;新增遊戲&quot;選單中可新增模擬器遊戲)</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">以下是Playnite可自動辨認及設定的模擬器清單。您可以透過模擬器官網下載並進行安裝。當您完成安裝之後，進到下一步以完成匯入Playnite的步驟。
 
-您也可以稍後透過"設定"選單設定並匯入任何自訂模擬器</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">您可以按下"從資料夾自動檢查..." 來匯入任何已安裝在您PC上的模擬器。Playnite會在點選的資料夾中搜尋任何已知的模擬器並提供匯入選項。您可以多次使用該按鈕從多個文件夾匯入，模擬器將會被新增在目前列表的底部</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">透過按下 "使用模擬器掃描資料夾" 按鈕，可自動匯入遊戲。如果選擇了適當的模擬器，Playnite將能自動辨識並匯入正確的檔案類型。您可以多次使用該按鈕從多重資料夾匯入，遊戲會被新增在目前清單的底部</sys:String>
+您也可以稍後透過&quot;設定&quot;選單設定並匯入任何自訂模擬器</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">您可以按下&quot;從資料夾自動檢查...&quot; 來匯入任何已安裝在您PC上的模擬器。Playnite會在點選的資料夾中搜尋任何已知的模擬器並提供匯入選項。您可以多次使用該按鈕從多個文件夾匯入，模擬器將會被新增在目前列表的底部</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">透過按下 &quot;使用模擬器掃描資料夾&quot; 按鈕，可自動匯入遊戲。如果選擇了適當的模擬器，Playnite將能自動辨識並匯入正確的檔案類型。您可以多次使用該按鈕從多重資料夾匯入，遊戲會被新增在目前清單的底部</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">未選擇要匯入的模擬器。如未設定模擬器則將無法自動匯入任何模擬器遊戲。是否確定要繼續並離開匯入程序?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">尚未設定任何模擬器於Playnite當中。如未設定模擬器並選擇適當的檔案類型則無法匯入遊戲。要新增模擬器嗎?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">掃描模擬器資料夾</sys:String>
@@ -466,7 +473,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCFirstWindowTitle">首次配置</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">本精靈將帶領您完成遊戲匯入以及設定外部遊戲資料庫。Playnite可以自動從遊戲服務商如Steam或GOG匯入遊戲，並透過啟動時自動更新保持遊戲狀態同步。
 
-請留意，您可隨時點擊"Playnite"按鈕，透過主選單手動新增任何平台上的自訂遊戲。    </sys:String>
+請留意，您可隨時點擊&quot;Playnite&quot;按鈕，透過主選單手動新增任何平台上的自訂遊戲。    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">選擇資料數據庫的位置。稍後也可於設定選單更改位置。</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">所有使用者的預設程式資料位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">自訂位置</sys:String>
@@ -482,7 +489,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCFirstOtherGamesText">點選以下的按鈕以匯入或手動瀏覽其他已安裝的遊戲(包含Microsoft Store遊戲)</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">匯入遊戲</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">完成設定</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始安裝已經完成。請記得您可以在"選項"選單中更改所有的設定。
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始安裝已經完成。請記得您可以在&quot;選項&quot;選單中更改所有的設定。
 
 同時您也可以在之後透過點選Playnite主程式圖示開啟主選單，新增任何其他遊戲(包含Microsoft Store遊戲)</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">開啟模擬器匯入指南</sys:String>
@@ -567,7 +574,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCDatabaseErroTitle">數據庫錯誤</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">無法開啟資料庫數據</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">未開啟數據庫</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">無法連接資料庫數據。檔案"{0}"正在被其他程式使用或位於無法連接的位置</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">無法連接資料庫數據。檔案&quot;{0}&quot;正在被其他程式使用或位於無法連接的位置</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">創建診斷報告失敗</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">自動上傳診斷報告失敗</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">診斷訊息成功送出</sys:String>
@@ -591,7 +598,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCLibraryImportError">從 {0} 匯入遊戲失敗。</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">無法透過指定的模擬器描述檔搜尋遊戲。描述檔未包含任何副檔名或平台。</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite無法啟動。請關閉所有正在執行的程式並重試</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">無法套用主題 "{0}", 色彩描述檔 "{1}"
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">無法套用主題 &quot;{0}&quot;, 色彩描述檔 &quot;{1}&quot;
         
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">無法開啟連結，網址格式不符。</sys:String>
@@ -690,6 +697,8 @@ IGDB > 官方商店
     <sys:String x:Key="LOCFirst">首項</sys:String>
     <sys:String x:Key="LOCRandom">隨機</sys:String>
     <sys:String x:Key="LOCUserSelect">使用者選擇</sys:String>
+    <sys:String x:Key="LOCLoadMore">加載更多</sys:String>
+    <sys:String x:Key="LOCTransparent">透明</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">模擬器引數</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">其他模擬器引數</sys:String>
@@ -738,7 +747,7 @@ IGDB > 官方商店
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">遊戲的啟動過程將由相對應的資料庫外掛管理</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">在指定頁面找不到遊戲 '{0}' 的相關資訊</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">提示: 您可以透過"編輯"選單編輯遊戲並執行更進階的元資料下載程序</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">提示: 您可以透過&quot;編輯&quot;選單編輯遊戲並執行更進階的元資料下載程序</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些程式正在進行時無法使用</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本支持HTML語法</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">遊玩時間將被記錄並以秒為單位儲存</sys:String>

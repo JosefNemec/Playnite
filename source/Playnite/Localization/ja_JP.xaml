@@ -183,8 +183,8 @@
 {PlayniteDir} - Playniteのインストールディレクトリ
 {Name} - ゲーム名
         
-例　: -image "{ImagePath}" -fullscreen
-結果: -image "c:\folder\image.iso" -fullscreen</sys:String>
+例　: -image &quot;{ImagePath}&quot; -fullscreen
+結果: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">アイコンを取得できません。プレイアクションが登録されていないか、または、URLが設定されていません。</sys:String>
 
@@ -205,10 +205,10 @@
 IGDB:
 IGDB.comのデータのみ使用します。
     
-IGDB > 公式ストア:
+IGDB &gt; 公式ストア:
 IGDB.comのデータを優先し、利用できない場合は公式ストアのデータを使用します。
     
-公式ストア > IGDB:
+公式ストア &gt; IGDB:
 公式ストアのデータを優先し、利用できない場合はIGDB.comのデータを使用します。</sys:String>
 
     <!--Progess string-->
@@ -289,6 +289,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsFullscreenLabel">フルスクリーン設定</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">プロバイダ</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">入力</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">ライブラリの変更を自動的にインポート</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">インストール済みのゲームをインポートする</sys:String>
@@ -311,6 +312,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">遅いイメージロード時間と引き換えに、ゲームリストのスクロールの滑らかさを改善します。</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">グリッドビューにゲーム名を表示する</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">詳細ビューリストにゲームのアイコンを表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">グループの説明にアイテム数を表示する</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
@@ -404,6 +406,11 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">無し</sys:String>
     <sys:String x:Key="LOCStrechFill">埋める</sys:String>
@@ -431,7 +438,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">エミュレーションインポートウィザード</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">このウィザードは、コンソールエミュレータのダウンロードとインポート、およびエミュレートされたゲームのインポートの手順を案内します。</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">後から、いつでもメインメニューを介して、エミュレータやゲームを追加することができます。(エミュレータ設定の場合は[ツール]メニュー、エミュレートゲームの場合は[ゲームの追加]メニュー)</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">以下はPlayniteが認識し自動的に設定できるエミュレータのリストです。あなたはこれらのウェブサイトを訪問し、ダウンロードしてインストールすることができます。エミュレータをインストールしたら、次の画面に進んでそれらをPlayniteにインポートします。
         
 また、後で設定メニューからカスタムエミュレータを設定してインポートすることもできます。</sys:String>
@@ -447,10 +454,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">初回設定</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">このウィザードは、自動ゲームインポートプロセスと外部ゲームライブラリの設定を案内します。PlayniteはSteamやGOGなどの複数のゲームサービスから自動的にゲームをインポートすることができます。また、アプリケーションの起動時にライブラリを自動的に更新することでライブラリを最新の状態に保ちます。
-        
-いつでも'Playnite'のメインメニューから、あらゆるプラットフォーム用のカスタムゲームを追加できます。   
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">ライブラリデータベースファイルの場所を選択します。場所は設定メニューから後で変更することもできます。</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">すべてのユーザーのデフォルトプログラムデータの場所</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">カスタムの場所</sys:String>
@@ -551,12 +555,11 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCDatabaseErroTitle">データベースエラー</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">ライブラリデータベースのオープンに失敗しました。</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">データベースが開かれていません。</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">ライブラリデータベースにアクセスできません。ファイル "{0}"は別のプロセスによって使用されているか、アクセスできない場所にあります。</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">ライブラリデータベースにアクセスできません。ファイル &quot;{0}&quot;は別のプロセスによって使用されているか、アクセスできない場所にあります。</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">診断パッケージを作成できませんでした。</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">診断パッケージを自動的にアップロードできませんでした。</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">診断の情報の送信に成功しました。</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">診断パッケージが作成され、正常にアップロードされました。
-クラッシュレポートに次のIDを添付してください:</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Steamカテゴリーをインポートできませんでした。</sys:String>
     
@@ -575,7 +578,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCLibraryImportError">{0}からゲームをインポートできませんでした。</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">選択したエミュレータプロファイルではゲームを検索できません。プロファイルにファイル拡張子やプラットフォームが含まれていません。</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playniteは起動に失敗しました。実行中のすべてのPlayniteのプログラムを閉じてからやり直してください。</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">テーマ "{0}"、カラープロファイル "{1}"の適用に失敗しました。
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">テーマ &quot;{0}&quot;、カラープロファイル &quot;{1}&quot;の適用に失敗しました。
         
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">リンクを開けません。URLが無効な形式です。</sys:String>
@@ -674,6 +677,8 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom"></sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">エミュレータ引数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">追加のエミュレータ引数</sys:String>

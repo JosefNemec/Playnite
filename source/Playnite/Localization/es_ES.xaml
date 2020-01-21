@@ -195,8 +195,8 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
 {PlayniteDir} - Directorio de instalación de Playnite
 {Name} - Nombre del juego
         
-Ejemplo: -image "{ImagePath}" -fullscreen
-Resulta en: -image "c:\folder\image.iso" -fullscreen</sys:String>
+Ejemplo: -image &quot;{ImagePath}&quot; -fullscreen
+Resulta en: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">No se puede obtener el icono si falta la acción de Iniciar o esta establecida por URL.</sys:String>
 
@@ -217,10 +217,10 @@ Solo usar datos de la tienda oficial.
 IGDB:
 Solo usar datos de la base de datos IGDB.com.
     
-IGDB > Tienda Oficial:
+IGDB &gt; Tienda Oficial:
 Preferir los datos de la base de datos de IGDB.com, cuando no estén disponibles utilizar los datos de la tienda oficial.
     
-Tienda Oficial > IGDB:
+Tienda Oficial &gt; IGDB:
 Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar los datos de la base de datos IGBD.com.</sys:String>
 
     <!--Progess string-->
@@ -301,6 +301,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pantalla Completa</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Proveedores</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Rendimiento</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadatos</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importar cambios en la biblioteca automáticamente</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importar juegos instalados</sys:String>
@@ -323,6 +324,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Mejora la suavidad de desplazamiento de las listas de juegos a cambio de tiempos de carga de imágenes más lentos.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar nombre del juego si falta arte de portada</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar nombres de juegos en la vista de Cuadrícula</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Oscurecer juegos desinstalados</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostrar iconos de juegos en la lista de Vista de Detalles</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostrar recuento de elementos en las descripciones de los grupos</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desactivar aceleración por hardware</sys:String>
@@ -379,7 +381,7 @@ Todas las tareas activas (descarga de metadatos) serán canceladas.</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite no mueve los archivos de la biblioteca automáticamente, debes moverlos / copiarlos antes de cambiar la ubicación. Si no hay una biblioteca presente en la ubicación de destino, se creará una nueva.
 
 La nueva ubicación de la base de datos solo se usará después de reiniciar la aplicación.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">El tiempo de juego no se registrará si se establece la acción "Cerrar".</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">El tiempo de juego no se registrará si se establece la acción &quot;Cerrar&quot;.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de filas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de columnas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Número de filas en la Vista de Detalles</sys:String>
@@ -420,6 +422,11 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Si está habilitado, Playnite descargará ilustraciones de fondo mientras descarga metadatos. Se usará más espacio en disco y hace que las ilustraciones estén disponibles sin conexión.
         
 Si está deshabilitado, las ilustraciones de fondo se descargan solo cuando es necesario.  Se usará menos espacio, pero puede provocar un retraso antes de que se muestre la ilustración y algunas imágenes pueden no estar disponibles sin conexión.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Cerrar automáticamente el cliente después de salir del juego</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Periodo de gracia de cierre del cliente (en segundos)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">No cerrar después de sesiones de juego más cortas que (en segundos)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Cerrar automáticamente los siguientes clientes:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Cerrar automáticamente clientes</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ninguno</sys:String>
     <sys:String x:Key="LOCStrechFill">Rellenar</sys:String>
@@ -448,12 +455,12 @@ También puede cambiarse en las opciones de aplicación.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Asistente de Importación de Emulación</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Este asistente lo guiará a través del proceso de descarga e importación de emuladores de consolas, así como de importación de juegos emulados.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Tenga en cuenta que siempre puede agregar emuladores y/o juegos adicionales más tarde a través del menú principal (en el menú "Herramientas" para la configuración del Emulador y en el menú "Agregar juegos" para los juegos emulados).</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Ten en cuenta que siempre puede agregar emuladores y/o juegos adicionales más tarde a través del menú principal (en el menú &quot;Biblioteca&quot; para la configuración del emulador y el menú &quot;Agregar juegos&quot; para juegos emulados).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">A continuación se muestra la lista de emuladores que Playnite puede reconocer y configurar automáticamente. Puede descargarlos e instalarlos visitando su sitio web. Una vez que tenga instalados los emuladores, pase a la pantalla siguiente para importarlos a Playnite.
         
 También puede configurar e importar cualquier emulador personalizado más tarde a través del menú de configuración.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Es posible importar cualquier emulador instalado en tu PC pulsando el botón "Autodetectar desde carpeta…". Playnite buscará cualquier emulador conocido en la carpeta seleccionada y dará la opción de importarlos. Puedes importar desde múltiples carpetas usando el botón mencionado múltiples veces y los emuladores se añadirán al final de la lista actual.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">Puede importar juegos presionando el botón "Escanear carpeta usando el emulador". Seleccionar el emulador apropiado le indicará a Playnite qué tipos de archivos se deben escanear e importar. Puede importar desde varias carpetas usando dicho botón varias veces, los juegos se agregarán al final de la lista actual.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Es posible importar cualquier emulador instalado en tu PC pulsando el botón &quot;Autodetectar desde carpeta…&quot;. Playnite buscará cualquier emulador conocido en la carpeta seleccionada y dará la opción de importarlos. Puedes importar desde múltiples carpetas usando el botón mencionado múltiples veces y los emuladores se añadirán al final de la lista actual.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Puede importar juegos presionando el botón &quot;Escanear carpeta usando el emulador&quot;. Seleccionar el emulador apropiado le indicará a Playnite qué tipos de archivos se deben escanear e importar. Puede importar desde varias carpetas usando dicho botón varias veces, los juegos se agregarán al final de la lista actual.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">No hay emuladores seleccionados para la importación. No podrá importar automáticamente ningún juego emulado sin configurar primero los emuladores. ¿Seguro que quieres continuar y salir del proceso de importación?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">No hay emuladores configurados en Playnite. No puede importar juegos sin configurar primero el emulador y seleccionar los tipos de archivos apropiados. ¿Desea agregar algunos emuladores ahora?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Escanear carpeta usando el emulador</sys:String>
@@ -464,9 +471,9 @@ También puede configurar e importar cualquier emulador personalizado más tarde
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Configuración de primera vez</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Este asistente lo guiará a través del proceso de importación automática de juegos y la configuración de bibliotecas de juegos externos. Playnite puede importar automáticamente juegos de múltiples servicios de juego como Steam o GOG, y también mantener su biblioteca actualizada actualizándola automáticamente durante el inicio de la aplicación.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Este asistente te guiará a través del proceso de importación automática de juegos y la configuración de bibliotecas de juegos externas. Playnite puede importar automáticamente juegos de múltiples servicios de juegos como Steam o GOG y también puede mantener su biblioteca actualizada actualizándola automáticamente durante el inicio de la aplicación.
         
-Tenga en cuenta que siempre puede agregar cualquier juego personalizado para cualquier plataforma manualmente desde el menú principal haciendo clic en el botón 'Playnite'.   
+Ten en cuenta que siempre puede agregar cualquier juego personalizado para cualquier plataforma manualmente desde el menú principal haciendo clic en el botón 'Playnite'.  
     </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Elija la ubicación para el archivo de base de datos de la biblioteca. La ubicación también puede cambiarse más tarde a través del menú Configuración.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Ubicación de datos de programa predeterminada para todos los usuarios</sys:String>
@@ -568,12 +575,12 @@ Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:Str
     <sys:String x:Key="LOCDatabaseErroTitle">Error de la Base de Datos.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Error al Abrir la Base de Datos.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">La Base de Datos no está abierta.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">No se puede acceder a la Base de Datos. El archivo "{0}" está siendo usado por otro proceso o se encuentra en una locación inaccesible.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">No se puede acceder a la Base de Datos. El archivo &quot;{0}&quot; está siendo usado por otro proceso o se encuentra en una locación inaccesible.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Error al crear el paquete de diagnósticos.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Error al enviar automáticamente el paquete de diagnósticos.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">La información de diagnóstico se ha enviado correctamente.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">El paquete de diagnóstico se ha creado y subido correctamente.
-Por favor, adjunta el siguiente ID a tu reporte del Crash:</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">El paquete de diagnóstico se creó y se subió correctamente.
+Por favor adjunte la siguiente ID a su informe de problema:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Error al importar las categorías de Steam.</sys:String>
     
@@ -592,7 +599,7 @@ Por favor, adjunta el siguiente ID a tu reporte del Crash:</sys:String>
     <sys:String x:Key="LOCLibraryImportError">Error al importar los juegos de {0}.</sys:String>    
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">No se pueden buscar juegos con el perfil del emulador seleccionado. Perfil no contiene extensiones de archivos o plataformas.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite no pudo iniciar. Cierre todas las instancias en ejecución y vuelva a intentarlo.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Error al aplicar el tema "{0}", perfil de color "{1}"
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Error al aplicar el tema &quot;{0}&quot;, perfil de color &quot;{1}&quot;
     
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">No se puede abrir el enlace, la URL no está en formato válido.</sys:String>
@@ -691,6 +698,8 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCFirst">Primero</sys:String>
     <sys:String x:Key="LOCRandom">Aleatorio</sys:String>
     <sys:String x:Key="LOCUserSelect">Selección de usuario</sys:String>
+    <sys:String x:Key="LOCLoadMore">Cargar más</sys:String>
+    <sys:String x:Key="LOCTransparent">Transparente</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos del Emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos del Emulador Adicionales</sys:String>
@@ -739,7 +748,7 @@ Puedes intentar que se corrijan el problema:
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">El proceso de inicio del juego será gestionado por la extensión de la biblioteca responsable de este juego.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">No se ha encontrado información relevante sobre el juego '{0}' en la página especificada.</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">Sugerencia: puede usar un proceso de descarga de metadatos más avanzado mientras edita un solo juego a través de la opción de menú "Editar".</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">Sugerencia: puede usar un proceso de descarga de metadatos más avanzado mientras edita un solo juego a través de la opción de menú &quot;Editar&quot;.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">No disponible cuando alguna acción está en proceso.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">El texto de descripción es sensible a la sintaxis HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">El tiempo de juego se registra y guarda en segundos.</sys:String>
