@@ -59,7 +59,7 @@ namespace Playnite.Toolbox
             }
             else if (File.Exists(extMan))
             {
-                var desc = ExtensionFactory.GetExtensionDescriptor(extMan);
+                var desc = ExtensionFactory.GetDescriptionFromFile(extMan);
                 switch (desc.Type)
                 {
                     case ExtensionType.GenericPlugin:
@@ -131,16 +131,18 @@ namespace Playnite.Toolbox
                     case ItemType.FullscreenTheme:
                         outPath = Themes.PackageTheme(options.Directory, options.Destination, ApplicationMode.Fullscreen);
                         break;
-                    case ItemType.Uknown:
                     case ItemType.PowerShellScript:
                     case ItemType.IronPythonScript:
                     case ItemType.GenericPlugin:
                     case ItemType.MetadataPlugin:
                     case ItemType.LibraryPlugin:
+                        outPath = Extensions.PackageExtension(options.Directory, options.Destination);
+                        break;
+                    case ItemType.Uknown:
                         throw new NotSupportedException();
                 }
 
-                logger.Info($"{type} successfully packed in \"{outPath}\"");
+                logger.Info($"{type} successfully packed as \"{outPath}\"");
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {

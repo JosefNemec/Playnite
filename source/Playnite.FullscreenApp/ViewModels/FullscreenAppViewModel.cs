@@ -402,7 +402,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             get => !IsSearchActive && GetIsExtraFilterActive(AppSettings.Fullscreen);
         }
-        
+
         public bool IsSearchActive
         {
             get => !AppSettings.Fullscreen.FilterSettings.Name.IsNullOrEmpty();
@@ -430,7 +430,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SleepSystemCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> OpenAdditionalFiltersCommand { get; private set; }
-        public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }        
+        public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }
         public RelayCommand<object> ActivateSelectedCommand { get; private set; }
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> NextFilterViewCommand { get; private set; }
@@ -510,7 +510,7 @@ namespace Playnite.FullscreenApp.ViewModels
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
-        {            
+        {
             OnPropertyChanged(nameof(IsExtraFilterActive));
             OnPropertyChanged(nameof(IsSearchActive));
         }
@@ -648,7 +648,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
 
                 GameMenuVisible = !GameMenuVisible;
-            }, (a) => SelectedGame != null);            
+            }, (a) => SelectedGame != null);
 
             ToggleSettingsMenuCommand = new RelayCommand<object>((a) =>
             {
@@ -1124,7 +1124,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void CloseView()
         {
-            ignoreCloseActions = true;            
+            ignoreCloseActions = true;
             Window.Close();
             Dispose();
             ignoreCloseActions = false;
@@ -1333,7 +1333,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     if (File.Exists(path))
                     {
                         var ext = Path.GetExtension(path).ToLower();
-                        if (ext.Equals(ThemeManager.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
+                        if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
                             try
                             {

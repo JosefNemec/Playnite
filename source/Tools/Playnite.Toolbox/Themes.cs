@@ -160,8 +160,10 @@ namespace Playnite.Toolbox
 
         public static string PackageTheme(string themeDirectory, string targetPath, ApplicationMode mode)
         {
+            var dirInfo = new DirectoryInfo(themeDirectory);
+            var extInfo = ThemeManager.GetDescriptionFromFile(Path.Combine(themeDirectory, PlaynitePaths.ThemeManifestFileName));
             var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
-            targetPath = Path.Combine(targetPath, Path.GetFileName(themeDirectory) + ThemeManager.PackedThemeFileExtention);
+            targetPath = Path.Combine(targetPath, $"{dirInfo.Name}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedThemeFileExtention}");
             FileSystem.PrepareSaveFile(targetPath);
             using (var zipStream = new FileStream(targetPath, FileMode.Create))
             {

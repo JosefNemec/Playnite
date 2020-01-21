@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.Common;
 using Playnite.SDK.Models;
+using System.IO.Compression;
 
 namespace Playnite.Plugins
 {
@@ -183,7 +184,27 @@ namespace Playnite.Plugins
             }
         }
 
-        public static ExtensionDescription GetExtensionDescriptor(string path)
+        public static ExtensionDescription GetDescriptionFromPackedFile(string path)
+        {
+            using (var zip = ZipFile.OpenRead(path))
+            {
+                var manifest = zip.GetEntry(PlaynitePaths.ExtensionManifestFileName);
+                if (manifest == null)
+                {
+                    return null;
+                }
+
+                using (var logStream = manifest.Open())
+                {
+                    using (TextReader tr = new StreamReader(logStream))
+                    {
+                        return Serialization.FromYaml<ExtensionDescription>(tr.ReadToEnd());
+                    }
+                }
+            }
+        }
+
+        public static ExtensionDescription GetDescriptionFromFile(string path)
         {
             return Serialization.FromYaml<ExtensionDescription>(File.ReadAllText(path));
         }
@@ -205,6 +226,37 @@ namespace Playnite.Plugins
             }
 
             return descs;
+        }
+
+        public static ExtensionDescription InstallFromPackedFile(string path)
+        {
+            logger.Info($"Installing extenstion {path}");
+            var desc = GetDescriptionFromPackedFile(path);
+            if (desc == null)
+            {
+                throw new FileNotFoundException("Extenstion manifest not found.");
+            }
+
+            var installDir = Paths.GetSafeFilename(desc.Name).Replace(" ", string.Empty) + "_" + (desc.Name + desc.Author).MD5();
+            var targetDir = PlayniteSettings.IsPortable ? PlaynitePaths.ExtensionsProgramPath : PlaynitePaths.ExtensionsUserDataPath;
+            targetDir = Path.Combine(targetDir, installDir);
+            var oldBackPath = targetDir + "_old";
+
+            if (Directory.Exists(targetDir))
+            {
+                logger.Debug($"Replacing existing extenstion installation: {targetDir}.");
+                Directory.Move(targetDir, oldBackPath);
+            }
+
+            FileSystem.CreateDirectory(targetDir, true);
+            ZipFile.ExtractToDirectory(path, targetDir);
+
+            if (Directory.Exists(oldBackPath))
+            {
+                Directory.Delete(oldBackPath, true);
+            }
+
+            return GetDescriptionFromFile(Path.Combine(targetDir, PlaynitePaths.ExtensionManifestFileName));
         }
 
         private List<string> GetExtensionDescriptorFiles()

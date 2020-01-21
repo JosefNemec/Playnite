@@ -1,9 +1,11 @@
 ﻿using Playnite.API;
 using Playnite.Common;
+using Playnite.Plugins;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,6 +95,34 @@ namespace Playnite.Toolbox
             }
 
             return outDir;
+        }
+
+        public static string PackageExtension(string extDirectory, string targetPath)
+        {
+            var dirInfo = new DirectoryInfo(extDirectory);
+            var extInfo = ExtensionFactory.GetDescriptionFromFile(Path.Combine(extDirectory, PlaynitePaths.ExtensionManifestFileName));
+            var packedPath = Path.Combine(targetPath, $"{dirInfo.Name}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedExtensionFileExtention}");
+            FileSystem.PrepareSaveFile(packedPath);
+            var ignoreFiles = File.ReadAllLines(Paths.ExtFileIgnoreListPath);
+
+            using (var zipStream = new FileStream(packedPath, FileMode.Create))
+            {
+                using (var zipFile = new ZipArchive(zipStream, ZipArchiveMode.Create))
+                {
+                    foreach (var file in Directory.GetFiles(extDirectory, "*.*", SearchOption.AllDirectories))
+                    {
+                        var subName = file.Replace(extDirectory, "").TrimStart(Path.DirectorySeparatorChar);
+                        if (ignoreFiles.ContainsString(subName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            continue;
+                        }
+
+                        zipFile.CreateEntryFromFile(file, subName);
+                    }
+                }
+            }
+
+            return packedPath;
         }
     }
 }

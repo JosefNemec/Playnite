@@ -64,6 +64,7 @@ namespace Playnite.Toolbox
         }
 
         public static string ChangeLogsDir => Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Themes", "Changelog");
+        public static string ExtFileIgnoreListPath => Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Extensions", "ExtensionsRefIgnoreList.txt");
 
         public static string GetNextBackupFolder(string rootFolder)
         {

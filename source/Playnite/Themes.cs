@@ -13,20 +13,19 @@ using Playnite.Common;
 using Playnite.SDK;
 using System.IO.Compression;
 using YamlDotNet.Serialization;
+using Playnite.API;
 
 namespace Playnite
 {
-    public class ThemeDescription
+    public class ThemeDescription : BaseExtensionDescription
     {
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public string Website { get; set; }
-        public string Version { get; set; }
         public string ThemeApiVersion { get; set; }
+
         public ApplicationMode Mode { get; set; }
 
         [YamlIgnore]
         public string DirectoryPath { get; set; }
+
         [YamlIgnore]
         public string DirectoryName { get; set; }
 
@@ -47,7 +46,6 @@ namespace Playnite
     public class ThemeManager
     {
         private static ILogger logger = LogManager.GetLogger();
-        public const string PackedThemeFileExtention = ".pthm";
         public static System.Version DesktopApiVersion => new System.Version("1.4.1");
         public static System.Version FullscreenApiVersion => new System.Version("1.4.1");
         public static ThemeDescription CurrentTheme { get; private set; }

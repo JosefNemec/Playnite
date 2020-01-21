@@ -16,17 +16,24 @@ namespace Playnite.API
         MetadataProvider
     }
 
-    public class ExtensionDescription
+    public class BaseExtensionDescription
     {
-        public string DescriptionPath { get; set; }
-
-        public string FolderName { get; set; }
-
         public string Name { get; set; }
 
         public string Author { get; set; }
 
         public string Version { get; set; }
+
+        public string Website { get; set; }
+    }
+
+    public class ExtensionDescription : BaseExtensionDescription
+    {
+        [YamlIgnore]
+        public string DescriptionPath { get; set; }
+
+        [YamlIgnore]
+        public string FolderName { get; set; }
 
         public string Module { get; set; }
 

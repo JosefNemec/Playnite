@@ -11,6 +11,8 @@ namespace Playnite
     {
         public const string ExtensionManifestFileName = "extension.yaml";
         public const string ThemeManifestFileName = "theme.yaml";
+        public const string PackedThemeFileExtention = ".pthm";
+        public const string PackedExtensionFileExtention = ".pext";
 
         public static string ProgramPath => Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
         public static string DesktopExecutablePath => Path.Combine(ProgramPath, "Playnite.DesktopApp.exe");
