@@ -93,8 +93,8 @@ function CreateDirectoryDiff()
         [string]$OutPath
     )
     
-    $baseDirFiles = Get-ChildItem $BaseDir -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
-    $targetDirFiles = Get-ChildItem $TargetDir -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
+    $baseDirFiles = Get-ChildItem $BaseDir -Recurse -File | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
+    $targetDirFiles = Get-ChildItem $TargetDir -Recurse -File | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
     $diffs = Compare-Object -ReferenceObject $baseDirFiles -DifferenceObject $targetDirFiles -Property Hash -PassThru | Where { $_.SideIndicator -eq "=>" } | Select-Object Path        
     New-EmptyFolder $OutPath
 
@@ -110,7 +110,7 @@ function CreateDirectoryDiff()
     New-EmptyFolder $tempPath
     Copy-Item (Join-Path $BaseDir "*") $tempPath -Recurse -Force
     Copy-Item (Join-Path $OutPath "*")  $tempPath -Recurse -Force
-    $tempPathFiles = Get-ChildItem $tempPath -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
+    $tempPathFiles = Get-ChildItem $tempPath -Recurse -File | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
     $tempDiff = Compare-Object -ReferenceObject $targetDirFiles -DifferenceObject $tempPathFiles -Property Hash -PassThru
     
     # Ignore removed files
