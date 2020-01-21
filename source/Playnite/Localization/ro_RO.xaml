@@ -9,9 +9,9 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Limbă</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Iesire</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtru activ</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtru dezactivat</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Filtre adiționale</sys:String>
     <sys:String x:Key="LOCFilters">Filtre</sys:String>
     <sys:String x:Key="LOCFilter">Filtru</sys:String>
 
@@ -34,13 +34,21 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nicio Categorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Nicio Platformă</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">O nu, s-a întâmplat ceva rău…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">A avut loc o eroare iremediabilă.
+        
+Dacă vrei să ne ajuți să rezolvăm această problemă, descrie pe scurt acțiunile luate înaintea crash-ului și creează un pachet de diagnostice. Dacă ești online, pachetul va fi trimis la server-ul Playnite pentru analiză.
+
+În mod alternativ, poți folosi butonul „Raportează Crash” pentru a crea un issue nou pe GitHub și a raporta crash-ul manual.
+
+Mulțumim pentru ajutor.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">A avut loc o eroare iremediabilă.
+        
+Dacă vrei să ne ajuți să rezolvăm această problemă, trimite date de diagnosticare. Mulțumim.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Raportează o eroare</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restartează Playnite</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Ieșire Playnite</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Acțiuni luate înaintea crash-ului (în engleză):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Managerul Librăriei</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Înlătură Joc(uri)?</sys:String>
