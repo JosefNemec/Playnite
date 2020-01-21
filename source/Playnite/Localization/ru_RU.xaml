@@ -697,8 +697,8 @@ IGDB &gt; Официальный магазин:
     <sys:String x:Key="LOCFirst">Первое</sys:String>
     <sys:String x:Key="LOCRandom">Случайное</sys:String>
     <sys:String x:Key="LOCUserSelect">Выбрать</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">Загрузить ещё</sys:String>
+    <sys:String x:Key="LOCTransparent">Прозрачность</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Параметры для эмулятора</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Дополнительные параметры для эмулятора</sys:String>
