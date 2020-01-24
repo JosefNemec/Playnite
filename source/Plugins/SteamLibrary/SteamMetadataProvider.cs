@@ -291,6 +291,9 @@ namespace SteamLibrary
                 case BackgroundSource.StoreBackground:
                     metadata.BackgroundImage = new MetadataFile(string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId));
                     break;
+                case BackgroundSource.Banner:
+                    metadata.BackgroundImage = new MetadataFile(string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_hero.jpg", appId));
+                    break;
                 default:
                     break;
             }

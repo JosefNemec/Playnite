@@ -24,6 +24,8 @@ namespace SteamLibrary
                     return ResourceProvider.GetString("LOCSteamBackgroundSourceScreenshot");
                 case BackgroundSource.StoreBackground:
                     return ResourceProvider.GetString("LOCSteamBackgroundSourceStore");
+                case BackgroundSource.Banner:
+                    return ResourceProvider.GetString("LOCSteamBackgroundSourceBanner");
                 default:
                     return string.Empty;
             }

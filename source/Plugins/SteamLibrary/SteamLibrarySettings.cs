@@ -20,7 +20,8 @@ namespace SteamLibrary
     {
         Image,
         StoreScreenshot,
-        StoreBackground
+        StoreBackground,
+        Banner
     }
 
     public enum AuthStatus
