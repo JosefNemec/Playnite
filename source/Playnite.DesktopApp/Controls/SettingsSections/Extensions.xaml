@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.Extensions"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="600">
 
     <UserControl.Resources>
@@ -40,6 +40,20 @@
                 <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionModule}" />
                 <TextBlock Text="{Binding Description.Module}" Margin="5,0,0,0" />
             </StackPanel>
+            <ItemsControl ItemsSource="{Binding Description.Links}"
+                          Margin="0,10,0,0" DockPanel.Dock="Top">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Margin="0,0,0,5"  DockPanel.Dock="Bottom">
+                            <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                       CommandParameter="{Binding Url}"
+                                       ToolTip="{Binding Url}">
+                                <Run Text="{Binding Name}" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             <CheckBox Content="{DynamicResource LOCEnabledTitle}" Margin="0,15,0,0"
                       IsChecked="{Binding Selected}" DockPanel.Dock="Top" />
 

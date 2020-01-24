@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Playnite.API
 
         public string Version { get; set; }
 
-        public string Website { get; set; }
+        public List<Link> Links { get; set; }
     }
 
     public class ExtensionDescription : BaseExtensionDescription
