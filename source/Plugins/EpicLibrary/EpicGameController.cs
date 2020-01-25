@@ -16,16 +16,24 @@ namespace EpicLibrary
 {
     public class EpicGameController : BaseGameController
     {
+        private static List<string> launchelessExceptions = new List<string>
+        {
+            "Duckbill" // Yooka-Laylee and the Impossible Lair
+        };
+
+        private static ILogger logger = LogManager.GetLogger();
         private CancellationTokenSource watcherToken;
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
         private readonly IPlayniteAPI api;
         private readonly Game game;
+        private readonly EpicLibrarySettings settings;
 
-        public EpicGameController(Game game, IPlayniteAPI api) : base(game)
+        public EpicGameController(Game game, IPlayniteAPI api, EpicLibrarySettings settings) : base(game)
         {
             this.api = api;
             this.game = game;
+            this.settings = settings;
         }
 
         public override void Dispose()
@@ -43,7 +51,44 @@ namespace EpicLibrary
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var startUri = string.Format(EpicLauncher.GameLaunchUrlMask, game.GameId);
-            ProcessStarter.StartUrl(startUri);
+            var startViaLauncher = true;
+            Models.InstalledManifiest manifest = null;
+
+            if (!launchelessExceptions.Contains(game.GameId) && settings.StartGamesWithoutLauncher)
+            {
+                manifest = EpicLauncher.GetInstalledManifests().FirstOrDefault(a => a.AppName == game.GameId);
+                if (manifest?.bCanRunOffline == true)
+                {
+                    startViaLauncher = false;
+                }
+            }
+
+            if (startViaLauncher)
+            {
+                ProcessStarter.StartUrl(startUri);
+            }
+            else
+            {
+                try
+                {
+                    var path = Path.Combine(manifest.InstallLocation, manifest.LaunchExecutable);
+                    var defaultArgs = $" -epicapp={game.GameId} -epicenv=Prod -EpicPortal";
+                    if (manifest.LaunchCommand.IsNullOrEmpty())
+                    {
+                        ProcessStarter.StartProcess(path, defaultArgs);
+                    }
+                    else
+                    {
+                        ProcessStarter.StartProcess(path, manifest.LaunchCommand + defaultArgs);
+                    }
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to start Epic game directly.");
+                    ProcessStarter.StartUrl(startUri);
+                }
+            }
+
             if (Directory.Exists(Game.InstallDirectory))
             {
                 stopWatch = Stopwatch.StartNew();
@@ -97,7 +142,6 @@ namespace EpicLibrary
                 {
                     var installInfo = new GameInfo
                     {
-
                         InstallDirectory = app.InstallLocation,
                         PlayAction = new GameAction()
                         {
@@ -109,7 +153,7 @@ namespace EpicLibrary
 
                     OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
-                };                
+                };
 
                 await Task.Delay(5000);
             }

@@ -23,7 +23,7 @@ namespace EpicLibrary
         private EpicLibrary library;
         private IPlayniteAPI api;
 
-        #region Settings      
+        #region Settings
 
         public int Version { get; set; }
 
@@ -32,6 +32,8 @@ namespace EpicLibrary
         public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
+
+        public bool StartGamesWithoutLauncher { get; set; } = false;
 
         #endregion Settings
 
