@@ -203,6 +203,7 @@ namespace System.Drawing.Imaging
 
                 bitmap.StreamSource = stream;                                        
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.CreateOptions = BitmapCreateOptions.IgnoreColorProfile;
                 bitmap.EndInit();
                 bitmap.Freeze();
                 return bitmap;
