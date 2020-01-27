@@ -25,7 +25,13 @@
                                              ItemContainerStyle="{DynamicResource GridViewItemStyle}"
                                              SelectionMode="Extended"
                                              DockPanel.Dock="Left"
-                                             BorderThickness="0">
+                                             BorderThickness="0"
+                                             VirtualizingPanel.IsVirtualizing="True"
+                                             VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                                             VirtualizingPanel.ScrollUnit="Pixel"
+                                             VirtualizingPanel.CacheLength="1,1"
+                                             VirtualizingPanel.CacheLengthUnit ="Page"
+                                             VirtualizingPanel.VirtualizationMode="Recycling">
                                 <ExtendedListBox.ItemTemplate>
                                     <DataTemplate>
                                         <GameListItem Style="{StaticResource GridViewItemTemplate}" />
