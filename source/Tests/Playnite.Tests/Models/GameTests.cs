@@ -114,6 +114,7 @@ namespace Playnite.Tests.Models
                 SortingName = "SortingName",
                 SourceId = new Guid(7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7),
                 TagIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
+                FeatureIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
                 UserScore = 30,
                 PlayAction = new GameAction(),
                 OtherActions = new ObservableCollection<GameAction> { new GameAction() }

@@ -123,6 +123,39 @@ namespace Playnite.DesktopApp.ViewModels
 
         #endregion Tags
 
+        #region Features
+
+        public ObservableCollection<GameFeature> EditingFeatures
+        {
+            get;
+        }
+
+        public RelayCommand<object> AddFeatureCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingFeatures);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveFeatureCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingFeatures, a.Cast<GameFeature>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameFeatureCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(EditingFeatures, a.First() as GameFeature);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion Features
+
         #region Platforms
 
         public ObservableCollection<Platform> EditingPlatforms
@@ -369,7 +402,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         #endregion Categories
 
-
         public RelayCommand<object> SaveCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -401,6 +433,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditingSeries = database.Series.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingSources = database.Sources.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
         }
 
         public void OpenView()
@@ -425,6 +458,7 @@ namespace Playnite.DesktopApp.ViewModels
                 UpdateDbCollection(database.Series, EditingSeries);
                 UpdateDbCollection(database.Sources, EditingSources);
                 UpdateDbCollection(database.Tags, EditingTags);
+                UpdateDbCollection(database.Features, EditingFeatures);
                 UpdatePlatformsCollection();
             }
 
@@ -432,7 +466,7 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         private void UpdateDbCollection<TItem>(IItemCollection<TItem> dbCollection, IList<TItem> updatedCollection) where TItem : DatabaseObject
-        {            
+        {
             // Remove deleted items
             var removedItems = dbCollection.Where(a => updatedCollection.FirstOrDefault(b => b.Id == a.Id) == null);
             if (removedItems.Any())

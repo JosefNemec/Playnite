@@ -38,7 +38,9 @@ namespace Playnite.SDK.Plugins
         ///
         CoverImage,
         ///
-        BackgroundImage
+        BackgroundImage,
+        ///
+        Features
     }
 
     /// <summary>
@@ -90,7 +92,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual string GetName()
@@ -99,7 +101,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetGenres()
@@ -108,7 +110,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual DateTime? GetReleaseDate()
@@ -117,7 +119,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetDevelopers()
@@ -126,7 +128,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetPublishers()
@@ -135,7 +137,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetTags()
@@ -144,7 +146,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual string GetDescription()
@@ -153,7 +155,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual int? GetCriticScore()
@@ -162,7 +164,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual int? GetCommunityScore()
@@ -171,7 +173,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual MetadataFile GetCoverImage()
@@ -180,7 +182,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual MetadataFile GetIcon()
@@ -189,7 +191,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual MetadataFile GetBackgroundImage()
@@ -198,10 +200,19 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual List<Link> GetLinks()
+        {
+            return null;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<string> GetFeatures()
         {
             return null;
         }

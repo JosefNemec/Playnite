@@ -28,6 +28,7 @@ namespace Playnite.Database
         public IItemCollection<AgeRating> AgeRatings { get; } = new InMemoryItemCollection<AgeRating>();
         public IItemCollection<Region> Regions { get; } = new InMemoryItemCollection<Region>();
         public IItemCollection<GameSource> Sources { get; } = new InMemoryItemCollection<GameSource>();
+        public IItemCollection<GameFeature> Features { get; } = new InMemoryItemCollection<GameFeature>();
         public bool IsOpen => true;
 
 #pragma warning disable CS0067

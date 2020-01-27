@@ -99,6 +99,11 @@ namespace Playnite.Tests.Metadata
             {
                 return metadata.GameInfo?.Tags;
             }
+
+            public override List<string> GetFeatures()
+            {
+                return metadata.GameInfo?.Features;
+            }
         }
 
         public class TestMetadataPlugin : MetadataPlugin
@@ -329,7 +334,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Developers,
                 MetadataField.Tags,
                 MetadataField.Genres,
-                MetadataField.ReleaseDate
+                MetadataField.ReleaseDate,
+                MetadataField.Features
             });
 
             List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
@@ -357,6 +363,7 @@ namespace Playnite.Tests.Metadata
                     Developers = new List<string>() { "Developer" },
                     Publishers = new List<string>() { "Publisher" },
                     Tags = new List<string>() { "Tag" },
+                    Features = new List<string>() { "Feature" },
                     Description = "Description",
                     Links = new List<Link>() { new Link() }
                 });
@@ -391,6 +398,7 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("Genre", game.Genres[0].Name);
                 CollectionAssert.IsNotEmpty(game.Links);
                 Assert.AreEqual("Tag", game.Tags[0].Name);
+                Assert.AreEqual("Feature", game.Features[0].Name);
                 Assert.AreEqual(2012, game.ReleaseDate.Value.Year);
             }
         }
@@ -411,7 +419,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Developers,
                 MetadataField.Tags,
                 MetadataField.Genres,
-                MetadataField.ReleaseDate
+                MetadataField.ReleaseDate,
+                MetadataField.Features
             });
 
             var gameId = "Game1";
@@ -427,9 +436,9 @@ namespace Playnite.Tests.Metadata
                 Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
                 Publishers = new List<string>() { $"IGDB publisher {gameId}" },
                 ReleaseDate = new DateTime(2012, 6, 6),
-                Tags = new List<string>() { $"IGDB Tag {gameId}" }
+                Tags = new List<string>() { $"IGDB Tag {gameId}" },
+                Features = new List<string>() { $"IGDB Feature {gameId}" }
             }, icon, image, background);
-
 
             List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
             {
@@ -451,6 +460,7 @@ namespace Playnite.Tests.Metadata
                     Publishers = new List<string>() { "Publishers" },
                     ReleaseDate = new DateTime(2012, 6, 6),
                     Tags = new List<string>() { "Tags" },
+                    Features = new List<string>() { "Features" },
                     UserScore = 1,
                     CommunityScore = 2,
                     CriticScore = 3
@@ -479,6 +489,7 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("URL", game1.Links[0].Url);
                 Assert.AreEqual("Publishers", game1.Publishers[0].Name);
                 Assert.AreEqual("Tags", game1.Tags[0].Name);
+                Assert.AreEqual("Features", game1.Features[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);
@@ -500,6 +511,7 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
                 Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
                 Assert.AreEqual("IGDB Tag Game1", game1.Tags[0].Name);
+                Assert.AreEqual("IGDB Feature Game1", game1.Features[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);
@@ -525,6 +537,7 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("IGDB link url Game1", game1.Links[0].Url);
                 Assert.AreEqual("IGDB publisher Game1", game1.Publishers[0].Name);
                 Assert.AreEqual("IGDB Tag Game1", game1.Tags[0].Name);
+                Assert.AreEqual("IGDB Feature Game1", game1.Features[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);

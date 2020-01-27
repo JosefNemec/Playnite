@@ -186,7 +186,7 @@ namespace Playnite
                     IsUnInstalled ||
                     Hidden ||
                     Favorite ||
-                    !string.IsNullOrEmpty(Name) ||                    
+                    !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(Version) ||
                     Series?.IsSet == true ||
                     Source?.IsSet == true ||
@@ -198,16 +198,17 @@ namespace Playnite
                     Category?.IsSet == true ||
                     Tag?.IsSet == true ||
                     Platform?.IsSet == true ||
-                    Library?.IsSet == true || 
+                    Library?.IsSet == true ||
                     CompletionStatus?.IsSet == true ||
                     UserScore?.IsSet == true ||
                     CriticScore?.IsSet == true ||
-                    CommunityScore?.IsSet == true || 
+                    CommunityScore?.IsSet == true ||
                     LastActivity?.IsSet == true ||
                     Added?.IsSet == true ||
-                    Modified?.IsSet == true || 
-                    ReleaseYear?.IsSet == true || 
-                    PlayTime?.IsSet == true;
+                    Modified?.IsSet == true ||
+                    ReleaseYear?.IsSet == true ||
+                    PlayTime?.IsSet == true ||
+                    Feature?.IsSet == true;
             }
         }
 
@@ -535,7 +536,7 @@ namespace Playnite
                 }
             }
         }
-        
+
         private FilterItemProperites library;
         public FilterItemProperites Library
         {
@@ -703,6 +704,25 @@ namespace Playnite
                     playTime = value;
                     OnPropertyChanged();
                     OnFilterChanged(nameof(PlayTime));
+                }
+            }
+        }
+
+        private FilterItemProperites feature;
+        public FilterItemProperites Feature
+        {
+            get
+            {
+                return feature;
+            }
+
+            set
+            {
+                if (feature != value)
+                {
+                    feature = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Feature));
                 }
             }
         }
@@ -891,6 +911,12 @@ namespace Playnite
                 filterChanges.Add(nameof(PlayTime));
             }
 
+            if (Feature?.IsSet == true)
+            {
+                Feature = null;
+                filterChanges.Add(nameof(Feature));
+            }
+
             suppressFilterChanges = false;
             OnFilterChanged(filterChanges);
         }
@@ -1005,6 +1031,11 @@ namespace Playnite
         public bool ShouldSerializePlayTime()
         {
             return PlayTime?.IsSet == true;
+        }
+
+        public bool ShouldSerializeFeature()
+        {
+            return Feature?.IsSet == true;
         }
 
         #endregion Serialization Conditions

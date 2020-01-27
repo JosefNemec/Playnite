@@ -241,6 +241,7 @@
     <Compile Include="Database\Collections\AgeRatingsCollection.cs" />
     <Compile Include="Database\Collections\SeriesCollection.cs" />
     <Compile Include="Database\Collections\CategoriesCollection.cs" />
+    <Compile Include="Database\Collections\FeaturesCollection.cs" />
     <Compile Include="Database\Collections\TagsCollection.cs" />
     <Compile Include="Database\Collections\GenresCollection.cs" />
     <Compile Include="Database\DatabaseExplorer.cs" />

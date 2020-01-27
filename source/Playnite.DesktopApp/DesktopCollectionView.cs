@@ -44,7 +44,8 @@ namespace Playnite.DesktopApp
             { GroupableField.LastActivity, nameof(GamesCollectionViewEntry.LastActivitySegment) },
             { GroupableField.Added, nameof(GamesCollectionViewEntry.AddedSegment) },
             { GroupableField.Modified, nameof(GamesCollectionViewEntry.ModifiedSegment) },
-            { GroupableField.PlayTime, nameof(GamesCollectionViewEntry.PlaytimeCategory) }
+            { GroupableField.PlayTime, nameof(GamesCollectionViewEntry.PlaytimeCategory) },
+            { GroupableField.Feature, nameof(GamesCollectionViewEntry.Feature) }
         };
 
         private Dictionary<GroupableField, Type> groupTypes = new Dictionary<GroupableField, Type>()
@@ -53,7 +54,8 @@ namespace Playnite.DesktopApp
             { GroupableField.Genre, typeof(Genre) },
             { GroupableField.Developer, typeof(Developer) },
             { GroupableField.Publisher, typeof(Publisher) },
-            { GroupableField.Tag, typeof(Tag) }
+            { GroupableField.Tag, typeof(Tag) },
+            { GroupableField.Feature, typeof(GameFeature) }
         };
 
         private GamesViewType? viewType = null;
@@ -84,6 +86,7 @@ namespace Playnite.DesktopApp
             Database.Series.ItemUpdated += Series_ItemUpdated;
             Database.Sources.ItemUpdated += Sources_ItemUpdated;
             Database.Tags.ItemUpdated += Tags_ItemUpdated;
+            Database.Features.ItemUpdated += Features_ItemUpdated;
             viewSettings = settings.ViewSettings;
             viewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             using (CollectionView.DeferRefresh())
@@ -108,6 +111,7 @@ namespace Playnite.DesktopApp
             Database.Series.ItemUpdated -= Series_ItemUpdated;
             Database.Sources.ItemUpdated -= Sources_ItemUpdated;
             Database.Tags.ItemUpdated -= Tags_ItemUpdated;
+            Database.Features.ItemUpdated -= Features_ItemUpdated;
             viewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
         }
 
@@ -140,6 +144,7 @@ namespace Playnite.DesktopApp
                 case GroupableField.Developer:
                 case GroupableField.Publisher:
                 case GroupableField.Tag:
+                case GroupableField.Feature:
                     ViewType = GamesViewType.ListGrouped;
                     break;
                 case GroupableField.None:
@@ -216,6 +221,8 @@ namespace Playnite.DesktopApp
                     return sourceGame.PublisherIds;
                 case GroupableField.Tag:
                     return sourceGame.TagIds;
+                case GroupableField.Feature:
+                    return sourceGame.FeatureIds;
                 case GroupableField.None:
                     return null;
                 default:
@@ -348,6 +355,14 @@ namespace Playnite.DesktopApp
                 nameof(Game.Categories));
         }
 
+        private void Features_ItemUpdated(object sender, ItemUpdatedEventArgs<GameFeature> e)
+        {
+            DoGroupDbObjectsUpdate(
+                GroupableField.Feature, e,
+                (a, b) => a.FeatureIds?.Any() == true && b.Intersect(a.FeatureIds).Any(),
+                nameof(Game.Features));
+        }
+
         private void DoGroupDbObjectsUpdate<TItem>(
             GroupableField order,
             ItemUpdatedEventArgs<TItem> updatedItems,
@@ -385,6 +400,7 @@ namespace Playnite.DesktopApp
                 case GroupableField.Developer:
                 case GroupableField.Publisher:
                 case GroupableField.Tag:
+                case GroupableField.Feature:
                     return ViewType == GamesViewType.ListGrouped && !GetGroupingIds(viewSettings.GroupingOrder, oldData).IsListEqual(GetGroupingIds(viewSettings.GroupingOrder, newData));
                 case GroupableField.Platform:
                 case GroupableField.Series:

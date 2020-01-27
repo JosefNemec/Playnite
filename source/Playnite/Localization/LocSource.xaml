@@ -107,14 +107,11 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCDismiss">Dismiss</sys:String>
     <sys:String x:Key="LOCDismissAll">Dismiss All</sys:String>
     <sys:String x:Key="LOCImportLabel">Import</sys:String>
-    <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCNameLabel">Name</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Author</sys:String>
     <sys:String x:Key="LOCModuleLabel">Module</sys:String>
     <sys:String x:Key="LOCSeriesLabel">Series</sys:String>
     <sys:String x:Key="LOCVersionLabel">Version</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">Age Rating</sys:String>
-    <sys:String x:Key="LOCRegionLabel">Region</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Last Played</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Most Played</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Play Count</sys:String>
@@ -146,13 +143,6 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCRemoveLabel">Remove</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Download</sys:String>
     <sys:String x:Key="LOCSearchLabel">Search</sys:String>
-    <sys:String x:Key="LOCGenreLabel">Genre</sys:String>
-    <sys:String x:Key="LOCCompanyLabel">Company</sys:String>
-    <sys:String x:Key="LOCDeveloperLabel">Developer</sys:String>
-    <sys:String x:Key="LOCPublisherLabel">Publisher</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">Category</sys:String>
-    <sys:String x:Key="LOCTagLabel">Tag</sys:String>
-    <sys:String x:Key="LOCTagsLabel">Tags</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListViewLabel">List View</sys:String>
     <sys:String x:Key="LOCCoversLabel">Covers</sys:String>
@@ -573,6 +563,26 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Image, ROM or ISO Path</sys:String>
 
+    <sys:String x:Key="LOCGenreLabel">Genre</sys:String>
+    <sys:String x:Key="LOCGenresLabel">Genres</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Company</sys:String>
+    <sys:String x:Key="LOCCompaniesLabel">Companies</sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">Developer</sys:String>
+    <sys:String x:Key="LOCDevelopersLabel">Developers</sys:String>
+    <sys:String x:Key="LOCPublisherLabel">Publisher</sys:String>
+    <sys:String x:Key="LOCPublishersLabel">Publishers</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Category</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">Categories</sys:String>
+    <sys:String x:Key="LOCTagLabel">Tag</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Tags</sys:String>
+    <sys:String x:Key="LOCFeatureLabel">Feature</sys:String>
+    <sys:String x:Key="LOCFeaturesLabel">Features</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Age Rating</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel">Age Ratings</sys:String>
+    <sys:String x:Key="LOCRegionLabel">Region</sys:String>
+    <sys:String x:Key="LOCRegionsLabel">Regions</sys:String>
+    <sys:String x:Key="LOCSourceLabel">Source</sys:String>
+    <sys:String x:Key="LOCSourcesLabel">Sources</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Database Error</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Failed to open library database.</sys:String>

@@ -791,6 +791,9 @@ namespace Playnite.FullscreenApp.ViewModels
                     case GameField.Publishers:
                         OpenSubFilter("LOCPublisherLabel", nameof(DatabaseFilter.Publishers), nameof(FilterSettings.Publisher));
                         break;
+                    case GameField.Features:
+                        OpenSubFilter("LOCFeatureLabel", nameof(DatabaseFilter.Features), nameof(FilterSettings.Feature));
+                        break;
                     case GameField.Tags:
                         OpenSubFilter("LOCTagLabel", nameof(DatabaseFilter.Tags), nameof(FilterSettings.Tag));
                         break;

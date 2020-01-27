@@ -68,6 +68,11 @@ namespace Playnite.SDK
         IItemCollection<GameSource> Sources { get; }
 
         /// <summary>
+        /// Gets collection of game features.
+        /// </summary>
+        IItemCollection<GameFeature> Features { get; }
+
+        /// <summary>
         /// Gets value indicating whether database is opened.
         /// </summary>
         bool IsOpen { get; }

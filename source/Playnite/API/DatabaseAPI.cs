@@ -30,6 +30,7 @@ namespace Playnite.API
         public IItemCollection<AgeRating> AgeRatings => database.AgeRatings;
         public IItemCollection<Region> Regions => database.Regions;
         public IItemCollection<GameSource> Sources => database.Sources;
+        public IItemCollection<GameFeature> Features => database.Features;
 
         public string DatabasePath
         {
@@ -44,7 +45,7 @@ namespace Playnite.API
         public DatabaseAPI(GameDatabase database)
         {
             this.database = database;
-        }      
+        }
 
         public string AddFile(string path, Guid parentId)
         {

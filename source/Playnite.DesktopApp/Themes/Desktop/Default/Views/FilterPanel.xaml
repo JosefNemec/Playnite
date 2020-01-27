@@ -137,6 +137,11 @@
                                        Content="{DynamicResource LOCCategoryLabel}" />
                                     <FilterSelectionBox x:Name="PART_FilterCategory" />
 
+                                    <!--Features-->
+                                    <Label Name="PART_ElemFeatureLabel" Style="{StaticResource FilterLabel}" 
+                                       Content="{DynamicResource LOCFeatureLabel}" />
+                                    <FilterSelectionBox x:Name="PART_FilterFeature" />
+
                                     <!--Tag-->
                                     <Label Name="PART_ElemTagLabel" Style="{StaticResource FilterLabel}" 
                                        Content="{DynamicResource LOCTagLabel}" />

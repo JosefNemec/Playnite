@@ -22,7 +22,7 @@ namespace Playnite.Metadata
         private GameDatabase database;
         private readonly List<MetadataPlugin> metadataDownloaders;
         private Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders = new Dictionary<Guid, LibraryMetadataProvider>();
-        
+
         public MetadataDownloader(GameDatabase database, List<MetadataPlugin> metadataDownloaders, List<LibraryPlugin> libraryPlugins)
         {
             this.database = database;
@@ -40,7 +40,7 @@ namespace Playnite.Metadata
                 }
 
                 libraryDownloaders.Add(plugin.Id, downloader);
-            }            
+            }
         }
 
         public MetadataDownloader(GameDatabase database, List<MetadataPlugin> metadataDownloaders, Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders)
@@ -215,6 +215,9 @@ namespace Playnite.Metadata
                         case MetadataField.BackgroundImage:
                             metadata.BackgroundImage = provider.GetBackgroundImage();
                             break;
+                        case MetadataField.Features:
+                            gameInfo.Features = provider.GetFeatures();
+                            break;
                         default:
                             throw new NotImplementedException();
                     }
@@ -333,7 +336,6 @@ namespace Playnite.Metadata
                         // Publisher
                         if (settings.Publisher.Import)
                         {
-
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.PublisherIds.HasItems()))
                             {
                                 gameData = ProcessField(game, settings.Publisher, MetadataField.Publishers, (a) => a.GameInfo?.Publishers, existingStoreData, existingPluginData);
@@ -344,7 +346,7 @@ namespace Playnite.Metadata
                             }
                         }
 
-                        // Tags / Features
+                        // Tags
                         if (settings.Tag.Import)
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.TagIds.HasItems()))
@@ -353,6 +355,19 @@ namespace Playnite.Metadata
                                 if (gameData?.GameInfo?.Tags.HasNonEmptyItems() == true)
                                 {
                                     game.TagIds = database.Tags.Add(gameData.GameInfo.Tags).Select(a => a.Id).ToList();
+                                }
+                            }
+                        }
+
+                        // Features
+                        if (settings.Feature.Import)
+                        {
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.FeatureIds.HasItems()))
+                            {
+                                gameData = ProcessField(game, settings.Feature, MetadataField.Features, (a) => a.GameInfo?.Features, existingStoreData, existingPluginData);
+                                if (gameData?.GameInfo?.Features.HasNonEmptyItems() == true)
+                                {
+                                    game.FeatureIds = database.Features.Add(gameData.GameInfo.Features).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -428,7 +443,6 @@ namespace Playnite.Metadata
                         // Cover
                         if (settings.CoverImage.Import)
                         {
-
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.CoverImage)))
                             {
                                 gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.CoverImage, existingStoreData, existingPluginData);
