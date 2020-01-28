@@ -243,7 +243,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">設定模擬器...</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">資料庫管理員...</sys:String>
     <sys:String x:Key="LOCMenuTools">工具</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata">正在下載元資料...</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">下載元資料...</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">開啟第三方軟體</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">更新遊戲資料庫</sys:String>
     <sys:String x:Key="LOCMenuAddGame">新增遊戲</sys:String>
@@ -404,7 +404,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">按鈕提示</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">配置</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">水平捲軸</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection">選擇一個小節</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">選擇一個子選項</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
