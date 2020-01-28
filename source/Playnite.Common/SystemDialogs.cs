@@ -120,7 +120,7 @@ namespace Playnite.Common
 
         public static string SelectIconFile(Window owner)
         {
-            return SelectFile(owner, "*.bmp, *.jpg, *.jpeg, *.png, *.gif, *.ico, *.tga, *.exe|*.bmp;*.jpg*;*.png;*.gif;*.ico;*.tga;*.exe");
+            return SelectFile(owner, "Icon Files|*.bmp;*.jpg*;*.png;*.gif;*.ico;*.tga;*.exe;*.tif");
         }
 
         public static string SelectIconFile()
@@ -130,7 +130,7 @@ namespace Playnite.Common
 
         public static string SelectImageFile(Window owner)
         {
-            return SelectFile(owner, "*.bmp, *.jpg, *.jpeg, *.png, *.gif, *.tga|*.bmp;*.jpg*;*.png;*.gif;*.tga");
+            return SelectFile(owner, "Image Files|*.bmp;*.jpg*;*.png;*.gif;*.tga;*.tif");
         }
 
         public static string SelectImageFile()
