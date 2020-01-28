@@ -1314,6 +1314,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 });
 
                 await GlobalTaskHandler.ProgressTask;
+                Extensions.NotifiyOnLibraryUpdated();
             }
             finally
             {

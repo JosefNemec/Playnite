@@ -1,4 +1,7 @@
-def on_script_loaded():
+def on_application_started():
+    pass
+
+def on_library_updated():
     pass
 
 def on_game_starting(game):

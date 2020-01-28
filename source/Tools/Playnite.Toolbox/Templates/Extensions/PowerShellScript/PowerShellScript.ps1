@@ -1,4 +1,8 @@
-function global:OnScriptLoaded()
+function global:OnApplicationStarted()
+{
+}
+
+function global:OnLibraryUpdated()
 {
 }
 

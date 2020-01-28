@@ -76,5 +76,10 @@ public class TestPlugin : Plugin
     {
         // Add code to be execute when Playnite is initialized.
     }
+
+    public override void OnLibraryUpdated()
+    {
+        // Add code to be execute when library is updated.
+    }
 }
 ```

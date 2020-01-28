@@ -597,8 +597,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnScriptLoaded method from {script.Name} script.");
-                    continue;
+                    logger.Error(e, $"Failed to load execute OnApplicationStarted method from {script.Name} script.");
                 }
             }
 
@@ -610,7 +609,34 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to load execute OnApplicationStarted method from {plugin.Description.Name} plugin.");
+                }
+            }
+        }
+
+        public void NotifiyOnLibraryUpdated()
+        {
+            foreach (var script in Scripts)
+            {
+                try
+                {
+                    script.OnLibraryUpdated();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnLibraryUpdated method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnLibraryUpdated();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnLibraryUpdated method from {plugin.Description.Name} plugin.");
                 }
             }
         }

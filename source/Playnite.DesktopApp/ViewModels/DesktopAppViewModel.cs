@@ -992,6 +992,7 @@ namespace Playnite.DesktopApp.ViewModels
                 });
 
                 await GlobalTaskHandler.ProgressTask;
+                Extensions.NotifiyOnLibraryUpdated();
             }
             finally
             {

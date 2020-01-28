@@ -50,6 +50,14 @@ namespace Playnite.Scripting.IronPython
             }
         }
 
+        public override void OnLibraryUpdated()
+        {
+            if (Runtime.GetFunctionExits("on_library_updated"))
+            {
+                Runtime.Execute("on_library_updated()");
+            }
+        }
+
         public override void OnGameStarting(Game game)
         {
             if (Runtime.GetFunctionExits("on_game_starting"))

@@ -126,6 +126,13 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called library update has been finished.
+        /// </summary>
+        public virtual void OnLibraryUpdated()
+        {
+        }
+
+        /// <summary>
         /// Gets path dedicated for plugins to store data.
         /// </summary>
         /// <returns>Full directory path.</returns>
@@ -147,7 +154,6 @@ namespace Playnite.SDK.Plugins
         /// <returns>Plugin configuration.</returns>
         public TConfig GetPluginConfiguration<TConfig>() where TConfig : class
         {
-
             var pluginDir = Path.GetDirectoryName(GetType().Assembly.Location);
             var pluginConfig = Path.Combine(pluginDir, "plugin.cfg");
             if (File.Exists(pluginConfig))
@@ -158,7 +164,6 @@ namespace Playnite.SDK.Plugins
             {
                 return null;
             }
-
         }
 
         /// <summary>

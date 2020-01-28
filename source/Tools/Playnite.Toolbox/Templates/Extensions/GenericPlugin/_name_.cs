@@ -67,6 +67,11 @@ namespace _namespace_
             // Add code to be execute when Playnite is initialized.
         }
 
+        public override void OnLibraryUpdated()
+        {
+            // Add code to be execute when library is updated.
+        }
+
         public override ISettings GetSettings(bool firstRunSettings)
         {
             return settings;
