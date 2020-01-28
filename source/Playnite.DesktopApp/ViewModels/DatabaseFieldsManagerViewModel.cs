@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Windows;
+using System.Windows;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -55,6 +56,14 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => a?.Count == 1);
         }
 
+        public RelayCommand<object> RemoveUnusedGenresCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingGenres, g => g.GenreIds);
+            }, (a) => EditingGenres.Count > 0);
+        }
+
         #endregion Genres
 
         #region Companies
@@ -86,6 +95,28 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 RenameItem(EditingCompanies, a.First() as Company);
             }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<object> RemoveUnusedCompaniesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingCompanies, g =>
+                {
+                    var ids = new List<Guid>();
+                    if (g.DeveloperIds.HasItems())
+                    {
+                        g.DeveloperIds.ForEach(d => ids.AddMissing(d));
+                    }
+
+                    if (g.PublisherIds.HasItems())
+                    {
+                        g.PublisherIds.ForEach(d => ids.AddMissing(d));
+                    }
+
+                    return ids;
+                });
+            }, (a) => EditingCompanies.Count > 0);
         }
 
         #endregion Companies
@@ -121,6 +152,14 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => a?.Count == 1);
         }
 
+        public RelayCommand<object> RemoveUnusedTagsCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingTags, g => g.TagIds);
+            }, (a) => EditingTags.Count > 0);
+        }
+
         #endregion Tags
 
         #region Features
@@ -152,6 +191,14 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 RenameItem(EditingFeatures, a.First() as GameFeature);
             }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<object> RemoveUnusedFeaturesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingFeatures, g => g.FeatureIds);
+            }, (a) => EditingFeatures.Count > 0);
         }
 
         #endregion Features
@@ -235,6 +282,14 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => a?.Count == 1);
         }
 
+        public RelayCommand<object> RemoveUnusedPlatformsCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingPlatforms, g => g.PlatformId);
+            }, (a) => EditingPlatforms.Count > 0);
+        }
+
         #endregion Platforms
 
         #region Series
@@ -266,6 +321,14 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 RenameItem(EditingSeries, a.First() as Series);
             }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<object> RemoveUnusedSeriesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingSeries, g => g.SeriesId);
+            }, (a) => EditingSeries.Count > 0);
         }
 
         #endregion Series
@@ -301,6 +364,14 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => a?.Count == 1);
         }
 
+        public RelayCommand<object> RemoveUnusedAgeRatingsCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingAgeRatings, g => g.AgeRatingId);
+            }, (a) => EditingAgeRatings.Count > 0);
+        }
+
         #endregion AgeRatings
 
         #region Regions
@@ -332,6 +403,14 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 RenameItem(EditingRegions, a.First() as Region);
             }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<object> RemoveUnusedRegionsCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingRegions, g => g.RegionId);
+            }, (a) => EditingRegions.Count > 0);
         }
 
         #endregion Regions
@@ -367,6 +446,14 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => a?.Count == 1);
         }
 
+        public RelayCommand<object> RemoveUnusedSourcesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingSources, g => g.SourceId);
+            }, (a) => EditingSources.Count > 0);
+        }
+
         #endregion Sources
 
         #region Categories
@@ -398,6 +485,14 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 RenameItem(EditingCategories, a.First() as Category);
             }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<object> RemoveUnusedCategoriesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingCategories, g => g.CategoryIds);
+            }, (a) => EditingCategories.Count > 0);
         }
 
         #endregion Categories
@@ -555,6 +650,78 @@ namespace Playnite.DesktopApp.ViewModels
                 }
 
                 database.Platforms.Add(addedPlatform);
+            }
+        }
+
+        public void RemoveUnusedItems<TItem>(IList<TItem> sourceCollection, Func<Game, Guid> fieldSelector) where TItem : DatabaseObject
+        {
+            if (sourceCollection.Count == 0)
+            {
+                return;
+            }
+
+            var unused = new List<Guid>(sourceCollection.Select(a => a.Id));
+            foreach (var game in database.Games)
+            {
+                var usedId = fieldSelector(game);
+                if (unused.Contains(usedId))
+                {
+                    unused.Remove(usedId);
+                }
+            }
+
+            if (unused.Count > 0)
+            {
+                if (dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCRemoveUnusedFieldsAskMessage"), unused.Count),
+                    "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    foreach (var item in unused)
+                    {
+                        var srcItem = sourceCollection.First(a => a.Id == item);
+                        sourceCollection.Remove(srcItem);
+                    }
+                }
+            }
+            else
+            {
+                dialogs.ShowMessage(resources.GetString("LOCRemoveUnusedFieldsNoUnusedMessage"));
+            }
+        }
+
+        public void RemoveUnusedItems<TItem>(IList<TItem> sourceCollection, Func<Game, List<Guid>> fieldSelector) where TItem : DatabaseObject
+        {
+            if (sourceCollection.Count == 0)
+            {
+                return;
+            }
+
+            var unused = new List<Guid>(sourceCollection.Select(a => a.Id));
+            foreach (var game in database.Games)
+            {
+                var usedIds = fieldSelector(game) ?? new List<Guid>();
+                foreach (var item in unused.Intersect(usedIds).ToList())
+                {
+                    unused.Remove(item);
+                }
+            }
+
+            if (unused.Count > 0)
+            {
+                if (dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCRemoveUnusedFieldsAskMessage"), unused.Count),
+                    "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    foreach (var item in unused)
+                    {
+                        var srcItem = sourceCollection.First(a => a.Id == item);
+                        sourceCollection.Remove(srcItem);
+                    }
+                }
+            }
+            else
+            {
+                dialogs.ShowMessage(resources.GetString("LOCRemoveUnusedFieldsNoUnusedMessage"));
             }
         }
 

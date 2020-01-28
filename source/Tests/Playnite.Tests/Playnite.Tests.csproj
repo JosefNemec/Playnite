@@ -139,7 +139,7 @@
     <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
     <Compile Include="Metadata\WikipediaMetadataProviderTests.cs" />
     <Compile Include="MockDialogsFactory.cs" />
-    <Compile Include="MockResourceProvider.cs" />
+    <Compile Include="TestResourceProvider.cs" />
     <Compile Include="MockWindowFactory.cs" />
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="Models\Old\0\Game.cs" />
@@ -225,6 +225,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\XmlTest\Xml3.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite\Localization\LocSource.xaml">
+      <Link>Localization\LocSource.xaml</Link>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

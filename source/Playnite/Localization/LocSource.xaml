@@ -61,6 +61,8 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Are you sure you want to remove {0} games?
 
 Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Are you sure you want to remove {0} entries that are currently not in use?</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">No unsued fields found.</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Friends</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Section contains changes to be saved</sys:String>
@@ -91,6 +93,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Enabled</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remove</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">Remove unused</sys:String>
     <sys:String x:Key="LOCRenameTitle">Rename</sys:String>
     <sys:String x:Key="LOCCopyTitle">Copy</sys:String>
     <sys:String x:Key="LOCAddTitle">Add</sys:String>

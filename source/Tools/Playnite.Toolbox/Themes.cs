@@ -30,7 +30,6 @@ namespace Playnite.Toolbox
         public const string ThemeSlnName = "Theme.sln";
         public const string ThemeProjName = "Theme.csproj";
         public const string AppXamlName = "App.xaml";
-        public const string LocSourceName = "LocSource.xaml";
         public const string GlobalResourcesName = "GlobalResources.xaml";
 
         public static List<string> PackageFileBlackList { get; } = new List<string>
@@ -40,7 +39,7 @@ namespace Playnite.Toolbox
             ThemeSlnName,
             AppXamlName,
             GlobalResourcesName,
-            LocSourceName
+            PlaynitePaths.EngLocSourceFileName
         };
 
         public static List<FileChange> GetThemeChangelog(Version baseVersion, ApplicationMode mode, string changelogDir)
@@ -353,8 +352,8 @@ namespace Playnite.Toolbox
             }
 
             // Change localization file reference
-            var langElem = appXaml.Descendants().First(a => a.Attribute("Source")?.Value.EndsWith(Themes.LocSourceName) == true);
-            langElem.Attribute("Source").Value = Themes.LocSourceName;
+            var langElem = appXaml.Descendants().First(a => a.Attribute("Source")?.Value.EndsWith(PlaynitePaths.EngLocSourceFileName) == true);
+            langElem.Attribute("Source").Value = PlaynitePaths.EngLocSourceFileName;
 
             // Update theme project file
             XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
@@ -374,7 +373,7 @@ namespace Playnite.Toolbox
             appXaml.Save(Path.Combine(outDir, Themes.AppXamlName));
             csproj.Save(Path.Combine(outDir, Themes.ThemeProjName));
 
-            FileSystem.CopyFile(Paths.GetThemeTemplatePath(Themes.LocSourceName), Path.Combine(outDir, Themes.LocSourceName));
+            FileSystem.CopyFile(Paths.GetThemeTemplatePath(PlaynitePaths.EngLocSourceFileName), Path.Combine(outDir, PlaynitePaths.EngLocSourceFileName));
             FileSystem.CopyFile(Paths.GetThemeTemplateFilePath(mode, Themes.GlobalResourcesName), Path.Combine(outDir, Themes.GlobalResourcesName));
             FileSystem.CopyFile(Paths.GetThemeTemplateFilePath(mode, Themes.ThemeSlnName), Path.Combine(outDir, Themes.ThemeSlnName));
 

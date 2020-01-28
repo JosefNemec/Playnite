@@ -30,6 +30,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenamePlatformCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedPlatformsCommand}"/>
                     </StackPanel>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -111,6 +113,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameCategoryCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListCategories}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedCategoriesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListCategories"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -130,6 +134,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameGenreCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListGenres}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedGenresCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListGenres"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -149,6 +155,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameCompanyCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListCompanies}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedCompaniesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListCompanies"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -168,6 +176,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameFeatureCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListFeatures}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedFeaturesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListFeatures"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -187,6 +197,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameTagCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListTags}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedTagsCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListTags"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -206,6 +218,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameSeriesCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListSeries}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedSeriesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListSeries"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -225,6 +239,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameAgeRatingCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListAgeRatings}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedAgeRatingsCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListAgeRatings"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -244,6 +260,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameRegionCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListRegions}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedRegionsCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListRegions"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -263,6 +281,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameSourceCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListSources}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedSourcesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListSources"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
