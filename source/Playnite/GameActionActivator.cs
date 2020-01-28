@@ -57,7 +57,15 @@ namespace Playnite
                     }
 
                     var workdir = config.WorkingDirectory;
-                    return ProcessStarter.StartProcess(path, arguments, workdir);
+                    try
+                    {
+                        return ProcessStarter.StartProcess(path, arguments, workdir);
+                    }
+                    catch (System.ComponentModel.Win32Exception e)
+                    {
+                        logger.Error(e, "Failed to start emulator process.");
+                        throw new Exception("Emulator process cannot be started, make sure that emulator paths are configured properly.");
+                    }
             }
 
             return null;
