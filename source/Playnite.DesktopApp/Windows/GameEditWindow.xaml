@@ -580,8 +580,20 @@
                                             Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                                             Margin="5,0,0,0"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding IconMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
-                                <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
+                                <TextBlock Text="{Binding IconMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0"
+                                           ToolTipService.InitialShowDelay="0" HorizontalAlignment="Left">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsIconTooLage}" Value="True">
+                                                    <Setter Property="Foreground" Value="OrangeRed" />
+                                                    <Setter Property="ToolTip" Value="{StaticResource LOCLargeMediaWarningTooltip}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <Image Source="{Binding IconImageObject, Mode=OneWay}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
                                        DockPanel.Dock="Top" Height="64"/>
                                 <i:Interaction.Triggers>
@@ -621,8 +633,20 @@
                                             ToolTip="Google Images"
                                             Command="{Binding SelectGoogleCoverCommand}" />
                                 </StackPanel>
-                                <TextBlock Text="{Binding CoverMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
-                                <Image Source="{Binding EditingGame.CoverImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
+                                <TextBlock Text="{Binding CoverMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0"
+                                           ToolTipService.InitialShowDelay="0" HorizontalAlignment="Left">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsCoverTooLage}" Value="True">
+                                                    <Setter Property="Foreground" Value="OrangeRed" />
+                                                    <Setter Property="ToolTip" Value="{StaticResource LOCLargeMediaWarningTooltip}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <Image Source="{Binding CoverImageObject, Mode=OneWay}"
                                        Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top"/>
                                 <i:Interaction.Triggers>
@@ -648,7 +672,7 @@
                                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
                                     <Button Content="&#xec3e;"
                                             FontFamily="{DynamicResource FontIcoFont}"
-                                            ToolTip="{DynamicResource LOCSelectCoverTitle}"
+                                            ToolTip="{DynamicResource LOCSelectBackgroundTitle}"
                                             HorizontalAlignment="Left"
                                             Command="{Binding SelectBackgroundCommand}"/>
                                     <Button ToolTip="{DynamicResource LOCSelectUrlTitle}" Margin="5,0,0,0"
@@ -669,8 +693,20 @@
                                     <TextBox IsReadOnly="True" DockPanel.Dock="Left" Margin="5,0,0,0"
                                          Text="{Binding EditingGame.BackgroundImage}" />
                                 </DockPanel>
-                                <TextBlock Text="{Binding BackgroundMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0" />
-                                <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource ImageStringToImageConverter}}"
+                                <TextBlock Text="{Binding BackgroundMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0"
+                                           ToolTipService.InitialShowDelay="0" HorizontalAlignment="Left">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsBackgroundTooLage}" Value="True">
+                                                    <Setter Property="Foreground" Value="OrangeRed" />
+                                                    <Setter Property="ToolTip" Value="{StaticResource LOCLargeMediaWarningTooltip}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <Image Source="{Binding BackgroundImageObject, Mode=OneWay}"
                                    Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
                                    DockPanel.Dock="Top"/>
                                 <i:Interaction.Triggers>

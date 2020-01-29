@@ -16,5 +16,8 @@
         </Style>
     </UserControl.Resources>
 
-
+    <StackPanel Margin="15">
+        <CheckBox IsChecked="{Binding Settings.ShowImagePerformanceWarning}"
+                  Content="{DynamicResource LOCSettingsShowMediaSizeWarning}"/>
+    </StackPanel>
 </UserControl>

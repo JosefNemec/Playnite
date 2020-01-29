@@ -52,5 +52,12 @@ namespace Playnite.Tests
         {
             Assert.AreEqual(height, ratio.GetHeight(width));
         }
+
+        [Test]
+        public void GetMegapixelsFromResTest()
+        {
+            Assert.AreEqual(0.922, Sizes.GetMegapixelsFromRes(1280, 720));
+            Assert.AreEqual(0.540, Sizes.GetMegapixelsFromRes(600, 900));
+        }
     }
 }

@@ -107,5 +107,15 @@ namespace Playnite.Common
         {
             return b == 0 ? a : GetGreatestCommonDivisor(b, a % b);
         }
+
+        public static double GetMegapixelsFromRes(int width, int height)
+        {
+            return Math.Round((double)(width * height) / 1000000, 3);
+        }
+
+        public static double GetMegapixelsFromRes(ImageProperties props)
+        {
+            return GetMegapixelsFromRes(props.Width, props.Height);
+        }
     }
 }

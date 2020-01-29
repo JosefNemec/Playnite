@@ -78,18 +78,64 @@ namespace Playnite.DesktopApp.ViewModels
 
         public string IconMetadata
         {
-            get => GetImageProperties(EditingGame.Icon);
+            get => GetImageProperties(EditingGame.Icon)?.Item1;
         }
 
         public string CoverMetadata
         {
-            get => GetImageProperties(EditingGame.CoverImage);
+            get => GetImageProperties(EditingGame.CoverImage)?.Item1;
         }
 
         public string BackgroundMetadata
         {
-            get => GetImageProperties(EditingGame.BackgroundImage);
+            get => GetImageProperties(EditingGame.BackgroundImage)?.Item1;
         }
+
+        public bool IsIconTooLage
+        {
+            get
+            {
+                var props = GetImageProperties(EditingGame.Icon);
+                if (props != null)
+                {
+                    return Sizes.GetMegapixelsFromRes(props.Item2) > GameDatabase.MaximumRecommendedIconSize;
+                }
+
+                return false;
+            }
+        }
+
+        public bool IsCoverTooLage
+        {
+            get
+            {
+                var props = GetImageProperties(EditingGame.CoverImage);
+                if (props != null)
+                {
+                    return Sizes.GetMegapixelsFromRes(props.Item2) > GameDatabase.MaximumRecommendedCoverSize;
+                }
+
+                return false;
+            }
+        }
+
+        public bool IsBackgroundTooLage
+        {
+            get
+            {
+                var props = GetImageProperties(EditingGame.BackgroundImage);
+                if (props != null)
+                {
+                    return Sizes.GetMegapixelsFromRes(props.Item2) > GameDatabase.MaximumRecommendedBackgroundSize;
+                }
+
+                return false;
+            }
+        }
+
+        public object IconImageObject => ImageSourceManager.GetImage(EditingGame.Icon, false, new BitmapLoadProperties(256, 256));
+        public object CoverImageObject => ImageSourceManager.GetImage(EditingGame.CoverImage, false, new BitmapLoadProperties(900, 900));
+        public object BackgroundImageObject => ImageSourceManager.GetImage(EditingGame.BackgroundImage, false, new BitmapLoadProperties(1920, 1080));
 
         #region Database fields
 
@@ -1351,6 +1397,8 @@ namespace Playnite.DesktopApp.ViewModels
                     break;
                 case nameof(Game.CoverImage):
                     OnPropertyChanged(nameof(CoverMetadata));
+                    OnPropertyChanged(nameof(IsCoverTooLage));
+                    OnPropertyChanged(nameof(CoverImageObject));
                     if (IsSingleGameEdit)
                     {
                         UseImageChanges = Game.CoverImage != EditingGame.CoverImage;
@@ -1362,6 +1410,8 @@ namespace Playnite.DesktopApp.ViewModels
                     break;
                 case nameof(Game.BackgroundImage):
                     OnPropertyChanged(nameof(BackgroundMetadata));
+                    OnPropertyChanged(nameof(IsBackgroundTooLage));
+                    OnPropertyChanged(nameof(BackgroundImageObject));
                     if (IsSingleGameEdit)
                     {
                         UseBackgroundChanges = Game.BackgroundImage != EditingGame.BackgroundImage;
@@ -1375,6 +1425,8 @@ namespace Playnite.DesktopApp.ViewModels
                     break;
                 case nameof(Game.Icon):
                     OnPropertyChanged(nameof(IconMetadata));
+                    OnPropertyChanged(nameof(IsIconTooLage));
+                    OnPropertyChanged(nameof(IconImageObject));
                     if (IsSingleGameEdit)
                     {
                         UseIconChanges = Game.Icon != EditingGame.Icon;
@@ -2498,29 +2550,6 @@ namespace Playnite.DesktopApp.ViewModels
             return tempPath;
         }
 
-        public void SelectIcon()
-        {
-            var path = dialogs.SelectIconFile();
-            if (!string.IsNullOrEmpty(path))
-            {
-                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
-                {
-                    path = SaveFileIconToTemp(path);
-                    if (string.IsNullOrEmpty(path))
-                    {
-                        return;
-                    }
-                }
-                else if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
-                {
-                    path = SaveConvertedTgaToTemp(path);
-                }
-
-                EditingGame.Icon = path;
-                CheckImagePerformanceRestrains(path, 256);
-            }
-        }
-
         public void UseExeIcon()
         {
             if (EditingGame.PlayAction == null || EditingGame.PlayAction.Type == GameActionType.URL)
@@ -2593,13 +2622,36 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public void SelectIcon()
+        {
+            var path = dialogs.SelectIconFile();
+            if (!string.IsNullOrEmpty(path))
+            {
+                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveFileIconToTemp(path);
+                    if (string.IsNullOrEmpty(path))
+                    {
+                        return;
+                    }
+                }
+                else if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveConvertedTgaToTemp(path);
+                }
+
+                EditingGame.Icon = path;
+                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedIconSize);
+            }
+        }
+
         public void SelectCover()
         {
             var path = PrepareImagePath(dialogs.SelectImagefile());
             if (path != null)
             {
                 EditingGame.CoverImage = path;
-                CheckImagePerformanceRestrains(path, 1080);
+                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedCoverSize);
             }
         }
 
@@ -2609,7 +2661,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty())
             {
                 EditingGame.CoverImage = path;
-                CheckImagePerformanceRestrains(path, 1080);
+                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedCoverSize);
             }
         }
 
@@ -2619,7 +2671,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = path;
-                CheckImagePerformanceRestrains(path, 1600);
+                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedBackgroundSize);
             }
         }
 
@@ -2629,7 +2681,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = path;
-                CheckImagePerformanceRestrains(path, 1600);
+                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedBackgroundSize);
             }
         }
 
@@ -3136,7 +3188,7 @@ namespace Playnite.DesktopApp.ViewModels
             return false;
         }
 
-        private string GetImageProperties(string image)
+        private Tuple<string, ImageProperties> GetImageProperties(string image)
         {
             try
             {
@@ -3144,49 +3196,53 @@ namespace Playnite.DesktopApp.ViewModels
                 if (!imagePath.IsNullOrEmpty())
                 {
                     var props = Images.GetImageProperties(imagePath);
-                    return $"{props?.Width}x{props.Height}px";
+                    return new Tuple<string, ImageProperties>($"{props?.Width}x{props.Height}px", props);
                 }
                 else
                 {
-                    return string.Empty;
+                    return null;
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, $"Failed to get metadata from image  {image}");
-                return string.Empty;
+                return null;
             }
         }
 
-        private void CheckImagePerformanceRestrains(string imagePath, int maxHeight)
+        private void CheckImagePerformanceRestrains(string imagePath, double maxMegapixels)
         {
-            // Temporarily disabled since it shouldn't be needed anymore bacause of latest performance changes.
-            // Enable back again if people start complaining about performance.
+            if (!appSettings.ShowImagePerformanceWarning)
+            {
+                return;
+            }
 
-            //if (!appSettings.ShowImagePerformanceWarning)
-            //{
-            //    return;
-            //}
-
-            //if (imagePath != null && Images.GetImageProperties(imagePath)?.Height > maxHeight)
-            //{
-            //    var ask = new MessageBoxWindow();
-            //    var result = ask.ShowCustom(
-            //        window.Window,
-            //        resources.GetString("LOCGameImageSizeWarning"),
-            //        resources.GetString("LOCPerformanceWarningTitle"),
-            //        MessageBoxImage.Warning,
-            //        new List<object> { true, false },
-            //        new List<string>
-            //        {
-            //            resources.GetString("LOCOKLabel"),
-            //            resources.GetString("LOCDontShowAgainTitle")
-            //        });
-            //    if ((result as bool?) == false)
-            //    {
-            //        appSettings.ShowImagePerformanceWarning = false;
-            //    }
-            //}
+            if (imagePath != null)
+            {
+                var imageProps = Images.GetImageProperties(imagePath);
+                if (imageProps != null && Sizes.GetMegapixelsFromRes(imageProps) > maxMegapixels)
+                {
+                    var ask = new MessageBoxWindow();
+                    var result = ask.ShowCustom(
+                        window.Window,
+                        string.Format(resources.GetString("LOCGameImageSizeWarning"),
+                        GameDatabase.MaximumRecommendedIconSize,
+                        GameDatabase.MaximumRecommendedCoverSize,
+                        GameDatabase.MaximumRecommendedBackgroundSize),
+                        resources.GetString("LOCPerformanceWarningTitle"),
+                        MessageBoxImage.Warning,
+                        new List<object> { true, false },
+                        new List<string>
+                        {
+                        resources.GetString("LOCOKLabel"),
+                        resources.GetString("LOCDontShowAgainTitle")
+                        });
+                    if ((result as bool?) == false)
+                    {
+                        appSettings.ShowImagePerformanceWarning = false;
+                    }
+                }
+            }
         }
 
         public void SelectGoogleIcon()

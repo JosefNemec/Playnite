@@ -422,6 +422,7 @@ If disabled, background artwork is downloaded only when first needed. Using less
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Don't close after game sessions shorter than (in seconds)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automatically close following clients:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Auto Close Launchers</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Display warning when assigning too large game media</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
@@ -838,14 +839,15 @@ Version {2}</sys:String>
 
 {0}</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Selected image(s) might be too large for optimal performance. Using very large images may result in significantly worse UI responsiveness and increased memory usage.
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Selected image(s) might be too large for optimal performance. Using very large images may result in worse UI responsiveness and increased memory usage.
 
-Maximum recommended sizes:
-Icons: 256px height
-Covers: 800px height
-Backgrounds: 1080px height</sys:String>
+Maximum recommended resolutions:
+Icons: {0} mega pixels
+Covers: {1} mega pixels
+Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Performance Warning</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Don't Show Again</sys:String>
+    <sys:String x:Key="LOCLargeMediaWarningTooltip">Selected image file might be too large for optimal performance.</sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
