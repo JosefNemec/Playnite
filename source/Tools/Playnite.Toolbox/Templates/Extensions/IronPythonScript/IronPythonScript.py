@@ -1,6 +1,9 @@
 def on_application_started():
     pass
 
+def on_application_stopped():
+    pass
+
 def on_library_updated():
     pass
 

@@ -2,6 +2,10 @@ function global:OnApplicationStarted()
 {
 }
 
+function global:OnApplicationStopped()
+{
+}
+
 function global:OnLibraryUpdated()
 {
 }

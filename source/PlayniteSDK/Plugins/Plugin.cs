@@ -126,6 +126,13 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called when appliaction is stutting down.
+        /// </summary>
+        public virtual void OnApplicationStopped()
+        {
+        }
+
+        /// <summary>
         /// Called library update has been finished.
         /// </summary>
         public virtual void OnLibraryUpdated()

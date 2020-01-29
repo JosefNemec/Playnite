@@ -77,6 +77,11 @@ public class TestPlugin : Plugin
         // Add code to be execute when Playnite is initialized.
     }
 
+    public override void OnApplicationStopped()
+    {
+        // Add code to be executed when Playnite is shutting down.
+    }
+
     public override void OnLibraryUpdated()
     {
         // Add code to be execute when library is updated.

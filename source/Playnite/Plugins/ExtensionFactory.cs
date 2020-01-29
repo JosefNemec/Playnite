@@ -614,6 +614,33 @@ namespace Playnite.Plugins
             }
         }
 
+        public void NotifiyOnApplicationStopped()
+        {
+            foreach (var script in Scripts)
+            {
+                try
+                {
+                    script.OnApplicationStopped();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnApplicationStopped method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnApplicationStopped();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnApplicationStopped method from {plugin.Description.Name} plugin.");
+                }
+            }
+        }
+
         public void NotifiyOnLibraryUpdated()
         {
             foreach (var script in Scripts)

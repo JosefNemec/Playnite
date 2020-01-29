@@ -50,6 +50,14 @@ namespace Playnite.Scripting.IronPython
             }
         }
 
+        public override void OnApplicationStopped()
+        {
+            if (Runtime.GetFunctionExits("on_application_stopped"))
+            {
+                Runtime.Execute("on_application_stopped()");
+            }
+        }
+
         public override void OnLibraryUpdated()
         {
             if (Runtime.GetFunctionExits("on_library_updated"))

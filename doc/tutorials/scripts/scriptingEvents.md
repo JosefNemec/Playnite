@@ -17,7 +17,8 @@ Available Events
 | OnGameInstalled | on_game_installed | Game is installed. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameUninstalled | on_game_uninstalled | Game is uninstalled. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameSelected | on_game_selected | Game selection changed. | [GameSelectionEventArgs](xref:Playnite.SDK.Events.GameSelectionEventArgs) |
-| OnApplicationStarted | on_application_started | Application was started. | None |
+| OnApplicationStarted | on_application_started | Playnite was started. | None |
+| OnApplicationStopped | on_application_stopped | Playnite is shutting down. | None |
 | OnLibraryUpdated | on_library_updated | Library was updated. | None |
 
 Example - Handling start/stop events

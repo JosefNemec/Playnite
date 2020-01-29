@@ -64,12 +64,17 @@ namespace _namespace_
 
         public override void OnApplicationStarted()
         {
-            // Add code to be execute when Playnite is initialized.
+            // Add code to be executed when Playnite is initialized.
+        }
+
+        public override void OnApplicationStopped()
+        {
+            // Add code to be executed when Playnite is shutting down.
         }
 
         public override void OnLibraryUpdated()
         {
-            // Add code to be execute when library is updated.
+            // Add code to be executed when library is updated.
         }
 
         public override ISettings GetSettings(bool firstRunSettings)
