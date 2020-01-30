@@ -36,5 +36,16 @@ namespace SteamLibrary.Tests
             CollectionAssert.IsNotEmpty(data.GameInfo.Links);
             CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);
         }
+
+        [Test]
+        public void VRMetadataTest()
+        {
+            var provider = new SteamMetadataProvider(
+                null,
+                new SteamLibrary(PlayniteTests.GetTestingApi().Object, null),
+                new SteamApiClient());
+            var data = provider.GetMetadata(new Game() { GameId = "378860" });
+            Assert.IsTrue(data.GameInfo.Features.Contains("VR"));
+        }
     }
 }

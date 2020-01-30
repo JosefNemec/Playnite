@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Playnite.Common.Web;
+using System.Diagnostics;
 
 namespace SteamLibrary
 {
@@ -64,59 +65,15 @@ namespace SteamLibrary
 
         internal KeyValue GetAppInfo(uint appId)
         {
-            KeyValue data = null;
-            var stringData = string.Empty;
-
-            // First try to get cached data
             try
             {
-                stringData = playniteServices.GetSteamAppInfoData(appId);
+                return apiClient.GetProductInfo(appId).GetAwaiter().GetResult();
             }
-            catch (Exception e)
+            catch (Exception e) when (!Debugger.IsAttached)
             {
-                logger.Error(e, $"Failed to get Steam appinfo cache data {appId}.");
+                logger.Error(e, $"Failed to get Steam appinfo {appId}");
+                return null;
             }
-
-            // If no cache then download on client and push to cache
-            if (string.IsNullOrEmpty(stringData))
-            {
-                data = apiClient.GetProductInfo(appId).GetAwaiter().GetResult();
-                logger.Debug($"Steam appinfo got from live server {appId}");
-
-                try
-                {
-                    using (var str = new MemoryStream())
-                    {
-                        data.SaveToStream(str, false);
-                        using (var reader = new StreamReader(str, Encoding.UTF8))
-                        {
-                            str.Seek(0, SeekOrigin.Begin);
-                            stringData = reader.ReadToEnd();
-                        }
-                    }
-
-                    playniteServices.PostSteamAppInfoData(appId, stringData);
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to post steam appinfo data to cache {appId}");
-                }
-            }
-            else
-            {
-                logger.Debug($"Steam appinfo data got from cache {appId}");
-            }
-
-            if (data != null)
-            {
-                return data;
-            }
-            else if (!string.IsNullOrEmpty(stringData))
-            {
-                return KeyValue.LoadFromString(stringData);
-            }
-
-            return null;
         }
 
         internal StoreAppDetailsResult.AppDetails GetStoreData(uint appId)
@@ -363,7 +320,17 @@ namespace SteamLibrary
 
                 if (downloadedMetadata.StoreDetails.categories.HasItems())
                 {
-                    gameInfo.Tags = new List<string>(downloadedMetadata.StoreDetails.categories.Select(a => cultInfo.ToTitleCase(a.description)));
+                    gameInfo.Features = new List<string>();
+                    foreach (var category in downloadedMetadata.StoreDetails.categories)
+                    {
+                        // Ignore VR category, will be set from appinfo
+                        if (category.id == 31)
+                        {
+                            continue;
+                        }
+
+                        gameInfo.Features.Add(cultInfo.ToTitleCase(category.description));
+                    }
                 }
 
                 if (downloadedMetadata.StoreDetails.genres.HasItems())
@@ -419,6 +386,52 @@ namespace SteamLibrary
                 }
 
                 gameInfo.OtherActions = tasks;
+
+                // VR features
+                var vrSupport = false;
+                foreach (var vrArea in downloadedMetadata.ProductDetails["common"]["playareavr"].Children)
+                {
+                    if (vrArea.Name == "seated" && vrArea.Value == "1")
+                    {
+                        gameInfo.Features.Add("VR Seated");
+                        vrSupport = true;
+                    }
+                    else if (vrArea.Name == "standing" && vrArea.Value == "1")
+                    {
+                        gameInfo.Features.Add("VR Standing");
+                        vrSupport = true;
+                    }
+                    if (vrArea.Name.Contains("roomscale"))
+                    {
+                        gameInfo.Features.AddMissing("VR Room-Scale");
+                        vrSupport = true;
+                    }
+                }
+
+                foreach (var vrArea in downloadedMetadata.ProductDetails["common"]["controllervr"].Children)
+                {
+                    if (vrArea.Name == "kbm" && vrArea.Value == "1")
+                    {
+                        gameInfo.Features.Add("VR Keyboard / Mouse");
+                        vrSupport = true;
+                    }
+                    else if (vrArea.Name == "xinput" && vrArea.Value == "1")
+                    {
+                        gameInfo.Features.Add("VR Gamepad");
+                        vrSupport = true;
+                    }
+                    if ((vrArea.Name == "oculus" && vrArea.Value == "1") ||
+                        (vrArea.Name == "steamvr" && vrArea.Value == "1"))
+                    {
+                        gameInfo.Features.Add("VR Motion Controllers");
+                        vrSupport = true;
+                    }
+                }
+
+                if (vrSupport)
+                {
+                    gameInfo.Features.Add("VR");
+                }
             }
 
             return downloadedMetadata;
