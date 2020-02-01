@@ -943,7 +943,7 @@ namespace Playnite.SDK.Models
             {
                 if (genreIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Genre>(DatabaseReference?.Genres.Where(a => genreIds.Contains(a.Id)));
+                    return new List<Genre>(DatabaseReference?.Genres.Where(a => genreIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -960,7 +960,7 @@ namespace Playnite.SDK.Models
             {
                 if (developerIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Company>(DatabaseReference?.Companies.Where(a => developerIds.Contains(a.Id)));
+                    return new List<Company>(DatabaseReference?.Companies.Where(a => developerIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -977,7 +977,7 @@ namespace Playnite.SDK.Models
             {
                 if (publisherIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Company>(DatabaseReference?.Companies.Where(a => publisherIds.Contains(a.Id)));
+                    return new List<Company>(DatabaseReference?.Companies.Where(a => publisherIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -994,7 +994,7 @@ namespace Playnite.SDK.Models
             {
                 if (tagIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Tag>(DatabaseReference?.Tags.Where(a => tagIds.Contains(a.Id)));
+                    return new List<Tag>(DatabaseReference?.Tags.Where(a => tagIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -1011,7 +1011,7 @@ namespace Playnite.SDK.Models
             {
                 if (featureIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<GameFeature>(DatabaseReference?.Features.Where(a => featureIds.Contains(a.Id)));
+                    return new List<GameFeature>(DatabaseReference?.Features.Where(a => featureIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -1028,7 +1028,7 @@ namespace Playnite.SDK.Models
             {
                 if (categoryIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Category>(DatabaseReference?.Categories.Where(a => categoryIds.Contains(a.Id)));
+                    return new List<Category>(DatabaseReference?.Categories.Where(a => categoryIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;

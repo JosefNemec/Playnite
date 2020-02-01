@@ -46,8 +46,8 @@ namespace System.Collections.Generic
                 return 1;
             }
 
-            var str1 = string.Join(", ", this.OrderBy(a => a.Name));
-            var str2 = string.Join(", ", list2.OrderBy(a => a.Name));
+            var str1 = string.Join(", ", this);
+            var str2 = string.Join(", ", list2);
             return str1.CompareTo(str2);
         }
     }
@@ -59,14 +59,14 @@ namespace System.Collections.Generic
     public class ComparableList<T>: List<T>, IComparable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ComparableList()
         {
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="count"></param>
         public ComparableList(int count) : base(count)
@@ -74,7 +74,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="collection"></param>
         public ComparableList(IEnumerable<T> collection) : base(collection ?? new List<T>())
@@ -82,7 +82,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -93,9 +93,9 @@ namespace System.Collections.Generic
                 return -1;
             }
 
-            var list2 = obj as List<T>;            
-            var str1 = string.Join(", ", ToArray());
-            var str2 = string.Join(", ", list2.ToArray());
+            var list2 = obj as List<T>;
+            var str1 = string.Join(", ", this);
+            var str2 = string.Join(", ", list2);
             return str1.CompareTo(str2);
         }
     }
