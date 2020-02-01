@@ -62,7 +62,7 @@ namespace Playnite.WebView
         }
 
         public void Dispose()
-        {            
+        {
             window?.Close();
             window?.Browser.Dispose();
         }
@@ -100,7 +100,7 @@ namespace Playnite.WebView
 
         public void NavigateAndWait(string url)
         {
-            context.Send(a => window.Browser.Address = url, null);            
+            context.Send(a => window.Browser.Address = url, null);
             loadCompleteEvent.WaitOne(20000);
         }
 
@@ -121,23 +121,29 @@ namespace Playnite.WebView
 
         public void DeleteCookies(string url, string name)
         {
-            Cef.GetGlobalCookieManager().DeleteCookies(url, name);
+            using (var manager = Cef.GetGlobalCookieManager())
+            {
+                manager.DeleteCookies(url, name);
+            }
         }
 
         public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
         {
-            Cef.GetGlobalCookieManager().SetCookie(url, new Cookie()
+            using (var manager = Cef.GetGlobalCookieManager())
             {
-                Domain = domain,
-                Name = name,
-                Value = value,
-                Expires = expires,
-                Creation = DateTime.Now,
-                HttpOnly = false,
-                LastAccess = DateTime.Now,
-                Secure = false,
-                Path = path
-            });
+                manager.SetCookie(url, new Cookie()
+                {
+                    Domain = domain,
+                    Name = name,
+                    Value = value,
+                    Expires = expires,
+                    Creation = DateTime.Now,
+                    HttpOnly = false,
+                    LastAccess = DateTime.Now,
+                    Secure = false,
+                    Path = path
+                });
+            }
         }
     }
 }
