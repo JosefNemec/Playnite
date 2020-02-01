@@ -33,6 +33,8 @@ namespace Playnite.SDK
         TwitchLibrary,
         ///
         IgdbMetadata,
+        ///
+        HumbleLibrary
     }
 
     /// <summary>
@@ -54,7 +56,8 @@ namespace Playnite.SDK
             { Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB"), BuiltinExtension.SteamLibrary },
             { Guid.Parse("E2A7D494-C138-489D-BB3F-1D786BEEB675"), BuiltinExtension.TwitchLibrary },
             { Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5"), BuiltinExtension.UplayLibrary },
-            { Guid.Parse("000001DB-DBD1-46C6-B5D0-B1BA559D10E4"), BuiltinExtension.IgdbMetadata }
+            { Guid.Parse("000001DB-DBD1-46C6-B5D0-B1BA559D10E4"), BuiltinExtension.IgdbMetadata },
+            { Guid.Parse("96e8c4bc-ec5c-4c8b-87e7-18ee5a690626"), BuiltinExtension.HumbleLibrary }
         };
 
         /// <summary>
