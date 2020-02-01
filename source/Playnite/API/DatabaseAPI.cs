@@ -2,6 +2,7 @@
 using Playnite.Database;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -80,6 +81,16 @@ namespace Playnite.API
         public string GetFullFilePath(string databasePath)
         {
             return database.GetFullFilePath(databasePath);
+        }
+
+        public Game ImportGame(GameInfo game)
+        {
+            return database.ImportGame(game);
+        }
+
+        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        {
+            return database.ImportGame(game, sourcePlugin.Id);
         }
     }
 }

@@ -569,7 +569,17 @@ namespace Playnite.Database
                 return null;
             }
 
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(path);
+            var fileName = Guid.NewGuid().ToString();
+            if (path.IsHttpUrl())
+            {
+                var url = new Uri(path);
+                fileName += Path.GetExtension(url.AbsolutePath);
+            }
+            else
+            {
+                fileName += Path.GetExtension(path);
+            }
+
             MetadataFile metaFile = null;
 
             try
@@ -716,6 +726,11 @@ namespace Playnite.Database
             return ImportGame(game, Guid.Empty);
         }
 
+        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        {
+            return ImportGame(game, sourcePlugin.Id);
+        }
+
         public Game ImportGame(GameInfo game, Guid pluginId)
         {
             var toAdd = GameInfoToGame(game, pluginId);
@@ -759,49 +774,56 @@ namespace Playnite.Database
 
         public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
         {
-            var addedGames = new List<Game>();
-            foreach (var newGame in library.GetGames())
+            if (library.Capabilities?.HasCustomizedGameImport == true)
             {
-                var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
-                if (existingGame == null)
-                {
-                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                    addedGames.Add(ImportGame(newGame, library.Id));
-                }
-                else
-                {
-                    existingGame.IsInstalled = newGame.IsInstalled;
-                    existingGame.InstallDirectory = newGame.InstallDirectory;
-                    if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
-                    {
-                        existingGame.PlayAction = newGame.PlayAction;
-                    }
-
-                    if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
-                       (newGame.Playtime > 0 && forcePlayTimeSync))
-                    {
-                        existingGame.Playtime = newGame.Playtime;
-                        if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
-                        {
-                            existingGame.CompletionStatus = CompletionStatus.Played;
-                        }
-
-                        if (existingGame.LastActivity == null && newGame.LastActivity != null)
-                        {
-                            existingGame.LastActivity = newGame.LastActivity;
-                        }
-                    }
-
-                    if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
-                    {
-                        existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
-                    }
-
-                    Games.Update(existingGame);
-                }
+                return library.ImportGames()?.ToList() ?? new List<Game>();
             }
+            else
+            {
+                var addedGames = new List<Game>();
+                foreach (var newGame in library.GetGames())
+                {
+                    var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
+                    if (existingGame == null)
+                    {
+                        logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+                        addedGames.Add(ImportGame(newGame, library.Id));
+                    }
+                    else
+                    {
+                        existingGame.IsInstalled = newGame.IsInstalled;
+                        existingGame.InstallDirectory = newGame.InstallDirectory;
+                        if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
+                        {
+                            existingGame.PlayAction = newGame.PlayAction;
+                        }
 
-            return addedGames;
+                        if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
+                           (newGame.Playtime > 0 && forcePlayTimeSync))
+                        {
+                            existingGame.Playtime = newGame.Playtime;
+                            if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
+                            {
+                                existingGame.CompletionStatus = CompletionStatus.Played;
+                            }
+
+                            if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                            {
+                                existingGame.LastActivity = newGame.LastActivity;
+                            }
+                        }
+
+                        if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
+                        {
+                            existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
+                        }
+
+                        Games.Update(existingGame);
+                    }
+                }
+
+                return addedGames;
+            }
         }
 
         public static void GenerateSampleData(IGameDatabase database)

@@ -1,5 +1,6 @@
 ﻿using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,16 @@ namespace Playnite.Database
 
         public InMemoryGameDatabase()
         {
+        }
+
+        public Game ImportGame(GameInfo game)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

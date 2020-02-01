@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,5 +82,20 @@ namespace Playnite.SDK
         /// Invoked when database is being opened.
         /// </summary>
         event EventHandler DatabaseOpened;
+
+        /// <summary>
+        /// Import new game into database.
+        /// </summary>
+        /// <param name="game">Game data to import.</param>
+        /// <returns>Imported game.</returns>
+        Game ImportGame(GameInfo game);
+
+        /// <summary>
+        /// Import new game into database from a library plugin.
+        /// </summary>
+        /// <param name="game">Game data to import.</param>
+        /// <param name="sourcePlugin">Source library plugin.</param>
+        /// <returns>Imported game.</returns>
+        Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin);
     }
 }
