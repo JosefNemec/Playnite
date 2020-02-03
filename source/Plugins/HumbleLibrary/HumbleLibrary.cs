@@ -92,7 +92,7 @@ namespace HumbleLibrary
                 foreach (var product in selectedProducts)
                 {
                     var gameId = GetGameId(product);
-                    var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == gameId);
+                    var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == gameId && a.PluginId == Id);
                     if (alreadyImported == null)
                     {
                         importedGames.Add(PlayniteApi.Database.ImportGame(new GameInfo()
