@@ -21,9 +21,9 @@ namespace Playnite.Database
 {
     public partial class GameDatabase : IGameDatabase
     {
-        public const double MaximumRecommendedIconSize = 0.05;
-        public const double MaximumRecommendedCoverSize = 0.7;
-        public const double MaximumRecommendedBackgroundSize = 2;
+        public const double MaximumRecommendedIconSize = 0.07;
+        public const double MaximumRecommendedCoverSize = 0.8;
+        public const double MaximumRecommendedBackgroundSize = 2.5;
 
         private static ILogger logger = LogManager.GetLogger();
 
