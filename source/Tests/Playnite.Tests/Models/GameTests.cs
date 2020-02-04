@@ -120,6 +120,40 @@ namespace Playnite.Tests.Models
                 OtherActions = new ObservableCollection<GameAction> { new GameAction() }
             };
 
+            var changes = 0;
+
+            var game1 = new Game()
+            {
+                GameId = "id",
+                PlayAction = new GameAction() { Name = "play1" },
+                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
+            };
+
+            var game2 = new Game()
+            {
+                GameId = "id",
+                PlayAction = new GameAction() { Name = "play1" },
+                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
+            };
+
+            var game3 = new Game()
+            {
+                GameId = "id",
+                PlayAction = new GameAction() { Name = "play3" },
+                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action3" }, new GameAction() { Name = "action4" } }
+            };
+
+            game1.PropertyChanged += (s, e) => changes++;
+            game2.PropertyChanged += (s, e) => changes++;
+            game3.PropertyChanged += (s, e) => changes++;
+
+            game1.CopyDiffTo(game2);
+            Assert.AreEqual(0, changes);
+
+            changes = 0;
+            game1.CopyDiffTo(game3);
+            Assert.AreEqual(2, changes);
+
             Assert.Fail();
         }
     }

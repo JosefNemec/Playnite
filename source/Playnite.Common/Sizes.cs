@@ -61,7 +61,7 @@ namespace Playnite.Common
 
         public override int GetHashCode()
         {
-            return Height.GetHashCode() ^ Width.GetHashCode();
+            return base.GetHashCode();
         }
 
         public static bool operator ==(AspectRatio obj1, AspectRatio obj2)

@@ -34,8 +34,8 @@ namespace System.Drawing.Imaging
             MaxDecodePixelWidth = decodePixelWidth;
             MaxDecodePixelHeight = decodePixelHeight;
             DpiScale = dpiScale;
-        }        
-        
+        }
+
         public bool Equals(BitmapLoadProperties other)
         {
             if (other is null)
@@ -68,11 +68,10 @@ namespace System.Drawing.Imaging
 
         public override bool Equals(object obj) => Equals(obj as BitmapLoadProperties);
 
-        public override int GetHashCode() =>
-            (Source == null ? 0 : Source.GetHashCode()) ^
-            (DpiScale == null ? 0 : DpiScale.GetHashCode()) ^
-            MaxDecodePixelWidth.GetHashCode() ^
-            MaxDecodePixelHeight.GetHashCode();
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
         public static bool operator ==(BitmapLoadProperties obj1, BitmapLoadProperties obj2)
         {
@@ -201,7 +200,7 @@ namespace System.Drawing.Imaging
                     bitmap.DecodePixelHeight = (int)Math.Round(aspect.GetHeight(bitmap.DecodePixelWidth));
                 }
 
-                bitmap.StreamSource = stream;                                        
+                bitmap.StreamSource = stream;
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
                 bitmap.Freeze();
