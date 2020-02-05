@@ -35,7 +35,7 @@
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding BackgroundImage}" Value="{x:Null}">
+                                        <DataTrigger Binding="{Binding DisplayBackgroundImage}" Value="{x:Null}">
                                             <Setter Property="Visibility" Value="Collapsed" />
                                         </DataTrigger>
                                     </Style.Triggers>
