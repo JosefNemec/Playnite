@@ -398,6 +398,13 @@ namespace Playnite.DesktopApp.ViewModels
         {
             OpenSearchCommand = new RelayCommand<object>((game) =>
             {
+                if (SearchOpened)
+                {
+                    // The binding sometimes breaks when main window is restored from minimized state.
+                    // This fixes it.
+                    SearchOpened = false;
+                }
+
                 SearchOpened = true;
             }, new KeyGesture(Key.F, ModifierKeys.Control));
 
@@ -409,7 +416,7 @@ namespace Playnite.DesktopApp.ViewModels
             ToggleFilterPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.FilterPanelVisible = !AppSettings.FilterPanelVisible;
-            });
+            }, new KeyGesture(Key.G, ModifierKeys.Control));
 
             OpenFilterPanelCommand = new RelayCommand<object>((game) =>
             {
