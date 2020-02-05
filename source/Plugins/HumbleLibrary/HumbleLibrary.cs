@@ -44,6 +44,10 @@ namespace HumbleLibrary
         {
             var importedGames = new List<Game>();
             Exception importError = null;
+            if (!Settings.ConnectAccount)
+            {
+                return importedGames;
+            }
 
             try
             {
