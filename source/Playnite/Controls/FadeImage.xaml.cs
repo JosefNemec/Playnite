@@ -249,7 +249,7 @@ namespace Playnite.Controls
             var highQuality = HighQualityBlur;
             BitmapImage image = null;
 
-            if (newSource == currentSource)
+            if (newSource?.Equals(currentSource) == true)
             {
                 return;
             }
