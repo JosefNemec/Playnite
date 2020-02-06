@@ -30,6 +30,8 @@
                            Text="{DynamicResource LOCSettingsImmediateBackgroundDownloadTooltip}" />
             </CheckBox.ToolTip>
         </CheckBox>
-        <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}" />
+        </ScrollViewer>
     </DockPanel>
 </UserControl>

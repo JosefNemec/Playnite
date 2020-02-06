@@ -88,10 +88,10 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Image RenderOptions.BitmapScalingMode="Fant"
-                               VerticalAlignment="Center" Height="24" Margin="5"
+                               VerticalAlignment="Center" Height="24" Margin="5,2,5,2"
                                Source="{Binding PluginIcon}" />
                         <TextBlock VerticalAlignment="Center"
-                                   Margin="0,5,5,5"
+                                   Margin="0,2,5,2"
                                    Text="{Binding Description.Name}" />
                     </StackPanel>
                 </DataTemplate>
