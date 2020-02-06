@@ -5,7 +5,9 @@ using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -29,6 +31,10 @@ namespace HumbleLibrary
             CanShutdownClient = false,
             HasCustomizedGameImport = true
         };
+
+        public static string Icon { get; } = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"icon.png");
+
+        public override string LibraryIcon => Icon;
 
         public HumbleLibrary(IPlayniteAPI api) : base(api)
         {
