@@ -23,7 +23,6 @@ namespace Playnite.Toolbox
 
         public static string GenerateScriptExtension(ScriptLanguage language, string name, string directory)
         {
-            var sourcePath = Paths.GetScriptTemplatePath(language);
             var extDirName = Common.Paths.GetSafeFilename(name).Replace(" ", string.Empty);
             var outDir = Path.Combine(directory, extDirName);
             if (Directory.Exists(outDir))
@@ -31,13 +30,13 @@ namespace Playnite.Toolbox
                 throw new Exception($"Extension already exists: {outDir}");
             }
 
-            FileSystem.CopyDirectory(sourcePath, outDir);
+            var templateArchive = Paths.GetScriptTemplateArchivePath(language);
+            ZipFile.ExtractToDirectory(templateArchive, outDir);
             return outDir;
         }
 
         public static string GeneratePluginExtension(ExtensionType type, string name, string directory)
         {
-            var sourcePath = Paths.GetPluginTemplatePath(type);
             var normalizedName = Common.Paths.GetSafeFilename(name).Replace(" ", string.Empty);
             var outDir = Path.Combine(directory, normalizedName);
             if (Directory.Exists(outDir))
@@ -45,7 +44,8 @@ namespace Playnite.Toolbox
                 throw new Exception($"Extension already exists: {outDir}");
             }
 
-            FileSystem.CopyDirectory(sourcePath, outDir);
+            var templateArchive = Paths.GetPluginTemplateArchivePath(type);
+            ZipFile.ExtractToDirectory(templateArchive, outDir);
             var pluginId = Guid.NewGuid();
 
             foreach (var filePath in Directory.GetFiles(outDir, "*.*", SearchOption.AllDirectories))

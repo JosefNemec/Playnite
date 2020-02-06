@@ -31,32 +31,32 @@ namespace Playnite.Toolbox
             return Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Themes", fileName);
         }
 
-        public static string GetScriptTemplatePath(ScriptLanguage language)
+        public static string GetScriptTemplateArchivePath(ScriptLanguage language)
         {
             var root = Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Extensions");
             switch (language)
             {
                 case ScriptLanguage.PowerShell:
-                    return Path.Combine(root, "PowerShellScript");
+                    return Path.Combine(root, "PowerShellScript.zip");
                 case ScriptLanguage.IronPython:
-                    return Path.Combine(root, "IronPythonScript");
+                    return Path.Combine(root, "IronPythonScript.zip");
                 case ScriptLanguage.Batch:
                 default:
                     throw new NotSupportedException();
             }
         }
 
-        public static string GetPluginTemplatePath(ExtensionType type)
+        public static string GetPluginTemplateArchivePath(ExtensionType type)
         {
             var root = Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Extensions");
             switch (type)
             {
                 case ExtensionType.GenericPlugin:
-                    return Path.Combine(root, "GenericPlugin");
+                    return Path.Combine(root, "GenericPlugin.zip");
                 case ExtensionType.GameLibrary:
-                    return Path.Combine(root, "CustomLibraryPlugin");
+                    return Path.Combine(root, "CustomLibraryPlugin.zip");
                 case ExtensionType.MetadataProvider:
-                    return Path.Combine(root, "CustomMetadataPlugin");
+                    return Path.Combine(root, "CustomMetadataPlugin.zip");
                 case ExtensionType.Script:
                 default:
                     throw new NotSupportedException();
