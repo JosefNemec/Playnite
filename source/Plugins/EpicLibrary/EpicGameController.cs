@@ -43,6 +43,7 @@ namespace EpicLibrary
 
         public void ReleaseResources()
         {
+            watcherToken?.Cancel();
             procMon?.Dispose();
         }
 
