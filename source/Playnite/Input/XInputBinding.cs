@@ -193,16 +193,16 @@ namespace Playnite.Input
 
         private readonly SynchronizationContext context;
         private readonly PlayniteApplication application;
-             
+
         private InputManager inputManager;
         private uint lastState = 0;
 
         public XInputDevice(InputManager input, PlayniteApplication app)
-        {            
+        {
             inputManager = input;
             application = app;
-            context = SynchronizationContext.Current;           
-            
+            context = SynchronizationContext.Current;
+
             Task.Run(async () =>
             {
                 while (true)
@@ -277,6 +277,22 @@ namespace Playnite.Input
             ProcessAxisState(state.ThumbSticks.Right.Y, XInputButton.RightStickDown, false);
         }
 
+        private bool IsButtonNotNavigation(XInputButton button)
+        {
+            return button == XInputButton.A ||
+                   button == XInputButton.B ||
+                   button == XInputButton.Back ||
+                   button == XInputButton.Guide ||
+                   button == XInputButton.LeftShoulder ||
+                   button == XInputButton.LeftStick ||
+                   button == XInputButton.None ||
+                   button == XInputButton.RightShoulder ||
+                   button == XInputButton.RightStick ||
+                   button == XInputButton.Start ||
+                   button == XInputButton.X ||
+                   button == XInputButton.Y;
+        }
+
         private bool ShouldResendKey(XInputButton button)
         {
             var state = keyWatches[button];
@@ -289,26 +305,33 @@ namespace Playnite.Input
             }
             else
             {
-                if (!state.IsReSending && elapsed < resendDelay)
+                if (IsButtonNotNavigation(button))
                 {
                     sendInput = false;
                 }
-                else if (!state.IsReSending && elapsed > resendDelay)
-                {
-                    state.IsReSending = true;
-                    state.Watch.Restart();
-                    sendInput = true;
-                }
                 else
                 {
-                    if (state.IsReSending && elapsed > resendRate)
+                    if (!state.IsReSending && elapsed < resendDelay)
                     {
+                        sendInput = false;
+                    }
+                    else if (!state.IsReSending && elapsed > resendDelay)
+                    {
+                        state.IsReSending = true;
                         state.Watch.Restart();
                         sendInput = true;
                     }
+                    else
+                    {
+                        if (state.IsReSending && elapsed > resendRate)
+                        {
+                            state.Watch.Restart();
+                            sendInput = true;
+                        }
+                    }
                 }
             }
-            
+
             return sendInput;
         }
 
@@ -320,7 +343,7 @@ namespace Playnite.Input
         }
 
         private void ProcessButtonState(ButtonState currentState, XInputButton button)
-        {            
+        {
             if (currentState == ButtonState.Pressed && ShouldResendKey(button))
             {
                 SendXInput(button, true);
@@ -380,7 +403,7 @@ namespace Playnite.Input
                 {
                     return;
                 }
-                
+
                 var args = new XInputEventArgs(Key.None, pressed ? XInputButtonState.Pressed : XInputButtonState.Released, button);
                 inputManager.ProcessInput(args);
             }, null);
@@ -406,7 +429,7 @@ namespace Playnite.Input
         private void SimulateKeyInput(VirtualKeyCode key, bool pressed)
         {
             if (SimulateAllKeys || (SimulateNavigationKeys && IsKeysDirectionKey(key)))
-            {                
+            {
                 SendKeyInput(key, pressed);
             }
         }
@@ -427,7 +450,7 @@ namespace Playnite.Input
             }
         }
     }
-    
+
     public class XInputEventArgs : KeyEventArgs
     {
         public XInputButtonState XButtonState
@@ -448,7 +471,6 @@ namespace Playnite.Input
             RoutedEvent = state == XInputButtonState.Pressed ? Keyboard.KeyDownEvent : Keyboard.KeyUpEvent;
         }
     }
-
 
     public class XInputBinding : InputBinding
     {
