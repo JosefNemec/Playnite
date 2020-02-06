@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    
+
     <sys:String x:Key="LanguageName">Nederlands</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Taal</sys:String>
@@ -17,7 +17,7 @@
 
     <sys:String x:Key="LOCInvalidDataTitle">Ongeldige Data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Wijzigingen Opslaan?</sys:String>
-    
+
     <sys:String x:Key="LOCAboutHomePageLink">Homepagina op www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Source Code op GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Maak diag. package</sys:String>
@@ -36,9 +36,7 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nee! Er is iets misgegaan…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
-        
-Als u ons wilt helpen dit probleem op te lossen, stuur dan diagnostische informatie. Dank u.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporteer Probleem</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Herstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sluit Playnite af</sys:String>
@@ -48,12 +46,10 @@ Als u ons wilt helpen dit probleem op te lossen, stuur dan diagnostische informa
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan geen spel verwijderen dat nu actief is of dat nu ge(de)ïnstalleerd wordt.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kan geen spel verwijderen dat nu actief is.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Weet je zeker dat je dit spel wilt verwijderen?
-        
-Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de volgende importprocedure (afhankelijk van je instellingen).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Weet je zeker dat je {0} spellen wilt verwijderen?
-        
-Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de volgende importprocedure (afhankelijk van je instellingen).</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Vrienden</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Sectie bevat wijzigingen doe nog opgeslagen moeten worden</sys:String>
@@ -80,6 +76,7 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ingeschakeld</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Verwijderen</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
     <sys:String x:Key="LOCRenameTitle">Hernoemen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopiëren</sys:String>
     <sys:String x:Key="LOCAddTitle">Toevoegen</sys:String>
@@ -96,14 +93,11 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCDismiss">Negeren</sys:String>
     <sys:String x:Key="LOCDismissAll">Negeer alles</sys:String>
     <sys:String x:Key="LOCImportLabel">Importeren</sys:String>
-    <sys:String x:Key="LOCSourceLabel">Bron</sys:String>
     <sys:String x:Key="LOCNameLabel">Naam</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Auteur</sys:String>
     <sys:String x:Key="LOCModuleLabel">Module</sys:String>
     <sys:String x:Key="LOCSeriesLabel">Series</sys:String>
     <sys:String x:Key="LOCVersionLabel">Versie</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">Leeftijdsclassificatie</sys:String>
-    <sys:String x:Key="LOCRegionLabel">Regio</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Laatst Gespeeld</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Meest gespeeld</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Aantal Keer Gespeeld</sys:String>
@@ -135,13 +129,6 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCRemoveLabel">Verwijderen</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Download</sys:String>
     <sys:String x:Key="LOCSearchLabel">Zoeken</sys:String>
-    <sys:String x:Key="LOCGenreLabel">Genre</sys:String>
-    <sys:String x:Key="LOCCompanyLabel">Bedrijf</sys:String>
-    <sys:String x:Key="LOCDeveloperLabel">Ontwikkelaar</sys:String>
-    <sys:String x:Key="LOCPublisherLabel">Uitgever</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">Categorie</sys:String>
-    <sys:String x:Key="LOCTagLabel">Tag</sys:String>
-    <sys:String x:Key="LOCTagsLabel">Tags</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListViewLabel">Lijstweergave</sys:String>
     <sys:String x:Key="LOCCoversLabel">Covers</sys:String>
@@ -175,18 +162,8 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCColumns">Kolommen</sys:String>
     <sys:String x:Key="LOCRow">Rij</sys:String>
     <sys:String x:Key="LOCRows">Rijen</sys:String>
-    
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Speciale variabelen kunnen worden gebruikt om dynamische texten toe te voegen:
-{InstallDir} - Spel installatiemap
-{InstallDirName} - Naam van spel installatiemap
-{ImagePath} - Spel ISO/ROM pad wanneer ingesteld
-{ImageName} - Spel ISO/ROM bestandsnaam
-{ImageNameNoExt} - Spel ISO/ROM bestandsnaam zonder extensie
-{PlayniteDir} - Playnite's installatiemap
-{Name} - Spel naam
-        
-Voorbeeld: -image &quot;{ImagePath}&quot; -fullscreen
-Resulteert in: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
+
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Kan geen icoon verkrijgen als de Speel actie mist of is ingesteld op een URL.</sys:String>
 
@@ -201,17 +178,7 @@ Resulteert in: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selecteer alsjeblieft welke velden Playnite automatisch moet invullen en welke bronnen gebruikt moeten worden om deze data te verkrijgen.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Overweeg om op het bovenstaande logo te klikken en updates bij te dragen aan de igdb.com database om de gegevens waar Playnite gebruik van maakt te verbeteren.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Winkel:
-Gebruik alleen data van de officiële winkel.
-    
-IGDB:
-Gebruik alleen data van de IGDB.com database.
-    
-IGDB &gt; Officiële Winkel:
-Gebruik eerst data van de IGDB.com database en vul missende data aan met data van de officiële winkel.
-    
-Officiële Winkel &gt; IGDB:
-Gebruik eerst data van de officiële winkel en vul missende data aan met data van de IGBD.com database.</sys:String>
+    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Steam bibliotheek updates aan het downloaden…</sys:String>
@@ -332,7 +299,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Volledig Scherm Thema Kleur</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Database Locatie</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Wat is mijn accountnaam?</sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">Loginstatus:</sys:String>    
+    <sys:String x:Key="LOCSettingsLoginStatus">Loginstatus:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite Instellingen</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata">Metadata importeren uit Steam-account:</sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel">Steam Categorieën Importeren</sys:String>
@@ -364,7 +331,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Voeg nieuwe vertaling toe</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Herstart Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite verplaatst bibliotheek bestanden niet automatisch, verplaats/kopieer ze voor dat de locatie is veranderd. Als er geen bibliotheek aanwezig is op de aangewezen locatie zal er een nieuwe gemaakt worden.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
@@ -375,6 +342,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Spelafbeelding</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Sla Screenshot Op</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Sla Achtergrond Op</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Geldt niet retrospectief voor bestaande spellen zonder metadata opnieuw te downloaden.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Download altijd de opgenomen speeltijd van de externe bibliotheek tijdens bibliotheek sync, waarbij de tijd die door Playnite is geregistreerd wordt genegeerd.</sys:String>
@@ -411,6 +379,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Geen</sys:String>
     <sys:String x:Key="LOCStrechFill">Vullen</sys:String>
@@ -435,14 +404,12 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCDownloadMetaButton">Download Metadata</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Stel de geselecteerde configuratie in om gebruikt te worden voor alle toekomstige metadata downloads.
 Kan ook gewijzigd worden in de applicatie instellingen.</sys:String>
-    
+
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulatie Import Wizard</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Deze wizard zal je helpen om een console emulator en geëmuleerde spellen te downloaden en importeren.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">De volgende emulators kan Playnite automatisch herkennen en configureren. Je kunt ze downloaden door hun website te bezoeken. Als je de emulators geïnstalleerd hebt kan je naar het volgende scherm verdergaan om ze te importeren in Playnite.
-        
-Je kan later ook andere emulators instellen en importeren via het configuratiemenu.</sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">Je kan geïnstalleerde emulators detecteren door op de &quot;Autodetecteer uit map...&quot; knop te klikken. Playnite zal de geselecteerde folder doorzoeken voor bekende emulators en zal een optie geven om die te importeren. Je kan uit meerdere mappen importeren door die knop meerdere keren te gebruiken. Emulators worden onderaan je huidige lijst toegevoegd.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">Je kan spellen importeren door op de &quot;Scan map met Emulator&quot; knop te klikken. Door de goede emulator te selecteren weet Playnite naar welke bestandstypes gezocht moet worden. Je kan uit meerdere mappen importeren door die knop meerdere keren te gebruiken. Emulators worden onderaan je huidige lijst toegevoegd.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Er zijn geen emulators geselecteerd om te importeren. Je kan niet automatisch geëmuleerde spellen importeren zonder eerst emulators te configureren. Weet je zeker dat je verder wilt gaan en het importeerproces wilt afsluiten?</sys:String>
@@ -506,12 +473,10 @@ U kunt later ook andere spel toevoegen (inclusief Microsoft Store spellen) in he
     <sys:String x:Key="LOCImportEmulatorsButton">Importeer Emulators...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">Download Emulators...</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Laad argumenten presets van bekend emulator profiel</sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Weet je zeker dat je {0} emulator wilt verwijderen?        
-Het wordt op dit moment door {1} spel(len) gebruikt.</sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Weet je zeker dat je {0} platform wilt verwijderen?        
-Het wordt op dit moment door {1} spel(len) en {2} emulator(s).</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Instellingen hulp</sys:String>
-    
+
     <sys:String x:Key="LOCMenuSortByTitle">Sorteren op</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Groeperen Op</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Oplopend</sys:String>
@@ -554,6 +519,26 @@ Het wordt op dit moment door {1} spel(len) en {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Image/ISO Pad</sys:String>
 
+    <sys:String x:Key="LOCGenreLabel">Genre</sys:String>
+    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Bedrijf</sys:String>
+    <sys:String x:Key="LOCCompaniesLabel"></sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">Ontwikkelaar</sys:String>
+    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCPublisherLabel">Uitgever</sys:String>
+    <sys:String x:Key="LOCPublishersLabel"></sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Categorie</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCTagLabel">Tag</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Tags</sys:String>
+    <sys:String x:Key="LOCFeatureLabel"></sys:String>
+    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Leeftijdsclassificatie</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionLabel">Regio</sys:String>
+    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCSourceLabel">Bron</sys:String>
+    <sys:String x:Key="LOCSourcesLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Databasefout</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Openen van de bibliotheek database is mislukt.</sys:String>
@@ -565,7 +550,7 @@ Het wordt op dit moment door {1} spel(len) en {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Importeren van Steam categorieën mislukt.</sys:String>
-    
+
     <sys:String x:Key="LOCBnetInstalledImportError">Importeren van geïnstalleerde Battle.net spellen mislukt.</sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError">Importeren van geïnstalleerde Steam spellen mislukt.</sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError">Importeren van geïnstalleerde GOG spellen mislukt.</sys:String>
@@ -577,21 +562,14 @@ Het wordt op dit moment door {1} spel(len) en {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGOGLibraryImportError">Downloaden van GOG bibliotheek mislukt.</sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError">Downloaden van Origin bibliotheek mislukt.</sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError">Downloaden van Uplay bibliotheek mislukt.</sys:String>
-    
-    <sys:String x:Key="LOCLibraryImportError">Kan geen spellen importeren van {0}.</sys:String>    
+
+    <sys:String x:Key="LOCLibraryImportError">Kan geen spellen importeren van {0}.</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Kan niet zoeken naar spellen met het geselecteerde emulator profiel. Het profiel bevat geen extensies of platforms.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Het starten van Playnite is mislukt. Sluit alle draaiende instanties en probeer opnieuw.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Het toepassen van het thema &quot;{0}&quot;, kleur profiel &quot;{1}&quot; is mislukt. 
-        
-{1}</sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCURLFormatError">Kan link niet openen, URL is ongeldig.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Staren van applicatie mislukt.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Kan het web view component niet initialiseren, Playnite kan niet doorgaan met opstarten.
-        
-U kunt dit proberen om het probleem op te lossen:        
-  • Controleer of alle bestanden correct zijn geïnstalleerd, herinstalleren kan helpen
-  • Controleer of antivirus geen bestanden blokkeert in de afspeelmap
-  • Probeer een andere installatielocatie</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Bewerk Spel Details</sys:String>
@@ -741,7 +719,7 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Spelmonitoring annuleren?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Installatiemonitoring is nu actief. Wil je dit proces annuleren en teruggaan naar de vorige spelstaat?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Spel uitvoeringsmonitoring is nu actief. Wil je dit proces annuleren en teruggaan naar de vorige spelstaat?</sys:String>
-    
+
     <sys:String x:Key="LOCTimePlayed">Tijd Gespeeld</sys:String>
     <sys:String x:Key="LOCLastPlayed">Laatst Gespeeld</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}u {1}m</sys:String>
@@ -784,33 +762,17 @@ U kunt dit proberen om het probleem op te lossen:
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Thema/Extensie gebruikt niet-ondersteunde API versie.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installatie is gelukt.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Extensie installeren?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Installeren Extensie mislukt.
-        
-{0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Wilt u nieuwe extensie installeren? Bestaande installatie zal overschreven worden.
-    
-{0}
-Door {1}
-versie {2}
-    </sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Thema installeren mislukt.
-        
-{0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Wilt u een nieuw thema installeren? Bestaande installatie zal overschreven worden.
-    
-{0}
-Door {1}
-versie {2}
-    </sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">U staat op het punt om Playnite te verlaten en te navigeren naar de volgende webpagina met behulp van uw standaard webbrowser. Wilt u doorgaan?
-    
-{0}</sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
-
+    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
@@ -848,9 +810,19 @@ versie {2}
     <sys:String x:Key="LOCItemAlreadyExists">Een item met dezelfde naam bestaat al.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
-    
+
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+
+    <!--Epic-->
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+
+    <!--Humble-->
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+
+    <!--Xbox-->
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
 </ResourceDictionary>
