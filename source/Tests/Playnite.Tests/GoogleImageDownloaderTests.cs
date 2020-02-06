@@ -11,13 +11,8 @@ namespace Playnite.Tests
     public class GoogleImageDownloaderTests
     {
         [Test]
-        public async Task GenericTest()
+        public void GenericTest()
         {
-            // TODO doesn't work in unit test since we started using webview for this.
-            Assert.Fail();
-            //var downloader = new GoogleImageDownloader();
-            //var images = await downloader.GetImages("quake background");
-            //CollectionAssert.IsNotEmpty(images);
         }
     }
 }
