@@ -417,11 +417,11 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">If enabled, Playnite will download background artwork while downloading metadata. Using more disk space and making artwork available when offline.
 
 If disabled, background artwork is downloaded only when first needed. Using less space, but may result in a delay before artwork is displayed and some images might not be available when offline.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatically close launcher after game exits</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatically close third party client after game exits</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Client shutdown grace period (in seconds)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Don't close after game sessions shorter than (in seconds)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automatically close following clients:</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">Auto Close Launchers</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Auto Close Clients</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Display warning when assigning too large game media</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
@@ -893,7 +893,7 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Select background image for {0}</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">When possible start game directly without running Epic launcher</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">When possible start game directly without running Epic client</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignore third party store games</sys:String>
