@@ -160,6 +160,8 @@
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Genres]}" />
                         <MenuItem Header="{DynamicResource LOCGameCategoriesTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Categories]}" />
+                        <MenuItem Header="{DynamicResource LOCFeaturesLabel}"
+                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[Features]}" />
                         <MenuItem Header="{DynamicResource LOCGameTagsTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Tags]}" />
                         <MenuItem Header="{DynamicResource LOCGameIsInstalledTitle}"
@@ -378,7 +380,27 @@
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
-                
+
+                <!-- Features -->
+                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Features], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                    <GridViewColumn.Header>
+                        <GridViewColumnHeader Tag="{x:Static p:SortOrder.Features}">
+                            <GridViewColumnHeader.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource LOCFeaturesLabel}" />
+                                    <ContentControl Style="{StaticResource SortIndicator}"
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Features}}"/>
+                                </StackPanel>
+                            </GridViewColumnHeader.Content>
+                        </GridViewColumnHeader>
+                    </GridViewColumn.Header>
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Features, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+
                 <!-- Tags -->
                 <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Tags], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
                     <GridViewColumn.Header>

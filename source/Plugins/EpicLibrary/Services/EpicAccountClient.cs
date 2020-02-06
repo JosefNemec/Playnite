@@ -38,7 +38,7 @@ namespace EpicLibrary.Services
         {
             this.api = api;
             this.tokensPath = tokensPath;
-            var loginUrlMask = @"https://{0}/login/launcher?redirectUrl=https%3A%2F%2F{0}%2Flogin%2FshowPleaseWait%3Fclient_id%3D24a1bff3f90749efbfcbc576c626a282%26rememberEmail%3Dfalse&client_id=24a1bff3f90749efbfcbc576c626a282&isLauncher=true";                        
+            var loginUrlMask = @"https://{0}/login?redirectUrl=https%3A%2F%2F{0}%2Flogin%2FshowPleaseWait%3Fclient_id%3D24a1bff3f90749efbfcbc576c626a282%26rememberEmail%3Dfalse&client_id=24a1bff3f90749efbfcbc576c626a282&isLauncher=true";
             var oauthUrlMask = @"https://{0}/account/api/oauth/token";
             var accountUrlMask = @"https://{0}/account/api/public/account/";
             var assetsUrlMask = @"https://{0}/launcher/api/public/assets/Windows?label=Live";
@@ -124,7 +124,7 @@ namespace EpicLibrary.Services
                 }
             }
         }
-        
+
         public bool GetIsUserLoggedIn()
         {
             var tokens = loadTokens();
@@ -178,7 +178,7 @@ namespace EpicLibrary.Services
                 {
                     logger.Error(e, "Failed to load Epic catalog cache.");
                 }
-            }            
+            }
 
             if (result == null)
             {
@@ -200,7 +200,7 @@ namespace EpicLibrary.Services
             else
             {
                 throw new Exception($"Epic catalog item for {id} {nameSpace} not found.");
-            }                
+            }
         }
 
         private void renewToknes(string refreshToken)

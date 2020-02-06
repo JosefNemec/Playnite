@@ -53,10 +53,9 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 selectedProfile = value;
-                AvailablePlatforms.SetSelection(value?.Platforms);
                 OnPropertyChanged();
             }
-        } 
+        }
 
         private ObservableCollection<Emulator> editingEmulators;
         public ObservableCollection<Emulator> EditingEmulators
@@ -67,7 +66,6 @@ namespace Playnite.DesktopApp.ViewModels
                 editingEmulators = value;
                 OnPropertyChanged();
             }
-
         }
 
         public List<EmulatorDefinition> EmulatorDefinitions
@@ -87,16 +85,16 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                ConfirmDialog(); 
+                ConfirmDialog();
             });
         }
 
-        public RelayCommand<object> SelectEmulatorExecutableCommand
+        public RelayCommand<EmulatorProfile> SelectEmulatorExecutableCommand
         {
-            get => new RelayCommand<object>((a) =>
+            get => new RelayCommand<EmulatorProfile>((a) =>
             {
-                SelectEmulatorExecutable(SelectedEmulator);
-            }, (a) => SelectedEmulator != null);
+                SelectEmulatorExecutable(a);
+            }, (a) => a != null);
         }
 
         public RelayCommand<object> AddEmulatorCommand
@@ -107,44 +105,44 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> RemoveEmulatorCommand
+        public RelayCommand<Emulator> RemoveEmulatorCommand
         {
-            get => new RelayCommand<object>((a) =>
+            get => new RelayCommand<Emulator>((a) =>
             {
-                RemoveEmulator(SelectedEmulator);
-            }, (a) => SelectedEmulator != null);
+                RemoveEmulator(a);
+            }, (a) => a != null);
         }
 
-        public RelayCommand<object> CopyEmulatorCommand
+        public RelayCommand<Emulator> CopyEmulatorCommand
         {
-            get => new RelayCommand<object>((a) =>
+            get => new RelayCommand<Emulator>((a) =>
             {
-                CopyEmulator(SelectedEmulator);
-            }, (a) => SelectedEmulator != null);
+                CopyEmulator(a);
+            }, (a) => a != null);
         }
 
-        public RelayCommand<object> AddEmulatorProfileCommand
+        public RelayCommand<Emulator> AddEmulatorProfileCommand
         {
-            get => new RelayCommand<object>((a) =>
+            get => new RelayCommand<Emulator>((a) =>
             {
-                AddEmulatorProfile();
-            }, (a) => SelectedEmulator != null);
+                AddEmulatorProfile(a);
+            }, (a) => a != null);
         }
 
-        public RelayCommand<object> RemoveEmulatorProfileCommand
+        public RelayCommand<EmulatorProfile> RemoveEmulatorProfileCommand
         {
-            get => new RelayCommand<object>((a) =>
+            get => new RelayCommand<EmulatorProfile>((a) =>
             {
-                RemoveEmulatorProfile(SelectedProfile);
-            }, (a) => SelectedProfile != null);
+                RemoveEmulatorProfile(SelectedEmulator, a);
+            }, (a) => a != null);
         }
 
-        public RelayCommand<object> CopyEmulatorProfileCommand
+        public RelayCommand<EmulatorProfile> CopyEmulatorProfileCommand
         {
-            get => new RelayCommand<object>((a) =>
+            get => new RelayCommand<EmulatorProfile>((a) =>
             {
-                CopyEmulatorProfile(SelectedProfile);
-            }, (a) => SelectedProfile != null);
+                CopyEmulatorProfile(SelectedEmulator, a);
+            }, (a) => a != null);
         }
 
         public RelayCommand<object> ImportEmulatorsCommand
@@ -187,14 +185,6 @@ namespace Playnite.DesktopApp.ViewModels
             this.resources = resources;
             this.database = database;
             AvailablePlatforms = new SelectableDbItemList(database.Platforms);
-            AvailablePlatforms.SelectionChanged += (s, e) =>
-            {
-                if (selectedProfile != null)
-                {
-                    selectedProfile.Platforms = AvailablePlatforms.GetSelectedIds().ToList();
-                }
-            };
-
             ReloadEmulatorsFromDb();
         }
 
@@ -296,38 +286,38 @@ namespace Playnite.DesktopApp.ViewModels
             SelectedEmulator = copy;
         }
 
-        public void AddEmulatorProfile()
+        public void AddEmulatorProfile(Emulator parent)
         {
             var profile = new EmulatorProfile() { Name = "New Profile" };
-            if (SelectedEmulator.Profiles == null)
+            if (parent.Profiles == null)
             {
-                SelectedEmulator.Profiles = new ObservableCollection<EmulatorProfile>();
+                parent.Profiles = new ObservableCollection<EmulatorProfile>();
             }
 
-            SelectedEmulator.Profiles.Add(profile);
+            parent.Profiles.Add(profile);
             SelectedProfile = profile;
         }
 
-        public void RemoveEmulatorProfile(EmulatorProfile profile)
+        public void RemoveEmulatorProfile(Emulator parent, EmulatorProfile profile)
         {
-            SelectedEmulator.Profiles.Remove(profile);
+            parent.Profiles.Remove(profile);
         }
 
-        public void CopyEmulatorProfile(EmulatorProfile profile)
+        public void CopyEmulatorProfile(Emulator parent, EmulatorProfile profile)
         {
             var copy = profile.GetClone();
             copy.Id = Guid.NewGuid();
             copy.Name += " Copy";
-            SelectedEmulator.Profiles.Add(copy);
+            parent.Profiles.Add(copy);
             SelectedProfile = copy;
         }
 
-        public void SelectEmulatorExecutable(Emulator emulator)
+        public void SelectEmulatorExecutable(EmulatorProfile profile)
         {
             var path = dialogs.SelectFile("*.*|*.*");
             if (!string.IsNullOrEmpty(path))
             {
-                SelectedProfile.Executable = path;
+                profile.Executable = path;
             }
         }
 
@@ -359,14 +349,6 @@ namespace Playnite.DesktopApp.ViewModels
             if (result == true)
             {
                 AvailablePlatforms = new SelectableDbItemList(database.Platforms);
-                AvailablePlatforms.SelectionChanged += (s, e) =>
-                {
-                    if (selectedProfile != null)
-                    {
-                        selectedProfile.Platforms = AvailablePlatforms.GetSelectedIds().ToList();
-                    }
-                };
-
                 ReloadEmulatorsFromDb();
             }
         }
@@ -377,5 +359,4 @@ namespace Playnite.DesktopApp.ViewModels
             SelectedEmulator = EditingEmulators.Count > 0 ? EditingEmulators[0] : null;
         }
     }
-
 }

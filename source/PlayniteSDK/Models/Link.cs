@@ -57,7 +57,7 @@ namespace Playnite.SDK.Models
             Name = name;
             Url = url;
         }
-        
+
         /// <inheritdoc/>
         public bool Equals(Link other)
         {
@@ -78,13 +78,5 @@ namespace Playnite.SDK.Models
 
             return true;
         }
-
-        /// <inheritdoc/>
-        public override bool Equals(object obj) => Equals(obj as Link);
-
-        /// <inheritdoc/>
-        public override int GetHashCode() =>
-            (Name == null ? 0 : Name.GetHashCode()) ^
-            (Url == null ? 0 : Url.GetHashCode());
     }
 }

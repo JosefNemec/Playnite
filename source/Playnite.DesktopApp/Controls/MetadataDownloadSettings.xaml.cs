@@ -195,6 +195,17 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
+        private FieldsSelectionSettings featuresSettings;
+        public FieldsSelectionSettings FeaturesSettings
+        {
+            get => featuresSettings;
+            set
+            {
+                featuresSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
         private FieldsSelectionSettings descriptionSettings;
         public FieldsSelectionSettings DescriptionSettings
         {
@@ -340,6 +351,12 @@ namespace Playnite.DesktopApp.Controls
             control.TagsSettings.SettingsChanged += (_, __) =>
             {
                 control.Settings.Tag.Sources = control.TagsSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
+            };
+
+            control.FeaturesSettings = control.SetupField(settings.Feature, MetadataField.Features, plugins);
+            control.FeaturesSettings.SettingsChanged += (_, __) =>
+            {
+                control.Settings.Feature.Sources = control.FeaturesSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
 
             control.DescriptionSettings = control.SetupField(settings.Description, MetadataField.Description, plugins);

@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Playnite.API;
+using Playnite.Common;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -24,28 +25,40 @@ namespace Playnite.Plugins
         private static readonly ILogger logger = LogManager.GetLogger();
         private static List<ExtensionInstallQueueItem> currentQueue = new List<ExtensionInstallQueueItem>();
 
-        public static ThemeDescription InstallExtensionQueue()
+        public static List<BaseExtensionDescription> InstallExtensionQueue()
         {
             var anyFailed = false;
-            ThemeDescription installedTheme = null;
+            var installedExts = new List<BaseExtensionDescription>();
             if (!File.Exists(PlaynitePaths.ExtensionQueueFilePath))
-            {                
-                return null;
+            {
+                return installedExts;
             }
 
             var queue = Serialization.FromJsonFile<List<ExtensionInstallQueueItem>>(PlaynitePaths.ExtensionQueueFilePath);
             foreach (var queueItem in queue)
             {
-                if (queueItem.Path.EndsWith(ThemeManager.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
+                if (queueItem.Path.EndsWith(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                 {
                     try
                     {
-                        installedTheme = ThemeManager.InstallFromPackedFile(queueItem.Path);
+                        installedExts.Add(ThemeManager.InstallFromPackedFile(queueItem.Path));
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
                         anyFailed = true;
-                        logger.Error(e, $"Failed to install theme {queueItem}");                        
+                        logger.Error(e, $"Failed to install theme {queueItem}");
+                    }
+                }
+                else if (queueItem.Path.EndsWith(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
+                {
+                    try
+                    {
+                        installedExts.Add(ExtensionFactory.InstallFromPackedFile(queueItem.Path));
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        anyFailed = true;
+                        logger.Error(e, $"Failed to install extension {queueItem}");
                     }
                 }
                 else
@@ -61,7 +74,7 @@ namespace Playnite.Plugins
                 throw new Exception("Failed to install one or more extensions.");
             }
 
-            return installedTheme;
+            return installedExts;
         }
 
         public static void QueueExetnsionInstall(string extensionFile)

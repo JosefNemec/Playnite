@@ -46,7 +46,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 File.WriteAllBytes(Path.Combine(temp.TempPath, newBackground.FileName), newBackground.Content);
 
                 // Images are replaced
-                var model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null, null, new PlayniteSettings());
+                var model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new TestResourceProvider(), null, null, new PlayniteSettings());
                 model.EditingGame.Icon = Path.Combine(temp.TempPath, newIcon.FileName);
                 model.EditingGame.CoverImage = Path.Combine(temp.TempPath, newImage.FileName);
                 model.EditingGame.BackgroundImage = Path.Combine(temp.TempPath, newBackground.FileName);
@@ -109,7 +109,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
 
                 // Replaces all images for all games
                 var games = db.Games.ToList();
-                var model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null, null, new PlayniteSettings());
+                var model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new TestResourceProvider(), null, null, new PlayniteSettings());
                 model.EditingGame.Icon = Path.Combine(temp.TempPath, newIcon.FileName);
                 model.EditingGame.CoverImage = Path.Combine(temp.TempPath, newImage.FileName);
                 model.EditingGame.BackgroundImage = Path.Combine(temp.TempPath, newBackground.FileName);

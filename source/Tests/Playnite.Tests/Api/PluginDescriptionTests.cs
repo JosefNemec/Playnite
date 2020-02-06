@@ -15,8 +15,8 @@ namespace Playnite.Tests.Api
     {
         [Test]
         public void FromFileTest()
-        {            
-            var path =  Path.Combine(PlayniteTests.ResourcesPath, ExtensionFactory.ExtensionManifestFileName);
+        {
+            var path =  Path.Combine(PlayniteTests.ResourcesPath, PlaynitePaths.ExtensionManifestFileName);
             var description = ExtensionDescription.FromFile(path);
             Assert.IsNotEmpty(description.Module);
             Assert.IsNotEmpty(description.Author);

@@ -16,7 +16,7 @@ namespace Playnite.Scripting.PowerShell
     {
         private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
         private Runspace runspace;
-        
+
         public static bool IsInstalled
         {
             get
@@ -62,7 +62,7 @@ namespace Playnite.Scripting.PowerShell
             if (!workDir.IsNullOrEmpty())
             {
                 runspace.SessionStateProxy.Path.PushCurrentLocation("main");
-                runspace.SessionStateProxy.Path.SetLocation(workDir);
+                runspace.SessionStateProxy.Path.SetLocation(WildcardPattern.Escape(workDir));
             }
 
             try
@@ -87,7 +87,6 @@ namespace Playnite.Scripting.PowerShell
                         return result.Select(a => a?.BaseObject).ToList();
                     }
                 }
-
             }
             finally
             {

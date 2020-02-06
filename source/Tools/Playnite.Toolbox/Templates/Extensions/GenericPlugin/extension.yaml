@@ -1,6 +1,6 @@
 ﻿Name: Generic Plugin
 Author: John Doe
 Version: 1.0
-Module: GenericPlugin.dll
+Module: _name_.dll
 Type: GenericPlugin
 Icon: icon.png

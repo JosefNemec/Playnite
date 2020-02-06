@@ -76,9 +76,9 @@
                           Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </TreeView>
 
-        <ScrollViewer DockPanel.Dock="Left" BorderThickness="1,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"
-                      VerticalScrollBarVisibility="Auto">
+        <Border DockPanel.Dock="Left" BorderThickness="1,1,0,0"
+                BorderBrush="{StaticResource NormalBorderBrush}">
             <ContentControl Content="{Binding SelectedSectionView}"/>
-        </ScrollViewer>
+        </Border>
     </DockPanel>
 </controls:WindowBase>

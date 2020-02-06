@@ -53,9 +53,8 @@ namespace EpicLibrary
                     IsInstalled = true,
                     PlayAction = new GameAction()
                     {
-                        Type = GameActionType.File,
-                        Path = manifest?.LaunchExecutable,
-                        WorkingDir = ExpandableVariables.InstallationDirectory,
+                        Type = GameActionType.URL,
+                        Path = string.Format(EpicLauncher.GameLaunchUrlMask, app.AppName),
                         IsHandledByPlugin = true
                     }
                 };
@@ -125,7 +124,7 @@ namespace EpicLibrary
 
         public override IGameController GetGameController(Game game)
         {
-            return new EpicGameController(game, playniteApi);
+            return new EpicGameController(game, playniteApi, LibrarySettings);
         }
 
         public override IEnumerable<GameInfo> GetGames()

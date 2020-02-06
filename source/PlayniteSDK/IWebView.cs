@@ -8,6 +8,17 @@ using System.Windows.Media;
 namespace Playnite.SDK
 {
     /// <summary>
+    /// Represents browser view settings.
+    /// </summary>
+    public class WebViewSettings
+    {
+        /// <summary>
+        /// Gets or sets value indicating whether JavaScript exection is enabled.
+        /// </summary>
+        public bool JavaScriptEnabled { get; set; } = true;
+    }
+
+    /// <summary>
     /// Describes web view object.
     /// </summary>
     public interface IWebView : IDisposable
@@ -104,6 +115,13 @@ namespace Playnite.SDK
         /// </summary>
         /// <returns>Offscreen web view.</returns>
         IWebView CreateOffscreenView();
+
+        /// <summary>
+        /// Creates new offscreen web view with specific settings.
+        /// </summary>
+        /// <param name="settings">Browser view settings.</param>
+        /// <returns></returns>
+        IWebView CreateOffscreenView(WebViewSettings settings);
 
         /// <summary>
         /// Creates new web view.

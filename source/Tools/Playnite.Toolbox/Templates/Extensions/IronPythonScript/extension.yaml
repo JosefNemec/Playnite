@@ -1,8 +1,8 @@
-Name: <name>
-Author: <author>
+Name: IronPython Extension
+Author: John Doe
 Version: 1.0
-Module: PowerShellScript.ps1
+Module: IronPythonScript.py
 Type: Script
 Functions: 
-    - Description: <function name>
-      FunctionName: ExtensionFunction
+    - Description: menu_function
+      FunctionName: MenuFunctionDescription

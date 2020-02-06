@@ -94,6 +94,7 @@ namespace Playnite
                     Publisher?.IsSet == true ||
                     Developer?.IsSet == true ||
                     Tag?.IsSet == true ||
+                    Feature?.IsSet == true ||
                     CompletionStatus?.IsSet == true ||
                     UserScore?.IsSet == true ||
                     CriticScore?.IsSet == true ||

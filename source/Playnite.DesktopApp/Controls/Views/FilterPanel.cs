@@ -19,17 +19,14 @@ namespace Playnite.DesktopApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ButtonClear", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonClose", Type = typeof(ButtonBase))]
-
     [TemplatePart(Name = "PART_ToggleInstalled", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ToggleUnInstalled", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ToggleHidden", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ToggleFavorite", Type = typeof(ToggleButton))]
-
     [TemplatePart(Name = "PART_ContentInstalledCount", Type = typeof(ContentControl))]
     [TemplatePart(Name = "PART_ContentUnInstalledCount", Type = typeof(ContentControl))]
     [TemplatePart(Name = "PART_ContentHiddenCount", Type = typeof(ContentControl))]
     [TemplatePart(Name = "PART_ContentFavoriteCount", Type = typeof(ContentControl))]
-
     [TemplatePart(Name = "PART_ElemPlatformLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemLibraryLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemNameLabel", Type = typeof(FrameworkElement))]
@@ -40,6 +37,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ElemPublisherLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemCategoryLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemTagLabel", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ElemFeatureLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemPlayTimeLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemCompletionStatusLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemSeriesLabel", Type = typeof(FrameworkElement))]
@@ -52,7 +50,6 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ElemLastActivityLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemAddedLabel", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemModifiedLabel", Type = typeof(FrameworkElement))]
-
     [TemplatePart(Name = "PART_FilterPlatform", Type = typeof(FilterSelectionBox))]
     [TemplatePart(Name = "PART_FilterLibrary", Type = typeof(FilterSelectionBox))]
     [TemplatePart(Name = "PART_FilterName", Type = typeof(SearchBox))]
@@ -63,6 +60,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_FilterPublisher", Type = typeof(FilterSelectionBox))]
     [TemplatePart(Name = "PART_FilterCategory", Type = typeof(FilterSelectionBox))]
     [TemplatePart(Name = "PART_FilterTag", Type = typeof(FilterSelectionBox))]
+    [TemplatePart(Name = "PART_FilterFeature", Type = typeof(FilterSelectionBox))]
     [TemplatePart(Name = "PART_FilterPlayTime", Type = typeof(FilterEnumSelectionBox))]
     [TemplatePart(Name = "PART_FilterCompletionStatus", Type = typeof(FilterEnumSelectionBox))]
     [TemplatePart(Name = "PART_FilterSeries", Type = typeof(FilterSelectionBox))]
@@ -99,6 +97,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private FrameworkElement ElemPublisherLabel;
         private FrameworkElement ElemCategoryLabel;
         private FrameworkElement ElemTagLabel;
+        private FrameworkElement ElemFeatureLabel;
         private FrameworkElement ElemPlayTimeLabel;
         private FrameworkElement ElemCompletionStatusLabel;
         private FrameworkElement ElemSeriesLabel;
@@ -122,6 +121,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private FilterSelectionBox FilterPublisher;
         private FilterSelectionBox FilterCategory;
         private FilterSelectionBox FilterTag;
+        private FilterSelectionBox FilterFeature;
         private FilterEnumSelectionBox FilterPlayTime;
         private FilterEnumSelectionBox FilterCompletionStatus;
         private FilterSelectionBox FilterSeries;
@@ -190,6 +190,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetLabelTag(ref ElemPublisherLabel, "PART_ElemPublisherLabel", nameof(FilterSettings.Publisher));
             SetLabelTag(ref ElemCategoryLabel, "PART_ElemCategoryLabel", nameof(FilterSettings.Category));
             SetLabelTag(ref ElemTagLabel, "PART_ElemTagLabel", nameof(FilterSettings.Tag));
+            SetLabelTag(ref ElemFeatureLabel, "PART_ElemFeatureLabel", nameof(FilterSettings.Feature));
             SetLabelTag(ref ElemPlayTimeLabel, "PART_ElemPlayTimeLabel", nameof(FilterSettings.PlayTime));
             SetLabelTag(ref ElemCompletionStatusLabel, "PART_ElemCompletionStatusLabel", nameof(FilterSettings.CompletionStatus));
             SetLabelTag(ref ElemSeriesLabel, "PART_ElemSeriesLabel", nameof(FilterSettings.Series));
@@ -211,6 +212,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetFilterSelectionBoxFilter(ref FilterPublisher, "PART_FilterPublisher", nameof(DatabaseFilter.Publishers), nameof(FilterSettings.Publisher));
             SetFilterSelectionBoxFilter(ref FilterCategory, "PART_FilterCategory", nameof(DatabaseFilter.Categories), nameof(FilterSettings.Category));
             SetFilterSelectionBoxFilter(ref FilterTag, "PART_FilterTag", nameof(DatabaseFilter.Tags), nameof(FilterSettings.Tag));
+            SetFilterSelectionBoxFilter(ref FilterFeature, "PART_FilterFeature", nameof(DatabaseFilter.Features), nameof(FilterSettings.Feature));
             SetFilterEnumSelectionBoxFilter(ref FilterPlayTime, "PART_FilterPlayTime", nameof(FilterSettings.PlayTime), typeof(PlaytimeCategory));
             SetFilterEnumSelectionBoxFilter(ref FilterCompletionStatus, "PART_FilterCompletionStatus", nameof(FilterSettings.CompletionStatus), typeof(CompletionStatus));
             SetFilterSelectionBoxFilter(ref FilterSeries, "PART_FilterSeries", nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));

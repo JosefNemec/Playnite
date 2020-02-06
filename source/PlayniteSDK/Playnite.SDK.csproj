@@ -68,6 +68,7 @@
     <Compile Include="Models\PlaytimeCategory.cs" />
     <Compile Include="Models\ScoreGroup.cs" />
     <Compile Include="Events\GameSelectionEvent.cs" />
+    <Compile Include="Models\GameFeature.cs" />
     <Compile Include="Plugins\MetadataPlugin.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ResourceProvider.cs" />

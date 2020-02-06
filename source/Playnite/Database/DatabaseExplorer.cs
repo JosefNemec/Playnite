@@ -75,7 +75,7 @@ namespace Playnite.Database
                 {
                     ApplyFilter(selectedField.Field, null);
                 }
-                
+
                 selectedField = value;
                 settings.ViewSettings.SelectedExplorerField = selectedField.Field;
                 LoadValues(selectedField.Field);
@@ -108,7 +108,7 @@ namespace Playnite.Database
                 OnPropertyChanged();
             }
         }
-        
+
         public DatabaseExplorer(IGameDatabase database, ExtensionFactory extensions, PlayniteSettings settings)
         {
             this.database = database;
@@ -123,8 +123,10 @@ namespace Playnite.Database
                 if (val != GroupableField.None)
                 {
                     Fields.Add(new ExplorableField(val));
-                }                
+                }
             }
+
+            Fields = Fields.OrderBy(a => a.Field.GetDescription()).ToList();
 
             SelectedField = Fields.FirstOrDefault(a => a.Field == settings.ViewSettings.SelectedExplorerField);
             if (!database.IsOpen)
@@ -150,6 +152,8 @@ namespace Playnite.Database
             database.Sources.ItemUpdated += (s, e) => DatabaseCollection_ItemUpdated(GroupableField.Source, e);
             database.Tags.ItemCollectionChanged += (s, e) => DatabaseCollection_ItemCollectionChanged(GroupableField.Tag, e);
             database.Tags.ItemUpdated += (s, e) => DatabaseCollection_ItemUpdated(GroupableField.Tag, e);
+            database.Features.ItemCollectionChanged += (s, e) => DatabaseCollection_ItemCollectionChanged(GroupableField.Feature, e);
+            database.Features.ItemUpdated += (s, e) => DatabaseCollection_ItemUpdated(GroupableField.Feature, e);
             database.Companies.ItemCollectionChanged += (s, e) =>
             {
                 DatabaseCollection_ItemCollectionChanged(GroupableField.Publisher, e);
@@ -187,7 +191,7 @@ namespace Playnite.Database
                 }
 
                 ignoreObjectSelectionChanges = false;
-            }       
+            }
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -260,7 +264,7 @@ namespace Playnite.Database
             }
             else if (filter.Value is SelectionObjectType flt && flt == SelectionObjectType.All)
             {
-                return null; 
+                return null;
             }
             else
             {
@@ -393,6 +397,9 @@ namespace Playnite.Database
                 case GroupableField.PlayTime:
                     filters.PlayTime = GetEnumFilter(filter);
                     break;
+                case GroupableField.Feature:
+                    filters.Feature = GetIdFilter(filter);
+                    break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -435,7 +442,7 @@ namespace Playnite.Database
                     break;
                 case GroupableField.Category:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Categories.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));                    
+                    values.AddRange(database.Categories.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
                     break;
                 case GroupableField.Genre:
                     values.Add(noneDbObject);
@@ -475,7 +482,7 @@ namespace Playnite.Database
                     break;
                 case GroupableField.ReleaseYear:
                     values.Add(noneDbObject);
-                    var years = database.Games.Where(a => a.ReleaseYear != null).Select(a => a.ReleaseYear).Distinct().OrderBy(a => a.Value);                    
+                    var years = database.Games.Where(a => a.ReleaseYear != null).Select(a => a.ReleaseYear).Distinct().OrderBy(a => a.Value);
                     values.AddRange(years.Select(a => new SelectionObject(a)));
                     break;
                 case GroupableField.CompletionStatus:
@@ -493,6 +500,10 @@ namespace Playnite.Database
                     break;
                 case GroupableField.PlayTime:
                     values.AddRange(GenerateEnumValues(typeof(PlaytimeCategory)));
+                    break;
+                case GroupableField.Feature:
+                    values.Add(noneDbObject);
+                    values.AddRange(database.Features.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
                     break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)

@@ -25,7 +25,7 @@
                                            TextTrimming="CharacterEllipsis" TextAlignment="Center"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
-                                <Border Background="#CC000000" x:Name="BorderMouseOver" Visibility="Collapsed" />
+                                <Border Background="#AA000000" x:Name="BorderMouseOver" Visibility="Collapsed" />
                                 <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center"
                                          Name="GameControls"  Visibility="Collapsed">
                                     <StackPanel Orientation="Horizontal">

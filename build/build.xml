@@ -44,6 +44,14 @@
             Projects="../source/Plugins/IGDBMetadata/IGDBMetadata.csproj"
             Targets="Build"
             Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/HumbleLibrary/HumbleLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/XboxLibrary/XboxLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
     </Target>
     <Target Name="Build" DependsOnTargets="Plugins">
         <MSBuild

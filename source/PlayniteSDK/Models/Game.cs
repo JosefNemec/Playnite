@@ -18,109 +18,109 @@ namespace Playnite.SDK.Models
     /// </summary>
     public enum GameField
     {
-        /// 
+        ///
         BackgroundImage,
-        /// 
+        ///
         Description,
-        /// 
+        ///
         GenreIds,
-        /// 
+        ///
         Hidden,
-        /// 
+        ///
         Favorite,
-        /// 
+        ///
         Icon,
-        /// 
+        ///
         CoverImage,
-        /// 
+        ///
         InstallDirectory,
-        /// 
+        ///
         GameImagePath,
-        /// 
+        ///
         LastActivity,
-        /// 
+        ///
         SortingName,
-        /// 
+        ///
         Gameid,
-        /// 
+        ///
         PluginId,
-        /// 
+        ///
         OtherActions,
-        /// 
+        ///
         PlayAction,
-        /// 
+        ///
         PlatformId,
-        /// 
+        ///
         PublisherIds,
-        /// 
+        ///
         DeveloperIds,
-        /// 
+        ///
         ReleaseDate,
-        /// 
+        ///
         CategoryIds,
-        /// 
+        ///
         TagIds,
-        /// 
+        ///
         Links,
-        /// 
+        ///
         IsInstalling,
-        /// 
+        ///
         IsUninstalling,
-        /// 
+        ///
         IsLaunching,
-        /// 
+        ///
         IsRunning,
-        /// 
+        ///
         IsInstalled,
-        /// 
+        ///
         IsCustomGame,
-        /// 
+        ///
         Playtime,
-        /// 
+        ///
         Added,
-        ///       
+        ///
         Modified,
-        ///       
+        ///
         PlayCount,
-        /// 
+        ///
         SeriesId,
-        /// 
+        ///
         Version,
-        /// 
+        ///
         AgeRatingId,
-        /// 
+        ///
         RegionId,
-        /// 
+        ///
         SourceId,
-        /// 
+        ///
         CompletionStatus,
-        /// 
+        ///
         UserScore,
-        /// 
+        ///
         CriticScore,
-        /// 
+        ///
         CommunityScore,
-        /// 
+        ///
         Genres,
-        /// 
+        ///
         Developers,
-        /// 
+        ///
         Publishers,
-        /// 
+        ///
         Tags,
-        /// 
+        ///
         Categories,
-        /// 
+        ///
         Platform,
-        /// 
+        ///
         Series,
-        /// 
+        ///
         AgeRating,
-        /// 
+        ///
         Region,
-        /// 
+        ///
         Source,
-        /// 
+        ///
         ReleaseYear,
         ///
         ActionsScriptLanguage,
@@ -129,7 +129,11 @@ namespace Playnite.SDK.Models
         ///
         PostScript,
         ///
-        Name
+        Name,
+        ///
+        Features,
+        ///
+        FeatureIds,
     }
 
     /// <summary>
@@ -227,7 +231,6 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged();
             }
         }
-
 
         private string icon;
         /// <summary>
@@ -529,6 +532,25 @@ namespace Playnite.SDK.Models
                 tagIds = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Tags));
+            }
+        }
+
+        private List<Guid> featureIds;
+        /// <summary>
+        /// Gets or sets list of game features.
+        /// </summary>
+        public List<Guid> FeatureIds
+        {
+            get
+            {
+                return featureIds;
+            }
+
+            set
+            {
+                featureIds = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Features));
             }
         }
 
@@ -909,7 +931,7 @@ namespace Playnite.SDK.Models
             }
         }
 
-        #region Expanded        
+        #region Expanded
 
         /// <summary>
         /// Gets game's genres.
@@ -918,10 +940,10 @@ namespace Playnite.SDK.Models
         public List<Genre> Genres
         {
             get
-            {                
+            {
                 if (genreIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Genre>(DatabaseReference?.Genres.Where(a => genreIds.Contains(a.Id)));
+                    return new List<Genre>(DatabaseReference?.Genres.Where(a => genreIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -938,7 +960,7 @@ namespace Playnite.SDK.Models
             {
                 if (developerIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Company>(DatabaseReference?.Companies.Where(a => developerIds.Contains(a.Id)));
+                    return new List<Company>(DatabaseReference?.Companies.Where(a => developerIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -955,7 +977,7 @@ namespace Playnite.SDK.Models
             {
                 if (publisherIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Company>(DatabaseReference?.Companies.Where(a => publisherIds.Contains(a.Id)));
+                    return new List<Company>(DatabaseReference?.Companies.Where(a => publisherIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -972,7 +994,24 @@ namespace Playnite.SDK.Models
             {
                 if (tagIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Tag>(DatabaseReference?.Tags.Where(a => tagIds.Contains(a.Id)));
+                    return new List<Tag>(DatabaseReference?.Tags.Where(a => tagIds.Contains(a.Id)).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets game's features.
+        /// </summary>
+        [JsonIgnore]
+        public List<GameFeature> Features
+        {
+            get
+            {
+                if (featureIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<GameFeature>(DatabaseReference?.Features.Where(a => featureIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -989,7 +1028,7 @@ namespace Playnite.SDK.Models
             {
                 if (categoryIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Category>(DatabaseReference?.Categories.Where(a => categoryIds.Contains(a.Id)));                    
+                    return new List<Category>(DatabaseReference?.Categories.Where(a => categoryIds.Contains(a.Id)).OrderBy(a => a.Name));
                 }
 
                 return null;
@@ -1040,7 +1079,6 @@ namespace Playnite.SDK.Models
         {
             get => DatabaseReference?.Sources[sourceId];
         }
-
 
         /// <summary>
         /// Gets game's release year.
@@ -1202,7 +1240,7 @@ namespace Playnite.SDK.Models
             {
                 return PastTimeSegment.Never;
             }
-            
+
             if (dateTime.Value.Date == DateTime.Today)
             {
                 return PastTimeSegment.Today;
@@ -1458,6 +1496,11 @@ namespace Playnite.SDK.Models
                 if (!TagIds.IsListEqual(tro.TagIds))
                 {
                     tro.TagIds = TagIds;
+                }
+
+                if (!FeatureIds.IsListEqual(tro.FeatureIds))
+                {
+                    tro.FeatureIds = FeatureIds;
                 }
 
                 if (!Links.IsListEqualExact(tro.Links))

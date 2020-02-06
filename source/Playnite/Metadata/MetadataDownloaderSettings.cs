@@ -156,6 +156,17 @@ namespace Playnite.Metadata
             }
         }
 
+        private MetadataFieldSettings feature = new MetadataFieldSettings();
+        public MetadataFieldSettings Feature
+        {
+            get => feature;
+            set
+            {
+                feature = value;
+                OnPropertyChanged();
+            }
+        }
+
         private MetadataFieldSettings description = new MetadataFieldSettings();
         public MetadataFieldSettings Description
         {
@@ -242,7 +253,7 @@ namespace Playnite.Metadata
             var igdbPluginId = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata);
             var settings = new MetadataDownloaderSettings();
             settings.ConfigureFields(new List<Guid> { Guid.Empty, igdbPluginId }, true);
-            settings.CoverImage.Sources = new List<Guid> { igdbPluginId, Guid.Empty };            
+            settings.CoverImage.Sources = new List<Guid> { igdbPluginId, Guid.Empty };
             settings.Name.Import = false;
             return settings;
         }
@@ -262,6 +273,7 @@ namespace Playnite.Metadata
             ReleaseDate = new MetadataFieldSettings(import, sources);
             CommunityScore = new MetadataFieldSettings(import, sources);
             CriticScore = new MetadataFieldSettings(import, sources);
+            Feature = new MetadataFieldSettings(import, sources);
         }
     }
 }

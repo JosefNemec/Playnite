@@ -17,7 +17,12 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         /// Gets or sets value indicating whether plugin is capable of closing down original game client.
         /// </summary>
-        public bool CanShutdownClient { get; set; }
+        public bool CanShutdownClient { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets value indicated whether plugin uses customized mechanism for game import.
+        /// </summary>
+        public bool HasCustomizedGameImport { get; set; } = false;
     }
 
     /// <summary>
@@ -63,9 +68,21 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         /// Gets library games.
         /// </summary>
-        /// <returns>List of games.</returns>
-        public abstract IEnumerable<GameInfo> GetGames();
- 
+        /// <returns>List of library games.</returns>
+        public virtual IEnumerable<GameInfo> GetGames()
+        {
+            return new List<GameInfo>();
+        }
+
+        /// <summary>
+        /// Initiates game import if "HasCustomizedGameImport" capability is enabled.
+        /// </summary>
+        /// <returns>List of newly imported games.</returns>
+        public virtual IEnumerable<Game> ImportGames()
+        {
+            return new List<Game>();
+        }
+
         /// <summary>
         /// Gets controller responsible for handling of library game or null if no specific controller is available.
         /// </summary>

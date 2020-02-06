@@ -1486,7 +1486,7 @@ namespace Playnite
 
         private static void SaveSettingFile(object settings, string path)
         {
-            File.WriteAllText(path, JsonConvert.SerializeObject(settings, Formatting.Indented));
+            FileSystem.WriteStringToFile(path, JsonConvert.SerializeObject(settings, Formatting.Indented));
         }
 
         public static PlayniteSettings LoadSettings()
@@ -1494,10 +1494,16 @@ namespace Playnite
             var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);
             if (settings == null)
             {
-                logger.Info("No existing settings found, creating default ones.");
-                settings = new PlayniteSettings();
+                logger.Warn("No existing settings found.");
+                settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.BackupConfigFilePath);
+                if (settings == null)
+                {
+                    logger.Warn("No settings backup found, creating default ones.");
+                    settings = new PlayniteSettings();
+                }
             }
-            else
+            
+            if (settings != null)
             {
                 if (settings.Version == 1)
                 {
@@ -1515,15 +1521,25 @@ namespace Playnite
             settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
             if (settings.WindowPositions == null)
             {
-                logger.Info("No existing WindowPositions settings found, creating default ones.");
-                settings.WindowPositions = new WindowPositions();
+                logger.Warn("No existing WindowPositions settings found.");
+                settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.BackupWindowPositionsPath);
+                if (settings.WindowPositions == null)
+                {
+                    logger.Warn("No WindowPositions settings backup found, creating default ones.");
+                    settings.WindowPositions = new WindowPositions();
+                }
             }
 
             settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath);
             if (settings.Fullscreen == null)
             {
-                logger.Info("No existing fullscreen settings found, creating default ones.");
-                settings.Fullscreen = new FullscreenSettings();
+                logger.Warn("No existing fullscreen settings found.");
+                settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.BackupFullscreenConfigFilePath);
+                if (settings.Fullscreen == null)
+                {
+                    logger.Warn("No fullscreen settings backup found, creating default ones.");
+                    settings.Fullscreen = new FullscreenSettings();
+                }
             }
 
             if (settings.MetadataSettings == null)
@@ -1531,12 +1547,12 @@ namespace Playnite
                 settings.MetadataSettings = MetadataDownloaderSettings.GetDefaultSettings();
             }
 
+            settings.BackupSettings();
             return settings;
         }
 
         public void SaveSettings()
         {
-
             try
             {
                 FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
@@ -1547,6 +1563,21 @@ namespace Playnite
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to save application settings.");
+            }
+        }
+
+        public void BackupSettings()
+        {
+            try
+            {
+                FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
+                SaveSettingFile(this, PlaynitePaths.BackupConfigFilePath);
+                SaveSettingFile(WindowPositions, PlaynitePaths.BackupWindowPositionsPath);
+                SaveSettingFile(Fullscreen, PlaynitePaths.BackupFullscreenConfigFilePath);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to backup application settings.");
             }
         }
 

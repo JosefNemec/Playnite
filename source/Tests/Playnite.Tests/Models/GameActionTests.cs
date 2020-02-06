@@ -60,10 +60,15 @@ namespace Playnite.Tests.Models
             };
 
             Assert.IsTrue(obj1.Equals(obj2));
-            Assert.AreEqual(obj1.GetHashCode(), obj2.GetHashCode());
-
             Assert.IsFalse(obj1.Equals(obj3));
-            Assert.AreNotEqual(obj1.GetHashCode(), obj3.GetHashCode());
+
+            Assert.IsTrue(
+                new List<GameAction> { new GameAction() { Name = "1" }, new GameAction() { Name = "2" } }.IsListEqualExact(
+                new List<GameAction> { new GameAction() { Name = "1" }, new GameAction() { Name = "2" } }));
+
+            Assert.IsFalse(
+                new List<GameAction> { new GameAction() { Name = "1" }, new GameAction() { Name = "2" } }.IsListEqualExact(
+                new List<GameAction> { new GameAction() { Name = "2" }, new GameAction() { Name = "1" } }));
         }
     }
 }

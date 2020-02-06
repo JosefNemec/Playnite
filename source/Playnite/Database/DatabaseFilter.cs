@@ -12,7 +12,6 @@ using System.Windows.Data;
 
 namespace Playnite.Database
 {
-
     public class DatabaseFilter : ObservableObject
     {
         private static object syncLockYears = new object();
@@ -26,8 +25,9 @@ namespace Playnite.Database
         private static object syncLockSeries = new object();
         private static object syncLockSources = new object();
         private static object syncLockTags = new object();
+        private static object syncLockFeatures = new object();
         private readonly SynchronizationContext context;
-        private GameDatabase database;        
+        private GameDatabase database;
         private FilterSettings filter;
 
         private bool missedDbUpdate = false;
@@ -162,11 +162,21 @@ namespace Playnite.Database
         private SelectableStringList releaseYears;
         public SelectableStringList ReleaseYears
         {
-
             get => releaseYears;
             private set
             {
                 releaseYears = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SelectableDbItemList features;
+        public SelectableDbItemList Features
+        {
+            get => features;
+            private set
+            {
+                features = value;
                 OnPropertyChanged();
             }
         }
@@ -176,7 +186,7 @@ namespace Playnite.Database
             this.context = SynchronizationContext.Current;
             this.database = database;
             this.filter = filter;
-                        
+
             if (database.IsOpen)
             {
                 LoadFilterCollection();
@@ -196,7 +206,7 @@ namespace Playnite.Database
             {
                 if (filter.Library != null)
                 {
-                    missing.ForEach(a => filter.Library.Ids.Remove(a));                   
+                    missing.ForEach(a => filter.Library.Ids.Remove(a));
                 }
             }
         }
@@ -215,6 +225,7 @@ namespace Playnite.Database
             Series = new SelectableDbItemList(database.Series, null, null, true);
             Sources = new SelectableDbItemList(database.Sources, null, null, true);
             Tags = new SelectableDbItemList(database.Tags, null, null, true);
+            Features = new SelectableDbItemList(database.Features, null, null, true);
 
             context.Send((a) =>
             {
@@ -229,6 +240,7 @@ namespace Playnite.Database
                 BindingOperations.EnableCollectionSynchronization(Series, syncLockSeries);
                 BindingOperations.EnableCollectionSynchronization(Sources, syncLockSources);
                 BindingOperations.EnableCollectionSynchronization(Tags, syncLockTags);
+                BindingOperations.EnableCollectionSynchronization(Features, syncLockFeatures);
             }, null);
 
             database.Games.ItemCollectionChanged += Games_ItemCollectionChanged;
@@ -241,6 +253,7 @@ namespace Playnite.Database
             database.Series.ItemCollectionChanged += (s, args) => UpdateAvailableFilterList(Series, args);
             database.Sources.ItemCollectionChanged += (s, args) => UpdateAvailableFilterList(Sources, args);
             database.Tags.ItemCollectionChanged += (s, args) => UpdateAvailableFilterList(Tags, args);
+            database.Features.ItemCollectionChanged += (s, args) => UpdateAvailableFilterList(Features, args);
             database.Companies.ItemCollectionChanged += (s, args) =>
             {
                 UpdateAvailableFilterList(Publishers, args);

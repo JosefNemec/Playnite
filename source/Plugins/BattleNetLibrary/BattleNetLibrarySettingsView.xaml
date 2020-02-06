@@ -68,13 +68,13 @@
                     </TextBlock.Style>
                 </TextBlock>
             </StackPanel>
-            <TextBlock HorizontalAlignment="Left" Margin="0,10,10,10">
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Left" Margin="0,10,10,10">
                 <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/Battlenet-troubleshooting"
                             Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                             CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                    <Run Text="{DynamicResource LOCTroubleShootingAccountLink}" />
+                    <Run Text="{DynamicResource LOCTroubleShootingIssues}" />
                 </Hyperlink>
-            </TextBlock>
-        </StackPanel>
+        </TextBlock>
     </StackPanel>
 </UserControl>

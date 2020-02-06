@@ -353,7 +353,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<IEnumerable<Game>> SetAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }        
+        public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }
         public RelayCommand<Game> AssignGameCategoryCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> AssignGamesCategoryCommand { get; private set; }
         public RelayCommand<Game> RemoveGameCommand { get; private set; }
@@ -398,6 +398,13 @@ namespace Playnite.DesktopApp.ViewModels
         {
             OpenSearchCommand = new RelayCommand<object>((game) =>
             {
+                if (SearchOpened)
+                {
+                    // The binding sometimes breaks when main window is restored from minimized state.
+                    // This fixes it.
+                    SearchOpened = false;
+                }
+
                 SearchOpened = true;
             }, new KeyGesture(Key.F, ModifierKeys.Control));
 
@@ -409,12 +416,12 @@ namespace Playnite.DesktopApp.ViewModels
             ToggleFilterPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.FilterPanelVisible = !AppSettings.FilterPanelVisible;
-            });
+            }, new KeyGesture(Key.G, ModifierKeys.Control));
 
             OpenFilterPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.FilterPanelVisible = true;
-            });        
+            });
 
             CloseFilterPanelCommand = new RelayCommand<object>((game) =>
             {
@@ -892,8 +899,8 @@ namespace Playnite.DesktopApp.ViewModels
                 GameAdditionAllowed = false;
                 return;
             }
-                     
-            GamesView = new DesktopCollectionView(Database, AppSettings, Extensions);         
+
+            GamesView = new DesktopCollectionView(Database, AppSettings, Extensions);
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
@@ -971,7 +978,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                     ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
                     Thread.Sleep(500);
-                                     
+
                     if (addedGames.Any() && metaForNewGames)
                     {
                         Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
@@ -992,6 +999,7 @@ namespace Playnite.DesktopApp.ViewModels
                 });
 
                 await GlobalTaskHandler.ProgressTask;
+                Extensions.NotifiyOnLibraryUpdated();
             }
             finally
             {
@@ -1129,7 +1137,6 @@ namespace Playnite.DesktopApp.ViewModels
             await DownloadMetadata(settings, games);
         }
 
-
         public async void DownloadMetadata(MetadataDownloadViewModel model)
         {
             if (model.OpenView(MetadataDownloadViewModel.ViewMode.Manual, AppSettings.MetadataSettings.GetClone()) != true)
@@ -1220,7 +1227,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
         }
-        
+
         public void OpenAboutWindow(AboutViewModel model)
         {
             model.OpenView();
@@ -1239,7 +1246,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void ConfigureDatabaseFields(DatabaseFieldsManagerViewModel model)
         {
             model.OpenView();
-        }        
+        }
 
         public void SelectGame(Guid id)
         {
@@ -1290,7 +1297,7 @@ namespace Playnite.DesktopApp.ViewModels
                     if (File.Exists(path))
                     {
                         var ext = Path.GetExtension(path).ToLower();
-                        if (ext.Equals(ThemeManager.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
+                        if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
                             try
                             {
@@ -1329,6 +1336,42 @@ namespace Playnite.DesktopApp.ViewModels
                                 Logger.Error(e, "Failed to install theme.");
                                 Dialogs.ShowErrorMessage(
                                     string.Format(Resources.GetString("LOCThemeInstallFail"), e.Message), "");
+                            }
+                        }
+                        else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
+                        {
+                            try
+                            {
+                                var desc = ExtensionFactory.GetDescriptionFromPackedFile(path);
+                                if (desc == null)
+                                {
+                                    throw new FileNotFoundException("Extension manifest not found.");
+                                }
+
+                                if (Dialogs.ShowMessage(
+                                        string.Format(Resources.GetString("LOCExtensionInstallPrompt"),
+                                            desc.Name, desc.Author, desc.Version),
+                                        Resources.GetString("LOCGeneralExtensionInstallTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                {
+                                    ExtensionInstaller.QueueExetnsionInstall(path);
+                                    if (Dialogs.ShowMessage(
+                                        Resources.GetString("LOCExtInstallationRestartNotif"),
+                                        Resources.GetString("LOCSettingsRestartTitle"),
+                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                    {
+                                        application.Restart(new CmdLineOptions()
+                                        {
+                                            SkipLibUpdate = true,
+                                        });
+                                    };
+                                }
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                Logger.Error(e, "Failed to install extension.");
+                                Dialogs.ShowErrorMessage(
+                                    string.Format(Resources.GetString("LOCExtensionInstallFail"), e.Message), "");
                             }
                         }
                         else
@@ -1415,7 +1458,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
                 else
                 {
-                    Dialogs.ShowMessage(Resources.GetString("LOCUpdateNoNewUpdateMessage"), string.Empty);                    
+                    Dialogs.ShowMessage(Resources.GetString("LOCUpdateNoNewUpdateMessage"), string.Empty);
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -1489,7 +1532,7 @@ namespace Playnite.DesktopApp.ViewModels
         public async void CancelProgress()
         {
             await GlobalTaskHandler.CancelAndWaitAsync();
-        }        
+        }
 
         public virtual void ClearFilters()
         {

@@ -13,20 +13,19 @@ using Playnite.Common;
 using Playnite.SDK;
 using System.IO.Compression;
 using YamlDotNet.Serialization;
+using Playnite.API;
 
 namespace Playnite
 {
-    public class ThemeDescription
+    public class ThemeDescription : BaseExtensionDescription
     {
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public string Website { get; set; }
-        public string Version { get; set; }
-        public string ThemeApiVersion { get; set; }     
+        public string ThemeApiVersion { get; set; }
+
         public ApplicationMode Mode { get; set; }
 
         [YamlIgnore]
         public string DirectoryPath { get; set; }
+
         [YamlIgnore]
         public string DirectoryName { get; set; }
 
@@ -47,8 +46,6 @@ namespace Playnite
     public class ThemeManager
     {
         private static ILogger logger = LogManager.GetLogger();
-        public const string ThemeManifestFileName = "theme.yaml";
-        public const string PackedThemeFileExtention = ".pthm";
         public static System.Version DesktopApiVersion => new System.Version("1.4.1");
         public static System.Version FullscreenApiVersion => new System.Version("1.4.1");
         public static ThemeDescription CurrentTheme { get; private set; }
@@ -186,7 +183,7 @@ namespace Playnite
             {
                 foreach (var dir in Directory.GetDirectories(userPath))
                 {
-                    var descriptorPath = Path.Combine(dir, ThemeManifestFileName);
+                    var descriptorPath = Path.Combine(dir, PlaynitePaths.ThemeManifestFileName);
                     if (File.Exists(descriptorPath))
                     {
                         var info = new FileInfo(descriptorPath);
@@ -201,7 +198,7 @@ namespace Playnite
             {
                 foreach (var dir in Directory.GetDirectories(programPath))
                 {
-                    var descriptorPath = Path.Combine(dir, ThemeManifestFileName);
+                    var descriptorPath = Path.Combine(dir, PlaynitePaths.ThemeManifestFileName);
                     if (File.Exists(descriptorPath))
                     {
                         var info = new FileInfo(descriptorPath);
@@ -220,7 +217,7 @@ namespace Playnite
         {
             using (var zip = ZipFile.OpenRead(path))
             {
-                var manifest = zip.GetEntry(ThemeManifestFileName);
+                var manifest = zip.GetEntry(PlaynitePaths.ThemeManifestFileName);
                 if (manifest == null)
                 {
                     return null;
@@ -233,8 +230,12 @@ namespace Playnite
                         return Serialization.FromYaml<ThemeDescription>(tr.ReadToEnd());
                     }
                 }
-
             }
+        }
+
+        public static ThemeDescription GetDescriptionFromFile(string path)
+        {
+            return Serialization.FromYaml<ThemeDescription>(File.ReadAllText(path));
         }
 
         public static ThemeDescription InstallFromPackedFile(string path)
@@ -265,7 +266,7 @@ namespace Playnite
                 Directory.Delete(oldBackPath, true);
             }
 
-            return ThemeDescription.FromFile(Path.Combine(targetDir, ThemeManifestFileName));
+            return ThemeDescription.FromFile(Path.Combine(targetDir, PlaynitePaths.ThemeManifestFileName));
         }
     }
 }

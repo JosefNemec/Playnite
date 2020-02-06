@@ -27,7 +27,7 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged();
             }
         }
-        
+
         private List<string> imageExtensions;
         /// <summary>
         /// Gets or sets file extension supported by profile.
@@ -85,7 +85,7 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -140,18 +140,6 @@ namespace Playnite.SDK.Models
 
             return true;
         }
-
-        /// <inheritdoc/>
-        public override bool Equals(object obj) => Equals(obj as EmulatorProfile);
-
-        /// <inheritdoc/>
-        public override int GetHashCode() =>
-            (Platforms == null ? 0 : Platforms.GetHashCode()) ^
-            (ImageExtensions == null ? 0 : ImageExtensions.GetHashCode()) ^
-            (Executable == null ? 0 : Executable.GetHashCode()) ^
-            (Arguments == null ? 0 : Arguments.GetHashCode()) ^
-            (WorkingDirectory == null ? 0 : WorkingDirectory.GetHashCode()) ^
-            (Name == null ? 0 : Name.GetHashCode());
     }
 
     /// <summary>
@@ -190,14 +178,14 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             return Name;
         }
-        
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -205,7 +193,7 @@ namespace Playnite.SDK.Models
 
             if (target is Emulator tro)
             {
-                if (!Profiles.IsListEqual(tro.Profiles))
+                if (!Profiles.IsListEqualExact(tro.Profiles))
                 {
                     tro.Profiles = Profiles;
                 }

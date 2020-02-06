@@ -33,6 +33,8 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class GameAction : ObservableObject, IEquatable<GameAction>
     {
+        private readonly Guid id = Guid.NewGuid();
+
         private GameActionType type;
         /// <summary>
         /// Gets or sets task type.
@@ -135,7 +137,7 @@ namespace Playnite.SDK.Models
         private bool isHandledByPlugin;
         /// <summary>
         /// Gets or sets value indicating wheter a action's execution should be handled by a plugin.
-        /// </summary>        
+        /// </summary>
         public bool IsHandledByPlugin
         {
             get => isHandledByPlugin;
@@ -149,7 +151,7 @@ namespace Playnite.SDK.Models
         private Guid emulatorId;
         /// <summary>
         /// Gets or sets emulator id for Emulator action type execution.
-        /// </summary>     
+        /// </summary>
         public Guid EmulatorId
         {
             get => emulatorId;
@@ -173,7 +175,7 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged();
             }
         }
-        
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -268,21 +270,5 @@ namespace Playnite.SDK.Models
 
             return true;
         }
-
-        /// <inheritdoc/>
-        public override bool Equals(object obj) => Equals(obj as GameAction);
-
-        /// <inheritdoc/>
-        public override int GetHashCode() =>
-            Type.GetHashCode() ^
-            (Arguments == null ? 0 : Arguments.GetHashCode()) ^
-            (AdditionalArguments == null ? 0 : AdditionalArguments.GetHashCode()) ^
-            (Path == null ? 0 : Path.GetHashCode()) ^
-            (WorkingDir == null ? 0 : WorkingDir.GetHashCode()) ^
-            (Name == null ? 0 : Name.GetHashCode()) ^
-            IsHandledByPlugin.GetHashCode() ^
-            EmulatorId.GetHashCode() ^
-            EmulatorProfileId.GetHashCode() ^
-            OverrideDefaultArgs.GetHashCode();
     }
 }

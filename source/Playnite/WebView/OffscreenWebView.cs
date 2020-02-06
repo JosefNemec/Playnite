@@ -27,6 +27,19 @@ namespace Playnite.WebView
             browserInitializedEvent.WaitOne(5000);
         }
 
+        public OffscreenWebView(WebViewSettings settings)
+        {
+            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
+            browser.LoadingStateChanged += Browser_LoadingStateChanged;
+            browser.BrowserInitialized += Browser_BrowserInitialized;
+            var brwSet = new BrowserSettings
+            {
+                Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled
+            };
+            browser.CreateBrowser(null, brwSet);
+            browserInitializedEvent.WaitOne(5000);
+        }
+
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
         {
             if (e.IsLoading == false)
@@ -37,7 +50,6 @@ namespace Playnite.WebView
             NavigationChanged?.Invoke(this, new EventArgs());
         }
 
-
         private void Browser_BrowserInitialized(object sender, EventArgs e)
         {
             browserInitializedEvent.Set();
@@ -45,7 +57,6 @@ namespace Playnite.WebView
 
         public void Close()
         {
-
         }
 
         public void Dispose()
@@ -85,7 +96,7 @@ namespace Playnite.WebView
         }
 
         public void Navigate(string url)
-        {            
+        {
             browser.Load(url);
         }
 
@@ -101,23 +112,29 @@ namespace Playnite.WebView
 
         public void DeleteCookies(string url, string name)
         {
-            Cef.GetGlobalCookieManager().DeleteCookies(url, name);
+            using (var manager = Cef.GetGlobalCookieManager())
+            {
+                manager.DeleteCookies(url, name);
+            }
         }
 
         public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
         {
-            Cef.GetGlobalCookieManager().SetCookie(url, new Cookie()
+            using (var manager = Cef.GetGlobalCookieManager())
             {
-                Domain = domain,
-                Name = name,
-                Value = value,
-                Expires = expires,
-                Creation = DateTime.Now,
-                HttpOnly = false,
-                LastAccess = DateTime.Now,
-                Secure = false,
-                Path = path
-            });
+                manager.SetCookie(url, new Cookie()
+                {
+                    Domain = domain,
+                    Name = name,
+                    Value = value,
+                    Expires = expires,
+                    Creation = DateTime.Now,
+                    HttpOnly = false,
+                    LastAccess = DateTime.Now,
+                    Secure = false,
+                    Path = path
+                });
+            }
         }
     }
 }

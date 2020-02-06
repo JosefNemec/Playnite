@@ -16,6 +16,7 @@ Manifest is YAML formated file with following properties:
 | Module | File name of extension module: `*.dll` file for plugins, `*.ps1` or `*.py` file for scripts. |
 | Type | Extension type, available values are: `Script`, `GenericPlugin`, `GameLibrary`, `MetadataProvider`. |
 | Icon | Optional relative file name of extension icon. |
+| Links | Optional list of links (extension website, changelog etc.) |
 
 If you want to add executable script method into Playnite's main menu then `Functions` property has to be also specified. This only applies to script extensions since compiled plugins specify external functions directly.
 
@@ -40,6 +41,9 @@ Type: Script
 Functions: 
     - Description: Export Library
       FunctionName: ExportLibrary
+Links:
+    - Name: Website
+      Url: https://some.website.nowhere
 ```
 
 **Example of library plugin:**
@@ -51,4 +55,7 @@ Version: 1.0
 Module: SomeLibraryPlugin.dll
 Type: GameLibrary
 Icon: pluginicon.png
+Links:
+    - Name: Website
+      Url: https://some.website.nowhere
 ```

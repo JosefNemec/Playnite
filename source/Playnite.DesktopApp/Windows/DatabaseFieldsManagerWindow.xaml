@@ -10,7 +10,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
         Title="{DynamicResource LOCLibraryManager}" Height="600" Width="750">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -19,7 +19,7 @@
 
         <TabControl Grid.Column="0" Grid.Row="0" TabStripPlacement="Left">
             <!--Platform-->
-            <TabItem Header="{DynamicResource LOCPlatformTitle}">
+            <TabItem Header="{DynamicResource LOCPlatformsTitle}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
@@ -30,6 +30,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenamePlatformCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedPlatformsCommand}"/>
                     </StackPanel>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -98,9 +100,9 @@
                     </Grid>
                 </DockPanel>
             </TabItem>
-            
+
             <!--Category-->
-            <TabItem Header="{DynamicResource LOCCategoryLabel}">
+            <TabItem Header="{DynamicResource LOCCategoriesLabel}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
@@ -111,6 +113,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameCategoryCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListCategories}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedCategoriesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListCategories"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -119,7 +123,7 @@
             </TabItem>
 
             <!--Genre-->
-            <TabItem Header="{DynamicResource LOCGenreLabel}">
+            <TabItem Header="{DynamicResource LOCGenresLabel}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
@@ -130,6 +134,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameGenreCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListGenres}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedGenresCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListGenres"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -138,7 +144,7 @@
             </TabItem>
 
             <!--Company-->
-            <TabItem Header="{DynamicResource LOCCompanyLabel}">
+            <TabItem Header="{DynamicResource LOCCompaniesLabel}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
@@ -149,6 +155,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameCompanyCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListCompanies}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedCompaniesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListCompanies"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -156,8 +164,29 @@
                 </DockPanel>
             </TabItem>
 
+            <!--Features-->
+            <TabItem Header="{DynamicResource LOCFeaturesLabel}">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                        <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
+                                Command="{Binding AddFeatureCommand}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
+                                Command="{Binding RemoveFeatureCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFeatures}"/>
+                        <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
+                                Command="{Binding RenameFeatureCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFeatures}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedFeaturesCommand}"/>
+                    </StackPanel>
+                    <ListBox Name="ListFeatures"
+                             DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
+                             ItemsSource="{Binding EditingFeatures}" DisplayMemberPath="Name" />
+                </DockPanel>
+            </TabItem>
+
             <!--Tag-->
-            <TabItem Header="{DynamicResource LOCTagLabel}">
+            <TabItem Header="{DynamicResource LOCTagsLabel}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
@@ -168,6 +197,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameTagCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListTags}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedTagsCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListTags"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -187,6 +218,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameSeriesCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListSeries}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedSeriesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListSeries"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -195,7 +228,7 @@
             </TabItem>
 
             <!--AgeRating-->
-            <TabItem Header="{DynamicResource LOCAgeRatingLabel}">
+            <TabItem Header="{DynamicResource LOCAgeRatingsLabel}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
@@ -206,6 +239,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameAgeRatingCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListAgeRatings}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedAgeRatingsCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListAgeRatings"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -214,7 +249,7 @@
             </TabItem>
 
             <!--Region-->
-            <TabItem Header="{DynamicResource LOCRegionLabel}">
+            <TabItem Header="{DynamicResource LOCRegionsLabel}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
@@ -225,6 +260,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameRegionCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListRegions}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedRegionsCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListRegions"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -233,7 +270,7 @@
             </TabItem>
 
             <!--Source-->
-            <TabItem Header="{DynamicResource LOCSourceLabel}">
+            <TabItem Header="{DynamicResource LOCSourcesLabel}">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
@@ -244,6 +281,8 @@
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameSourceCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListSources}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedSourcesCommand}"/>
                     </StackPanel>
                     <ListBox Name="ListSources"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
@@ -251,7 +290,7 @@
                 </DockPanel>
             </TabItem>
         </TabControl>
-        
+
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
                 <Button TabIndex="3" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"

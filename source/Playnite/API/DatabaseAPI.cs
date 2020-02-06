@@ -2,6 +2,7 @@
 using Playnite.Database;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +31,7 @@ namespace Playnite.API
         public IItemCollection<AgeRating> AgeRatings => database.AgeRatings;
         public IItemCollection<Region> Regions => database.Regions;
         public IItemCollection<GameSource> Sources => database.Sources;
+        public IItemCollection<GameFeature> Features => database.Features;
 
         public string DatabasePath
         {
@@ -44,7 +46,7 @@ namespace Playnite.API
         public DatabaseAPI(GameDatabase database)
         {
             this.database = database;
-        }      
+        }
 
         public string AddFile(string path, Guid parentId)
         {
@@ -79,6 +81,16 @@ namespace Playnite.API
         public string GetFullFilePath(string databasePath)
         {
             return database.GetFullFilePath(databasePath);
+        }
+
+        public Game ImportGame(GameInfo game)
+        {
+            return database.ImportGame(game);
+        }
+
+        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        {
+            return database.ImportGame(game, sourcePlugin.Id);
         }
     }
 }

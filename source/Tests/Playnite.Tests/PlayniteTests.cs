@@ -69,11 +69,13 @@ namespace Playnite.Tests
         }
 
         public static Mock<IPlayniteAPI> GetTestingApi()
-        {            
+        {
             var api = new Mock<IPlayniteAPI>();
+            var notification = new Mock<INotificationsAPI>();
             api.Setup(a => a.Paths).Returns(new PlaynitePathsAPI());
             api.Setup(a => a.ApplicationInfo).Returns(new PlayniteInfoAPI());
             api.Setup(a => a.Resources).Returns(new ResourceProvider());
+            api.Setup(a => a.Notifications).Returns(notification.Object);
             return api;
         }
     }

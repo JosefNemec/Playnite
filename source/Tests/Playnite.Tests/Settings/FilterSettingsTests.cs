@@ -30,6 +30,7 @@ namespace Playnite.Tests.Settings
             StringAssert.DoesNotContain(nameof(FilterSettings.Tag), json);
             StringAssert.DoesNotContain(nameof(FilterSettings.Platform), json);
             StringAssert.DoesNotContain(nameof(FilterSettings.Library), json);
+            StringAssert.DoesNotContain(nameof(FilterSettings.Feature), json);
 
             settings.Name = "test";
             settings.Series = new FilterItemProperites() { Text = "test" };
@@ -43,6 +44,7 @@ namespace Playnite.Tests.Settings
             settings.Tag = new FilterItemProperites() { Text = "test" };
             settings.Platform = new FilterItemProperites() { Text = "test" };
             settings.Library = new FilterItemProperites() { Text = "test" };
+            settings.Feature = new FilterItemProperites() { Text = "test" };
             json = Serialization.ToJson(settings);
 
             StringAssert.Contains(nameof(FilterSettings.Name), json);
@@ -57,6 +59,7 @@ namespace Playnite.Tests.Settings
             StringAssert.Contains(nameof(FilterSettings.Tag), json);
             StringAssert.Contains(nameof(FilterSettings.Platform), json);
             StringAssert.Contains(nameof(FilterSettings.Library), json);
+            StringAssert.Contains(nameof(FilterSettings.Feature), json);
         }
     }
 }

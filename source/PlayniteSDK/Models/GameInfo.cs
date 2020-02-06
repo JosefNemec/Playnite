@@ -177,6 +177,11 @@ namespace Playnite.SDK.Models
         public List<string> Tags { get; set; }
 
         /// <summary>
+        /// Gets or sets game Features.
+        /// </summary>
+        public List<string> Features { get; set; }
+
+        /// <summary>
         /// Creates new instance of <see cref="GameInfo"/>.
         /// </summary>
         public GameInfo()

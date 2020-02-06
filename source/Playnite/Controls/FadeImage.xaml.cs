@@ -120,7 +120,7 @@ namespace Playnite.Controls
         }
 
         #endregion Strech
-        
+
         #region IsBlurEnabled
 
         public static readonly DependencyProperty IsBlurEnabledProperty = DependencyProperty.Register(
@@ -195,11 +195,14 @@ namespace Playnite.Controls
         private void Image1FadeOut_Completed(object sender, EventArgs e)
         {
             Image1.Source = null;
+            Image1.UpdateLayout();
+            GC.Collect();
         }
 
         private void Image2FadeOut_Completed(object sender, EventArgs e)
         {
             Image2.Source = null;
+            Image2.UpdateLayout();
         }
 
         private void BorderDarkenOut_Completed(object sender, EventArgs e)
@@ -207,7 +210,7 @@ namespace Playnite.Controls
             BorderDarken.Opacity = 0;
         }
 
-        private static async void BlurSettingChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        private static void BlurSettingChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (FadeImage)obj;
             if (control.Source == null)
@@ -218,25 +221,8 @@ namespace Playnite.Controls
             var blurAmount = control.BlurAmount;
             var blurEnabled = control.IsBlurEnabled;
             var highQuality = control.HighQualityBlur;
-            var source = control.Source;
-            var image = await Task.Factory.StartNew(() =>
-            {
-                if (source is string str)
-                {
-                    return ImageSourceManager.GetImage(str, false);
-                }
-                else if (source is BitmapLoadProperties props)
-                {
-                    return ImageSourceManager.GetImage(props.Source, false, props);
-                }
-                else
-                {
-                    return null;
-                }
-            });
-
             if (blurEnabled)
-            {                
+            {
                 control.ImageHolder.Effect = new BlurEffect()
                 {
                     KernelType = KernelType.Gaussian,
@@ -247,22 +233,6 @@ namespace Playnite.Controls
             else
             {
                 control.ImageHolder.Effect = null;
-            }
-
-            GC.Collect();
-
-            if (control.currentImage == CurrentImage.Image1)
-            {
-                control.Image1.Source = image;
-            }
-            else if (control.currentImage == CurrentImage.Image2)
-            {
-                control.Image2.Source = image;
-            }
-            else
-            {
-                control.Image1.Source = image;
-                control.currentImage = CurrentImage.Image1;
             }
         }
 
@@ -279,7 +249,7 @@ namespace Playnite.Controls
             var highQuality = HighQualityBlur;
             BitmapImage image = null;
 
-            if (newSource == currentSource)
+            if (newSource?.Equals(currentSource) == true)
             {
                 return;
             }
@@ -323,8 +293,6 @@ namespace Playnite.Controls
                     ImageHolder.Effect = null;
                 }
             }
-
-            GC.Collect();
 
             if (AnimationEnabled)
             {

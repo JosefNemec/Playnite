@@ -49,6 +49,22 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
+        public override void OnApplicationStopped()
+        {
+            if (Runtime.GetFunctionExits("OnApplicationStopped"))
+            {
+                Runtime.Execute("OnApplicationStopped");
+            }
+        }
+
+        public override void OnLibraryUpdated()
+        {
+            if (Runtime.GetFunctionExits("OnLibraryUpdated"))
+            {
+                Runtime.Execute("OnLibraryUpdated");
+            }
+        }
+
         public override void OnGameStarting(Game game)
         {
             if (Runtime.GetFunctionExits("OnGameStarting"))

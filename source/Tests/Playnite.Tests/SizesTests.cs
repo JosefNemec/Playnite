@@ -52,5 +52,25 @@ namespace Playnite.Tests
         {
             Assert.AreEqual(height, ratio.GetHeight(width));
         }
+
+        [Test]
+        public void GetMegapixelsFromResTest()
+        {
+            Assert.AreEqual(0.922, Sizes.GetMegapixelsFromRes(1280, 720));
+            Assert.AreEqual(0.540, Sizes.GetMegapixelsFromRes(600, 900));
+        }
+
+        [Test]
+        public void AspectRatioEquatableTest()
+        {
+            var asp1 = new AspectRatio(1, 2);
+            var asp2 = new AspectRatio(1, 2);
+            var asp3 = new AspectRatio(1, 1);
+
+            Assert.IsTrue(asp1 == asp2);
+            Assert.IsFalse(asp1 == asp3);
+            Assert.AreEqual(asp1, asp2);
+            Assert.AreNotEqual(asp1, asp3);
+        }
     }
 }

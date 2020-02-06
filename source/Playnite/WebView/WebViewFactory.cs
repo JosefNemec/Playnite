@@ -15,6 +15,11 @@ namespace Playnite.WebView
             return new OffscreenWebView();
         }
 
+        public IWebView CreateOffscreenView(WebViewSettings settings)
+        {
+            return new OffscreenWebView(settings);
+        }
+
         public IWebView CreateView(int width, int height)
         {
             return new WebView(width, height);

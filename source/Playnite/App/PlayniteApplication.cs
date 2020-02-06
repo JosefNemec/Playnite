@@ -115,15 +115,20 @@ namespace Playnite
             try
             {
                 var installed = ExtensionInstaller.InstallExtensionQueue();
-                if (installed?.Mode == Mode)
+                var installedTheme = installed.FirstOrDefault(a => a is ThemeDescription);
+                if (installedTheme != null)
                 {
-                    if (installed.Mode == ApplicationMode.Desktop)
+                    var theme = installedTheme as ThemeDescription;
+                    if (theme.Mode == Mode)
                     {
-                        AppSettings.Theme = installed.DirectoryName;
-                    }
-                    else
-                    {
-                        AppSettings.Fullscreen.Theme = installed.DirectoryName;
+                        if (theme.Mode == ApplicationMode.Desktop)
+                        {
+                            AppSettings.Theme = theme.DirectoryName;
+                        }
+                        else
+                        {
+                            AppSettings.Fullscreen.Theme = theme.DirectoryName;
+                        }
                     }
                 }
             }
@@ -247,7 +252,7 @@ namespace Playnite
         public abstract void ShowWindowsNotification(string title, string body, Action action);
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
-        {            
+        {
             logger.Info("Shutting down application because of session ending.");
             // Don't dispose CefSharp here because of bug in CefSharp during system shutdown
             // https://github.com/JosefNemec/Playnite/issues/866
@@ -264,7 +269,7 @@ namespace Playnite
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var exception = (Exception)e.ExceptionObject;
-            logger.Error(exception, "Unhandled exception occured.");            
+            logger.Error(exception, "Unhandled exception occured.");
             var model = new CrashHandlerViewModel(
                 new CrashHandlerWindowFactory(),
                 Dialogs,
@@ -277,7 +282,7 @@ namespace Playnite
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");            
+            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");
             Startup();
             logger.Info($"Application {CurrentVersion} started");
         }
@@ -484,7 +489,7 @@ namespace Playnite
                         GamesEditor.PlayGame(game);
                         return;
                     }
-                }                
+                }
             }
 
             logger.Warn($"Failed to process playnite URI arguments {string.Join(",", arguments)}");
@@ -521,6 +526,7 @@ namespace Playnite
                 return;
             }
 
+            Extensions.NotifiyOnApplicationStopped();
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
             {
                 try
@@ -564,7 +570,7 @@ namespace Playnite
             {
                 return;
             }
-            
+
             await Task.Delay(Common.Timer.SecondsToMilliseconds(5));
             if (GlobalTaskHandler.IsActive)
             {

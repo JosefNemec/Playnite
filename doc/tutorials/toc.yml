@@ -1,5 +1,8 @@
 - name: Introduction
   href: intro.md
+
+- name: Toolbox utility
+  href: toolbox.md
   
 - name: Scripting
   items:

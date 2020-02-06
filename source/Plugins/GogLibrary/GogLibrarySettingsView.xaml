@@ -67,17 +67,17 @@
                     </TextBlock.Style>
                 </TextBlock>
             </StackPanel>
-
-            <TextBlock VerticalAlignment="Center" Margin="10">
-                        <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-GOG-account-name"
-                                   Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                                   CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                            <Run Text="{DynamicResource LOCTroubleShootingAccountLink}" />
-                        </Hyperlink>
-            </TextBlock>
         </StackPanel>
 
         <CheckBox IsChecked="{Binding StartGamesUsingGalaxy}" Margin="0,10,0,0" DockPanel.Dock="Top"
                   Content="{DynamicResource LOCSettingsGOGUseGalaxy}"/>
+
+        <TextBlock VerticalAlignment="Center" Margin="0,20,0,0">
+            <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-GOG-account-name"
+                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                <Run Text="{DynamicResource LOCTroubleShootingIssues}" />
+            </Hyperlink>
+        </TextBlock>
     </StackPanel>
 </UserControl>

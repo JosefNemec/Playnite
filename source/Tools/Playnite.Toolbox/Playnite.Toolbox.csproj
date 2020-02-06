@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdLineOptions.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,7 +140,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Templates\Extensions\" />
     <Folder Include="Templates\Themes\Desktop\Fonts\" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Templates\Themes\Fullscreen\Theme.sln">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\build\ExtensionsRefIgnoreList.txt">
+      <Link>Templates\Extensions\ExtensionsRefIgnoreList.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -48,6 +48,9 @@
     <Compile Include="..\..\Playnite\BaseGameController.cs">
       <Link>BaseGameController.cs</Link>
     </Compile>
+    <Compile Include="..\..\playnite\commands\GlobalCommands.cs">
+      <Link>Commands\GlobalCommands.cs</Link>
+    </Compile>
     <Compile Include="..\..\Playnite\GameActionActivator.cs">
       <Link>GameActionActivator.cs</Link>
     </Compile>
