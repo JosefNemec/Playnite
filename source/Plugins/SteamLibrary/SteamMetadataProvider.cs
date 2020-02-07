@@ -79,62 +79,32 @@ namespace SteamLibrary
         internal StoreAppDetailsResult.AppDetails GetStoreData(uint appId)
         {
             var stringData = string.Empty;
-
-            // First try to get cached data
-            try
+            // Steam may return 429 if we put too many request
+            for (int i = 0; i < 10; i++)
             {
-                stringData = playniteServices.GetSteamStoreData(appId);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e, "Failed to get Steam store cache data.");
-            }
-
-            // If no cache then download on client and push to cache
-            if (string.IsNullOrEmpty(stringData))
-            {
-                // Steam may return 429 if we put too many request
-                for (int i = 0; i < 10; i++)
+                try
                 {
-                    try
+                    stringData = WebApiClient.GetRawStoreAppDetail(appId);
+                    break;
+                }
+                catch (WebException e)
+                {
+                    if (i + 1 == 10)
                     {
-                        stringData = WebApiClient.GetRawStoreAppDetail(appId);
-                        logger.Debug($"Steam store data got from live server {appId}");
-
-                        try
-                        {
-                            playniteServices.PostSteamStoreData(appId, stringData);
-                        }
-                        catch (Exception e)
-                        {
-                            logger.Error(e, $"Failed to post steam store data to cache {appId}");
-                        }
-
-                        break;
+                        logger.Error($"Reached download timeout for Steam store game {appId}");
+                        return null;
                     }
-                    catch (WebException e)
-                    {
-                        if (i + 1 == 10)
-                        {
-                            logger.Error($"Reached download timeout for Steam store game {appId}");
-                            return null;
-                        }
 
-                        if (e.Message.Contains("429"))
-                        {
-                            Thread.Sleep(2500);
-                            continue;
-                        }
-                        else
-                        {
-                            throw;
-                        }
+                    if (e.Message.Contains("429"))
+                    {
+                        Thread.Sleep(2500);
+                        continue;
+                    }
+                    else
+                    {
+                        throw;
                     }
                 }
-            }
-            else
-            {
-                logger.Debug($"Steam store data got from cache {appId}");
             }
 
             if (!string.IsNullOrEmpty(stringData))
@@ -234,10 +204,24 @@ namespace SteamLibrary
             }
 
             // Background Image
+            var bannerBk = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_hero.jpg", appId);
+            var storeBk = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId);
+
             switch (settings.BackgroundSource)
             {
                 case BackgroundSource.Image:
-                    metadata.BackgroundImage = new MetadataFile(GetGameBackground(appId));
+                    var bk = GetGameBackground(appId);
+                    if (string.IsNullOrEmpty(bk))
+                    {
+                        if (HttpDownloader.GetResponseCode(bannerBk) == HttpStatusCode.OK)
+                        {
+                            metadata.BackgroundImage = new MetadataFile(bannerBk);
+                        }
+                    }
+                    else
+                    {
+                        metadata.BackgroundImage = new MetadataFile(bk);
+                    }
                     break;
                 case BackgroundSource.StoreScreenshot:
                     if (metadata.StoreDetails != null)
@@ -246,10 +230,16 @@ namespace SteamLibrary
                     }
                     break;
                 case BackgroundSource.StoreBackground:
-                    metadata.BackgroundImage = new MetadataFile(string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId));
+                    if (HttpDownloader.GetResponseCode(storeBk) == HttpStatusCode.OK)
+                    {
+                        metadata.BackgroundImage = new MetadataFile(storeBk);
+                    }
                     break;
                 case BackgroundSource.Banner:
-                    metadata.BackgroundImage = new MetadataFile(string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_hero.jpg", appId));
+                    if (HttpDownloader.GetResponseCode(bannerBk) == HttpStatusCode.OK)
+                    {
+                        metadata.BackgroundImage = new MetadataFile(bannerBk);
+                    }
                     break;
                 default:
                     break;
@@ -329,7 +319,12 @@ namespace SteamLibrary
                             continue;
                         }
 
-                        gameInfo.Features.Add(cultInfo.ToTitleCase(category.description));
+                        if (category.description == "Steam Cloud")
+                        {
+                            category.description = "Cloud Saves";
+                        }
+
+                        gameInfo.Features.Add(cultInfo.ToTitleCase(category.description.Replace("steam", "", StringComparison.OrdinalIgnoreCase).Trim()));
                     }
                 }
 
