@@ -92,7 +92,7 @@ Automatisch importierte Spiele erscheinen beim nächsten Importvorgang eventuell
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktiviert</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Entfernen</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedTitle">Unbenutzte entfernen</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">Nicht Verwendete entfernen</sys:String>
     <sys:String x:Key="LOCRenameTitle">Umbenennen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopieren</sys:String>
     <sys:String x:Key="LOCAddTitle">Hinzufügen</sys:String>
