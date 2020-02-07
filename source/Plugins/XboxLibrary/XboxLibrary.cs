@@ -98,7 +98,7 @@ namespace XboxLibrary
                 importError = e;
             }
 
-            var libraryTitles = titles.Where(title => !title.pfn.IsNullOrEmpty() &&
+            var pcTitles = titles.Where(title => !title.pfn.IsNullOrEmpty() &&
                     title.type == "Game" &&
                     title.devices?.Contains("PC") == true).ToList();
 
@@ -109,7 +109,7 @@ namespace XboxLibrary
                     var installedApps = Programs.GetUWPApps();
                     foreach (var installedApp in installedApps)
                     {
-                        var libTitle = libraryTitles.FirstOrDefault(a => a.pfn == installedApp.AppId);
+                        var libTitle = pcTitles.FirstOrDefault(a => a.pfn == installedApp.AppId);
                         if (libTitle != null)
                         {
                             var game = GetGameInfoFromTitle(libTitle);
@@ -141,12 +141,37 @@ namespace XboxLibrary
             {
                 try
                 {
-                    logger.Debug($"Found {libraryTitles.Count} library Xbox games.");
-                    foreach (var libTitle in libraryTitles)
+                    logger.Debug($"Found {pcTitles.Count} Xbox PC games.");
+                    foreach (var libTitle in pcTitles)
                     {
                         if (!installedGames.TryGetValue(libTitle.pfn, out var installed))
                         {
                             allGames.Add(GetGameInfoFromTitle(libTitle));
+                        }
+                    }
+
+                    foreach (var title in titles)
+                    {
+                        if (title.devices.HasItems() &&
+                            (title.devices.Contains("Xbox360") || title.devices.Contains("XboxOne")) &&
+                            !title.devices.Contains("PC"))
+                        {
+                            var addGame = false;
+                            if (Settings.Import360Games && title.devices.Contains("Xbox360"))
+                            {
+                                addGame = true;
+                            }
+                            else if (Settings.ImportXboneGames && title.devices.Contains("XboxOne"))
+                            {
+                                addGame = true;
+                            }
+
+                            if (addGame)
+                            {
+                                var newGame = GetGameInfoFromTitle(title);
+                                newGame.GameId = $"CONSOLE_{title.titleId}_{title.mediaItemType}";
+                                allGames.Add(newGame);
+                            };
                         }
                     }
                 }

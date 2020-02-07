@@ -32,18 +32,33 @@ namespace XboxLibrary
 
         public override void Install()
         {
+            if (Game.GameId.StartsWith("CONSOLE"))
+            {
+                throw new Exception("We can't install console only games, the technology is not there yet.");
+            }
+
             ProcessStarter.StartUrl($"ms-windows-store://pdp/?PFN={Game.GameId}");
             StartInstallWatcher();
         }
 
         public override void Uninstall()
         {
+            if (Game.GameId.StartsWith("CONSOLE"))
+            {
+                throw new Exception("We can't uninstall console only games, the technology is not there yet.");
+            }
+
             ProcessStarter.StartUrl("ms-settings:appsfeatures");
             StartUninstallWatcher();
         }
 
         public override void Play()
         {
+            if (Game.GameId.StartsWith("CONSOLE"))
+            {
+                throw new Exception("We can't start console only games, the technology is not there yet.");
+            }
+
             var prg = Programs.GetUWPApps().FirstOrDefault(a => a.AppId == Game.GameId);
             if (prg == null)
             {

@@ -24,6 +24,10 @@ namespace XboxLibrary
 
         public bool XboxAppClientPriorityLaunch { get; set; } = false;
 
+        public bool Import360Games { get; set; } = false;
+
+        public bool ImportXboneGames { get; set; } = false;
+
         [JsonIgnore]
         public bool IsUserLoggedIn
         {
