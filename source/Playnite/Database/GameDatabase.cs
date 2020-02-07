@@ -23,7 +23,7 @@ namespace Playnite.Database
     {
         public const double MaximumRecommendedIconSize = 0.07;
         public const double MaximumRecommendedCoverSize = 0.8;
-        public const double MaximumRecommendedBackgroundSize = 2.5;
+        public const double MaximumRecommendedBackgroundSize = 4;
 
         private static ILogger logger = LogManager.GetLogger();
 

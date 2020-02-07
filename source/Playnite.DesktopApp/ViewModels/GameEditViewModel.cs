@@ -2672,7 +2672,6 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = path;
-                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedBackgroundSize);
             }
         }
 
@@ -2682,7 +2681,6 @@ namespace Playnite.DesktopApp.ViewModels
             if (!path.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = path;
-                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedBackgroundSize);
             }
         }
 
