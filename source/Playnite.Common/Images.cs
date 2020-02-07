@@ -55,12 +55,12 @@ namespace Playnite.Common
 
         public static ImageProperties GetImageProperties(string imagePath)
         {
-            return GetImageProperties(BitmapDecoder.Create(new Uri(imagePath), BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default));
+            return GetImageProperties(BitmapDecoder.Create(new Uri(imagePath), BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.OnLoad));
         }
 
         public static ImageProperties GetImageProperties(Stream imageStream)
         {
-            return GetImageProperties(BitmapDecoder.Create(imageStream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default));
+            return GetImageProperties(BitmapDecoder.Create(imageStream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.OnLoad));
         }
 
         public static ImageProperties GetImageProperties(BitmapDecoder decoder)
