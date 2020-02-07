@@ -376,11 +376,11 @@
     <sys:String x:Key="LOCSettingsTextRenderingNotice">文本渲染以及格式化選項尚未應用至遊戲敘述文本</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">立即下載背景圖片</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">退出遊戲時自動關閉遊戲啟動器</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">延緩客戶端關閉時間(秒)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">當遊戲時間低於(秒) 則不關閉</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自動關閉以下客戶端:</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉遊戲啟動器</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">無</sys:String>
