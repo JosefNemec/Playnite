@@ -376,11 +376,11 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Metin oluşturma ve biçimlendirme seçenekleri şimdilik oyunun açıklama metnine uygulanamaz.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Arka plan resimlerini hemen indir</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Oyundan çıktıktan sonra başlatıcıyı otomatik kapat</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">İstemcinin gönüllü kapanma sıklığı (saniye)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Oyun oturumu şundan daha kısa ise kapatma (saniye)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Şu istemcileri otomatik kapat:</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">Başlatıcıları Otomatik Kapat</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
