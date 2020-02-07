@@ -24,6 +24,7 @@ using System.Drawing.Imaging;
 using Playnite.DesktopApp.Windows;
 using Playnite.SDK.Plugins;
 using Playnite.Metadata.Providers;
+using System.Text.RegularExpressions;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -3022,7 +3023,10 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public TItem CreateNewItemInCollection<TItem>(SelectableDbItemList collection, string itemName = null) where TItem : DatabaseObject
+        public TItem CreateNewItemInCollection<TItem>(
+            SelectableDbItemList collection,
+            string itemName = null,
+            Func<SelectableItem<DatabaseObject>, string, bool> existingComparer = null) where TItem : DatabaseObject
         {
             var newItem = CreateNewItem<TItem>(itemName);
             if (newItem == null)
@@ -3031,7 +3035,16 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                var existing = collection.FirstOrDefault(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase));
+                SelectableItem<DatabaseObject> existing = null;
+                if (existingComparer != null)
+                {
+                    existing = collection.FirstOrDefault(a => existingComparer(a, newItem.Name));
+                }
+                else
+                {
+                    existing = collection.FirstOrDefault(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase));
+                }
+
                 if (existing != null)
                 {
                     existing.Selected = true;
@@ -3125,7 +3138,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Genre AddNewGenre(string genre = null)
         {
-            return CreateNewItemInCollection<Genre>(Genres, genre);
+            return CreateNewItemInCollection<Genre>(Genres, genre, LooseDbNameComparer);
         }
 
         public void AddNewGenres(List<string> genres)
@@ -3140,7 +3153,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Tag AddNewTag(string tag = null)
         {
-            return CreateNewItemInCollection<Tag>(Tags, tag);
+            return CreateNewItemInCollection<Tag>(Tags, tag, LooseDbNameComparer);
         }
 
         public void AddNewTags(List<string> tags)
@@ -3155,7 +3168,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public GameFeature AddNewFeature(string feature = null)
         {
-            return CreateNewItemInCollection<GameFeature>(Features, feature);
+            return CreateNewItemInCollection<GameFeature>(Features, feature, LooseDbNameComparer);
         }
 
         public void AddNewFeatures(List<string> features)
@@ -3166,6 +3179,13 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Features.SetSelection(added.Select(a => a.Id).ToList());
             }
+        }
+
+        private bool LooseDbNameComparer(SelectableItem<DatabaseObject> existingItem, string newName)
+        {
+            return string.Equals(
+                Regex.Replace(existingItem.Item.Name, @"[\s-]", ""),
+                Regex.Replace(newName, @"[\s-]", ""), StringComparison.OrdinalIgnoreCase);
         }
 
         public bool GetScriptActionsChanged()
