@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Taal</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Afsluiten</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter Actief</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filter Uitgeschakeld</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Aanvullende filters</sys:String>
     <sys:String x:Key="LOCFilters">Filters</sys:String>
     <sys:String x:Key="LOCFilter">Filter</sys:String>
@@ -35,21 +35,33 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Geen Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nee! Er is iets misgegaan…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">En onbestelbare fout heeft plaatsgevonden.
+
+Als je ons wilt helpen dit probleem op te lossen, omschrijf dan alsjeblieft kort welke acties je hebt ondernomen vóór de crash en maak dan een diagnose pakket. Als je online bent wordt dit pakket geüpload naar de Playnite server voor analyse.
+
+Als alternatief kan je de 'Rapporteer Crash' knop gebruiken om een nieuw issue aan te maken op GitHub een de crash handmatig te rapporteren.
+
+Bedankt voor je hulp.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
+
+Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diagnostische informatie. Bedankt.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporteer Probleem</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Herstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sluit Playnite af</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Acties ondernomen vóór de crash (in Engels):</sys:String>
 
     <sys:String x:Key="LOCLibraryManager">Bibliotheek Beheerder</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan geen spel verwijderen dat nu actief is of dat nu ge(de)ïnstalleerd wordt.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kan geen spel verwijderen dat nu actief is.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Weet je zeker dat je dit spel wilt verwijderen?
+ 
+Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de volgende importprocedure (afhankelijk van je instellingen).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Weet je zeker dat je {0} spellen wilt verwijderen?
+ 
+Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de volgende importprocedure (afhankelijk van je instellingen).</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Weet je zeker dat je {0} entries wilt verwijderen die momenteel niet worden gebruikt?</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Geen ongebruikte velden gevonden.</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Vrienden</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Sectie bevat wijzigingen doe nog opgeslagen moeten worden</sys:String>
@@ -65,24 +77,24 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Snelkoppeling maken mislukt: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan het spel niet installeren: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan het spel niet deïnstalleren: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Speel actie is niet geconfigureerd.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotheek plugin die verantwoordelijk is voor dit spel is niet geïnstalleerd of ingeschakeld.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Officiële metadata download is niet beschikbaar.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Er is geen spel geselecteerd.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 of nieuwer is niet geïnstalleerd.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ingeschakeld</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Verwijderen</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">Verwijder ongebruikt</sys:String>
     <sys:String x:Key="LOCRenameTitle">Hernoemen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopiëren</sys:String>
     <sys:String x:Key="LOCAddTitle">Toevoegen</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Standaard Icoon</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Standaard Cover Afbeelding</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">Standaard achtergrondafbeelding</sys:String>
     <sys:String x:Key="LOCFinishLabel">Klaar</sys:String>
     <sys:String x:Key="LOCNextLabel">Volgende</sys:String>
     <sys:String x:Key="LOCBackLabel">Vorige</sys:String>
@@ -122,7 +134,7 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Installatie</sys:String>
     <sys:String x:Key="LOCActionsLabel">Acties</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Downloaden…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Laden…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Type</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profiel</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profielen</sys:String>
@@ -167,7 +179,7 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Kan geen icoon verkrijgen als de Speel actie mist of is ingesteld op een URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Download alleen missende metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Het inschakelen van deze optie zal het downloaden van metadata overslaan voor gegevensvelden die al informatie bevatten.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spellen selectie</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Selecteer alsjeblieft de spellen die moeten worden geüpdatet met nieuwe metadata:</sys:String>
@@ -218,8 +230,8 @@ Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Opnieuw opstarten</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Systeem uitschakelen</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Systeem Onderbreken</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Systeem in slaapstand zetten</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Kies een Willekeurig Spel</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spelvelden weer te geven op detailspaneel:</sys:String>
