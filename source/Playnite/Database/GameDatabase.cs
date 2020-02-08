@@ -656,7 +656,9 @@ namespace Playnite.Database
                 CompletionStatus = game.CompletionStatus,
                 UserScore = game.UserScore,
                 CriticScore = game.CriticScore,
-                CommunityScore = game.CommunityScore
+                CommunityScore = game.CommunityScore,
+                Hidden = game.Hidden,
+                Favorite = game.Favorite
             };
 
             if (string.IsNullOrEmpty(game.Platform))

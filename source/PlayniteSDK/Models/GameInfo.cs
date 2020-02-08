@@ -122,6 +122,11 @@ namespace Playnite.SDK.Models
         public bool Hidden { get; set; }
 
         /// <summary>
+        /// Gets or sets Favorite.
+        /// </summary>
+        public bool Favorite { get; set; }
+
+        /// <summary>
         /// Gets or sets Version.
         /// </summary>
         public string Version { get; set; }
