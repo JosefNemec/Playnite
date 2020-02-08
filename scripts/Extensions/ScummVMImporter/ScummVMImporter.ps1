@@ -51,7 +51,13 @@ function global:ImportScummVMGames()
     {
         if ($config[$key].gameid)
         {
-            $game = New-Object "Playnite.SDK.Models.Game" ($config[$key].description -replace "\(.*\)")
+            $gameName = $config[$key].description -replace "\(.*\)"
+            if ($PlayniteApi.Database.Games | Where { $_.Name -eq $gameName })
+            {
+                continue
+            }
+
+            $game = New-Object "Playnite.SDK.Models.Game" $gameName
             $game.InstallDirectory = $config[$key].path
             $game.IsInstalled = $true
 

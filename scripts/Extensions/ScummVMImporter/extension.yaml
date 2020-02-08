@@ -1,4 +1,4 @@
-﻿Name: Library Exporter
+﻿Name: ScummVM game importer
 Author: Josef Nemec
 Version: 1.0.1
 Module: ScummVMImporter.ps1
@@ -6,3 +6,6 @@ Type: Script
 Functions: 
     - Description: Import ScummVM Games
       FunctionName: ImportScummVMGames
+Links:
+    - Name: Source
+      Url: https://github.com/JosefNemec/Playnite/tree/master/scripts/Extensions/ScummVMImporter
