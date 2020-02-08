@@ -51,7 +51,7 @@
                                                         Text="{Binding Game.DisplayName}" DockPanel.Dock="Left"
                                                         FontSize="{DynamicResource FontSizeLargest}" Margin="0,0,10,0" TextWrapping="Wrap"
                                                         VerticalAlignment="Center"
-                                                        Foreground="{StaticResource TextBrush}">
+                                                        Foreground="{DynamicResource TextBrush}">
                                                 <TextBlock.Effect>
                                                     <DropShadowEffect ShadowDepth="3" RenderingBias="Quality"/>
                                                 </TextBlock.Effect>

@@ -41,7 +41,7 @@
                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                     Style="{DynamicResource HighlightBorder}">
                                 <TextBlock Text="⋯" FontSize="26" 
-                                           Foreground="{StaticResource TextBrush}"
+                                           Foreground="{DynamicResource TextBrush}"
                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Border>
 
@@ -57,11 +57,11 @@
                                                             Background="Transparent">
                                                         <StackPanel Orientation="Horizontal" Margin="6,0,6,0">
                                                             <TextBlock Text="&#xef29;"
-                                                                       FontFamily="{StaticResource FontIcoFont}" FontSize="20"
+                                                                       FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
                                                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                                                        Foreground="{TemplateBinding Foreground}"/>
-                                                            <TextBlock Text="{StaticResource LOCFilterActiveLabel}"
-                                                                       Style="{StaticResource BaseTextBlockStyle}"
+                                                            <TextBlock Text="{DynamicResource LOCFilterActiveLabel}"
+                                                                       Style="{DynamicResource BaseTextBlockStyle}"
                                                                        Margin="3,0,0,0" VerticalAlignment="Center"
                                                                        Name="TextFilter" />
                                                         </StackPanel>
@@ -94,7 +94,7 @@
                                                 <ControlTemplate>
                                                     <Border Background="Transparent">
                                                         <Grid>
-                                                            <TextBlock Text="&#xeea3;" FontFamily="{StaticResource FontIcoFont}" FontSize="24"
+                                                            <TextBlock Text="&#xeea3;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
                                                                        Foreground="{TemplateBinding Foreground}"
                                                                        HorizontalAlignment="Center"/>
                                                             <Border CornerRadius="3" Width="15" Height="15"

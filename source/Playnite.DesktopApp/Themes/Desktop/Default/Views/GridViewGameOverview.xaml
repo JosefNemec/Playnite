@@ -26,7 +26,7 @@
                         <DockPanel>
                             <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                                     Content="r" FontFamily="Marlett"
-                                    Style="{StaticResource SimpleButton}"
+                                    Style="{DynamicResource SimpleButton}"
                                     Command="{MainViewModel CloseGameSideBarCommand}"
                                     DockPanel.Dock="Top" Margin="0,10,15,5" />
 
@@ -61,7 +61,7 @@
                                            RenderOptions.BitmapScalingMode="Fant" Margin="0,0,10,0" />
                                     <TextBlock Text="{Binding Game.DisplayName}" FontSize="{DynamicResource FontSizeLarger}"
                                                TextWrapping="Wrap" DockPanel.Dock="Left"
-                                               VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
+                                               VerticalAlignment="Center" Foreground="{DynamicResource TextBrush}">
                                         <TextBlock.Effect>
                                             <DropShadowEffect ShadowDepth="3"/>
                                         </TextBlock.Effect>
