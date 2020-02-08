@@ -118,7 +118,7 @@ namespace IGDBMetadata
                     }
                 }
             }
-               
+
             return base.GetBackgroundImage();
         }
 
@@ -219,14 +219,21 @@ namespace IGDBMetadata
             return base.GetReleaseDate();
         }
 
-        public override List<string> GetTags()
-        {            
-            if (AvailableFields.Contains(MetadataField.Tags))
+        public override List<string> GetFeatures()
+        {
+            if (AvailableFields.Contains(MetadataField.Features))
             {
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
-                return IgdbData.game_modes.Select(a => cultInfo.ToTitleCase(a)).ToList();
+                var features = IgdbData.game_modes.Select(a => cultInfo.ToTitleCase(a)).ToList();
+                if (IgdbData.player_perspectives.HasItems() &&
+                    IgdbData.player_perspectives.FirstOrDefault(a => a.name == "Virtual Reality") != null)
+                {
+                    features.Add("VR");
+                }
+
+                return features;
             }
-            return base.GetTags();
+            return base.GetFeatures();
         }
 
         public override List<Link> GetLinks()
@@ -299,7 +306,7 @@ namespace IGDBMetadata
 
                 if (IgdbData.game_modes.HasItems())
                 {
-                    fields.Add(MetadataField.Tags);
+                    fields.Add(MetadataField.Features);
                 }
 
                 if (IgdbData.aggregated_rating != 0)

@@ -6,12 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
     public class IgdbItemController : Controller
     {
+        private static char[] arrayTrim = new char[] { '[', ']' };
+
         public static async Task<TItem> GetItem<TItem>(ulong itemId, string endpointPath, object cacheLock)
         {
             var cachePath = Path.Combine(IGDB.CacheDirectory, endpointPath, itemId + ".json");
@@ -19,7 +22,7 @@ namespace PlayniteServices.Controllers.IGDB
             {
                 if (System.IO.File.Exists(cachePath))
                 {
-                    var cacheItem = JsonConvert.DeserializeObject<TItem>(System.IO.File.ReadAllText(cachePath));
+                    var cacheItem = JsonConvert.DeserializeObject<TItem>(System.IO.File.ReadAllText(cachePath, Encoding.UTF8));
                     if (cacheItem != null)
                     {
                         return cacheItem;
@@ -27,7 +30,7 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var stringResult = await IGDB.SendStringRequest(endpointPath, $"fields *; where id = {itemId};");    
+            var stringResult = await IGDB.SendStringRequest(endpointPath, $"fields *; where id = {itemId};");
             var items = Serialization.FromJson<List<TItem>>(stringResult);
 
             TItem item;
@@ -44,7 +47,15 @@ namespace PlayniteServices.Controllers.IGDB
             lock (cacheLock)
             {
                 FileSystem.PrepareSaveFile(cachePath);
-                System.IO.File.WriteAllText(cachePath, Serialization.ToJson(item));
+
+                if (items.Count > 0)
+                {
+                    System.IO.File.WriteAllText(cachePath, stringResult.Trim(arrayTrim), Encoding.UTF8);
+                }
+                else
+                {
+                    System.IO.File.WriteAllText(cachePath, Serialization.ToJson(item), Encoding.UTF8);
+                }
             }
 
             return item;

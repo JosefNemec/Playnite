@@ -29,7 +29,7 @@ namespace PlayniteServices.Controllers.IGDB
         {
             appSettings = settings.Value;
         }
-                
+
         [ServiceFilter(typeof(PlayniteVersionFilter))]
         [HttpGet("{gameId}")]
         public async Task<ServicesResponse<Game>> Get(ulong gameId)
@@ -44,13 +44,24 @@ namespace PlayniteServices.Controllers.IGDB
 
         // Only use for IGDB webhook.
         [HttpPost]
-        public ActionResult Post([FromBody]Game game)
+        public async Task<ActionResult> Post()
         {
             if (Request.Headers.TryGetValue("X-Secret", out var secret))
             {
                 if (secret != IGDB.WebHookSecret)
                 {
                     return BadRequest();
+                }
+
+                Game game = null;
+                string jsonString = null;
+                using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+                {
+                    jsonString = await reader.ReadToEndAsync();
+                    if (!string.IsNullOrEmpty(jsonString))
+                    {
+                        game = Serialization.FromJson<Game>(jsonString);
+                    }
                 }
 
                 if (game == null)
@@ -63,8 +74,8 @@ namespace PlayniteServices.Controllers.IGDB
                 var cachePath = Path.Combine(IGDB.CacheDirectory, endpointPath, game.id + ".json");
                 lock (CacheLock)
                 {
-                    FileSystem.PrepareSaveFile(cachePath);                    
-                    System.IO.File.WriteAllText(cachePath, Serialization.ToJson(game));
+                    FileSystem.PrepareSaveFile(cachePath);
+                    System.IO.File.WriteAllText(cachePath, jsonString, Encoding.UTF8);
                 }
 
                 return Ok();
@@ -158,6 +169,15 @@ namespace PlayniteServices.Controllers.IGDB
                 foreach (var modeId in game.game_modes)
                 {
                     parsedGame.game_modes_v3.Add((await GameModeController.GetItem(modeId)).Data);
+                }
+            }
+
+            if (game.player_perspectives?.Any() == true)
+            {
+                parsedGame.player_perspectives = new List<PlayerPerspective>();
+                foreach (var persId in game.player_perspectives)
+                {
+                    parsedGame.player_perspectives.Add((await PlayerPerspectiveController.GetItem(persId)).Data);
                 }
             }
 
