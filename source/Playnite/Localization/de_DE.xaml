@@ -901,4 +901,6 @@ Beinhaltet bereits von Playnite unterstützte Shops, um Duplikate zu verhindern.
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Beim Öffen des Clients App für Xbox Game Pass anstatt Microsoft Store starten</sys:String>
+    <sys:String x:Key="LOCXboxImport360Games">Xbox-360-Spiele importieren</sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames">Xbox-One-Spiele importieren</sys:String>
 </ResourceDictionary>
