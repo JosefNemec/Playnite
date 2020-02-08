@@ -45,7 +45,8 @@ namespace XboxLibrary
                 Replace("(Windows)", "").
                 Replace("for Windows 10", "").
                 Replace("- Windows 10", "").
-                Trim()
+                Trim(),
+                Platform = "PC"
             };
 
             if (title.detail != null)
@@ -157,19 +158,23 @@ namespace XboxLibrary
                             !title.devices.Contains("PC"))
                         {
                             var addGame = false;
+                            var platform = "";
                             if (Settings.Import360Games && title.devices.Contains("Xbox360"))
                             {
                                 addGame = true;
+                                platform = "Microsoft Xbox 360";
                             }
                             else if (Settings.ImportXboneGames && title.devices.Contains("XboxOne"))
                             {
                                 addGame = true;
+                                platform = "Microsoft Xbox One";
                             }
 
                             if (addGame)
                             {
                                 var newGame = GetGameInfoFromTitle(title);
                                 newGame.GameId = $"CONSOLE_{title.titleId}_{title.mediaItemType}";
+                                newGame.Platform = platform;
                                 allGames.Add(newGame);
                             };
                         }
