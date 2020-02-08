@@ -825,4 +825,6 @@ Pamiętaj, że opcja Nazwa konta działa tylko w przypadku kont, których konta 
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
+    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
 </ResourceDictionary>
