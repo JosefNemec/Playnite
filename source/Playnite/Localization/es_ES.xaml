@@ -901,6 +901,6 @@ Incluye tiendas que ya son compatibles con Playnite para evitar duplicados.</sys
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Iniciar la aplicación Xbox Pass en lugar de Microsoft Store al abrir el cliente</sys:String>
-    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
-    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
+    <sys:String x:Key="LOCXboxImport360Games">Importar juegos de Xbox 360</sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames">Importar juegos de Xbox One</sys:String>
 </ResourceDictionary>
