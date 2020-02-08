@@ -898,6 +898,6 @@ Cela inclut les clients déjà supportées par Playnite, de manière à éviter 
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Lancer l'application Xbox Game Pass plutôt que le Microsoft Store</sys:String>
-    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
-    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
+    <sys:String x:Key="LOCXboxImport360Games">Importer les jeux Xbox 360</sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames">Importer les jeux Xbox One</sys:String>
 </ResourceDictionary>
