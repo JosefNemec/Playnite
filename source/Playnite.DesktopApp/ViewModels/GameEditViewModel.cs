@@ -2957,7 +2957,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var addedItems = sourceList.Where(a => itemsToAdd.Contains(a.Item.Id) == true && targetCollection[a.Item.Id] == null);
+            var addedItems = sourceList.Where(a => itemsToAdd.Contains(a.Item.Id) == true && targetCollection[a.Item.Id] == null).ToList();
             if (addedItems.Any())
             {
                 targetCollection.Add(addedItems.Select(a => (TItem)a.Item));
