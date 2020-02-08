@@ -108,7 +108,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 3;
+        } = 4;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -588,7 +588,6 @@ namespace Playnite
             }
         }
 
-
         private bool showNamesUnderCovers = false;
         public bool ShowNamesUnderCovers
         {
@@ -857,7 +856,7 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
-                
+
         private bool notificationPanelVisible = false;
         [JsonIgnore]
         public bool NotificationPanelVisible
@@ -1312,7 +1311,7 @@ namespace Playnite
                 textFormattingMode = value;
                 OnPropertyChanged();
             }
-        } 
+        }
 
         private TextRenderingModeOptions textRenderingMode = TextRenderingModeOptions.Auto;
         [RequiresRestart]
@@ -1502,7 +1501,7 @@ namespace Playnite
                     settings = new PlayniteSettings();
                 }
             }
-            
+
             if (settings != null)
             {
                 if (settings.Version == 1)
@@ -1515,6 +1514,13 @@ namespace Playnite
                 {
                     settings.BackgroundImageBlurAmount = 60;
                     settings.Version = 3;
+                }
+
+                if (settings.Version == 3)
+                {
+                    settings.MetadataSettings.Feature = new MetadataFieldSettings(
+                        true, new List<Guid> { Guid.Empty, BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata) });
+                    settings.Version = 4;
                 }
             }
 
@@ -1664,7 +1670,7 @@ namespace Playnite
                         return;
                     }
 
-                    var newEntry = classes.CreateSubKey("Playnite");                    
+                    var newEntry = classes.CreateSubKey("Playnite");
                     newEntry.SetValue(string.Empty, "URL:playnite");
                     newEntry.SetValue("URL Protocol", string.Empty);
                     using (var command = newEntry.CreateSubKey(@"shell\open\command"))
@@ -1672,7 +1678,7 @@ namespace Playnite
                         command.SetValue(string.Empty, openString);
                     }
                 }
-            }            
+            }
         }
 
         public static void SetBootupStateRegistration(bool runOnBootup)
@@ -1685,7 +1691,7 @@ namespace Playnite
                 {
                     HideSplashScreen = true
                 }.ToString();
-                                
+
                 if (File.Exists(shortcutPath))
                 {
                     var existLnk = Programs.GetLnkShortcutData(shortcutPath);
@@ -1736,7 +1742,7 @@ namespace Playnite
         public bool ShouldSerializeDisabledPlugins()
         {
             return DisabledPlugins.HasItems();
-        }       
+        }
 
         #endregion Serialization Conditions
     }
