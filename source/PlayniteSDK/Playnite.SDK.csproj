@@ -58,6 +58,7 @@
     <Compile Include="Collections\RangeObservableCollection.cs" />
     <Compile Include="Database\IGameDatabase.cs" />
     <Compile Include="Database\IItemCollection.cs" />
+    <Compile Include="Events\ApplicationEvents.cs" />
     <Compile Include="Events\PlayniteUriEventArgs.cs" />
     <Compile Include="Exceptions\TypeMismatchException.cs" />
     <Compile Include="Exceptions\ReferenceException.cs" />

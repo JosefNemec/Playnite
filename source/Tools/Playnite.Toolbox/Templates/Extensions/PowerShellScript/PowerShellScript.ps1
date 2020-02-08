@@ -46,6 +46,13 @@ function global:OnGameUninstalled()
     )    
 }
 
+function global:OnGameSelected()
+{
+    param(
+        $args
+    )    
+}
+
 function global:MenuFunction()
 {
 }
