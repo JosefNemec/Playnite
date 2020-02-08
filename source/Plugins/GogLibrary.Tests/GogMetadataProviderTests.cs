@@ -25,7 +25,7 @@ namespace GogLibrary.Tests
             Assert.IsFalse(string.IsNullOrEmpty(data.GameInfo.Description));
             CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);
             CollectionAssert.IsNotEmpty(data.GameInfo.Developers);
-            CollectionAssert.IsNotEmpty(data.GameInfo.Tags);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Features);
             CollectionAssert.IsNotEmpty(data.GameInfo.Genres);
             CollectionAssert.IsNotEmpty(data.GameInfo.Links);
             CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);

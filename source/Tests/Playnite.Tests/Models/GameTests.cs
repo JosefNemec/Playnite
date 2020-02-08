@@ -154,6 +154,7 @@ namespace Playnite.Tests.Models
             game1.CopyDiffTo(game3);
             Assert.AreEqual(2, changes);
 
+            // TODO add check for all fields
             Assert.Fail();
         }
     }

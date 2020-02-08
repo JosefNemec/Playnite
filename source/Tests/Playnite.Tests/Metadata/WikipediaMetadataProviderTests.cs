@@ -69,9 +69,6 @@ namespace Playnite.Tests.Metadata
             metadata = wiki.ParseGamePage(wiki.GetPage("Dungeon Siege"));
             ValidateGameDate(metadata);
 
-            metadata = wiki.ParseGamePage(wiki.GetPage("MotoGP 3: Ultimate Racing Technology"));
-            ValidateGameDate(metadata);
-
             metadata = wiki.ParseGamePage(wiki.GetPage("Quake 4"));
             ValidateGameDate(metadata);
 
