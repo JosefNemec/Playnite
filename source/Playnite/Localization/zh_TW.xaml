@@ -899,4 +899,6 @@ By {1}
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">啟動客戶端時開啟Xbox Pass應用程式而非Microsoft商店。</sys:String>
+    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
 </ResourceDictionary>
