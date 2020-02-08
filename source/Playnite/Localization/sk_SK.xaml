@@ -865,4 +865,6 @@ Sú tu zahrnuté obchody, ktoré už Playnite podporuje, aby sa zabránilo dupli
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Pri otváraní klienta spustiť apku Xbox Pass namiesto Microsoft Store</sys:String>
+    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
 </ResourceDictionary>
