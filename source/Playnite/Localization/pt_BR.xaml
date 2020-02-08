@@ -899,5 +899,7 @@ Imagens de fundo: {2} mega pixels</sys:String>
 Inclui lojas já suportadas pelo Playnite para prevenir duplicatas.</sys:String>
 
     <!--Xbox-->
-    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Iniciar o aplicativo do Xbox Pass ao invés da Microsoft Store ao abrir o cliente</sys:String>
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Iniciar o aplicativo do Xbox Game Pass ao invés da Microsoft Store ao abrir o cliente</sys:String>
+    <sys:String x:Key="LOCXboxImport360Games">Importar jogos de Xbox 360</sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames">Importar jogos de Xbox One</sys:String>
 </ResourceDictionary>
