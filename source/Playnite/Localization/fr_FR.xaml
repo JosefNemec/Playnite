@@ -348,7 +348,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsAfterGameClose">En fin de jeu :</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Lancer les jeux depuis le client Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Permet d'activer des fonctionnalités telles que les sauvegardes dans le cloud, le suivi du temps de jeu, etc.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Cela remplacera les catégories en cours sur tous les jeux de Steam. Voulez-vous continuer ?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Cela remplacera les catégories assignées ainsi que le statut masqué/favori de tous les jeux Steam. Voulez-vous continuer ?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importer des catégories ?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Impossible d'importer des catégories, le compte pour l'importation n'est pas sélectionné.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Impossible d'importer des catégories, la base de données n'est pas ouverte.</sys:String>
