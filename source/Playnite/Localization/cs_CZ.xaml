@@ -313,7 +313,7 @@ Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Po ukončení hry:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Spustit hru pomocí klienta Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Umožní funkce jako uložené hry v cloudu, počítání herního času atp.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Toto přepíše aktuální kategorie na všech hrách ze Steamu, chcete pokračovat?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importovat kategorie?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nelze importovat kategorie, účet pro import není vybrán.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nelze importovat kategorie, databáze není otevřená.</sys:String>
