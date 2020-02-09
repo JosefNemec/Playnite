@@ -349,7 +349,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCSettingsAfterGameClose">當遊戲關閉:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">使用Galaxy客戶端啟動遊戲</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">將會啟用雲端存檔，計算遊玩時數等功能</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">即將覆蓋所有Steam遊戲分類。是否繼續?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">確定匯入分類?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">無法匯入分類，未選擇帳號。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">無法匯入分類，未開啟數據庫。</sys:String>
