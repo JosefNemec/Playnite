@@ -313,7 +313,7 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">אחרי שהמשחק נסגר:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">הפעל משחקים באמצעות תוכנת Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">יאפשר תכונות כגון שמירה בענן, ספירת זמן משחק ועוד.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">זה ידרוס את הקטגוריות הנוכחיות על כל משחקי Steam. האם ברצונך להמשיך?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">לייבא קטגוריות?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">לא ניתן לייבא קטגוריות, לא נבחר חשבון לייבוא.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">לא ניתן לייבא קטגוריות, בסיס הנתונים אינו פתוח.</sys:String>
