@@ -313,7 +313,7 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">게임을 종료할 시:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Galaxy 클라이언트로 게임 시작</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">클라우드 저장, 플레이 시간 기록 등의 기능이 활성화됩니다.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">현재 적용된 모든 Steam 게임의 카테고리를 덮어씌웁니다. 계속하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">카테고리를 가져오시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">카테고리를 가져올 계정이 선택되지 않아 카테고리를 가져올 수 없습니다.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">데이터베이스를 열 수 없어 카테고리를 가져올 수 없습니다.</sys:String>
