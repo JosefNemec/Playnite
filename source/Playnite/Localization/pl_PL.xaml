@@ -313,7 +313,7 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Po zamknięciu gry:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Uruchom gry z GOG Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Włącza funkcje takie jak zapisywanie w chmurze, liczenie czasu gry itp.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">To spowoduje nadpisanie bieżących kategorii we wszystkich grach Steam. Czy chcesz kontynuować?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importować kategorie?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nie można zaimportować kategorii, konto źródłowe nie zostało wybrane.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nie można zaimportować kategorii, baza danych nie jest otwarta.</sys:String>
