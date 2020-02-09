@@ -313,7 +313,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Després de tancar el joc:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Iniciar els jocs amb el client Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Permetre funcions com ara guardat al núvol, comptar el temps de joc, etc.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Això sobreescriurà les categories actuals de tots els jocs de Steam. Vols continuar?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importar categories?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">No es poden importar categories, no s'ha seleccionat el compte per importar.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">No es poden importar categories, la base de dades no s'ha obert.</sys:String>
