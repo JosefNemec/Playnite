@@ -325,7 +325,7 @@ Automaticky importované hry sa môžu znovu objaviť v Playnite po ďalšom beh
     <sys:String x:Key="LOCSettingsAfterGameClose">Po ukončení hry:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Spustiť hru pomocou klienta Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Zapne funkcie ako uložené hry v cloude, počítanie odohraného času atď.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Toto prepíše súčasné kategórie vo všetkých hrách zo Steamu. Chcete pokračovať?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importovať kategórie?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nie je možné importovať kategórie, pretože nie je zvolený účet pre import.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nie je možné importovať kategórie. Databáza nie je otvorená.</sys:String>
