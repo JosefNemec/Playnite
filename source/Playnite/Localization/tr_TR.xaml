@@ -349,7 +349,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCSettingsAfterGameClose">Oyun kapandıktan sonra:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Oyunları Galaxy istemcisini kullanarak başlat</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Bulut yedekleme, oynama süresi sayımı vb. gibi özellikleri etkinleştirecek.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Bu, tüm Steam oyunlarındaki geçerli kategorilerin üzerine yazacaktır. Devam etmek istiyor musun?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Kategoriler İçe Aktarılsın mı?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kategoriler alınamıyor, hesap seçilmedi.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kategoriler alınamıyor, veritabanı açılmadı.</sys:String>
