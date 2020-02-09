@@ -306,7 +306,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsInvalidAccountName">Name des Benutzerkontos darf nicht leer sein.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Kein Steam-Konto für Bibliotheksimport ausgewählt.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Kein Steam-Konto für Kategorieimport ausgewählt.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Bibliothek beim Starten aktualisieren</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Drittanbieter-Bibliotheken beim Starten aktualisieren</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Metadaten nach Spieleimport herunterladen</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Playnite minimiert starten</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Playnite mit Windows starten</sys:String>
@@ -335,7 +335,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Designprofil für Vollbildmodus</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Speicherort der Datenbank</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Wie lautet mein Kontoname?</sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">Login-Status:</sys:String>
+    <sys:String x:Key="LOCSettingsLoginStatus">Anmeldestatus:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite-Einstellungen</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata">Metadaten aus Steam-Konto importieren:</sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel">Steam-Kategorien importieren</sys:String>
@@ -345,24 +345,24 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsShowTray">Infobereichsymbol anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">In Infobereich minimieren</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">In Infobereich schließen</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameStart">Spielstart:</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameClose">Spielende:</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Beim Spielstart GOG Galaxy verwenden</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">Beim Spielstart:</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameClose">Nach Spielende:</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Spiele mit Galaxy-Client starten</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Ermöglicht cloudsynchronisierte Spielstände, Aufzeichnen von Spielzeiten usw.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Dies wird die derzeitigen Kategorien aller Steam-Spiele überschreiben. Möchtest du wirklich fortfahren?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Dies wird die derzeitigen Kategorien sowie die Eigenschaften »versteckt« und »Favorit« aller Steam-Spiele überschreiben. Möchtest du fortfahren?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Kategorien importieren?</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kategorien können nicht importiert werden, da kein Konto für Importe ausgewählt.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kategorien können nicht importiert werden, da Datenbank nicht geöffnet.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kategorien können nicht importiert werden, da kein Konto für den Import ausgewählt ist.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kategorien können nicht importiert werden, da die Datenbank nicht geöffnet ist.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Steam-Kategorien konnten nicht importiert werden: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">»Zuletzt gespielt«-Informationen können nicht importiert werden, da kein Benutzerkonto ausgewählt wurde.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">»Zuletzt gespielt«-Informationen können nicht importiert werden, da kein Konto für den Import ausgewählt ist.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">»Zuletzt gespielt«-Informationen können nicht importiert werden, da die Datenbank nicht geöffnet ist.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Steams »Zuletzt gespielt«-Informationen konnten nicht importiert werden: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheWarn">Dies wird dich von allen verbundenen Diensten abmelden und einen Neustart erforderlich machen. Möchtest du fortfahren?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">Du wirst von allen verbundenen Diensten abgemeldet und ein Neustart wird erforderlich. Möchtest du fortfahren?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Cache leeren?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Für private Steam-Konten ist ein API-Schlüssel notwendig</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">API-Schlüssel beziehen</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Anwenden eines neuen Designs erfordert einen Playnite-Neustart</sys:String>
-    <sys:String x:Key="LOCSettingsGetThemes">Mehr Designs beziehen</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">Weitere Designs beziehen</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Neues Design erstellen</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Weitere Erweiterungen beziehen</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Neue Erweiterung erstellen</sys:String>
@@ -474,7 +474,7 @@ Natürlich kannst du auch jederzeit Spiele sämtlicher Plattformen manuell hinzu
     <sys:String x:Key="LOCFirstDBLocDefault">Standardmäßiger Programmpfad für alle Benutzer</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Benutzerdefinierter Programmpfad</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Bibliotheksintegration</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Importiere Spiele von folgenden externen Bibliotheken. Wenn du später ein neues Spiel installierst wird Playnite dieses später automatisch beim Programmstart zur Playnite-Datenbank hinzufügen. Standardeinstellungen beeinflussen alle später hinzugefügten Spiele.</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Spiele automatisch von folgenden Diensten importieren. Spätere Spieländerungen (Installationsstatus) werden beim Starten von Playnite oder manuell automatisch aktualisiert. Die ausgewählten Einstellungen beeinflussen die ursprünglichen und alle nachfolgenden Importe.</sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration">Steam-Integration</sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration">Origin-Integration</sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration">GOG-Integration</sys:String>
@@ -517,11 +517,11 @@ Weiterhin kannst du jedes andere Spiel (inklusive Spielen aus dem Microsoft Stor
     <sys:String x:Key="LOCSupportedFilesTitle">Unterstützte Dateitypen</sys:String>
     <sys:String x:Key="LOCImportEmulatorsButton">Emulatoren importieren …</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">Emulatoren herunterladen …</sys:String>
-    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Argumentevoreinstellung aus bekannten Emulatorprofil laden</sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Argumentevoreinstellung aus bekanntem Emulatorprofil laden</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Möchtest du den Emulator »{0}« wirklich entfernen?
-Dieser wird derzeit von {1} Spiel(en) verwendet.</sys:String>
+Er wird derzeit von {1} Spiel(en) verwendet.</sys:String>
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Möchtest du die Plattform »{0}« wirklich entfernen?
-Diese wird derzeit von {1} Spiel(en) und {2} Emulator(en) verwendet.</sys:String>
+Sie wird derzeit von {1} Spiel(en) und {2} Emulator(en) verwendet.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Hilfe zu Einstellungen</sys:String>
 
     <sys:String x:Key="LOCMenuSortByTitle">Sortieren nach</sys:String>
@@ -677,7 +677,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCCompletionStatusPlaying">Am Spielen</sys:String>
     <sys:String x:Key="LOCCompletionStatusAbandoned">Aufgegeben</sys:String>
     <sys:String x:Key="LOCCompletionStatusOnHold">Zurückgestellt</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay">Geplant zu spielen</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">Zu spielen geplant</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Spielfortschritt</sys:String>
     <sys:String x:Key="LOCUserScore">Benutzerwertung</sys:String>
     <sys:String x:Key="LOCCriticScore">Expertenwertung</sys:String>
