@@ -349,7 +349,7 @@ Preferir los datos de la Tienda oficial y, cuando no estén disponibles, usar la
     <sys:String x:Key="LOCSettingsAfterGameClose">Cuando el juego se cierra:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Iniciar juegos usando el cliente Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Permitirá funciones como guardar en la nube, contar el tiempo de juego, etc.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Esto sobrescribirá las categorías actuales en todos los juegos de Steam. ¿Quieres continuar?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Esto sobrescribirá las categorías actuales, así como los estados ocultos y favoritos en todos los juegos de Steam. ¿Quieres continuar?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">¿Importar Categorías?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">No se pueden importar categorías, la cuenta para importar no está seleccionada.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">No se pueden importar categorías, la base de datos no está abierta.</sys:String>
