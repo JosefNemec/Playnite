@@ -313,7 +313,7 @@ Indeterminado - Sem alterações (quando editar vários jogos)</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Ao fechar o jogo:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Começa os jogos ao usar o cliente Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Ativará os recursos como salvamento na nuvem, contagem de tempo jogado, etc.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Isto irá sobrescrever as categorias atuais em todos os jogos da Steam. Queres continuar?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importar Categorias?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Não foi possível importar categorias, a conta para importação não está selecionada.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Não foi possível importar as categorias, a base de dados não está aberta.</sys:String>
