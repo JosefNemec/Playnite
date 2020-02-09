@@ -313,7 +313,7 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">ゲーム終了後:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Galaxyクライアントを使用してゲームを開始する</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">クラウドの保存、再生時間のカウントなどの機能を有効にします。</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">これはすべてのSteamゲームの現在のカテゴリーを上書きします。 続行しますか？</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">カテゴリーをインポートしますか？</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">カテゴリーをインポートできません。インポートするアカウントが選択されていません。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">カテゴリーをインポートできません。データベースが開かれていません。</sys:String>
