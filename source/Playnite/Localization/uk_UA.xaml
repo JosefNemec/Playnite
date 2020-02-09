@@ -313,7 +313,7 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">Коли гра закривається:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Запускати ігри використовуючи Galaxy клієнт</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Це ввімкне хмарні збереженні, підрахунок ігрового часу і т.д.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Це призведе до перезаписування поточних категорій у всіх іграх Steam. Продовжити?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Імпортувати категорії?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Неможливо імпортувати категорії, обліковий запис для імпорту не вибрано.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Неможливо імпортувати категорії, база даних не відкрито.</sys:String>
