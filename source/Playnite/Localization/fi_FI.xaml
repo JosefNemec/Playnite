@@ -313,7 +313,7 @@ Määrittelemätön - Ei muutoksia (kun muokataan useita pelejä)</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Kun peli sulkeutuu:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Käynnistä pelit käyttämällä Galaxy-sovellusta</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Ottaa käyttöön pilvitallennukset, peliajan laskemisen jne.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Tämä ylikirjoittaa nykyiset kategoriat kaikissa Steam-peleissä. Haluatko jatkaa?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Tuo kategoriat?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Ei voida tuoda kategorioita, tunnusta ei ole valittu.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kategorioita ei voiti tuoda, tietokanta ei ole avoinna.</sys:String>
