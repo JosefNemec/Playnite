@@ -313,7 +313,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Efter att ett spel avslutas:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Integrera med hjälp av Galaxy-klienten</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Aktiverar funktioner som cloud save, speltid etc.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Detta kommer att skriva över aktuella kategorier på alla Steam-spel. Vill du fortsätta?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importera kategorier?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kan inte importera kategorier, konto för import är inte markerat.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kan inte importera kategorier, databasen inte aktiv.</sys:String>
