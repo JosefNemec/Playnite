@@ -24,6 +24,10 @@ Creating plugins
 
 Following examples will focus on use of C# and Visual Studio, but use with other languages is fairly similar.
 
+
+TOOLBOX
+
+
 ### 1. Create plugin project
 
 Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. Add [Playnite SDK](https://www.nuget.org/packages/PlayniteSDK/) nuget package reference and set reference to not require specific version (right-click on `Playnite.SDK` reference, choose `Properties` and set `Specific Version` to false).

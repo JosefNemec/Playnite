@@ -1,5 +1,22 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 5.2.0
+
+* **Breaking Changes**:
+  * [Toolbox](tutorials/toolbox.md) utility has been reworked and accepts different arguments then previously.
+
+* New
+  * Library plugins can now support extra [capabilities](tutorials/plugins/libraryPlugins.md#capabilities).
+  * Added [ImportGame](xref:Playnite.SDK.IGameDatabase.ImportGame(Playnite.SDK.Models.GameInfo)) methods to more easily add new games to the library.
+  * Added [OpenPluginSettings](xref:Playnite.SDK.IMainViewAPI.OpenPluginSettings(System.Guid)) method to open view with extension settings (also accessible via `OpenSettingsView` method inherited from `Plugin` class).
+  * Added [StartGame](xref:Playnite.SDK.IPlayniteAPI.StartGame(System.Guid)) method start specific game.
+  * Added [UriHandler](xref:Playnite.SDK.IPlayniteAPI.UriHandler) for registering of custom [URI method actions](tutorials/plugins/uriSupport.md).
+  * Added option settings when creating offscreen web view (currently only option to disable JavaScript execution).
+  * Added `OnGameSelected`, `OnApplicationStopped` and `OnLibraryUpdated` events.
+  * Added `Features` game field and appropriate support for it in metadata plugins.
+  * [Toolbox](tutorials/toolbox.md) utility can now generate plugins and scripts.
+  * [Toolbox](tutorials/toolbox.md) utility can pack plugins and scripts into `.pext` file that can be used for easier distribution and installation.
+
 #### 5.1.0
 
 * New

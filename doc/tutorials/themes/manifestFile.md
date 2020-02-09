@@ -13,9 +13,9 @@ Available fields
 | Name | Theme's name that will be displayed during installation and on theme selection dialogs. |
 | Author | Name of theme's author.  |
 | Version  | Theme version. Any version string you want to assign to theme, not used by Playnite for anything specific right now. |
-| Website  | Theme's website URL. |
 | Mode  | Specifies whether the theme is for Desktop of Fullscreen mode. |
 | ThemeApiVersion | Theme API version required for theme to work. |
+| Links | Optional list of links (extension website, changelog etc.) |
 
 
 > [!WARNING] 
