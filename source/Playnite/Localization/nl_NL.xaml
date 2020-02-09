@@ -325,7 +325,7 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCSettingsAfterGameClose">Na het sluiten van het spel:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Integreer met Galaxy client</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Schakelt features als cloudopslag, bijhouden van speeltijd e.d. in.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Dit overschrijft je huidige categorieën van al je Steam games. Wil je verdergaan?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importeer Categorieën?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kan categorieën niet importeren. Account voor importeren is niet geselecteerd.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kan categorieën niet importeren. Database is niet geopend.</sys:String>
