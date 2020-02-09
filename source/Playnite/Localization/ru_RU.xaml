@@ -313,7 +313,7 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">После закрытия игры:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Интеграция с клиентом Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Будут работать такие возможности, как: облачные сохранения, счетчик проведенного времени в игре и т.д.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Это перезапишет текущие категории всех Steam-игр. Вы хотите продолжить?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Импортировать категории?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Не получается импортировать категории - не выбран аккаунт для импорта.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Не получается импортировать категории - база данных не открыта.</sys:String>
