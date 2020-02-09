@@ -313,7 +313,7 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">当游戏结束后：</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">使用Galaxy客户端启动游戏</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">将启用云保存，计算启动时间等功能</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">这会覆盖所有Steam游戏目前的分类。你想要继续吗？</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">确定导入分类？</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">无法导入分类，未选择导入账户。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">无法导入分类，数据库未打开。</sys:String>
