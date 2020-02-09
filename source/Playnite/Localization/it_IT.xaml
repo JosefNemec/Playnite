@@ -345,7 +345,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsAfterGameClose">Dopo la chiusura del gioco:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Avvia i giochi utilizzando il client Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Attiverà funzioni come salvataggi cloud, conteggio del tempo di gioco ecc.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Questo sovrascriverà le attuali categorie su tutti i giochi importati da Steam. Desideri continuare?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Questo sovvrascriverà le categorie attuali, cosi come gli stati nascosti e preferiti su tutti i giochi di Steam. Desidera continuare?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importare le categorie?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Impossibile importare le categorie, l'account per l'importazione non è selezionato.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Impossibile importare categorie, il database non è aperto.</sys:String>
