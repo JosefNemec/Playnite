@@ -313,7 +313,7 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Setelah gim ditutup:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Integrasikan menggunakan klien Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Untuk mengaktifkan fitur seperti Cloud save, Play Counter, dll.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Ini akan mengoverwrite kategori untuk game Steam yang ada di libary. Lanjutkan?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Import Kategori?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Gagal mengimport kategori, Akun untuk import tidak dipilih.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Gagal mengimport kategori, database tidak terbuka.</sys:String>
