@@ -313,7 +313,7 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Kai žaidimas uždaromas:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Integruoti GOG Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Įgalina tokia funkcijas kaip progreso saugojimas debesyje, laiko žaidime skaičiavimas ir t.t.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Šiš veiksmas pakeis visų Jūsų Steam žaidimų kategorijas. Ar norite tęsti?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Įtraukti kategorijas?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nepavyko įtraukti kategorijų, nepasirinktas vartotojas.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nepavyko įtraukti kategorijų, duombazė nėra atidaryta.</sys:String>
