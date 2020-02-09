@@ -131,7 +131,7 @@ IconIndex=0";
 
         public static Program GetLnkShortcutData(string lnkPath)
         {
-            var shell = new IWshRuntimeLibrary.WshShell();            
+            var shell = new IWshRuntimeLibrary.WshShell();
             var link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(lnkPath);
             return new Program()
             {
@@ -331,7 +331,6 @@ IconIndex=0";
                     var apxApp = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Applications']//*[local-name() = 'Application'][1]");
                     var appId = apxApp.Attributes["Id"].Value;
 
-
                     var visuals = apxApp.SelectSingleNode(@"//*[local-name() = 'VisualElements']");
                     var iconPath = visuals.Attributes["Square44x44Logo"]?.Value;
                     if (string.IsNullOrEmpty(iconPath))
@@ -391,6 +390,11 @@ IconIndex=0";
                 foreach (var key in keyList.GetSubKeyNames())
                 {
                     var prog = root.OpenSubKey(rootString + key);
+                    if (prog == null)
+                    {
+                        continue;
+                    }
+
                     var program = new UninstallProgram()
                     {
                         DisplayIcon = prog.GetValue("DisplayIcon")?.ToString(),

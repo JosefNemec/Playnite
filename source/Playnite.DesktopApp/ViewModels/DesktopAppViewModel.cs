@@ -151,7 +151,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private List<ThirdPartyTool> thirdPartyTools;
+        private List<ThirdPartyTool> thirdPartyTools = new List<ThirdPartyTool>();
         public List<ThirdPartyTool> ThirdPartyTools
         {
             get => thirdPartyTools;
