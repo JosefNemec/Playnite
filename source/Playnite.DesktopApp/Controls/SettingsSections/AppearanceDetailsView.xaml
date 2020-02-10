@@ -10,10 +10,16 @@
 
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-        <Style TargetType="ContentControl" BasedOn="{StaticResource {x:Type ContentControl}}">
-            <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-            <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
-            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Style TargetType="ContentControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <TextBlock Style="{DynamicResource BaseTextBlockStyle}">
+                            <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
 

@@ -266,7 +266,8 @@
             </Hyperlink>
             </TextBlock>
             <TextBlock Foreground="{DynamicResource TextBrush}" TextWrapping="Wrap" Margin="10" VerticalAlignment="Top"
-                    Text="{DynamicResource LOCMetaIgdbContribNotif}" />
+                       Style="{DynamicResource BaseTextBlockStyle}"
+                       Text="{DynamicResource LOCMetaIgdbContribNotif}" />
         </StackPanel>
     </DockPanel>
 </UserControl>
