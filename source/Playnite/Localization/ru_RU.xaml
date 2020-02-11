@@ -573,6 +573,7 @@
     <sys:String x:Key="LOCURLFormatError">Не получается открыть ссылку, URL содержит неверный формат.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Не удалось запустить приложение.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Редактировать данные игры</sys:String>
