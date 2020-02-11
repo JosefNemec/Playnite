@@ -571,6 +571,7 @@
     <sys:String x:Key="LOCURLFormatError">לא ניתן לפתוח קישור, URL לא תקין.</sys:String>
     <sys:String x:Key="LOCAppStartupError">נכשלה הפעלת האפליקציה.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ערוך פרטי משחק</sys:String>
