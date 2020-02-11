@@ -218,6 +218,12 @@ namespace SteamLibrary
 
         public bool VerifySettings(out List<string> errors)
         {
+            if (IsPrivateAccount && ApiKey.IsNullOrEmpty())
+            {
+                errors = new List<string>{ "Steam API key must be specified when using private accounts!" };
+                return false;
+            }
+
             errors = null;
             return true;
         }

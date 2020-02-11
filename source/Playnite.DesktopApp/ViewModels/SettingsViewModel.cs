@@ -114,7 +114,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public List<SelectableItem<LibraryPlugin>> AutoCloseClientsList { get; } = new List<SelectableItem<LibraryPlugin>>();      
+        public List<SelectableItem<LibraryPlugin>> AutoCloseClientsList { get; } = new List<SelectableItem<LibraryPlugin>>();
 
         public List<LoadedPlugin> GenericPlugins
         {
@@ -366,7 +366,6 @@ namespace Playnite.DesktopApp.ViewModels
             return new Controls.SettingsSections.NoSettingsAvailable();
         }
 
-
         public bool? OpenView()
         {
             return window.CreateAndOpenDialog(this);
@@ -393,7 +392,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
         }
- 
+
         public void EndEdit()
         {
             Settings.CopyProperties(originalSettings, true, new List<string>()
@@ -413,6 +412,13 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (!plugin.Settings.VerifySettings(out var errors))
                 {
+                    logger.Error($"Plugin settings verification errors {plugin.Name}.");
+                    errors?.ForEach(a => logger.Error(a));
+                    if (errors == null)
+                    {
+                        errors = new List<string>();
+                    }
+
                     dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), plugin.Name);
                     return;
                 }
@@ -483,7 +489,7 @@ namespace Playnite.DesktopApp.ViewModels
                 CefTools.Shutdown();
                 Directory.Delete(PlaynitePaths.BrowserCachePath, true);
                 application.Restart();
-            }            
+            }
         }
 
         public void SetCoverArtAspectRatio(string ratio)
@@ -491,7 +497,6 @@ namespace Playnite.DesktopApp.ViewModels
             var regex = Regex.Match(ratio, @"(\d+):(\d+)");
             if (regex.Success)
             {
-
                 Settings.GridItemWidthRatio = Convert.ToInt32(regex.Groups[1].Value);
                 Settings.GridItemHeightRatio = Convert.ToInt32(regex.Groups[2].Value);
             }
