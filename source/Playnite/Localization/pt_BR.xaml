@@ -349,7 +349,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsAfterGameClose">Ao fechar um jogo:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Executar jogos usando o cliente Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Habilita recursos como salvamento de jogos na nuvem, contador de tempo de jogo, etc.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Isto sobrescreverá as categorias atuais, assim como os marcadores de ocultos e favoritos, de todos os seus jogos Steam. Você deseja continuar?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importar categorias?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Não foi possível importar as categorias, a conta para importação não foi definida.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Não foi possível importar as categorias, o banco de dados não está aberto.</sys:String>
@@ -625,6 +625,7 @@ Você pode tentar corrigir o problema:
   • Verificando se todos os arquivos foram instalados corretamente, uma reinstalação pode ajudar
   • Verificando se o seu antivírus não está bloqueando arquivos na pasta do Playnite
   • Instalando o programa em um local diferente</sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Não foi possível importar os emuladores, o arquivo de definições de emuladores não existe.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editar Detalhes do Jogo</sys:String>
