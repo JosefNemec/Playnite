@@ -624,6 +624,7 @@ IGDB &gt; 官方商店
   • 檢查所有檔案是否已正確安裝，重新安裝可能有所幫助
   • 檢查防毒軟體是否封鎖了Playnite資料夾內的檔案
   • 嘗試安裝在不同的位置</sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">編輯遊戲詳細信息</sys:String>
