@@ -572,6 +572,7 @@
     <sys:String x:Key="LOCURLFormatError">링크를 열 수 없습니다. URL이 올바른 포맷이 아닙니다.</sys:String>
     <sys:String x:Key="LOCAppStartupError">프로그램 실행 실패.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">게임 상세정보 편집</sys:String>
