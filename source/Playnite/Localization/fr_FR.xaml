@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Quitter</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Des filtres sont actifs</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Les filtres sont désactivés (cliquez pour basculer le panneau filtre)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtre activé</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtre désactivé</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Autres filtres</sys:String>
     <sys:String x:Key="LOCFilters">Filtres</sys:String>
     <sys:String x:Key="LOCFilter">Filtre</sys:String>
@@ -45,7 +45,7 @@ Merci de votre aide.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Une erreur est survenue.
         
 Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rapport de bug. Merci.</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Signaler un Crash</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Signaler un plantage</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Relancer Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Quitter Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Activité au moment du crash (à rédiger en anglais) :</sys:String>
@@ -67,12 +67,12 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCGameEditChangeNotif">La section contient des modifications à enregistrer</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Mise à jour de la base de données...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">La mise à jour de la base de données a échoué.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">La mise à jour de la base de données a échoué. {0} Mo d'espace libres requis.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">La mise à jour de la base de données a échoué. {0} Mo d'espace libre requis.</sys:String>
 
     <sys:String x:Key="LOCGameError">Erreur de jeu</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Erreur : Impossible de démarrer le jeu. '{0}' n'a pas été trouvé dans la base de données.</sys:String>
     <sys:String x:Key="LOCGameStartError">Impossible de démarrer le jeu : {0}</sys:String>
-    <sys:String x:Key="LOCGameStartActionError">Impossible de démarrer l'action : {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Impossible d'exécuter l'action : {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Erreur : Impossible d'ouvrir l'emplacement du jeu : {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Impossible de créer un raccourci : {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Erreur : Impossible d'installer le jeu : {0}</sys:String>
@@ -622,6 +622,7 @@ Veuillez essayer les solutions suivantes :
   • Vérifiez que tous les fichiers ont été correctement installés. Réinstallez-les en cas de doute.
   • Vérifiez que votre antivirus ne bloque aucun fichier dans le répertoire de Playnite.
   • Essayez d'installer Playnite dans un autre emplacement.</sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Impossible d'importer des émulateurs, le fichier de définition d'émulateur n'existe pas.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Modifier les propriétés</sys:String>
