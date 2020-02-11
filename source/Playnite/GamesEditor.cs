@@ -34,7 +34,7 @@ namespace Playnite
     public class GamesEditor : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
-        private IResourceProvider resources = new ResourceProvider();        
+        private IResourceProvider resources = new ResourceProvider();
         private GameControllerFactory controllers;
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
 
@@ -69,13 +69,13 @@ namespace Playnite
             controllers.Installed += Controllers_Installed;
             controllers.Uninstalled += Controllers_Uninstalled;
             controllers.Started += Controllers_Started;
-            controllers.Stopped += Controllers_Stopped;            
+            controllers.Stopped += Controllers_Stopped;
         }
 
         public void Dispose()
         {
             foreach (var controller in controllers.Controllers)
-            {                
+            {
                 UpdateGameState(controller.Game.Id, null, false, false, false, false);
             }
 
@@ -145,7 +145,7 @@ namespace Playnite
                 controllers.RemoveController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
-                
+
                 if (!game.IsCustomGame && shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
                 {
                     logger.Debug($"Starting game with existing client shutdown job, canceling job {game.PluginId}.");
@@ -201,17 +201,18 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                logger.Error(exc, "Cannot start game: ");
+                Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCGameStartError"), exc.Message),
+                    resources.GetString("LOCGameError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+
                 if (controller != null)
                 {
                     controllers.RemoveController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                 }
 
-                logger.Error(exc, "Cannot start game: ");
-                Dialogs.ShowMessage(
-                    string.Format(resources.GetString("LOCGameStartError"), exc.Message),
-                    resources.GetString("LOCGameError"),
-                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -228,6 +229,7 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                logger.Error(exc, "Cannot activate action: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameStartActionError"), exc.Message),
                     resources.GetString("LOCGameError"),
@@ -248,6 +250,7 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                logger.Error(exc, "Cannot open game location: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameOpenLocationError"), exc.Message),
                     resources.GetString("LOCGameError"),
@@ -446,17 +449,17 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                if (controller != null)
-                {
-                    controllers.RemoveController(game.Id);
-                    UpdateGameState(game.Id, null, null, false, null, null);
-                }
-
                 logger.Error(exc, "Cannot install game: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameInstallError"), exc.Message),
                     resources.GetString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
+
+                if (controller != null)
+                {
+                    controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, false, null, null);
+                }
             }
         }
 
@@ -500,22 +503,22 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                if (controller != null)
-                {
-                    controllers.RemoveController(game.Id);
-                    UpdateGameState(game.Id, null, null, null, false, null);
-                }
-
                 logger.Error(exc, "Cannot un-install game: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameUninstallError"), exc.Message),
                     resources.GetString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
+
+                if (controller != null)
+                {
+                    controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, false, null);
+                }
             }
         }
 
         public void UpdateJumpList()
-        {           
+        {
             try
             {
                 OnPropertyChanged(nameof(LastGames));
@@ -555,7 +558,7 @@ namespace Playnite
         }
 
         public void CancelGameMonitoring(Game game)
-        {            
+        {
             controllers.RemoveController(game.Id);
             UpdateGameState(game.Id, null, false, false, false, false);
         }
