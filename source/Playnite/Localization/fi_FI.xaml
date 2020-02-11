@@ -568,6 +568,7 @@ Voit myös myöhemmin lisätä minkä tahansa pelin (mukaan lukien Microsoft Sto
     <sys:String x:Key="LOCURLFormatError">Linkkiä ei voida alita, URL ei ole oikeassa formaatissa.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Sovelluksen käynnistys epäonnistui.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Muokkaa pelin tietoja</sys:String>
