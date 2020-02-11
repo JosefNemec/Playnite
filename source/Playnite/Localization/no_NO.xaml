@@ -571,6 +571,7 @@ Vennligst legg ved følgende ID til krasjrapporten din:</sys:String>
     <sys:String x:Key="LOCURLFormatError">Kan ikke åpne linken, URL er ikke i gyldig format.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Kunne ikke starte applikasjonen.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Rediger Spilledetaljer</sys:String>
