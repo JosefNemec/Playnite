@@ -36,6 +36,8 @@ Privacy Statement
 ---------
 Playnite doesn't store any user information and you don't need to provide any information to import installed games. Account connection process is usually done via official login web forms and only the web session cookies or tokens are stored, the same way when you login to those services via the web browser.
 
+All information about your library is stored locally on your PC.
+
 Questions, issues etc.
 ---------
 If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach a diagnostics package, which can be created from inside the "About Playnite..." submenu.
