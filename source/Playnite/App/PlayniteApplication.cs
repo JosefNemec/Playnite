@@ -538,8 +538,8 @@ namespace Playnite
 
                     GamesEditor?.Dispose();
                     AppSettings?.SaveSettings();
-                    Extensions?.Dispose();
                     Controllers?.Dispose();
+                    Extensions?.Dispose();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
