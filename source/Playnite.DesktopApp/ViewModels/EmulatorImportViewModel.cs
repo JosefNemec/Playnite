@@ -207,13 +207,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public List<EmulatorDefinition> EmulatorDefinitions
-        {
-            get
-            {
-                return EmulatorDefinition.GetDefinitions();
-            }
-        }
+        public List<EmulatorDefinition> EmulatorDefinitions { get; set; }
 
         private DialogType type;
         public DialogType Type
@@ -256,6 +250,12 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                if (EmulatorDefinitions.Count == 0)
+                {
+                    dialogs.ShowErrorMessage("LOCEmulatorImportNoDefinitionsError", "");
+                    return;
+                }
+
                 var path = dialogs.SelectFolder();
                 if (!string.IsNullOrEmpty(path))
                 {
@@ -351,6 +351,16 @@ namespace Playnite.DesktopApp.ViewModels
             this.resources = resources;
             this.database = database;
             Type = type;
+
+            try
+            {
+                EmulatorDefinitions = EmulatorDefinition.GetDefinitions();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                EmulatorDefinitions = new List<EmulatorDefinition>();
+                logger.Error(e, "Failed to load emulator definitions.");
+            }
         }
 
         public bool? OpenView()
@@ -371,7 +381,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 IsLoading = true;
                 cancelToken = new CancellationTokenSource();
-                var emulators = await EmulatorFinder.SearchForEmulators(path, EmulatorDefinition.GetDefinitions(), cancelToken);
+                var emulators = await EmulatorFinder.SearchForEmulators(path, EmulatorDefinitions, cancelToken);
                 if (emulators != null)
                 {
                     if (EmulatorList == null)
@@ -442,7 +452,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     EmulatorId = game.Emulator.Id,
                     EmulatorProfileId = game.EmulatorProfile.Id,
-                    Type = GameActionType.Emulator                    
+                    Type = GameActionType.Emulator
                 };
 
                 game.Game.IsInstalled = true;
@@ -483,7 +493,7 @@ namespace Playnite.DesktopApp.ViewModels
                                 profile.Platforms = new List<Guid>();
                             }
 
-                            profile.Platforms.Add(existing.Id);                            
+                            profile.Platforms.Add(existing.Id);
                         }
                     }
 
@@ -537,7 +547,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (dialogs.ShowMessage(resources.GetString("LOCEmuWizardNoEmulatorForGamesWarning")
                         , "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {                       
+                    {
                         if (platforms.OpenView() == true)
                         {
                             OnPropertyChanged(nameof(AvailableEmulators));

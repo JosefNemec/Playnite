@@ -23,6 +23,8 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class EmulatorsViewModel : ObservableObject
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         private SelectableDbItemList availablePlatforms;
         public SelectableDbItemList AvailablePlatforms
         {
@@ -68,10 +70,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public List<EmulatorDefinition> EmulatorDefinitions
-        {
-            get => EmulatorDefinition.GetDefinitions();
-        }
+        public List<EmulatorDefinition> EmulatorDefinitions { get; set; }
 
         public RelayCommand<object> CloseCommand
         {
@@ -184,6 +183,17 @@ namespace Playnite.DesktopApp.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.database = database;
+
+            try
+            {
+                EmulatorDefinitions = EmulatorDefinition.GetDefinitions();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                EmulatorDefinitions = new List<EmulatorDefinition>();
+                logger.Error(e, "Failed to load emulator definitions.");
+            }
+
             AvailablePlatforms = new SelectableDbItemList(database.Platforms);
             ReloadEmulatorsFromDb();
         }
