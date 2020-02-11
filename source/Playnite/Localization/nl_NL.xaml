@@ -582,6 +582,7 @@ U kunt later ook andere spel toevoegen (inclusief Microsoft Store spellen) in he
     <sys:String x:Key="LOCURLFormatError">Kan link niet openen, URL is ongeldig.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Staren van applicatie mislukt.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Bewerk Spel Details</sys:String>
