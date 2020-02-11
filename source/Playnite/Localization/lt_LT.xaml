@@ -568,6 +568,7 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCURLFormatError">Nepavyko atidaryti nuorodos, netinkamas URL formatas.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Nepavyko paleisti aplikacijos.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Keisti žaidimo informaciją</sys:String>
