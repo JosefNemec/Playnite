@@ -571,6 +571,7 @@
     <sys:String x:Key="LOCURLFormatError">无法打开网址，网址格式无效</sys:String>
     <sys:String x:Key="LOCAppStartupError">无法启动应用程序</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">编辑游戏详情</sys:String>
