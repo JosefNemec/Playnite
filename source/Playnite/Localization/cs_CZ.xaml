@@ -570,6 +570,7 @@ Taktéž můžete později přidat jakoukoliv hru (včetně her z Microsoft Stor
     <sys:String x:Key="LOCURLFormatError">Nelze otevřít adresu, URL není platná.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Nepodařilo se spustit aplikaci.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Upravit detaily hry</sys:String>
