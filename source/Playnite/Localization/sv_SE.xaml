@@ -569,6 +569,7 @@ Du kan också lägga till andra spel (inklusive Microsoft Store-spel) senare fr�
     <sys:String x:Key="LOCURLFormatError">Kan inte öppna länk, URL är inte i giltigt format.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Misslyckades med att starta applikationen.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Redigera Speluppgifter</sys:String>
