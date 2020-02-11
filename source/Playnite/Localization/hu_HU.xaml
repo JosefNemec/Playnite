@@ -568,6 +568,7 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCURLFormatError">Link megnyitásakor hiba történt, az URL nem megfelelő formátum.</sys:String>
     <sys:String x:Key="LOCAppStartupError"></sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">játék részletek szerkesztése</sys:String>
