@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    
+
     <sys:String x:Key="LanguageName">إنجليزية</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">اللغة</sys:String>
@@ -17,7 +17,7 @@
 
     <sys:String x:Key="LOCInvalidDataTitle">بيانات غير صحيحة</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">حفظ التغييرات؟</sys:String>
-    
+
     <sys:String x:Key="LOCAboutHomePageLink">الصفحة الرسمية على www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">الكود المصدر على Github</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">انشاء حزمة diag.</sys:String>
@@ -48,6 +48,8 @@
     <sys:String x:Key="LOCGameUninstallRunningError">لا يمكن إزالة تثبيت لعبة و هي جارية التشغيل.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">أصدقاء Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
@@ -74,6 +76,7 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">مفعل</sys:String>
     <sys:String x:Key="LOCRemoveTitle">حذف</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
     <sys:String x:Key="LOCRenameTitle">إعادة تسمية</sys:String>
     <sys:String x:Key="LOCCopyTitle">نسخ</sys:String>
     <sys:String x:Key="LOCAddTitle">إضافة</sys:String>
@@ -90,14 +93,11 @@
     <sys:String x:Key="LOCDismiss">استبعاد</sys:String>
     <sys:String x:Key="LOCDismissAll">استبعاد الكل</sys:String>
     <sys:String x:Key="LOCImportLabel">استيراد</sys:String>
-    <sys:String x:Key="LOCSourceLabel">مصدر</sys:String>
     <sys:String x:Key="LOCNameLabel">الاسم</sys:String>
     <sys:String x:Key="LOCAuthorLabel">المؤلف</sys:String>
     <sys:String x:Key="LOCModuleLabel">الوحدة</sys:String>
     <sys:String x:Key="LOCSeriesLabel">السلسلة</sys:String>
     <sys:String x:Key="LOCVersionLabel">النسخة</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">التقييم العمري</sys:String>
-    <sys:String x:Key="LOCRegionLabel">المنطقة</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">اخر تشغيل</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
     <sys:String x:Key="LOCPlayCountLabel">مرات اللعب</sys:String>
@@ -129,13 +129,6 @@
     <sys:String x:Key="LOCRemoveLabel">حذف</sys:String>
     <sys:String x:Key="LOCDownloadLabel">تنزيل</sys:String>
     <sys:String x:Key="LOCSearchLabel">بحث</sys:String>
-    <sys:String x:Key="LOCGenreLabel">النوع</sys:String>
-    <sys:String x:Key="LOCCompanyLabel">الشركة</sys:String>
-    <sys:String x:Key="LOCDeveloperLabel">المبرمج</sys:String>
-    <sys:String x:Key="LOCPublisherLabel">الناشر</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">الفئة</sys:String>
-    <sys:String x:Key="LOCTagLabel">وسم</sys:String>
-    <sys:String x:Key="LOCTagsLabel">وسوم</sys:String>
     <sys:String x:Key="LOCZoomLabel">تكبير</sys:String>
     <sys:String x:Key="LOCListViewLabel">العرض كقائمة</sys:String>
     <sys:String x:Key="LOCCoversLabel">أغلفة</sys:String>
@@ -169,7 +162,7 @@
     <sys:String x:Key="LOCColumns">أعمدة</sys:String>
     <sys:String x:Key="LOCRow">صف</sys:String>
     <sys:String x:Key="LOCRows">صفوف</sys:String>
-    
+
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
@@ -306,7 +299,7 @@
     <sys:String x:Key="LOCSettingsSkinColorFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName"></sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus"></sys:String>    
+    <sys:String x:Key="LOCSettingsLoginStatus"></sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">اعدادات Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
@@ -349,6 +342,7 @@
     <sys:String x:Key="LOCSteamBackgroundSourceImage">صورة اللعبة</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">لقطة شاشة المتجر</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">صورة المتجر الخلفية</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
@@ -385,6 +379,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -408,7 +403,7 @@
     <sys:String x:Key="LOCMetaImportWindowTitle"></sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">تنزيل البيانات الوصفية</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
-    
+
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
     <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
@@ -476,7 +471,7 @@
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
-    
+
     <sys:String x:Key="LOCMenuSortByTitle">رتب حسب</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">تجميع حسب</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">تصاعدى</sys:String>
@@ -519,6 +514,26 @@
     <sys:String x:Key="LOCGameLinksTitle"></sys:String>
     <sys:String x:Key="LOCGameROMTitle"></sys:String>
 
+    <sys:String x:Key="LOCGenreLabel">النوع</sys:String>
+    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">الشركة</sys:String>
+    <sys:String x:Key="LOCCompaniesLabel"></sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">المبرمج</sys:String>
+    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCPublisherLabel">الناشر</sys:String>
+    <sys:String x:Key="LOCPublishersLabel"></sys:String>
+    <sys:String x:Key="LOCCategoryLabel">الفئة</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCTagLabel">وسم</sys:String>
+    <sys:String x:Key="LOCTagsLabel">وسوم</sys:String>
+    <sys:String x:Key="LOCFeatureLabel"></sys:String>
+    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">التقييم العمري</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionLabel">المنطقة</sys:String>
+    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCSourceLabel">مصدر</sys:String>
+    <sys:String x:Key="LOCSourcesLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle"></sys:String>
     <sys:String x:Key="LOCDatabaseOpenError"></sys:String>
@@ -530,7 +545,7 @@
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
-    
+
     <sys:String x:Key="LOCBnetInstalledImportError"></sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError"></sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError"></sys:String>
@@ -542,14 +557,15 @@
     <sys:String x:Key="LOCGOGLibraryImportError"></sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError"></sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError"></sys:String>
-    
-    <sys:String x:Key="LOCLibraryImportError"></sys:String>    
+
+    <sys:String x:Key="LOCLibraryImportError"></sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError"></sys:String>
     <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCURLFormatError"></sys:String>
     <sys:String x:Key="LOCAppStartupError"></sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
@@ -699,7 +715,7 @@
     <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
-    
+
     <sys:String x:Key="LOCTimePlayed">وقت اللعب</sys:String>
     <sys:String x:Key="LOCLastPlayed">اخر تشغيل</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0} ساعات {1} دقائق</sys:String>
@@ -752,7 +768,7 @@
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">لا تُظهر مجدّدًا</sys:String>
-
+    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">الإنجازات</sys:String>
@@ -790,9 +806,21 @@
     <sys:String x:Key="LOCItemAlreadyExists">عنصر بالاسم ذاته موجود بالفعل.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">تقييد التحديد للفلتر الحالي</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">اختار آخر</sys:String>
-    
+
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">استخدم لقطات الشاشة اذا العمل الفني غير متاح</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">اذا اكثر من صورة متاحات اذن استخدم:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">حدد صورة خلفية لـ{0}</sys:String>
+
+    <!--Epic-->
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+
+    <!--Humble-->
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+
+    <!--Xbox-->
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
+    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
 </ResourceDictionary>

@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    
+
     <sys:String x:Key="LanguageName">Engelsk</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Sprog</sys:String>
@@ -17,7 +17,7 @@
 
     <sys:String x:Key="LOCInvalidDataTitle">Ugyldig data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Gem ændringer?</sys:String>
-    
+
     <sys:String x:Key="LOCAboutHomePageLink">Hjemmeside på www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Se kildekoden på GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Opret diag. pakke</sys:String>
@@ -44,12 +44,10 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern spil?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Du kan ikke fjerne spil som er åbne, eller er ved at blive (af)installeret.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Du kan ikke afinstallere spil som er åbne.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Er du helt sikkert på at du vil fjerne dette spil?
-
-Spil som er importeret til Playnite automatisk, kan komme frem igen efter næste import-procedure (afhængigt af dine indstillinger).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Er du helt sikkert på at du vil fjerne {0} spil?
-
-Spil som er importeret til Playnite automatisk, kan komme frem igen efter næste import-procedure (afhængigt af dine indstillinger).</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steamvenner</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Sektionen indeholder ændringer som afventer at blive gemt</sys:String>
@@ -76,6 +74,7 @@ Spil som er importeret til Playnite automatisk, kan komme frem igen efter næste
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktivér</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Fjern</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
     <sys:String x:Key="LOCRenameTitle">Omdøb</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopier</sys:String>
     <sys:String x:Key="LOCAddTitle">Tilføj</sys:String>
@@ -92,14 +91,11 @@ Spil som er importeret til Playnite automatisk, kan komme frem igen efter næste
     <sys:String x:Key="LOCDismiss">Luk</sys:String>
     <sys:String x:Key="LOCDismissAll">Luk alle</sys:String>
     <sys:String x:Key="LOCImportLabel">Importer</sys:String>
-    <sys:String x:Key="LOCSourceLabel">Kilde</sys:String>
     <sys:String x:Key="LOCNameLabel">Navn</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Forfatter</sys:String>
     <sys:String x:Key="LOCModuleLabel">Modul</sys:String>
     <sys:String x:Key="LOCSeriesLabel">Serie</sys:String>
     <sys:String x:Key="LOCVersionLabel">Version</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">Aldersklassificering</sys:String>
-    <sys:String x:Key="LOCRegionLabel">Region</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Sidst spillet</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Mest spillede</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Antal afspilninger</sys:String>
@@ -131,13 +127,6 @@ Spil som er importeret til Playnite automatisk, kan komme frem igen efter næste
     <sys:String x:Key="LOCRemoveLabel">Fjern</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Download</sys:String>
     <sys:String x:Key="LOCSearchLabel">Søg</sys:String>
-    <sys:String x:Key="LOCGenreLabel">Genre</sys:String>
-    <sys:String x:Key="LOCCompanyLabel">Firma</sys:String>
-    <sys:String x:Key="LOCDeveloperLabel">Udvikler</sys:String>
-    <sys:String x:Key="LOCPublisherLabel">Udgiver</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
-    <sys:String x:Key="LOCTagLabel">Tag</sys:String>
-    <sys:String x:Key="LOCTagsLabel">Tags</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListViewLabel">Vis som liste</sys:String>
     <sys:String x:Key="LOCCoversLabel">Forsidebillede</sys:String>
@@ -171,18 +160,8 @@ Spil som er importeret til Playnite automatisk, kan komme frem igen efter næste
     <sys:String x:Key="LOCColumns">Kolonner</sys:String>
     <sys:String x:Key="LOCRow">Række</sys:String>
     <sys:String x:Key="LOCRows">Rækker</sys:String>
-    
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Specielle variabler kan bruges til at tilføje en dynamisk string:
-{InstallDir} - Spilinstallationsmappe
-{InstallDirName} - Navn på installationsmappe
-{ImagePath} - Spil ISO/ROM-sti, hvis indstillet
-{ImageName} - Spil ISO/ROM-filnavn
-{ImageNameNoExt} - Spil ISO/ROM-filnavn uden endelse
-{PlayniteDir} - Playnite's installationsmappe
-{Name} - Spillets navn
-        
-Eksempel: -image &quot;{ImagePath}&quot; -fullscreen
-Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
+
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Kan ikke indhente ikon, hvis &quot;Play action&quot; mangler eller er sat til en URL-adresse.</sys:String>
 
@@ -318,7 +297,7 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Databaseplacering</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName"></sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">Login-status:</sys:String>    
+    <sys:String x:Key="LOCSettingsLoginStatus">Login-status:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite indstillinger</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
@@ -361,6 +340,7 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore"></sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
@@ -397,6 +377,7 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Udfyld</sys:String>
@@ -420,7 +401,7 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaImportWindowTitle"></sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Download metadata</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
-    
+
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
     <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
@@ -488,7 +469,7 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
-    
+
     <sys:String x:Key="LOCMenuSortByTitle">Sorter efter</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Gruppér efter</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Stigende</sys:String>
@@ -531,6 +512,26 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCGameROMTitle"></sys:String>
 
+    <sys:String x:Key="LOCGenreLabel">Genre</sys:String>
+    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Firma</sys:String>
+    <sys:String x:Key="LOCCompaniesLabel"></sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">Udvikler</sys:String>
+    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCPublisherLabel">Udgiver</sys:String>
+    <sys:String x:Key="LOCPublishersLabel"></sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCTagLabel">Tag</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Tags</sys:String>
+    <sys:String x:Key="LOCFeatureLabel"></sys:String>
+    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Aldersklassificering</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionLabel">Region</sys:String>
+    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCSourceLabel">Kilde</sys:String>
+    <sys:String x:Key="LOCSourcesLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle"></sys:String>
     <sys:String x:Key="LOCDatabaseOpenError"></sys:String>
@@ -542,7 +543,7 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
-    
+
     <sys:String x:Key="LOCBnetInstalledImportError"></sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError"></sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError"></sys:String>
@@ -554,14 +555,15 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCGOGLibraryImportError"></sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError"></sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError"></sys:String>
-    
-    <sys:String x:Key="LOCLibraryImportError"></sys:String>    
+
+    <sys:String x:Key="LOCLibraryImportError"></sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError"></sys:String>
     <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCURLFormatError"></sys:String>
     <sys:String x:Key="LOCAppStartupError"></sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
@@ -711,7 +713,7 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
-    
+
     <sys:String x:Key="LOCTimePlayed">Tid spillet</sys:String>
     <sys:String x:Key="LOCLastPlayed">Sidst spillet</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}t {1}m</sys:String>
@@ -764,7 +766,7 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
-
+    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
@@ -802,9 +804,21 @@ Bliver: -image &quot;c:\mappe\billede.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">En genstand med samme navn findes allerede.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
-    
+
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+
+    <!--Epic-->
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+
+    <!--Humble-->
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+
+    <!--Xbox-->
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
+    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
 </ResourceDictionary>

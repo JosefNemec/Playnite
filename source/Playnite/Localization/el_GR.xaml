@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    
+
     <sys:String x:Key="LanguageName">Greek</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Γλώσσα</sys:String>
@@ -17,7 +17,7 @@
 
     <sys:String x:Key="LOCInvalidDataTitle">Μη εγκυρα δεδομενα</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Αποθηκευση αλλαγων?</sys:String>
-    
+
     <sys:String x:Key="LOCAboutHomePageLink">Αρχικη σελιδα www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Πηγαιος κωδικας στο GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Δημιουργία diag. package</sys:String>
@@ -46,12 +46,10 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">Κατάργηση παιχνιδιών?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Δεν είναι δυνατή η κατάργηση παιχνιδιού που εκτελείται ή εγκαθίσταται / απεγκαθίσταται.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Δεν είναι δυνατή η απεγκατάσταση του παιχνιδιού που εκτελείται.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτό το παιχνίδι;
-        
-Τα αυτόματα εισαγόμενα παιχνίδια ενδέχεται να επανεμφανιστούν στο Playnite μετά την επόμενη διαδικασία εισαγωγής (ανάλογα με τις ρυθμίσεις σας).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Είστε βέβαιοι ότι θέλετε να καταργήσετε τα {0} παιχνίδια;
-        
-Τα αυτοματως εισαγόμενα παιχνίδια ενδέχεται να επανεμφανιστούν στο Playnite μετά την επόμενη διαδικασία εισαγωγής (ανάλογα με τις ρυθμίσεις σας).</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Φίλοι στο Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Το τμήμα περιέχει αλλαγές που πρέπει να αποθηκευτούν</sys:String>
@@ -78,6 +76,7 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Αφαίρεση</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
     <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">Αντιγραφή</sys:String>
     <sys:String x:Key="LOCAddTitle">Προσθήκη</sys:String>
@@ -94,14 +93,11 @@
     <sys:String x:Key="LOCDismiss"></sys:String>
     <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel">Εισαγωγή</sys:String>
-    <sys:String x:Key="LOCSourceLabel">Πηγή</sys:String>
     <sys:String x:Key="LOCNameLabel">Ονομα</sys:String>
     <sys:String x:Key="LOCAuthorLabel"></sys:String>
     <sys:String x:Key="LOCModuleLabel"></sys:String>
     <sys:String x:Key="LOCSeriesLabel">Σειρά</sys:String>
     <sys:String x:Key="LOCVersionLabel">Εκδοση</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">Αξιολόγηση ηλικίας</sys:String>
-    <sys:String x:Key="LOCRegionLabel">Περιοχή</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Τελευταίο παιχνίδι</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Παίχτηκαν περισσότερο </sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Μετρητής παιχνιδιού</sys:String>
@@ -133,13 +129,6 @@
     <sys:String x:Key="LOCRemoveLabel">Αφαίρεση</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Λήψη</sys:String>
     <sys:String x:Key="LOCSearchLabel">Αναζήτηση</sys:String>
-    <sys:String x:Key="LOCGenreLabel">Είδος</sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
-    <sys:String x:Key="LOCDeveloperLabel">Κατασκευαστής</sys:String>
-    <sys:String x:Key="LOCPublisherLabel">Εκδότης</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">Κατηγορία</sys:String>
-    <sys:String x:Key="LOCTagLabel">Ετικέτα</sys:String>
-    <sys:String x:Key="LOCTagsLabel">Ετικέτες</sys:String>
     <sys:String x:Key="LOCZoomLabel">Μεγέθυνση</sys:String>
     <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">Εξώφυλλα</sys:String>
@@ -173,18 +162,8 @@
     <sys:String x:Key="LOCColumns"></sys:String>
     <sys:String x:Key="LOCRow"></sys:String>
     <sys:String x:Key="LOCRows"></sys:String>
-    
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Ειδικές μεταβλητές μπορούν να χρησιμοποιηθούν για την προσθήκη δυναμικής συμβολοσειράς:
-{InstallDir} - Τοποθεσία εγκατάστασης παιχνιδιού
-{InstallDirName} - όνομα του φακέλου εγκατάστασης
-{ImagePath} - Διαδρομή ISO / ROM παιχνιδιού, εάν έχει οριστεί
-{ImageName} - Όνομα παιχνιδιού ISO / ROM
-{ImageNameNoExt} - Όνομα αρχείου ISO / ROM παιχνίδι χωρίς επέκταση
-{PlayniteDir} - Τοποθεσία εγκατάστασης του Playnite
-{Name} - Όνομα παιχνιδιού
-        
-Παράδειγμα: -image &quot;{ImagePath}&quot; -fullscreen
-Εχει ως αποτέλεσμα: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
+
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Δεν είναι δυνατή η λήψη εικονιδίου αν η εντολή Αναπαραγωγή λείπει ή έχει οριστεί διεύθυνση URL.</sys:String>
 
@@ -199,17 +178,7 @@
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Επιλέξτε ποια πεδία πρέπει να συμπληρωθούν αυτόματα από το Playnite και ποιες πηγές θα πρέπει να χρησιμοποιηθούν για την απόκτηση των δεδομένων.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Κατάστημα:
-Χρησιμοποιείτε δεδομένα μόνο από το επίσημο κατάστημα.
-    
-IGDB:
-Χρησιμοποιείτε δεδομένα μόνο από τη βάση δεδομένων IGDB.com.
-    
-IGDB&gt; Επίσημο κατάστημα:
-Προτιμήστε τα δεδομένα από τη βάση δεδομένων IGDB.com και, όπου δεν είναι διαθέσιμα, χρησιμοποιήστε επίσημα δεδομένα καταστήματος.
-    
-Επίσημο Κατάστημα&gt; IGDB:
-Προτιμήστε τα δεδομένα από το επίσημο κατάστημα και, όπου δεν είναι διαθέσιμα, χρησιμοποιήστε τη βάση δεδομένων IGBD.com.</sys:String>
+    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
@@ -330,7 +299,7 @@ IGDB&gt; Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Προφίλ θέματος πλήρους οθόνης</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Ποιο είναι το όνομα του λογαριασμού μου?</sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">Κατάσταση σύνδεσης:</sys:String>    
+    <sys:String x:Key="LOCSettingsLoginStatus">Κατάσταση σύνδεσης:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Ρυθμίσεις Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
@@ -362,9 +331,7 @@ IGDB&gt; Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Συνεισφέρετε νέο Localization</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?
-    
-Όλες οι τρέχουσες ενεργές εργασίες (λήψεις metadata) θα ακυρωθούν.</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Επανεκκινήση Playnite;</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
@@ -375,6 +342,7 @@ IGDB&gt; Επίσημο κατάστημα:
     <sys:String x:Key="LOCSteamBackgroundSourceImage"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore"></sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Το Playnite θα χρησιμοποιήσει τα διαθέσιμα screenshots παιχνιδιών ως φόντο αντί για την εικόνα φόντου του καταστήματος.
 Δεν ισχύει αναδρομικά σε υπάρχοντα παιχνίδια.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
@@ -412,6 +380,7 @@ IGDB&gt; Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -435,7 +404,7 @@ IGDB&gt; Επίσημο κατάστημα:
     <sys:String x:Key="LOCMetaImportWindowTitle">Εισαγωγή Metadata</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Λήψη Metadata</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
-    
+
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Οδηγός εισαγωγής εξομοιωτών</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Αυτός ο οδηγός θα σας καθοδηγήσει στην διαδικασία λήψης και εισαγωγής εξομοιωτή κονσόλας, καθώς και στην εισαγωγή emulated παιχνιδιών.</sys:String>
@@ -502,12 +471,10 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Είστε βέβαιοι ότι θέλετε να καταργήσετε τον εξομοιωτή {0}?        
-Αυτή τη στιγμή χρησιμοποιείται από τα {1} παιχνίδια.</sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Είστε βέβαιοι ότι θέλετε να καταργήσετε την πλατφόρμα {0}?        
-Αυτή τη στιγμή χρησιμοποιείται από {1} παιχνίδια και {2} emulator (ες).</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Βοήθεια για τις ρυθμίσεις</sys:String>
-    
+
     <sys:String x:Key="LOCMenuSortByTitle">Ταξινόμηση κατά</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Αύξουσα</sys:String>
@@ -550,6 +517,26 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCGameLinksTitle">Σύνδεσμοι</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Διαδρομή Image/ISO</sys:String>
 
+    <sys:String x:Key="LOCGenreLabel">Είδος</sys:String>
+    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel"></sys:String>
+    <sys:String x:Key="LOCCompaniesLabel"></sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">Κατασκευαστής</sys:String>
+    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCPublisherLabel">Εκδότης</sys:String>
+    <sys:String x:Key="LOCPublishersLabel"></sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Κατηγορία</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCTagLabel">Ετικέτα</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Ετικέτες</sys:String>
+    <sys:String x:Key="LOCFeatureLabel"></sys:String>
+    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Αξιολόγηση ηλικίας</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionLabel">Περιοχή</sys:String>
+    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCSourceLabel">Πηγή</sys:String>
+    <sys:String x:Key="LOCSourcesLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Σφάλμα βάσης δεδομένων</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Αποτυχία ανοίγματος βάσης δεδομένων βιβλιοθήκης.</sys:String>
@@ -561,7 +548,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Αποτυχία εισαγωγής κατηγοριών Steam.</sys:String>
-    
+
     <sys:String x:Key="LOCBnetInstalledImportError">Αποτυχία εισαγωγής εγκατεστημένων παιχνιδιών Battle.net.</sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError">Αποτυχία εισαγωγής εγκατεστημένων παιχνιδιών του Steam.</sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError">Αποτυχία εισαγωγής εγκατεστημένων παιχνιδιών GOG.</sys:String>
@@ -573,16 +560,15 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCGOGLibraryImportError">Αποτυχία λήψης της βιβλιοθήκης GOG.</sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError">Αποτυχία λήψης της βιβλιοθήκης Battle.net.</sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError">Αποτυχία λήψης της βιβλιοθήκης Uplay.</sys:String>
-    
-    <sys:String x:Key="LOCLibraryImportError"></sys:String>    
+
+    <sys:String x:Key="LOCLibraryImportError"></sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Δεν είναι δυνατή η αναζήτηση παιχνιδιών στο επιλεγμένο προφίλ εξομοιωτή. Το προφίλ δεν περιέχει επεκτάσεις αρχείων ή πλατφόρμες.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Το Playnite απέτυχε να ξεκινήσει. Κλείστε όλες τις τρέχουσες περιπτώσεις και δοκιμάστε ξανά.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Αποτυχία εφαρμογής του θέματος &quot;{0}&quot;, προφίλ χρωμάτων &quot;{1}&quot;
-        
-{2}</sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCURLFormatError">Δεν είναι δυνατή η σύνδεση, η διεύθυνση URL δεν είναι σε έγκυρη μορφή.</sys:String>
     <sys:String x:Key="LOCAppStartupError"></sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Επεξεργασία λεπτομερειών παιχνιδιού</sys:String>
@@ -732,7 +718,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Ακύρωση παρακολούθησης παιχνιδιών?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
-    
+
     <sys:String x:Key="LOCTimePlayed">Χρόνος παιχνιδιού</sys:String>
     <sys:String x:Key="LOCLastPlayed">Τελευταίο παιχνίδι</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}ω {1}λ</sys:String>
@@ -785,7 +771,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
-
+    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
@@ -823,9 +809,21 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
-    
+
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+
+    <!--Epic-->
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+
+    <!--Humble-->
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+
+    <!--Xbox-->
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
+    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
 </ResourceDictionary>
