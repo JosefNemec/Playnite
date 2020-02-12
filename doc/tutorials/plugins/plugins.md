@@ -22,26 +22,36 @@ There are currently two types of plugins:
 Creating plugins
 ---------------------
 
-Following examples will focus on use of C# and Visual Studio, but use with other languages is fairly similar.
+### Using Toolbox
 
+#### 1. Generate from template
 
-TOOLBOX
+Run [Toolbox](../toolbox.md) with arguments specific to a type of plugin you want to create.
 
+For example to create new library plugin run:
 
-### 1. Create plugin project
+```
+Toolbox.exe new LibraryPlugin "SomeLibrary importer" "d:\somefolder"
+```
+
+This will generate new C# project, with all of required classes already premade.
+
+### Manually
+
+#### 1. Create plugin project
 
 Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. Add [Playnite SDK](https://www.nuget.org/packages/PlayniteSDK/) nuget package reference and set reference to not require specific version (right-click on `Playnite.SDK` reference, choose `Properties` and set `Specific Version` to false).
 
 > [!NOTE] 
 > PlayniteSDK is designed in a way that all versions from one major version branch (for example 1.0, 1.1, 1.2 etc.) are backwards compatible. Therefore plugin written for SDK version 1.0 will also work with Playnite containing all 1.x versions of SDK. When loading plugins Playnite checks all SDK references and won't load plugins referencing incompatible SDK versions.
 
-### 2. Write plugin
+#### 2. Write plugin
 
 - `Generic plugins` - see generic plugins [documentation page](genericPlugins.md).
 - `Library plugins` - see library plugins [documentation page](libraryPlugins.md).
 - `Metadata plugins` - see metadata plugins [documentation page](metadataPlugins.md).
 
-### 3. Create manifest file
+#### 3. Create manifest file
 
 Described in [introduction section](../intro.md) to extensions.
 
@@ -57,5 +67,7 @@ Support for all 3rd part clients in Playnite is implemented fully using plugins 
 
 Distributing plugins
 ---------------------
+
+It's highly recommend to use [Toolbox](../toolbox.md) to package the plugin and distribute resulting `.pext` file. Packaging removes unnecessary references automatically and makes it easier for users to install your extension.
 
 When distributing plugins it is ok to leave out dlls for `Json.Net` reference, since it's distributed with Playnite already.

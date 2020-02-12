@@ -22,18 +22,18 @@ If you used Blend to modify the theme then you need to use `Toolbox` utility to 
 To package theme run Toolbox with following arguments:
 
 ```
-Toolbox.exe pack theme desktop <ThemeDirectoryName> <TargetFolder>
+Toolbox.exe pack <ThemeDirectoryPath> <TargetFolder>
 ```
 
 For example...
 
 ```
-Toolbox.exe pack theme desktop "SuperClearModern" "c:\somedir"
+Toolbox.exe pack "c:\playnite\Themes\Desktop\Default\TestingTheme" "c:\somedir"
 ```
 
 ...will create `c:\somedir\SuperClearModern.pthm` theme file you can distribute to users.
 
-`<ThemeDirectoryName>` is name of the theme folder from `Themes\Desktop|Fullscreen` directory where you are developing the theme.
+`<ThemeDirectoryPath>` is full path to folder where you are developing the theme.
 
 # Uploading themes
 
@@ -60,9 +60,9 @@ Blend made themes
 To update existing theme run Toolbox with following arguments:
 
 ```
-Toolbox.exe update theme desktop <ThemeDirectoryName>
+Toolbox.exe update "<ThemeDirectoryPath>"
 ```
 
-`<ThemeDirectoryName>` is name of the theme folder from `Themes\Desktop|Fullscreen` directory where you are developing the theme.
+`<ThemeDirectoryPath>` is full path to folder where you are developing the theme.
 
 Toolbox will try to update all files to latest version, but if you modified files that were also modified in the latest API change, you will need to update those files manually. You will get the list of all files requiring manual update after the update process is finished.

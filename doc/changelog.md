@@ -9,7 +9,7 @@
   * Library plugins can now support extra [capabilities](tutorials/plugins/libraryPlugins.md#capabilities).
   * Added [ImportGame](xref:Playnite.SDK.IGameDatabase.ImportGame(Playnite.SDK.Models.GameInfo)) methods to more easily add new games to the library.
   * Added [OpenPluginSettings](xref:Playnite.SDK.IMainViewAPI.OpenPluginSettings(System.Guid)) method to open view with extension settings (also accessible via `OpenSettingsView` method inherited from `Plugin` class).
-  * Added [StartGame](xref:Playnite.SDK.IPlayniteAPI.StartGame(System.Guid)) method start specific game.
+  * Added [StartGame](xref:Playnite.SDK.IPlayniteAPI.StartGame(System.Guid)).
   * Added [UriHandler](xref:Playnite.SDK.IPlayniteAPI.UriHandler) for registering of custom [URI method actions](tutorials/plugins/uriSupport.md).
   * Added option settings when creating offscreen web view (currently only option to disable JavaScript execution).
   * Added `OnGameSelected`, `OnApplicationStopped` and `OnLibraryUpdated` events.
