@@ -625,7 +625,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
   • Überprüfe die Installation von Playnite und wiederhole diese gegebenenfalls
   • Überprüfe, ob ein Antivirusprogramm Dateien in Playnites Verzeichnis blockiert
   • Installiere Playnite in ein anderes Verzeichnis</sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Emulatoren können nicht importiert werden, da keine Definitionsdatei für sie existiert.</sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Emulatoren können nicht importiert werden, da keine Emulatoren-Definitionsdatei existiert.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Spieldetails bearbeiten</sys:String>
