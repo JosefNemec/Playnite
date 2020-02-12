@@ -77,6 +77,12 @@ namespace Playnite.SDK
         string GetCurrentAddress();
 
         /// <summary>
+        /// Deletes all cookies from specified domain.
+        /// </summary>
+        /// <param name="domain">Cookie domain.</param>
+        void DeleteDomainCookies(string domain);
+
+        /// <summary>
         /// Deletes cookies.
         /// </summary>
         /// <param name="url">Cookie URL.</param>

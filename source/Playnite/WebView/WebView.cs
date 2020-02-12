@@ -119,6 +119,17 @@ namespace Playnite.WebView
             return window.ShowDialog();
         }
 
+        public void DeleteDomainCookies(string domain)
+        {
+            using (var destoyer = new CookieDestroyer(domain))
+            {
+                using (var manager = Cef.GetGlobalCookieManager())
+                {
+                    manager.VisitAllCookies(destoyer);
+                }
+            }
+        }
+
         public void DeleteCookies(string url, string name)
         {
             using (var manager = Cef.GetGlobalCookieManager())

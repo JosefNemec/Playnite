@@ -278,7 +278,7 @@ namespace SteamLibrary
                         }
                     };
 
-                    view.DeleteCookies(@"steamcommunity.com", null);
+                    view.DeleteDomainCookies(".steamcommunity.com");
                     view.Navigate(@"https://steamcommunity.com/login/home/?goto=");
                     view.OpenDialog();
                 }

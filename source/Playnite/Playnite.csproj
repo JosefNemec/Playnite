@@ -340,6 +340,7 @@
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
     <Compile Include="ViewModels\RandomGameSelectViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
+    <Compile Include="WebView\CookieDestroyer.cs" />
     <Compile Include="WebView\OffscreenWebView.cs" />
     <Compile Include="WebView\WebView.cs" />
     <Compile Include="WebView\WebViewFactory.cs" />

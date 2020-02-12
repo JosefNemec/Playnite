@@ -36,7 +36,8 @@ namespace HumbleLibrary.Services
                 }
             };
 
-            webView.DeleteCookies(@"humblebundle.com", null);
+            webView.DeleteDomainCookies(".humblebundle.com");
+            webView.DeleteDomainCookies("www.humblebundle.com");
             webView.Navigate(loginUrl);
             webView.OpenDialog();
         }

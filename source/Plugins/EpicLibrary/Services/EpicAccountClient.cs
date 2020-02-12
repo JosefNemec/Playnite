@@ -77,7 +77,7 @@ namespace EpicLibrary.Services
         {
             var loggedIn = false;
             var loginPageSource = string.Empty;
-            using (var view = api.WebViews.CreateView(675, 600, Colors.Black))
+            using (var view = api.WebViews.CreateView(580, 700))
             {
                 view.NavigationChanged += async (s, e) =>
                 {
@@ -90,7 +90,7 @@ namespace EpicLibrary.Services
                     }
                 };
 
-                view.DeleteCookies(@"epicgames.com", null);
+                view.DeleteDomainCookies(".epicgames.com");
                 view.Navigate(loginUrl);
                 view.OpenDialog();
             }

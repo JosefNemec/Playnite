@@ -54,10 +54,11 @@ namespace XboxLibrary.Services
                     File.Delete(xstsLoginTokesPath);
                 }
 
-                webView.DeleteCookies(@"live.com", null);
-                webView.DeleteCookies(@"xboxlive.com", null);
-                webView.DeleteCookies(@"xbox.com", null);
-                webView.DeleteCookies(@"microsoft.com", null);
+                webView.DeleteDomainCookies(".live.com");
+                webView.DeleteDomainCookies(".xboxlive.com");
+                webView.DeleteDomainCookies(".xbox.com");
+                webView.DeleteDomainCookies(".microsoft.com");
+                webView.DeleteDomainCookies(".login.live.com");
                 webView.Navigate(loginUrl);
                 webView.OpenDialog();
             }
