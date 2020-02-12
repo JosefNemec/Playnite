@@ -1464,6 +1464,7 @@ namespace Playnite
             InstallInstanceId = Guid.NewGuid().ToString();
             ItemSpacingMargin = GetItemSpacingMargin();
             FullscreenItemSpacingMargin = GetFullscreenItemSpacingMargin();
+            UpdateGridItemHeight();
         }
 
         private static T LoadSettingFile<T>(string path) where T : class
