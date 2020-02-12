@@ -42,11 +42,10 @@ namespace BattleNetLibrary.Services
 
         public void Login()
         {
-            var apiUrls = GetDefaultApiStatus();            
+            var apiUrls = GetDefaultApiStatus();
             webView.NavigationChanged += (s, e) =>
             {
                 var address = webView.GetCurrentAddress();
-                logger.Debug($"Battlenet login navigation {address}");
                 if (address.Equals(@"https://account.blizzard.com/overview", StringComparison.OrdinalIgnoreCase))
                 {
                     webView.Close();
@@ -67,7 +66,7 @@ namespace BattleNetLibrary.Services
             using (var webClient = new WebClient())
             {
                 try
-                {                    
+                {
                     webClient.DownloadData(apiStatusUrl);
                 }
                 catch (WebException exception) // Response is always 401
@@ -82,7 +81,6 @@ namespace BattleNetLibrary.Services
                         }
                     }
 
-                    logger.Debug(responseText);
                     var deserialized = Serialization.FromJson<BattleNetApiStatus>(responseText);
                     return  deserialized;
                 }
