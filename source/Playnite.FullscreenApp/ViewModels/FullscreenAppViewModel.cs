@@ -989,7 +989,8 @@ namespace Playnite.FullscreenApp.ViewModels
             SelectRandomGameCommand = new RelayCommand<object>((a) =>
             {
                 PlayRandomGame();
-            }, new KeyGesture(Key.F6));
+            }, (a) => Database?.IsOpen == true,
+            new KeyGesture(Key.F6));
 
             UpdateGamesCommand = new RelayCommand<object>(async (a) =>
             {

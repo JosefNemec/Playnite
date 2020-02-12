@@ -803,7 +803,8 @@ namespace Playnite.DesktopApp.ViewModels
             SelectRandomGameCommand = new RelayCommand<object>((a) =>
             {
                 PlayRandomGame();
-            }, new KeyGesture(Key.F6));
+            }, (a) => Database?.IsOpen == true,
+            new KeyGesture(Key.F6));
         }
 
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
