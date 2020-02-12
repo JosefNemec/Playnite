@@ -2,13 +2,14 @@
 using Flurl;
 using Newtonsoft.Json;
 using Playnite.Common;
+using Playnite.SDK;
 using Playnite.WebView;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Playnite
@@ -27,9 +28,6 @@ namespace Playnite
         [JsonProperty("tu")]
         public string ThumbUrl { get; set; }
 
-        [JsonProperty("ity")]
-        public string Extension { get; set; }
-
         public string Size => $"{Width}x{Height}";
     }
 
@@ -38,7 +36,7 @@ namespace Playnite
         private readonly OffscreenWebView webView;
         public GoogleImageDownloader()
         {
-            webView = new OffscreenWebView();
+            webView = new OffscreenWebView(new WebViewSettings { CacheEnabled = false });
         }
 
         public void Dispose()
@@ -62,10 +60,29 @@ namespace Playnite
 
             webView.NavigateAndWait(url.ToString());
             var googleContent = await webView.GetPageSourceAsync();
-            var document = parser.Parse(googleContent);
-            foreach (var imageElem in document.QuerySelectorAll(".rg_meta"))
+            if (googleContent.Contains(".rg_meta", StringComparison.Ordinal))
             {
-                images.Add(Serialization.FromJson<GoogleImage>(imageElem.InnerHtml));
+                var document = parser.Parse(googleContent);
+                foreach (var imageElem in document.QuerySelectorAll(".rg_meta"))
+                {
+                    images.Add(Serialization.FromJson<GoogleImage>(imageElem.InnerHtml));
+                }
+            }
+            else
+            {
+                googleContent = Regex.Replace(googleContent, @"\r\n?|\n", string.Empty);
+                var matches = Regex.Matches(googleContent, @"\[""(https:\/\/encrypted-[^,]+?)"",\d+,\d+\],\[""(http.+?)"",(\d+),(\d+)\]");
+                foreach (Match match in matches)
+                {
+                    var data = Serialization.FromJson<List<List<object>>>($"[{match.Value}]");
+                    images.Add(new GoogleImage
+                    {
+                        ThumbUrl = data[0][0].ToString(),
+                        ImageUrl = data[1][0].ToString(),
+                        Height = uint.Parse(data[1][1].ToString()),
+                        Width = uint.Parse(data[1][2].ToString())
+                    });
+                }
             }
 
             return images;

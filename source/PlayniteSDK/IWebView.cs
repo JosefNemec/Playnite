@@ -16,6 +16,11 @@ namespace Playnite.SDK
         /// Gets or sets value indicating whether JavaScript exection is enabled.
         /// </summary>
         public bool JavaScriptEnabled { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets value indicating whether cache is enabled.
+        /// </summary>
+        public bool CacheEnabled { get; set; } = true;
     }
 
     /// <summary>

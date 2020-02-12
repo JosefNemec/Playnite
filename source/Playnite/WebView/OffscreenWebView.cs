@@ -34,7 +34,8 @@ namespace Playnite.WebView
             browser.BrowserInitialized += Browser_BrowserInitialized;
             var brwSet = new BrowserSettings
             {
-                Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled
+                Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled,
+                ApplicationCache = settings.CacheEnabled ? CefState.Enabled : CefState.Disabled
             };
             browser.CreateBrowser(null, brwSet);
             browserInitializedEvent.WaitOne(5000);
