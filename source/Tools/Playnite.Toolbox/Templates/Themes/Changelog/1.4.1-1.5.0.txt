@@ -1,0 +1,15 @@
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/NullableIntBox.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/NumericBox.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/SliderEx.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/DerivedStyles/GridViewItemTemplate.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Media.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/DetailsViewGameOverview.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/FilterPanel.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/GridViewGameOverview.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/MainPanel.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Constants.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/Button.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DerivedStyles/ListGameItem.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/GameDetails.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/MainMenu.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/SettingsMenu.xaml
