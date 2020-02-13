@@ -116,6 +116,7 @@ namespace XboxLibrary
                             var game = GetGameInfoFromTitle(libTitle);
                             game.IsInstalled = true;
                             game.InstallDirectory = installedApp.WorkDir;
+                            game.Icon = installedApp.Icon;
                             game.PlayAction = new GameAction
                             {
                                 Type = GameActionType.File,
