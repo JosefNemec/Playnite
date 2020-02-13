@@ -47,5 +47,14 @@ namespace Playnite.Tests
             Assert.IsFalse(string.IsNullOrEmpty(firstApp.Name));
             Assert.IsFalse(string.IsNullOrEmpty(firstApp.Path));
         }
+
+        [Test]
+        public void IsPathUninstallerTest()
+        {
+            Assert.IsTrue(Programs.IsPathUninstaller(@"d:\GOG Games\Blackwell\unins000.exe"));
+            Assert.IsTrue(Programs.IsPathUninstaller(@"d:\GOG Games\Blackwell\setup1.exe"));
+            Assert.IsTrue(Programs.IsPathUninstaller(@"d:\GOG Games\Blackwell\setup.exe"));
+            Assert.IsTrue(Programs.IsPathUninstaller(@"d:\GOG Games\Blackwell\uninstall.exe"));
+        }
     }
 }

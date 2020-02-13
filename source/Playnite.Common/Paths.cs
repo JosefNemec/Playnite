@@ -40,7 +40,15 @@ namespace Playnite.Common
                     throw new Win32Exception();
                 }
 
-                return sb.ToString().Replace(@"\\?\", string.Empty);
+                var targetPath = sb.ToString();
+                if (targetPath.StartsWith(@"\\?\UNC\"))
+                {
+                    return targetPath.Replace(@"\\?\UNC\", @"\\");
+                }
+                else
+                {
+                    return targetPath.Replace(@"\\?\", string.Empty);
+                }
             }
             finally
             {
@@ -98,7 +106,7 @@ namespace Playnite.Common
             }
             catch
             {
-                // this shound't happen 
+                // this shound't happen
             }
 
             return Path.GetFullPath(formatted).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).ToUpperInvariant();

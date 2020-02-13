@@ -122,6 +122,11 @@ namespace Playnite.SDK.Models
         public bool Hidden { get; set; }
 
         /// <summary>
+        /// Gets or sets Favorite.
+        /// </summary>
+        public bool Favorite { get; set; }
+
+        /// <summary>
         /// Gets or sets Version.
         /// </summary>
         public string Version { get; set; }
@@ -175,6 +180,11 @@ namespace Playnite.SDK.Models
         /// Gets or sets Tags.
         /// </summary>
         public List<string> Tags { get; set; }
+
+        /// <summary>
+        /// Gets or sets game Features.
+        /// </summary>
+        public List<string> Features { get; set; }
 
         /// <summary>
         /// Creates new instance of <see cref="GameInfo"/>.

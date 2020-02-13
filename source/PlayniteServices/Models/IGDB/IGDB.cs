@@ -167,7 +167,6 @@ namespace PlayniteServices.Models.IGDB
 
     public class ProductFamily : IgdbItem
     {
-
     }
 
     public class GameMode : IgdbItem
@@ -189,6 +188,10 @@ namespace PlayniteServices.Models.IGDB
     }
 
     public class Genre : IgdbItem
+    {
+    }
+
+    public class PlayerPerspective : IgdbItem
     {
     }
 
@@ -231,6 +234,7 @@ namespace PlayniteServices.Models.IGDB
         public new List<Video> videos { get; set; }
         public new List<Platform> platforms { get; set; }
         public new List<ReleaseDate> release_dates { get; set; }
+        public new List<PlayerPerspective> player_perspectives { get; set; }
 
         // fallback properties for 4.x
         public new string cover { get; set; }
@@ -268,6 +272,10 @@ namespace PlayniteServices.Models.IGDB
         public List<ulong> videos { get; set; }
         public List<ulong> platforms { get; set; }
         public List<ulong> release_dates { get; set; }
+        public List<ulong> age_ratings { get; set; }
+        public List<ulong> similar_games { get; set; }
+        public List<ulong> player_perspectives { get; set; }
+        public ulong parent_game { get; set; }
     }
 
     public static class ModelsUtils

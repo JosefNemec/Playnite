@@ -1,0 +1,10 @@
+Properties\AssemblyInfo.cs
+CustomMetadataPlugin.csproj
+extension.yaml
+icon.png
+packages.config
+_name_.cs
+_name_Provider.cs
+_name_Settings.cs
+_name_SettingsView.xaml
+_name_SettingsView.xaml.cs

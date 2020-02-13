@@ -112,6 +112,7 @@
     <Compile Include="Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
+    <Compile Include="GoogleImageDownloaderTests.cs" />
     <Compile Include="ImageSourceManagerTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />
@@ -129,6 +130,8 @@
     <Compile Include="Models\DatabaseObjectTests.cs" />
     <Compile Include="Models\GameActionTests.cs" />
     <Compile Include="ImagesTests.cs" />
+    <Compile Include="PlayniteUriHandlerTests.cs" />
+    <Compile Include="ProcessStarterTests.cs" />
     <Compile Include="Scripting\Batch\BatchTests.cs" />
     <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />
@@ -136,7 +139,7 @@
     <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
     <Compile Include="Metadata\WikipediaMetadataProviderTests.cs" />
     <Compile Include="MockDialogsFactory.cs" />
-    <Compile Include="MockResourceProvider.cs" />
+    <Compile Include="TestResourceProvider.cs" />
     <Compile Include="MockWindowFactory.cs" />
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="Models\Old\0\Game.cs" />
@@ -222,6 +225,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\XmlTest\Xml3.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite\Localization\LocSource.xaml">
+      <Link>Localization\LocSource.xaml</Link>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

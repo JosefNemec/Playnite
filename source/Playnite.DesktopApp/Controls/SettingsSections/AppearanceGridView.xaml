@@ -15,10 +15,16 @@
 
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-        <Style TargetType="ContentControl" BasedOn="{StaticResource {x:Type ContentControl}}">
-            <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-            <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
-            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Style TargetType="ContentControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <TextBlock Style="{DynamicResource BaseTextBlockStyle}">
+                            <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
 
@@ -45,6 +51,8 @@
                   Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
         <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
                   Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsDarkenUninstalledGridCovers}" Margin="0,15,0,0"
+                  Name="CheckDarkenUninstalledCovers" IsChecked="{Binding Settings.DarkenUninstalledGamesGrid}"/>
 
         <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />        
         <Separator />

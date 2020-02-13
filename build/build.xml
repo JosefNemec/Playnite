@@ -7,45 +7,61 @@
         <MSBuild
             Projects="../source/Plugins/SteamLibrary/SteamLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/GogLibrary/GogLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/OriginLibrary/OriginLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/BattleNetLibrary/BattleNetLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/UplayLibrary/UplayLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/TwitchLibrary/TwitchLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/BethesdaLibrary/BethesdaLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/EpicLibrary/EpicLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/ItchioLibrary/ItchioLibrary.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/Plugins/IGDBMetadata/IGDBMetadata.csproj"
             Targets="Build"
-            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
+        <MSBuild
+            Projects="../source/Plugins/HumbleLibrary/HumbleLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
+        <MSBuild
+            Projects="../source/Plugins/XboxLibrary/XboxLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
     </Target>
     <Target Name="Build" DependsOnTargets="Plugins">
+        <MSBuild
+            Projects="../source/Playnite.Common/Playnite.Common.csproj"
+            Targets="Build"
+            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
+        <MSBuild
+            Projects="../source/PlayniteSDK/Playnite.SDK.csproj"
+            Targets="Build"
+            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
         <MSBuild
             Projects="../source/tools/Playnite.Toolbox/Playnite.Toolbox.csproj"
             Targets="Build"

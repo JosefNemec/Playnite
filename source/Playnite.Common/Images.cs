@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.IO;
+using Playnite.SDK;
 
 namespace Playnite.Common
 {
@@ -18,6 +19,8 @@ namespace Playnite.Common
 
     public class Images
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         public static Image GetImageFromResource(string path, string assemblyName, BitmapScalingMode scaling = BitmapScalingMode.HighQuality, double height = 16, double width = 16)
         {
             var image = new Image()
@@ -55,28 +58,35 @@ namespace Playnite.Common
 
         public static ImageProperties GetImageProperties(string imagePath)
         {
-            return GetImageProperties(BitmapDecoder.Create(new Uri(imagePath), BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default));
+            try
+            {
+                using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    return GetImageProperties(stream);
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to load image properties from file {imagePath}");
+                return new ImageProperties();
+            }
         }
 
         public static ImageProperties GetImageProperties(Stream imageStream)
         {
-            return GetImageProperties(BitmapDecoder.Create(imageStream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default));
-        }
-
-        public static ImageProperties GetImageProperties(BitmapDecoder decoder)
-        {
-            if (decoder.Frames.Count > 0)
+            try
             {
-                var encoders = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+                var bitmapFrame = BitmapFrame.Create(imageStream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
                 return new ImageProperties
                 {
-                    Height = decoder.Frames[0].PixelHeight,
-                    Width = decoder.Frames[0].PixelWidth,
+                    Height = bitmapFrame.PixelHeight,
+                    Width = bitmapFrame.PixelWidth,
                 };
             }
-            else
+            catch (Exception e)
             {
-                return null;
+                logger.Error(e, "Failed to load image properties from stream.");
+                return new ImageProperties();
             }
         }
     }

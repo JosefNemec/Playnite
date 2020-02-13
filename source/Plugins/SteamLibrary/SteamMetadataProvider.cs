@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Playnite.Common.Web;
+using System.Diagnostics;
 
 namespace SteamLibrary
 {
@@ -64,120 +65,46 @@ namespace SteamLibrary
 
         internal KeyValue GetAppInfo(uint appId)
         {
-            KeyValue data = null;
-            var stringData = string.Empty;
-
-            // First try to get cached data
             try
             {
-                stringData = playniteServices.GetSteamAppInfoData(appId);
+                return apiClient.GetProductInfo(appId).GetAwaiter().GetResult();
             }
-            catch (Exception e)
+            catch (Exception e) when (!Debugger.IsAttached)
             {
-                logger.Error(e, $"Failed to get Steam appinfo cache data {appId}.");
+                logger.Error(e, $"Failed to get Steam appinfo {appId}");
+                return null;
             }
-
-            // If no cache then download on client and push to cache
-            if (string.IsNullOrEmpty(stringData))
-            {
-                data = apiClient.GetProductInfo(appId).GetAwaiter().GetResult();
-                logger.Debug($"Steam appinfo got from live server {appId}");
-
-                try
-                {
-                    using (var str = new MemoryStream())
-                    {
-                        data.SaveToStream(str, false);
-                        using (var reader = new StreamReader(str, Encoding.UTF8))
-                        {
-                            str.Seek(0, SeekOrigin.Begin);
-                            stringData = reader.ReadToEnd();
-                        }
-                    }
-
-                    playniteServices.PostSteamAppInfoData(appId, stringData);
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to post steam appinfo data to cache {appId}");
-                }
-            }
-            else
-            {
-                logger.Debug($"Steam appinfo data got from cache {appId}");
-            }
-
-            if (data != null)
-            {
-                return data;
-            }
-            else if (!string.IsNullOrEmpty(stringData))
-            {
-                return KeyValue.LoadFromString(stringData);
-            }
-
-            return null;
         }
 
         internal StoreAppDetailsResult.AppDetails GetStoreData(uint appId)
         {
             var stringData = string.Empty;
-
-            // First try to get cached data
-            try
+            // Steam may return 429 if we put too many request
+            for (int i = 0; i < 10; i++)
             {
-                stringData = playniteServices.GetSteamStoreData(appId);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e, "Failed to get Steam store cache data.");
-            }
-
-            // If no cache then download on client and push to cache
-            if (string.IsNullOrEmpty(stringData))
-            {
-                // Steam may return 429 if we put too many request
-                for (int i = 0; i < 10; i++)
+                try
                 {
-                    try
+                    stringData = WebApiClient.GetRawStoreAppDetail(appId);
+                    break;
+                }
+                catch (WebException e)
+                {
+                    if (i + 1 == 10)
                     {
-                        stringData = WebApiClient.GetRawStoreAppDetail(appId);
-                        logger.Debug($"Steam store data got from live server {appId}");
-
-                        try
-                        {
-                            playniteServices.PostSteamStoreData(appId, stringData);
-                        }
-                        catch (Exception e)
-                        {
-                            logger.Error(e, $"Failed to post steam store data to cache {appId}");
-                        }
-
-                        break;
+                        logger.Error($"Reached download timeout for Steam store game {appId}");
+                        return null;
                     }
-                    catch (WebException e)
-                    {
-                        if (i + 1 == 10)
-                        {
-                            logger.Error($"Reached download timeout for Steam store game {appId}");
-                            return null;
-                        }
 
-                        if (e.Message.Contains("429"))
-                        {
-                            Thread.Sleep(2500);
-                            continue;
-                        }
-                        else
-                        {
-                            throw;
-                        }
+                    if (e.Message.Contains("429"))
+                    {
+                        Thread.Sleep(2500);
+                        continue;
+                    }
+                    else
+                    {
+                        throw;
                     }
                 }
-            }
-            else
-            {
-                logger.Debug($"Steam store data got from cache {appId}");
             }
 
             if (!string.IsNullOrEmpty(stringData))
@@ -277,10 +204,24 @@ namespace SteamLibrary
             }
 
             // Background Image
+            var bannerBk = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_hero.jpg", appId);
+            var storeBk = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId);
+
             switch (settings.BackgroundSource)
             {
                 case BackgroundSource.Image:
-                    metadata.BackgroundImage = new MetadataFile(GetGameBackground(appId));
+                    var bk = GetGameBackground(appId);
+                    if (string.IsNullOrEmpty(bk))
+                    {
+                        if (HttpDownloader.GetResponseCode(bannerBk) == HttpStatusCode.OK)
+                        {
+                            metadata.BackgroundImage = new MetadataFile(bannerBk);
+                        }
+                    }
+                    else
+                    {
+                        metadata.BackgroundImage = new MetadataFile(bk);
+                    }
                     break;
                 case BackgroundSource.StoreScreenshot:
                     if (metadata.StoreDetails != null)
@@ -289,7 +230,16 @@ namespace SteamLibrary
                     }
                     break;
                 case BackgroundSource.StoreBackground:
-                    metadata.BackgroundImage = new MetadataFile(string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId));
+                    if (HttpDownloader.GetResponseCode(storeBk) == HttpStatusCode.OK)
+                    {
+                        metadata.BackgroundImage = new MetadataFile(storeBk);
+                    }
+                    break;
+                case BackgroundSource.Banner:
+                    if (HttpDownloader.GetResponseCode(bannerBk) == HttpStatusCode.OK)
+                    {
+                        metadata.BackgroundImage = new MetadataFile(bannerBk);
+                    }
                     break;
                 default:
                     break;
@@ -360,7 +310,22 @@ namespace SteamLibrary
 
                 if (downloadedMetadata.StoreDetails.categories.HasItems())
                 {
-                    gameInfo.Tags = new List<string>(downloadedMetadata.StoreDetails.categories.Select(a => cultInfo.ToTitleCase(a.description)));
+                    gameInfo.Features = new List<string>();
+                    foreach (var category in downloadedMetadata.StoreDetails.categories)
+                    {
+                        // Ignore VR category, will be set from appinfo
+                        if (category.id == 31)
+                        {
+                            continue;
+                        }
+
+                        if (category.description == "Steam Cloud")
+                        {
+                            category.description = "Cloud Saves";
+                        }
+
+                        gameInfo.Features.Add(cultInfo.ToTitleCase(category.description.Replace("steam", "", StringComparison.OrdinalIgnoreCase).Trim()));
+                    }
                 }
 
                 if (downloadedMetadata.StoreDetails.genres.HasItems())
@@ -416,6 +381,52 @@ namespace SteamLibrary
                 }
 
                 gameInfo.OtherActions = tasks;
+
+                // VR features
+                var vrSupport = false;
+                foreach (var vrArea in downloadedMetadata.ProductDetails["common"]["playareavr"].Children)
+                {
+                    if (vrArea.Name == "seated" && vrArea.Value == "1")
+                    {
+                        gameInfo.Features.Add("VR Seated");
+                        vrSupport = true;
+                    }
+                    else if (vrArea.Name == "standing" && vrArea.Value == "1")
+                    {
+                        gameInfo.Features.Add("VR Standing");
+                        vrSupport = true;
+                    }
+                    if (vrArea.Name.Contains("roomscale"))
+                    {
+                        gameInfo.Features.AddMissing("VR Room-Scale");
+                        vrSupport = true;
+                    }
+                }
+
+                foreach (var vrArea in downloadedMetadata.ProductDetails["common"]["controllervr"].Children)
+                {
+                    if (vrArea.Name == "kbm" && vrArea.Value == "1")
+                    {
+                        gameInfo.Features.Add("VR Keyboard / Mouse");
+                        vrSupport = true;
+                    }
+                    else if (vrArea.Name == "xinput" && vrArea.Value == "1")
+                    {
+                        gameInfo.Features.Add("VR Gamepad");
+                        vrSupport = true;
+                    }
+                    if ((vrArea.Name == "oculus" && vrArea.Value == "1") ||
+                        (vrArea.Name == "steamvr" && vrArea.Value == "1"))
+                    {
+                        gameInfo.Features.Add("VR Motion Controllers");
+                        vrSupport = true;
+                    }
+                }
+
+                if (vrSupport)
+                {
+                    gameInfo.Features.Add("VR");
+                }
             }
 
             return downloadedMetadata;

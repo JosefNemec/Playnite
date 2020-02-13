@@ -20,6 +20,7 @@ using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using Playnite.Metadata;
 using Playnite.SDK;
+using Microsoft.Win32;
 
 namespace Playnite
 {
@@ -107,7 +108,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 3;
+        } = 4;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -587,7 +588,6 @@ namespace Playnite
             }
         }
 
-
         private bool showNamesUnderCovers = false;
         public bool ShowNamesUnderCovers
         {
@@ -856,7 +856,7 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
-                
+
         private bool notificationPanelVisible = false;
         [JsonIgnore]
         public bool NotificationPanelVisible
@@ -1311,7 +1311,7 @@ namespace Playnite
                 textFormattingMode = value;
                 OnPropertyChanged();
             }
-        } 
+        }
 
         private TextRenderingModeOptions textRenderingMode = TextRenderingModeOptions.Auto;
         [RequiresRestart]
@@ -1408,7 +1408,29 @@ namespace Playnite
                 backgroundImageAnimation = value;
                 OnPropertyChanged();
             }
-        }        
+        }
+
+        private AutoClientShutdownSettings clientAutoShutdown = new AutoClientShutdownSettings();
+        public AutoClientShutdownSettings ClientAutoShutdown
+        {
+            get => clientAutoShutdown;
+            set
+            {
+                clientAutoShutdown = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool darkenUninstalledGamesGrid = false;
+        public bool DarkenUninstalledGamesGrid
+        {
+            get => darkenUninstalledGamesGrid;
+            set
+            {
+                darkenUninstalledGamesGrid = value;
+                OnPropertyChanged();
+            }
+        }
 
         [JsonIgnore]
         public static bool IsPortable
@@ -1442,6 +1464,7 @@ namespace Playnite
             InstallInstanceId = Guid.NewGuid().ToString();
             ItemSpacingMargin = GetItemSpacingMargin();
             FullscreenItemSpacingMargin = GetFullscreenItemSpacingMargin();
+            UpdateGridItemHeight();
         }
 
         private static T LoadSettingFile<T>(string path) where T : class
@@ -1463,7 +1486,7 @@ namespace Playnite
 
         private static void SaveSettingFile(object settings, string path)
         {
-            File.WriteAllText(path, JsonConvert.SerializeObject(settings, Formatting.Indented));
+            FileSystem.WriteStringToFile(path, JsonConvert.SerializeObject(settings, Formatting.Indented));
         }
 
         public static PlayniteSettings LoadSettings()
@@ -1471,10 +1494,16 @@ namespace Playnite
             var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);
             if (settings == null)
             {
-                logger.Info("No existing settings found, creating default ones.");
-                settings = new PlayniteSettings();
+                logger.Warn("No existing settings found.");
+                settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.BackupConfigFilePath);
+                if (settings == null)
+                {
+                    logger.Warn("No settings backup found, creating default ones.");
+                    settings = new PlayniteSettings();
+                }
             }
-            else
+
+            if (settings != null)
             {
                 if (settings.Version == 1)
                 {
@@ -1487,20 +1516,37 @@ namespace Playnite
                     settings.BackgroundImageBlurAmount = 60;
                     settings.Version = 3;
                 }
+
+                if (settings.Version == 3)
+                {
+                    settings.MetadataSettings.Feature = new MetadataFieldSettings(
+                        true, new List<Guid> { Guid.Empty, BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata) });
+                    settings.Version = 4;
+                }
             }
 
             settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
             if (settings.WindowPositions == null)
             {
-                logger.Info("No existing WindowPositions settings found, creating default ones.");
-                settings.WindowPositions = new WindowPositions();
+                logger.Warn("No existing WindowPositions settings found.");
+                settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.BackupWindowPositionsPath);
+                if (settings.WindowPositions == null)
+                {
+                    logger.Warn("No WindowPositions settings backup found, creating default ones.");
+                    settings.WindowPositions = new WindowPositions();
+                }
             }
 
             settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath);
             if (settings.Fullscreen == null)
             {
-                logger.Info("No existing fullscreen settings found, creating default ones.");
-                settings.Fullscreen = new FullscreenSettings();
+                logger.Warn("No existing fullscreen settings found.");
+                settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.BackupFullscreenConfigFilePath);
+                if (settings.Fullscreen == null)
+                {
+                    logger.Warn("No fullscreen settings backup found, creating default ones.");
+                    settings.Fullscreen = new FullscreenSettings();
+                }
             }
 
             if (settings.MetadataSettings == null)
@@ -1508,12 +1554,12 @@ namespace Playnite
                 settings.MetadataSettings = MetadataDownloaderSettings.GetDefaultSettings();
             }
 
+            settings.BackupSettings();
             return settings;
         }
 
         public void SaveSettings()
         {
-
             try
             {
                 FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
@@ -1524,6 +1570,21 @@ namespace Playnite
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to save application settings.");
+            }
+        }
+
+        public void BackupSettings()
+        {
+            try
+            {
+                FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
+                SaveSettingFile(this, PlaynitePaths.BackupConfigFilePath);
+                SaveSettingFile(WindowPositions, PlaynitePaths.BackupWindowPositionsPath);
+                SaveSettingFile(Fullscreen, PlaynitePaths.BackupFullscreenConfigFilePath);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to backup application settings.");
             }
         }
 
@@ -1590,6 +1651,37 @@ namespace Playnite
         {
         }
 
+        public static void RegisterPlayniteUriProtocol()
+        {
+            var view = RegistryView.Registry32;
+            if (Environment.Is64BitOperatingSystem)
+            {
+                view = RegistryView.Registry64;
+            }
+
+            using (var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, view))
+            {
+                using (var classes = root.OpenSubKey(@"Software\Classes", true))
+                {
+                    var openString = $"\"{PlaynitePaths.DesktopExecutablePath}\" --uridata \"%1\"";
+                    var existing = classes.OpenSubKey(@"Playnite\shell\open\command");
+                    if (existing != null && existing.GetValue(string.Empty)?.ToString() == openString)
+                    {
+                        existing.Dispose();
+                        return;
+                    }
+
+                    var newEntry = classes.CreateSubKey("Playnite");
+                    newEntry.SetValue(string.Empty, "URL:playnite");
+                    newEntry.SetValue("URL Protocol", string.Empty);
+                    using (var command = newEntry.CreateSubKey(@"shell\open\command"))
+                    {
+                        command.SetValue(string.Empty, openString);
+                    }
+                }
+            }
+        }
+
         public static void SetBootupStateRegistration(bool runOnBootup)
         {
             var startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
@@ -1600,7 +1692,7 @@ namespace Playnite
                 {
                     HideSplashScreen = true
                 }.ToString();
-                                
+
                 if (File.Exists(shortcutPath))
                 {
                     var existLnk = Programs.GetLnkShortcutData(shortcutPath);
@@ -1651,7 +1743,7 @@ namespace Playnite
         public bool ShouldSerializeDisabledPlugins()
         {
             return DisabledPlugins.HasItems();
-        }       
+        }
 
         #endregion Serialization Conditions
     }

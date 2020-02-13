@@ -3,6 +3,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,12 +90,17 @@ namespace Playnite.Common
             return SelectFiles(null, filter);
         }
 
-        public static string SelectFile(Window owner, string filter)
+        public static string SelectFile(Window owner, string filter, string initialDir = null)
         {
             var dialog = new OpenFileDialog()
             {
                 Filter = filter
             };
+
+            if (!initialDir.IsNullOrEmpty() && Directory.Exists(initialDir))
+            {
+                dialog.InitialDirectory = initialDir;
+            }
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
             if (dialogResult == true)
@@ -114,7 +120,7 @@ namespace Playnite.Common
 
         public static string SelectIconFile(Window owner)
         {
-            return SelectFile(owner, "*.bmp, *.jpg, *.jpeg, *.png, *.gif, *.ico, *.tga, *.exe|*.bmp;*.jpg*;*.png;*.gif;*.ico;*.tga;*.exe");
+            return SelectFile(owner, "Icon Files|*.bmp;*.jpg*;*.png;*.gif;*.ico;*.tga;*.exe;*.tif");
         }
 
         public static string SelectIconFile()
@@ -124,7 +130,7 @@ namespace Playnite.Common
 
         public static string SelectImageFile(Window owner)
         {
-            return SelectFile(owner, "*.bmp, *.jpg, *.jpeg, *.png, *.gif, *.tga|*.bmp;*.jpg*;*.png;*.gif;*.tga");
+            return SelectFile(owner, "Image Files|*.bmp;*.jpg*;*.png;*.gif;*.tga;*.tif");
         }
 
         public static string SelectImageFile()

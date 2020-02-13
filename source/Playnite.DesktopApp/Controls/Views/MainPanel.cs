@@ -15,7 +15,6 @@ using System.Windows.Data;
 
 namespace Playnite.DesktopApp.Controls.Views
 {
-
     [TemplatePart(Name = "PART_ElemMainMenu", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemViewMenu", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_TextMainSearch", Type = typeof(SearchBox))]
@@ -57,6 +56,16 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 this.mainModel = mainModel;
             }
+
+            Unloaded += MainPanel_Unloaded;
+        }
+
+        private void MainPanel_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (ElemMainMenu != null)
+            {
+                (ElemMainMenu.ContextMenu as MainMenu).Dispose();
+            }
         }
 
         public override void OnApplyTemplate()
@@ -94,6 +103,11 @@ namespace Playnite.DesktopApp.Controls.Views
                     nameof(FilterSettings.Name),
                     BindingMode.TwoWay,
                     delay: 100);
+                BindingTools.SetBinding(TextMainSearch,
+                    SearchBox.IsFocusedProperty,
+                    mainModel,
+                    nameof(mainModel.SearchOpened),
+                    BindingMode.TwoWay);
             }
 
             ToggleFilter = Template.FindName("PART_ToggleFilter", this) as ToggleButton;
@@ -147,7 +161,6 @@ namespace Playnite.DesktopApp.Controls.Views
                     mainModel,
                     nameof(mainModel.ProgressVisible),
                     converter: new BooleanToVisibilityConverter());
-
             }
 
             TextProgressText = Template.FindName("PART_TextProgressText", this) as TextBlock;

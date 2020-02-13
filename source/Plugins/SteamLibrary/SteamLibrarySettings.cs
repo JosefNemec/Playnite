@@ -20,7 +20,8 @@ namespace SteamLibrary
     {
         Image,
         StoreScreenshot,
-        StoreBackground
+        StoreBackground,
+        Banner
     }
 
     public enum AuthStatus
@@ -217,6 +218,12 @@ namespace SteamLibrary
 
         public bool VerifySettings(out List<string> errors)
         {
+            if (IsPrivateAccount && ApiKey.IsNullOrEmpty())
+            {
+                errors = new List<string>{ "Steam API key must be specified when using private accounts!" };
+                return false;
+            }
+
             errors = null;
             return true;
         }
@@ -271,7 +278,7 @@ namespace SteamLibrary
                         }
                     };
 
-                    view.DeleteCookies(@"steamcommunity.com", null);
+                    view.DeleteDomainCookies(".steamcommunity.com");
                     view.Navigate(@"https://steamcommunity.com/login/home/?goto=");
                     view.OpenDialog();
                 }

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Playnite
 {
-
     public class MultiEditGame : Game
     {
         public List<Guid> DistinctGenreIds { get; set; }
@@ -17,6 +16,7 @@ namespace Playnite
         public List<Guid> DistinctPublisherIds { get; set; }
         public List<Guid> DistinctCategoryIds { get; set; }
         public List<Guid> DistinctTagIds { get; set; }
+        public List<Guid> DistinctFeatureIds { get; set; }
     }
 
     public class GameTools
@@ -57,6 +57,9 @@ namespace Playnite
 
             dummyGame.TagIds = ListExtensions.GetCommonItems(games.Select(a => a.TagIds)).ToList();
             dummyGame.DistinctTagIds = ListExtensions.GetDistinctItems(games.Select(a => a.TagIds)).ToList();
+
+            dummyGame.FeatureIds = ListExtensions.GetCommonItems(games.Select(a => a.FeatureIds)).ToList();
+            dummyGame.DistinctFeatureIds = ListExtensions.GetDistinctItems(games.Select(a => a.FeatureIds)).ToList();
 
             var firstReleaseDate = firstGame.ReleaseDate;
             if (games.All(a => a.ReleaseDate == firstReleaseDate) == true)

@@ -57,7 +57,7 @@ namespace IGDBMetadata.Tests
                 CollectionAssert.Contains(fields, MetadataField.ReleaseDate);
                 CollectionAssert.Contains(fields, MetadataField.Developers);
                 CollectionAssert.Contains(fields, MetadataField.Publishers);
-                CollectionAssert.Contains(fields, MetadataField.Tags);
+                CollectionAssert.Contains(fields, MetadataField.Features);
                 CollectionAssert.Contains(fields, MetadataField.Description);
                 CollectionAssert.Contains(fields, MetadataField.Links);
                 CollectionAssert.Contains(fields, MetadataField.CriticScore);
@@ -70,7 +70,7 @@ namespace IGDBMetadata.Tests
                 Assert.IsNotNull(provider.GetReleaseDate());
                 CollectionAssert.IsNotEmpty(provider.GetDevelopers());
                 CollectionAssert.IsNotEmpty(provider.GetPublishers());
-                CollectionAssert.IsNotEmpty(provider.GetTags());
+                CollectionAssert.IsNotEmpty(provider.GetFeatures());
                 CollectionAssert.IsNotEmpty(provider.GetLinks());
                 Assert.IsFalse(provider.GetDescription().IsNullOrEmpty());
                 Assert.IsNotNull(provider.GetCriticScore());
@@ -194,6 +194,6 @@ namespace IGDBMetadata.Tests
             {
                 Assert.AreEqual("Dishonored: Death of the Outsider", provider.GetName());
             }
-        }        
+        }
     }
 }

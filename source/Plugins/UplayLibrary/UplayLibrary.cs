@@ -134,6 +134,11 @@ namespace UplayLibrary
 
         public override Guid Id => Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5");
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
+
         public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
@@ -197,6 +202,20 @@ namespace UplayLibrary
                     logger.Error(e, "Failed to import uninstalled Uplay games.");
                     importError = e;
                 }
+            }
+
+            if (importError != null)
+            {
+                PlayniteApi.Notifications.Add(new NotificationMessage(
+                    dbImportMessageId,
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                    System.Environment.NewLine + importError.Message,
+                    NotificationType.Error,
+                    () => OpenSettingsView()));
+            }
+            else
+            {
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;

@@ -77,10 +77,12 @@
                             Command="{Binding AddEmulatorCommand}"/>
                 <Button Content="{DynamicResource LOCCopyTitle}" Name="ButtonCopyEmulator" 
                             Grid.Row="1" Grid.Column="1" Margin="5"
-                            Command="{Binding CopyEmulatorCommand}"/>
+                            Command="{Binding CopyEmulatorCommand}"
+                        CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
                 <Button Content="{DynamicResource LOCRemoveTitle}" Name="ButtonRemoveEmulator" 
                             Grid.Row="1" Grid.Column="2" Margin="5"
-                            Command="{Binding RemoveEmulatorCommand}"/>
+                            Command="{Binding RemoveEmulatorCommand}"
+                        CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
             </Grid>
 
             <DockPanel Grid.Column="1">
@@ -92,19 +94,12 @@
                                 HorizontalAlignment="Right" Margin="5"
                                 Name="ButtonImportEmulators" Command="{Binding ImportEmulatorsCommand}"/>
                 </StackPanel>
-                <Grid KeyboardNavigation.TabNavigation="Local" DataContext="{Binding SelectedEmulator}" DockPanel.Dock="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
+                
+                <StackPanel KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
                     <StackPanel Grid.Row="0" Margin="{StaticResource EditSeparatorMargin}">
                         <TextBlock Text="{DynamicResource LOCGameNameTitle}" />
-                        <TextBox TabIndex="1" Name="TextEmulatorName" Margin="0,5,0,0" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox TabIndex="1" Name="TextEmulatorName" Margin="0,5,0,0"
+                                 Text="{Binding SelectedEmulator.Name,UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Margin="{StaticResource EditSeparatorMargin}">
@@ -117,22 +112,25 @@
                                     </Hyperlink>
                             </TextBlock>
                             <Button TabIndex="5" Content="{DynamicResource LOCRemoveTitle}" DockPanel.Dock="Right" Margin="5,0,5,0"
-                                        Command="{Binding Data.RemoveEmulatorProfileCommand, Source={StaticResource Proxy}}"/>
+                                    Command="{Binding RemoveEmulatorProfileCommand}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}"/>
                             <Button TabIndex="4" Content="{DynamicResource LOCCopyTitle}" DockPanel.Dock="Right" Margin="5,0,5,0"
-                                        Command="{Binding Data.CopyEmulatorProfileCommand, Source={StaticResource Proxy}}"/>
+                                    Command="{Binding CopyEmulatorProfileCommand}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}"/>
                             <Button TabIndex="3" Content="{DynamicResource LOCAddTitle}" DockPanel.Dock="Right" Margin="10,0,5,0"
-                                        Command="{Binding Data.AddEmulatorProfileCommand, Source={StaticResource Proxy}}"/>
+                                    Command="{Binding AddEmulatorProfileCommand}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
                             <ComboBox TabIndex="2" Name="ComboEmulatorProfiles" Margin="0,0,0,0" DockPanel.Dock="Left"
-                                            VerticalAlignment="Center"
-                                            ItemsSource="{Binding Profiles}" DisplayMemberPath="Name"
-                                            SelectedItem="{Binding Data.SelectedProfile, Mode=TwoWay, Source={StaticResource Proxy}}"/>
+                                      VerticalAlignment="Center" DisplayMemberPath="Name"
+                                      ItemsSource="{Binding SelectedEmulator.Profiles}"
+                                      SelectedItem="{Binding SelectedProfile}"/>
                         </DockPanel>
                     </StackPanel>
 
                     <GroupBox Header="{DynamicResource LOCProfileSettings}" Grid.Row="2" Margin="5,5,5,5"
-                                    IsEnabled="{Binding Data.SelectedProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToBoolConverter}}">
+                              IsEnabled="{Binding SelectedItem, ElementName=ComboEmulatorProfiles, Converter={StaticResource NullToBoolConverter}}">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <Grid DataContext="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}" DockPanel.Dock="Top">
+                            <Grid DataContext="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -148,19 +146,22 @@
                                 <StackPanel Grid.Row="0" Margin="{StaticResource EditSeparatorMargin}">
                                     <TextBlock Text="{DynamicResource LOCNameLabel}" />
                                     <TextBox Name="TextEmulatorProfileName" Margin="0,5,0,0"
-                                                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Margin="{StaticResource EditSeparatorMargin}">
                                     <TextBlock Text="{DynamicResource LOCSupportedPlatformsTitle}" />                                          
-                                    <pctrls:DdItemListSelectionBox ItemsList="{Binding Data.AvailablePlatforms, Source={StaticResource Proxy}}" Margin="0,5,0,0" />
+                                    <pctrls:DdItemListSelectionBox ItemsList="{Binding Data.AvailablePlatforms, Source={StaticResource Proxy}}"
+                                                                   BoundIds="{Binding Platforms, Mode=TwoWay}"
+                                                                   Margin="0,5,0,0" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="2" Margin="{StaticResource EditSeparatorMargin}">
                                     <TextBlock Text="{DynamicResource LOCExecutableTitle}" />
                                     <DockPanel KeyboardNavigation.TabNavigation="Local" Margin="0,5,0,0">
                                         <Button TabIndex="2" Name="ButtonLocateExe" Content="..." Height="26" DockPanel.Dock="Right" Margin="5,0,0,0"
-                                        Command="{Binding Data.SelectEmulatorExecutableCommand, Source={StaticResource Proxy}}"/>
+                                                Command="{Binding Data.SelectEmulatorExecutableCommand, Source={StaticResource Proxy}}"
+                                                CommandParameter="{Binding}"/>
                                         <TextBox TabIndex="1" Name="TextExecutable" Text="{Binding Executable,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"/>
                                     </DockPanel>
                                 </StackPanel>
@@ -185,7 +186,7 @@
                             </Grid>
                         </ScrollViewer>
                     </GroupBox>
-                </Grid>
+                </StackPanel>
             </DockPanel>
         </Grid>
     </DockPanel>

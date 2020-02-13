@@ -23,13 +23,15 @@
     <DocumentationFile>bin\Debug\Playnite.SDK.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Playnite.SDK.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -58,13 +60,18 @@
     <Compile Include="Collections\RangeObservableCollection.cs" />
     <Compile Include="Database\IGameDatabase.cs" />
     <Compile Include="Database\IItemCollection.cs" />
+    <Compile Include="Events\ApplicationEvents.cs" />
+    <Compile Include="Events\PlayniteUriEventArgs.cs" />
     <Compile Include="Exceptions\TypeMismatchException.cs" />
     <Compile Include="Exceptions\ReferenceException.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="IUriHandlerAPI.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\PastTimeSegment.cs" />
     <Compile Include="Models\PlaytimeCategory.cs" />
     <Compile Include="Models\ScoreGroup.cs" />
+    <Compile Include="Events\GameSelectionEvent.cs" />
+    <Compile Include="Models\GameFeature.cs" />
     <Compile Include="Plugins\MetadataPlugin.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ResourceProvider.cs" />

@@ -22,7 +22,7 @@ namespace Playnite.Metadata
         private GameDatabase database;
         private readonly List<MetadataPlugin> metadataDownloaders;
         private Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders = new Dictionary<Guid, LibraryMetadataProvider>();
-        
+
         public MetadataDownloader(GameDatabase database, List<MetadataPlugin> metadataDownloaders, List<LibraryPlugin> libraryPlugins)
         {
             this.database = database;
@@ -40,7 +40,7 @@ namespace Playnite.Metadata
                 }
 
                 libraryDownloaders.Add(plugin.Id, downloader);
-            }            
+            }
         }
 
         public MetadataDownloader(GameDatabase database, List<MetadataPlugin> metadataDownloaders, Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders)
@@ -215,6 +215,9 @@ namespace Playnite.Metadata
                         case MetadataField.BackgroundImage:
                             metadata.BackgroundImage = provider.GetBackgroundImage();
                             break;
+                        case MetadataField.Features:
+                            gameInfo.Features = provider.GetFeatures();
+                            break;
                         default:
                             throw new NotImplementedException();
                     }
@@ -302,7 +305,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Genre, MetadataField.Genres, (a) => a.GameInfo?.Genres, existingStoreData, existingPluginData);
                                 if (gameData?.GameInfo?.Genres.HasNonEmptyItems() == true)
                                 {
-                                    game.GenreIds = database.Genres.Add(gameData.GameInfo.Genres).Select(a => a.Id).ToList();
+                                    game.GenreIds = database.Genres.Add(gameData.GameInfo.Genres, LooseDbNameComparer).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -325,7 +328,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Developer, MetadataField.Developers, (a) => a.GameInfo?.Developers, existingStoreData, existingPluginData);
                                 if (gameData?.GameInfo?.Developers.HasNonEmptyItems() == true)
                                 {
-                                    game.DeveloperIds = database.Companies.Add(gameData.GameInfo.Developers).Select(a => a.Id).ToList();
+                                    game.DeveloperIds = database.Companies.Add(gameData.GameInfo.Developers, LooseDbNameComparer).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -333,18 +336,17 @@ namespace Playnite.Metadata
                         // Publisher
                         if (settings.Publisher.Import)
                         {
-
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.PublisherIds.HasItems()))
                             {
                                 gameData = ProcessField(game, settings.Publisher, MetadataField.Publishers, (a) => a.GameInfo?.Publishers, existingStoreData, existingPluginData);
                                 if (gameData?.GameInfo?.Publishers.HasNonEmptyItems() == true)
                                 {
-                                    game.PublisherIds = database.Companies.Add(gameData.GameInfo.Publishers).Select(a => a.Id).ToList();
+                                    game.PublisherIds = database.Companies.Add(gameData.GameInfo.Publishers, LooseDbNameComparer).Select(a => a.Id).ToList();
                                 }
                             }
                         }
 
-                        // Tags / Features
+                        // Tags
                         if (settings.Tag.Import)
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.TagIds.HasItems()))
@@ -352,7 +354,20 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Tag, MetadataField.Tags, (a) => a.GameInfo?.Tags, existingStoreData, existingPluginData);
                                 if (gameData?.GameInfo?.Tags.HasNonEmptyItems() == true)
                                 {
-                                    game.TagIds = database.Tags.Add(gameData.GameInfo.Tags).Select(a => a.Id).ToList();
+                                    game.TagIds = database.Tags.Add(gameData.GameInfo.Tags, LooseDbNameComparer).Select(a => a.Id).ToList();
+                                }
+                            }
+                        }
+
+                        // Features
+                        if (settings.Feature.Import)
+                        {
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.FeatureIds.HasItems()))
+                            {
+                                gameData = ProcessField(game, settings.Feature, MetadataField.Features, (a) => a.GameInfo?.Features, existingStoreData, existingPluginData);
+                                if (gameData?.GameInfo?.Features.HasNonEmptyItems() == true)
+                                {
+                                    game.FeatureIds = database.Features.Add(gameData.GameInfo.Features, LooseDbNameComparer).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -428,7 +443,6 @@ namespace Playnite.Metadata
                         // Cover
                         if (settings.CoverImage.Import)
                         {
-
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.CoverImage)))
                             {
                                 gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.CoverImage, existingStoreData, existingPluginData);
@@ -475,6 +489,13 @@ namespace Playnite.Metadata
                     }
                 }
             });
+        }
+
+        private bool LooseDbNameComparer<TItem>(TItem existingItem, string newName) where TItem : DatabaseObject
+        {
+            return string.Equals(
+                Regex.Replace(existingItem.Name, @"[\s-]", ""),
+                Regex.Replace(newName, @"[\s-]", ""), StringComparison.OrdinalIgnoreCase);
         }
     }
 }

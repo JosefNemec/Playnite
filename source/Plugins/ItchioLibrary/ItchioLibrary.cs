@@ -197,6 +197,11 @@ namespace ItchioLibrary
 
         public override Guid Id => Guid.Parse("00000001-EBB2-4EEC-ABCB-7C89937A42BB");
 
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = false
+        };
+
         public override IGameController GetGameController(Game game)
         {
             return new ItchioGameController(game, PlayniteApi);
@@ -270,11 +275,12 @@ namespace ItchioLibrary
 
             if (importError != null)
             {
-                PlayniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(new NotificationMessage(
                     dbImportMessageId,
                     string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
-                    NotificationType.Error);
+                    NotificationType.Error,
+                    () => OpenSettingsView()));
             }
             else
             {

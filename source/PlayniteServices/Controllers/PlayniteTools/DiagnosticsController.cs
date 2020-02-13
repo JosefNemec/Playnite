@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,8 +59,9 @@ namespace PlayniteServices.Controllers.PlayniteTools
                 {
                     using (var tr = new StreamReader(infoStream))
                     {
-                        var verLine = tr.ReadLine();
-                        version = verLine.Split(':')[1].Trim();
+                        var infoContent = tr.ReadToEnd();
+                        var info = JsonConvert.DeserializeObject<Dictionary<string, object>>(infoContent);
+                        version = info["Version"].ToString();
                     }
                 }
 

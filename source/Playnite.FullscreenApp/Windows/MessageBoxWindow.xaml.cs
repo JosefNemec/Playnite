@@ -1,4 +1,5 @@
 ﻿using Playnite.Controls;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -87,7 +88,6 @@ namespace Playnite.FullscreenApp.Windows
             }
         }
 
-
         private bool showInputField = false;
         public bool ShowInputField
         {
@@ -141,8 +141,7 @@ namespace Playnite.FullscreenApp.Windows
             Height = owner.Height;
             Width = owner.Width;
             result = defaultResult;
-            Text = messageBoxText;
-            Caption = caption;
+            SetStrings(messageBoxText, caption);
             DisplayIcon = icon;
 
             switch (button)
@@ -179,6 +178,27 @@ namespace Playnite.FullscreenApp.Windows
 
             ShowDialog();
             return result;
+        }
+
+        private void SetStrings(string messageText, string messageCaption)
+        {
+            if (messageText?.StartsWith("LOC") == true)
+            {
+                Text = ResourceProvider.GetString(messageText);
+            }
+            else
+            {
+                Text = messageText;
+            }
+
+            if (messageCaption?.StartsWith("LOC") == true)
+            {
+                Caption = ResourceProvider.GetString(messageCaption);
+            }
+            else
+            {
+                Caption = messageCaption;
+            }
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)

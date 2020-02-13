@@ -66,13 +66,18 @@ namespace GogLibrary
             if (storeData.StoreDetails != null)
             {
                 gameInfo.Genres = storeData.StoreDetails.genres?.Select(a => a.name).ToList();
-                gameInfo.Tags = storeData.StoreDetails.tags?.Select(a => a.name).ToList();
+                gameInfo.Features = storeData.StoreDetails.features?.Select(a => a.name).ToList();
                 gameInfo.Developers = storeData.StoreDetails.developers.Select(a => a.name).ToList();
                 gameInfo.Publishers = new List<string>() { storeData.StoreDetails.publisher };
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 if (gameInfo.ReleaseDate == null && storeData.StoreDetails.globalReleaseDate != null)
                 {
                     gameInfo.ReleaseDate = storeData.StoreDetails.globalReleaseDate;
+                }
+
+                if (gameInfo.Features?.Contains("Overlay") == true)
+                {
+                    gameInfo.Features.Remove("Overlay");
                 }
             }
 

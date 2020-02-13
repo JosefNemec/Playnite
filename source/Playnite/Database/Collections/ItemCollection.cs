@@ -30,7 +30,7 @@ namespace Playnite.Database
         public int Count => Items.Count;
 
         public bool IsReadOnly => false;
-        
+
         public TItem this[Guid id]
         {
             get => Get(id);
@@ -120,10 +120,10 @@ namespace Playnite.Database
             }
         }
 
-        public virtual TItem Add(string itemName)
+        public virtual TItem Add(string itemName, Func<TItem, string, bool> existingComparer)
         {
             if (string.IsNullOrEmpty(itemName)) throw new ArgumentNullException(nameof(itemName));
-            var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.InvariantCultureIgnoreCase));
+            var existingItem = this.FirstOrDefault(a => existingComparer(a, itemName));
             if (existingItem != null)
             {
                 return existingItem;
@@ -136,12 +136,17 @@ namespace Playnite.Database
             }
         }
 
-        public virtual IEnumerable<TItem> Add(List<string> itemsToAdd)
+        public virtual TItem Add(string itemName)
+        {
+            return Add(itemName, (existingItem, newName) => existingItem.Name.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public virtual IEnumerable<TItem> Add(List<string> itemsToAdd, Func<TItem, string, bool> existingComparer)
         {
             var toAdd = new List<TItem>();
             foreach (var itemName in itemsToAdd)
             {
-                var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.InvariantCultureIgnoreCase));
+                var existingItem = this.FirstOrDefault(a => existingComparer(a, itemName));
                 if (existingItem != null)
                 {
                     yield return existingItem;
@@ -158,6 +163,11 @@ namespace Playnite.Database
             {
                 Add(toAdd);
             }
+        }
+
+        public virtual IEnumerable<TItem> Add(List<string> itemsToAdd)
+        {
+            return Add(itemsToAdd, (existingItem, newName) => existingItem.Name.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public virtual void Add(TItem itemToAdd)
@@ -263,17 +273,29 @@ namespace Playnite.Database
 
             OnCollectionChanged(new List<TItem>(), itemsToRemove.ToList());
             return true;
-        }        
+        }
 
         public virtual void Update(TItem itemToUpdate)
-        {            
+        {
             TItem oldData;
             TItem loadedItem;
             lock (collectionLock)
             {
                 if (isPersistent)
                 {
-                    oldData = GetItemData(itemToUpdate.Id);
+                    try
+                    {
+                        oldData = GetItemData(itemToUpdate.Id);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        // This should never ever happen, but there are automatic crash reports of Playnite db files being corrupted.
+                        // This happens because of trash launchers from games like Zula,
+                        // which mess with Playnite process and dump their log entries to our files.
+                        // This will most likely cause some other issues, but at least it won't crash the whole app.
+                        logger.Error(e, "Failed to read stored item data.");
+                        oldData = this[itemToUpdate.Id].GetClone();
+                    }
                 }
                 else
                 {
@@ -310,7 +332,19 @@ namespace Playnite.Database
                     TItem oldData;
                     if (isPersistent)
                     {
-                        oldData = GetItemData(item.Id);
+                        try
+                        {
+                            oldData = GetItemData(item.Id);
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            // This should never ever happen, but there are automatic crash reports of Playnite db files being corrupted.
+                            // This happens because of trash launchers from games like Zula,
+                            // which mess with Playnite process and dump their log entries to our files.
+                            // This will most likely cause some other issues, but at least it won't crash the whole app.
+                            logger.Error(e, "Failed to read stored item data.");
+                            oldData = this[item.Id].GetClone();
+                        }
                     }
                     else
                     {

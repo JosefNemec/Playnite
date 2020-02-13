@@ -28,7 +28,17 @@ namespace Playnite.Database
             throw new NotSupportedException();
         }
 
+        public override Game Add(string itemName, Func<Game, string, bool> existingComparer)
+        {
+            throw new NotSupportedException();
+        }
+
         public override IEnumerable<Game> Add(List<string> items)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override IEnumerable<Game> Add(List<string> itemsToAdd, Func<Game, string, bool> existingComparer)
         {
             throw new NotSupportedException();
         }
@@ -89,7 +99,7 @@ namespace Playnite.Database
                 else
                 {
                     db.RemoveFile(dbItem.BackgroundImage);
-                }                    
+                }
             }
 
             var result = base.Remove(items);

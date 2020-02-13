@@ -99,23 +99,22 @@ namespace Playnite.DesktopApp.ViewModels
         private PlayniteSettings originalSettings;
         private List<string> editedFields = new List<string>();
         private Dictionary<Guid, PluginSettings> loadedPluginSettings = new Dictionary<Guid, PluginSettings>();
+        private bool closingHanled = false;
 
         public ExtensionFactory Extensions { get; set; }
 
         private PlayniteSettings settings;
         public PlayniteSettings Settings
         {
-            get
-            {
-                return settings;
-            }
-
+            get => settings;
             set
             {
                 settings = value;
                 OnPropertyChanged();
             }
         }
+
+        public List<SelectableItem<LibraryPlugin>> AutoCloseClientsList { get; } = new List<SelectableItem<LibraryPlugin>>();
 
         public List<LoadedPlugin> GenericPlugins
         {
@@ -199,7 +198,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                WindowClosing(false);
+                WindowClosing();
             });
         }
 
@@ -293,10 +292,19 @@ namespace Playnite.DesktopApp.ViewModels
                 { 8, new Controls.SettingsSections.Extensions() { DataContext = this } },
                 { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
                 { 10, new Controls.SettingsSections.EmptyParent() { DataContext = this } },
-                { 11, new Controls.SettingsSections.Scripting() { DataContext = this } }
+                { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
+                { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
+                { 13, new Controls.SettingsSections.Performance() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
+            foreach (var plugin in extensions.LibraryPlugins.Where(a => a.Capabilities?.CanShutdownClient == true))
+            {
+                AutoCloseClientsList.Add(new SelectableItem<LibraryPlugin>(plugin)
+                {
+                    Selected = settings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id)
+                });
+            }
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
@@ -352,12 +360,11 @@ namespace Playnite.DesktopApp.ViewModels
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(e, $"Failed to load generic plugin settings, {pluginId}");
+                logger.Error(e, $"Failed to load plugin settings, {pluginId}");
             }
 
             return new Controls.SettingsSections.NoSettingsAvailable();
         }
-
 
         public bool? OpenView()
         {
@@ -371,18 +378,21 @@ namespace Playnite.DesktopApp.ViewModels
                 plugin.Settings.CancelEdit();
             }
 
-            WindowClosing(true);
+            closingHanled = true;
             window.Close(false);
         }
 
-        public void WindowClosing(bool closingHandled)
+        public void WindowClosing()
         {
-            if (closingHandled)
+            if (!closingHanled)
             {
-                return;
+                foreach (var plugin in loadedPluginSettings.Values)
+                {
+                    plugin.Settings.CancelEdit();
+                }
             }
         }
- 
+
         public void EndEdit()
         {
             Settings.CopyProperties(originalSettings, true, new List<string>()
@@ -402,6 +412,13 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (!plugin.Settings.VerifySettings(out var errors))
                 {
+                    logger.Error($"Plugin settings verification errors {plugin.Name}.");
+                    errors?.ForEach(a => logger.Error(a));
+                    if (errors == null)
+                    {
+                        errors = new List<string>();
+                    }
+
                     dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), plugin.Name);
                     return;
                 }
@@ -427,6 +444,9 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            var shutdownPlugins = AutoCloseClientsList.Where(a => a.Selected == true).Select(a => a.Item.Id).ToList();
+            Settings.ClientAutoShutdown.ShutdownPlugins = shutdownPlugins;
+
             EndEdit();
             originalSettings.SaveSettings();
             foreach (var plugin in loadedPluginSettings.Values)
@@ -445,7 +465,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            WindowClosing(true);
+            closingHanled = true;
             window.Close(true);
         }
 
@@ -469,7 +489,7 @@ namespace Playnite.DesktopApp.ViewModels
                 CefTools.Shutdown();
                 Directory.Delete(PlaynitePaths.BrowserCachePath, true);
                 application.Restart();
-            }            
+            }
         }
 
         public void SetCoverArtAspectRatio(string ratio)
@@ -477,7 +497,6 @@ namespace Playnite.DesktopApp.ViewModels
             var regex = Regex.Match(ratio, @"(\d+):(\d+)");
             if (regex.Success)
             {
-
                 Settings.GridItemWidthRatio = Convert.ToInt32(regex.Groups[1].Value);
                 Settings.GridItemHeightRatio = Convert.ToInt32(regex.Groups[2].Value);
             }

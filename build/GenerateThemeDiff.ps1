@@ -6,7 +6,11 @@ param(
     [Parameter(Mandatory=$true)]
     [string]$OldVersion,    
     [Parameter(Mandatory=$true)]
-    [string]$NewVersion   
+    [string]$NewVersion,
+    [Parameter()]
+    [string]$WinMergePath = "c:\Programs\WinMerge\WinMergeU.exe",
+    [Parameter(Mandatory=$true)]
+    [string]$DirffOutDir
 )
 
 $global:ErrorActionPreference = "Stop"
@@ -93,6 +97,28 @@ try
     ExportThemeFiles $OldCommit "../source/Playnite.FullscreenApp/Themes/Fullscreen/Default"  $changeLogDir
     
     New-ZipFromDirectory $changeLogDir (Join-Path $changeBaseLogDir "$OldVersion.zip")
+
+    foreach ($change in $changes)
+    {
+        if ($change.StartsWith("M"))
+        {
+            $changeFileName = $change -replace "M\s+", ""
+            $newPath = Join-Path ".." $changeFileName
+            $oldPath = Join-Path $changeLogDir ($change -replace "M\s+source/Playnite.(Desktop|Fullscreen)App/Themes/", "")
+            $oldPath = $oldPath -replace "Default\\", ""
+            
+            $htmlDiffFile = ($changeFileName.Replace("/","_") + ".html")
+            $htmlDiffOut = Join-Path $DirffOutDir $htmlDiffFile
+            StartAndWait "c:\programs\winmerge\WinMergeU.exe" "`"$oldPath`" `"$newPath`" -minimize -noninteractive -u -cfg ReportFiles/ReportType=2 -or `"$htmlDiffOut`"" | Out-Null
+
+            $link = "https://playnite.link/themechangelog/$OldVersion-$NewVersion/$htmlDiffFile"
+            "[$change]($link)"
+        }
+        else
+        {
+            $change
+        }
+    }
 }
 finally
 {

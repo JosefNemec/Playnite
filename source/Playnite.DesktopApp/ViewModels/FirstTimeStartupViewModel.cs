@@ -18,7 +18,7 @@ using Playnite.Windows;
 using Playnite.DesktopApp.Windows;
 
 namespace Playnite.DesktopApp.ViewModels
-{    
+{
     public class FirstTimeStartupViewModel : ObservableObject
     {
         public class Pages
@@ -43,7 +43,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => SelectedIndex == Pages.Finish;
         }
-        
+
         private PlayniteSettings settings = new PlayniteSettings();
         public PlayniteSettings Settings
         {
@@ -179,7 +179,13 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 foreach (LibraryPlugin provider in extensions.LoadPlugins(description, playniteApi).Where(a => a is LibraryPlugin))
                 {
-                    LibraryPlugins.Add(new SelectablePlugin(provider?.Client.IsInstalled == true, provider, description));
+                    var selected = true;
+                    if (provider.Client != null)
+                    {
+                        selected = provider.Client.IsInstalled;
+                    }
+
+                    LibraryPlugins.Add(new SelectablePlugin(selected, provider, description));
                 }
             }
         }
@@ -228,7 +234,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (selectedPlugins?.Any() == true)
                 {
-                    SetPluginConfiguration(selectedPlugins[0]);        
+                    SetPluginConfiguration(selectedPlugins[0]);
                 }
                 else
                 {

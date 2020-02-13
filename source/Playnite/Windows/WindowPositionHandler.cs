@@ -14,7 +14,7 @@ namespace Playnite.Windows
 {
     public class WindowPositionHandler
     {
-        private readonly Window window;
+        private Window window;
         private readonly string windowName;
         private readonly WindowPositions configuration;
         private bool ignoreChanges = false;
@@ -28,6 +28,17 @@ namespace Playnite.Windows
             window.LocationChanged += Window_LocationChanged;
             window.StateChanged += Window_StateChanged;
             window.Loaded += Window_Loaded;
+            window.Closed += Window_Closed;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            window.SizeChanged -= Window_SizeChanged;
+            window.LocationChanged -= Window_LocationChanged;
+            window.StateChanged -= Window_StateChanged;
+            window.Loaded -= Window_Loaded;
+            window.Closed -= Window_Closed;
+            window = null;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

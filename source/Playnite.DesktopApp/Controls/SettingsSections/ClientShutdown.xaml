@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.ClientShutdown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+    
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style TargetType="ContentControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <TextBlock Style="{DynamicResource BaseTextBlockStyle}">
+                            <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Margin="20">
+        <CheckBox Name="CheckShutDownClients"
+                  Content="{DynamicResource LOCSettingsAutoCloseLauncherOption}"
+                  IsChecked="{Binding Settings.ClientAutoShutdown.ShutdownClients}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0"
+                    IsEnabled="{Binding IsChecked, ElementName=CheckShutDownClients}">
+            <TextBlock Text="{DynamicResource LOCSettingsAutoCloseGracePeriod}"
+                       VerticalAlignment="Center"/>
+            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Value="{Binding Settings.ClientAutoShutdown.GraceTimeout}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0"
+                    IsEnabled="{Binding IsChecked, ElementName=CheckShutDownClients}">
+            <TextBlock Text="{DynamicResource LOCSettingsAutoCloseMinimalSessionTime}"
+                       VerticalAlignment="Center"/>
+            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Value="{Binding Settings.ClientAutoShutdown.MinimalSessionTime}"/>
+        </StackPanel>
+
+        <TextBlock Text="{DynamicResource LOCSettingsAutoCloseSpecificClients}" Margin="0,20,0,0"
+                   IsEnabled="{Binding IsChecked, ElementName=CheckShutDownClients}"/>
+
+        <ItemsControl Margin="2,10,0,0" HorizontalAlignment="Left"
+                      ItemsSource="{Binding AutoCloseClientsList}"
+                      IsEnabled="{Binding IsChecked, ElementName=CheckShutDownClients}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Item.Name}" IsChecked="{Binding Selected}"
+                              Margin="0,0,0,7" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

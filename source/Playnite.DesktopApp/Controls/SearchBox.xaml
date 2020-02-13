@@ -8,10 +8,11 @@
              d:DesignWidth="300"
              MinHeight="24">
     <Grid>
-        <TextBlock Text="⌕" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"
-                   Foreground="{DynamicResource TextBrushDarker}">
-            <TextBlock.Style>
-                <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+        <ContentControl ContentTemplate="{DynamicResource SearchTextIconTemplate}"
+                        VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"
+                        Foreground="{DynamicResource TextBrushDarker}">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
                     <Setter Property="Visibility" Value="Hidden" />
                     <Style.Triggers>
                         <MultiDataTrigger>
@@ -26,8 +27,8 @@
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </TextBlock.Style>
-        </TextBlock>
+            </ContentControl.Style>
+        </ContentControl>
         <TextBox TabIndex="{Binding Path=TabIndex, RelativeSource={RelativeSource AncestorType=UserControl}}"
                  Name="TextFilter" VerticalContentAlignment="Center"
                  Text="{Binding Text, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
@@ -43,18 +44,19 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <TextBlock Text="&#xef00;" FontFamily="{DynamicResource FontIcoFont}"
-                   FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
-                   MouseUp="ClearImage_MouseUp" Foreground="{DynamicResource TextBrushDarker}">
-            <TextBlock.Style>
-                <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+        <ContentControl ContentTemplate="{DynamicResource ClearTextIconTemplate}" 
+                        FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
+                        MouseUp="ClearImage_MouseUp" Foreground="{DynamicResource TextBrushDarker}">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="Visibility" Value="Visible" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Text, ElementName=TextFilter}" Value="{x:Static sys:String.Empty}">
                             <Setter Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </TextBlock.Style>
-        </TextBlock>
+            </ContentControl.Style>
+        </ContentControl>
     </Grid>
 </UserControl>

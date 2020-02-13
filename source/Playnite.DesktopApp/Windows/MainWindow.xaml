@@ -67,6 +67,9 @@
         <KeyBinding Command="{Binding ToggleFilterPanelCommand}"
                 Key ="{Binding ToggleFilterPanelCommand.Gesture.Key}"
                 Modifiers="{Binding ToggleFilterPanelCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding SelectRandomGameCommand}"
+                Key ="{Binding SelectRandomGameCommand.Gesture.Key}"
+                Modifiers="{Binding SelectRandomGameCommand.Gesture.Modifiers}" />
         <KeyBinding Command="{Binding OpenDbFieldsManagerCommand}"
                 Key ="{Binding OpenDbFieldsManagerCommand.Gesture.Key}"
                 Modifiers="{Binding OpenDbFieldsManagerCommand.Gesture.Modifiers}" />

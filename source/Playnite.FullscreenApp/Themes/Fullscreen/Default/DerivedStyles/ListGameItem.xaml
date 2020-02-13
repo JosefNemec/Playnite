@@ -37,36 +37,42 @@
                             <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
                         </Grid.RenderTransform>
                         <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
-                                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                                   Stretch="{Settings CoverArtStretch}">
-                                <Image.Source>
-                                    <PriorityBinding>
-                                        <Binding Path="CoverImageObject" Mode="OneWay" 
-                                                Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
-                                        <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
-                                    </PriorityBinding>
-                                </Image.Source>
-                            </Image>
-                            <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
-                                       Visibility="{Settings Fullscreen.ShowGameTitles}"
-                                       Style="{DynamicResource TextBlockBaseStyle}" FontSize="18"
-                                       HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-                                       TextAlignment="Center" Padding="5"                                    
-                                       Background="{DynamicResource ControlBackgroundDarkBrush}"/>
-                            <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
-                                    Margin="-3"/>
-                            <Border x:Name="MainBorder" BorderThickness="5" BorderBrush="{DynamicResource SelectionBrush}"
-                                    Margin="-5" Visibility="Collapsed" CornerRadius="3">
-                                <Border.Effect>
-                                    <DropShadowEffect ShadowDepth="0"
-                                                      Color="{DynamicResource GlyphColor}"
-                                                      Opacity="1"
-                                                      RenderingBias="Quality"
-                                                      BlurRadius="20"/>
-                                </Border.Effect>
-                            </Border>
-                        </Grid>
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Stretch="{Settings CoverArtStretch}">
+                            <Image.Source>
+                                <PriorityBinding>
+                                    <Binding Path="CoverImageObject" Mode="OneWay" 
+                                            Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
+                                    <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
+                                </PriorityBinding>
+                            </Image.Source>
+                        </Image>
+                        <Border Background="#AA000000" x:Name="BorderDarken" Visibility="Collapsed" />
+                        <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
+                                   Visibility="{Settings Fullscreen.ShowGameTitles}"
+                                   Style="{DynamicResource TextBlockBaseStyle}" FontSize="18"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                   TextAlignment="Center" Padding="5"                                    
+                                   Background="{DynamicResource ControlBackgroundDarkBrush}"/>
+                        <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                                Margin="-3"/>
+                        <Border x:Name="MainBorder" BorderThickness="5" BorderBrush="{DynamicResource SelectionBrush}"
+                                Margin="-5" Visibility="Collapsed" CornerRadius="3">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0" Opacity="1"
+                                                  Color="{DynamicResource GlyphColor}"                                                  
+                                                  RenderingBias="Quality" BlurRadius="20"/>
+                            </Border.Effect>
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsInstalled}" Value="False" />
+                                <Condition Binding="{Settings Fullscreen.DarkenUninstalledGamesGrid}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="BorderDarken" />
+                        </MultiDataTrigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
                             <Setter Property="Canvas.ZIndex" Value="90" />

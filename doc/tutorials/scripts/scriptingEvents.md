@@ -11,12 +11,15 @@ Available Events
 
 |PowerShell Name | Python Name | Event | Passed Arguments |
 | - | - | - | - |
-| OnScriptLoaded | on_script_loaded | Script is loaded by Playnite. | None |
 | OnGameStarting | on_game_starting | Before game is started. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameStarted | on_game_started | Game started running. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameStopped | on_game_stopped | Game stopped running.  | [Game](xref:Playnite.SDK.Models.Game) and session length in seconds |
 | OnGameInstalled | on_game_installed | Game is installed. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameUninstalled | on_game_uninstalled | Game is uninstalled. | [Game](xref:Playnite.SDK.Models.Game) |
+| OnGameSelected | on_game_selected | Game selection changed. | [GameSelectionEventArgs](xref:Playnite.SDK.Events.GameSelectionEventArgs) |
+| OnApplicationStarted | on_application_started | Playnite was started. | None |
+| OnApplicationStopped | on_application_stopped | Playnite is shutting down. | None |
+| OnLibraryUpdated | on_library_updated | Library was updated. | None |
 
 Example - Handling start/stop events
 ---------------------

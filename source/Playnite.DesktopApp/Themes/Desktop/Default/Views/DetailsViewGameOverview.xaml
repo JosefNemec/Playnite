@@ -33,8 +33,9 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                            
-                                <DockPanel Margin="0,20,0,15" MaxWidth="1024" Grid.Row="1">
+
+                                <DockPanel Margin="0,20,0,15" MaxWidth="1024" Grid.Row="1"
+                                           Background="Transparent">
                                     <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
                                             DockPanel.Dock="Right"
                                             Height="{Settings GameDetailsCoverHeight}"
@@ -50,7 +51,7 @@
                                                         Text="{Binding Game.DisplayName}" DockPanel.Dock="Left"
                                                         FontSize="{DynamicResource FontSizeLargest}" Margin="0,0,10,0" TextWrapping="Wrap"
                                                         VerticalAlignment="Center"
-                                                        Foreground="{StaticResource TextBrush}">
+                                                        Foreground="{DynamicResource TextBrush}">
                                                 <TextBlock.Effect>
                                                     <DropShadowEffect ShadowDepth="3" RenderingBias="Quality"/>
                                                 </TextBlock.Effect>
@@ -65,6 +66,20 @@
                                             <Button Name="PART_ButtonMoreActions"
                                                     Content="{DynamicResource LOCMoreAction}"
                                                     Width="150" Height="40" Margin="10,0,0,0" />
+                                            <Button x:Name="PART_ButtonEditGame"
+                                                    Margin="10,0,0,0" Height="40" Focusable="False"
+                                                    Content="&#xeded;" FontFamily="{DynamicResource FontIcoFont}">
+                                                <Button.Style>
+                                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                                        <Setter Property="Visibility" Value="Hidden" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=DockPanel}}"  Value="True">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
                                         </StackPanel>
                                     </StackPanel>
                                 </DockPanel>
@@ -91,7 +106,7 @@
                                             
                                         <GridEx Margin="0,5,0,10"
                                                 ColumnCount="2" StarColumns="1"
-                                                RowCount="20" AutoLayoutColumns="2">
+                                                RowCount="21" AutoLayoutColumns="2">
                                             <Grid.Resources>
                                                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
                                             </Grid.Resources>
@@ -125,6 +140,9 @@
 
                                             <Label Name="PART_ElemCategories" Content="{DynamicResource LOCGameCategoriesTitle}" />
                                             <ItemsControl Name="PART_ItemsCategories" />
+
+                                            <Label Name="PART_ElemFeatures" Content="{DynamicResource LOCFeaturesLabel}" />
+                                            <ItemsControl Name="PART_ItemsFeatures" />
 
                                             <Label Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}" />
                                             <ItemsControl Name="PART_ItemsTags" />

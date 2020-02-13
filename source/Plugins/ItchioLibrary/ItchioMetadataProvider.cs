@@ -39,14 +39,15 @@ namespace ItchioLibrary
             {
                 Links = new List<Link>(),
                 Tags = new List<string>(),
-                Genres = new List<string>()
+                Genres = new List<string>(),
+                Features = new List<string>()
             };
 
             var metadata = new GameMetadata
             {
                 GameInfo = gameData
             };
-            
+
             var itchGame = butler.GetGame(Convert.ToInt32(game.GameId));
 
             // Cover image
@@ -63,7 +64,7 @@ namespace ItchioLibrary
                 var gamePageSrc = HttpDownloader.DownloadString(itchGame.url);
                 var parser = new HtmlParser();
                 var gamePage = parser.Parse(gamePageSrc);
-                
+
                 // Description
                 gameData.Description = gamePage.QuerySelector(".formatted_description").InnerHtml;
 
@@ -73,7 +74,7 @@ namespace ItchioLibrary
                 if (bckMatch.Success)
                 {
                     metadata.BackgroundImage = new MetadataFile(bckMatch.Groups[1].Value);
-                }                
+                }
 
                 // Other info
                 var infoPanel = gamePage.QuerySelector(".game_info_panel_widget");
@@ -86,7 +87,7 @@ namespace ItchioLibrary
                     if (name == "Genre")
                     {
                         foreach (var item in field.QuerySelectorAll("a"))
-                        {                            
+                        {
                             gameData.Genres.Add(item.TextContent);
                         }
 
@@ -97,7 +98,14 @@ namespace ItchioLibrary
                     {
                         foreach (var item in field.QuerySelectorAll("a"))
                         {
-                            gameData.Tags.Add(item.TextContent);
+                            if (item.TextContent == "Virtual Reality (VR)")
+                            {
+                                gameData.Features.Add("VR");
+                            }
+                            else
+                            {
+                                gameData.Tags.Add(item.TextContent);
+                            }
                         }
 
                         continue;
@@ -124,7 +132,7 @@ namespace ItchioLibrary
                         if (DateTime.TryParseExact(strDate, "d MMMM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
                         {
                             gameData.ReleaseDate = dateTime;
-                        }                        
+                        }
                     }
                 }
             }

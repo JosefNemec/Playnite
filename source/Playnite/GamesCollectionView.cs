@@ -48,7 +48,7 @@ namespace Playnite
         }
 
         public virtual void Dispose()
-        {            
+        {
             filterSettings.FilterChanged -= FilterSettings_FilterChanged;
             Items = null;
         }
@@ -254,7 +254,7 @@ namespace Playnite
                 return false;
             }
 
-            // ------------------ Name filter   
+            // ------------------ Name filter
             if (!filterSettings.Name.IsNullOrEmpty())
             {
                 if (game.Name.IsNullOrEmpty())
@@ -267,7 +267,7 @@ namespace Playnite
                 }
             }
 
-            // ------------------ Release Year       
+            // ------------------ Release Year
             if (filterSettings.ReleaseYear?.IsSet == true)
             {
                 if (game.ReleaseDate == null && !filterSettings.ReleaseYear.Values.Contains(FilterSettings.MissingFieldString))
@@ -390,6 +390,12 @@ namespace Playnite
 
             // ------------------ Tags
             if (!IsFilterMatching(filterSettings.Tag, game.TagIds, game.Tags))
+            {
+                return false;
+            }
+
+            // ------------------ Features
+            if (!IsFilterMatching(filterSettings.Feature, game.FeatureIds, game.Features))
             {
                 return false;
             }

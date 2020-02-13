@@ -1,0 +1,97 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.GoogleImageDownloadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
+        Title="Google Images"
+        Height="600" Width="830"
+        ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <controls:WindowBase.Resources>
+        <pcon:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+        <pcon:NegateConverter x:Key="NegateConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </controls:WindowBase.Resources>
+
+    <Grid Margin="0,4,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListBox ItemsSource="{Binding DisplayImages}" SelectedItem="{Binding SelectedImage}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    BorderThickness="0"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="4" Background="#33000000">
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Bottom" Text="{Binding Size, StringFormat={}{0}px}"
+                                       Margin="0,3,0,0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <Image Width="{Binding DataContext.ItemWidth, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
+                                   Height="{Binding DataContext.ItemHeight, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
+                                   Source="{Binding ThumbUrl, IsAsync=True}"
+                                   DockPanel.Dock="Top"
+                                   Stretch="Uniform" StretchDirection="Both" />
+                        </DockPanel>
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick"
+                                          Command="{Binding DataContext.ItemDoubleClickCommand, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}" />
+                        </Border.InputBindings>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button HorizontalAlignment="Center" Grid.Row="1" MinWidth="200" Margin="0,5,0,0"
+                Visibility="{Binding ShowLoadMore, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{Binding LoadMoreCommand}"
+                Content="{DynamicResource LOCLoadMore}" />
+
+        <DockPanel Grid.Row="2" Margin="15,5,10,5">
+            <Button Name="ButtonSearch" Content="{DynamicResource LOCSearchLabel}" Padding="10,5,10,5" DockPanel.Dock="Left"
+                    Command="{Binding SearchCommand}"/>
+            <TextBox Name="TextSearch" Margin="10,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Center"
+                     Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding SearchCommand}" Key="Return" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </DockPanel>
+
+        <DockPanel LastChildFill="False" Grid.Row="3" Margin="5,0,5,5">
+            <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding CloseCommand}"/>
+            <Button Name="ButtonOK" Content="{DynamicResource LOCSelect}" DockPanel.Dock="Right"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding ConfirmCommand}"/>
+            <CheckBox Content="{DynamicResource LOCTransparent}"
+                      IsChecked="{Binding Transparent}"
+                      DockPanel.Dock="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        </DockPanel>
+    </Grid>
+</controls:WindowBase>

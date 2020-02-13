@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    
+
     <sys:String x:Key="LanguageName">日本語</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">言語</sys:String>
@@ -17,7 +17,7 @@
 
     <sys:String x:Key="LOCInvalidDataTitle">無効なデータ</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">変更した内容を保存しますか？</sys:String>
-    
+
     <sys:String x:Key="LOCAboutHomePageLink">ホームページ www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">ソースコードは Github にて公開されています</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">診断パッケージを作成する</sys:String>
@@ -46,12 +46,10 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">ゲームを削除しますか？</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">実行中またはインストール/アンインストール中のゲームは削除できません。</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">実行中のゲームをアンインストールすることはできません。</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">このゲームを削除してもよろしいですか？
-        
-自動的にインポートされたゲームは、次のインポート手順の後にPlayniteに再表示されることがあります (設定によって異なります)。</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">これらのゲーム「{0}」を削除してもよろしいですか？
-        
-自動的にインポートされたゲームは、次のインポート手順の後にPlayniteに再表示されることがあります (設定によって異なります)。</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam フレンド</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">未保存の変更があります</sys:String>
@@ -78,6 +76,7 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">有効</sys:String>
     <sys:String x:Key="LOCRemoveTitle">削除</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
     <sys:String x:Key="LOCRenameTitle"></sys:String>
     <sys:String x:Key="LOCCopyTitle">コピー</sys:String>
     <sys:String x:Key="LOCAddTitle">追加</sys:String>
@@ -94,14 +93,11 @@
     <sys:String x:Key="LOCDismiss"></sys:String>
     <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel">インポート</sys:String>
-    <sys:String x:Key="LOCSourceLabel">データ元</sys:String>
     <sys:String x:Key="LOCNameLabel">名前</sys:String>
     <sys:String x:Key="LOCAuthorLabel">作者</sys:String>
     <sys:String x:Key="LOCModuleLabel">モジュール</sys:String>
     <sys:String x:Key="LOCSeriesLabel">シリーズ</sys:String>
     <sys:String x:Key="LOCVersionLabel">バージョン</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">年齢別レーティング</sys:String>
-    <sys:String x:Key="LOCRegionLabel">地域</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">最後のプレイ</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">最もプレイされたゲーム</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">プレイ回数</sys:String>
@@ -133,13 +129,6 @@
     <sys:String x:Key="LOCRemoveLabel">削除</sys:String>
     <sys:String x:Key="LOCDownloadLabel">ダウンロード</sys:String>
     <sys:String x:Key="LOCSearchLabel">検索</sys:String>
-    <sys:String x:Key="LOCGenreLabel">ジャンル</sys:String>
-    <sys:String x:Key="LOCCompanyLabel">会社</sys:String>
-    <sys:String x:Key="LOCDeveloperLabel">開発元</sys:String>
-    <sys:String x:Key="LOCPublisherLabel">パブリッシャー</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">カテゴリー</sys:String>
-    <sys:String x:Key="LOCTagLabel">タグ</sys:String>
-    <sys:String x:Key="LOCTagsLabel">タグ</sys:String>
     <sys:String x:Key="LOCZoomLabel">ズーム</sys:String>
     <sys:String x:Key="LOCListViewLabel"></sys:String>
     <sys:String x:Key="LOCCoversLabel">カバー</sys:String>
@@ -173,18 +162,8 @@
     <sys:String x:Key="LOCColumns"></sys:String>
     <sys:String x:Key="LOCRow"></sys:String>
     <sys:String x:Key="LOCRows"></sys:String>
-    
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">特別な変数を使って、動的な文字列を追加することができます。
-{InstallDir} - ゲームのインストールディレクトリ
-{InstallDirName} - インストールフォルダの名前
-{ImagePath} - ISO/ROMのパス (設定されている場合)
-{ImageName} - ISO/ROMのファイル名
-{ImageNameNoExt} - ISO/ROMのファイル名 (拡張子を除く)
-{PlayniteDir} - Playniteのインストールディレクトリ
-{Name} - ゲーム名
-        
-例　: -image "{ImagePath}" -fullscreen
-結果: -image "c:\folder\image.iso" -fullscreen</sys:String>
+
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">アイコンを取得できません。プレイアクションが登録されていないか、または、URLが設定されていません。</sys:String>
 
@@ -199,17 +178,7 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Playniteによって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">公式ストア:
-公式ストアのデータのみ使用します。
-    
-IGDB:
-IGDB.comのデータのみ使用します。
-    
-IGDB > 公式ストア:
-IGDB.comのデータを優先し、利用できない場合は公式ストアのデータを使用します。
-    
-公式ストア > IGDB:
-公式ストアのデータを優先し、利用できない場合はIGDB.comのデータを使用します。</sys:String>
+    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
@@ -289,6 +258,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsFullscreenLabel">フルスクリーン設定</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">プロバイダ</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">入力</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">ライブラリの変更を自動的にインポート</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">インストール済みのゲームをインポートする</sys:String>
@@ -311,6 +281,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">遅いイメージロード時間と引き換えに、ゲームリストのスクロールの滑らかさを改善します。</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">グリッドビューにゲーム名を表示する</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">詳細ビューリストにゲームのアイコンを表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">グループの説明にアイテム数を表示する</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
@@ -328,7 +299,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">フルスクリーンモード用テーマのプロファイル</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">私のアカウント名は何ですか？</sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">ログイン状態：</sys:String>    
+    <sys:String x:Key="LOCSettingsLoginStatus">ログイン状態：</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite 設定</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
@@ -342,7 +313,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsAfterGameClose">ゲーム終了後:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Galaxyクライアントを使用してゲームを開始する</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">クラウドの保存、再生時間のカウントなどの機能を有効にします。</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">これはすべてのSteamゲームの現在のカテゴリーを上書きします。 続行しますか？</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">カテゴリーをインポートしますか？</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">カテゴリーをインポートできません。インポートするアカウントが選択されていません。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">カテゴリーをインポートできません。データベースが開かれていません。</sys:String>
@@ -360,9 +331,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">新しいローカライズに貢献する</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">変更された設定のいくつかはPlayniteを再起動する必要があります。 今すぐPlayniteを再起動しますか？
-    
-現在アクティブなタスク(メタデータのダウンロード)はキャンセルされます。</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Playniteを再起動しますか？</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
@@ -373,6 +342,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSteamBackgroundSourceImage">ゲームイメージ</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">ストア のスクリーンショット</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">ストアの背景</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">メタデータを再ダウンロードせずに既存のゲームに遡って適用することはありません。</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Playniteで記録された時間を無視して、ライブラリの同期中は常に記録されたプレイ時間をリモートライブラリからダウンロードします。</sys:String>
@@ -404,6 +374,12 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">無し</sys:String>
     <sys:String x:Key="LOCStrechFill">埋める</sys:String>
@@ -427,14 +403,12 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCMetaImportWindowTitle">メタデータのインポート</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">メタデータを取得</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
-    
+
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">エミュレーションインポートウィザード</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">このウィザードは、コンソールエミュレータのダウンロードとインポート、およびエミュレートされたゲームのインポートの手順を案内します。</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">後から、いつでもメインメニューを介して、エミュレータやゲームを追加することができます。(エミュレータ設定の場合は[ツール]メニュー、エミュレートゲームの場合は[ゲームの追加]メニュー)</sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">以下はPlayniteが認識し自動的に設定できるエミュレータのリストです。あなたはこれらのウェブサイトを訪問し、ダウンロードしてインストールすることができます。エミュレータをインストールしたら、次の画面に進んでそれらをPlayniteにインポートします。
-        
-また、後で設定メニューからカスタムエミュレータを設定してインポートすることもできます。</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">「エミュレータを使用してフォルダをスキャン」ボタンを押すことでゲームをインポートできます。適切なエミュレータを選択すると、Playniteにどのファイルタイプをスキャンしてインポートするかを指示します。ボタンを複数回使用して複数のフォルダからインポートすることができ、ゲームは現在のリストの一番下に追加されます。</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">インポート用に選択されたエミュレーターがありません。 最初にエミュレータを設定しないと、エミュレートされたゲームを自動的にインポートすることはできません。 続行してインポート処理を終了しますか？</sys:String>
@@ -447,10 +421,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">初回設定</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">このウィザードは、自動ゲームインポートプロセスと外部ゲームライブラリの設定を案内します。PlayniteはSteamやGOGなどの複数のゲームサービスから自動的にゲームをインポートすることができます。また、アプリケーションの起動時にライブラリを自動的に更新することでライブラリを最新の状態に保ちます。
-        
-いつでも'Playnite'のメインメニューから、あらゆるプラットフォーム用のカスタムゲームを追加できます。   
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">ライブラリデータベースファイルの場所を選択します。場所は設定メニューから後で変更することもできます。</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">すべてのユーザーのデフォルトプログラムデータの場所</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">カスタムの場所</sys:String>
@@ -499,12 +470,10 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCImportEmulatorsButton">エミュレータをインポートする</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">エミュレータをダウンロードする</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">既知のエミュレータプロファイルからプリセット引数を読み込む</sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">エミュレータ {0} を削除してもよろしいですか？       
-現在 {1} 個のゲームで使用されています。</sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">プラットフォーム {0} を削除してもよろしいですか？       
-現在 {1} 個のゲームおよび {2} 個のエミュレータで使用されています。</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">設定ヘルプ</sys:String>
-    
+
     <sys:String x:Key="LOCMenuSortByTitle">並べ替え</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">グループ化</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">昇順</sys:String>
@@ -547,19 +516,38 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCGameLinksTitle">関連リンク</sys:String>
     <sys:String x:Key="LOCGameROMTitle">ROM/ISOイメージのパス</sys:String>
 
+    <sys:String x:Key="LOCGenreLabel">ジャンル</sys:String>
+    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">会社</sys:String>
+    <sys:String x:Key="LOCCompaniesLabel"></sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">開発元</sys:String>
+    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCPublisherLabel">パブリッシャー</sys:String>
+    <sys:String x:Key="LOCPublishersLabel"></sys:String>
+    <sys:String x:Key="LOCCategoryLabel">カテゴリー</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCTagLabel">タグ</sys:String>
+    <sys:String x:Key="LOCTagsLabel">タグ</sys:String>
+    <sys:String x:Key="LOCFeatureLabel"></sys:String>
+    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">年齢別レーティング</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionLabel">地域</sys:String>
+    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCSourceLabel">データ元</sys:String>
+    <sys:String x:Key="LOCSourcesLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">データベースエラー</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">ライブラリデータベースのオープンに失敗しました。</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">データベースが開かれていません。</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">ライブラリデータベースにアクセスできません。ファイル "{0}"は別のプロセスによって使用されているか、アクセスできない場所にあります。</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">ライブラリデータベースにアクセスできません。ファイル &quot;{0}&quot;は別のプロセスによって使用されているか、アクセスできない場所にあります。</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">診断パッケージを作成できませんでした。</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">診断パッケージを自動的にアップロードできませんでした。</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">診断の情報の送信に成功しました。</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">診断パッケージが作成され、正常にアップロードされました。
-クラッシュレポートに次のIDを添付してください:</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Steamカテゴリーをインポートできませんでした。</sys:String>
-    
+
     <sys:String x:Key="LOCBnetInstalledImportError">インストール済みのBattle.netゲームをインポートできませんでした。</sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError">インストールされているSteamゲームをインポートできませんでした。</sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError">インストールされているGOGゲームをインポートできませんでした。</sys:String>
@@ -571,21 +559,15 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCGOGLibraryImportError">GOGライブラリのダウンロードに失敗しました。</sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError">Originライブラリのダウンロードに失敗しました。</sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError">Uplayライブラリのダウンロードに失敗しました。</sys:String>
-    
-    <sys:String x:Key="LOCLibraryImportError">{0}からゲームをインポートできませんでした。</sys:String>    
+
+    <sys:String x:Key="LOCLibraryImportError">{0}からゲームをインポートできませんでした。</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">選択したエミュレータプロファイルではゲームを検索できません。プロファイルにファイル拡張子やプラットフォームが含まれていません。</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playniteは起動に失敗しました。実行中のすべてのPlayniteのプログラムを閉じてからやり直してください。</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">テーマ "{0}"、カラープロファイル "{1}"の適用に失敗しました。
-        
-{2}</sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCURLFormatError">リンクを開けません。URLが無効な形式です。</sys:String>
     <sys:String x:Key="LOCAppStartupError">アプリケーションの起動に失敗しました。</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Webビューコンポーネントの初期化に失敗しました。Playniteは起動を続行できません。
-        
-問題を解決するためにこれらを試みることができます：        
- ・すべてのファイルが正しくインストールされていることを確認します。再インストールすると効果的です。
- ・アンチウイルスソフトがPlayniteのディレクトリ内のファイルをブロックしていないか確認します。
- ・別のインストール場所を試します。</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ゲーム詳細を編集</sys:String>
@@ -674,6 +656,8 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom"></sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">エミュレータ引数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">追加のエミュレータ引数</sys:String>
@@ -733,7 +717,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCCancelMonitoringAskTitle">ゲームモニタリングをキャンセルしますか？</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">インストールモニタリングが現在実行中です。プロセスをキャンセルしてゲームを以前の状態に戻しますか？</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">ゲーム実行モニタリングが現在実行中です。プロセスをキャンセルしてゲームを以前の状態に戻しますか？</sys:String>
-    
+
     <sys:String x:Key="LOCTimePlayed">プレイ時間</sys:String>
     <sys:String x:Key="LOCLastPlayed">最後のプレイ</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0} 時間 {1} 分</sys:String>
@@ -777,16 +761,16 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">インストールが成功しました。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">拡張機能をインストールしますか？</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">新しい拡張機能をインストールしますか？既存のインストールは上書きします。    </sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">新しいテーマをインストールしますか？既存のインストールは上書きします。    </sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">デフォルトのウェブブラウザを使って次のウェブページに行きます。続行しますか？</sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
-
+    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
@@ -825,9 +809,21 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCItemAlreadyExists">同じ名前の アイテムが既に存在します</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
-    
+
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+
+    <!--Epic-->
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+
+    <!--Humble-->
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+
+    <!--Xbox-->
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
+    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
 </ResourceDictionary>

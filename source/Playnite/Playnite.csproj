@@ -41,6 +41,8 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
@@ -241,6 +243,7 @@
     <Compile Include="Database\Collections\AgeRatingsCollection.cs" />
     <Compile Include="Database\Collections\SeriesCollection.cs" />
     <Compile Include="Database\Collections\CategoriesCollection.cs" />
+    <Compile Include="Database\Collections\FeaturesCollection.cs" />
     <Compile Include="Database\Collections\TagsCollection.cs" />
     <Compile Include="Database\Collections\GenresCollection.cs" />
     <Compile Include="Database\DatabaseExplorer.cs" />
@@ -283,12 +286,14 @@
     <Compile Include="GamesCollectionViewEntry.cs" />
     <Compile Include="GamesEditor.cs" />
     <Compile Include="GlobalTaskHandler.cs" />
+    <Compile Include="GoogleImageDownloader.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="ImageSourceManager.cs" />
     <Compile Include="Input\MouseWheelGesture.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
     <Compile Include="ObservablePowerStatus.cs" />
+    <Compile Include="PlayniteUriHandler.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Plugins\ExtensionInstaller.cs" />
     <Compile Include="Scripting\Batch\Batch.cs" />
@@ -308,6 +313,7 @@
     <Compile Include="Controllers\GameControllerFactory.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
+    <Compile Include="Settings\AutoClientShutdownSettings.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Settings\OldSettings\Plugins.cs" />
@@ -334,6 +340,7 @@
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
     <Compile Include="ViewModels\RandomGameSelectViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
+    <Compile Include="WebView\CookieDestroyer.cs" />
     <Compile Include="WebView\OffscreenWebView.cs" />
     <Compile Include="WebView\WebView.cs" />
     <Compile Include="WebView\WebViewFactory.cs" />
@@ -446,6 +453,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Localization\he_IL.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\ar_SA.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

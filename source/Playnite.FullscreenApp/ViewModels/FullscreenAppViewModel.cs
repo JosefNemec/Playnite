@@ -49,6 +49,17 @@ namespace Playnite.FullscreenApp.ViewModels
         public ObservableTime CurrentTime { get; } = new ObservableTime();
         public ObservablePowerStatus PowerStatus { get; } = new ObservablePowerStatus();
 
+        private bool databaseUpdateRunning = false;
+        public bool DatabaseUpdateRunning
+        {
+            get => databaseUpdateRunning;
+            set
+            {
+                databaseUpdateRunning = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double windowLeft = 0;
         public double WindowLeft
         {
@@ -143,6 +154,7 @@ namespace Playnite.FullscreenApp.ViewModels
             get => selectedGame;
             set
             {
+                var oldValue = selectedGame;
                 // TODO completely rework and decouple selected game from main view and game details
                 if (value == selectedGame)
                 {
@@ -173,6 +185,10 @@ namespace Playnite.FullscreenApp.ViewModels
                         OnPropertyChanged(nameof(GameDetailsButtonVisible));
                     }
                 }
+
+                Extensions.InvokeOnGameSelected(
+                    oldValue == null ? null : new List <Game> { oldValue.Game },
+                    selectedGame == null ? null : new List<Game> { selectedGame.Game });
             }
         }
 
@@ -386,7 +402,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             get => !IsSearchActive && GetIsExtraFilterActive(AppSettings.Fullscreen);
         }
-        
+
         public bool IsSearchActive
         {
             get => !AppSettings.Fullscreen.FilterSettings.Name.IsNullOrEmpty();
@@ -414,7 +430,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SleepSystemCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> OpenAdditionalFiltersCommand { get; private set; }
-        public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }        
+        public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }
         public RelayCommand<object> ActivateSelectedCommand { get; private set; }
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> NextFilterViewCommand { get; private set; }
@@ -423,6 +439,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         public RelayCommand<object> SelectRandomGameCommand { get; private set; }
+        public RelayCommand<object> UpdateGamesCommand { get; private set; }
         #endregion Commands
 
         public FullscreenAppViewModel()
@@ -493,7 +510,7 @@ namespace Playnite.FullscreenApp.ViewModels
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
-        {            
+        {
             OnPropertyChanged(nameof(IsExtraFilterActive));
             OnPropertyChanged(nameof(IsSearchActive));
         }
@@ -631,7 +648,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
 
                 GameMenuVisible = !GameMenuVisible;
-            }, (a) => SelectedGame != null);            
+            }, (a) => SelectedGame != null);
 
             ToggleSettingsMenuCommand = new RelayCommand<object>((a) =>
             {
@@ -773,6 +790,9 @@ namespace Playnite.FullscreenApp.ViewModels
                         break;
                     case GameField.Publishers:
                         OpenSubFilter("LOCPublisherLabel", nameof(DatabaseFilter.Publishers), nameof(FilterSettings.Publisher));
+                        break;
+                    case GameField.Features:
+                        OpenSubFilter("LOCFeatureLabel", nameof(DatabaseFilter.Features), nameof(FilterSettings.Feature));
                         break;
                     case GameField.Tags:
                         OpenSubFilter("LOCTagLabel", nameof(DatabaseFilter.Tags), nameof(FilterSettings.Tag));
@@ -969,7 +989,18 @@ namespace Playnite.FullscreenApp.ViewModels
             SelectRandomGameCommand = new RelayCommand<object>((a) =>
             {
                 PlayRandomGame();
-            });
+            }, (a) => Database?.IsOpen == true,
+            new KeyGesture(Key.F6));
+
+            UpdateGamesCommand = new RelayCommand<object>(async (a) =>
+            {
+                if (MainMenuVisible)
+                {
+                    ToggleMainMenuCommand.Execute(null);
+                }
+
+                await UpdateDatabase(AppSettings.DownloadMetadataOnImport);
+            }, (a) => !DatabaseUpdateRunning);
         }
 
         private GamesCollectionViewEntry SelectClosestGameDetails()
@@ -1097,7 +1128,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void CloseView()
         {
-            ignoreCloseActions = true;            
+            ignoreCloseActions = true;
             Window.Close();
             Dispose();
             ignoreCloseActions = false;
@@ -1227,6 +1258,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             try
             {
+                DatabaseUpdateRunning = true;
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 GlobalTaskHandler.ProgressTask = Task.Run(async () =>
                 {
@@ -1283,9 +1315,11 @@ namespace Playnite.FullscreenApp.ViewModels
                 });
 
                 await GlobalTaskHandler.ProgressTask;
+                Extensions.NotifiyOnLibraryUpdated();
             }
             finally
             {
+                DatabaseUpdateRunning = false;
                 ProgressVisible = false;
                 DatabaseFilters.IgnoreDatabaseUpdates = false;
             }
@@ -1304,7 +1338,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     if (File.Exists(path))
                     {
                         var ext = Path.GetExtension(path).ToLower();
-                        if (ext.Equals(ThemeManager.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
+                        if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
                             try
                             {

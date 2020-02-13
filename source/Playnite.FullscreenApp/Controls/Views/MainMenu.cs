@@ -27,6 +27,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonSleepSystem", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonHibernateSystem", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonPickRandomGame", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ButtonUpdateLibrary", Type = typeof(ButtonBase))]
     public class MainMenu : Control
     {
         private FullscreenAppViewModel mainModel;
@@ -41,6 +42,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private ButtonBase ButtonSleepSystem;
         private ButtonBase ButtonHibernateSystem;
         private ButtonBase ButtonPickRandomGame;
+        private ButtonBase ButtonUpdateLibrary;
 
         static MainMenu()
         {
@@ -151,6 +153,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                 if (ButtonHibernateSystem != null)
                 {
                     ButtonHibernateSystem.Command = mainModel.HibernateSystemCommand;
+                }
+
+                ButtonUpdateLibrary = Template.FindName("PART_ButtonUpdateLibrary", this) as ButtonBase;
+                if (ButtonUpdateLibrary != null)
+                {
+                    ButtonUpdateLibrary.Command = mainModel.UpdateGamesCommand;
                 }
             }
         }

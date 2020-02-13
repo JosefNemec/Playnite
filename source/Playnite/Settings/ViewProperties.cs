@@ -66,6 +66,8 @@ namespace Playnite
         Favorite,
         [Description("LOCGameInstallDirTitle")]
         InstallDirectory,
+        [Description("LOCFeatureLabel")]
+        Features
     }
 
     public enum SortOrderDirection
@@ -119,7 +121,9 @@ namespace Playnite
         [Description("LOCDateAddedLabel")]
         Added,
         [Description("LOCDateModifiedLabel")]
-        Modified
+        Modified,
+        [Description("LOCFeatureLabel")]
+        Feature
     }
 
     public enum ViewType : int
@@ -240,7 +244,8 @@ namespace Playnite
             { "CriticScore", false },
             { "CommunityScore", false },
             { "Tags", false },
-            { "Library", true }
+            { "Library", true },
+            { "Features", false }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders

@@ -42,40 +42,46 @@
             </DockPanel>
         </Border>
 
-        <TreeView DockPanel.Dock="Left" MinWidth="140" BorderThickness="0,1,0,0">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectedItemChanged" >
-                    <prism:InvokeCommandAction Command="{Binding SettingsTreeSelectedItemChangedCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-            <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True" Tag="0" />
-            <TreeViewItem Header="{DynamicResource LOCSettingsAppearanceLabel}" IsExpanded="True" Tag="1">
-                <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" Tag="1" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="2" />
-                <TreeViewItem Header="{DynamicResource LOCDetailsViewLabel}" Tag="3" />
-                <TreeViewItem Header="{DynamicResource LOCGridViewLabel}" Tag="4" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="5" />
-            </TreeViewItem>
-            <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
-            <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8" />
-            <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
-            <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
-            <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" />
-            <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10"
+        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
+                DockPanel.Dock="Left">
+            <TreeView MinWidth="140" BorderThickness="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedItemChanged" >
+                        <prism:InvokeCommandAction Command="{Binding SettingsTreeSelectedItemChangedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True" Tag="0" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsAppearanceLabel}" IsExpanded="True" Tag="1">
+                    <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" Tag="1" />
+                    <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="2" />
+                    <TreeViewItem Header="{DynamicResource LOCDetailsViewLabel}" Tag="3" />
+                    <TreeViewItem Header="{DynamicResource LOCGridViewLabel}" Tag="4" />
+                    <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="5" />
+                </TreeViewItem>
+                <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
+                <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
+                <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="12" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" IsExpanded="True">
+                    <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="13" />
+                </TreeViewItem>
+                <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10"
                           DisplayMemberPath="Name"
                           ItemsSource="{Binding Extensions.LibraryPlugins}" />
-            <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="10"
+                <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="10"
                           DisplayMemberPath="Name"
                           ItemsSource="{Binding Extensions.MetadataPlugins}"/>
-            <TreeViewItem Header="{DynamicResource LOCPlugins}" Tag="10"
+                <TreeViewItem Header="{DynamicResource LOCPlugins}" Tag="10"
                           DisplayMemberPath="Description.Name"
                           ItemsSource="{Binding GenericPlugins}"
                           Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        </TreeView>
+            </TreeView>
+        </Border>
 
-        <ScrollViewer DockPanel.Dock="Left" BorderThickness="1,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"
-                      VerticalScrollBarVisibility="Auto">
+        <Border DockPanel.Dock="Left" BorderThickness="1,1,0,0"
+                BorderBrush="{StaticResource NormalBorderBrush}">
             <ContentControl Content="{Binding SelectedSectionView}"/>
-        </ScrollViewer>
+        </Border>
     </DockPanel>
 </controls:WindowBase>

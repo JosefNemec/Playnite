@@ -41,7 +41,7 @@ namespace TwitchLibrary
         {
             get
             {
-                var program = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Twitch");
+                var program = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Twitch" && a.UninstallString?.Contains("UninstallTwitch") == true);
                 if (program == null)
                 {
                     return null;
@@ -65,7 +65,6 @@ namespace TwitchLibrary
                     return null;
                 }
             }
-
         }
 
         public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\twitchicon.png");

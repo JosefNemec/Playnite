@@ -30,6 +30,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ElemReleaseDate", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemCategories", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemTags", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ElemFeatures", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemLinks", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemDescription", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemAgeRating", Type = typeof(FrameworkElement))]
@@ -40,14 +41,12 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ElemCommunityScore", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemCriticScore", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemUserScore", Type = typeof(FrameworkElement))]
-
     [TemplatePart(Name = "PART_TextPlayTime", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextLastActivity", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextCompletionStatus", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextCommunityScore", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextCriticScore", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextUserScore", Type = typeof(TextBlock))]
-
     [TemplatePart(Name = "PART_ButtonLibrary", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonPlatform", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonReleaseDate", Type = typeof(Button))]
@@ -56,17 +55,17 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonSource", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonRegion", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonVersion", Type = typeof(Button))]
-
     [TemplatePart(Name = "PART_ItemsGenres", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsDevelopers", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsPublishers", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsCategories", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsTags", Type = typeof(ItemsControl))]
+    [TemplatePart(Name = "PART_ItemsFeatures", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsLinks", Type = typeof(ItemsControl))]
-
     [TemplatePart(Name = "PART_ButtonPlayAction", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonContextAction", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonMoreActions", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_ButtonEditGame", Type = typeof(Button))]
     [TemplatePart(Name = "PART_HtmlDescription", Type = typeof(HtmlTextView))]
     [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageIcon", Type = typeof(Image))]
@@ -87,6 +86,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private FrameworkElement ElemReleaseDate;
         private FrameworkElement ElemCategories;
         private FrameworkElement ElemTags;
+        private FrameworkElement ElemFeatures;
         private FrameworkElement ElemLinks;
         private FrameworkElement ElemDescription;
 
@@ -109,11 +109,13 @@ namespace Playnite.DesktopApp.Controls.Views
         private ItemsControl ItemsPublishers;
         private ItemsControl ItemsCategories;
         private ItemsControl ItemsTags;
+        private ItemsControl ItemsFeatures;
         private ItemsControl ItemsLinks;
 
         private Button ButtonPlayAction;
         private Button ButtonContextAction;
         private Button ButtonMoreActions;
+        private Button ButtonEditGame;
         private HtmlTextView HtmlDescription;
         private Image ImageCover;
         private Image ImageIcon;
@@ -143,6 +145,13 @@ namespace Playnite.DesktopApp.Controls.Views
             this.viewType = viewType;
             this.mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            Unloaded += GameOverview_Unloaded;
+        }
+
+        private void GameOverview_Unloaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
+            mainModel.AppSettings.ViewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -220,6 +229,14 @@ namespace Playnite.DesktopApp.Controls.Views
                 }
             }
 
+            ButtonEditGame = Template.FindName("PART_ButtonEditGame", this) as Button;
+            if (ButtonEditGame != null)
+            {
+                BindingTools.SetBinding(ButtonEditGame,
+                    Button.CommandProperty,
+                    nameof(GameDetailsViewModel.EditGameCommand));
+            }
+
             HtmlDescription = Template.FindName("PART_HtmlDescription", this) as HtmlTextView;
             if (HtmlDescription != null)
             {
@@ -293,8 +310,9 @@ namespace Playnite.DesktopApp.Controls.Views
             SetElemVisibility(ref ElemDevelopers, "PART_ElemDevelopers", nameof(GameDetailsViewModel.DeveloperVisibility));
             SetElemVisibility(ref ElemPublishers, "PART_ElemPublishers", nameof(GameDetailsViewModel.PublisherVisibility));
             SetElemVisibility(ref ElemReleaseDate, "PART_ElemReleaseDate", nameof(GameDetailsViewModel.ReleaseDateVisibility));
-            SetElemVisibility(ref ElemTags, "PART_ElemCategories", nameof(GameDetailsViewModel.CategoryVisibility));
-            SetElemVisibility(ref ElemCategories, "PART_ElemTags", nameof(GameDetailsViewModel.TagVisibility));
+            SetElemVisibility(ref ElemTags, "PART_ElemTags", nameof(GameDetailsViewModel.TagVisibility));
+            SetElemVisibility(ref ElemFeatures, "PART_ElemFeatures", nameof(GameDetailsViewModel.FeatureVisibility));
+            SetElemVisibility(ref ElemCategories, "PART_ElemCategories", nameof(GameDetailsViewModel.CategoryVisibility));
             SetElemVisibility(ref ElemLinks, "PART_ElemLinks", nameof(GameDetailsViewModel.LinkVisibility));
             SetElemVisibility(ref ElemDescription, "PART_ElemDescription", nameof(GameDetailsViewModel.DescriptionVisibility));
             SetElemVisibility(ref ElemDescription, "PART_ElemAgeRating", nameof(GameDetailsViewModel.AgeRatingVisibility));
@@ -317,7 +335,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.Platform)),
                 GetGameBindingPath($"{nameof(GamesCollectionViewEntry.Platform)}.{nameof(GamesCollectionViewEntry.Platform.Name)}"),
                 nameof(GameDetailsViewModel.PlatformVisibility));
-            
+
             SetGameItemButtonBinding(ref ButtonReleaseDate, "PART_ButtonReleaseDate",
                 nameof(GameDetailsViewModel.SetReleaseDateFilterCommand),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
@@ -425,6 +443,11 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GamesCollectionViewEntry.Tags),
                 nameof(GameDetailsViewModel.TagVisibility));
 
+            SetItemsControlBinding(ref ItemsFeatures, "PART_ItemsFeatures",
+                nameof(GameDetailsViewModel.SetFeatureFilterCommand),
+                nameof(GamesCollectionViewEntry.Features),
+                nameof(GameDetailsViewModel.FeatureVisibility));
+
             SetItemsControlBinding(ref ItemsLinks, "PART_ItemsLinks",
                 nameof(GameDetailsViewModel.OpenLinkCommand),
                 nameof(GamesCollectionViewEntry.Links),
@@ -467,7 +490,7 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             elem = Template.FindName(partId, this) as FrameworkElement;
             if (elem != null)
-            {                
+            {
                 BindingTools.SetBinding(elem,
                     FrameworkElement.VisibilityProperty,
                     binding);
@@ -535,6 +558,5 @@ namespace Playnite.DesktopApp.Controls.Views
 
             return Xaml.FromString<DataTemplate>(templateDoc.ToString());
         }
-
     }
 }

@@ -23,6 +23,7 @@ using System.ComponentModel;
 using Playnite.Windows;
 using Polly;
 using System.Windows.Media;
+using Playnite.SDK.Events;
 
 namespace Playnite
 {
@@ -114,15 +115,20 @@ namespace Playnite
             try
             {
                 var installed = ExtensionInstaller.InstallExtensionQueue();
-                if (installed?.Mode == Mode)
+                var installedTheme = installed.FirstOrDefault(a => a is ThemeDescription);
+                if (installedTheme != null)
                 {
-                    if (installed.Mode == ApplicationMode.Desktop)
+                    var theme = installedTheme as ThemeDescription;
+                    if (theme.Mode == Mode)
                     {
-                        AppSettings.Theme = installed.DirectoryName;
-                    }
-                    else
-                    {
-                        AppSettings.Fullscreen.Theme = installed.DirectoryName;
+                        if (theme.Mode == ApplicationMode.Desktop)
+                        {
+                            AppSettings.Theme = theme.DirectoryName;
+                        }
+                        else
+                        {
+                            AppSettings.Fullscreen.Theme = theme.DirectoryName;
+                        }
                     }
                 }
             }
@@ -246,7 +252,7 @@ namespace Playnite
         public abstract void ShowWindowsNotification(string title, string body, Action action);
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
-        {            
+        {
             logger.Info("Shutting down application because of session ending.");
             // Don't dispose CefSharp here because of bug in CefSharp during system shutdown
             // https://github.com/JosefNemec/Playnite/issues/866
@@ -263,7 +269,7 @@ namespace Playnite
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var exception = (Exception)e.ExceptionObject;
-            logger.Error(exception, "Unhandled exception occured.");            
+            logger.Error(exception, "Unhandled exception occured.");
             var model = new CrashHandlerViewModel(
                 new CrashHandlerWindowFactory(),
                 Dialogs,
@@ -276,7 +282,7 @@ namespace Playnite
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");            
+            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");
             Startup();
             logger.Info($"Application {CurrentVersion} started");
         }
@@ -309,6 +315,10 @@ namespace Playnite
                         logger.Error($"Can't start game, failed to parse game id: {args.Args}");
                     }
 
+                    break;
+
+                case CmdlineCommand.UriRequest:
+                    (Api.UriHandler as PlayniteUriHandler).ProcessUri(args.Args);
                     break;
 
                 default:
@@ -348,6 +358,10 @@ namespace Playnite
                             if (!CmdLine.Start.IsNullOrEmpty())
                             {
                                 client.InvokeCommand(CmdlineCommand.Start, CmdLine.Start);
+                            }
+                            else if (!CmdLine.UriData.IsNullOrEmpty())
+                            {
+                                client.InvokeCommand(CmdlineCommand.UriRequest, CmdLine.UriData);
                             }
                             else
                             {
@@ -438,14 +452,47 @@ namespace Playnite
             {
                 logger.Error(exc, "Failed to register Playnite to start on boot.");
             }
+
+            try
+            {
+                PlayniteSettings.RegisterPlayniteUriProtocol();
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to register playnite URI scheme.");
+            }
         }
 
         public void ProcessArguments()
         {
+            (Api.UriHandler as PlayniteUriHandler).Handlers.Add("playnite", ProcessUriRequest);
             if (!CmdLine.Start.IsNullOrEmpty())
             {
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Start, CmdLine.Start));
             }
+            else if (!CmdLine.UriData.IsNullOrEmpty())
+            {
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.UriRequest, CmdLine.UriData));
+            }
+        }
+
+        internal void ProcessUriRequest(PlayniteUriEventArgs args)
+        {
+            var arguments = args.Arguments;
+            if (arguments.Count() == 2 && arguments[0].Equals("start", StringComparison.OrdinalIgnoreCase))
+            {
+                if (Guid.TryParse(arguments[1], out var gameId))
+                {
+                    var game = Database.Games[gameId];
+                    if (game != null)
+                    {
+                        GamesEditor.PlayGame(game);
+                        return;
+                    }
+                }
+            }
+
+            logger.Warn($"Failed to process playnite URI arguments {string.Join(",", arguments)}");
         }
 
         public void SetupInputs(bool enableXinput)
@@ -479,6 +526,7 @@ namespace Playnite
                 return;
             }
 
+            Extensions.NotifiyOnApplicationStopped();
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
             {
                 try
@@ -490,8 +538,8 @@ namespace Playnite
 
                     GamesEditor?.Dispose();
                     AppSettings?.SaveSettings();
-                    Extensions?.Dispose();
                     Controllers?.Dispose();
+                    Extensions?.Dispose();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -522,7 +570,7 @@ namespace Playnite
             {
                 return;
             }
-            
+
             await Task.Delay(Common.Timer.SecondsToMilliseconds(5));
             if (GlobalTaskHandler.IsActive)
             {

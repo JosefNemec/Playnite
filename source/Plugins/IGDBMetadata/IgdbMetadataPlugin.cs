@@ -39,7 +39,7 @@ namespace IGDBMetadata
             MetadataField.Publishers,
             MetadataField.Genres,
             MetadataField.Links,
-            MetadataField.Tags,
+            MetadataField.Features,
             MetadataField.CriticScore,
             MetadataField.CommunityScore
         };

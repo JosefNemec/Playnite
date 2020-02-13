@@ -368,7 +368,19 @@ namespace Playnite
             }
         }
 
+        private bool features = true;
+        public bool Features
+        {
+            get
+            {
+                return features;
+            }
 
-
+            set
+            {
+                features = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

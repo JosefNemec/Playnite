@@ -16,8 +16,15 @@ namespace GogLibrary.Models
                 public string slug;
             }
 
+            public class Feature
+            {
+                public string name;
+                public string id;
+            }
+
             public List<SluggedName> genres;
             public List<SluggedName> tags;
+            public List<Feature> features;
             public string publisher;
             public List<SluggedName> developers;
             public DateTime? globalReleaseDate;

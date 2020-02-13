@@ -21,6 +21,10 @@ namespace Playnite.Database
 {
     public partial class GameDatabase : IGameDatabase
     {
+        public const double MaximumRecommendedIconSize = 0.1;
+        public const double MaximumRecommendedCoverSize = 1;
+        public const double MaximumRecommendedBackgroundSize = 4;
+
         private static ILogger logger = LogManager.GetLogger();
 
         #region Locks
@@ -44,6 +48,7 @@ namespace Playnite.Database
         private const string genresDirName = "genres";
         private const string companiesDirName = "companies";
         private const string tagsDirName = "tags";
+        private const string featuresDirName = "features";
         private const string categoriesDirName = "categories";
         private const string seriesDirName = "series";
         private const string ageRatingsDirName = "ageratings";
@@ -64,6 +69,7 @@ namespace Playnite.Database
         private string SourcesDirectoryPath { get => Path.Combine(DatabasePath, sourcesDirName); }
         private string FilesDirectoryPath { get => Path.Combine(DatabasePath, filesDirName); }
         private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, settingsFileName); }
+        private string FeaturesDirectoryPath { get => Path.Combine(DatabasePath, featuresDirName); }
 
         #endregion Paths
 
@@ -80,6 +86,7 @@ namespace Playnite.Database
         public IItemCollection<AgeRating> AgeRatings { get; private set; }
         public IItemCollection<Region> Regions { get; private set; }
         public IItemCollection<GameSource> Sources { get; private set; }
+        public IItemCollection<GameFeature> Features { get; private set; }
 
         #endregion Lists
 
@@ -153,6 +160,7 @@ namespace Playnite.Database
             (Series as SeriesCollection).InitializeCollection(SeriesDirectoryPath);
             (Regions as RegionsCollection).InitializeCollection(RegionsDirectoryPath);
             (Sources as GamesSourcesCollection).InitializeCollection(SourcesDirectoryPath);
+            (Features as FeaturesCollection).InitializeCollection(FeaturesDirectoryPath);
         }
 
         #endregion Intialization
@@ -175,6 +183,7 @@ namespace Playnite.Database
             Series = new SeriesCollection(this);
             Regions = new RegionsCollection(this);
             Sources = new GamesSourcesCollection(this);
+            Features = new FeaturesCollection(this);
         }
 
         public static string GetDefaultPath(bool portable)
@@ -205,7 +214,7 @@ namespace Playnite.Database
 
         internal static void SaveSettingsToDbPath(DatabaseSettings settings, string dbPath)
         {
-            var settingsPath = Path.Combine(dbPath, settingsFileName);            
+            var settingsPath = Path.Combine(dbPath, settingsFileName);
             FileSystem.WriteStringToFileSafe(settingsPath, Serialization.ToJson(settings));
         }
 
@@ -243,7 +252,7 @@ namespace Playnite.Database
             {
                 return path;
             }
-        }        
+        }
 
         public void OpenDatabase()
         {
@@ -343,7 +352,7 @@ namespace Playnite.Database
                 try
                 {
                     var extension = Path.GetExtension(new Uri(path).AbsolutePath);
-                    var fileName = Guid.NewGuid().ToString() + extension;               
+                    var fileName = Guid.NewGuid().ToString() + extension;
                     HttpDownloader.DownloadFile(path, Path.Combine(targetDir, fileName));
                     dbPath = Path.Combine(parentId.ToString(), fileName);
                 }
@@ -406,7 +415,6 @@ namespace Playnite.Database
             {
                 return;
             }
-
 
             try
             {
@@ -529,6 +537,7 @@ namespace Playnite.Database
             Regions.BeginBufferUpdate();
             Sources.BeginBufferUpdate();
             Emulators.BeginBufferUpdate();
+            Features.BeginBufferUpdate();
             Games.BeginBufferUpdate();
         }
 
@@ -544,6 +553,7 @@ namespace Playnite.Database
             Regions.EndBufferUpdate();
             Sources.EndBufferUpdate();
             Emulators.EndBufferUpdate();
+            Features.EndBufferUpdate();
             Games.EndBufferUpdate();
         }
 
@@ -559,7 +569,17 @@ namespace Playnite.Database
                 return null;
             }
 
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(path);
+            var fileName = Guid.NewGuid().ToString();
+            if (path.IsHttpUrl())
+            {
+                var url = new Uri(path);
+                fileName += Path.GetExtension(url.AbsolutePath);
+            }
+            else
+            {
+                fileName += Path.GetExtension(path);
+            }
+
             MetadataFile metaFile = null;
 
             try
@@ -636,7 +656,9 @@ namespace Playnite.Database
                 CompletionStatus = game.CompletionStatus,
                 UserScore = game.UserScore,
                 CriticScore = game.CriticScore,
-                CommunityScore = game.CommunityScore
+                CommunityScore = game.CommunityScore,
+                Hidden = game.Hidden,
+                Favorite = game.Favorite
             };
 
             if (string.IsNullOrEmpty(game.Platform))
@@ -673,6 +695,11 @@ namespace Playnite.Database
                 toAdd.TagIds = Tags.Add(game.Tags).Select(a => a.Id).ToList();
             }
 
+            if (game.Features?.Any() == true)
+            {
+                toAdd.FeatureIds = Features.Add(game.Features).Select(a => a.Id).ToList();
+            }
+
             if (!string.IsNullOrEmpty(game.AgeRating))
             {
                 toAdd.AgeRatingId = AgeRatings.Add(game.AgeRating).Id;
@@ -699,6 +726,11 @@ namespace Playnite.Database
         public Game ImportGame(GameInfo game)
         {
             return ImportGame(game, Guid.Empty);
+        }
+
+        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        {
+            return ImportGame(game, sourcePlugin.Id);
         }
 
         public Game ImportGame(GameInfo game, Guid pluginId)
@@ -744,49 +776,56 @@ namespace Playnite.Database
 
         public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
         {
-            var addedGames = new List<Game>();
-            foreach (var newGame in library.GetGames())
+            if (library.Capabilities?.HasCustomizedGameImport == true)
             {
-                var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
-                if (existingGame == null)
-                {
-                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                    addedGames.Add(ImportGame(newGame, library.Id));
-                }
-                else
-                {
-                    existingGame.IsInstalled = newGame.IsInstalled;
-                    existingGame.InstallDirectory = newGame.InstallDirectory;
-                    if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
-                    {
-                        existingGame.PlayAction = newGame.PlayAction;
-                    }
-
-                    if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
-                       (newGame.Playtime > 0 && forcePlayTimeSync))
-                    {
-                        existingGame.Playtime = newGame.Playtime;
-                        if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
-                        {
-                            existingGame.CompletionStatus = CompletionStatus.Played;
-                        }
-
-                        if (existingGame.LastActivity == null && newGame.LastActivity != null)
-                        {
-                            existingGame.LastActivity = newGame.LastActivity;
-                        }
-                    }
-
-                    if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
-                    {
-                        existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
-                    }
-
-                    Games.Update(existingGame);
-                }
+                return library.ImportGames()?.ToList() ?? new List<Game>();
             }
+            else
+            {
+                var addedGames = new List<Game>();
+                foreach (var newGame in library.GetGames())
+                {
+                    var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
+                    if (existingGame == null)
+                    {
+                        logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+                        addedGames.Add(ImportGame(newGame, library.Id));
+                    }
+                    else
+                    {
+                        existingGame.IsInstalled = newGame.IsInstalled;
+                        existingGame.InstallDirectory = newGame.InstallDirectory;
+                        if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
+                        {
+                            existingGame.PlayAction = newGame.PlayAction;
+                        }
 
-            return addedGames;        
+                        if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
+                           (newGame.Playtime > 0 && forcePlayTimeSync))
+                        {
+                            existingGame.Playtime = newGame.Playtime;
+                            if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
+                            {
+                                existingGame.CompletionStatus = CompletionStatus.Played;
+                            }
+
+                            if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                            {
+                                existingGame.LastActivity = newGame.LastActivity;
+                            }
+                        }
+
+                        if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
+                        {
+                            existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
+                        }
+
+                        Games.Update(existingGame);
+                    }
+                }
+
+                return addedGames;
+            }
         }
 
         public static void GenerateSampleData(IGameDatabase database)
@@ -800,7 +839,8 @@ namespace Playnite.Database
             database.Regions.Add("EU");
             database.Series.Add("Star Wars");
             database.Sources.Add("Retails");
-            database.Tags.Add("Single player");
+            database.Tags.Add("Star Wars");
+            database.Features.Add("Single Player");
 
             var designGame = new Game($"Star Wars: Knights of the Old Republic")
             {
@@ -819,6 +859,7 @@ namespace Playnite.Database
                 SeriesId = database.Series.First().Id,
                 SourceId = database.Sources.First().Id,
                 TagIds = new List<Guid> { database.Tags.First().Id },
+                FeatureIds = new List<Guid> { database.Features.First().Id },
                 Description = "Star Wars: Knights of the Old Republic (often abbreviated as KotOR) is the first installment in the Knights of the Old Republic series. KotOR is the first computer role-playing game set in the Star Wars universe.",
                 Version = "1.2",
                 CommunityScore = 95,

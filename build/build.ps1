@@ -124,6 +124,30 @@ function CreateDirectoryDiff()
     Remove-Item $tempPath -Recurse -Force
 }
 
+function PackExtensionTemplate()
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$TemplateRootName,        
+        [Parameter(Mandatory = $true)]
+        [string]$OutputDir
+    )
+
+    $templatesDir = Join-Path $OutputDir "Templates\Extensions\"
+    $templateOutDir = Join-Path $templatesDir $TemplateRootName
+    $tempFiles = Get-Content "..\source\Tools\Playnite.Toolbox\Templates\Extensions\$TemplateRootName\BuildInclude.txt" | Where { ![string]::IsNullOrEmpty($_) }
+    $targetZip = Join-Path $templatesDir "$TemplateRootName.zip"
+    foreach ($file in $tempFiles)
+    {
+        $target = Join-Path $templateOutDir $file
+        New-FolderFromFilePath $target
+        Copy-Item (Join-Path "..\source\Tools\Playnite.Toolbox\Templates\Extensions\$TemplateRootName" $file) $target        
+    }
+
+    New-ZipFromDirectory $templateOutDir $targetZip
+    Remove-Item $templateOutDir -Recurse -Force
+} 
+
 if ($Sign)
 {
     Start-SigningWatcher $Sign
@@ -160,6 +184,13 @@ if (!$SkipBuild)
             Join-Path $OutputDir "PlayniteUI.exe" | SignFile
         }
     }
+
+    # Copy extension templates
+    PackExtensionTemplate "CustomLibraryPlugin" $OutputDir
+    PackExtensionTemplate "CustomMetadataPlugin" $OutputDir
+    PackExtensionTemplate "GenericPlugin" $OutputDir
+    PackExtensionTemplate "IronPythonScript" $OutputDir
+    PackExtensionTemplate "PowerShellScript" $OutputDir
 }
 
 # -------------------------------------------

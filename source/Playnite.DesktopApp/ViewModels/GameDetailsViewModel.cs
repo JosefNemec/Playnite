@@ -14,10 +14,10 @@ using Playnite.Converters;
 namespace Playnite.DesktopApp.ViewModels
 {
     public class GameDetailsViewModel : ObservableObject, IDisposable
-    {        
+    {
         private IResourceProvider resources;
         private IDialogsFactory dialogs;
-        private GamesEditor editor;
+        private DesktopGamesEditor editor;
         private PlayniteSettings settings;
 
         public bool ShowInfoPanel
@@ -35,10 +35,10 @@ namespace Playnite.DesktopApp.ViewModels
                     (game.DeveloperIds?.Any() == true) ||
                     (game.CategoryIds?.Any() == true) ||
                     (game.TagIds?.Any() == true) ||
+                    (game.FeatureIds?.Any() == true) ||
                     game.ReleaseDate != null ||
                     (game.Links?.Any() == true) ||
                     game.PlatformId != Guid.Empty;
-
             }
         }
 
@@ -194,6 +194,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.Tags && game.TagIds.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility FeatureVisibility
+        {
+            get => (settings.DetailsVisibility.Features && game.FeatureIds.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public Visibility LinkVisibility
         {
             get => (settings.DetailsVisibility.Links && game.Links.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
@@ -334,6 +339,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<DatabaseObject> SetFeatureFilterCommand
+        {
+            get => new RelayCommand<DatabaseObject>((filter) =>
+            {
+                SetFilter(filter, GameField.Features);
+            });
+        }
+
         public RelayCommand<DatabaseObject> SetAgeRatingCommand
         {
             get => new RelayCommand<DatabaseObject>((filter) =>
@@ -411,6 +424,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> EditGameCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                EditGame();
+            });
+        }
+
         public RelayCommand<object> ContextActionCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -430,7 +451,7 @@ namespace Playnite.DesktopApp.ViewModels
                 else if(Game?.IsInstalled == true)
                 {
                     Play();
-                }  
+                }
             });
         }
 
@@ -440,7 +461,7 @@ namespace Playnite.DesktopApp.ViewModels
             Game = game;
         }
 
-        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, GamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, DesktopGamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.resources = resources;
             this.dialogs = dialogs;
@@ -527,12 +548,14 @@ namespace Playnite.DesktopApp.ViewModels
                 case GameField.Source:
                     settings.FilterSettings.Source = filter;
                     break;
+                case GameField.Features:
+                    settings.FilterSettings.Feature = filter;
+                    break;
                 default:
                     break;
             }
 
             settings.FilterPanelVisible = true;
-
         }
 
         public void SetReleaseDateFilter(DateTime? date)
@@ -570,6 +593,11 @@ namespace Playnite.DesktopApp.ViewModels
             editor.InstallGame(game.Game);
         }
 
+        public void EditGame()
+        {
+            editor.EditGame(game.Game);
+        }
+
         public void CheckSetup()
         {
             if (dialogs.ShowMessage(
@@ -578,7 +606,7 @@ namespace Playnite.DesktopApp.ViewModels
                 MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 editor.CancelGameMonitoring(game.Game);
-            }               
+            }
         }
 
         public void CheckExecution()

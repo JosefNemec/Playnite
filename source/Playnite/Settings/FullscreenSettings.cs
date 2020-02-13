@@ -94,6 +94,7 @@ namespace Playnite
                     Publisher?.IsSet == true ||
                     Developer?.IsSet == true ||
                     Tag?.IsSet == true ||
+                    Feature?.IsSet == true ||
                     CompletionStatus?.IsSet == true ||
                     UserScore?.IsSet == true ||
                     CriticScore?.IsSet == true ||
@@ -324,6 +325,17 @@ namespace Playnite
             set
             {
                 viewSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool darkenUninstalledGamesGrid = false;
+        public bool DarkenUninstalledGamesGrid
+        {
+            get => darkenUninstalledGamesGrid;
+            set
+            {
+                darkenUninstalledGamesGrid = value;
                 OnPropertyChanged();
             }
         }

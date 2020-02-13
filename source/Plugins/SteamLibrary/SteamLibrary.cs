@@ -558,9 +558,17 @@ namespace SteamLibrary
                 }
 
                 var appData = new List<string>();
+                var isFavorite = false;
                 foreach (var tag in app["tags"].Children)
                 {
-                    appData.Add(tag.Value);
+                    if (tag.Value == "favorite")
+                    {
+                        isFavorite = true;
+                    }
+                    else
+                    {
+                        appData.Add(tag.Value);
+                    }
                 }
 
                 string gameId = app.Name;
@@ -591,7 +599,8 @@ namespace SteamLibrary
                     Source = "Steam",
                     GameId = gameId,
                     Categories = new List<string>(appData),
-                    Hidden = app["hidden"].AsInteger() == 1
+                    Hidden = app["hidden"].AsInteger() == 1,
+                    Favorite = isFavorite
                 });
             }
 
@@ -636,19 +645,27 @@ namespace SteamLibrary
                 {
                     foreach (var game in GetCategorizedGames(accountId))
                     {
-                        if (!game.Categories.HasItems())
-                        {
-                            continue;
-                        }
-
                         var dbGame = db.Games.FirstOrDefault(a => a.PluginId == Id && a.GameId == game.GameId);
                         if (dbGame == null)
                         {
                             continue;
                         }
 
-                        dbGame.CategoryIds = db.Categories.Add(game.Categories).Select(a => a.Id).ToList();
-                        dbGame.Hidden = game.Hidden;
+                        if (game.Categories.HasItems())
+                        {
+                            dbGame.CategoryIds = db.Categories.Add(game.Categories).Select(a => a.Id).ToList();
+                        }
+
+                        if (game.Hidden)
+                        {
+                            dbGame.Hidden = game.Hidden;
+                        }
+
+                        if (game.Favorite)
+                        {
+                            dbGame.Favorite = game.Favorite;
+                        }
+
                         db.Games.Update(dbGame);
                     }
                 }
@@ -674,6 +691,11 @@ namespace SteamLibrary
         public override string Name => "Steam";
 
         public override string LibraryIcon => Steam.Icon;
+
+        public override LibraryPluginCapabilities Capabilities { get; } = new LibraryPluginCapabilities
+        {
+            CanShutdownClient = true
+        };
 
         public override void Dispose()
         {
@@ -746,11 +768,12 @@ namespace SteamLibrary
 
             if (importError != null)
             {
-                PlayniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(new NotificationMessage(
                     dbImportMessageId,
                     string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
-                    NotificationType.Error);
+                    NotificationType.Error,
+                    () => OpenSettingsView()));
             }
             else
             {

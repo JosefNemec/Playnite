@@ -39,7 +39,7 @@ namespace Playnite.SDK
             OldData = oldData;
             NewData = newData;
         }
-    }    
+    }
 
     /// <summary>
     /// Represents arguments for collection update events.
@@ -137,11 +137,27 @@ namespace Playnite.SDK
         TItem Add(string itemName);
 
         /// <summary>
+        /// Adds new item into collection.
+        /// </summary>
+        /// <param name="itemName">Name of new item.</param>
+        /// <param name="existingComparer">Method to detect existing item from database compared to new item.</param>
+        /// <returns>Newly added item or existing item if one is present with the same name.</returns>
+        TItem Add(string itemName, Func<TItem, string, bool> existingComparer);
+
+        /// <summary>
         /// Adds new items into collection.
         /// </summary>
         /// <param name="items">Names of items to be added.</param>
         /// <returns>Newly added items or existing items if there are some present with the same names.</returns>
         IEnumerable<TItem> Add(List<string> items);
+
+        /// <summary>
+        /// Adds new items into collection.
+        /// </summary>
+        /// <param name="items">Names of items to be added.</param>
+        /// <param name="existingComparer">Method to detect existing item from database compared to new item.</param>
+        /// <returns></returns>
+        IEnumerable<TItem> Add(List<string> items, Func<TItem, string, bool> existingComparer);
 
         /// <summary>
         /// Adds itemss to into collection.
@@ -199,6 +215,6 @@ namespace Playnite.SDK
         /// <summary>
         /// Occurs when items are updated.
         /// </summary>
-        event EventHandler<ItemUpdatedEventArgs<TItem>> ItemUpdated;        
+        event EventHandler<ItemUpdatedEventArgs<TItem>> ItemUpdated;
     }
 }

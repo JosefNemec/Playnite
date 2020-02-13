@@ -103,7 +103,7 @@ namespace Playnite.FullscreenApp.ViewModels
             AppSettings.Fullscreen.ShowBattery = true;
             AppSettings.Fullscreen.ShowBatteryPercentage = true;
             AppSettings.Fullscreen.ShowClock = true;
-            PlayniteApi = new PlayniteAPI(null, null, null, null, null, null, null, new NotificationsAPI());
+            PlayniteApi = new PlayniteAPI(null, null, null, null, null, null, null, new NotificationsAPI(), null, null);
             PlayniteApi.Notifications.Add(new NotificationMessage("1", "Some testing notification message.", NotificationType.Info));
             PlayniteApi.Notifications.Add(new NotificationMessage("2", "Some really long testing notification message that should be on more lines of text.", NotificationType.Error));
         }

@@ -40,6 +40,11 @@ namespace Playnite.DesktopApp.Tests
                 Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
             };
 
+            var features = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
             var series = new List<Guid>
             {
                 Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
@@ -72,6 +77,7 @@ namespace Playnite.DesktopApp.Tests
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
                     TagIds = new List<Guid>() { tags[0], tags[1], tags[2] },
+                    FeatureIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     Description = "Description",
                     PlatformId = platId,
                     LastActivity = new DateTime(2012,1,3),
@@ -99,6 +105,7 @@ namespace Playnite.DesktopApp.Tests
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
                     TagIds = new List<Guid>() { tags[0], tags[1], tags[2] },
+                    FeatureIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     SeriesId = series[0],
                     AgeRatingId = ratings[0],
                     RegionId = regions[0],
@@ -126,6 +133,7 @@ namespace Playnite.DesktopApp.Tests
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
                     TagIds = new List<Guid>() { tags[0], tags[1], tags[2] },
+                    FeatureIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     Description = "Description",
                     PlatformId = platId,
                     LastActivity = new DateTime(2012,1,3),
@@ -155,6 +163,7 @@ namespace Playnite.DesktopApp.Tests
             CollectionAssert.AreEqual(firstGame.PublisherIds, gameCommon.PublisherIds);
             CollectionAssert.AreEqual(firstGame.CategoryIds, gameCommon.CategoryIds);
             CollectionAssert.AreEqual(firstGame.TagIds, gameCommon.TagIds);
+            CollectionAssert.AreEqual(firstGame.FeatureIds, gameCommon.FeatureIds);
             Assert.AreEqual(firstGame.Description, gameCommon.Description);
             Assert.AreEqual(firstGame.PlatformId, gameCommon.PlatformId);
             Assert.AreEqual(firstGame.LastActivity, gameCommon.LastActivity);
@@ -185,6 +194,7 @@ namespace Playnite.DesktopApp.Tests
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
                     TagIds = new List<Guid>() { tags[0], tags[1], tags[2] },
+                    FeatureIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     SeriesId = series[0],
                     AgeRatingId = ratings[0],
                     RegionId = regions[0],
@@ -211,6 +221,7 @@ namespace Playnite.DesktopApp.Tests
                     PublisherIds = new List<Guid>() { publishers[3], publishers[4], publishers[5] },
                     CategoryIds = new List<Guid>() { categories[3], categories[4], categories[5] },
                     TagIds = new List<Guid>() { tags[3], tags[4], tags[5] },
+                    FeatureIds = new List<Guid>() { tags[3], tags[4], tags[5] },
                     SeriesId = series[1],
                     AgeRatingId = ratings[1],
                     RegionId = regions[1],
@@ -238,6 +249,7 @@ namespace Playnite.DesktopApp.Tests
                     PublisherIds = new List<Guid>() { publishers[6], publishers[7], publishers[8] },
                     CategoryIds = new List<Guid>() { categories[6], categories[7], categories[8] },
                     TagIds = new List<Guid>() { tags[6], tags[7], tags[8] },
+                    FeatureIds = new List<Guid>() { tags[6], tags[7], tags[8] },
                     SeriesId = series[2],
                     AgeRatingId = ratings[2],
                     RegionId = regions[2],
@@ -269,6 +281,7 @@ namespace Playnite.DesktopApp.Tests
             CollectionAssert.IsEmpty(gameNoCommon.PublisherIds);
             CollectionAssert.IsEmpty(gameNoCommon.CategoryIds);
             CollectionAssert.IsEmpty(gameNoCommon.TagIds);
+            CollectionAssert.IsEmpty(gameNoCommon.FeatureIds);
             Assert.IsNull(gameNoCommon.LastActivity);
             Assert.IsNull(gameNoCommon.Added);
             Assert.AreEqual(gameNoCommon.Playtime, 0);

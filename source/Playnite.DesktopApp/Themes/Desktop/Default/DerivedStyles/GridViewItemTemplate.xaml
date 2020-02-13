@@ -18,7 +18,6 @@
                                    RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Stretch="{Settings CoverArtStretch}" />
-
                                 <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
                                     <TextBlock Text="{Binding DisplayName}"
                                            TextWrapping="Wrap" Margin="5"
@@ -26,18 +25,18 @@
                                            TextTrimming="CharacterEllipsis" TextAlignment="Center"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
-                                <Border Background="#AA000000" x:Name="BorderMouseOver" Visibility="Collapsed">
-                                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
+                                <Border Background="#AA000000" x:Name="BorderMouseOver" Visibility="Collapsed" />
+                                <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center"
+                                         Name="GameControls"  Visibility="Collapsed">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
                                                 Margin="20,0,2,0" VerticalAlignment="Center"
                                                 Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
-                                            <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
+                                        <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
                                                 Margin="2,0,20,0" VerticalAlignment="Center"
                                                 Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
-                                        </StackPanel>
-                                    </Viewbox>
-                                </Border>
+                                    </StackPanel>
+                                </Viewbox>
                             </Grid>
                             <TextBlock Text="{Binding DisplayName}"
                                    Style="{DynamicResource BaseTextBlockStyle}"                                                                   
@@ -54,6 +53,13 @@
                         </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsInstalled}" Value="False" />
+                                <Condition Binding="{Settings DarkenUninstalledGamesGrid}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="BorderMouseOver" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding CoverImage}" Value="{x:Null}" />
                                 <Condition Binding="{Settings ShowNameEmptyCover}" Value="True" />
                             </MultiDataTrigger.Conditions>
@@ -61,6 +67,7 @@
                         </MultiDataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderMouseOver"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="GameControls"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

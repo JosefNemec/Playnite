@@ -295,8 +295,7 @@ namespace Playnite.Common
 
         public static void CopyDirectory(string sourceDirName, string destDirName, bool copySubDirs = true, bool overwrite = true)
         {
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-
+            var dir = new DirectoryInfo(sourceDirName);
             if (!dir.Exists)
             {
                 throw new DirectoryNotFoundException(
@@ -304,13 +303,13 @@ namespace Playnite.Common
                     + sourceDirName);
             }
 
-            DirectoryInfo[] dirs = dir.GetDirectories();
+            var dirs = dir.GetDirectories();
             if (!Directory.Exists(destDirName))
             {
                 Directory.CreateDirectory(destDirName);
             }
 
-            FileInfo[] files = dir.GetFiles();
+            var files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
                 string temppath = Path.Combine(destDirName, file.Name);

@@ -14,6 +14,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Common;
+using Playnite.SDK.Models;
+using System.IO.Compression;
 
 namespace Playnite.Plugins
 {
@@ -34,8 +36,6 @@ namespace Playnite.Plugins
         private static ILogger logger = LogManager.GetLogger();
         private IGameDatabase database;
         private GameControllerFactory controllers;
-
-        public const string ExtensionManifestFileName = "extension.yaml";
 
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
@@ -184,6 +184,31 @@ namespace Playnite.Plugins
             }
         }
 
+        public static ExtensionDescription GetDescriptionFromPackedFile(string path)
+        {
+            using (var zip = ZipFile.OpenRead(path))
+            {
+                var manifest = zip.GetEntry(PlaynitePaths.ExtensionManifestFileName);
+                if (manifest == null)
+                {
+                    return null;
+                }
+
+                using (var logStream = manifest.Open())
+                {
+                    using (TextReader tr = new StreamReader(logStream))
+                    {
+                        return Serialization.FromYaml<ExtensionDescription>(tr.ReadToEnd());
+                    }
+                }
+            }
+        }
+
+        public static ExtensionDescription GetDescriptionFromFile(string path)
+        {
+            return Serialization.FromYaml<ExtensionDescription>(File.ReadAllText(path));
+        }
+
         public List<ExtensionDescription> GetExtensionDescriptors()
         {
             var descs = new List<ExtensionDescription>();
@@ -203,6 +228,37 @@ namespace Playnite.Plugins
             return descs;
         }
 
+        public static ExtensionDescription InstallFromPackedFile(string path)
+        {
+            logger.Info($"Installing extenstion {path}");
+            var desc = GetDescriptionFromPackedFile(path);
+            if (desc == null)
+            {
+                throw new FileNotFoundException("Extenstion manifest not found.");
+            }
+
+            var installDir = Paths.GetSafeFilename(desc.Name).Replace(" ", string.Empty) + "_" + (desc.Name + desc.Author).MD5();
+            var targetDir = PlayniteSettings.IsPortable ? PlaynitePaths.ExtensionsProgramPath : PlaynitePaths.ExtensionsUserDataPath;
+            targetDir = Path.Combine(targetDir, installDir);
+            var oldBackPath = targetDir + "_old";
+
+            if (Directory.Exists(targetDir))
+            {
+                logger.Debug($"Replacing existing extenstion installation: {targetDir}.");
+                Directory.Move(targetDir, oldBackPath);
+            }
+
+            FileSystem.CreateDirectory(targetDir, true);
+            ZipFile.ExtractToDirectory(path, targetDir);
+
+            if (Directory.Exists(oldBackPath))
+            {
+                Directory.Delete(oldBackPath, true);
+            }
+
+            return GetDescriptionFromFile(Path.Combine(targetDir, PlaynitePaths.ExtensionManifestFileName));
+        }
+
         private List<string> GetExtensionDescriptorFiles()
         {
             var added = new List<string>();
@@ -210,9 +266,9 @@ namespace Playnite.Plugins
 
             if (!PlayniteSettings.IsPortable && Directory.Exists(PlaynitePaths.ExtensionsUserDataPath))
             {
-                var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsUserDataPath, ExtensionManifestFileName, SearchOption.AllDirectories);
+                var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)
-                {       
+                {
                     plugins.Add(desc.FullName);
                     var info = new FileInfo(desc.FullName);
                     added.Add(info.Directory.Name);
@@ -221,7 +277,7 @@ namespace Playnite.Plugins
 
             if (Directory.Exists(PlaynitePaths.ExtensionsProgramPath))
             {
-                var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsProgramPath, ExtensionManifestFileName, SearchOption.AllDirectories);
+                var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)
                 {
                     plugins.Add(desc.FullName);
@@ -282,8 +338,8 @@ namespace Playnite.Plugins
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {scriptPath}");
                     continue;
-                }                
-                
+                }
+
                 Scripts.Add(script);
                 logger.Info($"Loaded script extension: {scriptPath}");
 
@@ -307,8 +363,8 @@ namespace Playnite.Plugins
                 {
                     var plugins = LoadPlugins(desc, injectingApi);
                     foreach (var plugin in plugins)
-                    {                        
-                        Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));                        
+                    {
+                        Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
                         var plugFunc = plugin.GetFunctions();
                         if (plugFunc?.Any() == true)
                         {
@@ -326,7 +382,7 @@ namespace Playnite.Plugins
 
             PluginFunctions = funcs;
         }
-        
+
         public IEnumerable<Plugin> LoadPlugins(ExtensionDescription descriptor, IPlayniteAPI injectingApi)
         {
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);
@@ -503,6 +559,34 @@ namespace Playnite.Plugins
             }
         }
 
+        public void InvokeOnGameSelected(List<Game> oldValue, List<Game> newValue)
+        {
+            var args = new GameSelectionEventArgs(oldValue, newValue);
+            foreach (var script in Scripts)
+            {
+                try
+                {
+                    script.OnGameSelected(args);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameSelected method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnGameSelected(args);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameSelected method from {plugin.Description.Name} plugin.");
+                }
+            }
+        }
+
         public void NotifiyOnApplicationStarted()
         {
             foreach (var script in Scripts)
@@ -513,8 +597,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnScriptLoaded method from {script.Name} script.");
-                    continue;
+                    logger.Error(e, $"Failed to load execute OnApplicationStarted method from {script.Name} script.");
                 }
             }
 
@@ -526,9 +609,68 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to load execute OnApplicationStarted method from {plugin.Description.Name} plugin.");
                 }
             }
+        }
+
+        public void NotifiyOnApplicationStopped()
+        {
+            foreach (var script in Scripts)
+            {
+                try
+                {
+                    script.OnApplicationStopped();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnApplicationStopped method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnApplicationStopped();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnApplicationStopped method from {plugin.Description.Name} plugin.");
+                }
+            }
+        }
+
+        public void NotifiyOnLibraryUpdated()
+        {
+            foreach (var script in Scripts)
+            {
+                try
+                {
+                    script.OnLibraryUpdated();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnLibraryUpdated method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnLibraryUpdated();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnLibraryUpdated method from {plugin.Description.Name} plugin.");
+                }
+            }
+        }
+
+        public LibraryPlugin GetLibraryPlugin(Guid pluginId)
+        {
+            return LibraryPlugins.FirstOrDefault(a => a.Id == pluginId);
         }
     }
 }

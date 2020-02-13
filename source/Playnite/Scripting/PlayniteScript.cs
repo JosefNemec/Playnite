@@ -1,6 +1,7 @@
 ﻿using Playnite.Scripting.IronPython;
 using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace Playnite.Scripting
     public abstract class PlayniteScript: IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
-        
+
         public List<ScriptFunctionExport> FunctionExports
         {
             get; set;
@@ -102,10 +103,13 @@ namespace Playnite.Scripting
         public abstract void InvokeExportedFunction(ScriptFunctionExport function);
         public abstract void SetVariable(string name, object value);
         public abstract void OnApplicationStarted();
+        public abstract void OnApplicationStopped();
+        public abstract void OnLibraryUpdated();
         public abstract void OnGameStarting(Game game);
         public abstract void OnGameStarted(Game game);
         public abstract void OnGameStopped(Game game, long ellapsedSeconds);
         public abstract void OnGameInstalled(Game game);
         public abstract void OnGameUninstalled(Game game);
+        public abstract void OnGameSelected(GameSelectionEventArgs args);
     }
 }

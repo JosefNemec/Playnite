@@ -18,14 +18,25 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Shell;
 using Playnite.Scripting;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace Playnite
 {
+    public class ClientShutdownJob
+    {
+        public Guid PluginId { get; set; }
+        public CancellationTokenSource CancelToken { get; set; }
+        public Task CancelTask { get; set; }
+    }
+
     public class GamesEditor : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
-        private IResourceProvider resources = new ResourceProvider();        
+        private IResourceProvider resources = new ResourceProvider();
         private GameControllerFactory controllers;
+        private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
 
         public PlayniteApplication Application;
         public ExtensionFactory Extensions { get; private set; }
@@ -58,13 +69,13 @@ namespace Playnite
             controllers.Installed += Controllers_Installed;
             controllers.Uninstalled += Controllers_Uninstalled;
             controllers.Started += Controllers_Started;
-            controllers.Stopped += Controllers_Stopped;            
+            controllers.Stopped += Controllers_Stopped;
         }
 
         public void Dispose()
         {
             foreach (var controller in controllers.Controllers)
-            {                
+            {
                 UpdateGameState(controller.Game.Id, null, false, false, false, false);
             }
 
@@ -135,11 +146,19 @@ namespace Playnite
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
 
+                if (!game.IsCustomGame && shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
+                {
+                    logger.Debug($"Starting game with existing client shutdown job, canceling job {game.PluginId}.");
+                    existingJob.CancelToken.Cancel();
+                    shutdownJobs.TryRemove(game.PluginId, out var _);
+                }
+
                 if (!AppSettings.PreScript.IsNullOrWhiteSpace())
                 {
                     try
                     {
-                        ExecuteScriptAction(AppSettings.ActionsScriptLanguage, AppSettings.PreScript, game);
+                        var expanded = game.ExpandVariables(AppSettings.PreScript);
+                        ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
                     }
                     catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -160,7 +179,8 @@ namespace Playnite
                 {
                     try
                     {
-                        ExecuteScriptAction(game.ActionsScriptLanguage, game.PreScript, game);
+                        var expanded = game.ExpandVariables(game.PreScript);
+                        ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
                     }
                     catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -181,17 +201,18 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                logger.Error(exc, "Cannot start game: ");
+                Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCGameStartError"), exc.Message),
+                    resources.GetString("LOCGameError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+
                 if (controller != null)
                 {
                     controllers.RemoveController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                 }
 
-                logger.Error(exc, "Cannot start game: ");
-                Dialogs.ShowMessage(
-                    string.Format(resources.GetString("LOCGameStartError"), exc.Message),
-                    resources.GetString("LOCGameError"),
-                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -208,6 +229,7 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                logger.Error(exc, "Cannot activate action: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameStartActionError"), exc.Message),
                     resources.GetString("LOCGameError"),
@@ -228,6 +250,7 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                logger.Error(exc, "Cannot open game location: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameOpenLocationError"), exc.Message),
                     resources.GetString("LOCGameError"),
@@ -359,7 +382,7 @@ namespace Playnite
         {
             try
             {
-                var path = Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Paths.GetSafeFilename(game.Name) + ".lnk"));
+                var path = Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Paths.GetSafeFilename(game.Name) + ".url"));
                 string icon = string.Empty;
 
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")
@@ -371,8 +394,13 @@ namespace Playnite
                     icon = game.GetRawExecutablePath();
                 }
 
+                if (!File.Exists(icon))
+                {
+                    icon = PlaynitePaths.DesktopExecutablePath;
+                }
+
                 var args = new CmdLineOptions() { Start = game.Id.ToString() }.ToString();
-                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, args, icon, path);
+                Programs.CreateUrlShortcut($"playnite://playnite/start/{game.Id}", icon, path);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -421,17 +449,17 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                if (controller != null)
-                {
-                    controllers.RemoveController(game.Id);
-                    UpdateGameState(game.Id, null, null, false, null, null);
-                }
-
                 logger.Error(exc, "Cannot install game: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameInstallError"), exc.Message),
                     resources.GetString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
+
+                if (controller != null)
+                {
+                    controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, false, null, null);
+                }
             }
         }
 
@@ -475,22 +503,22 @@ namespace Playnite
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                if (controller != null)
-                {
-                    controllers.RemoveController(game.Id);
-                    UpdateGameState(game.Id, null, null, null, false, null);
-                }
-
                 logger.Error(exc, "Cannot un-install game: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameUninstallError"), exc.Message),
                     resources.GetString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
+
+                if (controller != null)
+                {
+                    controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, false, null);
+                }
             }
         }
 
         public void UpdateJumpList()
-        {           
+        {
             try
             {
                 OnPropertyChanged(nameof(LastGames));
@@ -632,7 +660,8 @@ namespace Playnite
             {
                 try
                 {
-                    ExecuteScriptAction(game.ActionsScriptLanguage, game.PostScript, game);
+                    var expanded = game.ExpandVariables(game.PostScript);
+                    ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -650,7 +679,8 @@ namespace Playnite
             {
                 try
                 {
-                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, AppSettings.PostScript, game);
+                    var expanded = game.ExpandVariables(AppSettings.PostScript);
+                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -661,6 +691,71 @@ namespace Playnite
                         resources.GetString("LOCGameError"),
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
+                }
+            }
+
+            if (AppSettings.ClientAutoShutdown.ShutdownClients && !game.IsCustomGame)
+            {
+                if (args.EllapsedTime <= AppSettings.ClientAutoShutdown.MinimalSessionTime)
+                {
+                    logger.Debug("Game session was too short for client to be shutdown.");
+                }
+                else
+                {
+                    var plugin = Extensions.GetLibraryPlugin(game.PluginId);
+                    if (plugin?.Capabilities?.CanShutdownClient == true &&
+                        AppSettings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id))
+                    {
+                        if (shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
+                        {
+                            existingJob.CancelToken.Cancel();
+                            shutdownJobs.TryRemove(game.PluginId, out var _);
+                        }
+
+                        var newJob = new ClientShutdownJob
+                        {
+                            PluginId = plugin.Id,
+                            CancelToken = new CancellationTokenSource()
+                        };
+
+                        var task = new Task(async () =>
+                        {
+                            var ct = newJob.CancelToken;
+                            var libPlugin = plugin;
+                            var timeout = AppSettings.ClientAutoShutdown.GraceTimeout;
+                            var curTime = 0;
+                            logger.Info($"Scheduled {libPlugin.Name} to be closed after {timeout} seconds.");
+
+                            while (curTime < timeout)
+                            {
+                                if (ct.IsCancellationRequested)
+                                {
+                                    logger.Debug($"Client {libPlugin.Name} shutdown canceled.");
+                                    return;
+                                }
+
+                                await Task.Delay(1000);
+                                curTime++;
+                            }
+
+                            if (curTime >= timeout)
+                            {
+                                try
+                                {
+                                    shutdownJobs.TryRemove(libPlugin.Id, out var _);
+                                    libPlugin.Client.Shutdown();
+                                }
+                                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                                {
+                                    logger.Error(e, $"Failed to shutdown {libPlugin.Name} client.");
+                                }
+                            }
+                        });
+
+                        newJob.CancelTask = task;
+                        shutdownJobs.TryAdd(plugin.Id, newJob);
+                        newJob.CancelTask.Start();
+                    }
                 }
             }
         }

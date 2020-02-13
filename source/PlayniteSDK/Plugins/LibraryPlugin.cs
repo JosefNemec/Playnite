@@ -10,6 +10,22 @@ using System.Windows.Controls;
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
+    /// Represents capabilities of a library plugin.
+    /// </summary>
+    public class LibraryPluginCapabilities
+    {
+        /// <summary>
+        /// Gets or sets value indicating whether plugin is capable of closing down original game client.
+        /// </summary>
+        public bool CanShutdownClient { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets value indicated whether plugin uses customized mechanism for game import.
+        /// </summary>
+        public bool HasCustomizedGameImport { get; set; } = false;
+    }
+
+    /// <summary>
     /// Represents base game library plugin.
     /// </summary>
     public abstract class LibraryPlugin : Plugin
@@ -45,11 +61,28 @@ namespace Playnite.SDK.Plugins
         public virtual LibraryClient Client { get; }
 
         /// <summary>
+        /// Gets plugin's library capabilities.
+        /// </summary>
+        public virtual LibraryPluginCapabilities Capabilities { get; }
+
+        /// <summary>
         /// Gets library games.
         /// </summary>
-        /// <returns>List of games.</returns>
-        public abstract IEnumerable<GameInfo> GetGames();
- 
+        /// <returns>List of library games.</returns>
+        public virtual IEnumerable<GameInfo> GetGames()
+        {
+            return new List<GameInfo>();
+        }
+
+        /// <summary>
+        /// Initiates game import if "HasCustomizedGameImport" capability is enabled.
+        /// </summary>
+        /// <returns>List of newly imported games.</returns>
+        public virtual IEnumerable<Game> ImportGames()
+        {
+            return new List<Game>();
+        }
+
         /// <summary>
         /// Gets controller responsible for handling of library game or null if no specific controller is available.
         /// </summary>

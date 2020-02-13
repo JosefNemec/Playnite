@@ -30,6 +30,7 @@ namespace Playnite
         public Guid PluginId => Game.PluginId;
         public string GameId => Game.GameId;
         public ComparableDbItemList<Tag> Tags => new ComparableDbItemList<Tag>(Game.Tags);
+        public ComparableDbItemList<GameFeature> Features => new ComparableDbItemList<GameFeature>(Game.Features);
         public ComparableDbItemList<Genre> Genres => new ComparableDbItemList<Genre>(Game.Genres);
         public ComparableDbItemList<Company> Developers => new ComparableDbItemList<Company>(Game.Developers);
         public ComparableDbItemList<Company> Publishers => new ComparableDbItemList<Company>(Game.Publishers);
@@ -57,8 +58,8 @@ namespace Playnite
         public long Playtime => Game.Playtime;
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;
-        public long PlayCount => Game.PlayCount;        
-        public string Version => Game.Version;    
+        public long PlayCount => Game.PlayCount;
+        public string Version => Game.Version;
         public CompletionStatus CompletionStatus => Game.CompletionStatus;
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;
@@ -84,6 +85,7 @@ namespace Playnite
         public Guid RegionId => Game.RegionId;
         public Guid SourceId => Game.SourceId;
         public Guid PlatformId => Game.PlatformId;
+        public List<Guid> FeatureIds => Game.FeatureIds;
 
         public object IconObject => GetImageObject(Game.Icon, false);
         public object CoverImageObject => GetImageObject(Game.CoverImage, false);
@@ -153,6 +155,11 @@ namespace Playnite
             get; private set;
         } = Tag.Empty;
 
+        public GameFeature Feature
+        {
+            get; private set;
+        } = GameFeature.Empty;
+
         public string Name
         {
             get
@@ -175,7 +182,7 @@ namespace Playnite
 
         public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings)
         {
-            this.settings = settings;            
+            this.settings = settings;
             settings.PropertyChanged += Settings_PropertyChanged;
 
             // Use optimized rendering only for Desktop mode where we know pixel perfect data
@@ -255,6 +262,10 @@ namespace Playnite
             {
                 Tag = game.Tags?.FirstOrDefault(a => a.Id == colGroupId);
             }
+            else if (colGroupType == typeof(GameFeature))
+            {
+                Feature = game.Features?.FirstOrDefault(a => a.Id == colGroupId);
+            }
             else if (colGroupType == typeof(Category))
             {
                 Category = game.Categories?.FirstOrDefault(a => a.Id == colGroupId);
@@ -307,7 +318,7 @@ namespace Playnite
         {
             return ImageSourceManager.GetImage(data, cached, loadProperties);
         }
-        
+
         public object GetDefaultIcon(bool cached, BitmapLoadProperties loadProperties = null)
         {
             if (settings.DefaultIconSource == DefaultIconSourceOptions.None)

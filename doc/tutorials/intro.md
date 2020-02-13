@@ -25,6 +25,8 @@ Extensions fall under several categories of extended functionality that are avai
 Creating Extensions
 ---------------------
 
+It's highly recommended to use [Toolbox](toolbox.md) utility to create new extensions. It will generate base directory structure and all files needed for you.
+
 ### 1. Directory structure and location
 
 First create new extension folder inside of Playnite's `Extensions` directory. Location of `Extensions` directory differs based on Playnite's installation type:
