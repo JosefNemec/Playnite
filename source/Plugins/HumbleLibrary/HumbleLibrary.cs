@@ -1,5 +1,6 @@
 ﻿using HumbleLibrary.Models;
 using HumbleLibrary.Services;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -83,7 +84,8 @@ namespace HumbleLibrary
                                 if (Settings.IgnoreThirdPartyStoreGames && order.tpkd_dict?.all_tpks.HasItems() == true)
                                 {
                                     var exst = allTpks.FirstOrDefault(a =>
-                                    a.human_name == product.human_name || Regex.IsMatch(a.human_name, product.human_name + @".+\sKey$"));
+                                    !a.human_name.IsNullOrEmpty() &&
+                                    (a.human_name == product.human_name || Regex.IsMatch(a.human_name, product.human_name + @".+\sKey$")));
                                     if (exst != null)
                                     {
                                         continue;
