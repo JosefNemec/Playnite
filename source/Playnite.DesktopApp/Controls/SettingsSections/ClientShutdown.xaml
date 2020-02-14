@@ -41,7 +41,7 @@
                     IsEnabled="{Binding IsChecked, ElementName=CheckShutDownClients}">
             <TextBlock Text="{DynamicResource LOCSettingsAutoCloseMinimalSessionTime}"
                        VerticalAlignment="Center"/>
-            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+            <pctrls:NullableIntBox MinValue="0" MaxValue="9999" Margin="10,0,0,0" Width="40"
                                    HorizontalAlignment="Left" VerticalAlignment="Center"
                                    Value="{Binding Settings.ClientAutoShutdown.MinimalSessionTime}"/>
         </StackPanel>
