@@ -325,7 +325,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utiliser les image de fond des jeux comme arrière-plan de fenêtre</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Flouter les images de fond</sys:String>
-    <sys:String x:Key="LOCSettingsBlurHighQuality">Haute qualité</sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">HQ</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Assombrir les images de fond</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Utiliser en mode d'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
@@ -413,12 +413,12 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Lorsque cette option est active, Playnite téléchargera les images de fond en même temps que le reste des métadonnées. Cela nécessitera davantage d'espace disque mais rendra les images de fond disponible lorsque vous êtes hors-ligne.
         
 Si cette option est désactivée, les images de fond ne seront téléchargées que lorsqu'elles sont sollicitées. Cela nécessitera moins d'espace disque mais les images de fond pourraient ne pas être disponibles lorsque vous êtes hors-ligne.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Fermer les clients automatiquement après la fin d'une session de jeu</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Délai avant la fermeture du client (en secondes)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Ne pas fermer après une session de jeu plus courte que (en secondes)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fermer les clients tiers spécifiés automatiquement :</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">Fermer les clients tiers automatiquement</sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Afficher un avertissement lorsqu'une image dépasse la taille recommandée</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Fermer automatiquement les clients après la fin d'une session de jeu</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Délai (en secondes) avant la fermeture du client :</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Ne pas fermer après une session de jeu plus courte que :</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fermer automatiquement les clients suivants :</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Fermeture auto.</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Avertissement lorsqu'une image dépasse la taille recommandée</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
