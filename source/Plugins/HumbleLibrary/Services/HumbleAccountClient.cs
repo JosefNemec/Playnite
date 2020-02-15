@@ -71,10 +71,6 @@ namespace HumbleLibrary.Services
             {
                 webView.NavigateAndWait(string.Format(orderUrlMask, key));
                 var strContent = webView.GetPageText();
-
-                var cacheFile = Path.Combine(@"d:\Downloads\humble\", key + ".json");
-                File.WriteAllText(cacheFile, strContent);
-
                 orders.Add(Serialization.FromJson<Order>(strContent));
             }
 
