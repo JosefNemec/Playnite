@@ -137,8 +137,8 @@ Automatisch importierte Spiele erscheinen beim nächsten Importvorgang eventuell
     <sys:String x:Key="LOCLinksLabel">Links</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Installation</sys:String>
     <sys:String x:Key="LOCActionsLabel">Aktionen</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel">Am Herunterladen …</sys:String>
-    <sys:String x:Key="LOCLoadingLabel">Am Laden …</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Wird heruntergeladen …</sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Wird geladen …</sys:String>
     <sys:String x:Key="LOCTypeLabel">Typ</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profile</sys:String>
@@ -179,10 +179,10 @@ Automatisch importierte Spiele erscheinen beim nächsten Importvorgang eventuell
     <sys:String x:Key="LOCRow">Zeile</sys:String>
     <sys:String x:Key="LOCRows">Zeilen</sys:String>
 
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Folgende Variablen können verwendet werden:
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Spezielle Variablen können als Platzhalter verwendet werden:
 {InstallDir} - Installationsverzeichnis des Spiels
 {InstallDirName} - Name des Installationsverzeichnisses
-{ImagePath} - Pfad zur ISO/ROM des Spiels, falls vorhanden
+{ImagePath} - Pfad zum ISO/ROM des Spiels, falls vorhanden
 {ImageName} - Dateiname vom ISO/ROM des Spiels
 {ImageNameNoExt} - Dateiname vom ISO/ROM des Spiels ohne Dateiendung
 {PlayniteDir} - Playnites Installationsverzeichnis
@@ -426,14 +426,14 @@ Falls deaktiviert, werden Hintergrundbilder erst dann heruntergeladen, wenn sie 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
     <sys:String x:Key="LOCStrechUniform">Einheitlich</sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill">Einheitlich ausfüllen</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Unter Beibehaltung des Seitenverhältnisses ausfüllen</sys:String>
 
     <sys:String x:Key="LOCDockLeft">Links</sys:String>
     <sys:String x:Key="LOCDockRight">Rechts</sys:String>
     <sys:String x:Key="LOCDockTop">Oben</sys:String>
     <sys:String x:Key="LOCDockBottom">Unten</sys:String>
 
-    <sys:String x:Key="LOCImportError">Import fehlgeschlagen</sys:String>
+    <sys:String x:Key="LOCImportError">Fehler beim Import</sys:String>
     <sys:String x:Key="LOCLoginChecking">Authentifizierungsstatus wird überprüft …</sys:String>
     <sys:String x:Key="LOCLoginRequired">Authentifizierung erforderlich</sys:String>
     <sys:String x:Key="LOCLoginFailed">Authentifizierung fehlgeschlagen</sys:String>
@@ -462,7 +462,7 @@ Weitere Emulatoren kannst du auch später im Konfigurationsmenü konfigurieren u
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Dateien auswählen</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Ordner autom. durchsuchen …</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Emulatoren konfigurieren …</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning">Am Durchsuchen …</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">Suchvorgang …</sys:String>
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Einrichtungsassistent</sys:String>
