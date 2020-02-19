@@ -148,6 +148,7 @@ namespace Playnite.Windows
                 var data = configuration.Positions[windowName];
                 if (data.Position != null)
                 {
+                    var positioned = false;
                     // Make sure that position is part of at least one connected screen
                     foreach (var monitor in Computer.GetScreens())
                     {
@@ -155,15 +156,29 @@ namespace Playnite.Windows
                         {
                             window.Left = data.Position.X;
                             window.Top = data.Position.Y;
+                            positioned = true;
                             break;
                         }
+                    }
+
+                    if (!positioned)
+                    {
+                        window.Left = 0;
+                        window.Top = 0;
                     }
                 }
 
                 if (data.Size != null)
                 {
-                    window.Width = data.Size.X;
-                    window.Height = data.Size.Y;
+                    if (data.Size.X > window.MinWidth)
+                    {
+                        window.Width = data.Size.X;
+                    }
+
+                    if (data.Size.Y > window.MinHeight)
+                    {
+                        window.Height = data.Size.Y;
+                    }
                 }
 
                 window.WindowState = data.State;
