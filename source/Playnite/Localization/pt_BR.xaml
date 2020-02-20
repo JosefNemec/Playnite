@@ -413,9 +413,9 @@ O novo local do banco de dados será usado somente após o aplicativo ser reinic
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderização de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Atualmente, as opções de renderização e formatação de texto não se aplicam ao texto na descrição dos jogos.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Baixar imagens de fundo imediatamente</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se habilitado, o Playnite baixará as imagens de fundo enquanto baixa os metadados, usando mais espaço em disco e disponibilizando as imagens mesmo quando estiver offline.
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se habilitado, o Playnite baixará as imagens de fundo enquanto baixa os metadados. Mais espaço em disco será usado e disponibilizando as imagens mesmo quando estiver offline.
  
-Se desabilitado, as imagens de fundo só serão baixadas quando necessário, usando menos espaço, mas podendo resultar em atrasos na exibição das imagens e algumas imagens podem não estar disponíveis quando estiver offline.</sys:String>
+Se desabilitado, as imagens de fundo só serão baixadas quando necessário. Menos espaço será usado, mas pode resultar em atrasos na exibição das imagens e algumas imagens podem não estar disponíveis quando estiver offline.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Fechar automaticamente lançadores de terceiros ao sair do jogo</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Período de tolerância ao fechar o cliente (em segundos)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Não fechar após sessões mais curtas do que (em segundos)</sys:String>
@@ -553,6 +553,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Desenvolvedor</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Marcadores</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Distribuidora</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Estado da instalação</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Desinstalado</sys:String>
