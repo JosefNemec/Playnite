@@ -518,6 +518,7 @@ Môže tiež neskôr pridať akúkoľvek hru (vrátane hier z Microsoft Store) z
     <sys:String x:Key="LOCGameDevelopersTitle">Vývojár</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Štítok</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Vydavateľ</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Nainštalované</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Nainštalované</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Odinštalované</sys:String>
