@@ -504,6 +504,7 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCGameDevelopersTitle">Készítők</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Címkék</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Kiadó</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Telepítve</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Törölve</sys:String>
