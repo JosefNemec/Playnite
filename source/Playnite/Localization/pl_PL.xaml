@@ -507,6 +507,7 @@ Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:Stri
     <sys:String x:Key="LOCGameDevelopersTitle">Producent</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag(i)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Wydawca</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Zainstalowane</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Zainstalowane</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Odinstalowane</sys:String>
