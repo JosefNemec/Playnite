@@ -501,6 +501,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">المبرمج</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">وسم</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">الناشر</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">مثبت</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">مثبت</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">ملغي التثبيت</sys:String>
