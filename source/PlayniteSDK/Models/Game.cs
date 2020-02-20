@@ -639,6 +639,7 @@ namespace Playnite.SDK.Models
             {
                 isInstalled = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(InstallationStatus));
             }
         }
 
@@ -1186,6 +1187,15 @@ namespace Playnite.SDK.Models
         public bool IsCustomGame
         {
             get => PluginId == Guid.Empty;
+        }
+
+        /// <summary>
+        /// Gets game installation state.
+        /// </summary>
+        [JsonIgnore]
+        public InstallationStatus InstallationStatus
+        {
+            get => IsInstalled ? InstallationStatus.Installed : InstallationStatus.Uninstalled;
         }
 
         #endregion Expanded

@@ -554,6 +554,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Developer</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publisher</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Installation Status</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installed</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installed</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Uninstalled</sys:String>

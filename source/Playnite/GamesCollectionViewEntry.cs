@@ -74,6 +74,7 @@ namespace Playnite
         public PastTimeSegment AddedSegment => Game.AddedSegment;
         public PastTimeSegment ModifiedSegment => Game.ModifiedSegment;
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
+        public InstallationStatus InstallationState => Game.InstallationStatus;
 
         public List<Guid> CategoryIds => Game.CategoryIds;
         public List<Guid> GenreIds => Game.GenreIds;

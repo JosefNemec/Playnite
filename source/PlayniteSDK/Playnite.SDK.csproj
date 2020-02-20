@@ -67,6 +67,7 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="IUriHandlerAPI.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\InstallationStatus.cs" />
     <Compile Include="Models\PastTimeSegment.cs" />
     <Compile Include="Models\PlaytimeCategory.cs" />
     <Compile Include="Models\ScoreGroup.cs" />
