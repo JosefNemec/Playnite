@@ -503,6 +503,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCGameDevelopersTitle">開発元</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">タグ</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">パブリッシャー</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">インストール済</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">インストール済</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未インストール</sys:String>
