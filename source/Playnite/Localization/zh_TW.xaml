@@ -413,9 +413,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCSettingsTextRenderingMode">文本渲染模式</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">文本渲染以及格式化選項尚未應用至遊戲敘述文本</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">立即下載背景圖片</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">若啟用本功能則Playnite會於下載元數據時一併下載背景圖片。會佔用額外的硬碟空間且可於離線時瀏覽圖片。
- 
-若禁用本功能則Playnite僅會在首次訪問時才下載背景圖片。會節省硬碟空間但可能造成圖片讀取速度緩慢, 且離線時將無法觀看部分圖片。</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">退出遊戲時自動關閉遊戲啟動器</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">延緩客戶端關閉時間(秒)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">當遊戲時間低於(秒) 則不關閉</sys:String>
@@ -552,6 +550,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCGameDevelopersTitle">開發團隊</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">標籤</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">發行商</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安裝</sys:String>
