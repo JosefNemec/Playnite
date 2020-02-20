@@ -499,6 +499,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">Udvikler</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Udgiver</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installeret</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installeret</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Afinstalleret</sys:String>
