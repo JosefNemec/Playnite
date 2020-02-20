@@ -414,9 +414,9 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsTextRenderingMode">Text rendering mode</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Text rendering and formatting options currently don't apply to game's description text.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Download background images immediately</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">If enabled, Playnite will download background artwork while downloading metadata. Using more disk space and making artwork available when offline.
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">If enabled, Playnite will download background artwork while downloading metadata, using more disk space and making artwork available when offline.
 
-If disabled, background artwork is downloaded only when first needed. Using less space, but may result in a delay before artwork is displayed and some images might not be available when offline.</sys:String>
+If disabled, background artwork is downloaded only when first needed, using less space, but may result in a delay before artwork is displayed and some images might not be available when offline.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatically close third party client after game exits</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Client shutdown grace period (in seconds)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Don't close after game sessions shorter than (in seconds)</sys:String>
