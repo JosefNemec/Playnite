@@ -413,9 +413,7 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCSettingsTextRenderingMode">텍스트 렌더링 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">텍스트 렌더링 및 서식 지정 설정은 현재 게임 설명 텍스트에 적용되지 않습니다.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">배경 이미지 즉시 다운로드</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">활성화되면 Playnite는 메타데이터를 다운로드할 때 배경 아트워크를 다운로드합니다. 더 많은 디스크 공간을 사용하며 오프라인에서 아트워크를 사용할 수 있습니다.
-
-비활성화되면 배경 아트워크는 처음에 필요할 때에만 다운로드됩니다. 더 적은 공간을 사용하지만 아트워크가 표시되기까지 시간이 걸리며 몇몇 이미지는 오프라인에서 사용할 수 없게 됩니다.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">게임을 나가면 자동으로 제3자 클라이언트 닫기</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">클라이언트 종료까지 남은 시간 (초)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">게임 세션이 다음보다 짧으면 닫지 마세요 (초)</sys:String>
@@ -553,6 +551,7 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCGameDevelopersTitle">개발사</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">태그</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">배급사</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">설치됨</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">설치됨</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">설치 제거됨</sys:String>
