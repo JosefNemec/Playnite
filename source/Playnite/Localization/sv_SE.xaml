@@ -505,6 +505,7 @@ Du kan också lägga till andra spel (inklusive Microsoft Store-spel) senare fr�
     <sys:String x:Key="LOCGameDevelopersTitle">Utvecklare</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Utgivare</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installerad</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installerad</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Avinstallerad</sys:String>
