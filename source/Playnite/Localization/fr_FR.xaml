@@ -411,7 +411,7 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Les options de rendu et de formatage du texte ne s'appliquent pas actuellement aux textes de description des jeux.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Téléchargement les images de fond immédiatement</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Lorsque cette option est active, Playnite téléchargera les images de fond en même temps que le reste des métadonnées. Cela nécessitera davantage d'espace disque mais rendra les images de fond disponible lorsque vous êtes hors-ligne.
-        
+
 Si cette option est désactivée, les images de fond ne seront téléchargées que lorsqu'elles sont sollicitées. Cela nécessitera moins d'espace disque mais les images de fond pourraient ne pas être disponibles lorsque vous êtes hors-ligne.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Fermer automatiquement les clients après la fin d'une session de jeu</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Délai (en secondes) avant la fermeture du client :</sys:String>
@@ -551,6 +551,7 @@ Elle est actuellement associée à {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Développeur(s)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Mot(s) clé(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Éditeur(s)</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">État de l'installation</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installés</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Jeu installé</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Non installés</sys:String>
