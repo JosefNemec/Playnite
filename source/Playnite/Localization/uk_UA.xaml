@@ -501,6 +501,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">Розробник</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Теги</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Видавець</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Встановлені</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Встановлені</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Видалені</sys:String>
