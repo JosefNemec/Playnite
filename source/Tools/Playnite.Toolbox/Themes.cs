@@ -178,7 +178,8 @@ namespace Playnite.Toolbox
                             subName.StartsWith("Fonts\\") ||
                             subName.StartsWith(".vs\\") ||
                             subName.StartsWith("bin\\") ||
-                            subName.StartsWith("obj\\"))
+                            subName.StartsWith("obj\\") ||
+                            subName.StartsWith("backup_"))
                         {
                             continue;
                         }
