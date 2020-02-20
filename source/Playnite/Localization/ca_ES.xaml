@@ -504,6 +504,7 @@ També pots afegir qualsevol altre joc (incloent els de Microsoft Store) al men�
     <sys:String x:Key="LOCGameDevelopersTitle">Desenvolupador(s)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etiqueta(es)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editor(s)</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instal·lat</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instal·lat</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Desinstal·lat</sys:String>
