@@ -413,9 +413,7 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsTextRenderingMode">Yazı işleme kipi</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Metin oluşturma ve biçimlendirme seçenekleri şimdilik oyunun açıklama metnine uygulanamaz.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Arka plan resimlerini hemen indir</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Etkinleştirilirse, Playnite üst verileri indirirken arka plan resmini indirir. Bu şekilde daha fazla disk alanı kullanır ancak resmi çevrimdışı kullanılabilir.
-
-Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğunda indirilir. Daha az alan kullanır, ancak resim gösterilmeden önce bir gecikmeye neden olabilir ve bazı resimler çevrimdışı olunduğunda kullanılamayabilir.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Oyundan çıktıktan sonra üçüncü parti istemciyi otomatik kapat</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">İstemcinin gönüllü kapanma sıklığı (saniye)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Oyun oturumu şundan daha kısa ise kapatma (saniye)</sys:String>
@@ -554,6 +552,7 @@ Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana men�
     <sys:String x:Key="LOCGameDevelopersTitle">Geliştirici(ler)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etiket(ler)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Yayımcı(lar)</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Yüklü</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Yüklü</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Kaldırılmış</sys:String>
