@@ -501,6 +501,7 @@ Indeterminado - Sem alterações (quando editar vários jogos)</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Desenvolvedor</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Marcador</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publicador</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Desinstalado</sys:String>
