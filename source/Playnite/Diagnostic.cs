@@ -29,7 +29,7 @@ namespace Playnite
                         archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
                     }
 
-                    // Config 
+                    // Config
                     if (Directory.Exists(PlaynitePaths.ConfigRootPath))
                     {
                         foreach (var cfg in Directory.GetFiles(PlaynitePaths.ConfigRootPath, "*.json"))
@@ -59,6 +59,15 @@ namespace Playnite
                     var programs = Programs.GetUnistallProgramsList();
                     File.WriteAllText(regKeyPath, Serialization.ToJson(programs, true));
                     archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
+
+                    // UWP app info
+                    if (Computer.WindowsVersion == WindowsVersion.Win10)
+                    {
+                        var uwpInfoPath = Path.Combine(diagTemp, "uwp.txt");
+                        var uwpApps = Programs.GetUWPApps();
+                        File.WriteAllText(uwpInfoPath, Serialization.ToJson(uwpApps, true));
+                        archive.CreateEntryFromFile(uwpInfoPath, Path.GetFileName(uwpInfoPath));
+                    }
 
                     // Playnite info
                     var playnitePath = Path.Combine(diagTemp, "playniteInfo.txt");
