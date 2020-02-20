@@ -549,6 +549,7 @@ E' al momento utilizzata da {1} gioco/chi e {2} emulatore/i.</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Sviluppatore</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etichetta</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editore</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installati</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installati</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Disinstallati</sys:String>
