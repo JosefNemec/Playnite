@@ -412,9 +412,9 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsTextRenderingMode">מצב עיבוד טקסט</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">אפשרויות עיבוד ועיצוב טקסט לא מופעלות על טקסט תיאור המשחק כעת.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">הורד תמונות רקע מיד</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">אם פונקציה זו מופעלת, Playnite תוריד תמונות רקע בעת הורדת מטא נתונים. תופס שטח דיסק קשיח נוסף ומאפשר לך לגלוש בתמונות במצב לא מקוון.
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">אם פונקציה זו מופעלת, Playnite תוריד תמונות רקע בעת הורדת נתונים. הפעלת הפונקציה תגרום לצריכת שטח נוסף ותאפשר לך לגלוש בתמונות במצב לא מקוון.
  
-אם תכונה זו אינה זמינה, Playnite תוריד תמונות רקע רק בגישה ראשונה. זה יחסוך שטח בדיסק הקשיח אך עלול לגרום לקריאה איטית של תמונות, ולא ניתן להציג תמונות מסוימות במצב לא מקוון.</sys:String>
+אם תכונה זו אינה זמינה, Playnite תוריד תמונות רקע רק בגישה ראשונה. אי הפעלת הפונקציה תחסוך בשטח אך עלולה לגרום לקריאה איטית של תמונות, ושלא יהיה ניתן להציג תמונות מסוימות במצב לא מקוון.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">סגור אוטומטית את תוכנת הפתיחה של המשחק בעת היציאה מהמשחק</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">השהיית זמן כיבוי הלקוח (בשניות)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">אל תיסגר לאחר הפעלות במשחק קצר מ- (בשניות)</sys:String>
@@ -553,6 +553,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCGameDevelopersTitle">מפתח</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">תג</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">מפרסם</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">מותקן</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">מותקן</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">הוסר</sys:String>
