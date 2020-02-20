@@ -506,6 +506,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">开发商</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">标签</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">发行商</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安装</sys:String>
