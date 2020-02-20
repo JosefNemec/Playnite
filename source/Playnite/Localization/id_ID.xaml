@@ -503,6 +503,7 @@ Tip: Jika kamu ingin mensingkronisasikan library untuk beberapa komputer sekalig
     <sys:String x:Key="LOCGameDevelopersTitle"></sys:String>
     <sys:String x:Key="LOCGameTagsTitle"></sys:String>
     <sys:String x:Key="LOCGamePublishersTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Terinstal</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
