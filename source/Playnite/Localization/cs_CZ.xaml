@@ -76,7 +76,7 @@ Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Povoleno</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Odstranit</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">Odstranit nepoužité</sys:String>
     <sys:String x:Key="LOCRenameTitle">Přejmenovat</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopírovat</sys:String>
     <sys:String x:Key="LOCAddTitle">Přidat</sys:String>
@@ -258,7 +258,7 @@ Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Celá obrazovka</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Poskytovatelé</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Vstup</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Výkon</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importovat změny v knihovně automaticky</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importovat nainstalované hry</sys:String>
@@ -331,7 +331,9 @@ Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Získat více rozšíření</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Vytvořit nové rozšíření</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Pomoci s překladem</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Některé ze změn vyžadují restart aplikace. Chcete jej provést nyní?
+
+Všechny aktuálně prováděné úkony (jako stahování metadat) budou zrušeny.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Restartovat Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite nepřesune soubory knihovny automaticky, musíte je přesunout (či zkopírovat) sami, před tím, než umístění knihovny změníte. Pokud v cílovém umístění není žádná knihovna, bude tam vytvořena nová.
 
@@ -506,6 +508,7 @@ Taktéž můžete později přidat jakoukoliv hru (včetně her z Microsoft Stor
     <sys:String x:Key="LOCGameDevelopersTitle">Vývojář</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Štítek</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Vydavatel</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalováno</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalováno</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Odinstalováno</sys:String>
@@ -659,8 +662,8 @@ Taktéž můžete později přidat jakoukoliv hru (včetně her z Microsoft Stor
     <sys:String x:Key="LOCFirst">První</sys:String>
     <sys:String x:Key="LOCRandom">Náhodně</sys:String>
     <sys:String x:Key="LOCUserSelect">Zadat uživatelem</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">Nahrát více</sys:String>
+    <sys:String x:Key="LOCTransparent">Průhledné</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumenty emulátoru</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatečné argumenty emulátoru</sys:String>
@@ -763,9 +766,17 @@ Taktéž můžete později přidat jakoukoliv hru (včetně her z Microsoft Stor
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motiv vzhledu/rozšíření používá nepodporovanou verzi API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalace byla úspěšná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainstalovat rozšíření?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Nezdařilo se nainstalovat rozšíření.
+
+{0}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Chcete nainstalovat nové rozšíření? Existující verze bude přepsána.
+
+{0}
+Vytvořil(a) {1}
+Verze {2}</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Instalace motivu selhala.
+
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
