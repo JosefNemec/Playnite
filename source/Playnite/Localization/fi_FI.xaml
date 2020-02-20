@@ -515,6 +515,7 @@ Voit myös myöhemmin lisätä minkä tahansa pelin (mukaan lukien Microsoft Sto
     <sys:String x:Key="LOCGameDevelopersTitle">Kehittäjä</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tunniste</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Julkaisija</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Asennettu</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Asennettu</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Ei asennettu</sys:String>
