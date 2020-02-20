@@ -211,6 +211,33 @@ namespace XboxLibrary.Services
             }
         }
 
+        public async Task<TitleHistoryResponse.Title> GetTitleInfo(string pfn)
+        {
+            var tokens = Serialization.FromJsonFile<AuthorizationData>(xstsLoginTokesPath);
+            using (var client = new HttpClient())
+            {
+                SetAuthenticationHeaders(client.DefaultRequestHeaders, tokens);
+                var requestData = new Dictionary<string, List<string>>
+                {
+                    { "pfns", new List<string> { pfn } },
+                    { "windowsPhoneProductIds", new List<string>() },
+                };
+
+                var response = await client.PostAsync(
+                           @"https://titlehub.xboxlive.com/titles/batch/decoration/detail",
+                           new StringContent(Serialization.ToJson(requestData), Encoding.UTF8, "application/json"));
+
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Exception("User is not authenticated.");
+                }
+
+                var cont = await response.Content.ReadAsStringAsync();
+                var titleHistory = Serialization.FromJson<TitleHistoryResponse>(cont);
+                return titleHistory.titles.First();
+            }
+        }
+
         private void SetAuthenticationHeaders(
             System.Net.Http.Headers.HttpRequestHeaders headers,
             AuthorizationData auth)
