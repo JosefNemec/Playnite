@@ -85,12 +85,22 @@ namespace SteamLibrary
             }
 
             var gameId = new GameID(kv["appID"].AsUnsignedInteger());
+            var installDir = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value);
+            if (!Directory.Exists(installDir))
+            {
+                installDir = Path.Combine((new FileInfo(path)).Directory.FullName, "music", kv["installDir"].Value);
+                if (!Directory.Exists(installDir))
+                {
+                    installDir = string.Empty;
+                }
+            }
+
             var game = new GameInfo()
             {
                 Source = "Steam",
                 GameId = gameId.ToString(),
                 Name = name,
-                InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
+                InstallDirectory = installDir,
                 PlayAction = CreatePlayTask(gameId),
                 IsInstalled = true
             };
@@ -107,6 +117,12 @@ namespace SteamLibrary
                 try
                 {
                     var game = GetInstalledGameFromFile(Path.Combine(path, file));
+                    if (game.InstallDirectory.IsNullOrEmpty() || game.InstallDirectory.Contains(@"steamapps\music"))
+                    {
+                        logger.Info($"Steam game {game.Name} is not properly installed or it's a soundtrack, skipping.");
+                        continue;
+                    }
+
                     games.Add(game);
                 }
                 catch (Exception exc)
