@@ -81,12 +81,8 @@ Automatisch importierte Spiele erscheinen beim nächsten Importvorgang eventuell
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Das Bibliotheks-Plugin für dieses Spiel ist deaktiviert oder nicht installiert.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Offizielle Metadaten zum Herunterladen sind nicht verfügbar.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Kein Spiel ausgewählt.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Skriptaktion des Spiels konnte nicht ausgeführt werden:
-
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Globale Skriptaktion konnte nicht ausgeführt werden:
-
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Skriptaktion des Spiels konnte nicht ausgeführt werden.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Globale Skriptaktion konnte nicht ausgeführt werden.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 oder neuer ist nicht installiert.</sys:String>
 
     <!--General-->
@@ -898,6 +894,7 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Spiele von Drittanbieter-Shops ignorieren</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Trove-Spiele importieren</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Falls aktiviert, werden Spiele nicht importiert, die einen Drittanbieter-Client benötigen.
 Beinhaltet bereits von Playnite unterstützte Shops, um Duplikate zu verhindern.</sys:String>
 
