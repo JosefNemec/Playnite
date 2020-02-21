@@ -80,12 +80,8 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">תוסף ספריה אחראי למשחק זה אינו מותקן או מאופשר.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">הורדת נתונים רשמית אינו זמין.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">אף משחק אינו בחור.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">נכשל ניסיון לבצע את פעולת הסקריפט של המשחק:
-
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">נכשלה ריצת פעולת תוכנה גלובלית:
-
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">נכשל הניסיון לביצוע פעולת הסקריפט של המשחק.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">נכשל ניסיון לבצע את פעולת הסקריפט הכללית.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 או חדשה יותר אינה מותקנת.</sys:String>
 
     <!--General-->
@@ -898,6 +894,7 @@ IGDB &gt; חנות רשמית:
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">התעלם ממשחקי חנויות חיצוניות</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">אם פועל, לא יובאו משחקים הדורשים קליינטים חיצוניים.
 כולל חנויות שכבר נתמכות ב- Playnite כדי למנוע כפילויות.</sys:String>
 
