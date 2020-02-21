@@ -69,8 +69,8 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Plugin-ul necesar librăriei pentru acest joc nu este instalat sau activat.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Download-ul oficial pentru informații metadata nu este disponibil.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nu a fost selectat jocul.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -819,6 +819,7 @@ De menționat că opțiunea pentru Numele Contului este funcțională doar pentr
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
