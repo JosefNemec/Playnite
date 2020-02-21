@@ -69,8 +69,8 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Plugin yang diperlukan untuk gim ini tidak terpasang atau diaktifkan.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Unduhan metadata resmi tidak tersedia.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Tidak ada permainan yang terpilih.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -820,6 +820,7 @@ Tip: Jika kamu ingin mensingkronisasikan library untuk beberapa komputer sekalig
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
