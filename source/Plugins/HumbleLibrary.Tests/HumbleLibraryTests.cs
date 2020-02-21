@@ -17,5 +17,12 @@ namespace HumbleLibrary.Tests
         {
             return new HumbleLibrary(PlayniteTests.GetTestingApi().Object);
         }
+
+        [Test]
+        public void GetTroveGamesTest()
+        {
+            var games = HumbleLibrary.GetTroveGames();
+            CollectionAssert.IsNotEmpty(games);
+        }
     }
 }

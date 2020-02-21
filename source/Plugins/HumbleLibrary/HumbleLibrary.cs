@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -42,9 +43,53 @@ namespace HumbleLibrary
             Settings = new HumbleLibrarySettings(this);
         }
 
-        private string GetGameId(Order.SubProduct product)
+        private static string GetGameId(Order.SubProduct product)
         {
             return $"{product.machine_name}_{product.human_name}";
+        }
+
+        private static string GetGameId(TroveGame troveGame)
+        {
+            return $"{troveGame.machine_name}_{troveGame.human_name}_TROVE";
+        }
+
+        public static List<GameInfo> GetTroveGames()
+        {
+            var chunkDataUrlBase = @"https://www.humblebundle.com/api/v1/trove/chunk?index=";
+            var games = new List<GameInfo>();
+
+            using (var webClient = new WebClient { Encoding = Encoding.UTF8 })
+            {
+                var initialPageSrc = webClient.DownloadString(@"https://www.humblebundle.com/subscription/trove");
+                var chunkMatch = Regex.Match(initialPageSrc, @"chunks"":\s*(\d+)");
+                if (chunkMatch.Success)
+                {
+                    var chunks = int.Parse(chunkMatch.Groups[1].Value);
+                    for (int i = 0; i < chunks; i++)
+                    {
+                        var chunkDataStr = webClient.DownloadString(chunkDataUrlBase + i);
+                        foreach (var troveGame in Serialization.FromJson<List<TroveGame>>(chunkDataStr))
+                        {
+                            var game = new GameInfo
+                            {
+                                Name = troveGame.human_name,
+                                GameId = GetGameId(troveGame),
+                                Description = troveGame.description_text,
+                                Publishers = troveGame.publishers?.Select(a => a.publisher_name).ToList(),
+                                Developers = troveGame.developers?.Select(a => a.developer_name).ToList()
+                            };
+
+                            games.Add(game);
+                        }
+                    }
+                }
+                else
+                {
+                    logger.Warn("Failed to get number of trove chunks.");
+                }
+            }
+
+            return games.OrderBy(a => a.Name).ToList();
         }
 
         public override IEnumerable<Game> ImportGames()
@@ -101,6 +146,7 @@ namespace HumbleLibrary
                         }
                     }
                 }
+
                 foreach (var product in selectedProducts)
                 {
                     var gameId = GetGameId(product);
@@ -113,6 +159,18 @@ namespace HumbleLibrary
                             GameId = GetGameId(product),
                             Icon = product.icon
                         }, this));
+                    }
+                }
+
+                if (Settings.ImportTroveGames)
+                {
+                    foreach (var troveGame in GetTroveGames())
+                    {
+                        var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == troveGame.GameId && a.PluginId == Id);
+                        if (alreadyImported == null)
+                        {
+                            importedGames.Add(PlayniteApi.Database.ImportGame(troveGame, this));
+                        }
                     }
                 }
             }

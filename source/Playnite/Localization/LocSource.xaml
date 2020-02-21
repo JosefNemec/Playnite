@@ -895,6 +895,7 @@ Note that the Account Name option only works for accounts whose game libraries h
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignore third party store games</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Import Trove games</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip"  xml:space="preserve">If enabled, games that require 3rd party clients won't be imported.
 Includes stores already supported in Playnite to prevent duplicates.</sys:String>
 

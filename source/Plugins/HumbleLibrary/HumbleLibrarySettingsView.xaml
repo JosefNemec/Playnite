@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:pcmd="clr-namespace:Playnite.Commands"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="600">
 
@@ -12,6 +13,11 @@
             <Setter Property="Background" Value="White" />
         </Style>
     </d:DesignerProperties.DesignStyle>
+
+    <UserControl.Resources>
+        <sys:Boolean x:Key="True">True</sys:Boolean>
+        <sys:Boolean x:Key="False">False</sys:Boolean>
+    </UserControl.Resources>
 
     <StackPanel Margin="20">
         <CheckBox Name="CheckHumbleConnectAccount"
@@ -24,6 +30,9 @@
                       IsChecked="{Binding IgnoreThirdPartyStoreGames}"
                       Content="{DynamicResource LOCHumbleIgnoreThirdPartyStoreGames}"
                       ToolTip="{DynamicResource LOCHumbleIgnoreThirdPartyStoreGamesTooltip}"/>
+            <CheckBox Margin="0,10,0,0"
+                      IsChecked="{Binding ImportTroveGames}"
+                      Content="{DynamicResource LOCHumbleImportTroveGames}"/>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left"                         
                         Command="{Binding LoginCommand}" Margin="0,5,5,5"/>
