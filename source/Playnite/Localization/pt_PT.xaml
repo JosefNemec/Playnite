@@ -69,8 +69,8 @@ Indeterminado - Sem alterações (quando editar vários jogos)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">A extensão da biblioteca responsável por este jogo não está instalada ou ativada.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Transferir os metadados oficiais não está disponível.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nenhum jogo está selecionado.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -818,6 +818,7 @@ Indeterminado - Sem alterações (quando editar vários jogos)</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
