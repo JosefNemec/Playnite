@@ -81,12 +81,8 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Le client en charge de ce jeu n'est pas installé ou activé.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Téléchargement des métadonnées officielles non disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Aucun jeu sélectionné.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Échec de l’exécution du script associé au jeu :
-
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Échec de l’exécution du script global :
-
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Échec de l'exécution du script de jeu.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Échec de l'exécution du script global.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 ou plus récent n'est pas installé.</sys:String>
 
     <!--General-->
@@ -895,6 +891,7 @@ Images de fond : {2} px (hauteur)
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorer les jeux dépendant de clients tiers</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Lorsque cette option est activée, les jeux nécessitant un client tiers ne seront pas importés.
 Cela inclut les clients déjà supportées par Playnite, de manière à éviter les ajouts redondants.</sys:String>
 
