@@ -81,12 +81,8 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">未安裝或啟用本遊戲使用的資料庫外掛程式</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">無法下載官方元資料</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">未選擇任何項目。</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">遊戲腳本動作執行失敗:
-
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">全域腳本動作執行失敗
-
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">遊戲腳本動作執行失敗</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">全域腳本動作執行失敗</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">尚未安裝PowerShell 3.0 或更新版本</sys:String>
 
     <!--General-->
@@ -895,6 +891,7 @@ By {1}
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">忽略第三方商店遊戲</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">啟用時，須由第三方啟動器啟動的遊戲將不會被匯入。</sys:String>
 
     <!--Xbox-->
