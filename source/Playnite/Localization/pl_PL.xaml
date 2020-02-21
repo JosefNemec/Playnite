@@ -71,8 +71,8 @@ Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostycz
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Wtyczka biblioteki odpowiedzialna za tę grę nie jest zainstalowana lub włączona.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Oficjalne metadane nie są dostępne.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nie wybrano gry.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -825,6 +825,7 @@ Pamiętaj, że opcja Nazwa konta działa tylko w przypadku kont, których konta 
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
