@@ -80,8 +80,8 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Tälle pelille ei ole asennettu kirjastoliitännäistä tai se ei ole käytössä.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Virallista metatietoa ei ole saatavilla.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Yhtään peliä ei ole valittu.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 tai uudempi ei ole asennettuna.</sys:String>
 
     <!--General-->
@@ -381,8 +381,8 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ihanteellinen</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Näyttö</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Tekstin muotoilutila</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">Tekstin esitystila</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Tekstin esitys- ja muotoiluvalinnat eivät tällä hetkellä vaikuta pelin kuvaustekstiin.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Lataa taustakuvat välittömästi</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Sulje automaattisesti kolmannen osapuolen apuohjelmat pelin sammuttua</sys:String>
@@ -855,6 +855,7 @@ Huomioi, että Tilin nimi -vaihtoehdon käyttäminen toimii vain tileillä, jotk
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ohita kolmannen osapuolen kauppojen pelit</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
