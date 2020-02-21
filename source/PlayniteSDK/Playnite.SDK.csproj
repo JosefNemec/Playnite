@@ -62,6 +62,7 @@
     <Compile Include="Database\IItemCollection.cs" />
     <Compile Include="Events\ApplicationEvents.cs" />
     <Compile Include="Events\PlayniteUriEventArgs.cs" />
+    <Compile Include="Exceptions\ScriptRuntimeException.cs" />
     <Compile Include="Exceptions\TypeMismatchException.cs" />
     <Compile Include="Exceptions\ReferenceException.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />

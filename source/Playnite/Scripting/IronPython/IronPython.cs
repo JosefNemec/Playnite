@@ -3,6 +3,7 @@ using IronPython.Modules;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 using Playnite.API;
+using Playnite.SDK.Exceptions;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ from Playnite.SDK.Models import *
         }
 
         public void Dispose()
-        {            
+        {
             engine.Runtime.Shutdown();
         }
 
@@ -81,7 +82,17 @@ from Playnite.SDK.Models import *
 
             try
             {
-                var result = source.Execute<object>(scope);
+                object result = null;
+                try
+                {
+                    result = source.Execute<object>(scope);
+                }
+                catch (Exception e)
+                {
+                    var ext = engine.GetService<ExceptionOperations>().FormatException(e);
+                    throw new ScriptRuntimeException(e.Message, ext);
+                }
+
                 return result;
             }
             finally

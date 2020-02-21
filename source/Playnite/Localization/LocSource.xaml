@@ -82,12 +82,8 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Library plugin responsible for this game is not installed or enabled.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Official metadata download is not available.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No game is selected.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Game's script action execution failed:
-
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Global script action execution failed:
-
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Game's script action execution failed.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Global script action execution failed.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 or newer is not installed.</sys:String>
 
     <!--General-->

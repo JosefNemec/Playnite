@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using Playnite.API;
 using Microsoft.Win32;
 using System.IO;
+using Playnite.SDK.Exceptions;
 
 namespace Playnite.Scripting.PowerShell
 {
@@ -77,14 +78,31 @@ namespace Playnite.Scripting.PowerShell
                         }
                     }
 
-                    var result = pipe.Invoke();
-                    if (result.Count == 1)
+                    Collection<PSObject> result = null;
+
+                    try
                     {
-                        return result[0].BaseObject;
+                        result = pipe.Invoke();
+                    }
+                    catch (RuntimeException e)
+                    {
+                        throw new ScriptRuntimeException(e.Message, e.ErrorRecord.ScriptStackTrace);
+                    }
+
+                    if (result == null)
+                    {
+                        return null;
                     }
                     else
                     {
-                        return result.Select(a => a?.BaseObject).ToList();
+                        if (result.Count == 1)
+                        {
+                            return result[0].BaseObject;
+                        }
+                        else
+                        {
+                            return result.Select(a => a?.BaseObject).ToList();
+                        }
                     }
                 }
             }
