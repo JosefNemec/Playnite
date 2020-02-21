@@ -69,8 +69,8 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Den plugin tillhörande biblioteket som ansvarar för detta spel är inte installerad eller aktiverad.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Officiell nedladdningskälla för metadata är inte tällgänglig.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Inget spel är markerat.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -822,6 +822,7 @@ Du kan också lägga till andra spel (inklusive Microsoft Store-spel) senare fr�
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
