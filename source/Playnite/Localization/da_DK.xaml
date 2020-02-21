@@ -67,8 +67,8 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Biblioteks-udvidelsen ansvarlig for dette spil, er ikke installeret eller slået til.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Officiel metadata-download er ikke tilgængeligt.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Intet spil valgt.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 eller nyere er ikke installeret.</sys:String>
 
     <!--General-->
@@ -816,6 +816,7 @@
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
