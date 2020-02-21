@@ -81,12 +81,8 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bu oyundan sorumlu kütüphane eklentisi kurulu değil veya etkin değil.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Resmi üst veri yüklemesi mevcut değil.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Seçili Oyun Yok.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Oyun betiği eylemi çalıştırma başarısız:
-
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Genel betik eylem çalıştırma başarısız:
-
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 veya daha yeni sürümü yüklü değil.</sys:String>
 
     <!--General-->
@@ -895,6 +891,7 @@ Arka planlar: {2} megapiksel</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Üçüncü parti mağaza oyunlarını yok say</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Etkinleştirilirse, üçüncü taraf istemcileri gerektiren oyunlar içe aktarılmaz.
 Yinelemeleri önlemek için Playnite'da zaten desteklenen mağazaları içerir.</sys:String>
 
