@@ -174,7 +174,17 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCRow">Rivi</sys:String>
     <sys:String x:Key="LOCRows">Rivit</sys:String>
 
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Erikoismuuttujia voidaan käyttää tekstin dynaamisen luomiseen:
+{InstallDir} - Pelin asennushakemisto
+{InstallDirName} - Asennushakemiston nimi
+{ImagePath} - ISO/ROM Pelin polku, mikäli määritetty
+{ImageName} - ISO/ROM Pelitiedoston nimi
+{ImageNameNoExt} - Pelin ISO/ROM tiedoston nimi ilman sen päätettä
+{PlayniteDir} - Playniten asennushakemisto
+{Name} - Pelin nimi
+ 
+Esimerkki: -image &quot;{ImagePath}&quot; -fullscreen
+Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Kuvaketta ei voida hakea, jos Pelaa-toiminto puuttuu tai se on asetettu URL:ksi.</sys:String>
 
@@ -189,7 +199,17 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Valitse kentät jotka Playniten tulisi automaattisesti täyttää ja mitä lähteitä datan hakemiseen tulisi käyttää.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Parantaaksesi Playniten käyttämää dataa, harkitse yllä olevan logon klikkaamista ja osallistumista igdb.com-tietokannan päivittämiseen.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Virallinen kauppa:
+Käytä vain virallisen kaupan tietoja.
+ 
+IGDB: 
+Käytä vain IGDB.com-tietokantaa.
+
+IGDB &gt; Virallinen kauppa:
+Suosi IGDB.com-tietokantaa. Jos ei saatavilla, käytä virallisen kaupan tietoja.
+
+Virallinen kauppa &gt; IGDB:
+Suosi virallisen kaupan tietoja. Jos ei saatavilla, käytä IGDB.com-tietokantaa.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Ladataan Steam-kirjaston päivityksiä…</sys:String>
@@ -324,7 +344,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCSettingsAfterGameClose">Kun peli sulkeutuu:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Käynnistä pelit käyttämällä Galaxy-sovellusta</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Ottaa käyttöön pilvitallennukset, peliajan laskemisen jne.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Tämä ylikirjoittaa nykyiset kategoriat kuin myös piiloitukset sekä suosikit kaikissa Steam-peleissä. Haluatko jatkaa eteenpäin?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Tuo kategoriat?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Ei voida tuoda kategorioita, tunnusta ei ole valittu.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kategorioita ei voiti tuoda, tietokanta ei ole avoinna.</sys:String>
@@ -342,9 +362,13 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCSettingsGetExtensions">Hanki lisää laajennuksia</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Luo uusi laajennus</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Avusta käännöksissä</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Jotkut asetusten muutokset vaativat Playniten uudelleenkäynnistyksen. Haluatko käynnistää Playniten uudelleen nyt?
+
+Kaikki aktiiviset tehtävät (metatiedon lataukset) perutaan.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Uudelleenkäynnistä Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite ei itse siirrä kirjaston tiedostoja automaattisesti, sinun pitää itse siirtää tai kopioida ne ennen kuin kohde vaihdetaan. Jos kirjastoa ei löydy kohdehakemistossa, uusi hakemisto luodaan.
+
+Uuden tietokannan kohde tulee käyttöön vasta kun ohjelma on uudelleenkäynnistetty.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Peliaikaa ei kirjata jos &quot;Sulje&quot;-toiminto on asetettu.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Rivien määrä</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sarakkeiden määrä</sys:String>
@@ -355,7 +379,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Kaupan taustakuva</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceBanner">Mainospalkki</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Ei oteta takautuvasti käyttöön olemassa olevissa peleissä ilman että metadataa ladataan uudelleen.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Tuettujen kirjastojen peliajan priorisointi</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Älä huomioi Playniten kirjaamaa peliaikaa vaan lataa kirjattu peliaika aina etäkirjastosta kirjaston synkronoinnin aikana.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Ota peliohjaintuki käyttöön työpöytätilassa</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Opas-näppäin avaa koko näytön tilan</sys:String>
@@ -372,7 +396,7 @@ Automaattisesti tuodut pelit voivat ilmestyä uudelleen seuraavan tuontiprosessi
     <sys:String x:Key="LOCSettingsSelectChildSection">Valitse yksi alakohdista</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Ei asetuksia</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">Nämä skriptit suoritetaa jokaiselle kirjaston pelille. Jokaiseen peliin voi liittää yksilöityjä skriptejä muokkaamalla pelin tietoja.</sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animoi taustakuvien siirtymät</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Kirjasinkoot</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automaattinen</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Pehmentämätön</sys:String>
@@ -852,6 +876,7 @@ Huomioi, että Tilin nimi -vaihtoehdon käyttäminen toimii vain tileillä, jotk
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ohita kolmannen osapuolen kauppojen pelit</sys:String>
