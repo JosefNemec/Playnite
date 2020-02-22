@@ -894,7 +894,7 @@ IGDB &gt; חנות רשמית:
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">התעלם ממשחקי חנויות חיצוניות</sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">ייבא משחקים מ- Trove</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">אם פועל, לא יובאו משחקים הדורשים קליינטים חיצוניים.
 כולל חנויות שכבר נתמכות ב- Playnite כדי למנוע כפילויות.</sys:String>
 
