@@ -797,7 +797,7 @@ Puede probar esto para solucionar el problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuración de acción de juego inválida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Resolución de problemas de sincronización de cuentas</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues">Solucionar problemas</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Resolución de problemas</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renombrar elemento</sys:String>
     <sys:String x:Key="LOCAddNewItem">Añadir nuevo elemento</sys:String>
@@ -891,6 +891,7 @@ La opción de Nombre de Cuenta solo aparece para cuentas cuyas librerías de jue
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Iniciar el juego directamente sin ejecutar el cliente Epic cuando sea posible</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Esta opción no funcionará para todos los juegos. Consulta el enlace de resolución de problemas para ver posibles soluciones alternativas.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorar juegos de la tienda de terceros</sys:String>
