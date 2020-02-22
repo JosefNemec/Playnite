@@ -818,6 +818,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
