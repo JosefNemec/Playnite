@@ -884,7 +884,8 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} 배경 이미지 선택</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">가능하다면 Epic 클라이언트를 실행하지 않고 게임을 직접 실행</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">제3자 스토어 게임 무시</sys:String>
