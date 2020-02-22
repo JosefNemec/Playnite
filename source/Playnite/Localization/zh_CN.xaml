@@ -890,6 +890,7 @@ By {1}
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">尝试不启动Epic客户端直接运行游戏</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">这个选项不一定对所有游戏有效。点击疑难解答链接查看有效的软件。</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">忽略第三方游戏平台的游戏</sys:String>
