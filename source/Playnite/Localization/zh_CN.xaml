@@ -35,8 +35,16 @@
     <sys:String x:Key="LOCNoPlatform">没有平台</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">哦不，发生了一些坏事...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">我们遇到了一个无法恢复的错误。
+
+如果您想要协助我们修复这个问题，请简要描述在发生这个错误之前您进行的操作，并为我们创建一个诊断包。如果您现在有连接网络，诊断包将被上传至Playnite服务器分析。
+
+或者，您可以使用&quot;崩溃反馈&quot;按钮手动在Github上创建一个issue反馈这次崩溃。
+
+感谢您的帮忙。</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">发生了不可恢复的错误。
+
+如果您想帮助我们解决此问题，请将诊断信息发给我们。 谢谢！</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">报告问题</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重启Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">退出Playnite</sys:String>
@@ -46,10 +54,14 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">删除游戏？</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">无法删除正在运行或正在安装/卸载的游戏</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">无法卸载正在运行的游戏</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">您确定要删除这个游戏？
+
+自动导入的游戏可能会在下一次导入后重新出现在Playnite中（取决于您的设置）</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">您确定要删除这 {0} 个游戏？
+
+自动导入的游戏可能会在下一次导入后重新出现在Playnite中（取决于您的设置）</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">您确定要删除这 {0} 个目前没有使用的条目？</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">找不到未使用的区域。</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam好友</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">部分包含要保存的更改</sys:String>
@@ -69,14 +81,14 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">未安装或启用负责此游戏的库插件</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">官方资料数据下载不可用。</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">未选定任何游戏。</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">游戏脚本执行失败。</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">全局脚本执行失败。</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0或更新版本未安装。</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">启用</sys:String>
     <sys:String x:Key="LOCRemoveTitle">移除</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">移除未使用的。</sys:String>
     <sys:String x:Key="LOCRenameTitle">重命名</sys:String>
     <sys:String x:Key="LOCCopyTitle">复制</sys:String>
     <sys:String x:Key="LOCAddTitle">添加</sys:String>
@@ -163,7 +175,17 @@
     <sys:String x:Key="LOCRow">行</sys:String>
     <sys:String x:Key="LOCRows">行</sys:String>
 
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">特殊变量可以用来添加动态字符串：
+{InstallDir} - 游戏安装目录
+{InstallDirName} - 安装文件夹的名称
+{ImagePath} - 游戏ISO / ROM路径（如果有设置）
+{ImageName} - 游戏ISO / ROM文件名
+{ImageNameNoExt} - 没有扩展名的游戏ISO / ROM文件名
+{PlayniteDir} - Playnite的安装目录
+{Name} - 游戏名称
+ 
+例如： -image &quot;{ImagePath}&quot; -fullscreen
+实际运行： -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">如果启动操作缺失或设置为链接，则无法获取图标</sys:String>
 
@@ -178,7 +200,17 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">请选择哪些字段应该由Playnite自动填充，以及应使用哪些源来获取数据</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">请考虑点击上面的标志并贡献更新 igdb.com 数据库，以改进Playnite数据。</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">官方商店:
+只使用官方商店的数据
+ 
+IGDB：
+只使用 IGDB.com 数据库的数据
+ 
+IGDB &gt; 官方商店：
+首选 IGDB.com 数据库中的数据。若不存在，则使用官方商店数据库中的数据
+ 
+官方商店 &gt; IGDB：
+首选官方商店的数据。若不存在，则使用 IGDB.com 数据库中的数据</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">正在下载Steam游戏库更新...</sys:String>
@@ -256,7 +288,7 @@
     <sys:String x:Key="LOCSettingsLayoutLabel">布局</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">高级设置</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">全屏</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">提供商</sys:String>
+    <sys:String x:Key="LOCSettingsProvidersLabel">游戏平台</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">输入</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">性能</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">资料数据</sys:String>
@@ -281,7 +313,7 @@
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提高游戏列表的滚动平滑度，以换取较慢的图片加载时间</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">封面缺失时显示游戏名</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在封面视图中显示游戏名称</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">暗色显示未安装的游戏</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">在列表视图上显示游戏图标</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">在组描述中显示项目数量</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">禁用硬件加速</sys:String>
@@ -313,7 +345,7 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">当游戏结束后：</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">使用Galaxy客户端启动游戏</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">将启用云保存，计算启动时间等功能</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">这将会覆盖所有Steam游戏的分类（包括隐藏和最爱的游戏）。您确定要继续吗？</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">确定导入分类？</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">无法导入分类，未选择导入账户。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">无法导入分类，数据库未打开。</sys:String>
@@ -331,12 +363,14 @@
     <sys:String x:Key="LOCSettingsGetExtensions">获取更多扩展</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">创建新扩展</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">贡献新的本地化翻译</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">一些设置的更改需要您重新启动Playnite。您想现在重新启动Playnite吗？
+ 
+任何当前正在进行的的任务（例如游戏元数据下载）都将被取消。</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">重新启动Playnite？</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite 不会自动移动库文件，您必须在更改位置之前移动/复制它们。 如果目标位置中没有库，则将创建一个新库。
 
 新的数据库位置将仅在应用程序重新启动后使用。</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果设置了“关闭”动作，游戏时间将不会被记录</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">行数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">列数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">详情视图行数</sys:String>
@@ -344,9 +378,9 @@
     <sys:String x:Key="LOCSteamBackgroundSourceImage">游戏图像</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截图</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">商店背景</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner">横幅</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下载元数据，则不会应用追溯于现有游戏</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">对支持的库优先排序游戏时间</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">始终在库同步期间从远程库下载记录的游戏时间，忽略Playnite记录的时间</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">在桌面模式下启用控制器支持</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">指南按钮打开全屏模式</sys:String>
@@ -363,7 +397,7 @@
     <sys:String x:Key="LOCSettingsSelectChildSection">选择其中一个子选项：</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">没有可用的设置</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">这些脚本会对库中的每个游戏都执行。编辑游戏详情时可以分别给每个游戏分配单独的脚本。</sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">背景图片变换使用动画</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">字体大小</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">自动</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">别名</sys:String>
@@ -375,13 +409,15 @@
     <sys:String x:Key="LOCSettingsTextRenderingMode">文本渲染模式</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">文字渲染和格式选项目前不会应用于游戏描述文字。</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">立即下载背景图像</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">如果启用这个选项，Playnite将在下载游戏元数据的同时后台下载艺术作品，在离线的时候可以查看一书作平，但是会占用更多的硬盘空间。
+
+如果禁用这个选项，在首次需要艺术作品的时候才会后台下载，占用较少的硬盘空间但是可能导致离线使用时无法显示一些图片。</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">退出游戏后自动关闭第三方客户端</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">客户端延迟关闭时间（秒）</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">游戏时间短于该时间时不关闭（单位：秒）</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自动关闭以下客户端：</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">自动关闭客户端</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">当游戏媒体数据太大的时候显示警告</sys:String>
 
     <sys:String x:Key="LOCStrechNone">无</sys:String>
     <sys:String x:Key="LOCStrechFill">填充</sys:String>
@@ -410,8 +446,10 @@
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">模拟器导入向导</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">此向导将引导您完成控制台模拟器下载和导入过程，以及导入模拟游戏</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">请记住，您随时可以再主菜单添加其他的模拟器或游戏（在&quot;库&quot;选项下的&quot;模拟器设置&quot;按钮和&quot;添加游戏&quot;按钮）</sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">以下是Playnite可识别和自动配置的模拟器列表， 您可以通过访问他们的网站下载并安装它们。一旦你安装了模拟器，进入下一个屏幕将它们导入到Playnite中。
+ 
+您也可以稍后通过配置菜单配置和导入任何自定义模拟器</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">您可以通过按“从文件夹自动检测...”按钮来导入安装在您的PC上的任何模拟器。 Playnite将在选定的文件夹中搜索任何已知的模拟器，并提供选项来导入它们。 您可以多次使用该按钮从多个文件夹导入，模拟器将被添加到当前列表的底部</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">您可以通过按“扫描模拟器文件夹”按钮导入游戏。 选择适当的模拟器将告诉Playnite，哪些文件类型应该被扫描和导入。 您可以多次使用该按钮从多个文件夹导入，游戏将添加到当前列表的底部</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">没有选择导入的模拟器。 如果不先配置模拟器，您将无法自动导入任何模拟游戏。 您确定要继续并退出导入过程吗？</sys:String>
@@ -424,7 +462,9 @@
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">首次配置</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">该向导将引导您完成游戏自动导入和外部游戏库的配置。 Playnite可以自动从Steam或GOG等多种游戏平台中导入游戏，并且在软件启动的时候也会自动更新您的游戏库来保持游戏库。
+ 
+请记住，您可以随时通过点击“Playnite”按钮在主菜单中手动为任何平台添加任何自定义游戏    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">选择数据库文件的位置。 稍后也可以通过“设置”菜单更改位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">针对所有用户的默认程序数据位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">自定义位置</sys:String>
@@ -451,7 +491,7 @@
     <sys:String x:Key="LOCPlatformsWindowTitle">配置平台和模拟器</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">配置模拟器</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">平台</sys:String>
-    <sys:String x:Key="LOCPlatformTitle">平台</sys:String>
+    <sys:String x:Key="LOCPlatformTitle">设备平台</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">模拟器</sys:String>
     <sys:String x:Key="LOCEmulatorTitle">模拟器</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">添加平台</sys:String>
@@ -473,8 +513,10 @@
     <sys:String x:Key="LOCImportEmulatorsButton">导入模拟器...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">下载模拟器...</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">从已知的模拟器配置文件加载参数</sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">您确定要移除 {0} 模拟器吗？ 
+目前正在被 {1} 个游戏使用</sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">您确定要移除 {0} 平台吗？ 
+目前正在被 {1} 个游戏和 {2} 个模拟器使用</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">设置帮助</sys:String>
 
     <sys:String x:Key="LOCMenuSortByTitle">排序方式</sys:String>
@@ -487,7 +529,7 @@
     <sys:String x:Key="LOCMenuGroupPlatform">按平台分组</sys:String>
     <sys:String x:Key="LOCViewType">查看类型</sys:String>
     <sys:String x:Key="LOCMenuView">查看</sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel">Explorer 面板</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">探索面板</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">筛选条件面板</sys:String>
 
     <!--Game fields-->
@@ -506,7 +548,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">开发商</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">标签</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">发行商</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">安装状态</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安装</sys:String>
@@ -514,32 +556,32 @@
     <sys:String x:Key="LOCGameFavoriteTitle">收藏夹</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">最后游玩时间</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">分类</sys:String>
-    <sys:String x:Key="LOCGameDescriptionTitle">描述</sys:String>
+    <sys:String x:Key="LOCGameDescriptionTitle">游戏描述</sys:String>
     <sys:String x:Key="LOCGameInstallDirTitle">安装目录</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">封面图片</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">链接</sys:String>
     <sys:String x:Key="LOCGameROMTitle">图像，ROM或ISO路径</sys:String>
 
     <sys:String x:Key="LOCGenreLabel">类型</sys:String>
-    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCGenresLabel">类型</sys:String>
     <sys:String x:Key="LOCCompanyLabel">公司</sys:String>
-    <sys:String x:Key="LOCCompaniesLabel"></sys:String>
+    <sys:String x:Key="LOCCompaniesLabel">公司</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">开发商</sys:String>
-    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCDevelopersLabel">开发者</sys:String>
     <sys:String x:Key="LOCPublisherLabel">发行商</sys:String>
-    <sys:String x:Key="LOCPublishersLabel"></sys:String>
+    <sys:String x:Key="LOCPublishersLabel">发行商</sys:String>
     <sys:String x:Key="LOCCategoryLabel">分类</sys:String>
-    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">类别</sys:String>
     <sys:String x:Key="LOCTagLabel">标签</sys:String>
     <sys:String x:Key="LOCTagsLabel">标签</sys:String>
-    <sys:String x:Key="LOCFeatureLabel"></sys:String>
-    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCFeatureLabel">特征</sys:String>
+    <sys:String x:Key="LOCFeaturesLabel">特征</sys:String>
     <sys:String x:Key="LOCAgeRatingLabel">年龄分级</sys:String>
-    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel">年龄分级</sys:String>
     <sys:String x:Key="LOCRegionLabel">地区</sys:String>
-    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionsLabel">国家</sys:String>
     <sys:String x:Key="LOCSourceLabel">来源</sys:String>
-    <sys:String x:Key="LOCSourcesLabel"></sys:String>
+    <sys:String x:Key="LOCSourcesLabel">来源</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">数据库错误</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">无法打开游戏库数据</sys:String>
@@ -568,11 +610,18 @@
     <sys:String x:Key="LOCLibraryImportError">无法从 {0} 导入游戏</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">无法通过选定的模拟器配置文件搜索游戏。 配置文件不包含任何文件扩展名或平台</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite未能启动。 请关闭所有正在运行的程序并重试</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">无法应用主题“{0}”，颜色配置文件“{1}”
+ 
+{2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">无法打开网址，网址格式无效</sys:String>
     <sys:String x:Key="LOCAppStartupError">无法启动应用程序</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">无法初始化Web视图组件，Playnite无法继续启动。
+
+您可以尝试这些方法来解决问题：        
+  • 检查所有文件是否已正确安装，重新安装可能会有所帮助
+  • 检查防病毒软件是否阻止了Playnite目录中的文件
+  • 尝试安装在其他位置（路径不要出现中文）</sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">无法导入模拟器，找不到模拟器定义文件。</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">编辑游戏详情</sys:String>
@@ -617,7 +666,7 @@
     <sys:String x:Key="LOCClose">关闭</sys:String>
     <sys:String x:Key="LOCChange">更改</sys:String>
     <sys:String x:Key="LOCAdvanced">高级</sys:String>
-    <sys:String x:Key="LOCNever">从不</sys:String>
+    <sys:String x:Key="LOCNever">尚未进行过游戏</sys:String>
     <sys:String x:Key="LOCCompletionStatusNotPlayed">没有玩过</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayed">已玩过</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten">被打败</sys:String>
@@ -627,9 +676,9 @@
     <sys:String x:Key="LOCCompletionStatusOnHold">暂缓</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlanToPlay">计划游玩</sys:String>
     <sys:String x:Key="LOCCompletionStatus">完成状态</sys:String>
-    <sys:String x:Key="LOCUserScore">用户分数</sys:String>
-    <sys:String x:Key="LOCCriticScore">评论员分数</sys:String>
-    <sys:String x:Key="LOCCommunityScore">社区分数</sys:String>
+    <sys:String x:Key="LOCUserScore">您的评分</sys:String>
+    <sys:String x:Key="LOCCriticScore">专家评分</sys:String>
+    <sys:String x:Key="LOCCommunityScore">社区评分</sys:String>
     <sys:String x:Key="LOCScripts">脚本</sys:String>
     <sys:String x:Key="LOCPlugins">插件</sys:String>
     <sys:String x:Key="LOCMetadataProviders">元数据源</sys:String>
@@ -704,7 +753,7 @@
     <sys:String x:Key="LOCGameOptions">游戏选项</sys:String>
     <sys:String x:Key="LOCGameDetails">详情</sys:String>
     <sys:String x:Key="LOCUninstallGame">卸载</sys:String>
-    <sys:String x:Key="LOCOpenGameLocation">打开安装位置</sys:String>
+    <sys:String x:Key="LOCOpenGameLocation">打开游戏安装位置</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">创建桌面快捷方式</sys:String>
     <sys:String x:Key="LOCMoreAction">更多</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">由库插件管理</sys:String>
@@ -713,9 +762,9 @@
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">在指定页面上没有找到关于游戏 ’{0}‘ 的任何相关信息</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示：您可以通过“编辑”菜单选项编辑单个游戏时使用更高级的数据下载过程</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些操作正在进行时不可用</sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本是HTML语法敏感的</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本使用HTML语法</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">游戏时间以秒为单位追踪并储存。</sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues">分值从0到100或为空以不计分</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">分值范围为0至100或留空为无评分</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite的开发得到了这些赞助者的支持：</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">代码，本地化和其他贡献者（没有特定的顺序）：</sys:String>
 
@@ -765,17 +814,36 @@
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">主题/扩展 使用的是不受支持的API版本。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安装成功。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">安装扩展？</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安装扩展失败。
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+{0}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">您想要安装新的扩展吗？现有扩展将被覆盖。
+ 
+{0}
+By {1}
+版本 {2}</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">安装主题失败。
+ 
+{0}</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">您想要安装新主题吗？现有主题将被覆盖。
+ 
+{0}
+By {1}
+版本 {2}</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">您即将离开Playnite，并使用您的默认浏览器来浏览接下来的网页。您确定继续吗？
+ 
+{0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">您选择的图片对于最佳性能太大了。使用非常大的图片可能导致界面卡顿和增加内存使用
+
+最大建议分辨率:
+图标: {0} 兆像素
+封面: {1} 兆像素
+背景: {2} 兆像素</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">性能警告</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">不再显示</sys:String>
-    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
+    <sys:String x:Key="LOCLargeMediaWarningTooltip">您选择的镜像文件太大了，可能会影响最佳性能</sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">成就</sys:String>
@@ -821,15 +889,16 @@
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">选择 {0} 的背景图像</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">尝试不启动Epic客户端直接运行游戏</sys:String>
 
     <!--Humble-->
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">忽略第三方游戏平台的游戏</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">导入Trove游戏</sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">如果启用这个选项，需要第三方客户端的游戏将不会被导入。
+包括Playnite已经支持的游戏平台以防止出现重复的游戏。</sys:String>
 
     <!--Xbox-->
-    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
-    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
-    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">启动客户端时使用Xbox Pass而不是用微软应用商店</sys:String>
+    <sys:String x:Key="LOCXboxImport360Games">导入Xbox 360游戏</sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames">导入Xbox One游戏</sys:String>
 </ResourceDictionary>
