@@ -822,6 +822,7 @@ Pamiętaj, że opcja Nazwa konta działa tylko w przypadku kont, których konta 
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
