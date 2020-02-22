@@ -891,6 +891,7 @@ Nota che l'opzione Nome Account funziona solo per gli account le cui librerie di
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Avviare il gioco direttamente senza il client Epic quando possibile</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Questa opzione non funzionerà per tutti i giochi. Consulta il link di risoluzione problemi per possibili soluzioni alternative.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignora i giochi dei negozi di terze parti</sys:String>
