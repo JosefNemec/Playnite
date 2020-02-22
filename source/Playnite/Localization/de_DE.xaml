@@ -797,7 +797,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCInvalidGameActionSettings">Ungültige Aktion für dieses Spiel.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Problembehebung bei der Kontosynchronisation</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues">Problembehandlung</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Problembehebung</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Eintrag umbenennen</sys:String>
     <sys:String x:Key="LOCAddNewItem">Neuen Eintrag hinzufügen</sys:String>
@@ -890,7 +890,8 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Hintergrundbild für {0} auswählen</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Falls möglich Spiel ohne Epic-Client direkt starten</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Falls möglich, Spiel ohne Epic-Client direkt zu starten versuchen</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Dieses Option funktioniert nicht für alle Spiele. Siehe den Link zur Problembehebung für mögliche Behelfslösungen.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Spiele von Drittanbieter-Shops ignorieren</sys:String>
