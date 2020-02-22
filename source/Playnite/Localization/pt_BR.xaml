@@ -889,7 +889,8 @@ Imagens de fundo: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Selecionar imagem de fundo para {0}</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Quando possível, iniciar os jogos diretamente, sem executar o cliente da Epic</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Quando possível, tentar iniciar os jogos diretamente, sem executar o cliente da Epic</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Esta opção não funcionará para todos os jogos. Confira a página de solução de problemas para possíveis soluções alternativas.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorar jogos de lojas de terceiros</sys:String>
