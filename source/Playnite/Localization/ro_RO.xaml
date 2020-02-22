@@ -816,6 +816,7 @@ De menționat că opțiunea pentru Numele Contului este funcțională doar pentr
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
