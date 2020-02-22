@@ -81,8 +81,8 @@ Los juegos importados automáticamente pueden reaparecer en Playnite después de
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">La extensión de la biblioteca responsable de este juego no está instalada o habilitada.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">La descarga de metadatos oficial no está disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Ningún juego seleccionado.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">La ejecución de la acción del script del juego falló.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">La ejecución de la acción del script global falló.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 o posterior no está instalado.</sys:String>
 
     <!--General-->
@@ -894,7 +894,7 @@ La opción de Nombre de Cuenta solo aparece para cuentas cuyas librerías de jue
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorar juegos de la tienda de terceros</sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Importar juegos de Trove</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Si está habilitado, los juegos que requieren clientes de terceros no se importarán.
 Incluye tiendas que ya son compatibles con Playnite para evitar duplicados.</sys:String>
 
