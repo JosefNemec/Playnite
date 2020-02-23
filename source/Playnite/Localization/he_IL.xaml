@@ -890,8 +890,8 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">בחר תמונת רקע עבור {0}</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">כאשר ניתן, התחל את המשחק מבלי להפעיל את הקליינט של Epic</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">אפשרות זו אינה עובדת עבור כל המשחקים. לקבלת דרכים לעקיפת הבעיה, ראה קישור לפתרון בעיות.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">התעלם ממשחקי חנויות חיצוניות</sys:String>
