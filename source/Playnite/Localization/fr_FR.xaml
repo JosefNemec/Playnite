@@ -888,11 +888,11 @@ Images de fond : {2} px (hauteur)
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Lancer les jeux sans le client Epic lorsque cela est possible</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Cette option n'est pas compatibles avec certains jeux. Veuillez visiter le lien de résolution des problèmes pour en savoir plus.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorer les jeux dépendant de clients tiers</sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Importer les jeux du Humble Trove</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Lorsque cette option est activée, les jeux nécessitant un client tiers ne seront pas importés.
 Cela inclut les clients déjà supportées par Playnite, de manière à éviter les ajouts redondants.</sys:String>
 
