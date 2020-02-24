@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">שפה</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">יציאה</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">מסנן פעיל</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">מסנן כבוי</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">סינון פעיל</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">סינון כבוי</sys:String>
     <sys:String x:Key="LOCAditionalFilters">מסננים נוספים</sys:String>
     <sys:String x:Key="LOCFilters">מסננים</sys:String>
     <sys:String x:Key="LOCFilter">מסנן</sys:String>
@@ -549,7 +549,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCGameDevelopersTitle">מפתח</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">תג</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">מפרסם</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">מצב ההתקנה</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">מותקן</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">מותקן</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">הוסר</sys:String>
@@ -667,7 +667,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCClose">סגור</sys:String>
     <sys:String x:Key="LOCChange">שינוי</sys:String>
     <sys:String x:Key="LOCAdvanced">מתקדם</sys:String>
-    <sys:String x:Key="LOCNever">לעולם לא</sys:String>
+    <sys:String x:Key="LOCNever">אף פעם</sys:String>
     <sys:String x:Key="LOCCompletionStatusNotPlayed">לא שוחקו</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayed">שוחקו</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten">הובס</sys:String>
