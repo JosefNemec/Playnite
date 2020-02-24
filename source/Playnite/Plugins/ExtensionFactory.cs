@@ -220,7 +220,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e.InnerException, $"Failed to parse plugin description: {file}");
+                    logger.Error(e, $"Failed to parse plugin description: {file}");
                     continue;
                 }
             }
