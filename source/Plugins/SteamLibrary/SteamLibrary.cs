@@ -720,7 +720,7 @@ namespace SteamLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
-            LibrarySettings.ShowCategoryImport = !firstRunSettings;
+            LibrarySettings.IsFirstRunUse = firstRunSettings;
             return LibrarySettings;
         }
 

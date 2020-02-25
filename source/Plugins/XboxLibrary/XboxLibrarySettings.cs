@@ -29,6 +29,9 @@ namespace XboxLibrary
         public bool ImportXboneGames { get; set; } = false;
 
         [JsonIgnore]
+        public bool IsFirstRunUse { get; set; }
+
+        [JsonIgnore]
         public bool IsUserLoggedIn
         {
             get

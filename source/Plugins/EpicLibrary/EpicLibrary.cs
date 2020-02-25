@@ -114,6 +114,7 @@ namespace EpicLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
+            LibrarySettings.IsFirstRunUse = firstRunSettings;
             return LibrarySettings;
         }
 

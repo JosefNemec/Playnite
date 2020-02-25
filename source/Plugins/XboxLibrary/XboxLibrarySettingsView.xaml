@@ -74,6 +74,7 @@
         </StackPanel>
         
         <CheckBox IsChecked="{Binding XboxAppClientPriorityLaunch}"
+                  Visibility="{Binding IsFirstRunUse, Converter={pcon:InvertedBooleanToVisibilityConverter}}"
                   Content="{DynamicResource LOCXboxXboxAppClientPriorityLaunch}"/>
 
         <TextBlock VerticalAlignment="Center" Margin="0,20,0,0">

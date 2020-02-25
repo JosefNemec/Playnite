@@ -115,7 +115,7 @@ namespace GogLibrary
                 {
                     throw new Exception("User is not logged in to GOG account.");
                 }
-                            
+
                 var libGames = api.GetOwnedGames();
                 if (libGames == null)
                 {
@@ -182,6 +182,7 @@ namespace GogLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
+            LibrarySettings.IsFirstRunUse = firstRunSettings;
             return LibrarySettings;
         }
 
@@ -271,6 +272,5 @@ namespace GogLibrary
         }
 
         #endregion ILibraryPlugin
-
     }
 }

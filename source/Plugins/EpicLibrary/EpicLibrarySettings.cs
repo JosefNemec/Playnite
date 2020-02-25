@@ -38,6 +38,9 @@ namespace EpicLibrary
         #endregion Settings
 
         [JsonIgnore]
+        public bool IsFirstRunUse { get; set; }
+
+        [JsonIgnore]
         public bool IsUserLoggedIn
         {
             get

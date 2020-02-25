@@ -48,7 +48,7 @@
                   IsChecked="{Binding ConnectAccount}"
                   Content="{DynamicResource LOCSettingsConnectAccount}"/>
 
-        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckSteamConnectAccount}">
+        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,0" IsEnabled="{Binding IsChecked, ElementName=CheckSteamConnectAccount}">
 
             <CheckBox DockPanel.Dock="Top" Name="CheckSteamImportUninstalled"
                       IsChecked="{Binding ImportUninstalledGames}"
@@ -110,12 +110,22 @@
             </StackPanel>
         </DockPanel>
 
+        <TextBlock VerticalAlignment="Center" Margin="0,12,0,0">
+            <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/Steam-troubleshooting"
+                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                <Run Text="{DynamicResource LOCTroubleShootingIssues}" />
+            </Hyperlink>
+        </TextBlock>
+
         <CheckBox Content="{DynamicResource LOCSteamUseVerticalCovers}"
-                  IsChecked="{Binding DownloadVerticalCovers}" Margin="0,25,0,5" />
+                  Visibility="{Binding IsFirstRunUse, Converter={pcon:InvertedBooleanToVisibilityConverter}}"
+                  IsChecked="{Binding DownloadVerticalCovers}" Margin="0,20,0,5" />
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,5,0,5" HorizontalAlignment="Left"
                     ToolTip="{DynamicResource LOCBackgroundImageScreenOptionTooltip}"
-                    ToolTipService.InitialShowDelay="0">
+                    ToolTipService.InitialShowDelay="0"
+                    Visibility="{Binding IsFirstRunUse, Converter={pcon:InvertedBooleanToVisibilityConverter}}">
             <TextBlock Text="{DynamicResource LOCSteamBackgroundSource}"
                        VerticalAlignment="Center"/>
             <ContentControl Content="{StaticResource BackgroundSourceBox}" Margin="10,0,0,0" />
@@ -123,17 +133,16 @@
 
 
         <StackPanel DockPanel.Dock="Top" Margin="0,25,5,5" Orientation="Horizontal"
-                    Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{Binding IsFirstRunUse, Converter={pcon:InvertedBooleanToVisibilityConverter}}">
             <TextBlock Text="{DynamicResource LOCSettingsSteamImportMetadata}"
-                   VerticalAlignment="Center"
-                   Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                   VerticalAlignment="Center"/>
             <ComboBox IsReadOnly="True" Margin="10,0,0,0"
                       Name="ComboSteamMetadataImport"
                       DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
                       ItemsSource="{Binding SteamUsers}" />
         </StackPanel>
-        <StackPanel DockPanel.Dock="Top" Margin="40,10,5,5" Orientation="Horizontal"
-                    Visibility="{Binding ShowCategoryImport, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <StackPanel DockPanel.Dock="Top" Margin="40,10,5,5" Orientation="Horizontal"                    
+                    Visibility="{Binding IsFirstRunUse, Converter={pcon:InvertedBooleanToVisibilityConverter}}">
             <Button Content="{DynamicResource LOCImportSteamCategoriesLabel}" Name="ButtonImportSteamCategories"
                      Margin="0,0,10,0" Command="{Binding ImportSteamCategoriesCommand}"
                     CommandParameter="{Binding SelectedItem, ElementName=ComboSteamMetadataImport}"/>

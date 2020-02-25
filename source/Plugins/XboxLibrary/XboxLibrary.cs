@@ -266,6 +266,7 @@ namespace XboxLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
+            Settings.IsFirstRunUse = firstRunSettings;
             return Settings;
         }
 
