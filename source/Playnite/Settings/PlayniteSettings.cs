@@ -557,7 +557,7 @@ namespace Playnite
             }
         }
 
-        private bool asyncImageLoading = false;
+        private bool asyncImageLoading = true;
         [RequiresRestart]
         public bool AsyncImageLoading
         {
