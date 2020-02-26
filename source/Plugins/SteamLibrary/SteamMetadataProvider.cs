@@ -258,9 +258,10 @@ namespace SteamLibrary
             var resources = library.PlayniteApi.Resources;
             var appId = gameId.AppID;
             var downloadedMetadata = DownloadGameMetadata(appId, library.LibrarySettings);
+
             var gameInfo = new GameInfo
             {
-                Name = downloadedMetadata.ProductDetails?["common"]["name"]?.Value ?? downloadedMetadata.GameInfo.Name,
+                Name = downloadedMetadata.ProductDetails?["common"]["name"]?.Value ?? downloadedMetadata.StoreDetails?.name,
                 Links = new List<Link>()
                 {
                     new Link(resources.GetString("LOCSteamLinksCommunityHub"), $"https://steamcommunity.com/app/{appId}"),
