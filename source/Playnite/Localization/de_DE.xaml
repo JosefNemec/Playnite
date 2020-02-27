@@ -586,7 +586,7 @@ Sie wird derzeit von {1} Spiel(en) und {2} Emulator(en) verwendet.</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Datenbankfehler</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Datenbank konnte nicht geöffnet werden.</sys:String>
-    <sys:String x:Key="LOCDatabaseNotOpenedError">Fehler beim Import: Datenbank ist nicht geöffnet.</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">Datenbank ist nicht geöffnet.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Kein Zugriff auf Bibliotheksdatenbank: Datei »{0}« wird von einem anderen Prozess verwendet oder befindet sich an einem unerreichbaren Speicherort.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Diagnosedaten konnte nicht erstellt werden.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Diagnosedaten konnten nicht automatisch hochgeladen werden.</sys:String>
@@ -614,7 +614,7 @@ Bitte ergänze deinen Problembericht um die folgende Kennung:</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Design »{0}« mit Farbprofil »{1}« konnte nicht angewendet werden
 
 {2}</sys:String>
-    <sys:String x:Key="LOCURLFormatError">Fehler beim Öffnen des Links: URL ist ungültig.</sys:String>
+    <sys:String x:Key="LOCURLFormatError">Link kann nicht geöffnet werden, da die URL ein ungültiges Format besitzt.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Anwendung konnte nicht gestartet werden.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Die WebView-Komponente konnte nicht initialisiert werden und Playnite daher den Start nicht fortsetzen.
 
@@ -644,11 +644,11 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCProfileSettings">Profileinstellungen</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Spielname darf nicht leer sein.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Spielname darf vor der Metadatensuche nicht leer sein.</sys:String>
-    <sys:String x:Key="LOCInvalidGameData">Ungültige Metadaten</sys:String>
+    <sys:String x:Key="LOCInvalidGameData">Ungültige Spieledaten</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Bitte gib eine gültige, mit »http://« oder »https://« beginnende URL ein</sys:String>
     <sys:String x:Key="LOCURLInputInfoTitile">URL auswählen</sys:String>
     <sys:String x:Key="LOCMetadataDownloadError">Metadaten konnten nicht heruntergeladen werden: {0}</sys:String>
-    <sys:String x:Key="LOCDownloadError">Download-Fehler</sys:String>
+    <sys:String x:Key="LOCDownloadError">Fehler beim Herunterladen</sys:String>
     <sys:String x:Key="LOCClearFilters">Filter leeren</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Privates Konto</sys:String>
     <sys:String x:Key="LOCPublicAccount">Öffentliches Konto</sys:String>
@@ -656,10 +656,10 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCStartupError">Fehler beim Starten von Playnite</sys:String>
     <sys:String x:Key="LOCSkinError">Fehler beim Anwenden des Designs</sys:String>
     <sys:String x:Key="LOCClearAll">Alle leeren</sys:String>
-    <sys:String x:Key="LOCSetupRunning">Wird installiert …</sys:String>
-    <sys:String x:Key="LOCUninstalling">Wird deinstalliert …</sys:String>
-    <sys:String x:Key="LOCGameLaunching">Wird gestartet …</sys:String>
-    <sys:String x:Key="LOCGameRunning">Im Spiel</sys:String>
+    <sys:String x:Key="LOCSetupRunning">Wird installiert</sys:String>
+    <sys:String x:Key="LOCUninstalling">Wird deinstalliert</sys:String>
+    <sys:String x:Key="LOCGameLaunching">Wird gestartet</sys:String>
+    <sys:String x:Key="LOCGameRunning">Wird ausgeführt</sys:String>
     <sys:String x:Key="LOCInvalidURL">Ungültige URL</sys:String>
     <sys:String x:Key="LOCDoNothing">Nichts tun</sys:String>
     <sys:String x:Key="LOCMinimize">Minimieren</sys:String>
@@ -670,9 +670,9 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCNever">Nie</sys:String>
     <sys:String x:Key="LOCCompletionStatusNotPlayed">Nicht gespielt</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayed">Gespielt</sys:String>
-    <sys:String x:Key="LOCCompletionStatusBeaten">Geschlagen</sys:String>
+    <sys:String x:Key="LOCCompletionStatusBeaten">Besiegt</sys:String>
     <sys:String x:Key="LOCCompletionStatusCompleted">Abgeschlossen</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying">Am Spielen</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">Wird gespielt</sys:String>
     <sys:String x:Key="LOCCompletionStatusAbandoned">Aufgegeben</sys:String>
     <sys:String x:Key="LOCCompletionStatusOnHold">Zurückgestellt</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlanToPlay">Zu spielen geplant</sys:String>
@@ -685,7 +685,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCMetadataProviders">Metadatenquellen</sys:String>
     <sys:String x:Key="LOCExtensions">Erweiterungen</sys:String>
     <sys:String x:Key="LOCReloadScripts">Skripte neu laden</sys:String>
-    <sys:String x:Key="LOCReloadScriptsSuccess">[UNUSED]</sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess">Alle Skripte erfolgreich neu geladen.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Für die angegebenen Such-/Filterkriterien wurden keine Spiele gefunden</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Zurück zum Desktopmodus</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite beenden</sys:String>
