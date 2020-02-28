@@ -31,7 +31,7 @@
                   IsChecked="{Binding ConnectAccount}"
                   Content="{DynamicResource LOCSettingsConnectAccount}"/>
 
-        <StackPanel DockPanel.Dock="Top" Margin="40,5,5,5"
+        <StackPanel DockPanel.Dock="Top" Margin="40,5,5,0"
                     IsEnabled="{Binding IsChecked, ElementName=CheckOriginConnectAccount}">
 
             <CheckBox DockPanel.Dock="Top" Name="CheckOriginImportUninstalled"
@@ -40,7 +40,7 @@
                       Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
 
             <StackPanel Orientation="Horizontal"
-                        DockPanel.Dock="Top" Margin="0,15,5,5" HorizontalAlignment="Left">
+                        DockPanel.Dock="Top" Margin="0,15,5,0" HorizontalAlignment="Left">
                 <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left"
                         Command="{Binding LoginCommand}"/>
                 <TextBlock VerticalAlignment="Center" Margin="10,5,5,5">

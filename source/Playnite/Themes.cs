@@ -115,7 +115,8 @@ namespace Playnite
             var apiVesion = mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
             if (!theme.ThemeApiVersion.IsNullOrEmpty())
             {
-                if ((new System.Version(theme.ThemeApiVersion).Major != apiVesion.Major))
+                var themeVersion = new Version(theme.ThemeApiVersion);
+                if (themeVersion.Major != apiVesion.Major || themeVersion > apiVesion)
                 {
                     logger.Error($"Failed to apply {theme.Name} theme, unsupported API version {theme.ThemeApiVersion}.");
                     return false;
@@ -183,12 +184,19 @@ namespace Playnite
             {
                 foreach (var dir in Directory.GetDirectories(userPath))
                 {
-                    var descriptorPath = Path.Combine(dir, PlaynitePaths.ThemeManifestFileName);
-                    if (File.Exists(descriptorPath))
+                    try
                     {
-                        var info = new FileInfo(descriptorPath);
-                        added.Add(info.Directory.Name);
-                        themes.Add(ThemeDescription.FromFile(descriptorPath));
+                        var descriptorPath = Path.Combine(dir, PlaynitePaths.ThemeManifestFileName);
+                        if (File.Exists(descriptorPath))
+                        {
+                            var info = new FileInfo(descriptorPath);
+                            added.Add(info.Directory.Name);
+                            themes.Add(ThemeDescription.FromFile(descriptorPath));
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to load theme info {dir}");
                     }
                 }
             }
@@ -198,14 +206,21 @@ namespace Playnite
             {
                 foreach (var dir in Directory.GetDirectories(programPath))
                 {
-                    var descriptorPath = Path.Combine(dir, PlaynitePaths.ThemeManifestFileName);
-                    if (File.Exists(descriptorPath))
+                    try
                     {
-                        var info = new FileInfo(descriptorPath);
-                        if (!added.Contains(info.Directory.Name))
+                        var descriptorPath = Path.Combine(dir, PlaynitePaths.ThemeManifestFileName);
+                        if (File.Exists(descriptorPath))
                         {
-                            themes.Add(ThemeDescription.FromFile(descriptorPath));
+                            var info = new FileInfo(descriptorPath);
+                            if (!added.Contains(info.Directory.Name))
+                            {
+                                themes.Add(ThemeDescription.FromFile(descriptorPath));
+                            }
                         }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to load theme info {dir}");
                     }
                 }
             }

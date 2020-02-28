@@ -120,7 +120,7 @@ namespace Playnite.Database
             Fields = new List<ExplorableField>();
             foreach (GroupableField val in Enum.GetValues(typeof(GroupableField)))
             {
-                if (val != GroupableField.None)
+                if (val != GroupableField.None && val != GroupableField.InstallationStatus)
                 {
                     Fields.Add(new ExplorableField(val));
                 }

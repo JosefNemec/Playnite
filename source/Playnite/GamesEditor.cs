@@ -21,6 +21,7 @@ using Playnite.Scripting;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using Playnite.SDK.Exceptions;
 
 namespace Playnite
 {
@@ -162,11 +163,17 @@ namespace Playnite
                     }
                     catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
+                        var message = exc.Message;
+                        if (exc is ScriptRuntimeException err)
+                        {
+                            message = err.Message + "\n\n" + err.ScriptStackTrace;
+                        }
+
                         logger.Error(exc, "Failed to execute global pre-script action.");
                         logger.Error(AppSettings.PreScript);
                         Dialogs.ShowMessage(
-                            string.Format(resources.GetString("LOCErrorGlobalScriptAction"), exc.Message),
-                            resources.GetString("LOCGameError"),
+                            message,
+                            resources.GetString("LOCErrorGlobalScriptAction"),
                             MessageBoxButton.OK,
                             MessageBoxImage.Error);
                         controllers.RemoveController(game.Id);
@@ -184,11 +191,17 @@ namespace Playnite
                     }
                     catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
+                        var message = exc.Message;
+                        if (exc is ScriptRuntimeException err)
+                        {
+                            message = err.Message + "\n\n" + err.ScriptStackTrace;
+                        }
+
                         logger.Error(exc, "Failed to execute game's pre-script action.");
                         logger.Error(game.PreScript);
                         Dialogs.ShowMessage(
-                            string.Format(resources.GetString("LOCErrorGameScriptAction"), exc.Message),
-                            resources.GetString("LOCGameError"),
+                            message,
+                            resources.GetString("LOCErrorGameScriptAction"),
                             MessageBoxButton.OK,
                             MessageBoxImage.Error);
                         controllers.RemoveController(game.Id);
@@ -665,11 +678,17 @@ namespace Playnite
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
+                    var message = exc.Message;
+                    if (exc is ScriptRuntimeException err)
+                    {
+                        message = err.Message + "\n\n" + err.ScriptStackTrace;
+                    }
+
                     logger.Error(exc, "Failed to execute game's post-script action.");
                     logger.Error(game.PostScript);
                     Dialogs.ShowMessage(
-                        string.Format(resources.GetString("LOCErrorGameScriptAction"), exc.Message),
-                        resources.GetString("LOCGameError"),
+                        message,
+                        resources.GetString("LOCErrorGameScriptAction"),
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 }
@@ -684,11 +703,17 @@ namespace Playnite
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
+                    var message = exc.Message;
+                    if (exc is ScriptRuntimeException err)
+                    {
+                        message = err.Message + "\n\n" + err.ScriptStackTrace;
+                    }
+
                     logger.Error(exc, "Failed to execute global post-script action.");
                     logger.Error(AppSettings.PostScript);
                     Dialogs.ShowMessage(
-                        string.Format(resources.GetString("LOCErrorGlobalScriptAction"), exc.Message),
-                        resources.GetString("LOCGameError"),
+                        message,
+                        resources.GetString("LOCErrorGlobalScriptAction"),
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 }

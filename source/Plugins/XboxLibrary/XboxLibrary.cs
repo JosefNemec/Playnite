@@ -19,6 +19,7 @@ namespace XboxLibrary
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private const string dbImportMessageId = "xboxlibImportError";
+        private readonly string pfnInfoCacheDir;
 
         internal XboxLibrarySettings Settings { get; set; }
 
@@ -33,6 +34,7 @@ namespace XboxLibrary
         public XboxLibrary(IPlayniteAPI api) : base(api)
         {
             Settings = new XboxLibrarySettings(this);
+            pfnInfoCacheDir = Path.Combine(GetPluginUserDataPath(), "PfnInfoCache");
         }
 
         internal GameInfo GetGameInfoFromTitle(TitleHistoryResponse.Title title)
@@ -70,6 +72,34 @@ namespace XboxLibrary
             return newGame;
         }
 
+        public List<TitleHistoryResponse.Title> GetAppDataCache()
+        {
+            var items = new List<TitleHistoryResponse.Title>();
+            if (Directory.Exists(pfnInfoCacheDir))
+            {
+                foreach (var file in Directory.GetFiles(pfnInfoCacheDir, "*.json", SearchOption.TopDirectoryOnly))
+                {
+                    try
+                    {
+                        items.Add(Serialization.FromJsonFile<TitleHistoryResponse.Title>(file));
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, $"Failed to get app info from cache {file}.");
+                    }
+                }
+            }
+
+            return items;
+        }
+
+        public void WriteAppDataCache(TitleHistoryResponse.Title data)
+        {
+            var filePath = Path.Combine(pfnInfoCacheDir, data.pfn + ".json");
+            FileSystem.PrepareSaveFile(filePath);
+            File.WriteAllText(filePath, Serialization.ToJson(data));
+        }
+
         public override IEnumerable<GameInfo> GetGames()
         {
             var installedGames = new Dictionary<string, GameInfo>();
@@ -87,10 +117,10 @@ namespace XboxLibrary
             }
 
             var titles = new List<TitleHistoryResponse.Title>();
+            var client = new XboxAccountClient(this);
 
             try
             {
-                var client = new XboxAccountClient(this);
                 titles = client.GetLibraryTitles().GetAwaiter().GetResult();
             }
             catch (Exception e)
@@ -99,6 +129,7 @@ namespace XboxLibrary
                 importError = e;
             }
 
+            var appDataCache = GetAppDataCache();
             var pcTitles = titles.Where(title => !title.pfn.IsNullOrEmpty() &&
                     title.type == "Game" &&
                     title.devices?.Contains("PC") == true).ToList();
@@ -110,8 +141,36 @@ namespace XboxLibrary
                     var installedApps = Programs.GetUWPApps();
                     foreach (var installedApp in installedApps)
                     {
+                        var import = false;
                         var libTitle = pcTitles.FirstOrDefault(a => a.pfn == installedApp.AppId);
                         if (libTitle != null)
+                        {
+                            import = true;
+                        }
+                        else // Check if it's a game that was not started at least once (won't appear in user API data)
+                        {
+                            try
+                            {
+                                libTitle = appDataCache.FirstOrDefault(a => a.pfn == installedApp.AppId);
+                                if (libTitle == null)
+                                {
+                                    libTitle = client.GetTitleInfo(installedApp.AppId).GetAwaiter().GetResult();
+                                    WriteAppDataCache(libTitle);
+                                }
+
+                                if (libTitle.type == "Game" &&
+                                    libTitle.devices?.Contains("PC") == true)
+                                {
+                                    import = true;
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                logger.Error(e, $"Failed to get info about installed UWP package {installedApp.AppId}.");
+                            }
+                        }
+
+                        if (import)
                         {
                             var game = GetGameInfoFromTitle(libTitle);
                             game.IsInstalled = true;
@@ -207,6 +266,7 @@ namespace XboxLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
+            Settings.IsFirstRunUse = firstRunSettings;
             return Settings;
         }
 

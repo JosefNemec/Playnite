@@ -62,11 +62,13 @@
     <Compile Include="Database\IItemCollection.cs" />
     <Compile Include="Events\ApplicationEvents.cs" />
     <Compile Include="Events\PlayniteUriEventArgs.cs" />
+    <Compile Include="Exceptions\ScriptRuntimeException.cs" />
     <Compile Include="Exceptions\TypeMismatchException.cs" />
     <Compile Include="Exceptions\ReferenceException.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="IUriHandlerAPI.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\InstallationStatus.cs" />
     <Compile Include="Models\PastTimeSegment.cs" />
     <Compile Include="Models\PlaytimeCategory.cs" />
     <Compile Include="Models\ScoreGroup.cs" />

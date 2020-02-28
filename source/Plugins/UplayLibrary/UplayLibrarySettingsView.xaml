@@ -22,7 +22,7 @@
         <CheckBox Name="CheckUplayImportUninstalled"
                   IsChecked="{Binding ImportUninstalledGames}"
                   Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
-        <TextBlock VerticalAlignment="Center" Margin="0,25,0,0">
+        <TextBlock VerticalAlignment="Center" Margin="0,20,0,0">
             <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/Uplay-troubleshooting"
                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                        CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">

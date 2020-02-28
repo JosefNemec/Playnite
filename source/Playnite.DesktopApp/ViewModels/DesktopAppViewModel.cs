@@ -24,6 +24,7 @@ using System.Windows.Input;
 using Playnite.ViewModels;
 using Playnite.DesktopApp.Windows;
 using System.Windows.Controls;
+using Playnite.SDK.Exceptions;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -600,8 +601,14 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (!Extensions.InvokeExtension(f, out var error))
                 {
+                    var message = error.Message;
+                    if (error is ScriptRuntimeException err)
+                    {
+                        message = err.Message + "\n\n" + err.ScriptStackTrace;
+                    }
+
                     Dialogs.ShowMessage(
-                         Resources.GetString("LOCScriptExecutionError") + "\n\n" + error,
+                         message,
                          Resources.GetString("LOCScriptError"),
                          MessageBoxButton.OK, MessageBoxImage.Error);
                 }

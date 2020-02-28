@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Playnite.SDK;
 using SteamKit2;
 
 namespace SteamLibrary.Services
@@ -108,7 +109,7 @@ namespace SteamLibrary.Services
             });
 
             return result;
-        }                
+        }
 
         public async Task<EResult>Login()
         {
@@ -170,9 +171,20 @@ namespace SteamLibrary.Services
             try
             {
                 SteamApps.PICSProductInfoCallback productInfo;
+                AsyncJobMultiple<SteamApps.PICSProductInfoCallback>.ResultSet resultSet = null;
                 var productJob = steamApps.PICSGetProductInfo(id, package: null, onlyPublic: false);
 
-                AsyncJobMultiple<SteamApps.PICSProductInfoCallback>.ResultSet resultSet = await productJob;
+                // Workardound for rare case where PICSGetProductInfo would get stuck if there's some issue with computer's network.
+                // For example if PC is woken up from sleep.
+                var tsk = productJob.ToTask();
+                if (tsk.Wait(10000))
+                {
+                    resultSet = tsk.Result;
+                }
+                else
+                {
+                    throw new Exception("Failed to get product info for app (timeout) " + id);
+                }
 
                 if (resultSet.Complete)
                 {

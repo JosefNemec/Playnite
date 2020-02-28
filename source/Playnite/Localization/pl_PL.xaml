@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Język</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Wyjście</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtr aktywny</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtr wyłączony</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Dodatkowe filtry</sys:String>
     <sys:String x:Key="LOCFilters">Filtry</sys:String>
     <sys:String x:Key="LOCFilter">Filtr</sys:String>
@@ -36,7 +36,9 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">O nie, stało się coś złego…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Wystąpił nieodwracalny błąd.
+ 
+Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostyczne. Dziękujemy.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Zgłoś awarię</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Wyjdź z Playnite</sys:String>
@@ -69,8 +71,8 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Wtyczka biblioteki odpowiedzialna za tę grę nie jest zainstalowana lub włączona.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Oficjalne metadane nie są dostępne.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nie wybrano gry.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -122,7 +124,7 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instalacja</sys:String>
     <sys:String x:Key="LOCActionsLabel">Akcje</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Pobieranie…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Wczytywanie…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Typ</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profile</sys:String>
@@ -244,10 +246,10 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Pudełko DVD</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Baner Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Wymaga restartu aplikacji, żeby zastosować zmiany</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ustawienia</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Ogólne</sys:String>
@@ -262,7 +264,7 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadane</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importuj automatycznie zmiany w bibliotece</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importuj zainstalowane gry</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
+    <sys:String x:Key="LOCSettingsConnectAccount">Połącz z kontem</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importuj odinstalowane gry</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importuj wszystkie gry</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importuj wszystkie gry (Musi być konto publiczne lub podać klucz API)</sys:String>
@@ -344,7 +346,7 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Obraz gry</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Zrzut ekranu z oficjalnego sklepu</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Tło z oficjalnego sklepu</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner">Baner</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Nie dotyczy obrazów tła w istniejących grach bez ponownego pobierania metadanych.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Zawsze pobieraj czas gry z klienta, podczas synchronizacji, ignorując czas z Playnite.</sys:String>
@@ -364,10 +366,10 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">Wielkość czcionki</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Skala szarości</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
@@ -505,6 +507,7 @@ Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:Stri
     <sys:String x:Key="LOCGameDevelopersTitle">Producent</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag(i)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Wydawca</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Zainstalowane</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Zainstalowane</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Odinstalowane</sys:String>
@@ -819,9 +822,11 @@ Pamiętaj, że opcja Nazwa konta działa tylko w przypadku kont, których konta 
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->

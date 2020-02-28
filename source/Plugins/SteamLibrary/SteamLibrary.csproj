@@ -65,6 +65,9 @@
     <Compile Include="..\..\Playnite\Converters\EnumToBooleanConverter.cs">
       <Link>Converters\EnumToBooleanConverter.cs</Link>
     </Compile>
+    <Compile Include="..\..\Playnite\Converters\InvertableBooleanToVisibilityConverter.cs">
+      <Link>Converters\InvertableBooleanToVisibilityConverter.cs</Link>
+    </Compile>
     <Compile Include="..\..\Playnite\Converters\NegateConverter.cs">
       <Link>Converters\NegateConverter.cs</Link>
     </Compile>

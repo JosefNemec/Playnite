@@ -152,7 +152,7 @@ namespace SteamLibrary
         }
 
         [JsonIgnore]
-        public bool ShowCategoryImport { get; set; }
+        public bool IsFirstRunUse { get; set; }
 
         [JsonIgnore]
         public List<LocalSteamUser> SteamUsers { get; set; }

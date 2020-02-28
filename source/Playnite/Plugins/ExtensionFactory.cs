@@ -220,7 +220,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e.InnerException, $"Failed to parse plugin description: {file}");
+                    logger.Error(e, $"Failed to parse plugin description: {file}");
                     continue;
                 }
             }
@@ -407,7 +407,7 @@ namespace Playnite.Plugins
             }
         }
 
-        public bool InvokeExtension(ExtensionFunction function, out string error)
+        public bool InvokeExtension(ExtensionFunction function, out Exception error)
         {
             try
             {
@@ -419,7 +419,7 @@ namespace Playnite.Plugins
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, $"Failed to execute extension function.");
-                error = e.Message;
+                error = e;
                 return false;
             }
         }

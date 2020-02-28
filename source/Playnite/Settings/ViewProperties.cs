@@ -58,7 +58,7 @@ namespace Playnite
         Added,
         [Description("LOCDateModifiedLabel")]
         Modified,
-        [Description("LOCGameIsInstalledTitle")]
+        [Description("LOCGameInstallationStatus")]
         IsInstalled,
         [Description("LOCGameHiddenTitle")]
         Hidden,
@@ -123,7 +123,9 @@ namespace Playnite
         [Description("LOCDateModifiedLabel")]
         Modified,
         [Description("LOCFeatureLabel")]
-        Feature
+        Feature,
+        [Description("LOCGameInstallationStatus")]
+        InstallationStatus
     }
 
     public enum ViewType : int

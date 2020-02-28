@@ -13,6 +13,7 @@
         mc:Ignorable="d"
         Title="Playnite" ShowTitle="False"
         Width="1280" Height="900"
+        MinWidth="640" MinHeight="480"
         WindowStartupLocation="CenterScreen"
         Visibility="{Binding Visibility, Mode=TwoWay}"
         WindowState="{Binding WindowState, Mode=TwoWay}"

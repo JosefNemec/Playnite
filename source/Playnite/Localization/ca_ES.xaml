@@ -69,8 +69,8 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">El plugin de biblioteca responsable d'aquest joc no està instal·lat ni activat.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Descàrrega de metadades oficials no disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No hi ha cap joc seleccionat.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -504,6 +504,7 @@ També pots afegir qualsevol altre joc (incloent els de Microsoft Store) al men�
     <sys:String x:Key="LOCGameDevelopersTitle">Desenvolupador(s)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etiqueta(es)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editor(s)</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instal·lat</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instal·lat</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Desinstal·lat</sys:String>
@@ -817,9 +818,11 @@ També pots afegir qualsevol altre joc (incloent els de Microsoft Store) al men�
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->

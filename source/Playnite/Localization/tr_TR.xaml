@@ -81,12 +81,8 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bu oyundan sorumlu kütüphane eklentisi kurulu değil veya etkin değil.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Resmi üst veri yüklemesi mevcut değil.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Seçili Oyun Yok.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Oyun betiği eylemi çalıştırma başarısız:
-
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Genel betik eylem çalıştırma başarısız:
-
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Oyun komut dosyası başlatılamadı.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Genel komut dosyası başlatılamadı.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 veya daha yeni sürümü yüklü değil.</sys:String>
 
     <!--General-->
@@ -554,6 +550,7 @@ Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana men�
     <sys:String x:Key="LOCGameDevelopersTitle">Geliştirici(ler)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etiket(ler)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Yayımcı(lar)</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Kurulum Durumu</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Yüklü</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Yüklü</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Kaldırılmış</sys:String>
@@ -892,10 +889,12 @@ Arka planlar: {2} megapiksel</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} için arka plan resmi seç</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Mümkün olduğunda, oyunu Epic istemcisini açmadan başlat</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Mümkün olduğunda, oyunu Epic istemcisini açmadan başlatmayı dene</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Bu seçenek tüm oyunlarda çalışmayacak. Çözüm önerileri için Sorun giderme bağlantısına bakın.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Üçüncü parti mağaza oyunlarını yok say</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Trove Oyunlarını İçe Aktar</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Etkinleştirilirse, üçüncü taraf istemcileri gerektiren oyunlar içe aktarılmaz.
 Yinelemeleri önlemek için Playnite'da zaten desteklenen mağazaları içerir.</sys:String>
 

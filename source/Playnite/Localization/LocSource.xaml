@@ -82,12 +82,8 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Library plugin responsible for this game is not installed or enabled.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Official metadata download is not available.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No game is selected.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Game's script action execution failed:
-
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Global script action execution failed:
-
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Game's script action execution failed.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Global script action execution failed.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 or newer is not installed.</sys:String>
 
     <!--General-->
@@ -414,9 +410,9 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsTextRenderingMode">Text rendering mode</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Text rendering and formatting options currently don't apply to game's description text.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Download background images immediately</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">If enabled, Playnite will download background artwork while downloading metadata. Using more disk space and making artwork available when offline.
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">If enabled, Playnite will download background artwork while downloading metadata, using more disk space and making artwork available when offline.
 
-If disabled, background artwork is downloaded only when first needed. Using less space, but may result in a delay before artwork is displayed and some images might not be available when offline.</sys:String>
+If disabled, background artwork is downloaded only when first needed, using less space, but may result in a delay before artwork is displayed and some images might not be available when offline.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatically close third party client after game exits</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Client shutdown grace period (in seconds)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Don't close after game sessions shorter than (in seconds)</sys:String>
@@ -554,6 +550,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Developer</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publisher</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Installation Status</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installed</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installed</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Uninstalled</sys:String>
@@ -894,10 +891,12 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Select background image for {0}</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">When possible start game directly without running Epic client</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">When possible try to start game directly without running Epic client</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">This option will not work for all games. See Troubleshooting link for possible workarounds.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignore third party store games</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Import Trove games</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip"  xml:space="preserve">If enabled, games that require 3rd party clients won't be imported.
 Includes stores already supported in Playnite to prevent duplicates.</sys:String>
 

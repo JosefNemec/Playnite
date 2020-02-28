@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Playnite.Windows;
 
 namespace Playnite.DesktopApp.Windows
 {
@@ -146,7 +147,7 @@ namespace Playnite.DesktopApp.Windows
             string caption,
             string inputText)
         {
-            if (owner == null)
+            if (owner == null || owner == this)
             {
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
@@ -156,6 +157,7 @@ namespace Playnite.DesktopApp.Windows
                 Owner = owner;
             }
 
+            WindowManager.NotifyChildOwnershipChanges();
             TextInputText.Focus();
             SetStrings(messageBoxText, caption);
             ShowInputField = true;
@@ -163,6 +165,7 @@ namespace Playnite.DesktopApp.Windows
             InputText = inputText ?? string.Empty;
             IsTextReadOnly = true;
             ShowDialog();
+            WindowManager.NotifyChildOwnershipChanges();
         }
 
         public StringSelectionDialogResult ShowInput(
@@ -171,7 +174,7 @@ namespace Playnite.DesktopApp.Windows
             string caption,
             string defaultInput)
         {
-            if (owner == null)
+            if (owner == null || owner == this)
             {
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
@@ -181,6 +184,7 @@ namespace Playnite.DesktopApp.Windows
                 Owner = owner;
             }
 
+            WindowManager.NotifyChildOwnershipChanges();
             TextInputText.Focus();
             SetStrings(messageBoxText, caption);
             ShowInputField = true;
@@ -188,6 +192,7 @@ namespace Playnite.DesktopApp.Windows
             ShowCancelButton = true;
             InputText = defaultInput ?? string.Empty;
             ShowDialog();
+            WindowManager.NotifyChildOwnershipChanges();
 
             if (result == MessageBoxResult.Cancel)
             {
@@ -208,7 +213,7 @@ namespace Playnite.DesktopApp.Windows
             MessageBoxResult defaultResult,
             MessageBoxOptions options)
         {
-            if (owner == null)
+            if (owner == null || owner == this)
             {
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
@@ -218,6 +223,7 @@ namespace Playnite.DesktopApp.Windows
                 Owner = owner;
             }
 
+            WindowManager.NotifyChildOwnershipChanges();
             result = defaultResult;
             SetStrings(messageBoxText, caption);
             DisplayIcon = icon;
@@ -251,6 +257,7 @@ namespace Playnite.DesktopApp.Windows
             }
 
             ShowDialog();
+            WindowManager.NotifyChildOwnershipChanges();
             return result;
         }
 
@@ -262,7 +269,7 @@ namespace Playnite.DesktopApp.Windows
             List<object> options,
             List<string> optionsTitles)
         {
-            if (owner == null)
+            if (owner == null || owner == this)
             {
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
@@ -272,6 +279,7 @@ namespace Playnite.DesktopApp.Windows
                 Owner = owner;
             }
 
+            WindowManager.NotifyChildOwnershipChanges();
             SetStrings(messageBoxText, caption);
             DisplayIcon = icon;
 
@@ -300,6 +308,7 @@ namespace Playnite.DesktopApp.Windows
             }
 
             ShowDialog();
+            WindowManager.NotifyChildOwnershipChanges();
             return resultCustom;
         }
 

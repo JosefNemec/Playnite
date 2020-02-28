@@ -18,7 +18,11 @@ namespace EpicLibrary
     {
         private static List<string> launchelessExceptions = new List<string>
         {
-            "Duckbill" // Yooka-Laylee and the Impossible Lair
+            "Duckbill", // Yooka-Laylee and the Impossible Lair
+            "Vulture", // Faeria
+            "Stellula", // Farming Simulator 19
+            "Albacore", // Assassins Creed Syndicate
+            "Sundrop", // For Honor
         };
 
         private static ILogger logger = LogManager.GetLogger();
