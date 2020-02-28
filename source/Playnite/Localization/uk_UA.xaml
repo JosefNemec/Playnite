@@ -69,8 +69,8 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Плагін для бібліотеки відповідальний за запуск гри не встановлено або не ввімкнено.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -501,6 +501,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">Розробник</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Теги</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Видавець</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Встановлені</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Встановлені</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Видалені</sys:String>
@@ -814,9 +815,11 @@
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->

@@ -69,8 +69,8 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekos įskiepis valdantis šį žaidimą nėra įdiegtas ar įgalintas.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Oficialių metaduomenų atsisiuntimas nėra galimas.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
@@ -504,6 +504,7 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCGameDevelopersTitle">Kūrėjas(ai)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Žymė(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Leidėjas(ai)</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Įrašytas</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Įdiegtas</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Neįrašytas</sys:String>
@@ -817,9 +818,11 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->

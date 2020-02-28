@@ -69,8 +69,8 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Плагин библиотеки, ответственный за эту игру, не установлен или не включен.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Официальная загрузка метаданных недоступна.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Игра не выбрана.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell версии 3.0 или выше не установлен.</sys:String>
 
     <!--General-->
@@ -344,7 +344,7 @@
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Изображение игры</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Скриншот из магазина</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Фон из магазина</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner">Баннер</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite будет использовать доступные игровые скриншоты как фон, взамен фоновых изображений из магазина.
 Не применяется ретроспективно к существующим играм.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительная синхронизация сыгранного времени со сторонними библиотеками</sys:String>
@@ -376,7 +376,9 @@
     <sys:String x:Key="LOCSettingsTextRenderingMode">Режим отрисовки текста</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Настройки режимов отрисовки и форматирования текста не применяются к тексту описания игры.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Загружать фоновые изображения немедленно</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Если включено, Playnite будет загружать фоновые изображения при загрузке метаданных. Используется больше дискового пространства, но обеспечивается доступность изображений в автономном режиме.
+ 
+Если выключено, фоновые изображения загружаются только при необходимости. Используется меньше дискового пространства, но может привести к задержке перед отображением изображения, а также некоторые изображения могут быть недоступны в автономном режиме.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
@@ -509,6 +511,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">Разработчик</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Тэги</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Издатель</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Установленные</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Установлены</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Удаленные</sys:String>
@@ -766,14 +769,23 @@
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема оформления/Расширение использует неподдерживаемую версию API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Установка прошла успешно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить расширение?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Не удалось установить расширение
+
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Не удалось установить тему
+
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Одно или несколько изображений, возможно слишком большое для оптимальной производительности. Использование очень больших изображений может привести к плохой отзывчивости пользовательского интерфейса и увеличению использования памяти.
+
+Максимальные рекомендуемые размеры:
+Иконки: {0} px
+Обложки: {1} px
+Фоновые изображения: {2} px</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Предупреждение о падении производительности</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Не показывать снова</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
@@ -823,13 +835,15 @@
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
-    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
-    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
-    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Запустить приложение Xbox Pass вместо Microsoft Store при открытии клиента</sys:String>
+    <sys:String x:Key="LOCXboxImport360Games">Импорт игр с Xbox 360</sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames">Импорт игр с Xbox One</sys:String>
 </ResourceDictionary>

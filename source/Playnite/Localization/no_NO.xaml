@@ -69,8 +69,8 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekplugin som er ansvarlig for dette spillet er ikke installert eller slått på.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Offisielle metadatanedlastning er ikke tilgjengelig.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Inget spill er valgt.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 eller nyere er ikke installert.</sys:String>
 
     <!--General-->
@@ -506,6 +506,7 @@ Du kan også legge til ethvert annet spill (inkludert Microsoft Store-spill) sen
     <sys:String x:Key="LOCGameDevelopersTitle">Utvikler</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tagg</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Utgiver</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installert</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installert</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Avinstallert</sys:String>
@@ -821,9 +822,11 @@ Merk at alternativet Kontonavn bare fungerer for kontoer der spillbibliotekene e
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->

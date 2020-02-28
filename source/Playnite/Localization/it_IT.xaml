@@ -81,8 +81,8 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Il plugin della libreria responsabile per questo gioco non è installato o abilitato.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Il download dei metadati ufficiali non è disponibile.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nessun gioco selezionato.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">Avvio dello script di gioco fallita: {0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">Avvio dello script globale fallita: {0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Avvio dello script di gioco fallita.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Avvio dello script globale fallito.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 o superiore non installato.</sys:String>
 
     <!--General-->
@@ -549,6 +549,7 @@ E' al momento utilizzata da {1} gioco/chi e {2} emulatore/i.</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Sviluppatore</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etichetta</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editore</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Stato dell'installazione</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installati</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installati</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Disinstallati</sys:String>
@@ -890,9 +891,11 @@ Nota che l'opzione Nome Account funziona solo per gli account le cui librerie di
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Avviare il gioco direttamente senza il client Epic quando possibile</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Questa opzione non funzionerà per tutti i giochi. Consulta il link di risoluzione problemi per possibili soluzioni alternative.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignora i giochi dei negozi di terze parti</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Importa giochi Trove</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Se abilitato, i giochi che richiedono client di terze parti non saranno importati. 
 Inclusi i negozi già supportati su Playnite per evitare dopponi.</sys:String>
 

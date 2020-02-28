@@ -81,12 +81,8 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">A extensão da biblioteca responsável por este jogo não está instalado ou habilitado.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">O download de metadados oficial não está disponível.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nenhum jogo foi selecionado.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction" xml:space="preserve">A execução do script da ação do jogo falhou:
- 
-{0}</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction" xml:space="preserve">A execução do script da ação global falhou:
- 
-{0}</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">A execução do script da ação do jogo falhou.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">A execução do script da ação global falhou.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 ou mais recente não está instalado.</sys:String>
 
     <!--General-->
@@ -349,7 +345,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsAfterGameClose">Ao fechar um jogo:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Executar jogos usando o cliente Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Habilita recursos como salvamento de jogos na nuvem, contador de tempo de jogo, etc.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Isto sobrescreverá as categorias atuais, assim como os marcadores de ocultos e favoritos, de todos os seus jogos Steam. Você deseja continuar?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Isto irá sobrescrever as categorias atuais, assim como os marcadores de ocultos e favoritos em todos os jogos da Steam. Você deseja continuar?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importar categorias?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Não foi possível importar as categorias, a conta para importação não foi definida.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Não foi possível importar as categorias, o banco de dados não está aberto.</sys:String>
@@ -413,9 +409,9 @@ O novo local do banco de dados será usado somente após o aplicativo ser reinic
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderização de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Atualmente, as opções de renderização e formatação de texto não se aplicam ao texto na descrição dos jogos.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Baixar imagens de fundo imediatamente</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se habilitado, o Playnite baixará as imagens de fundo enquanto baixa os metadados, usando mais espaço em disco e disponibilizando as imagens mesmo quando estiver offline.
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se habilitado, o Playnite baixará as imagens de fundo enquanto baixa os metadados. Mais espaço em disco será usado e disponibilizando as imagens mesmo quando estiver offline.
  
-Se desabilitado, as imagens de fundo só serão baixadas quando necessário, usando menos espaço, mas podendo resultar em atrasos na exibição das imagens e algumas imagens podem não estar disponíveis quando estiver offline.</sys:String>
+Se desabilitado, as imagens de fundo só serão baixadas quando necessário. Menos espaço será usado, mas pode resultar em atrasos na exibição das imagens e algumas imagens podem não estar disponíveis quando estiver offline.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Fechar automaticamente lançadores de terceiros ao sair do jogo</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Período de tolerância ao fechar o cliente (em segundos)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Não fechar após sessões mais curtas do que (em segundos)</sys:String>
@@ -553,6 +549,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Desenvolvedor</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Marcadores</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Distribuidora</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Estado da instalação</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Desinstalado</sys:String>
@@ -892,10 +889,12 @@ Imagens de fundo: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Selecionar imagem de fundo para {0}</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Quando possível, iniciar os jogos diretamente, sem executar o cliente da Epic</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Quando possível, tentar iniciar os jogos diretamente, sem executar o cliente da Epic</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Esta opção não funcionará para todos os jogos. Confira a página de solução de problemas para possíveis soluções alternativas.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorar jogos de lojas de terceiros</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Importar jogos do Trove</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Se habilitado, jogos que requerem clientes de terceiros não serão importados.
 Inclui lojas já suportadas pelo Playnite para prevenir duplicatas.</sys:String>
 
