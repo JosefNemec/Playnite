@@ -649,13 +649,13 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCURLInputInfoTitile">URL auswählen</sys:String>
     <sys:String x:Key="LOCMetadataDownloadError">Metadaten konnten nicht heruntergeladen werden: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">Fehler beim Herunterladen</sys:String>
-    <sys:String x:Key="LOCClearFilters">Filter leeren</sys:String>
+    <sys:String x:Key="LOCClearFilters">Filter zurücksetzen</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Privates Konto</sys:String>
     <sys:String x:Key="LOCPublicAccount">Öffentliches Konto</sys:String>
     <sys:String x:Key="LOCAPIKey">API-Schlüssel</sys:String>
     <sys:String x:Key="LOCStartupError">Fehler beim Starten von Playnite</sys:String>
     <sys:String x:Key="LOCSkinError">Fehler beim Anwenden des Designs</sys:String>
-    <sys:String x:Key="LOCClearAll">Alle leeren</sys:String>
+    <sys:String x:Key="LOCClearAll">Alle zurücksetzen</sys:String>
     <sys:String x:Key="LOCSetupRunning">Wird installiert</sys:String>
     <sys:String x:Key="LOCUninstalling">Wird deinstalliert</sys:String>
     <sys:String x:Key="LOCGameLaunching">Wird gestartet</sys:String>
@@ -663,7 +663,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCInvalidURL">Ungültige URL</sys:String>
     <sys:String x:Key="LOCDoNothing">Nichts tun</sys:String>
     <sys:String x:Key="LOCMinimize">Minimieren</sys:String>
-    <sys:String x:Key="LOCRestoreWindow">Wiederherstellen</sys:String>
+    <sys:String x:Key="LOCRestoreWindow">Fenster wiederherstellen</sys:String>
     <sys:String x:Key="LOCClose">Schließen</sys:String>
     <sys:String x:Key="LOCChange">Ändern</sys:String>
     <sys:String x:Key="LOCAdvanced">Erweitert</sys:String>
@@ -722,11 +722,11 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadatensuche</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Aktualisierung verfügbar</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Änderungen seit der letzten Aktualisierung</sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate">Playnite aktualisieren</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Aktualisierung herunterladen und installieren</sys:String>
     <sys:String x:Key="LOCCheckForUpdates">Nach Aktualisierungen suchen</sys:String>
     <sys:String x:Key="LOCUpdateError">Fehler beim Aktualisieren</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Fehler bei der Suche nach Aktualisierungen.</sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Keine neue Version gefunden, Playnite ist aktuell.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Keine neue Version gefunden: Playnite ist aktuell.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Aktualisierung konnte nicht heruntergeladen und installiert werden.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Im Hintergrund wird gerade ein Prozess ausgeführt. Soll dieser beendet und die Aktualisierung fortgesetzt werden?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Im Hintergrund wird gerade ein Prozess ausgeführt. Sollen dieser und Playnite beendet werden?</sys:String>
@@ -761,7 +761,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Der Spielstart wird vom für dieses Spiel verantwortlichen Bibliotheks-Plugin gesteuert.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">Auf der angegebenen Seite konnten zum Spiel »{0}« keine relevanten Informationen gefunden werden.</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">Tipp: Du kannst einen erweiterten Dialog zum Import von Metadaten verwenden, indem du den Menüpunkt »Bearbeiten« eines einzelnen Spiels anwählst.</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">Tipp: Du kannst einen erweiterten Dialog zum Herunterladen von Metadaten verwenden, indem du den Menüpunkt »Bearbeiten« eines einzelnen Spiels anwählst.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nicht verfügbar, solange eine andere Aktion ausgeführt wird.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Beschreibungstext muss HTML-Syntax verwenden</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Spielzeit wird in Sekunden gemessen und gespeichert.</sys:String>
@@ -775,9 +775,9 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
 
     <sys:String x:Key="LOCTimePlayed">Spielzeit</sys:String>
     <sys:String x:Key="LOCLastPlayed">Zuletzt gespielt</sys:String>
-    <sys:String x:Key="LOCPlayedHours">{0} Std.</sys:String>
-    <sys:String x:Key="LOCPlayedMinutes">{0} Min.</sys:String>
-    <sys:String x:Key="LOCPlayedSeconds">Nicht gespielt</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0}h {1}min</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0} Minuten</sys:String>
+    <sys:String x:Key="LOCPlayedSeconds">{0} Sekunden</sys:String>
     <sys:String x:Key="LOCPlayedNone">Nicht gespielt</sys:String>
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Desktopmodus wird geöffnet …</sys:String>
@@ -794,7 +794,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCSignInExternalNotif">Der {0}-Client wird nun gestartet. Bitte melde dich an und schließe danach diese Nachricht.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Es wird auf die Benutzeranmeldung gewartet. Bitte schließen, sobald du damit fertig bist …</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Installationsverzeichnis des Spiels nicht gefunden.</sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings">Ungültige Aktion für dieses Spiel.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Ungültige Aktionskonfiguration für dieses Spiel.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Problembehebung bei der Kontosynchronisation</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Problembehebung</sys:String>
