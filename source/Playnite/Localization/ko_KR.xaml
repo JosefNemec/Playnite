@@ -81,8 +81,8 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">이 게임을 담당하는 라이브러리 플러그인이 설치되거나 활성화되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">공식 메타데이터 다운로드를 사용할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">선택한 게임이 없습니다.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">게임의 스크립트 액션 실행 실패.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">전역 스크립트 액션 실행 실패.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 또는 그 이후 버전이 설치되어 있지 않습니다.</sys:String>
 
     <!--General-->
@@ -409,7 +409,9 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCSettingsTextRenderingMode">텍스트 렌더링 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">텍스트 렌더링 및 서식 지정 설정은 현재 게임 설명 텍스트에 적용되지 않습니다.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">배경 이미지 즉시 다운로드</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">활성화되면 Playnite는 메타데이터를 다운로드할 때 배경 아트워크를 다운로드하며, 더 많은 디스크 공간을 사용하며 오프라인에서 아트워크를 사용할 수 있습니다.
+
+비활성화되면 배경 아트워크는 처음에 필요할 때에만 다운로드되며, 더 적은 공간을 사용하지만 아트워크가 표시되기까지 시간이 걸리며 몇몇 이미지는 오프라인에서 사용할 수 없게 됩니다.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">게임을 나가면 자동으로 제3자 클라이언트 닫기</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">클라이언트 종료까지 남은 시간 (초)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">게임 세션이 다음보다 짧으면 닫지 마세요 (초)</sys:String>
@@ -547,7 +549,7 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCGameDevelopersTitle">개발사</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">태그</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">배급사</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">설치 상태</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">설치됨</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">설치됨</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">설치 제거됨</sys:String>
@@ -884,12 +886,12 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} 배경 이미지 선택</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">가능하다면 Epic 클라이언트를 실행하지 않고 게임을 직접 실행을 시도하기</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">이 옵션은 모든 게임에서 작동하지 않습니다. 문제 해결 링크에서 가능한 해결 방법을 확인해보세요.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">제3자 스토어 게임 무시</sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Trove  게임 가져오기</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">활성화되어 있을 경우 제3자 클라이언트가 필요한 게임은 가져오지 않습니다.
 중복을 방지하기 위해서 이미 Playnite에서 지원하는 게임도 포함됩니다.</sys:String>
 
