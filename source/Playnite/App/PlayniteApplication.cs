@@ -526,7 +526,7 @@ namespace Playnite
                 return;
             }
 
-            Extensions.NotifiyOnApplicationStopped();
+            Extensions?.NotifiyOnApplicationStopped();
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
             {
                 try
