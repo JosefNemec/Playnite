@@ -549,7 +549,7 @@
   Profiles:
     - Name: Default
       DefaultArguments: '"{ImagePath}"'
-      Platforms: [Atari Lynx, NEC TurboGrafx 16, NEC TurboGrafx-CD, NEC PC-FX, Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Nintendo Virtual Boy, PC Engine SuperGrafx, Sega Game Gear, Sega Genesis, Sega Master System, Sega Saturn, SNK Neo Geo Pocket, SNK Neo Geo Pocket Color, Sony PlayStation, Super Nintendo Entertainment System, Bandai WonderSwan, Bandai WonderSwan Color]
+      Platforms: [Atari Lynx, NEC TurboGrafx 16, NEC TurboGrafx-CD, NEC PC-FX, Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Nintendo Virtual Boy, NEC SuperGrafx, Sega Game Gear, Sega Genesis, Sega Master System, Sega Saturn, SNK Neo Geo Pocket, SNK Neo Geo Pocket Color, Sony PlayStation, Super Nintendo Entertainment System, Bandai WonderSwan, Bandai WonderSwan Color]
       ImageExtensions: [lnx, pce, cue, ccd, nes, gb, gbc, gba, vb, sfc, gg, sms, md, ws, wsc, ngp, ngc, zip, m3u]
       ExecutableLookup: ^mednafen\.exe
   
@@ -648,7 +648,7 @@
 
     - Name: PC Engine SuperGrafx
       DefaultArguments: '"{ImagePath}"'
-      Platforms: [PC Engine SuperGrafx]
+      Platforms: [NEC SuperGrafx]
       ImageExtensions: [sgx, zip, rar, 7z, gz] 
       ExecutableLookup: ^EmuHawk\.exe$
 
@@ -1839,9 +1839,9 @@
       ImageExtensions: [zip, pce, cue, ccd, chd] 
       ExecutableLookup: ^higan.*\.exe$
 
-    - Name: NEC - Supergrafx
+    - Name: PC Engine SuperGrafx
       DefaultArguments: '"{ImagePath}"'
-      Platforms: [NEC PC Engine SuperGrafx]
+      Platforms: [NEC SuperGrafx]
       ImageExtensions: [zip, pce]
       ExecutableLookup: ^higan.*\.exe$
 
