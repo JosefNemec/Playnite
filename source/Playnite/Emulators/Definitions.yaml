@@ -1879,7 +1879,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Super Nintendo Entertainment System]
       ImageExtensions: [sfc, smc, zip]
-      ExecutableLookup: ^bsnes-hd.*\.exe$
+      ExecutableLookup: ^bsnes_hd\.exe$
 
 - Name: GBE+
   Website: 'https://github.com/shonumi/gbe-plus'
