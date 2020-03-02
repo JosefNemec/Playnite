@@ -48,7 +48,8 @@ namespace XboxLibrary
                 Replace("for Windows 10", "").
                 Replace("- Windows 10", "").
                 Trim(),
-                Platform = "PC"
+                Platform = "PC",
+                Source = "Xbox"
             };
 
             if (title.detail != null)
