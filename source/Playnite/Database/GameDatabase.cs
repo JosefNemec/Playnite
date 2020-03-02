@@ -194,7 +194,7 @@ namespace Playnite.Database
             }
             else
             {
-                return Path.Combine(PlaynitePaths.ConfigRootPath, "library");
+                return @"%AppData%\Playnite\library";
             }
         }
 
