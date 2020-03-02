@@ -5,10 +5,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SteamLibrary.Models;
 using Playnite.Common.Web;
+using Steam.Models;
 
-namespace SteamLibrary.Services
+namespace Steam
 {
     public class WebApiClient
     {

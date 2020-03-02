@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SteamLibrary.Models
+namespace Steam.Models
 {
     public class SteamGameMetadata : GameMetadata
     {

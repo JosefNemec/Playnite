@@ -1,6 +1,5 @@
-﻿using Playnite;
-using Playnite.SDK;
-using Playnite.SDK.Models;
+﻿using Playnite.SDK;
+using Steam;
 using System;
 using System.Collections.Generic;
 using System.Linq;

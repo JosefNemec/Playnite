@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SteamLibrary.Models
+namespace Steam.Models
 {
     public class SteamDateConverter : JsonConverter
     {
@@ -30,6 +31,11 @@ namespace SteamLibrary.Models
         {
             writer.WriteValue(value);
         }
+    }
+
+    public class StoreSearchResult : GenericItemOption
+    {
+        public uint GameId { get; set; }
     }
 
     public class StoreAppDetailsResult

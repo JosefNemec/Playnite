@@ -92,16 +92,6 @@ namespace SteamLibrary
 
         public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\steamicon.png");
 
-        public static string GetWorkshopUrl(uint appId)
-        {
-            return $"https://steamcommunity.com/app/{appId}/workshop/";
-        }
-
-        public static string GetAchievementsUrl(uint appId)
-        {
-            return $"https://steamcommunity.com/stats/{appId}/achievements";
-        }
-
         public static AppState GetAppState(GameID id)
         {
             var state = new AppState();
@@ -130,7 +120,7 @@ namespace SteamLibrary
                     state.Installing = true;
                 }
             }
-           
+
             if (id.IsMod && state.Installed)
             {
                 // Base app is installed, but the mod itself might not be.

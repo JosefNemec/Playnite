@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Tests;
+using Steam;
 using SteamLibrary.Services;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,6 @@ namespace SteamLibrary.Tests
         public void StandardDownloadTest()
         {
             var provider = new SteamMetadataProvider(
-                null,
                 new SteamLibrary(PlayniteTests.GetTestingApi().Object, null),
                 new SteamApiClient());
             var data = provider.GetMetadata(new Game() { GameId = "578080" });
@@ -41,7 +41,6 @@ namespace SteamLibrary.Tests
         public void VRMetadataTest()
         {
             var provider = new SteamMetadataProvider(
-                null,
                 new SteamLibrary(PlayniteTests.GetTestingApi().Object, null),
                 new SteamApiClient());
             var data = provider.GetMetadata(new Game() { GameId = "378860" });

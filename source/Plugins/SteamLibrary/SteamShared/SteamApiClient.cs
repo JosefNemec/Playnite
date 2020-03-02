@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Playnite.SDK;
 using SteamKit2;
 
-namespace SteamLibrary.Services
+namespace Steam
 {
     public class SteamApiClient
     {
@@ -111,7 +110,7 @@ namespace SteamLibrary.Services
             return result;
         }
 
-        public async Task<EResult>Login()
+        public async Task<EResult> Login()
         {
             var result = EResult.OK;
             steamUser.LogOnAnonymous();
