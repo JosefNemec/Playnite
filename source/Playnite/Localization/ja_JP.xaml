@@ -313,7 +313,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">遅いイメージロード時間と引き換えに、ゲームリストのスクロールの滑らかさを改善します。</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">カバー画像がない場合はゲーム名を表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">グリッドビューにゲーム名を表示する</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">インストールされていないゲームを暗く表示する。</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">アンインストールされたゲームの暗転表示</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">詳細ビューリストにゲームのアイコンを表示する</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">グループの説明にアイテム数を表示する</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">ハードウェアアクセラレーションを無効にする</sys:String>
@@ -390,10 +390,10 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsShowBatteryStatus">バッテリーの状態を表示</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">バッテリー残量の表示</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">時計を表示</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">クイックフィルターにのみインストール</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">クイックフィルター内のインストールゲームのみ表示</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">ボタン表記</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">レイアウト</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">横スクロール</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">横スクロール表示</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">以下のオプションから選択</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">利用可能な設定がありません。</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">これらのスクリプトは、ライブラリ内のすべてのゲームに対して実行されます。ゲームの詳細を編集する際に、個々のスクリプトを各ゲームに個別に割り当てることができます。</sys:String>
