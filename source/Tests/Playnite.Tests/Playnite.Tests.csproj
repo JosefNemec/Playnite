@@ -133,6 +133,7 @@
     <Compile Include="PlayniteUriHandlerTests.cs" />
     <Compile Include="ProcessStarterTests.cs" />
     <Compile Include="Scripting\Batch\BatchTests.cs" />
+    <Compile Include="SigningToolsTests.cs" />
     <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />
     <Compile Include="LocalizationTests.cs" />

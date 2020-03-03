@@ -131,6 +131,7 @@
     <Compile Include="ProcessStarter.cs" />
     <Compile Include="Programs.cs" />
     <Compile Include="SafeFileEnumerator.cs" />
+    <Compile Include="SigningTools.cs" />
     <Compile Include="Sizes.cs" />
     <Compile Include="Sqlite.cs" />
     <Compile Include="SystemDialogs.cs" />

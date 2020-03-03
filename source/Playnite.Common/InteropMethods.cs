@@ -77,5 +77,8 @@ namespace Playnite.Common
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, IntPtr lParam);
+
+        [DllImport("Wintrust.dll", PreserveSig = true, SetLastError = false)]
+        public static extern uint WinVerifyTrust(IntPtr hWnd, IntPtr pgActionID, IntPtr pWinTrustData);
     }
 }
