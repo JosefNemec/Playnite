@@ -239,7 +239,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCMenuAddGameManual">手動...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">自動掃描...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">模擬器遊戲...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store 或 Xbox 應用程式遊戲…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">關於Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">意見回饋</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">進入全螢幕模式</sys:String>
