@@ -239,7 +239,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escanear automaticamente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Jogo emulado…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Jogo da Microsoft Store ou do aplicativo Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre o Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar comentários</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo tela cheia</sys:String>
