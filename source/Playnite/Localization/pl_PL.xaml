@@ -209,7 +209,7 @@ Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostycz
     <sys:String x:Key="LOCMenuAddGameManual">Ręcznie…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Skanuj automatycznie…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulowana gra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Gra z Microsoft Store lub aplikacji Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Wyślij opinię</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Uruchom tryb pełnoekranowy</sys:String>
