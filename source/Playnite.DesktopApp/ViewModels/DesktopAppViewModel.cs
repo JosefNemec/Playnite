@@ -249,6 +249,7 @@ namespace Playnite.DesktopApp.ViewModels
                 if (value == WindowState.Minimized && AppSettings.MinimizeToTray && AppSettings.EnableTray)
                 {
                     Visibility = Visibility.Hidden;
+                    ImageSourceManager.Cache.Clear();
                 }
 
                 windowState = value;
@@ -1273,6 +1274,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Visibility = Visibility.Hidden;
                 args.Cancel = true;
+                ImageSourceManager.Cache.Clear();
             }
             else
             {
