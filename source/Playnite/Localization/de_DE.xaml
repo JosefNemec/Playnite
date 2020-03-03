@@ -239,7 +239,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCMenuAddGameManual">Manuell …</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automatisch durchsuchen …</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuliertes Spiel …</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Spiel aus Microsoft Store oder Xbox-App …</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Über Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Feedback senden</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Vollbildmodus starten</sys:String>
