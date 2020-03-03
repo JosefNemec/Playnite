@@ -240,7 +240,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuAddGameManual">Manually…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scan Automatically…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulated Game…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store or Xbox App Game…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store application…</sys:String>
     <sys:String x:Key="LOCMenuAbout">About Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullscreen Mode</sys:String>
