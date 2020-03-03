@@ -219,7 +219,7 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCMenuAddGameManual">Handmatig…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scan Automatisch...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Geëmuleerd Spel...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store of Xbox App Game…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Over Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Stuur Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Volledig Scherm Modus</sys:String>
