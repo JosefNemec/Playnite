@@ -207,7 +207,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuellt…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Installerade Spel…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulerade spel…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store- eller Xbox App-spel…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Skicka Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Fullskärmsläge</sys:String>
