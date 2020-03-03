@@ -238,7 +238,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuAddGameManual">Manuellement</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Importer depuis une installation</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Importer des jeux émulés</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Jeu Microsoft Store/App Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Mode plein écran</sys:String>
