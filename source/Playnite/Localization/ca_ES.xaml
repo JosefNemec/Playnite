@@ -207,7 +207,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manualment…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escaneja automàticament…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Joc emulat…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Joc de la Microsoft Store o de l'aplicació de Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envia els teus comentaris</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Inicia mode a pantalla completa</sys:String>
