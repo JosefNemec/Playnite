@@ -239,7 +239,7 @@ Uprednostniť údaje z oficiálneho obchodu a ak nie sú k dispozícii, použiť
     <sys:String x:Key="LOCMenuAddGameManual">Ručne…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automaticky prehľadať…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulovaná hra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Hra z Microsoft Store alebo Xbox App Game…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Odoslať spätnú väzbu</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Spustiť režim celej obrazovky</sys:String>
