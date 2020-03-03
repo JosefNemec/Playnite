@@ -207,7 +207,7 @@ Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Ručně…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automaticky prohledat…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulovaná hra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Hra z Microsoft Store nebo aplikace Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Odeslat zpětnou vazbu</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Spustit režim celé obrazovky</sys:String>
