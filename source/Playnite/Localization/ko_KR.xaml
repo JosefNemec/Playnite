@@ -239,7 +239,7 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCMenuAddGameManual">직접추가...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">자동으로 스캔...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">에뮬레이터 게임...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store 또는 Xbox 앱 게임...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite에 관하여</sys:String>
     <sys:String x:Key="LOCMenuIssues">피드백 보내기</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">전체 화면 모드 시작</sys:String>
