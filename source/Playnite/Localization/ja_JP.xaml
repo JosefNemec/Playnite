@@ -239,7 +239,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCMenuAddGameManual">手動追加...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">自動スキャン...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">エミュレーターのゲームを追加...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store または Xbox ゲーム...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">マイクロソフトストアアプリケーション...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite について</sys:String>
     <sys:String x:Key="LOCMenuIssues">フィードバックを送信</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">フルスクリーンモードに切り替え</sys:String>
