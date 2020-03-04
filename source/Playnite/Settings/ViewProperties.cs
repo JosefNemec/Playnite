@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Playnite.SDK.Models;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -138,6 +140,458 @@ namespace Playnite
         List = 2
     }
 
+    public class ListViewColumnProperty : ObservableObject
+    {
+        public GameField Field { get; set; }
+
+        private bool visible = false;
+        public bool Visible
+        {
+            get
+            {
+                return visible;
+            }
+
+            set
+            {
+                visible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double width = double.NaN;
+        public double Width
+        {
+            get
+            {
+                return width;
+            }
+
+            set
+            {
+                width = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ListViewColumnProperty()
+        {
+        }
+
+        public ListViewColumnProperty(GameField field)
+        {
+            Field = field;
+        }
+    }
+
+    public class ListViewColumnsProperties : ObservableObject
+    {
+        private ListViewColumnProperty icon = new ListViewColumnProperty(GameField.Icon);
+        public ListViewColumnProperty Icon
+        {
+            get
+            {
+                return icon;
+            }
+
+            set
+            {
+                icon = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty name = new ListViewColumnProperty(GameField.Name);
+        public ListViewColumnProperty Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty platform = new ListViewColumnProperty(GameField.Platform);
+        public ListViewColumnProperty Platform
+        {
+            get
+            {
+                return platform;
+            }
+
+            set
+            {
+                platform = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty developers = new ListViewColumnProperty(GameField.Developers);
+        public ListViewColumnProperty Developers
+        {
+            get
+            {
+                return developers;
+            }
+
+            set
+            {
+                developers = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty publishers = new ListViewColumnProperty(GameField.Publishers);
+        public ListViewColumnProperty Publishers
+        {
+            get
+            {
+                return publishers;
+            }
+
+            set
+            {
+                publishers = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty releaseDate = new ListViewColumnProperty(GameField.ReleaseDate);
+        public ListViewColumnProperty ReleaseDate
+        {
+            get
+            {
+                return releaseDate;
+            }
+
+            set
+            {
+                releaseDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty genres = new ListViewColumnProperty(GameField.Genres);
+        public ListViewColumnProperty Genres
+        {
+            get
+            {
+                return genres;
+            }
+
+            set
+            {
+                genres = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty lastActivity = new ListViewColumnProperty(GameField.LastActivity);
+        public ListViewColumnProperty LastActivity
+        {
+            get
+            {
+                return lastActivity;
+            }
+
+            set
+            {
+                lastActivity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty isInstalled = new ListViewColumnProperty(GameField.IsInstalled);
+        public ListViewColumnProperty IsInstalled
+        {
+            get
+            {
+                return isInstalled;
+            }
+
+            set
+            {
+                isInstalled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty installDirectory = new ListViewColumnProperty(GameField.InstallDirectory);
+        public ListViewColumnProperty InstallDirectory
+        {
+            get
+            {
+                return installDirectory;
+            }
+
+            set
+            {
+                installDirectory = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty categories = new ListViewColumnProperty(GameField.Categories);
+        public ListViewColumnProperty Categories
+        {
+            get
+            {
+                return categories;
+            }
+
+            set
+            {
+                categories = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty playtime = new ListViewColumnProperty(GameField.Playtime);
+        public ListViewColumnProperty Playtime
+        {
+            get
+            {
+                return playtime;
+            }
+
+            set
+            {
+                playtime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty added = new ListViewColumnProperty(GameField.Added);
+        public ListViewColumnProperty Added
+        {
+            get
+            {
+                return added;
+            }
+
+            set
+            {
+                added = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty modified = new ListViewColumnProperty(GameField.Modified);
+        public ListViewColumnProperty Modified
+        {
+            get
+            {
+                return modified;
+            }
+
+            set
+            {
+                modified = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty playCount = new ListViewColumnProperty(GameField.PlayCount);
+        public ListViewColumnProperty PlayCount
+        {
+            get
+            {
+                return playCount;
+            }
+
+            set
+            {
+                playCount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty series = new ListViewColumnProperty(GameField.Series);
+        public ListViewColumnProperty Series
+        {
+            get
+            {
+                return series;
+            }
+
+            set
+            {
+                series = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty version = new ListViewColumnProperty(GameField.Version);
+        public ListViewColumnProperty Version
+        {
+            get
+            {
+                return version;
+            }
+
+            set
+            {
+                version = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty ageRating = new ListViewColumnProperty(GameField.AgeRating);
+        public ListViewColumnProperty AgeRating
+        {
+            get
+            {
+                return ageRating;
+            }
+
+            set
+            {
+                ageRating = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty region = new ListViewColumnProperty(GameField.Region);
+        public ListViewColumnProperty Region
+        {
+            get
+            {
+                return region;
+            }
+
+            set
+            {
+                region = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty source = new ListViewColumnProperty(GameField.Source);
+        public ListViewColumnProperty Source
+        {
+            get
+            {
+                return source;
+            }
+
+            set
+            {
+                source = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty completionStatus = new ListViewColumnProperty(GameField.CompletionStatus);
+        public ListViewColumnProperty CompletionStatus
+        {
+            get
+            {
+                return completionStatus;
+            }
+
+            set
+            {
+                completionStatus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty userScore = new ListViewColumnProperty(GameField.UserScore);
+        public ListViewColumnProperty UserScore
+        {
+            get
+            {
+                return userScore;
+            }
+
+            set
+            {
+                userScore = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty criticScore = new ListViewColumnProperty(GameField.CriticScore);
+        public ListViewColumnProperty CriticScore
+        {
+            get
+            {
+                return criticScore;
+            }
+
+            set
+            {
+                criticScore = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty communityScore = new ListViewColumnProperty(GameField.CommunityScore);
+        public ListViewColumnProperty CommunityScore
+        {
+            get
+            {
+                return communityScore;
+            }
+
+            set
+            {
+                communityScore = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty tags = new ListViewColumnProperty(GameField.Tags);
+        public ListViewColumnProperty Tags
+        {
+            get
+            {
+                return tags;
+            }
+
+            set
+            {
+                tags = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty pluginId = new ListViewColumnProperty(GameField.PluginId);
+        public ListViewColumnProperty PluginId
+        {
+            get
+            {
+                return pluginId;
+            }
+
+            set
+            {
+                pluginId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty features = new ListViewColumnProperty(GameField.Features);
+        public ListViewColumnProperty Features
+        {
+            get
+            {
+                return features;
+            }
+
+            set
+            {
+                features = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public class ViewSettings : ObservableObject
     {
         public const double MinGridItemWidth = 120;
@@ -219,53 +673,32 @@ namespace Playnite
             }
         }
 
-        private ObservableConcurrentDictionary<string, bool> gridViewHeaders = new ObservableConcurrentDictionary<string, bool>()
-        {
-            { "Icon", true },
-            { "Name", true },
-            { "Platform", false },
-            { "Developers", false },
-            { "Publishers", false },
-            { "ReleaseDate", true },
-            { "Genres", true },
-            { "LastActivity", true },
-            { "IsInstalled", false },
-            { "InstallDirectory", false },
-            { "Categories", false },
-            { "Playtime", true },
-            { "Added", false },
-            { "Modified", false },
-            { "PlayCount", false },
-            { "Series", false },
-            { "Version", false },
-            { "AgeRating", false },
-            { "Region", false },
-            { "Source", false },
-            { "CompletionStatus", false },
-            { "UserScore", false },
-            { "CriticScore", false },
-            { "CommunityScore", false },
-            { "Tags", false },
-            { "Library", true },
-            { "Features", false }
-        };
-
-        public ObservableConcurrentDictionary<string, bool> GridViewHeaders
+        private ListViewColumnsProperties listViewColumns;
+        public ListViewColumnsProperties ListViewColumns
         {
             get
             {
-                return gridViewHeaders;
+                return listViewColumns;
             }
 
             set
             {
-                if (gridViewHeaders != null)
-                {
-                    gridViewHeaders.PropertyChanged -= GridViewHeaders_PropertyChanged;
-                }
+                listViewColumns = value;
+                OnPropertyChanged();
+            }
+        }
 
-                gridViewHeaders = value;
-                gridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
+        private List<GameField> listViewColumsOrder;
+        public List<GameField> ListViewColumsOrder
+        {
+            get
+            {
+                return listViewColumsOrder;
+            }
+
+            set
+            {
+                listViewColumsOrder = value;
                 OnPropertyChanged();
             }
         }
@@ -287,15 +720,6 @@ namespace Playnite
 
         public ViewSettings()
         {
-            GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
-        }
-
-        private void GridViewHeaders_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(GridViewHeaders.Values))
-            {
-                OnPropertyChanged(nameof(GridViewHeaders));
-            }
         }
 
         #region Serialization Conditions

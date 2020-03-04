@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Playnite.Metadata;
 using Playnite.SDK;
 using Microsoft.Win32;
+using Playnite.SDK.Models;
 
 namespace Playnite
 {
@@ -1501,6 +1502,33 @@ namespace Playnite
                     logger.Warn("No settings backup found, creating default ones.");
                     settings = new PlayniteSettings();
                 }
+            }
+
+            if (settings.ViewSettings.ListViewColumsOrder == null)
+            {
+                settings.ViewSettings.ListViewColumsOrder = new List<GameField>
+                {
+                    GameField.Icon,
+                    GameField.Name,
+                    GameField.ReleaseDate,
+                    GameField.Genres,
+                    GameField.LastActivity,
+                    GameField.Playtime,
+                    GameField.PluginId
+                };
+            }
+
+            if (settings.ViewSettings.ListViewColumns == null)
+            {
+                var columns = new ListViewColumnsProperties();
+                columns.Icon.Visible = true;
+                columns.Name.Visible = true;
+                columns.ReleaseDate.Visible = true;
+                columns.Genres.Visible = true;
+                columns.LastActivity.Visible = true;
+                columns.Playtime.Visible = true;
+                columns.PluginId.Visible = true;
+                settings.ViewSettings.ListViewColumns = columns;
             }
 
             if (settings != null)
