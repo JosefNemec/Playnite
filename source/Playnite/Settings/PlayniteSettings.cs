@@ -1531,26 +1531,28 @@ namespace Playnite
                 settings.ViewSettings.ListViewColumns = columns;
             }
 
-            if (settings != null)
+            if (settings.MetadataSettings == null)
             {
-                if (settings.Version == 1)
-                {
-                    settings.BackgroundImageBlurAmount = 17;
-                    settings.Version = 2;
-                }
+                settings.MetadataSettings = MetadataDownloaderSettings.GetDefaultSettings();
+            }
 
-                if (settings.Version == 2)
-                {
-                    settings.BackgroundImageBlurAmount = 60;
-                    settings.Version = 3;
-                }
+            if (settings.Version == 1)
+            {
+                settings.BackgroundImageBlurAmount = 17;
+                settings.Version = 2;
+            }
 
-                if (settings.Version == 3)
-                {
-                    settings.MetadataSettings.Feature = new MetadataFieldSettings(
-                        true, new List<Guid> { Guid.Empty, BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata) });
-                    settings.Version = 4;
-                }
+            if (settings.Version == 2)
+            {
+                settings.BackgroundImageBlurAmount = 60;
+                settings.Version = 3;
+            }
+
+            if (settings.Version == 3)
+            {
+                settings.MetadataSettings.Feature = new MetadataFieldSettings(
+                    true, new List<Guid> { Guid.Empty, BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata) });
+                settings.Version = 4;
             }
 
             settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
@@ -1575,11 +1577,6 @@ namespace Playnite
                     logger.Warn("No fullscreen settings backup found, creating default ones.");
                     settings.Fullscreen = new FullscreenSettings();
                 }
-            }
-
-            if (settings.MetadataSettings == null)
-            {
-                settings.MetadataSettings = MetadataDownloaderSettings.GetDefaultSettings();
             }
 
             settings.BackupSettings();
