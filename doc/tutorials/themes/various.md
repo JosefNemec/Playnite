@@ -9,6 +9,17 @@ For example creating image that uses `applogo.png` file stored in `Images` subfo
 <Image Source="{ThemeFile 'Images/applogo.png'}" />
 ```
 
+Adding video to a theme
+---------------------
+
+Use [MediaElement](https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.mediaelement?view=netframework-4.8) element ([supported formats](https://docs.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc189080(v=vs.95)?redirectedfrom=MSDN)) to add a video to a xaml file. Video files by default don't repeat, to automatically repeat playback use `MediaElementBehaviors.Repeat` behavior.
+
+Following example adds video file `video.mp4` stored in `Videos` theme subfolder and plays it on repeat:
+
+```xml 
+<MediaElement Source="{ThemeFile 'Videos/video.mp4'}" MediaElementBehaviors.Repeat="True" />
+```
+
 What all these PART_ element names
 ---------------------
 
