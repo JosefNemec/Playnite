@@ -1,7 +1,7 @@
 ﻿//--------------------------------------------------------------------------
-// 
-//  Copyright (c) Microsoft Corporation.  All rights reserved. 
-// 
+//
+//  Copyright (c) Microsoft Corporation.  All rights reserved.
+//
 //  File: ObservableConcurrentDictionary.cs
 //
 //--------------------------------------------------------------------------
@@ -50,7 +50,7 @@ namespace System.Collections.Concurrent
             var propertyHandler = PropertyChanged;
             if (collectionHandler != null || propertyHandler != null)
             {
-                _context.Post(s =>
+                _context.Send(s =>
                 {
                     collectionHandler?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 
@@ -164,7 +164,7 @@ namespace System.Collections.Concurrent
 
         #region IDictionary<TKey,TValue> Members
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -174,7 +174,7 @@ namespace System.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -184,7 +184,7 @@ namespace System.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ICollection<TKey> Keys
         {
@@ -195,7 +195,7 @@ namespace System.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -205,7 +205,7 @@ namespace System.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -216,7 +216,7 @@ namespace System.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ICollection<TValue> Values
         {
@@ -227,7 +227,7 @@ namespace System.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
