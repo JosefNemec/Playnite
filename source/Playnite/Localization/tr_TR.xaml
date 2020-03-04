@@ -239,7 +239,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCMenuAddGameManual">Elle…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Otomatik Olarak Tara</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emülatör Oyunu…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Mağaza uygulaması</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Mağaza uygulaması…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite Hakkında</sys:String>
     <sys:String x:Key="LOCMenuIssues">Geri Bildirim</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Tam Ekran Modunu Başlat</sys:String>
