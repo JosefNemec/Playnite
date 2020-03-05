@@ -624,7 +624,15 @@ namespace Playnite.Database
                 if (metaFile.FileName.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
                 {
                     metaFile.FileName = Path.ChangeExtension(metaFile.FileName, ".png");
-                    metaFile.Content = BitmapExtensions.TgaToBitmap(metaFile.Content).ToPngArray();
+                    var tga = BitmapExtensions.TgaToBitmap(metaFile.Content);
+                    if (tga == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        metaFile.Content = tga.ToPngArray();
+                    }
                 }
 
                 return AddFile(metaFile, gameId);
@@ -789,7 +797,14 @@ namespace Playnite.Database
                     if (existingGame == null)
                     {
                         logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                        addedGames.Add(ImportGame(newGame, library.Id));
+                        try
+                        {
+                            addedGames.Add(ImportGame(newGame, library.Id));
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, "Failed to import game into database.");
+                        }
                     }
                     else
                     {
