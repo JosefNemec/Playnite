@@ -342,6 +342,7 @@ Nové umístění databáze bude použito po restartu aplikace.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Počet řádků</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Počet sloupců</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Počet řádků v zobrazení detailů</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Zdroj obrázku na pozadí:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Obrázek hry</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Snímek obrazovky z obchodu</sys:String>
