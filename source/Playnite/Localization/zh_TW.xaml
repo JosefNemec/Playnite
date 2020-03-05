@@ -374,6 +374,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCSettingsFullscreenRows">列數</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">欄數</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">列表檢視列數</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">背景圖片來源:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">遊戲圖片</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截圖</sys:String>
