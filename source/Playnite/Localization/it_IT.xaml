@@ -374,6 +374,7 @@ Nuova posizione del database verrà utilizzata solo dopo il riavvio dell'applica
     <sys:String x:Key="LOCSettingsFullscreenRows">Numero di righe</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Numero di colonne</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Numero di dettagli delle righe</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Mostra imamgine sfondo nello Schermo Principale</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Sorgente immagine di sfondo:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Immagine Gioco</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Screenshot Negozio</sys:String>
