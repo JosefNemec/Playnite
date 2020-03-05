@@ -19,6 +19,9 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
+                            <FadeImage x:Name="PART_ImageBackground" Grid.RowSpan="3"
+                                       HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
                             <Grid Grid.Row="0" Background="{DynamicResource TopBarBackgroundBrush}"
                                   Height="110">
                                 <Grid.ColumnDefinitions>

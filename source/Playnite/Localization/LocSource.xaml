@@ -375,6 +375,7 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsFullscreenRows">Number of rows</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Number of columns</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Number of detail view rows</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Show Background Image on Main Screen</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Background image source:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Game Image</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Store Screenshot</sys:String>
