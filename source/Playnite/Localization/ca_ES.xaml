@@ -338,6 +338,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de files</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de columnes</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Nombre de files de visualització amb detalls</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Font de la imatge de fons:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Imatge del joc</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de pantalla de la botiga</sys:String>
