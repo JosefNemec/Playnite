@@ -342,6 +342,7 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsFullscreenRows">Liczba wierszy</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Liczba kolumn</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Liczba wierszy z szczegółami</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Źródło obrazów w tle:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Obraz gry</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Zrzut ekranu z oficjalnego sklepu</sys:String>
