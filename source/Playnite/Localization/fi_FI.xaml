@@ -373,6 +373,7 @@ Uuden tietokannan kohde tulee käyttöön vasta kun ohjelma on uudelleenkäynnis
     <sys:String x:Key="LOCSettingsFullscreenRows">Rivien määrä</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sarakkeiden määrä</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Lisätietonäkymän rivien määrä</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Taustan lähde:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Pelin kuva</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Kaupan kuvakaappaus</sys:String>
