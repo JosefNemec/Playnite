@@ -350,6 +350,7 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCSettingsFullscreenRows">Aantal rijen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Aantal kolommen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Aantal detailweergave rijen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Achtergrondafbeeldingsbron:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Spelafbeelding</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Sla Screenshot Op</sys:String>
