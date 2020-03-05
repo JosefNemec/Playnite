@@ -373,6 +373,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsFullscreenRows">מספר שורות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">מספר עמודות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">מספר שורות תצוגה מפורטת</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">הצג את תמונת הרקע במסך הראשי</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">מקור תמונת רקע:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">תמונת משחק</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">צילום מסך חנות</sys:String>
