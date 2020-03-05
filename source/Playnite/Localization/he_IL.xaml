@@ -238,7 +238,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCMenuAddGameManual">ידנית…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">סרוק אוטומטית…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">משחק אמולטור…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">אפליקציה ממייקרוסופט סטור…</sys:String>
     <sys:String x:Key="LOCMenuAbout">אודות Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">שלח משוב</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">מצב מסך מלא</sys:String>
