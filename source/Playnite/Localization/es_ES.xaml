@@ -239,7 +239,7 @@ Preferir los datos de la Tienda oficial y, cuando no estén disponibles, usar la
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escanear Automáticamente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Juego Emulado…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Aplicación de la Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">Acerca de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar Comentarios</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Iniciar Modo de Pantalla completa</sys:String>
@@ -374,6 +374,7 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de filas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de columnas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Número de filas en la Vista de Detalles</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Fuente de la imagen de fondo:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Imagen del juego</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de pantalla de la tienda</sys:String>
