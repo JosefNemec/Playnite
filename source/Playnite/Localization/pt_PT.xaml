@@ -338,6 +338,7 @@ Indeterminado - Sem alterações (quando editar vários jogos)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de linhas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de colunas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Fonte da imagem de fundo:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Imagem do Jogo</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de ecrã da Loja</sys:String>
