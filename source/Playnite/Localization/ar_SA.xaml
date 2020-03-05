@@ -338,6 +338,7 @@
     <sys:String x:Key="LOCSettingsFullscreenRows">عدد الصفوف</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">عدد الأعمدة</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">صورة اللعبة</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">لقطة شاشة المتجر</sys:String>
