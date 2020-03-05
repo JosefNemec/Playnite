@@ -374,6 +374,7 @@ O novo local do banco de dados será usado somente após o aplicativo ser reinic
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de linhas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de colunas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Número de linhas no esquema de detalhes</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Fonte da imagem de fundo:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Imagem do jogo</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de tela da loja</sys:String>
