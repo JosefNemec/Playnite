@@ -340,6 +340,7 @@ Ny databaseplassering vil bare bli brukt etter at applikasjonen er startet på n
     <sys:String x:Key="LOCSettingsFullscreenRows">Antall rader</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Antall kolonner</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Antall detaljvisningsrader</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Bakgrunnsbilde kilde:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Spillbilde</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Butikk-skjermbilde</sys:String>
