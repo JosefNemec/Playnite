@@ -374,6 +374,7 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCSettingsFullscreenRows">행 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">열 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">자세히 보기 방식의 열 수</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">배경 이미지 소스:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">게임 이미지</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">스토어 스크린샷</sys:String>
