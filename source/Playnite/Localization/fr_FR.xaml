@@ -371,7 +371,7 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de rangées</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de colonnes</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Nbr. de rangées (Détails)</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Menu : Afficher les images de fond</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Source de l'image de fond :</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Par défaut</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Capture d'écran (magasin)</sys:String>
