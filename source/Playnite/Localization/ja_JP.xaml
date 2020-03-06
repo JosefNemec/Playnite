@@ -374,7 +374,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsFullscreenRows">行数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">列数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">詳細ビューの行数</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">メイン画面に背景画像を表示</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">背景画像のソース:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">ゲームイメージ</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">ストア のスクリーンショット</sys:String>
