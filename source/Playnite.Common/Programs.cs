@@ -332,13 +332,21 @@ IconIndex=0";
                     var appId = apxApp.Attributes["Id"].Value;
 
                     var visuals = apxApp.SelectSingleNode(@"//*[local-name() = 'VisualElements']");
-                    var iconPath = visuals.Attributes["Square44x44Logo"]?.Value;
-                    if (string.IsNullOrEmpty(iconPath))
+                    var iconPath = visuals.Attributes["Square150x150Logo"]?.Value;
+                    if (iconPath.IsNullOrEmpty())
                     {
-                        iconPath = visuals.Attributes["Logo"]?.Value;
+                        iconPath = visuals.Attributes["Square70x70Logo"]?.Value;
+                        if (iconPath.IsNullOrEmpty())
+                        {
+                            iconPath = visuals.Attributes["Square44x44Logo"]?.Value;
+                            if (iconPath.IsNullOrEmpty())
+                            {
+                                iconPath = visuals.Attributes["Logo"]?.Value;
+                            }
+                        }
                     }
 
-                    if (!string.IsNullOrEmpty(iconPath))
+                    if (!iconPath.IsNullOrEmpty())
                     {
                         iconPath = Path.Combine(package.InstalledLocation.Path, iconPath);
                         iconPath = GetUWPGameIcon(iconPath);
