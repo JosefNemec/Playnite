@@ -16,6 +16,7 @@ using Playnite.Common.Web;
 using System.Drawing.Imaging;
 using System.Threading;
 using System.Collections.Concurrent;
+using Playnite.Common.Media.Icons;
 
 namespace Playnite.Database
 {
@@ -594,14 +595,14 @@ namespace Playnite.Database
                     {
                         if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                         {
-                            var icon = System.Drawing.IconExtension.ExtractIconFromExe(path, true);
-                            if (icon == null)
+                            using (var ms = new MemoryStream())
                             {
-                                return null;
+                                if (IconExtractor.ExtractMainIconFromFile(path, ms))
+                                {
+                                    fileName = Path.ChangeExtension(fileName, ".ico");
+                                    metaFile = new MetadataFile(fileName, ms.ToArray());
+                                }
                             }
-
-                            fileName = Path.ChangeExtension(fileName, ".png");
-                            metaFile = new MetadataFile(fileName, System.Drawing.IconExtension.ToByteArray(icon, System.Drawing.Imaging.ImageFormat.Png));
                         }
                         else
                         {

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using OriginLibrary.Models;
 using OriginLibrary.Services;
+using Playnite.Common.Media.Icons;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
@@ -103,11 +104,13 @@ namespace OriginLibrary
                     return storeMetadata;
                 }
 
-                var exeIcon = IconExtension.ExtractIconFromExe(executable, true);
-                if (exeIcon != null)
+                using (var ms = new MemoryStream())
                 {
-                    var iconName = Guid.NewGuid() + ".png";
-                    metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                    if (IconExtractor.ExtractMainIconFromFile(executable, ms))
+                    {
+                        var iconName = Guid.NewGuid() + ".ico";
+                        metadata.Icon = new MetadataFile(iconName, ms.ToArray());
+                    }
                 }
             }
 

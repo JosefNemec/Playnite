@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Common.Media.Icons;
+using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using System;
@@ -68,11 +69,13 @@ namespace TwitchLibrary
                     }
                     else
                     {
-                        var exeIcon = IconExtension.ExtractIconFromExe(iconPath, true);
-                        if (exeIcon != null)
+                        using (var ms = new MemoryStream())
                         {
-                            var iconName = Guid.NewGuid() + ".png";
-                            metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                            if (IconExtractor.ExtractMainIconFromFile(iconPath, ms))
+                            {
+                                var iconName = Guid.NewGuid() + ".ico";
+                                metadata.Icon = new MetadataFile(iconName, ms.ToArray());
+                            }
                         }
                     }
                 }

@@ -25,6 +25,7 @@ using Playnite.ViewModels;
 using Playnite.DesktopApp.Windows;
 using System.Windows.Controls;
 using Playnite.SDK.Exceptions;
+using Playnite.Common.Media.Icons;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -1405,11 +1406,13 @@ namespace Playnite.DesktopApp.ViewModels
 
                             if (icoPath?.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true)
                             {
-                                var ico = IconExtension.ExtractIconFromExe(icoPath, true);
-                                if (ico != null)
+                                using (var ms = new MemoryStream())
                                 {
-                                    var iconName = Guid.NewGuid().ToString() + ".png";
-                                    game.Icon = Database.AddFile(iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png), game.Id);
+                                    if (IconExtractor.ExtractMainIconFromFile(path, ms))
+                                    {
+                                        var iconName = Guid.NewGuid().ToString() + ".ico";
+                                        game.Icon = Database.AddFile(iconName, ms.ToArray(), game.Id);
+                                    }
                                 }
                             }
                             else if (!icoPath.IsNullOrEmpty())

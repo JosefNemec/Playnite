@@ -89,7 +89,7 @@ namespace System.Drawing.Imaging
         }
     }
 
-    public static class BitmapExtensions
+    public static partial class BitmapExtensions
     {
         private static ILogger logger = LogManager.GetLogger();
 

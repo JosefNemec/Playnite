@@ -1,6 +1,7 @@
-﻿using System;   
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,69 +12,13 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Playnite.Common;
+using Playnite.Common.Media.Icons;
+using Playnite.SDK;
 
 namespace System.Drawing
 {
-    public enum ShellIconSize : uint
-    {
-        SHGFI_ICON = 0x100,
-        SHGFI_LARGEICON = 0x0,   // 32x32 pixels
-        SHGFI_SMALLICON = 0x1    // 16x16 pixels
-    }
-
     public static class IconExtension
     {
-        public static Icon ExtractIconFromExe(string file, bool large)
-        {
-            int readIconCount = 0;
-            IntPtr[] hDummy = new IntPtr[1] { IntPtr.Zero };
-            IntPtr[] hIconEx = new IntPtr[1] { IntPtr.Zero };
-
-            try
-            {
-                if (large)
-                {
-                    readIconCount = Interop.ExtractIconEx(file, 0, hIconEx, hDummy, 1);
-                }
-                else
-                {
-                    readIconCount = Interop.ExtractIconEx(file, 0, hDummy, hIconEx, 1);
-                }
-
-                if (readIconCount > 0 && hIconEx[0] != IntPtr.Zero)
-                {
-                    Icon extractedIcon = (Icon)Icon.FromHandle(hIconEx[0]).Clone();
-                    return extractedIcon;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Could not extract icon", e);
-            }
-            finally
-            {
-                foreach (IntPtr ptr in hIconEx)
-                {
-                    if (ptr != IntPtr.Zero)
-                    {
-                        Interop.DestroyIcon(ptr);
-                    }
-                }
-
-                foreach (IntPtr ptr in hDummy)
-                {
-                    if (ptr != IntPtr.Zero)
-                    {
-                        Interop.DestroyIcon(ptr);
-                    }
-                }
-            }
-        }
-
         public static byte[] ToByteArray(this Icon icon, System.Drawing.Imaging.ImageFormat format)
         {
             using (var stream = new MemoryStream())
@@ -90,7 +35,7 @@ namespace System.Drawing
         {
             using (Bitmap bitmap = icon.ToBitmap())
             {
-                IntPtr hBitmap = bitmap.GetHbitmap();                
+                IntPtr hBitmap = bitmap.GetHbitmap();
                 BitmapSource wpfBitmap = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
                     hBitmap,
                     IntPtr.Zero,

@@ -1,6 +1,8 @@
 ﻿using Playnite.Common;
+using Playnite.Database;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,24 @@ namespace Playnite
 {
     public static class GameExtensions
     {
+        public static string GetDefaultIcon(this Game game, PlayniteSettings settings, GameDatabase database, LibraryPlugin plugin)
+        {
+            if (settings.DefaultIconSource == DefaultIconSourceOptions.None)
+            {
+                return null;
+            }
+            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && plugin?.LibraryIcon.IsNullOrEmpty() == false)
+            {
+                return plugin.LibraryIcon;
+            }
+            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform && game.Platform?.Icon.IsNullOrEmpty() == false)
+            {
+                return database.GetFullFilePath(game.Platform.Icon);
+            }
+
+            return null;
+        }
+
         public static Game GetGameFromExecutable(string path)
         {
             if (!File.Exists(path))
@@ -39,7 +59,7 @@ namespace Playnite
                         }
                     }
                 }
-                
+
                 game.Name = Path.GetFileNameWithoutExtension(path);
                 game.InstallDirectory = prog.WorkDir.IsNullOrEmpty() ? fileInfo.Directory.FullName : prog.WorkDir;
                 game.PlayAction = new GameAction()

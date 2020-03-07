@@ -25,6 +25,7 @@ using Playnite.DesktopApp.Windows;
 using Playnite.SDK.Plugins;
 using Playnite.Metadata.Providers;
 using System.Text.RegularExpressions;
+using Playnite.Common.Media.Icons;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -2524,23 +2525,16 @@ namespace Playnite.DesktopApp.ViewModels
 
         private string SaveFileIconToTemp(string exePath)
         {
-            var ico = System.Drawing.IconExtension.ExtractIconFromExe(exePath, true);
-            if (ico == null)
+            var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempico.ico");
+            FileSystem.PrepareSaveFile(tempPath);
+            if (IconExtractor.ExtractMainIconFromFile(exePath, tempPath))
+            {
+                return tempPath;
+            }
+            else
             {
                 return string.Empty;
             }
-
-            var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempico.png");
-            if (ico != null)
-            {
-                FileSystem.PrepareSaveFile(tempPath);
-                using (var bitmap = ico.ToBitmap())
-                {
-                    bitmap.Save(tempPath, ImageFormat.Png);
-                }
-            }
-
-            return tempPath;
         }
 
         private string SaveConvertedTgaToTemp(string tgaPath)
@@ -2603,7 +2597,7 @@ namespace Playnite.DesktopApp.ViewModels
                 if (files?.Length == 1)
                 {
                     var path = files[0];
-                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga" }.Contains(Path.GetExtension(path).ToLower()))
+                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".exe" }.Contains(Path.GetExtension(path).ToLower()))
                     {
                         return path;
                     }
@@ -2618,6 +2612,15 @@ namespace Playnite.DesktopApp.ViewModels
             var path = PrepareImagePath(GetDroppedImage(args));
             if (!path.IsNullOrEmpty())
             {
+                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveFileIconToTemp(path);
+                    if (string.IsNullOrEmpty(path))
+                    {
+                        return;
+                    }
+                }
+
                 EditingGame.Icon = path;
                 CheckImagePerformanceRestrains(path, 512);
             }
