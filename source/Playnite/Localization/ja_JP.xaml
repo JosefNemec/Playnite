@@ -267,7 +267,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">パネル間のセパレーターを描画する</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">ゲームカバー画像の高さ</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">ゲームリストアイコンの高さ</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont">アプリケーションフォント</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">フォント</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">フィルターパネルの位置</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">エクスプローラーパネルの位置</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">カバーアートのレンダリング</sys:String>
@@ -302,12 +302,12 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsInvalidAccountName">アカウント名は空にできません。</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">ライブラリのインポート用にSteamアカウントが選択されていません。</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">カテゴリーのインポート用にSteamアカウントが選択されていません。</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">起動時にサードパーティのライブラリアップデートをダウンロードする。</sys:String>
-    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">ゲームをインポートした後にメタデータをダウンロードする。</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">起動時にサードパーティのライブラリアップデートをダウンロード</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">ゲームをインポートした後にメタデータをダウンロード</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">最小化して起動</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot">コンピュータの起動時に Playnite を実行する</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">コンピュータの起動時に Playnite を実行</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">コンピュータの起動時に、Playniteを実行するよう登録することができませんでした。</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen">フルスクリーンモードで起動する</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">フルスクリーンモードで起動</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Steam、Originなどが含まれます。</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">非同期画像読み込み</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">遅いイメージロード時間と引き換えに、ゲームリストのスクロールの滑らかさを改善します。</sys:String>
@@ -381,7 +381,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSteamBackgroundSourceStore">ストアの背景</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceBanner">バナー</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">メタデータを再ダウンロードせずに既存のゲームに遡って適用することはありません。</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">サポートされたライブラリーのプレイ時間を優先します。</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">サポートされたライブラリーのプレイ時間を優先</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Playniteで記録された時間を無視して、ライブラリの同期中は常に記録されたプレイ時間をリモートライブラリからダウンロードします。</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">デスクトップモードでゲームコントローラーのサポートを有効にします。</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">ガイドボタンでフルスクリーンモードを開く</sys:String>
