@@ -691,7 +691,9 @@ namespace Playnite
             }
             else
             {
-                Application.Restore();
+                // The delay should hopefully fix rare cases where Fullscreen mode doesn't get proper focus after restore.
+                // https://www.reddit.com/r/playnite/comments/f6d73l/bug_full_screen_ui_wont_respond_to_left_stick/
+                Task.Delay(TimeSpan.FromSeconds(2)).ContinueWith(a => Application.Restore());
             }
 
             if (!game.PostScript.IsNullOrWhiteSpace())
