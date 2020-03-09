@@ -204,6 +204,11 @@ namespace Playnite.FullscreenApp.Controls
             {
                 var child = Children[i];
                 var itemIndex = generator.IndexFromGeneratorPosition(new GeneratorPosition(i, 0));
+                if (itemIndex < 0)
+                {
+                    continue;
+                }
+
                 child.Arrange(GetItemRect(itemIndex));
             }
 
@@ -281,7 +286,13 @@ namespace Playnite.FullscreenApp.Controls
             {
                 GeneratorPosition childGeneratorPos = new GeneratorPosition(i, 0);
                 int itemIndex = generator.IndexFromGeneratorPosition(childGeneratorPos);
+                var child = InternalChildren[i];
                 if ((itemIndex < firstIndex || itemIndex > lastIndex) && itemIndex > 0)
+                {
+                    generator.Remove(childGeneratorPos, 1);
+                    RemoveInternalChildRange(i, 1);
+                }
+                else if (child.ToString().Contains("{DisconnectedItem}"))
                 {
                     generator.Remove(childGeneratorPos, 1);
                     RemoveInternalChildRange(i, 1);
@@ -350,7 +361,7 @@ namespace Playnite.FullscreenApp.Controls
             }
             else
             {
-                return viewport.Height / (Rows + marginOffset);                
+                return viewport.Height / (Rows + marginOffset);
             }
         }
 
@@ -408,7 +419,6 @@ namespace Playnite.FullscreenApp.Controls
                 itemHeight = GetItemHeight();
                 if (itemHeight > viewport.Height)
                 {
-
                     itemHeight = viewport.Height;
                     itemWidth = ItemAspectRatio.GetWidth(itemHeight);
                 }
