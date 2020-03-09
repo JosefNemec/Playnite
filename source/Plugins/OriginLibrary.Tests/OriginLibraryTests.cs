@@ -28,7 +28,7 @@ namespace OriginLibrary.Tests
         public void GetInstalledGamesTest()
         {
             var originLib = CreateLibrary();
-            var games = originLib.GetInstalledGames(true);
+            var games = originLib.GetInstalledGames();
             Assert.AreNotEqual(0, games.Count);
 
             var game = games.Values.First();
@@ -53,7 +53,7 @@ namespace OriginLibrary.Tests
             var originLib = CreateLibrary();
             var cachePath = Origin.GetCachePath(originLib.GetPluginUserDataPath());
             FileSystem.DeleteDirectory(cachePath);
-            var games = originLib.GetInstalledGames(true);
+            var games = originLib.GetInstalledGames();
             var cacheFiles = Directory.GetFiles(cachePath, "*.json");
             CollectionAssert.IsNotEmpty(cacheFiles);
         }

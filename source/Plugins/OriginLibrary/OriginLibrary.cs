@@ -164,41 +164,20 @@ namespace OriginLibrary
             return null;
         }
 
-        internal GameLocalDataResponse GetLocalManifest(string id, bool useDataCache = false)
+        internal GameLocalDataResponse GetLocalManifest(string id)
         {
-            var cachePath = Origin.GetCachePath(GetPluginUserDataPath());
-            var cacheFile = Path.Combine(cachePath, id.Replace(":", "") + ".json");
-            if (useDataCache == true && File.Exists(cacheFile))
-            {
-                return JsonConvert.DeserializeObject<GameLocalDataResponse>(File.ReadAllText(cacheFile, Encoding.UTF8));
-            }
-            else if (useDataCache == true && !File.Exists(cacheFile))
-            {
-                logger.Debug($"Downloading game manifest {id}");
-                FileSystem.CreateDirectory(cachePath);
-
-                try
-                {
-                    var data = OriginApiClient.GetGameLocalData(id);
-                    File.WriteAllText(cacheFile, JsonConvert.SerializeObject(data), Encoding.UTF8);
-                    return data;
-                }
-                catch (WebException exc) when ((exc.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.NotFound)
-                {
-                    logger.Info($"Origin manifest {id} not found on EA server, generating fake manifest.");
-                    var data = new GameLocalDataResponse()
-                    {
-                        offerId = id,
-                        offerType = "Doesn't exist"
-                    };
-
-                    File.WriteAllText(cacheFile, JsonConvert.SerializeObject(data), Encoding.UTF8);
-                    return data;
-                }
-            }
-            else
+            try
             {
                 return OriginApiClient.GetGameLocalData(id);
+            }
+            catch (WebException exc) when ((exc.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.NotFound)
+            {
+                logger.Info($"Origin manifest {id} not found on EA server, generating fake manifest.");
+                return new GameLocalDataResponse
+                {
+                    offerId = id,
+                    offerType = "Doesn't exist"
+                };
             }
         }
 
@@ -282,7 +261,7 @@ namespace OriginLibrary
             return playAction;
         }
 
-        public Dictionary<string, GameInfo> GetInstalledGames(bool useDataCache = false)
+        public Dictionary<string, GameInfo> GetInstalledGames()
         {
             var contentPath = Path.Combine(Origin.DataPath, "LocalContent");
             var games = new Dictionary<string, GameInfo>();
@@ -320,7 +299,7 @@ namespace OriginLibrary
 
                         try
                         {
-                            localData = GetLocalManifest(gameId, useDataCache);
+                            localData = GetLocalManifest(gameId);
                         }
                         catch (Exception e) when (!Environment.IsDebugBuild)
                         {
@@ -370,7 +349,7 @@ namespace OriginLibrary
                         // For games like Sims 4
                         if (newGame.PlayAction?.Path.EndsWith("exe", StringComparison.OrdinalIgnoreCase) == false)
                         {
-                            var task = GetGamePlayTask(newGame.InstallDirectory);                            
+                            var task = GetGamePlayTask(newGame.InstallDirectory);
                             newGame.InstallDirectory = task.WorkingDir;
                             newGame.PlayAction.WorkingDir = task.WorkingDir.Replace(newGame.InstallDirectory, ExpandableVariables.InstallationDirectory);
                             newGame.PlayAction.Path = task.Path.Replace(newGame.InstallDirectory, "").Trim(new char[] { '\\', '/' });
@@ -458,11 +437,11 @@ namespace OriginLibrary
                     {
                         logger.Error(e, $"Failed to get usage data for {game.offerId}");
                     }
-                    
+
                     var gameName = game.offerId;
                     try
                     {
-                        var localData = GetLocalManifest(game.offerId,  true);
+                        var localData = GetLocalManifest(game.offerId);
                         if (localData != null)
                         {
                             gameName = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
@@ -528,7 +507,7 @@ namespace OriginLibrary
             {
                 try
                 {
-                    installedGames = GetInstalledGames(true);
+                    installedGames = GetInstalledGames();
                     logger.Debug($"Found {installedGames.Count} installed Origin games.");
                     allGames.AddRange(installedGames.Values.ToList());
                 }
