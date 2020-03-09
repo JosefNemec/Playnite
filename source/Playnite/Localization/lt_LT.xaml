@@ -382,6 +382,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nieko</sys:String>
     <sys:String x:Key="LOCStrechFill">Užpildyti</sys:String>
