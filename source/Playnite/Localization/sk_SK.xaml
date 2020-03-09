@@ -419,6 +419,7 @@ Ak nie je povolené, obrázky pozadia sa budú preberať len vtedy ak sú potreb
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automaticky zatvoriť nasledovných klientov:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Automaticky zavrieť klientov</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Pri priradení príliš veľkých herných médií zobrazovať upozornenie</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Žiadne</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplniť</sys:String>
