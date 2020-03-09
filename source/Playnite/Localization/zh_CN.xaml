@@ -419,6 +419,7 @@ IGDB &gt; 官方商店：
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自动关闭以下客户端：</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">自动关闭客户端</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">当游戏媒体数据太大的时候显示警告</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">无需启动官方客户端直接运行游戏</sys:String>
 
     <sys:String x:Key="LOCStrechNone">无</sys:String>
     <sys:String x:Key="LOCStrechFill">填充</sys:String>
