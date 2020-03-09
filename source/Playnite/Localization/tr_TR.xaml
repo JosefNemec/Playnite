@@ -374,7 +374,7 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsFullscreenRows">Satır sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sütun sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Ayrıntı görünümü satır sayısı</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Arka Plan Resmini Ana Sayfada Göster</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Arkaplan Resmini Ana Ekranda Göster</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Arka plan resmi kaynağı:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Oyun Resmi</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Mağaza Ekran Görüntüsü</sys:String>
@@ -419,6 +419,7 @@ Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğun
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Şu istemcileri otomatik kapat:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">İstemcileri Otomatik Kapat</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Çok büyük oyun ortamı atandığında uyarı göster</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Oyunu resmi istemciyi çalıştırmadan direkt olarak başlat</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
