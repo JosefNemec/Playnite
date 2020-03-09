@@ -419,6 +419,7 @@ Se desabilitado, as imagens de fundo só serão baixadas quando necessário. Men
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fechar automaticamente os seguintes clientes:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Fechar clientes automaticamente</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Exibir aviso quando atribuir arquivos de mídia muito grandes a jogos</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Iniciar jogos diretamente, sem executar o cliente oficial</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preenchimento</sys:String>
