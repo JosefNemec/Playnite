@@ -385,6 +385,7 @@ Nové umístění databáze bude použito po restartu aplikace.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Žádný</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplnit</sys:String>
