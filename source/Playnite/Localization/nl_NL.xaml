@@ -393,6 +393,7 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Geen</sys:String>
     <sys:String x:Key="LOCStrechFill">Vullen</sys:String>
