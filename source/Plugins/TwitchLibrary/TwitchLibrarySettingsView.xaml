@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:TwitchLibrary"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:pcon="clr-namespace:Playnite.Converters"
+             xmlns:pcmd="clr-namespace:Playnite.Commands"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="800">
 
@@ -69,5 +70,17 @@
                 </TextBlock>
             </StackPanel>
         </StackPanel>
+
+        <CheckBox IsChecked="{Binding StartGamesWithoutLauncher}"
+                  Content="{DynamicResource LOCSettingsStartGameDirectly}"
+                  Margin="0,5,0,0" />
+
+        <TextBlock VerticalAlignment="Center" Margin="0,20,0,0">
+            <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/Twitch-and-Amazon-Games-troubleshooting"
+                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                <Run Text="{DynamicResource LOCTroubleShootingIssues}" />
+            </Hyperlink>
+        </TextBlock>
     </StackPanel>
 </UserControl>

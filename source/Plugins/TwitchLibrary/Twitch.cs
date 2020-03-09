@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TwitchLibrary.Models;
 
 namespace TwitchLibrary
 {
@@ -78,6 +79,17 @@ namespace TwitchLibrary
         public static void StartClient()
         {
             ProcessStarter.StartProcess(ClientExecPath, string.Empty);
+        }
+
+        public static GameConfiguration GetGameConfiguration(string gameDir)
+        {
+            var configFile = Path.Combine(gameDir, GameConfiguration.ConfigFileName);
+            if (File.Exists(configFile))
+            {
+                return Serialization.FromJsonFile<GameConfiguration>(configFile);
+            }
+
+            return null;
         }
     }
 }
