@@ -416,6 +416,7 @@ Si cette option est désactivée, les images de fond ne seront téléchargées q
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fermer automatiquement les clients suivants :</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Fermeture auto.</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Avertissement lorsqu'une image dépasse la taille recommandée</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Lancer les jeux sans passer par le client officiel</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
