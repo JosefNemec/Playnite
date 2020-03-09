@@ -419,6 +419,7 @@ Se disattivato, l'immagine dello sfondo sarà scaricato soltanto quando sarà ri
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Chiudere automaticamente i seguenti client:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Chiudere i client automaticamente</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Mostra un avvertimento quando si assegna un'immagine troppo grande del gioco</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Avvia i giochi direttamente senza avviare il client ufficiale</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Niente</sys:String>
     <sys:String x:Key="LOCStrechFill">Riempi</sys:String>
