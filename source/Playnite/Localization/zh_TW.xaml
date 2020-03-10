@@ -417,7 +417,7 @@ IGDB &gt; 官方商店
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自動關閉以下客戶端:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉遊戲啟動器</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">設定容量過大的遊戲媒材時顯示警告</sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">不透過啟動器直接開始遊戲</sys:String>
 
     <sys:String x:Key="LOCStrechNone">無</sys:String>
     <sys:String x:Key="LOCStrechFill">填滿</sys:String>
