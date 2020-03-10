@@ -419,7 +419,7 @@ Falls deaktiviert, werden Hintergrundbilder erst dann heruntergeladen, wenn sie 
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Folgende Clients automatisch schließen:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Clients autom. schließen</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Warnung anzeigen, wenn zu große Spielemedien zugewiesen werden</sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Spiele direkt starten ohne offiziellen Client</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
