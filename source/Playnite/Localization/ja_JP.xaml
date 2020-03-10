@@ -102,8 +102,8 @@
     <sys:String x:Key="LOCBackCapLabel">戻る</sys:String>
     <sys:String x:Key="LOCClearCapLabel">消去</sys:String>
     <sys:String x:Key="LOCClearLabel">消去</sys:String>
-    <sys:String x:Key="LOCDismiss">却下</sys:String>
-    <sys:String x:Key="LOCDismissAll">すべてを却下</sys:String>
+    <sys:String x:Key="LOCDismiss">消去</sys:String>
+    <sys:String x:Key="LOCDismissAll">すべて消去</sys:String>
     <sys:String x:Key="LOCImportLabel">インポート</sys:String>
     <sys:String x:Key="LOCNameLabel">名前</sys:String>
     <sys:String x:Key="LOCAuthorLabel">作者</sys:String>
@@ -419,7 +419,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">以下のクライアントは自動的に閉じる：</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">クライアントを自動的に閉じる</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">大きすぎるゲームメディアを割り当てるときに警告を表示する</sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">公式クライアントを起動しないでゲームを直接起動する</sys:String>
 
     <sys:String x:Key="LOCStrechNone">無し</sys:String>
     <sys:String x:Key="LOCStrechFill">埋める</sys:String>
