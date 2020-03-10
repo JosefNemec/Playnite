@@ -15,6 +15,8 @@ namespace TwitchLibrary.Models
             public string Command;
             public string WorkingSubdirOverride;
             public List<string> Args;
+            public List<string> AuthScopes;
+            public string ClientId;
         }
 
         public string SchemaVersion;

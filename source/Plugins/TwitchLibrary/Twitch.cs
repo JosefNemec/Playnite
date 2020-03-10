@@ -91,5 +91,11 @@ namespace TwitchLibrary
 
             return null;
         }
+
+        public static bool GetGameRequiresClient(GameConfiguration config)
+        {
+            return !config.Main.ClientId.IsNullOrEmpty() &&
+                    config.Main.AuthScopes.HasItems();
+        }
     }
 }

@@ -56,7 +56,14 @@ namespace TwitchLibrary
                 try
                 {
                     gameConfig = Twitch.GetGameConfiguration(Game.InstallDirectory);
-                    startViaLauncher = false;
+                    if (Twitch.GetGameRequiresClient(gameConfig))
+                    {
+                        startViaLauncher = true;
+                    }
+                    else
+                    {
+                        startViaLauncher = false;
+                    }
                 }
                 catch (Exception e) when (!Debugger.IsAttached)
                 {
