@@ -419,7 +419,7 @@ IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">다음 클라이언트 자동으로 닫기:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">자동으로 클라이언트 닫기</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">너무 큰 게임 미디어를 지정할 때 경고 표시하기</sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">정식 클라이언트 실행 없이 바로 게임 시작하기</sys:String>
 
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
