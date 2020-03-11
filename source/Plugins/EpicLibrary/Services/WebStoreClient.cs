@@ -14,7 +14,7 @@ namespace EpicLibrary.Services
         private HttpClient httpClient = new HttpClient();
 
         public const string GraphQLEndpoint = @"https://graphql.epicgames.com/graphql";
-        public const string ProductUrlBase = @"https://www.epicgames.com/store/en-US/api/content/products/{0}?lang=en-US";
+        public const string ProductUrlBase = @"https://store-content.ak.epicgames.com/api/en-US/content/products/{0}";
 
         public WebStoreClient()
         {
