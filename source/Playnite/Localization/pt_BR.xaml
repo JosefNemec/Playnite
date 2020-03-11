@@ -239,7 +239,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escanear automaticamente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Jogo emulado…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Jogo da Microsoft Store ou do aplicativo Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Aplicativo da Microsoft Store…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre o Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar comentários</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo tela cheia</sys:String>
@@ -353,7 +353,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Não foi possível importar as últimas sessões dos jogos, a conta para a importação não foi selecionada.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Não foi possível importar as últimas sessões dos jogos, o banco de dados não está aberto.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Falha ao importar as últimas sessões dos jogos do Steam: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheWarn">Todas as contas de serviços configuradas serão desvinculadas. Será necessário reiniciar o programa, você deseja continuar?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">Todas as contas de serviços configuradas serão desvinculadas. Será necessário reiniciar o aplicativo, você deseja continuar?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Limpar o cache?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Você precisa de uma chave da API para vincular contas privadas do Steam</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">Obter chave da API</sys:String>
@@ -367,13 +367,14 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
  
 Qualquer tarefa sendo executada (como a importação de metadados) será cancelada.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Reiniciar o Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">O Playnite não move os aquivos da biblioteca automaticamente, você deve movê-los ou copiá-los antes que o local seja alterado. Se nenhuma biblioteca estiver presente no local de destino, uma nova biblioteca será criada.
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">O Playnite não move os arquivos da biblioteca automaticamente, você deve movê-los ou copiá-los antes que o local seja alterado. Se nenhuma biblioteca estiver presente no local de destino, uma nova biblioteca será criada.
 
 O novo local do banco de dados será usado somente após o aplicativo ser reiniciado.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">O tempo de jogo não será gravado se a ação &quot;Fechar&quot; for definida.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de linhas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de colunas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Número de linhas no esquema de detalhes</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Mostrar imagem de fundo na tela principal</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Fonte da imagem de fundo:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Imagem do jogo</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de tela da loja</sys:String>
@@ -418,6 +419,7 @@ Se desabilitado, as imagens de fundo só serão baixadas quando necessário. Men
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fechar automaticamente os seguintes clientes:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Fechar clientes automaticamente</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Exibir aviso quando atribuir arquivos de mídia muito grandes a jogos</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Iniciar jogos diretamente, sem executar o cliente oficial</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preenchimento</sys:String>
@@ -462,7 +464,7 @@ Você também poderá configurar e importar emuladores personalizados posteriorm
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Configuração Inicial</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Este assistente lhe ajudará no processo de importação automática de jogos e configuração de bibliotecas de jogos externas. O Playnite pode importar automaticamente jogos de vários serviços de jogos como o Steam ou o GOG, além de manter a sua biblioteca sempre atualizada, atualizando-os de forma automática durante a inicialização do programa.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Este assistente lhe ajudará no processo de importação automática de jogos e configuração de bibliotecas de jogos externas. O Playnite pode importar automaticamente jogos de vários serviços de jogos como o Steam ou o GOG, além de manter a sua biblioteca sempre atualizada, atualizando-os de forma automática durante a inicialização do aplicativo.
  
 Tenha em mente que você sempre pode adicionar jogos personalizados de qualquer plataforma manualmente através do menu principal, clicando no botão &quot;Playnite&quot;.
     </sys:String>
@@ -615,7 +617,7 @@ Anexe a seguinte ID ao seu relatório de falha:</sys:String>
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Não foi possível abrir o link, o URL não está em um formato válido.</sys:String>
-    <sys:String x:Key="LOCAppStartupError">Falha ao executar a aplicação.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">Falha ao executar o aplicativo.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Falha ao inicializar o componente de visualização da web, a execução do Playnite foi interrompida.
 
 Você pode tentar corrigir o problema:

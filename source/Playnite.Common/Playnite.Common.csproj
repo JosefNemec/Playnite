@@ -102,6 +102,7 @@
     <Compile Include="DesignerTools.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\BitmapIconExtensions.cs" />
     <Compile Include="Extensions\CloneObject.cs" />
     <Compile Include="Extensions\Enums.cs" />
     <Compile Include="Extensions\ItemsControlExtensions.cs" />
@@ -115,6 +116,8 @@
     <Compile Include="IniParser.cs" />
     <Compile Include="InteropMethods.cs" />
     <Compile Include="ItemsSource.cs" />
+    <Compile Include="Media\Icons\IconExtractor.cs" />
+    <Compile Include="Media\Icons\IconUtil.cs" />
     <Compile Include="MemoryCache.cs" />
     <Compile Include="Explorer.cs" />
     <Compile Include="NLogLogProvider.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="ProcessStarter.cs" />
     <Compile Include="Programs.cs" />
     <Compile Include="SafeFileEnumerator.cs" />
+    <Compile Include="SigningTools.cs" />
     <Compile Include="Sizes.cs" />
     <Compile Include="Sqlite.cs" />
     <Compile Include="SystemDialogs.cs" />

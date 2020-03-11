@@ -37,7 +37,6 @@ namespace OriginLibrary
 
         public void ReleaseResources()
         {
-
             procMon?.Dispose();
         }
 
@@ -72,9 +71,9 @@ namespace OriginLibrary
             {
                 // Solves issues with game process being started/shutdown multiple times during startup via Origin
                 await Task.Delay(5000);
-            }  
+            }
 
-            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);         
+            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
         }
 
         public override void Install()
@@ -105,7 +104,7 @@ namespace OriginLibrary
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            var manifest = origin.GetLocalManifest(Game.GameId, true);
+            var manifest = origin.GetLocalManifest(Game.GameId);
             if (manifest?.publishing == null)
             {
                 logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping installation check.");
@@ -144,8 +143,8 @@ namespace OriginLibrary
 
         public async void StartUninstallWatcher()
         {
-            watcherToken = new CancellationTokenSource();   
-            var manifest = origin.GetLocalManifest(Game.GameId, true);
+            watcherToken = new CancellationTokenSource();
+            var manifest = origin.GetLocalManifest(Game.GameId);
             if (manifest?.publishing == null)
             {
                 logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping uninstallation check.");

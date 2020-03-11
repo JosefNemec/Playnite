@@ -207,7 +207,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuellt…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Installerade Spel…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulerade spel…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store- eller Xbox App-spel…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Skicka Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Fullskärmsläge</sys:String>
@@ -338,6 +338,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Antal rader</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Antal kolumner</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Antalet rader i detaljvyn</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Bakgrundskälla:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Bild på spelet</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Skärmdump från butiken</sys:String>
@@ -380,6 +381,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Fyll ut</sys:String>

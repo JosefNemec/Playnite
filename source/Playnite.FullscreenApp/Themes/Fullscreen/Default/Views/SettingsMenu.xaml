@@ -58,6 +58,23 @@
                                             Style="{DynamicResource CheckBoxSettings}"
                                             Content="{DynamicResource LOCSettingsDarkenUninstalledGridCovers}" />
 
+                                <CheckBoxEx x:Name="PART_ToggleBackgroundOnMain"
+                                            Margin="{StaticResource ItemMargin}"
+                                            Style="{DynamicResource CheckBoxSettings}"
+                                            Content="{DynamicResource LOCSettingsFullscreenBackgroundOnMainScreen}" />
+
+                                <TextBlock Text="{DynamicResource LOCSettingsBlurWindowBackgrounImage}"
+                                           Margin="{StaticResource ItemMargin}"
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+                                <SliderEx x:Name="PART_SliderBackgroundBlurAmount"
+                                          Margin="{StaticResource ItemMargin}" />
+                                
+                                <TextBlock Text="{DynamicResource LOCSettingsDarkenWindowBackghrounImage}"
+                                           Margin="{StaticResource ItemMargin}"
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+                                <SliderEx x:Name="PART_SliderBackgroundDarkenAmount"
+                                          Margin="{StaticResource ItemMargin}" />
+                                
                                 <CheckBoxEx x:Name="PART_ToggleHorizontalLayout"
                                             Margin="{StaticResource ItemMargin}"
                                             Style="{DynamicResource CheckBoxSettings}"

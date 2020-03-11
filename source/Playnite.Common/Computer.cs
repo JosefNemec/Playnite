@@ -96,6 +96,31 @@ namespace Playnite.Common
             return Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ReleaseId", ""));
         }
 
+        public static Guid GetMachineGuid()
+        {
+            RegistryKey root = null;
+            if (Environment.Is64BitOperatingSystem)
+            {
+                root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            }
+            else
+            {
+                root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
+            }
+
+            try
+            {
+                using (var cryptography = root.OpenSubKey("SOFTWARE\\Microsoft\\Cryptography"))
+                {
+                    return Guid.Parse((string)cryptography.GetValue("MachineGuid"));
+                }
+            }
+            finally
+            {
+                root.Dispose();
+            }
+        }
+
         public static SystemInfo GetSystemInfo()
         {
             var info = new SystemInfo
@@ -105,7 +130,7 @@ namespace Playnite.Common
             };
 
             using (var win32Proc = new ManagementObjectSearcher("SELECT * FROM Win32_Processor"))
-            {                
+            {
                 foreach (var obj in win32Proc.Get())
                 {
                     info.Cpu = obj["Name"].ToString().Trim();

@@ -240,7 +240,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuAddGameManual">Manually…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scan Automatically…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulated Game…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store or Xbox App Game…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store application…</sys:String>
     <sys:String x:Key="LOCMenuAbout">About Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullscreen Mode</sys:String>
@@ -375,6 +375,7 @@ New database location will only be used after application is restarted.</sys:Str
     <sys:String x:Key="LOCSettingsFullscreenRows">Number of rows</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Number of columns</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Number of detail view rows</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Show Background Image on Main Screen</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Background image source:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Game Image</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Store Screenshot</sys:String>
@@ -419,6 +420,7 @@ If disabled, background artwork is downloaded only when first needed, using less
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automatically close following clients:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Auto Close Clients</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Display warning when assigning too large game media</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Start games directly without running official client</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>

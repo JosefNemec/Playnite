@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:steam="clr-namespace:SteamLibrary"
+             xmlns:steamShared="clr-namespace:Steam"
              xmlns:pcmd="clr-namespace:Playnite.Commands"
              xmlns:pcon="clr-namespace:Playnite.Converters"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -24,7 +25,7 @@
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
                     x:Key="BackgroundSourceEnumValues">
             <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="steam:BackgroundSource" />
+                <x:Type TypeName="steamShared:BackgroundSource" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <ComboBox x:Key="BackgroundSourceBox" x:Shared="False"

@@ -104,7 +104,7 @@ namespace UplayLibrary
                 {
                     var gameData = installsKey.OpenSubKey(install);
                     var installDir = (gameData.GetValue("InstallDir") as string)?.Replace('/', Path.DirectorySeparatorChar);
-                    if (!installDir.IsNullOrEmpty())
+                    if (!installDir.IsNullOrEmpty() && Directory.Exists(installDir))
                     {
                         var newGame = new GameInfo()
                         {
@@ -194,8 +194,7 @@ namespace UplayLibrary
                         {
                             allGames.Add(libGame);
                         }
-                    }                    
-
+                    }
                 }
                 catch (Exception e)
                 {

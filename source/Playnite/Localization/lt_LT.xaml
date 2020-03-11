@@ -338,6 +338,7 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Eilučių skaičius</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Stulpelių skaičius</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Detalaus rodinio eilučių skaičius</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Fono paveikslėlio šaltinis:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Žaidimo paveikslėlis</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Saugoti ekrano kopiją</sys:String>
@@ -381,6 +382,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nieko</sys:String>
     <sys:String x:Key="LOCStrechFill">Užpildyti</sys:String>

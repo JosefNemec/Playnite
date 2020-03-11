@@ -76,12 +76,20 @@ namespace Playnite.Common
         {
             try
             {
-                var bitmapFrame = BitmapFrame.Create(imageStream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
-                return new ImageProperties
+                var decoder = BitmapDecoder.Create(imageStream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
+                if (decoder.Frames.HasItems())
                 {
-                    Height = bitmapFrame.PixelHeight,
-                    Width = bitmapFrame.PixelWidth,
-                };
+                    return new ImageProperties
+                    {
+                        Height = decoder.Frames.Max(a => a.PixelHeight),
+                        Width = decoder.Frames.Max(a => a.PixelWidth),
+                    };
+                }
+                else
+                {
+                    logger.Warn("Images stream has no frames.");
+                    return new ImageProperties();
+                }
             }
             catch (Exception e)
             {

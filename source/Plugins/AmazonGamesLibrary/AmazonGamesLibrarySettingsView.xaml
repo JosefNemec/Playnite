@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="AmazonGamesLibrary.AmazonGamesLibrarySettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:pcon="clr-namespace:Playnite.Converters"
+             xmlns:pcmd="clr-namespace:Playnite.Commands"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="800">
+
+
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+
+    <UserControl.Resources>
+        <pcon:NegateConverter x:Key="NegateConverter" />
+        <sys:Boolean x:Key="True">True</sys:Boolean>
+        <sys:Boolean x:Key="False">False</sys:Boolean>
+    </UserControl.Resources>
+
+    <StackPanel Margin="20">
+        <CheckBox DockPanel.Dock="Top" Name="CheckAmazonImportInstalled"
+                  Margin="0,0,0,15"
+                  IsChecked="{Binding ImportInstalledGames}"
+                  Content="{DynamicResource LOCSettingsImportInstalledLabel}"/>
+
+        <CheckBox DockPanel.Dock="Top" Name="CheckAmazonConnectAccount"
+                  IsChecked="{Binding ConnectAccount}"
+                  Content="{DynamicResource LOCSettingsConnectAccount}"/>
+
+        <StackPanel DockPanel.Dock="Top" Margin="40,5,5,5"
+                    IsEnabled="{Binding IsChecked, ElementName=CheckAmazonConnectAccount}">
+
+            <CheckBox DockPanel.Dock="Top" Name="CheckAmazonImportUninstalled"
+                      IsChecked="{Binding ImportUninstalledGames}"
+                      Margin="0,10,0,0"
+                      Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+
+            <StackPanel Orientation="Horizontal"
+                        DockPanel.Dock="Top" Margin="0,15,5,5" HorizontalAlignment="Left">
+                <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left"
+                        Command="{Binding LoginCommand}"/>
+                <TextBlock VerticalAlignment="Center" Margin="10,5,5,5">
+                    <TextBlock.Tag>
+                        <PriorityBinding>
+                            <Binding Path="IsUserLoggedIn" IsAsync="True" />
+                            <Binding Source="{x:Null}" />
+                        </PriorityBinding>
+                    </TextBlock.Tag>
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                            <Style.Triggers>
+                                <Trigger Property="Tag" Value="{StaticResource True}">
+                                    <Setter Property="Text" Value="{DynamicResource LOCLoggedIn}" />
+                                </Trigger>
+                                <Trigger Property="Tag" Value="{StaticResource False}">
+                                    <Setter Property="Text" Value="{DynamicResource LOCNotLoggedIn}" />
+                                </Trigger>
+                                <Trigger Property="Tag" Value="{x:Null}">
+                                    <Setter Property="Text" Value="{DynamicResource LOCLoginChecking}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <CheckBox IsChecked="{Binding StartGamesWithoutLauncher}"
+                  Content="{DynamicResource LOCSettingsStartGameDirectly}"
+                  Margin="0,5,0,0" />
+
+        <TextBlock VerticalAlignment="Center" Margin="0,20,0,0">
+            <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/Twitch-and-Amazon-Games-troubleshooting"
+                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                <Run Text="{DynamicResource LOCTroubleShootingIssues}" />
+            </Hyperlink>
+        </TextBlock>
+    </StackPanel>
+</UserControl>

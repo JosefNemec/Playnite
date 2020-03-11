@@ -21,6 +21,7 @@ using System.Windows;
 using System.Reflection;
 using System.Collections.ObjectModel;
 using Playnite.Common.Web;
+using Steam;
 
 namespace SteamLibrary
 {
@@ -806,7 +807,7 @@ namespace SteamLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new SteamMetadataProvider(ServicesClient, this, apiClient);
+            return new SteamMetadataProvider(this, apiClient);
         }
 
         #endregion ILibraryPlugin

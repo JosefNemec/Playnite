@@ -16,6 +16,7 @@ using Playnite.Common.Web;
 using System.Drawing.Imaging;
 using System.Threading;
 using System.Collections.Concurrent;
+using Playnite.Common.Media.Icons;
 
 namespace Playnite.Database
 {
@@ -194,7 +195,7 @@ namespace Playnite.Database
             }
             else
             {
-                return Path.Combine(PlaynitePaths.ConfigRootPath, "library");
+                return @"%AppData%\Playnite\library";
             }
         }
 
@@ -594,14 +595,14 @@ namespace Playnite.Database
                     {
                         if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                         {
-                            var icon = System.Drawing.IconExtension.ExtractIconFromExe(path, true);
-                            if (icon == null)
+                            using (var ms = new MemoryStream())
                             {
-                                return null;
+                                if (IconExtractor.ExtractMainIconFromFile(path, ms))
+                                {
+                                    fileName = Path.ChangeExtension(fileName, ".ico");
+                                    metaFile = new MetadataFile(fileName, ms.ToArray());
+                                }
                             }
-
-                            fileName = Path.ChangeExtension(fileName, ".png");
-                            metaFile = new MetadataFile(fileName, System.Drawing.IconExtension.ToByteArray(icon, System.Drawing.Imaging.ImageFormat.Png));
                         }
                         else
                         {
@@ -624,7 +625,15 @@ namespace Playnite.Database
                 if (metaFile.FileName.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
                 {
                     metaFile.FileName = Path.ChangeExtension(metaFile.FileName, ".png");
-                    metaFile.Content = BitmapExtensions.TgaToBitmap(metaFile.Content).ToPngArray();
+                    var tga = BitmapExtensions.TgaToBitmap(metaFile.Content);
+                    if (tga == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        metaFile.Content = tga.ToPngArray();
+                    }
                 }
 
                 return AddFile(metaFile, gameId);
@@ -789,7 +798,14 @@ namespace Playnite.Database
                     if (existingGame == null)
                     {
                         logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                        addedGames.Add(ImportGame(newGame, library.Id));
+                        try
+                        {
+                            addedGames.Add(ImportGame(newGame, library.Id));
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, "Failed to import game into database.");
+                        }
                     }
                     else
                     {

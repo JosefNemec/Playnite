@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace Playnite.Common
-{   
+{
     public class CacheItem
     {
         public object CacheObject
@@ -60,7 +60,7 @@ namespace Playnite.Common
         private long currentSize = 0;
 
         public MemoryCache(long memoryLimit)
-        {            
+        {
             memorySizeLimit = memoryLimit;
         }
 
@@ -68,6 +68,7 @@ namespace Playnite.Common
         {
             cache.Clear();
             currentSize = 0;
+            GC.Collect();
         }
 
         private void ReleaseOldestItems()

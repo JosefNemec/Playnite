@@ -85,12 +85,13 @@
     <Compile Include="Models\GetOwnedGamesResult.cs" />
     <Compile Include="Models\LocalSteamUser.cs" />
     <Compile Include="Models\ResolveVanityResult.cs" />
-    <Compile Include="Models\SteamGameMetadata.cs" />
-    <Compile Include="Models\StoreAppDetailsResult.cs" />
+    <Compile Include="SteamShared\SteamGameMetadata.cs" />
+    <Compile Include="SteamShared\StoreAppDetailsResult.cs" />
     <Compile Include="SteamClient.cs" />
     <Compile Include="Services\SteamServicesClient.cs" />
-    <Compile Include="Services\WebApiClient.cs" />
-    <Compile Include="Services\SteamApiClient.cs" />
+    <Compile Include="SteamShared\MetadataProvider.cs" />
+    <Compile Include="SteamShared\WebApiClient.cs" />
+    <Compile Include="SteamShared\SteamApiClient.cs" />
     <Compile Include="SteamGameController.cs" />
     <Compile Include="SteamLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

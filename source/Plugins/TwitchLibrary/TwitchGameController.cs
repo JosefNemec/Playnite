@@ -11,11 +11,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TwitchLibrary.Models;
 
 namespace TwitchLibrary
 {
     public class TwitchGameController : BaseGameController
     {
+        private static ILogger logger = LogManager.GetLogger();
         private CancellationTokenSource watcherToken;
         private ProcessMonitor procMon;
         private TwitchLibrary library;
@@ -47,13 +49,56 @@ namespace TwitchLibrary
         public override void Play()
         {
             OnStarting(this, new GameControllerEventArgs(this, 0));
-            ProcessStarter.StartUrl($"twitch://fuel-launch/{Game.GameId}");
-            stopWatch = Stopwatch.StartNew();
-            procMon = new ProcessMonitor();
-            procMon.TreeStarted += ProcMon_TreeStarted;
-            procMon.TreeDestroyed += Monitor_TreeDestroyed;
+            var startViaLauncher = true;
+            GameConfiguration gameConfig = null;
+            if (library.LibrarySettings.StartGamesWithoutLauncher)
+            {
+                try
+                {
+                    gameConfig = Twitch.GetGameConfiguration(Game.InstallDirectory);
+                    if (Twitch.GetGameRequiresClient(gameConfig))
+                    {
+                        startViaLauncher = true;
+                    }
+                    else
+                    {
+                        startViaLauncher = false;
+                    }
+                }
+                catch (Exception e) when (!Debugger.IsAttached)
+                {
+                    logger.Error(e, "Failed to get local game configuration.");
+                }
+            }
+
+            if (startViaLauncher)
+            {
+                ProcessStarter.StartUrl($"twitch://fuel-launch/{Game.GameId}");
+            }
+            else
+            {
+                var exePath = Path.Combine(Game.InstallDirectory, gameConfig.Main.Command);
+                var workDir = Game.InstallDirectory;
+                if (!gameConfig.Main.WorkingSubdirOverride.IsNullOrEmpty())
+                {
+                    workDir = Path.Combine(Game.InstallDirectory, gameConfig.Main.WorkingSubdirOverride);
+                }
+
+                string args = null;
+                if (gameConfig.Main.Args.HasNonEmptyItems())
+                {
+                    args = string.Join(" ", gameConfig.Main.Args);
+                }
+
+                ProcessStarter.StartProcess(exePath, args, workDir);
+            }
+
             if (Directory.Exists(Game.InstallDirectory))
             {
+                stopWatch = Stopwatch.StartNew();
+                procMon = new ProcessMonitor();
+                procMon.TreeStarted += ProcMon_TreeStarted;
+                procMon.TreeDestroyed += Monitor_TreeDestroyed;
                 procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
             }
             else
@@ -83,7 +128,7 @@ namespace TwitchLibrary
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-     
+
             while (true)
             {
                 if (watcherToken.IsCancellationRequested)
@@ -103,7 +148,6 @@ namespace TwitchLibrary
                     return;
                 }
 
-
                 await Task.Delay(2000);
             }
         }
@@ -111,7 +155,7 @@ namespace TwitchLibrary
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-        
+
             while (true)
             {
                 if (watcherToken.IsCancellationRequested)

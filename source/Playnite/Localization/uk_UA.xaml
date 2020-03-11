@@ -338,6 +338,7 @@
     <sys:String x:Key="LOCSettingsFullscreenRows">Кількість рядків</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Кількість стовпців</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Кількість рядків детального перегляду</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Джерело фонового зображення:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Ігрове зображення</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Знімок екрану магазину</sys:String>
@@ -380,6 +381,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нічого</sys:String>
     <sys:String x:Key="LOCStrechFill">Заповнення</sys:String>

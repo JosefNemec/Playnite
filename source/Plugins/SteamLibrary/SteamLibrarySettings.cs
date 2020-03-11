@@ -13,17 +13,10 @@ using Playnite.SDK;
 using System.Windows.Media;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Steam;
 
 namespace SteamLibrary
 {
-    public enum BackgroundSource
-    {
-        Image,
-        StoreScreenshot,
-        StoreBackground,
-        Banner
-    }
-
     public enum AuthStatus
     {
         Ok,

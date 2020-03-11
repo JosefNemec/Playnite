@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SteamLibrary.Services;
+using Steam;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -76,7 +76,9 @@ namespace HumbleLibrary
                                 GameId = GetGameId(troveGame),
                                 Description = troveGame.description_text,
                                 Publishers = troveGame.publishers?.Select(a => a.publisher_name).ToList(),
-                                Developers = troveGame.developers?.Select(a => a.developer_name).ToList()
+                                Developers = troveGame.developers?.Select(a => a.developer_name).ToList(),
+                                Platform = "PC",
+                                Source = "Humble"
                             };
 
                             games.Add(game);
@@ -157,7 +159,9 @@ namespace HumbleLibrary
                         {
                             Name = product.human_name,
                             GameId = GetGameId(product),
-                            Icon = product.icon
+                            Icon = product.icon,
+                            Platform = "PC",
+                            Source = "Humble"
                         }, this));
                     }
                 }

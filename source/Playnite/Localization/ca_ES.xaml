@@ -207,7 +207,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manualment…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escaneja automàticament…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Joc emulat…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Joc de la Microsoft Store o de l'aplicació de Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envia els teus comentaris</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Inicia mode a pantalla completa</sys:String>
@@ -338,6 +338,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de files</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de columnes</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Nombre de files de visualització amb detalls</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Font de la imatge de fons:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Imatge del joc</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de pantalla de la botiga</sys:String>
@@ -380,6 +381,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>

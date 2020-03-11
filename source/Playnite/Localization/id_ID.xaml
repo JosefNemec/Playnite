@@ -338,6 +338,7 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Jumlah baris</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Jumlah kolom</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot"></sys:String>
@@ -380,6 +381,7 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Tidak ada</sys:String>
     <sys:String x:Key="LOCStrechFill">Isi</sys:String>

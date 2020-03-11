@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Environment.cs" />
     <Compile Include="Models\EntitlementsResponse.cs" />
+    <Compile Include="Models\GameConfiguration.cs" />
     <Compile Include="Models\TwitchCookie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AmazonEntitlementClient.cs" />

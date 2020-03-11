@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.Windows;
 using System.Windows;
+using Playnite.Common.Media.Icons;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -773,29 +774,26 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectPlatformIcon(Platform platform)
         {
-            var path = dialogs.SelectIconFile();
-            if (string.IsNullOrEmpty(path))
+            var iconPath = dialogs.SelectIconFile();
+            if (string.IsNullOrEmpty(iconPath))
             {
                 return;
             }
 
-            if (path.EndsWith("exe", StringComparison.OrdinalIgnoreCase))
+            if (iconPath.EndsWith("exe", StringComparison.OrdinalIgnoreCase))
             {
-                var ico = System.Drawing.IconExtension.ExtractIconFromExe(path, true);
-                if (ico == null)
+                var convertedPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".ico");
+                if (IconExtractor.ExtractMainIconFromFile(iconPath, convertedPath))
                 {
-                    return;
+                    iconPath = convertedPath;
                 }
-
-                path = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
-                FileSystem.PrepareSaveFile(path);
-                using (var bitmap = ico.ToBitmap())
+                else
                 {
-                    bitmap.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+                    iconPath = null;
                 }
             }
 
-            platform.Icon = path;
+            platform.Icon = iconPath;
         }
 
         public void SelectPlatformCover(Platform platform)

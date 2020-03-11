@@ -338,6 +338,7 @@
     <sys:String x:Key="LOCSettingsFullscreenRows">Αριθμός σειρών</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Αριθμός στηλών</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Αριθμός γραμμών λεπτομερής προβολής</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot"></sys:String>
@@ -381,6 +382,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>

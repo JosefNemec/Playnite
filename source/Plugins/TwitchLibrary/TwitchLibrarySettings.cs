@@ -20,7 +20,7 @@ namespace TwitchLibrary
         private TwitchLibrary library;
         private IPlayniteAPI api;
 
-        #region Settings  
+        #region Settings
 
         public int Version { get; set; }
 
@@ -29,6 +29,8 @@ namespace TwitchLibrary
         public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
+
+        public bool StartGamesWithoutLauncher { get; set; } = false;
 
         #endregion Settings
 

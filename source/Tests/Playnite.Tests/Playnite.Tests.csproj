@@ -133,6 +133,7 @@
     <Compile Include="PlayniteUriHandlerTests.cs" />
     <Compile Include="ProcessStarterTests.cs" />
     <Compile Include="Scripting\Batch\BatchTests.cs" />
+    <Compile Include="SigningToolsTests.cs" />
     <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />
     <Compile Include="LocalizationTests.cs" />
@@ -235,6 +236,14 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Images\mec_icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\gw2_icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

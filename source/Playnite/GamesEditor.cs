@@ -22,6 +22,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using Playnite.SDK.Exceptions;
+using System.Drawing.Imaging;
 
 namespace Playnite
 {
@@ -398,16 +399,40 @@ namespace Playnite
                 var path = Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Paths.GetSafeFilename(game.Name) + ".url"));
                 string icon = string.Empty;
 
-                if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")
+                if (!game.Icon.IsNullOrEmpty())
                 {
                     icon = Database.GetFullFilePath(game.Icon);
                 }
-                else if (game.PlayAction?.Type == GameActionType.File)
+                else
                 {
-                    icon = game.GetRawExecutablePath();
+                    icon = game.GetDefaultIcon(AppSettings, Database, Extensions.GetLibraryPlugin(game.PluginId));
+                    if (!File.Exists(icon))
+                    {
+                        icon = string.Empty;
+                    }
                 }
 
-                if (!File.Exists(icon))
+                if (File.Exists(icon))
+                {
+                    if (Path.GetExtension(icon) != ".ico")
+                    {
+                        var targetIconPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".ico");
+                        BitmapExtensions.ConvertToIcon(icon, targetIconPath);
+                        var md5 = FileSystem.GetMD5(targetIconPath);
+                        var existingFile = Path.Combine(PlaynitePaths.TempPath, md5 + ".ico");
+                        if (File.Exists(existingFile))
+                        {
+                            icon = existingFile;
+                            File.Delete(targetIconPath);
+                        }
+                        else
+                        {
+                            File.Move(targetIconPath, existingFile);
+                            icon = existingFile;
+                        }
+                    }
+                }
+                else
                 {
                     icon = PlaynitePaths.DesktopExecutablePath;
                 }
@@ -666,7 +691,9 @@ namespace Playnite
             }
             else
             {
-                Application.Restore();
+                // The delay should hopefully fix rare cases where Fullscreen mode doesn't get proper focus after restore.
+                // https://www.reddit.com/r/playnite/comments/f6d73l/bug_full_screen_ui_wont_respond_to_left_stick/
+                Task.Delay(TimeSpan.FromSeconds(2)).ContinueWith(a => Application.Restore());
             }
 
             if (!game.PostScript.IsNullOrWhiteSpace())

@@ -207,7 +207,7 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuelt…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automatisk Skanning…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulert Spill…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store eller Xbox App Spill…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Gi Tilbakemelding</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullskjermmodus</sys:String>
@@ -340,6 +340,7 @@ Ny databaseplassering vil bare bli brukt etter at applikasjonen er startet på n
     <sys:String x:Key="LOCSettingsFullscreenRows">Antall rader</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Antall kolonner</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Antall detaljvisningsrader</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Bakgrunnsbilde kilde:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Spillbilde</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Butikk-skjermbilde</sys:String>
@@ -382,6 +383,7 @@ Ny databaseplassering vil bare bli brukt etter at applikasjonen er startet på n
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Lukk de følgende klientene automatisk:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Fyll</sys:String>

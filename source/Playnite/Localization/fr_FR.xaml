@@ -238,7 +238,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuAddGameManual">Manuellement</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Importer depuis une installation</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Importer des jeux émulés</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Jeu Microsoft Store/App Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Application Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Mode plein écran</sys:String>
@@ -289,7 +289,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsFullscreenLabel">Plein écran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Fournisseurs</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Manette</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel">Performance</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Performances</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Métadonnées</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importer les modifications dans la bibliothèque automatiquement</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer les jeux installés</sys:String>
@@ -371,6 +371,7 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de rangées</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de colonnes</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Nbr. de rangées (Détails)</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Menu : Afficher les images de fond</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Source de l'image de fond :</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Par défaut</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Capture d'écran (magasin)</sys:String>
@@ -415,6 +416,7 @@ Si cette option est désactivée, les images de fond ne seront téléchargées q
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fermer automatiquement les clients suivants :</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Fermeture auto.</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Avertissement lorsqu'une image dépasse la taille recommandée</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Lancer les jeux sans passer par le client officiel</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>

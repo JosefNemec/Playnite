@@ -119,7 +119,7 @@ Automatisch importierte Spiele erscheinen beim nächsten Importvorgang eventuell
     <sys:String x:Key="LOCDateModifiedLabel">Änderungsdatum</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Pfad</sys:String>
-    <sys:String x:Key="LOCOKLabel">Okay</sys:String>
+    <sys:String x:Key="LOCOKLabel">O. K.</sys:String>
     <sys:String x:Key="LOCSaveLabel">Speichern</sys:String>
     <sys:String x:Key="LOCCloseLabel">Schließen</sys:String>
     <sys:String x:Key="LOCCancelLabel">Abbrechen</sys:String>
@@ -194,8 +194,8 @@ Ergebnis: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spieleauswahl</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Bitte wähle aus, für welche Spiele die Metadaten aktualisiert werden sollen:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Alle Spiele der Datenbank</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceFiltered">Angezeigte Spiele</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceSelected">Ausgewählte Spiele</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceFiltered">Alle derzeit den Filter passierende Spiele</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceSelected">Nur die ausgewählten Spiele</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Offizieller Shop</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Bitte wähle die von Playnite automatisch auszufüllenden Felder und die hierfür zu verwendenden Quellen aus.</sys:String>
@@ -234,12 +234,12 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCMenuTools">Werkzeuge</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Metadaten herunterladen …</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Drittanbieter-Client öffnen</sys:String>
-    <sys:String x:Key="LOCMenuReloadLibrary">Bibliothek aktualisieren</sys:String>
+    <sys:String x:Key="LOCMenuReloadLibrary">Spielebibliothek aktualisieren</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Spiel hinzufügen</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuell …</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automatisch durchsuchen …</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuliertes Spiel …</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Spiel aus Microsoft Store oder Xbox-App …</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft-Store-Anwendung …</sys:String>
     <sys:String x:Key="LOCMenuAbout">Über Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Feedback senden</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Vollbildmodus starten</sys:String>
@@ -283,7 +283,7 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsRestartNotification">* Zum Anwenden Neustart erforderlich</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Einstellungen</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Allgemein</sys:String>
-    <sys:String x:Key="LOCSettingsAppearanceLabel">Darstellung</sys:String>
+    <sys:String x:Key="LOCSettingsAppearanceLabel">Erscheinungsbild</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Spieldetails</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Erweitert</sys:String>
@@ -308,16 +308,16 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsStartOnBoot">Playnite mit Windows starten</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Autostart für Playnite konnte nicht registriert werden.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Im Vollbildmodus starten</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Aktualisiert automatisch die Bibliothek von Steam, Origin und anderen.</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Beinhaltet Steam, Origin und andere.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchrones Laden von Bildern</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Ermöglicht weicheres Scrolling der Spielelisten zum Preis längerer Bildladezeiten.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Spielename anzeigen falls Titelbild fehlt</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Spielename anzeigen, falls Titelbild fehlt</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Name des Spiels unterhalb Cover anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Nicht installierte Spiele abdunkeln</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Spielsymbole in Detailansichtsliste anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Spieleanzahl in Gruppenbeschreibung anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Hardwarebeschleunigung deaktivieren</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Bei Ruckeln oder ähnlichen Problemen der Benutzeroberfläche verwenden</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Verwende diese Option bei Ruckeln oder ähnlichen Problemen der Benutzeroberfläche</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI-Skalierung deaktivieren</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Schaltfläche für Steam-Freunde anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Hintergrundbild des Spiels als Fensterhintergrund verwenden</sys:String>
@@ -352,12 +352,12 @@ Daten des offiziellem Shops des Anbieters bevorzugen. Falls nicht verfügbar, IG
     <sys:String x:Key="LOCSettingsSteamCatImportError">Steam-Kategorien konnten nicht importiert werden: {0}</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">»Zuletzt gespielt«-Informationen können nicht importiert werden, da kein Konto für den Import ausgewählt ist.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">»Zuletzt gespielt«-Informationen können nicht importiert werden, da die Datenbank nicht geöffnet ist.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Steams »Zuletzt gespielt«-Informationen konnten nicht importiert werden: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">»Zuletzt gespielt«-Informationen konnten nicht von Steam importiert werden: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Du wirst von allen verbundenen Diensten abgemeldet und ein Neustart wird erforderlich. Möchtest du fortfahren?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Cache leeren?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Für private Steam-Konten ist ein API-Schlüssel notwendig</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">API-Schlüssel beziehen</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart">Anwenden eines neuen Designs erfordert einen Playnite-Neustart</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Anwenden eines neuen Designs erfordert einen Neustart von Playnite</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Weitere Designs beziehen</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Neues Design erstellen</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Weitere Erweiterungen beziehen</sys:String>
@@ -374,6 +374,7 @@ Der neue Speicherort wird erst nach einem Neustart von Playnite verwendet.</sys:
     <sys:String x:Key="LOCSettingsFullscreenRows">Zeilenanzahl</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Spaltenanzahl</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Zeilenanzahl in Detailansicht</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Hintergrundbild in Hauptbildschirm anzeigen</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Quelle für Hintergrundbilder:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Spielebild</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Shop-Screenshot</sys:String>
@@ -416,13 +417,14 @@ Falls deaktiviert, werden Hintergrundbilder erst dann heruntergeladen, wenn sie 
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Zeitverzögerung für das Herunterfahren des Clients (in Sekunden)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Nicht schließen bei Spielsitzungen kürzer als (in Sekunden)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Folgende Clients automatisch schließen:</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">Clients automatisch schließen</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Clients autom. schließen</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Warnung anzeigen, wenn zu große Spielemedien zugewiesen werden</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Spiele direkt starten ohne offiziellen Client</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
     <sys:String x:Key="LOCStrechUniform">Einheitlich</sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill">Unter Beibehaltung des Seitenverhältnisses ausfüllen</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Ausfüllen &amp; Seitenverhältnis beibehalten</sys:String>
 
     <sys:String x:Key="LOCDockLeft">Links</sys:String>
     <sys:String x:Key="LOCDockRight">Rechts</sys:String>
@@ -553,7 +555,7 @@ Sie wird derzeit von {1} Spiel(en) und {2} Emulator(en) verwendet.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installiert</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installiert</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nicht installiert</sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle">Ausgeblendet</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Versteckt</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorit</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Zuletzt gespielt</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategorie</sys:String>
@@ -744,7 +746,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCSaveAsDefault">Als Standard speichern</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Zu Favoriten hinzufügen</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Aus Favoriten entfernen</sys:String>
-    <sys:String x:Key="LOCHideGame">Ausblenden</sys:String>
+    <sys:String x:Key="LOCHideGame">Verstecken</sys:String>
     <sys:String x:Key="LOCUnHideGame">In Bibliothek anzeigen</sys:String>
     <sys:String x:Key="LOCEditGame">Bearbeiten …</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Kategorie zuweisen …</sys:String>
@@ -897,7 +899,7 @@ Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktionie
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Spiele von Drittanbieter-Shops ignorieren</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Trove-Spiele importieren</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Falls aktiviert, werden Spiele nicht importiert, die einen Drittanbieter-Client benötigen.
-Beinhaltet bereits von Playnite unterstützte Shops, um Duplikate zu verhindern.</sys:String>
+Beinhaltet bereits von Playnite unterstützte Shops, um Duplikate zu vermeiden.</sys:String>
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Beim Öffen des Clients App für Xbox Game Pass anstatt Microsoft Store starten</sys:String>

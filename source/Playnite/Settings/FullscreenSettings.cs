@@ -339,5 +339,50 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool enableMainBackgroundImage = false;
+        public bool EnableMainBackgroundImage
+        {
+            get
+            {
+                return enableMainBackgroundImage;
+            }
+
+            set
+            {
+                enableMainBackgroundImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int mainBackgroundImageBlurAmount = 0;
+        public int MainBackgroundImageBlurAmount
+        {
+            get
+            {
+                return mainBackgroundImageBlurAmount;
+            }
+
+            set
+            {
+                mainBackgroundImageBlurAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private float mainBackgroundImageDarkAmount = 30;
+        public float MainBackgroundImageDarkAmount
+        {
+            get
+            {
+                return mainBackgroundImageDarkAmount;
+            }
+
+            set
+            {
+                mainBackgroundImageDarkAmount = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

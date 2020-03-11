@@ -238,7 +238,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCMenuAddGameManual">ידנית…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">סרוק אוטומטית…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">משחק אמולטור…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">משחק Microsoft Store או Xbox App…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">אפליקציה ממייקרוסופט סטור…</sys:String>
     <sys:String x:Key="LOCMenuAbout">אודות Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">שלח משוב</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">מצב מסך מלא</sys:String>
@@ -373,6 +373,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsFullscreenRows">מספר שורות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">מספר עמודות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">מספר שורות תצוגה מפורטת</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">הצג את תמונת הרקע במסך הראשי</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">מקור תמונת רקע:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">תמונת משחק</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">צילום מסך חנות</sys:String>
@@ -417,6 +418,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">סגור אוטומטית את התוכנות הבאות:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">סגור קליינטים אוטומטית</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">הצג אזהרה בעת הקצאת מדיה גדולה מדי למשחק</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">ללא</sys:String>
     <sys:String x:Key="LOCStrechFill">מילוי</sys:String>

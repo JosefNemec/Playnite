@@ -17,6 +17,7 @@ using System.Windows.Data;
 using Playnite.Common;
 using Playnite.Windows;
 using Playnite.DesktopApp.Windows;
+using Playnite.ViewModels;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -415,10 +416,11 @@ namespace Playnite.DesktopApp.ViewModels
                     }
 
                     var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
+                    var importedRoms = database.Games.Where(a => !a.GameImagePath.IsNullOrEmpty()).Select(a => a.GameImagePath).ToList();
                     GamesList.AddRange(games
                         .Where(a =>
                         {
-                            return database.Games.FirstOrDefault(b => Paths.AreEqual(a.GameImagePath, b.GameImagePath)) == null;
+                            return !importedRoms.ContainsString(a.GameImagePath, StringComparison.OrdinalIgnoreCase);
                         })
                         .Select(a =>
                         {
@@ -459,7 +461,9 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             ImportedGames = GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList();
-            database.Games.Add(ImportedGames);
+            ProgressViewViewModel.ActivateProgress(
+                () => database.Games.Add(ImportedGames),
+                string.Format(resources.GetString("LOCProgressImportinGames"), ImportedGames.Count));
         }
 
         private void AddSelectedEmulatorsToDB()
