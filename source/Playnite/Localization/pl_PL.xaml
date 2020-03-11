@@ -209,7 +209,7 @@ Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostycz
     <sys:String x:Key="LOCMenuAddGameManual">Ręcznie…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Skanuj automatycznie…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulowana gra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Gra z Microsoft Store lub aplikacji Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Wyślij opinię</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Uruchom tryb pełnoekranowy</sys:String>
@@ -342,6 +342,7 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsFullscreenRows">Liczba wierszy</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Liczba kolumn</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Liczba wierszy z szczegółami</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Źródło obrazów w tle:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Obraz gry</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Zrzut ekranu z oficjalnego sklepu</sys:String>
@@ -384,6 +385,7 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Żaden</sys:String>
     <sys:String x:Key="LOCStrechFill">Wypełnienie</sys:String>

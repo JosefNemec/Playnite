@@ -81,8 +81,8 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bu oyundan sorumlu kütüphane eklentisi kurulu değil veya etkin değil.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Resmi üst veri yüklemesi mevcut değil.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Seçili Oyun Yok.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction">Oyun komut dosyası başlatılamadı.</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction">Genel komut dosyası başlatılamadı.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Oyunun betik eylemi çalıştırılırken hata.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Genel betik eylemi çalıştırılırken hata.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 veya daha yeni sürümü yüklü değil.</sys:String>
 
     <!--General-->
@@ -239,7 +239,7 @@ Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanın
     <sys:String x:Key="LOCMenuAddGameManual">Elle…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Otomatik Olarak Tara</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emülatör Oyunu…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Mağazası veya Xbox Uygulaması Oyunu…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Mağaza uygulaması…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite Hakkında</sys:String>
     <sys:String x:Key="LOCMenuIssues">Geri Bildirim</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Tam Ekran Modunu Başlat</sys:String>
@@ -374,6 +374,7 @@ Yeni veritabanı konumu yalnızca uygulama yeniden başlatıldıktan sonra kulla
     <sys:String x:Key="LOCSettingsFullscreenRows">Satır sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sütun sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Ayrıntı görünümü satır sayısı</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Arkaplan Resmini Ana Ekranda Göster</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Arka plan resmi kaynağı:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Oyun Resmi</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Mağaza Ekran Görüntüsü</sys:String>
@@ -418,6 +419,7 @@ Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğun
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Şu istemcileri otomatik kapat:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">İstemcileri Otomatik Kapat</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Çok büyük oyun ortamı atandığında uyarı göster</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Oyunu resmi istemciyi çalıştırmadan doğrudan başlat</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>

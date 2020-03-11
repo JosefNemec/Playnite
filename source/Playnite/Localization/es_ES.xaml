@@ -239,7 +239,7 @@ Preferir los datos de la Tienda oficial y, cuando no estén disponibles, usar la
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escanear Automáticamente…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Juego Emulado…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Juego de Microsoft Store o App Xbox…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Aplicación de la Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">Acerca de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar Comentarios</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Iniciar Modo de Pantalla completa</sys:String>
@@ -374,6 +374,7 @@ La nueva ubicación de la base de datos solo se usará después de reiniciar la 
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de filas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de columnas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Número de filas en la Vista de Detalles</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Mostrar imagen de fondo en la pantalla principal</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Fuente de la imagen de fondo:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Imagen del juego</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de pantalla de la tienda</sys:String>
@@ -418,6 +419,7 @@ Si está deshabilitado, la ilustración de fondo se descarga solo cuando se nece
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Cerrar automáticamente los siguientes clientes:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Cerrar automáticamente clientes</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Mostrar advertencia al asignar media de juego demasiado grandes</sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Iniciar juegos directamente sin correr el cliente oficial</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ninguno</sys:String>
     <sys:String x:Key="LOCStrechFill">Rellenar</sys:String>
