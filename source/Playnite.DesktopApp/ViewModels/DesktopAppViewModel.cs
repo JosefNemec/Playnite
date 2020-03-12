@@ -1408,7 +1408,7 @@ namespace Playnite.DesktopApp.ViewModels
                             {
                                 using (var ms = new MemoryStream())
                                 {
-                                    if (IconExtractor.ExtractMainIconFromFile(path, ms))
+                                    if (IconExtractor.ExtractMainIconFromFile(icoPath, ms))
                                     {
                                         var iconName = Guid.NewGuid().ToString() + ".ico";
                                         game.Icon = Database.AddFile(iconName, ms.ToArray(), game.Id);
