@@ -239,7 +239,7 @@ Uprednostniť údaje z oficiálneho obchodu a ak nie sú k dispozícii, použiť
     <sys:String x:Key="LOCMenuAddGameManual">Ručne…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automaticky prehľadať…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulovaná hra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Apka Microsoft Store…</sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Odoslať spätnú väzbu</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Spustiť režim celej obrazovky</sys:String>
@@ -374,7 +374,7 @@ Nové umiestnenie databázy sa použije po reštarte aplikácie.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Počet riadkov</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Počet stĺpcov</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Počet riadkov v zobrazení podrobností</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Zobraziť obrázok pozadia na hlavnej obrazovke</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Zdroj obrázkov pozadia:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Obrázok hry</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Snímka obrazovky z obchodu</sys:String>
@@ -419,7 +419,7 @@ Ak nie je povolené, obrázky pozadia sa budú preberať len vtedy ak sú potreb
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automaticky zatvoriť nasledovných klientov:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Automaticky zavrieť klientov</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Pri priradení príliš veľkých herných médií zobrazovať upozornenie</sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Spúštať hry priamo bez spustenia oficiálneho klienta</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Žiadne</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplniť</sys:String>
