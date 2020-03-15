@@ -262,14 +262,14 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsDefaulCoverSource">ゲームカバーのソースがありません</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">ゲーム背景のソースがありません</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">ゲーム詳細の垂直方向の間隔</sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">グリッドビューの詳細位置</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition">ゲームリスト位置の詳細表示</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">グリッド表示の詳細の表示場所</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">ゲームリストの詳細表示の場所</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">パネル間のセパレーターを描画する</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">ゲームカバー画像の高さ</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">ゲームリストアイコンの高さ</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">フォント</sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition">フィルターパネルの位置</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition">エクスプローラーパネルの位置</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">フィルターパネルの場所</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">エクスプローラーパネルの場所</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">カバーアートのレンダリング</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">ターゲットのアスペクト比</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">ストレッチモード</sys:String>
@@ -280,7 +280,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steamバナー</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steamの新しいUI</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">変更を適応するために再起動が必要です。</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">変更を適用するために再起動が必要です。</sys:String>
     <sys:String x:Key="LOCSettingsLabel">設定</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">一般設定</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">外観設定</sys:String>
@@ -417,7 +417,7 @@ IGDB.comのデータを優先し、利用できない場合は公式ストアの
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">クライアントシャットダウンの猶予期間（秒）</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">ゲームのセッションが指定時間（秒）より短いときに閉じない</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">以下のクライアントは自動的に閉じる：</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">クライアントを自動的に閉じる</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">クライアント自動終了</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">大きすぎるゲームメディアを割り当てるときに警告を表示する</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">公式クライアントを起動しないでゲームを直接起動する</sys:String>
 
