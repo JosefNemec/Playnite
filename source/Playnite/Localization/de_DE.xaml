@@ -101,7 +101,7 @@ Automatisch importierte Spiele erscheinen beim nächsten Importvorgang eventuell
     <sys:String x:Key="LOCDoneCapLabel">FERTIG</sys:String>
     <sys:String x:Key="LOCBackCapLabel">ZURÜCK</sys:String>
     <sys:String x:Key="LOCClearCapLabel">LEEREN</sys:String>
-    <sys:String x:Key="LOCClearLabel">Leeren</sys:String>
+    <sys:String x:Key="LOCClearLabel">Zurücksetzen</sys:String>
     <sys:String x:Key="LOCDismiss">Verwerfen</sys:String>
     <sys:String x:Key="LOCDismissAll">Alle verwerfen</sys:String>
     <sys:String x:Key="LOCImportLabel">Importieren</sys:String>
