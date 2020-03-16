@@ -461,7 +461,7 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCSelectIconTitle">Selecionar Ícone</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Selecionar Capa</sys:String>
     <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Selecionar Item</sys:String>
     <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Selecionar Ficheiro</sys:String>
     <sys:String x:Key="LOCSelectUrlTitle">Selecionar URL</sys:String>
@@ -518,29 +518,29 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCGameLastActivityTitle">Última Partida</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Categoria</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Descrição</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Directório da instalação</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Imagem da Capa</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCGameROMTitle"></sys:String>
 
     <sys:String x:Key="LOCGenreLabel">Género</sys:String>
-    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCGenresLabel">Géneros</sys:String>
     <sys:String x:Key="LOCCompanyLabel">Empresa</sys:String>
     <sys:String x:Key="LOCCompaniesLabel"></sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Desenvolvedor</sys:String>
-    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCDevelopersLabel">Desenvolvedores</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Publicador</sys:String>
     <sys:String x:Key="LOCPublishersLabel"></sys:String>
     <sys:String x:Key="LOCCategoryLabel">Categoria</sys:String>
-    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">Categorias</sys:String>
     <sys:String x:Key="LOCTagLabel">Marcador</sys:String>
     <sys:String x:Key="LOCTagsLabel">Marcadores</sys:String>
-    <sys:String x:Key="LOCFeatureLabel"></sys:String>
-    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCFeatureLabel">Funcionalidade</sys:String>
+    <sys:String x:Key="LOCFeaturesLabel">Funcionalidades</sys:String>
     <sys:String x:Key="LOCAgeRatingLabel">Classificação Etária</sys:String>
-    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel">Classificação Etária</sys:String>
     <sys:String x:Key="LOCRegionLabel">Região</sys:String>
-    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionsLabel">Regiões</sys:String>
     <sys:String x:Key="LOCSourceLabel">Fonte</sys:String>
     <sys:String x:Key="LOCSourcesLabel"></sys:String>
     <!--Errors-->
@@ -572,7 +572,7 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCURLFormatError"></sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
+    <sys:String x:Key="LOCAppStartupError">Falha ao iniciar a aplicação.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
 
@@ -620,12 +620,12 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCChange">Alterar</sys:String>
     <sys:String x:Key="LOCAdvanced">Avançado</sys:String>
     <sys:String x:Key="LOCNever">Nunca</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">Não Jogado</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">Jogado</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Concluído</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">A jogar</sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned">Abandonado</sys:String>
     <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
     <sys:String x:Key="LOCCompletionStatus"></sys:String>
