@@ -127,7 +127,9 @@ namespace Playnite
         [Description("LOCFeatureLabel")]
         Feature,
         [Description("LOCGameInstallationStatus")]
-        InstallationStatus
+        InstallationStatus,
+        [Description("LOCGameNameTitle")]
+        Name
     }
 
     public enum ViewType : int

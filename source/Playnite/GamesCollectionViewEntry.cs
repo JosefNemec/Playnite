@@ -75,6 +75,7 @@ namespace Playnite
         public PastTimeSegment ModifiedSegment => Game.ModifiedSegment;
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
         public InstallationStatus InstallationState => Game.InstallationStatus;
+        public char NameGroup => GetNameGroup();
 
         public List<Guid> CategoryIds => Game.CategoryIds;
         public List<Guid> GenreIds => Game.GenreIds;
@@ -290,6 +291,7 @@ namespace Playnite
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Game.Name)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayName)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NameGroup)));
             }
 
             if (propertyName == nameof(Game.Icon))
@@ -413,6 +415,19 @@ namespace Playnite
         public static explicit operator Game(GamesCollectionViewEntry entry)
         {
             return entry.Game;
+        }
+
+        private char GetNameGroup()
+        {
+            if (Game.Name.IsNullOrEmpty())
+            {
+                return '#';
+            }
+            else
+            {
+                var firstChar = Game.Name[0];
+                return char.IsLetter(firstChar) ? firstChar : '#';
+            }
         }
     }
 }
