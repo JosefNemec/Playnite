@@ -1395,6 +1395,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                             var game = GameExtensions.GetGameFromExecutable(path);
                             var icoPath = game.Icon;
+                            game.Icon = null;
                             if (icoPath.IsNullOrEmpty())
                             {
                                 var exePath = game.GetRawExecutablePath();

@@ -2,11 +2,14 @@
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Management;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Playnite.Common.Interop;
 
 namespace Playnite.Common
 {
@@ -41,7 +44,7 @@ namespace Playnite.Common
         {
             WorkingArea = screen.WorkingArea;
             Primary = screen.Primary;
-            DeviceName = screen.DeviceName;
+            DeviceName = screen.DeviceFriendlyName();
             Bounds = screen.Bounds;
             BitsPerPixel = screen.BitsPerPixel;
         }
@@ -253,6 +256,82 @@ namespace Playnite.Common
             }
 
             return new List<HwCompany> { HwCompany.Uknown };
+        }
+
+        private static string GetMonitorFriendlyName(LUID adapterId, uint targetId)
+        {
+            var deviceName = new DISPLAYCONFIG_TARGET_DEVICE_NAME
+            {
+                header =
+                {
+                    size = (uint)Marshal.SizeOf(typeof (DISPLAYCONFIG_TARGET_DEVICE_NAME)),
+                    adapterId = adapterId,
+                    id = targetId,
+                    type = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME
+                }
+            };
+            var error = DisplayConfigGetDeviceInfo(ref deviceName);
+            if (error != ERROR_SUCCESS)
+            {
+                throw new Win32Exception(error);
+            }
+
+            return deviceName.monitorFriendlyDeviceName;
+        }
+
+        private static IEnumerable<string> GetAllMonitorsFriendlyNames()
+        {
+            var error = GetDisplayConfigBufferSizes(
+                QUERY_DEVICE_CONFIG_FLAGS.QDC_ONLY_ACTIVE_PATHS,
+                out uint pathCount,
+                out uint modeCount);
+            if (error != ERROR_SUCCESS)
+            {
+                throw new Win32Exception(error);
+            }
+
+            var displayPaths = new DISPLAYCONFIG_PATH_INFO[pathCount];
+            var displayModes = new DISPLAYCONFIG_MODE_INFO[modeCount];
+            error = QueryDisplayConfig(
+                QUERY_DEVICE_CONFIG_FLAGS.QDC_ONLY_ACTIVE_PATHS,
+                ref pathCount,
+                displayPaths,
+                ref modeCount,
+                displayModes,
+                IntPtr.Zero);
+            if (error != ERROR_SUCCESS)
+            {
+                throw new Win32Exception(error);
+            }
+
+            for (var i = 0; i < modeCount; i++)
+            {
+                if (displayModes[i].infoType == DISPLAYCONFIG_MODE_INFO_TYPE.DISPLAYCONFIG_MODE_INFO_TYPE_TARGET)
+                {
+                    yield return GetMonitorFriendlyName(displayModes[i].adapterId, displayModes[i].id);
+                }
+            }
+        }
+
+        public static string DeviceFriendlyName(this Screen screen)
+        {
+            try
+            {
+                var allFriendlyNames = GetAllMonitorsFriendlyNames();
+                for (var index = 0; index < Screen.AllScreens.Length; index++)
+                {
+                    if (Equals(screen, Screen.AllScreens[index]))
+                    {
+                        return allFriendlyNames.ToArray()[index];
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to get display name.");
+            }
+
+            return screen.DeviceName;
         }
     }
 }
