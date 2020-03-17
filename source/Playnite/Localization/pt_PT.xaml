@@ -460,7 +460,7 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCAddPlatformTitle">Adicionar Plataforma</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Selecionar Ícone</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Selecionar Capa</sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Selecionar Imagem</sys:String>
     <sys:String x:Key="LOCSelectItemTitle">Selecionar Item</sys:String>
     <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Selecionar Ficheiro</sys:String>
@@ -468,7 +468,7 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCAddEmulatorTitle">Adicionar Emulador</sys:String>
     <sys:String x:Key="LOCSupportedPlatformsTitle">Plataforma(s) suportada(s)</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Pretende guardar as alterações desta plataforma?</sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle"></sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Pretende guardar as alterações do emulador?</sys:String>
     <sys:String x:Key="LOCExecutableTitle">Executável</sys:String>
     <sys:String x:Key="LOCArgumentsTitle">Argumentos</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle"></sys:String>
