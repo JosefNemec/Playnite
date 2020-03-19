@@ -716,6 +716,10 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCUserSelect">User select</sys:String>
     <sys:String x:Key="LOCLoadMore">Load more</sys:String>
     <sys:String x:Key="LOCTransparent">Transparent</sys:String>
+    <sys:String x:Key="LOCCollapse">Collapse</sys:String>
+    <sys:String x:Key="LOCExpand">Expand</sys:String>
+    <sys:String x:Key="LOCCollapseAll">Collapse All</sys:String>
+    <sys:String x:Key="LOCExpandAll">Expand All</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>

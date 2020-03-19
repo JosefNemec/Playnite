@@ -420,13 +420,15 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Expander IsExpanded="True"
-                                              pbeh:ExpanderBehaviors.SaveState="True"
-                                              pbeh:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
-                                        <Expander.Header>
-                                            <StackPanel Orientation="Horizontal">
+                                    <pc:ExpanderEx SaveGameGroupId="{Binding Name, Mode=OneWay}" IsExpanded="True">
+                                        <pc:ExpanderEx.Header>
+                                            <DockPanel Background="Transparent">
+                                                <DockPanel.ContextMenu>
+                                                    <pc:GameGroupMenu />
+                                                </DockPanel.ContextMenu>
                                                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                           TextAlignment="Center" Margin="0,0,5,0">
+                                                           TextAlignment="Center" Margin="0,0,5,0"
+                                                           DockPanel.Dock="Left">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                                                             <Setter Property="Text" Value="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" />
@@ -442,14 +444,14 @@
                                                     </TextBlock.Style>
                                                 </TextBlock>
                                                 <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}"
-                                                           VerticalAlignment="Center"
+                                                           VerticalAlignment="Center" DockPanel.Dock="Left"
                                                            HorizontalAlignment="Center" TextAlignment="Center"
                                                            Foreground="{StaticResource TextBrush}"
                                                            Visibility="{Binding Path=AppSettings.ShowGroupCount, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                            </StackPanel>
-                                        </Expander.Header>
+                                            </DockPanel>
+                                        </pc:ExpanderEx.Header>
                                         <ItemsPresenter />
-                                    </Expander>
+                                    </pc:ExpanderEx>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>

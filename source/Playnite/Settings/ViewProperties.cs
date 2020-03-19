@@ -705,32 +705,96 @@ namespace Playnite
             }
         }
 
-        private List<string> collapsedCategories = new List<string>();
-        public List<string> CollapsedCategories
+        private Dictionary<GroupableField, List<string>> collapsedGroups = new Dictionary<GroupableField, List<string>>();
+        public Dictionary<GroupableField, List<string>> CollapsedGroups
         {
             get
             {
-                return collapsedCategories;
+                return collapsedGroups;
             }
 
             set
             {
-                collapsedCategories = value;
+                collapsedGroups = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public bool IsGroupCollapsed(GroupableField field, string groupName)
+        {
+            if (collapsedGroups.ContainsKey(field) &&
+                collapsedGroups[field].ContainsString(groupName, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void ExpandAllGroups(GroupableField field)
+        {
+            if (collapsedGroups.ContainsKey(field))
+            {
+                collapsedGroups.Remove(field);
+                OnPropertyChanged(nameof(CollapsedGroups));
+            }
+        }
+
+        public void CollapseGroups(GroupableField field, List<string> groupNames)
+        {
+            if (!collapsedGroups.ContainsKey(field))
+            {
+                collapsedGroups.Add(field, new List<string>());
+            }
+
+            foreach (var groupName in groupNames)
+            {
+                if (!collapsedGroups[field].ContainsString(groupName, StringComparison.OrdinalIgnoreCase))
+                {
+                    collapsedGroups[field].Add(groupName);
+                }
+            }
+
+            OnPropertyChanged(nameof(CollapsedGroups));
+        }
+
+        public void SetGroupCollapseState(GroupableField field, string groupName, bool collapsed)
+        {
+            if (collapsed)
+            {
+                if (!collapsedGroups.ContainsKey(field))
+                {
+                    collapsedGroups.Add(field, new List<string>());
+                }
+
+                if (!collapsedGroups[field].ContainsString(groupName, StringComparison.OrdinalIgnoreCase))
+                {
+                    collapsedGroups[field].Add(groupName);
+                    OnPropertyChanged(nameof(CollapsedGroups));
+                }
+            }
+            else
+            {
+                if (collapsedGroups.ContainsKey(field))
+                {
+                    var existing = collapsedGroups[field].FirstOrDefault(a => string.Equals(a, groupName, StringComparison.OrdinalIgnoreCase));
+                    if (existing != null)
+                    {
+                        collapsedGroups[field].Remove(existing);
+                    }
+
+                    if (collapsedGroups[field].Count == 0)
+                    {
+                        collapsedGroups.Remove(field);
+                    }
+
+                    OnPropertyChanged(nameof(CollapsedGroups));
+                }
             }
         }
 
         public ViewSettings()
         {
         }
-
-        #region Serialization Conditions
-
-        public bool ShouldSerializeCollapsedCategories()
-        {
-            return CollapsedCategories.HasItems();
-        }
-
-        #endregion Serialization Conditions
     }
 }

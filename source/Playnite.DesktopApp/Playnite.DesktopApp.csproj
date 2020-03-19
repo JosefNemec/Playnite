@@ -132,6 +132,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\ExpanderEx.cs" />
     <Compile Include="Controls\FilterStringSelectionBox.xaml.cs">
       <DependentUpon>FilterStringSelectionBox.xaml</DependentUpon>
     </Compile>
@@ -144,6 +145,7 @@
     <Compile Include="Controls\FilterSelectionBox.xaml.cs">
       <DependentUpon>FilterSelectionBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GameGroupMenu.cs" />
     <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
@@ -930,6 +932,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Themes\Desktop\Default\CustomControls\SliderEx.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\GameGroupMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ExpanderEx.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
