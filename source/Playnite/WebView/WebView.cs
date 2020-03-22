@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace Playnite.WebView
 {
-    public class WebView : IWebView
+    public class WebView : WebViewBase, IWebView
     {
         private readonly SynchronizationContext context;
 
@@ -117,44 +117,6 @@ namespace Playnite.WebView
         public bool? OpenDialog()
         {
             return window.ShowDialog();
-        }
-
-        public void DeleteDomainCookies(string domain)
-        {
-            using (var destoyer = new CookieDestroyer(domain))
-            {
-                using (var manager = Cef.GetGlobalCookieManager())
-                {
-                    manager.VisitAllCookies(destoyer);
-                }
-            }
-        }
-
-        public void DeleteCookies(string url, string name)
-        {
-            using (var manager = Cef.GetGlobalCookieManager())
-            {
-                manager.DeleteCookies(url, name);
-            }
-        }
-
-        public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
-        {
-            using (var manager = Cef.GetGlobalCookieManager())
-            {
-                manager.SetCookie(url, new Cookie()
-                {
-                    Domain = domain,
-                    Name = name,
-                    Value = value,
-                    Expires = expires,
-                    Creation = DateTime.Now,
-                    HttpOnly = false,
-                    LastAccess = DateTime.Now,
-                    Secure = false,
-                    Path = path
-                });
-            }
         }
     }
 }

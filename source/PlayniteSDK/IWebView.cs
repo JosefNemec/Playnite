@@ -95,6 +95,12 @@ namespace Playnite.SDK
         void DeleteCookies(string url, string name);
 
         /// <summary>
+        /// Gets all cookies.
+        /// </summary>
+        /// <returns>List of cookies.</returns>
+        List<HttpCookie> GetCookies();
+
+        /// <summary>
         /// Sets cookie data.
         /// </summary>
         /// <param name="url">Cookie URL.</param>
@@ -150,5 +156,48 @@ namespace Playnite.SDK
         /// <param name="background">View background color.</param>
         /// <returns>Web view.</returns>
         IWebView CreateView(int width, int height, Color background);
+    }
+
+    /// <summary>
+    /// Represetn web view cookie object.
+    /// </summary>
+    public class HttpCookie
+    {
+        /// <summary>
+        /// Creates new instance of <see cref="HttpCookie"/>.
+        /// </summary>
+        public HttpCookie()
+        {
+        }
+
+        /// <summary>
+        /// The cookie name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The cookie value.
+        /// </summary>
+        public string Value { get; set; }
+
+        /// <summary>
+        /// The cookie domain.
+        /// </summary>
+        public string Domain { get; set; }
+
+        /// <summary>
+        /// The cookie path.
+        /// </summary>
+        public string Path { get; set; }
+
+        /// <summary>
+        /// The cookie expire date.
+        /// </summary>
+        public DateTime? Expires { get; set; }
+
+        /// <summary>
+        /// The cookie creation date.
+        /// </summary>
+        public DateTime Creation { get; set; }
     }
 }

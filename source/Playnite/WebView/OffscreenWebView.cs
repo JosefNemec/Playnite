@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Playnite.WebView
 {
-    public class OffscreenWebView : IWebView
+    public class OffscreenWebView : WebViewBase, IWebView
     {
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
@@ -109,44 +109,6 @@ namespace Playnite.WebView
         public bool? OpenDialog()
         {
             throw new NotImplementedException();
-        }
-
-        public void DeleteDomainCookies(string domain)
-        {
-            using (var destoyer = new CookieDestroyer(domain))
-            {
-                using (var manager = Cef.GetGlobalCookieManager())
-                {
-                    manager.VisitAllCookies(destoyer);
-                }
-            }
-        }
-
-        public void DeleteCookies(string url, string name)
-        {
-            using (var manager = Cef.GetGlobalCookieManager())
-            {
-                manager.DeleteCookies(url, name);
-            }
-        }
-
-        public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
-        {
-            using (var manager = Cef.GetGlobalCookieManager())
-            {
-                manager.SetCookie(url, new Cookie()
-                {
-                    Domain = domain,
-                    Name = name,
-                    Value = value,
-                    Expires = expires,
-                    Creation = DateTime.Now,
-                    HttpOnly = false,
-                    LastAccess = DateTime.Now,
-                    Secure = false,
-                    Path = path
-                });
-            }
         }
     }
 }
