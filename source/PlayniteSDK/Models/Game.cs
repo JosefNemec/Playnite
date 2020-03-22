@@ -932,6 +932,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool useGlobalPostScript = true;
+        /// <summary>
+        /// Gets or sets value indicating whether global post script should be executed.
+        /// </summary>
+        public bool UseGlobalPostScript
+        {
+            get => useGlobalPostScript;
+            set
+            {
+                useGlobalPostScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool useGlobalPreScript = true;
+        /// <summary>
+        /// Gets or sets value indicating whether global pre script should be executed.
+        /// </summary>
+        public bool UseGlobalPreScript
+        {
+            get => useGlobalPreScript;
+            set
+            {
+                useGlobalPreScript = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Expanded
 
         /// <summary>
@@ -1621,6 +1649,16 @@ namespace Playnite.SDK.Models
                 if (ActionsScriptLanguage != tro.ActionsScriptLanguage)
                 {
                     tro.ActionsScriptLanguage = ActionsScriptLanguage;
+                }
+
+                if (UseGlobalPostScript != tro.UseGlobalPostScript)
+                {
+                    tro.UseGlobalPostScript = UseGlobalPostScript;
+                }
+
+                if (UseGlobalPreScript != tro.UseGlobalPreScript)
+                {
+                    tro.UseGlobalPreScript = UseGlobalPreScript;
                 }
             }
             else

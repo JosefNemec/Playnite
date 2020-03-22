@@ -155,7 +155,7 @@ namespace Playnite
                     shutdownJobs.TryRemove(game.PluginId, out var _);
                 }
 
-                if (!AppSettings.PreScript.IsNullOrWhiteSpace())
+                if (!AppSettings.PreScript.IsNullOrWhiteSpace() && game.UseGlobalPreScript)
                 {
                     try
                     {
@@ -721,7 +721,7 @@ namespace Playnite
                 }
             }
 
-            if (!AppSettings.PostScript.IsNullOrWhiteSpace())
+            if (!AppSettings.PostScript.IsNullOrWhiteSpace() && game.UseGlobalPostScript)
             {
                 try
                 {

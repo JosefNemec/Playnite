@@ -187,6 +187,18 @@ namespace Playnite
                 dummyGame.PostScript = firstPostScript;
             }
 
+            var firstUseGlobalPreSrc = firstGame.UseGlobalPreScript;
+            if (games.All(a => a.UseGlobalPreScript == firstUseGlobalPreSrc) == true)
+            {
+                dummyGame.UseGlobalPreScript = firstUseGlobalPreSrc;
+            }
+
+            var firstUseGlobalPostSrc = firstGame.UseGlobalPostScript;
+            if (games.All(a => a.UseGlobalPostScript == firstUseGlobalPostSrc) == true)
+            {
+                dummyGame.UseGlobalPostScript = firstUseGlobalPostSrc;
+            }
+
             return dummyGame;
         }
     }
