@@ -163,6 +163,24 @@ namespace Playnite
                 dummyGame.Hidden = firstHidden;
             }
 
+            var firstInstalled = firstGame.IsInstalled;
+            if (games.All(a => a.IsInstalled == firstInstalled) == true)
+            {
+                dummyGame.IsInstalled = firstInstalled;
+            }
+
+            var firstInstallDir = firstGame.InstallDirectory;
+            if (games.All(a => a.InstallDirectory == firstInstallDir) == true)
+            {
+                dummyGame.InstallDirectory = firstInstallDir;
+            }
+
+            var firstRomPath = firstGame.GameImagePath;
+            if (games.All(a => a.GameImagePath == firstRomPath) == true)
+            {
+                dummyGame.GameImagePath = firstRomPath;
+            }
+
             var firstFavorite = firstGame.Favorite;
             if (games.All(a => a.Favorite == firstFavorite) == true)
             {

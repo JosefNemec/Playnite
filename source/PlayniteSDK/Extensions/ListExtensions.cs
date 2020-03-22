@@ -189,7 +189,7 @@ namespace System.Collections.Generic
 
             return true;
         }
-        
+
         /// <summary>
         /// Checks if two collections contain the same items in the same order.
         /// </summary>
@@ -226,7 +226,11 @@ namespace System.Collections.Generic
             var set = new HashSet<T>(lists.First());
             foreach (var list in lists)
             {
-                if (list != null)
+                if (list == null)
+                {
+                    set.IntersectWith(new List<T>());
+                }
+                else
                 {
                     set.IntersectWith(list);
                 }

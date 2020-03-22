@@ -359,7 +359,15 @@
                 </ScrollViewer>
             </TabItem>
 
-            <TabItem Header="{DynamicResource LOCAdvanced}">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
+                                    Visibility="{Binding ShowAdvancedChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="{DynamicResource LOCAdvanced}"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid Margin="10">
                     <Grid.Resources>
                         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
@@ -779,6 +787,7 @@
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
@@ -788,21 +797,35 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Margin="5" Name="TextInstallDir"
+                    <CheckBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"
+                              ToolTip="{DynamicResource LOCSaveChanges}"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseInstallDirChanges}"/>
+                    <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" Grid.Column="1" Margin="5" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="2" Margin="5" Name="TextInstallDir" VerticalAlignment="Center"
                              Text="{Binding EditingGame.InstallDirectory, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Content="..." Grid.Column="2" Margin="5" Name="ButtonBrowseInstallDir"
+                    <Button Content="..." Grid.Column="3" Margin="5" Name="ButtonBrowseInstallDir"
                             Command="{Binding SelectInstallDirCommand}"/>
-                    <TextBlock Text="{DynamicResource LOCGameROMTitle}" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Name="TextIso"
+
+                    <CheckBox Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"
+                              ToolTip="{DynamicResource LOCSaveChanges}"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseIsoPathChanges}"/>
+                    <TextBlock Text="{DynamicResource LOCGameROMTitle}" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="1" Grid.Column="2" Margin="5" Name="TextIso" VerticalAlignment="Center"
                              Text="{Binding EditingGame.GameImagePath, UpdateSourceTrigger=PropertyChanged}"  />
-                    <Button Content="..." Grid.Row="1" Grid.Column="2" Margin="5" Name="ButtonBrowseIso"
+                    <Button Content="..." Grid.Row="1" Grid.Column="3" Margin="5" Name="ButtonBrowseIso"
                             Command="{Binding SelectGameImageCommand}"/>
 
+                    <CheckBox Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"
+                              ToolTip="{DynamicResource LOCSaveChanges}"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseInstallStateChanges}"/>
                     <TextBlock Text="{DynamicResource LOCGameIsGameInstalledTitle}"
                                VerticalAlignment="Center"
-                               Grid.Column="0" Grid.Row="2" Margin="5,10,5,5" />
-                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="5,10,5,5"
+                               Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" />
+                    <CheckBox Grid.Row="2" Grid.Column="2" Margin="5,5,5,5"
+                              VerticalAlignment="Center"
                               IsChecked="{Binding EditingGame.IsInstalled}"/>
                 </Grid>
             </TabItem>
@@ -880,7 +903,15 @@
                 </ScrollViewer>
             </TabItem>
 
-            <TabItem Header="{DynamicResource LOCScripts}">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
+                                   Visibility="{Binding ShowScriptsChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="{DynamicResource LOCScripts}"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
                 <GridEx Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -891,11 +922,10 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <CheckBox Content="{DynamicResource LOCSaveChanges}" Grid.Row="0" Margin="0,0,0,5"
-                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                              IsChecked="{Binding UseScriptChanges}" />
-
-                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,5">
+                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" VerticalAlignment="Center"
+                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding UseScriptRuntimeChanges}"/>
                         <TextBlock Text="{DynamicResource LOCScriptRuntime}" VerticalAlignment="Center" />
                         <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
                                   SelectedValue="{Binding EditingGame.ActionsScriptLanguage}">
@@ -914,13 +944,36 @@
                         </ComboBox>
                     </StackPanel>
 
-                    <TextBlock Text="{DynamicResource LOCPreScriptDescription}" Grid.Row="2" Margin="0,5,0,5" />
+                    <DockPanel Grid.Row="2" Margin="0,5,2,5" LastChildFill="False">
+                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Left"
+                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding UsePreScriptChanges}"/>
+                        <TextBlock Text="{DynamicResource LOCPreScriptDescription}"
+                                   DockPanel.Dock="Left" VerticalAlignment="Center" />
+                        <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}" DockPanel.Dock="Right"
+                                  IsChecked="{Binding EditingGame.UseGlobalPreScript}" />
+                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Right"
+                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding UsePreGlobalScriptChanges}" />
+                    </DockPanel>
                     <TextBox AcceptsReturn="True" Grid.Row="3"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              Text="{Binding EditingGame.PreScript}" />
 
-                    <TextBlock Text="{DynamicResource LOCPostScriptDescription}" Grid.Row="4" Margin="0,5,0,5" />
+                    <DockPanel Grid.Row="4" Margin="0,5,2,5" LastChildFill="False">
+                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Left"
+                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding UsePostScriptChanges}"/>
+                        <TextBlock Text="{DynamicResource LOCPostScriptDescription}"
+                                   DockPanel.Dock="Left" VerticalAlignment="Center" />
+                        <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}" DockPanel.Dock="Right"
+                                  IsChecked="{Binding EditingGame.UseGlobalPostScript}" />
+                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Right"
+                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding UsePostGlobalScriptChanges}" />
+                    </DockPanel>
+                    
                     <TextBox AcceptsReturn="True" Grid.Row="5"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
