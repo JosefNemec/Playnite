@@ -77,7 +77,6 @@ namespace Playnite.Tests
 
         public void ShowSelectableString(string messageBoxText, string caption, string defaultInput)
         {
-            
         }
 
         public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180)
@@ -86,6 +85,11 @@ namespace Playnite.Tests
         }
 
         public GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null)
+        {
+            return null;
+        }
+
+        public object ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<object> options, List<string> optionsTitles)
         {
             return null;
         }

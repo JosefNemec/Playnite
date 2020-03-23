@@ -43,7 +43,7 @@
                     <TextBlock Text="{Binding Text, ElementName=WindowMessageBox}"
                                Style="{StaticResource TextBlockBaseStyle}"
                                MaxWidth="900" TextWrapping="Wrap"/>
-                    <StackPanel Orientation="Horizontal" Margin="0,25,0,0"
+                    <StackPanel Name="StackButtons" Orientation="Horizontal" Margin="0,25,0,0"
                                 KeyboardNavigation.DirectionalNavigation="Contained"
                                 HorizontalAlignment="Left" VerticalAlignment="Center">
                         <pctrls:ButtonEx Content="{DynamicResource LOCOKLabel}" x:Name="ButtonOK" Click="ButtonOK_Click"

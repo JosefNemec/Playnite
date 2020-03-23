@@ -29,6 +29,8 @@ namespace Playnite.API.DesignData
 
         public IUriHandlerAPI UriHandler => throw new NotImplementedException();
 
+        public IPlayniteSettingsAPI ApplicationSettings => throw new NotImplementedException();
+
         public ILogger CreateLogger(string name)
         {
             throw new NotImplementedException();

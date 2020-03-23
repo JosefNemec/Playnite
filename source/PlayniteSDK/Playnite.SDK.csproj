@@ -66,6 +66,7 @@
     <Compile Include="Exceptions\TypeMismatchException.cs" />
     <Compile Include="Exceptions\ReferenceException.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="IPlayniteSettingsAPI.cs" />
     <Compile Include="IUriHandlerAPI.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\InstallationStatus.cs" />

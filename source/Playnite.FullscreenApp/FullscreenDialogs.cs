@@ -77,12 +77,12 @@ namespace Playnite.FullscreenApp
 
         public StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput)
         {
-            return Invoke(() => new TextInputWindow().ShowInput(WindowManager.CurrentWindow, messageBoxText, caption, defaultInput));           
+            return Invoke(() => new TextInputWindow().ShowInput(WindowManager.CurrentWindow, messageBoxText, caption, defaultInput));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
         {
-            return Invoke(() => new MessageBoxWindow().Show(WindowManager.CurrentWindow, messageBoxText, caption, button, icon, defaultResult, options));        
+            return Invoke(() => new MessageBoxWindow().Show(WindowManager.CurrentWindow, messageBoxText, caption, button, icon, defaultResult, options));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
@@ -112,12 +112,17 @@ namespace Playnite.FullscreenApp
 
         public void ShowSelectableString(string messageBoxText, string caption, string inputText)
         {
-            ShowMessage(messageBoxText + Environment.NewLine + inputText, caption);                        
+            ShowMessage(messageBoxText + Environment.NewLine + inputText, caption);
         }
 
         public MessageBoxResult ShowErrorMessage(string messageBoxText, string caption)
         {
             return ShowMessage(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public object ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<object> options, List<string> optionsTitles)
+        {
+            return Invoke(() => new MessageBoxWindow().ShowCustom(WindowManager.CurrentWindow, messageBoxText, caption, icon, options, optionsTitles));
         }
 
         public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180)

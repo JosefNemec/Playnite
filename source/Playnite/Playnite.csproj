@@ -172,6 +172,7 @@
     <Compile Include="API\DesignData\DesignNotificationsAPI.cs" />
     <Compile Include="API\DesignData\DesignPlayniteAPI.cs" />
     <Compile Include="API\NotificationsAPI.cs" />
+    <Compile Include="API\PlayniteSettingsAPI.cs" />
     <Compile Include="API\ScriptExtensionDescription.cs" />
     <Compile Include="API\Logger.cs" />
     <Compile Include="API\PlayniteAPI.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="Settings\AutoClientShutdownSettings.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
+    <Compile Include="Settings\ImportExclusionList.cs" />
     <Compile Include="Settings\OldSettings\Plugins.cs" />
     <Compile Include="Settings\PlaynitePaths.cs" />
     <Compile Include="PipeServer.cs" />

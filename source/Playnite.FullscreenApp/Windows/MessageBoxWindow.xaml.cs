@@ -1,4 +1,5 @@
 ﻿using Playnite.Controls;
+using Playnite.FullscreenApp.Controls;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace Playnite.FullscreenApp.Windows
     public partial class MessageBoxWindow : WindowBase
     {
         private MessageBoxResult result;
+        private object resultCustom;
 
         private string text = string.Empty;
         public string Text
@@ -178,6 +180,61 @@ namespace Playnite.FullscreenApp.Windows
 
             ShowDialog();
             return result;
+        }
+
+        public object ShowCustom(
+            Window owner,
+            string messageBoxText,
+            string caption,
+            MessageBoxImage icon,
+            List<object> options,
+            List<string> optionsTitles)
+        {
+            if (owner == null)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            }
+
+            if (this != owner)
+            {
+                Owner = owner;
+            }
+
+            Height = owner.Height;
+            Width = owner.Width;
+            SetStrings(messageBoxText, caption);
+            DisplayIcon = icon;
+            ShowOKButton = false;
+            ShowYesButton = false;
+            ShowNoButton = false;
+            ShowCancelButton = false;
+
+            ButtonEx toFocus = null;
+            for (int i = 0; i < options.Count; i++)
+            {
+                var option = options[i];
+                var title = optionsTitles[i];
+
+                var button = new ButtonEx();
+                button.Content = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
+                button.Style = ResourceProvider.GetResource("ButtonMessageBox") as Style;
+                button.Tag = option;
+                button.Click += (s, __) =>
+                {
+                    resultCustom = (s as ButtonEx).Tag;
+                    Close();
+                };
+
+                StackButtons.Children.Add(button);
+                if (i == 0)
+                {
+                    toFocus = button;
+                }
+            }
+
+            toFocus.Focus();
+            ShowDialog();
+            return resultCustom;
         }
 
         private void SetStrings(string messageText, string messageCaption)

@@ -76,7 +76,7 @@ namespace Playnite.DesktopApp
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
 #pragma warning disable CS4014
-            StartUpdateCheckerAsync();            
+            StartUpdateCheckerAsync();
             SendUsageDataAsync();
 #pragma warning restore CS4014
             ProcessArguments();
@@ -140,7 +140,8 @@ namespace Playnite.DesktopApp
                 new ResourceProvider(),
                 new NotificationsAPI(),
                 GamesEditor,
-                new PlayniteUriHandler());
+                new PlayniteUriHandler(),
+                new PlayniteSettingsAPI(AppSettings));
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new DesktopAppViewModel(
@@ -193,7 +194,7 @@ namespace Playnite.DesktopApp
             }
 
             MainModel.OpenView();
-            CurrentNative.MainWindow = MainModel.Window.Window;  
+            CurrentNative.MainWindow = MainModel.Window.Window;
 
             if (isFirstStart)
             {

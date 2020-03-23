@@ -59,6 +59,11 @@ namespace Playnite.SDK
         IUriHandlerAPI UriHandler { get; }
 
         /// <summary>
+        /// Get application settings API.
+        /// </summary>
+        IPlayniteSettingsAPI ApplicationSettings { get; }
+
+        /// <summary>
         /// Expands dynamic game variables in specified string.
         /// </summary>
         /// <param name="game">Game to use dynamic variables from.</param>

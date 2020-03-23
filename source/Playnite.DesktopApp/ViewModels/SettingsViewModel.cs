@@ -238,6 +238,17 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<IList<object>> RemoveImmportExclusionItemCommand
+        {
+            get => new RelayCommand<IList<object>>((items) =>
+            {
+                foreach (ImportExclusionItem item in items.ToList())
+                {
+                    Settings.ImportExclusionList.Items.Remove(item);
+                }
+            }, (items) => items != null && items.Count > 0);
+        }
+
         public RelayCommand<RoutedPropertyChangedEventArgs<object>> SettingsTreeSelectedItemChangedCommand
         {
             get => new RelayCommand<RoutedPropertyChangedEventArgs<object>>((a) =>
@@ -260,6 +271,7 @@ namespace Playnite.DesktopApp.ViewModels
             Extensions = extensions;
             originalSettings = settings;
             Settings = settings.GetClone();
+            Settings.ImportExclusionList = settings.ImportExclusionList.GetClone();
             Settings.PropertyChanged += (s, e) => editedFields.Add(e.PropertyName);
             this.database = database;
             this.window = window;
@@ -294,7 +306,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { 10, new Controls.SettingsSections.EmptyParent() { DataContext = this } },
                 { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
                 { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
-                { 13, new Controls.SettingsSections.Performance() { DataContext = this } }
+                { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
+                { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -404,6 +417,11 @@ namespace Playnite.DesktopApp.ViewModels
                 nameof(PlayniteSettings.WindowPositions),
                 nameof(PlayniteSettings.Fullscreen)
             }, true);
+
+            if (!originalSettings.ImportExclusionList.IsEqualJson(Settings.ImportExclusionList))
+            {
+                originalSettings.ImportExclusionList = Settings.ImportExclusionList;
+            }
         }
 
         public void ConfirmDialog()

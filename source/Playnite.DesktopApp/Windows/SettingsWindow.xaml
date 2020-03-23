@@ -11,7 +11,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Width="780" Height="620"                     
+        Width="800" Height="620"                     
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
@@ -44,7 +44,7 @@
 
         <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
                 DockPanel.Dock="Left">
-            <TreeView MinWidth="140" BorderThickness="0">
+            <TreeView MinWidth="160" BorderThickness="0" ScrollViewer.CanContentScroll="False">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectedItemChanged" >
                         <prism:InvokeCommandAction Command="{Binding SettingsTreeSelectedItemChangedCommand}" />
@@ -63,6 +63,7 @@
                 <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
                 <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="12" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsImportExclusionList}" Tag="14" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" IsExpanded="True">
                     <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="13" />
                 </TreeViewItem>

@@ -333,20 +333,53 @@ namespace Playnite
             if (game.IsInstalling || game.IsRunning || game.IsLaunching || game.IsUninstalling)
             {
                 Dialogs.ShowMessage(
-                    resources.GetString("LOCGameRemoveRunningError"),
-                    resources.GetString("LOCGameError"),
+                    "LOCGameRemoveRunningError",
+                    "LOCGameError",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
 
-            if (Dialogs.ShowMessage(
-                resources.GetString("LOCGameRemoveAskMessage"),
-                resources.GetString("LOCGameRemoveAskTitle"),
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question) != MessageBoxResult.Yes)
+            var addToExclusionList = false;
+            if (game.IsCustomGame)
             {
-                return;
+                if (Dialogs.ShowMessage(
+                    "LOCGameRemoveAskMessage",
+                    "LOCGameRemoveAskTitle",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                var result = Dialogs.ShowMessage(
+                    "LOCGameRemoveAskMessageIgnoreOption",
+                    "LOCGameRemoveAskTitle",
+                    MessageBoxImage.Question,
+                    new List<object> { 1, 2, 3 },
+                    new List<string>
+                    {
+                        "LOCRemoveAskAddToExlusionListYesResponse",
+                        "LOCYesLabel",
+                        "LOCNoLabel"
+                    });
+                if (result is int option)
+                {
+                    if (option == 1)
+                    {
+                        addToExclusionList = true;
+                    }
+                    else if (option != 2)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
             }
 
             if (Database.Games[game.Id] == null)
@@ -356,6 +389,10 @@ namespace Playnite
             else
             {
                 Database.Games.Remove(game);
+                if (addToExclusionList)
+                {
+                    AppSettings.ImportExclusionList.Add(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                }
             }
         }
 
@@ -364,20 +401,53 @@ namespace Playnite
             if (games.Exists(a => a.IsInstalling || a.IsRunning || a.IsLaunching || a.IsUninstalling))
             {
                 Dialogs.ShowMessage(
-                    resources.GetString("LOCGameRemoveRunningError"),
-                    resources.GetString("LOCGameError"),
+                    "LOCGameRemoveRunningError",
+                    "LOCGameError",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
 
-            if (Dialogs.ShowMessage(
-                string.Format(resources.GetString("LOCGamesRemoveAskMessage"), games.Count()),
-                resources.GetString("LOCGameRemoveAskTitle"),
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question) != MessageBoxResult.Yes)
+            var addToExclusionList = false;
+            if (games.All(a => a.IsCustomGame))
             {
-                return;
+                if (Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCGamesRemoveAskMessage"), games.Count()),
+                    "LOCGameRemoveAskTitle",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                var result = Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCGamesRemoveAskMessageIgnoreOption"), games.Count()),
+                    "LOCGameRemoveAskTitle",
+                    MessageBoxImage.Question,
+                    new List<object> { 1, 2, 3 },
+                    new List<string>
+                    {
+                        "LOCRemoveAskAddToExlusionListYesResponse",
+                        "LOCYesLabel",
+                        "LOCNoLabel"
+                    });
+                if (result is int option)
+                {
+                    if (option == 1)
+                    {
+                        addToExclusionList = true;
+                    }
+                    else if (option != 2)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
             }
 
             foreach (var game in games.ToList())
@@ -386,6 +456,11 @@ namespace Playnite
                 {
                     logger.Warn($"Failed to remove game {game.Name} {game.Id}, game doesn't exists anymore.");
                     games.Remove(game);
+                }
+
+                if (addToExclusionList && !game.IsCustomGame)
+                {
+                    AppSettings.ImportExclusionList.Add(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
                 }
             }
 

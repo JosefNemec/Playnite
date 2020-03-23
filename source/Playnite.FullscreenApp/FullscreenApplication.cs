@@ -94,7 +94,8 @@ namespace Playnite.FullscreenApp
                 new ResourceProvider(),
                 new NotificationsAPI(),
                 GamesEditor,
-                new PlayniteUriHandler());
+                new PlayniteUriHandler(),
+                new PlayniteSettingsAPI(AppSettings));
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new FullscreenAppViewModel(

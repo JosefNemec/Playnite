@@ -149,6 +149,17 @@ namespace Playnite.SDK
         MessageBoxResult ShowMessage(string messageBoxText);
 
         /// <summary>
+        /// Displays dialog window custom response options.
+        /// </summary>
+        /// <param name="messageBoxText">Dialog message text.</param>
+        /// <param name="caption">Dialog window caption.</param>
+        /// <param name="icon">Dialog icon.</param>
+        /// <param name="options">Response options.</param>
+        /// <param name="optionsTitles">Response options captions.</param>
+        /// <returns>Selected dialog option.</returns>
+        object ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<object> options, List<string> optionsTitles);
+
+        /// <summary>
         /// Displays system dialog for folder selection.
         /// </summary>
         /// <returns>Selected folder path or empty string if user cancels the dialog.</returns>

@@ -155,14 +155,17 @@ namespace HumbleLibrary
                     var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == gameId && a.PluginId == Id);
                     if (alreadyImported == null)
                     {
-                        importedGames.Add(PlayniteApi.Database.ImportGame(new GameInfo()
+                        if (!PlayniteApi.ApplicationSettings.GetGameExcludedFromImport(gameId, Id))
                         {
-                            Name = product.human_name,
-                            GameId = GetGameId(product),
-                            Icon = product.icon,
-                            Platform = "PC",
-                            Source = "Humble"
-                        }, this));
+                            importedGames.Add(PlayniteApi.Database.ImportGame(new GameInfo()
+                            {
+                                Name = product.human_name,
+                                GameId = gameId,
+                                Icon = product.icon,
+                                Platform = "PC",
+                                Source = "Humble"
+                            }, this));
+                        }
                     }
                 }
 
@@ -171,7 +174,7 @@ namespace HumbleLibrary
                     foreach (var troveGame in GetTroveGames())
                     {
                         var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == troveGame.GameId && a.PluginId == Id);
-                        if (alreadyImported == null)
+                        if (alreadyImported == null && !PlayniteApi.ApplicationSettings.GetGameExcludedFromImport(troveGame.GameId, Id))
                         {
                             importedGames.Add(PlayniteApi.Database.ImportGame(troveGame, this));
                         }

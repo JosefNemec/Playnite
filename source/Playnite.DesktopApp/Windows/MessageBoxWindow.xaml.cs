@@ -295,7 +295,7 @@ namespace Playnite.DesktopApp.Windows
                 var title = optionsTitles[i];
 
                 var button = new Button();
-                button.Content = title;
+                button.Content = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
                 button.Style = ResourceProvider.GetResource("BottomButton") as Style;
                 button.Tag = option;
                 button.Click += (s, __) =>

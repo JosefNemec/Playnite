@@ -180,6 +180,9 @@
     <Compile Include="Controls\SettingsSections\ClientShutdown.xaml.cs">
       <DependentUpon>ClientShutdown.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\ImportExlusionList.xaml.cs">
+      <DependentUpon>ImportExlusionList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\Performance.xaml.cs">
       <DependentUpon>Performance.xaml</DependentUpon>
     </Compile>
@@ -534,6 +537,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SettingsSections\ClientShutdown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ImportExlusionList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

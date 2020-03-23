@@ -783,7 +783,7 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
+        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, IList<ImportExclusionItem> excludedItems)
         {
             if (library.Capabilities?.HasCustomizedGameImport == true)
             {
@@ -794,6 +794,12 @@ namespace Playnite.Database
                 var addedGames = new List<Game>();
                 foreach (var newGame in library.GetGames())
                 {
+                    if (excludedItems.Any(a => a.GameId == newGame.GameId && a.LibraryId == library.Id))
+                    {
+                        logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
+                        continue;
+                    }
+
                     var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                     if (existingGame == null)
                     {

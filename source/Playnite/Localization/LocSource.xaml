@@ -55,14 +55,17 @@ If you want to help us fix this issue, please send diagnostic information. Thank
     <sys:String x:Key="LOCGameRemoveAskTitle">Remove Game(s)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Cannot remove game that's running or being installed/uninstalled.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Cannot uninstall game that's running.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove this game?
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove this game?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Are you sure you want to remove {0} games?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Are you sure you want to remove this game?
 
-Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Are you sure you want to remove {0} games?
+Selecting "add to exclusion list" option will prevent game from being imported again next time library is updated.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Are you sure you want to remove {0} games?
 
-Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
+Selecting "add to exclusion list" option will prevent games from being imported again next time library is updated.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Are you sure you want to remove {0} entries that are currently not in use?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">No unused fields found.</sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Yes (add to exclusion list)</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Friends</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Section contains changes to be saved</sys:String>
@@ -419,6 +422,7 @@ If disabled, background artwork is downloaded only when first needed, using less
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Don't close after game sessions shorter than (in seconds)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automatically close following clients:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Auto Close Clients</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Import Exclusion List</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Display warning when assigning too large game media</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Start games directly without running official client</sys:String>
 
@@ -687,6 +691,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCPlugins">Plugins</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Metadata Sources</sys:String>
     <sys:String x:Key="LOCExtensions">Extensions</sys:String>
+    <sys:String x:Key="LOCExtensionID">Extension ID</sys:String>
     <sys:String x:Key="LOCReloadScripts">Reload Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">No games found for specified search/filter criteria</sys:String>

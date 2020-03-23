@@ -1454,6 +1454,12 @@ namespace Playnite
             get; private set;
         } = new FullscreenSettings();
 
+        [JsonIgnore]
+        public ImportExclusionList ImportExclusionList
+        {
+            get; set;
+        } = new ImportExclusionList();
+
         public PlayniteSettings()
         {
             var gpus = Computer.GetGpuVendors();
@@ -1579,6 +1585,18 @@ namespace Playnite
                 }
             }
 
+            settings.ImportExclusionList = LoadSettingFile<ImportExclusionList>(PlaynitePaths.ExclusionListConfigFilePath);
+            if (settings.ImportExclusionList == null)
+            {
+                logger.Warn("No existing ImportExclusionList settings found.");
+                settings.ImportExclusionList = LoadSettingFile<ImportExclusionList>(PlaynitePaths.BackupExclusionListConfigFilePath);
+                if (settings.ImportExclusionList == null)
+                {
+                    logger.Warn("No ImportExclusionList settings backup found, creating default ones.");
+                    settings.ImportExclusionList = new ImportExclusionList();
+                }
+            }
+
             settings.BackupSettings();
             return settings;
         }
@@ -1591,6 +1609,7 @@ namespace Playnite
                 SaveSettingFile(this, PlaynitePaths.ConfigFilePath);
                 SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
+                SaveSettingFile(ImportExclusionList, PlaynitePaths.ExclusionListConfigFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -1606,6 +1625,7 @@ namespace Playnite
                 SaveSettingFile(this, PlaynitePaths.BackupConfigFilePath);
                 SaveSettingFile(WindowPositions, PlaynitePaths.BackupWindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.BackupFullscreenConfigFilePath);
+                SaveSettingFile(ImportExclusionList, PlaynitePaths.BackupExclusionListConfigFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
