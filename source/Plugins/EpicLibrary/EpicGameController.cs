@@ -18,11 +18,13 @@ namespace EpicLibrary
     {
         private static List<string> launchelessExceptions = new List<string>
         {
-            "Duckbill", // Yooka-Laylee and the Impossible Lair
-            "Vulture", // Faeria
-            "Stellula", // Farming Simulator 19
-            "Albacore", // Assassins Creed Syndicate
-            "Sundrop", // For Honor
+            "Duckbill",     // Yooka-Laylee and the Impossible Lair
+            "Vulture",      // Faeria
+            "Stellula",     // Farming Simulator 19
+            "Albacore",     // Assassins Creed Syndicate
+            "Sundrop",      // For Honor,
+            "Wombat",       // World War Z
+            "Eel",          // Kingdom Come Deliverance
         };
 
         private static ILogger logger = LogManager.GetLogger();
@@ -115,7 +117,7 @@ namespace EpicLibrary
                 throw new Exception("Epic Launcher is not installed.");
             }
 
-            EpicLauncher.StartClient();
+            ProcessStarter.StartUrl(EpicLauncher.LibraryLaunchUrl);
             StartInstallWatcher();
         }
 
@@ -126,7 +128,7 @@ namespace EpicLibrary
                 throw new Exception("Epic Launcher is not installed.");
             }
 
-            EpicLauncher.StartClient();
+            ProcessStarter.StartUrl(EpicLauncher.LibraryLaunchUrl);
             StartUninstallWatcher();
         }
 
