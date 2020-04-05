@@ -84,7 +84,7 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle">Aktywuj</sys:String>
+    <sys:String x:Key="LOCEnabledTitle">Włączone</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Usuń</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
     <sys:String x:Key="LOCRenameTitle">Zmień nazwę</sys:String>
@@ -217,7 +217,7 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCMenuAddGameManual">Ręcznie…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Skanuj automatycznie…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulowana gra…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Aplikacja Microsoft Store…</sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Wyślij opinię</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Uruchom tryb pełnoekranowy</sys:String>
@@ -229,7 +229,7 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCMenuShutdownSystem">Wyłącz system</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Uśpij system</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernacja systemu</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Wybierz losową grę</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Wyświetlane pola gry w panelu szczegółowym:</sys:String>
@@ -252,11 +252,11 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Współczynnik proporcji</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Tryb rozciągania</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Pudełko DVD</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Baner Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam (nowy interfejs)</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Wymaga ponownego uruchomienia</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ustawienia</sys:String>
@@ -268,7 +268,7 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pełny ekran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Dostawcy</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Wprowadź</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Wydajność</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadane</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importuj automatycznie zmiany w bibliotece</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importuj zainstalowane gry</sys:String>
@@ -291,7 +291,7 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Poprawia płynność przewijania listy gier kosztem wolniejszego ładowania się grafiki</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Wyświetlaj nazwę gry, gdy brakuje okładki</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Pokaż nazwy gier w widoku okładki</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Przyciemnij niezainstalowane gry</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Pokaż ikony gier w widoku listy</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Pokaż elementy w opisie grupowym</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Wyłącz przyspieszanie sprzętowe</sys:String>
@@ -338,8 +338,8 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Wymagany restart Playnite do ustawienia nowego motywu</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Uzyskaj więcej motywów</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Utwórz nowy motyw</sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Pobierz więcej rozszerzeń</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Stwórz nowe rozszerzenie</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Dodaj nową lokalizację</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Zrestartować Playnite?</sys:String>
@@ -372,19 +372,19 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsFullscreenLayout">Układ</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Przewijanie w poziomie</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Wybierz jedną z podsekcji</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Brak dostępnych ustawień</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animacja przejść obrazów tła</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Wielkość czcionki</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatycznie</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Bez wygładzania</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Skala szarości</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Ekran</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">Sposób formatowania tekstu</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">Sposób renderowania tekstu</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Ustawienia renderowania i formatowania tekstu nie są obecnie stosowane do tekstu w opisach gier.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
@@ -540,7 +540,7 @@ Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:Stri
     <sys:String x:Key="LOCPublisherLabel">Wydawca</sys:String>
     <sys:String x:Key="LOCPublishersLabel"></sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategoria</sys:String>
-    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">Kategorie</sys:String>
     <sys:String x:Key="LOCTagLabel">Tag</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagi</sys:String>
     <sys:String x:Key="LOCFeatureLabel"></sys:String>
@@ -548,9 +548,9 @@ Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:Stri
     <sys:String x:Key="LOCAgeRatingLabel">Klasyfikacja wiekowa</sys:String>
     <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
     <sys:String x:Key="LOCRegionLabel">Region</sys:String>
-    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionsLabel">Regiony</sys:String>
     <sys:String x:Key="LOCSourceLabel">Źródło</sys:String>
-    <sys:String x:Key="LOCSourcesLabel"></sys:String>
+    <sys:String x:Key="LOCSourcesLabel">Źródła</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Błąd bazy danych</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Nie można otworzyć bazy danych biblioteki.</sys:String>
@@ -669,9 +669,9 @@ Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:Stri
     <sys:String x:Key="LOCDefault">Domyślne</sys:String>
     <sys:String x:Key="LOCSelect"></sys:String>
     <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCRandom">Losowo</sys:String>
+    <sys:String x:Key="LOCUserSelect">Wybór użytkownika</sys:String>
+    <sys:String x:Key="LOCLoadMore">Wczytaj więcej</sys:String>
     <sys:String x:Key="LOCTransparent"></sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Parametry emulatora</sys:String>
@@ -696,9 +696,9 @@ Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:Stri
     <sys:String x:Key="LOCThemeTestApplySkin">Zatwierdź wybrany motyw</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Oglądaj zmiany w plikach</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Automatycznie zastosuj motyw, gdy plik źródłowy się zmieni</sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Środowisko wykonawcze skryptu</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Wykonaj przed uruchomieniem gry</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Wykonaj po wyjściu z gry</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Zapisz jako domyślne</sys:String>
@@ -757,14 +757,14 @@ Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:Stri
     <sys:String x:Key="LOCInvalidGameActionSettings">Nieprawidłowa konfiguracja akcji odtwarzania.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Rozwiązywanie problemów z synchronizacją konta</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Rozwiązywanie problemów</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Zmień nazwę elementu</sys:String>
     <sys:String x:Key="LOCAddNewItem">Dodaj nowy element</sys:String>
     <sys:String x:Key="LOCEnterName">Wprowadź nazwę</sys:String>
     <sys:String x:Key="LOCEnterNewName">Podaj nową nazwę</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Mniej niż godzinę</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 do 10 godzin</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 do 100 godzin</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 do 500 godzin</sys:String>
@@ -775,21 +775,25 @@ Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:Stri
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motyw/Rozszerzenie używa niewspieranego API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Zainstalowano poprawnie.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Czy zainstalować rozszerzenie?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Nie udało się zainstalować rozszerzenia.
+
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Nie udało się zainstalować motywu.
+
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
-    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Ostrzeżenie dotyczące wydajności</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Nie pokazuj ponownie</sys:String>
+    <sys:String x:Key="LOCLargeMediaWarningTooltip">Wybrany plik obrazu może być zbyt duży, aby uzyskać optymalną wydajność.</sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Osiągnięcia</sys:String>
-    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
     <sys:String x:Key="LOCCommonLinksNews"></sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
 
@@ -808,9 +812,9 @@ Pamiętaj, że opcja Nazwa konta działa tylko w przypadku kont, których konta 
     <sys:String x:Key="LOCSteamCustomUrlName">URL konta</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Uwierzytelniony użytkownik</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Konto jest prywatne. Wymagany jest klucz API.</sys:String>
-    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
-    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
-    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub">Centrum społeczności</sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">Dyskusje</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">Warsztat</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError">Pierwsza konfiguracja nie została ukończona. Playnite zostanie uruchomiony ponownie w trybie pulpitu, aby zakończyć konfigurowanie.</sys:String>
@@ -822,8 +826,8 @@ Pamiętaj, że opcja Nazwa konta działa tylko w przypadku kont, których konta 
     <sys:String x:Key="LOCGameListFiltered">Zastosowano filtry.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Wyniki wyszukiwania dla:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Element o tej nazwie już istnieje.</sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Zawęź wybór do bieżącego filtra</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Wybierz inną</sys:String>
 
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
@@ -832,15 +836,16 @@ Pamiętaj, że opcja Nazwa konta działa tylko w przypadku kont, których konta 
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Ta opcja nie będzie działać w przypadku niektórych gier. Zobacz link Rozwiązywanie problemów, aby uzyskać informacje o możliwych rozwiązaniach.</sys:String>
 
     <!--Humble-->
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignoruj gry ze sklepów zewnętrznych</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Importuj gry z katalogu Trove</sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Po włączeniu tej opcji, gry które wymagają użycia zewnętrznych klientów nie będą importowane.
+Dotyczy również sklepów już obsługiwanych w Playnite, aby zapobiec duplikatom.</sys:String>
 
     <!--Xbox-->
-    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
-    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
-    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Uruchom Xbox Game Pass zamiast Microsoft Store</sys:String>
+    <sys:String x:Key="LOCXboxImport360Games">Importuj gry Xbox 360</sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames">Importuj gry Xbox One</sys:String>
 </ResourceDictionary>
