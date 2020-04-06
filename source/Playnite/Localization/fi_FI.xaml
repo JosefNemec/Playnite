@@ -199,17 +199,6 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Valitse kentät jotka Playniten tulisi automaattisesti täyttää ja mitä lähteitä datan hakemiseen tulisi käyttää.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Parantaaksesi Playniten käyttämää dataa, harkitse yllä olevan logon klikkaamista ja osallistumista igdb.com-tietokannan päivittämiseen.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Virallinen kauppa:
-Käytä vain virallisen kaupan tietoja.
- 
-IGDB: 
-Käytä vain IGDB.com-tietokantaa.
-
-IGDB &gt; Virallinen kauppa:
-Suosi IGDB.com-tietokantaa. Jos ei saatavilla, käytä virallisen kaupan tietoja.
-
-Virallinen kauppa &gt; IGDB:
-Suosi virallisen kaupan tietoja. Jos ei saatavilla, käytä IGDB.com-tietokantaa.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Ladataan Steam-kirjaston päivityksiä…</sys:String>
