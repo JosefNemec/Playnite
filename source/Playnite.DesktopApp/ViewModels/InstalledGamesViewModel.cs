@@ -34,6 +34,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         public class ImportableProgram : SelectableItem<Program>
         {
+            public readonly static BitmapImage EmptyImage = new BitmapImage();
+
             public ProgramType Type
             {
                 get; set;
@@ -109,7 +111,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                     if (iconSource == null)
                     {
-                        iconSource = new BitmapImage();
+                        iconSource = EmptyImage;
                     }
 
                     return iconSource;
@@ -301,7 +303,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Name = "Play"
                 };
 
-                if (program.IconSource != null)
+                if (program.IconSource != null &&  program.IconSource != ImportableProgram.EmptyImage)
                 {
                     var bitmap = (BitmapSource)program.IconSource;
                     newMeta.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());

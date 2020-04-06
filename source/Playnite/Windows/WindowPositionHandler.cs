@@ -170,12 +170,12 @@ namespace Playnite.Windows
 
                 if (data.Size != null)
                 {
-                    if (data.Size.X > window.MinWidth)
+                    if (data.Size.X >= window.MinWidth)
                     {
                         window.Width = data.Size.X;
                     }
 
-                    if (data.Size.Y > window.MinHeight)
+                    if (data.Size.Y >= window.MinHeight)
                     {
                         window.Height = data.Size.Y;
                     }

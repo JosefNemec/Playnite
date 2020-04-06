@@ -1302,7 +1302,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var files = (string[])args.Data.GetData(DataFormats.FileDrop);
                 if (files.Count() == 1)
                 {
-                    Window.BringToForeground();
+                    Window.RestoreWindow();
 
                     var path = files[0];
                     if (File.Exists(path))
@@ -1395,6 +1395,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                             var game = GameExtensions.GetGameFromExecutable(path);
                             var icoPath = game.Icon;
+                            game.Icon = null;
                             if (icoPath.IsNullOrEmpty())
                             {
                                 var exePath = game.GetRawExecutablePath();
@@ -1408,7 +1409,7 @@ namespace Playnite.DesktopApp.ViewModels
                             {
                                 using (var ms = new MemoryStream())
                                 {
-                                    if (IconExtractor.ExtractMainIconFromFile(path, ms))
+                                    if (IconExtractor.ExtractMainIconFromFile(icoPath, ms))
                                     {
                                         var iconName = Guid.NewGuid().ToString() + ".ico";
                                         game.Icon = Database.AddFile(iconName, ms.ToArray(), game.Id);
@@ -1528,7 +1529,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                Window.BringToForeground();
+                Window.RestoreWindow();
             }
 
             InitializeView();

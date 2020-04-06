@@ -36,6 +36,7 @@ namespace Playnite
         private PipeService pipeService;
         private PipeServer pipeServer;
         private XInputDevice xdevice;
+        private System.Threading.Timer updateCheckTimer;
 
         private bool isActive;
         public bool IsActive
@@ -526,6 +527,7 @@ namespace Playnite
                 return;
             }
 
+            updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
             {
@@ -564,6 +566,48 @@ namespace Playnite
             resourcesReleased = true;
         }
 
+        private void UpdateCheckerCallback(object state)
+        {
+            try
+            {
+                var updater = new Updater(this);
+                if (updater.IsUpdateAvailable)
+                {
+                    var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
+                    var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
+                    if (!Current.IsActive)
+                    {
+                        ShowWindowsNotification(updateTitle, updateBody, () =>
+                        {
+                            Restore();
+                            new UpdateViewModel(
+                                updater,
+                                new UpdateWindowFactory(),
+                                new ResourceProvider(),
+                                Dialogs).OpenView();
+                        });
+                    }
+
+                    Api.Notifications.Add(
+                        new NotificationMessage("UpdateAvailable",
+                        updateBody,
+                        NotificationType.Info, () =>
+                        {
+                            new UpdateViewModel(
+                                updater,
+                                new UpdateWindowFactory(),
+                                new ResourceProvider(),
+                                Dialogs).OpenView();
+                        }));
+                    updateCheckTimer.Dispose();
+                }
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to process update.");
+            }
+        }
+
         public async Task StartUpdateCheckerAsync()
         {
             if (PlayniteEnvironment.InOfflineMode)
@@ -577,54 +621,11 @@ namespace Playnite
                 await GlobalTaskHandler.ProgressTask;
             }
 
-#pragma warning disable CS4014
-            Task.Run(async () =>
-            {
-                var updater = new Updater(this);
-                while (true)
-                {
-                    try
-                    {
-                        if (updater.IsUpdateAvailable)
-                        {
-                            var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
-                            var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
-                            if (!Current.IsActive)
-                            {
-                                ShowWindowsNotification(updateTitle, updateBody, () =>
-                                {
-                                    Restore();
-                                    new UpdateViewModel(
-                                        updater,
-                                        new UpdateWindowFactory(),
-                                        new ResourceProvider(),
-                                        Dialogs).OpenView();
-                                });
-                            }
-
-                            Api.Notifications.Add(
-                                new NotificationMessage("UpdateAvailable",
-                                updateBody,
-                                NotificationType.Info, () =>
-                                {
-                                    new UpdateViewModel(
-                                        updater,
-                                        new UpdateWindowFactory(),
-                                        new ResourceProvider(),
-                                        Dialogs).OpenView();
-                                }));
-                            return;
-                        }
-                    }
-                    catch (Exception exc)
-                    {
-                        logger.Warn(exc, "Failed to process update.");
-                    }
-
-                    await Task.Delay(Common.Timer.HoursToMilliseconds(4));
-                }
-            });
-#pragma warning restore CS4014
+            updateCheckTimer = new System.Threading.Timer(
+                UpdateCheckerCallback,
+                null,
+                0,
+                Common.Timer.HoursToMilliseconds(4));
         }
 
         public async Task SendUsageDataAsync()

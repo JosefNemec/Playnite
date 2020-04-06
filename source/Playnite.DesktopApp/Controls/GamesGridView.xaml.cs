@@ -411,11 +411,17 @@ namespace Playnite.DesktopApp.Controls
         private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
         {
             var header = sender as GridViewColumnHeader;
-            var column = header.Column as GamesGridViewColumn;
-            if (header == null || column.SortOrder == null)
+            if (header == null)
             {
                 return;
             }
+
+            var column = header.Column as GamesGridViewColumn;
+            if (column == null || column.SortOrder == null)
+            {
+                return;
+            }
+
             if (AppSettings.ViewSettings.SortingOrder == column.SortOrder.Value)
             {
                 AppSettings.ViewSettings.SortingOrderDirection = AppSettings.ViewSettings.SortingOrderDirection == SortOrderDirection.Ascending ? SortOrderDirection.Descending : SortOrderDirection.Ascending;

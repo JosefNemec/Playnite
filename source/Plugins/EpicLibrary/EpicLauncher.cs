@@ -39,7 +39,10 @@ namespace EpicLibrary
             get
             {
                 var progs = Programs.GetUnistallProgramsList().
-                    FirstOrDefault(a => a.DisplayName == "Epic Games Launcher" && File.Exists(GetExecutablePath(a.InstallLocation)));
+                    FirstOrDefault(a =>
+                        a.DisplayName == "Epic Games Launcher" &&
+                        !a.InstallLocation.IsNullOrEmpty() &&
+                        File.Exists(GetExecutablePath(a.InstallLocation)));
                 if (progs == null)
                 {
                     return string.Empty;
