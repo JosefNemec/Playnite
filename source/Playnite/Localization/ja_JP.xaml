@@ -200,17 +200,6 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Playniteによって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Playniteが使用するデータを改善するために、上のロゴをクリックしてigdb.comデータベースの更新に貢献することを検討してください。</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">公式ストア:
-公式ストアのデータのみ使用します。
-    
-IGDB:
-IGDB.comのデータのみ使用します。
-    
-IGDB &gt; 公式ストア:
-IGDB.comのデータを優先し、利用できない場合は公式ストアのデータを使用します。
-    
-公式ストア &gt; IGDB:
-公式ストアのデータを優先し、利用できない場合はIGDB.comのデータを使用します。</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Steamライブラリの更新をダウンロードしています。</sys:String>
