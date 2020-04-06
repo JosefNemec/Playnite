@@ -182,7 +182,6 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Por favor, seleciona quais os campos devem ser preenchidos, automaticamente, pelo Playnite e quais fontes devem ser usadas para obter os dados.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">A transferir as atualizações da biblioteca da Steam…</sys:String>
