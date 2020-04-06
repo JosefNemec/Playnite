@@ -200,17 +200,6 @@ Vyústi do: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vyberte, ktoré polia by mali byť automaticky doplnené apkou Playnite a ktoré zdroje by sa mali použiť pre získanie údajov.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Zváže prosím ručnú aktualizáciu databázy igdb.com kliknutím na logo vyššie, čím pomôžete skvalitniť dáta, ktoré používa Playnite.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Obchod:
-Používať iba údaje z oficiálneho obchodu.
-
-IGDB:
-Používať iba údaje z databázy IGDB.com.
-
-IGDB &gt; Oficiálny obchod:
-Uprednostniť údaje z databázy IGDB.com a ak nie sú k dispozícii, použiť oficiálne údaje z obchodu.
-
-Oficiálny obchod &gt; IGDB:
-Uprednostniť údaje z oficiálneho obchodu a ak nie sú k dispozícii, použiť databázu IGBD.com.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Aktualizuje sa knižnica Steam…</sys:String>
