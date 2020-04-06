@@ -143,7 +143,7 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCListViewLabel">Widok listy</sys:String>
     <sys:String x:Key="LOCCoversLabel">Okładki</sys:String>
     <sys:String x:Key="LOCGridViewLabel">Widok siatki</sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel">Widok szczegółów</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Widok szczegółowy</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizacja</sys:String>
     <sys:String x:Key="LOCURLLabel">Adres</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
@@ -198,7 +198,6 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Wybierz pola, które mają być automatycznie wypełniane przez Playnite oraz źródła, z których należy pobrać dane.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Zachęcamy do kliknięcia na powyższe logo oraz wprowadzania poprawek w bazie danych IGDB.com w celu udoskonalenia danych widocznych w Playnite.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Aktualizowanie biblioteki Steam…</sys:String>
@@ -244,23 +243,23 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Wyświetlane pola gry w panelu szczegółowym:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Odstęp</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Tło siatki</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Pokazuj tło pod tytułami</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Szerokość ramki okładki</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Brak źródła ikony gry</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Brak źródła okładki gry</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Odstęp pionowy szczegółów gry</sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Szczegóły pozycji siatki</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozycja szczegółów gry</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Pozycja szczegółów w widoku siatki</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozycja listy gier w widoku szczegółowym</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Separator pomiędzy panelami</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Wysokość obrazu okładki gry</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Wysokość obrazu ikony gry</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Wysokość ikony na liście gier</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Czcionka aplikacji</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Pozycja panelu filtrowania</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Pozycja panelu eksploratora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderowanie okładek</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Współczynnik proporcji</sys:String>
-    <sys:String x:Key="LOCSettingsStrechModeLabel">Tryb rozciągania</sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">Sposób skalowania</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Pudełko DVD</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
@@ -290,7 +289,7 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Nazwa konta nie może być pusta.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Nie wybrano konta Steam do importowania biblioteki.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nie wybrano konta Steam do importowania kategorii.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Aktualizuj bibliotekę z klientów na starcie</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Synchronizuj biblioteki podczas uruchamiania</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Pobierz metadane po imporcie gier</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Uruchom zminimalizowane</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Uruchom Playnite podczas startu systemu</sys:String>
@@ -299,10 +298,10 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Zawiera Steam, Origin i pozostałe.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchroniczne ładowanie obrazu</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Poprawia płynność przewijania listy gier kosztem wolniejszego ładowania się grafiki</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Wyświetlaj nazwę gry, gdy brakuje okładki</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Pokaż nazwy gier w widoku okładki</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Pokaż nazwę gry, jeśli brakuje okładki</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Pokaż nazwy gier w widoku siatki</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Przyciemnij niezainstalowane gry</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">Pokaż ikony gier w widoku listy</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Pokaż ikony gier na liście widoku szczegółowego</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Pokaż elementy w opisie grupowym</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Wyłącz przyspieszanie sprzętowe</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Użyj, gdy występują problemy z szarpaniem (suttering) lub podobne problemy z interfejsem użytkownika</sys:String>
@@ -346,8 +345,8 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Klucz API jest wymagany dla prywatnych kont Steam</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">Uzyskaj klucz API</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Wymagany restart Playnite do ustawienia nowego motywu</sys:String>
-    <sys:String x:Key="LOCSettingsGetThemes">Uzyskaj więcej motywów</sys:String>
-    <sys:String x:Key="LOCSettingsCreateThemes">Utwórz nowy motyw</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">Pobierz więcej motywów</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">Stwórz nowy motyw</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Pobierz więcej rozszerzeń</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Stwórz nowe rozszerzenie</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Pomóż w tłumaczeniu</sys:String>
@@ -356,7 +355,7 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite nie przenosi plików biblioteki automatycznie, musisz je przenieść / skopiować przed zmianą lokalizacji. Jeśli w docelowej lokalizacji nie ma plików biblioteki, zostanie utworzony nowy plik.
 
 Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu aplikacji.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Czas gry nie będzie rejestrowany, jeśli ustawiono polecenie &quot;Zamknij&quot;.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Czas gry nie będzie rejestrowany, jeśli wybrano opcję &quot;Zamknij&quot;.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Liczba wierszy</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Liczba kolumn</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Liczba wierszy z szczegółami</sys:String>
@@ -390,8 +389,8 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Bez wygładzania</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Skala szarości</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Ekran</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ideal</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Display</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Sposób formatowania tekstu</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Sposób renderowania tekstu</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Ustawienia renderowania i formatowania tekstu nie są obecnie stosowane do tekstu w opisach gier.</sys:String>
@@ -406,12 +405,12 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Brak</sys:String>
-    <sys:String x:Key="LOCStrechFill">Wypełnienie</sys:String>
-    <sys:String x:Key="LOCStrechUniform">Wyrównanie</sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill">Jednolite wypełnienie</sys:String>
+    <sys:String x:Key="LOCStrechFill">Wypełnij</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Dopasuj</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Dopasuj i wypełnij</sys:String>
 
-    <sys:String x:Key="LOCDockLeft">Lewo</sys:String>
-    <sys:String x:Key="LOCDockRight">Prawo</sys:String>
+    <sys:String x:Key="LOCDockLeft">Po lewej</sys:String>
+    <sys:String x:Key="LOCDockRight">Po prawej</sys:String>
     <sys:String x:Key="LOCDockTop">Góra</sys:String>
     <sys:String x:Key="LOCDockBottom">Dół</sys:String>
 
@@ -671,7 +670,7 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCExtensionModule">Moduł:</sys:String>
     <sys:String x:Key="LOCLibrary">Biblioteka</sys:String>
     <sys:String x:Key="LOCAll">Wszystko</sys:String>
-    <sys:String x:Key="LOCNone">Brak</sys:String>
+    <sys:String x:Key="LOCNone">Nic</sys:String>
     <sys:String x:Key="LOCNotifications">Powiadomienia</sys:String>
     <sys:String x:Key="LOCWidth">Szerokość</sys:String>
     <sys:String x:Key="LOCHeight">Wysokość</sys:String>
