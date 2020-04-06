@@ -200,17 +200,6 @@ Sonuçları: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Lütfen Playnite tarafından hangi alanların otomatik olarak doldurulacağını ve verileri almak için hangi kaynakların kullanılması gerektiğini seçin.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Lütfen yukarıdaki logoya tıklayıp Playnite'ın kullandığı verileri geliştirmek için igdb.com veritabanı güncellemelerine katkıda bulun.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Mağaza:
-Sadece Resmi Mağaza verilerini kullan.
- 
-IGDB:
-Sadece IGDB.com verilerini kullan.
- 
-IGDB &gt; Resmi Mağaza:
-IGDB.com veritabanındaki verileri tercih et ve mümkün olmadığında resmi mağaza verilerini kullan.
- 
-Resmi Mağaza &gt; IGDB:
-Resmi mağazadan veri tercih et ve mümkün olmadığında IGBD.com veritabanını kullan.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Steam kütüphanesi güncellemeleri indiriliyor…</sys:String>
