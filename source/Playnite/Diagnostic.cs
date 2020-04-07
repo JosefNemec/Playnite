@@ -74,7 +74,10 @@ namespace Playnite
                     var playniteInfo = new Dictionary<string, object>
                     {
                         { "Version", Updater.GetCurrentVersion().ToString() },
-                        { "Portable", PlayniteSettings.IsPortable }
+                        { "Portable", PlayniteSettings.IsPortable },
+                        { "Memory", (PlayniteProcess.WorkingSetMemory / 1024f) / 1024f },
+                        { "Path", PlayniteProcess.Path },
+                        { "Cmdline", PlayniteProcess.Cmdline }
                     };
 
                     File.WriteAllText(playnitePath, Serialization.ToJson(playniteInfo, true));
