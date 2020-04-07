@@ -91,7 +91,13 @@ $ignoreList = @(
     "vitaquake2-xatrix_libretro.info",
     "vitaquake2-zaero_libretro.info",
     "vitaquake3_libretro.info",
-    "vitavoyager_libretro.info"
+    "vitavoyager_libretro.info",
+    "bk_libretro.info",
+    "boom3_libretro.info",
+    "boom3_xp_libretro.info",
+    "ecwolf_libretro.info",
+    "hbmame_libretro.info",
+    "x1_libretro.info"
 )
 
 $platformsTranslate = @{
