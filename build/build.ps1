@@ -148,6 +148,8 @@ function PackExtensionTemplate()
     Remove-Item $templateOutDir -Recurse -Force
 } 
 
+.\VerifyLanguageFiles.ps1
+
 if ($Sign)
 {
     Start-SigningWatcher $Sign
