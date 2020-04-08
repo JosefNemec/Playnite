@@ -134,7 +134,7 @@ namespace Playnite
             }
         }
 
-        private int monitor = 0;
+        private int monitor = Computer.GetGetPrimaryScreenIndex();
         public int Monitor
         {
             get

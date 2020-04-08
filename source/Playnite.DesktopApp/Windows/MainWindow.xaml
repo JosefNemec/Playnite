@@ -65,6 +65,9 @@
         <KeyBinding Command="{Binding OpenSearchCommand}"
                 Key ="{Binding OpenSearchCommand.Gesture.Key}"
                 Modifiers="{Binding OpenSearchCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding ToggleExplorerPanelCommand}"
+                Key ="{Binding ToggleExplorerPanelCommand.Gesture.Key}"
+                Modifiers="{Binding ToggleExplorerPanelCommand.Gesture.Modifiers}" />
         <KeyBinding Command="{Binding ToggleFilterPanelCommand}"
                 Key ="{Binding ToggleFilterPanelCommand.Gesture.Key}"
                 Modifiers="{Binding ToggleFilterPanelCommand.Gesture.Modifiers}" />

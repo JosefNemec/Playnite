@@ -200,17 +200,6 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">請選擇透過Playnite自動輸入的資料範圍以及資料來源</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">請點擊上方圖示並協助更新Igdb.com數據庫以助Playnite提供用戶更詳盡的資訊。</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">商店:
-只從官方商店下載資訊
-
-IGDB:
-只從 IGDB 下載資訊
-
-IGDB &gt; 官方商店
-優先從 IGDB 下載資訊，如無則使用官方商店資訊
-
-官方商店 &gt; IGDB
-優先從官方商店下載資訊，如無則使用 IGDB 資訊</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">正在下載Steam資料庫更新...</sys:String>

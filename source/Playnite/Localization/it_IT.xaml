@@ -200,17 +200,6 @@ Risultati in: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selezionare quali campi dovrebbero essere automaticamente popolati da Playnite e da quali fonti dovrebbero essere usati per ricavare i dati.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Si prega di considerare di cliccare sul logo sopra e di contribuire agli aggiornamenti al database igdb.com per migliorare l'uso dei dati da Playnite.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Negozio:
-Usare soltanto i dati del negozio ufficiale.
- 
-IGDB:
-Usare soltanto i dati dalla bancadati di IDDB.com.
- 
-IGDB &gt; Negozio ufficiale:
-Preferire i dati dalla banca dati di IGDB.com e se non sono disponibili usare i dati del negozio ufficiale.
- 
-Negozio ufficiale &gt; IGDB:
-Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca dati di IGDB.com.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Scaricamento aggiornamenti della libreria di Steam…</sys:String>

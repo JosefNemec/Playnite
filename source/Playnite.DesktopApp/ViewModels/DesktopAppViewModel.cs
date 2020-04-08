@@ -414,7 +414,7 @@ namespace Playnite.DesktopApp.ViewModels
             ToggleExplorerPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.ExplorerPanelVisible = !AppSettings.ExplorerPanelVisible;
-            });
+            }, new KeyGesture(Key.E, ModifierKeys.Control));
 
             ToggleFilterPanelCommand = new RelayCommand<object>((game) =>
             {
@@ -529,7 +529,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Dialogs,
                     Resources));
             }, (a) => Database?.IsOpen == true,
-            new KeyGesture(Key.E, ModifierKeys.Control));
+            new KeyGesture(Key.Q, ModifierKeys.Control));
 
             AddWindowsStoreGamesCommand = new RelayCommand<object>((a) =>
             {
