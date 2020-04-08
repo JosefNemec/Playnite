@@ -175,6 +175,20 @@ namespace Playnite.Common
             return Screen.PrimaryScreen?.ToComputerScreen();
         }
 
+        public static int GetGetPrimaryScreenIndex()
+        {
+            var allScreens = Screen.AllScreens;
+            for (int i = 0; i < allScreens.Length; i++)
+            {
+                if (allScreens[i].Primary)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
         public static void Shutdown()
         {
             ProcessStarter.StartProcess("shutdown.exe", "-s -t 0");
