@@ -163,7 +163,7 @@ Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po nast�
     <sys:String x:Key="LOCPastMonth">Zeszły miesiąc</sys:String>
     <sys:String x:Key="LOCPastYear">Zeszły rok</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Więcej niż rok temu</sys:String>
-    <sys:String x:Key="LOCImportCompleted">Importowanie zakończone sukcesem.</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Import zakończony pomyślnie.</sys:String>
     <sys:String x:Key="LOCAllGames">Wszystkie gry</sys:String>
     <sys:String x:Key="LOCGameId">ID gry</sys:String>
     <sys:String x:Key="LOCDatabaseId">ID bazy danych</sys:String>
@@ -321,7 +321,7 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Status logowania:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Opcje Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata">Importuj metadane z konta Steam:</sys:String>
-    <sys:String x:Key="LOCImportSteamCategoriesLabel">Importuj kategorie Steam</sys:String>
+    <sys:String x:Key="LOCImportSteamCategoriesLabel">Importuj kolekcje Steam</sys:String>
     <sys:String x:Key="LOCImportSteamLastActivityLabel">Importuj ostatnio grane ze Steam</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Wyczyść pamięć podręczną</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Może rozwiązać problemy napotkane podczas powiązania kont.</sys:String>
@@ -553,7 +553,7 @@ Platforma jest wykorzystywana przez następującą liczbę gier {1} i emulatoró
     <sys:String x:Key="LOCPublisherLabel">Wydawca</sys:String>
     <sys:String x:Key="LOCPublishersLabel">Wydawcy</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategoria</sys:String>
-    <sys:String x:Key="LOCCategoriesLabel">Kategorie</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">Kolekcje</sys:String>
     <sys:String x:Key="LOCTagLabel">Tag</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagi</sys:String>
     <sys:String x:Key="LOCFeatureLabel">Funkcja</sys:String>
@@ -666,7 +666,7 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCMetadataProviders">Źródła metadanych</sys:String>
     <sys:String x:Key="LOCExtensions">Rozszerzenia</sys:String>
     <sys:String x:Key="LOCReloadScripts">Przeładuj skrypty</sys:String>
-    <sys:String x:Key="LOCReloadScriptsSuccess">Wszystkie skrypty zostały przeładowane pomyślnie.</sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess">Wszystkie skrypty przeładowano pomyślnie.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nie znaleziono gier według określonych kryteriów wyszukiwania lub filtra</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Powrót do trybu pulpitu</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Wyjdź z Playnite</sys:String>
