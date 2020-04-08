@@ -27,11 +27,11 @@
 
     <sys:String x:Key="LOCCategoryWindowTitle">Przypisz kategorię</sys:String>
     <sys:String x:Key="LOCCategorySetButton">Ustaw kategorie</sys:String>
-    <sys:String x:Key="LOCCategoryAddCatButton">Dodaj kategorię</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Zaznaczone - Przypisz kategorię
-Niezaznaczone - Usuń kategorię
-Nieokreślone - Bez zmian (podczas edycji wielu gier)</sys:String>
-    <sys:String x:Key="LOCNoCategory">Brak kategorii</sys:String>
+    <sys:String x:Key="LOCCategoryAddCatButton">Dodaj kolekcję</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">  • Zaznacz, aby dodać do kolekcji
+  • Odznacz, aby usunąć z kolekcji
+  • Nieokreślone pozostaną bez zmian (podczas edycji wielu gier)</sys:String>
+    <sys:String x:Key="LOCNoCategory">Nieskategoryzowane</sys:String>
     <sys:String x:Key="LOCNoPlatform">Brak platformy</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">O nie, stało się coś złego…</sys:String>
@@ -288,7 +288,7 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Nieprawidłowe położenie pliku bazy danych, należy ustawić właściwą ścieżkę pliku.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Nazwa konta nie może być pusta.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Nie wybrano konta Steam do importowania biblioteki.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nie wybrano konta Steam do importowania kategorii.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nie wybrano konta Steam do importu kolekcji.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Synchronizuj biblioteki podczas uruchamiania</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Pobierz metadane po imporcie gier</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Uruchom zminimalizowane</sys:String>
@@ -332,8 +332,10 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Po zamknięciu gry:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Uruchamiaj gry za pomocą klienta GOG Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Włącza funkcje takie jak zapisywanie w chmurze, liczenie czasu gry itp.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importować kategorie?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Czy chcesz pobrać dane Steam? Ta opcja obejmuje kolekcje, ulubione i ukryte gry.
+
+Ta czynność spowoduje nadpisanie obecnych danych wszystkich gier Steam. </sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Zaimportować kolekcje?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nie można zaimportować kategorii, konto źródłowe nie zostało wybrane.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nie można zaimportować kategorii, baza danych nie jest otwarta.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Nie udało się zaimportować kategorii Steam: {0}</sys:String>
@@ -457,7 +459,7 @@ Zauważ, że zawsze możesz dodać dowolną grę na którąkolwiek z platform r�
     <sys:String x:Key="LOCFirstGOGIntegration">Integracja GOG</sys:String>
     <sys:String x:Key="LOCFirstBattleNetIntegration">Integracja Battle.net</sys:String>
     <sys:String x:Key="LOCFirstUplayIntegration">Integracja Uplay</sys:String>
-    <sys:String x:Key="LOCFirstSteamImportCategories">Importuj kategorie z konta:</sys:String>
+    <sys:String x:Key="LOCFirstSteamImportCategories">Importuj kolekcje z konta:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Pozostałe gry</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesText">Kliknij przycisk poniżej, aby importować inne zainstalowane gry lub przeglądać je ręcznie (w tym gry Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importuj gry</sys:String>
@@ -507,7 +509,7 @@ Platforma jest wykorzystywana przez następującą liczbę gier {1} i emulatoró
     <sys:String x:Key="LOCMenuSortDescending">Malejąco</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Nie grupuj</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">Grupuj według bibliotek</sys:String>
-    <sys:String x:Key="LOCMenuGroupCategory">Grupuj według kategorii</sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory">Grupuj według kolekcji</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Grupuj według platform</sys:String>
     <sys:String x:Key="LOCViewType">Typ widoku</sys:String>
     <sys:String x:Key="LOCMenuView">Widok</sys:String>
@@ -523,7 +525,7 @@ Platforma jest wykorzystywana przez następującą liczbę gier {1} i emulatoró
     <sys:String x:Key="LOCGameNameTitle">Nazwa</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Nazwa konta</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platforma</sys:String>
-    <sys:String x:Key="LOCGameCategoriesTitle">Kategoria</sys:String>
+    <sys:String x:Key="LOCGameCategoriesTitle">Kolekcja</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Gatunek</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Data wydania</sys:String>
     <sys:String x:Key="LOCGameReleaseYearTitle">Rok wydania</sys:String>
@@ -537,7 +539,7 @@ Platforma jest wykorzystywana przez następującą liczbę gier {1} i emulatoró
     <sys:String x:Key="LOCGameHiddenTitle">Ukryte</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Ulubione</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Ostatnio grane</sys:String>
-    <sys:String x:Key="LOCGameCategoryTitle">Kategoria</sys:String>
+    <sys:String x:Key="LOCGameCategoryTitle">Kolekcja</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Opis</sys:String>
     <sys:String x:Key="LOCGameInstallDirTitle">Ścieżka instalacji</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Okładka</sys:String>
@@ -552,7 +554,7 @@ Platforma jest wykorzystywana przez następującą liczbę gier {1} i emulatoró
     <sys:String x:Key="LOCDevelopersLabel">Producenci</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Wydawca</sys:String>
     <sys:String x:Key="LOCPublishersLabel">Wydawcy</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">Kategoria</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Kolekcja</sys:String>
     <sys:String x:Key="LOCCategoriesLabel">Kolekcje</sys:String>
     <sys:String x:Key="LOCTagLabel">Tag</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagi</sys:String>
@@ -575,7 +577,7 @@ Platforma jest wykorzystywana przez następującą liczbę gier {1} i emulatoró
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Pakiet diagnostyczny został utworzony i przesłany pomyślnie.
 Do zgłoszenia należy dołączyć następujący identyfikator:</sys:String>
 
-    <sys:String x:Key="LOCSteamCategoryImportError">Nie udało się zaimportować kategorii Steam.</sys:String>
+    <sys:String x:Key="LOCSteamCategoryImportError">Nie udało się zaimportować kolekcji Steam.</sys:String>
 
     <sys:String x:Key="LOCBnetInstalledImportError">Nie udało się zaimportować zainstalowanych gier Battle.net.</sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError">Nie udało się zaimportować zainstalowanych gier Steam.</sys:String>
@@ -728,7 +730,7 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCHideGame">Ukryj</sys:String>
     <sys:String x:Key="LOCUnHideGame">Pokaż w bibliotece</sys:String>
     <sys:String x:Key="LOCEditGame">Edytuj…</sys:String>
-    <sys:String x:Key="LOCSetGameCategory">Ustaw kategorię…</sys:String>
+    <sys:String x:Key="LOCSetGameCategory">Zarządzaj kolekcjami…</sys:String>
     <sys:String x:Key="LOCRemoveGame">Usuń</sys:String>
     <sys:String x:Key="LOCPlayGame">Graj</sys:String>
     <sys:String x:Key="LOCInstallGame">Instaluj</sys:String>
