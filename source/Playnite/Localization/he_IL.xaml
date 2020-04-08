@@ -199,17 +199,6 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">אנא בחרו אילו שדות יאוכלסו אוטומטית על ידי Playnite ובאילו מקורות להשתמש כדי להשיג את הנתונים.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">אנא שיקלו ללחוץ על הלוגו מעל ולתרום עדכונים לבסיס הנתונים של igdb.com כדי לשפר את המידע שבשימוש Playnite.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">חנות:
-השתמש רק במידע מהחנות הרשמית.
- 
-IGDB:
-השתמש רק במידע מבסיס הנתונים של IGDB.com.
- 
-IGDB &gt; חנות רשמית:
-העדף מידע מ IGDB.com וכשלא זמין השתמש במידע מהחנות הרשמית.
- 
-חנות רשמית &gt; IGDB:
-העדף מידע מחנות רשמית וכשאינו זמין השתמש ב IGDB.com.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">מוריד עדכוני ספריית Steam…</sys:String>
@@ -418,7 +407,7 @@ IGDB &gt; חנות רשמית:
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">סגור אוטומטית את התוכנות הבאות:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">סגור קליינטים אוטומטית</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">הצג אזהרה בעת הקצאת מדיה גדולה מדי למשחק</sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">הפעל את המשחקים בלי להריץ את הקליינט המקורי שלהם</sys:String>
 
     <sys:String x:Key="LOCStrechNone">ללא</sys:String>
     <sys:String x:Key="LOCStrechFill">מילוי</sys:String>

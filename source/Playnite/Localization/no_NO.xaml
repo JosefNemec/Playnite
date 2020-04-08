@@ -178,7 +178,6 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vennligst velg hvilke felt som skal automatisk bli fylt av Playnite og kildene som skal brukes for å hente denne dataen.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Vennligst vurder å klikke på logoen over og bidra med oppdateringer til igdb.com-databasen for å forbedre data som Playnite bruker.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Laster ned oppdateringer fra Steam-biblioteket…</sys:String>

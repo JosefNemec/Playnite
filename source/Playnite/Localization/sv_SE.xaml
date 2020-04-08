@@ -178,7 +178,6 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vänligen välj vilka fält som ska fyllas automatiskt av Playnite och vilka källor ska användas för att få data från.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Vänligen överväg att klicka på logotypen ovan för att bidra med uppdateringar till databasen på igdb.com för att förbättra den data som Playnite använder.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Hämtar Steam-biblioteket…</sys:String>

@@ -178,7 +178,6 @@
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Виберіть, які поля повинні бути автоматично заповнені Playnite і які джерела повинні використовуватися для отримання даних.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve"></sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
