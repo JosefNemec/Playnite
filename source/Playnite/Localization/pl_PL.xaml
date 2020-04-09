@@ -352,7 +352,10 @@ Ta czynność spowoduje nadpisanie obecnych danych wszystkich gier Steam. </sys:
     <sys:String x:Key="LOCSettingsGetExtensions">Pobierz więcej rozszerzeń</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Stwórz nowe rozszerzenie</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Pomóż w tłumaczeniu</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Niektóre zmiany ustawień wymagają ponownego uruchomienia Playnite.
+
+Czy chcesz zrestartować Playnite teraz?
+Wszystkie aktualnie wykonywane zadania i pobieranie metadanych zostaną przerwane.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Zrestartować Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite nie przenosi plików biblioteki automatycznie, musisz je przenieść / skopiować przed zmianą lokalizacji. Jeśli w docelowej lokalizacji nie ma plików biblioteki, zostanie utworzony nowy plik.
 
@@ -398,7 +401,7 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Ustawienia renderowania i formatowania tekstu nie są obecnie stosowane do tekstu w opisach gier.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Pobierz obrazy tła niezwłocznie</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatycznie zamykaj aplikację klienta po wyjściu z gry</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Czas oczekiwania na zamknięcie klienta (w sekundach)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Nie zamykaj po sesji gry krótszej niż (w sekundach)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automatycznie zamykaj następujące klienty:</sys:String>
