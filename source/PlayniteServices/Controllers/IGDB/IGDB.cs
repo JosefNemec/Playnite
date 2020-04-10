@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace PlayniteServices.Controllers.IGDB
 {
     public class IGDB
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public static string UrlBase
         {
             get
@@ -78,6 +81,7 @@ namespace PlayniteServices.Controllers.IGDB
 
         public static async Task<string> SendStringRequest(string url, string query)
         {
+            logger.Debug($"IGDB Live: {url}, {query}");
             var sharedRequest = CreateRequest(url, query, ApiKey);
             var sharedResponse = await HttpClient.SendAsync(sharedRequest);
             return await sharedResponse.Content.ReadAsStringAsync();
@@ -91,8 +95,8 @@ namespace PlayniteServices.Controllers.IGDB
                 Method = HttpMethod.Get
             };
 
-            var response = await HttpClient.SendAsync(request);           
-            return await response.Content.ReadAsStringAsync();           
+            var response = await HttpClient.SendAsync(request);
+            return await response.Content.ReadAsStringAsync();
         }
     }
 }
