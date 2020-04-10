@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace Playnite.Toolbox
 
         static void Main(string[] args)
         {
+            FileSystem.CreateDirectory(PlaynitePaths.JitProfilesPath);
+            ProfileOptimization.SetProfileRoot(PlaynitePaths.JitProfilesPath);
+            ProfileOptimization.StartProfile("toolbox");
+
             logger.Debug("Toolbox started.");
             logger.Debug(Environment.CommandLine);
 
