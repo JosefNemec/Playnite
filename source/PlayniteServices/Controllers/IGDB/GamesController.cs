@@ -42,6 +42,7 @@ namespace PlayniteServices.Controllers.IGDB
         {
             List<Game> searchResult = null;
             searchString = ModelsUtils.GetIgdbSearchString(searchString);
+            logger.Debug($"IGDB search: {searchString}");
             var cachePath = Path.Combine(IGDB.CacheDirectory, cacheDir, Playnite.Common.Paths.GetSafeFilename(searchString) + ".json");
             lock (CacheLock)
             {
