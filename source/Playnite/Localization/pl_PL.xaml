@@ -45,7 +45,7 @@ Dziękujemy za pomoc.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Wystąpił nieodwracalny błąd.
  
 Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostyczne. Dziękujemy.</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Zgłoś awarię</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Zgłoś błąd</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Wyjdź z Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Działania podjęte przed awarią (w języku angielskim):</sys:String>
@@ -57,8 +57,10 @@ Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostycz
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Czy na pewno chcesz usunąć grę?
 
 Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po następnej operacji importu (w zależności od ustawień).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Czy jesteś pewien, że chcesz usunąć {0} gier?
+
+Gry zaimportowane automatycznie mogą pojawić się ponownie w Playnite po następnej operacji importu (w zależności od twoich ustawień).</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Czy jesteś pewien, że chcesz usunąć {0} wejść, które nie są aktualnie w użyciu? </sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Nie znaleziono żadnych niewykorzystanych pól.</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Znajomi Steam</sys:String>
@@ -247,7 +249,7 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Szerokość ramki okładki</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Brak źródła ikony gry</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Brak źródła okładki gry</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Brak źródła tła gry</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Odstęp pionowy szczegółów gry</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Pozycja szczegółów w widoku siatki</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozycja listy gier w widoku szczegółowym</sys:String>
@@ -387,7 +389,7 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Przewijanie w poziomie</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Wybierz jedną z podsekcji</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Brak dostępnych ustawień</sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Skrypty poniżej są wykonywane dla każdej gry w bibliotece Playnite. Indywidualne skrypty mogą być przypisane do każdej gry oddzielnie podczas edycji informacji o grze.</sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animacja przejść obrazów tła</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Wielkość czcionki</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatycznie</sys:String>
@@ -400,7 +402,9 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <sys:String x:Key="LOCSettingsTextRenderingMode">Sposób renderowania tekstu</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Ustawienia renderowania i formatowania tekstu nie są obecnie stosowane do tekstu w opisach gier.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Pobierz obrazy tła niezwłocznie</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Jeżeli włączone, Playnite będzie pobierał tła gier kiedy będzie pobierał metadane. Ta opcja używa więcej miejsca na dysku i pozwala oglądać tła gier kiedy jesteś w trybie offline.
+
+Jeżeli wyłączone, Playnite będzie pobierał tła gier tylko w tedy kiedy będą wymagane po raz pierwszy. Ta opcja używa mniej miejsca na dysku, ale może spowodować opóźnienie przed wyświetleniem tła, a niektóre tła mogą być niedostępne offline.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatycznie zamykaj aplikację klienta po wyjściu z gry</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Czas oczekiwania na zamknięcie klienta (w sekundach)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Nie zamykaj po sesji gry krótszej niż (w sekundach)</sys:String>
@@ -435,8 +439,10 @@ Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu ap
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Kreator importu emulatorów</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Ten kreator poprowadzi cię przez proces pobierania i importowania emulatora konsoli, jak również importowania emulowanych gier.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Pamiętaj, że możesz zawsze dodać dodatkowe emulatory (menu---&gt; biblioteka--&gt; konfiguracja emulatorów) i/lub gry (menu--&gt;dodaj grę--&gt;emulowana gra) później używając menu głównego.</sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Poniżej znajduje się lista emulatorów, które Playnite może rozpoznawać i automatycznie konfigurować. Możesz je pobrać i zainstalować, odwiedzając ich stronę internetową. Po zainstalowaniu emulatorów przejdź do następnego ekranu, aby zaimportować je do Playnite.
+        
+Możesz także skonfigurować i importować dowolny niestandardowy emulator później za pośrednictwem menu konfiguracji.</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">Można importować dowolne emulatory zainstalowane na komputerze, naciskając przycisk &quot;Skanowanie folderów...&quot;. Playnite przeszuka wybrany folder dla wszystkich znanych emulatorów i udostępni opcję ich importowania. Możesz importować dane z wielu folderów, używając tego przycisku kilka razy, emulatory zostaną dodane na dole bieżącej listy.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">Możesz importować gry, naciskając przycisk &quot;Skanuj folder dla ROM/ISO&quot;. Wybór odpowiedniego emulatora powie Playnite, które typy plików powinny być skanowane i importowane. Możesz importować z wielu folderów, używając tego przycisku kilka razy, gry zostaną dodane na dole bieżącej listy.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Nie wybrano żadnych emulatorów do zaimportowania. Automatyczne importowanie emulowanych gier nie będzie możliwe bez wcześniejszego skonfigurowania emulatora. Czy na pewno chcesz kontynuować i opuścić proces importowania?</sys:String>
