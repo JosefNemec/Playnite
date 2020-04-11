@@ -3119,7 +3119,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectGoogleBackground()
         {
-            var image = SelectGoogleImage($"{EditingGame.Name} artwork");
+            var image = SelectGoogleImage($"{EditingGame.Name} wallpaper");
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = image;

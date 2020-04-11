@@ -277,7 +277,7 @@ namespace Playnite.Database
 
         public virtual void Update(TItem itemToUpdate)
         {
-            TItem oldData;
+            TItem oldData = null;
             TItem loadedItem;
             lock (collectionLock)
             {
@@ -289,11 +289,16 @@ namespace Playnite.Database
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
-                        // This should never ever happen, but there are automatic crash reports of Playnite db files being corrupted.
-                        // This happens because of trash launchers from games like Zula,
-                        // which mess with Playnite process and dump their log entries to our files.
-                        // This will most likely cause some other issues, but at least it won't crash the whole app.
                         logger.Error(e, "Failed to read stored item data.");
+                    }
+
+                    // This should never ever happen, but there are automatic crash reports of Playnite db files being corrupted.
+                    // This happens because of trash launchers from games like Zula,
+                    // which mess with Playnite process and dump their log entries to our files.
+                    // This will most likely cause some other issues, but at least it won't crash the whole app.
+                    if (oldData == null)
+                    {
+                        logger.Error("Failed to read stored item data.");
                         oldData = this[itemToUpdate.Id].GetClone();
                     }
                 }

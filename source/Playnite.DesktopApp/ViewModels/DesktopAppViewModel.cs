@@ -414,7 +414,7 @@ namespace Playnite.DesktopApp.ViewModels
             ToggleExplorerPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.ExplorerPanelVisible = !AppSettings.ExplorerPanelVisible;
-            });
+            }, new KeyGesture(Key.E, ModifierKeys.Control));
 
             ToggleFilterPanelCommand = new RelayCommand<object>((game) =>
             {
@@ -529,7 +529,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Dialogs,
                     Resources));
             }, (a) => Database?.IsOpen == true,
-            new KeyGesture(Key.E, ModifierKeys.Control));
+            new KeyGesture(Key.Q, ModifierKeys.Control));
 
             AddWindowsStoreGamesCommand = new RelayCommand<object>((a) =>
             {
@@ -1302,7 +1302,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var files = (string[])args.Data.GetData(DataFormats.FileDrop);
                 if (files.Count() == 1)
                 {
-                    Window.BringToForeground();
+                    Window.RestoreWindow();
 
                     var path = files[0];
                     if (File.Exists(path))
@@ -1529,7 +1529,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                Window.BringToForeground();
+                Window.RestoreWindow();
             }
 
             InitializeView();

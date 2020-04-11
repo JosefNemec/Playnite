@@ -295,6 +295,7 @@
     <Compile Include="Localization.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
     <Compile Include="ObservablePowerStatus.cs" />
+    <Compile Include="PlayniteProcess.cs" />
     <Compile Include="PlayniteUriHandler.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Plugins\ExtensionInstaller.cs" />

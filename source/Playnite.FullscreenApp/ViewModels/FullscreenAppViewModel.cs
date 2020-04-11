@@ -1332,7 +1332,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 var files = (string[])args.Data.GetData(DataFormats.FileDrop);
                 if (files.Count() == 1)
                 {
-                    Window.BringToForeground();
+                    Window.RestoreWindow();
 
                     var path = files[0];
                     if (File.Exists(path))

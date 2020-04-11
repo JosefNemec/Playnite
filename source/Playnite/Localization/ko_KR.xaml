@@ -200,17 +200,6 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">어떤 필드를 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하세요.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">위의 로고를 클릭하여 Playnite가 사용하는 igdb.com의 데이터 베이스 강화에 기여해주십시오.</sys:String>
-    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">스토어:
-공식 스토어의 데이터만 사용합니다.
-
-IGDB:
-IGDB.com 데이터베이스의 데이터만 사용합니다.
-
-IGDB &gt; 공식 스토어:
-IGDB.com 데이터베이스의 데이터를 사용하며 없는 정보는 공식 스토어에서 가져옵니다.
-
-공식 스토어 &gt; IGDB:
-공식 스토어의 데이터를 사용하며 없는 정보는 IGDB.com 데이터베이스에서 가져옵니다.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Steam 라이브러리 업데이트 중…</sys:String>

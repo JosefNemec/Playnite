@@ -1,4 +1,6 @@
-﻿using Playnite.Controls;
+﻿using Playnite.Common;
+using Playnite.Controls;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Interop;
 
 namespace Playnite.Windows
 {
@@ -18,8 +21,6 @@ namespace Playnite.Windows
         void Show(object dataContext);
 
         void RestoreWindow();
-
-        void BringToForeground();
 
         void Close();
 
@@ -44,7 +45,7 @@ namespace Playnite.Windows
 
         public WindowFactory()
         {
-            context = SynchronizationContext.Current;            
+            context = SynchronizationContext.Current;
         }
 
         public bool? CreateAndOpenDialog(object dataContext)
@@ -98,14 +99,6 @@ namespace Playnite.Windows
             IsClosed = true;
         }
 
-        public void BringToForeground()
-        {
-            context.Send((a) =>
-            {
-                WindowUtils.BringToForeground(Window);
-            }, null);
-        }
-
         public void RestoreWindow()
         {
             context.Send((a) =>
@@ -136,24 +129,46 @@ namespace Playnite.Windows
 
     public static class WindowUtils
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public static void RestoreWindow(WindowBase window)
         {
-            window.Show();
-            if (window.WindowState == WindowState.Minimized)
+            try
             {
-                window.WindowState = WindowState.Normal;
+                // This is the only reliable method that also doesn't result in issues like this:
+                // https://www.reddit.com/r/playnite/comments/f6d73l/bug_full_screen_ui_wont_respond_to_left_stick/
+                // Adapted from https://ask.xiaolee.net/questions/1040342
+
+                //Get the process ID for this window's thread
+                var interopHelper = new WindowInteropHelper(window);
+                var thisWindowThreadId = Interop.GetWindowThreadProcessId(interopHelper.Handle, IntPtr.Zero);
+
+                //Get the process ID for the foreground window's thread
+                var currentForegroundWindow = Interop.GetForegroundWindow();
+                var currentForegroundWindowThreadId = Interop.GetWindowThreadProcessId(currentForegroundWindow, IntPtr.Zero);
+
+                //Attach this window's thread to the current window's thread
+                Interop.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, true);
+
+                //Set the window position
+                Interop.SetWindowPos(interopHelper.Handle, new IntPtr(0), 0, 0, 0, 0, Interop.SWP_NOSIZE | Interop.SWP_NOMOVE | Interop.SWP_SHOWWINDOW);
+
+                //Detach this window's thread from the current window's thread
+                Interop.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, false);
+
+                //Show and activate the window
+                if (window.WindowState == WindowState.Minimized)
+                {
+                    window.WindowState = WindowState.Normal;
+                }
+
+                window.Show();
+                window.Activate();
             }
-
-            BringToForeground(window);
-        }
-
-        public static void BringToForeground(WindowBase window)
-        {            
-            if (!window.Activate())
+            catch (Exception e)
             {
-                window.Topmost = true;
-                window.Topmost = false;
+                logger.Error(e, "Failed to restore window.");
             }
         }
-    }    
+    }
 }
