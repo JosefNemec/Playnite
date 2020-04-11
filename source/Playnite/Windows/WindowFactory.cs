@@ -138,6 +138,17 @@ namespace Playnite.Windows
                 // This is the only reliable method that also doesn't result in issues like this:
                 // https://www.reddit.com/r/playnite/comments/f6d73l/bug_full_screen_ui_wont_respond_to_left_stick/
                 // Adapted from https://ask.xiaolee.net/questions/1040342
+                window.Show();
+                if (!window.Activate())
+                {
+                    window.Topmost = true;
+                    window.Topmost = false;
+                }
+
+                if (window.WindowState == WindowState.Minimized)
+                {
+                    window.WindowState = WindowState.Normal;
+                }
 
                 //Get the process ID for this window's thread
                 var interopHelper = new WindowInteropHelper(window);
@@ -155,15 +166,6 @@ namespace Playnite.Windows
 
                 //Detach this window's thread from the current window's thread
                 Interop.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, false);
-
-                //Show and activate the window
-                if (window.WindowState == WindowState.Minimized)
-                {
-                    window.WindowState = WindowState.Normal;
-                }
-
-                window.Show();
-                window.Activate();
             }
             catch (Exception e)
             {
