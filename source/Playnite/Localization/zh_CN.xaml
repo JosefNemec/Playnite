@@ -613,7 +613,7 @@
   • 检查防病毒软件是否阻止了Playnite目录中的文件
   • 尝试安装在其他位置（路径不要出现中文）</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">无法导入模拟器，找不到模拟器定义文件。</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">用户界面初始化失败.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">编辑游戏详情</sys:String>
