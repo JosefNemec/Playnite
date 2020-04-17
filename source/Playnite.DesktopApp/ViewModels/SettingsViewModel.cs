@@ -116,6 +116,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<SelectableItem<LibraryPlugin>> AutoCloseClientsList { get; } = new List<SelectableItem<LibraryPlugin>>();
 
+        public bool ShowDpiSettings
+        {
+            get => Computer.WindowsVersion != WindowsVersion.Win10;
+        }
+
         public List<LoadedPlugin> GenericPlugins
         {
             get => Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin).ToList();

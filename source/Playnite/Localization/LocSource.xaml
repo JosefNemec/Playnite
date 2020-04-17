@@ -615,6 +615,7 @@ You can try these to fix the issue:
   • Check if antivirus is not blocking files in Playnite's directory
   • Try different install location</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Cannot import emulators, emulator definitions file doesn't exist.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">Failed to initialize XInput interface.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edit Game Details</sys:String>

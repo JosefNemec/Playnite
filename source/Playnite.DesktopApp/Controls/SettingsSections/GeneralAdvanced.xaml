@@ -40,6 +40,7 @@
                 Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
                 Margin="0,45,0,0"/>
         <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
+                  Visibility="{Binding ShowDpiSettings, Converter={StaticResource BooleanToVisibilityConverter}}"
                 ContentStringFormat="{}{0} *"
                 Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
                 Margin="0,15,0,0"/>

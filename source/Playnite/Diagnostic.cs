@@ -1,4 +1,6 @@
 ﻿using Playnite.Common;
+using Playnite.SDK;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -7,6 +9,36 @@ namespace Playnite
 {
     public static class Diagnostic
     {
+        private static ILogger logger = LogManager.GetLogger();
+
+        private static List<string> GetPlayniteFilesList()
+        {
+            var progPath = PlaynitePaths.ProgramPath;
+            var allFiles = new List<string>();
+            foreach (var file in Directory.GetFiles(progPath, "*.*", SearchOption.AllDirectories))
+            {
+                try
+                {
+                    var subName = file.Replace(progPath, "").Trim(Path.DirectorySeparatorChar);
+                    if (subName.StartsWith("library", StringComparison.OrdinalIgnoreCase) ||
+                        subName.StartsWith("browsercache", StringComparison.OrdinalIgnoreCase) ||
+                        subName.StartsWith("cache", StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    var fInfo = new FileInfo(file);
+                    allFiles.Add(subName + ", " + fInfo.Length);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get information about Playnite file {file}");
+                }
+            }
+
+            return allFiles;
+        }
+
         public static void CreateDiagPackage(string path, string userActionsDescription)
         {
             var diagTemp = Path.Combine(PlaynitePaths.TempPath, "diag");
@@ -18,17 +50,6 @@ namespace Playnite
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
-                    // Add log files
-                    foreach (var logFile in Directory.GetFiles(PlaynitePaths.ConfigRootPath, "*.log", SearchOption.TopDirectoryOnly))
-                    {
-                        if (Path.GetFileName(logFile) == "cef.log")
-                        {
-                            continue;
-                        }
-
-                        archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
-                    }
-
                     // Config
                     if (Directory.Exists(PlaynitePaths.ConfigRootPath))
                     {
@@ -83,12 +104,28 @@ namespace Playnite
                     File.WriteAllText(playnitePath, Serialization.ToJson(playniteInfo, true));
                     archive.CreateEntryFromFile(playnitePath, Path.GetFileName(playnitePath));
 
+                    // Program file list
+                    var fileListPath = Path.Combine(diagTemp, "fileList.txt");
+                    File.WriteAllText(fileListPath, string.Join(Environment.NewLine, GetPlayniteFilesList()));
+                    archive.CreateEntryFromFile(fileListPath, Path.GetFileName(fileListPath));
+
                     // User actions description
                     if (!string.IsNullOrWhiteSpace(userActionsDescription))
                     {
                         var descriptionPath = Path.Combine(diagTemp, "userActions.txt");
                         File.WriteAllText(descriptionPath, userActionsDescription);
                         archive.CreateEntryFromFile(descriptionPath, Path.GetFileName(descriptionPath));
+                    }
+
+                    // Add log files
+                    foreach (var logFile in Directory.GetFiles(PlaynitePaths.ConfigRootPath, "*.log", SearchOption.TopDirectoryOnly))
+                    {
+                        if (Path.GetFileName(logFile) == "cef.log")
+                        {
+                            continue;
+                        }
+
+                        archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
                     }
                 }
             }
