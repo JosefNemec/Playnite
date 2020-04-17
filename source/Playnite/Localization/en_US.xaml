@@ -664,7 +664,7 @@
 
     <sys:String x:Key="LOCGameImportWindowTitle"></sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUpdaterWindowTitle"></sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle">Update Available</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate"></sys:String>
     <sys:String x:Key="LOCCheckForUpdates"></sys:String>
@@ -674,7 +674,7 @@
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">An update for Playnite is available</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
