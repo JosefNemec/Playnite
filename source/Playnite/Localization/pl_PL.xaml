@@ -615,6 +615,7 @@ Możesz spróbować rozwiązać ten problem:
   • Sprawdź, czy program antywirusowy nie blokuje plików w katalogu Playnite
   • Wypróbuj inne miejsce instalacji</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nie można zaimportować emulatorów, brak pliku z konfiguracją.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edytowanie szczegółów gry</sys:String>
