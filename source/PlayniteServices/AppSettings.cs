@@ -31,6 +31,12 @@ namespace PlayniteServices
         public string Id { get; set; }
     }
 
+    public class GitHubSettings
+    {
+        public string DiscordWebhookUrl { get; set; }
+        public string GitHubSecret { get; set; }
+    }
+
     public class AppSettings
     {
         public string DbPath { get; set; }
@@ -41,5 +47,6 @@ namespace PlayniteServices
         public SteamSettings Steam { get; set; }
         public IgdbSettings IGDB { get; set; }
         public PatreonSettings Patreon { get; set; }
+        public GitHubSettings GitHub { get; set; }
     }
 }
