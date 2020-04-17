@@ -613,6 +613,7 @@ Môžete skúsiť nasledujúce možnosti opravy:
   • skontrolujte či Playnite neblokuje váš antivírus
   • skúste Playnite nainštalovať do iného priečinka</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nie je možné importovať emulátory, súbor definícií emulátora neexistuje.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Upraviť podrobnosti o hre</sys:String>
