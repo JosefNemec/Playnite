@@ -574,6 +574,7 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCAppStartupError">Falha ao iniciar a aplicação.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
