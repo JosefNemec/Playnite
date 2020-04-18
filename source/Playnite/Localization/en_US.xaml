@@ -6,7 +6,7 @@
 
     <sys:String x:Key="LanguageName"></sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite language</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel"></sys:String>
     <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
@@ -23,7 +23,7 @@
     <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutWindowTitle"></sys:String>
-    <sys:String x:Key="LOCAboutAuthor"></sys:String>
+    <sys:String x:Key="LOCAboutAuthor">Made by Josef Němec</sys:String>
 
     <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
     <sys:String x:Key="LOCCategorySetButton"></sys:String>
@@ -32,7 +32,7 @@
     <sys:String x:Key="LOCNoCategory"></sys:String>
     <sys:String x:Key="LOCNoPlatform"></sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Whoops! Something went wrong…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue"></sys:String>
@@ -50,7 +50,7 @@
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip"></sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">There are unsaved changes in this section</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
     <sys:String x:Key="LOCDBUpgradeFail"></sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
@@ -92,7 +92,7 @@
     <sys:String x:Key="LOCDismissAll"></sys:String>
     <sys:String x:Key="LOCImportLabel"></sys:String>
     <sys:String x:Key="LOCNameLabel"></sys:String>
-    <sys:String x:Key="LOCAuthorLabel"></sys:String>
+    <sys:String x:Key="LOCAuthorLabel">Author</sys:String>
     <sys:String x:Key="LOCModuleLabel"></sys:String>
     <sys:String x:Key="LOCSeriesLabel"></sys:String>
     <sys:String x:Key="LOCVersionLabel"></sys:String>
@@ -207,7 +207,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout"></sys:String>
     <sys:String x:Key="LOCMenuIssues"></sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Launch Fullscreen Mode</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
     <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
@@ -244,7 +244,7 @@
     <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
     <sys:String x:Key="LOCSettingsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel"></sys:String>
@@ -269,10 +269,10 @@
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport"></sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport"></sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Launch Playnite minimized</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Launch Playnite when you start your computer</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError"></sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Launch in Fullscreen Mode</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
@@ -303,9 +303,9 @@
     <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Show system tray icon</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Minimize Playnite to system tray</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Minimize Playnite to system tray when the application window is closed</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart"></sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose"></sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy"></sys:String>
@@ -327,7 +327,7 @@
     <sys:String x:Key="LOCSettingsCreateThemes"></sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Help us translate Playnite</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle"></sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
@@ -373,7 +373,7 @@
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Client shutdown delay (in seconds)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
@@ -600,7 +600,7 @@
     <sys:String x:Key="LOCStartupError"></sys:String>
     <sys:String x:Key="LOCSkinError"></sys:String>
     <sys:String x:Key="LOCClearAll"></sys:String>
-    <sys:String x:Key="LOCSetupRunning"></sys:String>
+    <sys:String x:Key="LOCSetupRunning">Installing</sys:String>
     <sys:String x:Key="LOCUninstalling"></sys:String>
     <sys:String x:Key="LOCGameLaunching"></sys:String>
     <sys:String x:Key="LOCGameRunning"></sys:String>
@@ -631,7 +631,7 @@
     <sys:String x:Key="LOCReloadScripts"></sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Return to Desktop Mode</sys:String>
     <sys:String x:Key="LOCExitPlaynite"></sys:String>
     <sys:String x:Key="LOCLibraries"></sys:String>
     <sys:String x:Key="LOCUpdateAll"></sys:String>
@@ -666,7 +666,7 @@
     <sys:String x:Key="LOCMetaLookupWindowTitle"></sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Update Available</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate"></sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Download and Install Update</sys:String>
     <sys:String x:Key="LOCCheckForUpdates"></sys:String>
     <sys:String x:Key="LOCUpdateError"></sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
@@ -778,9 +778,9 @@
     <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
 
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io will be launched. Please sign in and then close this message.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">itch.io app version 25 or newer is not installed.</sys:String>
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin"></sys:String>
