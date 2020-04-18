@@ -334,7 +334,7 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">當遊戲關閉:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">使用Galaxy客戶端啟動遊戲</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">將會啟用雲端存檔，計算遊玩時數等功能</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">將會覆蓋目前所有Steam遊戲的分類，已隱藏以及個人收藏狀態。您是否確定繼續?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">確定匯入分類?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">無法匯入分類，未選擇帳號。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">無法匯入分類，未開啟數據庫。</sys:String>
@@ -399,7 +399,9 @@
     <sys:String x:Key="LOCSettingsTextRenderingMode">文本渲染模式</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">文本渲染以及格式化選項尚未應用至遊戲敘述文本</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">立即下載背景圖片</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">若啟用本功能則Playnite會於下載元數據時一併下載背景圖片。會佔用額外的硬碟空間且可於離線時瀏覽圖片。
+ 
+若禁用本功能則Playnite僅會在首次訪問時才下載背景圖片。會節省硬碟空間但可能造成圖片讀取速度緩慢, 且離線時將無法觀看部分圖片。</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">退出遊戲時自動關閉遊戲啟動器</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">延緩客戶端關閉時間(秒)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">當遊戲時間低於(秒) 則不關閉</sys:String>
@@ -537,7 +539,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">開發團隊</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">標籤</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">發行商</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">安裝進度</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安裝</sys:String>
@@ -610,7 +612,8 @@
   • 檢查所有檔案是否已正確安裝，重新安裝可能有所幫助
   • 檢查防毒軟體是否封鎖了Playnite資料夾內的檔案
   • 嘗試安裝在不同的位置</sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">無法匯入模擬器，找不到模擬器定義檔。</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">Xinput介面啓用失敗</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">編輯遊戲詳細信息</sys:String>
@@ -878,16 +881,16 @@ By {1}
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">選擇 {0} 的背景圖片</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">可能的話直接啟動遊戲而不透過Epic客戶端啟動。</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">本功能無法作用於所有遊戲。檢視幫助連結以找尋解決方法。</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">忽略第三方商店遊戲</sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">匯入Trove遊戲</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">啟用時，須由第三方啟動器啟動的遊戲將不會被匯入。</sys:String>
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">啟動客戶端時開啟Xbox Pass應用程式而非Microsoft商店。</sys:String>
-    <sys:String x:Key="LOCXboxImport360Games"></sys:String>
-    <sys:String x:Key="LOCXboxImportXboneGames"></sys:String>
+    <sys:String x:Key="LOCXboxImport360Games">匯入Xbox 360遊戲</sys:String>
+    <sys:String x:Key="LOCXboxImportXboneGames">匯入Xbox One遊戲</sys:String>
 </ResourceDictionary>

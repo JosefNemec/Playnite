@@ -614,6 +614,7 @@ Můžete zkusit následující možnosti opravy:
   • Zkontrolujte že váš antivirus neblokuje Playnite
   • Zkuste Playnite nainstalovat do jiného adresáře</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nelze importovat emulátory, definice podporovaných emulátorů nebyla nalezena.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">Nepodařilo se inicializovat XInput rozhraní.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Upravit detaily hry</sys:String>

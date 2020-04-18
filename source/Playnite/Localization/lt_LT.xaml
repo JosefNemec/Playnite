@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Kalba</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Uždaryti</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtras aktyvus</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtras išjungtas</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Papildomi filtrai</sys:String>
     <sys:String x:Key="LOCFilters">Filtrai</sys:String>
     <sys:String x:Key="LOCFilter">Filtras</sys:String>
@@ -46,14 +46,18 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Pašalinti žaidimą(us)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Negalimas pašalinti žaidimo,nes jis šiuo metu yra įrašomas/ ištrinamas.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Negalimas pašalinti žaidimo, nes jis šiuo metu paleistas.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Ar tikrai norite pašalinti šį žaidimą?
+        
+Automatiškai įmportuoti žaidimai, kuriuos pašalinote anskčiau Playnite gali  įtraukti pakartotinai kito importavimo metu (priklauso nuo pasirinktų nustatymų).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Ar tikrai norite pašalinti {0} žaidimą?
+        
+Automatiškai įmportuoti žaidimai, kuriuos pašalinote anskčiau Playnite gali  įtraukti pakartotinai kito importavimo metu (priklauso nuo pasirinktų nustatymų).</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Ar tikrai norite pašalinti {0} įrašų, kurie šiuo metu nėra nenodojami ?</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Nerasta nenaudojamų laukų.</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam draugai</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Yra atlikti keitimai, kuriuos būtina išsaugoti</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Atnaujinamas žaidimų bibliotekos formatas...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Duombazės atnaujinimas nepavyko, nepavyko atidaryti duombazės failo.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Nepavyksta atnaujinti žaidimų bibliotekos. Reikia {0} MB papildomos vietos.</sys:String>
 
@@ -65,24 +69,24 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Nepavyko sukurti nuorodos: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Nepavyko įrašyti žaidimo: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Nepavyko ištrinti žaidimo: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Veiksmas &quot;Žaisti&quot; nėra sukonfigūruotas.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekos įskiepis valdantis šį žaidimą nėra įdiegtas ar įgalintas.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Oficialių metaduomenų atsisiuntimas nėra galimas.</sys:String>
-    <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">Nepasirinktas joks žaidimas</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">Neįdiegta PowerShell 3.0 ar naujesnė versija.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Įgalinta</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Pašalinti</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">Pašalinti nenodojamus</sys:String>
     <sys:String x:Key="LOCRenameTitle">Pervadinti</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopijuoti</sys:String>
     <sys:String x:Key="LOCAddTitle">Pridėti</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Numatytoji piktograma</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Numatytasis viršelio paveikslėlis</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">Numatytasis fono paveikslėlis</sys:String>
     <sys:String x:Key="LOCFinishLabel">Baigti</sys:String>
     <sys:String x:Key="LOCNextLabel">Toliau</sys:String>
     <sys:String x:Key="LOCBackLabel">Atgal</sys:String>
@@ -122,7 +126,7 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instaliavimas</sys:String>
     <sys:String x:Key="LOCActionsLabel">Veiksmai</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Siunčiama…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Kraunama...</sys:String>
     <sys:String x:Key="LOCTypeLabel">Typas</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profilis</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiliai</sys:String>
@@ -130,16 +134,16 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Atsisiųsti</sys:String>
     <sys:String x:Key="LOCSearchLabel">Paieška</sys:String>
     <sys:String x:Key="LOCZoomLabel">Keisti dydį</sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCListViewLabel">Sąrašo rodinys</sys:String>
     <sys:String x:Key="LOCCoversLabel">Viršeliai</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Tinklelio rodinys</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Išsamusis rodinys</sys:String>
     <sys:String x:Key="LOCCustomLabel">Pasirinktinis</sys:String>
     <sys:String x:Key="LOCURLLabel">Nuoroda</sys:String>
     <sys:String x:Key="LOCPatronsLabel">Rėmėjai</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenzija</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Prisidėję</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Playnite išjungiamas...</sys:String>
     <sys:String x:Key="LOCToday">Šiandien</sys:String>
     <sys:String x:Key="LOCYesterday">Vakar</sys:String>
     <sys:String x:Key="LOCMonday">Pirmadienį</sys:String>
@@ -152,7 +156,7 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCPastWeek">Praėjusią savaitę</sys:String>
     <sys:String x:Key="LOCPastMonth">Pastarąjį mėnesį</sys:String>
     <sys:String x:Key="LOCPastYear">Pastaraisiais metais</sys:String>
-    <sys:String x:Key="LOCMoreThenYear"></sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Seniau nei prieš metus</sys:String>
     <sys:String x:Key="LOCImportCompleted">Importavimas sėkmingai baigtas.</sys:String>
     <sys:String x:Key="LOCAllGames">Visi žaidimai</sys:String>
     <sys:String x:Key="LOCGameId">Žaidimo Id</sys:String>
@@ -160,14 +164,24 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCPresets">Ruošiniai</sys:String>
     <sys:String x:Key="LOCColumn">Stulpelis</sys:String>
     <sys:String x:Key="LOCColumns">Stulpeliai</sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
+    <sys:String x:Key="LOCRow">Eilutė</sys:String>
+    <sys:String x:Key="LOCRows">Eilutės</sys:String>
 
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Specialiosios greitosios komandos:
+{InstallDir} - Žaidimo direktorija
+{InstallDirName} - Žaidimo direktorijos pavadinimas
+{ImagePath} - Žaidimo ISO/ROM kelias, jei nustatytas
+{ImageName} - Žaidimo ISO/ROM failo pavadinimas
+{ImageNameNoExt} - Žaidimo ISO/ROM failo pavadinimas be plėtinio
+{PlayniteDir} - Playnite direktorija
+{Name} - Žaidimo pavadinimas
+
+Pavyzdys: -image &quot;{ImagePath}&quot; -fullscreen
+Rezultatas: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Nepavyksta gauti piktogramos jei veiksmo &quot;Žaisti&quot; nėra arba jis veda į URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Atsiųsti tik trūkstamus metaduomenis</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Žaidimų pasirinkimas</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Pasirinkite, kuriuos žaidimus norite atnaujinnti su nauja metadata:</sys:String>
@@ -185,44 +199,44 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCProgressOriginLibImport">Siunčiami Origin bibliotekos atnaujinimai…</sys:String>
     <sys:String x:Key="LOCProgressBattleNetLibImport">Siunčiami Battle.net bibliotekos atnaujinimai…</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Siunčiami metaduomenys…</sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
-    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Importuojami neįrašyti žaidimai</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importuojami {0} žaidimai...</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">Siunčiami bibliotekos atnaujinimai...</sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport">Siunčiami bibliotekos atnaujinimai...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Bibliotekos atnaujinimai baigti</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">Atlaisvinami resursai...</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfigūravimas</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Nustatymai…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platformos ir emuliatoriai</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Konfigūruoti emuliatorius…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Bibliotekos vedlys...</sys:String>
     <sys:String x:Key="LOCMenuTools">Įrankiai</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">Atsisiųsti metaduomenis...</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Atidaryti kitą klientą</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Atnaujinti žaidimų biblioteką</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Pridėti žaidimą</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Rankiniu būdu…</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Skenuoti automatiškai...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Emuliuojamas žaidimas...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store aplikacija...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Apie Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Siųsti atsiliepimą</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Pradėti viso ekrano rėžime</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Nuorodos</sys:String>
-    <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
+    <sys:String x:Key="LOCMenuHelpTitle">Pagalba</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Paremti &quot;Patreon&quot; platformoje</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentacija</sys:String>
-    <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
-    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
-    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem">Perkrauti sistemą</sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">Išjungti sistemą</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">Užmigdyti sistemą</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Sistemą užmigdyti įrašius</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Pasirinkti atsitiktinį žaidimą</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Atstumas tarp objektų.</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
@@ -342,7 +356,7 @@ Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Žaidimo paveikslėlis</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Saugoti ekrano kopiją</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Saugoti fono paveikslėlį</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner">Baneris</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite kaip foną naudos turimas žaidimo nuotraukas, o ne paveikslėlius gautus iš duombazės.
 Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
@@ -469,7 +483,7 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCArgumentsTitle">Argumentai</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">Pasirinkta direktorija</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Palaikomi failų formatai</sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">Įtraukti emuliatorius...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Paleisti argumentus, kurie pateikti emuliatoriaus profilyje</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
@@ -571,6 +585,7 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCAppStartupError">Nepavyko paleisti aplikacijos.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">Nepavyko įkelti XInput įvesties.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Keisti žaidimo informaciją</sys:String>
@@ -739,7 +754,7 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCOpenMetadataFolder">Atidaryti metaduomenų aplanką</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} klientas yra neįdiegtas.</sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">Bus atidarytas {0} klientas. Prašome prisijungti ir uždaryti šį langą.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Nerasta įdiegto žaidimo katalogas.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Neteisingai nustatytas žaidimo veiksmas.</sys:String>
@@ -752,7 +767,7 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCEnterName">Įveskite pavadinimą</sys:String>
     <sys:String x:Key="LOCEnterNewName">Įvesti naują pavadinimą</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Mažiau nei valandą</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">Nuo 1 iki 10 valandų</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">Nuo 10 iki 100 valandų</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">Nuo 100 iki 500 valandų</sys:String>
@@ -762,23 +777,27 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Įdiegti plėtinį?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Nepavyko įdiekti plėtinių.
+
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Nepavyko įdiegti temos.
+
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Daugiau neberodyti</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
-    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
-    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Forumas</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">Naujienos</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
 
     <!--itch.io-->
@@ -796,15 +815,15 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCSteamLoggedInUser">Autentifikuotas vartotojas</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
-    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">Diskusijos</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
-    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Mėgstamiausi</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">Daugiausiai žaista</sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames">Visi</sys:String>
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>

@@ -614,6 +614,7 @@ Você pode tentar corrigir o problema:
   • Verificando se o seu antivírus não está bloqueando arquivos na pasta do Playnite
   • Instalando o programa em um local diferente</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Não foi possível importar os emuladores, o arquivo de definições de emuladores não existe.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">Falha ao inicializar a interface XInput. </sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editar Detalhes do Jogo</sys:String>

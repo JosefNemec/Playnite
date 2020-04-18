@@ -614,6 +614,7 @@
   • 안티 바이러스가 Playnite 디렉토리 안에 있는 파일을 차단하는지 확인해보세요
   • 다른 곳에 설치해보세요</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">에뮬레이터 정의 파일이 없기 때문에 에뮬레이터를 가져올 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">게임 상세정보 편집</sys:String>

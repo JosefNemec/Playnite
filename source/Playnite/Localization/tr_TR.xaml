@@ -615,6 +615,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
   • Virüsten koruma programının Playnite dizinindeki dosyaları engellemediğinden emin olun
   • Farklı yükleme konumu deneyin</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Emülatörler içe alınamıyor, emülatör tanım dosyası mevcut değil.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">XInput arayüzü başlatılamadı.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Oyun Ayrıntılarını Düzenle</sys:String>
