@@ -520,7 +520,7 @@ namespace OriginLibrary
                     logger.Debug($"Found {installedGames.Count} installed Origin games.");
                     allGames.AddRange(installedGames.Values.ToList());
                 }
-                catch (Exception e) when (false)
+                catch (Exception e)
                 {
                     logger.Error(e, "Failed to import installed Origin games.");
                     importError = e;
