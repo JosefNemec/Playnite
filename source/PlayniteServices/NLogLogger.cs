@@ -58,7 +58,6 @@ namespace PlayniteServices
             logger.Warn(exception, message);
         }
 
-
         public static void ConfigureLogger()
         {
             var config = new LoggingConfiguration();
@@ -81,7 +80,7 @@ namespace PlayniteServices
                 ArchiveFileName = Path.Combine(Paths.ExecutingDirectory, "playnite.{#####}.log"),
                 ArchiveAboveSize = 4096000,
                 ArchiveNumbering = ArchiveNumberingMode.Sequence,
-                MaxArchiveFiles = 2
+                MaxArchiveFiles = 10
             };
 
             config.AddTarget("file", fileTarget);

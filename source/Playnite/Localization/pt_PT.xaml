@@ -574,6 +574,7 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCAppStartupError">Falha ao iniciar a aplicação.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
@@ -660,10 +661,10 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCDefault"></sys:String>
     <sys:String x:Key="LOCSelect"></sys:String>
     <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCRandom">Aleatório</sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
     <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCTransparent">Transparente</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos de Emulador Adicionais</sys:String>
@@ -681,15 +682,15 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Está disponível uma nova atualização para o Playnite</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Recarregar a lista de temas</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Aplicar tema selecionado</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Vigiar alterações de ficheiro</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Aplicar automaticamente o tema quando o ficheiro fonte é alterado</sys:String>
     <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Executar antes de iniciar o jogo</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Executar depois de fechar o jogo</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Guardar como predefinição</sys:String>
@@ -755,33 +756,33 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCEnterName">Introduzir nome</sys:String>
     <sys:String x:Key="LOCEnterNewName">Digita novo nome</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Menos de uma hora</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 a 10 horas</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 a 100 horas</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 a 500 horas</sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 a 1000 horas</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Para terminar a instalação, o Playnite precisa de ser reiniciado. Queres reiniciar agora?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalação bem sucedida.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instalar a extensão?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha ao instalar a extensão. {0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Falha ao instalar o tema. {0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Não Mostrar Novamente</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
-    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
-    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Fórum</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">Notícias</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
 
     <!--itch.io-->
@@ -804,13 +805,13 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
-    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
-    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Jogado Recentemente</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Favoritos</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">Mais Jogado</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Procurar resultados para:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>

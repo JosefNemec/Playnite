@@ -614,6 +614,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
   • Tarkista, että virustentorjuntaohjelma ei estä Playniten kansiossa olevia tiedostoja
   • Kokeile asennusta toiseen paikkaan</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Ei voida tuoda emulaattoreita, emulaattorien määritystiedostoa ei löydy.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Muokkaa pelin tietoja</sys:String>

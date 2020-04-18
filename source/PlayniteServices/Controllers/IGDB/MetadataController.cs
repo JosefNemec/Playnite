@@ -31,18 +31,20 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpPost]
         public async Task<ServicesResponse<ExpandedGame>> Post([FromBody]SdkModels.Game game)
         {
-            var isKnownPlugin = BuiltinExtensions.GetIsBuiltInPlugin(game.PluginId);
+            var isKnownPlugin = game.PluginId != Guid.Empty;
             var isSteamPlugin = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.SteamLibrary) == game.PluginId;
             ulong igdbId = 0;
             var matchId = $"{game.GameId}{game.PluginId}".MD5();
             var searchId = $"{game.Name}{game.ReleaseDate?.Year}".MD5();
+
+            logger.Debug($"IGDB metadata: {game.GameId},{game.Name},{game.PluginId},{game.ReleaseDate}");
 
             // Check if match was previously found
             if (isKnownPlugin)
             {
                 if (isSteamPlugin)
                 {
-                    igdbId = await GamesBySteamIdController.GetIgdbMatch(ulong.Parse(game.GameId));     
+                    igdbId = await GamesBySteamIdController.GetIgdbMatch(ulong.Parse(game.GameId));
                 }
                 else
                 {
@@ -104,15 +106,6 @@ namespace PlayniteServices.Controllers.IGDB
 
         private async Task<ulong> TryMatchGame(SdkModels.Game game)
         {
-            if (BuiltinExtensions.GetExtensionFromId(game.PluginId) == BuiltinExtension.SteamLibrary)
-            {
-                var igdbId = await GamesBySteamIdController.GetIgdbMatch(ulong.Parse(game.GameId));
-                if (igdbId != 0)
-                {
-                    return igdbId;
-                }
-            }
-
             if (game.Name.IsNullOrEmpty())
             {
                 return 0;
@@ -213,7 +206,7 @@ namespace PlayniteServices.Controllers.IGDB
             var res = list.Where(a => string.Equals(matchName, a.name, StringComparison.InvariantCultureIgnoreCase));
             if (!res.Any())
             {
-                res = list.Where(a => 
+                res = list.Where(a =>
                 a.alternative_names.HasItems() &&
                 a.alternative_names.Select(b => b.name).ContainsString(matchName) == true);
             }

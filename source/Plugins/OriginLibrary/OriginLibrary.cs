@@ -209,12 +209,12 @@ namespace OriginLibrary
                     };
                     if (paths.Path.IsNullOrEmpty())
                     {
-                        action.Path = Path.GetFileName(paths.CompletePath);
+                        action.Path = paths.CompletePath;
                         action.WorkingDir = Path.GetDirectoryName(paths.CompletePath);
                     }
                     else
                     {
-                        action.Path = paths.Path;
+                        action.Path = paths.CompletePath;
                         action.WorkingDir = paths.Root;
                     }
 
@@ -253,7 +253,7 @@ namespace OriginLibrary
                     else
                     {
                         playAction.WorkingDir = executePath.Root;
-                        playAction.Path = executePath.Path;
+                        playAction.Path = executePath.CompletePath;
                     }
                 }
             }
@@ -334,12 +334,12 @@ namespace OriginLibrary
                             continue;
                         }
 
+                        var installDirReplacement = ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar;
                         newGame.PlayAction = GetGamePlayTask(localData);
                         if (newGame.PlayAction?.Type == GameActionType.File)
                         {
                             newGame.InstallDirectory = newGame.PlayAction.WorkingDir;
-                            newGame.PlayAction.WorkingDir = newGame.PlayAction.WorkingDir.Replace(newGame.InstallDirectory, ExpandableVariables.InstallationDirectory);
-                            newGame.PlayAction.Path = newGame.PlayAction.Path.Replace(newGame.InstallDirectory, "").Trim(new char[] { '\\', '/' });
+                            newGame.PlayAction.Path = newGame.PlayAction.Path.Replace(newGame.InstallDirectory, installDirReplacement);
                         }
                         else
                         {
@@ -351,8 +351,7 @@ namespace OriginLibrary
                         {
                             var task = GetGamePlayTask(newGame.InstallDirectory);
                             newGame.InstallDirectory = task.WorkingDir;
-                            newGame.PlayAction.WorkingDir = task.WorkingDir.Replace(newGame.InstallDirectory, ExpandableVariables.InstallationDirectory);
-                            newGame.PlayAction.Path = task.Path.Replace(newGame.InstallDirectory, "").Trim(new char[] { '\\', '/' });
+                            newGame.PlayAction.Path = task.Path.Replace(newGame.InstallDirectory, installDirReplacement);
                         }
 
                         // If game uses EasyAntiCheat then use executable referenced by it
@@ -368,7 +367,7 @@ namespace OriginLibrary
                                 };
                             }
 
-                            newGame.PlayAction.Path = eac.Executable;
+                            newGame.PlayAction.Path = eac.Executable.Replace(newGame.InstallDirectory, installDirReplacement);
                             if (!string.IsNullOrEmpty(eac.Parameters) && eac.UseCmdlineParameters == "1")
                             {
                                 newGame.PlayAction.Arguments = eac.Parameters;
@@ -378,13 +377,23 @@ namespace OriginLibrary
                             {
                                 newGame.PlayAction.WorkingDir = Path.Combine(ExpandableVariables.InstallationDirectory, eac.WorkingDirectory);
                             }
-                            else
-                            {
-                                newGame.PlayAction.WorkingDir = ExpandableVariables.InstallationDirectory;
-                            }
                         }
 
-                        games.Add(newGame.GameId, newGame);
+                        if (newGame.PlayAction != null)
+                        {
+                            if (!newGame.PlayAction.Path.Contains(ExpandableVariables.InstallationDirectory))
+                            {
+                                newGame.PlayAction.Path = installDirReplacement + newGame.PlayAction.Path;
+                            }
+
+                            newGame.PlayAction.WorkingDir = null;
+                            games.Add(newGame.GameId, newGame);
+                        }
+                        else
+                        {
+                            logger.Warn("Found installed Origin game that's not launchable, skipping import.");
+                            logger.Warn(newGame.ToString());
+                        }
                     }
                     catch (Exception e) when (!Environment.IsDebugBuild)
                     {
