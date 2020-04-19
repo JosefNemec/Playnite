@@ -33,7 +33,13 @@
     <sys:String x:Key="LOCNoPlatform"></sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Whoops! Something went wrong…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">An unrecoverable error has occurred.
+
+If you would like to help us fix this issue, please briefly describe the actions taken before the crash, and then create a diagnostics package. If you are online, the package will be uploaded to the Playnite server for analysis.
+
+Alternatively, you can click on the 'Report Crash' button to create a new GitHub issue and report the crash manually.
+
+Thank you for your help.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue"></sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite"></sys:String>
@@ -407,7 +413,9 @@
     <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
     <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Below is a list of emulators that Playnite can recognize and configure automatically. You can download the installers from their websites. Once you have the emulators installed, proceed to the next screen to import them to Playnite.
+
+You can also configure and import any custom emulator from the configuration menu later. </sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
@@ -420,7 +428,10 @@
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">This wizard will guide you through the automatic import and configuration process of external game libraries. Playnite can automatically import games from multiple game services, such as Steam or GOG, and also keep your library up-to-date by updating it automatically when the application is started.
+
+Keep in mind that you can manually add any custom game for any platform later by clicking the 'Playnite' button in the main menu.
+    </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
