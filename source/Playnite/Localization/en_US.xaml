@@ -336,7 +336,9 @@ Thank you for your help.</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Help us translate Playnite</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle"></sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite cannot move your library files automatically. You must manually move/copy the files before changing the location. If there is no library in the target location, a new one will be created.
+
+The new database location will not be used until Playnite is restarted. </sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns"></sys:String>
@@ -411,18 +413,18 @@ Thank you for your help.</sys:String>
 
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">This wizard will guide you through the process of downloading and importing console emulators and importing emulated games.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Below is a list of emulators that Playnite can recognize and configure automatically. You can download the installers from their websites. Once you have the emulators installed, proceed to the next screen to import them to Playnite.
 
 You can also configure and import any custom emulator from the configuration menu later. </sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">You can import any emulators that are installed on your PC by clicking the 'Autodetect From Folder…' button. Playnite will search the selected folder for any known emulators and provide the option to import them. You can use this button multiple times to import emulators from different folders. Emulators will be added to the bottom of the current list.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">You can import games by clicking the 'Scan Folder Using Emulator' button. Selecting the appropriate emulator will tell Playnite which file types should be scanned and imported. You can use this button multiple times to import games from different folders. Games will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Autodetect From Folder…</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
 
@@ -436,7 +438,7 @@ Keep in mind that you can manually add any custom game for any platform later by
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
     <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Automatically import games from the services listed below. Any later game changes (Installation Status) will be updated automatically on Playnite startup or when triggered manually. The selected settings will affect the initial and all subsequent imports.</sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration"></sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration"></sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration"></sys:String>
@@ -447,8 +449,10 @@ Keep in mind that you can manually add any custom game for any platform later by
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton"></sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">The initial setup has been completed. Remember that you can change all settings later in the 'Settings' menu.
+
+You can also add any other game (including Microsoft Store games) later by clicking the Playnite logo menu.</sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport">Begin the Emulation Import Wizard</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
@@ -575,7 +579,12 @@ Keep in mind that you can manually add any custom game for any platform later by
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCURLFormatError"></sys:String>
     <sys:String x:Key="LOCAppStartupError"></sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Failed to initialize the WebView component. Playnite cannot continue with the startup process.
+
+You can try to resolve the issue:
+  • Check that all files are installed correctly. The re-installation could help
+  • Make sure your antivirus doesn't block any files in the Playnite directory
+  • Choose a different installation location</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
@@ -777,7 +786,12 @@ Keep in mind that you can manually add any custom game for any platform later by
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage. 
+
+Maximum recommended resolutions:
+Icons: {0} mega pixels
+Covers: {1} mega pixels
+Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
