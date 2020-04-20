@@ -167,7 +167,17 @@ Thank you for your help.</sys:String>
     <sys:String x:Key="LOCRow"></sys:String>
     <sys:String x:Key="LOCRows"></sys:String>
 
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add a dynamic string:
+{InstallDir} - Game installation directory
+{InstallDirName} - Installation folder name
+{ImagePath} - Game ISO/ROM path if set
+{ImageName} - Game ISO/ROM file name
+{ImageNameNoExt} - Game ISO/ROM file name without extension
+{PlayniteDir} - Playnite installation directory
+{Name} - Game name
+
+Example: -image &quot;{ImagePath}&quot; -fullscreen
+Results in: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
 
@@ -288,7 +298,7 @@ Thank you for your help.</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList"></sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
@@ -334,7 +344,9 @@ Thank you for your help.</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Help us translate Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite needs to be restarted in order to apply this setting. Restart now?
+
+Restarting will cancel any active tasks (downloads) currently in progress.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle"></sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite cannot move your library files automatically. You must manually move/copy the files before changing the location. If there is no library in the target location, a new one will be created.
 
@@ -354,7 +366,7 @@ The new database location will not be used until Playnite is restarted. </sys:St
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Automatic Metadata download settings for newly imported games.</sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
@@ -377,7 +389,7 @@ The new database location will not be used until Playnite is restarted. </sys:St
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Text rendering and formatting methods are currently not applicable to game descriptions.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
@@ -692,7 +704,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage"></sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">The background task is currently in progress. Do you want to cancel it and proceed with the update?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">An update for Playnite is available</sys:String>
 
@@ -782,7 +794,11 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Do you want to install a new theme? The previous installation will be overwritten.
+
+{0}
+By {1}
+Version {2}</sys:String>
 
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
 
@@ -821,7 +837,7 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">The initial setup is not complete. Playnite will now restart to Desktop Mode to finish the procedure.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
@@ -840,7 +856,7 @@ Backgrounds: {2} mega pixels</sys:String>
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">This option will not work for all games. See the 'Troubleshooting' link for possible workarounds.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
