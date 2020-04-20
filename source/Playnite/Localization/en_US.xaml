@@ -421,7 +421,7 @@ You can also configure and import any custom emulator from the configuration men
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">You can import any emulators that are installed on your PC by clicking the 'Autodetect From Folder…' button. Playnite will search the selected folder for any known emulators and provide the option to import them. You can use this button multiple times to import emulators from different folders. Emulators will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">You can import games by clicking the 'Scan Folder Using Emulator' button. Selecting the appropriate emulator will tell Playnite which file types should be scanned and imported. You can use this button multiple times to import games from different folders. Games will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">There are no emulators configured in Playnite. You cannot import games without first configuring the emulator and selecting the appropriate file types. Do you want to add some emulators now?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Autodetect From Folder…</sys:String>
