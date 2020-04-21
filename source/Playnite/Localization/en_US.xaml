@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
 
-    <sys:String x:Key="LanguageName"></sys:String>
+    <sys:String x:Key="LanguageName">English</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Playnite language</sys:String>
 
@@ -70,7 +70,7 @@ Thank you for your help.</sys:String>
     <sys:String x:Key="LOCGameInstallError"></sys:String>
     <sys:String x:Key="LOCGameUninstallError"></sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">The library plugin responsible for this game is disabled or not installed.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
@@ -87,7 +87,7 @@ Thank you for your help.</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle"></sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle"></sys:String>
     <sys:String x:Key="LOCDefaultBackgroundTitle"></sys:String>
-    <sys:String x:Key="LOCFinishLabel"></sys:String>
+    <sys:String x:Key="LOCFinishLabel">Finish</sys:String>
     <sys:String x:Key="LOCNextLabel"></sys:String>
     <sys:String x:Key="LOCBackLabel"></sys:String>
     <sys:String x:Key="LOCDoneCapLabel"></sys:String>
@@ -325,7 +325,7 @@ Results in: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart"></sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose"></sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy"></sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">This will enable GOG Galaxy features like cloud saves, game time tracking, etc.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount"></sys:String>
@@ -389,7 +389,7 @@ The new database location will not be used until Playnite is restarted. </sys:St
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice">Text rendering and formatting methods are currently not applicable to game descriptions.</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Text rendering and formatting methods are currently not used for game descriptions.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
@@ -446,7 +446,7 @@ You can also configure and import any custom emulator from the configuration men
 
 Keep in mind that you can manually add any custom game for any platform later by clicking the 'Playnite' button in the main menu.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Please choose a location for the library database file. It can be changed later in the application Settings.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
     <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
@@ -597,7 +597,7 @@ You can try to resolve the issue:
   • Check that all files are installed correctly. The re-installation could help
   • Make sure your antivirus doesn't block any files in the Playnite directory
   • Choose a different installation location</sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Cannot import emulators due to missing or corrupted definition file.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
@@ -657,7 +657,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCCriticScore"></sys:String>
     <sys:String x:Key="LOCCommunityScore"></sys:String>
     <sys:String x:Key="LOCScripts"></sys:String>
-    <sys:String x:Key="LOCPlugins"></sys:String>
+    <sys:String x:Key="LOCPlugins">Plugins</sys:String>
     <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions"></sys:String>
     <sys:String x:Key="LOCReloadScripts"></sys:String>
@@ -712,7 +712,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges"></sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip"></sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Script runtime</sys:String>
     <sys:String x:Key="LOCPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
 
@@ -733,14 +733,14 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCOpenGameLocation"></sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
     <sys:String x:Key="LOCMoreAction"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">Managed by the library plugin</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">The game starting process will be managed by the library plugin responsible for this game.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">No relevant information about the '{0}' game has been found on the specified page.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Game time is recorded in seconds.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
@@ -749,7 +749,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
 
-    <sys:String x:Key="LOCTimePlayed"></sys:String>
+    <sys:String x:Key="LOCTimePlayed">Time Played</sys:String>
     <sys:String x:Key="LOCLastPlayed"></sys:String>
     <sys:String x:Key="LOCPlayedHours"></sys:String>
     <sys:String x:Key="LOCPlayedMinutes"></sys:String>
@@ -780,14 +780,14 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCEnterName"></sys:String>
     <sys:String x:Key="LOCEnterNewName"></sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Less than an hour</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 to 10 hours</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 to 100 hours</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 to 500 hours</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 to 1000 hours</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite must be restarted to complete the installation. Do you want to restart now?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
