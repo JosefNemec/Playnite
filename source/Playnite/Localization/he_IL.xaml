@@ -614,6 +614,7 @@
   • בדוק שאנטי וירוס לא חוסם את תיקיית Playnite
   • נסה תיקיה שונה להתקנה</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">לא ניתן לייבא אמולטורים, קובץ ההגדרות של האמולטור אינו קיים.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ערוך פרטי משחק</sys:String>

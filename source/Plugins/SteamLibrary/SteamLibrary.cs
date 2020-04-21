@@ -22,6 +22,7 @@ using System.Reflection;
 using System.Collections.ObjectModel;
 using Playnite.Common.Web;
 using Steam;
+using System.Diagnostics;
 
 namespace SteamLibrary
 {
@@ -292,18 +293,28 @@ namespace SteamLibrary
                 return dbs;
             }
 
-            var kv = new KeyValue();
-            kv.ReadFileAsText(configPath);
-
-            foreach (var child in kv.Children)
+            try
             {
-                if (int.TryParse(child.Name, out int test))
+                var kv = new KeyValue();
+                using (var fs = new FileStream(configPath, FileMode.Open, FileAccess.Read))
                 {
-                    if (!string.IsNullOrEmpty(child.Value) && Directory.Exists(child.Value))
+                    kv.ReadAsText(fs);
+                }
+
+                foreach (var child in kv.Children)
+                {
+                    if (int.TryParse(child.Name, out int test))
                     {
-                        dbs.Add(child.Value);
+                        if (!string.IsNullOrEmpty(child.Value) && Directory.Exists(child.Value))
+                        {
+                            dbs.Add(child.Value);
+                        }
                     }
                 }
+            }
+            catch (Exception e) when (!Debugger.IsAttached)
+            {
+                logger.Error(e, "Failed to get additional Steam library folders.");
             }
 
             return dbs;

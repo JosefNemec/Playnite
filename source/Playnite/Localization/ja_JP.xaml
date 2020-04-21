@@ -614,6 +614,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
  ・アンチウイルスソフトがPlayniteのディレクトリ内のファイルをブロックしていないか確認します。
  ・別のインストール場所を試します。</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">エミュレーターをインポートできません。エミュレーター定義ファイルが存在しません。</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">XInputのインターフェースの初期化に失敗しました</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ゲーム詳細を編集</sys:String>
