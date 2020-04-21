@@ -736,7 +736,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">No relevant information about the '{0}' game has been found on the specified page.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
