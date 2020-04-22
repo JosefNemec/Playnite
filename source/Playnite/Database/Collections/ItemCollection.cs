@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Newtonsoft.Json;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -81,7 +82,7 @@ namespace Playnite.Database
                 {
                     try
                     {
-                        var obj = Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(objectFile));
+                        var obj = Serialization.FromJsonFile<TItem>(objectFile);
                         initMethod?.Invoke(obj);
                         Items.TryAdd(obj.Id, obj);
                     }

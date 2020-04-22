@@ -21,7 +21,8 @@ namespace Playnite.Common
 
     public static class Serialization
     {
-        private static ILogger logger = LogManager.GetLogger();
+        private static readonly ILogger logger = LogManager.GetLogger();
+        private static readonly JsonSerializer jsonSerializer = new JsonSerializer();
 
         public static string ToYaml(object obj)
         {
@@ -74,7 +75,12 @@ namespace Playnite.Common
 
         public static T FromJsonFile<T>(string filePath) where T : class
         {
-            return FromJson<T>(File.ReadAllText(filePath));
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (StreamReader sr = new StreamReader(fs))
+            using (JsonReader reader = new JsonTextReader(sr))
+            {
+                return jsonSerializer.Deserialize<T>(reader);
+            }
         }
 
         public static bool TryFromJson<T>(string json, out T deserialized) where T : class
