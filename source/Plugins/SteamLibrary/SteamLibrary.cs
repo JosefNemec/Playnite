@@ -30,7 +30,6 @@ namespace SteamLibrary
     {
         private ILogger logger = LogManager.GetLogger();
         private readonly Configuration config;
-        private readonly SteamApiClient apiClient = new SteamApiClient();
         private const string dbImportMessageId = "steamlibImportError";
 
         internal SteamLibrarySettings LibrarySettings { get; private set; }
@@ -727,7 +726,6 @@ namespace SteamLibrary
 
         public override void Dispose()
         {
-            apiClient.Logout();
         }
 
         public override ISettings GetSettings(bool firstRunSettings)
@@ -818,7 +816,7 @@ namespace SteamLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new SteamMetadataProvider(this, apiClient);
+            return new SteamMetadataProvider(this);
         }
 
         #endregion ILibraryPlugin

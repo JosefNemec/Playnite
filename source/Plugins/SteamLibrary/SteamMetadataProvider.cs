@@ -22,10 +22,22 @@ namespace SteamLibrary
         private SteamLibrary library;
         private SteamApiClient apiClient;
 
-        public SteamMetadataProvider(SteamLibrary library, SteamApiClient apiClient)
+        public SteamMetadataProvider(SteamLibrary library)
         {
             this.library = library;
-            this.apiClient = apiClient;
+            apiClient = new SteamApiClient();
+        }
+
+        public override void Dispose()
+        {
+            try
+            {
+                apiClient.Logout();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to logout Steam client.");
+            }
         }
 
         public override GameMetadata GetMetadata(Game game)
