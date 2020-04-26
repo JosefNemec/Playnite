@@ -34,7 +34,11 @@ namespace Playnite.SDK
         ///
         IgdbMetadata,
         ///
-        HumbleLibrary
+        HumbleLibrary,
+        ///
+        XboxLibrary,
+        ///
+        AmazonGamesLibrary
     }
 
     /// <summary>
@@ -57,7 +61,9 @@ namespace Playnite.SDK
             { Guid.Parse("E2A7D494-C138-489D-BB3F-1D786BEEB675"), BuiltinExtension.TwitchLibrary },
             { Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5"), BuiltinExtension.UplayLibrary },
             { Guid.Parse("000001DB-DBD1-46C6-B5D0-B1BA559D10E4"), BuiltinExtension.IgdbMetadata },
-            { Guid.Parse("96e8c4bc-ec5c-4c8b-87e7-18ee5a690626"), BuiltinExtension.HumbleLibrary }
+            { Guid.Parse("96e8c4bc-ec5c-4c8b-87e7-18ee5a690626"), BuiltinExtension.HumbleLibrary },
+            { Guid.Parse("7e4fbb5e-2ae3-48d4-8ba0-6b30e7a4e287"), BuiltinExtension.XboxLibrary },
+            { Guid.Parse("402674cd-4af6-4886-b6ec-0e695bfa0688"), BuiltinExtension.AmazonGamesLibrary }
         };
 
         /// <summary>
