@@ -98,7 +98,12 @@ namespace Playnite
                         { "Portable", PlayniteSettings.IsPortable },
                         { "Memory", (PlayniteProcess.WorkingSetMemory / 1024f) / 1024f },
                         { "Path", PlayniteProcess.Path },
-                        { "Cmdline", PlayniteProcess.Cmdline }
+                        { "Cmdline", PlayniteProcess.Cmdline },
+                        { "Playnite.DesktopApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.DesktopExecutablePath) },
+                        { "Playnite.FullscreenApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.FullscreenExecutablePath) },
+                        { "Playnite.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteAssemblyPath) },
+                        { "Playnite.Common.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteCommonAssemblyPath) },
+                        { "Playnite.SDK.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteSDKAssemblyPath) }
                     };
 
                     File.WriteAllText(playnitePath, Serialization.ToJson(playniteInfo, true));

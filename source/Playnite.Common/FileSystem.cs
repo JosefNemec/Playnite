@@ -103,7 +103,7 @@ namespace Playnite.Common
 
         public static string GetMD5(string filePath)
         {
-            using (var stream = File.OpenRead(filePath))
+            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 return GetMD5(stream);
             }
@@ -265,7 +265,6 @@ namespace Playnite.Common
                 }
                 catch (UnauthorizedAccessException exc)
                 {
-
                     logger.Error(exc, $"Can't detele file, UnauthorizedAccessException. {path}");
                     return;
                 }
