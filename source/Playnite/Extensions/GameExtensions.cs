@@ -129,6 +129,27 @@ namespace Playnite
             return fixSeparators ? Paths.FixSeparators(result) : result;
         }
 
+        public static string ExpandVariables(this GameInfo game, string inputString, bool fixSeparators = false)
+        {
+            if (string.IsNullOrEmpty(inputString))
+            {
+                return inputString;
+            }
+
+            var result = inputString;
+            result = result.Replace(ExpandableVariables.InstallationDirectory, game.InstallDirectory);
+            result = result.Replace(ExpandableVariables.InstallationDirName, Path.GetFileName(Path.GetDirectoryName(game.InstallDirectory)));
+            result = result.Replace(ExpandableVariables.ImagePath, game.GameImagePath);
+            result = result.Replace(ExpandableVariables.ImageNameNoExtension, Path.GetFileNameWithoutExtension(game.GameImagePath));
+            result = result.Replace(ExpandableVariables.ImageName, Path.GetFileName(game.GameImagePath));
+            result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
+            result = result.Replace(ExpandableVariables.Name, game.Name);
+            result = result.Replace(ExpandableVariables.Platform, game.Platform);
+            result = result.Replace(ExpandableVariables.GameId, game.GameId);
+            result = result.Replace(ExpandableVariables.Version, game.Version);
+            return fixSeparators ? Paths.FixSeparators(result) : result;
+        }
+
         public static string GetIdentifierInfo(this Game game)
         {
             return $"{game.Name}, {game.Id}, {game.GameId}, {game.PluginId}";
