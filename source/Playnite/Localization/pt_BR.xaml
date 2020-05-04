@@ -10,7 +10,7 @@
 
     <sys:String x:Key="LOCExitAppLabel">Sair</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro ativado</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Filtros desativado</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtro desativado</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Filtros adicionais</sys:String>
     <sys:String x:Key="LOCFilters">Filtros</sys:String>
     <sys:String x:Key="LOCFilter">Filtro</sys:String>
@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Site oficial em www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Código fonte no GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Criar pacote de diagnóstico</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton">Enviar pacote de diagnóstico</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Enviar informações de diagnóstico</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Sobre o Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Criado por Josef Němec</sys:String>
 
@@ -74,7 +74,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCGameStartError">Não foi possível executar o jogo: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Não foi possível executar a ação: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Não foi possível abrir o local do jogo: {0}</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Falha ao criar atalho: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Falha ao criar o atalho: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Não foi possível instalar o jogo: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Não foi possível desinstalar o jogo: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Ação de executar não configurada.</sys:String>
