@@ -143,9 +143,14 @@ namespace Playnite.DesktopApp.Controls.Views
             }
 
             this.viewType = viewType;
-            this.mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
-            this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            Loaded += GameOverview_Loaded;
             Unloaded += GameOverview_Unloaded;
+        }
+
+        private void GameOverview_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
+            mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
         }
 
         private void GameOverview_Unloaded(object sender, RoutedEventArgs e)

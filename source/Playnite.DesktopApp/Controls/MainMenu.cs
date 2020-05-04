@@ -22,7 +22,7 @@ using System.Windows.Media.Imaging;
 
 namespace Playnite.DesktopApp.Controls
 {
-    public class MainMenu : ContextMenu, IDisposable
+    public class MainMenu : ContextMenu
     {
         private readonly DesktopAppViewModel mainModel;
         private MenuItem extensionsItem;
@@ -56,12 +56,6 @@ namespace Playnite.DesktopApp.Controls
             {
                 InitializeExtensionsMenu();
             }
-        }
-
-        public void Dispose()
-        {
-            mainModel.Extensions.PropertyChanged -= Extensions_PropertyChanged;
-            Items.Clear();
         }
 
         public static MenuItem AddMenuChild(
@@ -103,7 +97,7 @@ namespace Playnite.DesktopApp.Controls
                 {
                     item.Icon = textIcon;
                 }
-            }            
+            }
 
             parent.Add(item);
             return item;
@@ -190,7 +184,7 @@ namespace Playnite.DesktopApp.Controls
                 openClientItem.Items.Add(item);
             }
 
-            // Random game select            
+            // Random game select
             AddMenuChild(Items, "LOCMenuSelectRandomGame", mainModel.SelectRandomGameCommand, null, ResourceProvider.GetResource("DiceIcon"));
 
             // Settings
@@ -199,20 +193,20 @@ namespace Playnite.DesktopApp.Controls
             // FullScreen
             Items.Add(new Separator());
             AddMenuChild(Items, "LOCMenuOpenFullscreen", mainModel.OpenFullScreenCommand, null, ResourceProvider.GetResource("FullscreenModeIcon"));
-            Items.Add(new Separator());            
+            Items.Add(new Separator());
 
             // Links
             var linksItem = AddMenuChild(Items, "LOCMenuLinksTitle", null);
             AddMenuChild(linksItem.Items, "LOCCommonLinksForum", GlobalCommands.NavigateUrlCommand, UrlConstants.Forum, "Images/applogo.png");
             AddMenuChild(linksItem.Items, "Discord", GlobalCommands.NavigateUrlCommand, UrlConstants.Discord, "Images/discord.png");
-            AddMenuChild(linksItem.Items, "Twitter", GlobalCommands.NavigateUrlCommand, UrlConstants.Twitter, "Images/twitter.png");  
+            AddMenuChild(linksItem.Items, "Twitter", GlobalCommands.NavigateUrlCommand, UrlConstants.Twitter, "Images/twitter.png");
 
             // Help
-            var helpItem = AddMenuChild(Items, "LOCMenuHelpTitle", null);            
+            var helpItem = AddMenuChild(Items, "LOCMenuHelpTitle", null);
             AddMenuChild(helpItem.Items, "Wiki / FAQ", GlobalCommands.NavigateUrlCommand, UrlConstants.Wiki);
             AddMenuChild(helpItem.Items, "LOCMenuIssues", mainModel.ReportIssueCommand);
             AddMenuChild(helpItem.Items, "LOCSDKDocumentation", GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
-            
+
             // Patreon
             AddMenuChild(Items, "LOCMenuPatreonSupport", GlobalCommands.NavigateUrlCommand, UrlConstants.Patreon, "Images/patreon.png");
 
@@ -220,7 +214,6 @@ namespace Playnite.DesktopApp.Controls
 
             // About
             AddMenuChild(Items, "LOCMenuAbout", mainModel.OpenAboutCommand, null, ResourceProvider.GetResource("AboutPlayniteIcon"));
-
 
             // Check for update
             AddMenuChild(Items, "LOCCheckForUpdates", mainModel.CheckForUpdateCommand);

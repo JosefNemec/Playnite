@@ -56,16 +56,6 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 this.mainModel = mainModel;
             }
-
-            Unloaded += MainPanel_Unloaded;
-        }
-
-        private void MainPanel_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if (ElemMainMenu != null)
-            {
-                (ElemMainMenu.ContextMenu as MainMenu).Dispose();
-            }
         }
 
         public override void OnApplyTemplate()

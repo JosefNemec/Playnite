@@ -180,16 +180,6 @@ namespace Playnite.Controls
             Image1FadeOut.Completed += Image1FadeOut_Completed;
             Image2FadeOut.Completed += Image2FadeOut_Completed;
             BorderDarkenFadeOut.Completed += BorderDarkenOut_Completed;
-            Unloaded += FadeImage_Unloaded;
-        }
-
-        private void FadeImage_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Image1.Source = null;
-            Image2.Source = null;
-            Image1FadeOut.Completed -= Image1FadeOut_Completed;
-            Image2FadeOut.Completed -= Image2FadeOut_Completed;
-            BorderDarkenFadeOut.Completed -= BorderDarkenOut_Completed;
         }
 
         private void Image1FadeOut_Completed(object sender, EventArgs e)

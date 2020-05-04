@@ -42,8 +42,13 @@ namespace Playnite.DesktopApp.Controls.Views
             }
 
             this.viewType = viewType;
-            this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            Loaded += BaseGamesView_Loaded;
             Unloaded += BaseGamesView_Unloaded;
+        }
+
+        private void BaseGamesView_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
         }
 
         private void BaseGamesView_Unloaded(object sender, RoutedEventArgs e)
@@ -113,5 +118,5 @@ namespace Playnite.DesktopApp.Controls.Views
                 ListGames.InputBindings.Add(new KeyBinding(mainModel.StartSelectedGameCommand, mainModel.StartSelectedGameCommand.Gesture));
             }
         }
-    } 
+    }
 }
