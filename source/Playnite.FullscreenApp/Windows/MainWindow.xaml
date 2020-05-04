@@ -22,7 +22,8 @@
         Top="{Binding WindowTop, Mode=TwoWay}"
         d:DesignWidth="1920"
         d:DesignHeight="1080"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        AllowDrop="True">
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >
