@@ -515,7 +515,7 @@
     <sys:String x:Key="LOCMenuSortAscending">升序</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">降序</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">不分组</sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider">按提供商分组</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">按游戏库分组</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">按分类分组</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">按平台分组</sys:String>
     <sys:String x:Key="LOCViewType">查看类型</sys:String>
@@ -528,7 +528,7 @@
     <sys:String x:Key="LOCGameCoverImageTitle">封面图片</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">背景图片</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">排序名称</sys:String>
-    <sys:String x:Key="LOCGameProviderTitle">提供商</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">游戏库</sys:String>
     <sys:String x:Key="LOCGameNameTitle">名称</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">账户名称</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">平台</sys:String>
