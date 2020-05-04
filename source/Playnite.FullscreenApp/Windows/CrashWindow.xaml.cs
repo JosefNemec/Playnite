@@ -30,6 +30,13 @@ namespace Playnite.FullscreenApp.Windows
                 Width = model.WindowWidth;
                 Height = model.WindowHeight;
             }
+
+            Loaded += CrashWindow_Loaded;
+        }
+
+        private void CrashWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            ButtonGeneratePackage.Focus();
         }
     }
 }

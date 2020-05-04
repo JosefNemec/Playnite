@@ -39,10 +39,12 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Button Content="{DynamicResource LOCAboutSendDiagButton}"  
                                 Style="{StaticResource ButtonMessageBox}"
-                                Command="{Binding CreateDiagPackageCommand}"/>
+                                Command="{Binding CreateDiagPackageCommand}"
+                                Name="ButtonGeneratePackage" />
                         <Button Content="{DynamicResource LOCCrashRestartPlaynite}"                       
                                 Style="{StaticResource ButtonMessageBox}"
-                                Command="{Binding RestartCommand}"/>
+                                Command="{Binding RestartCommand}"
+                                Name="ButtonRestart" />
                     </StackPanel>
                 </StackPanel>
 
