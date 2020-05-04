@@ -8,7 +8,6 @@ using System.IO;
 using Playnite;
 using Playnite.SDK.Models;
 using Moq;
-using Playnite;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
 using Playnite.API;
