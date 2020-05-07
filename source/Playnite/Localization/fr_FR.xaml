@@ -63,7 +63,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Êtes-vous sûr de vouloir supprimer la ou les données ({0}) actuellement inutilisées ?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Aucune donnée inutilisée n'a été trouvée.</sys:String>
 
-    <sys:String x:Key="LOCSteamFriendsTooltip">Afficher la liste d'amis</sys:String>
+    <sys:String x:Key="LOCSteamFriendsTooltip">Afficher la liste d'amis Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">La section contient des modifications à enregistrer</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Mise à jour de la base de données...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">La mise à jour de la base de données a échoué.</sys:String>
@@ -143,7 +143,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCSearchLabel">Chercher</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListViewLabel">Affichage en liste</sys:String>
-    <sys:String x:Key="LOCCoversLabel">Grille</sys:String>
+    <sys:String x:Key="LOCCoversLabel">Pochettes</sys:String>
     <sys:String x:Key="LOCGridViewLabel">Affichage en grille</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel">Affichage détaillé</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personnalisé</sys:String>
@@ -188,7 +188,7 @@ Résultats dans : -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Impossible d'obtenir l'icône si une action de lancement est manquante ou définie sur une URL</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty">Télécharger les métadonnées uniquement lorsqu'elles sont manquantes</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Télécharger uniquement les métadonnées manquantes</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Cette option ne téléchargera des métadonnées que pour les champs vides.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Sélection de jeux</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Veuillez sélectionner les jeux qui doivent être mis à jour avec les nouvelles métadonnées :</sys:String>
@@ -238,14 +238,14 @@ Résultats dans : -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCMenuRestartSystem">Redémarrer l'ordinateur</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Arrêter l'ordinateur</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Mettre en veille</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem">Mettre en veille</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame">Choisir un jeu au hasard</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Mettre en veille prolongée</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Jouer à un jeu aléatoire</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Sélectionner les éléments à afficher :</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Espacement</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Afficher le cadre</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largeur des bordures</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Largeur des bordures en mode grille</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Image de fond par défaut</sys:String>
@@ -329,8 +329,8 @@ Résultats dans : -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsShowTray">Réduire dans la barre d'état</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Lorsque la fenêtre est minimisée</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Lorsque la fenêtre est fermée</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameStart">En début de jeu :</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameClose">En fin de jeu :</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">Lorsque le jeu démarre :</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameClose">Lorsque le jeu se ferme :</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Lancer les jeux depuis le client Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Permet d'activer des fonctionnalités telles que les sauvegardes dans le cloud, le suivi du temps de jeu, etc.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">Cela remplacera les catégories assignées ainsi que le statut masqué/favori de tous les jeux Steam. Voulez-vous continuer ?</sys:String>
@@ -342,11 +342,11 @@ Résultats dans : -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Impossible d'importer les informations de dernière utilisation. La base de données n'est pas ouverte.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Impossible d'importer les informations de dernière utilisation:{0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Cela vous déconnectera de tous les services liés. Le redémarrage de l'application est requis, voulez-vous continuer ?</sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheTitle">Effacer le cache ?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheTitle">Vider le cache ?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">La clé API est requise pour importer la liste de jeux depuis un profil privé.</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">Obtenir la clé API</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Redémarrage nécessaire pour appliquer un nouveau thème</sys:String>
-    <sys:String x:Key="LOCSettingsGetThemes">Chercher des thèmes</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">Obtenir plus de thèmes</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Créer un nouveau thème</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Obtenir plus d'extensions</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Créer une nouvelle extension</sys:String>
@@ -676,7 +676,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCReloadScripts">Actualiser les scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Scripts chargés avec succès.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Aucun jeu trouvé avec les critères spécifiés</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Retour au bureau</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Passer en mode bureau</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Quitter Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Clients de jeu</sys:String>
     <sys:String x:Key="LOCUpdateAll">Tous les clients</sys:String>
