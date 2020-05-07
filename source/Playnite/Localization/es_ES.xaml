@@ -114,9 +114,9 @@ Los juegos importados automáticamente pueden reaparecer en Playnite después de
     <sys:String x:Key="LOCMostPlayedLabel">Mas jugado</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Tiempo de Juego</sys:String>
     <sys:String x:Key="LOCAddedLabel">Agregado</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel">Fecha añadida</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Fecha de adición</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificado</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel">Fecha modificada</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Fecha de modificación</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Página Web</sys:String>
     <sys:String x:Key="LOCPathLabel">Ruta</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -219,7 +219,7 @@ Resulta en: -image &quot;c:\carpeta\imagen.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Ajustes…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plataformas y Emuladores</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Configurar Emuladores…</sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle">Administración de la biblioteca…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Administrador de la biblioteca…</sys:String>
     <sys:String x:Key="LOCMenuTools">Herramientas</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Descargar Metadatos…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Abrir Cliente de Tercero</sys:String>
@@ -230,7 +230,7 @@ Resulta en: -image &quot;c:\carpeta\imagen.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Juego Emulado…</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Aplicación de la Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">Acerca de Playnite</sys:String>
-    <sys:String x:Key="LOCMenuIssues">Enviar Comentarios</sys:String>
+    <sys:String x:Key="LOCMenuIssues">Enviar retroalimentación</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Iniciar Modo de Pantalla completa</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Enlaces</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ayuda</sys:String>
@@ -568,8 +568,8 @@ Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:Str
     <sys:String x:Key="LOCTagsLabel">Etiquetas</sys:String>
     <sys:String x:Key="LOCFeatureLabel">Característica</sys:String>
     <sys:String x:Key="LOCFeaturesLabel">Características</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">Clasificación por Edad</sys:String>
-    <sys:String x:Key="LOCAgeRatingsLabel">Clasificación por Edad</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Clasificación por edad</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel">Clasificación por edad</sys:String>
     <sys:String x:Key="LOCRegionLabel">Región</sys:String>
     <sys:String x:Key="LOCRegionsLabel">Regiones</sys:String>
     <sys:String x:Key="LOCSourceLabel">Fuente</sys:String>
@@ -728,9 +728,9 @@ Puede probar esto para solucionar el problema:
     <sys:String x:Key="LOCThemeTestApplySkin">Aplicar tema seleccionado</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Ver cambios de archivos</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Aplicar el tema automáticamente cuando el archivo de fuente cambie</sys:String>
-    <sys:String x:Key="LOCScriptRuntime">Tiempo de ejecución de script</sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Entorno de ejecución de script</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Ejecutar antes de comenzar el juego</sys:String>
-    <sys:String x:Key="LOCPostScriptDescription">Ejecutar después de comenzar el juego</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Ejecutar después de salir del juego</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Guardar como predeterminado</sys:String>
