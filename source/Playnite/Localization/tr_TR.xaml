@@ -138,7 +138,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCTypeLabel">Tür</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiller</sys:String>
-    <sys:String x:Key="LOCRemoveLabel">Sil</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">Kaldır</sys:String>
     <sys:String x:Key="LOCDownloadLabel">İndir</sys:String>
     <sys:String x:Key="LOCSearchLabel">Ara</sys:String>
     <sys:String x:Key="LOCZoomLabel">Yaklaştır</sys:String>
@@ -164,8 +164,8 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCPastWeek">Geçen Hafta</sys:String>
     <sys:String x:Key="LOCPastMonth">Geçen Ay</sys:String>
     <sys:String x:Key="LOCPastYear">Geçen Yıl</sys:String>
-    <sys:String x:Key="LOCMoreThenYear">More than a year ago</sys:String>
-    <sys:String x:Key="LOCImportCompleted">İçe aktarma başarıyla tamamlandı.</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">Bir yıldan fazla</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Aktarma başarıyla tamamlandı.</sys:String>
     <sys:String x:Key="LOCAllGames">Tüm Oyunlar</sys:String>
     <sys:String x:Key="LOCGameId">Oyun Id</sys:String>
     <sys:String x:Key="LOCDatabaseId">Veritabanı Id</sys:String>
