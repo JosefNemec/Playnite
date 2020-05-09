@@ -758,7 +758,7 @@ Môžete skúsiť nasledujúce možnosti opravy:
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Čas prehrávania sa meria a ukladá v sekundách.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Hodnoty od 0 do 100, prípadne prázdne ak skóre neexistuje.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Vývoj Playnite podporujú títo patróni:</sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage">Kód, lokalizácia a ďalší priepievatelia, bez zoradenia:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">Do slovenského jazyka preložil Michal Žila. Ďalší prispievatelia do kódu (bez poradia):</sys:String>
 
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Zrušiť monitorovanie hry?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Prebieha monitorovanie inštalácie, chcete ho ukončiť a vrátiť hru do predchádzajúceho stavu?</sys:String>
