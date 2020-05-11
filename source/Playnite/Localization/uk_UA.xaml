@@ -759,7 +759,7 @@
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Ігровий час записується і зберігається в секундах.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Значення від 0 до 100 або порожнє, якщо нема оцінки.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Розробку Playnite підтримують такі меценати:</sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage">Ті, хто приймали участь в написанні коду, локалізації і т.д.:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">Ті, хто брали участь в написанні коду, локалізації і т.д.:</sys:String>
 
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Скасувати моніторинг гри?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Працює моніторинг установки, ви хочете скасувати процес і повернути гру в свій попередній стан?</sys:String>
