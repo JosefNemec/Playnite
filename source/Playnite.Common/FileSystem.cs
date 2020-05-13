@@ -194,6 +194,26 @@ namespace Playnite.Common
             throw new IOException($"Failed to read {path}", ioException);
         }
 
+        public static Stream OpenWriteFileStreamSafe(string path, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                }
+                catch (IOException exc)
+                {
+                    logger.Debug($"Can't open write file stream, trying again. {path}");
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
+        }
+
         public static Stream OpenReadFileStreamSafe(string path, int retryAttempts = 5)
         {
             IOException ioException = null;
@@ -205,7 +225,7 @@ namespace Playnite.Common
                 }
                 catch (IOException exc)
                 {
-                    logger.Debug($"Can't open file stream, trying again. {path}");
+                    logger.Debug($"Can't open read file stream, trying again. {path}");
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }

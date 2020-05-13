@@ -101,12 +101,18 @@ namespace Playnite.Database
 
         internal void SaveItemData(TItem item)
         {
-            FileSystem.WriteStringToFileSafe(GetItemFilePath(item.Id), Serialization.ToJson(item, false));
+            using (var fs = FileSystem.OpenWriteFileStreamSafe(GetItemFilePath(item.Id)))
+            {
+                Serialization.ToJsonSteam(item, fs, false);
+            }
         }
 
         internal TItem GetItemData(Guid id)
         {
-            return Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(GetItemFilePath(id)));
+            using (var fs = FileSystem.OpenReadFileStreamSafe(GetItemFilePath(id)))
+            {
+                return Serialization.FromStream<TItem>(fs);
+            }
         }
 
         public TItem Get(Guid id)
