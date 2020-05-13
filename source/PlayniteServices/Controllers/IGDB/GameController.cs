@@ -50,38 +50,49 @@ namespace PlayniteServices.Controllers.IGDB
             {
                 if (secret != IGDB.WebHookSecret)
                 {
+                    logger.Error($"X-Secret doesn't match: {secret}");
                     return BadRequest();
                 }
 
-                Game game = null;
-                string jsonString = null;
-                using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+                try
                 {
-                    jsonString = await reader.ReadToEndAsync();
-                    if (!string.IsNullOrEmpty(jsonString))
+                    Game game = null;
+                    string jsonString = null;
+                    using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
                     {
-                        game = Serialization.FromJson<Game>(jsonString);
+                        jsonString = await reader.ReadToEndAsync();
+                        if (!string.IsNullOrEmpty(jsonString))
+                        {
+                            game = Serialization.FromJson<Game>(jsonString);
+                        }
+                    }
+
+                    if (game == null)
+                    {
+                        logger.Error("Failed IGDB content serialization.");
+                        return Ok();
+                    }
+
+                    logger.Info($"Received game webhook from IGDB: {game.id}");
+                    var cachePath = Path.Combine(IGDB.CacheDirectory, endpointPath, game.id + ".json");
+                    lock (CacheLock)
+                    {
+                        FileSystem.PrepareSaveFile(cachePath);
+                        System.IO.File.WriteAllText(cachePath, jsonString, Encoding.UTF8);
                     }
                 }
-
-                if (game == null)
+                catch (Exception e)
                 {
-                    logger.Error("Failed IGDB content serialization.");
-                    return Ok();
-                }
-
-                logger.Info($"Received game webhook from IGDB: {game.id}");
-                var cachePath = Path.Combine(IGDB.CacheDirectory, endpointPath, game.id + ".json");
-                lock (CacheLock)
-                {
-                    FileSystem.PrepareSaveFile(cachePath);
-                    System.IO.File.WriteAllText(cachePath, jsonString, Encoding.UTF8);
+                    logger.Error(e, "Failed to process IGDB webhook.");
                 }
 
                 return Ok();
             }
-
-            return BadRequest();
+            else
+            {
+                logger.Error("Missing X-Secret from IGDB webhook.");
+                return BadRequest();
+            }
         }
     }
 
