@@ -9,11 +9,11 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Nyelv</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Kilépés</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
-    <sys:String x:Key="LOCAditionalFilters"></sys:String>
-    <sys:String x:Key="LOCFilters"></sys:String>
-    <sys:String x:Key="LOCFilter"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Szűrő bekapcsolva</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Szűrő kikapcsolva</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">További szűrők</sys:String>
+    <sys:String x:Key="LOCFilters">Szűrők</sys:String>
+    <sys:String x:Key="LOCFilter">Szűrés</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Érvénytelen data</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Mented a változásokat?</sys:String>
@@ -39,7 +39,7 @@ Négyzet - Ne változzon (több játék állításakor)</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Hiba jelentése</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite újraindítása</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Kilépés a Playnite-ból.</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
     <sys:String x:Key="LOCLibraryManager"></sys:String>
@@ -644,7 +644,7 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCExtensionVersion"></sys:String>
     <sys:String x:Key="LOCExtensionModule"></sys:String>
     <sys:String x:Key="LOCLibrary"></sys:String>
-    <sys:String x:Key="LOCAll"></sys:String>
+    <sys:String x:Key="LOCAll">Az összes játék</sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
     <sys:String x:Key="LOCWidth"></sys:String>
@@ -698,10 +698,10 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCEditGame"></sys:String>
     <sys:String x:Key="LOCSetGameCategory"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Listából törlés</sys:String>
-    <sys:String x:Key="LOCPlayGame">Játék</sys:String>
+    <sys:String x:Key="LOCPlayGame">Indítás</sys:String>
     <sys:String x:Key="LOCInstallGame">Telepítés</sys:String>
     <sys:String x:Key="LOCGameOptions"></sys:String>
-    <sys:String x:Key="LOCGameDetails"></sys:String>
+    <sys:String x:Key="LOCGameDetails">Részletek</sys:String>
     <sys:String x:Key="LOCUninstallGame">Játék törlése</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Telepítési hely megnyitása</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Parancsikon készítés</sys:String>
@@ -802,9 +802,9 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
-    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
-    <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Nemrég játszott</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Kedvencek</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">Legtöbbet játszott</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
