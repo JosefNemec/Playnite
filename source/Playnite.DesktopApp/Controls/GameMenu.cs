@@ -437,6 +437,23 @@ namespace Playnite.DesktopApp.Controls
                 };
 
                 Items.Add(categoryItem);
+
+                //Set Completion Status
+                var completionItem = new MenuItem()
+                {
+                    Header = resources.GetString("LOCCompletionStatus")
+                };
+                foreach(CompletionStatus status in Enum.GetValues(typeof(CompletionStatus)))
+                {
+                    completionItem.Items.Add(new MenuItem
+                    {
+                        Header = status.GetDescription(),
+                        Command = model.SetCompletionStatusCommand,
+                        CommandParameter = new Tuple<Game, CompletionStatus>(Game, status)
+                    });
+                }
+
+                Items.Add(completionItem);
                 Items.Add(new Separator());
                 
                 // Remove

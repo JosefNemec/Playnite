@@ -358,6 +358,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }
         public RelayCommand<Game> AssignGameCategoryCommand { get; private set; }
+        public RelayCommand<Tuple<Game, CompletionStatus>> SetCompletionStatusCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> AssignGamesCategoryCommand { get; private set; }
         public RelayCommand<Game> RemoveGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
@@ -770,6 +771,11 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
                 }
+            });
+
+            SetCompletionStatusCommand = new RelayCommand<Tuple<Game, CompletionStatus>>((a) =>
+            {
+                GamesEditor.SetCompletionStatus(a.Item1, a.Item2);
             });
 
             AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
