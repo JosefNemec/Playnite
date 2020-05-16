@@ -740,6 +740,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCUnHideGame">In Bibliothek anzeigen</sys:String>
     <sys:String x:Key="LOCEditGame">Bearbeiten …</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Kategorie zuweisen …</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Spielfortschritt setzten</sys:String>
     <sys:String x:Key="LOCRemoveGame">Entfernen</sys:String>
     <sys:String x:Key="LOCPlayGame">Spielen</sys:String>
     <sys:String x:Key="LOCInstallGame">Installieren</sys:String>

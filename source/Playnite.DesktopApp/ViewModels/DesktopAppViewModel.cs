@@ -358,8 +358,9 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }
         public RelayCommand<Game> AssignGameCategoryCommand { get; private set; }
-        public RelayCommand<Tuple<Game, CompletionStatus>> SetCompletionStatusCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> AssignGamesCategoryCommand { get; private set; }
+        public RelayCommand<Tuple<Game, CompletionStatus>> SetGameCompletionStatusCommand { get; private set; }
+        public RelayCommand<Tuple<IEnumerable<Game>, CompletionStatus>> SetGamesCompletionStatusCommand { get; private set; }
         public RelayCommand<Game> RemoveGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
         public RelayCommand<object> SelectRandomGameCommand { get; private set; }
@@ -773,14 +774,19 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             });
 
-            SetCompletionStatusCommand = new RelayCommand<Tuple<Game, CompletionStatus>>((a) =>
+            AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetGamesCategories(a.ToList());
+            });
+
+            SetGameCompletionStatusCommand = new RelayCommand<Tuple<Game, CompletionStatus>>((a) =>
             {
                 GamesEditor.SetCompletionStatus(a.Item1, a.Item2);
             });
 
-            AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            SetGamesCompletionStatusCommand = new RelayCommand<Tuple<IEnumerable<Game>, CompletionStatus>>((a) =>
             {
-                GamesEditor.SetGamesCategories(a.ToList());
+                GamesEditor.SetCompletionStatus(a.Item1.ToList(), a.Item2);
             });
 
             RemoveGameCommand = new RelayCommand<Game>((a) =>
