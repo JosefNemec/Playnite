@@ -16,17 +16,17 @@
     <sys:String x:Key="LOCFilter">Szűrés</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Érvénytelen adat</sys:String>
-    <sys:String x:Key="LOCSaveChangesAskTitle">Mented a változásokat?</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">Módosítások mentése?</sys:String>
 
-    <sys:String x:Key="LOCAboutHomePageLink">Weboldalunk www.playnite.link</sys:String>
-    <sys:String x:Key="LOCAboutSourceLink">GitHub forráskód</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">diag. csomag készítése</sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Oldalunk címe: www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">Forráskód a GitHub-on</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Diagnosztikai csomag létrehozása</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Diagnosztika küldése</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Névjegy</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Készítette: Josef Němec</sys:String>
 
-    <sys:String x:Key="LOCCategoryWindowTitle">Kategóriák</sys:String>
-    <sys:String x:Key="LOCCategorySetButton">Kategóriához adás</sys:String>
+    <sys:String x:Key="LOCCategoryWindowTitle">Hozzáadás kategóriához</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">Kategóriákhoz adás</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Új kategória létrehozása</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Pipálva - Kategóriához adás
 Üres - Kategória eltávolítása
@@ -53,8 +53,8 @@ Ha segíteni szeretnél a hiba elhárításában, küldj hibajelentést. Köszö
 
     <sys:String x:Key="LOCLibraryManager">Könyvtárkezelő</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Listából való törlés megerősítése</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">Nem törölhetsz játékot ami fut vagy települ/törlődik.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">Nem távolíthatsz el játékot ami fut.</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Nem törölhetsz játékot, amíg az fut vagy települ/törlődik.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Nem távolíthatsz el játékot, amíg fut.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Biztos eltávolítod ezt a játékot a listából?
         
 Az automatikusan importált játékok lehet újra megjelennek majd a következő importálási műveletnél (beállításaidtól függően).</sys:String>
@@ -67,7 +67,7 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam barátok</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">A szakasz mentésre váró változásokat tartalmaz</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Játékkönyvtár formátumának frissítése...</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Adatbázis frissítése sikertelen, nem lehet megnyitni a fájlt.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Adatbázis frissítése sikertelen.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Játékkönyvtár frissítése nem sikerült. {0} MB üres hely kell hozzá.</sys:String>
 
     <sys:String x:Key="LOCGameError">Játék hiba</sys:String>
@@ -75,9 +75,9 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCGameStartError">Nem lehet elindítani a játékot: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Művelet nem elvégezhető: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Játék helye nem megnyitható: {0}</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Parancsikon nem készíthető: {0}</sys:String>
-    <sys:String x:Key="LOCGameInstallError">Játék nem telepíthető: {0}</sys:String>
-    <sys:String x:Key="LOCGameUninstallError">Játék nem eltávolítható: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Nem sikerült {0} parancsikonját létrehozni</sys:String>
+    <sys:String x:Key="LOCGameInstallError">{0} játék nem telepíthető</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">{0} játék nem eltávolítható</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Indítás művelet nincs beállítva.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Az ehhez a játékhoz tartozó könyvtár pluginok nincsenek bekapcsolva / engedélyezve.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Hivatalos metaadat letöltés nem elérhető.</sys:String>
@@ -94,39 +94,39 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCCopyTitle">Másolás</sys:String>
     <sys:String x:Key="LOCAddTitle">Hozzáadás</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Alapértelmezett ikon</sys:String>
-    <sys:String x:Key="LOCDefaultCoverTitle">Alapértelmezett borító kép</sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">Alapértelmezett borítókép</sys:String>
     <sys:String x:Key="LOCDefaultBackgroundTitle">Alapértelmezett háttér</sys:String>
-    <sys:String x:Key="LOCFinishLabel">Befejezés</sys:String>
-    <sys:String x:Key="LOCNextLabel">Következő</sys:String>
+    <sys:String x:Key="LOCFinishLabel">Kész</sys:String>
+    <sys:String x:Key="LOCNextLabel">Tovább</sys:String>
     <sys:String x:Key="LOCBackLabel">Vissza</sys:String>
-    <sys:String x:Key="LOCDoneCapLabel"></sys:String>
-    <sys:String x:Key="LOCBackCapLabel"></sys:String>
-    <sys:String x:Key="LOCClearCapLabel"></sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">OK</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">VISSZA</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">TÖRÖL</sys:String>
     <sys:String x:Key="LOCClearLabel">Nincs szűrés</sys:String>
-    <sys:String x:Key="LOCDismiss"></sys:String>
-    <sys:String x:Key="LOCDismissAll"></sys:String>
+    <sys:String x:Key="LOCDismiss">Mégsem</sys:String>
+    <sys:String x:Key="LOCDismissAll">Mindet elutasít</sys:String>
     <sys:String x:Key="LOCImportLabel">Importálás</sys:String>
     <sys:String x:Key="LOCNameLabel">Név</sys:String>
-    <sys:String x:Key="LOCAuthorLabel"></sys:String>
-    <sys:String x:Key="LOCModuleLabel"></sys:String>
-    <sys:String x:Key="LOCSeriesLabel">Széria</sys:String>
+    <sys:String x:Key="LOCAuthorLabel">Szerző</sys:String>
+    <sys:String x:Key="LOCModuleLabel">Modul</sys:String>
+    <sys:String x:Key="LOCSeriesLabel">Sorozat</sys:String>
     <sys:String x:Key="LOCVersionLabel">Verzió</sys:String>
-    <sys:String x:Key="LOCLastPlayedLabel">Utoljára játszva</sys:String>
-    <sys:String x:Key="LOCMostPlayedLabel">Leggyakrabban játszva</sys:String>
-    <sys:String x:Key="LOCPlayCountLabel">játszva</sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">Utoljára játszott</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">Leggyakrabban játszott</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Indítások száma</sys:String>
     <sys:String x:Key="LOCAddedLabel">Hozzáadva</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel"></sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">Hozzáadás dátuma</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Módosítva</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel"></sys:String>
-    <sys:String x:Key="LOCWebsiteLabel"></sys:String>
-    <sys:String x:Key="LOCPathLabel">Útvonal</sys:String>
-    <sys:String x:Key="LOCOKLabel"></sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Módosítás dátuma</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">Weboldal</sys:String>
+    <sys:String x:Key="LOCPathLabel">Elérési út</sys:String>
+    <sys:String x:Key="LOCOKLabel">OK</sys:String>
     <sys:String x:Key="LOCSaveLabel">Mentés</sys:String>
     <sys:String x:Key="LOCCloseLabel">Bezárás</sys:String>
     <sys:String x:Key="LOCCancelLabel">Mégse</sys:String>
     <sys:String x:Key="LOCYesLabel">Igen</sys:String>
     <sys:String x:Key="LOCNoLabel">Nem</sys:String>
-    <sys:String x:Key="LOCWelcomeLabel">Üdvözöljük</sys:String>
+    <sys:String x:Key="LOCWelcomeLabel">Üdvözlünk</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Helyi felhasználó</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel">Hítelesítés</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Általános</sys:String>
@@ -134,25 +134,25 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCLinksLabel">Linkek</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Telepítés</sys:String>
     <sys:String x:Key="LOCActionsLabel">Műveletek</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel"></sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Letöltés...</sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Betöltés…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Típus</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profilok</sys:String>
-    <sys:String x:Key="LOCRemoveLabel">Eltávolítás</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">Törlés</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Letöltés</sys:String>
     <sys:String x:Key="LOCSearchLabel">Keresés</sys:String>
-    <sys:String x:Key="LOCZoomLabel"></sys:String>
-    <sys:String x:Key="LOCListViewLabel"></sys:String>
+    <sys:String x:Key="LOCZoomLabel">Nagyítás</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Listanézet</sys:String>
     <sys:String x:Key="LOCCoversLabel">Boritók</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel"></sys:String>
-    <sys:String x:Key="LOCCustomLabel">Egyedi</sys:String>
-    <sys:String x:Key="LOCURLLabel"></sys:String>
-    <sys:String x:Key="LOCPatronsLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Rácsnézet</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">Részletes nézet</sys:String>
+    <sys:String x:Key="LOCCustomLabel">Egyéni</sys:String>
+    <sys:String x:Key="LOCURLLabel">URL</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">Támogatók</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licensz</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Közreműködők</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Kilépés a Playnite-ból...</sys:String>
     <sys:String x:Key="LOCToday">Ma</sys:String>
     <sys:String x:Key="LOCYesterday">Tegnap</sys:String>
     <sys:String x:Key="LOCMonday">Hétfő</sys:String>
@@ -166,15 +166,15 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCPastMonth">Múlt Hónapban</sys:String>
     <sys:String x:Key="LOCPastYear">Múlt Évben</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Több, mint egy éve</sys:String>
-    <sys:String x:Key="LOCImportCompleted"></sys:String>
-    <sys:String x:Key="LOCAllGames"></sys:String>
-    <sys:String x:Key="LOCGameId"></sys:String>
-    <sys:String x:Key="LOCDatabaseId"></sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
-    <sys:String x:Key="LOCColumn"></sys:String>
-    <sys:String x:Key="LOCColumns"></sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
+    <sys:String x:Key="LOCImportCompleted">Importálás sikeres</sys:String>
+    <sys:String x:Key="LOCAllGames">Összes játék</sys:String>
+    <sys:String x:Key="LOCGameId">Játék azonosító</sys:String>
+    <sys:String x:Key="LOCDatabaseId">Adatbázis azonosító</sys:String>
+    <sys:String x:Key="LOCPresets">Sémák</sys:String>
+    <sys:String x:Key="LOCColumn">Oszlop</sys:String>
+    <sys:String x:Key="LOCColumns">Oszlopok</sys:String>
+    <sys:String x:Key="LOCRow">Sor</sys:String>
+    <sys:String x:Key="LOCRows">Sorok</sys:String>
 
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
 
@@ -235,7 +235,7 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Borítótávolság</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
@@ -260,12 +260,12 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* Újraindítás szükséges az alkalmazáshoz</sys:String>
     <sys:String x:Key="LOCSettingsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Általános</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Megjelenés</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Kinézet</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Haladó</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Kliensek</sys:String>
@@ -293,7 +293,7 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Simább játéklista görgetés, de lassabb képbetöltés.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover"></sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Eltávolított játékok sötétítése</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Játékikonok kijelzése a részletes nézetben</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Hardveres gyorsítás tiltása</sys:String>
@@ -301,11 +301,11 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Háttérkép homályosítása</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Háttérkép életlenítése</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Háttérkép sötétítése</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
-    <sys:String x:Key="LOCSettingsSkin"></sys:String>
+    <sys:String x:Key="LOCSettingsSkin">Téma</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Téma profil</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Teljesképernyős téma</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Teljesképernyős téma profil</sys:String>
@@ -363,14 +363,14 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor">Megjelenítő kiválasztása</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
-    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Játékcímek mutatása</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus">Akkumulátor szintjének mutatása</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage">Százalékos töltöttség mutatása</sys:String>
+    <sys:String x:Key="LOCSettingsShowClock">Óra megjelenítése</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Csak telepítettek a gyorsszűrésnél</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Gombfeliratok</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">Kinézet</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Vízszintes görgetés</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
@@ -410,7 +410,7 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCLoginRequired">Hitelesítés szükséges</sys:String>
     <sys:String x:Key="LOCLoginFailed">Hítelesítés sikertelen</sys:String>
     <sys:String x:Key="LOCLoggedIn"></sys:String>
-    <sys:String x:Key="LOCNotLoggedIn"></sys:String>
+    <sys:String x:Key="LOCNotLoggedIn">Felhasználói hitelesítése szükséges.</sys:String>
     <sys:String x:Key="LOCNotLoggedInError"></sys:String>
 
     <!--Meta Import-->
@@ -462,7 +462,7 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCPlatformsWindowTitle">Platformok és emulátorok konfigurálása</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Platformok</sys:String>
-    <sys:String x:Key="LOCPlatformTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emulatorok</sys:String>
     <sys:String x:Key="LOCEmulatorTitle"></sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Platform hozzáadása</sys:String>
@@ -509,7 +509,7 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCGameProviderTitle">Szolgáltató</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Név</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Fiók neve</sys:String>
-    <sys:String x:Key="LOCGamePlatformTitle"></sys:String>
+    <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategóriák</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Műfajok</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Megjelenési dátum</sys:String>
@@ -543,8 +543,8 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCCategoriesLabel">Kategóriák</sys:String>
     <sys:String x:Key="LOCTagLabel">Címke</sys:String>
     <sys:String x:Key="LOCTagsLabel">Címkék</sys:String>
-    <sys:String x:Key="LOCFeatureLabel"></sys:String>
-    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCFeatureLabel">Jellemző</sys:String>
+    <sys:String x:Key="LOCFeaturesLabel">Jellemzők</sys:String>
     <sys:String x:Key="LOCAgeRatingLabel">Korhatár</sys:String>
     <sys:String x:Key="LOCAgeRatingsLabel">Korhatár</sys:String>
     <sys:String x:Key="LOCRegionLabel">Régió</sys:String>
@@ -637,7 +637,7 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
     <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
-    <sys:String x:Key="LOCCompletionStatus">Teljesítési státusz</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Befejezettség</sys:String>
     <sys:String x:Key="LOCUserScore">Játékosok értékelése</sys:String>
     <sys:String x:Key="LOCCriticScore">Krikusok értékelése</sys:String>
     <sys:String x:Key="LOCCommunityScore">Közösség értékelése</sys:String>
@@ -655,7 +655,7 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCExtensionCreatedBy"></sys:String>
     <sys:String x:Key="LOCExtensionVersion"></sys:String>
     <sys:String x:Key="LOCExtensionModule"></sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
+    <sys:String x:Key="LOCLibrary">Könyvtár</sys:String>
     <sys:String x:Key="LOCAll">Az összes játék</sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
