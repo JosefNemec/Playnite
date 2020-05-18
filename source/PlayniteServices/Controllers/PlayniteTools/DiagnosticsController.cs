@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,31 @@ namespace PlayniteServices.Controllers.PlayniteTools
     [Route("playnite/diag")]
     public class DiagnosticsController : Controller
     {
+        private AppSettings appSettings;
+
+        public DiagnosticsController(IOptions<AppSettings> settings)
+        {
+            appSettings = settings.Value;
+        }
+
+        [HttpGet("{packageId}/{serviceKey}")]
+        public IActionResult GetPackage(Guid packageId, string serviceKey)
+        {
+            if (appSettings.ServiceKey != serviceKey)
+            {
+                return BadRequest();
+            }
+
+            var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, $"{packageId}.zip", SearchOption.AllDirectories);
+            if (diagFiles.Length == 0)
+            {
+                return NotFound();
+            }
+
+            var diagFile = new FileInfo(diagFiles[0]);
+            return PhysicalFile(diagFile.FullName, System.Net.Mime.MediaTypeNames.Application.Zip, diagFile.Name);
+        }
+
         [HttpPost]
         public ServicesResponse<Guid> UploadPackage()
         {
@@ -64,7 +90,6 @@ namespace PlayniteServices.Controllers.PlayniteTools
                         version = info["Version"].ToString();
                     }
                 }
-
             }
 
             if (isCrash)
