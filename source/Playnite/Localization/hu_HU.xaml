@@ -79,7 +79,7 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
     <sys:String x:Key="LOCGameInstallError">{0} játék nem telepíthető</sys:String>
     <sys:String x:Key="LOCGameUninstallError">{0} játék nem eltávolítható</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Indítás művelet nincs beállítva.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Az ehhez a játékhoz tartozó könyvtár pluginok nincsenek bekapcsolva / engedélyezve.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Az ehhez a játékhoz tartozó könyvtár beépülők nincsenek bekapcsolva / engedélyezve.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Hivatalos metaadat letöltés nem elérhető.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nincs játék kiválasztva.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">A játék indítószkript végrehajtása sikertelen.</sys:String>
@@ -188,7 +188,7 @@ Az automatikusan importált játékok lehet újra megjelennek majd a következő
 Példa: -image &quot;{ImagePath}&quot; -fullscreen
 Eredménye: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Nem lehet elindítani, ha nincs Indítás funkció definiálva, vagy URL van megadva.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Nem lehet elindítani, ha nincs Indítási művelet definiálva, vagy URL van megadva.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Csak a hiányzó metaadatok letöltése</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ha bekapcsolod, metaadat letöltésekor átugorja a már meglévő adatokkal teli mezőket.</sys:String>
@@ -627,10 +627,10 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCSaveChanges">Változások mentése</sys:String>
     <sys:String x:Key="LOCPlayAction">Indítási művelet</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Indítási művelet hozzáadása</sys:String>
-    <sys:String x:Key="LOCAddAction">Parancs hozzáadása</sys:String>
-    <sys:String x:Key="LOCDeleteAction">Parancs eltávolítása</sys:String>
+    <sys:String x:Key="LOCAddAction">Müvelet hozzáadása</sys:String>
+    <sys:String x:Key="LOCDeleteAction">Művelet eltávolítása</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Indítási művelet eltávolítása</sys:String>
-    <sys:String x:Key="LOCOtherActions">Más parancsok</sys:String>
+    <sys:String x:Key="LOCOtherActions">Más műveletek</sys:String>
     <sys:String x:Key="LOCAddGames">Játékok hozzáadása</sys:String>
     <sys:String x:Key="LOCScanFolder">Mappa átvizsgálása…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Telepített játékok importálása</sys:String>
@@ -676,7 +676,7 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCCriticScore">Kritikusok értékelése</sys:String>
     <sys:String x:Key="LOCCommunityScore">Közösség értékelése</sys:String>
     <sys:String x:Key="LOCScripts">Szkriptek</sys:String>
-    <sys:String x:Key="LOCPlugins">Pluginok</sys:String>
+    <sys:String x:Key="LOCPlugins">Beépülők</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Metaadat források</sys:String>
     <sys:String x:Key="LOCExtensions">Bővítmények</sys:String>
     <sys:String x:Key="LOCReloadScripts">Szkriptek újratöltése</sys:String>
@@ -716,165 +716,173 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCGameImportWindowTitle">Játékok kiválasztása importáláshoz</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metaadatok keresése</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Frissítés elérhető</sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Változások az utolsó frissítés óta</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Frissítés letöltése és telepítése</sys:String>
-    <sys:String x:Key="LOCCheckForUpdates"></sys:String>
-    <sys:String x:Key="LOCUpdateError"></sys:String>
-    <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage"></sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Frissítések keresése</sys:String>
+    <sys:String x:Key="LOCUpdateError">Frissítési hiba</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Nem sikerült ellenőrizni a frissítéseket.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Az aktuális verzió naprakész.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Frissítés letöltése és telepítése sikertelen.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Háttér folyamat jelenleg folyamatban van. Abba hagyja hogy haladjon a frissítéssel?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Egy háttérfolyamat jelenleg is fut. Megszakítod, és folytatod a frissítés telepítését?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Egy háttérfolyamat jelenleg is fut. Megszakítod, és bezárod a Playnite-ot?</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Frissítés érhető el a Playnite-hoz.</sys:String>
 
-    <sys:String x:Key="LOCThemeTestReloadList">Téma lista újratöltése</sys:String>
-    <sys:String x:Key="LOCThemeTestApplySkin">Kiválasztott téma alkalmazása</sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChanges">Fájl változtatások figyelése</sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Téma automatikus változtatása ha a fájl változik</sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCThemeTestReloadList">Témalista újratöltése</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">Kiválasztott téma használata</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChanges">Témafrissítések figyelése</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Frissített téma automatikus alkalmazása</sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Szkript futtatás</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Játék indítása előtt futtatja</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Játékból kilépés után futtatja</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Mentés alapértelmezettként</sys:String>
-    <sys:String x:Key="LOCFavoriteGame">Kedvencekhez adás</sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame">Eltávolítás kedvencekből</sys:String>
+    <sys:String x:Key="LOCFavoriteGame">Kedvencekhez ad</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">Törlés a kedvencekből</sys:String>
     <sys:String x:Key="LOCHideGame">Elrejtés</sys:String>
     <sys:String x:Key="LOCUnHideGame">Megjelenítés a könyvtárban</sys:String>
-    <sys:String x:Key="LOCEditGame">Szerkesztés...</sys:String>
-    <sys:String x:Key="LOCSetGameCategory"></sys:String>
-    <sys:String x:Key="LOCRemoveGame">Listából törlés</sys:String>
+    <sys:String x:Key="LOCEditGame">Szerkesztés…</sys:String>
+    <sys:String x:Key="LOCSetGameCategory">Kategóriához adás…</sys:String>
+    <sys:String x:Key="LOCRemoveGame">Törlés</sys:String>
     <sys:String x:Key="LOCPlayGame">Indítás</sys:String>
     <sys:String x:Key="LOCInstallGame">Telepítés</sys:String>
-    <sys:String x:Key="LOCGameOptions"></sys:String>
+    <sys:String x:Key="LOCGameOptions">Játékbeállítások</sys:String>
     <sys:String x:Key="LOCGameDetails">Részletek</sys:String>
-    <sys:String x:Key="LOCUninstallGame">Játék törlése</sys:String>
+    <sys:String x:Key="LOCUninstallGame">Eltávolítás</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Tartalmazó mappa megnyitása</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Parancsikon az asztalra</sys:String>
-    <sys:String x:Key="LOCMoreAction">Egyéb</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
+    <sys:String x:Key="LOCMoreAction">Tovább</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">Könyvtár beépülő kezeli</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">A játékindítás az ehhez a játékhoz tartozó könyvtár beépülőből lesz kezelve.</sys:String>
 
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Nem található információ '{0}' játékról a megadott oldalon.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Protip: Precízebb metaadat importálást lehet használni a játék &quot;Szerkesztés&quot; menüpontját választva.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nem elérhető néhány folyamat alatt.</sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Leírás szöveg HTML syntax érzékeny</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues">Értékek lehetnek 0-tól 100-ig vagy üres ha nincs..</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite fejlesztése köszönhető ezeknek a patronoknak:</sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage">Kód, fordítás és többi körzeműködés minden sorrend nélkül:</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">A játékleírásban használhatsz HTML kódot</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Másodperc alapú játékidő követés és rögzítés</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">Pontérték 0-100-ig, vagy üres mező, ha nincs értékelve.</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">A Playnite fejlődésének támogatói:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">Kód, fordítás és egyéb közreműködők:</sys:String>
 
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Játékfigyelés megszüntetése?</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk">A játék telepítés figyelő jelenleg is fut. Meg akarod szakítani a folyamatot és visszaállitani a játék előző állapotát?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">A játék telepítés figyelő jelenleg is fut. Meg akarod szakítani a folyamatot és visszatérsz a játék előző állapotához?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">A játékfigyelő jelenleg is fut. Meg akarod szakítani a folyamatot és visszaállitani a játék előző állapotát?</sys:String>
 
     <sys:String x:Key="LOCTimePlayed">Játékidő</sys:String>
-    <sys:String x:Key="LOCLastPlayed">Utoljára játszva</sys:String>
-    <sys:String x:Key="LOCPlayedHours"></sys:String>
+    <sys:String x:Key="LOCLastPlayed">Utoljára játszott</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0}:{1}</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} perc</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} másodperc</sys:String>
     <sys:String x:Key="LOCPlayedNone">Sosem játszott</sys:String>
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Ablakos módba lépés…</sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
-    <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCInstallScript"></sys:String>
-    <sys:String x:Key="LOCScriptError"></sys:String>
-    <sys:String x:Key="LOCScriptExecutionError"></sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Teljesképernyős mód indítása…</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Játékkönyvtár megnyitása…</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Szkriptfájl telepítése nem sikerült.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Szkriptfájl sikeresen telepítve.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Szkript telepítése</sys:String>
+    <sys:String x:Key="LOCScriptError">Szkript hiba</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">A bővítmény hibát jelzett.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Metaadat mappa megnyitása</sys:String>
 
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0} kliens nincs telepítve.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">A megnyíló {0} kliens ablakában jelentkezz be, és zárd be ezt az üzenet.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Bejelentkezésre vár, zárd be ezt, ha készen vagy…</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">A játék telepítési mappája nem található.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Helytelen a művelet konfigurációja</sys:String>
 
-    <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Fiók szinkronizálási hibaelhárító</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Hibaelhárítás</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Átnevezés</sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
+    <sys:String x:Key="LOCAddNewItem">Új hozzáadása</sys:String>
+    <sys:String x:Key="LOCEnterName">Írj be nevet</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Írj be új nevet</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Kevesebb, mint egy óra</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1-től 10 óráig</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10-től 100 óráig</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100-tól 500 óráig</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500-tól 1000 óráig</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000 óra felett</sys:String>
 
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">A telepítés befejezéséhez újra kell indítani a Playnite-ot. Meg akarod ezt most tenni?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">A Téma/Bővítmény nem támogatott API-t használ.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Sikeres telepítés.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Telepítsem a bővitményt?</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">{0} bővítmény telepítése nem sikerült.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Telepíted az új bővítményt? A régi felül lesz írva.
+{0} ezzel {1}, {2} verziószámmal.</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">{0} téma telepítése nem sikerült.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Telepíted az új témát? A régi felül lesz írva.
+{0} ezzel {1}, {2} verziószámmal.</sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Elhagyod a Playnite-ot és megnyitod a {0} weboldalt a böngésződdel. Folytatod?</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
-    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">A választott kép(ek) túl nagy méretűek az optimális működéshez. A nagy képek miatt több memória lesz használatban és lassabb lesz a felület reakcióideje.
+
+Maximális ajánlott méretek:
+Ikonok: {0} megapixel
+Borítók: {1} megapixel
+Hátterek: {2} megapixel</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Csökkent teljesítmény</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Ne mutasd többször</sys:String>
+    <sys:String x:Key="LOCLargeMediaWarningTooltip">A kiválasztott kép túl nagy méretű az optimális működéshez. </sys:String>
 
     <!--Common Library-->
-    <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
-    <sys:String x:Key="LOCCommonLinksForum"></sys:String>
-    <sys:String x:Key="LOCCommonLinksNews"></sys:String>
-    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+    <sys:String x:Key="LOCCommonLinksAchievements">Eredmények</sys:String>
+    <sys:String x:Key="LOCCommonLinksForum">Fórum</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">Újdonságok</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">Áruházbeli oldala</sys:String>
 
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">A megnyíló itch.io kliens ablakában jelentkezz be, és zárd be ezt az üzenet.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Felhasználó bejelentkezésére vár, zárd be ezt, miután kész…</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Itch kliens v25 vagy újabb nincs telepítve.</sys:String>
 
     <!--GOG-->
-    <sys:String x:Key="LOCGOGUseLogin"></sys:String>
+    <sys:String x:Key="LOCGOGUseLogin">Fiók bejelentkezés</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Fiók neve</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Lépj be a fiókodba vagy használd a nyilvános fióknevedet hogy szinkronizáld a teljes könyvtáradat.
+A fióknév opció csak akkor működik, ha a GOG adatvédelmi beállításainál a fiók nyilvánosra van állítva.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
-    <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">Fiók URL címe</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Bejelentkezett felhasználó</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">Nem publikus fiók, API kulcs szükséges.</sys:String>
-    <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
-    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
-    <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
+    <sys:String x:Key="LOCSteamLinksCommunityHub">Közösség</sys:String>
+    <sys:String x:Key="LOCSteamLinksDiscussions">Témák</sys:String>
+    <sys:String x:Key="LOCSteamLinksWorkshop">Műhely</sys:String>
+    <sys:String x:Key="LOCSteamUseVerticalCovers">Álló borítóképek letöltése</sys:String>
 
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">A kezdeti lépések nem lettek befejezve. A Playnite újraindul Ablakos módban, hogy befejezhesd.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Nemrég játszott</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Kedvencek</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Legtöbbet játszott</sys:String>
-    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames">Az összes játék</sys:String>
 
-    <sys:String x:Key="LOCGameListFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
+    <sys:String x:Key="LOCGameListFiltered">Szűrt lista.</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Találatok:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Már van ilyen név.</sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Jeleneg szűrtekből válasszon</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Még egy véletlenszerűen</sys:String>
 
     <!--IGDB-->
-    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Képernyőkép használata, ha nincs grafika</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Ha több találat van, használja:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} háttérképének kiválasztása</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Mindig próbálja meg az Epic kliens nélkül futtatni a játékot</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Nem minden játéknál működik. A Hibaelhárító további információval szolgál.</sys:String>
 
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Harmadik féltől származó játékok figyelmen kívül hagyása</sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Trove játékok importálása</sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Kliensfüggő játékok nem kerülnek importálásra. A már meglévőket sem, hogy ne legyenek duplikátumok.</sys:String>
 
     <!--Xbox-->
-    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Kliens indításakor az Xbox Pass induljon a Microsoft Áruház helyett</sys:String>
     <sys:String x:Key="LOCXboxImport360Games">Xbox 360 játékok importálása</sys:String>
     <sys:String x:Key="LOCXboxImportXboneGames">Xbox One játékok importálása</sys:String>
 </ResourceDictionary>
