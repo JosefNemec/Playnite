@@ -37,8 +37,6 @@ namespace PlayniteServices.Controllers.IGDB
             var matchId = $"{game.GameId}{game.PluginId}".MD5();
             var searchId = $"{game.Name}{game.ReleaseDate?.Year}".MD5();
 
-            logger.Debug($"IGDB metadata: {game.GameId},{game.Name},{game.PluginId},{game.ReleaseDate}");
-
             // Check if match was previously found
             if (isKnownPlugin)
             {
