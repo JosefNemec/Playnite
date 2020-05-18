@@ -706,12 +706,12 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCFirst">Első</sys:String>
     <sys:String x:Key="LOCRandom">Véletlenszerű</sys:String>
     <sys:String x:Key="LOCUserSelect">Rákérdez</sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCLoadMore">Továbbiak betöltése</sys:String>
+    <sys:String x:Key="LOCTransparent">Átlátszóság</sys:String>
 
-    <sys:String x:Key="LOCEmulatorArguments">Emulátor parancsok</sys:String>
-    <sys:String x:Key="LOCAdditionalEmulatorArguments">Egyéb emulátor parancsok</sys:String>
-    <sys:String x:Key="LOCOverrideEmulatorArguments">Emulátor parancsok felülírása</sys:String>
+    <sys:String x:Key="LOCEmulatorArguments">Emulátor paraméterek</sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments">További emulátor paraméterek</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">Emulátor paraméterek felülírása</sys:String>
 
     <sys:String x:Key="LOCGameImportWindowTitle">Játékok kiválasztása importáláshoz</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metaadatok keresése</sys:String>
