@@ -259,7 +259,7 @@ Eredménye: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Játéklista ikon magassága</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">A program betűtípusa</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Szűrőpanel helyzete</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Szűrőpanel helyzete</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Platformpanel helyzete</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Borítókép minőség</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Célzott képarány</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Nyújtás módja</sys:String>
@@ -524,7 +524,7 @@ Jelenleg {1} játék és {2} emulátor használja.</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Platform szerinti csoportosítás</sys:String>
     <sys:String x:Key="LOCViewType">Nézettípus</sys:String>
     <sys:String x:Key="LOCMenuView">Nézet</sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel">Szűrőpanel</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Platformpanel</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Szűrőpanel</sys:String>
 
     <!--Game fields-->
