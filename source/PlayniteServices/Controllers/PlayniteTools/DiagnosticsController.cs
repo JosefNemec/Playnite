@@ -38,6 +38,19 @@ namespace PlayniteServices.Controllers.PlayniteTools
             return PhysicalFile(diagFile.FullName, System.Net.Mime.MediaTypeNames.Application.Zip, diagFile.Name);
         }
 
+        [HttpGet("{serviceKey}")]
+        public ServicesResponse<List<string>> GetPackages(string serviceKey)
+        {
+            if (appSettings.ServiceKey != serviceKey)
+            {
+                return new ServicesResponse<List<string>>(null) { Error = "bad request" };
+            }
+
+            var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, "*.zip", SearchOption.AllDirectories).
+                Select(a => a.Replace(Playnite.DiagsLocation, "").Trim(Path.DirectorySeparatorChar)).ToList();
+            return new ServicesResponse<List<string>>(diagFiles);
+        }
+
         [HttpPost]
         public ServicesResponse<Guid> UploadPackage()
         {

@@ -105,7 +105,6 @@ namespace EpicLibrary.Services
             if (string.IsNullOrEmpty(exchangeKey))
             {
                 logger.Error("Failed to get login exchange key for Epic account.");
-                logger.Debug(loginPageSource);
                 return;
             }
 
