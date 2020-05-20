@@ -228,7 +228,7 @@ Eredménye: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Játék hozzáadása</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuálisan...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automatikus kereséssel...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">Emulált játékot...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Emulált játék...</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store alkalmazásból…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Névjegy</sys:String>
     <sys:String x:Key="LOCMenuIssues">Visszajelzés küldése</sys:String>
@@ -301,11 +301,11 @@ Eredménye: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Beleértve a Steam-et, az Origin-t és a többit.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Nem egyidejű kép betöltés</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Simább játéklista görgetés, de lassabb képbetöltés.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Hiányzó borítókép helyett a játék nevét mutassa</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Rácsnézetben a játékok neveit mutassa</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Hiányzó borítókép helyett a játék neve látszódjon</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Játéknevek a borítók alatt</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Eltávolított játékok sötétítése</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Játékikonok kijelzése a részletes nézetben</sys:String>
-    <sys:String x:Key="LOCSettingsShowGroupCount">Csoportok leírásnál az elemek számának megjelenítése</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Csoportok leírásánál az elemek számának megjelenítése</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Hardveres gyorsítás tiltása</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Kapcsold be, ha szaggat, vagy más hibát produkál a program</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI skálázás tiltása</sys:String>
@@ -703,9 +703,9 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCFontLargest">Legnagyobb</sys:String>
     <sys:String x:Key="LOCDefault">Alapértelmezés</sys:String>
     <sys:String x:Key="LOCSelect">Kiválaszt</sys:String>
-    <sys:String x:Key="LOCFirst">Első</sys:String>
-    <sys:String x:Key="LOCRandom">Véletlenszerű</sys:String>
-    <sys:String x:Key="LOCUserSelect">Rákérdez</sys:String>
+    <sys:String x:Key="LOCFirst">az elsőt</sys:String>
+    <sys:String x:Key="LOCRandom">véletlenszerűen</sys:String>
+    <sys:String x:Key="LOCUserSelect">kérdezzen rá</sys:String>
     <sys:String x:Key="LOCLoadMore">Továbbiak betöltése</sys:String>
     <sys:String x:Key="LOCTransparent">Átlátszóság</sys:String>
 
@@ -868,8 +868,8 @@ A fióknév opció csak akkor működik, ha a GOG adatvédelmi beállításainá
     <sys:String x:Key="LOCRandomGamePickAnother">Még egy véletlenszerűen</sys:String>
 
     <!--IGDB-->
-    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Képernyőkép használata, ha nincs grafika</sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Ha több találat van, használja:</sys:String>
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Képernyőkép használata, ha nincs játékgrafika</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Ha több találat van, válassza:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} háttérképének kiválasztása</sys:String>
 
     <!--Epic-->
