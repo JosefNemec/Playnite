@@ -268,7 +268,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Banner</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam New UI</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam vertical cover</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requires restart to apply</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Settings</sys:String>
