@@ -56,13 +56,6 @@ namespace Playnite.DesktopApp.Controls.Views
 
             this.mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
-            Unloaded += Library_Unloaded;
-        }
-
-        private void Library_Unloaded(object sender, RoutedEventArgs e)
-        {
-            mainModel.AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
-            mainModel.AppSettings.ViewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -119,7 +112,6 @@ namespace Playnite.DesktopApp.Controls.Views
             ElemNoGamesNotif = Template.FindName("PART_ElemNoGamesNotif", this) as FrameworkElement;
             if (ElemNoGamesNotif != null)
             {
-
                 BindingTools.SetBinding(ElemNoGamesNotif,
                     Control.VisibilityProperty,
                     mainModel,

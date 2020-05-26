@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Playnite.Common;
 using Playnite.Scripting.PowerShell;
+using Playnite.SDK.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -61,8 +62,8 @@ function TestFunc()
         {
             using (var ps = new PowerShellRuntime())
             {
-                Assert.Throws<RuntimeException>(() => ps.Execute("throw \"Testing Exception\""));
-                Assert.Throws<RuntimeException>(() => ps.Execute("1 / 0"));
+                Assert.Throws<ScriptRuntimeException>(() => ps.Execute("throw \"Testing Exception\""));
+                Assert.Throws<ScriptRuntimeException>(() => ps.Execute("1 / 0"));
             }
         }
 

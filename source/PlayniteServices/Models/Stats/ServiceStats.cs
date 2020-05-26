@@ -1,5 +1,4 @@
-﻿using PlayniteServices.Models.Playnite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +11,6 @@ namespace PlayniteServices.Models.Stats
         public int LastWeekUserCount;
         public Dictionary<string, int> UsersByVersion;
         public Dictionary<string, int> UsersByWinVersion;
-        public List<User> RecentUsers;
         public int X86Count;
         public int X64Count;
     }

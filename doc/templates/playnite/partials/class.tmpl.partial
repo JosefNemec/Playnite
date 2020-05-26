@@ -1,6 +1,22 @@
 {{!Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE file in the project root for full license information.}}
-
 {{>partials/class.header}}
+{{#inheritedMembers.0}}
+<div class="inheritance">
+  <h3>Inherited members</h3>
+{{/inheritedMembers.0}}
+{{#inheritedMembers}}
+  <div class="level{{index}}">
+  {{#definition}}
+    <xref href="{{definition}}" fullName="{{fullName.0.value}}" name="{{name.0.value}}"/>
+  {{/definition}}
+  {{^definition}}
+    <xref href="{{uid}}" fullName="{{fullName.0.value}}" name="{{name.0.value}}"/>
+  {{/definition}}
+  </div>
+{{/inheritedMembers}}
+{{#inheritedMembers.0}}
+</div>
+{{/inheritedMembers.0}}
 {{#children}}
 <h3 id="{{id}}">{{>partials/classSubtitle}}</h3>
 {{#children}}

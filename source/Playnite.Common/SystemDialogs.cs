@@ -99,7 +99,7 @@ namespace Playnite.Common
 
             if (!initialDir.IsNullOrEmpty() && Directory.Exists(initialDir))
             {
-                dialog.InitialDirectory = initialDir;
+                dialog.InitialDirectory = Path.GetFullPath(initialDir);
             }
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);

@@ -24,11 +24,6 @@ namespace Playnite.Common
         public static void CreateDirectory(string path, bool clean)
         {
             var directory = path;
-            if (!string.IsNullOrEmpty(Path.GetExtension(path)))
-            {
-                directory = Path.GetDirectoryName(path);
-            }
-
             if (string.IsNullOrEmpty(directory))
             {
                 return;

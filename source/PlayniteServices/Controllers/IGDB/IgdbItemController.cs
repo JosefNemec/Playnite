@@ -13,7 +13,8 @@ namespace PlayniteServices.Controllers.IGDB
 {
     public class IgdbItemController : Controller
     {
-        private static char[] arrayTrim = new char[] { '[', ']' };
+        private static readonly char[] arrayTrim = new char[] { '[', ']' };
+        private static readonly JsonSerializer jsonSerializer = new JsonSerializer();
 
         public static async Task<TItem> GetItem<TItem>(ulong itemId, string endpointPath, object cacheLock)
         {
@@ -22,10 +23,15 @@ namespace PlayniteServices.Controllers.IGDB
             {
                 if (System.IO.File.Exists(cachePath))
                 {
-                    var cacheItem = JsonConvert.DeserializeObject<TItem>(System.IO.File.ReadAllText(cachePath, Encoding.UTF8));
-                    if (cacheItem != null)
+                    using (var fs = new FileStream(cachePath, FileMode.Open, FileAccess.Read))
+                    using (var sr = new StreamReader(fs))
+                    using (var reader = new JsonTextReader(sr))
                     {
-                        return cacheItem;
+                        var cacheItem = jsonSerializer.Deserialize<TItem>(reader);
+                        if (cacheItem != null)
+                        {
+                            return cacheItem;
+                        }
                     }
                 }
             }

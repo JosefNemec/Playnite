@@ -105,7 +105,6 @@ namespace EpicLibrary.Services
             if (string.IsNullOrEmpty(exchangeKey))
             {
                 logger.Error("Failed to get login exchange key for Epic account.");
-                logger.Debug(loginPageSource);
                 return;
             }
 
@@ -119,7 +118,7 @@ namespace EpicLibrary.Services
                     content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
                     var response = httpClient.PostAsync(oauthUrl, content).GetAwaiter().GetResult();
                     var respContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                    FileSystem.CreateDirectory(tokensPath);
+                    FileSystem.CreateDirectory(Path.GetDirectoryName(tokensPath));
                     File.WriteAllText(tokensPath, respContent);
                 }
             }
@@ -215,7 +214,7 @@ namespace EpicLibrary.Services
                     content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
                     var response = httpClient.PostAsync(oauthUrl, content).GetAwaiter().GetResult();
                     var respContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                    FileSystem.CreateDirectory(tokensPath);
+                    FileSystem.CreateDirectory(Path.GetDirectoryName(tokensPath));
                     File.WriteAllText(tokensPath, respContent);
                 }
             }
