@@ -20,10 +20,10 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsInstalled}" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding IsInstalled}" Value="False">
-                            <Setter Property="Foreground" Value="{StaticResource TextBrushDarker}" />
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
                         </DataTrigger>                        
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
