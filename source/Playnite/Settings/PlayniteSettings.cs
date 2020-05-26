@@ -724,21 +724,6 @@ namespace Playnite
             }
         }
 
-        private bool migrationV2PcPlatformAdded = false;
-        public bool MigrationV2PcPlatformAdded
-        {
-            get
-            {
-                return migrationV2PcPlatformAdded;
-            }
-
-            set
-            {
-                migrationV2PcPlatformAdded = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool showIconsOnList = true;
         public bool ShowIconsOnList
         {
