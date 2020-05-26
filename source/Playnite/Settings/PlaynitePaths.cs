@@ -42,7 +42,7 @@ namespace Playnite
         public static string DataCachePath => Path.Combine(ConfigRootPath, "cache");
         public static string ImagesCachePath => Path.Combine(DataCachePath, "images");
         public static string UserProgramDataPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
-        public static string JitProfilesPath => Path.Combine(ConfigRootPath, "JitProfiles");
+        public static string JitProfilesPath => Path.Combine(ConfigRootPath, "JITProfiles");
         public static string ConfigRootPath
         {
             get
