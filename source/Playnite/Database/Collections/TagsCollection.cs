@@ -12,7 +12,7 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public TagsCollection(GameDatabase database) : base()
+        public TagsCollection(GameDatabase database) : base(type: GameDatabaseCollection.Tags)
         {
             db = database;
         }

@@ -91,7 +91,6 @@ namespace Playnite.DesktopApp.ViewModels
             SelectedGame = GamesView.Items[0];
             SelectedGames = new List<GamesCollectionViewEntry>() { SelectedGame };
             SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0], AppSettings);
-            DatabaseExplorer = new DatabaseExplorer(database, Extensions, AppSettings);
 
             PlayniteApi = new PlayniteAPI(null, null, null, null, null, null, null, new NotificationsAPI(), null, null, null);
             PlayniteApi.Notifications.Add(new NotificationMessage("1", "Some testing notification message.", NotificationType.Info));

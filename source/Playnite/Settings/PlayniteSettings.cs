@@ -1418,6 +1418,17 @@ namespace Playnite
             }
         }
 
+        private bool usedFieldsOnlyOnFilterLists = true;
+        public bool UsedFieldsOnlyOnFilterLists
+        {
+            get => usedFieldsOnlyOnFilterLists;
+            set
+            {
+                usedFieldsOnlyOnFilterLists = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

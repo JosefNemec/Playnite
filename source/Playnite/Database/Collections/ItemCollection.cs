@@ -32,6 +32,8 @@ namespace Playnite.Database
 
         public bool IsReadOnly => false;
 
+        public GameDatabaseCollection CollectionType { get; } = GameDatabaseCollection.Uknown;
+
         public TItem this[Guid id]
         {
             get => Get(id);
@@ -45,25 +47,29 @@ namespace Playnite.Database
 
         public event EventHandler<ItemUpdatedEventArgs<TItem>> ItemUpdated;
 
-        public ItemCollection(bool isPersistent = true)
+        internal bool IsEventsEnabled { get; set; } = true;
+
+        public ItemCollection(bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
         {
             this.isPersistent = isPersistent;
             Items = new ConcurrentDictionary<Guid, TItem>();
+            CollectionType = type;
         }
 
-        public ItemCollection(Action<TItem> initMethod, bool isPersistent = true) : this(isPersistent)
+        public ItemCollection(Action<TItem> initMethod, bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(isPersistent, type)
         {
             this.initMethod = initMethod;
         }
 
-        public ItemCollection(string path)
+        public ItemCollection(string path, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
         {
             this.isPersistent = true;
             Items = new ConcurrentDictionary<Guid, TItem>();
             InitializeCollection(path);
+            CollectionType = type;
         }
 
-        public ItemCollection(string path, Action<TItem> initMethod) : this(path)
+        public ItemCollection(string path, Action<TItem> initMethod, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(path, type)
         {
             this.initMethod = initMethod;
         }
@@ -91,6 +97,10 @@ namespace Playnite.Database
                         logger.Error(e, $"Failed to load item from {objectFile}");
                     }
                 });
+            }
+            else
+            {
+                FileSystem.CreateDirectory(storagePath);
             }
         }
 
@@ -125,6 +135,17 @@ namespace Playnite.Database
             {
                 return null;
             }
+        }
+
+        public List<TItem> Get(IList<Guid> ids)
+        {
+            var items = new List<TItem>(ids.Count);
+            foreach (var id in ids)
+            {
+                items.Add(Get(id));
+            }
+
+            return items;
         }
 
         public virtual TItem Add(string itemName, Func<TItem, string, bool> existingComparer)
@@ -413,6 +434,11 @@ namespace Playnite.Database
 
         internal void OnCollectionChanged(List<TItem> addedItems, List<TItem> removedItems)
         {
+            if (!IsEventsEnabled)
+            {
+                return;
+            }
+
             if (!isEventBufferEnabled)
             {
                 ItemCollectionChanged?.Invoke(this, new ItemCollectionChangedEventArgs<TItem>(addedItems, removedItems));
@@ -426,6 +452,11 @@ namespace Playnite.Database
 
         internal void OnItemUpdated(IEnumerable<ItemUpdateEvent<TItem>> updates)
         {
+            if (!IsEventsEnabled)
+            {
+                return;
+            }
+
             if (!isEventBufferEnabled)
             {
                 ItemUpdated?.Invoke(this, new ItemUpdatedEventArgs<TItem>(updates));

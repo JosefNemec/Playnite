@@ -83,6 +83,8 @@
 
         <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
                   Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsUsedFieldsOnlyOnFilterLists}" Margin="0,15,0,0"
+                  IsChecked="{Binding Settings.UsedFieldsOnlyOnFilterLists}"/>
         <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundWindowImage}" Margin="0,15,0,0"
                   Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImageOnWindow}"/>
         <StackPanel Orientation="Horizontal" Margin="25,15,0,0"

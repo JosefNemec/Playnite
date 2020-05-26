@@ -60,6 +60,32 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Adds new items to the list only if they are not already part of the list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="items"></param>
+        /// <returns>True if an item was added, false if none item was added.</returns>
+        public static bool AddMissing<T>(this IList<T> source, IList<T> items)
+        {
+            if (!items.HasItems())
+            {
+                return false;
+            }
+
+            var anyAdded = false;
+            foreach (var item in items)
+            {
+                if (AddMissing(source, item))
+                {
+                    anyAdded = true;
+                }
+            }
+
+            return anyAdded;
+        }
+
+        /// <summary>
         /// Checks if collection has any non-empty string items.
         /// </summary>
         /// <param name="source"></param>
@@ -214,6 +240,30 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Check if collection contains all items from other collection (in any order).
+        /// </summary>
+        public static bool Contains<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        {
+            if (source == null && target == null)
+            {
+                return true;
+            }
+
+            if ((source == null && target != null) || (source != null && target == null))
+            {
+                return false;
+            }
+
+            var targetCount = target.Count();
+            if (targetCount > source.Count())
+            {
+                return false;
+            }
+
+            return target.Intersect(source).Count() == targetCount;
+        }
+
+        /// <summary>
         /// Gets items contained in all colletions.
         /// </summary>
         public static HashSet<T> GetCommonItems<T>(IEnumerable<IEnumerable<T>> lists)
@@ -260,6 +310,53 @@ namespace System.Collections.Generic
 
             var listsCounts = lists.Count();
             return new HashSet<T>(set.GroupBy(a => a).Where(a => a.Count() < listsCounts).Select(a => a.Key));
+        }
+
+        /// <summary>
+        /// Merge collection together.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="lists"></param>
+        /// <returns></returns>
+        public static List<T> Merge<T>(IEnumerable<IEnumerable<T>> lists)
+        {
+            var allItems = new List<T>();
+            foreach (var list in lists)
+            {
+                if (list.HasItems())
+                {
+                    allItems.AddRange(list);
+                }
+            }
+
+            return allItems;
+        }
+
+        /// <summary>
+        /// Merge two collection together.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list1"></param>
+        /// <param name="list2"></param>
+        /// <returns></returns>
+        public static List<T> Merge<T>(IEnumerable<T> list1, IEnumerable<T> list2)
+        {
+            if (list1.HasItems() && list2.HasItems())
+            {
+                var allItems = new List<T>(list1.Count() + list2.Count());
+                allItems.AddRange(list1);
+                allItems.AddRange(list2);
+            }
+            else if (list1.HasItems() && !list2.HasItems())
+            {
+                return list1.ToList();
+            }
+            else if (!list1.HasItems() && list2.HasItems())
+            {
+                return list2.ToList();
+            }
+
+            return new List<T>();
         }
     }
 }

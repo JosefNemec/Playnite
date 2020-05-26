@@ -18,7 +18,7 @@ namespace Playnite.Database
             game.IsUninstalling = false;
             game.IsLaunching = false;
             game.IsRunning = false;
-        })
+        }, type: GameDatabaseCollection.Games)
         {
             db = database;
         }

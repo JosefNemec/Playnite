@@ -1185,7 +1185,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         protected void InitializeView()
         {
-            DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings.Fullscreen.FilterSettings);
+            DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.Fullscreen.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             () =>

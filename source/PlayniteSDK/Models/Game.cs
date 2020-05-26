@@ -134,6 +134,34 @@ namespace Playnite.SDK.Models
         Features,
         ///
         FeatureIds,
+        ///
+        UseGlobalPostScript,
+        ///
+        UseGlobalPreScript,
+        ///
+        UserScoreRating,
+        ///
+        CommunityScoreRating,
+        ///
+        CriticScoreRating,
+        ///
+        UserScoreGroup,
+        ///
+        CommunityScoreGroup,
+        ///
+        CriticScoreGroup,
+        ///
+        LastActivitySegment,
+        ///
+        AddedSegment,
+        ///
+        ModifiedSegment,
+        ///
+        PlaytimeCategory,
+        ///
+        InstallationStatus,
+        ///
+        None
     }
 
     /// <summary>
@@ -1665,6 +1693,306 @@ namespace Playnite.SDK.Models
             {
                 throw new ArgumentException($"Target object has to be of type {GetType().Name}");
             }
+        }
+
+        /// <summary>
+        /// Get differecens in game objects.
+        /// </summary>
+        /// <param name="otherGame">Game object to compare to.</param>
+        /// <returns>List of field that differ.</returns>
+        public List<GameField> GetDifferences(Game otherGame)
+        {
+            var changes = new List<GameField>();
+            if (!string.Equals(BackgroundImage, otherGame.BackgroundImage, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.BackgroundImage);
+            }
+
+            if (!string.Equals(Description, otherGame.Description, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.Description);
+            }
+
+            if (!GenreIds.IsListEqual(otherGame.GenreIds))
+            {
+                changes.Add(GameField.GenreIds);
+                changes.Add(GameField.Genres);
+            }
+
+            if (Hidden != otherGame.Hidden)
+            {
+                changes.Add(GameField.Hidden);
+            }
+
+            if (Favorite != otherGame.Favorite)
+            {
+                changes.Add(GameField.Favorite);
+            }
+
+            if (!string.Equals(Icon, otherGame.Icon, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.Icon);
+            }
+
+            if (!string.Equals(CoverImage, otherGame.CoverImage, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.CoverImage);
+            }
+
+            if (!string.Equals(InstallDirectory, otherGame.InstallDirectory, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.InstallDirectory);
+            }
+
+            if (!string.Equals(GameImagePath, otherGame.GameImagePath, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.GameImagePath);
+            }
+
+            if (LastActivity != otherGame.LastActivity)
+            {
+                changes.Add(GameField.LastActivity);
+                if (LastActivitySegment != otherGame.LastActivitySegment)
+                {
+                    changes.Add(GameField.LastActivitySegment);
+                }
+            }
+
+            if (!string.Equals(SortingName, otherGame.SortingName, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.SortingName);
+            }
+
+            if (!string.Equals(GameId, otherGame.GameId, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.Gameid);
+            }
+
+            if (PluginId != otherGame.PluginId)
+            {
+                changes.Add(GameField.PluginId);
+            }
+
+            if (!OtherActions.IsListEqualExact(otherGame.OtherActions))
+            {
+                changes.Add(GameField.OtherActions);
+            }
+
+            if (!GameAction.Equals(PlayAction, otherGame.PlayAction))
+            {
+                changes.Add(GameField.PlayAction);
+            }
+
+            if (PlatformId != otherGame.PlatformId)
+            {
+                changes.Add(GameField.PlatformId);
+                changes.Add(GameField.Platform);
+            }
+
+            if (!PublisherIds.IsListEqual(otherGame.PublisherIds))
+            {
+                changes.Add(GameField.PublisherIds);
+                changes.Add(GameField.Publishers);
+            }
+
+            if (!DeveloperIds.IsListEqual(otherGame.DeveloperIds))
+            {
+                changes.Add(GameField.DeveloperIds);
+                changes.Add(GameField.Developers);
+            }
+
+            if (ReleaseDate != otherGame.ReleaseDate)
+            {
+                changes.Add(GameField.ReleaseDate);
+                if (ReleaseYear != otherGame.ReleaseYear)
+                {
+                    changes.Add(GameField.ReleaseYear);
+                }
+            }
+
+            if (!CategoryIds.IsListEqual(otherGame.CategoryIds))
+            {
+                changes.Add(GameField.CategoryIds);
+                changes.Add(GameField.Categories);
+            }
+
+            if (!TagIds.IsListEqual(otherGame.TagIds))
+            {
+                changes.Add(GameField.TagIds);
+                changes.Add(GameField.Tags);
+            }
+
+            if (!FeatureIds.IsListEqual(otherGame.FeatureIds))
+            {
+                changes.Add(GameField.FeatureIds);
+                changes.Add(GameField.Features);
+            }
+
+            if (!Links.IsListEqualExact(otherGame.Links))
+            {
+                changes.Add(GameField.Links);
+            }
+
+            if (IsInstalling != otherGame.IsInstalling)
+            {
+                changes.Add(GameField.IsInstalling);
+            }
+
+            if (IsUninstalling != otherGame.IsUninstalling)
+            {
+                changes.Add(GameField.IsUninstalling);
+            }
+
+            if (IsLaunching != otherGame.IsLaunching)
+            {
+                changes.Add(GameField.IsLaunching);
+            }
+
+            if (IsRunning != otherGame.IsRunning)
+            {
+                changes.Add(GameField.IsRunning);
+            }
+
+            if (IsInstalled != otherGame.IsInstalled)
+            {
+                changes.Add(GameField.IsInstalled);
+                changes.Add(GameField.InstallationStatus);
+            }
+
+            if (Playtime != otherGame.Playtime)
+            {
+                changes.Add(GameField.Playtime);
+                if (PlaytimeCategory != otherGame.PlaytimeCategory)
+                {
+                    changes.Add(GameField.PlaytimeCategory);
+                }
+            }
+
+            if (Added != otherGame.Added)
+            {
+                changes.Add(GameField.Added);
+                if (AddedSegment != otherGame.AddedSegment)
+                {
+                    changes.Add(GameField.AddedSegment);
+                }
+            }
+
+            if (Modified != otherGame.Modified)
+            {
+                changes.Add(GameField.Modified);
+                if (Modified != otherGame.Modified)
+                {
+                    changes.Add(GameField.ModifiedSegment);
+                }
+            }
+
+            if (PlayCount != otherGame.PlayCount)
+            {
+                changes.Add(GameField.PlayCount);
+            }
+
+            if (SeriesId != otherGame.SeriesId)
+            {
+                changes.Add(GameField.SeriesId);
+                changes.Add(GameField.Series);
+            }
+
+            if (Version != otherGame.Version)
+            {
+                changes.Add(GameField.Version);
+            }
+
+            if (AgeRatingId != otherGame.AgeRatingId)
+            {
+                changes.Add(GameField.AgeRatingId);
+                changes.Add(GameField.AgeRating);
+            }
+
+            if (RegionId != otherGame.RegionId)
+            {
+                changes.Add(GameField.RegionId);
+                changes.Add(GameField.Region);
+            }
+
+            if (SourceId != otherGame.SourceId)
+            {
+                changes.Add(GameField.SourceId);
+                changes.Add(GameField.Source);
+            }
+
+            if (CompletionStatus != otherGame.CompletionStatus)
+            {
+                changes.Add(GameField.CompletionStatus);
+            }
+
+            if (UserScore != otherGame.UserScore)
+            {
+                changes.Add(GameField.UserScore);
+                if (UserScoreGroup != otherGame.UserScoreGroup)
+                {
+                    changes.Add(GameField.UserScoreGroup);
+                }
+
+                if (UserScoreRating != otherGame.UserScoreRating)
+                {
+                    changes.Add(GameField.UserScoreRating);
+                }
+            }
+
+            if (CriticScore != otherGame.CriticScore)
+            {
+                changes.Add(GameField.CriticScore);
+                if (CriticScoreGroup != otherGame.CriticScoreGroup)
+                {
+                    changes.Add(GameField.CriticScoreGroup);
+                }
+
+                if (CriticScoreRating != otherGame.CriticScoreRating)
+                {
+                    changes.Add(GameField.CriticScoreRating);
+                }
+            }
+
+            if (CommunityScore != otherGame.CommunityScore)
+            {
+                changes.Add(GameField.CommunityScore);
+                if (CommunityScoreGroup != otherGame.CommunityScoreGroup)
+                {
+                    changes.Add(GameField.CommunityScoreGroup);
+                }
+
+                if (CommunityScoreRating != otherGame.CommunityScoreRating)
+                {
+                    changes.Add(GameField.CommunityScoreRating);
+                }
+            }
+
+            if (!string.Equals(PreScript, otherGame.PreScript, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.PreScript);
+            }
+
+            if (!string.Equals(PostScript, otherGame.PostScript, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.PostScript);
+            }
+
+            if (ActionsScriptLanguage != otherGame.ActionsScriptLanguage)
+            {
+                changes.Add(GameField.ActionsScriptLanguage);
+            }
+
+            if (UseGlobalPostScript != otherGame.UseGlobalPostScript)
+            {
+                changes.Add(GameField.UseGlobalPostScript);
+            }
+
+            if (UseGlobalPreScript != otherGame.UseGlobalPreScript)
+            {
+                changes.Add(GameField.UseGlobalPreScript);
+            }
+
+            return changes;
         }
     }
 }

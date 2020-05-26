@@ -69,7 +69,7 @@ namespace System
         {
             Items = new List<SelectableItem<TItem>>(collection.Select(a =>
             {
-                var newItem = new SelectableItem<TItem>(a);         
+                var newItem = new SelectableItem<TItem>(a);
                 newItem.Selected = selected?.Contains(a) == true;
                 newItem.PropertyChanged += NewItem_PropertyChanged;
                 return newItem;
@@ -82,7 +82,7 @@ namespace System
             SelectionChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnCollectionChanged()
+        internal void OnCollectionChanged()
         {
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
@@ -185,16 +185,56 @@ namespace System
 
     public class SelectableStringList : SelectableObjectList<string>
     {
+        private readonly bool includeNoneItem;
+
         public SelectableStringList(
             IEnumerable<string> collection,
             IEnumerable<string> selected = null,
             bool includeNoneItem = false) : base(collection, selected)
         {
+            this.includeNoneItem = includeNoneItem;
             if (includeNoneItem)
             {
                 var newItem = new SelectableItem<string>(FilterSettings.MissingFieldString);
                 newItem.PropertyChanged += NewItem_PropertyChanged;
                 Items.Insert(0, newItem);
+            }
+        }
+
+        public void SetItems(IEnumerable<string> items, IEnumerable<string> selected = null)
+        {
+            SuppressNotifications = true;
+            var oldSelection = GetSelectedItems();
+            foreach (var item in Items)
+            {
+                item.PropertyChanged -= NewItem_PropertyChanged;
+            }
+
+            Items.Clear();
+
+            if (includeNoneItem)
+            {
+                var newItem = new SelectableItem<string>(FilterSettings.MissingFieldString);
+                newItem.PropertyChanged += NewItem_PropertyChanged;
+                Items.Add(newItem);
+            }
+
+            foreach (var item in items)
+            {
+                var newItem = new SelectableItem<string>(item)
+                {
+                    Selected = selected?.Contains(item) == true
+                };
+
+                newItem.PropertyChanged += NewItem_PropertyChanged;
+                Items.Add(newItem);
+            }
+
+            SuppressNotifications = false;
+            OnCollectionChanged();
+            if (!oldSelection.IsListEqual(GetSelectedItems()))
+            {
+                OnSelectionChanged();
             }
         }
     }
@@ -217,6 +257,7 @@ namespace System
     {
         private readonly Func<TItem, Guid> idSelector;
         internal readonly List<SelectableItem<TItem>> Items;
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public override string AsString
         {
@@ -297,7 +338,14 @@ namespace System
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            foreach (var item in Items)
+            {
+                item.PropertyChanged -= NewItem_PropertyChanged;
+            }
+
+            Items.Clear();
+            OnSelectionChanged();
+            OnCollectionChanged();
         }
 
         public bool Contains(SelectableItem<TItem> item)
@@ -325,6 +373,11 @@ namespace System
             return Items.GetEnumerator();
         }
 
+        internal void OnCollectionChanged()
+        {
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
         public override string ToString()
         {
             return string.Join(", ", this.Where(a => a.Selected == true).Select(a => a.Item.ToString()));
@@ -333,7 +386,7 @@ namespace System
 
     public class SelectableDbItemList : SelectableIdItemList<DatabaseObject>, INotifyCollectionChanged
     {
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        private readonly bool includeNoneItem;
 
         public SelectableDbItemList(
             IEnumerable<DatabaseObject> collection,
@@ -342,6 +395,7 @@ namespace System
             bool includeNoneItem = false)
             : base(collection.OrderBy(a => a.Name), (a) => a.Id, selected, undetermined)
         {
+            this.includeNoneItem = includeNoneItem;
             if (includeNoneItem)
             {
                 var newItem = new SelectableItem<DatabaseObject>(new DatabaseObject()
@@ -374,9 +428,54 @@ namespace System
                 Selected = selected
             };
             newItem.PropertyChanged += NewItem_PropertyChanged;
-            Items.Add(newItem);            
+            Items.Add(newItem);
             OnCollectionChanged();
             if (selected)
+            {
+                OnSelectionChanged();
+            }
+        }
+
+        public void SetItems(IEnumerable<DatabaseObject> items, IEnumerable<Guid> selected = null)
+        {
+            SuppressNotifications = true;
+            var oldSelection = GetSelectedIds();
+            foreach (var item in Items)
+            {
+                item.PropertyChanged -= NewItem_PropertyChanged;
+            }
+
+            Items.Clear();
+
+            if (includeNoneItem)
+            {
+                var noneItem = new SelectableItem<DatabaseObject>(new DatabaseObject()
+                {
+                    Id = Guid.Empty,
+                    Name = ResourceProvider.GetString("LOCNone")
+                })
+                {
+                    Selected = selected?.Contains(Guid.Empty) == true
+                };
+
+                noneItem.PropertyChanged += NewItem_PropertyChanged;
+                Items.Add(noneItem);
+            }
+
+            foreach (var item in items.OrderBy(a => a.Name))
+            {
+                var newItem = new SelectableItem<DatabaseObject>(item)
+                {
+                    Selected = selected?.Contains(item.Id) == true
+                };
+
+                newItem.PropertyChanged += NewItem_PropertyChanged;
+                Items.Add(newItem);
+            }
+
+            SuppressNotifications = false;
+            OnCollectionChanged();
+            if (!oldSelection.IsListEqual(GetSelectedIds()))
             {
                 OnSelectionChanged();
             }
@@ -403,9 +502,14 @@ namespace System
             }
         }
 
-        private void OnCollectionChanged()
+        public bool ContainsId(Guid id)
         {
-            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            return Items.Any(a => a.Item.Id == id);
+        }
+
+        public bool ContainsIds(IEnumerable<Guid> ids)
+        {
+            return Items.Select(a => a.Item.Id).Contains(ids);
         }
 
         public override string ToString()

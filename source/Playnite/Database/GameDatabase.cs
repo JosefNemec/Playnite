@@ -89,6 +89,18 @@ namespace Playnite.Database
         public IItemCollection<GameSource> Sources { get; private set; }
         public IItemCollection<GameFeature> Features { get; private set; }
 
+        public List<Guid> UsedPlatforms { get; } = new List<Guid>();
+        public List<Guid> UsedGenres { get; } = new List<Guid>();
+        public List<Guid> UsedDevelopers { get; } = new List<Guid>();
+        public List<Guid> UsedPublishers { get; } = new List<Guid>();
+        public List<Guid> UsedTags { get; } = new List<Guid>();
+        public List<Guid> UsedCategories { get; } = new List<Guid>();
+        public List<Guid> UsedSeries { get; } = new List<Guid>();
+        public List<Guid> UsedAgeRatings { get; } = new List<Guid>();
+        public List<Guid> UsedRegions { get; } = new List<Guid>();
+        public List<Guid> UsedSources { get; } = new List<Guid>();
+        public List<Guid> UsedFeastures { get; } = new List<Guid>();
+
         #endregion Lists
 
         public bool IsOpen
@@ -141,8 +153,19 @@ namespace Playnite.Database
         #region Events
 
         public event EventHandler DatabaseOpened;
-
         public event EventHandler<DatabaseFileEventArgs> DatabaseFileChanged;
+
+        public event EventHandler PlatformsInUseUpdated;
+        public event EventHandler GenresInUseUpdated;
+        public event EventHandler DevelopersInUseUpdated;
+        public event EventHandler PublishersInUseUpdated;
+        public event EventHandler TagsInUseUpdated;
+        public event EventHandler CategoriesInUseUpdated;
+        public event EventHandler AgeRatingsInUseUpdated;
+        public event EventHandler SeriesInUseUpdated;
+        public event EventHandler RegionsInUseUpdated;
+        public event EventHandler SourcesInUseUpdated;
+        public event EventHandler FeaturesInUseUpdated;
 
         #endregion Events
 
@@ -152,7 +175,6 @@ namespace Playnite.Database
         {
             (Platforms as PlatformsCollection).InitializeCollection(PlatformsDirectoryPath);
             (Emulators as EmulatorsCollection).InitializeCollection(EmulatorsDirectoryPath);
-            (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
             (Genres as GenresCollection).InitializeCollection(GenresDirectoryPath);
             (Companies as CompaniesCollection).InitializeCollection(CompaniesDirectoryPath);
             (Tags as TagsCollection).InitializeCollection(TagsDirectoryPath);
@@ -162,6 +184,81 @@ namespace Playnite.Database
             (Regions as RegionsCollection).InitializeCollection(RegionsDirectoryPath);
             (Sources as GamesSourcesCollection).InitializeCollection(SourcesDirectoryPath);
             (Features as FeaturesCollection).InitializeCollection(FeaturesDirectoryPath);
+            (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
+
+            Games.ItemUpdated += Games_ItemUpdated;
+            Games.ItemCollectionChanged += Games_ItemCollectionChanged;
+            Platforms.ItemCollectionChanged += Platforms_ItemCollectionChanged;
+            Genres.ItemCollectionChanged += Genres_ItemCollectionChanged;
+            Companies.ItemCollectionChanged += Companies_ItemCollectionChanged;
+            Tags.ItemCollectionChanged += Tags_ItemCollectionChanged;
+            Categories.ItemCollectionChanged += Categories_ItemCollectionChanged;
+            AgeRatings.ItemCollectionChanged += AgeRatings_ItemCollectionChanged;
+            Series.ItemCollectionChanged += Series_ItemCollectionChanged;
+            Regions.ItemCollectionChanged += Regions_ItemCollectionChanged;
+            Sources.ItemCollectionChanged += Sources_ItemCollectionChanged;
+            Features.ItemCollectionChanged += Features_ItemCollectionChanged;
+        }
+
+        private void LoadUsedItems()
+        {
+            foreach (var game in Games)
+            {
+                if (game.PlatformId != Guid.Empty)
+                {
+                    UsedPlatforms.AddMissing(game.PlatformId);
+                }
+
+                if (game.GenreIds.HasItems())
+                {
+                    UsedGenres.AddMissing(game.GenreIds);
+                }
+
+                if (game.DeveloperIds.HasItems())
+                {
+                    UsedDevelopers.AddMissing(game.DeveloperIds);
+                }
+
+                if (game.PublisherIds.HasItems())
+                {
+                    UsedPublishers.AddMissing(game.PublisherIds);
+                }
+
+                if (game.TagIds.HasItems())
+                {
+                    UsedTags.AddMissing(game.TagIds);
+                }
+
+                if (game.CategoryIds.HasItems())
+                {
+                    UsedCategories.AddMissing(game.CategoryIds);
+                }
+
+                if (game.SeriesId != Guid.Empty)
+                {
+                    UsedSeries.AddMissing(game.SeriesId);
+                }
+
+                if (game.AgeRatingId != Guid.Empty)
+                {
+                    UsedAgeRatings.AddMissing(game.AgeRatingId);
+                }
+
+                if (game.RegionId != Guid.Empty)
+                {
+                    UsedRegions.AddMissing(game.RegionId);
+                }
+
+                if (game.SourceId != Guid.Empty)
+                {
+                    UsedSources.AddMissing(game.SourceId);
+                }
+
+                if (game.FeatureIds.HasItems())
+                {
+                    UsedFeastures.AddMissing(game.FeatureIds);
+                }
+            }
         }
 
         #endregion Intialization
@@ -294,6 +391,7 @@ namespace Playnite.Database
             }
 
             LoadCollections();
+            LoadUsedItems();
 
             // New DB setup
             if (!dbExists)
@@ -304,12 +402,148 @@ namespace Playnite.Database
                     var platforms = EmulatorDefinition.GetDefinitions()
                         .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
                         .Select(a => new Platform(a)).ToList();
-                    Platforms.Add(platforms);
+
+                    var col = Platforms as ItemCollection<Platform>;
+                    col.IsEventsEnabled = false;
+                    col.Add(platforms);
+                    col.IsEventsEnabled = true;
                 }
             }
 
             IsOpen = true;
             DatabaseOpened?.Invoke(this, null);
+        }
+
+        private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> e)
+        {
+            if (e.AddedItems.HasItems())
+            {
+                foreach (var game in e.AddedItems)
+                {
+                    UpdateFieldsInUse(game.PlatformId, UsedPlatforms, PlatformsInUseUpdated);
+                    UpdateFieldsInUse(game.GenreIds, UsedGenres, GenresInUseUpdated);
+                    UpdateFieldsInUse(game.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated);
+                    UpdateFieldsInUse(game.PublisherIds, UsedPublishers, PublishersInUseUpdated);
+                    UpdateFieldsInUse(game.TagIds, UsedTags, TagsInUseUpdated);
+                    UpdateFieldsInUse(game.CategoryIds, UsedCategories, CategoriesInUseUpdated);
+                    UpdateFieldsInUse(game.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated);
+                    UpdateFieldsInUse(game.SeriesId, UsedSeries, SeriesInUseUpdated);
+                    UpdateFieldsInUse(game.RegionId, UsedRegions, RegionsInUseUpdated);
+                    UpdateFieldsInUse(game.SourceId, UsedSources, SourcesInUseUpdated);
+                    UpdateFieldsInUse(game.FeatureIds, UsedFeastures, FeaturesInUseUpdated);
+                }
+            }
+        }
+
+        private void Games_ItemUpdated(object sender, ItemUpdatedEventArgs<Game> e)
+        {
+            foreach (var upd in e.UpdatedItems)
+            {
+                UpdateFieldsInUse(upd.NewData.PlatformId, UsedPlatforms, PlatformsInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.GenreIds, UsedGenres, GenresInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.PublisherIds, UsedPublishers, PublishersInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.TagIds, UsedTags, TagsInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.CategoryIds, UsedCategories, CategoriesInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.SeriesId, UsedSeries, SeriesInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.RegionId, UsedRegions, RegionsInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.SourceId, UsedSources, SourcesInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.FeatureIds, UsedFeastures, FeaturesInUseUpdated);
+            }
+        }
+
+        private void UpdateFieldsInUse(Guid sourceData, List<Guid> useCollection, EventHandler handler)
+        {
+            if (sourceData != Guid.Empty)
+            {
+                if (useCollection.AddMissing(sourceData))
+                {
+                    handler?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        private void UpdateFieldsInUse(List<Guid> sourceData, List<Guid> useCollection, EventHandler handler)
+        {
+            if (sourceData.HasItems())
+            {
+                if (useCollection.AddMissing(sourceData))
+                {
+                    handler?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        private void UpdateRemovedFieldsInUse<T>(List<T> removedObjects, List<Guid> useCollection, EventHandler handler) where T : DatabaseObject
+        {
+            if (removedObjects.HasItems())
+            {
+                var someRemoved = false;
+                foreach (var item in removedObjects)
+                {
+                    if (useCollection.Remove(item.Id))
+                    {
+                        someRemoved = true;
+                    }
+                }
+
+                if (someRemoved)
+                {
+                    handler?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        private void Features_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<GameFeature> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedFeastures, FeaturesInUseUpdated);
+        }
+
+        private void Sources_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<GameSource> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedSources, SourcesInUseUpdated);
+        }
+
+        private void Regions_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Region> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedRegions, RegionsInUseUpdated);
+        }
+
+        private void Series_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Series> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedSeries, SeriesInUseUpdated);
+        }
+
+        private void AgeRatings_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<AgeRating> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedAgeRatings, AgeRatingsInUseUpdated);
+        }
+
+        private void Categories_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Category> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedCategories, CategoriesInUseUpdated);
+        }
+
+        private void Tags_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Tag> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedTags, TagsInUseUpdated);
+        }
+
+        private void Companies_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Company> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedDevelopers, DevelopersInUseUpdated);
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedPublishers, PublishersInUseUpdated);
+        }
+
+        private void Genres_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Genre> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedGenres, GenresInUseUpdated);
+        }
+
+        private void Platforms_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Platform> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedPlatforms, PlatformsInUseUpdated);
         }
 
         #region Files

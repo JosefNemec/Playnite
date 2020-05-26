@@ -888,7 +888,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         protected void InitializeView()
         {
-            DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings.FilterSettings);
+            DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
             ActiveView = new Controls.Views.Library();
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
