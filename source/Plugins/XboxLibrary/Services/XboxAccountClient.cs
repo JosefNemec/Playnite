@@ -227,7 +227,11 @@ namespace XboxLibrary.Services
                            @"https://titlehub.xboxlive.com/titles/batch/decoration/detail",
                            new StringContent(Serialization.ToJson(requestData), Encoding.UTF8, "application/json"));
 
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    throw new Exception("Title info not available.");
+                }
+                else if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
                     throw new Exception("User is not authenticated.");
                 }

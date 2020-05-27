@@ -88,6 +88,11 @@ namespace XboxLibrary.Models
             public string mediaItemType;
             public Detail detail;
             public List<string> devices;
+
+            public override string ToString()
+            {
+                return name;
+            }
         }
 
         public string xuid;
