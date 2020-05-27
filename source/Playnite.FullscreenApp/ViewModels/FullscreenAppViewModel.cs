@@ -1340,44 +1340,11 @@ namespace Playnite.FullscreenApp.ViewModels
                         var ext = Path.GetExtension(path).ToLower();
                         if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            try
-                            {
-                                var desc = ThemeManager.GetDescriptionFromPackedFile(path);
-                                if (desc == null)
-                                {
-                                    throw new FileNotFoundException("Theme manifest not found.");
-                                }
-
-                                if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
-                                {
-                                    throw new Exception(Resources.GetString("LOCGeneralExtensionInstallApiVersionFails"));
-                                }
-
-                                if (Dialogs.ShowMessage(
-                                        string.Format(Resources.GetString("LOCThemeInstallPrompt"),
-                                            desc.Name, desc.Author, desc.Version),
-                                        Resources.GetString("LOCGeneralExtensionInstallTitle"),
-                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                                {
-                                    ExtensionInstaller.QueueExetnsionInstall(path);
-                                    if (Dialogs.ShowMessage(
-                                        Resources.GetString("LOCExtInstallationRestartNotif"),
-                                        Resources.GetString("LOCSettingsRestartTitle"),
-                                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                                    {
-                                        application.Restart(new CmdLineOptions()
-                                        {
-                                            SkipLibUpdate = true,
-                                        });
-                                    };
-                                }
-                            }
-                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                            {
-                                Logger.Error(e, "Failed to install theme.");
-                                Dialogs.ShowErrorMessage(
-                                    string.Format(Resources.GetString("LOCThemeInstallFail"), e.Message), "");
-                            }
+                            application.InstallThemeFile(path);
+                        }
+                        else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
+                        {
+                            application.InstallExtensionFile(path);
                         }
                     }
                 }

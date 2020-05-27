@@ -30,6 +30,9 @@ namespace Playnite
         [Option("hidesplashscreen")]
         public bool HideSplashScreen { get; set; }
 
+        [Option("installext")]
+        public string InstallExtension { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);

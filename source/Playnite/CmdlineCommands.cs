@@ -10,6 +10,7 @@ namespace Playnite
     {
         Start = 0,
         Focus = 1,
-        UriRequest = 2
+        UriRequest = 2,
+        ExtensionInstall = 3
     }
 }

@@ -335,6 +335,7 @@
     <Compile Include="Settings\SettingsAttributes.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
     <Compile Include="Settings\WindowPositions.cs" />
+    <Compile Include="SystemIntegration.cs" />
     <Compile Include="Themes.cs" />
     <Compile Include="ThirdPartyClients\ThirdPartyToolsList.cs" />
     <Compile Include="ObservableTime.cs" />
@@ -581,7 +582,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\DescriptionView.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\playnite_extension.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\DesignBackground.jpg" />
     <Resource Include="Resources\Images\DesignCover.jpg" />

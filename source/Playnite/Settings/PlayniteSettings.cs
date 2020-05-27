@@ -1692,67 +1692,6 @@ namespace Playnite
         {
         }
 
-        public static void RegisterPlayniteUriProtocol()
-        {
-            var view = RegistryView.Registry32;
-            if (Environment.Is64BitOperatingSystem)
-            {
-                view = RegistryView.Registry64;
-            }
-
-            using (var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, view))
-            {
-                using (var classes = root.OpenSubKey(@"Software\Classes", true))
-                {
-                    var openString = $"\"{PlaynitePaths.DesktopExecutablePath}\" --uridata \"%1\"";
-                    var existing = classes.OpenSubKey(@"Playnite\shell\open\command");
-                    if (existing != null && existing.GetValue(string.Empty)?.ToString() == openString)
-                    {
-                        existing.Dispose();
-                        return;
-                    }
-
-                    var newEntry = classes.CreateSubKey("Playnite");
-                    newEntry.SetValue(string.Empty, "URL:playnite");
-                    newEntry.SetValue("URL Protocol", string.Empty);
-                    using (var command = newEntry.CreateSubKey(@"shell\open\command"))
-                    {
-                        command.SetValue(string.Empty, openString);
-                    }
-                }
-            }
-        }
-
-        public static void SetBootupStateRegistration(bool runOnBootup)
-        {
-            var startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-            var shortcutPath = Path.Combine(startupPath, "Playnite.lnk");
-            if (runOnBootup)
-            {
-                var args = new CmdLineOptions()
-                {
-                    HideSplashScreen = true
-                }.ToString();
-
-                if (File.Exists(shortcutPath))
-                {
-                    var existLnk = Programs.GetLnkShortcutData(shortcutPath);
-                    if (existLnk.Path == PlaynitePaths.DesktopExecutablePath &&
-                        existLnk.Arguments == args)
-                    {
-                        return;
-                    }
-                }
-
-                FileSystem.DeleteFile(shortcutPath);
-                Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, args, "", shortcutPath);
-            }
-            else
-            {
-                FileSystem.DeleteFile(shortcutPath);
-            }
-        }
-
         private Thickness GetItemSpacingMargin()
         {
             return new Thickness(GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2, GridItemSpacing / 2);;

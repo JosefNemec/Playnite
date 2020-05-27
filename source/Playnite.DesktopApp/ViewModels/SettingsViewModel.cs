@@ -457,7 +457,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    PlayniteSettings.SetBootupStateRegistration(Settings.StartOnBoot);
+                    SystemIntegration.SetBootupStateRegistration(Settings.StartOnBoot);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

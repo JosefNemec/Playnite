@@ -322,6 +322,26 @@ namespace Playnite
                     (Api.UriHandler as PlayniteUriHandler).ProcessUri(args.Args);
                     break;
 
+                case CmdlineCommand.ExtensionInstall:
+                    var extPath = args.Args;
+                    if (!File.Exists(extPath))
+                    {
+                        logger.Error($"Cannot install extension, file doesn't exists: {extPath}");
+                        return;
+                    }
+
+                    var ext = Path.GetExtension(extPath).ToLower();
+                    if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
+                    {
+                        InstallThemeFile(extPath);
+                    }
+                    else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
+                    {
+                        InstallExtensionFile(extPath);
+                    }
+
+                    break;
+
                 default:
                     logger.Warn("Unknown command received");
                     break;
@@ -363,6 +383,10 @@ namespace Playnite
                             else if (!CmdLine.UriData.IsNullOrEmpty())
                             {
                                 client.InvokeCommand(CmdlineCommand.UriRequest, CmdLine.UriData);
+                            }
+                            else if (!CmdLine.InstallExtension.IsNullOrEmpty())
+                            {
+                                client.InvokeCommand(CmdlineCommand.ExtensionInstall, CmdLine.InstallExtension);
                             }
                             else
                             {
@@ -447,7 +471,7 @@ namespace Playnite
 
             try
             {
-                PlayniteSettings.SetBootupStateRegistration(AppSettings.StartOnBoot);
+                SystemIntegration.SetBootupStateRegistration(AppSettings.StartOnBoot);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -456,11 +480,20 @@ namespace Playnite
 
             try
             {
-                PlayniteSettings.RegisterPlayniteUriProtocol();
+                SystemIntegration.RegisterPlayniteUriProtocol();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to register playnite URI scheme.");
+            }
+
+            try
+            {
+                SystemIntegration.RegisterFileExtensions();
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to register playnite extensions.");
             }
         }
 
@@ -474,6 +507,10 @@ namespace Playnite
             else if (!CmdLine.UriData.IsNullOrEmpty())
             {
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.UriRequest, CmdLine.UriData));
+            }
+            else if (!CmdLine.InstallExtension.IsNullOrEmpty())
+            {
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.ExtensionInstall, CmdLine.InstallExtension));
             }
         }
 
@@ -777,6 +814,85 @@ namespace Playnite
                 DpiScale = new DpiScale(1, 1);
                 CurrentScreen = Computer.GetPrimaryScreen();
                 logger.Error(e, $"Failed to get window information for main {Mode} window.");
+            }
+        }
+
+        public void InstallThemeFile(string themeFile)
+        {
+            try
+            {
+                var desc = ThemeManager.GetDescriptionFromPackedFile(themeFile);
+                if (desc == null)
+                {
+                    throw new FileNotFoundException("Theme manifest not found.");
+                }
+
+                if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
+                {
+                    throw new Exception(ResourceProvider.GetString("LOCGeneralExtensionInstallApiVersionFails"));
+                }
+
+                if (Dialogs.ShowMessage(
+                        string.Format(ResourceProvider.GetString("LOCThemeInstallPrompt"),
+                            desc.Name, desc.Author, desc.Version),
+                        ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
+                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    ExtensionInstaller.QueueExetnsionInstall(themeFile);
+                    if (Dialogs.ShowMessage(
+                        ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
+                        ResourceProvider.GetString("LOCSettingsRestartTitle"),
+                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        Restart(new CmdLineOptions()
+                        {
+                            SkipLibUpdate = true,
+                        });
+                    };
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to install theme.");
+                Dialogs.ShowErrorMessage(
+                    string.Format(ResourceProvider.GetString("LOCThemeInstallFail"), e.Message), "");
+            }
+        }
+
+        public void InstallExtensionFile(string extensionFile)
+        {
+            try
+            {
+                var desc = ExtensionFactory.GetDescriptionFromPackedFile(extensionFile);
+                if (desc == null)
+                {
+                    throw new FileNotFoundException("Extension manifest not found.");
+                }
+
+                if (Dialogs.ShowMessage(
+                        string.Format(ResourceProvider.GetString("LOCExtensionInstallPrompt"),
+                            desc.Name, desc.Author, desc.Version),
+                        ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
+                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    ExtensionInstaller.QueueExetnsionInstall(extensionFile);
+                    if (Dialogs.ShowMessage(
+                        ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
+                        ResourceProvider.GetString("LOCSettingsRestartTitle"),
+                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        Restart(new CmdLineOptions()
+                        {
+                            SkipLibUpdate = true,
+                        });
+                    };
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to install extension.");
+                Dialogs.ShowErrorMessage(
+                    string.Format(ResourceProvider.GetString("LOCExtensionInstallFail"), e.Message), "");
             }
         }
     }
