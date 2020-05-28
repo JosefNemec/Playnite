@@ -387,10 +387,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> OpenLinkCommand
-        {
-            get => GlobalCommands.NavigateUrlCommand;
-        }
+        public RelayCommand<Link> OpenLinkCommand { get; }
 
         public RelayCommand<DatabaseObject> PlayCommand
         {
@@ -463,6 +460,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, DesktopGamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
+            OpenLinkCommand = new RelayCommand<Link>((a) => GlobalCommands.NavigateUrl(Game.Game.ExpandVariables(a.Url)));
+
             this.resources = resources;
             this.dialogs = dialogs;
             this.editor = editor;

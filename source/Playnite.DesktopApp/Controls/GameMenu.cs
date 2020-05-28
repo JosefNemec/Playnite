@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Playnite.Commands;
+using Playnite.Common;
 using Playnite.DesktopApp.Markup;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
@@ -94,7 +95,7 @@ namespace Playnite.DesktopApp.Controls
         }
 
         public GameMenu() : this(DesktopApplication.Current?.MainModel)
-        {            
+        {
         }
 
         public GameMenu(DesktopAppViewModel model)
@@ -358,11 +359,10 @@ namespace Playnite.DesktopApp.Controls
                         linksItem.Items.Add(new MenuItem()
                         {
                             Header = link.Name,
-                            Command = Commands.GlobalCommands.NavigateUrlCommand,
-                            CommandParameter = link.Url
+                            Command = new RelayCommand<Link>((_) => GlobalCommands.NavigateUrl(Game.ExpandVariables(link.Url)))
                         });
-                    }     
-                    
+                    }
+
                     Items.Add(linksItem);
                     Items.Add(new Separator());
                 }
@@ -399,7 +399,7 @@ namespace Playnite.DesktopApp.Controls
                     Header = Game.Favorite ? resources.GetString("LOCRemoveFavoriteGame") : resources.GetString("LOCFavoriteGame"),
                     Icon = Game.Favorite ? unFavoriteIcon : favoriteIcon,
                     Command = model.ToggleFavoritesCommand,
-                    CommandParameter = Game                    
+                    CommandParameter = Game
                 };
 
                 Items.Add(favoriteItem);
@@ -438,7 +438,7 @@ namespace Playnite.DesktopApp.Controls
 
                 Items.Add(categoryItem);
                 Items.Add(new Separator());
-                
+
                 // Remove
                 var removeItem = new MenuItem()
                 {
