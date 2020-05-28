@@ -728,8 +728,7 @@
                 </DockPanel>
             </TabItem>
 
-            <TabItem Name="TabLinks"
-                     Visibility="{Binding ShowLinks, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
@@ -752,19 +751,29 @@
                                     <DataTemplate>
                                         <Grid Margin="-5,0,-5,0">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                <ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="A" />
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
 
-                                            <TextBox Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5" />
-                                            <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="5" />
-                                            <Button Name="ButtonRemoveLink" Content="{DynamicResource LOCRemoveLabel}" Grid.Column="2" Grid.Row="1"  Margin="5"
-                                                    Command="{Binding Data.RemoveLinkCommand,Source={StaticResource Proxy}}"
-                                                    CommandParameter="{Binding}"/>
+                                            <TextBox Text="{Binding Name}" Grid.Column="0" Grid.Row="0" Margin="5"
+                                                     VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                                            <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="5"
+                                                     VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="5">
+                                                <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0"
+                                                        Command="{Binding Data.MoveUpLinkCommand, Source={StaticResource Proxy}}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0"
+                                                        Command="{Binding Data.MoveDownLinkCommand, Source={StaticResource Proxy}}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Name="ButtonRemoveLink" FontFamily="Marlett" Content="r"
+                                                        Command="{Binding Data.RemoveLinkCommand, Source={StaticResource Proxy}}"
+                                                        CommandParameter="{Binding}"/>
+                                            </StackPanel>
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -774,8 +783,7 @@
                 </DockPanel>
             </TabItem>
 
-            <TabItem Name="TabInstallation"
-                     Visibility="{Binding ShowInstallation, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
@@ -830,11 +838,26 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{DynamicResource LOCActionsLabel}" Name="TabActions"
-                     Visibility="{Binding ShowActions, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
+                                   Visibility="{Binding ShowActionsChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="{DynamicResource LOCActionsLabel}"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <GroupBox Header="{DynamicResource LOCPlayAction}" Margin="10">
+                        <GroupBox Margin="10">
+                            <GroupBox.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" VerticalAlignment="Center"
+                                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                              IsChecked="{Binding UsePlayActionChanges}"/>
+                                    <TextBlock Text="{DynamicResource LOCPlayAction}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </GroupBox.Header>
                             <StackPanel KeyboardNavigation.TabNavigation="Local">
                                 <Button TabIndex="1" Name="ButtonAddPlay" Content="{DynamicResource LOCAddPlayAction}" HorizontalAlignment="Left"
                                         Margin="0,5,0,5" Command="{Binding AddPlayActionCommand}"
@@ -869,7 +892,15 @@
                                 </pctrls:GameTaskView>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="{DynamicResource LOCOtherActions}" Margin="10">
+                        <GroupBox Margin="10">
+                            <GroupBox.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" VerticalAlignment="Center"
+                                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                              IsChecked="{Binding UseOtherActionsChanges}"/>
+                                    <TextBlock Text="{DynamicResource LOCOtherActions}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </GroupBox.Header>
                             <StackPanel>
                                 <ItemsControl IsTabStop="False" Name="OtherTasksItems" ItemsSource="{Binding EditingGame.OtherActions}">
                                     <ItemsControl.ItemTemplate>
