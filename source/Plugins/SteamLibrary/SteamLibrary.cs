@@ -36,6 +36,9 @@ namespace SteamLibrary
         internal SteamLibrarySettings LibrarySettings { get; private set; }
         internal SteamServicesClient ServicesClient;
 
+        // For acces to staic function from WebApiClient
+        public static string _SteamLang { get; set; }
+
         public SteamLibrary(IPlayniteAPI api) : base(api)
         {
             Initialize(api);
@@ -53,8 +56,10 @@ namespace SteamLibrary
         {
             LibrarySettings = new SteamLibrarySettings(this, PlayniteApi)
             {
-                SteamUsers = GetSteamUsers()
+                SteamUsers = GetSteamUsers(),
+                SteamLangs = GetSteamLangs()
             };
+            _SteamLang = LibrarySettings.SteamLang;
         }
 
         internal static GameAction CreatePlayTask(GameID gameId)
@@ -348,6 +353,38 @@ namespace SteamLibrary
             }
 
             return users;
+        }
+
+        // Initialize available language list for Steam if exist in Playnite language.
+        internal List<LocalSteamLang> GetSteamLangs() {
+            //https://partner.steamgames.com/doc/store/localization?#supported_languages
+            List<LocalSteamLang> _SteamLangs = new List<LocalSteamLang>();
+
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "arabic", LocalLang = "إنجليزية" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "schinese", LocalLang = "简体中文" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "tchinese", LocalLang = "繁體中文" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "czech", LocalLang = "Čeština" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "dutch", LocalLang = "Nederlands" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "english", LocalLang = "english" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "finnish", LocalLang = "Suomi" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "french", LocalLang = "Français" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "german", LocalLang = "Deutsch" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "greek", LocalLang = "Greek" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "hungarian", LocalLang = "Magyar" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "italian", LocalLang = "Italiano" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "japanese", LocalLang = "日本語" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "koreana", LocalLang = "한국어" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "norwegian", LocalLang = "Norsk" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "polish", LocalLang = "Polski" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "brazilian", LocalLang = "Português Brasileiro" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "romanian", LocalLang = "Română" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "russian", LocalLang = "Русский" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "spanish", LocalLang = "Español" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "swedish", LocalLang = "Svenska" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "turkish", LocalLang = "Türkçe" });
+            _SteamLangs.Add(new LocalSteamLang { SteamLangName = "ukrainian", LocalLang = "Українська" });
+
+            return _SteamLangs.OrderBy(a => a.LocalLang).ToList();
         }
 
         internal List<GameInfo> GetLibraryGames(SteamLibrarySettings settings)

@@ -8,7 +8,7 @@
              xmlns:pcon="clr-namespace:Playnite.Converters"
              xmlns:pcmd="clr-namespace:Playnite.Commands"
              mc:Ignorable="d"
-             d:DesignHeight="250" d:DesignWidth="400">
+             d:DesignHeight="290" d:DesignWidth="400">
 
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
@@ -84,5 +84,15 @@
                 <Run Text="{DynamicResource LOCTroubleShootingIssues}" />
             </Hyperlink>
         </TextBlock>
+
+        <StackPanel DockPanel.Dock="Top" Margin="0,25,5,5" Orientation="Horizontal">
+            <TextBlock Text="{DynamicResource LOCLanguageSettingsLabel}"
+                   VerticalAlignment="Center"/>
+            <ComboBox IsReadOnly="True" Margin="10,0,0,0"
+                      Name="ComboEpicLangMetadataImport"
+                      SelectedValue="{Binding EpicLang}"
+                      DisplayMemberPath="LocalLang" SelectedValuePath="EpicLangName"
+                      ItemsSource="{Binding EpicLangs}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

@@ -13,8 +13,8 @@ namespace EpicLibrary.Models
             public class Variables
             {
                 public string @namespace = "epic";
-                public string locale = "en-US";
-                public string country = "US";
+                public string locale = EpicLibrary._EpicLang;
+                public string country = EpicLibrary._EpicLang.Substring((EpicLibrary._EpicLang.Length - 2));
                 public string query;
             }
 

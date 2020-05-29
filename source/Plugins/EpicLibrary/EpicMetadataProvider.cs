@@ -39,13 +39,20 @@ namespace EpicLibrary
                     var product = client.GetProductInfo(catalogs[0].productSlug).GetAwaiter().GetResult();
                     if (product.pages.HasItems())
                     {
+                        string EpicLang = EpicLibrary._EpicLang;
+                        string EpicLangCountryFirst = EpicLang.Substring(0, 2);
+                        if (EpicLang == "es-ES" || EpicLang == "zh-Hant")
+                        {
+                            EpicLangCountryFirst = EpicLang;
+                        }
+
                         var page = product.pages[0];
                         gameInfo.Description = page.data.about.description;
                         gameInfo.Developers = new List<string>() { page.data.about.developerAttribution };
                         metadata.BackgroundImage = new MetadataFile(page.data.hero.backgroundImageUrl);
                         gameInfo.Links.Add(new Link(
                             library.PlayniteApi.Resources.GetString("LOCCommonLinksStorePage"),
-                            "https://www.epicgames.com/store/en-US/product/" + catalogs[0].productSlug));
+                            "https://www.epicgames.com/store/" + EpicLangCountryFirst + "/product/" + catalogs[0].productSlug));
 
                         if (page.data.socialLinks.HasItems())
                         {

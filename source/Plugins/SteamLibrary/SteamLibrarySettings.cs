@@ -75,6 +75,8 @@ namespace SteamLibrary
 
         public BackgroundSource BackgroundSource { get; set; } = BackgroundSource.Image;
 
+        public string SteamLang { get; set; } = "english";
+
         #endregion Settings
 
         [JsonIgnore]
@@ -151,6 +153,9 @@ namespace SteamLibrary
         public List<LocalSteamUser> SteamUsers { get; set; }
 
         [JsonIgnore]
+        public List<LocalSteamLang> SteamLangs { get; set; }
+
+        [JsonIgnore]
         public RelayCommand<LocalSteamUser> ImportSteamCategoriesCommand
         {
             get => new RelayCommand<LocalSteamUser>((a) =>
@@ -207,6 +212,7 @@ namespace SteamLibrary
         public void EndEdit()
         {
             library.SavePluginSettings(this);
+            SteamLibrary._SteamLang = this.SteamLang;
         }
 
         public bool VerifySettings(out List<string> errors)

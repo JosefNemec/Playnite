@@ -187,7 +187,9 @@ namespace EpicLibrary.Services
                     throw new Exception("User is not authenticated.");
                 }
 
-                var url = string.Format("{0}/bulk/items?id={1}&country=US&locale=en-US", nameSpace, id);
+                string EpicLang = EpicLibrary._EpicLang;
+                string EpicLangCountry = EpicLang.Substring((EpicLang.Length - 2));
+                var url = string.Format("{0}/bulk/items?id={1}&country={2}&locale={3}", nameSpace, id, EpicLangCountry, EpicLang);
                 var catalogResponse = InvokeRequest<Dictionary<string, CatalogItem>>(catalogUrl + url, loadTokens()).GetAwaiter().GetResult();
                 result = catalogResponse.Item2;
                 FileSystem.WriteStringToFile(cachePath, catalogResponse.Item1);

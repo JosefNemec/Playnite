@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using EpicLibrary.Models;
 
 namespace EpicLibrary
 {
@@ -35,7 +36,12 @@ namespace EpicLibrary
 
         public bool StartGamesWithoutLauncher { get; set; } = false;
 
+        public string EpicLang { get; set; } = "en-US";
+
         #endregion Settings
+
+        [JsonIgnore]
+        public List<LocalEpicLang> EpicLangs { get; set; }
 
         [JsonIgnore]
         public bool IsFirstRunUse { get; set; }
@@ -97,6 +103,7 @@ namespace EpicLibrary
         public void EndEdit()
         {
             library.SavePluginSettings(this);
+            EpicLibrary._EpicLang = this.EpicLang;
         }
 
         public bool VerifySettings(out List<string> errors)

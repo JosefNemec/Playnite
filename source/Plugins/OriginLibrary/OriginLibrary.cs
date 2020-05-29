@@ -50,9 +50,39 @@ namespace OriginLibrary
 
         internal OriginLibrarySettings LibrarySettings { get; private set; }
 
+        // For acces to staic function from OriginApiClient
+        public static string _OriginLang { get; set; }
+
         public OriginLibrary(IPlayniteAPI api) : base(api)
         {
-            LibrarySettings = new OriginLibrarySettings(this, PlayniteApi);
+            LibrarySettings = new OriginLibrarySettings(this, PlayniteApi)
+            {
+                OriginLangs = GetOriginLangs()
+            };
+            _OriginLang = LibrarySettings.OriginLang;
+        }
+
+        // Initialize available language list for Steam if exist in Playnite language.
+        internal List<LocalOriginLang> GetOriginLangs()
+        {
+            //https://partner.steamgames.com/doc/store/localization?#supported_languages
+            List<LocalOriginLang> _OriginLang = new List<LocalOriginLang>();
+
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "zh_TW", LocalLang = "繁體中文" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "nl_NL", LocalLang = "Nederlands" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "en_US", LocalLang = "english" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "fr_FR", LocalLang = "Français" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "de_DE", LocalLang = "Deutsch" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "it_IT", LocalLang = "Italiano" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "ja_JP", LocalLang = "日本語" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "ko_KR", LocalLang = "한국어" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "no_NO", LocalLang = "Norsk" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "pt_BR", LocalLang = "Português Brasileiro" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "ru_RU", LocalLang = "Русский" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "es_ES", LocalLang = "Español" });
+            _OriginLang.Add(new LocalOriginLang { OriginLangName = "sv_SE", LocalLang = "Svenska" });
+
+            return _OriginLang.OrderBy(a => a.LocalLang).ToList();
         }
 
         internal PlatformPath GetPathFromPlatformPath(string path, RegistryView platformView)

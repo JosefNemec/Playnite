@@ -17,7 +17,10 @@ namespace OriginLibrary.Services
 
         public static GameStoreDataResponse GetGameStoreData(string gameId)
         {
-            var url = string.Format(@"https://api2.origin.com/ecommerce2/public/supercat/{0}/en_IE?country=IE", gameId);
+            string OriginLang = OriginLibrary._OriginLang;
+            string OriginLangCountry = OriginLang.Substring((OriginLang.Length - 2));
+            var url = string.Format(@"https://api2.origin.com/ecommerce2/public/supercat/{0}/{1}?country={2}", 
+                gameId, OriginLang, OriginLangCountry);
             var stringData = Encoding.UTF8.GetString(HttpDownloader.DownloadData(url));
             return JsonConvert.DeserializeObject<GameStoreDataResponse>(stringData);
         }
@@ -27,7 +30,8 @@ namespace OriginLibrary.Services
             // Remove edition from offer path, offer path is: /<franchise>/<game>/<edition>
             var match = Regex.Match(offerPath, @"(\/(.+?)\/(.+?))\/");
             var offer = match.Groups[1].Value.ToString();
-            var url = string.Format(@"https://data3.origin.com/ocd{0}.en-us.irl.ocd", offer);
+            string OriginLang = OriginLibrary._OriginLang.ToLower().Replace("_", "-");
+            var url = string.Format(@"https://data3.origin.com/ocd{0}.{1}.irl.ocd", offer, OriginLang);
             if (HttpDownloader.GetResponseCode(url) == System.Net.HttpStatusCode.OK)
             {
                 var stringData = Encoding.UTF8.GetString(HttpDownloader.DownloadData(url));
@@ -43,7 +47,8 @@ namespace OriginLibrary.Services
         {
             try
             {
-                var url = string.Format(@"https://api1.origin.com/ecommerce2/public/{0}/en_US", gameId);
+                string OriginLang = OriginLibrary._OriginLang;
+                var url = string.Format(@"https://api1.origin.com/ecommerce2/public/{0}/{1}", gameId, OriginLang);
                 var stringData = Encoding.UTF8.GetString(HttpDownloader.DownloadData(url));
                 return JsonConvert.DeserializeObject<GameLocalDataResponse>(stringData);
             }

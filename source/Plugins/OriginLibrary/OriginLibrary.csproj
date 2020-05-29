@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Environment.cs" />
     <Compile Include="Models\GameInstallerData.cs" />
+    <Compile Include="Models\LocalOriginLang.cs" />
     <Compile Include="Models\UsageReponse.cs" />
     <Compile Include="Models\AccountEntitlementsResponse.cs" />
     <Compile Include="Models\AccountInfoResponse.cs" />

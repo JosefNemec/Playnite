@@ -23,11 +23,39 @@ namespace EpicLibrary
         internal readonly string TokensPath;
         internal readonly EpicLibrarySettings LibrarySettings;
 
+        // For acces to staic function from EpicAccountClient / EpicMetadataProvider // WebStoreClient
+        public static string _EpicLang { get; set; }
+
         public EpicLibrary(IPlayniteAPI api) : base(api)
         {
             playniteApi = api;
-            LibrarySettings = new EpicLibrarySettings(this, api);
+            LibrarySettings = new EpicLibrarySettings(this, api)
+            {
+                EpicLangs = GetEpicLangs()
+            };
             TokensPath = Path.Combine(GetPluginUserDataPath(), "tokens.json");
+            _EpicLang = LibrarySettings.EpicLang;
+        }
+
+        // Initialize available language list for Steam if exist in Playnite language.
+        internal List<LocalEpicLang> GetEpicLangs()
+        {
+            //https://partner.steamgames.com/doc/store/localization?#supported_languages
+            List<LocalEpicLang> _EpicLang = new List<LocalEpicLang>();
+
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "zh-Hant", LocalLang = "繁體中文" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "en-US", LocalLang = "english" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "fr-FR", LocalLang = "Français" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "de-DE", LocalLang = "Deutsch" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "it-IT", LocalLang = "Italiano" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "ja-JP", LocalLang = "日本語" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "ko-KR", LocalLang = "한국어" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "ru-RU", LocalLang = "Русский" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "es-ES", LocalLang = "Español" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "pl-PL", LocalLang = "Polski" });
+            _EpicLang.Add(new LocalEpicLang { EpicLangName = "tr-TR", LocalLang = "Türkçe" });
+
+            return _EpicLang.OrderBy(a => a.LocalLang).ToList();
         }
 
         internal Dictionary<string, GameInfo> GetInstalledGames()

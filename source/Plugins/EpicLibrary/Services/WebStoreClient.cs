@@ -14,7 +14,7 @@ namespace EpicLibrary.Services
         private HttpClient httpClient = new HttpClient();
 
         public const string GraphQLEndpoint = @"https://graphql.epicgames.com/graphql";
-        public const string ProductUrlBase = @"https://store-content.ak.epicgames.com/api/en-US/content/products/{0}";
+        public const string ProductUrlBase = @"https://store-content.ak.epicgames.com/api/{1}/content/products/{0}";
 
         public WebStoreClient()
         {
@@ -38,8 +38,15 @@ namespace EpicLibrary.Services
 
         public async Task<WebStoreModels.ProductResponse> GetProductInfo(string productSlug)
         {
+            string EpicLang = EpicLibrary._EpicLang;
+            string EpicLangCountryFirst = EpicLang.Substring(0, 2);
+            if (EpicLang == "es-ES" || EpicLang == "zh-Hant")
+            {
+                EpicLangCountryFirst = EpicLang;
+            }
+
             var slugUri = productSlug.Split('/').First();
-            var productUrl = string.Format(ProductUrlBase, slugUri);
+            var productUrl = string.Format(ProductUrlBase, slugUri, EpicLangCountryFirst);
             var str = await httpClient.GetStringAsync(productUrl);
             return Serialization.FromJson<WebStoreModels.ProductResponse>(str);
         }

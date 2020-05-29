@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OriginLibrary.Models;
 
 namespace OriginLibrary
 {
@@ -27,6 +28,8 @@ namespace OriginLibrary
         public bool ConnectAccount { get; set; } = false;
 
         public bool ImportUninstalledGames { get; set; } = false;
+
+        public string OriginLang { get; set; } = "en_US";
 
         #endregion Settings
 
@@ -51,6 +54,9 @@ namespace OriginLibrary
                 Login();
             });
         }
+
+        [JsonIgnore]
+        public List<LocalOriginLang> OriginLangs { get; set; }
 
         public OriginLibrarySettings()
         {
@@ -91,6 +97,7 @@ namespace OriginLibrary
         public void EndEdit()
         {
             library.SavePluginSettings(this);
+            OriginLibrary._OriginLang = this.OriginLang;
         }
 
         public bool VerifySettings(out List<string> errors)
