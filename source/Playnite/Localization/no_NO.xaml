@@ -522,11 +522,11 @@ Du kan også legge til ethvert annet spill (inkludert Microsoft Store-spill) sen
     <sys:String x:Key="LOCGameROMTitle">Bilde, ROM eller ISO-sti</sys:String>
 
     <sys:String x:Key="LOCGenreLabel">Sjanger</sys:String>
-    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCGenresLabel">Sjangere</sys:String>
     <sys:String x:Key="LOCCompanyLabel">Bedrift</sys:String>
     <sys:String x:Key="LOCCompaniesLabel"></sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Utvikler</sys:String>
-    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCDevelopersLabel">Utviklere</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Utgiver</sys:String>
     <sys:String x:Key="LOCPublishersLabel"></sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
