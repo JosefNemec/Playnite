@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -55,6 +56,7 @@ namespace Playnite.Common
 
     public class MemoryCache
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private ConcurrentDictionary<string, CacheItem> cache = new ConcurrentDictionary<string, CacheItem>();
         private long memorySizeLimit = 0;
         private long currentSize = 0;
@@ -75,8 +77,7 @@ namespace Playnite.Common
         {
             // ToArray reason:
             // https://stackoverflow.com/questions/11692389/getting-argument-exception-in-concurrent-dictionary-when-sorting-and-displaying
-            var items = cache.ToArray().OrderBy(a => a.Value.LastAccess).ToList();
-            foreach (var item in items)
+            foreach (var item in cache.ToArray().OrderBy(a => a.Value.LastAccess))
             {
                 if (currentSize > memorySizeLimit)
                 {
@@ -91,6 +92,12 @@ namespace Playnite.Common
 
         public bool TryAdd(string id, object item, long size, Dictionary<string, object> metadata = null)
         {
+            if (size >= memorySizeLimit)
+            {
+                logger.Warn($"Cannot add item to memory cache. Size: {size}, cache limit: {memorySizeLimit}");
+                return false;
+            }
+
             currentSize += size;
             if (currentSize > memorySizeLimit)
             {
