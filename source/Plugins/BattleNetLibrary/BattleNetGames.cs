@@ -216,8 +216,7 @@ namespace BattleNetLibrary
                 Type = BNetAppType.Default,
                 Links = new List<Link>()
                 {
-                    new Link("Homepage", "https://www.callofduty.com/"),
-                    new Link("Forums", "https://community.callofduty.com/t5/Call-of-Duty-Black-Ops-4-Forum/ct-p/cod-blackops4-forums")
+                    new Link("Homepage", "https://www.callofduty.com/")
                 }
             },
             new BNetApp()
@@ -232,8 +231,38 @@ namespace BattleNetLibrary
                 Type = BNetAppType.Default,
                 Links = new List<Link>()
                 {
-                    new Link("Homepage", "https://www.callofduty.com/"),
-                    new Link("Forums", "https://community.callofduty.com/t5/Modern-Warfare-Forum/bd-p/cod-mw-forum")
+                    new Link("Homepage", "https://www.callofduty.com/")
+                }
+            },
+            new BNetApp()
+            {
+                ApiId = 22323,
+                ProductId = "W3",
+                InternalId = "w3",
+                IconUrl = @"https://blznav.akamaized.net/img/games/logo-w3r-c8a76eea272dbd55.png",
+                BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//faf/44004fe111706bac3ad1c9a5c7264d1f-WC3R_2020_Orc_Art_Shop_Product_Page_Assets_prod-full-bg_TS03.jpg",
+                CoverUrl = "https://bnetproduct-a.akamaihd.net//5f/3d885e4077747a04a646186a17607769-WC3R_2020_Orc_Art_Shop_Product_Page_Assets_prod-card-vert_TS03.jpg",
+                Name = "Warcraft III: Reforged",
+                Type = BNetAppType.Default,
+                Links = new List<Link>()
+                {
+                    new Link("Homepage", "https://playwarcraft3.com/"),
+                    new Link("Forums", "https://us.forums.blizzard.com/en/warcraft3/")
+                }
+            },
+            new BNetApp()
+            {
+                ApiId = 1279351378,
+                ProductId = "LAZR",
+                InternalId = "lazarus",
+                IconUrl = @"https://blznav.akamaized.net/img/games/logo-codmw2cr-403ff7094aa97396.png",
+                BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//f90/ca5641d89e0495fcd468350d298097d5-Lazarus-Bnet_Placeholder-Shop_Background_Desktop-2280x910-For_20200331.jpg",
+                CoverUrl = "https://bnetproduct-a.akamaihd.net//f/7e875975619de0671dc538c8d85ba550-Lazarus-Bnet_Placeholder-Card_Product_Vert-700x850-For_2020406-Corrected.jpg",
+                Name = "Call of Duty: Modern Warfare 2 Campaign Remastered",
+                Type = BNetAppType.Default,
+                Links = new List<Link>()
+                {
+                    new Link("Homepage", "https://www.callofduty.com/mw2campaignremastered")
                 }
             }
         };
