@@ -206,7 +206,7 @@ namespace Playnite.Database
                 database.DatabaseOpened += (s, e) => LoadFilterCollection();
             }
 
-            var libs = extensions.LibraryPlugins.ToList();
+            var libs = extensions.LibraryPlugins.OrderBy(a => a.Name).ToList();
             libs.Add(new FakePlayniteLibraryPlugin());
             Libraries = new SelectableLibraryPluginList(libs);
 

@@ -29,7 +29,7 @@ namespace Playnite
             var tools = new List<ThirdPartyTool>();
             if (plugins?.Any() == true)
             {
-                foreach (var plugin in plugins)
+                foreach (var plugin in plugins.OrderBy(a => a.Name))
                 {
                     if (plugin.Client != null && plugin.Client.IsInstalled)
                     {
