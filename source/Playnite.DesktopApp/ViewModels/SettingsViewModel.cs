@@ -277,7 +277,7 @@ namespace Playnite.DesktopApp.ViewModels
             originalSettings = settings;
             Settings = settings.GetClone();
             Settings.ImportExclusionList = settings.ImportExclusionList.GetClone();
-            Settings.PropertyChanged += (s, e) => editedFields.Add(e.PropertyName);
+            Settings.PropertyChanged += (s, e) => editedFields.AddMissing(e.PropertyName);
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;
@@ -486,6 +486,11 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     application.Restart(new CmdLineOptions() { SkipLibUpdate = true });
                 }
+            }
+
+            if (editedFields.Contains(nameof(settings.DiscordPresenceEnabled)) && application.Discord != null)
+            {
+                application.Discord.IsPresenceEnabled = Settings.DiscordPresenceEnabled;
             }
 
             closingHanled = true;

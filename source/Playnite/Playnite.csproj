@@ -52,6 +52,9 @@
     <Reference Include="CommandLine, Version=2.5.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
       <HintPath>..\packages\CommandLineParser.2.5.0\lib\net461\CommandLine.dll</HintPath>
     </Reference>
+    <Reference Include="DiscordRPC">
+      <HintPath>..\..\references\DiscordRPC.dll</HintPath>
+    </Reference>
     <Reference Include="Flurl, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Flurl.2.7.1\lib\net40\Flurl.dll</HintPath>
     </Reference>
@@ -270,6 +273,7 @@
     <Compile Include="Database\Collections\CompaniesCollection.cs" />
     <Compile Include="Database\Collections\PlatformsCollection.cs" />
     <Compile Include="DialogsFactory.cs" />
+    <Compile Include="DiscordManager.cs" />
     <Compile Include="EasyAntiCheat.cs" />
     <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
@@ -592,6 +596,7 @@
     <Resource Include="Resources\Images\DesignCover.jpg" />
     <Resource Include="Resources\Images\DesignIcon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

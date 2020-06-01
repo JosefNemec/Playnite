@@ -931,6 +931,15 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             Extensions.NotifiyOnApplicationStarted();
+
+            try
+            {
+                application.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to initialize Discord manager.");
+            }
         }
 
         public async Task UpdateDatabase(bool metaForNewGames)

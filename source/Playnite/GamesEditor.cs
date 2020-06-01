@@ -674,6 +674,11 @@ namespace Playnite
         {
             controllers.RemoveController(game.Id);
             UpdateGameState(game.Id, null, false, false, false, false);
+
+            if (AppSettings.DiscordPresenceEnabled)
+            {
+                Application.Discord?.ClearPresence();
+            }
         }
 
         private void UpdateGameState(Guid id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
@@ -744,6 +749,11 @@ namespace Playnite
                     Application.Minimize();
                 }
             }
+
+            if (AppSettings.DiscordPresenceEnabled)
+            {
+                Application.Discord?.SetPresence(game.Name);
+            }
         }
 
         private void Controllers_Stopped(object sender, GameControllerEventArgs args)
@@ -767,6 +777,11 @@ namespace Playnite
             else
             {
                 Application.Restore();
+            }
+
+            if (AppSettings.DiscordPresenceEnabled)
+            {
+                Application.Discord?.ClearPresence();
             }
 
             if (!game.PostScript.IsNullOrWhiteSpace())

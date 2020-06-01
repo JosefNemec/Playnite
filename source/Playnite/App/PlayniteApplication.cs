@@ -65,6 +65,7 @@ namespace Playnite
         public CmdLineOptions CmdLine { get; set; }
         public DpiScale DpiScale { get; set; } = new DpiScale(1, 1);
         public ComputerScreen CurrentScreen { get; set; } = Computer.GetPrimaryScreen();
+        public DiscordManager Discord { get; set; }
 
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
@@ -572,6 +573,7 @@ namespace Playnite
                 return;
             }
 
+            Discord?.Dispose();
             updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>

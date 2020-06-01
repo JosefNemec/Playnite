@@ -1429,6 +1429,17 @@ namespace Playnite
             }
         }
 
+        private bool discordPresenceEnabled = false;
+        public bool DiscordPresenceEnabled
+        {
+            get => discordPresenceEnabled;
+            set
+            {
+                discordPresenceEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -1653,7 +1664,7 @@ namespace Playnite
             var fileTarget = new FileTarget()
             {
                 FileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.log"),
-                Layout = "${longdate}|${level:uppercase=true}:${message}${exception:format=toString}",
+                Layout = "${longdate}|${level:uppercase=true}|${logger}:${message}${exception:format=toString}",
                 KeepFileOpen = false,
                 ArchiveFileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.{#####}.log"),
                 ArchiveAboveSize = 4096000,

@@ -23,22 +23,13 @@
     </UserControl.Resources>
 
     <StackPanel Margin="20">
-        <DockPanel>
-            <ContentControl Content="{DynamicResource LOCSettingsDBLocation}"
-                            ContentStringFormat="{}{0} *" 
-                            DockPanel.Dock="Left" VerticalAlignment="Center"/>
-            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
-                    DockPanel.Dock="Right" Padding="5,0,5,0"
-                    Command="{Binding SelectDbFileCommand}"/>
-            <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
-                    DockPanel.Dock="Left" Margin="10,0,10,0"
-                    IsReadOnly="True"/>
-        </DockPanel>
+        <CheckBox Content="Discord Rich Presence"
+                  IsChecked="{Binding Settings.DiscordPresenceEnabled}" />
         <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}"
                 ContentStringFormat="{}{0} *"
                 ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                 Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
-                Margin="0,45,0,0"/>
+                Margin="0,15,0,0"/>
         <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
                   Visibility="{Binding ShowDpiSettings, Converter={StaticResource BooleanToVisibilityConverter}}"
                 ContentStringFormat="{}{0} *"
@@ -53,5 +44,16 @@
                 HorizontalAlignment="Left" Margin="0,45,0,0"
                 ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
                 Command="{Binding ClearWebCacheCommand}"/>
+        <DockPanel Margin="0,20,0,0">
+            <ContentControl Content="{DynamicResource LOCSettingsDBLocation}"
+                            ContentStringFormat="{}{0} *" 
+                            DockPanel.Dock="Left" VerticalAlignment="Center"/>
+            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
+                    DockPanel.Dock="Right" Padding="5,0,5,0"
+                    Command="{Binding SelectDbFileCommand}"/>
+            <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
+                    DockPanel.Dock="Left" Margin="10,0,10,0"
+                    IsReadOnly="True"/>
+        </DockPanel>
     </StackPanel>
 </UserControl>
