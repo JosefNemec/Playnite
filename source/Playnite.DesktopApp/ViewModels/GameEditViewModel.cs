@@ -3232,7 +3232,20 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    return PrepareImagePath(model.SelectedImage?.ImageUrl);
+                    var url = model.SelectedImage?.ImageUrl;
+                    if (url.IsNullOrEmpty())
+                    {
+                        return null;
+                    }
+
+                    var response = HttpDownloader.GetResponseCode(url);
+                    if (response != HttpStatusCode.OK)
+                    {
+                        logger.Warn("Original Google image request failed: " + response.ToString());
+                        url = model.SelectedImage.ThumbUrl;
+                    }
+
+                    return PrepareImagePath(url);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

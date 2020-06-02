@@ -47,7 +47,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="4" Background="#33000000">
-                        <DockPanel>
+                        <DockPanel ToolTip="{Binding ImageUrl}"
+                                   ToolTipService.InitialShowDelay="2000">
                             <TextBlock DockPanel.Dock="Bottom" Text="{Binding Size, StringFormat={}{0}px}"
                                        Margin="0,3,0,0"
                                        HorizontalAlignment="Center" VerticalAlignment="Center" />
