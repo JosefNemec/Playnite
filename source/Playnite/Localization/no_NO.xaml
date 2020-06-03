@@ -35,8 +35,16 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Uff da, her skjedde det noe feil…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">En uopprettelig feil har oppstått.
+
+Hvis du vil hjelpe oss med å løse dette problemet kan du kort beskrive handlingene som ble utført før krasjet, og deretter opprette en diagnosepakke. Hvis du er tilkoblet internett, blir pakken lastet opp til Playnite-serveren for analyse.
+
+Alternativt kan du bruke 'Rapporter krasj' -knappen for å opprette en ny oppføring på GitHub, og rapportere krasjet manuelt.
+
+Takk for hjelpen.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">En uopprettelig feil har oppstått.
+
+Vil du hjelpe oss med å løse dette problemet, kan du gjerne sende diagnoseinformasjon. Takk.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporter Programstopp</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Omstart Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Lukk Playnite</sys:String>
@@ -46,10 +54,14 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern(e) spill?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan ikke fjerne spill som kjører eller blir installert / avinstallert.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kan ikke avinstallere et spill som kjører.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne dette spillet?
+
+Automatisk importerte spill kan dukke opp igjen i Playnite etter neste oppdateringsprosess (avhengig av innstillingene dine).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne {0} spill?
+
+Automatisk importerte spill kan dukke opp igjen i Playnite etter neste oppdateringsprosess (avhengig av innstillingene dine). </sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Er du sikker på at du vil fjerne {0} oppføringer som for øyeblikket ikke er i bruk?</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Ingen ubrukte felt ble funnet.</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Venner</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Seksjonen inneholder endringer for lagring</sys:String>
@@ -69,14 +81,14 @@ Mellomliggende - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekplugin som er ansvarlig for dette spillet er ikke installert eller slått på.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Offisielle metadatanedlastning er ikke tilgjengelig.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Inget spill er valgt.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Utføringen av spillets skripthandling mislyktes.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Utføringen av global skripthandling mislyktes.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 eller nyere er ikke installert.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktivert</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Fjern</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">Fjern ubrukte oppføringer</sys:String>
     <sys:String x:Key="LOCRenameTitle">Endre navn</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopier</sys:String>
     <sys:String x:Key="LOCAddTitle">Legg til</sys:String>
