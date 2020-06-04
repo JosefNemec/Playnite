@@ -175,7 +175,17 @@ Automatisk importerte spill kan dukke opp igjen i Playnite etter neste oppdateri
     <sys:String x:Key="LOCRow">Rad</sys:String>
     <sys:String x:Key="LOCRows">Rader</sys:String>
 
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Bestemte variabler kan brukes til å legge til en dynamisk streng:
+{InstallDir} - Spillets installasjonsmappe
+{InstallDirName} - Installasjonsmappens navn
+{ImagePath} - Spillets ISO/ROM- sti om valgt
+{ImageName} - Spillets ISO/ROM-filnavn
+{ImageNameNoExt} - Spillets ISO/ROM-filnavn uten filtype
+{PlayniteDir} - Playnites installasjonsmappe
+{Name} - Spillets navn
+
+Eksempel: -image &quot;{ImagePath}&quot; -fullscreen
+Resulterer i: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Kan ikke få ikon hvis Play-handling mangler eller er satt til URL.</sys:String>
 
@@ -218,7 +228,7 @@ Automatisk importerte spill kan dukke opp igjen i Playnite etter neste oppdateri
     <sys:String x:Key="LOCMenuAddGameManual">Manuelt…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automatisk Skanning…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulert Spill…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store-applikasjon…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Gi Tilbakemelding</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullskjermmodus</sys:String>
@@ -324,7 +334,7 @@ Automatisk importerte spill kan dukke opp igjen i Playnite etter neste oppdateri
     <sys:String x:Key="LOCSettingsAfterGameClose">Etter at spillet lukkes:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Start spill ved å bruke Galaxy-klienten</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Vil aktivere funksjoner som skylagring, spilletid osv.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Dette vil overskrive eksisterende kategorier samt alle valg av favoritter og skjulte titler blant alle Steam-spill. Vil du fortsette?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Vil du importere kategorier?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Kan ikke importere kategorier, konto for import er ikke valgt.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kan ikke importere kategorier, databasen er ikke åpnet.</sys:String>
@@ -342,7 +352,7 @@ Automatisk importerte spill kan dukke opp igjen i Playnite etter neste oppdateri
     <sys:String x:Key="LOCSettingsGetExtensions">Få flere utvidelser</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Lag ny utvidelse</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Bidra med ny lokalisering</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Noen av de endrede innstillingene krever at Playnite startes på nytt. Vil du lukke og gjenåpne Playnite nå?</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Start Playnite om igjen?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite flytter ikke bibliotekfiler automatisk, du må flytte / kopiere dem før stedet endres. Hvis det ikke er noe bibliotek på målstedet, opprettes et nytt.
 
@@ -351,12 +361,12 @@ Ny databaseplassering vil bare bli brukt etter at applikasjonen er startet på n
     <sys:String x:Key="LOCSettingsFullscreenRows">Antall rader</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Antall kolonner</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Antall detaljvisningsrader</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Vis bakgrunnsbilde på hovedskjermen</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Bakgrunnsbilde kilde:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Spillbilde</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Butikk-skjermbilde</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Butikk-bakgrunn</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceBanner">Banner</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Gjelder ikke retrospektivt på eksisterende spill uten å laste ned metadata på nytt.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Prioriter spilletid for biblioteker som støttes</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Last alltid ned innspilt spilletid fra eksternt bibliotek under bibliotekssynkronisering, idet du ignorerer tiden som er spilt av Playnite.</sys:String>
@@ -387,12 +397,14 @@ Ny databaseplassering vil bare bli brukt etter at applikasjonen er startet på n
     <sys:String x:Key="LOCSettingsTextRenderingMode">Tekstopptegningsmodus</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Alternativer for tekstgjengivelse og formatering gjelder for øyeblikket ikke på spillets beskrivelsestekst.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Last ned bakgrunnsbilder umiddelbart</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Om denne aktiveres, vil Playnite laste ned bakgrunnbilder når metadata lastes ned, noe som vil kreve mer lagringsplass, men sikre at bakgrunnsbilder er tilgjengelig uten internettilkobling.
+
+Om den deaktiveres, blir bakgrunnsbilder først lastet ned når de trengs, noe som sparer plass, men som samtidig kan resultere i en forsinkelse før bakgrunnsbilder vises og at noen bilder ikke vil være tilgjengelig uten internettilkobling.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Lukk tredjepartsklient automatisk etter at spillet avsluttes</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Avsluttningsperiode for klient (i sekunder)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Ikke lukk etter spilleøkter kortere enn (i sekunder)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Lukk de følgende klientene automatisk:</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Lukk klienter automatisk</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
 
