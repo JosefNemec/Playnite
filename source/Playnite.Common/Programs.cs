@@ -94,7 +94,7 @@ IconIndex=0";
             return await Task.Run(() =>
             {
                 var execs = new List<Program>();
-                var files = new SafeFileEnumerator(path, "*.exe", SearchOption.AllDirectories);
+                var files = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
 
                 foreach (var file in files)
                 {
@@ -113,16 +113,38 @@ IconIndex=0";
                         continue;
                     }
 
-                    var versionInfo = FileVersionInfo.GetVersionInfo(file.FullName);
-                    var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
-
-                    execs.Add(new Program()
+                    if (file.Extension?.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true)
                     {
-                        Path = file.FullName,
-                        Icon = file.FullName,
-                        WorkDir = Path.GetDirectoryName(file.FullName),
-                        Name = programName
-                    });
+                        var versionInfo = FileVersionInfo.GetVersionInfo(file.FullName);
+                        var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
+
+                        execs.Add(new Program()
+                        {
+                            Path = file.FullName,
+                            Icon = file.FullName,
+                            WorkDir = Path.GetDirectoryName(file.FullName),
+                            Name = programName
+                        });
+                    }
+                    else if (file.Extension?.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        var data = GetLnkShortcutData(file.FullName);
+                        var target = data.Path;
+                        var name = file.Name;
+                        if (File.Exists(target))
+                        {
+                            var versionInfo = FileVersionInfo.GetVersionInfo(target);
+                            name = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
+                        }
+
+                        execs.Add(new Program
+                        {
+                            Path = file.FullName,
+                            Icon = data.Icon,
+                            WorkDir = data.WorkDir,
+                            Name = name
+                        });
+                    }
                 }
 
                 return execs;
@@ -136,7 +158,7 @@ IconIndex=0";
             return new Program()
             {
                 Path = link.TargetPath,
-                Icon = link.IconLocation,
+                Icon = link.IconLocation == ",0" ? link.TargetPath : link.IconLocation,
                 Arguments = link.Arguments,
                 WorkDir = link.WorkingDirectory
             };
