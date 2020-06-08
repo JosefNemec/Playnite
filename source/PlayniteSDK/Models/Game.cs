@@ -195,6 +195,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets HTML game description.
         /// </summary>
+        [DefaultValue("")]
         public string Description
         {
             get
@@ -940,6 +941,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets pre-action script.
         /// </summary>
+        [DefaultValue("")]
         public string PreScript
         {
             get => preScript;
@@ -954,6 +956,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets post-action script.
         /// </summary>
+        [DefaultValue("")]
         public string PostScript
         {
             get => postScript;
@@ -968,6 +971,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets script to be executed after game started.
         /// </summary>
+        [DefaultValue("")]
         public string GameStartedScript
         {
             get => gameStartedScript;
@@ -982,6 +986,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets value indicating whether global post script should be executed.
         /// </summary>
+        [DefaultValue(true)]
         public bool UseGlobalPostScript
         {
             get => useGlobalPostScript;
@@ -996,6 +1001,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets value indicating whether global pre script should be executed.
         /// </summary>
+        [DefaultValue(true)]
         public bool UseGlobalPreScript
         {
             get => useGlobalPreScript;
@@ -1010,6 +1016,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets value indicating whether global pre script should be executed.
         /// </summary>
+        [DefaultValue(true)]
         public bool UseGlobalGameStartedScript
         {
             get => useGameStartedScript;

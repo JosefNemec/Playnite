@@ -111,9 +111,18 @@ namespace Playnite.Database
 
         internal void SaveItemData(TItem item)
         {
-            using (var fs = FileSystem.OpenWriteFileStreamSafe(GetItemFilePath(item.Id)))
+            using (var fs = FileSystem.CreateWriteFileStreamSafe(GetItemFilePath(item.Id)))
+            using (var sw = new StreamWriter(fs))
+            using (var writer = new JsonTextWriter(sw))
             {
-                Serialization.ToJsonSteam(item, fs, false);
+                var ser = JsonSerializer.Create(new JsonSerializerSettings()
+                {
+                    Formatting = Formatting.None,
+                    NullValueHandling = NullValueHandling.Ignore,
+                    DefaultValueHandling = DefaultValueHandling.Ignore
+                });
+
+                ser.Serialize(writer, item);
             }
         }
 
