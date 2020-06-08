@@ -740,8 +740,9 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCThemeTestWatchChanges">Watch file changes</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Automatically apply theme when the source file changes</sys:String>
     <sys:String x:Key="LOCScriptRuntime">Script runtime</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription">Script to execute before starting game</sys:String>
-    <sys:String x:Key="LOCPostScriptDescription">Script to execute after exiting game</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Script to execute before starting a game</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Script to execute after exiting a game</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">Script to execute after a game is started</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Execute global script</sys:String>
 
     <!--Game actions-->

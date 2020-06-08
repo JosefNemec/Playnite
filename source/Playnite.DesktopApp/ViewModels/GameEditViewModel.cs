@@ -837,6 +837,38 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool useGameStartedScriptChanges;
+        public bool UseGameStartedScriptChanges
+        {
+            get
+            {
+                return useGameStartedScriptChanges;
+            }
+
+            set
+            {
+                useGameStartedScriptChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowScriptsChangeNotif));
+            }
+        }
+
+        private bool useGameStartedGlobalScriptChanges;
+        public bool UseGameStartedGlobalScriptChanges
+        {
+            get
+            {
+                return useGameStartedGlobalScriptChanges;
+            }
+
+            set
+            {
+                useGameStartedGlobalScriptChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowScriptsChangeNotif));
+            }
+        }
+
         private bool usePreGlobalScriptChanges;
         public bool UsePreGlobalScriptChanges
         {
@@ -982,7 +1014,9 @@ namespace Playnite.DesktopApp.ViewModels
                     UsePreScriptChanges ||
                     UsePostScriptChanges ||
                     UsePreGlobalScriptChanges ||
-                    UsePostGlobalScriptChanges);
+                    UsePostGlobalScriptChanges ||
+                    UseGameStartedGlobalScriptChanges ||
+                    UseGameStartedScriptChanges);
             }
         }
 
@@ -1862,6 +1896,16 @@ namespace Playnite.DesktopApp.ViewModels
                         UsePostScriptChanges = true;
                     }
                     break;
+                case nameof(Game.GameStartedScript):
+                    if (IsSingleGameEdit)
+                    {
+                        UseGameStartedScriptChanges = !string.Equals(Game.GameStartedScript, EditingGame.GameStartedScript, StringComparison.Ordinal);
+                    }
+                    else
+                    {
+                        UseGameStartedScriptChanges = true;
+                    }
+                    break;
                 case nameof(Game.ActionsScriptLanguage):
                     if (IsSingleGameEdit)
                     {
@@ -1890,6 +1934,16 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UsePreGlobalScriptChanges = true;
+                    }
+                    break;
+                case nameof(Game.UseGlobalGameStartedScript):
+                    if (IsSingleGameEdit)
+                    {
+                        UseGameStartedGlobalScriptChanges = Game.UseGlobalGameStartedScript != EditingGame.UseGlobalGameStartedScript;
+                    }
+                    else
+                    {
+                        UseGameStartedGlobalScriptChanges = true;
                     }
                     break;
                 case nameof(Game.PlayAction):
@@ -2175,6 +2229,16 @@ namespace Playnite.DesktopApp.ViewModels
                 if (UsePostGlobalScriptChanges)
                 {
                     game.UseGlobalPostScript = EditingGame.UseGlobalPostScript;
+                }
+
+                if (UseGameStartedScriptChanges)
+                {
+                    game.GameStartedScript = EditingGame.GameStartedScript;
+                }
+
+                if (UseGameStartedGlobalScriptChanges)
+                {
+                    game.UseGlobalGameStartedScript = EditingGame.UseGlobalGameStartedScript;
                 }
 
                 if (UsePlayActionChanges)

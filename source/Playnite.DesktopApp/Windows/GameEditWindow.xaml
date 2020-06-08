@@ -951,6 +951,8 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,5">
@@ -995,6 +997,24 @@
                     <DockPanel Grid.Row="4" Margin="0,5,2,5" LastChildFill="False">
                         <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Left"
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding UseGameStartedScriptChanges}"/>
+                        <TextBlock Text="{DynamicResource LOCGameStartedScriptDescription}"
+                                   DockPanel.Dock="Left" VerticalAlignment="Center" />
+                        <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}" DockPanel.Dock="Right"
+                                  IsChecked="{Binding EditingGame.UseGlobalGameStartedScript}" />
+                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Right"
+                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding UseGameStartedGlobalScriptChanges}" />
+                    </DockPanel>
+
+                    <TextBox AcceptsReturn="True" Grid.Row="5"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             Text="{Binding EditingGame.GameStartedScript}"/>
+
+                    <DockPanel Grid.Row="6" Margin="0,5,2,5" LastChildFill="False">
+                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Left"
+                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UsePostScriptChanges}"/>
                         <TextBlock Text="{DynamicResource LOCPostScriptDescription}"
                                    DockPanel.Dock="Left" VerticalAlignment="Center" />
@@ -1005,7 +1025,7 @@
                                   IsChecked="{Binding UsePostGlobalScriptChanges}" />
                     </DockPanel>
                     
-                    <TextBox AcceptsReturn="True" Grid.Row="5"
+                    <TextBox AcceptsReturn="True" Grid.Row="7"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              Text="{Binding EditingGame.PostScript}"/>

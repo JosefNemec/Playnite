@@ -727,6 +727,63 @@ namespace Playnite
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
+
+            if (!AppSettings.GameStartedScript.IsNullOrWhiteSpace() && game.UseGlobalGameStartedScript)
+            {
+                try
+                {
+                    var expanded = game.ExpandVariables(AppSettings.GameStartedScript);
+                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    var message = exc.Message;
+                    if (exc is ScriptRuntimeException err)
+                    {
+                        message = err.Message + "\n\n" + err.ScriptStackTrace;
+                    }
+
+                    logger.Error(exc, "Failed to execute global game-started action.");
+                    logger.Error(AppSettings.GameStartedScript);
+                    Dialogs.ShowMessage(
+                        message,
+                        resources.GetString("LOCErrorGlobalScriptAction"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, null, false);
+                    return;
+                }
+            }
+
+            if (!game.GameStartedScript.IsNullOrWhiteSpace())
+            {
+                try
+                {
+                    var expanded = game.ExpandVariables(game.GameStartedScript);
+                    ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    var message = exc.Message;
+                    if (exc is ScriptRuntimeException err)
+                    {
+                        message = err.Message + "\n\n" + err.ScriptStackTrace;
+                    }
+
+                    logger.Error(exc, "Failed to execute game's game-started action.");
+                    logger.Error(game.GameStartedScript);
+                    Dialogs.ShowMessage(
+                        message,
+                        resources.GetString("LOCErrorGameScriptAction"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, null, false);
+                    return;
+                }
+            }
+
             if (Application.Mode == ApplicationMode.Desktop)
             {
                 if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)

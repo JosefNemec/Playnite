@@ -194,15 +194,21 @@ namespace Playnite
             }
 
             var firstPreScript = firstGame.PreScript;
-            if (games.All(a => string.Equals(a.PreScript, firstPreScript)))
+            if (games.All(a => string.Equals(a.PreScript, firstPreScript, StringComparison.Ordinal)))
             {
                 dummyGame.PreScript = firstPreScript;
             }
 
             var firstPostScript = firstGame.PostScript;
-            if (games.All(a => string.Equals(a.PostScript, firstPostScript)))
+            if (games.All(a => string.Equals(a.PostScript, firstPostScript, StringComparison.Ordinal)))
             {
                 dummyGame.PostScript = firstPostScript;
+            }
+
+            var firstGameStartedScript = firstGame.GameStartedScript;
+            if (games.All(a => string.Equals(a.GameStartedScript, firstGameStartedScript, StringComparison.Ordinal)))
+            {
+                dummyGame.GameStartedScript = firstGameStartedScript;
             }
 
             var firstUseGlobalPreSrc = firstGame.UseGlobalPreScript;
@@ -215,6 +221,12 @@ namespace Playnite
             if (games.All(a => a.UseGlobalPostScript == firstUseGlobalPostSrc) == true)
             {
                 dummyGame.UseGlobalPostScript = firstUseGlobalPostSrc;
+            }
+
+            var firstUseGlobalGameStartedSrc = firstGame.UseGlobalGameStartedScript;
+            if (games.All(a => a.UseGlobalGameStartedScript == firstUseGlobalGameStartedSrc) == true)
+            {
+                dummyGame.UseGlobalGameStartedScript = firstUseGlobalGameStartedSrc;
             }
 
             var firstPlayAction = firstGame.PlayAction;

@@ -161,7 +161,11 @@ namespace Playnite.SDK.Models
         ///
         InstallationStatus,
         ///
-        None
+        None,
+        ///
+        GameStartedScript,
+        ///
+        UseGlobalGameStartedScript
     }
 
     /// <summary>
@@ -960,6 +964,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private string gameStartedScript;
+        /// <summary>
+        /// Gets or sets script to be executed after game started.
+        /// </summary>
+        public string GameStartedScript
+        {
+            get => gameStartedScript;
+            set
+            {
+                gameStartedScript = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool useGlobalPostScript = true;
         /// <summary>
         /// Gets or sets value indicating whether global post script should be executed.
@@ -984,6 +1002,20 @@ namespace Playnite.SDK.Models
             set
             {
                 useGlobalPreScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool useGameStartedScript = true;
+        /// <summary>
+        /// Gets or sets value indicating whether global pre script should be executed.
+        /// </summary>
+        public bool UseGlobalGameStartedScript
+        {
+            get => useGameStartedScript;
+            set
+            {
+                useGameStartedScript = value;
                 OnPropertyChanged();
             }
         }
@@ -1674,6 +1706,11 @@ namespace Playnite.SDK.Models
                     tro.PostScript = PostScript;
                 }
 
+                if (!string.Equals(GameStartedScript, tro.GameStartedScript, StringComparison.Ordinal))
+                {
+                    tro.GameStartedScript = GameStartedScript;
+                }
+
                 if (ActionsScriptLanguage != tro.ActionsScriptLanguage)
                 {
                     tro.ActionsScriptLanguage = ActionsScriptLanguage;
@@ -1687,6 +1724,11 @@ namespace Playnite.SDK.Models
                 if (UseGlobalPreScript != tro.UseGlobalPreScript)
                 {
                     tro.UseGlobalPreScript = UseGlobalPreScript;
+                }
+
+                if (UseGlobalGameStartedScript != tro.UseGlobalGameStartedScript)
+                {
+                    tro.UseGlobalGameStartedScript = UseGlobalGameStartedScript;
                 }
             }
             else
@@ -1977,6 +2019,11 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.PostScript);
             }
 
+            if (!string.Equals(GameStartedScript, otherGame.GameStartedScript, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.GameStartedScript);
+            }
+
             if (ActionsScriptLanguage != otherGame.ActionsScriptLanguage)
             {
                 changes.Add(GameField.ActionsScriptLanguage);
@@ -1990,6 +2037,11 @@ namespace Playnite.SDK.Models
             if (UseGlobalPreScript != otherGame.UseGlobalPreScript)
             {
                 changes.Add(GameField.UseGlobalPreScript);
+            }
+
+            if (UseGlobalGameStartedScript != otherGame.UseGlobalGameStartedScript)
+            {
+                changes.Add(GameField.UseGlobalGameStartedScript);
             }
 
             return changes;

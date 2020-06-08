@@ -1363,6 +1363,17 @@ namespace Playnite
             }
         }
 
+        private string gameStartedScript;
+        public string GameStartedScript
+        {
+            get => gameStartedScript;
+            set
+            {
+                gameStartedScript = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool downloadBackgroundsImmediately = true;
         public bool DownloadBackgroundsImmediately
         {

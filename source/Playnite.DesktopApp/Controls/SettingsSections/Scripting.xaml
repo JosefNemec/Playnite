@@ -22,6 +22,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}"
@@ -52,8 +54,14 @@
                              VerticalScrollBarVisibility="Visible"
                              Text="{Binding Settings.PreScript}" />
 
-            <TextBlock Text="{DynamicResource LOCPostScriptDescription}" Grid.Row="4" Margin="0,5,0,5" />
+            <TextBlock Text="{DynamicResource LOCGameStartedScriptDescription}" Grid.Row="4" Margin="0,5,0,5" />
             <TextBox AcceptsReturn="True" Grid.Row="5"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             Text="{Binding Settings.GameStartedScript}"/>
+
+            <TextBlock Text="{DynamicResource LOCPostScriptDescription}" Grid.Row="6" Margin="0,5,0,5" />
+            <TextBox AcceptsReturn="True" Grid.Row="7"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              Text="{Binding Settings.PostScript}"/>
