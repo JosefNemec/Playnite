@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
@@ -98,7 +99,7 @@ namespace Playnite.Common
                 return false;
             }
 
-            currentSize += size;
+            Interlocked.Add(ref currentSize, size);
             if (currentSize > memorySizeLimit)
             {
                 ReleaseOldestItems();
@@ -119,7 +120,7 @@ namespace Playnite.Common
             if (cache.TryRemove(id, out var cacheItem))
             {
                 item = cacheItem;
-                currentSize -= cacheItem.Size;
+                Interlocked.Add(ref currentSize, -cacheItem.Size);
                 return true;
             }
             else
@@ -133,7 +134,7 @@ namespace Playnite.Common
         {
             if (cache.TryRemove(id, out var cacheItem))
             {
-                currentSize -= cacheItem.Size;
+                Interlocked.Add(ref currentSize, -cacheItem.Size);
                 return true;
             }
             else
