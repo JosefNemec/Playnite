@@ -750,9 +750,6 @@ namespace Playnite
                         resources.GetString("LOCErrorGlobalScriptAction"),
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
-                    controllers.RemoveController(game.Id);
-                    UpdateGameState(game.Id, null, null, null, null, false);
-                    return;
                 }
             }
 
@@ -778,9 +775,6 @@ namespace Playnite
                         resources.GetString("LOCErrorGameScriptAction"),
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
-                    controllers.RemoveController(game.Id);
-                    UpdateGameState(game.Id, null, null, null, null, false);
-                    return;
                 }
             }
 
