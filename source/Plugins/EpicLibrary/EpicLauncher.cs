@@ -15,7 +15,7 @@ namespace EpicLibrary
         public const string GameLaunchUrlMask = @"com.epicgames.launcher://apps/{0}?action=launch&silent=true";
         public const string LibraryLaunchUrl = @"com.epicgames.launcher://store/library";
 
-        public const string AllUsersPath = @"c:\Users\All Users\Epic\";
+        public static string AllUsersPath => Path.Combine(Environment.ExpandEnvironmentVariables("%PROGRAMDATA%"), "Epic");
 
         public static string ClientExecPath
         {
