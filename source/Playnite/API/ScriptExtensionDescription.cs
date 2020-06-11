@@ -27,7 +27,7 @@ namespace Playnite.API
             var deserializer = new DeserializerBuilder().Build();
             var description = deserializer.Deserialize<ScriptExtensionDescription>(File.ReadAllText(descriptorPath));
             description.DescriptionPath = descriptorPath;
-            description.FolderName = Path.GetFileNameWithoutExtension(Path.GetDirectoryName(descriptorPath));
+            description.DirectoryName = Path.GetFileNameWithoutExtension(Path.GetDirectoryName(descriptorPath));
             return description;
         }
     }

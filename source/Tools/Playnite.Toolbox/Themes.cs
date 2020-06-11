@@ -232,7 +232,7 @@ namespace Playnite.Toolbox
         public static void UpdateTheme(string themeDirectory, ApplicationMode mode)
         {
             var themeManifestPath = Path.Combine(themeDirectory, "theme.yaml");
-            var currentThemeMan = ThemeDescription.FromFile(themeManifestPath);
+            var currentThemeMan = new ThemeDescription(themeManifestPath);
             var origThemeApiVersion = new Version(currentThemeMan.ThemeApiVersion);
 
             if (!File.Exists(Path.Combine(themeDirectory, Themes.ThemeProjName)))

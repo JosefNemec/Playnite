@@ -24,17 +24,43 @@ namespace Playnite
         public ApplicationMode Mode { get; set; }
 
         [YamlIgnore]
-        public string DirectoryPath { get; set; }
+        public bool IsBuiltInTheme { get; }
 
         [YamlIgnore]
-        public string DirectoryName { get; set; }
+        public bool IsCustomTheme => !IsBuiltInTheme;
 
-        public static ThemeDescription FromFile(string path)
+        [YamlIgnore]
+        public bool IsCompatible { get; } = false;
+
+        public ThemeDescription()
         {
-            var theme = Serialization.FromYaml<ThemeDescription>(File.ReadAllText(path));
-            theme.DirectoryPath = Path.GetDirectoryName(path);
-            theme.DirectoryName = Path.GetFileNameWithoutExtension(theme.DirectoryPath);
-            return theme;
+        }
+
+        public ThemeDescription(string manifestPath)
+        {
+            var thm = Serialization.FromYaml<ThemeDescription>(File.ReadAllText(manifestPath));
+            thm.CopyProperties(this, false);
+            DescriptionPath = manifestPath;
+            DirectoryPath = Path.GetDirectoryName(manifestPath);
+            DirectoryName = Path.GetFileNameWithoutExtension(DirectoryPath);
+            if (Mode == ApplicationMode.Desktop)
+            {
+                IsBuiltInTheme = BuiltinExtensions.BuiltinDesktopThemeFolders.Contains(DirectoryName);
+            }
+            else
+            {
+                IsBuiltInTheme = BuiltinExtensions.BuiltinFullscreenThemeFolders.Contains(DirectoryName);
+            }
+
+            var apiVesion = Mode == ApplicationMode.Desktop ? ThemeManager.DesktopApiVersion : ThemeManager.FullscreenApiVersion;
+            if (!ThemeApiVersion.IsNullOrEmpty())
+            {
+                var themeVersion = new Version(ThemeApiVersion);
+                if (themeVersion.Major == apiVesion.Major && themeVersion <= apiVesion)
+                {
+                    IsCompatible = true;
+                }
+            }
         }
 
         public override string ToString()
@@ -191,7 +217,7 @@ namespace Playnite
                         {
                             var info = new FileInfo(descriptorPath);
                             added.Add(info.Directory.Name);
-                            themes.Add(ThemeDescription.FromFile(descriptorPath));
+                            themes.Add(new ThemeDescription(descriptorPath));
                         }
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -214,7 +240,7 @@ namespace Playnite
                             var info = new FileInfo(descriptorPath);
                             if (!added.Contains(info.Directory.Name))
                             {
-                                themes.Add(ThemeDescription.FromFile(descriptorPath));
+                                themes.Add(new ThemeDescription(descriptorPath));
                             }
                         }
                     }
@@ -281,7 +307,7 @@ namespace Playnite
                 Directory.Delete(oldBackPath, true);
             }
 
-            return ThemeDescription.FromFile(Path.Combine(targetDir, PlaynitePaths.ThemeManifestFileName));
+            return new ThemeDescription(Path.Combine(targetDir, PlaynitePaths.ThemeManifestFileName));
         }
     }
 }

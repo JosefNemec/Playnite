@@ -100,6 +100,7 @@ namespace Playnite.DesktopApp.ViewModels
         private List<string> editedFields = new List<string>();
         private Dictionary<Guid, PluginSettings> loadedPluginSettings = new Dictionary<Guid, PluginSettings>();
         private bool closingHanled = false;
+        private bool extUninstallQeueued = false;
 
         public ExtensionFactory Extensions { get; set; }
 
@@ -152,7 +153,27 @@ namespace Playnite.DesktopApp.ViewModels
             private set;
         } = new List<SelectableTrayIcon>();
 
-        public List<SelectablePlugin> PluginsList
+        public List<SelectablePlugin> LibraryPluginList
+        {
+            get;
+        }
+
+        public List<SelectablePlugin> MetadataPluginList
+        {
+            get;
+        }
+
+        public List<SelectablePlugin> OtherPluginList
+        {
+            get;
+        }
+
+        public List<ThemeDescription> DesktopThemeList
+        {
+            get;
+        }
+
+        public List<ThemeDescription> FullscreenThemeList
         {
             get;
         }
@@ -164,17 +185,6 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 selectedSectionView = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private object selectedSectionItem;
-        public object SelectedSectionItem
-        {
-            get => selectedSectionItem;
-            set
-            {
-                selectedSectionItem = value;
                 OnPropertyChanged();
             }
         }
@@ -262,6 +272,22 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<SelectablePlugin> UninstallExtensionCommand
+        {
+            get => new RelayCommand<SelectablePlugin>((a) =>
+            {
+                UninstallExtension(a);
+            });
+        }
+
+        public RelayCommand<ThemeDescription> UninstallThemeCommand
+        {
+            get => new RelayCommand<ThemeDescription>((a) =>
+            {
+                UninstallTheme(a);
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -291,10 +317,27 @@ namespace Playnite.DesktopApp.ViewModels
                 new SelectableTrayIcon(TrayIconType.Dark)
             };
 
-            PluginsList = Extensions
-                .GetExtensionDescriptors()
-                .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.FolderName) != true, null, a))
+            var descriptions = Extensions.GetExtensionDescriptors();
+            LibraryPluginList = descriptions
+                .Where(a => a.Type == ExtensionType.GameLibrary)
+                .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.DirectoryName) != true, null, a))
+                .OrderBy(a => a.Description.Name)
                 .ToList();
+
+            MetadataPluginList = descriptions
+                .Where(a => a.Type == ExtensionType.MetadataProvider)
+                .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.DirectoryName) != true, null, a))
+                .OrderBy(a => a.Description.Name)
+                .ToList();
+
+            OtherPluginList = descriptions
+                .Where(a => a.Type == ExtensionType.GenericPlugin || a.Type == ExtensionType.Script)
+                .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.DirectoryName) != true, null, a))
+                .OrderBy(a => a.Description.Name)
+                .ToList();
+
+            DesktopThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
+            FullscreenThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
 
             sectionViews = new Dictionary<int, UserControl>()
             {
@@ -312,7 +355,11 @@ namespace Playnite.DesktopApp.ViewModels
                 { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
                 { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
-                { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } }
+                { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
+                { 15, new Controls.SettingsSections.ExtensionsLibraries() { DataContext = this } },
+                { 16, new Controls.SettingsSections.ExtensionsMetadata() { DataContext = this } },
+                { 17, new Controls.SettingsSections.ExtensionsOther() { DataContext = this } },
+                { 18, new Controls.SettingsSections.ExtensionsThemes() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -447,10 +494,12 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            var disabledPlugs = PluginsList.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
+            var disabledPlugs = LibraryPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList();
+            disabledPlugs.AddMissing(MetadataPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList());
+            disabledPlugs.AddMissing(OtherPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList());
             if (Settings.DisabledPlugins?.IsListEqual(disabledPlugs) != true)
             {
-                Settings.DisabledPlugins = PluginsList.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
+                Settings.DisabledPlugins = disabledPlugs;
             }
 
             if (editedFields.Contains(nameof(Settings.StartOnBoot)))
@@ -477,7 +526,8 @@ namespace Playnite.DesktopApp.ViewModels
                 plugin.Settings.EndEdit();
             }
 
-            if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true)
+            if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true ||
+                extUninstallQeueued)
             {
                 if (dialogs.ShowMessage(
                     resources.GetString("LOCSettingsRestartAskMessage"),
@@ -527,6 +577,32 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Settings.GridItemWidthRatio = Convert.ToInt32(regex.Groups[1].Value);
                 Settings.GridItemHeightRatio = Convert.ToInt32(regex.Groups[2].Value);
+            }
+        }
+
+        private void UninstallExtension(SelectablePlugin a)
+        {
+            if (dialogs.ShowMessage(
+                "LOCExtensionUninstallQuestion",
+                string.Empty,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                extUninstallQeueued = true;
+                ExtensionInstaller.QueueExtensionUninstall(a.Description.DirectoryPath);
+            }
+        }
+
+        private void UninstallTheme(ThemeDescription a)
+        {
+            if (dialogs.ShowMessage(
+               "LOCThemeUninstallQuestion",
+               string.Empty,
+               MessageBoxButton.YesNo,
+               MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                extUninstallQeueued = true;
+                ExtensionInstaller.QueueExtensionUninstall(a.DirectoryPath);
             }
         }
     }

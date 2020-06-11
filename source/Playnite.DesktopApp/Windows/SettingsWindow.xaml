@@ -59,7 +59,12 @@
                     <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="5" />
                 </TreeViewItem>
                 <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
-                <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8" />
+                <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8">
+                    <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="15"/>
+                    <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="16" />
+                    <TreeViewItem Header="{DynamicResource LOCOther}" Tag="17" />
+                    <TreeViewItem Header="{DynamicResource LOCThemes}" Tag="18" />
+                </TreeViewItem>
                 <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
                 <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="12" />

@@ -364,7 +364,7 @@ namespace Playnite.Database
 
             if (!FileSystem.CanWriteToFolder(DatabasePath))
             {
-                throw new Exception($"Can't to write to \"{DatabasePath}\" folder.");
+                throw new Exception($"Can't write to \"{DatabasePath}\" folder.");
             }
 
             if (!dbExists)

@@ -1,4 +1,5 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,15 +27,27 @@ namespace Playnite.API
         public string Version { get; set; }
 
         public List<Link> Links { get; set; }
+
+        [YamlIgnore]
+        public string DirectoryPath { get; set; }
+
+        [YamlIgnore]
+        public string DirectoryName { get; set; }
+
+        [YamlIgnore]
+        public string DescriptionPath { get; set; }
     }
 
     public class ExtensionDescription : BaseExtensionDescription
     {
         [YamlIgnore]
-        public string DescriptionPath { get; set; }
+        public bool IsBuiltInExtension { get; set; }
 
         [YamlIgnore]
-        public string FolderName { get; set; }
+        public bool IsCustomExtension => !IsBuiltInExtension;
+
+        //[YamlIgnore]
+        //public bool IsCompatible { get; } = false;
 
         public string Module { get; set; }
 
@@ -56,7 +69,9 @@ namespace Playnite.API
             }
 
             description.DescriptionPath = descriptorPath;
-            description.FolderName = Path.GetFileNameWithoutExtension(Path.GetDirectoryName(descriptorPath));
+            description.DirectoryPath = Path.GetDirectoryName(descriptorPath);
+            description.DirectoryName = Path.GetFileNameWithoutExtension(description.DirectoryPath);
+            description.IsBuiltInExtension = BuiltinExtensions.BuiltinExtensionFolders.Contains(description.DirectoryName);
             return description;
         }
     }

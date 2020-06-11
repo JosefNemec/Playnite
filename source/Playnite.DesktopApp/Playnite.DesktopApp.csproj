@@ -180,6 +180,18 @@
     <Compile Include="Controls\SettingsSections\ClientShutdown.xaml.cs">
       <DependentUpon>ClientShutdown.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\ExtensionsThemes.xaml.cs">
+      <DependentUpon>ExtensionsThemes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ExtensionsOther.xaml.cs">
+      <DependentUpon>ExtensionsOther.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ExtensionsLibraries.xaml.cs">
+      <DependentUpon>ExtensionsLibraries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ExtensionsMetadata.xaml.cs">
+      <DependentUpon>ExtensionsMetadata.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\ImportExlusionList.xaml.cs">
       <DependentUpon>ImportExlusionList.xaml</DependentUpon>
     </Compile>
@@ -537,6 +549,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SettingsSections\ClientShutdown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ExtensionsThemes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ExtensionsOther.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ExtensionsLibraries.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ExtensionsMetadata.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

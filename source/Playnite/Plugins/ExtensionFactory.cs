@@ -313,7 +313,7 @@ namespace Playnite.Plugins
             DisposeScripts();
             var functions = new List<ScriptFunctionExport>();
 
-            foreach (ScriptExtensionDescription desc in GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.FolderName)))
+            foreach (ScriptExtensionDescription desc in GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)))
             {
                 PlayniteScript script = null;
                 var scriptPath = Path.Combine(Path.GetDirectoryName(desc.DescriptionPath), desc.Module);
@@ -357,7 +357,7 @@ namespace Playnite.Plugins
         {
             DisposePlugins();
             var funcs = new List<ExtensionFunction>();
-            foreach (var desc in GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.FolderName) != true))
+            foreach (var desc in GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true))
             {
                 try
                 {
@@ -404,6 +404,10 @@ namespace Playnite.Plugins
                         }
                     }
                 }
+            }
+            else
+            {
+                // TODO: Unload assembly once Playnite switches to .NET Core
             }
         }
 

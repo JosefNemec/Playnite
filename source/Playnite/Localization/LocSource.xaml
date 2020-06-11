@@ -716,6 +716,8 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCExpand">Expand</sys:String>
     <sys:String x:Key="LOCCollapseAll">Collapse All</sys:String>
     <sys:String x:Key="LOCExpandAll">Expand All</sys:String>
+    <sys:String x:Key="LOCOther">Other</sys:String>
+    <sys:String x:Key="LOCThemes">Themes</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -851,6 +853,14 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Don't Show Again</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Selected image file might be too large for optimal performance.</sys:String>
 
+    <sys:String x:Key="LOCThemeUninstallQuestion">Are you sure you want to uninstall selected theme? Uninstallation will be queued to next application start.</sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint">Built-in themes can't be uninstalled.</sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">This theme doesn't support this version of Playnite.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">Are you sure you want to uninstall selected extension? Uninstallation will be queued to next application start.</sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Built-in extensions can't be uninstalled.</sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported">This extension doesn't support this version of Playnite.</sys:String>
+    
+    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>

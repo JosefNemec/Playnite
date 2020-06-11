@@ -47,6 +47,49 @@ namespace Playnite.SDK
     public class BuiltinExtensions
     {
         /// <summary>
+        ///
+        /// </summary>
+        public static string[] BuiltinExtensionFolders { get; } = new string[]
+        {
+            "AmazonGamesLibrary",
+            "BattleNetLibrary",
+            "BethesdaLibrary",
+            "EpicLibrary",
+            "GogLibrary",
+            "HumbleLibrary",
+            "IGDBMetadata",
+            "ItchioLibrary",
+            "LibraryExporter",
+            "OriginLibrary",
+            "SteamLibrary",
+            "TwitchLibrary",
+            "UplayLibrary",
+            "XboxLibrary"
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static string[] BuiltinDesktopThemeFolders { get; } = new string[]
+        {
+            "Classic",
+            "ClassicBlue",
+            "ClassicGreen",
+            "ClassicPlain",
+            "Default",
+            "DefaultRed"
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static string[] BuiltinFullscreenThemeFolders { get; } = new string[]
+        {
+            "Default",
+            "DefaultLime"
+        };
+
+        /// <summary>
         /// Gets list of built-in extension plugins.
         /// </summary>
         public static Dictionary<Guid, BuiltinExtension> ExtensionList { get; } = new Dictionary<Guid, BuiltinExtension>

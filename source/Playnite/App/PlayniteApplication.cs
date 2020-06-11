@@ -156,6 +156,15 @@ namespace Playnite
                     if (customTheme == null)
                     {
                         logger.Error($"Failed to apply theme {theme}, theme not found.");
+                        if (mode == ApplicationMode.Desktop)
+                        {
+                            AppSettings.Theme = "Default";
+                        }
+                        else
+                        {
+                            AppSettings.Fullscreen.Theme = "Default";
+                        }
+
                         ThemeManager.SetCurrentTheme(defaultTheme);
                     }
                     else
@@ -840,7 +849,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    ExtensionInstaller.QueueExetnsionInstall(themeFile);
+                    ExtensionInstaller.QueueExtensionInstall(themeFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
                         ResourceProvider.GetString("LOCSettingsRestartTitle"),
@@ -877,7 +886,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    ExtensionInstaller.QueueExetnsionInstall(extensionFile);
+                    ExtensionInstaller.QueueExtensionInstall(extensionFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
                         ResourceProvider.GetString("LOCSettingsRestartTitle"),
