@@ -111,7 +111,7 @@ namespace Playnite
 
         public void Dispose()
         {
-            discord.Dispose();
+            discord?.Dispose();
         }
     }
 }
