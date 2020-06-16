@@ -91,6 +91,8 @@ namespace BattleNetLibrary.Services
 
         public BattleNetApiStatus GetApiStatus()
         {
+            // This refreshes authentication cookie
+            webView.NavigateAndWait("https://account.blizzard.com:443/oauth2/authorization/account-settings");
             webView.NavigateAndWait(apiStatusUrl);
             var textStatus = webView.GetPageText();
             return Serialization.FromJson<BattleNetApiStatus>(textStatus);
