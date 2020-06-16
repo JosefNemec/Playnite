@@ -859,6 +859,8 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">Are you sure you want to uninstall selected extension? Uninstallation will be queued to next application start.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Built-in extensions can't be uninstalled.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">This extension doesn't support this version of Playnite.</sys:String>
+    <sys:String x:Key="LOCDiagGenerating">Generating diagnostics package…</sys:String>
+    <sys:String x:Key="LOCDiagUploading">Uploading diagnostics package…</sys:String>
     
     
     <!--Common Library-->

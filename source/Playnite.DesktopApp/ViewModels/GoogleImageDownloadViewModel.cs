@@ -39,7 +39,7 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 var old = transparent;
-                transparent = value;                
+                transparent = value;
                 OnPropertyChanged();
                 if (old != transparent)
                 {
@@ -124,7 +124,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public RelayCommand<object> LoadMoreCommand
         {
-
             get => new RelayCommand<object>((a) =>
             {
                 LoadMore();
@@ -191,7 +190,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (ProgressViewViewModel.ActivateProgress(() =>
             {
                 AvailableImages = downloader.GetImages(SearchTerm, Transparent).GetAwaiter().GetResult();
-            }, resources.GetString("LOCDownloadingLabel")) == true)
+            }, resources.GetString("LOCDownloadingLabel"), out var _) == true)
             {
                 if (!AvailableImages.HasItems())
                 {

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Playnite;
+using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,8 +48,10 @@ namespace PlayniteServices.Controllers.PlayniteTools
                 return new ServicesResponse<List<string>>(null) { Error = "bad request" };
             }
 
-            var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, "*.zip", SearchOption.AllDirectories).
-                Select(a => a.Replace(Playnite.DiagsLocation, "").Trim(Path.DirectorySeparatorChar)).ToList();
+            var diagFiles = Directory.
+                GetFiles(Playnite.DiagsLocation, "*.zip", SearchOption.AllDirectories).
+                Select(a => a.Replace(Playnite.DiagsLocation, "").Trim(Path.DirectorySeparatorChar) + $",{new FileInfo(a).CreationTime}").
+                ToList();
             return new ServicesResponse<List<string>>(diagFiles);
         }
 
@@ -76,31 +80,46 @@ namespace PlayniteServices.Controllers.PlayniteTools
 
             using (var zip = ZipFile.OpenRead(targetPath))
             {
-                var log = zip.GetEntry("playnite.log");
-                using (var logStream = log.Open())
+                var diagInfo = zip.GetEntry(DiagnosticPackageInfo.PackageInfoFileName);
+                if (diagInfo != null)
                 {
-                    using (var tr = new StreamReader(logStream))
+                    using (var infoStream = diagInfo.Open())
                     {
-                        while (!tr.EndOfStream)
+                        var info = Serialization.FromStream<DiagnosticPackageInfo>(infoStream);
+                        version = info.PlayniteVersion;
+                        isCrash = info.IsCrashPackage;
+                    }
+                }
+                else
+                {
+                    var log = zip.GetEntry("playnite.log");
+                    if (log != null)
+                    {
+                        using (var logStream = log.Open())
                         {
-                            var line = tr.ReadLine();
-                            if (line.Contains("Unhandled exception"))
+                            using (var tr = new StreamReader(logStream))
                             {
-                                isCrash = true;
-                                break;
+                                while (!tr.EndOfStream)
+                                {
+                                    var line = tr.ReadLine();
+                                    if (line.Contains("Unhandled exception"))
+                                    {
+                                        isCrash = true;
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }
-                }
 
-                var playniteInfo = zip.GetEntry("playniteInfo.txt");
-                using (var infoStream = playniteInfo.Open())
-                {
-                    using (var tr = new StreamReader(infoStream))
+                    var playniteInfo = zip.GetEntry("playniteInfo.txt");
+                    if (playniteInfo != null)
                     {
-                        var infoContent = tr.ReadToEnd();
-                        var info = JsonConvert.DeserializeObject<Dictionary<string, object>>(infoContent);
-                        version = info["Version"].ToString();
+                        using (var infoStream = playniteInfo.Open())
+                        {
+                            var info = Serialization.FromStream<Dictionary<string, object>>(infoStream);
+                            version = info["Version"].ToString();
+                        }
                     }
                 }
             }

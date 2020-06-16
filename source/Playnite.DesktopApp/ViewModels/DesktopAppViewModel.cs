@@ -1426,7 +1426,10 @@ namespace Playnite.DesktopApp.ViewModels
         {
             if (GlobalTaskHandler.IsActive)
             {
-                ProgressViewViewModel.ActivateProgress(() => GlobalTaskHandler.CancelAndWait(), Resources.GetString("LOCOpeningFullscreenModeMessage"));
+                ProgressViewViewModel.ActivateProgress(
+                    () => GlobalTaskHandler.CancelAndWait(),
+                    "LOCOpeningFullscreenModeMessage",
+                    out var _);
             }
 
             CloseView();

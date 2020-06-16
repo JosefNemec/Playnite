@@ -39,7 +39,7 @@ namespace Playnite
             return allFiles;
         }
 
-        public static void CreateDiagPackage(string path, string userActionsDescription)
+        public static void CreateDiagPackage(string path, string userActionsDescription, DiagnosticPackageInfo packageInfo)
         {
             var diagTemp = Path.Combine(PlaynitePaths.TempPath, "diag");
             FileSystem.CreateDirectory(diagTemp, true);
@@ -50,6 +50,11 @@ namespace Playnite
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
+                    // Package info
+                    var packagePath = Path.Combine(diagTemp, DiagnosticPackageInfo.PackageInfoFileName);
+                    File.WriteAllText(packagePath, Serialization.ToJson(packageInfo));
+                    archive.CreateEntryFromFile(packagePath, Path.GetFileName(packagePath));
+
                     // Config
                     if (Directory.Exists(PlaynitePaths.ConfigRootPath))
                     {

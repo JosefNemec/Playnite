@@ -527,20 +527,47 @@ namespace Playnite
         internal void ProcessUriRequest(PlayniteUriEventArgs args)
         {
             var arguments = args.Arguments;
-            if (arguments.Count() == 2 && arguments[0].Equals("start", StringComparison.OrdinalIgnoreCase))
+            if (args.Arguments.Count() == 0)
             {
-                if (Guid.TryParse(arguments[1], out var gameId))
-                {
-                    var game = Database.Games[gameId];
-                    if (game != null)
-                    {
-                        GamesEditor.PlayGame(game);
-                        return;
-                    }
-                }
+                return;
             }
 
-            logger.Warn($"Failed to process playnite URI arguments {string.Join(",", arguments)}");
+            var command = arguments[0];
+            switch (command)
+            {
+                case UriCommands.CreateDiag:
+                    CrashHandlerViewModel.CreateDiagPackage(Dialogs);
+                    break;
+
+                case UriCommands.StartGame:
+                    if (arguments.Count() != 2)
+                    {
+                        return;
+                    }
+
+                    if (Guid.TryParse(arguments[1], out var gameId))
+                    {
+                        var game = Database.Games[gameId];
+                        if (game == null)
+                        {
+                            logger.Error($"Cannot start game, game {arguments[1]} not found.");
+                        }
+                        else
+                        {
+                            GamesEditor.PlayGame(game);
+                        }
+                    }
+                    else
+                    {
+                        logger.Error($"Can't start game, failed to parse game id: {arguments[1]}");
+                    }
+
+                    break;
+
+                default:
+                    logger.Warn($"Uknown URI command {command}");
+                    break;
+            }
         }
 
         public void SetupInputs(bool enableXinput)

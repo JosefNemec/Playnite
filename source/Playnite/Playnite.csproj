@@ -272,6 +272,7 @@
     <Compile Include="Database\OldModels\Ver6\Platform.cs" />
     <Compile Include="Database\Collections\CompaniesCollection.cs" />
     <Compile Include="Database\Collections\PlatformsCollection.cs" />
+    <Compile Include="DiagnosticPackageInfo.cs" />
     <Compile Include="DialogsFactory.cs" />
     <Compile Include="DiscordManager.cs" />
     <Compile Include="EasyAntiCheat.cs" />

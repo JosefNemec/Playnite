@@ -36,7 +36,14 @@ namespace Playnite.ViewModels
 
         public ProgressViewViewModel(IWindowFactory window, Action progresAction, string text) : this(window, progresAction)
         {
-            ProgressText = text;
+            if (text?.StartsWith("LOC") == true)
+            {
+                ProgressText = ResourceProvider.GetString(text);
+            }
+            else
+            {
+                ProgressText = text;
+            }
         }
 
         public bool? ActivateProgress()
@@ -60,10 +67,12 @@ namespace Playnite.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
-        public static bool? ActivateProgress(Action progresAction, string progressText)
+        public static bool? ActivateProgress(Action progresAction, string progressText, out Exception failException)
         {
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progresAction, progressText);
-            return progressModel.ActivateProgress();
+            var result = progressModel.ActivateProgress();
+            failException = progressModel.FailException;
+            return result;
         }
     }
 }
