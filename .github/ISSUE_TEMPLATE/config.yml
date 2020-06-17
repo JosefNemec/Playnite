@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Playnite Discord server
+    url: https://discord.gg/BrtABqe
+    about: Official Discord server for general chat and support with Playnite.
+  - name: Playnite SDK documentation
+    url: https://playnite.link/docs/
+    about: Useful documentation when creating pluings and themes.
