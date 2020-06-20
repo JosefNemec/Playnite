@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="Playnite.SDK, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PlayniteSDK.5.2.0\lib\net462\Playnite.SDK.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

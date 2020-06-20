@@ -23,20 +23,6 @@ namespace _namespace_
             settings = new _name_Settings(this);
         }
 
-        public override IEnumerable<ExtensionFunction> GetFunctions()
-        {
-            return new List<ExtensionFunction>
-            {
-                new ExtensionFunction(
-                    "Execute function from GenericPlugin",
-                    () =>
-                    {
-                        // Add code to be execute when user invokes this menu entry.
-                        PlayniteApi.Dialogs.ShowMessage("Code executed from a plugin!");
-                    })
-            };
-        }
-
         public override void OnGameInstalled(Game game)
         {
             // Add code to be executed when game is finished installing.

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
- 
+
 namespace TestPlugin
 {
     public class TestPlugin : Plugin
@@ -31,19 +31,6 @@ namespace TestPlugin
         public override UserControl GetSettingsView(bool firstRunView)
         {
             return new TestPluginSettingsView();
-        }
-
-        public override IEnumerable<ExtensionFunction> GetFunctions()
-        {
-            return new List<ExtensionFunction>()
-            {
-                new ExtensionFunction(
-                    "Test Func from TestPlugin",
-                    () =>
-                    {
-                        logger.Info($"TestPluginDev ExtensionFunction {PlayniteApi.Database.Games.Count}");
-                    })
-            };
         }
 
         public override void OnGameInstalled(Game game)

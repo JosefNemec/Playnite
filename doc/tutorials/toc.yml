@@ -3,7 +3,7 @@
 
 - name: Toolbox utility
   href: toolbox.md
-  
+
 - name: Scripting
   items:
     - name: Introduction
@@ -32,6 +32,17 @@
     - name: Playnite URI support
       href: plugins/uriSupport.md
 
+- name: Various
+  items:
+    - name: Extension Manifest
+      href: extensionsManifest.md  
+    - name: Custom menu items
+      href: menus.md
+    - name: Working With Dynamic Variables
+      href: expandingVariables.md
+    - name: Writing to Log Files
+      href: logging.md  
+
 - name: Themes
   items:
     - name: Introduction
@@ -48,12 +59,3 @@
       href: themes/installing.md
     - name: Manifest file
       href: themes/manifestFile.md
-
-- name: Docs
-  items:
-    - name: Extension Manifest
-      href: extensionsManifest.md  
-    - name: Working With Dynamic Variables
-      href: expandingVariables.md
-    - name: Writing to Log Files
-      href: logging.md

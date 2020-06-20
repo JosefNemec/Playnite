@@ -3,6 +3,3 @@ Author: Playnite
 Version: 1.0
 Module: LibraryExporter.ps1
 Type: Script
-Functions: 
-    - Description: Export Library
-      FunctionName: ExportLibrary

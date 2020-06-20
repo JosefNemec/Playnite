@@ -34,19 +34,6 @@ public class TestPlugin : Plugin
         logger = api.CreateLogger();
     }
 
-    public override IEnumerable<ExtensionFunction> GetFunctions()
-    {
-        return new List<ExtensionFunction>()
-        {
-            new ExtensionFunction(
-                "Execute function from TestPlugin",
-                () =>
-                {
-                    // Add code to be execute when user invokes this menu entry.
-                })
-        };
-    }
-
     public override void OnGameInstalled(Game game)
     {
         // Add code to be executed when game is finished installing.

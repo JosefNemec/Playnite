@@ -46,7 +46,7 @@ PlayniteApi.Dialogs.ShowMessage(str(game_count))
 Examples
 ---------------------
 
-Displays number of games in database when executing `Show Game Count` menu from `Extensions` menu.
+Displays number of games in the game library when executing `Show Game Count` menu from `Extensions` menu.
 
 **PowerShell**:
 
@@ -56,14 +56,34 @@ function global:DisplayGameCount()
     $gameCount = $PlayniteApi.Database.Games.Count
     $PlayniteApi.Dialogs.ShowMessage($gameCount)
 }
+
+function global:GetMainMenuItems()
+{
+    param($menuArgs)
+
+    $menuItem = New-Object Playnite.SDK.Plugins.ScriptMainMenuItem
+    $menuItem.Description = "Show Game Count"
+    $menuItem.FunctionName = "DisplayGameCount"
+    $menuItem.MenuSection = "@"
+	return $menuItem
+}
 ```
 
 **IronPython**:
 
 ```python
+from Playnite.SDK.Plugins import ScriptMainMenuItem
+
 def display_game_count():
     game_count = PlayniteApi.Database.Games.Count
     PlayniteApi.Dialogs.ShowMessage(str(game_count))
+
+def get_mainmenu_items(menu_args):
+    menu_item = ScriptMainMenuItem()
+    menu_item.Description = "Show Game Count"
+    menu_item.FunctionName = "display_game_count"
+    menu_item.MenuSection = "@"
+    yield menu_item    
 ```
 
 ## Example manifest file
@@ -74,9 +94,6 @@ Author: Playnite
 Version: 1.0
 Module: scriptName.ps1 # or scriptName.py
 Type: Script
-Functions: 
-    - Description: Show Game Count
-      FunctionName: DisplayGameCount # or display_game_count
 ```
 
 There's also [library exporter](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins/LibraryExporter) script example that shows complete extension implementation.

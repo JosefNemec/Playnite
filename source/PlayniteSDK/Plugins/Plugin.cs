@@ -64,6 +64,7 @@ namespace Playnite.SDK.Plugins
         /// Returns list of plugin functions.
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Use GetGameMenuItems and GetMainMenuItems methods.")]
         public virtual IEnumerable<ExtensionFunction> GetFunctions()
         {
             return null;
@@ -137,6 +138,26 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         public virtual void OnLibraryUpdated()
         {
+        }
+
+        /// <summary>
+        /// Gets list of items to be displayed in game's context menu.
+        /// </summary>
+        /// <param name="args">Contextual arguments.</param>
+        /// <returns>List of menu items to be displayed in game menu.</returns>
+        public virtual List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Gets list of items to be displayed in Playnite's main menu.
+        /// </summary>
+        /// <param name="args">Contextual arguments.</param>
+        /// <returns>List of menu items to be displayed in Playnite's main menu.</returns>
+        public virtual List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        {
+            return null;
         }
 
         /// <summary>

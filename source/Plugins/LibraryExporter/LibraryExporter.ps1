@@ -15,3 +15,16 @@ function global:ExportLibrary()
         $PlayniteApi.Dialogs.ShowMessage("Library exported successfully.");
     }
 }
+
+function global:GetMainMenuItems()
+{
+    param(
+        $menuArgs
+    )
+
+    $menuItem = New-Object Playnite.SDK.Plugins.ScriptMainMenuItem
+    $menuItem.Description = "Export Library"
+    $menuItem.FunctionName = "ExportLibrary"
+    $menuItem.MenuSection = "@"
+    return $menuItem
+}

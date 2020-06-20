@@ -154,6 +154,7 @@
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\GameListItem.cs" />
+    <Compile Include="Controls\MenuHelpers.cs" />
     <Compile Include="Controls\MetadataDownloadSettings.xaml.cs">
       <DependentUpon>MetadataDownloadSettings.xaml</DependentUpon>
     </Compile>

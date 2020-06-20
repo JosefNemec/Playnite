@@ -364,8 +364,16 @@ namespace Playnite.Plugins
                     var plugins = LoadPlugins(desc, injectingApi);
                     foreach (var plugin in plugins)
                     {
+                        if (Plugins.ContainsKey(plugin.Id))
+                        {
+                            logger.Warn($"Plugin {plugin.Id} is already loaded.");
+                            continue;
+                        }
+
                         Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
+#pragma warning disable 0618
                         var plugFunc = plugin.GetFunctions();
+#pragma warning restore 0618
                         if (plugFunc?.Any() == true)
                         {
                             funcs.AddRange(plugFunc);

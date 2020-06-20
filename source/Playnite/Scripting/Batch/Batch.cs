@@ -45,6 +45,11 @@ namespace Playnite.Scripting.Batch
             }
         }
 
+        public object Execute(string script, Dictionary<string, object> variables, string workDir = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public object ExecuteFile(string scriptPath, string workDir = null)
         {
             var processInfo = new ProcessStartInfo("cmd.exe", "/c " + scriptPath)
