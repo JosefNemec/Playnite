@@ -232,7 +232,7 @@ Eredménye: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store alkalmazásból…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Névjegy</sys:String>
     <sys:String x:Key="LOCMenuIssues">Visszajelzés küldése</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Teljesképernyős mód </sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Linkek</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Súgó</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Támogass a Patreon-on</sys:String>
@@ -458,9 +458,6 @@ Az itt nem listázott emulátorokat egy későbbi ablakban tudod majd beállíta
 
 Ne felejtsd, hogy bármikor adhatsz hozzá játékot bármelyik platformhoz kézzel a főmenüből, ha rákattintasz a 'Playnite' gombra bal fent.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Válassz útvonalat az adatbázis fájlhoz. A beállítások menüből ez bármikor megváltoztatható.
-
-Protip: Ha több számítógépre szeretnéd ugyanazt a könyvtárat használni, akkor felhőtárhelyre állítsd az adatbázist (Google Drive, Dropbox, stb.)</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Alapértelmezett adatbázis hely minden felhasználónak</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Egyéni hely</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Játékkönyvtár integráció</sys:String>
@@ -475,9 +472,7 @@ Protip: Ha több számítógépre szeretnéd ugyanazt a könyvtárat használni,
     <sys:String x:Key="LOCFirstOtherGamesText">Kattints a lenti gombra a máshonnan származó játékok integrálásához (többek között a Microsoft Store-ban lévőket is).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Játékok importálása</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Készen vagyunk a beállításokkal</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">A kezdeti lépésekkel készen vagyunk. Ne feledd, hogy az összes beállítást eléred a 'Beállítások' menüpontból.
-
-Máshonnan származó játékot (többek között a Microsoft Store-ból származókat is) hozzáadhatsz a 'Playnite' logós főmenüből (bal felső sarokban).</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Emulátor importáló varázsló megnyitása</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Rácsnézet</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Válassz egy kinézetet a Playnite rácsnézetéhez. A képek elrendezését később a program beállításai közt megváltoztathatod, többek közt a képnyújtási lehetőségeket is.</sys:String>
@@ -682,7 +677,7 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCReloadScripts">Szkriptek újratöltése</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Minden szkript újratöltve.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nem találtam játékot a megadott adatok alapján</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Ablakos módra váltás</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Kilépés a Playnite-ból</sys:String>
     <sys:String x:Key="LOCLibraries">Könytárak</sys:String>
     <sys:String x:Key="LOCUpdateAll">Az összes frissítése</sys:String>
