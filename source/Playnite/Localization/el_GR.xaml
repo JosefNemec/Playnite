@@ -213,7 +213,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">Εφαρμογή Microsoft Store...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Σχετικά με το Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Αποστολή Σχολίων</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Έναρξη λειτουργίας πλήρους οθόνης</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
     <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Υποστήριξη στο Patreon</sys:String>
@@ -428,9 +428,6 @@
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Ρυθμίσεις Πρώτης Εκκίνησης</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Choose location for library database file. Location can be also changed later via Settings menu.
-
-Tip: If you want to sync your library between multiple computers, then set DB location to a cloud folder (Google Drive, Dropbox etc.)</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Ενσωμάτωση Βιβλιοθήκης</sys:String>
@@ -445,9 +442,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCFirstOtherGamesText">Κάντε κλικ στο παρακάτω κουμπί για να εισάγετε άλλα εγκατεστημένα παιχνίδια ή για να τα αναζητήσετε με μη αυτόματο τρόπο (συμπεριλαμβανομένων των παιχνιδιών του Windows Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Εισαγωγή Παιχνιδιών</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Η διαμόρφωση ολοκληρώθηκε</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Η αρχική ρύθμιση έχει ολοκληρωθεί. Θυμηθείτε ότι μπορείτε να αλλάξετε όλες τις ρυθμίσεις αργότερα μέσω του μενού &quot;Ρυθμίσεις&quot;.
-
-Μπορείτε επίσης να προσθέσετε οποιοδήποτε άλλο παιχνίδι από το κύριο μενού κάνοντας κλικ στο λογότυπο της εφαρμογής Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
