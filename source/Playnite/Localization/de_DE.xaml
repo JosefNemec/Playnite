@@ -231,7 +231,7 @@ Ergebnis: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft-Store-Anwendung …</sys:String>
     <sys:String x:Key="LOCMenuAbout">Über Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Feedback senden</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Vollbildmodus starten</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Zu Vollbildmodus wechseln</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hilfe</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Auf Patreon unterstützen</sys:String>
@@ -457,7 +457,6 @@ Weitere Emulatoren kannst du auch später im Konfigurationsmenü konfigurieren u
 
 Natürlich kannst du auch jederzeit Spiele sämtlicher Plattformen manuell hinzufügen. Wähle hierfür einfach im Hauptmenü das Playnite-Symbol und dann »Spiel hinzufügen«.   
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Bitte wähle den Speicherort für die Playnite-Datenbank. Du kannst den Pfad natürlich später jederzeit über die Einstellungen wieder ändern.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Standardmäßiger Programmpfad für alle Benutzer</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Benutzerdefinierter Programmpfad</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Bibliotheksintegration</sys:String>
@@ -472,9 +471,9 @@ Natürlich kannst du auch jederzeit Spiele sämtlicher Plattformen manuell hinzu
     <sys:String x:Key="LOCFirstOtherGamesText">Klicke auf die Schaltfläche unten, um andere installierte Spiele zu importieren, oder suche nach ihnen manuell (inklusive Spielen aus dem Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Spiele importieren</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguration abgeschlossen</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Die Ersteinrichtung wurde abgeschlossen. Alle Einstellungen können jederzeit im Menü »Einstellungen« verändert werden.
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Die Ersteinrichtung wurde abgeschlossen. Du kannst jedoch alle Einstellungen auch später im Menü »Einstellungen« ändern.
 
-Weiterhin kannst du jedes andere Spiel (inklusive Spielen aus dem Microsoft Store) aus dem Hauptmenü heraus hinzufügen, indem du auf Playnites Anwendungslogo klickst.</sys:String>
+Weiterhin kannst du jederzeit weitere Spiele inzufügen, indem du auf das Playnite-Logo klickst.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Weitere Informationen und Hilfe zum Import von Emulatoren</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Layout der Rasteransicht</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Wähle deine bevorzugte Darstellung für Playnites Rasteransicht aus. Das Bildlayout kann jederzeit in den Anwendungseinstellungen geändert werden, einschließlich der Optionen für die Bilddehnung.</sys:String>
@@ -679,7 +678,7 @@ Du kannst folgende Maßnahmen versuchen, um das Problem zu beheben:
     <sys:String x:Key="LOCReloadScripts">Skripte neu laden</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Alle Skripte erfolgreich neu geladen.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Für die angegebenen Such-/Filterkriterien wurden keine Spiele gefunden</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Zurück zum Desktopmodus</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Zu Desktopmodus wechseln</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite beenden</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotheken</sys:String>
     <sys:String x:Key="LOCUpdateAll">Alle aktualisieren</sys:String>
