@@ -213,7 +213,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre o Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar Opinião</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Iniciar modo Tela Cheia</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Suporte no Patreon</sys:String>
@@ -429,7 +429,6 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Localização Personalizada</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
