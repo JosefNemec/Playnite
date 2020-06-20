@@ -209,7 +209,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">حول Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">إرسال ملاحظات</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">تفعيل وضع الشاشة الكاملة</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">روابط</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">مساعدة</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
@@ -423,7 +423,6 @@
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
     <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
