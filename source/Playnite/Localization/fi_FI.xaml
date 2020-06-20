@@ -230,7 +230,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Tietoja Playnitesta</sys:String>
     <sys:String x:Key="LOCMenuIssues">Lähetä palautetta</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Käynnistä kokoruudulla</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Linkit</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ohjeet</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Tue Patreonissa</sys:String>
@@ -457,7 +457,6 @@ Voit myös konfiguroida ja tuoda minkä tahansa emulaattorin myöhemmin konfigur
 
 Muista, että voit aina manuaalisesti lisätä minkä tahansa pelin mille tahansa alustalle klikkaamalla päävalikon &quot;Playnite&quot;-nappia.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Valitse kirjastotietokannan sijainti. Voit vaihtaa sen myöhemmin asetuksista.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Ohjelmadatan oletussijanti kaikille käyttäjille</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Mukautettu sijainti</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Kirjastointegrointi</sys:String>
@@ -472,9 +471,7 @@ Muista, että voit aina manuaalisesti lisätä minkä tahansa pelin mille tahans
     <sys:String x:Key="LOCFirstOtherGamesText">Klikkaa alla olevaa nappia tuodaksesi muita asennettuja pelejä tai etsiäksesi manuaalisesti (Microsoft Store -pelit mukaan lukien).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Tuo pelit</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Määritys suoritettu</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Alustava asennus on valmis. Muista, että voit myöhemmin muuttaa kaikkia asetuksia &quot;Asetukset&quot;-valikon kautta.
-
-Voit myös myöhemmin lisätä minkä tahansa pelin (mukaan lukien Microsoft Store -pelit) klikkaamalla päävalikon Playnite-logoa.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Avaa emulaattorien tuontiohje</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Ruudukkonäkymän asettelu</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Valitse Playniten ruudukkonäkymän ensisijainen asettelu. Kuva-asettelua voidaan muuttaa milloin tahansa ohjelman asetuksista, kuvien venytysvaihtoehdot mukaan lukien.</sys:String>
@@ -679,7 +676,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCReloadScripts">Lataa skriptit uudelleen</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Kaikki skriptit on ladattu uudelleen onnistuneesti.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Hakua/suodatinta vastaavia pelejä ei löytynyt</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Poistu työpöytätilaan</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Poistu Playnitesta</sys:String>
     <sys:String x:Key="LOCLibraries">Kirjastot</sys:String>
     <sys:String x:Key="LOCUpdateAll">Päivitä kaikki</sys:String>
