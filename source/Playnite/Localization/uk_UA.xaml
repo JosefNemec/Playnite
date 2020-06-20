@@ -457,7 +457,6 @@
         
 Майте на увазі, що ви завжди можете додати будь-яку гру для будь-якої платформи вручну з головного меню, натиснувши кнопку &quot;Playnite&quot;.   
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Виберіть місце для файлу бази даних бібліотеки. Розташування можна також змінити пізніше через меню налаштувань.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Розташування даних програми за замовчуванням для всіх користувачів</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Настроюване розташування</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Інтерграція бібліотеки</sys:String>
@@ -472,9 +471,9 @@
     <sys:String x:Key="LOCFirstOtherGamesText">Натисніть кнопку нижче, щоб імпортувати інші встановлені ігри або додати їх вручну (включно з іграми з Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Імпортувати ігри</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Конфігурацію завершено</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Початкове налаштування завершено. Пам'ятайте, що ви можете змінити всі налаштування пізніше через меню &quot;Налаштування&quot;.
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Першочергове налаштування завершено. Пам'ятайте, що ви можете змінити будь-які налаштування пізніше в меню &quot;Налаштування&quot;.
 
-Ви також можете додати будь-які інші ігри (включно з іграми з Microsoft Store) пізніше з головного меню, натиснувши на логотип Playnite.</sys:String>
+Також ви маєте можливість додати будь-яку іншу гру згодом натиснувши на меню у вигляді логотипа Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Відкрити помічник з імпорту емуляції</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Налаштування вигляду Сітки</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Оберіть бажаний вигляд Сітки в Playnite. Розташування зображень може бути змінено в будь-який час в налаштуваннях додатку, включно з налаштуваннями розтягування зображень.</sys:String>
