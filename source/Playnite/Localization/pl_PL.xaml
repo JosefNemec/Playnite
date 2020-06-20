@@ -231,7 +231,7 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Aplikacja Microsoft Store…</sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Wyślij opinię</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Przejdź w tryb pełnoekranowy</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Linki</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pomoc</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Wesprzyj na Patreon</sys:String>
@@ -458,7 +458,6 @@ Możesz także skonfigurować i importować dowolny niestandardowy emulator pó�
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Ten kreator poprowadzi cię przez proces automatycznego importu gier i konfiguracji zewnętrznych bibliotek. Playnite może automatycznie importować gry z wielu platform, takich jak Steam czy GOG, a także na bieżąco aktualizować twoją kolekcję poprzez automatyczną synchronizację bibliotek w trakcie uruchamiania aplikacji.
 
 Zauważ, że zawsze możesz dodać dowolną grę na którąkolwiek z platform ręcznie, klikając przycisk 'Playnite' w menu głównym.</sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Wybierz lokalizację pliku bazy danych biblioteki. Lokalizację można również zmienić później za pomocą menu Ustawienia.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Domyślna lokalizacja danych programu dla wszystkich użytkowników</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Niestandardowa lokalizacja</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integracja biblioteki</sys:String>
@@ -473,9 +472,7 @@ Zauważ, że zawsze możesz dodać dowolną grę na którąkolwiek z platform r�
     <sys:String x:Key="LOCFirstOtherGamesText">Kliknij przycisk poniżej, aby importować inne zainstalowane gry lub przeglądać je ręcznie (w tym gry Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importuj gry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguracja zakończona</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Wstępna konfiguracja została zakończona. Pamiętaj, że możesz zmienić wszystkie ustawienia później za pomocą przycisku w menu &quot;Ustawienia&quot;.
-
-Możesz również dodać dowolną inną grę, klikając logo Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Otwórz przewodnik importowania emulatorów</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Układ widoku siatki</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Wybierz preferowany układ w widoku siatki. Możesz to ustawienie zmienić, w tym opcje rozciągania obrazu.</sys:String>
@@ -680,7 +677,7 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCReloadScripts">Przeładuj skrypty</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Wszystkie skrypty przeładowano pomyślnie.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nie znaleziono gier według określonych kryteriów wyszukiwania lub filtra</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Powrót do trybu pulpitu</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Wyjdź z Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Biblioteki</sys:String>
     <sys:String x:Key="LOCUpdateAll">Aktualizuj wszystko</sys:String>
