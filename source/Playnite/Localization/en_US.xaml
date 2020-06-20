@@ -223,7 +223,7 @@ Results in: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout"></sys:String>
     <sys:String x:Key="LOCMenuIssues"></sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Launch Fullscreen Mode</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
     <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
@@ -446,7 +446,6 @@ You can also configure and import any custom emulator from the configuration men
 
 Keep in mind that you can manually add any custom game for any platform later by clicking the 'Playnite' button in the main menu.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Please choose a location for the library database file. It can be changed later in the application Settings.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
     <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
@@ -461,9 +460,7 @@ Keep in mind that you can manually add any custom game for any platform later by
     <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton"></sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">The initial setup has been completed. Remember that you can change all settings later in the 'Settings' menu.
-
-You can also add any other game (including Microsoft Store games) later by clicking the Playnite logo menu.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Begin the Emulation Import Wizard</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
@@ -664,7 +661,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCReloadScripts"></sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Return to Desktop Mode</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite"></sys:String>
     <sys:String x:Key="LOCLibraries"></sys:String>
     <sys:String x:Key="LOCUpdateAll"></sys:String>
