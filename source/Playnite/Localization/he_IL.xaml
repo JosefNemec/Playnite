@@ -230,7 +230,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">אפליקציה ממייקרוסופט סטור…</sys:String>
     <sys:String x:Key="LOCMenuAbout">אודות Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">שלח משוב</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">מצב מסך מלא</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">קישורים</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">עזרה</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">תמוך באמצעות Patreon</sys:String>
@@ -457,7 +457,6 @@
  
 זכרו שתמיד ניתן להוסיף משחק מותאם אישית לכל פלטפורמה ידנית מהתפריט הראשי על ידי לחיצה על כפתור ה 'Playnite'.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">בחר מיקום לקובץ בסיס נתוני הספריה. ניתן לשנות את המיקום מאוחר יותר בתפריט ההגדרות.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">מיקום ברירת מחדל עבור מידע התוכנה לכל המשתמשים</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">מיקום מותאם אישית</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">אינטגרציית ספריה</sys:String>
@@ -472,9 +471,7 @@
     <sys:String x:Key="LOCFirstOtherGamesText">לחץ על הכפתור מתחת כדי לייבא משחקים מותקנים אחרים או לחפש אחריהם ידנית (כולל משחקי Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">ייבא משחקים</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">הסתיימה ההגדרה</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">התקנה ראשונית הסתיימה. זכור שביכולתך לשנות את כל ההגדרות מאוחר יותר על ידי תפריט ה&quot;הגדרות&quot;.
-
-תוכלו גם להוסיף כל משחק אחר (כולל משחקי Microsoft Store) מאוחר יותר מהתפריט הראשי על ידי לחיצה על לוגו האפליקציה של Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">פתח מנחה ייבוא אמולציה</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">פריסת תצוגת רשת</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">בחרו פריסה מועדפת לתצוגת רשת ב Playnite. פריסת תמונות ניתנת לשינוי בכל זמן בהגדרות האפליקציה, כולל אפשרויות מתיחת תמונה.</sys:String>
@@ -679,7 +676,7 @@
     <sys:String x:Key="LOCReloadScripts">טען מחדש סקריפטים</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">כל הסקריפטים נטענו מחדש בהצלחה.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">לא נמצאו משחקים עבור קריטריון חיפוש\מסנן</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">צא למצב שולחן עבודה</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">צא מ Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">ספריות</sys:String>
     <sys:String x:Key="LOCUpdateAll">עדכן הכל</sys:String>
