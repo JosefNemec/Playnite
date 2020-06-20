@@ -231,7 +231,7 @@ Sonuçları: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Mağaza uygulaması…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite Hakkında</sys:String>
     <sys:String x:Key="LOCMenuIssues">Geri Bildirim</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Tam Ekran Modunu Başlat</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Bağlantılar</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Yardım</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Patreon'da Destekle</sys:String>
@@ -458,7 +458,6 @@ Ayrıca herhangi bir özel emülatörü daha sonra yapılandırma menüsü arac�
  
 'Playnite' düğmesine tıklayarak ana menüden herhangi bir platform için herhangi bir özel oyunu her zaman elle ekleyebileceğinizi unutmayın.   
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Kütüphane veritabanı dosyası için konum seçin. Konum daha sonra Ayarlar menüsü aracılığıyla da değiştirilebilir.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Tüm kullanıcılar için varsayılan program veri konumu</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Özel konum</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Kütüphane Entegrasyonu</sys:String>
@@ -473,9 +472,7 @@ Ayrıca herhangi bir özel emülatörü daha sonra yapılandırma menüsü arac�
     <sys:String x:Key="LOCFirstOtherGamesText">Yüklü diğer oyunları içe aktarmak veya elle taramak için (Microsoft Mağazası oyunları dahil) aşağıdaki düğmeye tıkla.</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Oyunları İçe Aktar</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Yapılandırma Tamamlandı</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">İlk kurulum tamamlandı. Bütün ayarları daha sonra 'Ayarlar' menüsünden değiştirebilirsiniz.
-
-Aynı zamanda başka diğer oyunları (Microsoft Store oyunları dahil) ana menüden Playnite uygulama logosuna tıklayarak ekleyebilirsiniz.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Öykünme içe aktarma rehberini aç</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Izgara Görünümü Düzeni</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Playnite'ın kapak görünümünün tercih edilen düzenini seç. Fotoğraf düzeni uygulama ayarlarından her zaman değiştirilebilir, fotoğraf genişletme seçenekleri de dahil.</sys:String>
@@ -680,7 +677,7 @@ Sorunu çözmek için bunları deneyebilirsiniz:
     <sys:String x:Key="LOCReloadScripts">Komut Dosyalarını Yeniden Yükle</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Tüm komut dosyaları başarıyla yeniden yüklendi.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Seçili arama/filtre kriterinde oyun bulunamadı</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Masaüstü Moduna Çık</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite'ı Kapat</sys:String>
     <sys:String x:Key="LOCLibraries">Kütüphaneler</sys:String>
     <sys:String x:Key="LOCUpdateAll">Tümünü Güncelle</sys:String>
