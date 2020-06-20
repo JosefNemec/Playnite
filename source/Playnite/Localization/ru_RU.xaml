@@ -231,7 +231,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">Приложение Microsoft Store…</sys:String>
     <sys:String x:Key="LOCMenuAbout">О Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Отправить отзыв</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Запустить полноэкранный режим</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Переключиться на полноэкранный режим</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Ссылки</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Помощь</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Поддержать на Patreon</sys:String>
@@ -458,9 +458,6 @@
 
 Имейте в виду, что вы всегда можете добавить какую-либо игру для любой платформы вручную из главного меню, нажав кнопку &quot;Playnite&quot;.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Выберите местоположение для файла базы данных библиотеки. Местоположение может быть изменено позже через меню настроек.
-
-Совет: Если вы хотите синхронизировать свою библиотеку между несколькими компьютерами, установите местоположение базы данных в облачном хранилище (Google Drive, Dropbox и т.д.).</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Стандартное расположение базы данных</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Собственное расположение базы данных</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Интеграция библиотеки</sys:String>
@@ -475,9 +472,9 @@
     <sys:String x:Key="LOCFirstOtherGamesText">Нажмите на кнопку ниже, чтобы импортировать другие установленные игры или просматривать их вручную (включая игры Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Импортировать игры</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Конфигурация завершена</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Начальная настройка завершена. Помните, что вы можете изменить все настройки позже через меню 'Настройки'.
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Начальная настройка завершена. Помните, что вы можете изменить все позже, в меню «Настройки».
 
-Вы также можете добавить любую другую игру (включая игры Microsoft Store) позже из главного меню, нажав на логотип приложения Playnite.</sys:String>
+Вы также можете добавить любую игру позже, щелкнув на логотип Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Открыть руководство по импорту эмуляции</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Настройка отображения</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Выберите предпочтительный макет для отображения сетки Playnite. Настройки отображения могут быть изменены в любое время в настройках приложения, включая настройки растяжения изображения.</sys:String>
@@ -893,7 +890,8 @@
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Игнорировать сторонний магазин игр.</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Импорт игр с Xbox </sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Если включено, игры, для которых требуется сторонний клиент, импортироваться не будут.
+Включает магазины, уже поддерживаемые в Playnite, для предотвращения дублирования.</sys:String>
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Запустить приложение Xbox Pass вместо Microsoft Store при открытии клиента</sys:String>
