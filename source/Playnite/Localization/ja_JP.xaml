@@ -231,7 +231,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">マイクロソフトストアアプリケーション...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite について</sys:String>
     <sys:String x:Key="LOCMenuIssues">フィードバックを送信</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">フルスクリーンモードに切り替え</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">関連リンク</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">ヘルプ</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Patreonでサポート</sys:String>
@@ -457,7 +457,6 @@
         
 いつでも'Playnite'のメインメニューから、あらゆるプラットフォーム用のカスタムゲームを追加できます。   
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">ライブラリデータベースファイルの場所を選択します。場所は設定メニューから後で変更することもできます。</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">すべてのユーザーのデフォルトプログラムデータの場所</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">カスタムの場所</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">統合ライブラリ</sys:String>
@@ -472,9 +471,7 @@
     <sys:String x:Key="LOCFirstOtherGamesText">下のボタンをクリックして、インストールされている他のゲームをインポートするか、手動で参照してください(Microsoftストアゲームを含む)。</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">ゲームのインポート</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">設定完了</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初期設定が完了しました。後で '設定'メニューからすべての設定を変更できます。
-
-Playniteアプリケーションのロゴをクリックして、メインメニューから他のゲーム(Microsoftストアゲームを含む) を後で追加することもできます。</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">エミュレーションインポートガイドを開く</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">グリッドビューレイアウト</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">グリッドビューのお好みのレイアウトを選んでください。映像のレイアウトもストレッチオプションはPlaynite 設定にいつでも変更できます。</sys:String>
@@ -679,7 +676,7 @@ Playniteアプリケーションのロゴをクリックして、メインメニ
     <sys:String x:Key="LOCReloadScripts">スクリプトの再読み込み</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">すべてのスクリプトが正常に再読み込みされました。</sys:String>
     <sys:String x:Key="LOCNoGamesFound">指定された検索/フィルター条件に一致するゲームは見つかりませんでした</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">デスクトップモードに戻る</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite を終了</sys:String>
     <sys:String x:Key="LOCLibraries">ライブラリ</sys:String>
     <sys:String x:Key="LOCUpdateAll">一括更新</sys:String>
