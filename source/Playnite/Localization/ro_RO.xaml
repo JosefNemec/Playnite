@@ -209,7 +209,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Despre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Exprimați-vă Părerea</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Pornește în modul Fullscreen</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Link-uri</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle"></sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Ajutați-ne pe Patreon</sys:String>
@@ -423,7 +423,6 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Setare pentru prima dată</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Directorul prestabilit de Program Data pentru toți utilizatorii</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Locație personalizată</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integrare Librărie</sys:String>
@@ -633,7 +632,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCReloadScripts">Reîncarcă Scripturile</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Toate script-urile au fost reîncărcate cu succes.</sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Revenire la modul Desktop</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Ieșire Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Librării</sys:String>
     <sys:String x:Key="LOCUpdateAll">Actualizează Tot</sys:String>
