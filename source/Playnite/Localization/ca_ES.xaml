@@ -209,7 +209,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envia els teus comentaris</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Inicia mode a pantalla completa</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Enllaços</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Dóna suport a Patreon</sys:String>
@@ -424,7 +424,6 @@ També es pot canviar a les opcions de l'aplicació.</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Primera configuració</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Tria l'ubicació per al fitxer de base de dades de la biblioteca. L'ubicació també es pot canviar més tard a través del menú Configuració.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Ubicació de dades de programa per defecte per a tots els usuaris</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Ubicació personalitzada</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integració de biblioteques</sys:String>
@@ -439,9 +438,7 @@ També es pot canviar a les opcions de l'aplicació.</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesText">Feu clic al següent botó per a importar altres jocs instal·lats o buscar-los manualment (inclosos els jocs de Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importar jocs</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuració finalitzada</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">S'ha completat la configuració inicial. Recorda que pots canviar tots els paràmetres a través del menú &quot;Configuració&quot;.
-
-També pots afegir qualsevol altre joc (incloent els de Microsoft Store) al menú principal fent clic al logotip de l’aplicació Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Obrir guia d'importació d'emuladors</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Disposició de vista de quadrícula</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Selecciona la disposició preferida per a la vista de quadrícula de Playnite. La disposició d'imatges es por canviar en qualsevol moment a la configuració de l'aplicació, incloent opcions d'estirament de la imatge.</sys:String>
@@ -636,7 +633,7 @@ També pots afegir qualsevol altre joc (incloent els de Microsoft Store) al men�
     <sys:String x:Key="LOCReloadScripts">Recarregar Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Tots els scripts s'han carregat correctament.</sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Tornar al mode d'escriptori</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Sortir de Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Biblioteques</sys:String>
     <sys:String x:Key="LOCUpdateAll">Actualitzar tot</sys:String>
