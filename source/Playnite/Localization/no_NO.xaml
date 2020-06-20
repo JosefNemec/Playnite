@@ -231,7 +231,7 @@ Resulterer i: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store-applikasjon…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Gi Tilbakemelding</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullskjermmodus</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Lenker</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjelp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Støtt på Patreon</sys:String>
@@ -450,7 +450,6 @@ Kan også endres i applikasjonsinnstillinger.</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Første gangs konfigurering</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Velg sted for bibliotekdatabasefil. Plassering kan også endres senere via Innstillinger-menyen.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Standard programdataplassering for alle brukere</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Egendefinert plassering</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Biblioteksintegrering</sys:String>
@@ -465,9 +464,7 @@ Kan også endres i applikasjonsinnstillinger.</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesText">Klikk på knappen nedenfor for å importere andre installerte spill eller bla gjennom dem manuelt (inkludert Microsoft Store-spill).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importer spill</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurasjonen er fullført</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Innledende oppsett er fullført. Husk at du kan endre alle innstillinger senere via 'Innstillinger' -menyen.
-
-Du kan også legge til ethvert annet spill (inkludert Microsoft Store-spill) senere fra hovedmenyen ved å klikke på Playnite-applikasjonslogoen.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Åpne emulering import guide</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Rutenett visning</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Velg foretrukket layout for Playnites rutenettvisning. Bildelayout kan endres når som helst i applikasjonsinnstillinger, inkludert alternativer for strekk for bilder.</sys:String>
@@ -663,7 +660,7 @@ Vennligst legg ved følgende ID til krasjrapporten din:</sys:String>
     <sys:String x:Key="LOCReloadScripts">Oppdater skript</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Alle skriptene ble lastet på nytt.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Ingen spill funnet for spesifiserte søke og filterkriterier</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Avslutt til skrivebord</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Lukk Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Biblioteker</sys:String>
     <sys:String x:Key="LOCUpdateAll">Oppdater alle</sys:String>
