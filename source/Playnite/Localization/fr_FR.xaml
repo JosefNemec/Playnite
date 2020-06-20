@@ -230,7 +230,7 @@ Résultats dans : -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCMenuAddWindowsStore">Application Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Mode plein écran</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Passer en mode plein écran</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Liens</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Aide</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Soutenir Playnite</sys:String>
@@ -454,10 +454,6 @@ Par la suite, vous pourrez également configurer et importer tout émulateur per
 
 Vous pouvez également ajouter des jeux ne dépendant d'aucun client en cliquant sur 'Ajouter un jeu' à partir du menu principal. Les profils de jeu personnalisés peuvent ensuite être assignés à n'importe quelle plateforme.               
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Choisissez l'emplacement du fichier de base de données de la bibliothèque. L'emplacement peut être modifié plus tard via le menu Paramètres.
-
-Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ordinateurs, définissez l'emplacement de la base de données sur un dossier cloud (Google Drive, Dropbox, etc.)
-</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Emplacement par défaut des données de programme pour tous les utilisateurs</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Emplacement personnalisé</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Configuration de la bibliothèque</sys:String>
@@ -472,7 +468,9 @@ Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ord
     <sys:String x:Key="LOCFirstOtherGamesText">Cliquez sur le bouton ci-dessous pour importer d'autres jeux installés ou les rechercher manuellement (y compris les jeux du Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importer des jeux</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration terminée</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu &quot;Paramètres&quot;.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu 'Paramètres'
+
+De nouveaux jeux peuvent être ajoutés en cliquant sur le logo de Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Ouvrir le guide d'importation d'émulation</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Disposition (affichage en grille)</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Sélectionner le mode de mise à l'échelle des images pour l'affichage en grille. Ce paramètre peut être modifié à tout moment.</sys:String>
@@ -611,7 +609,7 @@ Veuillez essayer les solutions suivantes :
   • Vérifiez que votre antivirus ne bloque aucun fichier dans le répertoire de Playnite.
   • Essayez d'installer Playnite dans un autre emplacement.</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Impossible d'importer des émulateurs, le fichier de définition d'émulateur n'existe pas.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Echec de l'initialisation de l'interface XInput.</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">Échec de l'initialisation de l'interface XInput.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Modifier les propriétés</sys:String>
@@ -676,7 +674,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCReloadScripts">Actualiser les scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Scripts chargés avec succès.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Aucun jeu trouvé avec les critères spécifiés</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Passer en mode bureau</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Retour au bureau</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Quitter Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Clients de jeu</sys:String>
     <sys:String x:Key="LOCUpdateAll">Tous les clients</sys:String>
