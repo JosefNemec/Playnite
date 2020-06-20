@@ -231,7 +231,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store应用程序…</sys:String>
     <sys:String x:Key="LOCMenuAbout">关于Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">发送反馈</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">启动全屏模式</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">链接</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">帮助</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">在 Patreon 上支持我们</sys:String>
@@ -456,7 +456,6 @@
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">该向导将引导您完成游戏自动导入和外部游戏库的配置。 Playnite可以自动从Steam或GOG等多种游戏平台中导入游戏，并且在软件启动的时候也会自动更新您的游戏库来保持游戏库。
  
 请记住，您可以随时通过点击“Playnite”按钮在主菜单中手动为任何平台添加任何自定义游戏    </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">选择数据库文件的位置。 稍后也可以通过“设置”菜单更改位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">针对所有用户的默认程序数据位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">自定义位置</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">游戏库整合</sys:String>
@@ -471,9 +470,7 @@
     <sys:String x:Key="LOCFirstOtherGamesText">点击下面的按钮导入其他已安装的游戏或手动浏览（包括Windows商店游戏）</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">_导入游戏</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">配置完成</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始设置已完成。 请记住，稍后可以通过“设置”菜单更改所有设置。
-
-您也可以通过单击主菜单中Playnite图标添加任何其他游戏（包括Microsoft商店游戏）。</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">打开模拟导入指南</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">网格视图布局</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">选择 Playtion 网格视图首选布局。图像布局在任何时候在应用程序设置中可以更改，包括图像伸展选项。</sys:String>
@@ -678,7 +675,7 @@
     <sys:String x:Key="LOCReloadScripts">重新加载脚本</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">所有脚本都成功重新加载</sys:String>
     <sys:String x:Key="LOCNoGamesFound">找不到符合指定 搜索/过滤 条件的游戏</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">退出到桌面模式</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">退出Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">库</sys:String>
     <sys:String x:Key="LOCUpdateAll">全部更新</sys:String>
