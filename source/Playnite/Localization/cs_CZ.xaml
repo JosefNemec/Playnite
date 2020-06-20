@@ -231,7 +231,7 @@ Příklad: -image &quot;{ImagePath}&quot; -fullscreen
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store aplikaci…</sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Odeslat zpětnou vazbu</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Spustit režim celé obrazovky</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Odkazy</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Nápověda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podpořit na Patreonu</sys:String>
@@ -457,7 +457,6 @@ Taktéž můžete konfigurovat a importovat vlastní emulátory později po ukon
         
 Vždy můžete hry přidat ručně z hlavního menu, kliknutím na ikonu Playnite.  
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Vyberte umístění pro soubor databáze knihovny. Lze později změnit v nastavení.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Výchozí poloha dat programu pro všechny uživatele</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Vlastní umístění</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integrace knihovny</sys:String>
@@ -472,9 +471,7 @@ Vždy můžete hry přidat ručně z hlavního menu, kliknutím na ikonu Playnit
     <sys:String x:Key="LOCFirstOtherGamesText">Klikněte na tlačítko níže pro import ostatních instalovaných her, případně je vyberte manuálně (včetně her z Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importovat hry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurace dokončena</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Úvodní nastavení bylo dokončeno. Pamatujte že všechna nastavení jdou změnit později v &quot;Nastavení&quot;.
-
-Taktéž můžete později přidat jakoukoliv hru (včetně her z Microsoft Store) z hlavního menu, kliknutím na ikonu Playnite.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Otevřít průvodce importem emulátorů</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Zobrazení mřížky</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Vyberte preferované rozložení pro zobrazení mřížky. Rozložení obrázků může být kdykoliv změněno v nastavení aplikace, včetně různých možností zvětšování obrázků.</sys:String>
@@ -679,7 +676,7 @@ Můžete zkusit následující možnosti opravy:
     <sys:String x:Key="LOCReloadScripts">Znovu načíst skripty</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Všechny skripty se úspěšně znovu načetly.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">V rámci zadaných kritérií nebyla nalezena žádná odpovídající hra</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Zpět do režimu plochy</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Opustit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Knihovny</sys:String>
     <sys:String x:Key="LOCUpdateAll">Aktualizovat vše</sys:String>
