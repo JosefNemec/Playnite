@@ -223,7 +223,7 @@ Rezultatas: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store aplikacija...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Apie Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Siųsti atsiliepimą</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Pradėti viso ekrano rėžime</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Nuorodos</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pagalba</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Paremti &quot;Patreon&quot; platformoje</sys:String>
@@ -438,9 +438,6 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Pirminė konfigūracija</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Pasirinkite bibliotekos duombazės failo vietą. Failo vietą bet kada galėsite pakeisti nustatymų meniu.
-
-Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,rekomenduojame duombazės vietą nustatyti debesyje (Google Drive, Dropbox ir t.t.)</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Numatytoji programos duomenų visiems vartotojams</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Pasirinktinė vieta</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Bibliotekos integracija</sys:String>
