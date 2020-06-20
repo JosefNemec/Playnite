@@ -209,7 +209,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Skicka Feedback</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Fullskärmsläge</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Länkar</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjälp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Stöd Playnite på Patreon</sys:String>
@@ -423,9 +423,6 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Första Gången Konfiguration</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Välj plats för databas. Plats kan också ändras senare via inställningsmenyn.
-
-Tips! Om du vill synkronisera ditt bibliotek mellan flera datorer ställer du in DB-platsen i en molnmapp (Google Drive, Dropbox etc.)</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Standard plats för alla användare</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Anpassad plats</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Bibliotek Integration</sys:String>
@@ -440,9 +437,7 @@ Tips! Om du vill synkronisera ditt bibliotek mellan flera datorer ställer du in
     <sys:String x:Key="LOCFirstOtherGamesText">Klicka på knappen nedan för att importera andra installerade spel eller bläddra dem manuellt (inklusive Windows Store-spel).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importera spel</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguration Avslutad</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Förstagångskonfigurationen har slutförts. Kom ihåg att du kan ändra alla inställningar senare via Inställningar.
-
-Du kan också lägga till andra spel (inklusive Microsoft Store-spel) senare från huvudmenyn genom att klicka på Playnite-logotypen.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Öppnar en guide för att importera emulerade spel</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Rutnätsvy</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Välj den önskade layouten för Playnites rutnätsvy. Utseendet för bilder kan ändras när som helst i applikationsinställningarna, inklusive inställningar för bildskalning.</sys:String>
@@ -637,7 +632,7 @@ Du kan också lägga till andra spel (inklusive Microsoft Store-spel) senare fr�
     <sys:String x:Key="LOCReloadScripts">Ladda om skript</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Alla skript blev omladdade.</sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Avsluta till skrivbordsläge</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Avsluta Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotek</sys:String>
     <sys:String x:Key="LOCUpdateAll">Uppdatera alla</sys:String>
