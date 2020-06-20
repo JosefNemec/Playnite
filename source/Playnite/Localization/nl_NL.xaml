@@ -221,7 +221,7 @@ Automatisch geïmporteerde spellen kunnen opnieuw verschijnen in Playnite na de 
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Over Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Stuur Feedback</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Start Volledig Scherm Modus</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Koppelingen</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hulp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Steun op Patreon</sys:String>
@@ -436,9 +436,6 @@ Kan ook gewijzigd worden in de applicatie instellingen.</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Eerste Configuratie</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Kies een locatie voor het database bestand van de bibliotheek. De locatie kan later ook veranderd worden via het Instellingen menu.
-
-Tip: Als je je bibliotheek over meerdere computers wilt synchroniseren, stel de database locatie dan in op een cloud map (Google Drive, Dropbox e.d.)</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Standaard programma data locatie voor alle gebruikers</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Andere locatie</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Bibliotheek Integratie</sys:String>
@@ -453,9 +450,7 @@ Tip: Als je je bibliotheek over meerdere computers wilt synchroniseren, stel de 
     <sys:String x:Key="LOCFirstOtherGamesText">Klik op de knop hieronder om andere geïnstalleerde spellen te importeren of om ze handmatig te zoeken (inclusief Microsoft Store spellen).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importeer Spellen</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuratie Klaar</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">De eerste setup is voltooid. Vergeet niet dat u later alle instellingen kunt wijzigen via het 'Instellingen' menu.
-
-U kunt later ook andere spel toevoegen (inclusief Microsoft Store spellen) in het hoofdmenu door te klikken op het Playnite applicatie logo.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Open emulatie importeergids</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Rasterweergave Layout</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Selecteer de voorkeurslay-out voor de weergave van de Playnite rasterweergave. Afbeeldingslay-out kan op elk moment worden gewijzigd in de applicatie instellingen, inclusief de afbeeldingsopties.</sys:String>
@@ -650,7 +645,7 @@ U kunt later ook andere spel toevoegen (inclusief Microsoft Store spellen) in he
     <sys:String x:Key="LOCReloadScripts">Herlaad Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Alle scripts succesvol herladen.</sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Terug naar Desktop Modus</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Sluit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotheken</sys:String>
     <sys:String x:Key="LOCUpdateAll">Alles bijwerken</sys:String>
