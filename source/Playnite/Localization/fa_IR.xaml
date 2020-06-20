@@ -232,7 +232,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">برنامه فروشگاه مایکروسافت…</sys:String>
     <sys:String x:Key="LOCMenuAbout">درباره Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">ارسال بازخورد</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">شروع حالت تمام صفحه</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">پیوند‌ها</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">کمک</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">پشتیبانی از Patreon</sys:String>
@@ -459,7 +459,6 @@
 به خاطر داشته باشید که همیشه می توانید با کلیک بر روی دکمه &quot;Playnite&quot;، هر بازی شخصی را برای هر سیستم عامل به صورت دستی از منوی اصلی اضافه کنید.
 
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">مکان را برای پرونده پایگاه داده کتابخانه انتخاب کنید. مکان را می توان بعداً از طریق منوی تنظیمات تغییر داد.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">موقعیت مکانی پیش فرض برنامه برای همه کاربران</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">مکان سفارشی</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">ادغام کتابخانه</sys:String>
@@ -474,9 +473,7 @@
     <sys:String x:Key="LOCFirstOtherGamesText">بر روی دکمه زیر کلیک کنید تا سایر بازیهای نصب شده را وارد کنید یا به صورت دستی آنها را وارد کنید (از جمله بازی های Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">وارد کردن بازیها</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">پیکربندی تکمیل شد</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">راه اندازی اولیه به پایان رسید. به یاد داشته باشید که می توانید بعداً از طریق دکمه &quot;تنظیمات&quot; کلیه تنظیم ها را تغییر دهید.
-
-همچنین می توانید هر بازی دیگری (از جمله بازی های فروشگاه مایکروسافت) را بعدا از منوی اصلی با کلیک روی آرم برنامه Playnite اضافه کنید.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">راهنمای واردات شبیه ساز را باز کنید</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">طرح بندی نمای شبکه</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">طرح دلخواه را برای نمای شبکه Playnite انتخاب کنید. طرح تصویر را می توان در هر زمان در تنظیمات برنامه تغییر داد، از جمله گزینه های کشش تصویر.</sys:String>
@@ -679,7 +676,7 @@
     <sys:String x:Key="LOCReloadScripts">بارگیری مجدد اسکریپت ها</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">همه اسکریپت ها با موفقیت بارگذاری مجدد شدند.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">هیچ بازی برای معیارهای مشخص شده فیلتر/جستجو یافت نشد</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">خروج از حالت دسک تاپ</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">خروج از Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">کتابخانه ها</sys:String>
     <sys:String x:Key="LOCUpdateAll">بروزرسانی همه</sys:String>
