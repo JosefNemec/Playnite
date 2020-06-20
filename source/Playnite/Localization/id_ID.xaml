@@ -423,9 +423,6 @@ Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Konfigurasi Awal</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Pilih lokasi database untuk library kamu. Bisa diganti di menu Setting.
-
-Tip: Jika kamu ingin mensingkronisasikan library untuk beberapa komputer sekaligus, Set lokasi database ke folder Cloud (Google Drive, Dropbox, dll.)</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Gunakan lokasi default untuk semua user</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">location kustom</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integrasi Library</sys:String>
