@@ -230,7 +230,7 @@ Résultats dans : -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCMenuAddWindowsStore">Application Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Passer en mode plein écran</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Basculer en mode plein écran</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Liens</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Aide</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Soutenir Playnite</sys:String>
