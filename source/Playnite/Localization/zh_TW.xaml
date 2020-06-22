@@ -231,7 +231,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store 應用程式…</sys:String>
     <sys:String x:Key="LOCMenuAbout">關於Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">意見回饋</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">進入全螢幕模式</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">連結</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">說明</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">在Patreon上支持我們</sys:String>
@@ -470,7 +470,9 @@
     <sys:String x:Key="LOCFirstOtherGamesText">點選以下的按鈕以匯入或手動瀏覽其他已安裝的遊戲(包含Microsoft Store遊戲)</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">匯入遊戲</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">完成設定</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">已完成初始設定。請留意您可隨時於設定中更改配置。
+
+您亦可隨時點選Playnite圖標來新增任何遊戲。</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">開啟模擬器匯入指南</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">網格檢視版面配置</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">選擇偏好的網格檢視版面配置。圖片配置方式可於之後在設定中進行更改，包含影像延伸選項。</sys:String>
@@ -675,7 +677,7 @@
     <sys:String x:Key="LOCReloadScripts">重新載入腳本</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">已成功加載所有腳本</sys:String>
     <sys:String x:Key="LOCNoGamesFound">找不到指定搜尋/過濾器條件的遊戲</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">回到桌面模式</sys:String>
     <sys:String x:Key="LOCExitPlaynite">離開Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">資料庫</sys:String>
     <sys:String x:Key="LOCUpdateAll">全部更新</sys:String>
