@@ -42,30 +42,35 @@
     <sys:String x:Key="LOCCrashClosePlaynite">إغلاق Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">مدير المكتبة</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">إزالة اللعبة/الألعاب؟</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">لا يمكن إزالة لعبة قيد التشغيل أو التي يتم تثبيتها/ إلغاء تثبيتها.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">لا يمكن إزالة تثبيت لعبة و هي جارية التشغيل.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">هل أنت متأكد أنك تود إزالة هذه اللعبة؟
+
+قد تظهر الألعاب المستوردة مجددًا بشكل تلقائي في Playnite بعد إجراء الاستيراد التالي (حسب إعداداتك).
+</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">هل أنت متأكد من أنك تود إزالة {0} لعبة؟
+
+قد تظهر الألعاب المستوردة مجددًا بشكل تلقائي في Playnite بعد إجراء الاستيراد التالي (حسب إعداداتك).</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">هل أنت متأكد أنك تريد حذف {0} إدخالًا والتي ليست قيد الاستخدام حاليًا؟</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">لم يتم العثور على مجالات غير مستخدمة.</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">أصدقاء Steam</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">يحتوي القسم على تغييرات ليتم حفظها</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">جاري تحديث تنسيق مكتبة الألعاب…</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">فشل تحديث قاعدة البيانات.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">تعذّر تحديث مكنبة الألعاب. مطلوب {0} ميغابايت من مساحة التخزين.</sys:String>
 
-    <sys:String x:Key="LOCGameError"></sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame"></sys:String>
-    <sys:String x:Key="LOCGameStartError"></sys:String>
-    <sys:String x:Key="LOCGameStartActionError"></sys:String>
-    <sys:String x:Key="LOCGameOpenLocationError"></sys:String>
-    <sys:String x:Key="LOCGameShortcutError"></sys:String>
-    <sys:String x:Key="LOCGameInstallError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallError"></sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCGameError">خطأ في اللعبة</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">تعذّر بدأ اللعبة. لم يتم العثور على {0} في قاعدة البيانات.</sys:String>
+    <sys:String x:Key="LOCGameStartError">تعذّر بدأ اللعبة:{0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">تعذّر بدأ الإجراء:{0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">تعذّر فقح موقع اللعبة:{0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">فشل إنشاء إختصار:{0}</sys:String>
+    <sys:String x:Key="LOCGameInstallError">تعذّر تثبيت اللعبة:{0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">تعذّر إلغاء تثبيت اللعبة:{0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">لم يتم تكوين إجراء اللعب.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">لم يتم تحديد أي لعبة.</sys:String>
@@ -76,7 +81,7 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">مفعل</sys:String>
     <sys:String x:Key="LOCRemoveTitle">حذف</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedTitle"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">إزالة الغير مستخدمة</sys:String>
     <sys:String x:Key="LOCRenameTitle">إعادة تسمية</sys:String>
     <sys:String x:Key="LOCCopyTitle">نسخ</sys:String>
     <sys:String x:Key="LOCAddTitle">إضافة</sys:String>
@@ -99,14 +104,14 @@
     <sys:String x:Key="LOCSeriesLabel">السلسلة</sys:String>
     <sys:String x:Key="LOCVersionLabel">النسخة</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">اخر تشغيل</sys:String>
-    <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">الأكثر لعبًا</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">مرات اللعب</sys:String>
     <sys:String x:Key="LOCAddedLabel">أضيف</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">تاريخ الإضافة</sys:String>
-    <sys:String x:Key="LOCModifiedLabel"></sys:String>
+    <sys:String x:Key="LOCModifiedLabel">تم تعديله</sys:String>
     <sys:String x:Key="LOCDateModifiedLabel">تاريخ التعديل</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">الموقع الالكتروني</sys:String>
-    <sys:String x:Key="LOCPathLabel"></sys:String>
+    <sys:String x:Key="LOCPathLabel">السار</sys:String>
     <sys:String x:Key="LOCOKLabel">موافق</sys:String>
     <sys:String x:Key="LOCSaveLabel">حفظ</sys:String>
     <sys:String x:Key="LOCCloseLabel">إغلاق</sys:String>
@@ -114,8 +119,8 @@
     <sys:String x:Key="LOCYesLabel">نعم</sys:String>
     <sys:String x:Key="LOCNoLabel">لا</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">أهلا وسهلا بكم</sys:String>
-    <sys:String x:Key="LOCLocalUserLabel"></sys:String>
-    <sys:String x:Key="LOCAuthenticateLabel"></sys:String>
+    <sys:String x:Key="LOCLocalUserLabel">مستخدم محلي</sys:String>
+    <sys:String x:Key="LOCAuthenticateLabel">مصادقة</sys:String>
     <sys:String x:Key="LOCGeneralLabel">عام</sys:String>
     <sys:String x:Key="LOCMediaLabel">وسائط الإعلام</sys:String>
     <sys:String x:Key="LOCLinksLabel">روابط</sys:String>
@@ -125,7 +130,7 @@
     <sys:String x:Key="LOCLoadingLabel">جاري التحميل…</sys:String>
     <sys:String x:Key="LOCTypeLabel">نوع</sys:String>
     <sys:String x:Key="LOCProfileLabel">الملف الشخصي</sys:String>
-    <sys:String x:Key="LOCProfilesLabel"></sys:String>
+    <sys:String x:Key="LOCProfilesLabel">ملفات التعريف</sys:String>
     <sys:String x:Key="LOCRemoveLabel">حذف</sys:String>
     <sys:String x:Key="LOCDownloadLabel">تنزيل</sys:String>
     <sys:String x:Key="LOCSearchLabel">بحث</sys:String>
@@ -135,11 +140,11 @@
     <sys:String x:Key="LOCGridViewLabel">العرض كشبكة</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel">عرض التفاصيل</sys:String>
     <sys:String x:Key="LOCCustomLabel">مخصص</sys:String>
-    <sys:String x:Key="LOCURLLabel"></sys:String>
-    <sys:String x:Key="LOCPatronsLabel"></sys:String>
+    <sys:String x:Key="LOCURLLabel">الرابط</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">الّراعي</sys:String>
     <sys:String x:Key="LOCLicenseLabel">الترخيص</sys:String>
     <sys:String x:Key="LOCContributorsLabel">المساهمون</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite"></sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">جاري الخروج من Playnite…</sys:String>
     <sys:String x:Key="LOCToday">اليوم</sys:String>
     <sys:String x:Key="LOCYesterday">أمس</sys:String>
     <sys:String x:Key="LOCMonday">الإثنين</sys:String>
@@ -153,11 +158,11 @@
     <sys:String x:Key="LOCPastMonth">الشهر الماضي</sys:String>
     <sys:String x:Key="LOCPastYear">السنة الماضية</sys:String>
     <sys:String x:Key="LOCMoreThenYear">منذ أكثر من سنة</sys:String>
-    <sys:String x:Key="LOCImportCompleted"></sys:String>
+    <sys:String x:Key="LOCImportCompleted">تم الاستيراد بنجاح.</sys:String>
     <sys:String x:Key="LOCAllGames">جميع الألعاب</sys:String>
-    <sys:String x:Key="LOCGameId"></sys:String>
-    <sys:String x:Key="LOCDatabaseId"></sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
+    <sys:String x:Key="LOCGameId">معرف اللعبة (ID)</sys:String>
+    <sys:String x:Key="LOCDatabaseId">معرف قاعدة البيانات (ID)</sys:String>
+    <sys:String x:Key="LOCPresets">الإعدادات المسبقة</sys:String>
     <sys:String x:Key="LOCColumn">عمود</sys:String>
     <sys:String x:Key="LOCColumns">أعمدة</sys:String>
     <sys:String x:Key="LOCRow">صف</sys:String>
@@ -167,23 +172,23 @@
 
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCMetaGamesSourceIntro"></sys:String>
-    <sys:String x:Key="LOCMetaGamesSourceDescription"></sys:String>
-    <sys:String x:Key="LOCMetaGameSourceAll"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">تحميل البيانات الوصفية المفقودة فقط</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">تمكين هذا الخيار سيؤدي إلى تخطي تحميل البيانات الوصفية لبيانات المجالات التي تحتوي مسبقًا على معلومات.</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceIntro">اختيار الألعاب</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceDescription">المرجو تحديد الألعاب التي يجب تحديثها ببيانات تعريف جديدة:</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceAll">كل الألعاب الموجودة في قاعدة البيانات</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">كل الالعاب المصفية حاليا</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">الالعاب المحددة فقط</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">المتجر الرسمي</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
-    <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">المرجو تحديد المجالات التي يجب ملؤها تلقائيًا بواسطة Playnite والمصادر التي يجب استخدامها للحصول على البيانات منها.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">الرجاء التفكير في النقر على الشعار أعلاه والمساهمة في تحديثات قاعدة بيانات igdb.com من أجل تحسبن البيانات التي تستخدمها Playnite.</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">جاري تحميل تحديثات مكتبة Steam…</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">جاري تحميل تحديثات مكتبة GOG…</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">جاري تحميل تحديثات مكتبة Origin…</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">جاري تحميل تحديثات مكتبة Battle.com…</sys:String>
     <sys:String x:Key="LOCProgressMetadata">تنزيل البيانات الوصفية…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
     <sys:String x:Key="LOCProgressImportinGames"></sys:String>
