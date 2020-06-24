@@ -344,7 +344,7 @@ Results in: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Help us translate Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite needs to be restarted in order to apply this setting. Restart now?
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite needs to be restarted in order to apply new settings. Restart now?
 
 Restarting will cancel any active tasks (downloads) currently in progress.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle"></sys:String>
