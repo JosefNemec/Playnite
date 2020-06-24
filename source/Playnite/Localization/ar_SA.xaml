@@ -35,8 +35,16 @@
     <sys:String x:Key="LOCNoPlatform">بلا منصة</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">أوه لا، وقع شيء مؤسف…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">حدث خطأ غير قابل للاستيرداد.
+
+إذا كنت تودّ مساعدتنا في حل هذه المشكلة، فالمرجو وصف الإجراءات التي تم اتخاذها قبل العطل الذي حصل ثم بعد ذلك قم بإنشاء حزمة تشخيص. إذا كنت متصلا بالأنترنيت فسيتم رفع الحزمة على خادم Playnite ليتم تحليلها.
+
+بدلًا من ذلك، يمكنك استخدام زر خيار &quot;تبليغ الانهيار&quot; لإنشاء خطأ جديد على GitHub والإبلاغ عن الأعطال يدويًا.
+
+شكرا لك على مساعدتك.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">حدث خطأ غير قابل للاسترداد.
+
+إذا أردت مساعدتنا في حل هذه المشكلة، فرجاءً قم بإرسال معلومات التّشخيص. شكرا لك.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">تبليغ الانهيار</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">إعادة تشغيل Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">إغلاق Playnite</sys:String>
@@ -74,7 +82,7 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">تحميل بيانات التعريف الرسمية غير متاح.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">لم يتم تحديد أي لعبة.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">فشل تنفيذ إجراء البرنامج النصي للعبة.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
 
@@ -743,24 +751,24 @@
     <sys:String x:Key="LOCPlayedSeconds">{0} ثواني</sys:String>
     <sys:String x:Key="LOCPlayedNone">لم تلعب بعد</sys:String>
 
-    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">جاري فتح وضع سطح المكتب…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">فتح في وضع ملء الشاشة…</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
-    <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCInstallScript"></sys:String>
-    <sys:String x:Key="LOCScriptError"></sys:String>
-    <sys:String x:Key="LOCScriptExecutionError"></sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">جاري تحميل مكتبة الألعاب…</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">فشل تثبيت ملف البرنامج النصي.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">تم تثبيت البرنامج النصي بنجاح.</sys:String>
+    <sys:String x:Key="LOCInstallScript">تثبيت البرنامج النصي</sys:String>
+    <sys:String x:Key="LOCScriptError">خطأ في البرنامج النصي</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">فشل في تنقيذ وظيفة الملحق.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">فتح مجلد بيانات التعريف</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
     <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">في انتظار تسجيل دخول المستخدم، الرجاء إغلاق هذا عند الانتهاء…</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">لم يتم العثور على دليل تثبيت اللعبة.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
 
-    <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">استكشاف مشاكل مزامنة الحساب وإصلاحها</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">استكشاف الأخطاء وإصلاحها</sys:String>
 
     <sys:String x:Key="LOCRenameItem">إعادة تسمية العنصر</sys:String>
     <sys:String x:Key="LOCAddNewItem">إضافة عنصر جديد</sys:String>
@@ -789,12 +797,19 @@
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
 
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">أنت على وشك مغادرة Playnite والانتقال إلى صفحة الويب التالية باستخدام متصفح الويب الافتراضي. هل تودّ الاستمرار؟
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+{0}</sys:String>
+
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">الصورة (الصور) المحددة قد تكون كبيرة جدًا للحصول على الأداء الأمثل. استخدام صور كبيرة جدًا قد ينتج عنها استجابة أسوء لواجهة المستخدم وزيادة في معدل استخدام الذاكرة.
+
+الأبعاد القصوى الموصى بها:
+الأيقونات: {0} ميغا بيكسل
+الأغلفة: {1} ميغا بيكسل
+الخلفيات: {2} ميغا بيكسل</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">تحذير بخصوص الأداء</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">لا تُظهر مجدّدًا</sys:String>
-    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
+    <sys:String x:Key="LOCLargeMediaWarningTooltip">ملف الصورة المحدد قد يكون كبيرًا جدًا للحصول على الأداء الأمثل.</sys:String>
 
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">الإنجازات</sys:String>
@@ -804,24 +819,25 @@
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">في انتظار تسجيل دخول المستخدم، الرجاء إغلاق هذا عند الانتهاء…</sys:String>
     <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">تسجيل الدخول للحساب</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">إسم الحساب</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">سجل الدخول إلى حسابك أو استخدم اسم حسابك العام لمزامنة مكتبك الكاملة.
+يرجى الملاحظة أن خيار اسم الحساب يعمل فقط للحسابات التي تم تعيين مكتبة ألعابها في إعدادات خصوصية GOG لتكون مرئية للعامة.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
-    <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
-    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">عنوان URL اسم الحساب</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">مستخدم مصادق عليه</sys:String>
+    <sys:String x:Key="LOCSteamRequiresApiKey">الحساب خاص، مطلوب مفتاح API.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub">مركز المجتمع</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">المناقشات</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">مشغل</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers">تحميل صور غلاف عمودية</sys:String>
 
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">تنصيب التطبيق في المرة الأولى لم يكتمل. سيتم الان إعادة تشغيل Playnite إلى وضع سطح المكتب لإنهاء الإجراء.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">لعب مؤخرا</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">المفضلة</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">الأكثر تشغيلاً</sys:String>
@@ -840,11 +856,11 @@
 
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">هذا الخيار لن يعمل لجميع الألعاب. تصفح رابط استكشاف الأخطاء وإصلاحها للتعرف على الحلول الممكنة.</sys:String>
 
     <!--Humble-->
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">تجاهُل ألعاب متجر الطرف الثالث</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">استيراد ألعاب Trove</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
