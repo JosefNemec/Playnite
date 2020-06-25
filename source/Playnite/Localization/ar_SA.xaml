@@ -79,12 +79,12 @@
     <sys:String x:Key="LOCGameInstallError">تعذّر تثبيت اللعبة:{0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">تعذّر إلغاء تثبيت اللعبة:{0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">لم يتم تكوين إجراء اللعب.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">إضافة المكتبة المسؤول عن هذه اللعبة غير مثبتة أو تم تفعيلها.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">تحميل بيانات التعريف الرسمية غير متاح.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">لم يتم تحديد أي لعبة.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">فشل تنفيذ إجراء السكريبت للعبة.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">فشل تنفيذ إجراء السكريبت العام.</sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">لم يتم تثبيت PowerShell 3.0 أو الإصدار الأحدث منه.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">مفعل</sys:String>
@@ -176,7 +176,17 @@
     <sys:String x:Key="LOCRow">صف</sys:String>
     <sys:String x:Key="LOCRows">صفوف</sys:String>
 
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">يمكن استخدام المتغييرات المميزة لإضافة سلسلة دينامكية:
+{InstallDir} - مكان تثبيت اللعبة
+{InstallDirName} - اسم مجلد التثبيت
+{ImagePath} - مسار لعبة ISO/ROM إذا تم تعيينه
+{ImageName} - اسم ملف لعبة ISO/ROM
+{ImageNameNoExt} - اسم ملف لعبة ISO/ROM بدون ملحق
+{PlayniteDir} - مكان تثبيت Playnite
+{Name} - اسم اللعبة
+
+مثال: -صورة &quot;{ImagePath}&quot; -ملء الشاشة
+النتائج في: -صورة &quot;c:\folder\image.iso&quot; -ملء الشاشة</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
 
@@ -203,7 +213,7 @@
     <sys:String x:Key="LOCProgressLibraryGames">جاري تحميل تحديثات المكتبة…</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">جاري تحميل تحديثات المكتبة…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">تم الانتهاء من تحديث المكتبة</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">جاري تحرير الموارد…</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">الإعدادات</sys:String>
@@ -230,7 +240,7 @@
     <sys:String x:Key="LOCMenuRestartSystem">إعادة تشغيل النظام</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">إيقاف تشغيل النظام</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">تعليق النظام</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">نظام السُبات</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">اختر لعبة عشوائية</sys:String>
 
     <!--Settings Window-->
