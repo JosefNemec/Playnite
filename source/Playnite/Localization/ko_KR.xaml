@@ -231,7 +231,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store 응용프로그램</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite에 관하여</sys:String>
     <sys:String x:Key="LOCMenuIssues">피드백 보내기</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">전체 화면 모드로 전환</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">링크</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">도움말</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">후원자가 되어 후원하기</sys:String>
@@ -471,7 +471,9 @@
     <sys:String x:Key="LOCFirstOtherGamesText">아래 버튼을 이용하여 설치된 다른 게임을 불러오거나 탐색을 통하여 수동으로 불러올 수 있습니다(Microsoft Store 게임 포함).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">게임 불러오기</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">설정 완료</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">초기 설정이 완료되었습니다. 이후에도 '설정' 메뉴에서 모든 설정을 변경할 수 있습니다.
+
+또한 Playnite 로고 메뉴를 눌러서 이후에도 다른 게임을 추가할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">에뮬레이터 불러오기 가이드 열기</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">바둑판식 보기 레이아웃</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">선호하는 Playnite의 바둑판식 레이아웃을 선택하십시오. 레이아웃 이미지 및 이미지 늘리기 설정은 프로그램 설정에서 언제든 변경할 수 있습니다.</sys:String>
@@ -676,7 +678,7 @@
     <sys:String x:Key="LOCReloadScripts">스크립트를 다시 로드</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">모든 스크립트 다시 로드 성공.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">특정 검색/필터 기준에 맞는 게임이 없음</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">데스크톱 모드로 전환</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite 나가기</sys:String>
     <sys:String x:Key="LOCLibraries">라이브러리</sys:String>
     <sys:String x:Key="LOCUpdateAll">모두 업데이트</sys:String>
