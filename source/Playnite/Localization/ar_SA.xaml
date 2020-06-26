@@ -188,7 +188,7 @@
 مثال: -صورة &quot;{ImagePath}&quot; -ملء الشاشة
 النتائج في: -صورة &quot;c:\folder\image.iso&quot; -ملء الشاشة</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">لا يمكن الحصول على الأيقونة إذا كان إجراء التشغيل مفقودًا أو تم تعيينه على رابط URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">تحميل بيانات التعريف المفقودة فقط</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">تمكين هذا الخيار سيؤدي إلى تخطي تحميل بيانات التعريف لبيانات المجالات التي تحتوي مسبقًا على معلومات.</sys:String>
