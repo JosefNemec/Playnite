@@ -333,7 +333,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">إغلاق إلى جوار الساعة</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">عند تشغيل اللعبة:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">عند إغلاق اللعبة:</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy"></sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">بدء تشغيل الألعاب باستخدام عميل Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">سيتم تفعيل ميزات مثل حفظ السحابة، حساب وقت اللعب وما إلى ذلك.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">سوف يؤذي هذا إلى استبدال الفئات الحالية وكذلك الحالات المخفية والمفضلة في جميع ألعاب Steam. هل ترغب في الاستمرار؟</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">استيراد الفئات؟</sys:String>
@@ -403,13 +403,13 @@
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">إذا تم تفعيله، سيقوم Playnite بتحميل خلفية العمل الفني أثناء تحميل بيانات التعريف، وهذا باستحدام مساحة أكبر من القرص وإتاحة العمل الفني عندما تكون غير متصل بالأنترنيت.
 
 في حالة عدم التفعيل، لا يتم تحميل خلفية العمل الفني إلا عند الحاجة لتحميله، وباستخدام مساحة أقل، لكن قد يؤذي إلى تأخيرٍ قبل عرض العمل الفني وبعض الصور قد لا تكون متاحة عندما تكون غير متصل بالأنترنيت.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">غلق عميل الطرف الثالث تلقائيًا بعد الخروج من اللعبة</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">فترة السماح بإغلاق العميل (بالثواني)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">لا تغلق بعد جلسات اللعب التي تكون أقصر من (بالثواني)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">إغلاق العملاء التاليين تلقائيًا:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">غلق العملاء تلقائيًا</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">عرض تحذير عند تعيين وسائط ألعاب كبيرة جدًا</sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">بدء تشغيل الألعاب مباشرة دون تشغيل العميل الرسمي</sys:String>
 
     <sys:String x:Key="LOCStrechNone">لا شيء</sys:String>
     <sys:String x:Key="LOCStrechFill">ملء</sys:String>
@@ -779,8 +779,8 @@
     <sys:String x:Key="LOCScriptExecutionError">فشل في تنقيذ وظيفة الملحق.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">فتح مجلد بيانات التعريف</sys:String>
 
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0} عميل غير مثبت.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} عميل سيتفح الآن.يرجى تسجيل الخروج ثم إغلاق الرسالة.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">في انتظار تسجيل دخول المستخدم، الرجاء إغلاق هذا عند الانتهاء…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">لم يتم العثور على دليل تثبيت اللعبة.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">تكوين إجراء اللعبة غير صالح.</sys:String>
@@ -844,7 +844,7 @@
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">في انتظار تسجيل دخول المستخدم، الرجاء إغلاق هذا عند الانتهاء…</sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">لم يتم تثبيت عميل Itch الإصدار 25 أو الأحدث.</sys:String>
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">تسجيل الدخول للحساب</sys:String>
@@ -888,7 +888,7 @@
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
-    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
+    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">بدء تشغيل Xbox pass بدلاً من متجر Microsoft عند فتح العميل</sys:String>
     <sys:String x:Key="LOCXboxImport360Games">استيراد ألعاب Xbox 360</sys:String>
     <sys:String x:Key="LOCXboxImportXboneGames">استيراد ألعاب Xbox One</sys:String>
 </ResourceDictionary>
