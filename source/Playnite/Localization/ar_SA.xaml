@@ -780,7 +780,7 @@
     <sys:String x:Key="LOCOpenMetadataFolder">فتح مجلد بيانات التعريف</sys:String>
 
     <sys:String x:Key="LOCClientNotInstalledError">{0} عميل غير مثبت.</sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif">{0} عميل سيتفح الآن.يرجى تسجيل الخروج ثم إغلاق الرسالة.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} عميل سيتفح الآن.المرجو تسجيل الخروج ثم إغلاق هذه الرسالة.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">في انتظار تسجيل دخول المستخدم، الرجاء إغلاق هذا عند الانتهاء…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">لم يتم العثور على دليل تثبيت اللعبة.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">تكوين إجراء اللعبة غير صالح.</sys:String>
@@ -842,7 +842,7 @@
     <sys:String x:Key="LOCCommonLinksStorePage">صفحة المتجر</sys:String>
 
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">سيتم فتح عميل itch.io الآن. المرجو تسجيل الدخول ثم إغلاق هذه الرسالة.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">في انتظار تسجيل دخول المستخدم، الرجاء إغلاق هذا عند الانتهاء…</sys:String>
     <sys:String x:Key="LOCItchioClientNotInstalledError">لم يتم تثبيت عميل Itch الإصدار 25 أو الأحدث.</sys:String>
 
@@ -885,7 +885,8 @@
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">تجاهُل ألعاب متجر الطرف الثالث</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">استيراد ألعاب Trove</sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">في حالة التمكين، لن يتم استيراد الألعاب التي تتطلب عملاء من الطرف الثالث.
+يتضمن متاجر مدعومة مسبقًا في Playnite لمنع التكرارات.</sys:String>
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">بدء تشغيل Xbox pass بدلاً من متجر Microsoft عند فتح العميل</sys:String>
