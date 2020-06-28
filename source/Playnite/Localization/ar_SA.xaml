@@ -307,7 +307,7 @@
     <sys:String x:Key="LOCSettingsShowIconList">إظهار أيقونات الألعاب في قائمة عرض التفاصيل</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">إظهار عدد العناصر في وصف المجموعة</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">تعطيل تسريع الأجهزة</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"> استخدمه عند مواجهة تشنج أو مشاكل في واجهة المستخدم المشابهة</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">تعطيل تغيير حجم DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">إظهار زر أصدقاء Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">استخدم صورة خلفية اللعبة كخلفية للويندوز</sys:String>
@@ -615,16 +615,16 @@
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">تعديل تفاصيل اللعبة</sys:String>
-    <sys:String x:Key="LOCUseExeIcon"></sys:String>
+    <sys:String x:Key="LOCUseExeIcon">من إجراء التشغيل</sys:String>
     <sys:String x:Key="LOCImageURL">عنوان URL الصورة</sys:String>
     <sys:String x:Key="LOCAddLinkButton">إضافة رابط</sys:String>
     <sys:String x:Key="LOCSaveChanges">حفظ التغييرات</sys:String>
-    <sys:String x:Key="LOCPlayAction"></sys:String>
-    <sys:String x:Key="LOCAddPlayAction"></sys:String>
-    <sys:String x:Key="LOCAddAction"></sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
-    <sys:String x:Key="LOCRemovePlayAction"></sys:String>
-    <sys:String x:Key="LOCOtherActions"></sys:String>
+    <sys:String x:Key="LOCPlayAction">إجراء التشغيل</sys:String>
+    <sys:String x:Key="LOCAddPlayAction">إضافة إجراء التشغيل</sys:String>
+    <sys:String x:Key="LOCAddAction">إضافة إجراء</sys:String>
+    <sys:String x:Key="LOCDeleteAction">حذف إجراء</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">إزالة إجراء التشغيل</sys:String>
+    <sys:String x:Key="LOCOtherActions">إجراءات أخرى</sys:String>
     <sys:String x:Key="LOCAddGames">إضافة ألعاب</sys:String>
     <sys:String x:Key="LOCScanFolder">فحص المجلد…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">تم تثبيت الكشف</sys:String>
@@ -755,8 +755,8 @@
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">يتم تتبع وقت اللعب وتخزينه في ثواني.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">القيم من 0 إلى 100 أو الفارغة بدون درجة.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">يتم دعم تطوير Playnite من طرف هؤلاء الرُعاة:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">البرمجة، الترجمة والمساهمين الآخرين بدون ترتيب معين:</sys:String>
 
     <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
@@ -879,7 +879,7 @@
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">حدد صورة خلفية لـ{0}</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">عندما يكون الأمر ممكن، حاول بدء اللعبة مباشرة بدون تشغيل عميل Epic</sys:String>
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">هذا الخيار لن يعمل لجميع الألعاب. تصفح رابط استكشاف الأخطاء وإصلاحها للتعرف على الحلول الممكنة.</sys:String>
 
     <!--Humble-->
