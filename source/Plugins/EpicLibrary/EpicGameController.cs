@@ -22,9 +22,14 @@ namespace EpicLibrary
             "Vulture",      // Faeria
             "Stellula",     // Farming Simulator 19
             "Albacore",     // Assassins Creed Syndicate
-            "Sundrop",      // For Honor,
+            "Sundrop",      // For Honor
             "Wombat",       // World War Z
             "Eel",          // Kingdom Come Deliverance
+            "Dodo",         // Borderlands 2
+            "Turkey",       // Borderlands TPS
+            "Kinglet",      // Civ 6
+            "9d2d0eb64d5c44529cece33fe2a46482", // GTA 5
+            "UnrealTournamentDev",  // Unreal Tournament 4
         };
 
         private static ILogger logger = LogManager.GetLogger();

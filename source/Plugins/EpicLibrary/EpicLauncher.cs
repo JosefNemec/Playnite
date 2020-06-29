@@ -109,7 +109,12 @@ namespace EpicLibrary
 
             foreach (var manFile in Directory.GetFiles(installListPath, "*.item"))
             {
-                manifests.Add(Serialization.FromJson<InstalledManifiest>(FileSystem.ReadFileAsStringSafe(manFile)));
+                var manifest = Serialization.FromJson<InstalledManifiest>(FileSystem.ReadFileAsStringSafe(manFile));
+                if (manifest != null)
+                // Some weird issue causes manifest to be created empty by Epic client
+                {
+                    manifests.Add(manifest);
+                }
             }
 
             return manifests;
