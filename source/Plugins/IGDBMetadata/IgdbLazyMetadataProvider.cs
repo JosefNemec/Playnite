@@ -240,7 +240,7 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.Links))
             {
-                return IgdbData.websites.Where(a => !a.url.IsNullOrEmpty()).Select(a => new Link(a.category.ToString(), a.url)).ToList();
+                return IgdbData.websites.Where(a => !a.url.IsNullOrEmpty()).Select(a => new Link(a.category.GetDescription(), a.url)).ToList();
             }
 
             return base.GetLinks();

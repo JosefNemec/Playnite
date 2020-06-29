@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace PlayniteServices.Models.IGDB
 {
     public enum WebSiteCategory : ulong
     {
+        [Description("Official Website")]
         Official = 1,
         Wikia = 2,
         Wikipedia = 3,
@@ -18,7 +20,9 @@ namespace PlayniteServices.Models.IGDB
         Twitch = 6,
         Instagram = 8,
         Youtube = 9,
+        [Description("iPhone")]
         Iphone = 10,
+        [Description("iPad")]
         Ipad = 11,
         Android = 12,
         Steam = 13,
@@ -26,9 +30,7 @@ namespace PlayniteServices.Models.IGDB
         Itch = 15,
         Epic = 16,
         GOG = 17,
-        LinkedIn = 18,
-        Pinterest = 19,
-        SoundCloud = 20,
+        Discord = 18
     }
 
     public enum GameCategory : ulong
