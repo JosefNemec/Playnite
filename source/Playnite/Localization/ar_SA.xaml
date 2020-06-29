@@ -200,7 +200,7 @@
     <sys:String x:Key="LOCMetaSourceStore">المتجر الرسمي</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">المرجو تحديد الأماكن التي يجب ملؤها تلقائيًا بواسطة Playnite والمصادر التي يجب استخدامها للحصول على البيانات منها.</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif">الرجاء التفكير في النقر على الشعار أعلاه والمساهمة في تحديثات قاعدة بيانات igdb.com من أجل تحسبن البيانات التي تستخدمها Playnite.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">الرجاء التفكير في النقر على الشعار أعلاه والمساهمة في تحديثات قاعدة بيانات igdb.com من أجل تحسبن البيانات التي بستخدمها Playnite.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">جاري تحميل تحديثات مكتبة Steam…</sys:String>
@@ -248,9 +248,9 @@
     <sys:String x:Key="LOCSettingsGridItemSpacing">تباعد العناصر</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">رسم خلفية العنصر الشبكي</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">عرض حدود العرض الشبكي</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource">مصدر رمز اللعبة مفقود</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource">مصدر غلاف اللعبة مفقود</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">مصدر خلفية اللعبة مفقود</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">مصدر رمز اللعبة المفقود</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">مصدر غلاف اللعبة المفقود</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">مصدر خلفية اللعبة المفقود</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">التباعد العمودي لتفاصيل الألعاب</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">موضع تفاصيل العرض الشبكي</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">موضع عرض تفاصيل قائمة الألعاب</sys:String>
@@ -294,7 +294,7 @@
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">لم يتم تحديد حساب Steam لاستيراد الفئة.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">قم يتحميل تحديثات الطرف التالث عند بدء التشغيل</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">تنزيل بيانات التعريف بعد استيراد الألعاب</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized">البدء مصغرا</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">البدء بنافذة مصغرة</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">تشغيل Playnite عن بدء تشغيل الحاسوب</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">فشل تسجيل Playnite لبدء تشغيله عند بدء تشغيل الحاسوب.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">البدء في وضع ملء الشاشة</sys:String>
@@ -388,7 +388,7 @@
     <sys:String x:Key="LOCSettingsSelectChildSection">حدد أحد الأقسام الفرعية</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">لا توجد إعدادات متاحة</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">يتم تنفيذ هذه السكريبتات لكل لعبة في المكتبة، يمكن تعيين السكريبتات الفردية لكل لعبة على حدة  أثناء تعديل تفاصيل اللعبة.</sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">تحول صورة الخلفية بشكل متحرك</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">تنقل صورة الخلفية بشكل متحرك</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">حجم الخط</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">تلقائي</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">ذو ظلال</sys:String>
@@ -871,7 +871,7 @@
     <sys:String x:Key="LOCGameListSearchResults">نتائج البحث عن:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">عنصر بالاسم ذاته موجود بالفعل.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">تقييد التحديد للفلتر الحالي</sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother">اختار آخر</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">اختر واحدًا آخر</sys:String>
 
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">استخدم لقطات الشاشة اذا العمل الفني غير متاح</sys:String>
