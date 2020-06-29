@@ -114,7 +114,7 @@
             <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}"
                         VerticalAlignment="Center" Margin="0,10,0,10"
                         Grid.Column="0" Grid.Row="2"/>
-            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+            <pctrls:NullableIntBox MinValue="0" MaxValue="4096" Margin="10,0,0,0" Width="40"
                                 HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Value="{Binding Settings.GridItemSpacing}"
                                 Grid.Column="1" Grid.Row="2"/>
@@ -122,7 +122,7 @@
             <TextBlock Text="{DynamicResource LOCSettingsGridItemCoverMargin}"
                         VerticalAlignment="Center" Margin="0,10,0,10"
                         Grid.Column="0" Grid.Row="3"/>
-            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+            <pctrls:NullableIntBox MinValue="0" MaxValue="4096" Margin="10,0,0,0" Width="40"
                                     HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Value="{Binding Settings.GridItemMargin}"
                                     Grid.Column="1" Grid.Row="3"/>
