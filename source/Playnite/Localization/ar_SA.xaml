@@ -376,13 +376,13 @@
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">تمكين دعم وحدة التحكم في وضع سطح المكتب</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">يفتح زر الدليل وضع ملء الشاشة</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">تهيئة الإعدادت المستخدمة عند تنزيل بيانات التعريف تلقائيًا بعد استيراد الألعاب الجديدة.</sys:String>
-    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor">الشاشة المستهدفة</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">إظهار عناوين الألعاب</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">اظهار حالة البطارية</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">إظهار النسبة المئوية للبطارية</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">إظهار الساعة</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">مثبتة فقط في الفلاتر السريعة</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">زر الدفع</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">الواجهة</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">التمرير الأفقي</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">حدد أحد الأقسام الفرعية</sys:String>
@@ -413,8 +413,8 @@
 
     <sys:String x:Key="LOCStrechNone">لا شيء</sys:String>
     <sys:String x:Key="LOCStrechFill">ملء</sys:String>
-    <sys:String x:Key="LOCStrechUniform"></sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
+    <sys:String x:Key="LOCStrechUniform">متحد</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">متحد لملء</sys:String>
 
     <sys:String x:Key="LOCDockLeft">اليسار</sys:String>
     <sys:String x:Key="LOCDockRight">اليمين</sys:String>
@@ -512,7 +512,7 @@
     <sys:String x:Key="LOCMenuGroupByTitle">تجميع حسب</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">تصاعدى</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">تنازلي</sys:String>
-    <sys:String x:Key="LOCMenuGroupDont">لا تجمع</sys:String>
+    <sys:String x:Key="LOCMenuGroupDont">لا تجميع</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">التجميع حسب المكتبة</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">التجميع حسب الفئة</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">التجميع حسب المنصة</sys:String>
@@ -752,15 +752,15 @@
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">لم يتم إيجاد أي معلومات ذات صلة باللعبة &quot;{0}&quot; في الصفحة المحددة.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">تلميح: يمكنك استخدام عملية تحميل بيانات التعريف أكثر تقدمًا أثناء تعديل لعبة واحدة عبر خيار القائمة &quot;تعديل&quot;.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">غير متاح عندما تكون بعض الإجراءات قيد التنفيذ.</sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">نص الوصف حساس لبناء HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">يتم تتبع وقت اللعب وتخزينه في ثواني.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">القيم من 0 إلى 100 أو الفارغة بدون درجة.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">يتم دعم تطوير Playnite من طرف هؤلاء الرُعاة:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">البرمجة، الترجمة والمساهمين الآخرين بدون ترتيب معين:</sys:String>
 
-    <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringAskTitle">إلغاء اللعبة في الشاشة الستهدفة؟</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">تثبيت الشاشة المستهدفة قيد التشغيل حاليًا، هل تودّ إلغاء العملية وإعادة اللعبة لحالتها السابقة؟</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">تشغيل اللعبة في الشاشة المستهدفة قيد التشغيل حاليًا، هل تودّ إلغاء العملية وإعادة اللعبة لحالتها السابقة؟</sys:String>
 
     <sys:String x:Key="LOCTimePlayed">وقت اللعب</sys:String>
     <sys:String x:Key="LOCLastPlayed">اخر تشغيل</sys:String>
