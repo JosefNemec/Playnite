@@ -267,7 +267,7 @@
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Баннер Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam New UI</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Вертикальные обложки Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Необходим перезапуск для применения настроек</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Настройки</sys:String>
@@ -740,6 +740,7 @@
     <sys:String x:Key="LOCUnHideGame">Показать</sys:String>
     <sys:String x:Key="LOCEditGame">Изменить…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Выбрать категорию...</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Статус игры</sys:String>
     <sys:String x:Key="LOCRemoveGame">Удалить</sys:String>
     <sys:String x:Key="LOCPlayGame">Играть</sys:String>
     <sys:String x:Key="LOCInstallGame">Установить</sys:String>
