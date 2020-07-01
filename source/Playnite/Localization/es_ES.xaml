@@ -267,7 +267,7 @@ Resulta en: -image &quot;c:\carpeta\imagen.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner de Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam nueva Interfaz de usuario</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requiere reiniciar para aplicar</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ajustes</sys:String>
@@ -737,6 +737,7 @@ Puede probar esto para solucionar el problema:
     <sys:String x:Key="LOCUnHideGame">Mostrar en la Biblioteca</sys:String>
     <sys:String x:Key="LOCEditGame">Editar…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Establecer categoría…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Eliminar</sys:String>
     <sys:String x:Key="LOCPlayGame">Iniciar</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalar</sys:String>
