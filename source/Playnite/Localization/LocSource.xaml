@@ -740,6 +740,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCUnHideGame">Show in Library</sys:String>
     <sys:String x:Key="LOCEditGame">Edit…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Set Category…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Set Completion Status</sys:String>
     <sys:String x:Key="LOCRemoveGame">Remove</sys:String>
     <sys:String x:Key="LOCPlayGame">Play</sys:String>
     <sys:String x:Key="LOCInstallGame">Install</sys:String>

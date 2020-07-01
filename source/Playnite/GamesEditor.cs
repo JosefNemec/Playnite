@@ -328,6 +328,23 @@ namespace Playnite
             }
         }
 
+        public void SetCompletionStatus(Game game, CompletionStatus status)
+        {
+            if (game.CompletionStatus != status)
+            {
+                game.CompletionStatus = status;
+                Database.Games.Update(game);
+            }
+        }
+
+        public void SetCompletionStatus(List<Game> games, CompletionStatus status)
+        {
+            foreach(var game in games)
+            {
+                SetCompletionStatus(game, status);
+            }
+        }
+
         public void RemoveGame(Game game)
         {
             if (game.IsInstalling || game.IsRunning || game.IsLaunching || game.IsUninstalling)
