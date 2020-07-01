@@ -70,9 +70,9 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Não foi possível atualizar a biblioteca. Pelo menos {0} MBs de espaço livre são necessários para continuar.</sys:String>
 
     <sys:String x:Key="LOCGameError">Erro do Jogo</sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame">Não foi possível executar o jogo. &quot;{0}&quot; não foi encontrado no banco de dados.</sys:String>
-    <sys:String x:Key="LOCGameStartError">Não foi possível executar o jogo: {0}</sys:String>
-    <sys:String x:Key="LOCGameStartActionError">Não foi possível executar a ação: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">Não foi possível iniciar o jogo. &quot;{0}&quot; não foi encontrado no banco de dados.</sys:String>
+    <sys:String x:Key="LOCGameStartError">Não foi possível iniciar o jogo: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Não foi possível iniciar a ação: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Não foi possível abrir o local do jogo: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Falha ao criar o atalho: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Não foi possível instalar o jogo: {0}</sys:String>
@@ -330,7 +330,7 @@ Resulta em: -image &quot;c:\pasta\imagem.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Mostrar o ícone na bandeja</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Minimizar para a bandeja</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Fechar para a bandeja</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameStart">Ao executar um jogo:</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">Ao iniciar um jogo:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Ao fechar um jogo:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Executar jogos usando o cliente Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Habilita recursos como salvamento de jogos na nuvem, contador de tempo de jogo, etc.</sys:String>
@@ -605,7 +605,7 @@ Anexe a seguinte ID ao seu relatório de falha:</sys:String>
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Não foi possível abrir o link, o URL não está em um formato válido.</sys:String>
-    <sys:String x:Key="LOCAppStartupError">Falha ao executar o aplicativo.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">Falha ao iniciar o aplicativo.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Falha ao inicializar o componente de visualização da web, a execução do Playnite foi interrompida.
 
 Você pode tentar corrigir o problema:
