@@ -267,7 +267,7 @@
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 标题</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam New UI</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* 需要重新启动以应用</sys:String>
     <sys:String x:Key="LOCSettingsLabel">设置</sys:String>
@@ -738,6 +738,7 @@
     <sys:String x:Key="LOCUnHideGame">在游戏库中显示</sys:String>
     <sys:String x:Key="LOCEditGame">编辑…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">设置分类…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">删除</sys:String>
     <sys:String x:Key="LOCPlayGame">开玩</sys:String>
     <sys:String x:Key="LOCInstallGame">安装</sys:String>
