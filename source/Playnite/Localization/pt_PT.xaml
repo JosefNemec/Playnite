@@ -249,7 +249,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner da Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requer reinicio para aplicar</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Definições</sys:String>
@@ -699,6 +699,7 @@ Qualquer tarefa a ser executada (como o download de metadados) será cancelada.<
     <sys:String x:Key="LOCUnHideGame">Exibir na Biblioteca</sys:String>
     <sys:String x:Key="LOCEditGame">Editar…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Definir Categoria…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Remover</sys:String>
     <sys:String x:Key="LOCPlayGame">Executar</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalar</sys:String>
