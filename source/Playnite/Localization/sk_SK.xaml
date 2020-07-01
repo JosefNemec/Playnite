@@ -267,7 +267,7 @@ Vyústi do: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam baner</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam UI (nové rozhranie)</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Toto nastavenie sa prejaví až po reštarte Playnite</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Nastavenia</sys:String>
@@ -736,6 +736,7 @@ Môžete skúsiť nasledujúce možnosti opravy:
     <sys:String x:Key="LOCUnHideGame">Zobraziť v knižnici</sys:String>
     <sys:String x:Key="LOCEditGame">Upraviť…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Nastaviť kategóriu…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Odstrániť</sys:String>
     <sys:String x:Key="LOCPlayGame">Hrať</sys:String>
     <sys:String x:Key="LOCInstallGame">Inštalovať</sys:String>
