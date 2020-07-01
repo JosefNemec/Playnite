@@ -259,7 +259,7 @@ Rezultatas: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam baneris</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
     <sys:String x:Key="LOCSettingsLabel">Nustatymai</sys:String>
@@ -708,6 +708,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCUnHideGame">Rodyti bibliotekoje</sys:String>
     <sys:String x:Key="LOCEditGame">Keisti…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Nustatyti kategoriją…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Pašalinti</sys:String>
     <sys:String x:Key="LOCPlayGame">Žaisti</sys:String>
     <sys:String x:Key="LOCInstallGame">Įrašyti</sys:String>
