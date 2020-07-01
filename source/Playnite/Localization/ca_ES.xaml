@@ -245,7 +245,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Bàner de Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requereix un reinici per a que s'apliqui</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Configuració</sys:String>
@@ -694,6 +694,7 @@ També es pot canviar a les opcions de l'aplicació.</sys:String>
     <sys:String x:Key="LOCUnHideGame">Mostrar a Biblioteca</sys:String>
     <sys:String x:Key="LOCEditGame">Edita…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Afegeix Categoria…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Eliminar</sys:String>
     <sys:String x:Key="LOCPlayGame">Jugar</sys:String>
     <sys:String x:Key="LOCInstallGame">Instal·lar</sys:String>
