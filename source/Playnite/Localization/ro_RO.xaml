@@ -245,7 +245,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Reporniți sistemul pentru a aplica</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Setări</sys:String>
@@ -693,6 +693,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCUnHideGame">Afișează în Librărie</sys:String>
     <sys:String x:Key="LOCEditGame"></sys:String>
     <sys:String x:Key="LOCSetGameCategory"></sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Şterge</sys:String>
     <sys:String x:Key="LOCPlayGame">Jucați</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalaţi</sys:String>
