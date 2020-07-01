@@ -69,12 +69,12 @@ Automatisk importerte spill kan dukke opp igjen i Playnite etter neste oppdateri
     <sys:String x:Key="LOCDBUpgradeFail">Databaseoppdatering feilet.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Kan ikke oppdatere spillbibliotek. {0} MB av tilgjengelig plass er nødvendig.</sys:String>
 
-    <sys:String x:Key="LOCGameError">SpillFeil</sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame">Kan ikke starte spill. '{0}' var ikke funnet i database.</sys:String>
+    <sys:String x:Key="LOCGameError">Spillfeil</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">Kan ikke starte spill. '{0}' ble ikke funnet i databasen.</sys:String>
     <sys:String x:Key="LOCGameStartError">Kan ikke starte spill: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Kan ikke starte handling: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Kan ikke åpne spillokasjon: {0}</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Feilet i opprettelsen av snarvei: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Oppretting av snarvei feilet: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan ikke installere spill: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan ikke avinstallere spill: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Spilleaksjonen er ikke konfigurert.</sys:String>
@@ -231,7 +231,7 @@ Resulterer i: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store-applikasjon…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Om Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Gi Tilbakemelding</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Bytt til fullskjermmodus</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Lenker</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjelp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Støtt på Patreon</sys:String>
@@ -267,7 +267,7 @@ Resulterer i: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Banner</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam New UI</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Vertikalt omslag fra Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Krever omstart for at endringene skal ta i kraft</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Innstillinger</sys:String>
@@ -528,7 +528,7 @@ Kan også endres i applikasjonsinnstillinger.</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Utvikler</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tagg</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Utgiver</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Installasjonsstatus</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installert</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installert</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Avinstallert</sys:String>
@@ -545,23 +545,23 @@ Kan også endres i applikasjonsinnstillinger.</sys:String>
     <sys:String x:Key="LOCGenreLabel">Sjanger</sys:String>
     <sys:String x:Key="LOCGenresLabel">Sjangere</sys:String>
     <sys:String x:Key="LOCCompanyLabel">Bedrift</sys:String>
-    <sys:String x:Key="LOCCompaniesLabel"></sys:String>
+    <sys:String x:Key="LOCCompaniesLabel">Selskaper</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Utvikler</sys:String>
     <sys:String x:Key="LOCDevelopersLabel">Utviklere</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Utgiver</sys:String>
-    <sys:String x:Key="LOCPublishersLabel"></sys:String>
+    <sys:String x:Key="LOCPublishersLabel">Utgivere</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
-    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">Kategorier</sys:String>
     <sys:String x:Key="LOCTagLabel">Tagg</sys:String>
     <sys:String x:Key="LOCTagsLabel">Tagger</sys:String>
-    <sys:String x:Key="LOCFeatureLabel"></sys:String>
-    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
+    <sys:String x:Key="LOCFeatureLabel">Funksjon</sys:String>
+    <sys:String x:Key="LOCFeaturesLabel">Funksjoner</sys:String>
     <sys:String x:Key="LOCAgeRatingLabel">Årsgrense</sys:String>
-    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel">Aldersgrense</sys:String>
     <sys:String x:Key="LOCRegionLabel">Region</sys:String>
-    <sys:String x:Key="LOCRegionsLabel"></sys:String>
+    <sys:String x:Key="LOCRegionsLabel">Regioner</sys:String>
     <sys:String x:Key="LOCSourceLabel">Kilde</sys:String>
-    <sys:String x:Key="LOCSourcesLabel"></sys:String>
+    <sys:String x:Key="LOCSourcesLabel">Kilder</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Databasefeil</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Åpning av biblioteksdatabasen mislyktes.</sys:String>
@@ -660,7 +660,7 @@ Vennligst legg ved følgende ID til krasjrapporten din:</sys:String>
     <sys:String x:Key="LOCReloadScripts">Oppdater skript</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Alle skriptene ble lastet på nytt.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Ingen spill funnet for spesifiserte søke og filterkriterier</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Bytt til skrivebordmodus</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Lukk Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Biblioteker</sys:String>
     <sys:String x:Key="LOCUpdateAll">Oppdater alle</sys:String>
@@ -721,6 +721,7 @@ Vennligst legg ved følgende ID til krasjrapporten din:</sys:String>
     <sys:String x:Key="LOCUnHideGame">Vis i Biblioteket</sys:String>
     <sys:String x:Key="LOCEditGame">Redigere…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Sett opp kategorier…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Velg fullføringsstatus</sys:String>
     <sys:String x:Key="LOCRemoveGame">Fjern</sys:String>
     <sys:String x:Key="LOCPlayGame">Spill</sys:String>
     <sys:String x:Key="LOCInstallGame">Installer</sys:String>
@@ -788,7 +789,9 @@ Vennligst legg ved følgende ID til krasjrapporten din:</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme / Extension bruker ikke-støttet API-versjon.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installasjonen var vellykket.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installér utvidelsen?</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Kunne ikke installere utvidelsen.
+
+{0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
