@@ -267,7 +267,7 @@ Risultati in: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Nuova UI Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Cover verticali Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Richiede il riavvio per applicare</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Impostazioni</sys:String>
@@ -738,6 +738,7 @@ Puoi provare i seguenti:
     <sys:String x:Key="LOCUnHideGame">Mostra in libreria</sys:String>
     <sys:String x:Key="LOCEditGame">Modifica…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Imposta la categoria…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Stato di completamento</sys:String>
     <sys:String x:Key="LOCRemoveGame">Rimuovi</sys:String>
     <sys:String x:Key="LOCPlayGame">Gioca</sys:String>
     <sys:String x:Key="LOCInstallGame">Installa</sys:String>
