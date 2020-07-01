@@ -245,7 +245,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Omslag</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Kräver omstart för att tillämpa</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Inställningar</sys:String>
@@ -693,6 +693,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCUnHideGame">Visa i biblioteket</sys:String>
     <sys:String x:Key="LOCEditGame">Ändra…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Ange Kategori…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Ta Bort</sys:String>
     <sys:String x:Key="LOCPlayGame">Spela</sys:String>
     <sys:String x:Key="LOCInstallGame">Installera</sys:String>
