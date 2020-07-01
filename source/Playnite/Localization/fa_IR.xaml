@@ -269,7 +269,7 @@
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB
 </sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">بنر استیم</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">رابط جدید استیم</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">توییچ</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* برای اعمال اجرا مجدد نیاز دارد</sys:String>
     <sys:String x:Key="LOCSettingsLabel">تنظیمات</sys:String>
@@ -737,6 +737,7 @@
     <sys:String x:Key="LOCUnHideGame">نمایش در کتابخانه</sys:String>
     <sys:String x:Key="LOCEditGame">ویرایش…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">تنظیم دسته بندی ها…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">حذف</sys:String>
     <sys:String x:Key="LOCPlayGame">شروع</sys:String>
     <sys:String x:Key="LOCInstallGame">نصب</sys:String>
