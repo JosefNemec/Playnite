@@ -266,7 +266,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-juliste</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam Uusi Käyttöliittymä</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Käyttöönotto vaatii uudelleenkäynnistyksen</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Asetukset</sys:String>
@@ -739,6 +739,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCUnHideGame">Näytä kirjastossa</sys:String>
     <sys:String x:Key="LOCEditGame">Muokkaa…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Aseta kategoria…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Poista</sys:String>
     <sys:String x:Key="LOCPlayGame">Pelaa</sys:String>
     <sys:String x:Key="LOCInstallGame">Asenna</sys:String>
