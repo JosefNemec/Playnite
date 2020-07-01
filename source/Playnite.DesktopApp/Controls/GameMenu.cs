@@ -51,7 +51,6 @@ namespace Playnite.DesktopApp.Controls
 
         private IResourceProvider resources;
         private DesktopAppViewModel model;
-        private readonly SynchronizationContext context;
 
         private static object startIcon;
         private static object removeIcon;
@@ -102,7 +101,6 @@ namespace Playnite.DesktopApp.Controls
                 return;
             }
 
-            context = SynchronizationContext.Current;
             this.model = model;
             resources = new ResourceProvider();
             Opened += GameMenu_Opened;
@@ -250,6 +248,9 @@ namespace Playnite.DesktopApp.Controls
                 };
 
                 Items.Add(categoryItem);
+
+                // Set Completion Status
+                Items.Add(LoadCompletionStatusItem());
 
                 // Extensions items
                 AddExtensionItems();
@@ -424,6 +425,9 @@ namespace Playnite.DesktopApp.Controls
 
                 Items.Add(categoryItem);
 
+                // Set Completion Status
+                Items.Add(LoadCompletionStatusItem());
+
                 // Extensions items
                 AddExtensionItems();
                 Items.Add(new Separator());
@@ -454,6 +458,38 @@ namespace Playnite.DesktopApp.Controls
                     Items.Add(uninstallItem);
                 }
             }
+        }
+
+        private MenuItem LoadCompletionStatusItem()
+        {
+            var completionItem = new MenuItem()
+            {
+                Header = resources.GetString("LOCSetCompletionStatus")
+            };
+
+            foreach (CompletionStatus status in Enum.GetValues(typeof(CompletionStatus)))
+            {
+                if (Games != null)
+                {
+                    completionItem.Items.Add(new MenuItem
+                    {
+                        Header = status.GetDescription(),
+                        Command = model.SetGamesCompletionStatusCommand,
+                        CommandParameter = new Tuple<IEnumerable<Game>, CompletionStatus>(Games, status)
+                    });
+                }
+                else if (Game != null)
+                {
+                    completionItem.Items.Add(new MenuItem
+                    {
+                        Header = status.GetDescription(),
+                        Command = model.SetGameCompletionStatusCommand,
+                        CommandParameter = new Tuple<Game, CompletionStatus>(Game, status)
+                    });
+                }
+            }
+
+            return completionItem;
         }
 
         private void AddExtensionItems()

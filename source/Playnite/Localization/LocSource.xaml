@@ -235,7 +235,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store application…</sys:String>
     <sys:String x:Key="LOCMenuAbout">About Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullscreen Mode</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Switch to Fullscreen Mode</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Help</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Support on Patreon</sys:String>
@@ -271,7 +271,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Banner</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam New UI</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam vertical cover</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requires restart to apply</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Settings</sys:String>
@@ -463,7 +463,6 @@ You can also configure and import any custom emulator later via configuration me
 
 Keep in mind that you can always add any custom game for any platform manually from main menu by clicking on 'Playnite' button.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Choose location for library database file. Location can be also changed later via Settings menu.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Default program data location for all users</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Custom location</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Library Integration</sys:String>
@@ -478,9 +477,9 @@ Keep in mind that you can always add any custom game for any platform manually f
     <sys:String x:Key="LOCFirstOtherGamesText">Click on the button below to import other installed games or browse for them manually (including Microsoft Store games).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Import Games</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration Finished</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Initial setup has been completed. Remember that you can change all settings later via 'Settings' menu.
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">The initial setup has been completed. Remember that you can change all settings later in the 'Settings' menu.
 
-You can also add any other game (including Microsoft Store games) later from main menu by clicking on Playnite application logo.</sys:String>
+You can also add any other game later by clicking the Playnite logo menu.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Open emulation import guide</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Grid View Layout</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Select preferred layout for Playnite's grid view. Image layout can be changed at any time in application settings, including image stretching options.</sys:String>
@@ -686,7 +685,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCReloadScripts">Reload Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">No games found for specified search/filter criteria</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Exit to Desktop Mode</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Switch to Desktop Mode</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Exit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Libraries</sys:String>
     <sys:String x:Key="LOCUpdateAll">Update All</sys:String>
@@ -755,6 +754,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCUnHideGame">Show in Library</sys:String>
     <sys:String x:Key="LOCEditGame">Edit…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Set Category…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Set Completion Status</sys:String>
     <sys:String x:Key="LOCRemoveGame">Remove</sys:String>
     <sys:String x:Key="LOCPlayGame">Play</sys:String>
     <sys:String x:Key="LOCInstallGame">Install</sys:String>
