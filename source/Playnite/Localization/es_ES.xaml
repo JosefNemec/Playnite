@@ -216,7 +216,7 @@ Resulta en: -image &quot;c:\carpeta\imagen.iso&quot; -fullscreen</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Configuración</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Ajustes…</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Configuración…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plataformas y Emuladores</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Configurar Emuladores…</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Administrador de la biblioteca…</sys:String>
@@ -231,7 +231,7 @@ Resulta en: -image &quot;c:\carpeta\imagen.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Aplicación de la Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">Acerca de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar retroalimentación</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Cambiar al modo de pantalla completa</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Enlaces</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ayuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoyar en Patreon</sys:String>
@@ -267,10 +267,10 @@ Resulta en: -image &quot;c:\carpeta\imagen.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner de Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Portada vertical de Steam </sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requiere reiniciar para aplicar</sys:String>
-    <sys:String x:Key="LOCSettingsLabel">Ajustes</sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Configuración</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">General</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Apariencia</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Detalles del juego</sys:String>
@@ -321,7 +321,7 @@ Resulta en: -image &quot;c:\carpeta\imagen.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Ubicación de la Base de Datos</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">¿Cuál es el nombre de mi cuenta?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Estado de inicio de sesión:</sys:String>
-    <sys:String x:Key="LOCSettingsWindowTitle">Ajustes de Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsWindowTitle">Configuración de Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata">Importar metadatos de la cuenta de Steam:</sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel">Importar categorías de Steam</sys:String>
     <sys:String x:Key="LOCImportSteamLastActivityLabel">Importar últimos jugados de Steam</sys:String>
@@ -471,7 +471,9 @@ Ten en cuenta que siempre puede agregar cualquier juego personalizado para cualq
     <sys:String x:Key="LOCFirstOtherGamesText">Haz click en el botón a continuación para importar otros juegos instalados o buscarlos manualmente (incluyendo juegos de Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importar Juegos</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuración Finalizada</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">La configuración inicial se ha completado. Recuerda que puedes cambiar todas las configuraciones más adelante en el menú 'Configuración'.
+
+También puedes agregar cualquier otro juego más tarde haciendo clic en el menú del logotipo de Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Abrir guía de importación de emulación</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Disposición de cuadrícula</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Seleccionar disposición preferida para la vista de cuadrícula de Playnite. La disposición de imagen puede cambiarse en cualquier momento en las opciones de aplicación, incluyendo las opciones de estiramiento de imagen.</sys:String>
@@ -676,7 +678,7 @@ Puede probar esto para solucionar el problema:
     <sys:String x:Key="LOCReloadScripts">Recargar Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Todos los scripts fueron recargados correctamente.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">No se encontraron juegos para los criterios de búsqueda/filtro especificados</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Cambiar al modo de escritorio</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Salir de Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotecas</sys:String>
     <sys:String x:Key="LOCUpdateAll">Actualizar todo</sys:String>
@@ -737,7 +739,7 @@ Puede probar esto para solucionar el problema:
     <sys:String x:Key="LOCUnHideGame">Mostrar en la Biblioteca</sys:String>
     <sys:String x:Key="LOCEditGame">Editar…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Establecer categoría…</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Establecer estado de finalización</sys:String>
     <sys:String x:Key="LOCRemoveGame">Eliminar</sys:String>
     <sys:String x:Key="LOCPlayGame">Iniciar</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalar</sys:String>
