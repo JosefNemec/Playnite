@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
 
-    <sys:String x:Key="LanguageName">إنجليزية</sys:String>
+    <sys:String x:Key="LanguageName">العربية</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">اللغة</sys:String>
 
@@ -268,7 +268,7 @@
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">شعار Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">الغلاف العمودي لمكتبة Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">التويتش</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* يتطلب إعادة التشغيل من أجل التطبيق</sys:String>
     <sys:String x:Key="LOCSettingsLabel">إعدادات</sys:String>
@@ -715,7 +715,7 @@
     <sys:String x:Key="LOCCheckForUpdates">تحقق من التحديثات</sys:String>
     <sys:String x:Key="LOCUpdateError">خطأ فى التحديث</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">فشل التحقق من الإصدار الجديد.</sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">لم يتم العثور على إصدار جديد، التطبيق محدث.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">لم يتم العثور على إصدار جديد، التطبيق محدّث مسبقًا.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">فشل تحميل التحديث وتثبيته.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">الخلفية قيد التشغيل حاليًا، هل تود إلغاءها ومتابعة تثبيت التحديث؟</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">الخلفية قيد التشغيل حاليًا، هل تود إلغاءها وإغلاق Playnite؟</sys:String>
@@ -737,7 +737,7 @@
     <sys:String x:Key="LOCUnHideGame">العرض في المكتبة</sys:String>
     <sys:String x:Key="LOCEditGame">تعديل…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">تعيين الفئة…</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">تعيين حالة الإكمال</sys:String>
     <sys:String x:Key="LOCRemoveGame">حذف</sys:String>
     <sys:String x:Key="LOCPlayGame">تشغيل</sys:String>
     <sys:String x:Key="LOCInstallGame">تثبيت</sys:String>
