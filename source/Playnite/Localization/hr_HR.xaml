@@ -166,63 +166,73 @@ Automatski dodate igre se možda ponovo pojave u Playniteu nakon sledeće proced
     <sys:String x:Key="LOCPastYear">Prošla godina</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Prije više od godinu dana</sys:String>
     <sys:String x:Key="LOCImportCompleted">Uvoz je uspješno završen.</sys:String>
-    <sys:String x:Key="LOCAllGames"></sys:String>
-    <sys:String x:Key="LOCGameId"></sys:String>
-    <sys:String x:Key="LOCDatabaseId"></sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
-    <sys:String x:Key="LOCColumn"></sys:String>
-    <sys:String x:Key="LOCColumns"></sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
+    <sys:String x:Key="LOCAllGames">Sve igre</sys:String>
+    <sys:String x:Key="LOCGameId">ID Igara</sys:String>
+    <sys:String x:Key="LOCDatabaseId">ID baze podataka</sys:String>
+    <sys:String x:Key="LOCPresets">Preseti</sys:String>
+    <sys:String x:Key="LOCColumn">Stupac</sys:String>
+    <sys:String x:Key="LOCColumns">Stupci</sys:String>
+    <sys:String x:Key="LOCRow">Red</sys:String>
+    <sys:String x:Key="LOCRows">Redovi</sys:String>
 
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Specijalne varijable mogu se koristiti da se doda dinamički string:
+{InstallDir} - Lokacija instalirane igre na kompjuteru
+{InstallDirName} - Ime instalacionog foldera
+{ImagePath} - ISO/ROM putanja igre ako je podešena
+{ImageName} - Ime ISO/ROM fajla igre
+{ImageNameNoExt} - Ime ISO/ROM fajla igra bez ekstenzije
+{PlayniteDir} - Lokacija Playnitea na kompjuteru
+{Name} - Ime igre
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
+Primjer: -image &quot;{ImagePath}&quot; -fullscreen
+Rezultiraće u: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Ne može da se dobije ikona ako radnja igranja nedostaje ili je nameštena na URL.</sys:String>
+
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Samo preuzmi metapodatke koji nedostaju</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCMetaGamesSourceIntro"></sys:String>
-    <sys:String x:Key="LOCMetaGamesSourceDescription"></sys:String>
-    <sys:String x:Key="LOCMetaGameSourceAll"></sys:String>
-    <sys:String x:Key="LOCMetaGameSourceFiltered"></sys:String>
-    <sys:String x:Key="LOCMetaGameSourceSelected"></sys:String>
-    <sys:String x:Key="LOCMetaSourceStore"></sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceIntro">Odabir igara</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceDescription">Molimo izaberite koje igre treba da se ažuriraju novim metapodacima:</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceAll">Sve igre iz baze podataka</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceFiltered">Sve trenutno filtrirane igre</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceSelected">Samo odabrane igre</sys:String>
+    <sys:String x:Key="LOCMetaSourceStore">Zvanična radnja</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressMetadata"></sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
-    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
-    <sys:String x:Key="LOCProgressLibImportFinish"></sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">Preuzimanje ažuriranja Steam biblioteke igara…</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">Preuzimanje ažuriranja GOG biblioteke igara…</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Preuzimanje ažuriranja Origin biblioteke igara…</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">Preuzimanje ažuriranja Battle.net biblioteke igara…</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">Preuzimanje metapodataka…</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Uvođenje instaliranih igara…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Uvođenje {0} igara…</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">Preuzimanje ažuriranja biblioteke igara…</sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport">Preuzimanje ažuriranja biblioteke igara…</sys:String>
+    <sys:String x:Key="LOCProgressLibImportFinish">Ažuriranje biblioteke igara završeno</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">Odpuštanje resursa…</sys:String>
 
     <!--Menu-->
-    <sys:String x:Key="LOCMenuConfigurationTitle"></sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
-    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle"></sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
-    <sys:String x:Key="LOCMenuTools"></sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
-    <sys:String x:Key="LOCMenuOpenClient"></sys:String>
-    <sys:String x:Key="LOCMenuReloadLibrary"></sys:String>
-    <sys:String x:Key="LOCMenuAddGame"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
-    <sys:String x:Key="LOCMenuAbout"></sys:String>
-    <sys:String x:Key="LOCMenuIssues"></sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
-    <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigurationTitle">Konfiguracija</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Postavke...</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platforme i emulatori</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Konfiguriraj emulatore…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Menadžer biblioteke igara…</sys:String>
+    <sys:String x:Key="LOCMenuTools">Alati</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">Preuzmi metapodatke…</sys:String>
+    <sys:String x:Key="LOCMenuOpenClient">Otvori klijent</sys:String>
+    <sys:String x:Key="LOCMenuReloadLibrary">Ažuriraj biblioteku igara</sys:String>
+    <sys:String x:Key="LOCMenuAddGame">Dodaj igru</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">Ručno…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Skeniraj automatski…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Emulirana igra…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Store aplikacija…</sys:String>
+    <sys:String x:Key="LOCMenuAbout">O Playniteu</sys:String>
+    <sys:String x:Key="LOCMenuIssues">Pošalji povratne informacije</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Zameni u mod cijelog zaslona</sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Linkovi</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pomoć</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podržite na Patreonu</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK dokumentacija</sys:String>
@@ -275,20 +285,20 @@ Automatski dodate igre se možda ponovo pojave u Playniteu nakon sledeće proced
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Uvezi instalirane igre</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">Poveži račun</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Uvezi neinstalirane igre</sys:String>
-    <sys:String x:Key="LOCSettingsImportLibraryLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidDBLocation"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidAccountName"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport"></sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
-    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport"></sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError"></sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
+    <sys:String x:Key="LOCSettingsImportLibraryLabel">Uvedi sve igre</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Uvedi sve igre (Javni račun ili API ključ je potreban za ovo)</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidDBLocation">Pogrešna lokacija fajla baze podataka, ispravna putanja se mora podesiti.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">Naziv računa ne može biti prazan.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Nijedan Steam račun nije odabran za uvoz biblioteke igara.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nijedan Steam račun nije odabran za uvoz kategorija.</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Preuzmi ažuriranja biblioteke igara klijenta pri pokretanju</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Preuzmi metapodatke nakon uvoženja igara</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Pokreni umanjeno</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Pokreni Playnite pri pokretanju kompjutera</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Neuspjelo registriranje pokretanja Playnitea prilikom pokretanja kompjutera.</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Pokreni u cijelom zaslonu</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Sadrži Steam, Origin i ostalo.</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Asinkrono učitavanje slika</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover"></sys:String>
@@ -363,28 +373,28 @@ Bilo koji trenutno aktivni zadaci (preuzimanja metapodataka) će se prekinuti.</
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
-    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
-    <sys:String x:Key="LOCSettingsShowClock"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetMonitor">Ciljni monitor</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Prikaži nazive igara</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus">Prikaži status baterije</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage">Prikaži postotak baterije</sys:String>
+    <sys:String x:Key="LOCSettingsShowClock">Prikaži sat</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Samo instalirano u brzim filterima</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Stil tipki</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">Raspored</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Vodoravno skrolovanje</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Odaberite jedan od pododjeljaka</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Nema dostupnih postavki</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">Veličine fonta</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatski</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Ima drugi naziv</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Sivi tonovi</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">OčistiVrstu</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Idealno</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Zaslon</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">Mod formatiranja teksta</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">Mod predstavljanja teksta</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
@@ -435,7 +445,7 @@ Bilo koji trenutno aktivni zadaci (preuzimanja metapodataka) će se prekinuti.</
     <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
 
     <!--FirstTime Wizard-->
-    <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
+    <sys:String x:Key="LOCFirstWindowTitle">Konfiguriranje pri prvom ulasku u Playnite</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
@@ -453,81 +463,83 @@ Bilo koji trenutno aktivni zadaci (preuzimanja metapodataka) će se prekinuti.</
     <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">Raspored prikaza rešetke</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
 
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCPlatformTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorTitle"></sys:String>
-    <sys:String x:Key="LOCAddPlatformTitle"></sys:String>
-    <sys:String x:Key="LOCSelectIconTitle"></sys:String>
-    <sys:String x:Key="LOCSelectCoverTitle"></sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
-    <sys:String x:Key="LOCSelectFileTitle"></sys:String>
-    <sys:String x:Key="LOCSelectUrlTitle"></sys:String>
-    <sys:String x:Key="LOCAddEmulatorTitle"></sys:String>
-    <sys:String x:Key="LOCSupportedPlatformsTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">Konfiguriraj platforme i emulatore</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Konfiguriraj emulatore</sys:String>
+    <sys:String x:Key="LOCPlatformsTitle">Platforme</sys:String>
+    <sys:String x:Key="LOCPlatformTitle">Platforma</sys:String>
+    <sys:String x:Key="LOCEmulatorsTitle">Emulatori</sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">Emulator</sys:String>
+    <sys:String x:Key="LOCAddPlatformTitle">Dodaj platformu</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">Odaberite ikonu</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">Odaberite naslovnicu</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Odaberite sliku</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Odaberite stavku</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">Odaberi pozadinu</sys:String>
+    <sys:String x:Key="LOCSelectFileTitle">Odaberi datoteku</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">Odaberi URL</sys:String>
+    <sys:String x:Key="LOCAddEmulatorTitle">Dodaj emulator</sys:String>
+    <sys:String x:Key="LOCSupportedPlatformsTitle">Podržane platforme</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Želite li sačuvati izmjene za platformu?</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Želite li sačuvati izmjene za emulator?</sys:String>
-    <sys:String x:Key="LOCExecutableTitle"></sys:String>
-    <sys:String x:Key="LOCArgumentsTitle"></sys:String>
-    <sys:String x:Key="LOCWorkingDirTitle"></sys:String>
-    <sys:String x:Key="LOCSupportedFilesTitle"></sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
-    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
+    <sys:String x:Key="LOCExecutableTitle">Fajl za pokretanje</sys:String>
+    <sys:String x:Key="LOCArgumentsTitle">Argumenti</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">Radni direktorij</sys:String>
+    <sys:String x:Key="LOCSupportedFilesTitle">Podržane vrste datoteka</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">Uvezi emulatore…</sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton">Preuzmi emulatore…</sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Učitaj presete argumenata iz poznatih emulatorskih profila</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Jeste li sigurni da hoćete da obrišete {0} emulator(a)?
+Upravo ga(ih) koristi {1} igra(e).</sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Jeste li sigurni da hoćete da obrišete {0} platformu(i)?
+Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
+    <sys:String x:Key="LOCEmulatorSettingsHelp">Pomoć oko postavki</sys:String>
 
-    <sys:String x:Key="LOCMenuSortByTitle"></sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
-    <sys:String x:Key="LOCMenuSortAscending"></sys:String>
-    <sys:String x:Key="LOCMenuSortDescending"></sys:String>
-    <sys:String x:Key="LOCMenuGroupDont"></sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider"></sys:String>
-    <sys:String x:Key="LOCMenuGroupCategory"></sys:String>
-    <sys:String x:Key="LOCMenuGroupPlatform"></sys:String>
-    <sys:String x:Key="LOCViewType"></sys:String>
-    <sys:String x:Key="LOCMenuView"></sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
-    <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
+    <sys:String x:Key="LOCMenuSortByTitle">Sortiraj prema</sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Grupiraj po</sys:String>
+    <sys:String x:Key="LOCMenuSortAscending">Uzlazno</sys:String>
+    <sys:String x:Key="LOCMenuSortDescending">Silazno</sys:String>
+    <sys:String x:Key="LOCMenuGroupDont">Ne grupiraj</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">Grupiraj po biblioteci igara</sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory">Grupiraj po kategoriji</sys:String>
+    <sys:String x:Key="LOCMenuGroupPlatform">Grupiraj po platformi</sys:String>
+    <sys:String x:Key="LOCViewType">Vrsta prikaza</sys:String>
+    <sys:String x:Key="LOCMenuView">Prikaz</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Istraživački panel</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">Filterski panel</sys:String>
 
     <!--Game fields-->
-    <sys:String x:Key="LOCGameIconTitle"></sys:String>
-    <sys:String x:Key="LOCGameCoverImageTitle"></sys:String>
-    <sys:String x:Key="LOCGameBackgroundTitle"></sys:String>
-    <sys:String x:Key="LOCGameSortingNameTitle"></sys:String>
-    <sys:String x:Key="LOCGameProviderTitle"></sys:String>
-    <sys:String x:Key="LOCGameNameTitle"></sys:String>
-    <sys:String x:Key="LOCGameAccountNameTitle"></sys:String>
-    <sys:String x:Key="LOCGamePlatformTitle"></sys:String>
-    <sys:String x:Key="LOCGameCategoriesTitle"></sys:String>
-    <sys:String x:Key="LOCGameGenresTitle"></sys:String>
-    <sys:String x:Key="LOCGameReleaseDateTitle"></sys:String>
-    <sys:String x:Key="LOCGameReleaseYearTitle"></sys:String>
-    <sys:String x:Key="LOCGameDevelopersTitle"></sys:String>
-    <sys:String x:Key="LOCGameTagsTitle"></sys:String>
-    <sys:String x:Key="LOCGamePublishersTitle"></sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle"></sys:String>
-    <sys:String x:Key="LOCGameFavoriteTitle"></sys:String>
-    <sys:String x:Key="LOCGameLastActivityTitle"></sys:String>
-    <sys:String x:Key="LOCGameCategoryTitle"></sys:String>
-    <sys:String x:Key="LOCGameDescriptionTitle"></sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
-    <sys:String x:Key="LOCGameCoverTitle"></sys:String>
-    <sys:String x:Key="LOCGameLinksTitle"></sys:String>
-    <sys:String x:Key="LOCGameROMTitle"></sys:String>
+    <sys:String x:Key="LOCGameIconTitle">Ikona</sys:String>
+    <sys:String x:Key="LOCGameCoverImageTitle">Naslovnica</sys:String>
+    <sys:String x:Key="LOCGameBackgroundTitle">Pozadina</sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">Sortirajući naziv</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">Biblioteka igara</sys:String>
+    <sys:String x:Key="LOCGameNameTitle">Naziv</sys:String>
+    <sys:String x:Key="LOCGameAccountNameTitle">Naziv računa</sys:String>
+    <sys:String x:Key="LOCGamePlatformTitle">Platforma</sys:String>
+    <sys:String x:Key="LOCGameCategoriesTitle">Kategorija</sys:String>
+    <sys:String x:Key="LOCGameGenresTitle">Žanr</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">Datum izdavanja</sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">Godina objavljivanja</sys:String>
+    <sys:String x:Key="LOCGameDevelopersTitle">Developer</sys:String>
+    <sys:String x:Key="LOCGameTagsTitle">Oznaka</sys:String>
+    <sys:String x:Key="LOCGamePublishersTitle">Izdavač</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Status instalacije</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">Instalirano</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalirano</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Deinstalirano</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Skriveno</sys:String>
+    <sys:String x:Key="LOCGameFavoriteTitle">Favorit</sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle">Posljednji put igrano</sys:String>
+    <sys:String x:Key="LOCGameCategoryTitle">Kategorija</sys:String>
+    <sys:String x:Key="LOCGameDescriptionTitle">Opis</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Lokacija instalacije</sys:String>
+    <sys:String x:Key="LOCGameCoverTitle">Naslovnica</sys:String>
+    <sys:String x:Key="LOCGameLinksTitle">Linkovi</sys:String>
+    <sys:String x:Key="LOCGameROMTitle">Image, ROM ili ISO putanja</sys:String>
 
     <sys:String x:Key="LOCGenreLabel">Žanr</sys:String>
     <sys:String x:Key="LOCGenresLabel">Žanrovi</sys:String>
@@ -559,21 +571,21 @@ Bilo koji trenutno aktivni zadaci (preuzimanja metapodataka) će se prekinuti.</
     <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
 
-    <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
+    <sys:String x:Key="LOCSteamCategoryImportError">Neuspjeli uvod Steam kategorija.</sys:String>
 
-    <sys:String x:Key="LOCBnetInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCSteamInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCGOGInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCOriginInstalledImportError"></sys:String>
-    <sys:String x:Key="LOCUplayInstalledImportError"></sys:String>
+    <sys:String x:Key="LOCBnetInstalledImportError">Neuspjeli uvod instaliranih Battle.net igara.</sys:String>
+    <sys:String x:Key="LOCSteamInstalledImportError">Neuspjeli uvod instaliranih Steam igara.</sys:String>
+    <sys:String x:Key="LOCGOGInstalledImportError">Neuspjeli uvod instaliranih GOG igara.</sys:String>
+    <sys:String x:Key="LOCOriginInstalledImportError">Neuspjeli uvod instaliranih Origin igara.</sys:String>
+    <sys:String x:Key="LOCUplayInstalledImportError">Neuspjeli uvod instaliranih Uplay igara.</sys:String>
 
-    <sys:String x:Key="LOCBnetLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCSteamLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCGOGLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCOriginLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCUplayLibraryImportError"></sys:String>
+    <sys:String x:Key="LOCBnetLibraryImportError">Neuspjelo preuzimanje Battle.net biblioteke igara.</sys:String>
+    <sys:String x:Key="LOCSteamLibraryImportError">Neuspjelo preuzimanje Steam biblioteke igara.</sys:String>
+    <sys:String x:Key="LOCGOGLibraryImportError">Neuspjelo preuzimanje GOG biblioteke igara.</sys:String>
+    <sys:String x:Key="LOCOriginLibraryImportError">Neuspjelo preuzimanje Origin biblioteke igara.</sys:String>
+    <sys:String x:Key="LOCUplayLibraryImportError">Neuspjelo preuzimanje Uplay biblioteke igara.</sys:String>
 
-    <sys:String x:Key="LOCLibraryImportError"></sys:String>
+    <sys:String x:Key="LOCLibraryImportError">Neuspjeli uvod igara iz {0}.</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError"></sys:String>
     <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
@@ -659,34 +671,34 @@ Bilo koji trenutno aktivni zadaci (preuzimanja metapodataka) će se prekinuti.</
     <sys:String x:Key="LOCNotifications">Obavijesti</sys:String>
     <sys:String x:Key="LOCWidth">Širina</sys:String>
     <sys:String x:Key="LOCHeight">Visina</sys:String>
-    <sys:String x:Key="LOCSize"></sys:String>
-    <sys:String x:Key="LOCFontSmall"></sys:String>
-    <sys:String x:Key="LOCFontNormal"></sys:String>
-    <sys:String x:Key="LOCFontLarge"></sys:String>
-    <sys:String x:Key="LOCFontLarger"></sys:String>
-    <sys:String x:Key="LOCFontLargest"></sys:String>
-    <sys:String x:Key="LOCDefault"></sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
-    <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCSize">Veličina</sys:String>
+    <sys:String x:Key="LOCFontSmall">Malo</sys:String>
+    <sys:String x:Key="LOCFontNormal">Normalno</sys:String>
+    <sys:String x:Key="LOCFontLarge">Veliko</sys:String>
+    <sys:String x:Key="LOCFontLarger">Veće</sys:String>
+    <sys:String x:Key="LOCFontLargest">Najveće</sys:String>
+    <sys:String x:Key="LOCDefault">Zadano</sys:String>
+    <sys:String x:Key="LOCSelect">Odaberi</sys:String>
+    <sys:String x:Key="LOCFirst">Prvo</sys:String>
+    <sys:String x:Key="LOCRandom">Nasumice</sys:String>
+    <sys:String x:Key="LOCUserSelect">Korisnički odabir</sys:String>
+    <sys:String x:Key="LOCLoadMore">Učitaj još</sys:String>
+    <sys:String x:Key="LOCTransparent">Transparentno</sys:String>
 
-    <sys:String x:Key="LOCEmulatorArguments"></sys:String>
-    <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
-    <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCEmulatorArguments">Emulatorski argumenti</sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatni emulatorski argumenti</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">Nadglasaj emulatorske argumente</sys:String>
 
-    <sys:String x:Key="LOCGameImportWindowTitle"></sys:String>
-    <sys:String x:Key="LOCMetaLookupWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUpdaterWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate"></sys:String>
-    <sys:String x:Key="LOCCheckForUpdates"></sys:String>
-    <sys:String x:Key="LOCUpdateError"></sys:String>
-    <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage"></sys:String>
-    <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
+    <sys:String x:Key="LOCGameImportWindowTitle">Odaberite igre koje hoćete da uvedete</sys:String>
+    <sys:String x:Key="LOCMetaLookupWindowTitle">Pretraga metapodataka</sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle">Dostupna su ažuriranja</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Promjene od poslednjeg ažuriranja</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Preuzmi i instaliraj ažuriranje</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Provjeri ima li ažuriranja</sys:String>
+    <sys:String x:Key="LOCUpdateError">Greška pri ažuriranju</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Nesupjelo provjeravanje ima li nove verzije.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nema nove verzije, već imate najnoviju.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Neuspjelo preuzimanje i instaliranje ažuriranja.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
@@ -701,23 +713,23 @@ Bilo koji trenutno aktivni zadaci (preuzimanja metapodataka) će se prekinuti.</
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault"></sys:String>
-    <sys:String x:Key="LOCFavoriteGame"></sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
-    <sys:String x:Key="LOCHideGame"></sys:String>
-    <sys:String x:Key="LOCUnHideGame"></sys:String>
-    <sys:String x:Key="LOCEditGame"></sys:String>
-    <sys:String x:Key="LOCSetGameCategory"></sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
-    <sys:String x:Key="LOCRemoveGame"></sys:String>
-    <sys:String x:Key="LOCPlayGame"></sys:String>
-    <sys:String x:Key="LOCInstallGame"></sys:String>
-    <sys:String x:Key="LOCGameOptions"></sys:String>
-    <sys:String x:Key="LOCGameDetails"></sys:String>
-    <sys:String x:Key="LOCUninstallGame"></sys:String>
-    <sys:String x:Key="LOCOpenGameLocation"></sys:String>
-    <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
-    <sys:String x:Key="LOCMoreAction"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
+    <sys:String x:Key="LOCFavoriteGame">Dodaj u favorite</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">Ukloni iz favorita</sys:String>
+    <sys:String x:Key="LOCHideGame">Sakrij</sys:String>
+    <sys:String x:Key="LOCUnHideGame">Prikaži u biblioteci igara</sys:String>
+    <sys:String x:Key="LOCEditGame">Izmjeni…</sys:String>
+    <sys:String x:Key="LOCSetGameCategory">Postavi kategoriju…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Postavi status završenosti</sys:String>
+    <sys:String x:Key="LOCRemoveGame">Obriši</sys:String>
+    <sys:String x:Key="LOCPlayGame">Igraj</sys:String>
+    <sys:String x:Key="LOCInstallGame">Instaliraj</sys:String>
+    <sys:String x:Key="LOCGameOptions">Opcije igre</sys:String>
+    <sys:String x:Key="LOCGameDetails">Detalji</sys:String>
+    <sys:String x:Key="LOCUninstallGame">Deinstaliraj</sys:String>
+    <sys:String x:Key="LOCOpenGameLocation">Otvori lokaciju instalacije</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">Napravi prečac na desktopu</sys:String>
+    <sys:String x:Key="LOCMoreAction">Još</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">Upravljan od strane plugina za biblioteku igara</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
@@ -733,42 +745,42 @@ Bilo koji trenutno aktivni zadaci (preuzimanja metapodataka) će se prekinuti.</
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
 
-    <sys:String x:Key="LOCTimePlayed"></sys:String>
-    <sys:String x:Key="LOCLastPlayed"></sys:String>
-    <sys:String x:Key="LOCPlayedHours"></sys:String>
-    <sys:String x:Key="LOCPlayedMinutes"></sys:String>
-    <sys:String x:Key="LOCPlayedSeconds"></sys:String>
-    <sys:String x:Key="LOCPlayedNone"></sys:String>
+    <sys:String x:Key="LOCTimePlayed">Vreme igranja</sys:String>
+    <sys:String x:Key="LOCLastPlayed">Posljednji put igrano</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0} minuta</sys:String>
+    <sys:String x:Key="LOCPlayedSeconds">{0} sekundi</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Nije igrano</sys:String>
 
-    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
-    <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCInstallScript"></sys:String>
-    <sys:String x:Key="LOCScriptError"></sys:String>
-    <sys:String x:Key="LOCScriptExecutionError"></sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Otvaranje desktop moda…</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Otvaranje moda cijelog zaslona…</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Učitavanje biblioteke igara…</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Neuspjela instalacija skript fajla.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Skripta uspješno instalirana.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Instaliraj skriptu</sys:String>
+    <sys:String x:Key="LOCScriptError">Greška u skripti</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">Neuspjelo pokretanje funkcije proširenja.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Otvori folder metapodataka</sys:String>
 
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0} klijent nije instaliran.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} klijent je sada otvoren. Molimo prijavite se i onda zatvorite ovu poruku.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Čekanje da se korisnik prijavi, molimo zatvorite ovo kad ste gotovi…</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Lokacija instalacije igre nije pronađena.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Pogrešna konfiguracija radnje igre.</sys:String>
 
-    <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Rješavanje problema s sinkronizacijom računa</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Rješavanje problema</sys:String>
 
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
+    <sys:String x:Key="LOCRenameItem">Preimenuj stavku</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Dodaj novu stavku</sys:String>
+    <sys:String x:Key="LOCEnterName">Unesite naziv</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Unesite novi naziv</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Manje od sat vremena</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">Od 1 do 10 sati</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">Od 10 do 100 sati</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">Od 100 do 500 sati</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">Od 500 do 1000 sati</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
 
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
@@ -820,22 +832,22 @@ Bilo koji trenutno aktivni zadaci (preuzimanja metapodataka) će se prekinuti.</
 
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Stavka s istim imenom već postoji.</sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Limitiraj odabir na trenutni filter.</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Izaberi drugu</sys:String>
 
     <!--IGDB-->
-    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
+    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Koristi snimke ekrana ako ilustracije nisu dostupne</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Ako je više slika dostupno, onda koristi:</sys:String>
+    <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Odaberite pozadinu za {0}</sys:String>
 
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Ako je moguće, probaj da pokreneš igru bez pokretanja Epic klijenta</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Ova opcija neće raditi za sve igre. Pogledajte link za rješavanje problema za moguća rješenja.</sys:String>
 
     <!--Humble-->
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignoriraj igre treće strane u radnji</sys:String>
+    <sys:String x:Key="LOCHumbleImportTroveGames">Uvedi Trove igre</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
 
     <!--Xbox-->
