@@ -9,7 +9,7 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Bahasa</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Keluar</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter aktif</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters">Filter tambahan</sys:String>
     <sys:String x:Key="LOCFilters">Filter</sys:String>
