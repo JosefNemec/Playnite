@@ -55,6 +55,7 @@ namespace Playnite.Database
         private const string ageRatingsDirName = "ageratings";
         private const string regionsDirName = "regions";
         private const string sourcesDirName = "sources";
+        private const string toolsDirName = "tools";
         private const string settingsFileName = "database.json";
 
         private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
@@ -71,6 +72,7 @@ namespace Playnite.Database
         private string FilesDirectoryPath { get => Path.Combine(DatabasePath, filesDirName); }
         private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, settingsFileName); }
         private string FeaturesDirectoryPath { get => Path.Combine(DatabasePath, featuresDirName); }
+        private string ToolsDirectoryPath { get => Path.Combine(DatabasePath, toolsDirName); }
 
         #endregion Paths
 
@@ -88,6 +90,7 @@ namespace Playnite.Database
         public IItemCollection<Region> Regions { get; private set; }
         public IItemCollection<GameSource> Sources { get; private set; }
         public IItemCollection<GameFeature> Features { get; private set; }
+        public AppSoftwareCollection SoftwareApps { get; private set; }
 
         public List<Guid> UsedPlatforms { get; } = new List<Guid>();
         public List<Guid> UsedGenres { get; } = new List<Guid>();
@@ -185,6 +188,7 @@ namespace Playnite.Database
             (Sources as GamesSourcesCollection).InitializeCollection(SourcesDirectoryPath);
             (Features as FeaturesCollection).InitializeCollection(FeaturesDirectoryPath);
             (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
+            SoftwareApps.InitializeCollection(ToolsDirectoryPath);
 
             Games.ItemUpdated += Games_ItemUpdated;
             Games.ItemCollectionChanged += Games_ItemCollectionChanged;
@@ -282,6 +286,7 @@ namespace Playnite.Database
             Regions = new RegionsCollection(this);
             Sources = new GamesSourcesCollection(this);
             Features = new FeaturesCollection(this);
+            SoftwareApps = new AppSoftwareCollection(this);
         }
 
         public static string GetDefaultPath(bool portable)
@@ -774,6 +779,7 @@ namespace Playnite.Database
             Emulators.BeginBufferUpdate();
             Features.BeginBufferUpdate();
             Games.BeginBufferUpdate();
+            SoftwareApps.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
@@ -790,6 +796,7 @@ namespace Playnite.Database
             Emulators.EndBufferUpdate();
             Features.EndBufferUpdate();
             Games.EndBufferUpdate();
+            SoftwareApps.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()

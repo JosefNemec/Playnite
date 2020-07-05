@@ -68,6 +68,7 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="IPlayniteSettingsAPI.cs" />
     <Compile Include="IUriHandlerAPI.cs" />
+    <Compile Include="Models\AppSoftware.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\InstallationStatus.cs" />
     <Compile Include="Models\PastTimeSegment.cs" />

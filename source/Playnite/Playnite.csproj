@@ -244,6 +244,7 @@
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
     <Compile Include="Database\Collections\EmulatorsCollection.cs" />
     <Compile Include="Database\Collections\GamesSourcesCollection.cs" />
+    <Compile Include="Database\Collections\AppSoftwareCollection.cs" />
     <Compile Include="Database\Collections\RegionsCollection.cs" />
     <Compile Include="Database\Collections\AgeRatingsCollection.cs" />
     <Compile Include="Database\Collections\SeriesCollection.cs" />

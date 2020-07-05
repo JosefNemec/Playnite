@@ -64,7 +64,11 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        Features
+        Features,
+        /// <summary>
+        ///
+        /// </summary>
+        AppSoftware
     }
 
     /// <summary>

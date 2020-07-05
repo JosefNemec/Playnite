@@ -269,6 +269,10 @@
     <Compile Include="ViewModels\ItemSelectionWithSearchViewModel.cs" />
     <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
+    <Compile Include="Windows\ToolsConfigWindow.xaml.cs">
+      <DependentUpon>ToolsConfigWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
@@ -983,6 +987,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ToolsConfigWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

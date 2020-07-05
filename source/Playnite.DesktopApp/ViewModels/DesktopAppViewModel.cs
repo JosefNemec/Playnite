@@ -328,6 +328,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> CancelProgressCommand { get; private set; }
         public RelayCommand<object> ClearMessagesCommand { get; private set; }
         public RelayCommand<object> DownloadMetadataCommand { get; private set; }
+        public RelayCommand<object> OpenSoftwareToolsCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> RemoveGameSelectionCommand { get; private set; }
         public RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand { get; private set; }
@@ -342,6 +343,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         #region Game Commands
         public RelayCommand<Game> StartGameCommand { get; private set; }
+        public RelayCommand<AppSoftware> StartSoftwareToolCommand { get; private set; }
         public RelayCommand<Game> InstallGameCommand { get; private set; }
         public RelayCommand<Game> UninstallGameCommand { get; private set; }
         public RelayCommand<object> StartSelectedGameCommand { get; private set; }
@@ -508,6 +510,15 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.T, ModifierKeys.Control));
 
+            OpenSoftwareToolsCommand = new RelayCommand<object>((a) =>
+            {
+                ConfigureSoftwareTools(new ToolsConfigViewModel(
+                    Database,
+                    new ToolsConfigWindowFactory(),
+                    Dialogs,
+                    Resources));
+            }, (a) => Database?.IsOpen == true);
+
             AddCustomGameCommand = new RelayCommand<object>((a) =>
             {
                 AddCustomGame(new GameEditWindowFactory());
@@ -656,6 +667,11 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     GamesEditor.PlayGame(SelectedGame.Game);
                 }
+            });
+
+            StartSoftwareToolCommand = new RelayCommand<AppSoftware>((app) =>
+            {
+                StartSoftwareTool(app);
             });
 
             InstallGameCommand = new RelayCommand<Game>((game) =>
@@ -1274,6 +1290,11 @@ namespace Playnite.DesktopApp.ViewModels
             model.OpenView();
         }
 
+        private void ConfigureSoftwareTools(ToolsConfigViewModel model)
+        {
+            model.OpenView();
+        }
+
         public void ConfigureDatabaseFields(DatabaseFieldsManagerViewModel model)
         {
             model.OpenView();
@@ -1536,6 +1557,22 @@ namespace Playnite.DesktopApp.ViewModels
                 Extensions,
                 pluginId);
             return model.OpenView() ?? false;
+        }
+
+        private void StartSoftwareTool(AppSoftware app)
+        {
+            try
+            {
+                ProcessStarter.StartProcess(app.Path, app.Arguments, app.WorkingDir);
+            }
+            catch (Exception e)  when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to start app tool.");
+                Dialogs.ShowErrorMessage(
+                    Resources.GetString("LOCAppStartupError") + "\n\n" +
+                    e.Message,
+                    "LOCStartupError");
+            }
         }
     }
 }

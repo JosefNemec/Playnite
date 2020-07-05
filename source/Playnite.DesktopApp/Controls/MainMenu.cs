@@ -27,6 +27,7 @@ namespace Playnite.DesktopApp.Controls
     {
         private readonly DesktopAppViewModel mainModel;
         private MenuItem extensionsItem;
+        private MenuItem toolsItem;
         private Separator extensionsEndItem;
         private static readonly ILogger logger = LogManager.GetLogger();
 
@@ -106,6 +107,7 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(libraryItem.Items, "LOCMenuLibraryManagerTitle", mainModel.OpenDbFieldsManagerCommand);
             AddMenuChild(libraryItem.Items, "LOCMenuConfigureEmulatorsMenuTitle", mainModel.OpenEmulatorsCommand);
             AddMenuChild(libraryItem.Items, "LOCMenuDownloadMetadata", mainModel.DownloadMetadataCommand);
+            AddMenuChild(libraryItem.Items, "LOCMenuSoftwareTools", mainModel.OpenSoftwareToolsCommand);
 
             // Update Library
             var updateItem = AddMenuChild(Items, "LOCMenuReloadLibrary", null, null, "UpdateDbIcon");
@@ -123,33 +125,33 @@ namespace Playnite.DesktopApp.Controls
                 updateItem.Items.Add(item);
             }
 
-            // Open Client
-            var openClientItem = AddMenuChild(Items, "LOCMenuOpenClient", null);
-            foreach (var tool in mainModel.ThirdPartyTools)
-            {
-                var item = new MenuItem
-                {
-                    Header = tool.Name,
-                    Command = mainModel.ThirdPartyToolOpenCommand,
-                    CommandParameter = tool
-                };
-
-                if (tool.Client?.Icon != null && File.Exists(tool.Client.Icon))
-                {
-                    item.Icon = Images.GetImageFromFile(tool.Client.Icon);
-                }
-
-                openClientItem.Items.Add(item);
-            }
-
             // Random game select
             AddMenuChild(Items, "LOCMenuSelectRandomGame", mainModel.SelectRandomGameCommand, null, "DiceIcon");
 
             // Settings
             AddMenuChild(Items, "LOCMenuPlayniteSettingsTitle", mainModel.OpenSettingsCommand, null, "SettingsIcon");
 
-            // Extensions
             Items.Add(new Separator());
+
+            // Open Client
+            var openClientItem = AddMenuChild(Items, "LOCMenuClients", null);
+            foreach (var tool in mainModel.ThirdPartyTools)
+            {
+                var item = new MenuItem
+                {
+                    Header = tool.Name,
+                    Command = mainModel.ThirdPartyToolOpenCommand,
+                    CommandParameter = tool,
+                    Icon = tool.Icon
+                };
+
+                openClientItem.Items.Add(item);
+            }
+
+            // Tools
+            toolsItem = AddMenuChild(Items, "LOCMenuTools", null);
+
+            // Extensions
             extensionsItem = AddMenuChild(Items, "LOCExtensions", null);
 
             // FullScreen
@@ -191,6 +193,30 @@ namespace Playnite.DesktopApp.Controls
         private void MainMenu_Opened(object sender, RoutedEventArgs e)
         {
             AddExtensionItems();
+            AddToolsItems();
+        }
+
+        private void AddToolsItems()
+        {
+            toolsItem.Items.Clear();
+            if (mainModel.Database.SoftwareApps.HasItems())
+            {
+                foreach (var tool in mainModel.Database.SoftwareApps.OrderBy(a => a.Name))
+                {
+                    AddMenuChild(
+                        toolsItem.Items,
+                        tool.Name,
+                        mainModel.StartSoftwareToolCommand,
+                        tool,
+                        mainModel.Database.GetFullFilePath(tool.Icon));
+                }
+
+                toolsItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                toolsItem.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void ClearExtensionItems()

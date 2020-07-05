@@ -45,7 +45,7 @@ namespace Playnite
             var game = new Game();
             if (string.Equals(Path.GetExtension(path), ".lnk", StringComparison.OrdinalIgnoreCase))
             {
-                var prog = Programs.ParseShortcut(path);
+                var prog = Programs.GetLnkShortcutData(path);
                 var fileInfo = new FileInfo(prog.Path);
                 if (!fileInfo.Exists && prog.Path.Contains("Program Files (x86)"))
                 {
