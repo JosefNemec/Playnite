@@ -230,7 +230,7 @@
     <sys:String x:Key="LOCMenuAddWindowsStore">אפליקציה ממייקרוסופט סטור…</sys:String>
     <sys:String x:Key="LOCMenuAbout">אודות Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">שלח משוב</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">עבור למצב מסך מלא</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">קישורים</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">עזרה</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">תמוך באמצעות Patreon</sys:String>
@@ -266,7 +266,7 @@
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Banner</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">כריכה אנכית של Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* דורש הפעלה מחדש</sys:String>
     <sys:String x:Key="LOCSettingsLabel">הגדרות</sys:String>
@@ -471,7 +471,9 @@
     <sys:String x:Key="LOCFirstOtherGamesText">לחץ על הכפתור מתחת כדי לייבא משחקים מותקנים אחרים או לחפש אחריהם ידנית (כולל משחקי Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">ייבא משחקים</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">הסתיימה ההגדרה</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">ההתקנה הראשונית הושלמה. זכור שתוכל לשנות את כל ההגדרות בהמשך בתפריט 'הגדרות'.
+
+אתה יכול גם להוסיף כל משחק אחר בהמשך על ידי לחיצה על תפריט הלוגו של Playnite. </sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">פתח מנחה ייבוא אמולציה</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">פריסת תצוגת רשת</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">בחרו פריסה מועדפת לתצוגת רשת ב Playnite. פריסת תמונות ניתנת לשינוי בכל זמן בהגדרות האפליקציה, כולל אפשרויות מתיחת תמונה.</sys:String>
