@@ -678,7 +678,7 @@
     <sys:String x:Key="LOCReloadScripts">טען מחדש סקריפטים</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">כל הסקריפטים נטענו מחדש בהצלחה.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">לא נמצאו משחקים עבור קריטריון חיפוש\מסנן</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">עבור למצב שולחן עבודה</sys:String>
     <sys:String x:Key="LOCExitPlaynite">צא מ Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">ספריות</sys:String>
     <sys:String x:Key="LOCUpdateAll">עדכן הכל</sys:String>
@@ -739,7 +739,7 @@
     <sys:String x:Key="LOCUnHideGame">הצג בספריה</sys:String>
     <sys:String x:Key="LOCEditGame">ערוך…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">הגדר קטגוריה…</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">הגדר סטטוס השלמה</sys:String>
     <sys:String x:Key="LOCRemoveGame">הסר</sys:String>
     <sys:String x:Key="LOCPlayGame">שחק</sys:String>
     <sys:String x:Key="LOCInstallGame">התקן</sys:String>
