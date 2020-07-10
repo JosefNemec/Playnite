@@ -21,11 +21,10 @@ namespace Playnite.Controls
 {
     public class GridEx : Grid
     {
-
         #region RowCount Property
 
         /// <summary>
-        /// Adds the specified number of Rows to RowDefinitions. 
+        /// Adds the specified number of Rows to RowDefinitions.
         /// Default Height is Auto
         /// </summary>
         public static readonly DependencyProperty RowCountProperty =
@@ -67,7 +66,7 @@ namespace Playnite.Controls
         #region ColumnCount Property
 
         /// <summary>
-        /// Adds the specified number of Columns to ColumnDefinitions. 
+        /// Adds the specified number of Columns to ColumnDefinitions.
         /// Default Width is Auto
         /// </summary>
         public static readonly DependencyProperty ColumnCountProperty =
@@ -109,7 +108,7 @@ namespace Playnite.Controls
         #region StarRows Property
 
         /// <summary>
-        /// Makes the specified Row's Height equal to Star. 
+        /// Makes the specified Row's Height equal to Star.
         /// Can set on multiple Rows
         /// </summary>
         public static readonly DependencyProperty StarRowsProperty =
@@ -144,7 +143,7 @@ namespace Playnite.Controls
         #region StarColumns Property
 
         /// <summary>
-        /// Makes the specified Column's Width equal to Star. 
+        /// Makes the specified Column's Width equal to Star.
         /// Can set on multiple Columns
         /// </summary>
         public static readonly DependencyProperty StarColumnsProperty =
@@ -176,6 +175,7 @@ namespace Playnite.Controls
 
         #endregion
 
+        #region AutoLayoutColumns
         public static readonly DependencyProperty AutoLayoutColumnsProperty =
             DependencyProperty.Register(
                 "AutoLayoutColumns", typeof(int), typeof(GridEx),
@@ -197,6 +197,8 @@ namespace Playnite.Controls
             ((GridEx)obj).ArrangeChildren();
         }
 
+        #endregion AutoLayoutColumns
+
         public GridEx() : base()
         {
         }
@@ -209,37 +211,52 @@ namespace Playnite.Controls
                 return;
             }
 
-            for (int i = 0; i < Children.Count; i++)
+            var index = 0;
+            foreach (UIElement elem in Children)
             {
-                var elem = Children[i];
-                SetColumn(elem, i % columns);
-                SetRow(elem, i / columns);
+                var span = Grid.GetColumnSpan(elem);
+                SetColumn(elem, index % columns);
+                SetRow(elem, index / columns);
+                if (span > 0)
+                {
+                    index += span;
+                }
+                else
+                {
+                    index++;
+                }
             }
         }
 
         private static void SetStarColumns(Grid grid)
         {
-            string[] starColumns =
-                GetStarColumns(grid).Split(',');
-
+            var starColumns = GetStarColumns(grid).Split(',');
             for (int i = 0; i < grid.ColumnDefinitions.Count; i++)
             {
                 if (starColumns.Contains(i.ToString()))
-                    grid.ColumnDefinitions[i].Width =
-                        new GridLength(1, GridUnitType.Star);
+                {
+                    grid.ColumnDefinitions[i].Width = new GridLength(1, GridUnitType.Star);
+                }
+                else
+                {
+                    grid.ColumnDefinitions[i].Width = new GridLength(1, GridUnitType.Auto);
+                }
             }
         }
 
         private static void SetStarRows(Grid grid)
         {
-            string[] starRows =
-                GetStarRows(grid).Split(',');
-
+            var starRows = GetStarRows(grid).Split(',');
             for (int i = 0; i < grid.RowDefinitions.Count; i++)
             {
                 if (starRows.Contains(i.ToString()))
-                    grid.RowDefinitions[i].Height =
-                        new GridLength(1, GridUnitType.Star);
+                {
+                    grid.RowDefinitions[i].Height = new GridLength(1, GridUnitType.Star);
+                }
+                else
+                {
+                    grid.RowDefinitions[i].Height = new GridLength(1, GridUnitType.Auto);
+                }
             }
         }
 

@@ -261,6 +261,9 @@
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\GameEditViewModel.cs" />
+    <Compile Include="ViewModels\GameEditViewModelCommands.cs" />
+    <Compile Include="ViewModels\GameEditViewModelFieldChecks.cs" />
+    <Compile Include="ViewModels\GameEditViewModelMetadata.cs" />
     <Compile Include="ViewModels\GoogleImageDownloadViewModel.cs" />
     <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel.cs" />
@@ -269,7 +272,11 @@
     <Compile Include="ViewModels\ItemSelectionWithSearchViewModel.cs" />
     <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\MetadataComparisonViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
+    <Compile Include="Windows\MetadataComparisonWindow.xaml.cs">
+      <DependentUpon>MetadataComparisonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ToolsConfigWindow.xaml.cs">
       <DependentUpon>ToolsConfigWindow.xaml</DependentUpon>
     </Compile>
@@ -987,6 +994,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MetadataComparisonWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

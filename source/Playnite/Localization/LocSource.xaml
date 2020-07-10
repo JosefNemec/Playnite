@@ -708,6 +708,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCFontLargest">Largest</sys:String>
     <sys:String x:Key="LOCDefault">Default</sys:String>
     <sys:String x:Key="LOCSelect">Select</sys:String>
+    <sys:String x:Key="LOCSelectAll">Select All</sys:String>
     <sys:String x:Key="LOCFirst">First</sys:String>
     <sys:String x:Key="LOCRandom">Random</sys:String>
     <sys:String x:Key="LOCUserSelect">User select</sys:String>
@@ -724,6 +725,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Override Emulator Arguments</sys:String>
 
+    <sys:String x:Key="LOCMedataDiffWindowTitle">Select metadata to import</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Select Games to Import</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadata search</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Update Available</sys:String>

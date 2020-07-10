@@ -217,6 +217,41 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Checks if two collections contain the same items in any order.
+        /// </summary>
+        public static bool IsListEqual<T>(this IEnumerable<T> source, IEnumerable<T> target, IEqualityComparer<T> comparer)
+        {
+            if (source == null && target == null)
+            {
+                return true;
+            }
+
+            if ((source == null && target != null) || (source != null && target == null))
+            {
+                return false;
+            }
+
+            if (source.Count() != target.Count())
+            {
+                return false;
+            }
+
+            var firstNotSecond = source.Except(target, comparer).ToList();
+            if (firstNotSecond.Count != 0)
+            {
+                return false;
+            }
+
+            var secondNotFirst = target.Except(source, comparer).ToList();
+            if (secondNotFirst.Count != 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Checks if two collections contain the same items in the same order.
         /// </summary>
         public static bool IsListEqualExact<T>(this IEnumerable<T> source, IEnumerable<T> target)

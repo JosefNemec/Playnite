@@ -603,12 +603,12 @@ namespace Playnite
 
         public virtual void ReleaseResources(bool releaseCefSharp = true)
         {
-            logger.Debug("Releasing Playnite resources...");
             if (resourcesReleased)
             {
                 return;
             }
 
+            logger.Debug("Releasing Playnite resources...");
             Discord?.Dispose();
             updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();

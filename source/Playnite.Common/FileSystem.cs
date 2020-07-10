@@ -104,6 +104,27 @@ namespace Playnite.Common
             }
         }
 
+        public static bool AreFileContentsEqual(string path1, string path2)
+        {
+            var info1 = new FileInfo(path1);
+            var info2 = new FileInfo(path2);
+            if (info1.Length != info2.Length)
+            {
+                return false;
+            }
+            else
+            {
+                if (GetMD5(path1) == GetMD5(path2))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public static void AddFolderToZip(ZipArchive archive, string zipRoot, string path, string filter, SearchOption searchOption)
         {
             IEnumerable<string> files;
