@@ -86,15 +86,29 @@ namespace Playnite.Database
             {
                 Parallel.ForEach(Directory.EnumerateFiles(storagePath, "*.json"), (objectFile) =>
                 {
-                    try
+                    if (Guid.TryParse(Path.GetFileNameWithoutExtension(objectFile), out var _))
                     {
-                        var obj = Serialization.FromJsonFile<TItem>(objectFile);
-                        initMethod?.Invoke(obj);
-                        Items.TryAdd(obj.Id, obj);
+                        try
+                        {
+                            var obj = Serialization.FromJsonFile<TItem>(objectFile);
+                            if (obj != null)
+                            {
+                                initMethod?.Invoke(obj);
+                                Items.TryAdd(obj.Id, obj);
+                            }
+                            else
+                            {
+                                logger.Warn($"Failed to deserialize collection item {objectFile}");
+                            }
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, $"Failed to load item from {objectFile}");
+                        }
                     }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    else
                     {
-                        logger.Error(e, $"Failed to load item from {objectFile}");
+                        logger.Warn($"Skipping non-id collection item {objectFile}");
                     }
                 });
             }
