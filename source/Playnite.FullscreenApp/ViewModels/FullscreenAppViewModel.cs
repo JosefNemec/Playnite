@@ -744,6 +744,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             HibernateSystemCommand = new RelayCommand<object>((a) =>
             {
+                ToggleMainMenuCommand.Execute(null);
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
                     Computer.Hibernate();
@@ -752,6 +753,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             SleepSystemCommand = new RelayCommand<object>((a) =>
             {
+                ToggleMainMenuCommand.Execute(null);
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
                     Computer.Sleep();
