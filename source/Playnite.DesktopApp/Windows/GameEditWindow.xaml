@@ -428,10 +428,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!-- Last Played -->
@@ -526,6 +523,19 @@
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding LibraryPlugin.Name, FallbackValue='Playnite'}"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    
+                    <!-- Notes -->
+                    <TextBlock Grid.Column="1" Grid.Row="10" Text="{DynamicResource LOCNotesLabel}"
+                               VerticalAlignment="Top" Margin="8,16,10,0" />
+                    <CheckBox Grid.Column="0" Grid.Row="10" 
+                              VerticalAlignment="Top" Margin="0,15,0,0"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseNotesChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="10" Margin="0,15,0,0"
+                             Text="{Binding EditingGame.Notes, UpdateSourceTrigger=PropertyChanged}"
+                             Grid.ColumnSpan="4"
+                             AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                             VerticalAlignment="Stretch" />
                 </Grid>
             </TabItem>
 

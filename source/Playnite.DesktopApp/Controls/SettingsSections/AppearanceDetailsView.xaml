@@ -126,6 +126,9 @@
             <CheckBox Content="{DynamicResource LOCGameDescriptionTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Description}"
                                               Margin="0,10,0,0"/>
+            <CheckBox Content="{DynamicResource LOCNotesLabel}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Notes}"
+                                              Margin="0,10,0,0"/>
         </UniformGrid>
     </StackPanel>
 </UserControl>

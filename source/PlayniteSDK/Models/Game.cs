@@ -165,7 +165,9 @@ namespace Playnite.SDK.Models
         ///
         GameStartedScript,
         ///
-        UseGlobalGameStartedScript
+        UseGlobalGameStartedScript,
+        ///
+        Notes
     }
 
     /// <summary>
@@ -206,6 +208,25 @@ namespace Playnite.SDK.Models
             set
             {
                 description = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string notes;
+        /// <summary>
+        /// Gets or sets user notes.
+        /// </summary>
+        [DefaultValue("")]
+        public string Notes
+        {
+            get
+            {
+                return notes;
+            }
+
+            set
+            {
+                notes = value;
                 OnPropertyChanged();
             }
         }
@@ -1508,6 +1529,11 @@ namespace Playnite.SDK.Models
                     tro.Description = Description;
                 }
 
+                if (!string.Equals(Notes, tro.Notes, StringComparison.Ordinal))
+                {
+                    tro.Notes = Notes;
+                }
+
                 if (!GenreIds.IsListEqual(tro.GenreIds))
                 {
                     tro.GenreIds = GenreIds;
@@ -1760,6 +1786,11 @@ namespace Playnite.SDK.Models
             if (!string.Equals(Description, otherGame.Description, StringComparison.Ordinal))
             {
                 changes.Add(GameField.Description);
+            }
+
+            if (!string.Equals(Notes, otherGame.Notes, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.Notes);
             }
 
             if (!GenreIds.IsListEqual(otherGame.GenreIds))

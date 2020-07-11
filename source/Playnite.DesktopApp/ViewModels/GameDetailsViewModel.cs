@@ -209,6 +209,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.Description && !game.Description.IsNullOrEmpty()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility NotesVisibility
+        {
+            get => (settings.DetailsVisibility.Notes && !game.Notes.IsNullOrEmpty()) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public Visibility CoverVisibility
         {
             get => (settings.DetailsVisibility.CoverImage) ? Visibility.Visible : Visibility.Collapsed;

@@ -187,15 +187,31 @@
                                                 <ItemsControl Name="PART_ItemsLinks" />
                                             </GridEx>
                                         </StackPanel>
+                                        
+                                        <StackPanel Name="PART_ElemNotes" DockPanel.Dock="Top"
+                                                    Margin="5,0,5,15">
+                                            <TextBlock Text="{DynamicResource LOCNotesLabel}"
+                                                       Style="{DynamicResource BaseTextBlockStyle}" />
+                                            <Separator Background="{DynamicResource PanelSeparatorBrush}" Margin="0,5,0,5" />
+                                            <TextBox Name="PART_TextNotes" IsReadOnly="True"
+                                                     BorderThickness="0"
+                                                     AcceptsReturn="True" TextWrapping="Wrap"
+                                                     Margin="-1,0,-1,0" Padding="0"/>
+                                        </StackPanel>
 
-                                        <HtmlTextView Name="PART_HtmlDescription" DockPanel.Dock="Top"
-                                                      Margin="5,5,0,5"
-                                                      HtmlFontSize="{DynamicResource FontSize}"
-                                                      HtmlFontFamily="{DynamicResource FontFamily}"
-                                                      HtmlForeground="{DynamicResource TextColor}"
-                                                      LinkForeground="{DynamicResource GlyphColor}"                                      
-                                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                        <StackPanel Name="PART_ElemDescription" DockPanel.Dock="Top"
+                                                    Margin="5,0,5,0">
+                                            <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}"
+                                                       Style="{DynamicResource BaseTextBlockStyle}" />
+                                            <Separator Background="{DynamicResource PanelSeparatorBrush}" Margin="0,5,0,5" />
+                                            <HtmlTextView Name="PART_HtmlDescription"
+                                                          HtmlFontSize="{DynamicResource FontSize}"
+                                                          HtmlFontFamily="{DynamicResource FontFamily}"
+                                                          HtmlForeground="{DynamicResource TextColor}"
+                                                          LinkForeground="{DynamicResource GlyphColor}"                                      
+                                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
                                     </DockPanel>
                                 </ScrollViewer>
                             </DockPanel>

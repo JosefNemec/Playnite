@@ -310,7 +310,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useLastActivityChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
         }
 
@@ -326,7 +326,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 usePlaytimeChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
         }
 
@@ -342,7 +342,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useAddedChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
         }
 
@@ -358,7 +358,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 usePlayCountChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
         }
 
@@ -518,7 +518,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useHiddenChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
         }
 
@@ -534,7 +534,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useFavoriteChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
         }
 
@@ -682,6 +682,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool useNotesChanges;
+        public bool UseNotesChanges
+        {
+            get
+            {
+                return useNotesChanges;
+            }
+
+            set
+            {
+                useNotesChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -731,7 +747,8 @@ namespace Playnite.DesktopApp.ViewModels
                     UsePlaytimeChanges ||
                     UseAddedChanges ||
                     UsePlayCountChanges ||
-                    UseCompletionStatusChanges);
+                    UseCompletionStatusChanges ||
+                    UseNotesChanges);
             }
         }
 
@@ -902,6 +919,16 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UseDescriptionChanges = true;
+                    }
+                    break;
+                case nameof(Game.Notes):
+                    if (IsSingleGameEdit)
+                    {
+                        UseNotesChanges = Game.Notes != EditingGame.Notes;
+                    }
+                    else
+                    {
+                        UseNotesChanges = true;
                     }
                     break;
                 case nameof(Game.CategoryIds):

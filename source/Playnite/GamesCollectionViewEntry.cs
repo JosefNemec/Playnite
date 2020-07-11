@@ -49,6 +49,7 @@ namespace Playnite
         public GameAction PlayAction => Game.PlayAction;
         public string DisplayName => Game.Name;
         public string Description => Game.Description;
+        public string Notes => Game.Notes;
         public bool IsInstalled => Game.IsInstalled;
         public bool IsInstalling => Game.IsInstalling;
         public bool IsUnistalling => Game.IsUninstalling;

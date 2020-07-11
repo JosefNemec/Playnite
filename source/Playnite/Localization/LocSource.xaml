@@ -117,6 +117,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCLastPlayedLabel">Last Played</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Most Played</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Play Count</sys:String>
+    <sys:String x:Key="LOCNotesLabel">Notes</sys:String>
     <sys:String x:Key="LOCAddedLabel">Added</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Date Added</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modified</sys:String>
