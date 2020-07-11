@@ -2454,6 +2454,11 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.CommunityScore = metadata.GameInfo.CommunityScore;
             }
 
+            if (!metadata.GameInfo.Platform.IsNullOrEmpty())
+            {
+                AddNewPlatform(metadata.GameInfo.Platform);
+            }
+
             if (metadata.CoverImage != null)
             {
                 var newCover = ProcessMetadataFile(metadata.CoverImage);
@@ -2867,7 +2872,11 @@ namespace Playnite.DesktopApp.ViewModels
                                 Description = provider.GetDescription(),
                                 Links = provider.GetLinks(),
                                 CriticScore = provider.GetCriticScore(),
-                                CommunityScore = provider.GetCommunityScore()
+                                CommunityScore = provider.GetCommunityScore(),
+                                AgeRating = provider.GetAgeRating(),
+                                Series = provider.GetSeries(),
+                                Region = provider.GetRegion(),
+                                Platform = provider.GetPlatform(),
                             };
 
                             var metadata = new GameMetadata
