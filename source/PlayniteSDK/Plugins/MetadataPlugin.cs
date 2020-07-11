@@ -13,34 +13,78 @@ namespace Playnite.SDK.Plugins
     /// </summary>
     public enum MetadataField
     {
-        ///
+        /// <summary>
+        /// Name can be provided.
+        /// </summary>
         Name,
-        ///
+        /// <summary>
+        /// Genres can be provided.
+        /// </summary>
         Genres,
-        ///
+        /// <summary>
+        /// Release Data can be provided.
+        /// </summary>
         ReleaseDate,
-        ///
+        /// <summary>
+        /// List of Developers can be provided.
+        /// </summary>
         Developers,
-        ///
+        /// <summary>
+        /// List of Publishers can be provided.
+        /// </summary>
         Publishers,
-        ///
+        /// <summary>
+        /// List of Tags can be provided.
+        /// </summary>
         Tags,
-        ///
+        /// <summary>
+        /// Description can be provided.
+        /// </summary>
         Description,
-        ///
+        /// <summary>
+        /// List of associated Links can be provided.
+        /// </summary>
         Links,
-        ///
+        /// <summary>
+        /// Critics Score can be provided.
+        /// </summary>
         CriticScore,
-        ///
+        /// <summary>
+        /// Community Score can be provided.
+        /// </summary>
         CommunityScore,
-        ///
+        /// <summary>
+        /// Icon can be provided.
+        /// </summary>
         Icon,
-        ///
+        /// <summary>
+        /// Cover Image can be provided.
+        /// </summary>
         CoverImage,
-        ///
+        /// <summary>
+        /// Background Image can be provided.
+        /// </summary>
         BackgroundImage,
-        ///
-        Features
+        /// <summary>
+        /// List of Features can be provided.
+        /// </summary>
+        Features,
+        /// <summary>
+        /// Age Rating can be provided.
+        /// </summary>
+        AgeRating,
+        /// <summary>
+        /// Name of the Series can be provided.
+        /// </summary>
+        Series,
+        /// <summary>
+        /// Region can be provided.
+        /// </summary>
+        Region,
+        /// <summary>
+        /// Platform can be provided.
+        /// </summary>
+        Platform
     }
 
     /// <summary>
@@ -92,7 +136,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide the Name.
         /// </summary>
         /// <returns></returns>
         public virtual string GetName()
@@ -101,7 +145,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide the list of Genres.
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetGenres()
@@ -110,7 +154,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        ///Provide the Release Date.
         /// </summary>
         /// <returns></returns>
         public virtual DateTime? GetReleaseDate()
@@ -119,7 +163,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide the list of Developers.
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetDevelopers()
@@ -128,7 +172,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide the list of Publishers.
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetPublishers()
@@ -137,7 +181,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide the list of Tags.
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetTags()
@@ -146,7 +190,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide the Description.
         /// </summary>
         /// <returns></returns>
         public virtual string GetDescription()
@@ -155,7 +199,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide the Critics Score.
         /// </summary>
         /// <returns></returns>
         public virtual int? GetCriticScore()
@@ -164,7 +208,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide the Community Score.
         /// </summary>
         /// <returns></returns>
         public virtual int? GetCommunityScore()
@@ -173,7 +217,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide a Cover Image.
         /// </summary>
         /// <returns></returns>
         public virtual MetadataFile GetCoverImage()
@@ -182,7 +226,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide an Icon.
         /// </summary>
         /// <returns></returns>
         public virtual MetadataFile GetIcon()
@@ -191,7 +235,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide a Background Image.
         /// </summary>
         /// <returns></returns>
         public virtual MetadataFile GetBackgroundImage()
@@ -200,7 +244,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide a list of associated Links.
         /// </summary>
         /// <returns></returns>
         public virtual List<Link> GetLinks()
@@ -209,10 +253,46 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Provide a list of Features.
         /// </summary>
         /// <returns></returns>
         public virtual List<string> GetFeatures()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Provide the Age Rating.
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetAgeRating()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Provide the Series.
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetSeries()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Provide the Region.
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetRegion()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Provide the Platform.
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetPlatform()
         {
             return null;
         }
