@@ -212,7 +212,8 @@
                               Visibility="{Binding Links.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}"
+                                      ToolTip="{Binding Item.Url}" ToolTipService.InitialShowDelay="0" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -220,7 +221,8 @@
                               Visibility="{Binding Links.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}"
+                                      ToolTip="{Binding Item.Url}" ToolTipService.InitialShowDelay="0" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
