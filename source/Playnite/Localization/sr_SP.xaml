@@ -441,9 +441,9 @@
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Следи листа емулатора које Playnite може да препозна и аутоматски конфигурише. Можете да преузмете ове емулаторе и инсталирате их тако што посетите њихов вебсајт. Када инсталирате емулаторе, наставите даље и уведите их у Playnite.
 
 Можете и да конфигуришете и уведете било који прилагођени емулатор касније помоћу конфигурацијског менија.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Можете да уведете било који емулатор који је инсталиран на вашем компјутеру тако што кликнете на &quot;Аутоматски детектуј из фолдера…&quot; дугме. Playnite ће онда да претражи тај фолдер за било које познате емулаторе и даће вам опцију да их уведете. Можете увести више емулатора тако што користите исто то дугме више пута. Емулатори ће се додавати на дно тренутне листе.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Можете увести игре користећи &quot;Скенирај фолдер користећи емулатор&quot; дугме. Бирање прикладног емулатора ће рећи Playnite-у које врсте фајлова треба да скенира и уведе. Можете увести више фолдера тако што користите исто дугме више пута. Игре ће се додавати на дно тренутне листе.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Ниједан емулатор није изабран за увоз. Нећете моћи да аутоматски уведете било које емулиране игре без прво конфигурисања емулатора. Хоћете ли да наставите и изађете из процеса увода?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Ниједан емулатор није конфигурисан у Playnite-у. Не можете да уведете игре без прво конфигурисања емулатора и бирања прикладне врсте фајла. Хоћете ли да додате емулаторе сада?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Скенирај фолдер користећи емулатор</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Изаберите фајлове</sys:String>
@@ -453,11 +453,14 @@
 
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Почетна конфигурација</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Овај чаробњак ће вас наводити кроз процес аутоматског увоза игара и конфигурације екстерних библиотека игара. Playnite може да аутоматски уведе игре са више сервиса за играње игара као што су Steam или GOG, и такође може и да одржава вашу библитеку игара ажурном тако што је ажурира при сваком покретању апликације.
+
+Увек можете да додате ручно било коју другу игру касније тако што кликнете на &quot;Playnite&quot; дугме.
+    </sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Подразумевана локација програмских података за све кориснике.</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Прилагођена локација</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Интеграција библиотеке</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Аутоматски уведи игре са следећих сервиса. Било које касније промене (статус инсталације) ће се аутоматски ажурирати при покретању Playnite-а или када се исти процес покрене ручно. Изабрана подешавања утичу на почетне и све друге уводе.</sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration">Steam интеграција</sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration">Origin интеграција</sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration">GOG интеграција</sys:String>
@@ -603,7 +606,12 @@
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Не може да се отвори линк, URL није у валидном формату.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Неуспешно покретање апликације.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Неуспешно покретање web view компоненте. Playnite не може да настави с покретањем.
+
+Можете покушати следеће ствари да поправите проблем:
+  • Проверите јесу ли сви фајлови инсталирани како треба, поновна инсталација може да помогне
+  • Проверите да ли антивирус блокира фајлове у Playnite-овом директоријуму
+  • Пробајте да инсталирате Playnite на другу локацију</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Не могу да се уведу емулатори, фајл емулаторских дефиниција не постоји.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Неуспешно покретање XInput интерфејса.</sys:String>
 
@@ -820,7 +828,12 @@
 
 {0}</sys:String>
 
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Изабрана(е) слика(е) је(су) можда превелика(е) за оптималне перформансе. Коришћење превеликих слика може да резултира у проблемима са интерфејсом и повећаном коришћењу меморије.
+
+Максималне препоручене резолуције:
+Иконе: {0} мегапиксела
+Насловнице: {1} мегапиксела
+Позадине: {2} мегапиксела</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Упозорење за перформансе</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Не приказуј поново</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Изабрана слика је можда превелика за оптималне перформансе.</sys:String>
@@ -839,7 +852,8 @@
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Пријава на налог</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Назив налога</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Пријавите се да бисте користили ваш налог или користите назив вашег јавног налога да бисте синхронизовали вашу целу библиотеку.
+Запамтите да &quot;Назив налога&quot; опција ради само за налоге чије библиотеке игара су намештене у подешевањима приватности GOG-а да буду јавно видљиве.</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">URL назив налога</sys:String>
