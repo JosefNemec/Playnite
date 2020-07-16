@@ -27,18 +27,12 @@ namespace Playnite.Database
 
         public static bool FieldEquals<T>(T x, string y) where T : DatabaseObject
         {
-            return string.Equals(
-                regex.Replace(x.Name, ""),
-                regex.Replace(y, ""),
-                StringComparison.OrdinalIgnoreCase);
+            return StringEquals(x.Name, y);
         }
 
         public static bool FieldEquals<T>(T x, T y) where T : DatabaseObject
         {
-            return string.Equals(
-                regex.Replace(x.Name, ""),
-                regex.Replace(y.Name, ""),
-                StringComparison.OrdinalIgnoreCase);
+            return StringEquals(x.Name, y.Name);
         }
 
         public int GetHashCode(string obj)
