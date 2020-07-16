@@ -122,6 +122,10 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -229,30 +233,65 @@
                             DataContext="{Binding CommunityScoreSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
-            <!--Cover-->
-            <TextBlock Text="{DynamicResource LOCGameCoverTitle}"
+            <!--Age rating-->
+            <TextBlock Text="{DynamicResource LOCAgeRatingLabel}"
                         Grid.Column="0" Grid.Row="12"/>
             <CheckBox Grid.Column="1" Grid.Row="12"
-                        IsChecked="{Binding Settings.CoverImage.Import}"/>
+                        IsChecked="{Binding Settings.AgeRating.Import}"/>
             <ContentControl Grid.Column="2" Grid.Row="12"
+                            DataContext="{Binding AgeRatingSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
+            
+            <!--Series-->
+            <TextBlock Text="{DynamicResource LOCSeriesLabel}"
+                        Grid.Column="0" Grid.Row="13"/>
+            <CheckBox Grid.Column="1" Grid.Row="13"
+                        IsChecked="{Binding Settings.Series.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="13"
+                            DataContext="{Binding SeriesSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
+            <!--Region-->
+            <TextBlock Text="{DynamicResource LOCRegionLabel}"
+                        Grid.Column="0" Grid.Row="14"/>
+            <CheckBox Grid.Column="1" Grid.Row="14"
+                        IsChecked="{Binding Settings.Region.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="14"
+                            DataContext="{Binding RegionSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
+
+            <!--Platform-->
+            <TextBlock Text="{DynamicResource LOCGamePlatformTitle}"
+                        Grid.Column="0" Grid.Row="15"/>
+            <CheckBox Grid.Column="1" Grid.Row="15"
+                        IsChecked="{Binding Settings.Platform.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="15"
+                            DataContext="{Binding PlatformSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
+
+            <!--Cover-->
+            <TextBlock Text="{DynamicResource LOCGameCoverTitle}"
+                        Grid.Column="0" Grid.Row="16"/>
+            <CheckBox Grid.Column="1" Grid.Row="16"
+                        IsChecked="{Binding Settings.CoverImage.Import}"/>
+            <ContentControl Grid.Column="2" Grid.Row="16"
                             DataContext="{Binding CoverSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Icon-->
             <TextBlock Text="{DynamicResource LOCGameIconTitle}"
-                        Grid.Column="0" Grid.Row="13"/>
-            <CheckBox Grid.Column="1" Grid.Row="13"
+                        Grid.Column="0" Grid.Row="17"/>
+            <CheckBox Grid.Column="1" Grid.Row="17"
                         IsChecked="{Binding Settings.Icon.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="13"
+            <ContentControl Grid.Column="2" Grid.Row="17"
                             DataContext="{Binding IconSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--BackgroundImage-->
             <TextBlock Text="{DynamicResource LOCGameBackgroundTitle}"
-                        Grid.Column="0" Grid.Row="14"/>
-            <CheckBox Grid.Column="1" Grid.Row="14"
+                        Grid.Column="0" Grid.Row="18"/>
+            <CheckBox Grid.Column="1" Grid.Row="18"
                         IsChecked="{Binding Settings.BackgroundImage.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="14"
+            <ContentControl Grid.Column="2" Grid.Row="18"
                             DataContext="{Binding BackgroundImageSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
         </Grid>

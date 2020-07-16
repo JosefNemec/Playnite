@@ -43,7 +43,9 @@ namespace IGDBMetadata
             MetadataField.Links,
             MetadataField.Features,
             MetadataField.CriticScore,
-            MetadataField.CommunityScore
+            MetadataField.CommunityScore,
+            MetadataField.Series,
+            MetadataField.AgeRating
         };
 
         public IgdbMetadataPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)

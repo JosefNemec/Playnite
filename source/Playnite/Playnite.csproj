@@ -261,6 +261,7 @@
     <Compile Include="Database\Collections\GamesCollection.cs" />
     <Compile Include="Database\Collections\ItemCollection.cs" />
     <Compile Include="Database\GameDatabaseMigration.cs" />
+    <Compile Include="Database\GameFieldComparer.cs" />
     <Compile Include="Database\InMemoryGameDatabase.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldCompletionStatus.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldDatabaseObject.cs" />

@@ -108,20 +108,20 @@ namespace PlayniteServices.Controllers.IGDB
         }
 
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<ExpandedGame>> Get(ulong gameId)
+        public async Task<ServicesResponse<ExpandedGameLegacy>> Get(ulong gameId)
         {
-            return new ServicesResponse<ExpandedGame>(await GetExpandedGame(gameId));
+            return new ServicesResponse<ExpandedGameLegacy>(await GetExpandedGame(gameId));
         }
 
-        public async static Task<ExpandedGame> GetExpandedGame(ulong gameId)
+        public async static Task<ExpandedGameLegacy> GetExpandedGame(ulong gameId)
         {
             var game = (await GameController.GetItem(gameId)).Data;
             if (game.id == 0)
             {
-                new ExpandedGame();
+                new ExpandedGameLegacy();
             }
 
-            var parsedGame = new ExpandedGame()
+            var parsedGame = new ExpandedGameLegacy()
             {
                 id = game.id,
                 name = game.name,

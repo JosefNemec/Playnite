@@ -109,7 +109,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 4;
+        } = 5;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -1577,6 +1577,19 @@ namespace Playnite
                 settings.MetadataSettings.Feature = new MetadataFieldSettings(
                     true, new List<Guid> { Guid.Empty, BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata) });
                 settings.Version = 4;
+            }
+
+            if (settings.Version == 4)
+            {
+                settings.MetadataSettings.AgeRating = new MetadataFieldSettings(
+                    true, new List<Guid> { Guid.Empty, BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata) });
+                settings.MetadataSettings.Series = new MetadataFieldSettings(
+                    true, new List<Guid> { Guid.Empty, BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata) });
+                settings.MetadataSettings.Platform = new MetadataFieldSettings(
+                    true, new List<Guid> { Guid.Empty });
+                settings.MetadataSettings.Region = new MetadataFieldSettings(
+                    true, new List<Guid> { Guid.Empty });
+                settings.Version = 5;
             }
 
             settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);

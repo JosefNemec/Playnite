@@ -33,12 +33,12 @@ namespace PlayniteServices.Controllers.IGDB
         }
 
         [HttpGet("{gameName}")]
-        public async Task<ServicesResponse<List<ExpandedGame>>> Get(string gameName)
+        public async Task<ServicesResponse<List<ExpandedGameLegacy>>> Get(string gameName)
         {
-            return new ServicesResponse<List<ExpandedGame>>(await GetSearchResults(gameName));
+            return new ServicesResponse<List<ExpandedGameLegacy>>(await GetSearchResults(gameName));
         }
 
-        public static async Task<List<ExpandedGame>> GetSearchResults(string searchString)
+        public static async Task<List<ExpandedGameLegacy>> GetSearchResults(string searchString)
         {
             List<Game> searchResult = null;
             searchString = ModelsUtils.GetIgdbSearchString(searchString);
@@ -72,7 +72,7 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var finalResult = new List<ExpandedGame>();
+            var finalResult = new List<ExpandedGameLegacy>();
             for (int i = 0; i < searchResult.Count; i++)
             {
                 Game result = null;
@@ -91,7 +91,7 @@ namespace PlayniteServices.Controllers.IGDB
                     continue;
                 }
 
-                var xpanded = new ExpandedGame()
+                var xpanded = new ExpandedGameLegacy()
                 {
                     id = result.id,
                     name = result.name,

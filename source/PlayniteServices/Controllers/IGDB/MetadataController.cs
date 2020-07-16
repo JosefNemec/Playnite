@@ -17,19 +17,31 @@ using SdkModels = Playnite.SDK.Models;
 namespace PlayniteServices.Controllers.IGDB
 {
     [ServiceFilter(typeof(PlayniteVersionFilter))]
-    [Route("igdb/metadata")]
+    [Route("igdb")]
     public class MetadataController : Controller
     {
         private readonly static ILogger logger = LogManager.GetLogger();
         private readonly AppSettings appSettings;
+        private static readonly Regex separatorRegex = new Regex(@"\s*(:|-)\s*", RegexOptions.Compiled);
 
         public MetadataController(IOptions<AppSettings> settings)
         {
             appSettings = settings.Value;
         }
 
-        [HttpPost]
-        public async Task<ServicesResponse<ExpandedGame>> Post([FromBody]SdkModels.Game game)
+        [HttpPost("metadata_v2")]
+        public async Task<ServicesResponse<ExpandedGame>> PostMetadataV2([FromBody]SdkModels.Game game)
+        {
+            return await GetMetadata(game, ExpandedGameController.GetExpandedGame);
+        }
+
+        [HttpPost("metadata")]
+        public async Task<ServicesResponse<ExpandedGameLegacy>> PostMetadata([FromBody]SdkModels.Game game)
+        {
+            return await GetMetadata(game, GameParsedController.GetExpandedGame);
+        }
+
+        private async Task<ServicesResponse<T>> GetMetadata<T>(SdkModels.Game game, Func<ulong, Task<T>> expandFunc) where T : new()
         {
             var isKnownPlugin = game.PluginId != Guid.Empty;
             var isSteamPlugin = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.SteamLibrary) == game.PluginId;
@@ -63,17 +75,17 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var foundMetadata = new ExpandedGame();
+            var foundMetadata = new T();
             if (igdbId != 0)
             {
-                return new ServicesResponse<ExpandedGame>(await GameParsedController.GetExpandedGame(igdbId));
+                return new ServicesResponse<T>(await expandFunc(igdbId));
             }
             else
             {
                 igdbId = await TryMatchGame(game);
                 if (igdbId != 0)
                 {
-                    foundMetadata = await GameParsedController.GetExpandedGame(igdbId);
+                    foundMetadata = await expandFunc(igdbId);
                 }
             }
 
@@ -99,7 +111,7 @@ namespace PlayniteServices.Controllers.IGDB
                 });
             }
 
-            return new ServicesResponse<ExpandedGame>(foundMetadata);
+            return new ServicesResponse<T>(foundMetadata);
         }
 
         private async Task<ulong> TryMatchGame(SdkModels.Game game)
@@ -161,12 +173,12 @@ namespace PlayniteServices.Controllers.IGDB
             }
 
             // Try removing all ":" and "-"
-            testName = Regex.Replace(name, @"\s*(:|-)\s*", " ");
+            testName = separatorRegex.Replace(name, " ");
             resCopy = results.GetClone();
             foreach (var res in resCopy)
             {
-                res.name = Regex.Replace(res.name, @"\s*(:|-)\s*", " ");
-                res.alternative_names?.ForEach(a => a.name = Regex.Replace(a.name, @"\s*(:|-)\s*", " "));
+                res.name = separatorRegex.Replace(res.name, " ");
+                res.alternative_names?.ForEach(a => a.name = separatorRegex.Replace(a.name, " "));
             }
 
             matchedGame = MatchFun(game, testName, resCopy);
@@ -199,7 +211,7 @@ namespace PlayniteServices.Controllers.IGDB
             return 0;
         }
 
-        private ulong MatchFun(SdkModels.Game game, string matchName, List<ExpandedGame> list)
+        private ulong MatchFun(SdkModels.Game game, string matchName, List<ExpandedGameLegacy> list)
         {
             var res = list.Where(a => string.Equals(matchName, a.name, StringComparison.InvariantCultureIgnoreCase));
             if (!res.Any())

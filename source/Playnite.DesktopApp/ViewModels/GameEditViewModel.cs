@@ -1399,7 +1399,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private bool LooseDbNameComparer(SelectableItem<DatabaseObject> existingItem, string newName)
         {
-            return GenericFieldComparer.StringEquals(existingItem.Item.Name, newName);
+            return GameFieldComparer.StringEquals(existingItem.Item.Name, newName);
         }
 
         private Tuple<string, ImageProperties> GetImageProperties(string image)

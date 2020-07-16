@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.Common.Web;
+using Playnite.Database;
 using Playnite.DesktopApp.Windows;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
@@ -19,27 +20,6 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public partial class GameEditViewModel
     {
-        public class GenericFieldComparer : IEqualityComparer<string>
-        {
-            public bool Equals(string x, string y)
-            {
-                return StringEquals(x, y);
-            }
-
-            public static bool StringEquals(string x, string y)
-            {
-                return string.Equals(
-                    Regex.Replace(x, @"[\s-]", ""),
-                    Regex.Replace(y, @"[\s-]", ""),
-                    StringComparison.OrdinalIgnoreCase);
-            }
-
-            public int GetHashCode(string obj)
-            {
-                return Regex.Replace(obj, @"[\s-]", "").ToLower().GetHashCode();
-            }
-        }
-
         private const string tempIconFileName = "temp_preview_icon";
         private const string tempCoverFileName = "temp_preview_cover";
         private const string tempBackgroundFileName = "temp_preview_background";
@@ -53,28 +33,23 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (other.HasNonEmptyItems())
                 {
-                    if (source.HasItems() && !source.Select(a => a.Name).IsListEqual(other, new GenericFieldComparer()))
+                    if (source.HasItems() && !source.Select(a => a.Name).IsListEqual(other, new GameFieldComparer()))
                     {
                         diffFields.Add(field);
                     }
                 }
             }
 
-            // TODO restore when support is added in metadata plugins
-            //void checkItemChanged<T>(T source, string other, GameField field) where T : DatabaseObject
-            //{
-            //    if (!other.IsNullOrEmpty())
-            //    {
-            //        if (source != null && !string.Equals(source.Name, other, StringComparison.OrdinalIgnoreCase))
-            //        {
-            //            diffFields.Add(field);
-            //        }
-            //    }
-            //}
-
-            //checkItemChanged(testGame.AgeRating, otherInfo.AgeRating, GameField.AgeRating);
-            //checkItemChanged(testGame.Region, otherInfo.Region, GameField.Region);
-            //checkItemChanged(testGame.Series, otherInfo.Series, GameField.Series);
+            void checkItemChanged<T>(T source, string other, GameField field) where T : DatabaseObject
+            {
+                if (!other.IsNullOrEmpty())
+                {
+                    if (source != null && !string.Equals(source.Name, other, StringComparison.OrdinalIgnoreCase))
+                    {
+                        diffFields.Add(field);
+                    }
+                }
+            }
 
             if (!newInfo.Name.IsNullOrEmpty())
             {
@@ -91,6 +66,11 @@ namespace Playnite.DesktopApp.ViewModels
                     diffFields.Add(GameField.Description);
                 }
             }
+
+            checkItemChanged(testGame.AgeRating, newInfo.AgeRating, GameField.AgeRating);
+            checkItemChanged(testGame.Region, newInfo.Region, GameField.Region);
+            checkItemChanged(testGame.Series, newInfo.Series, GameField.Series);
+            checkItemChanged(testGame.Platform, newInfo.Platform, GameField.Platform);
 
             checkListChanged(testGame.Developers, newInfo.Developers, GameField.Developers);
             checkListChanged(testGame.Publishers, newInfo.Publishers, GameField.Publishers);
@@ -273,6 +253,11 @@ namespace Playnite.DesktopApp.ViewModels
                 AddNewSeries(metadata.GameInfo.Series);
             }
 
+            if (!metadata.GameInfo.Platform.IsNullOrEmpty())
+            {
+                AddNewPlatform(metadata.GameInfo.Platform);
+            }
+
             if (metadata.GameInfo.ReleaseDate != null)
             {
                 EditingGame.ReleaseDate = metadata.GameInfo.ReleaseDate;
@@ -394,7 +379,11 @@ namespace Playnite.DesktopApp.ViewModels
                                 Description = provider.GetDescription(),
                                 Links = provider.GetLinks(),
                                 CriticScore = provider.GetCriticScore(),
-                                CommunityScore = provider.GetCommunityScore()
+                                CommunityScore = provider.GetCommunityScore(),
+                                AgeRating = provider.GetAgeRating(),
+                                Series = provider.GetSeries(),
+                                Region = provider.GetRegion(),
+                                Platform = provider.GetPlatform()
                             };
 
                             var metadata = new GameMetadata

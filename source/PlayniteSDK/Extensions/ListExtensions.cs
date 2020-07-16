@@ -40,6 +40,18 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Check if collection has any items.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public static bool HasItems<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            return source?.Any(predicate) == true;
+        }
+
+        /// <summary>
         /// Adds new item to the list only if it's not already part of the list.
         /// </summary>
         /// <typeparam name="T"></typeparam>

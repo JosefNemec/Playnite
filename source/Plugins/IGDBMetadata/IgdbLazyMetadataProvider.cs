@@ -134,15 +134,15 @@ namespace IGDBMetadata
 
         public override MetadataFile GetCoverImage()
         {
-            if (AvailableFields.Contains(MetadataField.CoverImage) && !IgdbData.cover_v3.url.IsNullOrEmpty())
+            if (AvailableFields.Contains(MetadataField.CoverImage) && !IgdbData.cover.url.IsNullOrEmpty())
             {
-                if (IgdbData.cover_v3.height > 1080)
+                if (IgdbData.cover.height > 1080)
                 {
-                    return new MetadataFile(GetImageUrl(IgdbData.cover_v3, ImageSizes.p1080));
+                    return new MetadataFile(GetImageUrl(IgdbData.cover, ImageSizes.p1080));
                 }
                 else
                 {
-                    return new MetadataFile(GetImageUrl(IgdbData.cover_v3, ImageSizes.original));
+                    return new MetadataFile(GetImageUrl(IgdbData.cover, ImageSizes.original));
                 }
             }
 
@@ -173,7 +173,7 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.Developers))
             {
-                return IgdbData.developers;
+                return IgdbData.involved_companies?.Where(a => a.developer).Select(a => a.name).ToList();
             }
 
             return base.GetDevelopers();
@@ -183,7 +183,7 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.Genres))
             {
-                return IgdbData.genres;
+                return IgdbData.genres?.Select(a => a.name).ToList();
             }
 
             return base.GetGenres();
@@ -203,10 +203,31 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.Publishers))
             {
-                return IgdbData.publishers;
+                return IgdbData.involved_companies?.Where(a => a.publisher).Select(a => a.name).ToList();
             }
 
             return base.GetPublishers();
+        }
+
+        public override string GetAgeRating()
+        {
+            if (AvailableFields.Contains(MetadataField.AgeRating))
+            {
+                var rating = IgdbData.age_ratings[0];
+                return rating.category + " " + rating.rating.GetDescription();
+            }
+
+            return base.GetAgeRating();
+        }
+
+        public override string GetSeries()
+        {
+            if (AvailableFields.Contains(MetadataField.Series))
+            {
+                return IgdbData.collection.name;
+            }
+
+            return base.GetSeries();
         }
 
         public override DateTime? GetReleaseDate()
@@ -224,7 +245,7 @@ namespace IGDBMetadata
             if (AvailableFields.Contains(MetadataField.Features))
             {
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
-                var features = IgdbData.game_modes.Select(a => cultInfo.ToTitleCase(a)).ToList();
+                var features = IgdbData.game_modes.Select(a => cultInfo.ToTitleCase(a.name)).ToList();
                 if (IgdbData.player_perspectives.HasItems() &&
                     IgdbData.player_perspectives.FirstOrDefault(a => a.name == "Virtual Reality") != null)
                 {
@@ -265,7 +286,7 @@ namespace IGDBMetadata
                     fields.Add(MetadataField.Description);
                 }
 
-                if (IgdbData.cover_v3 != null)
+                if (IgdbData.cover != null)
                 {
                     fields.Add(MetadataField.CoverImage);
                 }
@@ -284,12 +305,12 @@ namespace IGDBMetadata
                     fields.Add(MetadataField.ReleaseDate);
                 }
 
-                if (IgdbData.developers.HasItems())
+                if (IgdbData.involved_companies.HasItems(a => a.developer))
                 {
                     fields.Add(MetadataField.Developers);
                 }
 
-                if (IgdbData.publishers.HasItems())
+                if (IgdbData.involved_companies.HasItems(a => a.publisher))
                 {
                     fields.Add(MetadataField.Publishers);
                 }
@@ -319,6 +340,16 @@ namespace IGDBMetadata
                     fields.Add(MetadataField.CommunityScore);
                 }
 
+                if (IgdbData.age_ratings.HasItems())
+                {
+                    fields.Add(MetadataField.AgeRating);
+                }
+
+                if (IgdbData.collection != null)
+                {
+                    fields.Add(MetadataField.Series);
+                }
+
                 return fields;
             }
         }
@@ -339,7 +370,7 @@ namespace IGDBMetadata
                         try
                         {
                             var gameId = GetGameInfoFromUrl(a);
-                            var data = plugin.Client.GetIGDBGameParsed(ulong.Parse(gameId));
+                            var data = plugin.Client.GetIGDBGameExpanded(ulong.Parse(gameId));
                             return new List<GenericItemOption> { new SearchResult(gameId, data.name) };
                         }
                         catch (Exception e)
@@ -358,7 +389,7 @@ namespace IGDBMetadata
                 if (item != null)
                 {
                     var searchItem = item as SearchResult;
-                    IgdbData = plugin.Client.GetIGDBGameParsed(ulong.Parse(searchItem.Id));
+                    IgdbData = plugin.Client.GetIGDBGameExpanded(ulong.Parse(searchItem.Id));
                 }
                 else
                 {

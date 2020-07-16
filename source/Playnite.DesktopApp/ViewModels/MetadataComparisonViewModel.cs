@@ -85,6 +85,10 @@ namespace Playnite.DesktopApp.ViewModels
         public DiffItem CommunityScore { get; } = new DiffItem();
         public DiffItem CriticScore { get; } = new DiffItem();
         public DiffItem ReleaseDate { get; } = new DiffItem();
+        public DiffItem AgeRating { get; } = new DiffItem();
+        public DiffItem Region { get; } = new DiffItem();
+        public DiffItem Series { get; } = new DiffItem();
+        public DiffItem Platform { get; } = new DiffItem();
         public ListDiffItem<Genre> Genres { get; } = new ListDiffItem<Genre>();
         public ListDiffItem<Tag> Tags { get; } = new ListDiffItem<Tag>();
         public ListDiffItem<Company> Developers { get; } = new ListDiffItem<Company>();
@@ -176,6 +180,26 @@ namespace Playnite.DesktopApp.ViewModels
             if (diffFields.Contains(GameField.CommunityScore))
             {
                 CommunityScore.Enabled = true;
+            }
+
+            if (diffFields.Contains(GameField.AgeRating))
+            {
+                AgeRating.Enabled = true;
+            }
+
+            if (diffFields.Contains(GameField.Series))
+            {
+                Series.Enabled = true;
+            }
+
+            if (diffFields.Contains(GameField.Region))
+            {
+                Region.Enabled = true;
+            }
+
+            if (diffFields.Contains(GameField.Platform))
+            {
+                Platform.Enabled = true;
             }
 
             if (diffFields.Contains(GameField.Links))
@@ -299,6 +323,26 @@ namespace Playnite.DesktopApp.ViewModels
                 ResultMetadata.GameInfo.ReleaseDate = null;
             }
 
+            if (diffFields.Contains(GameField.AgeRating) && AgeRating.Source == MetadataChangeDataSource.Current)
+            {
+                ResultMetadata.GameInfo.AgeRating = null;
+            }
+
+            if (diffFields.Contains(GameField.Region) && Region.Source == MetadataChangeDataSource.Current)
+            {
+                ResultMetadata.GameInfo.Region = null;
+            }
+
+            if (diffFields.Contains(GameField.Series) && Series.Source == MetadataChangeDataSource.Current)
+            {
+                ResultMetadata.GameInfo.Series = null;
+            }
+
+            if (diffFields.Contains(GameField.Platform) && Platform.Source == MetadataChangeDataSource.Current)
+            {
+                ResultMetadata.GameInfo.Platform = null;
+            }
+
             if (diffFields.Contains(GameField.Links))
             {
                 ResultMetadata.GameInfo.Links = ConsolidateListSources(Links.Current, Links.New);
@@ -414,6 +458,10 @@ namespace Playnite.DesktopApp.ViewModels
             Icon.Source = source;
             Cover.Source = source;
             Background.Source = source;
+            AgeRating.Source = source;
+            Region.Source = source;
+            Series.Source = source;
+            Platform.Source = source;
             Genres.Current?.ForEach(a => a.Selected = source == MetadataChangeDataSource.Current);
             Genres.New?.ForEach(a => a.Selected = source == MetadataChangeDataSource.New);
             Tags.Current?.ForEach(a => a.Selected = source == MetadataChangeDataSource.Current);
