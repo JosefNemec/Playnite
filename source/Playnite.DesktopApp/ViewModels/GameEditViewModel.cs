@@ -1258,7 +1258,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
                 else
                 {
-                    existing = collection.FirstOrDefault(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase));
+                    existing = collection.FirstOrDefault(a => a.Item.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true);
                 }
 
                 if (existing != null)
