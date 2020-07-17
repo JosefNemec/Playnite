@@ -11,34 +11,45 @@ namespace Playnite.WebView
 {
     public class OffscreenWebView : WebViewBase, IWebView
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
-
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
 
         public event EventHandler NavigationChanged;
 
         public OffscreenWebView()
         {
-            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
-            browser.LoadingStateChanged += Browser_LoadingStateChanged;
-            browser.BrowserInitialized += Browser_BrowserInitialized;
-            browser.CreateBrowser();
-            browserInitializedEvent.WaitOne(5000);
+            Initialize();
         }
 
         public OffscreenWebView(WebViewSettings settings)
         {
-            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
-            browser.LoadingStateChanged += Browser_LoadingStateChanged;
-            browser.BrowserInitialized += Browser_BrowserInitialized;
-            var brwSet = new BrowserSettings
+            Initialize(new BrowserSettings
             {
                 Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled,
                 ApplicationCache = settings.CacheEnabled ? CefState.Enabled : CefState.Disabled
-            };
-            browser.CreateBrowser(null, brwSet);
-            browserInitializedEvent.WaitOne(5000);
+            });
+        }
+
+        private void Initialize(BrowserSettings settings = null)
+        {
+            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
+            browser.LoadingStateChanged += Browser_LoadingStateChanged;
+            browser.BrowserInitialized += Browser_BrowserInitialized;
+            if (settings != null)
+            {
+                browser.CreateBrowser(null, settings);
+            }
+            else
+            {
+                browser.CreateBrowser();
+            }
+
+            if (!browserInitializedEvent.WaitOne(30000))
+            {
+                logger.Error("Failed to initialize OffscreenWebView in timely manner.");
+            }
         }
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
