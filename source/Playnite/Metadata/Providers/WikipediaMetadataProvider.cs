@@ -81,7 +81,7 @@ namespace Playnite.Metadata.Providers
 
         public override MetadataFile GetCoverImage()
         {
-            if (AvailableFields.Contains(MetadataField.ReleaseDate))
+            if (AvailableFields.Contains(MetadataField.CoverImage))
             {
                 return gameData.CoverImage;
             }
