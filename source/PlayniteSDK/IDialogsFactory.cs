@@ -223,6 +223,8 @@ namespace Playnite.SDK
         /// <returns>Null if dialog was canceled otherwise selected <see cref="ImageFileOption"/> object.</returns>
         ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180);
 
+        ImageFileOption CropImage(ImageFileOption image);
+
         /// <summary>
         /// Displays dialog with an option to choose single item and option to search for different items.
         /// </summary>

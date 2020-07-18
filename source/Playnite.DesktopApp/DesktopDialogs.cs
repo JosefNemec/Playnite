@@ -137,6 +137,20 @@ namespace Playnite.DesktopApp
             });
         }
 
+        public ImageFileOption CropImage(ImageFileOption image)
+        {
+            return Invoke(() =>
+            {
+                var model = new ImageCroppingViewModel(image, new ImageCroppingWindowFactory());
+                if (model.OpenView() == true)
+                {
+                    return model.CroppedImage;
+                }
+
+                return null;
+            });
+        }
+
         public GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null)
         {
             return Invoke(() =>

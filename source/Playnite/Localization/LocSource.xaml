@@ -490,6 +490,7 @@ You can also add any other game later by clicking the Playnite logo menu.</sys:S
     <sys:String x:Key="LOCSelectIconTitle">Select Icon</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Select Cover</sys:String>
     <sys:String x:Key="LOCSelectImageTitle">Select Image</sys:String>
+    <sys:String x:Key="LOCCropImageTitle">Crop Image</sys:String>
     <sys:String x:Key="LOCSelectItemTitle">Select Item</sys:String>
     <sys:String x:Key="LOCSelectBackgroundTitle">Select Background</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Select File</sys:String>
