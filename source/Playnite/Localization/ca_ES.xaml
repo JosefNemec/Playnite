@@ -9,8 +9,8 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Idioma</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Sortir</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtre Actiu</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtre Desativat</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Filtres addicionals</sys:String>
     <sys:String x:Key="LOCFilters">Filtres</sys:String>
     <sys:String x:Key="LOCFilter">Filtre</sys:String>
@@ -65,7 +65,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCGameShortcutError">No s’ha pogut crear la drecera: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">No es pot instal·lar el joc: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">No es pot desinstal·lar el joc: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Acció de joc no configurada</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">El plugin de biblioteca responsable d'aquest joc no està instal·lat ni activat.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Descàrrega de metadades oficials no disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No hi ha cap joc seleccionat.</sys:String>
@@ -122,7 +122,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Instal·lació</sys:String>
     <sys:String x:Key="LOCActionsLabel">Accions</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Descarregant…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Carregant...</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipus</sys:String>
     <sys:String x:Key="LOCProfileLabel">Perfil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Perfils</sys:String>
@@ -206,7 +206,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manualment…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Escaneja automàticament…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Joc emulat…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">aplicació Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envia els teus comentaris</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
@@ -218,7 +218,7 @@ Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Tanca el Sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspèn el sistema</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hiberna sistema</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Escull un joc al'atzar</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Camps de joc que es mostraran al panell de detalls:</sys:String>
