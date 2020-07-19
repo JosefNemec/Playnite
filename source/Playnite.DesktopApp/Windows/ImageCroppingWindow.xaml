@@ -8,10 +8,31 @@
                      mc:Ignorable="d"
                      d:DesignStyle="{StaticResource WindowDesignStyle}"
                      Style="{DynamicResource StandardWindowStyle}"
-                     Title="{Binding WindowTitle}" Height="600" Width="800"
+                     Title="{Binding WindowTitle}" Height="900" Width="700"
                      ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
                      AutomationProperties.AutomationId="WindowImageCropping">
-    <Grid>
-            
+    <Grid Margin="0,4,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Visibility="Collapsed" x:Name="CroppedImage" Source="{Binding CroppedResultImage, Mode=OneWayToSource}"></Image>
+
+        <Grid Grid.Row="0" x:Name="FrameLayer" MouseLeftButtonDown="FrameLayer_OnMouseLeftButtonDown" MouseMove="FrameLayer_OnMouseMove" MouseLeftButtonUp="FrameLayer_OnMouseLeftButtonUp">
+            <Image x:Name="Image" Source="{Binding ImageSource}"/>
+            <Canvas x:Name="SelectionBox">
+                <Rectangle x:Name="Rect" Stroke="DarkRed" Visibility="Collapsed" Fill="#77FFFFFF"/>
+            </Canvas>
+        </Grid>
+
+        <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="5,0,5,5">
+            <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding CloseCommand}"/>
+            <Button Name="ButtonOK" Content="{DynamicResource LOCSelect}" DockPanel.Dock="Right"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding ConfirmCommand}"/>
+        </DockPanel>
     </Grid>
 </controls:WindowBase>

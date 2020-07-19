@@ -264,6 +264,9 @@
     <Compile Include="Windows\CrashHandlerWindow.xaml.cs">
       <DependentUpon>CrashHandlerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\CroppingAdorner.cs">
+      <DependentUpon>ImageCroppingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DatabaseFieldsManagerWindow.xaml.cs">
       <DependentUpon>DatabaseFieldsManagerWindow.xaml</DependentUpon>
     </Compile>
@@ -308,6 +311,9 @@
     </Compile>
     <Compile Include="Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PuncturedRect.cs" >
+      <DependentUpon>ImageCroppingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\RandomGameSelectWindow.xaml.cs">
       <DependentUpon>RandomGameSelectWindow.xaml</DependentUpon>

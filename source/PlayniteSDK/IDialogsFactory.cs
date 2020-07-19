@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Playnite.SDK.Metadata;
 
 namespace Playnite.SDK
 {
@@ -223,7 +224,12 @@ namespace Playnite.SDK
         /// <returns>Null if dialog was canceled otherwise selected <see cref="ImageFileOption"/> object.</returns>
         ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180);
 
-        ImageFileOption CropImage(ImageFileOption image);
+        /// <summary>
+        /// Displays dialog for cropping an image.
+        /// </summary>
+        /// <param name="url">URL of the image</param>
+        /// <returns></returns>
+        MetadataFile CropImage(string url);
 
         /// <summary>
         /// Displays dialog with an option to choose single item and option to search for different items.

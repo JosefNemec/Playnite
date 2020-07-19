@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Playnite.SDK.Metadata;
 
 namespace Playnite.DesktopApp
 {
@@ -137,11 +138,11 @@ namespace Playnite.DesktopApp
             });
         }
 
-        public ImageFileOption CropImage(ImageFileOption image)
+        public MetadataFile CropImage (string url)
         {
             return Invoke(() =>
             {
-                var model = new ImageCroppingViewModel(image, new ImageCroppingWindowFactory());
+                var model = new ImageCroppingViewModel(url, new ImageCroppingWindowFactory());
                 if (model.OpenView() == true)
                 {
                     return model.CroppedImage;
