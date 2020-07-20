@@ -162,6 +162,8 @@ namespace Playnite.DesktopApp.Windows
             SetStrings(messageBoxText, caption);
             ShowInputField = true;
             ShowOKButton = true;
+            ButtonOK.IsDefault = true;
+            ButtonOK.Focus();
             InputText = inputText ?? string.Empty;
             IsTextReadOnly = true;
             ShowDialog();
@@ -189,7 +191,9 @@ namespace Playnite.DesktopApp.Windows
             SetStrings(messageBoxText, caption);
             ShowInputField = true;
             ShowOKButton = true;
+            ButtonOK.IsDefault = true;
             ShowCancelButton = true;
+            ButtonCancel.IsCancel = true;
             InputText = defaultInput ?? string.Empty;
             ShowDialog();
             WindowManager.NotifyChildOwnershipChanges();
@@ -232,28 +236,36 @@ namespace Playnite.DesktopApp.Windows
             {
                 case MessageBoxButton.OK:
                     ShowOKButton = true;
+                    ButtonOK.IsDefault = true;
+                    ButtonOK.Focus();
                     break;
                 case MessageBoxButton.OKCancel:
                     ShowOKButton = true;
+                    ButtonOK.IsDefault = true;
+                    ButtonOK.Focus();
                     ShowCancelButton = true;
+                    ButtonCancel.IsCancel = true;
                     break;
                 case MessageBoxButton.YesNoCancel:
                     ShowYesButton = true;
+                    ButtonYes.Focus();
+                    ButtonYes.IsDefault = true;
                     ShowNoButton = true;
                     ShowCancelButton = true;
+                    ButtonCancel.IsCancel = true;
                     break;
                 case MessageBoxButton.YesNo:
                     ShowYesButton = true;
+                    ButtonYes.Focus();
+                    ButtonYes.IsDefault = true;
                     ShowNoButton = true;
+                    ButtonNo.IsCancel = true;
                     break;
                 default:
                     ShowOKButton = true;
+                    ButtonOK.Focus();
+                    ButtonOK.IsDefault = true;
                     break;
-            }
-
-            if (ShowOKButton)
-            {
-                ButtonOK.Focus();
             }
 
             ShowDialog();
