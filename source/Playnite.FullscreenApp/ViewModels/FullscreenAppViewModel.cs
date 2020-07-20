@@ -717,10 +717,9 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 if (GlobalTaskHandler.IsActive)
                 {
-                    ProgressViewViewModel.ActivateProgress(
-                        () => GlobalTaskHandler.CancelAndWait(),
-                        "LOCOpeningDesktopModeMessage",
-                        out var _);
+                    GlobalProgress.ActivateProgress(
+                        (_) => GlobalTaskHandler.CancelAndWait(),
+                        new ProgressViewArgs("LOCOpeningDesktopModeMessage"));
                 }
 
                 CloseView();
@@ -1193,16 +1192,16 @@ namespace Playnite.FullscreenApp.ViewModels
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.Fullscreen.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
-            () =>
+            (_) =>
             {
                 if (!Database.IsOpen)
                 {
                     Database.SetDatabasePath(AppSettings.DatabasePath);
                     Database.OpenDatabase();
                 }
-            }, Resources.GetString("LOCOpeningDatabase"));
+            }, new ProgressViewArgs("LOCOpeningDatabase"));
 
-            if (openProgress.ActivateProgress() != true)
+            if (openProgress.ActivateProgress().Result != true)
             {
                 Logger.Error(openProgress.FailException, "Failed to open library database.");
                 var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{openProgress.FailException.Message}";

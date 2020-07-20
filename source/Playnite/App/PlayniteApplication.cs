@@ -66,6 +66,7 @@ namespace Playnite
         public DpiScale DpiScale { get; set; } = new DpiScale(1, 1);
         public ComputerScreen CurrentScreen { get; set; } = Computer.GetPrimaryScreen();
         public DiscordManager Discord { get; set; }
+        public SynchronizationContext SyncContext { get; private set; }
 
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
@@ -81,6 +82,7 @@ namespace Playnite
                 throw new Exception("Only one application instance is allowed.");
             }
 
+            SyncContext = SynchronizationContext.Current;
             CmdLine = cmdLine;
             Mode = mode;
             Current = this;
@@ -612,7 +614,7 @@ namespace Playnite
             Discord?.Dispose();
             updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();
-            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
+            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), (_) =>
             {
                 try
                 {
@@ -630,7 +632,7 @@ namespace Playnite
                 {
                     logger.Error(exc, "Failed to dispose Playnite objects.");
                 }
-            }, ResourceProvider.GetString("LOCClosingPlaynite"));
+            }, new ProgressViewArgs("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
 
@@ -785,7 +787,7 @@ namespace Playnite
             if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
             {
                 var migrationProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
-                () =>
+                (_) =>
                 {
                     if (AppSettings.DatabasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
                     {
@@ -821,9 +823,9 @@ namespace Playnite
                     {
                         GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
                     }
-                }, ResourceProvider.GetString("LOCDBUpgradeProgress"));
+                }, new ProgressViewArgs("LOCDBUpgradeProgress"));
 
-                if (migrationProgress.ActivateProgress() != true)
+                if (migrationProgress.ActivateProgress().Result != true)
                 {
                     logger.Error(migrationProgress.FailException, "Failed to migrate database to new version.");
                     var message = ResourceProvider.GetString("LOCDBUpgradeFail");

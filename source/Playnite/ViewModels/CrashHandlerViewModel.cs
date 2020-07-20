@@ -147,13 +147,12 @@ namespace Playnite.ViewModels
                 };
             }
 
-            var genResult = ProgressViewViewModel.ActivateProgress(() =>
+            var genResult = GlobalProgress.ActivateProgress((_) =>
                 Diagnostic.CreateDiagPackage(diagPath, crashDescription, packageInfo),
-                "LOCDiagGenerating",
-                out var genExc);
-            if (genResult != true)
+                new ProgressViewArgs("LOCDiagGenerating"));
+            if (genResult.Result != true)
             {
-                logger.Error(genExc, "Failed to created diagnostics package.");
+                logger.Error(genResult.Error, "Failed to created diagnostics package.");
                 dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageCreationError"), "");
                 return;
             }
@@ -166,11 +165,10 @@ namespace Playnite.ViewModels
             }
 
             var uploadedId = Guid.Empty;
-            var uploadResult = ProgressViewViewModel.ActivateProgress(() =>
+            var uploadResult = GlobalProgress.ActivateProgress((_) =>
                 uploadedId = new ServicesClient().UploadDiagPackage(diagPath),
-                "LOCDiagUploading",
-                out var updExc);
-            if (uploadResult == true)
+                new ProgressViewArgs("LOCDiagUploading"));
+            if (uploadResult.Result == true)
             {
                 if (mode == ApplicationMode.Desktop)
                 {
@@ -183,7 +181,7 @@ namespace Playnite.ViewModels
             }
             else
             {
-                logger.Error(updExc, "Failed to upload diag package.");
+                logger.Error(uploadResult.Error, "Failed to upload diag package.");
                 dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageUploadError"), "");
                 if (mode == ApplicationMode.Desktop)
                 {

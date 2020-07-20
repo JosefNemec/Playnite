@@ -329,17 +329,16 @@ namespace Playnite.DesktopApp.ViewModels
                     var extension = Path.GetExtension(new Uri(file.OriginalUrl).AbsolutePath);
                     var fileName = tempFileName + extension;
                     var targetPath = Path.Combine(PlaynitePaths.TempPath, fileName);
-
-                    if (ProgressViewViewModel.ActivateProgress(() =>
-                        HttpDownloader.DownloadFile(file.OriginalUrl, targetPath),
-                        "LOCDownloadingLabel",
-                        out var progressError) == true)
+                    var progRes = GlobalProgress.ActivateProgress((a) =>
+                        HttpDownloader.DownloadFile(file.OriginalUrl, targetPath, a.CancelToken),
+                        new ProgressViewArgs("LOCDownloadingMediaLabel", true));
+                    if (progRes.Result == true && !progRes.Canceled)
                     {
                         return targetPath;
                     }
                     else
                     {
-                        logger.Error(progressError, $"Failed to add {file.OriginalUrl} file to database.");
+                        logger.Error(progRes.Error, $"Failed to download {file.OriginalUrl}.");
                         return null;
                     }
                 }

@@ -187,10 +187,10 @@ namespace Playnite.DesktopApp.ViewModels
         public void Search()
         {
             AvailableImages = new List<GoogleImage>();
-            if (ProgressViewViewModel.ActivateProgress(() =>
+            if (GlobalProgress.ActivateProgress((_) =>
             {
                 AvailableImages = downloader.GetImages(SearchTerm, Transparent).GetAwaiter().GetResult();
-            }, resources.GetString("LOCDownloadingLabel"), out var _) == true)
+            }, new ProgressViewArgs("LOCDownloadingLabel")).Result == true)
             {
                 if (!AvailableImages.HasItems())
                 {

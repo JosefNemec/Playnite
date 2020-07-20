@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net.Http;
 using Playnite.SDK;
+using System.Threading;
 
 namespace Playnite.Common.Web
 {
@@ -59,6 +60,11 @@ namespace Playnite.Common.Web
         public static void DownloadFile(string url, string path)
         {
             downloader.DownloadFile(url, path);
+        }
+
+        public static void DownloadFile(string url, string path, CancellationTokenSource cancelToken)
+        {
+            downloader.DownloadFile(url, path, cancelToken);
         }
 
         public static HttpStatusCode GetResponseCode(string url)
