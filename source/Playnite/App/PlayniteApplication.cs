@@ -296,6 +296,7 @@ namespace Playnite
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");
+            SDK.Data.Markup.Init(new MarkupConverter());
             Startup();
             logger.Info($"Application {CurrentVersion} started");
         }

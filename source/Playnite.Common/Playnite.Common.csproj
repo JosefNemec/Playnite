@@ -38,6 +38,9 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Markdig, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Markdig.0.18.0\lib\net40\Markdig.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
@@ -116,6 +119,7 @@
     <Compile Include="IniParser.cs" />
     <Compile Include="InteropMethods.cs" />
     <Compile Include="ItemsSource.cs" />
+    <Compile Include="MarkupConverter.cs" />
     <Compile Include="Media\Icons\IconExtractor.cs" />
     <Compile Include="Media\Icons\IconUtil.cs" />
     <Compile Include="MemoryCache.cs" />

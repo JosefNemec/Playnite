@@ -1,6 +1,7 @@
 ﻿using EpicLibrary.Services;
 using Playnite.Common.Media.Icons;
 using Playnite.SDK;
+using Playnite.SDK.Data;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using System;
@@ -45,7 +46,6 @@ namespace EpicLibrary
                             page = product.pages[0];
                         }
 
-                        gameInfo.Description = page.data.about.description;
                         gameInfo.Developers = new List<string>() { page.data.about.developerAttribution };
                         metadata.BackgroundImage = new MetadataFile(page.data.hero.backgroundImageUrl);
                         gameInfo.Links.Add(new Link(
@@ -63,9 +63,9 @@ namespace EpicLibrary
                             }
                         }
 
-                        if (!gameInfo.Description.IsNullOrEmpty())
+                        if (!page.data.about.description.IsNullOrEmpty())
                         {
-                            gameInfo.Description = gameInfo.Description.Replace("\n", "\n<br>");
+                            gameInfo.Description = Markup.MarkdownToHtml(page.data.about.description);
                         }
                     }
                 }
