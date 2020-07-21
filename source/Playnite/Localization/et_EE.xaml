@@ -16,9 +16,9 @@
     <sys:String x:Key="LOCFilter"></sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle"></sys:String>
-    <sys:String x:Key="LOCSaveChangesAskTitle"></sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">Salvesta muudatused?</sys:String>
 
-    <sys:String x:Key="LOCAboutHomePageLink"></sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Kodulehekülg www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink"></sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
