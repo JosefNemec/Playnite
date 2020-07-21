@@ -40,6 +40,30 @@ namespace PlayniteServices.Controllers.PlayniteTools
             return PhysicalFile(diagFile.FullName, System.Net.Mime.MediaTypeNames.Application.Zip, diagFile.Name);
         }
 
+        [HttpDelete("{packageId}/{serviceKey}")]
+        public IActionResult DeletePackage(Guid packageId, string serviceKey)
+        {
+            if (appSettings.ServiceKey != serviceKey)
+            {
+                return BadRequest();
+            }
+
+            var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, $"{packageId}.zip", SearchOption.AllDirectories);
+            if (diagFiles.Length == 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                foreach (var file in diagFiles)
+                {
+                    System.IO.File.Delete(file);
+                }
+            }
+
+            return Ok();
+        }
+
         [HttpGet("{serviceKey}")]
         public ServicesResponse<List<string>> GetPackages(string serviceKey)
         {
