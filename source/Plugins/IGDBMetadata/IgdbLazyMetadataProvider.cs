@@ -173,7 +173,7 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.Developers))
             {
-                return IgdbData.involved_companies?.Where(a => a.developer).Select(a => a.name).ToList();
+                return IgdbData.involved_companies?.Where(a => a.developer).Select(a => a.company.name).ToList();
             }
 
             return base.GetDevelopers();
@@ -203,7 +203,7 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.Publishers))
             {
-                return IgdbData.involved_companies?.Where(a => a.publisher).Select(a => a.name).ToList();
+                return IgdbData.involved_companies?.Where(a => a.publisher).Select(a => a.company.name).ToList();
             }
 
             return base.GetPublishers();
