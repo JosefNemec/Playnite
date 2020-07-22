@@ -921,6 +921,8 @@ Note that the Account Name option only works for accounts whose game libraries h
     <sys:String x:Key="LOCHumbleImportTroveGames">Import Trove games</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip"  xml:space="preserve">If enabled, games that require 3rd party clients won't be imported.
 Includes stores already supported in Playnite to prevent duplicates.</sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree">Import if DRM free version is available</sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip">Import games requiring 3rd party client if DRM free version is also available.</sys:String>
 
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Start Xbox Pass app instead of Microsoft Store when opening client</sys:String>

@@ -126,28 +126,30 @@ namespace HumbleLibrary
                     {
                         foreach (var product in order.subproducts)
                         {
+                            var alreadyAdded = selectedProducts.FirstOrDefault(a => a.human_name == product.human_name);
+                            if (alreadyAdded != null)
+                            {
+                                continue;
+                            }
+
                             if (product.downloads?.Any(a => a.platform == "windows") == true)
                             {
                                 if (Settings.IgnoreThirdPartyStoreGames && order.tpkd_dict?.all_tpks.HasItems() == true)
                                 {
                                     var exst = allTpks.FirstOrDefault(a =>
                                     !a.human_name.IsNullOrEmpty() &&
-                                    (a.human_name.Equals(product.human_name, StringComparison.OrdinalIgnoreCase) || 
-                                    Regex.IsMatch(a.human_name, product.human_name + @".+\sKey$", RegexOptions.IgnoreCase) || 
+                                    (a.human_name.Equals(product.human_name, StringComparison.OrdinalIgnoreCase) ||
+                                    Regex.IsMatch(a.human_name, product.human_name + @".+\sKey$", RegexOptions.IgnoreCase) ||
                                     Regex.IsMatch(a.human_name, product.human_name + @".*\s\(?Steam\)?$", RegexOptions.IgnoreCase) ||
                                     Regex.IsMatch(a.human_name + @"\s*+$", product.human_name, RegexOptions.IgnoreCase)));
 
-                                    if (exst != null)
+                                    if (exst != null && !Settings.ImportThirdPartyDrmFree)
                                     {
                                         continue;
                                     }
                                 }
 
-                                var alreadyAdded = selectedProducts.FirstOrDefault(a => a.human_name == product.human_name);
-                                if (alreadyAdded == null)
-                                {
-                                    selectedProducts.Add(product);
-                                }
+                                selectedProducts.Add(product);
                             }
                         }
                     }

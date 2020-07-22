@@ -26,11 +26,16 @@
 
         <StackPanel DockPanel.Dock="Top" Margin="40,5,5,0"
                     IsEnabled="{Binding IsChecked, ElementName=CheckHumbleConnectAccount}">
-            <CheckBox Margin="0,10,0,0"
+            <CheckBox Margin="0,10,0,0" Name="HumbleThirdPartyImport"
                       IsChecked="{Binding IgnoreThirdPartyStoreGames}"
                       Content="{DynamicResource LOCHumbleIgnoreThirdPartyStoreGames}"
                       ToolTip="{DynamicResource LOCHumbleIgnoreThirdPartyStoreGamesTooltip}"/>
-            <CheckBox Margin="0,10,0,0"
+            <CheckBox Margin="25,13,0,0"
+                      IsChecked="{Binding ImportThirdPartyDrmFree}"
+                      IsEnabled="{Binding IsChecked, ElementName=HumbleThirdPartyImport}"
+                      Content="{DynamicResource LOCHumbleImportThirdPartyDrmFree}"
+                      ToolTip="{DynamicResource LOCHumbleImportThirdPartyDrmFreeTooltip}"/>
+            <CheckBox Margin="0,15,0,0"
                       IsChecked="{Binding ImportTroveGames}"
                       Content="{DynamicResource LOCHumbleImportTroveGames}"/>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
