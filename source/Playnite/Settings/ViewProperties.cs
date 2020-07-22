@@ -596,9 +596,9 @@ namespace Playnite
 
     public class ViewSettings : ObservableObject
     {
-        public const double MinGridItemWidth = 120;
+        public const double MinGridItemWidth = 60;
         public const double DefaultGridItemWidth = 200;
-        public const double MaxGridItemWidth = 560;
+        public const double MaxGridItemWidth = 700;
 
         private SortOrder sortingOrder = SortOrder.Name;
         public SortOrder SortingOrder
