@@ -161,6 +161,18 @@ namespace Playnite.Toolbox
         {
             var dirInfo = new DirectoryInfo(themeDirectory);
             var extInfo = ThemeManager.GetDescriptionFromFile(Path.Combine(themeDirectory, PlaynitePaths.ThemeManifestFileName));
+            var apiVer = extInfo.Mode == ApplicationMode.Desktop ? ThemeManager.DesktopApiVersion : ThemeManager.FullscreenApiVersion;
+            var themeApiVer = Version.Parse(extInfo.ThemeApiVersion);
+            if (themeApiVer > apiVer)
+            {
+                throw new Exception($"Cannot package theme. Unsupported API version detected: {themeApiVer}");
+            }
+            else if (themeApiVer != apiVer)
+            {
+                logger.Warn("Selected theme has not been updated to the latest supported API version. Please consider updating the theme!");
+                logger.Warn("https://github.com/JosefNemec/Playnite/issues/1259");
+            }
+
             var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
             targetPath = Path.Combine(targetPath, $"{dirInfo.Name}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedThemeFileExtention}");
             FileSystem.PrepareSaveFile(targetPath);
