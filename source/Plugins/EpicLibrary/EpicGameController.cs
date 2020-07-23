@@ -30,6 +30,7 @@ namespace EpicLibrary
             "Kinglet",      // Civ 6
             "9d2d0eb64d5c44529cece33fe2a46482", // GTA 5
             "UnrealTournamentDev",  // Unreal Tournament 4
+            "AzaleaAlpha",  // The Cycle
         };
 
         private static ILogger logger = LogManager.GetLogger();

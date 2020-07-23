@@ -46,7 +46,12 @@ namespace EpicLibrary
                             page = product.pages[0];
                         }
 
-                        gameInfo.Developers = new List<string>() { page.data.about.developerAttribution };
+                        gameInfo.Developers = page.data.about.developerAttribution?.
+                            Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).
+                            Select(a => a.Trim()).ToList();
+                        gameInfo.Publishers = page.data.about.publisherAttribution?.
+                            Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).
+                            Select(a => a.Trim()).ToList();
                         metadata.BackgroundImage = new MetadataFile(page.data.hero.backgroundImageUrl);
                         gameInfo.Links.Add(new Link(
                             library.PlayniteApi.Resources.GetString("LOCCommonLinksStorePage"),
