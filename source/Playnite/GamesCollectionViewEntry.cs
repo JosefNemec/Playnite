@@ -426,7 +426,7 @@ namespace Playnite
             }
             else
             {
-                var firstChar = Game.Name[0];
+                var firstChar = char.ToUpper(Game.Name[0]);
                 return char.IsLetter(firstChar) ? firstChar : '#';
             }
         }
