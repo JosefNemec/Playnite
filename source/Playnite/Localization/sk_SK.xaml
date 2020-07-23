@@ -267,7 +267,7 @@ Vyústi do: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam baner</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Vertikálne obaly Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Toto nastavenie sa prejaví až po reštarte Playnite</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Nastavenia</sys:String>
@@ -471,7 +471,7 @@ Nezabudnite, že vždy môžete hru pridať aj ručne z hlavnej ponuky kliknutí
     <sys:String x:Key="LOCFirstOtherGamesText">Pre importovanie ostatných nainštalovaných hier (vrátane hier z Microsoft Store) kliknite na tlačidlo nižšie.</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importovať hry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurácia dokončená</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Počiatočné nastavenie bolo dokončené. Nezabudnite, že všetky nastavenia môžete neskôr zmeniť v ponuke „Nastavenia“.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Otvoriť sprievodcu importom emulátorov</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Zobrazenie mriežky</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Vyberte preferované rozloženie pre zobrazenie mriežky. Rozloženie obrázkov môžete kedykoľvek zmeniť v nastaveniach aplikácie vrátane rôznych možností zväčšovania obrázkov.</sys:String>
@@ -675,7 +675,7 @@ Môžete skúsiť nasledujúce možnosti opravy:
     <sys:String x:Key="LOCReloadScripts">Znovu načítať skripty</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Všetky skripty sa úspešne znovu načítali.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Pre zadané kritériá vyhľadávania sa nenašli žiadne hry</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Prepnúť na režim plochy</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Ukončiť Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Knižnice</sys:String>
     <sys:String x:Key="LOCUpdateAll">Aktualizovať všetko</sys:String>
@@ -736,7 +736,7 @@ Môžete skúsiť nasledujúce možnosti opravy:
     <sys:String x:Key="LOCUnHideGame">Zobraziť v knižnici</sys:String>
     <sys:String x:Key="LOCEditGame">Upraviť…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Nastaviť kategóriu…</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Nastaviť stav dokončenia</sys:String>
     <sys:String x:Key="LOCRemoveGame">Odstrániť</sys:String>
     <sys:String x:Key="LOCPlayGame">Hrať</sys:String>
     <sys:String x:Key="LOCInstallGame">Inštalovať</sys:String>
