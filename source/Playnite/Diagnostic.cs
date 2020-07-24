@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
 
 namespace Playnite
 {
@@ -37,6 +38,26 @@ namespace Playnite
             }
 
             return allFiles;
+        }
+
+        private static string GetManifestInfo(string rootDir, string manFileName)
+        {
+            var total = new StringBuilder();
+            foreach (var dir in Directory.GetDirectories(rootDir))
+            {
+                var manifest = Path.Combine(dir, manFileName);
+                if (File.Exists(manifest))
+                {
+                    total.Append(Path.GetFileName(dir));
+                    total.AppendLine();
+                    total.AppendLine("--------------------------");
+                    total.Append(File.ReadAllText(manifest));
+                    total.AppendLine();
+                    total.AppendLine();
+                }
+            }
+
+            return total.ToString();
         }
 
         public static void CreateDiagPackage(string path, string userActionsDescription, DiagnosticPackageInfo packageInfo)
@@ -73,6 +94,25 @@ namespace Playnite
                             var fileInfo = new FileInfo(cfg);
                             archive.CreateEntryFromFile(cfg, Path.Combine("extensions", fileInfo.Directory.Name, fileInfo.Name));
                         }
+                    }
+
+                    // Installed extensions/themes
+                    try
+                    {
+                        var extensionsPath = Path.Combine(diagTemp, "extensions.txt");
+                        File.WriteAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName));
+                        File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesProgramPath, PlaynitePaths.ThemeManifestFileName));
+                        if (!PlayniteSettings.IsPortable)
+                        {
+                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName));
+                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesUserDataPath, PlaynitePaths.ThemeManifestFileName));
+                        }
+
+                        archive.CreateEntryFromFile(extensionsPath, Path.GetFileName(extensionsPath));
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed to package extensions list.");
                     }
 
                     // System Info
