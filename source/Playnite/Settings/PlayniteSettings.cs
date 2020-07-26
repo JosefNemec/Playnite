@@ -1451,6 +1451,17 @@ namespace Playnite
             }
         }
 
+        private bool showHiddenInQuickLaunch = false;
+        public bool ShowHiddenInQuickLaunch
+        {
+            get => showHiddenInQuickLaunch;
+            set
+            {
+                showHiddenInQuickLaunch = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

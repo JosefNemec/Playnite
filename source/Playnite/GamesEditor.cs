@@ -50,7 +50,12 @@ namespace Playnite
         {
             get
             {
-                return Database.Games.Where(a => a.LastActivity != null && a.IsInstalled).OrderByDescending(a => a.LastActivity).Take(10).ToList();
+                return Database.Games.
+                    Where(a => a.LastActivity != null && a.IsInstalled &&
+                        (!a.Hidden || (a.Hidden && AppSettings.ShowHiddenInQuickLaunch))).
+                    OrderByDescending(a => a.LastActivity).
+                    Take(10).
+                    ToList();
             }
         }
 
@@ -72,6 +77,15 @@ namespace Playnite
             controllers.Uninstalled += Controllers_Uninstalled;
             controllers.Started += Controllers_Started;
             controllers.Stopped += Controllers_Stopped;
+            AppSettings.PropertyChanged += AppSettings_PropertyChanged;
+        }
+
+        private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PlayniteSettings.ShowHiddenInQuickLaunch))
+            {
+                UpdateJumpList();
+            }
         }
 
         public void Dispose()
@@ -651,7 +665,6 @@ namespace Playnite
         {
             try
             {
-                OnPropertyChanged(nameof(LastGames));
                 var jumpList = new JumpList();
                 foreach (var lastGame in LastGames)
                 {

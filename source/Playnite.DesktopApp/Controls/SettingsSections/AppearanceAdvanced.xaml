@@ -99,6 +99,10 @@
         <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
                   Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
 
+        <CheckBox Content="{DynamicResource LOCSettingsHiddenInQuickLaunch}" Margin="0,15,0,0"
+                  ToolTip="{DynamicResource LOCSettingsHiddenInQuickLaunchTooltip}"
+                  IsChecked="{Binding Settings.ShowHiddenInQuickLaunch}"/>
+
         <StackPanel Orientation="Horizontal"  Margin="0,20,0,0">
             <ContentControl Content="{DynamicResource LOCSettingsFontSizes}" Margin="0,0,10,0"
                             ContentStringFormat="{}{0} *" VerticalAlignment="Top" />
