@@ -46,16 +46,23 @@ namespace Playnite
         public IDialogsFactory Dialogs { get; private set; }
         public PlayniteSettings AppSettings { get; private set; }
 
-        public List<Game> LastGames
+        public List<Game> QuickLaunchItems
         {
             get
             {
-                return Database.Games.
-                    Where(a => a.LastActivity != null && a.IsInstalled &&
-                        (!a.Hidden || (a.Hidden && AppSettings.ShowHiddenInQuickLaunch))).
-                    OrderByDescending(a => a.LastActivity).
-                    Take(10).
-                    ToList();
+                if (AppSettings.QuickLaunchItems > 0)
+                {
+                    return Database.Games.
+                        Where(a => a.LastActivity != null && a.IsInstalled &&
+                            (!a.Hidden || (a.Hidden && AppSettings.ShowHiddenInQuickLaunch))).
+                        OrderByDescending(a => a.LastActivity).
+                        Take(AppSettings.QuickLaunchItems).
+                        ToList();
+                }
+                else
+                {
+                    return new List<Game>();
+                }
             }
         }
 
@@ -82,7 +89,8 @@ namespace Playnite
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.ShowHiddenInQuickLaunch))
+            if (e.PropertyName == nameof(PlayniteSettings.ShowHiddenInQuickLaunch) ||
+                e.PropertyName == nameof(PlayniteSettings.QuickLaunchItems))
             {
                 UpdateJumpList();
             }
@@ -666,33 +674,43 @@ namespace Playnite
             try
             {
                 var jumpList = new JumpList();
-                foreach (var lastGame in LastGames)
+                jumpList.ShowFrequentCategory = false;
+                jumpList.ShowRecentCategory = false;
+
+                if (AppSettings.QuickLaunchItems > 0)
                 {
-                    var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
-                    JumpTask task = new JumpTask
+                    foreach (var lastGame in QuickLaunchItems)
                     {
-                        Title = lastGame.Name,
-                        Arguments = args,
-                        Description = string.Empty,
-                        CustomCategory = "Recent",
-                        ApplicationPath = PlaynitePaths.DesktopExecutablePath
-                    };
+                        var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
+                        JumpTask task = new JumpTask
+                        {
+                            Title = lastGame.Name,
+                            Arguments = args,
+                            Description = string.Empty,
+                            CustomCategory = "Recent",
+                            ApplicationPath = PlaynitePaths.DesktopExecutablePath
+                        };
 
-                    if (lastGame.Icon?.EndsWith(".ico", StringComparison.OrdinalIgnoreCase) == true)
-                    {
-                        task.IconResourcePath = Database.GetFullFilePath(lastGame.Icon);
-                    }
-                    else if (lastGame.PlayAction?.Type == GameActionType.File)
-                    {
-                        task.IconResourcePath = lastGame.GetRawExecutablePath();
+                        if (lastGame.Icon?.EndsWith(".ico", StringComparison.OrdinalIgnoreCase) == true)
+                        {
+                            task.IconResourcePath = Database.GetFullFilePath(lastGame.Icon);
+                        }
+                        else if (lastGame.PlayAction?.Type == GameActionType.File)
+                        {
+                            task.IconResourcePath = lastGame.GetRawExecutablePath();
+                        }
+
+                        jumpList.JumpItems.Add(task);
                     }
 
-                    jumpList.JumpItems.Add(task);
-                    jumpList.ShowFrequentCategory = false;
-                    jumpList.ShowRecentCategory = false;
+                    JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
+                }
+                else
+                {
+                    JumpList.SetJumpList(System.Windows.Application.Current, new JumpList());
                 }
 
-                JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
+                jumpList.Apply();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

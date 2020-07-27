@@ -1462,6 +1462,17 @@ namespace Playnite
             }
         }
 
+        private int quickLaunchItems = 10;
+        public int QuickLaunchItems
+        {
+            get => quickLaunchItems;
+            set
+            {
+                quickLaunchItems = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

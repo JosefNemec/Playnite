@@ -320,6 +320,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Show Steam friends button</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Show hidden games in quick launch lists</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Affects Jump List and tray menu lists.</sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems">Number of quick launch items</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Use game background image as window background</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Blur background</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">High Quality</sys:String>

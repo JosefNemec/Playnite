@@ -82,7 +82,7 @@ namespace Playnite.DesktopApp.Controls
         {
             Items.Clear();
 
-            foreach (var game in mainModel.GamesEditor.LastGames)
+            foreach (var game in mainModel.GamesEditor.QuickLaunchItems)
             {
                 object icon = null;
                 if (!game.Icon.IsNullOrEmpty())
