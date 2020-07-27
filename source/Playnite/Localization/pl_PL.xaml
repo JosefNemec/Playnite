@@ -231,7 +231,7 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Aplikacja Microsoft Store…</sys:String>
     <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Wyślij opinię</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Przełącz na tryb pełnoekranowy</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Linki</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pomoc</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Wesprzyj na Patreon</sys:String>
@@ -267,7 +267,7 @@ Efekt: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Baner Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Pionowe okładki Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Wymaga ponownego uruchomienia</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ustawienia</sys:String>
@@ -472,7 +472,10 @@ Zauważ, że zawsze możesz dodać dowolną grę na którąkolwiek z platform r�
     <sys:String x:Key="LOCFirstOtherGamesText">Kliknij przycisk poniżej, aby importować inne zainstalowane gry lub przeglądać je ręcznie (w tym gry Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importuj gry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguracja zakończona</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Wstępne ustawienia zakończone. Pamietaj, że możesz zmienić wszystkie ustawienia w &quot;Ustawienia&quot;.
+
+Aby dodać inne gry poźniej, kliknij na logo Playnite.
+</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Otwórz przewodnik importowania emulatorów</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Układ widoku siatki</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Wybierz preferowany układ w widoku siatki. Możesz to ustawienie zmienić, w tym opcje rozciągania obrazu.</sys:String>
@@ -612,7 +615,7 @@ Możesz spróbować rozwiązać ten problem:
   • Sprawdź, czy program antywirusowy nie blokuje plików w katalogu Playnite
   • Wypróbuj inne miejsce instalacji</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nie można zaimportować emulatorów, brak pliku z konfiguracją.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">Nie można zainicjować interfejsu XInput. </sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edytowanie szczegółów gry</sys:String>
@@ -677,7 +680,7 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCReloadScripts">Przeładuj skrypty</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Wszystkie skrypty przeładowano pomyślnie.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nie znaleziono gier według określonych kryteriów wyszukiwania lub filtra</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Przełącz na tryb pulpitu</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Wyjdź z Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Biblioteki</sys:String>
     <sys:String x:Key="LOCUpdateAll">Aktualizuj wszystko</sys:String>
@@ -738,7 +741,7 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCUnHideGame">Pokaż w bibliotece</sys:String>
     <sys:String x:Key="LOCEditGame">Edytuj…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Zarządzaj kolekcjami…</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Ustaw stan ukończenia</sys:String>
     <sys:String x:Key="LOCRemoveGame">Usuń</sys:String>
     <sys:String x:Key="LOCPlayGame">Graj</sys:String>
     <sys:String x:Key="LOCInstallGame">Instaluj</sys:String>
