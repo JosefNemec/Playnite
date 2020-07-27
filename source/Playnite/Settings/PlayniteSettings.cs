@@ -1451,7 +1451,7 @@ namespace Playnite
             }
         }
 
-        private bool showHiddenInQuickLaunch = false;
+        private bool showHiddenInQuickLaunch = true;
         public bool ShowHiddenInQuickLaunch
         {
             get => showHiddenInQuickLaunch;
