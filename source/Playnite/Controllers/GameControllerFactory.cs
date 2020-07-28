@@ -37,7 +37,7 @@ namespace Playnite.Controllers
         {
             this.database = database;
         }
-        
+
         public void Dispose()
         {
             foreach (var controller in Controllers.ToList())
@@ -67,18 +67,13 @@ namespace Playnite.Controllers
 
         public void RemoveController(IGameController controller)
         {
-            DisposeController(controller);
-            Controllers.Remove(controller);
-        }
-
-        public void DisposeController(IGameController controller)
-        {
             controller.Installed -= Controller_Installed;
             controller.Uninstalled -= Controller_Uninstalled;
             controller.Started -= Controller_Started;
             controller.Starting -= Controller_Starting;
             controller.Stopped -= Controller_Stopped;
             controller.Dispose();
+            Controllers.Remove(controller);
         }
 
         public IGameController GetController(Guid gameId)

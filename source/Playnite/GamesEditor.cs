@@ -39,6 +39,7 @@ namespace Playnite
         private IResourceProvider resources = new ResourceProvider();
         private GameControllerFactory controllers;
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
+        private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
 
         public PlayniteApplication Application;
         public ExtensionFactory Extensions { get; private set; }
@@ -721,7 +722,17 @@ namespace Playnite
         public void CancelGameMonitoring(Game game)
         {
             controllers.RemoveController(game.Id);
-            UpdateGameState(game.Id, null, false, false, false, false);
+            var dbGame = Database.Games.Get(game.Id);
+            dbGame.IsRunning = false;
+            dbGame.IsLaunching = false;
+            dbGame.IsInstalling = false;
+            dbGame.IsUninstalling = false;
+            if (gameStartups.TryRemove(game.Id, out var startupTime))
+            {
+                dbGame.Playtime += Convert.ToInt64((DateTime.Now - startupTime).TotalSeconds);
+            }
+
+            Database.Games.Update(dbGame);
 
             if (AppSettings.DiscordPresenceEnabled)
             {
@@ -775,6 +786,7 @@ namespace Playnite
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
+            gameStartups.TryAdd(game.Id, DateTime.Now);
 
             if (!AppSettings.GameStartedScript.IsNullOrWhiteSpace() && game.UseGlobalGameStartedScript)
             {
@@ -866,6 +878,7 @@ namespace Playnite
             dbGame.Playtime += args.EllapsedTime;
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
+            gameStartups.TryRemove(game.Id, out _);
             if (Application.Mode == ApplicationMode.Desktop)
             {
                 if (AppSettings.AfterGameClose == AfterGameCloseOptions.Restore)
