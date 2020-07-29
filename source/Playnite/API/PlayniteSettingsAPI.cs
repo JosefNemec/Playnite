@@ -23,7 +23,7 @@ namespace Playnite.API
         public bool MinimizeToTray => settings.MinimizeToTray;
         public bool CloseToTray => settings.CloseToTray;
         public bool EnableTray => settings.EnableTray;
-        public string Language => settings.Language;
+        public string Language => settings.Language == "english" ? "en_US" : settings.Language;
         public bool UpdateLibStartup => settings.UpdateLibStartup;
         public string DesktopTheme => settings.Theme;
         public string FullscreenTheme => settings.Fullscreen.Theme;
