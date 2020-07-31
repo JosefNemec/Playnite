@@ -29,8 +29,8 @@
     <sys:String x:Key="LOCCategorySetButton">Määra kategooriad</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Lisa kategooria</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCNoCategory"></sys:String>
-    <sys:String x:Key="LOCNoPlatform"></sys:String>
+    <sys:String x:Key="LOCNoCategory">Kategooriata</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Platvormita</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
@@ -40,7 +40,7 @@
     <sys:String x:Key="LOCCrashClosePlaynite">Sulge Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
 
-    <sys:String x:Key="LOCLibraryManager"></sys:String>
+    <sys:String x:Key="LOCLibraryManager">Kogumiku haldaja</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle"></sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
@@ -69,7 +69,7 @@
     <sys:String x:Key="LOCErrorNoGameSelected"></sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 või uuem ei ole paigaldatud.</sys:String>
 
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Lubatud</sys:String>
@@ -114,7 +114,7 @@
     <sys:String x:Key="LOCWelcomeLabel">Tere tulemast</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Kohalik kasutaja</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel"></sys:String>
-    <sys:String x:Key="LOCGeneralLabel"></sys:String>
+    <sys:String x:Key="LOCGeneralLabel">Üldine</sys:String>
     <sys:String x:Key="LOCMediaLabel"></sys:String>
     <sys:String x:Key="LOCLinksLabel">Viited</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Paigaldamine</sys:String>
@@ -124,7 +124,7 @@
     <sys:String x:Key="LOCTypeLabel"></sys:String>
     <sys:String x:Key="LOCProfileLabel"></sys:String>
     <sys:String x:Key="LOCProfilesLabel"></sys:String>
-    <sys:String x:Key="LOCRemoveLabel"></sys:String>
+    <sys:String x:Key="LOCRemoveLabel">Eemalda</sys:String>
     <sys:String x:Key="LOCDownloadLabel"></sys:String>
     <sys:String x:Key="LOCSearchLabel"></sys:String>
     <sys:String x:Key="LOCZoomLabel"></sys:String>
@@ -153,8 +153,8 @@
     <sys:String x:Key="LOCMoreThenYear">Rohkem kui aasta tagasi</sys:String>
     <sys:String x:Key="LOCImportCompleted"></sys:String>
     <sys:String x:Key="LOCAllGames">Kõik mängud</sys:String>
-    <sys:String x:Key="LOCGameId"></sys:String>
-    <sys:String x:Key="LOCDatabaseId"></sys:String>
+    <sys:String x:Key="LOCGameId">Mängu id</sys:String>
+    <sys:String x:Key="LOCDatabaseId">Andmebaasi id</sys:String>
     <sys:String x:Key="LOCPresets"></sys:String>
     <sys:String x:Key="LOCColumn"></sys:String>
     <sys:String x:Key="LOCColumns"></sys:String>
@@ -183,7 +183,7 @@
     <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
     <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
     <sys:String x:Key="LOCProgressMetadata"></sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Paigaldatud mängude importimine…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
@@ -195,7 +195,7 @@
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Seaded…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle"></sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Kogumiku haldaja…</sys:String>
     <sys:String x:Key="LOCMenuTools">Tööriistad</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient"></sys:String>
@@ -258,9 +258,9 @@
     <sys:String x:Key="LOCSettingsPerformanceLabel">Jõudlus</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsImportInstalledLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportInstalledLabel">Impordi paigaldatud mängud</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Impordi paigaldamata mängud</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel"></sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation"></sys:String>
@@ -413,7 +413,7 @@
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonSelectFiles"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Vali failid</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
@@ -448,13 +448,13 @@
     <sys:String x:Key="LOCEmulatorsTitle"></sys:String>
     <sys:String x:Key="LOCEmulatorTitle"></sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Lisa platvorm</sys:String>
-    <sys:String x:Key="LOCSelectIconTitle"></sys:String>
-    <sys:String x:Key="LOCSelectCoverTitle"></sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
-    <sys:String x:Key="LOCSelectFileTitle"></sys:String>
-    <sys:String x:Key="LOCSelectUrlTitle"></sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">Vali ikoon</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">Vali kaanepilt</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Faili pilt</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Vali üksus</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">Vali taustapilt</sys:String>
+    <sys:String x:Key="LOCSelectFileTitle">Vali fail</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">Vali URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle"></sys:String>
     <sys:String x:Key="LOCSupportedPlatformsTitle"></sys:String>
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle"></sys:String>
@@ -484,11 +484,11 @@
     <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
 
     <!--Game fields-->
-    <sys:String x:Key="LOCGameIconTitle"></sys:String>
-    <sys:String x:Key="LOCGameCoverImageTitle"></sys:String>
+    <sys:String x:Key="LOCGameIconTitle">Ikoon</sys:String>
+    <sys:String x:Key="LOCGameCoverImageTitle">Kaanepilt</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle"></sys:String>
-    <sys:String x:Key="LOCGameProviderTitle"></sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">Kogumik</sys:String>
     <sys:String x:Key="LOCGameNameTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle"></sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platvorm</sys:String>
@@ -500,16 +500,16 @@
     <sys:String x:Key="LOCGameTagsTitle"></sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Väljaandja</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">Paigaldatud</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Paigaldatud</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle"></sys:String>
-    <sys:String x:Key="LOCGameFavoriteTitle"></sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Peidetud</sys:String>
+    <sys:String x:Key="LOCGameFavoriteTitle">Lemmik</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Viimati mängitud</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategooria</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Kirjeldus</sys:String>
     <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
-    <sys:String x:Key="LOCGameCoverTitle"></sys:String>
+    <sys:String x:Key="LOCGameCoverTitle">Kaanepilt</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Viited</sys:String>
     <sys:String x:Key="LOCGameROMTitle"></sys:String>
 
@@ -568,11 +568,11 @@
     <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
 
     <!--GameEdit-->
-    <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
+    <sys:String x:Key="LOCGameEditWindowTitle">Muuda mängu üksikasju</sys:String>
     <sys:String x:Key="LOCUseExeIcon"></sys:String>
     <sys:String x:Key="LOCImageURL"></sys:String>
     <sys:String x:Key="LOCAddLinkButton">Lisa viide</sys:String>
-    <sys:String x:Key="LOCSaveChanges"></sys:String>
+    <sys:String x:Key="LOCSaveChanges">Salvesta muudatused</sys:String>
     <sys:String x:Key="LOCPlayAction"></sys:String>
     <sys:String x:Key="LOCAddPlayAction"></sys:String>
     <sys:String x:Key="LOCAddAction"></sys:String>
@@ -623,7 +623,7 @@
     <sys:String x:Key="LOCUserScore"></sys:String>
     <sys:String x:Key="LOCCriticScore"></sys:String>
     <sys:String x:Key="LOCCommunityScore"></sys:String>
-    <sys:String x:Key="LOCScripts"></sys:String>
+    <sys:String x:Key="LOCScripts">Skriptid</sys:String>
     <sys:String x:Key="LOCPlugins"></sys:String>
     <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions">Laiendused</sys:String>
@@ -637,7 +637,7 @@
     <sys:String x:Key="LOCExtensionCreatedBy"></sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versioon:</sys:String>
     <sys:String x:Key="LOCExtensionModule"></sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
+    <sys:String x:Key="LOCLibrary">Kogumik</sys:String>
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone">Puudub</sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
@@ -650,7 +650,7 @@
     <sys:String x:Key="LOCFontLarger"></sys:String>
     <sys:String x:Key="LOCFontLargest"></sys:String>
     <sys:String x:Key="LOCDefault"></sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
+    <sys:String x:Key="LOCSelect">Vali</sys:String>
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom"></sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
@@ -685,14 +685,14 @@
 
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault"></sys:String>
-    <sys:String x:Key="LOCFavoriteGame"></sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
+    <sys:String x:Key="LOCFavoriteGame">Lisa lemmikutesse</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">Eemalda lemmikutest</sys:String>
     <sys:String x:Key="LOCHideGame">Peida</sys:String>
     <sys:String x:Key="LOCUnHideGame"></sys:String>
     <sys:String x:Key="LOCEditGame">Muuda…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Määra kategooria…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
-    <sys:String x:Key="LOCRemoveGame"></sys:String>
+    <sys:String x:Key="LOCRemoveGame">Eemalda</sys:String>
     <sys:String x:Key="LOCPlayGame">Mängi</sys:String>
     <sys:String x:Key="LOCInstallGame"></sys:String>
     <sys:String x:Key="LOCGameOptions"></sys:String>
@@ -728,7 +728,7 @@
     <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
     <sys:String x:Key="LOCOpeningDatabase"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Skript on edukalt paigaldatud.</sys:String>
     <sys:String x:Key="LOCInstallScript"></sys:String>
     <sys:String x:Key="LOCScriptError"></sys:String>
     <sys:String x:Key="LOCScriptExecutionError"></sys:String>
@@ -757,7 +757,7 @@
 
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Paigaldamine oli edukas.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
@@ -798,7 +798,7 @@
 
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Viimati mängitud</sys:String>
-    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Lemmikud</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Enim mängitud</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
 
