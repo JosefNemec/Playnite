@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Playnite.WebView
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
 
         public event EventHandler NavigationChanged;
+        public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 
         public OffscreenWebView()
         {
@@ -59,6 +61,7 @@ namespace Playnite.WebView
                 loadCompleteEvent.Set();
             }
 
+            LoadingChanged?.Invoke(this, new WebViewLoadingChangedEventArgs { IsLoading = e.IsLoading });
             NavigationChanged?.Invoke(this, new EventArgs());
         }
 
@@ -120,6 +123,17 @@ namespace Playnite.WebView
         public bool? OpenDialog()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<JavaScriptEvaluationResult> EvaluateScriptAsync(string script)
+        {
+            var res = await browser.EvaluateScriptAsync(script);
+            return new JavaScriptEvaluationResult
+            {
+                Message = res.Message,
+                Result = res.Result,
+                Success = res.Success
+            };
         }
     }
 }

@@ -43,7 +43,7 @@ namespace BattleNetLibrary.Services
         public void Login()
         {
             var apiUrls = GetDefaultApiStatus();
-            webView.NavigationChanged += (s, e) =>
+            webView.LoadingChanged += (s, e) =>
             {
                 var address = webView.GetCurrentAddress();
                 if (address.Equals(@"https://account.blizzard.com/overview", StringComparison.OrdinalIgnoreCase))

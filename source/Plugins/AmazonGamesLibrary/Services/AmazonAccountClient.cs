@@ -31,7 +31,7 @@ namespace AmazonGamesLibrary.Services
             var callbackUrl = string.Empty;
             using (var webView = library.PlayniteApi.WebViews.CreateView(490, 660))
             {
-                webView.NavigationChanged += (s, e) =>
+                webView.LoadingChanged += (s, e) =>
                 {
                     var url = webView.GetCurrentAddress();
                     if (url.Contains("openid.oa2.access_token"))

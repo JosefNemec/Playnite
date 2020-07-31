@@ -34,7 +34,7 @@ namespace XboxLibrary.Services
             var callbackUrl = string.Empty;
             using (var webView = library.PlayniteApi.WebViews.CreateView(490, 560))
             {
-                webView.NavigationChanged += (s, e) =>
+                webView.LoadingChanged += (s, e) =>
                 {
                     var url = webView.GetCurrentAddress();
                     if (url.Contains("access_token="))

@@ -79,7 +79,7 @@ namespace EpicLibrary.Services
             var loginPageSource = string.Empty;
             using (var view = api.WebViews.CreateView(580, 700))
             {
-                view.NavigationChanged += async (s, e) =>
+                view.LoadingChanged += async (s, e) =>
                 {
                     var address = view.GetCurrentAddress();
                     if (address.StartsWith(@"https://accounts.launcher-website-prod07.ol.epicgames.com/login/showPleaseWait"))

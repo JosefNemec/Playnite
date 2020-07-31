@@ -29,7 +29,7 @@ namespace HumbleLibrary.Services
 
         public void Login()
         {
-            webView.NavigationChanged += (s, e) =>
+            webView.LoadingChanged += (s, e) =>
             {
                 if (webView.GetCurrentAddress() == libraryUrl)
                 {

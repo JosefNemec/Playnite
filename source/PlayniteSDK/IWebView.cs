@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,27 @@ namespace Playnite.SDK
         /// Gets or sets value indicating whether cache is enabled.
         /// </summary>
         public bool CacheEnabled { get; set; } = true;
+    }
+
+    /// <summary>
+    /// Represents JavaScript evaluation resut.
+    /// </summary>
+    public class JavaScriptEvaluationResult
+    {
+        /// <summary>
+        /// Gets or sets error message.
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether the javascript executed successfully.
+        /// </summary>
+        public bool Success { get; set; }
+
+        /// <summary>
+        /// Gets or sets result of script evaluation.
+        /// </summary>
+        public object Result { get; set; }
     }
 
     /// <summary>
@@ -119,7 +141,20 @@ namespace Playnite.SDK
         /// <summary>
         /// Occurs when web view navigatates to a new page.
         /// </summary>
+        [Obsolete("Use LoadingChanged event instead.")]
         event EventHandler NavigationChanged;
+
+        /// <summary>
+        /// Occurs when web view loading changes, for example when page is loaded.
+        /// </summary>
+        event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
+
+        /// <summary>
+        /// Evaluates JavaScript script in the browser instance.
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
+        Task<JavaScriptEvaluationResult> EvaluateScriptAsync(string script);
     }
 
     /// <summary>

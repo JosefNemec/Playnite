@@ -248,7 +248,7 @@ namespace SteamLibrary
                 var userName = "Unknown";
                 using (var view = api.WebViews.CreateView(675, 440, Colors.Black))
                 {
-                    view.NavigationChanged += async (s, e) =>
+                    view.LoadingChanged += async (s, e) =>
                     {
                         var address = view.GetCurrentAddress();
                         if (address.Contains(@"steamcommunity.com"))

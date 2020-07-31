@@ -31,7 +31,7 @@ namespace GogLibrary.Services
         {
             var loginUrl = Gog.GetLoginUrl();
             loginUrl = Regex.Replace(loginUrl, $"&gog_lc=.+$", "&gog_lc=" + Gog.EnStoreLocaleString);
-            webView.NavigationChanged += (s, e) =>
+            webView.LoadingChanged += (s, e) =>
             {
                 if (webView.GetCurrentAddress().Contains("/on_login_success"))
                 {
@@ -156,7 +156,7 @@ namespace GogLibrary.Services
                 {
                     webView.NavigateAndWait(string.Format(baseUrl, i));
                     gamesList = webView.GetPageText();
-                    var pageData = libraryData = JsonConvert.DeserializeObject<GetOwnedGamesResult>(gamesList);                    
+                    var pageData = libraryData = JsonConvert.DeserializeObject<GetOwnedGamesResult>(gamesList);
                     games.AddRange(pageData.products.Select(a => new LibraryGameResponse()
                     {
                         game = new LibraryGameResponse.Game()
