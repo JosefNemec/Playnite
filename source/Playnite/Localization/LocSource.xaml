@@ -422,6 +422,7 @@ If disabled, background artwork is downloaded only when first needed, using less
     <sys:String x:Key="LOCSettingsImportExclusionList">Import Exclusion List</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Display warning when assigning too large game media</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Start games directly without running official client</sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Directory open command</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
@@ -871,6 +872,7 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Generating diagnostics package…</sys:String>
     <sys:String x:Key="LOCDiagUploading">Uploading diagnostics package…</sys:String>
     <sys:String x:Key="LOCAddFromExe">Import file…</sys:String>
+    <sys:String x:Key="LOCWhatIsThis">What is this?</sys:String>
     
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>

@@ -283,7 +283,23 @@ namespace Playnite
 
             try
             {
-                Process.Start(game.ExpandVariables(game.InstallDirectory));
+                var expandedPath = game.ExpandVariables(game.InstallDirectory);
+                if (AppSettings.DirectoryOpenCommand.IsNullOrWhiteSpace())
+                {
+                    Process.Start(expandedPath);
+                }
+                else
+                {
+                    try
+                    {
+                        ProcessStarter.ShellExecute(AppSettings.DirectoryOpenCommand.Replace("{Dir}", expandedPath));
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to open directory using custom command.");
+                        Process.Start(expandedPath);
+                    }
+                }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

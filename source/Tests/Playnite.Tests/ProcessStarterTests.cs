@@ -29,6 +29,17 @@ namespace Playnite.Tests
         }
 
         [Test]
+        public void ShellExecuteTest()
+        {
+            var procid = ProcessStarter.ShellExecute(@"notepad");
+            Assert.AreNotEqual(0, procid);
+            Assert.AreEqual(1, Process.GetProcessesByName("notepad").Count());
+            var validRes = ProcessStarter.StartProcessWait(CmdLineTools.TaskKill, $"/pid {procid}", null, true);
+            Thread.Sleep(200);
+            Assert.AreEqual(0, Process.GetProcessesByName("notepad").Count());
+        }
+
+        [Test]
         public void StartProcessWaitStdTest()
         {
             ProcessStarter.StartProcessWait(CmdLineTools.IPConfig, null, null, out var stdOut, out var stdErr);

@@ -1473,6 +1473,17 @@ namespace Playnite
             }
         }
 
+        private string directoryOpenCommand;
+        public string DirectoryOpenCommand
+        {
+            get => directoryOpenCommand;
+            set
+            {
+                directoryOpenCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
