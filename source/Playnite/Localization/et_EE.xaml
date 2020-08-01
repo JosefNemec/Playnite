@@ -502,7 +502,7 @@
     <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Paigaldatud</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Paigaldatud</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Desinstallitud</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Peidetud</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Lemmik</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Viimati mängitud</sys:String>
@@ -600,7 +600,7 @@
     <sys:String x:Key="LOCSkinError"></sys:String>
     <sys:String x:Key="LOCClearAll"></sys:String>
     <sys:String x:Key="LOCSetupRunning"></sys:String>
-    <sys:String x:Key="LOCUninstalling"></sys:String>
+    <sys:String x:Key="LOCUninstalling">Desinstallimine</sys:String>
     <sys:String x:Key="LOCGameLaunching">Käivitamine</sys:String>
     <sys:String x:Key="LOCGameRunning"></sys:String>
     <sys:String x:Key="LOCInvalidURL"></sys:String>
@@ -697,9 +697,9 @@
     <sys:String x:Key="LOCInstallGame"></sys:String>
     <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails"></sys:String>
-    <sys:String x:Key="LOCUninstallGame"></sys:String>
+    <sys:String x:Key="LOCUninstallGame">Desinstalli</sys:String>
     <sys:String x:Key="LOCOpenGameLocation"></sys:String>
-    <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">Loo töölaua otsetee</sys:String>
     <sys:String x:Key="LOCMoreAction">Rohkem</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
