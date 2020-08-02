@@ -73,5 +73,17 @@ namespace Playnite.Tests
             Assert.IsTrue(multiLine.IsNullOrWhiteSpace());
         }
 
+        [Test]
+        public void TrimEndStringTest()
+        {
+            Assert.AreEqual("Test ", "Test totrim".TrimEndString("totrim"));
+            Assert.AreEqual("Test totrim", "Test totrim".TrimEndString("aaa"));
+        }
+
+        [Test]
+        public void ToTileCaseTest()
+        {
+            Assert.AreEqual("Test Is Good", "tEst is gOOD".ToTileCase());
+        }
     }
 }
