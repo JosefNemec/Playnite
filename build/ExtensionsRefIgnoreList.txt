@@ -25,3 +25,5 @@ x86\sqlite3.dll
 SQLite-net.dll
 SQLite-net.pdb
 SQLitePCL.raw.dll
+Markdig.dll
+Markdig.xml
