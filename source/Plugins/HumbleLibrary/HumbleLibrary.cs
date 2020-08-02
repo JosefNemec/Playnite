@@ -55,7 +55,7 @@ namespace HumbleLibrary
 
         public static List<GameInfo> GetTroveGames()
         {
-            var chunkDataUrlBase = @"https://www.humblebundle.com/api/v1/trove/chunk?index=";
+            var chunkDataUrlBase = @"https://www.humblebundle.com/api/v1/trove/chunk?property=popularity&direction=desc&index=";
             var games = new List<GameInfo>();
 
             using (var webClient = new WebClient { Encoding = Encoding.UTF8 })
@@ -158,20 +158,22 @@ namespace HumbleLibrary
                 foreach (var product in selectedProducts)
                 {
                     var gameId = GetGameId(product);
+                    if (PlayniteApi.ApplicationSettings.GetGameExcludedFromImport(gameId, Id))
+                    {
+                        continue;
+                    }
+
                     var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == gameId && a.PluginId == Id);
                     if (alreadyImported == null)
                     {
-                        if (!PlayniteApi.ApplicationSettings.GetGameExcludedFromImport(gameId, Id))
+                        importedGames.Add(PlayniteApi.Database.ImportGame(new GameInfo()
                         {
-                            importedGames.Add(PlayniteApi.Database.ImportGame(new GameInfo()
-                            {
-                                Name = product.human_name,
-                                GameId = gameId,
-                                Icon = product.icon,
-                                Platform = "PC",
-                                Source = "Humble"
-                            }, this));
-                        }
+                            Name = product.human_name,
+                            GameId = gameId,
+                            Icon = product.icon,
+                            Platform = "PC",
+                            Source = "Humble"
+                        }, this));
                     }
                 }
 
@@ -189,7 +191,7 @@ namespace HumbleLibrary
             }
             catch (Exception e)
             {
-                logger.Error(e, "Failed to import installed Humble games.");
+                logger.Error(e, "Failed to import Humble games.");
                 importError = e;
             }
 
