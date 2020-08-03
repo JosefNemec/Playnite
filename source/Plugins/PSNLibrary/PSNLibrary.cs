@@ -139,6 +139,11 @@ namespace PSNLibrary
                 {
                     continue;
                 }
+                else if (item.game_meta?.package_sub_type == "MISC_THEME" ||
+                         item.game_meta?.package_sub_type == "MISC_AVATAR")
+                {
+                    continue;
+                }
 
                 var newGame = new GameInfo();
                 newGame.GameId = "#DLIST#" + item.id;
@@ -166,7 +171,8 @@ namespace PSNLibrary
                     newGame.Name.Contains("language pack", StringComparison.OrdinalIgnoreCase) ||
                     newGame.Name.Contains("skin pack", StringComparison.OrdinalIgnoreCase) ||
                     newGame.Name.Contains("multiplayer pack", StringComparison.OrdinalIgnoreCase) ||
-                    newGame.Name.Contains("compatibility pack", StringComparison.OrdinalIgnoreCase))
+                    newGame.Name.Contains("compatibility pack", StringComparison.OrdinalIgnoreCase) ||
+                    newGame.Name.EndsWith("theme", StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
@@ -195,7 +201,7 @@ namespace PSNLibrary
                 allGames.AddRange(ParseThrophies(clientApi));
                 allGames.AddRange(ParseDownloadList(clientApi));
 
-                foreach (var group in allGames.GroupBy(a => a.Name.ToLower()))
+                foreach (var group in allGames.GroupBy(a => a.Name.ToLower().Replace(":", "")))
                 {
                     var game = group.First();
                     if (PlayniteApi.ApplicationSettings.GetGameExcludedFromImport(game.GameId, Id))

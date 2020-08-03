@@ -99,6 +99,7 @@ namespace PSNLibrary.Models
             public string name { get; set; }
             public string icon_url { get; set; }
             public string package_type { get; set; }
+            public string package_sub_type { get; set; }
             public string type { get; set; }
         }
 
