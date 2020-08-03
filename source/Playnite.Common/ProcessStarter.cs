@@ -40,7 +40,7 @@ namespace Playnite.Common
                     ref threadAtt,
                     false,
                     0x0020,
-                    default,
+                    IntPtr.Zero,
                     null,
                     ref startInfo,
                     out procInfo))
