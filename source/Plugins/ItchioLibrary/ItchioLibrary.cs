@@ -109,10 +109,11 @@ namespace ItchioLibrary
                     {
                         Source = "itch.io",
                         GameId = cave.game.id.ToString(),
-                        Name = cave.game.title,
+                        Name = cave.game.title.RemoveTrademarks(),
                         InstallDirectory = installDir,
                         IsInstalled = true,
                         CoverImage = cave.game.coverUrl,
+                        Platform = "PC",
                         PlayAction = new GameAction
                         {
                             Type = GameActionType.URL,
@@ -175,8 +176,9 @@ namespace ItchioLibrary
                         {
                             Source = "itch.io",
                             GameId = key.game.id.ToString(),
-                            Name = key.game.title,
-                            CoverImage = key.game.coverUrl
+                            Name = key.game.title.RemoveTrademarks(),
+                            CoverImage = key.game.coverUrl,
+                            Platform = "PC"
                         };
 
                         games.Add(game);

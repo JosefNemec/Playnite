@@ -292,7 +292,8 @@ namespace OriginLibrary
                         {
                             Source = "Origin",
                             GameId = gameId,
-                            IsInstalled = true
+                            IsInstalled = true,
+                            Platform = "PC"
                         };
 
                         GameLocalDataResponse localData = null;
@@ -468,7 +469,8 @@ namespace OriginLibrary
                         GameId = game.offerId,
                         Name = gameName,
                         LastActivity = usage?.lastSessionEndTimeStamp,
-                        Playtime = usage?.total ?? 0
+                        Playtime = usage?.total ?? 0,
+                        Platform = "PC"
                     });
                 }
 

@@ -280,11 +280,12 @@ namespace Playnite.DesktopApp.ViewModels
 
                 var newGame = new GameInfo()
                 {
-                    Name = program.Item.Name,
+                    Name = program.Item.Name.RemoveTrademarks(),
                     GameId = program.Item.AppId,
                     InstallDirectory = program.Item.WorkDir,
                     Source = program.Type == ProgramType.UWP ? "Microsoft Store" : string.Empty,
-                    IsInstalled = true
+                    IsInstalled = true,
+                    Platform = "PC"
                 };
 
                 var newMeta = new GameMetadata()

@@ -72,7 +72,7 @@ namespace HumbleLibrary
                         {
                             var game = new GameInfo
                             {
-                                Name = troveGame.human_name,
+                                Name = troveGame.human_name.RemoveTrademarks(),
                                 GameId = GetGameId(troveGame),
                                 Description = troveGame.description_text,
                                 Publishers = troveGame.publishers?.Select(a => a.publisher_name).ToList(),
@@ -168,7 +168,7 @@ namespace HumbleLibrary
                     {
                         importedGames.Add(PlayniteApi.Database.ImportGame(new GameInfo()
                         {
-                            Name = product.human_name,
+                            Name = product.human_name.RemoveTrademarks(),
                             GameId = gameId,
                             Icon = product.icon,
                             Platform = "PC",

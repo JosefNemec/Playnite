@@ -911,11 +911,7 @@ namespace Playnite.Database
                 Favorite = game.Favorite
             };
 
-            if (string.IsNullOrEmpty(game.Platform))
-            {
-                AssignPcPlatform(toAdd);
-            }
-            else
+            if (!game.Platform.IsNullOrEmpty())
             {
                 toAdd.PlatformId = Platforms.Add(game.Platform).Id;
             }
@@ -986,7 +982,6 @@ namespace Playnite.Database
         public Game ImportGame(GameInfo game, Guid pluginId)
         {
             var toAdd = GameInfoToGame(game, pluginId);
-            toAdd.Name = toAdd.Name.RemoveTrademarks();
             toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
             toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
             toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
@@ -997,7 +992,6 @@ namespace Playnite.Database
         public Game ImportGame(GameMetadata metadata)
         {
             var toAdd = GameInfoToGame(metadata.GameInfo, Guid.Empty);
-            toAdd.Name = toAdd.Name.RemoveTrademarks();
             if (metadata.Icon != null)
             {
                 toAdd.Icon = AddFile(metadata.Icon, toAdd.Id);

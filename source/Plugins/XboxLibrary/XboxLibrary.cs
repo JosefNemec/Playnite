@@ -47,6 +47,7 @@ namespace XboxLibrary
                 Replace("(Windows)", "").
                 Replace("for Windows 10", "").
                 Replace("- Windows 10", "").
+                RemoveTrademarks().
                 Trim(),
                 Platform = "PC",
                 Source = "Xbox"

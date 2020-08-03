@@ -72,12 +72,13 @@ namespace UplayLibrary
 
                 var newGame = new GameInfo
                 {
-                    Name = item.root.name,
+                    Name = item.root.name.RemoveTrademarks(),
                     GameId = item.uplay_id.ToString(),
                     BackgroundImage = item.root.background_image,
                     Icon = item.root.icon_image,
                     CoverImage = item.root.thumb_image,
-                    Source = "Uplay"
+                    Source = "Uplay",
+                    Platform = "PC"
                 };
 
                 games.Add(newGame);
@@ -113,7 +114,8 @@ namespace UplayLibrary
                             InstallDirectory = installDir,
                             PlayAction = GetGamePlayTask(install),
                             Name = Path.GetFileName(installDir.TrimEnd(Path.DirectorySeparatorChar)),
-                            IsInstalled = true
+                            IsInstalled = true,
+                            Platform = "PC"
                         };
 
                         games.Add(newGame);

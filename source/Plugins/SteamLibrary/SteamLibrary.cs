@@ -100,10 +100,11 @@ namespace SteamLibrary
             {
                 Source = "Steam",
                 GameId = gameId.ToString(),
-                Name = name,
+                Name = name.RemoveTrademarks(),
                 InstallDirectory = installDir,
                 PlayAction = CreatePlayTask(gameId),
-                IsInstalled = true
+                IsInstalled = true,
+                Platform = "PC"
             };
 
             return game;
@@ -198,14 +199,15 @@ namespace SteamLibrary
             {
                 Source = "Steam",
                 GameId = modInfo.GameId.ToString(),
-                Name = modInfo.Name,
+                Name = modInfo.Name.RemoveTrademarks(),
                 InstallDirectory = path,
                 PlayAction = CreatePlayTask(modInfo.GameId),
                 IsInstalled = true,
                 Developers = new List<string>() { modInfo.Developer },
                 Links = modInfo.Links,
                 Tags = modInfo.Categories,
-                Icon = modInfo.IconPath
+                Icon = modInfo.IconPath,
+                Platform = "PC"
             };
 
             return game;
@@ -408,10 +410,11 @@ namespace SteamLibrary
                 var newGame = new GameInfo()
                 {
                     Source = "Steam",
-                    Name = game.name,
+                    Name = game.name.RemoveTrademarks(),
                     GameId = game.appid.ToString(),
                     Playtime = game.playtime_forever * 60,
-                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
+                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed,
+                    Platform = "PC"
                 };
 
                 if (lastActivity != null && lastActivity.TryGetValue(newGame.GameId, out var gameLastActivity))
