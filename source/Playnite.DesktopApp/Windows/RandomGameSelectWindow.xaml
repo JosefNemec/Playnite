@@ -31,6 +31,8 @@
                     Style="{StaticResource PlayButton}" />
             <Button Content="{DynamicResource LOCRandomGamePickAnother}" Margin="10,0,0,0" MinWidth="110"
                     Command="{Binding PickAnotherCommand}" />
+            <Button Content="{DynamicResource LOCCancelLabel}" HorizontalAlignment="Center" Margin="10,0,0,0" MinWidth="110" IsCancel="True"
+                    Command="{Binding CancelCommand}"/>        
         </StackPanel>        
     </StackPanel>
 </WindowBase>
