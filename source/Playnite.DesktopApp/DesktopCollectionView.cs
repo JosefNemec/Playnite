@@ -185,7 +185,16 @@ namespace Playnite.DesktopApp
                 CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(groupFields[viewSettings.GroupingOrder]));
                 if (CollectionView.SortDescriptions.First().PropertyName != groupFields[viewSettings.GroupingOrder])
                 {
-                    CollectionView.SortDescriptions.Insert(0, new SortDescription(groupFields[viewSettings.GroupingOrder], ListSortDirection.Ascending));
+                    var order = ListSortDirection.Ascending;
+                    if (viewSettings.GroupingOrder == GroupableField.PlayTime ||
+                        viewSettings.GroupingOrder == GroupableField.CommunityScore ||
+                        viewSettings.GroupingOrder == GroupableField.CriticScore ||
+                        viewSettings.GroupingOrder == GroupableField.UserScore)
+                    {
+                        order = ListSortDirection.Descending;
+                    }
+
+                    CollectionView.SortDescriptions.Insert(0, new SortDescription(groupFields[viewSettings.GroupingOrder], order));
                 }
             }
         }
