@@ -120,7 +120,8 @@ IconIndex=0";
                     }
 
                     if (file.Extension.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true ||
-                        file.Extension.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) == true)
+                        file.Extension.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) == true ||
+                        file.Extension.EndsWith(".bat", StringComparison.OrdinalIgnoreCase) == true)
                     {
                         execs.Add(GetProgramData(file.FullName));
                     }
@@ -182,6 +183,15 @@ IconIndex=0";
                 }
 
                 return program;
+            }
+            else if (file.Extension?.EndsWith(".bat", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return new Program
+                {
+                    Path = file.FullName,
+                    Name = Path.GetFileNameWithoutExtension(file.FullName),
+                    WorkDir = Path.GetDirectoryName(file.FullName)
+                };
             }
 
             throw new NotSupportedException("Only exe and lnk files are supported.");
