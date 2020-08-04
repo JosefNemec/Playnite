@@ -181,6 +181,12 @@ namespace HumbleLibrary
                 {
                     foreach (var troveGame in GetTroveGames())
                     {
+                        // Don't import Trove game if it's part of main library
+                        if (selectedProducts.Any(a => a.human_name.RemoveTrademarks().Equals(troveGame.Name, StringComparison.OrdinalIgnoreCase)))
+                        {
+                            continue;
+                        }
+
                         var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == troveGame.GameId && a.PluginId == Id);
                         if (alreadyImported == null && !PlayniteApi.ApplicationSettings.GetGameExcludedFromImport(troveGame.GameId, Id))
                         {
