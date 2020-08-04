@@ -25,7 +25,7 @@
         <CheckBox Content="{DynamicResource LOCRandomGameLimistToFilter}" HorizontalAlignment="Center"
                   IsChecked="{Binding IsLimitedToFilter}"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                    Margin="0,15,0,0">
+                    Margin="0,10,0,0">
             <Button Content="{DynamicResource LOCPlayGame}" HorizontalAlignment="Center"
                     Command="{Binding PlayGameCommand}" MinWidth="110"
                     Style="{StaticResource PlayButton}" />
