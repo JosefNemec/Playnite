@@ -56,6 +56,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     MenuHost.InputBindings.Add(new KeyBinding(mainModel.ToggleGameOptionsCommand, new KeyGesture(Key.Back)));
                     MenuHost.InputBindings.Add(new KeyBinding(mainModel.ToggleGameOptionsCommand, new KeyGesture(Key.Escape)));
                     MenuHost.InputBindings.Add(new XInputBinding(mainModel.ToggleGameOptionsCommand, XInputButton.B));
+                    MenuHost.InputBindings.Add(new XInputBinding(mainModel.ToggleGameOptionsCommand, XInputButton.Start));
                     BindingTools.SetBinding(
                         MenuHost,
                         Control.DataContextProperty,
