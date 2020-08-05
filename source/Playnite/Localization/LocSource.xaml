@@ -873,6 +873,7 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCDiagUploading">Uploading diagnostics package…</sys:String>
     <sys:String x:Key="LOCAddFromExe">Import file…</sys:String>
     <sys:String x:Key="LOCWhatIsThis">What is this?</sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">Are you sure you want to do this?</sys:String>
     
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>

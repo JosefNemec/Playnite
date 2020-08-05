@@ -735,6 +735,11 @@ namespace Playnite.FullscreenApp.ViewModels
 
             ShutdownSystemCommand = new RelayCommand<object>((a) =>
             {
+                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCMenuShutdownSystem", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
                     Computer.Shutdown();
@@ -743,6 +748,11 @@ namespace Playnite.FullscreenApp.ViewModels
 
             HibernateSystemCommand = new RelayCommand<object>((a) =>
             {
+                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCMenuHibernateSystem", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
                 ToggleMainMenuCommand.Execute(null);
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
@@ -752,6 +762,11 @@ namespace Playnite.FullscreenApp.ViewModels
 
             SleepSystemCommand = new RelayCommand<object>((a) =>
             {
+                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCMenuSuspendSystem", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
                 ToggleMainMenuCommand.Execute(null);
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
@@ -761,6 +776,11 @@ namespace Playnite.FullscreenApp.ViewModels
 
             RestartSystemCommand = new RelayCommand<object>((a) =>
             {
+                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCMenuRestartSystem", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
                 if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
                     Computer.Restart();
