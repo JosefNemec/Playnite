@@ -317,6 +317,10 @@ namespace Playnite.DesktopApp.Windows
                 };
 
                 StackButtons.Children.Add(button);
+                if (i == 0)
+                {
+                    button.Focus();
+                }
             }
 
             ShowDialog();
