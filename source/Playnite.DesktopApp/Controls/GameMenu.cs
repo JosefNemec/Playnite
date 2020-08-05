@@ -63,6 +63,7 @@ namespace Playnite.DesktopApp.Controls
         private static object shortcutIcon;
         private static object installIcon;
         private static object editIcon;
+        private static bool iconsLoaded = false;
 
         public Game Game
         {
@@ -77,17 +78,6 @@ namespace Playnite.DesktopApp.Controls
         static GameMenu()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GameMenu), new FrameworkPropertyMetadata(typeof(GameMenu)));
-            startIcon = MenuHelpers.GetIcon("PlayIcon");
-            removeIcon = MenuHelpers.GetIcon("RemoveGameIcon");
-            linksIcon = MenuHelpers.GetIcon("LinksIcon");
-            favoriteIcon = MenuHelpers.GetIcon("AddFavoritesIcon");
-            unFavoriteIcon = MenuHelpers.GetIcon("RemoveFavoritesIcon");
-            hideIcon = MenuHelpers.GetIcon("HideIcon");
-            unHideIcon = MenuHelpers.GetIcon("UnHideIcon");
-            browseIcon = MenuHelpers.GetIcon("OpenFolderIcon");
-            shortcutIcon = MenuHelpers.GetIcon("DesktopShortcutIcon");
-            installIcon = MenuHelpers.GetIcon("InstallIcon");
-            editIcon = MenuHelpers.GetIcon("EditGameIcon");
         }
 
         public GameMenu() : this(DesktopApplication.Current?.MainModel)
@@ -175,6 +165,23 @@ namespace Playnite.DesktopApp.Controls
 
         public void InitializeItems()
         {
+            // Have to load icons as late as possible to make sure ovewritten theme resources are loaded.
+            if (!iconsLoaded)
+            {
+                startIcon = MenuHelpers.GetIcon("PlayIcon");
+                removeIcon = MenuHelpers.GetIcon("RemoveGameIcon");
+                linksIcon = MenuHelpers.GetIcon("LinksIcon");
+                favoriteIcon = MenuHelpers.GetIcon("AddFavoritesIcon");
+                unFavoriteIcon = MenuHelpers.GetIcon("RemoveFavoritesIcon");
+                hideIcon = MenuHelpers.GetIcon("HideIcon");
+                unHideIcon = MenuHelpers.GetIcon("UnHideIcon");
+                browseIcon = MenuHelpers.GetIcon("OpenFolderIcon");
+                shortcutIcon = MenuHelpers.GetIcon("DesktopShortcutIcon");
+                installIcon = MenuHelpers.GetIcon("InstallIcon");
+                editIcon = MenuHelpers.GetIcon("EditGameIcon");
+                iconsLoaded = true;
+            }
+
             Items.Clear();
 
             if (Games?.Count == 0 && Game == null)
