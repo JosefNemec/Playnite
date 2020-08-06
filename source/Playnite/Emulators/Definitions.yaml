@@ -240,12 +240,12 @@
   Website: 'https://www.ppsspp.org/'
   Profiles:
     - Name: 32bit
-      DefaultArguments: '"{ImagePath}" --escape-exit --fullscreen'
+      DefaultArguments: '"{ImagePath}" --pause-menu-exit --fullscreen'
       Platforms: [Sony PSP]
       ImageExtensions: [iso, cso, pbp]
       ExecutableLookup: ^PPSSPPWindows\.exe$
     - Name: 64bit
-      DefaultArguments: '"{ImagePath}" --escape-exit --fullscreen'
+      DefaultArguments: '"{ImagePath}" --pause-menu-exit --fullscreen'
       Platforms: [Sony PSP]
       ImageExtensions: [iso, cso, pbp]
       ExecutableLookup: ^PPSSPPWindows64\.exe$
