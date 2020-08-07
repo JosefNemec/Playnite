@@ -113,6 +113,7 @@
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
     <Compile Include="GoogleImageDownloaderTests.cs" />
+    <Compile Include="ImageManipulationTests.cs" />
     <Compile Include="ImageSourceManagerTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />
@@ -238,6 +239,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Images\DesignCover.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Resources\Images\mec_icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
