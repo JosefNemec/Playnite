@@ -39,12 +39,6 @@ namespace Playnite.DesktopApp.Controls.Views
             }
 
             this.mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
-            Unloaded += LibraryListView_Unloaded;
-        }
-
-        private void LibraryListView_Unloaded(object sender, RoutedEventArgs e)
-        {
-            mainModel.AppSettings.ViewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)

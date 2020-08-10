@@ -117,15 +117,6 @@ namespace Playnite.DesktopApp.Controls
         public DdItemListSelectionBox()
         {
             InitializeComponent();
-            Unloaded += DdItemListSelectionBox_Unloaded;
-        }
-
-        private void DdItemListSelectionBox_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if (ItemsList != null)
-            {
-                ItemsList.SelectionChanged -= List_SelectionChanged;
-            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

@@ -115,15 +115,6 @@ namespace Playnite.DesktopApp.Controls
         public FilterStringSelectionBox()
         {
             InitializeComponent();
-            Unloaded += FilterStringSelectionBox_Unloaded;
-        }
-
-        private void FilterStringSelectionBox_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if (ItemsList != null)
-            {
-                ItemsList.SelectionChanged -= List_SelectionChanged;
-            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

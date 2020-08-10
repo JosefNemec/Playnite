@@ -20,4 +20,4 @@ If it's not clear from the description how to reproduce the issue please add cle
 If applicable, add screenshots to help explain your problem.
 
 **Diagnostics ID**
-If this is a crash report please include string ID you receive after using "Create diag. package` on crash dialog.
+Please generate diagnostics package from "About Playnite" menu and attach identifier you received. If the issue is a crash bug, you can generate diag. package directly from crash dialog.

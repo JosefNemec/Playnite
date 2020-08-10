@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.Stats
-{    
+{
     public class StatsController : Controller
     {
         private static LiteCollection<User> usersColl = Program.Database.GetCollection<User>("PlayniteUsers");
@@ -44,7 +44,6 @@ namespace PlayniteServices.Controllers.Stats
                 stats.UsersByWinVersion.Add(winGroup.Key, winGroup.Count());
             }
 
-            stats.RecentUsers = lastWeekUsers.OrderBy(a => a.LastLaunch).TakeLast(20).ToList();
             stats.X64Count = lastWeekUsers.Where(a => a.Is64Bit).Count();
             stats.X86Count = lastWeekUsers.Where(a => !a.Is64Bit).Count();
             return new ServicesResponse<ServiceStats>(stats);
@@ -57,7 +56,7 @@ namespace PlayniteServices.Controllers.Stats
             if (key == null || key.Value != serviceKey)
             {
                 return new ErrorResponse(new Exception("Invalid service key."));
-            }            
+            }
 
             return new ServicesResponse<bool>(Program.Database.DropCollection("PlayniteUsers"));
         }

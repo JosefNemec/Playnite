@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Playnite.Common;
 using Playnite.SDK;
 using PlayniteServices.Models.GitHub;
@@ -42,6 +44,11 @@ namespace PlayniteServices.Controllers.Webhooks
         {
             if (Request.Headers.TryGetValue("X-Hub-Signature", out var sig))
             {
+                if (!Request.Headers.TryGetValue("X-GitHub-Event", out var eventType))
+                {
+                    return BadRequest("No event.");
+                }
+
                 string payloadString = null;
                 using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
                 {
@@ -54,28 +61,65 @@ namespace PlayniteServices.Controllers.Webhooks
                     return BadRequest("Signature check failed.");
                 }
 
-                var payload = Serialization.FromJson<GitHubWebhook>(payloadString);
+                var forwardEvent = true;
+                if (eventType == WebHookEvents.Issues)
+                {
+                    var payload = Serialization.FromJson<IssuesEvent>(payloadString);
 
-                // Ignore localization pushes
-                if (payload.referer?.EndsWith("l10n_devel") == true)
-                {
-                    logger.Debug("Ignored l10n_devel github webhook.");
+                    // Only forward opened issues
+                    if (payload.action != IssuesEventAction.opened)
+                    {
+                        forwardEvent = false;
+                        logger.Debug("Ignored non-opened github issue webhook.");
+                    }
                 }
-                else
+                else if (eventType == WebHookEvents.Push)
                 {
-                    var cnt = new StringContent(payloadString, Encoding.UTF8, "application/json");
-                    cnt.Headers.Add("X-GitHub-Delivery", Request.Headers["X-GitHub-Delivery"].FirstOrDefault());
-                    cnt.Headers.Add("X-GitHub-Event", Request.Headers["X-GitHub-Event"].FirstOrDefault());
-                    var discordResp = await httpClient.PostAsync(
-                        appSettings.GitHub.DiscordWebhookUrl,
-                        cnt);
-                    await discordResp.Content.ReadAsStringAsync();
+                    var payload = Serialization.FromJson<PushEvent>(payloadString);
+
+                    // Ignore localization pushes
+                    if (payload.@ref?.EndsWith("l10n_devel") == true)
+                    {
+                        forwardEvent = false;
+                        logger.Debug("Ignored l10n_devel github webhook.");
+                    }
+                    // Don't forward branch merges
+                    else if (payload.commits?.Any(a => a.message.StartsWith("Merge branch")) == true)
+                    {
+                        forwardEvent = false;
+                        payload.commits = payload.commits.Where(a => !a.message.StartsWith("Merge branch")).ToList();
+                        if (payload.commits.HasItems())
+                        {
+                            logger.Debug("Forwarded commits without merge commits.");
+                            await FormardRequest(Request, JsonConvert.SerializeObject(payload));
+                        }
+                        else
+                        {
+                            logger.Debug("Ignored commits with only merge commits.");
+                        }
+                    }
+                }
+
+                if (forwardEvent)
+                {
+                    await FormardRequest(Request, payloadString);
                 }
 
                 return Ok();
             }
 
             return BadRequest();
+        }
+
+        private async Task FormardRequest(HttpRequest request, string payload)
+        {
+            var cnt = new StringContent(payload, Encoding.UTF8, "application/json");
+            cnt.Headers.Add("X-GitHub-Delivery", Request.Headers["X-GitHub-Delivery"].FirstOrDefault());
+            cnt.Headers.Add("X-GitHub-Event", Request.Headers["X-GitHub-Event"].FirstOrDefault());
+            var discordResp = await httpClient.PostAsync(
+                appSettings.GitHub.DiscordWebhookUrl,
+                cnt);
+            await discordResp.Content.ReadAsStringAsync();
         }
     }
 }

@@ -101,6 +101,10 @@ namespace Playnite.DesktopApp.ViewModels
                                 {
                                     iconSource = icon.ToImageSource();
                                 }
+                                catch (Exception e)
+                                {
+                                    logger.Error(e, "Failed to convert icon.");
+                                }
                                 finally
                                 {
                                     icon.Dispose();

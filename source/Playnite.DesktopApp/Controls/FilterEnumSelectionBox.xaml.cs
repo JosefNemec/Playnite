@@ -163,7 +163,7 @@ namespace Playnite.DesktopApp.Controls
             else
             {
                 obj.ItemsList?.ForEach(a => a.Selected = obj.FilterProperties.Values.Contains(a.Item.Value));
-            }            
+            }
             obj.IgnoreChanges = false;
             obj.OnPropertyChanged(nameof(obj.SelectionString));
         }
@@ -171,18 +171,6 @@ namespace Playnite.DesktopApp.Controls
         public FilterEnumSelectionBox()
         {
             InitializeComponent();
-            Unloaded += FilterEnumSelectionBox_Unloaded;
-        }
-
-        private void FilterEnumSelectionBox_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if (ItemsList.HasItems())
-            {                
-                foreach (var item in ItemsList)
-                {
-                    item.PropertyChanged -= NewItem_PropertyChanged;
-                }
-            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

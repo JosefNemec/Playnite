@@ -108,12 +108,6 @@ namespace Playnite.FullscreenApp.Controls.Views
             }
 
             this.mainModel.AppSettings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
-            Unloaded += Library_Unloaded;
-        }
-
-        private void Library_Unloaded(object sender, RoutedEventArgs e)
-        {
-            mainModel.AppSettings.Fullscreen.PropertyChanged -= Fullscreen_PropertyChanged;
         }
 
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)

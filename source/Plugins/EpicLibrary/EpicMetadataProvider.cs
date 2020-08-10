@@ -39,7 +39,12 @@ namespace EpicLibrary
                     var product = client.GetProductInfo(catalogs[0].productSlug).GetAwaiter().GetResult();
                     if (product.pages.HasItems())
                     {
-                        var page = product.pages[0];
+                        var page = product.pages.FirstOrDefault(a => a.type == "productHome");
+                        if (page == null)
+                        {
+                            page = product.pages[0];
+                        }
+
                         gameInfo.Description = page.data.about.description;
                         gameInfo.Developers = new List<string>() { page.data.about.developerAttribution };
                         metadata.BackgroundImage = new MetadataFile(page.data.hero.backgroundImageUrl);

@@ -116,7 +116,7 @@ namespace Playnite.DesktopApp.Controls
             typeof(FilterItemProperites),
             typeof(FilterSelectionBox),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, FilterPropertiesPropertyChangedCallback));
-        
+
         private static void FilterPropertiesPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var box = sender as FilterSelectionBox;
@@ -181,15 +181,6 @@ namespace Playnite.DesktopApp.Controls
         public FilterSelectionBox()
         {
             InitializeComponent();
-            Unloaded += FilterSelectionBox_Unloaded;
-        }
-
-        private void FilterSelectionBox_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if (ItemsList != null)
-            {
-                ItemsList.SelectionChanged -= List_SelectionChanged;
-            }
         }
 
         internal void OnFullTextTextChanged()
@@ -198,7 +189,7 @@ namespace Playnite.DesktopApp.Controls
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             FilterProperties = null;
             IgnoreChanges = true;
             ItemsList?.SetSelection(null);

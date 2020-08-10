@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using IronPython.Runtime.Exceptions;
 using Playnite.Common;
 using System.IO;
+using Playnite.SDK.Exceptions;
 
 namespace Playnite.Tests.Scripting.IronPython
 {
-
     [TestFixture]
     public class IronPythonTests
     {
@@ -80,7 +80,7 @@ def test_func():
         {
             using (var py = new IronPythonRuntime())
             {
-                Assert.Throws<DivideByZeroException>(() => py.Execute("1 / 0"));
+                Assert.Throws<ScriptRuntimeException>(() => py.Execute("1 / 0"));
             }
         }
 

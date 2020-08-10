@@ -41,21 +41,10 @@ namespace OriginLibrary.Tests
             {
                 if (g.PlayAction.Type == GameActionType.File)
                 {
-                    var file = Path.Combine(g.InstallDirectory, g.PlayAction.Path);
+                    var file = Path.Combine(g.InstallDirectory, g.ExpandVariables(g.PlayAction.Path));
                     Assert.IsTrue(File.Exists(file));
                 }
             }
-        }
-
-        [Test]
-        public void GetInstalledGamesCacheTest()
-        {
-            var originLib = CreateLibrary();
-            var cachePath = Origin.GetCachePath(originLib.GetPluginUserDataPath());
-            FileSystem.DeleteDirectory(cachePath);
-            var games = originLib.GetInstalledGames();
-            var cacheFiles = Directory.GetFiles(cachePath, "*.json");
-            CollectionAssert.IsNotEmpty(cacheFiles);
         }
 
         [Test]

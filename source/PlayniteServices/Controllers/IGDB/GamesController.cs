@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using LiteDB;
 using System.IO;
 using Playnite;
 using System.Web;
@@ -21,6 +20,7 @@ namespace PlayniteServices.Controllers.IGDB
     [Route("igdb/games")]
     public class GamesController : Controller
     {
+        private static readonly JsonSerializer jsonSerializer = new JsonSerializer();
         private static readonly object CacheLock = new object();
         private const string cacheDir = "game_search";
         private static ILogger logger = LogManager.GetLogger();
@@ -42,7 +42,6 @@ namespace PlayniteServices.Controllers.IGDB
         {
             List<Game> searchResult = null;
             searchString = ModelsUtils.GetIgdbSearchString(searchString);
-            logger.Debug($"IGDB search: {searchString}");
             var cachePath = Path.Combine(IGDB.CacheDirectory, cacheDir, Playnite.Common.Paths.GetSafeFilename(searchString) + ".json");
             lock (CacheLock)
             {
@@ -52,7 +51,12 @@ namespace PlayniteServices.Controllers.IGDB
                     fileInfo.Refresh();
                     if ((DateTime.Now - fileInfo.LastWriteTime).TotalHours <= IGDB.SearchCacheTimeout)
                     {
-                        searchResult = JsonConvert.DeserializeObject<List<Game>>(System.IO.File.ReadAllText(cachePath));
+                        using (var fs = new FileStream(cachePath, FileMode.Open, FileAccess.Read))
+                        using (var sr = new StreamReader(fs))
+                        using (var reader = new JsonTextReader(sr))
+                        {
+                            searchResult = jsonSerializer.Deserialize<List<Game>>(reader);
+                        }
                     }
                 }
             }

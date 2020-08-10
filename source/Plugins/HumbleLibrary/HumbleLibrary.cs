@@ -55,7 +55,7 @@ namespace HumbleLibrary
 
         public static List<GameInfo> GetTroveGames()
         {
-            var chunkDataUrlBase = @"https://www.humblebundle.com/api/v1/trove/chunk?index=";
+            var chunkDataUrlBase = @"https://www.humblebundle.com/api/v1/trove/chunk?property=popularity&direction=desc&index=";
             var games = new List<GameInfo>();
 
             using (var webClient = new WebClient { Encoding = Encoding.UTF8 })
