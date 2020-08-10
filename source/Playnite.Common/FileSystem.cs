@@ -325,5 +325,49 @@ namespace Playnite.Common
                 }
             }
         }
+
+        public static bool CheckDrivesForValidFilePath(ref string filePath, bool errorIfNotFullPath)
+        {
+            return CheckDrivesForValidFilePath(new FileInfo(filePath), out filePath, errorIfNotFullPath);
+        }
+
+        public static bool CheckDrivesForValidFilePath(FileInfo fileInfo, out string filePath, bool errorIfNotFullPath)
+        {
+            filePath = fileInfo.FullName;
+
+            if (!Paths.IsFullPath(fileInfo.FullName))
+            {
+                if (errorIfNotFullPath)
+                {
+                    throw new ArgumentException("Provided path is not rooted", nameof(filePath));
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            if (fileInfo.Exists)
+            {
+                return true;
+            }
+
+            var rootPath = Path.GetPathRoot(fileInfo.FullName);
+            var availableDrives = DriveInfo.GetDrives()
+                .Where(d => d.IsReady && !d.Name.Equals(rootPath, StringComparison.OrdinalIgnoreCase));
+
+            foreach(var drive in availableDrives)
+            {
+                var filePathWithoutDrive = fileInfo.FullName.Substring(drive.Name.Length);
+                var newFilePath = Path.Combine(drive.Name, filePathWithoutDrive);
+                if (File.Exists(newFilePath))
+                {
+                    filePath = newFilePath;
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

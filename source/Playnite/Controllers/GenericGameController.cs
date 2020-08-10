@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.Database;
+using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
@@ -20,25 +21,36 @@ namespace Playnite.Controllers
         protected Stopwatch stopWatch;
         protected ProcessMonitor procMon;
         private GameDatabase database;
+        private ILogger logger = LogManager.GetLogger();
 
-        public GenericGameController(GameDatabase db, Game game) : base (game)
+        public GenericGameController(GameDatabase db, Game game) : base(game)
         {
             database = db;
         }
 
         public override void Play()
-        {            
+        {
             if (Game.PlayAction == null)
             {
                 throw new Exception("Cannot start game without play action.");
             }
 
+            //Solving Issue #1065 if removable drives are used for storing ROMs/Images
+            CheckGameImagePath();
+
             var playAction = Game.PlayAction.ExpandVariables(Game);
+            //Solving Issue #1065 if removable drives are used for manually added games
+            CheckGameActionPath(playAction);
 
             Dispose();
-            OnStarting(this, new GameControllerEventArgs(this, 0));
             var emulators = database.Emulators.ToList();
             var profile = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.ExpandVariables(Game);
+            if (profile != null)
+            {
+                //Solving Issue #1065 if removable drives are used for emulators
+                CheckEmulatorConfigExecutable(profile);
+            }
+            OnStarting(this, new GameControllerEventArgs(this, 0));
             var proc = GameActionActivator.ActivateAction(playAction, profile);
 
             if (playAction.Type != GameActionType.URL)
@@ -61,7 +73,7 @@ namespace Playnite.Controllers
                         {
                             scanDirectory = prg.WorkDir;
                         }
-                    }                    
+                    }
 
                     // TODO switch to WatchUwpApp once we are building as 64bit app
                     //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
@@ -132,6 +144,60 @@ namespace Playnite.Controllers
         {
             stopWatch.Stop();
             OnStopped(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+        }
+
+        private void CheckGameImagePath()
+        {
+            if (Game.PlayAction.Type == GameActionType.Emulator)
+            {
+                var gameImagePath = Game.GameImagePath;
+                if (!FileSystem.CheckDrivesForValidFilePath(ref gameImagePath, false))
+                {
+                    throw new FileNotFoundException($"File \"{gameImagePath}\" does not exist", gameImagePath);
+                }
+                else if (!Game.GameImagePath.Equals(gameImagePath, StringComparison.OrdinalIgnoreCase))
+                {
+                    logger.Warn($"ROM/Image \"{Game.GameImagePath}\" does not exist for game \"{Game.Name}\"" +
+                        $" and is temporarily changed to {gameImagePath}");
+                    Game.GameImagePath = gameImagePath;
+                }
+            }
+        }
+
+        private void CheckGameActionPath(GameAction gameAction)
+        {
+            if (Game.PlayAction.Type == GameActionType.File)
+            {
+                var gameActionPath = gameAction.Path;
+                if (!FileSystem.CheckDrivesForValidFilePath(ref gameActionPath, false))
+                {
+                    throw new FileNotFoundException($"File \"{gameActionPath}\" does not exist", gameActionPath);
+                }
+                else if (!gameAction.Path.Equals(gameActionPath, StringComparison.OrdinalIgnoreCase))
+                {
+                    logger.Warn($"Path \"{gameAction.Path}\" does not exist for game \"{Game.Name}\"" +
+                        $" and is temporarily changed to {gameActionPath}");
+                    gameAction.Path = gameActionPath;
+                }
+            }
+        }
+
+        private void CheckEmulatorConfigExecutable(EmulatorProfile emulatorProfile)
+        {
+            if (Game.PlayAction.Type == GameActionType.Emulator)
+            {
+                var configExecutable = emulatorProfile.Executable;
+                if (!FileSystem.CheckDrivesForValidFilePath(ref configExecutable, false))
+                {
+                    throw new FileNotFoundException($"Emulator \"{configExecutable}\" does not exist", configExecutable);
+                }
+                else if (!emulatorProfile.Executable.Equals(configExecutable, StringComparison.OrdinalIgnoreCase))
+                {
+                    logger.Warn($"Emulator \"{configExecutable}\" does not exist for game \"{Game.Name}\"" +
+                        $" and is temporarily changed to {configExecutable}");
+                    emulatorProfile.Executable = configExecutable;
+                }
+            }
         }
     }
 }
