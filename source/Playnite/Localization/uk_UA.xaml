@@ -668,7 +668,7 @@
     <sys:String x:Key="LOCCompletionStatusOnHold">Призупинено</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlanToPlay">В планах грати</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Статус завершення</sys:String>
-    <sys:String x:Key="LOCUserScore">Оцінка користувачів</sys:String>
+    <sys:String x:Key="LOCUserScore">Моя оцінка</sys:String>
     <sys:String x:Key="LOCCriticScore">Оцінка критиків</sys:String>
     <sys:String x:Key="LOCCommunityScore">Оцінка спільноти</sys:String>
     <sys:String x:Key="LOCScripts">Скрипти</sys:String>
