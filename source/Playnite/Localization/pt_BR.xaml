@@ -70,14 +70,14 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Não foi possível atualizar a biblioteca. Pelo menos {0} MBs de espaço livre são necessários para continuar.</sys:String>
 
     <sys:String x:Key="LOCGameError">Erro do Jogo</sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame">Não foi possível executar o jogo. &quot;{0}&quot; não foi encontrado no banco de dados.</sys:String>
-    <sys:String x:Key="LOCGameStartError">Não foi possível executar o jogo: {0}</sys:String>
-    <sys:String x:Key="LOCGameStartActionError">Não foi possível executar a ação: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">Não foi possível iniciar o jogo. &quot;{0}&quot; não foi encontrado no banco de dados.</sys:String>
+    <sys:String x:Key="LOCGameStartError">Não foi possível iniciar o jogo: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Não foi possível iniciar a ação: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Não foi possível abrir o local do jogo: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Falha ao criar o atalho: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Não foi possível instalar o jogo: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Não foi possível desinstalar o jogo: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction">Ação de executar não configurada.</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Ação de jogar não configurada.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">A extensão da biblioteca responsável por este jogo não está instalado ou habilitado.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">O download de metadados oficial não está disponível.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nenhum jogo foi selecionado.</sys:String>
@@ -187,7 +187,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
 Por exemplo: -image &quot;{ImagePath}&quot; -fullscreen
 Resulta em: -image &quot;c:\pasta\imagem.iso&quot; -fullscreen</sys:String>
 
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Não é possível obter um ícone se a ação &quot;Executar&quot; não existe ou estiver definida como um URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Não é possível obter um ícone se a ação &quot;Jogar&quot; não existe ou estiver definida como um URL.</sys:String>
 
     <sys:String x:Key="LOCMetaSkipNonEmpty">Baixar somente metadados ausentes</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Habilitar esta opção fará com que novos metadados não sejam baixados para os campos já preenchidos.</sys:String>
@@ -231,7 +231,7 @@ Resulta em: -image &quot;c:\pasta\imagem.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Aplicativo da Microsoft Store…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre o Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar comentários</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Modo tela cheia</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Mudar para o modo tela cheia</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoie-nos no Patreon</sys:String>
@@ -267,7 +267,7 @@ Resulta em: -image &quot;c:\pasta\imagem.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner do Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Interface nova do Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Capa vertical da Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requer reinicialização para aplicar</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Configurações</sys:String>
@@ -330,7 +330,7 @@ Resulta em: -image &quot;c:\pasta\imagem.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Mostrar o ícone na bandeja</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Minimizar para a bandeja</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Fechar para a bandeja</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameStart">Ao executar um jogo:</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">Ao iniciar um jogo:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Ao fechar um jogo:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Executar jogos usando o cliente Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Habilita recursos como salvamento de jogos na nuvem, contador de tempo de jogo, etc.</sys:String>
@@ -457,7 +457,6 @@ Você também poderá configurar e importar emuladores personalizados posteriorm
  
 Tenha em mente que você sempre pode adicionar jogos personalizados de qualquer plataforma manualmente através do menu principal, clicando no botão &quot;Playnite&quot;.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Selecione o local onde o arquivo de banco de dados da biblioteca ficará guardado. Este local poderá ser alterado posteriormente através do menu Configurações.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Local padrão dos dados do programa para todos os usuários</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Local personalizado</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integração com a Biblioteca</sys:String>
@@ -472,9 +471,9 @@ Tenha em mente que você sempre pode adicionar jogos personalizados de qualquer 
     <sys:String x:Key="LOCFirstOtherGamesText">Clique no botão abaixo para importar outros jogos instalados ou procurá-los manualmente (incluindo jogos da Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importar jogos</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuração concluída</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">A configuração inicial foi concluída. Lembre-se de que você pode alterar todas as configurações mais tarde através do menu &quot;Configurações&quot;.
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">A configuração inicial foi concluída. Lembre-se que você pode alterar várias opções a qualquer momento no menu &quot;Configurações&quot;.
 
-Você também pode adicionar mais jogos (incluindo jogos da Microsoft Store) depois através do menu principal, clicando no logo do aplicativo do Playnite.</sys:String>
+Você também sempre pode adicionar mais jogos clicando no menu no logo do Playnite.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Abrir o assistente de importação de emuladores</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Esquema de grade</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Selecione a proporção que será usada no esquema de grade do Playnite. A proporção das imagens pode ser alterada a qualquer momento nas configurações do aplicativo, incluindo opções de dimensionamento das imagens.</sys:String>
@@ -606,7 +605,7 @@ Anexe a seguinte ID ao seu relatório de falha:</sys:String>
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Não foi possível abrir o link, o URL não está em um formato válido.</sys:String>
-    <sys:String x:Key="LOCAppStartupError">Falha ao executar o aplicativo.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">Falha ao iniciar o aplicativo.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Falha ao inicializar o componente de visualização da web, a execução do Playnite foi interrompida.
 
 Você pode tentar corrigir o problema:
@@ -618,15 +617,15 @@ Você pode tentar corrigir o problema:
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editar Detalhes do Jogo</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Da ação de executar</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">Da ação de jogar</sys:String>
     <sys:String x:Key="LOCImageURL">URL da imagem</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Adicionar link</sys:String>
     <sys:String x:Key="LOCSaveChanges">Salvar alterações</sys:String>
-    <sys:String x:Key="LOCPlayAction">Ação de executar</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Adicionar ação de executar</sys:String>
+    <sys:String x:Key="LOCPlayAction">Ação de jogar</sys:String>
+    <sys:String x:Key="LOCAddPlayAction">Adicionar ação de jogar</sys:String>
     <sys:String x:Key="LOCAddAction">Adicionar ação</sys:String>
     <sys:String x:Key="LOCDeleteAction">Remover ação</sys:String>
-    <sys:String x:Key="LOCRemovePlayAction">Remover ação de executar</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">Remover ação de jogar</sys:String>
     <sys:String x:Key="LOCOtherActions">Outras ações</sys:String>
     <sys:String x:Key="LOCAddGames">Adicionar jogos</sys:String>
     <sys:String x:Key="LOCScanFolder">Escanear pasta…</sys:String>
@@ -660,8 +659,8 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCChange">Alterar</sys:String>
     <sys:String x:Key="LOCAdvanced">Avançado</sys:String>
     <sys:String x:Key="LOCNever">Nunca</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed">Não executado</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed">Executado</sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">Não jogado</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">Jogado</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten">Terminado</sys:String>
     <sys:String x:Key="LOCCompletionStatusCompleted">Completado</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlaying">Jogando</sys:String>
@@ -679,7 +678,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCReloadScripts">Recarregar scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Todos os scripts foram recarregados com sucesso.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Não foram encontrados jogos para os critérios de pesquisa/filtragem especificados</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Sair para o modo janela</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Mudar para o modo janela</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Sair do Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotecas</sys:String>
     <sys:String x:Key="LOCUpdateAll">Atualizar tudo</sys:String>
@@ -740,8 +739,9 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCUnHideGame">Mostrar na biblioteca</sys:String>
     <sys:String x:Key="LOCEditGame">Editar…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Definir categorias…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Definir estado de conclusão</sys:String>
     <sys:String x:Key="LOCRemoveGame">Remover</sys:String>
-    <sys:String x:Key="LOCPlayGame">Executar</sys:String>
+    <sys:String x:Key="LOCPlayGame">Jogar</sys:String>
     <sys:String x:Key="LOCInstallGame">Instalar</sys:String>
     <sys:String x:Key="LOCGameOptions">Opções do jogo</sys:String>
     <sys:String x:Key="LOCGameDetails">Detalhes</sys:String>
@@ -789,7 +789,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuração de ação do jogo inválida.</sys:String>
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Solução de problemas de sincronização de contas</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues">Solucionando problemas</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Soluções de problemas</sys:String>
 
     <sys:String x:Key="LOCRenameItem">Renomear item</sys:String>
     <sys:String x:Key="LOCAddNewItem">Adicionar novo item</sys:String>

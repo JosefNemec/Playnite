@@ -267,7 +267,7 @@
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 標題</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam 新式介面</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam直式封面</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* 重新啟動以套用</sys:String>
     <sys:String x:Key="LOCSettingsLabel">設定</sys:String>
@@ -456,7 +456,6 @@
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">本精靈將帶領您完成遊戲匯入以及外部遊戲資料庫設定。Playnite可以自動從遊戲服務商如Steam或GOG匯入遊戲，並透過啟動時的自動更新保持遊戲狀態同步。
 
 請留意，您可隨時點擊&quot;Playnite&quot;按鈕，透過主選單手動新增任何平台上的自訂遊戲。    </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">選擇資料數據庫的位置。稍後也可於設定選單更改位置。</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">所有使用者的預設程式資料位置</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">自訂位置</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">資料庫整合</sys:String>
@@ -471,9 +470,9 @@
     <sys:String x:Key="LOCFirstOtherGamesText">點選以下的按鈕以匯入或手動瀏覽其他已安裝的遊戲(包含Microsoft Store遊戲)</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">匯入遊戲</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">完成設定</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始安裝已經完成。請記得您可以在&quot;選項&quot;選單中更改所有的設定。
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">已完成初始設定。請留意您可隨時於設定中更改配置。
 
-同時您也可以在之後透過點選Playnite主程式圖示開啟主選單，新增任何其他遊戲(包含Microsoft Store遊戲)</sys:String>
+您亦可隨時點選Playnite圖標來新增任何遊戲。</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">開啟模擬器匯入指南</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">網格檢視版面配置</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">選擇偏好的網格檢視版面配置。圖片配置方式可於之後在設定中進行更改，包含影像延伸選項。</sys:String>
@@ -739,6 +738,7 @@
     <sys:String x:Key="LOCUnHideGame">在資料庫中顯示</sys:String>
     <sys:String x:Key="LOCEditGame">編輯...</sys:String>
     <sys:String x:Key="LOCSetGameCategory">設定分類...</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">設定完成狀態</sys:String>
     <sys:String x:Key="LOCRemoveGame">移除</sys:String>
     <sys:String x:Key="LOCPlayGame">啟動</sys:String>
     <sys:String x:Key="LOCInstallGame">安裝</sys:String>

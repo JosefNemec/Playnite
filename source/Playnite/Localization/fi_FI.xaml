@@ -227,7 +227,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCMenuAddGameManual">Manuaalisesti…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Etsi automaattisesti…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuloitu peli…</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Storen sovellus</sys:String>
     <sys:String x:Key="LOCMenuAbout">Tietoja Playnitesta</sys:String>
     <sys:String x:Key="LOCMenuIssues">Lähetä palautetta</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Käynnistä kokoruudulla</sys:String>
@@ -266,7 +266,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-juliste</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamNewUI">Steam Uusi Käyttöliittymä</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam pystysuuntainen kansikuva</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Käyttöönotto vaatii uudelleenkäynnistyksen</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Asetukset</sys:String>
@@ -362,7 +362,7 @@ Uuden tietokannan kohde tulee käyttöön vasta kun ohjelma on uudelleenkäynnis
     <sys:String x:Key="LOCSettingsFullscreenRows">Rivien määrä</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sarakkeiden määrä</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Lisätietonäkymän rivien määrä</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Näytä taustakuva pääruudussa</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Taustan lähde:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Pelin kuva</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Kaupan kuvakaappaus</sys:String>
@@ -407,7 +407,7 @@ Jos poiskytketty, taustakuvat ladataan vain kun niitä ensimmäisen kerran tarvi
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automaattisesti sulje seuraavat asiakasohjelmat:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Sulje automaattisesti apuohjelmat</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Näytä varoitus kun ollaan liittämässä liian suurta peliä</sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
+    <sys:String x:Key="LOCSettingsStartGameDirectly">Käynnistä pelit suoraan käyttämättä virallista ohjelmaa</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ei mitään</sys:String>
     <sys:String x:Key="LOCStrechFill">Täytä</sys:String>
@@ -457,7 +457,6 @@ Voit myös konfiguroida ja tuoda minkä tahansa emulaattorin myöhemmin konfigur
 
 Muista, että voit aina manuaalisesti lisätä minkä tahansa pelin mille tahansa alustalle klikkaamalla päävalikon &quot;Playnite&quot;-nappia.
     </sys:String>
-    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Valitse kirjastotietokannan sijainti. Voit vaihtaa sen myöhemmin asetuksista.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Ohjelmadatan oletussijanti kaikille käyttäjille</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Mukautettu sijainti</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Kirjastointegrointi</sys:String>
@@ -472,9 +471,9 @@ Muista, että voit aina manuaalisesti lisätä minkä tahansa pelin mille tahans
     <sys:String x:Key="LOCFirstOtherGamesText">Klikkaa alla olevaa nappia tuodaksesi muita asennettuja pelejä tai etsiäksesi manuaalisesti (Microsoft Store -pelit mukaan lukien).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Tuo pelit</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Määritys suoritettu</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Alustava asennus on valmis. Muista, että voit myöhemmin muuttaa kaikkia asetuksia &quot;Asetukset&quot;-valikon kautta.
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Esiasennus on nyt valmis. Muista, että myöhemmin voit vaihtaa kaikkia asetuksia 'Asetukset' valikosta.
 
-Voit myös myöhemmin lisätä minkä tahansa pelin (mukaan lukien Microsoft Store -pelit) klikkaamalla päävalikon Playnite-logoa.</sys:String>
+Voit myöhemmin myös lisätä minkä tahansa pelin painamalla Playnite-logoa.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Avaa emulaattorien tuontiohje</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Ruudukkonäkymän asettelu</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Valitse Playniten ruudukkonäkymän ensisijainen asettelu. Kuva-asettelua voidaan muuttaa milloin tahansa ohjelman asetuksista, kuvien venytysvaihtoehdot mukaan lukien.</sys:String>
@@ -614,7 +613,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
   • Tarkista, että virustentorjuntaohjelma ei estä Playniten kansiossa olevia tiedostoja
   • Kokeile asennusta toiseen paikkaan</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Ei voida tuoda emulaattoreita, emulaattorien määritystiedostoa ei löydy.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">XInput käyttöliittymän alustus epäonnistui. </sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Muokkaa pelin tietoja</sys:String>
@@ -679,7 +678,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCReloadScripts">Lataa skriptit uudelleen</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Kaikki skriptit on ladattu uudelleen onnistuneesti.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Hakua/suodatinta vastaavia pelejä ei löytynyt</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Poistu työpöytätilaan</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Vaihda työpöytätilaan</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Poistu Playnitesta</sys:String>
     <sys:String x:Key="LOCLibraries">Kirjastot</sys:String>
     <sys:String x:Key="LOCUpdateAll">Päivitä kaikki</sys:String>
@@ -740,6 +739,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCUnHideGame">Näytä kirjastossa</sys:String>
     <sys:String x:Key="LOCEditGame">Muokkaa…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Aseta kategoria…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Aseta pelin edistymisen tila</sys:String>
     <sys:String x:Key="LOCRemoveGame">Poista</sys:String>
     <sys:String x:Key="LOCPlayGame">Pelaa</sys:String>
     <sys:String x:Key="LOCInstallGame">Asenna</sys:String>
