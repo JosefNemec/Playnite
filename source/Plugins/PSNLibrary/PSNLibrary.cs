@@ -65,7 +65,6 @@ namespace PSNLibrary
                 RemoveTrademarks(" ").
                 NormalizeGameName().
                 Replace("full game", "", StringComparison.OrdinalIgnoreCase).
-                Replace('’', '\'').
                 Trim();
             return Regex.Replace(gameName, @"\s+", " ");
         }
