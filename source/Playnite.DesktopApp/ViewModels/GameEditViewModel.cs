@@ -1436,6 +1436,8 @@ namespace Playnite.DesktopApp.ViewModels
                 var imageProps = Images.GetImageProperties(imagePath);
                 if (imageProps != null && Sizes.GetMegapixelsFromRes(imageProps) > maxMegapixels)
                 {
+                    var okResponse = new MessageBoxOption("LOCOKLabel", true, true);
+                    var dontShowResponse = new MessageBoxOption("LOCDontShowAgainTitle");
                     var ask = new MessageBoxWindow();
                     var result = ask.ShowCustom(
                         window.Window,
@@ -1445,13 +1447,8 @@ namespace Playnite.DesktopApp.ViewModels
                         GameDatabase.MaximumRecommendedBackgroundSize),
                         resources.GetString("LOCPerformanceWarningTitle"),
                         MessageBoxImage.Warning,
-                        new List<object> { true, false },
-                        new List<string>
-                        {
-                        resources.GetString("LOCOKLabel"),
-                        resources.GetString("LOCDontShowAgainTitle")
-                        });
-                    if ((result as bool?) == false)
+                        new List<MessageBoxOption> { okResponse, dontShowResponse });
+                    if (result == dontShowResponse)
                     {
                         appSettings.ShowImagePerformanceWarning = false;
                     }

@@ -24,7 +24,7 @@ namespace Playnite.DesktopApp.Windows
     public partial class MessageBoxWindow : WindowBase
     {
         private MessageBoxResult result;
-        private object resultCustom;
+        private MessageBoxOption resultCustom;
 
         private string text = string.Empty;
         public string Text
@@ -273,13 +273,12 @@ namespace Playnite.DesktopApp.Windows
             return result;
         }
 
-        public object ShowCustom(
+        public MessageBoxOption ShowCustom(
             Window owner,
             string messageBoxText,
             string caption,
             MessageBoxImage icon,
-            List<object> options,
-            List<string> optionsTitles)
+            List<MessageBoxOption> options)
         {
             if (owner == null || owner == this)
             {
@@ -301,23 +300,23 @@ namespace Playnite.DesktopApp.Windows
             ShowCancelButton = false;
             ShowInputField = false;
 
-            for (int i = 0; i < options.Count; i++)
+            foreach (var option in options)
             {
-                var option = options[i];
-                var title = optionsTitles[i];
-
+                var title = option.Title;
                 var button = new Button();
                 button.Content = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
                 button.Style = ResourceProvider.GetResource("BottomButton") as Style;
                 button.Tag = option;
+                button.IsDefault = option.IsDefault;
+                button.IsCancel = option.IsCancel;
                 button.Click += (s, __) =>
                 {
-                    resultCustom = (s as Button).Tag;
+                    resultCustom = (s as Button).Tag as MessageBoxOption;
                     Close();
                 };
 
                 StackButtons.Children.Add(button);
-                if (i == 0)
+                if (option.IsDefault)
                 {
                     button.Focus();
                 }

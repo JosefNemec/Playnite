@@ -8,6 +8,40 @@ using System.Windows;
 namespace Playnite.SDK
 {
     /// <summary>
+    /// Represents message box response options.
+    /// </summary>
+    public class MessageBoxOption
+    {
+        /// <summary>
+        /// Gets or sets title of response option.
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether this is default option.
+        /// </summary>
+        public bool IsDefault { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether this is option to cancel the request.
+        /// </summary>
+        public bool IsCancel { get; set; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="MessageBoxOption"/>.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="isDefault"></param>
+        /// <param name="isCancel"></param>
+        public MessageBoxOption(string title, bool isDefault = false, bool isCancel = false)
+        {
+            Title = title;
+            IsDefault = isDefault;
+            IsCancel = isCancel;
+        }
+    }
+
+    /// <summary>
     /// Represents item for image selection dialog.
     /// </summary>
     public class ImageFileOption : GenericItemOption
@@ -155,9 +189,8 @@ namespace Playnite.SDK
         /// <param name="caption">Dialog window caption.</param>
         /// <param name="icon">Dialog icon.</param>
         /// <param name="options">Response options.</param>
-        /// <param name="optionsTitles">Response options captions.</param>
         /// <returns>Selected dialog option.</returns>
-        object ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<object> options, List<string> optionsTitles);
+        MessageBoxOption ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<MessageBoxOption> options);
 
         /// <summary>
         /// Displays system dialog for folder selection.

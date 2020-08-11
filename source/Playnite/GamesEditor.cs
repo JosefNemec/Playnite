@@ -410,29 +410,22 @@ namespace Playnite
             }
             else
             {
+                var options = new List<MessageBoxOption>
+                {
+                    new MessageBoxOption("LOCRemoveAskAddToExlusionListYesResponse"),
+                    new MessageBoxOption("LOCYesLabel", true),
+                    new MessageBoxOption("LOCNoLabel", false, true)
+                };
                 var result = Dialogs.ShowMessage(
                     "LOCGameRemoveAskMessageIgnoreOption",
                     "LOCGameRemoveAskTitle",
                     MessageBoxImage.Question,
-                    new List<object> { 1, 2, 3 },
-                    new List<string>
-                    {
-                        "LOCRemoveAskAddToExlusionListYesResponse",
-                        "LOCYesLabel",
-                        "LOCNoLabel"
-                    });
-                if (result is int option)
+                    options);
+                if (result == options[0])
                 {
-                    if (option == 1)
-                    {
-                        addToExclusionList = true;
-                    }
-                    else if (option != 2)
-                    {
-                        return;
-                    }
+                    addToExclusionList = true;
                 }
-                else
+                else if (result == options[2])
                 {
                     return;
                 }
@@ -478,29 +471,22 @@ namespace Playnite
             }
             else
             {
+                var options = new List<MessageBoxOption>
+                {
+                    new MessageBoxOption("LOCRemoveAskAddToExlusionListYesResponse"),
+                    new MessageBoxOption("LOCYesLabel", true),
+                    new MessageBoxOption("LOCNoLabel", false, true)
+                };
                 var result = Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGamesRemoveAskMessageIgnoreOption"), games.Count()),
                     "LOCGameRemoveAskTitle",
                     MessageBoxImage.Question,
-                    new List<object> { 1, 2, 3 },
-                    new List<string>
-                    {
-                        "LOCRemoveAskAddToExlusionListYesResponse",
-                        "LOCYesLabel",
-                        "LOCNoLabel"
-                    });
-                if (result is int option)
+                    options);
+                if (result == options[0])
                 {
-                    if (option == 1)
-                    {
-                        addToExclusionList = true;
-                    }
-                    else if (option != 2)
-                    {
-                        return;
-                    }
+                    addToExclusionList = true;
                 }
-                else
+                else if (result == options[2])
                 {
                     return;
                 }

@@ -89,7 +89,7 @@ namespace Playnite.Tests
             return null;
         }
 
-        public object ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<object> options, List<string> optionsTitles)
+        public MessageBoxOption ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<MessageBoxOption> options)
         {
             return null;
         }

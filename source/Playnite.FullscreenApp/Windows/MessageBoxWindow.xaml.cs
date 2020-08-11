@@ -22,7 +22,7 @@ namespace Playnite.FullscreenApp.Windows
     public partial class MessageBoxWindow : WindowBase
     {
         private MessageBoxResult result;
-        private object resultCustom;
+        private MessageBoxOption resultCustom;
 
         private string text = string.Empty;
         public string Text
@@ -182,13 +182,12 @@ namespace Playnite.FullscreenApp.Windows
             return result;
         }
 
-        public object ShowCustom(
+        public MessageBoxOption ShowCustom(
             Window owner,
             string messageBoxText,
             string caption,
             MessageBoxImage icon,
-            List<object> options,
-            List<string> optionsTitles)
+            List<MessageBoxOption> options)
         {
             if (owner == null)
             {
@@ -210,29 +209,32 @@ namespace Playnite.FullscreenApp.Windows
             ShowCancelButton = false;
 
             ButtonEx toFocus = null;
-            for (int i = 0; i < options.Count; i++)
+            foreach (var option in options)
             {
-                var option = options[i];
-                var title = optionsTitles[i];
-
+                var title = option.Title;
                 var button = new ButtonEx();
                 button.Content = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
                 button.Style = ResourceProvider.GetResource("ButtonMessageBox") as Style;
                 button.Tag = option;
                 button.Click += (s, __) =>
                 {
-                    resultCustom = (s as ButtonEx).Tag;
+                    resultCustom = (s as ButtonEx).Tag as MessageBoxOption;
                     Close();
                 };
 
                 StackButtons.Children.Add(button);
-                if (i == 0)
+                if (option.IsDefault)
                 {
                     toFocus = button;
+                    toFocus.Focus();
                 }
             }
 
-            toFocus.Focus();
+            if (toFocus == null)
+            {
+                StackButtons.Children[0].Focus();
+            }
+
             ShowDialog();
             return resultCustom;
         }
