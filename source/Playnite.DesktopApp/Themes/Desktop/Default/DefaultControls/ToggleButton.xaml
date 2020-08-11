@@ -18,7 +18,8 @@
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border x:Name="Border"
                             BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
-                            CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}">
+                            CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
