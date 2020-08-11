@@ -1484,6 +1484,17 @@ namespace Playnite
             }
         }
 
+        private AgeRatingOrg ageRatingOrgPriority = AgeRatingOrg.PEGI;
+        public AgeRatingOrg AgeRatingOrgPriority
+        {
+            get => ageRatingOrgPriority;
+            set
+            {
+                ageRatingOrgPriority = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

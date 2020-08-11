@@ -213,8 +213,22 @@ namespace IGDBMetadata
         {
             if (AvailableFields.Contains(MetadataField.AgeRating))
             {
-                var rating = IgdbData.age_ratings[0];
-                return rating.category + " " + rating.rating.GetDescription();
+                var preferrence = plugin.PlayniteApi.ApplicationSettings.AgeRatingOrgPriority;
+                var esrb = IgdbData.age_ratings.FirstOrDefault(a => a.category == IgdbServerModels.AgeRatingOrganization.ESRB);
+                var pegi = IgdbData.age_ratings.FirstOrDefault(a => a.category == IgdbServerModels.AgeRatingOrganization.PEGI);
+                if (esrb != null && preferrence == AgeRatingOrg.ESRB)
+                {
+                    return esrb.category + " " + esrb.rating.GetDescription();
+                }
+                else if (pegi != null && preferrence == AgeRatingOrg.PEGI)
+                {
+                    return pegi.category + " " + pegi.rating.GetDescription();
+                }
+                else
+                {
+                    var rating = IgdbData.age_ratings[0];
+                    return rating.category + " " + rating.rating.GetDescription();
+                }
             }
 
             return base.GetAgeRating();

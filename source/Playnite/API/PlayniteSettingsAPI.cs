@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace Playnite.API
         public bool ForcePlayTimeSync => settings.ForcePlayTimeSync;
         public string FontFamilyName => settings.FontFamilyName;
         public bool DiscordPresenceEnabled => settings.DiscordPresenceEnabled;
+        public AgeRatingOrg AgeRatingOrgPriority => settings.AgeRatingOrgPriority;
 
         public PlayniteSettingsAPI(PlayniteSettings settings)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -115,6 +116,11 @@ namespace Playnite.SDK
         ///
         /// </summary>
         bool DiscordPresenceEnabled { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        AgeRatingOrg AgeRatingOrgPriority { get; }
 
         /// <summary>
         /// Checks if game is added on import exclusion list.
