@@ -39,7 +39,7 @@ namespace Playnite.Plugins
 
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
-            get;
+            get; private set;
         } = new Dictionary<Guid, LoadedPlugin>();
 
         public List<LibraryPlugin> LibraryPlugins
@@ -59,7 +59,7 @@ namespace Playnite.Plugins
 
         public  List<PlayniteScript> Scripts
         {
-            get;
+            get; private set;
         } =  new List<PlayniteScript>();
 
         public bool HasExportedFunctions
@@ -149,7 +149,7 @@ namespace Playnite.Plugins
             }
             }
 
-            Scripts?.Clear();
+            Scripts = new List<PlayniteScript>();
             ScriptFunctions = null;
         }
 
@@ -170,7 +170,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            Plugins?.Clear();
+            Plugins = new Dictionary<Guid, LoadedPlugin>();
             PluginFunctions = null;
         }
 
