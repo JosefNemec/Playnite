@@ -196,6 +196,9 @@
     <Compile Include="Controls\SettingsSections\ImportExlusionList.xaml.cs">
       <DependentUpon>ImportExlusionList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\ErrorLoading.xaml.cs">
+      <DependentUpon>ErrorLoading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\Performance.xaml.cs">
       <DependentUpon>Performance.xaml</DependentUpon>
     </Compile>
@@ -581,6 +584,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\ImportExlusionList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ErrorLoading.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

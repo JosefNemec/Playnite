@@ -426,6 +426,7 @@ namespace Playnite.DesktopApp.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, $"Failed to load plugin settings, {pluginId}");
+                return new Controls.SettingsSections.ErrorLoading();
             }
 
             return new Controls.SettingsSections.NoSettingsAvailable();
