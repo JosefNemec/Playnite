@@ -341,7 +341,7 @@ namespace Playnite.Plugins
                 }
 
                 Scripts.Add(script);
-                logger.Info($"Loaded script extension: {scriptPath}");
+                logger.Info($"Loaded script extension: {scriptPath}, version {desc.Version}");
 
                 if (desc.Functions?.Any() == true)
                 {
@@ -379,7 +379,7 @@ namespace Playnite.Plugins
                             funcs.AddRange(plugFunc);
                         }
 
-                        logger.Info($"Loaded plugin: {desc.Name}");
+                        logger.Info($"Loaded plugin: {desc.Name}, version {desc.Version}");
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
