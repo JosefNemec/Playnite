@@ -286,7 +286,7 @@
       ImageExtensions: [nds, zip, 7z, rar, gz]
       ExecutableLookup: ^DeSmuME.*\.exe$
 
-- Name: Yabuse
+- Name: Yabause
   Website: 'https://yabause.org/'
   Profiles:
     - Name: Default
