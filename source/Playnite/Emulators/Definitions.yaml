@@ -958,7 +958,7 @@
       ExecutableLookup: ^flashplayer_\d+_sa\.exe$
 
 - Name: bsnes
-  Website: 'https://bsnes.byuu.org/'
+  Website: 'https://byuu.org/bsnes/'
   Profiles:
     - Name: Default
       DefaultArguments: '"{ImagePath}"'
@@ -994,7 +994,7 @@
       ExecutableLookup: ^melonDS\.exe$
 
 - Name: higan
-  Website: 'https://higan.byuu.org/'
+  Website: 'https://byuu.org/higan/'
   Profiles:
     - Name: Nintendo - Famicom
       DefaultArguments: '"{ImagePath}"'
