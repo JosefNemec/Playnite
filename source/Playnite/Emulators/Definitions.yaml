@@ -476,7 +476,7 @@
       DefaultArguments: '{ImageNameNoExt}'
       Platforms: [Sega Model 2]
       ImageExtensions: [zip]
-      ExecutableLookup: ^emulator\.exe$
+      ExecutableLookup: ^nebula\.exe$
 
 - Name: Fuse
   Website: 'http://fuse-emulator.sourceforge.net/'
