@@ -565,9 +565,11 @@ namespace Playnite.DesktopApp.ViewModels
                     resources.GetString("LOCSettingsClearCacheTitle"),
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                CefTools.Shutdown();
-                Directory.Delete(PlaynitePaths.BrowserCachePath, true);
-                application.Restart();
+                application.Restart(new CmdLineOptions
+                {
+                    SkipLibUpdate = true,
+                    ClearWebCache = true
+                });
             }
         }
 

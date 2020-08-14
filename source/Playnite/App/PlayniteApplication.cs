@@ -511,6 +511,18 @@ namespace Playnite
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
             }
 
+            if (CmdLine.ClearWebCache)
+            {
+                try
+                {
+                    FileSystem.DeleteDirectory(PlaynitePaths.BrowserCachePath);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to clear CEF cache.");
+                }
+            }
+
             try
             {
                 CefTools.ConfigureCef();

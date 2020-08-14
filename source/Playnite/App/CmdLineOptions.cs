@@ -36,6 +36,9 @@ namespace Playnite
         [Option("installext")]
         public string InstallExtension { get; set; }
 
+        [Option("clearwebcache")]
+        public bool ClearWebCache { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);
