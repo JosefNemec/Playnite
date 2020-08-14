@@ -31,6 +31,7 @@ namespace EpicLibrary
             "9d2d0eb64d5c44529cece33fe2a46482", // GTA 5
             "UnrealTournamentDev",  // Unreal Tournament 4
             "AzaleaAlpha",  // The Cycle
+            "11e598b192324994abce05bad4f81b50", // A Total War Saga: TROY
         };
 
         private static ILogger logger = LogManager.GetLogger();
