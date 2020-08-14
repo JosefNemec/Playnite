@@ -715,22 +715,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             SwitchToDesktopCommand = new RelayCommand<object>((a) =>
             {
-                if (GlobalTaskHandler.IsActive)
-                {
-                    GlobalProgress.ActivateProgress(
-                        (_) => GlobalTaskHandler.CancelAndWait(),
-                        new ProgressViewArgs("LOCOpeningDesktopModeMessage"));
-                }
-
-                CloseView();
-                application.Quit();
-                var cmdline = new CmdLineOptions()
-                {
-                    SkipLibUpdate = true,
-                    StartInDesktop = true
-                };
-
-                ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, cmdline.ToString());
+                SwitchToDesktopMode();
             }, new KeyGesture(Key.F11));
 
             ShutdownSystemCommand = new RelayCommand<object>((a) =>
@@ -1025,6 +1010,26 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 await UpdateDatabase(AppSettings.DownloadMetadataOnImport);
             }, (a) => !DatabaseUpdateRunning);
+        }
+
+        public void SwitchToDesktopMode()
+        {
+            if (GlobalTaskHandler.IsActive)
+            {
+                GlobalProgress.ActivateProgress(
+                    (_) => GlobalTaskHandler.CancelAndWait(),
+                    new ProgressViewArgs("LOCOpeningDesktopModeMessage"));
+            }
+
+            CloseView();
+            application.Quit();
+            var cmdline = new CmdLineOptions()
+            {
+                SkipLibUpdate = true,
+                StartInDesktop = true
+            };
+
+            ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, cmdline.ToString());
         }
 
         private GamesCollectionViewEntry SelectClosestGameDetails()

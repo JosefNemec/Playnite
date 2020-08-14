@@ -554,14 +554,14 @@ namespace Playnite.DesktopApp.ViewModels
 
             OpenFullScreenCommand = new RelayCommand<object>((a) =>
             {
-                OpenFullScreen();
+                SwitchToFullscreenMode();
             }, new KeyGesture(Key.F11));
 
             OpenFullScreenFromControllerCommand = new RelayCommand<object>((a) =>
             {
                 if (AppSettings.GuideButtonOpensFullscreen)
                 {
-                    OpenFullScreen();
+                    SwitchToFullscreenMode();
                 }
             }, new KeyGesture(Key.F11));
 
@@ -1455,7 +1455,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void OpenFullScreen()
+        public void SwitchToFullscreenMode()
         {
             if (GlobalTaskHandler.IsActive)
             {
@@ -1468,7 +1468,8 @@ namespace Playnite.DesktopApp.ViewModels
             application.Quit();
             var cmdline = new CmdLineOptions()
             {
-                SkipLibUpdate = true
+                SkipLibUpdate = true,
+                StartInFullscreen = true
             };
 
             ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, cmdline.ToString());

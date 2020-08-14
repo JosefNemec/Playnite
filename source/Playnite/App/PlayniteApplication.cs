@@ -24,6 +24,7 @@ using Playnite.Windows;
 using Polly;
 using System.Windows.Media;
 using Playnite.SDK.Events;
+using System.Windows.Threading;
 
 namespace Playnite
 {
@@ -82,7 +83,8 @@ namespace Playnite
                 throw new Exception("Only one application instance is allowed.");
             }
 
-            SyncContext = SynchronizationContext.Current;
+            SyncContext = new DispatcherSynchronizationContext(nativeApp.Dispatcher);
+            SynchronizationContext.SetSynchronizationContext(SyncContext);
             CmdLine = cmdLine;
             Mode = mode;
             Current = this;
@@ -93,11 +95,34 @@ namespace Playnite
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             }
 
+            if (CheckOtherInstances())
+            {
+                resourcesReleased = true;
+                CurrentNative.Shutdown(0);
+                return;
+            }
+
             PlayniteSettings.MigrateSettingsConfig();
             AppSettings = PlayniteSettings.LoadSettings();
+
+            var relaunchPath = string.Empty;
             if (AppSettings.StartInFullscreen && mode == ApplicationMode.Desktop && !CmdLine.StartInDesktop)
             {
-                ProcessStarter.StartProcess(PlaynitePaths.FullscreenExecutablePath, CmdLine.ToString());
+                relaunchPath = PlaynitePaths.FullscreenExecutablePath;
+            }
+
+            if (CmdLine.StartInDesktop && mode != ApplicationMode.Desktop)
+            {
+                relaunchPath = PlaynitePaths.DesktopExecutablePath;
+            }
+            else if (CmdLine.StartInFullscreen && mode != ApplicationMode.Fullscreen)
+            {
+                relaunchPath = PlaynitePaths.FullscreenExecutablePath;
+            }
+
+            if (!relaunchPath.IsNullOrEmpty())
+            {
+                ProcessStarter.StartProcess(relaunchPath, CmdLine.ToString());
                 CurrentNative.Shutdown(0);
                 return;
             }
@@ -264,6 +289,8 @@ namespace Playnite
 
         public abstract void ShowWindowsNotification(string title, string body, Action action);
 
+        public abstract void SwitchAppMode(ApplicationMode mode);
+
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
             logger.Info("Shutting down application because of session ending.");
@@ -355,6 +382,21 @@ namespace Playnite
 
                     break;
 
+                case CmdlineCommand.SwitchMode:
+                    if (args.Args == "desktop")
+                    {
+                        SyncContext.Post(_ => SwitchAppMode(ApplicationMode.Desktop), null);
+                    }
+                    else if (args.Args == "fullscreen")
+                    {
+                        SyncContext.Post(_ => SwitchAppMode(ApplicationMode.Fullscreen), null);
+                    }
+                    else
+                    {
+                        logger.Error($"Can't switch to uknwon application mode: {args.Args}");
+                    }
+                    break;
+
                 default:
                     logger.Warn("Unknown command received");
                     break;
@@ -401,6 +443,14 @@ namespace Playnite
                             {
                                 client.InvokeCommand(CmdlineCommand.ExtensionInstall, CmdLine.InstallExtension);
                             }
+                            else if (CmdLine.StartInDesktop)
+                            {
+                                client.InvokeCommand(CmdlineCommand.SwitchMode, "desktop");
+                            }
+                            else if (CmdLine.StartInFullscreen)
+                            {
+                                client.InvokeCommand(CmdlineCommand.SwitchMode, "fullscreen");
+                            }
                             else
                             {
                                 client.InvokeCommand(CmdlineCommand.Focus, string.Empty);
@@ -409,7 +459,7 @@ namespace Playnite
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    Dialogs.ShowErrorMessage(
+                    MessageBox.Show(
                         ResourceProvider.GetString("LOCStartGenericError"),
                         ResourceProvider.GetString("LOCStartupError"));
                     logger.Error(exc, "Can't process communication with other instances.");
@@ -423,10 +473,12 @@ namespace Playnite
             else
             {
                 var curProcess = Process.GetCurrentProcess();
-                var processes = Process.GetProcessesByName(curProcess.ProcessName);
-                if (processes.Count() > 1)
+                var processes = Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).ToList();
+                // In case multiple processes end up in this branch,
+                // the process with highest process id gets to live.
+                if (processes.Count > 1 && processes.Max(a => a.Id) != curProcess.Id)
                 {
-                    logger.Info("Another faster instance is already running, shutting down.");
+                    logger.Info("Another process instance(s) is already running, shutting down.");
                     resourcesReleased = true;
                     CurrentNative.Shutdown(0);
                     return true;
@@ -524,6 +576,14 @@ namespace Playnite
             else if (!CmdLine.InstallExtension.IsNullOrEmpty())
             {
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.ExtensionInstall, CmdLine.InstallExtension));
+            }
+            else if (CmdLine.StartInDesktop)
+            {
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.SwitchMode, "desktop"));
+            }
+            else if (CmdLine.StartInFullscreen)
+            {
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.SwitchMode, "fullscreen"));
             }
         }
 

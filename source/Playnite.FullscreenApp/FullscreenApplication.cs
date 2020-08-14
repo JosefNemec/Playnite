@@ -45,12 +45,6 @@ namespace Playnite.FullscreenApp
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
             Dialogs = new FullscreenDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
-
-            if (CheckOtherInstances())
-            {
-                return;
-            }
-
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCFullscreenFirstTimeError"), "");
@@ -157,6 +151,18 @@ namespace Playnite.FullscreenApp
         public override void ShowWindowsNotification(string title, string body, Action action)
         {
             // Fullscreen mode shoulnd't show anything since user has no way how inteact with it
+        }
+
+        public override void SwitchAppMode(ApplicationMode mode)
+        {
+            if (mode == ApplicationMode.Desktop)
+            {
+                MainModel.SwitchToDesktopMode();
+            }
+            else
+            {
+                Restore();
+            }
         }
     }
 }

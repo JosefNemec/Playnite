@@ -45,7 +45,7 @@ namespace Playnite.Windows
 
         public WindowFactory()
         {
-            context = SynchronizationContext.Current;
+            context = SynchronizationContext.Current ?? PlayniteApplication.Current.SyncContext;
         }
 
         public bool? CreateAndOpenDialog(object dataContext)

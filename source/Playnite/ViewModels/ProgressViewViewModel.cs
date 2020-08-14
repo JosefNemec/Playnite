@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Playnite.ViewModels
 {
@@ -110,7 +111,8 @@ namespace Playnite.ViewModels
 
     public class ProgressActionArgs
     {
-        public SynchronizationContext SyncContext => PlayniteApplication.Current.SyncContext;
+        public SynchronizationContext MainContext => PlayniteApplication.Current.SyncContext;
+        public Dispatcher MainDispatcher => PlayniteApplication.CurrentNative.Dispatcher;
         public CancellationTokenSource CancelToken { get; }
 
         public ProgressActionArgs(CancellationTokenSource cancelToken)

@@ -57,12 +57,6 @@ namespace Playnite.DesktopApp
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
-
-            if (CheckOtherInstances())
-            {
-                return;
-            }
-
             ConfigureApplication();
             if (AppSettings.DisableDpiAwareness)
             {
@@ -292,6 +286,18 @@ namespace Playnite.DesktopApp
                 ResourceProvider.GetResource(AppSettings.TrayIcon.GetDescription()) as BitmapImage ??
                 ResourceProvider.GetResource("TrayIcon") as BitmapImage;
             return new Icon(trayIconImage.UriSource.LocalPath);
+        }
+
+        public override void SwitchAppMode(ApplicationMode mode)
+        {
+            if (mode == ApplicationMode.Fullscreen)
+            {
+                MainModel.SwitchToFullscreenMode();
+            }
+            else
+            {
+                Restore();
+            }
         }
     }
 }
