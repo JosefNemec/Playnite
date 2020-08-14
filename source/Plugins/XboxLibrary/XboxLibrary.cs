@@ -159,8 +159,7 @@ namespace XboxLibrary
                                     WriteAppDataCache(libTitle);
                                 }
 
-                                if (libTitle.type == "Game" &&
-                                    libTitle.devices?.Contains("PC") == true)
+                                if (libTitle.type == "Game")
                                 {
                                     import = true;
                                 }
