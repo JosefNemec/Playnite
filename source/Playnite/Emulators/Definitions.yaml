@@ -5,7 +5,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sega Dreamcast]
       ImageExtensions: [gdi, cdi, chd]
-      ExecutableLookup: ^reicast.*\.exe
+      ExecutableLookup: ^reicast.*\.exe$
 
 - Name: FightCade
   Website: 'https://www.fightcade.com/'
@@ -14,7 +14,7 @@
       DefaultArguments: '"{ImageNameNoExt}"'
       Platforms: [Various]
       ImageExtensions: [zip, bin]
-      ExecutableLookup: ^ggpofba\.exe
+      ExecutableLookup: ^ggpofba\.exe$
 
 - Name: Locale Emulator
   Website: 'https://pooi.moe/Locale-Emulator/'
@@ -23,7 +23,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [PC]
       ImageExtensions: [exe]
-      ExecutableLookup: ^LEProc\.exe
+      ExecutableLookup: ^LEProc\.exe$
 
 - Name: DOSBox
   Website: 'https://www.dosbox.com/'
@@ -49,7 +49,7 @@
       DefaultArguments: '"{Name}"'
       Platforms: [PC, DOS]
       ImageExtensions: [prof]  
-      ExecutableLookup: ^DFend\.exe
+      ExecutableLookup: ^DFend\.exe$
 
 - Name: PCem
   Website: 'https://pcem-emulator.co.uk/'
@@ -67,7 +67,7 @@
       DefaultArguments: '-config nullDC_GUI:Fullscreen=1 -config nullDC:Emulator.Autostart=1 -config ImageReader:LoadDefaultImage=1 -config ImageReader:DefaultImage="{ImagePath}"'
       Platforms: [Sega Dreamcast]
       ImageExtensions: [iso, bwt, cdi, b5t, b6t, ccd, cue, mds, nrg, pdi]
-      ExecutableLookup: ^nullDC.*\.exe
+      ExecutableLookup: ^nullDC.*\.exe$
       
 - Name: DEmul
   Website: 'http://demul.emulation64.com/'
@@ -119,12 +119,12 @@
       DefaultArguments: '--exec="{ImagePath}" --batch'
       Platforms: [Nintendo GameCube]
       ImageExtensions: [elf, dol, gcm, tgc, ciso, gcz, iso, wad, dff]
-      ExecutableLookup: ^Dolphin\.exe
+      ExecutableLookup: ^Dolphin\.exe$
     - Name: Nintendo Wii
       DefaultArguments: '--exec="{ImagePath}" --batch'
       Platforms: [Nintendo Wii]
       ImageExtensions: [elf, dol, tgc, wbfs, ciso, gcz, iso, wad, dff]
-      ExecutableLookup: ^Dolphin\.exe
+      ExecutableLookup: ^Dolphin\.exe$
 
 - Name: Kega Fusion
   Website: 'http://www.carpeludum.com/kega-fusion/'
@@ -133,17 +133,17 @@
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega Genesis]
       ImageExtensions: [bin, smd, md, raw, gen, zip]
-      ExecutableLookup: ^Fusion\.exe
+      ExecutableLookup: ^Fusion\.exe$
     - Name: Sega 32X
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega 32X]
       ImageExtensions: [32x, raw, zip]
-      ExecutableLookup: ^Fusion\.exe
+      ExecutableLookup: ^Fusion\.exe$
     - Name: Sega CD
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega CD]
       ImageExtensions: [cue, bin, iso, raw, zip]
-      ExecutableLookup: ^Fusion\.exe
+      ExecutableLookup: ^Fusion\.exe$
     - Name: Sega Master System
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega Master System]
@@ -153,7 +153,7 @@
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega Game Gear]
       ImageExtensions: [bin, gg, raw, zip]
-      ExecutableLookup: ^Fusion\.exe
+      ExecutableLookup: ^Fusion\.exe$
       
 - Name: Project64
   Website: 'http://www.pj64-emu.com/'
@@ -162,7 +162,7 @@
       DefaultArguments: '"{ImagePath}"'
       ImageExtensions: [rom, n64, v64, z64, jap, pal, usa, zip]
       Platforms: [Nintendo 64]
-      ExecutableLookup: ^Project64\.exe
+      ExecutableLookup: ^Project64\.exe$
 
 - Name: Nestopia
   Website: 'http://nestopia.sourceforge.net/'
@@ -171,7 +171,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Entertainment System]
       ImageExtensions: [nes, unf, fds, nsf, zip]
-      ExecutableLookup: ^nestopia\.exe
+      ExecutableLookup: ^nestopia\.exe$
 
 - Name: FCEUX
   Website: 'http://www.fceux.com'
@@ -180,7 +180,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Entertainment System]
       ImageExtensions: [7z, zip, rar, tar, nes, fds, nsf, unf, nez, unif]
-      ExecutableLookup: ^fceux\.exe
+      ExecutableLookup: ^fceux\.exe$
       
 - Name: Mesen
   Website: 'https://www.mesen.ca/'
@@ -198,7 +198,7 @@
       DefaultArguments: '"{ImagePath}" -fullscreen'
       Platforms: [Super Nintendo Entertainment System]
       ImageExtensions: [zip, gz, jma, sfc, smc]
-      ExecutableLookup: ^snes9x.*\.exe
+      ExecutableLookup: ^snes9x.*\.exe$
 
 - Name: ZSNES
   Website: 'http://www.zsnes.com/'
@@ -207,7 +207,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Super Nintendo Entertainment System]
       ImageExtensions: [zip, smc, sfc, swc, fig, mgd, mgh, ufo, bin, gd3, gd7, dx2, usa, eur, jap, aus, st, bs, 048, 058, 078]
-      ExecutableLookup: ^zsnesw\.exe
+      ExecutableLookup: ^zsnesw\.exe$
 
 - Name: ePSXe
   Website: 'http://www.epsxe.com/'
@@ -216,7 +216,7 @@
       DefaultArguments: '-nogui -slowboot -loadbin "{ImagePath}"'
       Platforms: [Sony PlayStation]
       ImageExtensions: [bin, iso, img, cue, pbp, zip]
-      ExecutableLookup: ^ePSXe\.exe
+      ExecutableLookup: ^ePSXe\.exe$
 
 - Name: PCSXR-PGXP
   Website: 'https://github.com/iCatButler/pcsxr/'
@@ -225,7 +225,7 @@
       DefaultArguments: '-cdfile "{ImagePath}" -nogui -slowboot'
       Platforms: [Sony PlayStation]
       ImageExtensions: [bin, iso, img, cue]
-      ExecutableLookup: ^pcsxr-pgxp\.exe
+      ExecutableLookup: ^pcsxr-pgxp\.exe$
       
 - Name: PCSX2
   Website: 'https://pcsx2.net/'
@@ -234,7 +234,7 @@
       DefaultArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
       Platforms: [Sony PlayStation 2]
       ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso]
-      ExecutableLookup: ^pcsx2\.exe
+      ExecutableLookup: ^pcsx2\.exe$
 
 - Name: PPSSPP
   Website: 'https://www.ppsspp.org/'
@@ -257,7 +257,7 @@
       DefaultArguments: '-StartLoadFile "{ImagePath}" --StartFullScreen'  
       Platforms: [3DO Interactive Multiplayer]
       ImageExtensions: [cue, bin, iso]
-      ExecutableLookup: ^4do\.exe
+      ExecutableLookup: ^4do\.exe$
 
 - Name: Stella
   Website: 'https://stella-emu.github.io/'
@@ -266,7 +266,7 @@
       DefaultArguments: '-fullscreen 1 "{ImagePath}"'
       Platforms: [Atari 2600]
       ImageExtensions: [bin, a26, zip]
-      ExecutableLookup: ^Stella\.exe
+      ExecutableLookup: ^Stella\.exe$
 
 - Name: Virtual Jaguar
   Website: 'https://icculus.org/virtualjaguar/'
@@ -275,7 +275,7 @@
       DefaultArguments: '"{ImagePath}" --fullscreen'
       Platforms: [Atari Jaguar]
       ImageExtensions: [abs, rom, jag, bin]
-      ExecutableLookup: ^virtualjaguar\.exe
+      ExecutableLookup: ^virtualjaguar\.exe$
 
 - Name: DeSmuME
   Website: 'http://desmume.org/'
@@ -284,7 +284,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo DS]
       ImageExtensions: [nds, zip, 7z, rar, gz]
-      ExecutableLookup: ^DeSmuME.*\.exe
+      ExecutableLookup: ^DeSmuME.*\.exe$
 
 - Name: Yabuse
   Website: 'https://yabause.org/'
@@ -293,7 +293,7 @@
       DefaultArguments: '--iso="{ImagePath}"'
       Platforms: [Sega Saturn]
       ImageExtensions: [iso, cue, bin, mds]
-      ExecutableLookup: ^yabause.*\.exe
+      ExecutableLookup: ^yabause.*\.exe$
 
 - Name: Cemu
   Website: 'http://cemu.info/'
@@ -302,7 +302,7 @@
       DefaultArguments: '-g "{ImagePath}" -f'
       Platforms: [Nintendo Wii U]
       ImageExtensions: [wud, wux, rpx]
-      ExecutableLookup: ^cemu.*\.exe
+      ExecutableLookup: ^cemu.*\.exe$
       
 - Name: decaf
   Website: 'http://decaf-emu.com/'
@@ -320,7 +320,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sony PlayStation 3]
       ImageExtensions: [bin]
-      ExecutableLookup: ^rpcs3.*\.exe
+      ExecutableLookup: ^rpcs3.*\.exe$
 
 - Name: Vita3K
   Website: 'https://vita3k.github.io/'
@@ -329,7 +329,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sony PlayStation Vita]
       ImageExtensions: [vpk]
-      ExecutableLookup: ^Vita3K.*\.exe
+      ExecutableLookup: ^Vita3K.*\.exe$
 
 - Name: m64p
   Website: 'https://m64p.github.io/'
@@ -338,7 +338,7 @@
       DefaultArguments: '--nogui "{ImagePath}"'
       ImageExtensions: [n64, v64, z64, zip, 7z]
       Platforms: [Nintendo 64]
-      ExecutableLookup: ^mupen64plus-gui\.exe
+      ExecutableLookup: ^mupen64plus-gui\.exe$
  
 - Name: BlastEm
   Website: 'https://www.retrodev.com/blastem/'
@@ -347,7 +347,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sega Genesis]
       ImageExtensions: [bin, md]
-      ExecutableLookup: ^blastem\.exe
+      ExecutableLookup: ^blastem\.exe$
   
 - Name: Citra
   Website: 'https://citra-emu.org/'
@@ -356,7 +356,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo 3DS]
       ImageExtensions: [3ds, 3dsx, cci, cxi, elf]
-      ExecutableLookup: ^citra-qt\.exe
+      ExecutableLookup: ^citra-qt\.exe$
       
 - Name: yuzu
   Website: 'https://yuzu-emu.org/'
@@ -383,7 +383,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Microsoft Xbox 360]
       ImageExtensions: [iso, xex, cci, cxi, elf]
-      ExecutableLookup: ^xenia\.exe
+      ExecutableLookup: ^xenia\.exe$
  
 - Name: FS-UAE
   Website: 'https://fs-uae.net/'
@@ -392,7 +392,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Commodore Amiga]
       ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi, lha, lzx]
-      ExecutableLookup: ^Launcher\.exe
+      ExecutableLookup: ^Launcher\.exe$
       
 - Name: WinUAE
   Website: 'http://www.winuae.net/'
@@ -551,127 +551,127 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Apple II]
       ImageExtensions: [d13, sk, do, po, woz, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Atari Lynx
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Atari Lynx]
       ImageExtensions: [lnx, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: NEC TurboGrafx 16
       DefaultArguments: '"{ImagePath}"'
       Platforms: [NEC TurboGrafx 16]
       ImageExtensions: [pce, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: NEC TurboGrafx-CD
       DefaultArguments: '"{ImagePath}"'
       Platforms: [NEC TurboGrafx-CD]
       ImageExtensions: [cue, ccd, chd]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: NEC PC-FX
       DefaultArguments: '"{ImagePath}"'
       Platforms: [NEC PC-FX]
       ImageExtensions: [cue, ccd, chd, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Nintendo Entertainment System
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Entertainment System]
       ImageExtensions: [nes, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Nintendo Game Boy
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy]
       ImageExtensions: [gb, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Nintendo Game Boy Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Color]
       ImageExtensions: [gbc, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Nintendo Game Boy Advance
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Advance]
       ImageExtensions: [gba, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Nintendo Virtual Boy
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Virtual Boy]
       ImageExtensions: [vb, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: PC Engine SuperGrafx
       DefaultArguments: '"{ImagePath}"'
       Platforms: [PC Engine SuperGrafx]
       ImageExtensions: [sgx, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Sega Game Gear
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sega Game Gear]
       ImageExtensions: [sgg, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Sega Genesis
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sega Genesis]
       ImageExtensions: [gen, md, bin, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Sega Master System
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sega Master System]
       ImageExtensions: [sms, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Sega Saturn
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sega Saturn]
       ImageExtensions: [chd, iso, bin, cue]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: SNK Neo Geo Pocket
       DefaultArguments: '"{ImagePath}"'
       Platforms: [SNK Neo Geo Pocket]
       ImageExtensions: [ngp, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: SNK Neo Geo Pocket Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [SNK Neo Geo Pocket Color]
       ImageExtensions: [ngc, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Sony PlayStation
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sony PlayStation]
       ImageExtensions: [chd, cue, ccd, mds, m3u]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Super Nintendo Entertainment System
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Super Nintendo Entertainment System]
       ImageExtensions: [smc, sfc, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Bandai WonderSwan
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Bandai WonderSwan]
       ImageExtensions: [ws, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
     - Name: Bandai WonderSwan Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Bandai WonderSwan Color]
       ImageExtensions: [wsc, zip]
-      ExecutableLookup: ^mednafen\.exe
+      ExecutableLookup: ^mednafen\.exe$
 
 - Name: BizHawk
   Website: 'http://tasvideos.org/Bizhawk.html/'
@@ -904,13 +904,13 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy]
       ImageExtensions: [gb]
-      ExecutableLookup: ^sameboy\.exe
+      ExecutableLookup: ^sameboy\.exe$
 
     - Name: Nintendo - Game Boy Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Color]
       ImageExtensions: [gbc]
-      ExecutableLookup: ^sameboy\.exe
+      ExecutableLookup: ^sameboy\.exe$
 
 - Name: bsnes-hd
   Website: 'https://github.com/DerKoun/bsnes-hd'
@@ -928,25 +928,25 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy]
       ImageExtensions: [gb]
-      ExecutableLookup: ^gbe_plus_qt*\.exe
+      ExecutableLookup: ^gbe_plus_qt*\.exe$
 
     - Name: Game Boy Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Color]
       ImageExtensions: [gbc]
-      ExecutableLookup: ^gbe_plus_qt*\.exe
+      ExecutableLookup: ^gbe_plus_qt*\.exe$
 
     - Name: Game Boy Advance
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Advance]
       ImageExtensions: [gba]
-      ExecutableLookup: ^gbe_plus_qt*\.exe
+      ExecutableLookup: ^gbe_plus_qt*\.exe$
 
     - Name: Nintendo DS
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo DS]
       ImageExtensions: [nds]
-      ExecutableLookup: ^gbe_plus_qt*\.exe
+      ExecutableLookup: ^gbe_plus_qt*\.exe$
 
 - Name: Flash Player Projector
   Website: 'https://www.adobe.com/support/flashplayer/debug_downloads.html'
@@ -964,7 +964,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Super Nintendo Entertainment System]
       ImageExtensions: [sfc, smc, zip, 7z]
-      ExecutableLookup: ^bsnes\.exe
+      ExecutableLookup: ^bsnes\.exe$
 
 - Name: bsnes-mt
   Website: 'https://tanalin.com/en/projects/bsnes-mt/'
@@ -982,7 +982,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Super Nintendo Entertainment System]
       ImageExtensions: [sfc, smc, zip, 7z]
-      ExecutableLookup: ^Mesen-S\.exe
+      ExecutableLookup: ^Mesen-S\.exe$
 
 - Name: melonDS
   Website: 'http://melonds.kuribo64.net/'
@@ -991,7 +991,7 @@
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo DS]
       ImageExtensions: [nds]
-      ExecutableLookup: ^melonDS\.exe
+      ExecutableLookup: ^melonDS\.exe$
 
 - Name: higan
   Website: 'https://higan.byuu.org/'
