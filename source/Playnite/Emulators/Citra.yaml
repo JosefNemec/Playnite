@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Nintendo 3DS]
     ImageExtensions: [3ds, 3dsx, cci, cxi, elf]
-    ExecutableLookup: ^citra-qt\.exe
+    ExecutableLookup: ^citra-qt\.exe$
