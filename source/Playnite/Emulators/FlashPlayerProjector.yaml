@@ -1,0 +1,8 @@
+Name: Flash Player Projector
+Website: 'https://www.adobe.com/support/flashplayer/debug_downloads.html'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Adobe Flash]
+    ImageExtensions: [swf]
+    ExecutableLookup: ^flashplayer_\d+_sa\.exe$

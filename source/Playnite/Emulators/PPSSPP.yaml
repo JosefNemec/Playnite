@@ -1,0 +1,13 @@
+Name: PPSSPP
+Website: 'https://www.ppsspp.org/'
+Profiles:
+  - Name: 64bit
+    DefaultArguments: '"{ImagePath}" --pause-menu-exit --fullscreen'
+    Platforms: [Sony PSP]
+    ImageExtensions: [iso, cso, pbp]
+    ExecutableLookup: ^PPSSPPWindows64\.exe$
+  - Name: 32bit
+    DefaultArguments: '"{ImagePath}" --pause-menu-exit --fullscreen'
+    Platforms: [Sony PSP]
+    ImageExtensions: [iso, cso, pbp]
+    ExecutableLookup: ^PPSSPPWindows\.exe$

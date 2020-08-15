@@ -402,12 +402,11 @@ namespace Playnite.Database
             if (!dbExists)
             {
                 // Generate default platforms
-                if (File.Exists(EmulatorDefinition.DefinitionsPath))
+                var platforms = EmulatorDefinition.GetDefinitions()
+                    .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
+                    .Select(a => new Platform(a)).ToList();
+                if (platforms.HasItems())
                 {
-                    var platforms = EmulatorDefinition.GetDefinitions()
-                        .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
-                        .Select(a => new Platform(a)).ToList();
-
                     var col = Platforms as ItemCollection<Platform>;
                     col.IsEventsEnabled = false;
                     col.Add(platforms);

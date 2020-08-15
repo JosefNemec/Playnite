@@ -1,0 +1,8 @@
+Name: bsnes
+Website: 'https://bsnes.byuu.org/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Super Nintendo Entertainment System]
+    ImageExtensions: [sfc, smc, zip, 7z]
+    ExecutableLookup: ^bsnes\.exe

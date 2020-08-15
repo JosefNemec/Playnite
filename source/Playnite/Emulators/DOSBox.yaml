@@ -1,0 +1,8 @@
+Name: DOSBox
+Website: 'https://www.dosbox.com/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '-conf "{ImagePath}" -exit'
+    Platforms: [PC, DOS]
+    ImageExtensions: [conf]  
+    ExecutableLookup: ^dosbox\.exe$

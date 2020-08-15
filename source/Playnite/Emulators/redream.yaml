@@ -1,0 +1,8 @@
+Name: redream
+Website: 'https://redream.io/'
+Profiles:
+  - Name: Default     
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Dreamcast]
+    ImageExtensions: [cdi, gdi, chd, cue]
+    ExecutableLookup: ^redream\.exe$

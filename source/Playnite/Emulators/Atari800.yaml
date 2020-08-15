@@ -1,0 +1,8 @@
+Name: Atari800
+Website: 'https://atari800.github.io/'
+Profiles:
+  - Name: Default    
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Atari 800, Atari 5200]
+    ImageExtensions: [xfd, atr, atx, cdm, cas, bin, a52]
+    ExecutableLookup: ^atari800\.exe$
