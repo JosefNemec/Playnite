@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Sega Genesis]
     ImageExtensions: [bin, md]
-    ExecutableLookup: ^blastem\.exe
+    ExecutableLookup: ^blastem\.exe$
