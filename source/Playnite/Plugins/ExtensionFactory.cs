@@ -385,6 +385,10 @@ namespace Playnite.Plugins
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e.InnerException, $"Failed to load plugin: {desc.Name}");
+                    if (e.InnerException == null)
+                    {
+                        logger.Error(e, string.Empty);
+                    }
                 }
             }
 
