@@ -25,9 +25,9 @@ Profiles:
     ImageExtensions: [lnx, zip, rar, 7z, gz]
     ExecutableLookup: ^EmuHawk\.exe$
 
-  - Name: ColecoVision
+  - Name: Coleco ColecoVision
     DefaultArguments: '"{ImagePath}"'
-    Platforms: [ColecoVision]
+    Platforms: [Coleco ColecoVision]
     ImageExtensions: [col, zip, rar, 7z, gz]
     ExecutableLookup: ^EmuHawk\.exe$
 
