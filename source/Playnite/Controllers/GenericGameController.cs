@@ -21,7 +21,7 @@ namespace Playnite.Controllers
         protected Stopwatch stopWatch;
         protected ProcessMonitor procMon;
         private GameDatabase database;
-        private ILogger logger = LogManager.GetLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         public GenericGameController(GameDatabase db, Game game) : base(game)
         {
@@ -35,23 +35,29 @@ namespace Playnite.Controllers
                 throw new Exception("Cannot start game without play action.");
             }
 
-            //Solving Issue #1065 if removable drives are used for storing ROMs/Images
-            CheckGameImagePath();
-
-            var playAction = Game.PlayAction.ExpandVariables(Game);
-            //Solving Issue #1065 if removable drives are used for manually added games
-            CheckGameActionPath(playAction);
-
-            Dispose();
+            var gameClone = Game.GetClone();
+            var playAction = gameClone.PlayAction;
             var emulators = database.Emulators.ToList();
-            var profile = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.ExpandVariables(Game);
-            if (profile != null)
+            var profileClone = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.GetClone();
+
+            //Solving Issue #1065 if removable drives are used for storing ROMs/Images
+            CheckGameImagePath(gameClone);
+            //Solving Issue #1065 if removable drives are used for manually added games
+            CheckGameAction(playAction);
+            if (playAction.Type == GameActionType.Emulator && profileClone != null)
             {
                 //Solving Issue #1065 if removable drives are used for emulators
-                CheckEmulatorConfigExecutable(profile);
+                CheckEmulatorConfig(profileClone);
             }
+
+            playAction = gameClone.PlayAction.ExpandVariables(gameClone);
+
+            Dispose();
+
+            profileClone = profileClone?.ExpandVariables(gameClone);
+
             OnStarting(this, new GameControllerEventArgs(this, 0));
-            var proc = GameActionActivator.ActivateAction(playAction, profile);
+            var proc = GameActionActivator.ActivateAction(playAction, profileClone);
 
             if (playAction.Type != GameActionType.URL)
             {
@@ -63,12 +69,12 @@ namespace Playnite.Controllers
                 var uwpMatch = Regex.Match(playAction.Arguments ?? string.Empty, @"shell:AppsFolder\\(.+)!.+");
                 if (playAction.Path == "explorer.exe" && uwpMatch.Success)
                 {
-                    var scanDirectory = Game.InstallDirectory;
+                    var scanDirectory = gameClone.InstallDirectory;
                     procMon.TreeStarted += ProcMon_TreeStarted;
 
-                    if (!Game.GameId.IsNullOrEmpty())
+                    if (!gameClone.GameId.IsNullOrEmpty())
                     {
-                        var prg = Programs.GetUWPApps().FirstOrDefault(a => a.AppId == Game.GameId);
+                        var prg = Programs.GetUWPApps().FirstOrDefault(a => a.AppId == gameClone.GameId);
                         if (prg != null)
                         {
                             scanDirectory = prg.WorkDir;
@@ -101,13 +107,13 @@ namespace Playnite.Controllers
             }
             else
             {
-                if (!string.IsNullOrEmpty(Game.InstallDirectory) && Directory.Exists(Game.InstallDirectory))
+                if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && Directory.Exists(gameClone.InstallDirectory))
                 {
                     OnStarted(this, new GameControllerEventArgs(this, 0));
                     stopWatch = Stopwatch.StartNew();
                     procMon = new ProcessMonitor();
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                    procMon.WatchDirectoryProcesses(gameClone.InstallDirectory, false);
                 }
                 else
                 {
@@ -146,56 +152,67 @@ namespace Playnite.Controllers
             OnStopped(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
         }
 
-        private void CheckGameImagePath()
+        private void CheckGameImagePath(Game game)
         {
-            if (Game.PlayAction.Type == GameActionType.Emulator)
+            if (!string.IsNullOrWhiteSpace(game.GameImagePath) && !File.Exists(game.GameImagePath))
             {
-                var gameImagePath = Game.GameImagePath;
-                if (!FileSystem.CheckDrivesForValidFilePath(ref gameImagePath, false))
-                {
-                    throw new FileNotFoundException($"File \"{gameImagePath}\" does not exist", gameImagePath);
-                }
-                else if (!Game.GameImagePath.Equals(gameImagePath, StringComparison.OrdinalIgnoreCase))
+                var gameImagePath = FileSystem.LookupAlternativeFilePath(game.GameImagePath, false);
+
+                if (!string.IsNullOrWhiteSpace(gameImagePath))
                 {
                     logger.Warn($"ROM/Image \"{Game.GameImagePath}\" does not exist for game \"{Game.Name}\"" +
-                        $" and is temporarily changed to {gameImagePath}");
-                    Game.GameImagePath = gameImagePath;
+                        $" and is temporarily changed to \"{gameImagePath}\"");
+                    game.GameImagePath = gameImagePath;
                 }
             }
         }
 
-        private void CheckGameActionPath(GameAction gameAction)
+        private void CheckGameAction(GameAction gameAction)
         {
-            if (Game.PlayAction.Type == GameActionType.File)
+            if (!string.IsNullOrWhiteSpace(gameAction.Path) && !File.Exists(gameAction.Path))
             {
-                var gameActionPath = gameAction.Path;
-                if (!FileSystem.CheckDrivesForValidFilePath(ref gameActionPath, false))
-                {
-                    throw new FileNotFoundException($"File \"{gameActionPath}\" does not exist", gameActionPath);
-                }
-                else if (!gameAction.Path.Equals(gameActionPath, StringComparison.OrdinalIgnoreCase))
+                var gameActionPath = FileSystem.LookupAlternativeFilePath(gameAction.Path, false);
+                if (!string.IsNullOrWhiteSpace(gameActionPath))
                 {
                     logger.Warn($"Path \"{gameAction.Path}\" does not exist for game \"{Game.Name}\"" +
-                        $" and is temporarily changed to {gameActionPath}");
+                        $" and is temporarily changed to \"{gameActionPath}\"");
                     gameAction.Path = gameActionPath;
                 }
             }
+
+            if (!string.IsNullOrWhiteSpace(gameAction.WorkingDir) && !Directory.Exists(gameAction.WorkingDir))
+            {
+                var workingDir = FileSystem.LookupAlternativeDirectoryPath(gameAction.WorkingDir, false);
+                if (!string.IsNullOrWhiteSpace(workingDir))
+                {
+                    logger.Warn($"WorkingDir \"{gameAction.WorkingDir}\" does not exist for game \"{Game.Name}\"" +
+                        $" and is temporarily changed to \"{workingDir}\"");
+                    gameAction.WorkingDir = workingDir;
+                }
+            }
         }
 
-        private void CheckEmulatorConfigExecutable(EmulatorProfile emulatorProfile)
+        private void CheckEmulatorConfig(EmulatorProfile emulatorProfile)
         {
-            if (Game.PlayAction.Type == GameActionType.Emulator)
+            if (!File.Exists(emulatorProfile.Executable))
             {
-                var configExecutable = emulatorProfile.Executable;
-                if (!FileSystem.CheckDrivesForValidFilePath(ref configExecutable, false))
-                {
-                    throw new FileNotFoundException($"Emulator \"{configExecutable}\" does not exist", configExecutable);
-                }
-                else if (!emulatorProfile.Executable.Equals(configExecutable, StringComparison.OrdinalIgnoreCase))
+                var configExecutable = FileSystem.LookupAlternativeFilePath(emulatorProfile.Executable, false);
+                if (!string.IsNullOrWhiteSpace(configExecutable))
                 {
                     logger.Warn($"Emulator \"{configExecutable}\" does not exist for game \"{Game.Name}\"" +
-                        $" and is temporarily changed to {configExecutable}");
+                        $" and is temporarily changed to \"{configExecutable}\"");
                     emulatorProfile.Executable = configExecutable;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(emulatorProfile.WorkingDirectory) && !Directory.Exists(emulatorProfile.WorkingDirectory))
+            {
+                var workingDir = FileSystem.LookupAlternativeDirectoryPath(emulatorProfile.WorkingDirectory, false);
+                if (!string.IsNullOrWhiteSpace(workingDir))
+                {
+                    logger.Warn($"WorkingDir \"{emulatorProfile.WorkingDirectory}\" does not exist for emulator \"{emulatorProfile.Name}\"" +
+                        $" and is temporarily changed to \"{workingDir}\"");
+                    emulatorProfile.WorkingDirectory = workingDir;
                 }
             }
         }

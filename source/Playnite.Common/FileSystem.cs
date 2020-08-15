@@ -326,48 +326,45 @@ namespace Playnite.Common
             }
         }
 
-        public static bool CheckDrivesForValidFilePath(ref string filePath, bool errorIfNotFullPath)
+        public static string LookupAlternativeFilePath(string filePath, bool errorIfNotFullPath)
         {
-            return CheckDrivesForValidFilePath(new FileInfo(filePath), out filePath, errorIfNotFullPath);
+            return CheckDrivesForPath(filePath, errorIfNotFullPath, path => File.Exists(path));
         }
 
-        public static bool CheckDrivesForValidFilePath(FileInfo fileInfo, out string filePath, bool errorIfNotFullPath)
+        public static string LookupAlternativeDirectoryPath(string directoryPath, bool errorIfNotFullPath)
         {
-            filePath = fileInfo.FullName;
+            return CheckDrivesForPath(directoryPath, errorIfNotFullPath, path => Directory.Exists(path));
+        }
 
-            if (!Paths.IsFullPath(fileInfo.FullName))
+        private static string CheckDrivesForPath(string originalPath, bool errorIfNotFullPath, Predicate<string> predicate)
+        {
+            if (!Paths.IsFullPath(originalPath))
             {
                 if (errorIfNotFullPath)
                 {
-                    throw new ArgumentException("Provided path is not rooted", nameof(filePath));
+                    throw new ArgumentException("Provided path is not rooted", nameof(originalPath));
                 }
                 else
                 {
-                    return true;
+                    return originalPath;
                 }
             }
 
-            if (fileInfo.Exists)
-            {
-                return true;
-            }
-
-            var rootPath = Path.GetPathRoot(fileInfo.FullName);
+            var rootPath = Path.GetPathRoot(originalPath);
             var availableDrives = DriveInfo.GetDrives()
                 .Where(d => d.IsReady && !d.Name.Equals(rootPath, StringComparison.OrdinalIgnoreCase));
 
-            foreach(var drive in availableDrives)
+            foreach (var drive in availableDrives)
             {
-                var filePathWithoutDrive = fileInfo.FullName.Substring(drive.Name.Length);
-                var newFilePath = Path.Combine(drive.Name, filePathWithoutDrive);
-                if (File.Exists(newFilePath))
+                var pathWithoutDrive = originalPath.Substring(drive.Name.Length);
+                var newDirectoryPath = Path.Combine(drive.Name, pathWithoutDrive);
+                if (predicate(newDirectoryPath))
                 {
-                    filePath = newFilePath;
-                    return true;
+                    return newDirectoryPath;
                 }
             }
 
-            return false;
+            return string.Empty;
         }
     }
 }
