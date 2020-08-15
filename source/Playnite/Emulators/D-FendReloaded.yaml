@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{Name}"'
     Platforms: [PC, DOS]
     ImageExtensions: [prof]  
-    ExecutableLookup: ^DFend\.exe
+    ExecutableLookup: ^DFend\.exe$
