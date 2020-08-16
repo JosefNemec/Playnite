@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '-cdfile "{ImagePath}" -nogui -slowboot'
     Platforms: [Sony PlayStation]
     ImageExtensions: [bin, iso, img, cue]
-    ExecutableLookup: ^pcsxr-pgxp\.exe
+    ExecutableLookup: ^pcsxr-pgxp\.exe$
