@@ -1,8 +1,8 @@
 Name: Xenia
-Website: 'http://xenia.jp/'
+Website: 'https://xenia.jp/'
 Profiles:
   - Name: Default
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Microsoft Xbox 360]
     ImageExtensions: [iso, xex, cci, cxi, elf]
-    ExecutableLookup: ^xenia\.exe
+    ExecutableLookup: ^xenia\.exe$
