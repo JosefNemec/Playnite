@@ -5,9 +5,9 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Nintendo Game Boy]
     ImageExtensions: [gb]
-    ExecutableLookup: ^sameboy\.exe
+    ExecutableLookup: ^sameboy\.exe$
   - Name: Nintendo - Game Boy Color
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Nintendo Game Boy Color]
     ImageExtensions: [gbc]
-    ExecutableLookup: ^sameboy\.exe
+    ExecutableLookup: ^sameboy\.exe$
