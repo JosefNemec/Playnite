@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [PC]
     ImageExtensions: [exe]
-    ExecutableLookup: ^LEProc\.exe
+    ExecutableLookup: ^LEProc\.exe$
