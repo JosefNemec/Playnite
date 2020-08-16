@@ -1,5 +1,5 @@
 Name: higan
-Website: 'https://higan.byuu.org/'
+Website: 'https://byuu.org/higan/'
 Profiles:
   - Name: Nintendo - Famicom
     DefaultArguments: '"{ImagePath}"'
