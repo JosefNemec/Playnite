@@ -1,0 +1,58 @@
+Name: FB Alpha
+Website: 'https://www.fbalpha.com/'
+Profiles:
+  - Name: Capcom CP System I
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Capcom CP System I]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: Capcom CP System II
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Capcom CP System II]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: Capcom CP System III
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Capcom CP System III]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: CAVE CV1000
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [CAVE CV1000]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: Coleco ColecoVision
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Coleco ColecoVision]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: Microsoft MSX
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Microsoft MSX]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: NEC TurboGrafx 16
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [NEC TurboGrafx 16]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: Sega Game Gear
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Sega Game Gear]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: Sega Genesis
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Sega Genesis]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: SNK Neo Geo
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [SNK Neo Geo]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
+  - Name: Various
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Various]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^fba64\.exe$
