@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Sony PlayStation 3]
     ImageExtensions: [bin]
-    ExecutableLookup: ^rpcs3.*\.exe
+    ExecutableLookup: ^rpcs3.*\.exe$
