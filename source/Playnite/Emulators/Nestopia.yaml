@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Nintendo Entertainment System]
     ImageExtensions: [nes, unf, fds, nsf, zip]
-    ExecutableLookup: ^nestopia\.exe
+    ExecutableLookup: ^nestopia\.exe$
