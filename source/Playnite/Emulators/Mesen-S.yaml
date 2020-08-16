@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Super Nintendo Entertainment System]
     ImageExtensions: [sfc, smc, zip, 7z]
-    ExecutableLookup: ^Mesen-S\.exe
+    ExecutableLookup: ^Mesen-S\.exe$
