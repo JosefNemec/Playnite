@@ -1,8 +1,8 @@
-Name: Yabuse
+Name: Yabause
 Website: 'https://yabause.org/'
 Profiles:
   - Name: Default
     DefaultArguments: '--iso="{ImagePath}"'
     Platforms: [Sega Saturn]
     ImageExtensions: [iso, cue, bin, mds]
-    ExecutableLookup: ^yabause.*\.exe
+    ExecutableLookup: ^yabause.*\.exe$
