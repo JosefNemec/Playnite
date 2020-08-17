@@ -260,18 +260,18 @@ namespace Playnite
 
             try
             {
-                var gameClone = game.GetClone();
-                if (!Directory.Exists(gameClone.InstallDirectory))
+                var installDirectory = game.InstallDirectory;
+                if (!Directory.Exists(installDirectory))
                 {
-                    var newInstallDirectory = FileSystem.LookupAlternativeDirectoryPath(gameClone.InstallDirectory);
+                    var newInstallDirectory = FileSystem.LookupAlternativeDirectoryPath(installDirectory);
                     if (!string.IsNullOrWhiteSpace(newInstallDirectory))
                     {
-                        logger.Warn($"InstallDirectory \"{gameClone.InstallDirectory}\" does not exist for game \"{gameClone.Name}\"" +
+                        logger.Warn($"InstallDirectory \"{installDirectory}\" does not exist for game \"{game.Name}\"" +
                         $" and is temporarily changed to {newInstallDirectory}");
-                        gameClone.InstallDirectory = newInstallDirectory;
+                        installDirectory = newInstallDirectory;
                     }
                 }
-                Process.Start(game.ExpandVariables(gameClone.InstallDirectory));
+                Process.Start(installDirectory);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
