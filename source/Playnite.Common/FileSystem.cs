@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO.Compression;
 using Playnite.SDK;
+using System.Diagnostics;
 
 namespace Playnite.Common
 {
@@ -326,42 +327,44 @@ namespace Playnite.Common
             }
         }
 
-        public static string LookupAlternativeFilePath(string filePath, bool errorIfNotFullPath)
+        public static string LookupAlternativeFilePath(string filePath)
         {
-            return CheckDrivesForPath(filePath, errorIfNotFullPath, path => File.Exists(path));
+            return CheckDrivesForPath(filePath, path => File.Exists(path));
         }
 
-        public static string LookupAlternativeDirectoryPath(string directoryPath, bool errorIfNotFullPath)
+        public static string LookupAlternativeDirectoryPath(string directoryPath)
         {
-            return CheckDrivesForPath(directoryPath, errorIfNotFullPath, path => Directory.Exists(path));
+            return CheckDrivesForPath(directoryPath, path => Directory.Exists(path));
         }
 
-        private static string CheckDrivesForPath(string originalPath, bool errorIfNotFullPath, Predicate<string> predicate)
+        private static string CheckDrivesForPath(string originalPath, Predicate<string> predicate)
         {
-            if (!Paths.IsFullPath(originalPath))
+            try
             {
-                if (errorIfNotFullPath)
+                if (!Paths.IsFullPath(originalPath))
                 {
-                    throw new ArgumentException("Provided path is not rooted", nameof(originalPath));
+                    return string.Empty;
                 }
-                else
+
+                var rootPath = Path.GetPathRoot(originalPath);
+                var availableDrives = DriveInfo.GetDrives()
+                    .Where(d => d.IsReady && !d.Name.Equals(rootPath, StringComparison.OrdinalIgnoreCase));
+
+                foreach (var drive in availableDrives)
                 {
-                    return originalPath;
+                    var pathWithoutDrive = originalPath.Substring(drive.Name.Length);
+                    var newDirectoryPath = Path.Combine(drive.Name, pathWithoutDrive);
+                    if (predicate(newDirectoryPath))
+                    {
+                        return newDirectoryPath;
+                    }
                 }
+
+                return string.Empty;
             }
-
-            var rootPath = Path.GetPathRoot(originalPath);
-            var availableDrives = DriveInfo.GetDrives()
-                .Where(d => d.IsReady && !d.Name.Equals(rootPath, StringComparison.OrdinalIgnoreCase));
-
-            foreach (var drive in availableDrives)
+            catch (Exception ex)
             {
-                var pathWithoutDrive = originalPath.Substring(drive.Name.Length);
-                var newDirectoryPath = Path.Combine(drive.Name, pathWithoutDrive);
-                if (predicate(newDirectoryPath))
-                {
-                    return newDirectoryPath;
-                }
+                logger.Error(ex, "Error looking for alternative path");
             }
 
             return string.Empty;

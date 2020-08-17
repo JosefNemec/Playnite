@@ -263,8 +263,7 @@ namespace Playnite
                 var gameClone = game.GetClone();
                 if (!Directory.Exists(gameClone.InstallDirectory))
                 {
-                    //Solving Issue #1065 if removable drives are used for installations
-                    var newInstallDirectory = FileSystem.LookupAlternativeDirectoryPath(gameClone.InstallDirectory, true);
+                    var newInstallDirectory = FileSystem.LookupAlternativeDirectoryPath(gameClone.InstallDirectory);
                     if (!string.IsNullOrWhiteSpace(newInstallDirectory))
                     {
                         logger.Warn($"InstallDirectory \"{gameClone.InstallDirectory}\" does not exist for game \"{gameClone.Name}\"" +

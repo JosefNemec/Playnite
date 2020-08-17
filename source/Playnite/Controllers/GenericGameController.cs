@@ -40,21 +40,17 @@ namespace Playnite.Controllers
             var emulators = database.Emulators.ToList();
             var profileClone = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.GetClone();
 
-            //Solving Issue #1065 if removable drives are used for storing ROMs/Images
             CheckGameImagePath(gameClone);
-            //Solving Issue #1065 if removable drives are used for manually added games
             CheckGameAction(playAction);
             if (playAction.Type == GameActionType.Emulator && profileClone != null)
             {
-                //Solving Issue #1065 if removable drives are used for emulators
                 CheckEmulatorConfig(profileClone);
             }
 
             playAction = gameClone.PlayAction.ExpandVariables(gameClone);
+            profileClone = profileClone?.ExpandVariables(gameClone);
 
             Dispose();
-
-            profileClone = profileClone?.ExpandVariables(gameClone);
 
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var proc = GameActionActivator.ActivateAction(playAction, profileClone);
@@ -156,7 +152,7 @@ namespace Playnite.Controllers
         {
             if (!string.IsNullOrWhiteSpace(game.GameImagePath) && !File.Exists(game.GameImagePath))
             {
-                var gameImagePath = FileSystem.LookupAlternativeFilePath(game.GameImagePath, false);
+                var gameImagePath = FileSystem.LookupAlternativeFilePath(game.GameImagePath);
 
                 if (!string.IsNullOrWhiteSpace(gameImagePath))
                 {
@@ -171,7 +167,7 @@ namespace Playnite.Controllers
         {
             if (!string.IsNullOrWhiteSpace(gameAction.Path) && !File.Exists(gameAction.Path))
             {
-                var gameActionPath = FileSystem.LookupAlternativeFilePath(gameAction.Path, false);
+                var gameActionPath = FileSystem.LookupAlternativeFilePath(gameAction.Path);
                 if (!string.IsNullOrWhiteSpace(gameActionPath))
                 {
                     logger.Warn($"Path \"{gameAction.Path}\" does not exist for game \"{Game.Name}\"" +
@@ -182,7 +178,7 @@ namespace Playnite.Controllers
 
             if (!string.IsNullOrWhiteSpace(gameAction.WorkingDir) && !Directory.Exists(gameAction.WorkingDir))
             {
-                var workingDir = FileSystem.LookupAlternativeDirectoryPath(gameAction.WorkingDir, false);
+                var workingDir = FileSystem.LookupAlternativeDirectoryPath(gameAction.WorkingDir);
                 if (!string.IsNullOrWhiteSpace(workingDir))
                 {
                     logger.Warn($"WorkingDir \"{gameAction.WorkingDir}\" does not exist for game \"{Game.Name}\"" +
@@ -196,7 +192,7 @@ namespace Playnite.Controllers
         {
             if (!File.Exists(emulatorProfile.Executable))
             {
-                var configExecutable = FileSystem.LookupAlternativeFilePath(emulatorProfile.Executable, false);
+                var configExecutable = FileSystem.LookupAlternativeFilePath(emulatorProfile.Executable);
                 if (!string.IsNullOrWhiteSpace(configExecutable))
                 {
                     logger.Warn($"Emulator \"{configExecutable}\" does not exist for game \"{Game.Name}\"" +
@@ -207,7 +203,7 @@ namespace Playnite.Controllers
 
             if (!string.IsNullOrWhiteSpace(emulatorProfile.WorkingDirectory) && !Directory.Exists(emulatorProfile.WorkingDirectory))
             {
-                var workingDir = FileSystem.LookupAlternativeDirectoryPath(emulatorProfile.WorkingDirectory, false);
+                var workingDir = FileSystem.LookupAlternativeDirectoryPath(emulatorProfile.WorkingDirectory);
                 if (!string.IsNullOrWhiteSpace(workingDir))
                 {
                     logger.Warn($"WorkingDir \"{emulatorProfile.WorkingDirectory}\" does not exist for emulator \"{emulatorProfile.Name}\"" +
