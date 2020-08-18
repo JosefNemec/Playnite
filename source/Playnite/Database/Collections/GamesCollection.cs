@@ -45,7 +45,7 @@ namespace Playnite.Database
 
         public override void Add(Game item)
         {
-            item.Added = DateTime.Today;
+            item.Added = DateTime.Now;
             base.Add(item);
         }
 
@@ -53,7 +53,7 @@ namespace Playnite.Database
         {
             foreach (var item in items)
             {
-                item.Added = DateTime.Today;
+                item.Added = DateTime.Now;
             }
 
             base.Add(items);
