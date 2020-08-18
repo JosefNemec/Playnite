@@ -20,6 +20,7 @@ namespace PlayniteServices
         public string CacheDirectory { get; set; }
         public int SearchCacheTimeout { get; set; }
         public string WebHookSecret { get; set; }
+        public bool AlternativeSearch { get; set; }
     }
 
     public class PatreonSettings

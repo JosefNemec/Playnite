@@ -128,7 +128,7 @@ namespace PlayniteServices.Controllers.IGDB
             name = Regex.Replace(name, @"\s+RHCP$", "", RegexOptions.IgnoreCase);
             name = Regex.Replace(name, @"\s+RU$", "", RegexOptions.IgnoreCase);
 
-            var results = await GamesController.GetSearchResults(name);
+            var results = await GamesController.GetSearchResults(name, appSettings.IGDB.AlternativeSearch);
             results.ForEach(a => a.name = StringExtensions.NormalizeGameName(a.name));
             string testName = string.Empty;
 
