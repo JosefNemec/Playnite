@@ -37,6 +37,7 @@ namespace PlayniteServices
             }).AddJsonOptions(options =>
             {
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                options.SerializerSettings.DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore;
             });
 
             services.AddLogging(loggingBuilder =>
