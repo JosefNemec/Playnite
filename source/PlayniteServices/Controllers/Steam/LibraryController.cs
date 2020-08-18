@@ -9,6 +9,7 @@ using System.Threading;
 using PlayniteServices.Models.Steam;
 using LiteDB;
 using PlayniteServices.Filters;
+using PlayniteServices.Databases;
 
 namespace PlayniteServices.Controllers.Steam
 {
@@ -21,7 +22,6 @@ namespace PlayniteServices.Controllers.Steam
         private static DateTime lastRequest = DateTime.Now.AddMilliseconds(-requestDelay);
         private static object dateLock = new object();
         private static object userIdLock = new object();
-        private static LiteCollection<SteamNameCache> cacheCollection = Program.Database.GetCollection<SteamNameCache>("SteamUserNamesCache");
 
         // Steam API has limit one request per second, so we need to slow requests down
         // TODO: change this to something more sophisticated like proper queue
@@ -46,7 +46,7 @@ namespace PlayniteServices.Controllers.Steam
         {
             lock (userIdLock)
             {
-                var cache = cacheCollection.FindById(userName);
+                var cache = Database.SteamUserNamesCache.FindById(userName);
                 if (cache != null)
                 {
                     return cache.Id;
@@ -65,7 +65,7 @@ namespace PlayniteServices.Controllers.Steam
                     throw new Exception("Failed to resolve Steam user id: " + idResult.response.message);
                 }
 
-                cacheCollection.Insert(new SteamNameCache()
+                Database.SteamUserNamesCache.Insert(new SteamNameCache()
                 {
                     Id = idResult.response.steamid,
                     Name = userName,

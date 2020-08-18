@@ -1,8 +1,10 @@
 ﻿using Playnite.Common;
+using Playnite.SDK;
 using PlayniteServices;
 using PlayniteServices.Models.IGDB;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
@@ -25,8 +27,13 @@ namespace PlayniteServicesTests.Controllers.IGDB
         private async Task<ExpandedGame> GetMetadata(SdkModels.Game game)
         {
             var content = new StringContent(Serialization.ToJson(game), Encoding.UTF8, MediaTypeNames.Application.Json);
-            var response = await client.PostAsync(@"/igdb/metadata", content);
+            var response = await client.PostAsync(@"/igdb/metadata_v2", content);
             return Serialization.FromJson<ServicesResponse<ExpandedGame>>(await response.Content.ReadAsStringAsync()).Data;
+        }
+
+        private int GetYearFromUnix(long date)
+        {
+            return DateTimeOffset.FromUnixTimeMilliseconds(date).DateTime.Year;
         }
 
         [Fact]
@@ -42,13 +49,12 @@ namespace PlayniteServicesTests.Controllers.IGDB
         [Fact]
         public async Task SteamIdUseTest()
         {
-            var steamGame = new SdkModels.Game
+            var metadata = await GetMetadata(new SdkModels.Game("")
             {
-                PluginId = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB"),
+                PluginId = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.SteamLibrary),
                 GameId = "7200"
-            };
+            });
 
-            var metadata = await GetMetadata(steamGame);
             Assert.Equal("TrackMania United", metadata.name);
         }
 
@@ -61,13 +67,13 @@ namespace PlayniteServicesTests.Controllers.IGDB
             };
 
             var metadata = await GetMetadata(game);
-            Assert.Equal(1996, metadata.first_release_date.ToDateFromUnixMs().Year);
-            Assert.Equal("Core Design", metadata.developers[0]);
+            Assert.Equal(1996, GetYearFromUnix(metadata.first_release_date));
+            Assert.Equal("Core Design", metadata.involved_companies.Where(a => a.developer).First().company.name);
 
             game.ReleaseDate = new DateTime(2013, 1, 1);
             metadata = await GetMetadata(game);
-            Assert.Equal(2013, metadata.first_release_date.ToDateFromUnixMs().Year);
-            Assert.Equal("Crystal Dynamics", metadata.developers[0]);
+            Assert.Equal(2013, GetYearFromUnix(metadata.first_release_date));
+            Assert.Equal("Crystal Dynamics", metadata.involved_companies.Where(a => a.developer).First().company.name);
         }
 
         [Fact]
@@ -77,11 +83,11 @@ namespace PlayniteServicesTests.Controllers.IGDB
             var metadata = await GetMetadata(new SdkModels.Game("Command and Conquer"));
             Assert.NotNull(metadata.cover);
             Assert.Equal("Command & Conquer", metadata.name);
-            Assert.Equal(1995, metadata.first_release_date.ToDateFromUnixMs().Year);
+            Assert.Equal(1995, GetYearFromUnix(metadata.first_release_date));
 
             // Matches exactly
             metadata = await GetMetadata(new SdkModels.Game("Grand Theft Auto IV"));
-            Assert.Equal("Grand Theft Auto IV", metadata.name);
+            Assert.Equal(2008, GetYearFromUnix(metadata.first_release_date));
 
             // Roman numerals test
             metadata = await GetMetadata(new SdkModels.Game("Quake 3 Arena"));
@@ -105,7 +111,7 @@ namespace PlayniteServicesTests.Controllers.IGDB
             Assert.Equal("Legacy of Kain: Soul Reaver 2", metadata.name);
 
             metadata = await GetMetadata(new SdkModels.Game("Legacy of Kain: Soul Reaver 2"));
-            Assert.Equal("Legacy of Kain: Soul Reaver 2", metadata.name);            
+            Assert.Equal("Legacy of Kain: Soul Reaver 2", metadata.name);
 
             // Trademarks test
             metadata = await GetMetadata(new SdkModels.Game("Dishonored®: Death of the Outsider™"));
