@@ -364,7 +364,7 @@ namespace Playnite.Common
             }
             catch (Exception ex) when (!Debugger.IsAttached)
             {
-                logger.Error(ex, "Error looking for alternative path");
+                logger.Error(ex, $"Error looking for alternative path for original path \"{originalPath}\"");
             }
 
             return string.Empty;
