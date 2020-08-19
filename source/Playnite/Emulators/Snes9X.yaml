@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}" -fullscreen'
     Platforms: [Super Nintendo Entertainment System]
     ImageExtensions: [zip, gz, jma, sfc, smc]
-    ExecutableLookup: ^snes9x.*\.exe
+    ExecutableLookup: ^snes9x.*\.exe$

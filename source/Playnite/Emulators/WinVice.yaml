@@ -1,5 +1,5 @@
 Name: WinVice
-Website: 'http://vice-emu.sourceforge.net/'
+Website: 'https://vice-emu.sourceforge.io/'
 Profiles:      
   - Name: Commodore 128
     DefaultArguments: '"{ImagePath}"'
@@ -15,7 +15,7 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Commodore 64]
     ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, d1m, d2m, d4m, p64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
-    ExecutableLookup: ^x64sc\.exe$      
+    ExecutableLookup: ^x64sc\.exe$
   - Name: Commodore PLUS4
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Commodore PLUS4]

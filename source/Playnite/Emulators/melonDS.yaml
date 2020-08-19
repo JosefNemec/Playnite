@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Nintendo DS]
     ImageExtensions: [nds]
-    ExecutableLookup: ^melonDS\.exe
+    ExecutableLookup: ^melonDS\.exe$

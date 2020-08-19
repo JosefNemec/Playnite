@@ -5,7 +5,7 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Nintendo Game Boy]
     ImageExtensions: [zip, 7z, rar, bin, gb, dmg]
-    ExecutableLookup: ^mGBA.exe$ 
+    ExecutableLookup: ^mGBA.exe$
   - Name: Nintendo Game Boy Color
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Nintendo Game Boy Color]

@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImageNameNoExt}"'
     Platforms: [Various]
     ImageExtensions: [zip, bin]
-    ExecutableLookup: ^ggpofba\.exe
+    ExecutableLookup: ^ggpofba\.exe$

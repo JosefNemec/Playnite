@@ -1,5 +1,5 @@
 Name: decaf
-Website: 'http://decaf-emu.com/'
+Website: 'https://github.com/decaf-emu/decaf-emu'
 Profiles:       
   - Name: Default 
     DefaultArguments: 'play "{ImagePath}"'

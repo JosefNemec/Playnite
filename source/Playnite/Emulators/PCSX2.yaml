@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
     Platforms: [Sony PlayStation 2]
     ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso]
-    ExecutableLookup: ^pcsx2\.exe
+    ExecutableLookup: ^pcsx2\.exe$

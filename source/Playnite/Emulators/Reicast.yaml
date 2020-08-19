@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Sega Dreamcast]
     ImageExtensions: [gdi, cdi, chd]
-    ExecutableLookup: ^reicast.*\.exe
+    ExecutableLookup: ^reicast.*\.exe$

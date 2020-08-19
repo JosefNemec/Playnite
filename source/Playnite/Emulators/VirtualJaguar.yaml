@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}" --fullscreen'
     Platforms: [Atari Jaguar]
     ImageExtensions: [abs, rom, jag, bin]
-    ExecutableLookup: ^virtualjaguar\.exe
+    ExecutableLookup: ^virtualjaguar\.exe$

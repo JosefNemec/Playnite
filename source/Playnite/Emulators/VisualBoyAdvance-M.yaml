@@ -1,5 +1,5 @@
 Name: VisualBoyAdvance-M
-Website: 'http://vba-m.com/'
+Website: 'https://vba-m.com/'
 Profiles:
   - Name: Default
     DefaultArguments: '"{ImagePath}"'
