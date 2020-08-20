@@ -9,7 +9,7 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Keel</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Välju</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Aktiivne filter</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters"></sys:String>
@@ -502,7 +502,7 @@
     <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Paigaldatud</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Paigaldatud</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle">Desinstallitud</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Paigaldamata</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Peidetud</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Lemmik</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Viimati mängitud</sys:String>
@@ -592,7 +592,7 @@
     <sys:String x:Key="LOCURLInputInfoTitile"></sys:String>
     <sys:String x:Key="LOCMetadataDownloadError"></sys:String>
     <sys:String x:Key="LOCDownloadError"></sys:String>
-    <sys:String x:Key="LOCClearFilters">Tühjenda filter</sys:String>
+    <sys:String x:Key="LOCClearFilters">Tühjenda filtrid</sys:String>
     <sys:String x:Key="LOCPrivateAccount"></sys:String>
     <sys:String x:Key="LOCPublicAccount"></sys:String>
     <sys:String x:Key="LOCAPIKey"></sys:String>
@@ -604,10 +604,10 @@
     <sys:String x:Key="LOCGameLaunching">Käivitamine</sys:String>
     <sys:String x:Key="LOCGameRunning"></sys:String>
     <sys:String x:Key="LOCInvalidURL"></sys:String>
-    <sys:String x:Key="LOCDoNothing"></sys:String>
+    <sys:String x:Key="LOCDoNothing">Ära tee midagi</sys:String>
     <sys:String x:Key="LOCMinimize"></sys:String>
     <sys:String x:Key="LOCRestoreWindow"></sys:String>
-    <sys:String x:Key="LOCClose"></sys:String>
+    <sys:String x:Key="LOCClose">Sulge</sys:String>
     <sys:String x:Key="LOCChange"></sys:String>
     <sys:String x:Key="LOCAdvanced"></sys:String>
     <sys:String x:Key="LOCNever">Mitte kunagi</sys:String>
@@ -629,7 +629,7 @@
     <sys:String x:Key="LOCExtensions">Laiendused</sys:String>
     <sys:String x:Key="LOCReloadScripts"></sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
+    <sys:String x:Key="LOCNoGamesFound">Mängud ei vastanud määratud otsingu-/filtrikriteeriumitele</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite"></sys:String>
     <sys:String x:Key="LOCLibraries"></sys:String>
@@ -663,9 +663,9 @@
 
     <sys:String x:Key="LOCGameImportWindowTitle"></sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUpdaterWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate"></sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle">Värskendus on saadaval</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Muudatused alates eelmisest värskendusest</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Laadi alla ja paigalda värskendus</sys:String>
     <sys:String x:Key="LOCCheckForUpdates"></sys:String>
     <sys:String x:Key="LOCUpdateError"></sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
@@ -673,7 +673,7 @@
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite'i jaoks on saadaval uus värskendus</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
