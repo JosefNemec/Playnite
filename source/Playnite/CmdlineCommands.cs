@@ -12,6 +12,7 @@ namespace Playnite
         Focus = 1,
         UriRequest = 2,
         ExtensionInstall = 3,
-        SwitchMode = 4
+        SwitchMode = 4,
+        Shutdown = 5
     }
 }

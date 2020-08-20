@@ -95,7 +95,7 @@ namespace Playnite
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             }
 
-            if (CheckOtherInstances())
+            if (CheckOtherInstances() || CmdLine.Shutdown)
             {
                 resourcesReleased = true;
                 CurrentNative.Shutdown(0);
@@ -397,6 +397,10 @@ namespace Playnite
                     }
                     break;
 
+                case CmdlineCommand.Shutdown:
+                    Quit();
+                    break;
+
                 default:
                     logger.Warn("Unknown command received");
                     break;
@@ -450,6 +454,10 @@ namespace Playnite
                             else if (CmdLine.StartInFullscreen)
                             {
                                 client.InvokeCommand(CmdlineCommand.SwitchMode, "fullscreen");
+                            }
+                            else if (CmdLine.Shutdown)
+                            {
+                                client.InvokeCommand(CmdlineCommand.Shutdown, null);
                             }
                             else
                             {
@@ -596,6 +604,10 @@ namespace Playnite
             else if (CmdLine.StartInFullscreen)
             {
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.SwitchMode, "fullscreen"));
+            }
+            else if (CmdLine.Shutdown)
+            {
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Shutdown, null));
             }
         }
 

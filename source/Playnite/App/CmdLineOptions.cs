@@ -39,6 +39,9 @@ namespace Playnite
         [Option("clearwebcache")]
         public bool ClearWebCache { get; set; }
 
+        [Option("shutdown")]
+        public bool Shutdown { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);
