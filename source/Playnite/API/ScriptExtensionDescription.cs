@@ -14,7 +14,7 @@ namespace Playnite.API
         public string FunctionName { get; set; }
     }
 
-    public class ScriptExtensionDescription : ExtensionDescription
+    public class ScriptExtensionDescription : ExtensionManifest
     {
         public List<ScriptFunctionDescription> Functions { get; set; }
 

@@ -58,3 +58,10 @@ For plugins see [plugins introduction page](plugins/plugins.md).
 ### 4. Loading extensions
 
 Extensions are loaded automatically by Playnite at every startup (unless extension is disabled via settings menu). Script can be reloaded at runtime via `Tools -> Reload Scripts` menu. Plugins can't be reloaded at runtime.
+
+### 5. Distribution
+
+Use [Toolbox](toolbox.md#packing-extensions) utility to package an extension or a theme and distribute `.pext` or `.pthm` file to users.
+
+> [!WARNING] 
+> Automatic installations and updates via `.pext` and `.pthm` files always replace the extension/theme directory completely. Meaning that any files that are not part of the extension installation package will be lost during installation process! It is highly recommended to store generated files in a separate extensions data folder. See documentations pages for [scripts](scripts/dataDirectory.md) and [plugins](plugins/dataDirectory.md) to learn more about extension data folders.

@@ -38,7 +38,7 @@ namespace Playnite.DesktopApp.ViewModels
     public class SelectablePlugin : ObservableObject
     {
         public Plugin Plugin { get; set; }
-        public ExtensionDescription Description { get; set; }
+        public ExtensionManifest Description { get; set; }
         public object PluginIcon { get; set; }
 
         private bool selected;
@@ -56,7 +56,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
         }
 
-        public SelectablePlugin(bool selected, Plugin plugin, ExtensionDescription description)
+        public SelectablePlugin(bool selected, Plugin plugin, ExtensionManifest description)
         {
             Selected = selected;
             Plugin = plugin;
@@ -132,7 +132,7 @@ namespace Playnite.DesktopApp.ViewModels
             get => Extensions?.GenericPlugins.HasItems() == true;
         }
 
-        public List<ThemeDescription> AvailableThemes
+        public List<ThemeManifest> AvailableThemes
         {
             get => ThemeManager.GetAvailableThemes(ApplicationMode.Desktop);
         }
@@ -168,12 +168,12 @@ namespace Playnite.DesktopApp.ViewModels
             get;
         }
 
-        public List<ThemeDescription> DesktopThemeList
+        public List<ThemeManifest> DesktopThemeList
         {
             get;
         }
 
-        public List<ThemeDescription> FullscreenThemeList
+        public List<ThemeManifest> FullscreenThemeList
         {
             get;
         }
@@ -280,9 +280,9 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<ThemeDescription> UninstallThemeCommand
+        public RelayCommand<ThemeManifest> UninstallThemeCommand
         {
-            get => new RelayCommand<ThemeDescription>((a) =>
+            get => new RelayCommand<ThemeManifest>((a) =>
             {
                 UninstallTheme(a);
             });
@@ -596,7 +596,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private void UninstallTheme(ThemeDescription a)
+        private void UninstallTheme(ThemeManifest a)
         {
             if (dialogs.ShowMessage(
                "LOCThemeUninstallQuestion",

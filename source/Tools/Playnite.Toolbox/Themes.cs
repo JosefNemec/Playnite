@@ -1,4 +1,5 @@
 ﻿using Playnite.Common;
+using Playnite.Plugins;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -160,7 +161,12 @@ namespace Playnite.Toolbox
         public static string PackageTheme(string themeDirectory, string targetPath, ApplicationMode mode)
         {
             var dirInfo = new DirectoryInfo(themeDirectory);
-            var extInfo = ThemeManager.GetDescriptionFromFile(Path.Combine(themeDirectory, PlaynitePaths.ThemeManifestFileName));
+            var extInfo = ExtensionInstaller.GetThemeManifest(Path.Combine(themeDirectory, PlaynitePaths.ThemeManifestFileName));
+            if (extInfo.Id.IsNullOrEmpty())
+            {
+                throw new Exception("Cannot package theme, ID is missing!");
+            }
+
             var apiVer = extInfo.Mode == ApplicationMode.Desktop ? ThemeManager.DesktopApiVersion : ThemeManager.FullscreenApiVersion;
             var themeApiVer = Version.Parse(extInfo.ThemeApiVersion);
             if (themeApiVer > apiVer)
@@ -174,7 +180,7 @@ namespace Playnite.Toolbox
             }
 
             var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
-            targetPath = Path.Combine(targetPath, $"{dirInfo.Name}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedThemeFileExtention}");
+            targetPath = Path.Combine(targetPath, $"{Common.Paths.GetSafeFilename(extInfo.Name).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedThemeFileExtention}");
             FileSystem.PrepareSaveFile(targetPath);
             using (var zipStream = new FileStream(targetPath, FileMode.Create))
             {
@@ -201,7 +207,7 @@ namespace Playnite.Toolbox
                         {
                             if (!AreFilesEqual(file, defaultFile))
                             {
-                                zipFile.CreateEntryFromFile(file, subName);
+                                zipFile.CreateEntryFromFile(file, subName, CompressionLevel.Optimal);
                             }
                         }
                         else
@@ -244,7 +250,7 @@ namespace Playnite.Toolbox
         public static void UpdateTheme(string themeDirectory, ApplicationMode mode)
         {
             var themeManifestPath = Path.Combine(themeDirectory, "theme.yaml");
-            var currentThemeMan = new ThemeDescription(themeManifestPath);
+            var currentThemeMan = new ThemeManifest(themeManifestPath);
             var origThemeApiVersion = new Version(currentThemeMan.ThemeApiVersion);
 
             if (!File.Exists(Path.Combine(themeDirectory, Themes.ThemeProjName)))
@@ -427,8 +433,9 @@ namespace Playnite.Toolbox
             var defaultThemeXamlFiles = GenerateCommonThemeFiles(mode, outDir);
             CopyThemeDirectory(defaultThemeDir, outDir, defaultThemeXamlFiles.Select(a => Path.Combine(defaultThemeDir, a)).ToList());
 
-            var themeDesc = new ThemeDescription()
+            var themeDesc = new ThemeManifest()
             {
+                Id = themeName + "_" + Guid.NewGuid().ToString(),
                 Author = "Your Name Here",
                 Name = themeName,
                 Version = "1.0",

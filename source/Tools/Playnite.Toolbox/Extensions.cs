@@ -100,8 +100,13 @@ namespace Playnite.Toolbox
         public static string PackageExtension(string extDirectory, string targetPath)
         {
             var dirInfo = new DirectoryInfo(extDirectory);
-            var extInfo = ExtensionFactory.GetDescriptionFromFile(Path.Combine(extDirectory, PlaynitePaths.ExtensionManifestFileName));
-            var packedPath = Path.Combine(targetPath, $"{dirInfo.Name}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedExtensionFileExtention}");
+            var extInfo = ExtensionInstaller.GetExtensionManifest(Path.Combine(extDirectory, PlaynitePaths.ExtensionManifestFileName));
+            if (extInfo.Id.IsNullOrEmpty())
+            {
+                throw new Exception("Cannot package extension, ID is missing!");
+            }
+
+            var packedPath = Path.Combine(targetPath, $"{Common.Paths.GetSafeFilename(extInfo.Name).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedExtensionFileExtention}");
             FileSystem.PrepareSaveFile(packedPath);
             var ignoreFiles = File.ReadAllLines(Paths.ExtFileIgnoreListPath);
 
@@ -117,7 +122,7 @@ namespace Playnite.Toolbox
                             continue;
                         }
 
-                        zipFile.CreateEntryFromFile(file, subName);
+                        zipFile.CreateEntryFromFile(file, subName, CompressionLevel.Optimal);
                     }
                 }
             }

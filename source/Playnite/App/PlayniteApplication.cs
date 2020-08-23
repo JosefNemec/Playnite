@@ -134,7 +134,7 @@ namespace Playnite
             CurrentNative.Deactivated += Application_Deactivated;
 
             OnPropertyChanged(nameof(AppSettings));
-            var defaultTheme = new ThemeDescription()
+            var defaultTheme = new ThemeManifest()
             {
                 DirectoryName = defaultThemeName,
                 DirectoryPath = Path.Combine(PlaynitePaths.ThemesProgramPath, ThemeManager.GetThemeRootDir(Mode), defaultThemeName),
@@ -144,10 +144,10 @@ namespace Playnite
             try
             {
                 var installed = ExtensionInstaller.InstallExtensionQueue();
-                var installedTheme = installed.FirstOrDefault(a => a is ThemeDescription);
+                var installedTheme = installed.FirstOrDefault(a => a is ThemeManifest);
                 if (installedTheme != null)
                 {
-                    var theme = installedTheme as ThemeDescription;
+                    var theme = installedTheme as ThemeManifest;
                     if (theme.Mode == Mode)
                     {
                         if (theme.Mode == ApplicationMode.Desktop)
@@ -169,7 +169,7 @@ namespace Playnite
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
-            ThemeDescription customTheme = null;
+            ThemeManifest customTheme = null;
             if (CmdLine.ForceDefaultTheme)
             {
                 logger.Info("Default theme forced by cmdline.");
@@ -946,7 +946,7 @@ namespace Playnite
         {
             try
             {
-                var desc = ThemeManager.GetDescriptionFromPackedFile(themeFile);
+                var desc = ExtensionInstaller.GetPackedThemeManifest(themeFile);
                 if (desc == null)
                 {
                     throw new FileNotFoundException("Theme manifest not found.");
@@ -963,7 +963,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    ExtensionInstaller.QueueExtensionInstall(themeFile);
+                    ExtensionInstaller.QueuePackageInstall(themeFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
                         ResourceProvider.GetString("LOCSettingsRestartTitle"),
@@ -988,7 +988,7 @@ namespace Playnite
         {
             try
             {
-                var desc = ExtensionFactory.GetDescriptionFromPackedFile(extensionFile);
+                var desc = ExtensionInstaller.GetPackedExtensionManifest(extensionFile);
                 if (desc == null)
                 {
                     throw new FileNotFoundException("Extension manifest not found.");
@@ -1000,7 +1000,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    ExtensionInstaller.QueueExtensionInstall(extensionFile);
+                    ExtensionInstaller.QueuePackageInstall(extensionFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
                         ResourceProvider.GetString("LOCSettingsRestartTitle"),

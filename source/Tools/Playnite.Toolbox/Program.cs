@@ -53,7 +53,7 @@ namespace Playnite.Toolbox
             var extMan = Path.Combine(directory, PlaynitePaths.ExtensionManifestFileName);
             if (File.Exists(themeMan))
             {
-                var desc = ThemeManager.GetDescriptionFromFile(themeMan);
+                var desc = ExtensionInstaller.GetThemeManifest(themeMan);
                 switch (desc.Mode)
                 {
                     case ApplicationMode.Desktop:
@@ -64,7 +64,7 @@ namespace Playnite.Toolbox
             }
             else if (File.Exists(extMan))
             {
-                var desc = ExtensionFactory.GetDescriptionFromFile(extMan);
+                var desc = ExtensionInstaller.GetExtensionManifest(extMan);
                 switch (desc.Type)
                 {
                     case ExtensionType.GenericPlugin:

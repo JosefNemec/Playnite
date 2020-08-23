@@ -22,9 +22,9 @@ namespace Playnite.Plugins
     public class LoadedPlugin
     {
         public Plugin Plugin { get; }
-        public ExtensionDescription Description { get; }
+        public ExtensionManifest Description { get; }
 
-        public LoadedPlugin(Plugin plugin, ExtensionDescription description)
+        public LoadedPlugin(Plugin plugin, ExtensionManifest description)
         {
             Plugin = plugin;
             Description = description;
@@ -184,39 +184,14 @@ namespace Playnite.Plugins
             }
         }
 
-        public static ExtensionDescription GetDescriptionFromPackedFile(string path)
+        public List<ExtensionManifest> GetExtensionDescriptors()
         {
-            using (var zip = ZipFile.OpenRead(path))
-            {
-                var manifest = zip.GetEntry(PlaynitePaths.ExtensionManifestFileName);
-                if (manifest == null)
-                {
-                    return null;
-                }
-
-                using (var logStream = manifest.Open())
-                {
-                    using (TextReader tr = new StreamReader(logStream))
-                    {
-                        return Serialization.FromYaml<ExtensionDescription>(tr.ReadToEnd());
-                    }
-                }
-            }
-        }
-
-        public static ExtensionDescription GetDescriptionFromFile(string path)
-        {
-            return Serialization.FromYaml<ExtensionDescription>(File.ReadAllText(path));
-        }
-
-        public List<ExtensionDescription> GetExtensionDescriptors()
-        {
-            var descs = new List<ExtensionDescription>();
+            var descs = new List<ExtensionManifest>();
             foreach (var file in GetExtensionDescriptorFiles())
             {
                 try
                 {
-                    descs.Add(ExtensionDescription.FromFile(file));
+                    descs.Add(ExtensionManifest.FromFile(file));
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -226,37 +201,6 @@ namespace Playnite.Plugins
             }
 
             return descs;
-        }
-
-        public static ExtensionDescription InstallFromPackedFile(string path)
-        {
-            logger.Info($"Installing extenstion {path}");
-            var desc = GetDescriptionFromPackedFile(path);
-            if (desc == null)
-            {
-                throw new FileNotFoundException("Extenstion manifest not found.");
-            }
-
-            var installDir = Paths.GetSafeFilename(desc.Name).Replace(" ", string.Empty) + "_" + (desc.Name + desc.Author).MD5();
-            var targetDir = PlayniteSettings.IsPortable ? PlaynitePaths.ExtensionsProgramPath : PlaynitePaths.ExtensionsUserDataPath;
-            targetDir = Path.Combine(targetDir, installDir);
-            var oldBackPath = targetDir + "_old";
-
-            if (Directory.Exists(targetDir))
-            {
-                logger.Debug($"Replacing existing extenstion installation: {targetDir}.");
-                Directory.Move(targetDir, oldBackPath);
-            }
-
-            FileSystem.CreateDirectory(targetDir, true);
-            ZipFile.ExtractToDirectory(path, targetDir);
-
-            if (Directory.Exists(oldBackPath))
-            {
-                Directory.Delete(oldBackPath, true);
-            }
-
-            return GetDescriptionFromFile(Path.Combine(targetDir, PlaynitePaths.ExtensionManifestFileName));
         }
 
         private List<string> GetExtensionDescriptorFiles()
@@ -395,7 +339,7 @@ namespace Playnite.Plugins
             PluginFunctions = funcs;
         }
 
-        public IEnumerable<Plugin> LoadPlugins(ExtensionDescription descriptor, IPlayniteAPI injectingApi)
+        public IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)
         {
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);
             var asmName = AssemblyName.GetAssemblyName(asmPath);

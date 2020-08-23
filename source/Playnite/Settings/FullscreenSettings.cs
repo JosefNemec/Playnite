@@ -114,7 +114,7 @@ namespace Playnite
         public List<ComputerScreen> AvailableScreens => Computer.GetScreens();
 
         [JsonIgnore]
-        public List<ThemeDescription> AvailableThemes => ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen);
+        public List<ThemeManifest> AvailableThemes => ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen);
 
         [JsonIgnore]
         public const FullscreenButtonPrompts DefaultButtonPrompts = FullscreenButtonPrompts.Xbox;

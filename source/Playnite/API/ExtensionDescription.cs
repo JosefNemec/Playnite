@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Common;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,10 @@ namespace Playnite.API
         MetadataProvider
     }
 
-    public class BaseExtensionDescription
+    public class BaseExtensionManifest
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public string Author { get; set; }
@@ -36,9 +39,25 @@ namespace Playnite.API
 
         [YamlIgnore]
         public string DescriptionPath { get; set; }
+
+        [YamlIgnore]
+        public string LegacyDirId
+        {
+            get
+            {
+                if (Name.IsNullOrEmpty())
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return Paths.GetSafeFilename(Name).Replace(" ", string.Empty) + "_" + (Name + Author).MD5();
+                }
+            }
+        }
     }
 
-    public class ExtensionDescription : BaseExtensionDescription
+    public class ExtensionManifest : BaseExtensionManifest
     {
         [YamlIgnore]
         public bool IsBuiltInExtension { get; set; }
@@ -55,14 +74,14 @@ namespace Playnite.API
 
         public ExtensionType Type { get; set; }
 
-        public ExtensionDescription()
+        public ExtensionManifest()
         {
         }
 
-        public static ExtensionDescription FromFile(string descriptorPath)
+        public static ExtensionManifest FromFile(string descriptorPath)
         {
             var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
-            var description = deserializer.Deserialize<ExtensionDescription>(File.ReadAllText(descriptorPath));
+            var description = deserializer.Deserialize<ExtensionManifest>(File.ReadAllText(descriptorPath));
             if (description.Type == ExtensionType.Script)
             {
                 description = deserializer.Deserialize<ScriptExtensionDescription>(File.ReadAllText(descriptorPath));

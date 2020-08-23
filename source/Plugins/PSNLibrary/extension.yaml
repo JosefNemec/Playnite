@@ -1,4 +1,5 @@
-﻿Name: PlayStation Library Importer
+﻿Id: PlayStationLibrary_Builtin
+Name: PlayStation Library Importer
 Author: Playnite
 Version: 1.0
 Module: PSNLibrary.dll

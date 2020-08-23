@@ -6,14 +6,15 @@ Extension manifest files are used by Playnite to load extensions and display bas
 Format
 ---------------------
 
-Manifest is YAML formated file with following properties:
+Manifest is YAML formatted file with following properties:
 
 | Property | Description |
 | -- | -- |
+| Id | Unique string identifier for the extension. Must not be shared with any other extensions. |
 | Name | Extension name. |
 | Author | Extension author. |
 | Version | Extension version. |
-| Module | File name of extension module: `*.dll` file for plugins, `*.ps1` or `*.py` file for scripts. |
+| Module | File name of assembly `*.dll` file for plugins, `*.ps1` or `*.py` file for scripts. |
 | Type | Extension type, available values are: `Script`, `GenericPlugin`, `GameLibrary`, `MetadataProvider`. |
 | Icon | Optional relative file name of extension icon. |
 | Links | Optional list of links (extension website, changelog etc.) |
@@ -24,6 +25,7 @@ Examples
 **Example of script extension:**
 
 ```yaml
+Id: LibraryExporter_Playnite_Script
 Name: Library Exporter
 Author: Playnite
 Version: 1.0
@@ -37,6 +39,7 @@ Links:
 **Example of library plugin:**
 
 ```yaml
+Id: SomeLibraryPlugin_Playnite_Plugin
 Name: Some Library Plugin
 Author: Playnite
 Version: 1.0

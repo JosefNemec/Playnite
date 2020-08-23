@@ -132,6 +132,7 @@
     <Compile Include="Models\GameActionTests.cs" />
     <Compile Include="ImagesTests.cs" />
     <Compile Include="PlayniteUriHandlerTests.cs" />
+    <Compile Include="Plugins\ExtensionManifestTests.cs" />
     <Compile Include="ProcessStarterTests.cs" />
     <Compile Include="Scripting\Batch\BatchTests.cs" />
     <Compile Include="SigningToolsTests.cs" />

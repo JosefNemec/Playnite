@@ -16,6 +16,8 @@
       href: scripts/scriptingUI.md
     - name: Templates
       href: scripts/scriptingTemplates.md
+    - name: Data directory
+      href: scripts/dataDirectory.md
 
 - name: Plugins
   items:
@@ -31,6 +33,8 @@
       href: plugins/pluginSettings.md
     - name: Playnite URI support
       href: plugins/uriSupport.md
+    - name: Data directory
+      href: plugins/dataDirectory.md
 
 - name: Various
   items:

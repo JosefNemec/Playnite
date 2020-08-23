@@ -4,6 +4,7 @@ using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,10 +44,10 @@ namespace Playnite.Plugins
         private static readonly ILogger logger = LogManager.GetLogger();
         private static List<ExtensionInstallQueueItem> currentQueue = new List<ExtensionInstallQueueItem>();
 
-        public static List<BaseExtensionDescription> InstallExtensionQueue()
+        public static List<BaseExtensionManifest> InstallExtensionQueue()
         {
             var anyFailed = false;
-            var installedExts = new List<BaseExtensionDescription>();
+            var installedExts = new List<BaseExtensionManifest>();
             if (!File.Exists(PlaynitePaths.ExtensionQueueFilePath))
             {
                 return installedExts;
@@ -61,7 +62,7 @@ namespace Playnite.Plugins
                     {
                         try
                         {
-                            installedExts.Add(ThemeManager.InstallFromPackedFile(queueItem.Path));
+                            installedExts.Add(InstallPackedTheme(queueItem.Path));
                             logger.Info($"Installed theme {queueItem}");
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -74,7 +75,7 @@ namespace Playnite.Plugins
                     {
                         try
                         {
-                            installedExts.Add(ExtensionFactory.InstallFromPackedFile(queueItem.Path));
+                            installedExts.Add(InstallPackedExtension(queueItem.Path));
                             logger.Info($"Installed extension {queueItem}");
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -120,9 +121,150 @@ namespace Playnite.Plugins
             return installedExts;
         }
 
-        public static void QueueExtensionInstall(string extensionFile)
+        public static T InstallPackedFile<T>(string path, string nanifestFileName, string rootDir) where T : BaseExtensionManifest
         {
-            QueueExtensionOperation(extensionFile, ExtInstallType.Install);
+            logger.Info($"Installing extenstion/theme {path}");
+            var manifest = GetPackedManifest<T>(path, nanifestFileName);
+            if (manifest == null)
+            {
+                throw new FileNotFoundException("Extenstion/theme manifest not found.");
+            }
+
+            var legacyInstallDir = Path.Combine(rootDir, manifest.LegacyDirId);
+            var installDir = string.Empty;
+
+            if (manifest.Id.IsNullOrEmpty())
+            {
+                installDir = legacyInstallDir;
+            }
+            else
+            {
+                installDir = Path.Combine(rootDir, Paths.GetSafeFilename(manifest.Id));
+
+                // Delete installation in legacy path
+                if (Directory.Exists(legacyInstallDir))
+                {
+                    Directory.Delete(legacyInstallDir, true);
+                }
+
+                // Also delete manually installed instance
+                foreach (var extDir in Directory.GetDirectories(rootDir))
+                {
+                    var man = GetManifestFromDir(extDir);
+                    if (man != null)
+                    {
+                        if (manifest.LegacyDirId == man.LegacyDirId)
+                        {
+                            Directory.Delete(extDir, true);
+                        }
+                    }
+                }
+            }
+
+            var oldBackPath = installDir + "_old";
+            if (Directory.Exists(installDir))
+            {
+                logger.Debug($"Replacing existing extenstion/theme installation: {installDir}.");
+                Directory.Move(installDir, oldBackPath);
+            }
+
+            FileSystem.CreateDirectory(installDir, true);
+            ZipFile.ExtractToDirectory(path, installDir);
+
+            if (Directory.Exists(oldBackPath))
+            {
+                Directory.Delete(oldBackPath, true);
+            }
+
+            return manifest;
+        }
+
+        public static ExtensionManifest InstallPackedExtension(string path)
+        {
+            return InstallPackedFile<ExtensionManifest>(
+                path,
+                PlaynitePaths.ExtensionManifestFileName,
+                PlayniteSettings.IsPortable ? PlaynitePaths.ExtensionsProgramPath : PlaynitePaths.ExtensionsUserDataPath);
+        }
+
+        public static ThemeManifest InstallPackedTheme(string path)
+        {
+            return InstallPackedFile<ThemeManifest>(
+               path,
+               PlaynitePaths.ThemeManifestFileName,
+               PlayniteSettings.IsPortable ? PlaynitePaths.ThemesProgramPath : PlaynitePaths.ThemesUserDataPath);
+        }
+
+        private static T GetPackedManifest<T>(string packagePath, string nanifestFileName) where T : class
+        {
+            using (var zip = ZipFile.OpenRead(packagePath))
+            {
+                var manifest = zip.GetEntry(nanifestFileName);
+                if (manifest == null)
+                {
+                    return null;
+                }
+
+                using (var logStream = manifest.Open())
+                {
+                    using (TextReader tr = new StreamReader(logStream))
+                    {
+                        return Serialization.FromYaml<T>(tr.ReadToEnd());
+                    }
+                }
+            }
+        }
+
+        private static BaseExtensionManifest GetManifestFromDir(string extDir)
+        {
+            if (!Directory.Exists(extDir))
+            {
+                return null;
+            }
+
+            var extMan = Path.Combine(extDir, PlaynitePaths.ExtensionManifestFileName);
+            if (File.Exists(extMan))
+            {
+                return GetExtensionManifest(extMan);
+            }
+
+            var themeMan = Path.Combine(extDir, PlaynitePaths.ThemeManifestFileName);
+            if (File.Exists(themeMan))
+            {
+                return GetThemeManifest(themeMan);
+            }
+
+            return null;
+        }
+
+        private static T GetManifestFile<T>(string manifestPath) where T : class
+        {
+            return Serialization.FromYaml<T>(File.ReadAllText(manifestPath));
+        }
+
+        public static ThemeManifest GetPackedThemeManifest(string packagePath)
+        {
+            return GetPackedManifest<ThemeManifest>(packagePath, PlaynitePaths.ThemeManifestFileName);
+        }
+
+        public static ThemeManifest GetThemeManifest(string manifestPath)
+        {
+            return GetManifestFile<ThemeManifest>(manifestPath);
+        }
+
+        public static ExtensionManifest GetPackedExtensionManifest(string packagePath)
+        {
+            return GetPackedManifest<ExtensionManifest>(packagePath, PlaynitePaths.ExtensionManifestFileName);
+        }
+
+        public static ExtensionManifest GetExtensionManifest(string manifestPath)
+        {
+            return GetManifestFile<ExtensionManifest>(manifestPath);
+        }
+
+        public static void QueuePackageInstall(string packagePath)
+        {
+            QueueExtensionOperation(packagePath, ExtInstallType.Install);
         }
 
         public static void QueueExtensionUninstall(string extensionDirectory)
