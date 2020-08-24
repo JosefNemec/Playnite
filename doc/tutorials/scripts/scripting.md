@@ -6,9 +6,19 @@ Basics
 
 Playnite can be extended with additional functionality using scripts. [PowerShell](https://docs.microsoft.com/en-us/powershell/) and [IronPython](http://ironpython.net/) languages are supported.
 
-
 > [!NOTE] 
 > PowerShell support requires at least PowerShell 5.0 to be installed. If you are Windows 7 user you need to [install it manually](https://www.microsoft.com/en-us/download/details.aspx?id=54616) (Windows 8 and 10 includes it by default).
+
+Creating script extensions
+---------------------
+
+Run [Toolbox](../toolbox.md) with arguments specific to a type of script you want to create.
+
+For example, to create new PowerShell script extension:
+
+```
+Toolbox.exe new PowerShellScript "Some script" "d:\somefolder"
+```
 
 Accessing Playnite API
 ---------------------
@@ -85,15 +95,3 @@ def get_mainmenu_items(menu_args):
     menu_item.MenuSection = "@"
     yield menu_item    
 ```
-
-## Example manifest file
-
-```yaml
-Name: Game Counter
-Author: Playnite
-Version: 1.0
-Module: scriptName.ps1 # or scriptName.py
-Type: Script
-```
-
-There's also [library exporter](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins/LibraryExporter) script example that shows complete extension implementation.

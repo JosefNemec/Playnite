@@ -14,8 +14,6 @@
       href: scripts/scriptingDatabase.md
     - name: UI Interaction
       href: scripts/scriptingUI.md
-    - name: Templates
-      href: scripts/scriptingTemplates.md
     - name: Data directory
       href: scripts/dataDirectory.md
 

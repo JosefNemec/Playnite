@@ -153,7 +153,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <param name="caption">Dialog window caption.</param>
-        /// <param name="button">Available respose button.</param>
+        /// <param name="button">Available response button.</param>
         /// <param name="icon">Dialog icon.</param>
         /// <returns>Selected dialog response.</returns>
         MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon);
@@ -163,7 +163,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <param name="caption">Dialog window caption.</param>
-        /// <param name="button">Available respose button.</param>
+        /// <param name="button">Available response button.</param>
         /// <returns>Selected dialog response.</returns>
         MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button);
 

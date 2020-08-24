@@ -34,6 +34,9 @@ First create new extension folder inside of Playnite's `Extensions` directory. L
 - Portable version: `Extensions` folder directly inside of Playnite's installation location.
 - Installed version: `%AppData%\Playnite\Extensions` folder.
 
+> [!WARNING] 
+> Automatic installations and updates via `.pext` and `.pthm` files always replace the extension/theme directory completely. Meaning that any files that are not part of the installation package will be lost during installation process! It is highly recommended to store generated files in a separate extensions data folder. See pages for [scripts](scripts/dataDirectory.md) and [plugins](plugins/dataDirectory.md) to learn more about extension data folders.
+
 ### 2. Manifest file
 
 Every extension must provide valid [manifest file](extensionsManifest.md) in order to be recognized and loaded by Playnite. Manifest is YAML formatted file called `extension.yaml` that must be stored inside of extension directory.
@@ -55,13 +58,14 @@ For scripts see [scripting introduction page](scripts/scripting.md).
 
 For plugins see [plugins introduction page](plugins/plugins.md).
 
-### 4. Loading extensions
+Loading extensions
+---------------------
 
 Extensions are loaded automatically by Playnite at every startup (unless extension is disabled via settings menu). Script can be reloaded at runtime via `Tools -> Reload Scripts` menu. Plugins can't be reloaded at runtime.
 
-### 5. Distribution
+Distribution
+---------------------
 
 Use [Toolbox](toolbox.md#packing-extensions) utility to package an extension or a theme and distribute `.pext` or `.pthm` file to users.
 
-> [!WARNING] 
-> Automatic installations and updates via `.pext` and `.pthm` files always replace the extension/theme directory completely. Meaning that any files that are not part of the extension installation package will be lost during installation process! It is highly recommended to store generated files in a separate extensions data folder. See documentations pages for [scripts](scripts/dataDirectory.md) and [plugins](plugins/dataDirectory.md) to learn more about extension data folders.
+The best place to share extensions is official Playnite forum, specifically [extension database](https://playnite.link/forum/forum-3.html) sub-forum.

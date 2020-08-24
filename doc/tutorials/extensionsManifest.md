@@ -10,7 +10,7 @@ Manifest is YAML formatted file with following properties:
 
 | Property | Description |
 | -- | -- |
-| Id | Unique string identifier for the extension. Must not be shared with any other extensions. |
+| Id | Unique string identifier for the extension. Must not be shared with any other extension. |
 | Name | Extension name. |
 | Author | Extension author. |
 | Version | Extension version. |
