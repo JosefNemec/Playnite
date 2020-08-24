@@ -165,7 +165,11 @@ namespace Playnite.Database
             var items = new List<TItem>(ids.Count);
             foreach (var id in ids)
             {
-                items.Add(Get(id));
+                var item = Get(id);
+                if (item != null)
+                {
+                    items.Add(item);
+                }
             }
 
             return items;

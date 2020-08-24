@@ -110,27 +110,27 @@ namespace Playnite
 
         public Series Series
         {
-            get => Game.SeriesId == Guid.Empty ? Series.Empty : Game.Series;
+            get => Game.Series ?? Series.Empty;
         }
 
         public Platform Platform
         {
-            get => Game.PlatformId == Guid.Empty ? Platform.Empty : Game.Platform;
+            get => Game.Platform ?? Platform.Empty;
         }
 
         public Region Region
         {
-            get => Game.RegionId == Guid.Empty ? Region.Empty : Game.Region;
+            get => Game.Region ?? Region.Empty;
         }
 
         public GameSource Source
         {
-            get => Game.SourceId == Guid.Empty ? GameSource.Empty : Game.Source;
+            get => Game.Source ?? GameSource.Empty;
         }
 
         public AgeRating AgeRating
         {
-            get => Game.AgeRatingId == Guid.Empty ? AgeRating.Empty : Game.AgeRating;
+            get => Game.AgeRating ?? AgeRating.Empty;
         }
 
         public Category Category
