@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO.Compression;
 using Playnite.SDK;
+using System.Diagnostics;
 
 namespace Playnite.Common
 {
@@ -318,6 +319,49 @@ namespace Playnite.Common
                     CopyDirectory(subdir.FullName, temppath, copySubDirs);
                 }
             }
+        }
+
+        public static string LookupAlternativeFilePath(string filePath)
+        {
+            return CheckDrivesForPath(filePath, path => File.Exists(path));
+        }
+
+        public static string LookupAlternativeDirectoryPath(string directoryPath)
+        {
+            return CheckDrivesForPath(directoryPath, path => Directory.Exists(path));
+        }
+
+        private static string CheckDrivesForPath(string originalPath, Predicate<string> predicate)
+        {
+            try
+            {
+                if (!Paths.IsFullPath(originalPath))
+                {
+                    return string.Empty;
+                }
+
+                var rootPath = Path.GetPathRoot(originalPath);
+                var availableDrives = DriveInfo.GetDrives()
+                    .Where(d => d.IsReady && !d.Name.Equals(rootPath, StringComparison.OrdinalIgnoreCase));
+
+                foreach (var drive in availableDrives)
+                {
+                    var pathWithoutDrive = originalPath.Substring(drive.Name.Length);
+                    var newDirectoryPath = Path.Combine(drive.Name, pathWithoutDrive);
+                    if (predicate(newDirectoryPath))
+                    {
+                        return newDirectoryPath;
+                    }
+                }
+
+                return string.Empty;
+            }
+            catch (Exception ex) when (!Debugger.IsAttached)
+            {
+                logger.Error(ex, $"Error looking for alternative path for original path \"{originalPath}\"");
+            }
+
+            return string.Empty;
         }
     }
 }
