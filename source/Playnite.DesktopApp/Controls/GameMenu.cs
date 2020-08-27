@@ -380,7 +380,7 @@ namespace Playnite.DesktopApp.Controls
                 {
                     Header = resources.GetString("LOCCreateDesktopShortcut"),
                     Icon = shortcutIcon,
-                    Command = model.CreateGameShortcutCommand,
+                    Command = model.CreateDesktopShortcutCommand,
                     CommandParameter = Game
                 };
 

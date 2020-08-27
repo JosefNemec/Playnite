@@ -509,7 +509,7 @@ namespace Playnite
             Database.Games.Remove(games);
         }
 
-        public void CreateShortcut(Game game)
+        public void CreateDesktopShortcut(Game game)
         {
             try
             {
@@ -533,19 +533,12 @@ namespace Playnite
                 {
                     if (Path.GetExtension(icon) != ".ico")
                     {
-                        var targetIconPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".ico");
+                        FileSystem.CreateDirectory(PlaynitePaths.IconsCachePath);
+                        var targetIconPath = Path.Combine(PlaynitePaths.IconsCachePath, game.Id + ".ico");
                         BitmapExtensions.ConvertToIcon(icon, targetIconPath);
-                        var md5 = FileSystem.GetMD5(targetIconPath);
-                        var existingFile = Path.Combine(PlaynitePaths.TempPath, md5 + ".ico");
-                        if (File.Exists(existingFile))
+                        if (File.Exists(targetIconPath))
                         {
-                            icon = existingFile;
-                            File.Delete(targetIconPath);
-                        }
-                        else
-                        {
-                            File.Move(targetIconPath, existingFile);
-                            icon = existingFile;
+                            icon = targetIconPath;
                         }
                     }
                 }
@@ -567,11 +560,11 @@ namespace Playnite
             }
         }
 
-        public void CreateShortcuts(List<Game> games)
+        public void CreateDesktopShortcuts(List<Game> games)
         {
             foreach (var game in games)
             {
-                CreateShortcut(game);
+                CreateDesktopShortcut(game);
             }
         }
 
