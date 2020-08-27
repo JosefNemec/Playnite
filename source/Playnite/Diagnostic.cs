@@ -116,23 +116,44 @@ namespace Playnite
                     }
 
                     // System Info
-                    var infoPath = Path.Combine(diagTemp, "sysinfo.txt");
-                    File.WriteAllText(infoPath, Serialization.ToJson(Computer.GetSystemInfo(), true));
-                    archive.CreateEntryFromFile(infoPath, Path.GetFileName(infoPath));
+                    try
+                    {
+                        var infoPath = Path.Combine(diagTemp, "sysinfo.txt");
+                        File.WriteAllText(infoPath, Serialization.ToJson(Computer.GetSystemInfo(), true));
+                        archive.CreateEntryFromFile(infoPath, Path.GetFileName(infoPath));
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed gather system info.");
+                    }
 
                     // Uninstall regkey export
-                    var regKeyPath = Path.Combine(diagTemp, "uninstall.txt");
-                    var programs = Programs.GetUnistallProgramsList();
-                    File.WriteAllText(regKeyPath, Serialization.ToJson(programs, true));
-                    archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
+                    try
+                    {
+                        var regKeyPath = Path.Combine(diagTemp, "uninstall.txt");
+                        var programs = Programs.GetUnistallProgramsList();
+                        File.WriteAllText(regKeyPath, Serialization.ToJson(programs, true));
+                        archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed gather install app list.");
+                    }
 
                     // UWP app info
-                    if (Computer.WindowsVersion == WindowsVersion.Win10)
+                    try
                     {
-                        var uwpInfoPath = Path.Combine(diagTemp, "uwp.txt");
-                        var uwpApps = Programs.GetUWPApps();
-                        File.WriteAllText(uwpInfoPath, Serialization.ToJson(uwpApps, true));
-                        archive.CreateEntryFromFile(uwpInfoPath, Path.GetFileName(uwpInfoPath));
+                        if (Computer.WindowsVersion == WindowsVersion.Win10)
+                        {
+                            var uwpInfoPath = Path.Combine(diagTemp, "uwp.txt");
+                            var uwpApps = Programs.GetUWPApps();
+                            File.WriteAllText(uwpInfoPath, Serialization.ToJson(uwpApps, true));
+                            archive.CreateEntryFromFile(uwpInfoPath, Path.GetFileName(uwpInfoPath));
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed gather UWP install list.");
                     }
 
                     // Playnite info
