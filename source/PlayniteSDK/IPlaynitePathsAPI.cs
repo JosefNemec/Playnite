@@ -12,7 +12,7 @@ namespace Playnite.SDK
     public interface IPlaynitePathsAPI
     {
         /// <summary>
-        /// Gets value indicating wheter the application is running in portable mode.
+        /// Gets value indicating whether the application is running in portable mode.
         /// </summary>
         bool IsPortable { get; }
 
