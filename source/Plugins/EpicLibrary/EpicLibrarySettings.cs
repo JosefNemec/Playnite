@@ -33,12 +33,7 @@ namespace EpicLibrary
 
         public bool ImportUninstalledGames { get; set; } = false;
 
-        public bool StartGamesWithoutLauncher { get; set; } = false;
-
         #endregion Settings
-
-        [JsonIgnore]
-        public bool IsFirstRunUse { get; set; }
 
         [JsonIgnore]
         public bool IsUserLoggedIn

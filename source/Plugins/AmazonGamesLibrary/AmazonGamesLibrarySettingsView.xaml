@@ -72,6 +72,7 @@
 
         <CheckBox IsChecked="{Binding StartGamesWithoutLauncher}"
                   Content="{DynamicResource LOCSettingsStartGameDirectly}"
+                  Visibility="{Binding IsFirstRunUse, Converter={pcon:InvertedBooleanToVisibilityConverter}}"
                   Margin="0,5,0,0" />
 
         <TextBlock VerticalAlignment="Center" Margin="0,20,0,0">

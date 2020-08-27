@@ -65,44 +65,7 @@ namespace EpicLibrary
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var startUri = string.Format(EpicLauncher.GameLaunchUrlMask, game.GameId);
-            var startViaLauncher = true;
-            Models.InstalledManifiest manifest = null;
-
-            if (!launchelessExceptions.Contains(game.GameId) && settings.StartGamesWithoutLauncher)
-            {
-                manifest = EpicLauncher.GetInstalledManifests().FirstOrDefault(a => a.AppName == game.GameId);
-                if (manifest?.bCanRunOffline == true)
-                {
-                    startViaLauncher = false;
-                }
-            }
-
-            if (startViaLauncher)
-            {
-                ProcessStarter.StartUrl(startUri);
-            }
-            else
-            {
-                try
-                {
-                    var path = Path.Combine(manifest.InstallLocation, manifest.LaunchExecutable);
-                    var defaultArgs = $" -epicapp={game.GameId} -epicenv=Prod -EpicPortal";
-                    if (manifest.LaunchCommand.IsNullOrEmpty())
-                    {
-                        ProcessStarter.StartProcess(path, defaultArgs);
-                    }
-                    else
-                    {
-                        ProcessStarter.StartProcess(path, manifest.LaunchCommand + defaultArgs);
-                    }
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, "Failed to start Epic game directly.");
-                    ProcessStarter.StartUrl(startUri);
-                }
-            }
-
+            ProcessStarter.StartUrl(startUri);
             if (Directory.Exists(Game.InstallDirectory))
             {
                 stopWatch = Stopwatch.StartNew();
