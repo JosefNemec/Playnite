@@ -106,7 +106,7 @@ namespace Playnite.ViewModels
                             logger.Error(exc, "Failed to cancel global progress task.");
                             throw;
                         }
-                    }, new ProgressViewArgs("LOCProgressReleasingResources"));
+                    }, new GlobalProgressOptions("LOCProgressReleasingResources"));
                     progressModel.ActivateProgress();
                 }
                 else

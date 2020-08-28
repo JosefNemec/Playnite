@@ -149,7 +149,7 @@ namespace Playnite.ViewModels
 
             var genResult = GlobalProgress.ActivateProgress((_) =>
                 Diagnostic.CreateDiagPackage(diagPath, crashDescription, packageInfo),
-                new ProgressViewArgs("LOCDiagGenerating"));
+                new GlobalProgressOptions("LOCDiagGenerating"));
             if (genResult.Result != true)
             {
                 logger.Error(genResult.Error, "Failed to created diagnostics package.");
@@ -167,7 +167,7 @@ namespace Playnite.ViewModels
             var uploadedId = Guid.Empty;
             var uploadResult = GlobalProgress.ActivateProgress((_) =>
                 uploadedId = new ServicesClient().UploadDiagPackage(diagPath),
-                new ProgressViewArgs("LOCDiagUploading"));
+                new GlobalProgressOptions("LOCDiagUploading"));
             if (uploadResult.Result == true)
             {
                 if (mode == ApplicationMode.Desktop)

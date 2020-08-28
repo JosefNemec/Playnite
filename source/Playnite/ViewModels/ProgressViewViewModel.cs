@@ -14,8 +14,8 @@ namespace Playnite.ViewModels
     {
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
-        private Action<ProgressActionArgs> progresAction;
-        private ProgressViewArgs args;
+        private Action<GlobalProgressActionArgs> progresAction;
+        private GlobalProgressOptions args;
         private CancellationTokenSource cancellationToken = new CancellationTokenSource();
         private bool canCancel = false;
 
@@ -52,7 +52,7 @@ namespace Playnite.ViewModels
 
         public Exception FailException { get; private set; }
 
-        public ProgressViewViewModel(IWindowFactory window, Action<ProgressActionArgs> progresAction, ProgressViewArgs args)
+        public ProgressViewViewModel(IWindowFactory window, Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions args)
         {
             this.window = window;
             this.progresAction = progresAction;
@@ -76,7 +76,10 @@ namespace Playnite.ViewModels
             {
                 try
                 {
-                    progresAction(new ProgressActionArgs(cancellationToken));
+                    progresAction(new GlobalProgressActionArgs(
+                        PlayniteApplication.Current.SyncContext,
+                        PlayniteApplication.CurrentNative.Dispatcher,
+                        cancellationToken));
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -93,51 +96,9 @@ namespace Playnite.ViewModels
         }
     }
 
-    public class ProgressViewArgs
-    {
-        public string Text { get; set; }
-        public bool Cancelable { get; set; }
-
-        public ProgressViewArgs(string text)
-        {
-            Text = text;
-        }
-
-        public ProgressViewArgs(string text, bool cancelable) : this(text)
-        {
-            Cancelable = cancelable;
-        }
-    }
-
-    public class ProgressActionArgs
-    {
-        public SynchronizationContext MainContext => PlayniteApplication.Current.SyncContext;
-        public Dispatcher MainDispatcher => PlayniteApplication.CurrentNative.Dispatcher;
-        public CancellationTokenSource CancelToken { get; }
-
-        public ProgressActionArgs(CancellationTokenSource cancelToken)
-        {
-            CancelToken = cancelToken;
-        }
-    }
-
-    public class GlobalProgressResult
-    {
-        public Exception Error { get; set; }
-        public bool? Result { get; set; }
-        public bool Canceled { get; set; }
-
-        public GlobalProgressResult(bool? result, bool canceled, Exception error)
-        {
-            Result = result;
-            Error = error;
-            Canceled = canceled;
-        }
-    }
-
     public class GlobalProgress
     {
-        public static GlobalProgressResult ActivateProgress(Action<ProgressActionArgs> progresAction, ProgressViewArgs progressArgs)
+        public static GlobalProgressResult ActivateProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
         {
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progresAction, progressArgs);
             return progressModel.ActivateProgress();

@@ -190,7 +190,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (GlobalProgress.ActivateProgress((_) =>
             {
                 AvailableImages = downloader.GetImages(SearchTerm, Transparent).GetAwaiter().GetResult();
-            }, new ProgressViewArgs("LOCDownloadingLabel")).Result == true)
+            }, new GlobalProgressOptions("LOCDownloadingLabel")).Result == true)
             {
                 if (!AvailableImages.HasItems())
                 {

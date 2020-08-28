@@ -717,7 +717,7 @@ namespace Playnite
                 {
                     logger.Error(exc, "Failed to dispose Playnite objects.");
                 }
-            }, new ProgressViewArgs("LOCClosingPlaynite"));
+            }, new GlobalProgressOptions("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
 
@@ -908,7 +908,7 @@ namespace Playnite
                     {
                         GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
                     }
-                }, new ProgressViewArgs("LOCDBUpgradeProgress"));
+                }, new GlobalProgressOptions("LOCDBUpgradeProgress"));
 
                 if (migrationProgress.ActivateProgress().Result != true)
                 {

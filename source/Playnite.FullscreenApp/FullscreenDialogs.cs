@@ -1,6 +1,7 @@
 ﻿using Playnite.Common;
 using Playnite.FullscreenApp.Windows;
 using Playnite.SDK;
+using Playnite.ViewModels;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
@@ -133,6 +134,11 @@ namespace Playnite.FullscreenApp
         public GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null)
         {
             throw new NotImplementedException();
+        }
+
+        public GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
+        {
+            return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
         }
     }
 }

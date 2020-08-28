@@ -93,5 +93,10 @@ namespace Playnite.Tests
         {
             return null;
         }
+
+        public GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
+        {
+            return null;
+        }
     }
 }

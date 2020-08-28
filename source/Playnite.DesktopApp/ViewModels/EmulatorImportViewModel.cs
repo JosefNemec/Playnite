@@ -463,7 +463,7 @@ namespace Playnite.DesktopApp.ViewModels
             ImportedGames = GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList();
             GlobalProgress.ActivateProgress(
                 (_) => database.Games.Add(ImportedGames),
-                new ProgressViewArgs(string.Format(resources.GetString("LOCProgressImportinGames"), ImportedGames.Count)));
+                new GlobalProgressOptions(string.Format(resources.GetString("LOCProgressImportinGames"), ImportedGames.Count)));
         }
 
         private void AddSelectedEmulatorsToDB()

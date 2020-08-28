@@ -1016,9 +1016,9 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             if (GlobalTaskHandler.IsActive)
             {
-                GlobalProgress.ActivateProgress(
+                Dialogs.ActivateGlobalProgress(
                     (_) => GlobalTaskHandler.CancelAndWait(),
-                    new ProgressViewArgs("LOCOpeningDesktopModeMessage"));
+                    new GlobalProgressOptions("LOCOpeningDesktopModeMessage"));
             }
 
             CloseView();
@@ -1224,7 +1224,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     Database.SetDatabasePath(AppSettings.DatabasePath);
                     Database.OpenDatabase();
                 }
-            }, new ProgressViewArgs("LOCOpeningDatabase"));
+            }, new GlobalProgressOptions("LOCOpeningDatabase"));
 
             if (openProgress.ActivateProgress().Result != true)
             {

@@ -2,6 +2,7 @@
 using Playnite.DesktopApp.ViewModels;
 using Playnite.DesktopApp.Windows;
 using Playnite.SDK;
+using Playnite.ViewModels;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
@@ -156,6 +157,11 @@ namespace Playnite.DesktopApp
                     return null;
                 }
             });
+        }
+
+        public GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
+        {
+            return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
         }
     }
 }

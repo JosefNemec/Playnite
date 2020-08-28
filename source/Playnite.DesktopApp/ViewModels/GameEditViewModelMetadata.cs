@@ -2,6 +2,7 @@
 using Playnite.Common.Web;
 using Playnite.Database;
 using Playnite.DesktopApp.Windows;
+using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -329,9 +330,9 @@ namespace Playnite.DesktopApp.ViewModels
                     var extension = Path.GetExtension(new Uri(file.OriginalUrl).AbsolutePath);
                     var fileName = tempFileName + extension;
                     var targetPath = Path.Combine(PlaynitePaths.TempPath, fileName);
-                    var progRes = GlobalProgress.ActivateProgress((a) =>
+                    var progRes = dialogs.ActivateGlobalProgress((a) =>
                         HttpDownloader.DownloadFile(file.OriginalUrl, targetPath, a.CancelToken),
-                        new ProgressViewArgs("LOCDownloadingMediaLabel", true));
+                        new GlobalProgressOptions("LOCDownloadingMediaLabel", true));
                     if (progRes.Result == true && !progRes.Canceled)
                     {
                         return targetPath;

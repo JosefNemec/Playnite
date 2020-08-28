@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Playnite.SDK
 {
@@ -38,6 +40,109 @@ namespace Playnite.SDK
             Title = title;
             IsDefault = isDefault;
             IsCancel = isCancel;
+        }
+    }
+
+    /// <summary>
+    /// Represents arguments for global progress action.
+    /// </summary>
+    public class GlobalProgressActionArgs
+    {
+        /// <summary>
+        /// Gets synchronization context of main thread.
+        /// </summary>
+        public SynchronizationContext MainContext { get; }
+
+        /// <summary>
+        /// Gets dispatcher for main UI thread.
+        /// </summary>
+        public Dispatcher MainDispatcher { get; }
+
+        /// <summary>
+        /// Gets cancelation token source.
+        /// </summary>
+        public CancellationTokenSource CancelToken { get; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GlobalProgressActionArgs"/>.
+        /// </summary>
+        /// <param name="mainContext"></param>
+        /// <param name="mainDispatcher"></param>
+        /// <param name="cancelToken"></param>
+        public GlobalProgressActionArgs(SynchronizationContext mainContext, Dispatcher mainDispatcher, CancellationTokenSource cancelToken)
+        {
+            MainContext = mainContext;
+            MainDispatcher = mainDispatcher;
+            CancelToken = cancelToken;
+        }
+    }
+
+    /// <summary>
+    /// Represents result of global progress dialog.
+    /// </summary>
+    public class GlobalProgressResult
+    {
+        /// <summary>
+        /// Gets failure exception record.
+        /// </summary>
+        public Exception Error { get; }
+
+        /// <summary>
+        /// Gets execution result.
+        /// </summary>
+        public bool? Result { get; }
+
+        /// <summary>
+        /// Gets value indicating whether the action was canceled by user.
+        /// </summary>
+        public bool Canceled { get; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GlobalProgressResult"/>.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="canceled"></param>
+        /// <param name="error"></param>
+        public GlobalProgressResult(bool? result, bool canceled, Exception error)
+        {
+            Result = result;
+            Error = error;
+            Canceled = canceled;
+        }
+    }
+
+    /// <summary>
+    /// Represents option for global progress dialog.
+    /// </summary>
+    public class GlobalProgressOptions
+    {
+        /// <summary>
+        /// Gets or sets progress text.
+        /// </summary>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether the progress can be canceled.
+        /// </summary>
+        public bool Cancelable { get; set; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GlobalProgressOptions"/>.
+        /// </summary>
+        /// <param name="text"></param>
+        public GlobalProgressOptions(string text)
+        {
+            Text = text;
+        }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GlobalProgressOptions"/>.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="cancelable"></param>
+        public GlobalProgressOptions(string text, bool cancelable) : this(text)
+        {
+            Cancelable = cancelable;
         }
     }
 
@@ -276,5 +381,13 @@ namespace Playnite.SDK
         /// <param name="caption"></param>
         /// <returns>Null if dialog was canceled otherwise selected <see cref="GenericItemOption"/> object.</returns>
         GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null);
+
+        /// <summary>
+        /// Activates progress dialog blocking app interaction until progress is finished or canceled.
+        /// </summary>
+        /// <param name="progresAction">Action to be executed.</param>
+        /// <param name="progressOptions">Options for progress dialog.</param>
+        /// <returns>Status of the action execution. True if action finished sucessfully and completely.</returns>
+        GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressOptions);
     }
 }
