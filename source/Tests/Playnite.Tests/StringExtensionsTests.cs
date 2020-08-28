@@ -85,5 +85,12 @@ namespace Playnite.Tests
         {
             Assert.AreEqual("Test Is Good", "tEst is gOOD".ToTileCase());
         }
+
+        [Test]
+        public void ContainsAnyTest()
+        {
+            Assert.IsTrue("test[dasd".ContainsAny(new char[] { ']', '[' }));
+            Assert.IsFalse("test dasd".ContainsAny(new char[] { ']', '[' }));
+        }
     }
 }

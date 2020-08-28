@@ -177,6 +177,11 @@ namespace PlayniteServices.Models.IGDB
         public string name { get; set; }
         public string slug { get; set; }
         public string url { get; set; }
+
+        public override string ToString()
+        {
+            return $"{name} : {id}";
+        }
     }
 
     public class ExternalGame : IgdbItem

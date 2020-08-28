@@ -143,6 +143,11 @@ namespace System
             return str.IndexOf(value, 0, comparisonType) != -1;
         }
 
+        public static bool ContainsAny(this string str, char[] chars)
+        {
+            return str.IndexOfAny(chars) >= 0;
+        }
+
         public static bool IsHttpUrl(this string str)
         {
             if (string.IsNullOrEmpty(str))

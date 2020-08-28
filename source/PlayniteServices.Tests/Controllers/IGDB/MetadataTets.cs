@@ -1,9 +1,11 @@
 ﻿using Playnite.Common;
 using Playnite.SDK;
 using PlayniteServices;
+using PlayniteServices.Controllers.IGDB;
 using PlayniteServices.Models.IGDB;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Mime;
@@ -79,8 +81,15 @@ namespace PlayniteServicesTests.Controllers.IGDB
         [Fact]
         public async Task NameMatchingTest()
         {
+            // No-Intro naming
+            var metadata = await GetMetadata(new SdkModels.Game("Bug's Life, A"));
+            Assert.Equal((ulong)2847, metadata.id);
+
+            metadata = await GetMetadata(new SdkModels.Game("Warhammer 40,000: Space Marine"));
+            Assert.Equal((ulong)578, metadata.id);
+
             // & / and test
-            var metadata = await GetMetadata(new SdkModels.Game("Command and Conquer"));
+            metadata = await GetMetadata(new SdkModels.Game("Command and Conquer"));
             Assert.NotNull(metadata.cover);
             Assert.Equal("Command & Conquer", metadata.name);
             Assert.Equal(1995, GetYearFromUnix(metadata.first_release_date));
@@ -117,5 +126,23 @@ namespace PlayniteServicesTests.Controllers.IGDB
             metadata = await GetMetadata(new SdkModels.Game("Dishonored®: Death of the Outsider™"));
             Assert.Equal("Dishonored: Death of the Outsider", metadata.name);
         }
+
+        //[Fact]
+        //public async Task BigMatchingTest()
+        //{
+        //    var resultPath = @"d:\Downloads\download_" + Guid.NewGuid() + ".txt";
+        //    var gameList = File.ReadAllLines(@"d:\Downloads\export.csv");
+        //    var results = new List<string>();
+        //    foreach (var game in gameList)
+        //    {
+        //        if (game.IsNullOrEmpty())
+        //        {
+        //            continue;
+        //        }
+
+        //        var metadata = await GetMetadata(new SdkModels.Game(game));
+        //        File.AppendAllText(resultPath, $"{game}#{metadata.id}#{metadata.name}" + Environment.NewLine);
+        //    }
+        //}
     }
 }

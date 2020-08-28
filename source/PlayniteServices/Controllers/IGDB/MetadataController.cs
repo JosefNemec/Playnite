@@ -23,6 +23,9 @@ namespace PlayniteServices.Controllers.IGDB
         private readonly static ILogger logger = LogManager.GetLogger();
         private readonly AppSettings appSettings;
         private static readonly Regex separatorRegex = new Regex(@"\s*(:|-)\s*", RegexOptions.Compiled);
+        private static readonly Regex noIntroArticleRegEx = new Regex(@",\s*(the|a|an|der)$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly char[] bracketsMatchList = new char[] { '[', ']', '(', ')', '{', '}' };
+        private static readonly char[] whereQueryBlacklist = new char[2] { ':', '-' };
 
         public MetadataController(IOptions<AppSettings> settings)
         {
@@ -82,7 +85,13 @@ namespace PlayniteServices.Controllers.IGDB
             }
             else
             {
-                igdbId = await TryMatchGame(game);
+                igdbId = await TryMatchGame(game, false);
+                var useAlt = appSettings.IGDB.AlternativeSearch && !game.Name.ContainsAny(whereQueryBlacklist);
+                if (useAlt && igdbId == 0)
+                {
+                    igdbId = await TryMatchGame(game, true);
+                }
+
                 if (igdbId != 0)
                 {
                     foundMetadata = await expandFunc(igdbId);
@@ -114,9 +123,25 @@ namespace PlayniteServices.Controllers.IGDB
             return new ServicesResponse<T>(foundMetadata);
         }
 
-        private async Task<ulong> TryMatchGame(SdkModels.Game game)
+        private string FixNointroNaming(string name)
+        {
+            var match = noIntroArticleRegEx.Match(name);
+            if (match.Success)
+            {
+                return match.Groups[1].Value.Trim() + " " + noIntroArticleRegEx.Replace(name, "");
+            }
+
+            return name;
+        }
+
+        private async Task<ulong> TryMatchGame(SdkModels.Game game, bool alternativeSearch)
         {
             if (game.Name.IsNullOrEmpty())
+            {
+                return 0;
+            }
+
+            if (game.Name.ContainsAny(bracketsMatchList))
             {
                 return 0;
             }
@@ -124,11 +149,12 @@ namespace PlayniteServices.Controllers.IGDB
             ulong matchedGame = 0;
             var copyGame = game.GetClone();
             copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
+            copyGame.Name = FixNointroNaming(copyGame.Name);
             var name = copyGame.Name;
             name = Regex.Replace(name, @"\s+RHCP$", "", RegexOptions.IgnoreCase);
             name = Regex.Replace(name, @"\s+RU$", "", RegexOptions.IgnoreCase);
 
-            var results = await GamesController.GetSearchResults(name, appSettings.IGDB.AlternativeSearch);
+            var results = await GamesController.GetSearchResults(name, alternativeSearch);
             results.ForEach(a => a.name = StringExtensions.NormalizeGameName(a.name));
             string testName = string.Empty;
 
@@ -188,24 +214,27 @@ namespace PlayniteServices.Controllers.IGDB
             }
 
             // Try without subtitle
-            var testResult = results.OrderBy(a => a.first_release_date).FirstOrDefault(a =>
+            if (!alternativeSearch)
             {
-                if (a.first_release_date == 0)
+                var testResult = results.OrderBy(a => a.first_release_date).FirstOrDefault(a =>
                 {
+                    if (a.first_release_date == 0)
+                    {
+                        return false;
+                    }
+
+                    if (!string.IsNullOrEmpty(a.name) && a.name.Contains(":"))
+                    {
+                        return string.Equals(name, a.name.Split(':')[0], StringComparison.InvariantCultureIgnoreCase);
+                    }
+
                     return false;
-                }
+                });
 
-                if (!string.IsNullOrEmpty(a.name) && a.name.Contains(":"))
+                if (testResult != null)
                 {
-                    return string.Equals(name, a.name.Split(':')[0], StringComparison.InvariantCultureIgnoreCase);
+                    return testResult.id;
                 }
-
-                return false;
-            });
-
-            if (testResult != null)
-            {
-                return testResult.id;
             }
 
             return 0;

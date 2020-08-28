@@ -24,7 +24,7 @@ namespace PlayniteServices.Controllers.IGDB
         private static readonly object CacheLock = new object();
         private const string cacheDir = "game_search";
         private static ILogger logger = LogManager.GetLogger();
-        private static readonly char[] whereQueryBlacklist = new char[2] { ':', '-' };
+        private static readonly char[] bracketsMatchList = new char[] { '[', ']', '(', ')', '{', '}' };
 
         private AppSettings appSettings;
 
@@ -36,14 +36,23 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpGet("{gameName}")]
         public async Task<ServicesResponse<List<ExpandedGameLegacy>>> Get(string gameName)
         {
-            return new ServicesResponse<List<ExpandedGameLegacy>>(await GetSearchResults(gameName, appSettings.IGDB.AlternativeSearch));
+            var result = await GetSearchResults(gameName, appSettings.IGDB.AlternativeSearch);
+            if (result.Count == 0 && appSettings.IGDB.AlternativeSearch)
+            {
+                result = await GetSearchResults(gameName, false);
+            }
+
+            return new ServicesResponse<List<ExpandedGameLegacy>>(result);
         }
 
         public async static Task<List<ExpandedGameLegacy>> GetSearchResults(string searchString, bool alternativeSearch)
         {
             List<Game> searchResult = null;
             var modifiedSearchString = ModelsUtils.GetIgdbSearchString(searchString);
-            var cachePath = Path.Combine(IGDB.CacheDirectory, cacheDir, Playnite.Common.Paths.GetSafeFilename(modifiedSearchString) + ".json");
+            var cachePath = Path.Combine(
+                IGDB.CacheDirectory,
+                cacheDir,
+                (alternativeSearch ? "alt_" : "srch_") + Playnite.Common.Paths.GetSafeFilename(modifiedSearchString) + ".json");
             lock (CacheLock)
             {
                 if (System.IO.File.Exists(cachePath))
@@ -65,22 +74,16 @@ namespace PlayniteServices.Controllers.IGDB
             if (searchResult == null)
             {
                 var matchString = HttpUtility.UrlDecode(modifiedSearchString);
-                var whereQuery = $"where (name ~ *\"{matchString}\"*) | (alternative_names.name ~ *\"{matchString}\"*); fields id; limit 50;";
-                var searchQuery = $"search \"{matchString}\"; fields id; limit 50;";
-                if (searchString.IndexOfAny(whereQueryBlacklist) >= 0)
+                if (matchString.ContainsAny(bracketsMatchList))
                 {
-                    alternativeSearch = false;
+                    return new List<ExpandedGameLegacy>();
                 }
 
+                var whereQuery = $"where (name ~ *\"{matchString}\"*) | (alternative_names.name ~ *\"{matchString}\"*); fields id; limit 50;";
+                var searchQuery = $"search \"{matchString}\"; fields id; limit 50;";
                 var query = alternativeSearch ? whereQuery : searchQuery;
                 var searchStringResult = await IGDB.SendStringRequest("games", query);
                 searchResult = JsonConvert.DeserializeObject<List<Game>>(searchStringResult);
-
-                if (alternativeSearch && !searchResult.HasItems())
-                {
-                    searchStringResult = await IGDB.SendStringRequest("games", searchQuery);
-                    searchResult = JsonConvert.DeserializeObject<List<Game>>(searchStringResult);
-                }
 
                 lock (CacheLock)
                 {
