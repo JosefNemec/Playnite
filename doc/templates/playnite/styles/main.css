@@ -2,3 +2,18 @@
 }
 @media (min-width:1350px){.container{width:1300px}
 }
+
+.tabGroup section[role="tabpanel"] > .codeHeader, .tabGroup section[role="tabpanel"] > pre
+{
+    border-radius: 0px;
+}
+
+.tabGroup section[role="tabpanel"] > :first-child
+{
+    margin-top: -16px;
+}
+
+.tabGroup {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

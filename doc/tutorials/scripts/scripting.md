@@ -25,41 +25,38 @@ Accessing Playnite API
 
 Playnite API is available to scripts via `PlayniteAPI` variable. Variable provides [IPlayniteAPI](xref:Playnite.SDK.IPlayniteAPI) methods and interfaces. For example to get list of all games in library use [Database](xref:Playnite.SDK.IPlayniteAPI.Database) property from `IPlayniteAPI` and [Games](xref:Playnite.SDK.IGameDatabase.Games) collection.
 
-**PowerShell**:
-
+# [PowerShell](#tab/tabpowershell)
 ```powershell
 $PlayniteAPI.Database.Games
 ```
 
-**IronPython**:
-
+# [IronPython](#tab/tabpython)
 ```python
 PlayniteApi.Database.Games
 ```
+***
 
 To display number of games use `Dialogs` property from `PlayniteApi` variable. `Dialogs` provides [IDialogsFactory](xref:Playnite.SDK.IDialogsFactory) interface containing method for interaction with user. `ShowMessage` method will show simple text message to user.
 
-**PowerShell**:
-
+# [PowerShell](#tab/tabpowershell)
 ```powershell
 $gameCount = $PlayniteApi.Database.Games.Count
 $PlayniteApi.Dialogs.ShowMessage($gameCount)
 ```
 
-**IronPython**:
-
+# [IronPython](#tab/tabpython)
 ```python
 game_count = PlayniteApi.Database.Games.Count
 PlayniteApi.Dialogs.ShowMessage(str(game_count))
 ```
+***
 
 Examples
 ---------------------
 
 Displays number of games in the game library when executing `Show Game Count` menu from `Extensions` menu.
 
-**PowerShell**:
-
+# [PowerShell](#tab/tabpowershell)
 ```powershell
 function global:DisplayGameCount()
 {
@@ -79,8 +76,7 @@ function global:GetMainMenuItems()
 }
 ```
 
-**IronPython**:
-
+# [IronPython](#tab/tabpython)
 ```python
 from Playnite.SDK.Plugins import ScriptMainMenuItem
 
@@ -95,3 +91,4 @@ def get_mainmenu_items(menu_args):
     menu_item.MenuSection = "@"
     yield menu_item    
 ```
+***

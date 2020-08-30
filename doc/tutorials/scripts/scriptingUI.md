@@ -7,14 +7,15 @@ To get list of currently selected games use `MainView` from `PlayniteApi` variab
 
 Following example exports names of selected games to a file:
 
-**PowerShell**:
+# [PowerShell](#tab/tabpowershell)
 ```powershell
 $PlayniteApi.MainView.SelectedGames | Select -ExpandProperty Name | Out-File "SelectedGames.txt"
 ```
 
-**IronPython]**:
+# [IronPython](#tab/tabpython)
 ```python
 with open("SelectedGames.txt", "w") as text_file:
     for game in PlayniteApi.MainView.SelectedGames:
         text_file.write("%s\n" % game.Name)
 ```
+***

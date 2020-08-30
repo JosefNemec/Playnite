@@ -16,7 +16,7 @@ You can use those argument objects to decide what elements to return. For exampl
 > [!NOTE] 
 > `Get*MenuItems` menu methods are executed each time a menu is opened. For that reason, make sure you are not executing long running code in those methods. It would otherwise result in a noticeable delay when opening the menu.
 
-**C#**:
+# [C#](#tab/csharp)
 ```csharp
 // To add new game menu items override GetGameMenuItems
 public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
@@ -43,10 +43,9 @@ public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
         }
     };
 }
-
 ```
 
-**PowerShell**:
+# [PowerShell](#tab/tabpowershell)
 ```powershell
 # To add new game menu items implement GetGameMenuItems
 function global:GetGameMenuItems()
@@ -81,7 +80,7 @@ function global:InvokeMainMenuFunction()
 }
 ```
 
-**IronPython**:
+# [IronPython](#tab/tabpython)
 ```python
 from Playnite.SDK.Plugins import ScriptGameMenuItem
 from Playnite.SDK.Plugins import ScriptMainMenuItem
@@ -104,6 +103,7 @@ def game_menu_function(menu_args):
 def main_menu_function(menu_args):
     pass
 ```
+***
 
 Sub sections
 ---------------------
