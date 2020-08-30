@@ -589,7 +589,7 @@ namespace Playnite.DesktopApp.ViewModels
                     game.GameImagePath = EditingGame.GameImagePath;
                 }
 
-                if (UseInstallDirChanges)
+                if (UseInstallStateChanges)
                 {
                     game.IsInstalled = EditingGame.IsInstalled;
                 }
