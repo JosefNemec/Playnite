@@ -23,7 +23,7 @@ namespace PlayniteServices.Controllers.IGDB
         private readonly static ILogger logger = LogManager.GetLogger();
         private readonly AppSettings appSettings;
         private static readonly Regex separatorRegex = new Regex(@"\s*(:|-)\s*", RegexOptions.Compiled);
-        private static readonly Regex noIntroArticleRegEx = new Regex(@",\s*(the|a|an|der)$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex noIntroArticleRegEx = new Regex(@",\s*(the|a|an|der|das|die)$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly char[] bracketsMatchList = new char[] { '[', ']', '(', ')', '{', '}' };
         private static readonly char[] whereQueryBlacklist = new char[2] { ':', '-' };
 
