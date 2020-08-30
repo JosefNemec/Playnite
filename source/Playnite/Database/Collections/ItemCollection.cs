@@ -160,6 +160,11 @@ namespace Playnite.Database
             }
         }
 
+        public bool ContainsItem(Guid id)
+        {
+            return Items?.ContainsKey(id) == true;
+        }
+
         public List<TItem> Get(IList<Guid> ids)
         {
             var items = new List<TItem>(ids.Count);

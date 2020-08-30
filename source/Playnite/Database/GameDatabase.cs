@@ -208,59 +208,59 @@ namespace Playnite.Database
         {
             foreach (var game in Games)
             {
-                if (game.PlatformId != Guid.Empty)
+                if (game.PlatformId != Guid.Empty && Platforms.ContainsItem(game.PlatformId))
                 {
                     UsedPlatforms.AddMissing(game.PlatformId);
                 }
 
                 if (game.GenreIds.HasItems())
                 {
-                    UsedGenres.AddMissing(game.GenreIds);
+                    UsedGenres.AddMissing(game.GenreIds.Where(a => Genres.ContainsItem(a)));
                 }
 
                 if (game.DeveloperIds.HasItems())
                 {
-                    UsedDevelopers.AddMissing(game.DeveloperIds);
+                    UsedDevelopers.AddMissing(game.DeveloperIds.Where(a => Companies.ContainsItem(a)));
                 }
 
                 if (game.PublisherIds.HasItems())
                 {
-                    UsedPublishers.AddMissing(game.PublisherIds);
+                    UsedPublishers.AddMissing(game.PublisherIds.Where(a => Companies.ContainsItem(a)));
                 }
 
                 if (game.TagIds.HasItems())
                 {
-                    UsedTags.AddMissing(game.TagIds);
+                    UsedTags.AddMissing(game.TagIds.Where(a => Tags.ContainsItem(a)));
                 }
 
                 if (game.CategoryIds.HasItems())
                 {
-                    UsedCategories.AddMissing(game.CategoryIds);
+                    UsedCategories.AddMissing(game.CategoryIds.Where(a => Categories.ContainsItem(a)));
                 }
 
-                if (game.SeriesId != Guid.Empty)
+                if (game.SeriesId != Guid.Empty && Series.ContainsItem(game.SeriesId))
                 {
                     UsedSeries.AddMissing(game.SeriesId);
                 }
 
-                if (game.AgeRatingId != Guid.Empty)
+                if (game.AgeRatingId != Guid.Empty && AgeRatings.ContainsItem(game.AgeRatingId))
                 {
                     UsedAgeRatings.AddMissing(game.AgeRatingId);
                 }
 
-                if (game.RegionId != Guid.Empty)
+                if (game.RegionId != Guid.Empty && Regions.ContainsItem(game.RegionId))
                 {
                     UsedRegions.AddMissing(game.RegionId);
                 }
 
-                if (game.SourceId != Guid.Empty)
+                if (game.SourceId != Guid.Empty && Sources.ContainsItem(game.SourceId))
                 {
                     UsedSources.AddMissing(game.SourceId);
                 }
 
                 if (game.FeatureIds.HasItems())
                 {
-                    UsedFeastures.AddMissing(game.FeatureIds);
+                    UsedFeastures.AddMissing(game.FeatureIds.Where(a => Features.ContainsItem(a)));
                 }
             }
         }
@@ -424,17 +424,17 @@ namespace Playnite.Database
             {
                 foreach (var game in e.AddedItems)
                 {
-                    UpdateFieldsInUse(game.PlatformId, UsedPlatforms, PlatformsInUseUpdated);
-                    UpdateFieldsInUse(game.GenreIds, UsedGenres, GenresInUseUpdated);
-                    UpdateFieldsInUse(game.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated);
-                    UpdateFieldsInUse(game.PublisherIds, UsedPublishers, PublishersInUseUpdated);
-                    UpdateFieldsInUse(game.TagIds, UsedTags, TagsInUseUpdated);
-                    UpdateFieldsInUse(game.CategoryIds, UsedCategories, CategoriesInUseUpdated);
-                    UpdateFieldsInUse(game.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated);
-                    UpdateFieldsInUse(game.SeriesId, UsedSeries, SeriesInUseUpdated);
-                    UpdateFieldsInUse(game.RegionId, UsedRegions, RegionsInUseUpdated);
-                    UpdateFieldsInUse(game.SourceId, UsedSources, SourcesInUseUpdated);
-                    UpdateFieldsInUse(game.FeatureIds, UsedFeastures, FeaturesInUseUpdated);
+                    UpdateFieldsInUse(game.PlatformId, UsedPlatforms, PlatformsInUseUpdated, Platforms);
+                    UpdateFieldsInUse(game.GenreIds, UsedGenres, GenresInUseUpdated, Genres);
+                    UpdateFieldsInUse(game.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated, Companies);
+                    UpdateFieldsInUse(game.PublisherIds, UsedPublishers, PublishersInUseUpdated, Companies);
+                    UpdateFieldsInUse(game.TagIds, UsedTags, TagsInUseUpdated, Tags);
+                    UpdateFieldsInUse(game.CategoryIds, UsedCategories, CategoriesInUseUpdated, Categories);
+                    UpdateFieldsInUse(game.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
+                    UpdateFieldsInUse(game.SeriesId, UsedSeries, SeriesInUseUpdated, Series);
+                    UpdateFieldsInUse(game.RegionId, UsedRegions, RegionsInUseUpdated, Regions);
+                    UpdateFieldsInUse(game.SourceId, UsedSources, SourcesInUseUpdated, Sources);
+                    UpdateFieldsInUse(game.FeatureIds, UsedFeastures, FeaturesInUseUpdated, Features);
                 }
             }
         }
@@ -443,23 +443,23 @@ namespace Playnite.Database
         {
             foreach (var upd in e.UpdatedItems)
             {
-                UpdateFieldsInUse(upd.NewData.PlatformId, UsedPlatforms, PlatformsInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.GenreIds, UsedGenres, GenresInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.PublisherIds, UsedPublishers, PublishersInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.TagIds, UsedTags, TagsInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.CategoryIds, UsedCategories, CategoriesInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.SeriesId, UsedSeries, SeriesInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.RegionId, UsedRegions, RegionsInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.SourceId, UsedSources, SourcesInUseUpdated);
-                UpdateFieldsInUse(upd.NewData.FeatureIds, UsedFeastures, FeaturesInUseUpdated);
+                UpdateFieldsInUse(upd.NewData.PlatformId, UsedPlatforms, PlatformsInUseUpdated, Platforms);
+                UpdateFieldsInUse(upd.NewData.GenreIds, UsedGenres, GenresInUseUpdated, Genres);
+                UpdateFieldsInUse(upd.NewData.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated, Companies);
+                UpdateFieldsInUse(upd.NewData.PublisherIds, UsedPublishers, PublishersInUseUpdated, Companies);
+                UpdateFieldsInUse(upd.NewData.TagIds, UsedTags, TagsInUseUpdated, Tags);
+                UpdateFieldsInUse(upd.NewData.CategoryIds, UsedCategories, CategoriesInUseUpdated, Categories);
+                UpdateFieldsInUse(upd.NewData.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
+                UpdateFieldsInUse(upd.NewData.SeriesId, UsedSeries, SeriesInUseUpdated, Series);
+                UpdateFieldsInUse(upd.NewData.RegionId, UsedRegions, RegionsInUseUpdated, Regions);
+                UpdateFieldsInUse(upd.NewData.SourceId, UsedSources, SourcesInUseUpdated, Sources);
+                UpdateFieldsInUse(upd.NewData.FeatureIds, UsedFeastures, FeaturesInUseUpdated, Features);
             }
         }
 
-        private void UpdateFieldsInUse(Guid sourceData, List<Guid> useCollection, EventHandler handler)
+        private void UpdateFieldsInUse(Guid sourceData, List<Guid> useCollection, EventHandler handler, IItemCollection dbItems)
         {
-            if (sourceData != Guid.Empty)
+            if (sourceData != Guid.Empty && dbItems.ContainsItem(sourceData))
             {
                 if (useCollection.AddMissing(sourceData))
                 {
@@ -468,11 +468,11 @@ namespace Playnite.Database
             }
         }
 
-        private void UpdateFieldsInUse(List<Guid> sourceData, List<Guid> useCollection, EventHandler handler)
+        private void UpdateFieldsInUse(List<Guid> sourceData, List<Guid> useCollection, EventHandler handler, IItemCollection dbItems)
         {
             if (sourceData.HasItems())
             {
-                if (useCollection.AddMissing(sourceData))
+                if (useCollection.AddMissing(sourceData.Where(a => dbItems.ContainsItem(a))))
                 {
                     handler?.Invoke(this, EventArgs.Empty);
                 }

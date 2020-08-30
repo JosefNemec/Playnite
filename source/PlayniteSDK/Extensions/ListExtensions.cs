@@ -78,7 +78,7 @@ namespace System.Collections.Generic
         /// <param name="source"></param>
         /// <param name="items"></param>
         /// <returns>True if an item was added, false if none item was added.</returns>
-        public static bool AddMissing<T>(this IList<T> source, IList<T> items)
+        public static bool AddMissing<T>(this IList<T> source, IEnumerable<T> items)
         {
             if (!items.HasItems())
             {
