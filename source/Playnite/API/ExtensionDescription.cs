@@ -55,6 +55,14 @@ namespace Playnite.API
                 }
             }
         }
+
+        public void VerifyManifest()
+        {
+            if (!System.Version.TryParse(Version, out var extver))
+            {
+                throw new Exception("Extension version string must be a real version!");
+            }
+        }
     }
 
     public class ExtensionManifest : BaseExtensionManifest

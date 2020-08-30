@@ -167,6 +167,8 @@ namespace Playnite.Toolbox
                 throw new Exception("Cannot package theme, ID is missing!");
             }
 
+            extInfo.VerifyManifest();
+
             var apiVer = extInfo.Mode == ApplicationMode.Desktop ? ThemeManager.DesktopApiVersion : ThemeManager.FullscreenApiVersion;
             var themeApiVer = Version.Parse(extInfo.ThemeApiVersion);
             if (themeApiVer > apiVer)

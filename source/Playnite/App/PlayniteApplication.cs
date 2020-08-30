@@ -952,6 +952,8 @@ namespace Playnite
                     throw new FileNotFoundException("Theme manifest not found.");
                 }
 
+                desc.VerifyManifest();
+
                 if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
                 {
                     throw new Exception(ResourceProvider.GetString("LOCGeneralExtensionInstallApiVersionFails"));
@@ -993,6 +995,8 @@ namespace Playnite
                 {
                     throw new FileNotFoundException("Extension manifest not found.");
                 }
+
+                desc.VerifyManifest();
 
                 if (Dialogs.ShowMessage(
                         string.Format(ResourceProvider.GetString("LOCExtensionInstallPrompt"),

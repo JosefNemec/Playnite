@@ -106,6 +106,8 @@ namespace Playnite.Toolbox
                 throw new Exception("Cannot package extension, ID is missing!");
             }
 
+            extInfo.VerifyManifest();
+
             var packedPath = Path.Combine(targetPath, $"{Common.Paths.GetSafeFilename(extInfo.Name).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedExtensionFileExtention}");
             FileSystem.PrepareSaveFile(packedPath);
             var ignoreFiles = File.ReadAllLines(Paths.ExtFileIgnoreListPath);
