@@ -176,32 +176,35 @@ namespace Playnite.Database
 
         private void LoadCollections()
         {
-            (Platforms as PlatformsCollection).InitializeCollection(PlatformsDirectoryPath);
-            (Emulators as EmulatorsCollection).InitializeCollection(EmulatorsDirectoryPath);
-            (Genres as GenresCollection).InitializeCollection(GenresDirectoryPath);
-            (Companies as CompaniesCollection).InitializeCollection(CompaniesDirectoryPath);
-            (Tags as TagsCollection).InitializeCollection(TagsDirectoryPath);
-            (Categories as CategoriesCollection).InitializeCollection(CategoriesDirectoryPath);
-            (AgeRatings as AgeRatingsCollection).InitializeCollection(AgeRatingsDirectoryPath);
-            (Series as SeriesCollection).InitializeCollection(SeriesDirectoryPath);
-            (Regions as RegionsCollection).InitializeCollection(RegionsDirectoryPath);
-            (Sources as GamesSourcesCollection).InitializeCollection(SourcesDirectoryPath);
-            (Features as FeaturesCollection).InitializeCollection(FeaturesDirectoryPath);
-            (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
-            SoftwareApps.InitializeCollection(ToolsDirectoryPath);
+            using (var timer = new ExecutionTimer("DatabaseLoadCollections"))
+            {
+                (Platforms as PlatformsCollection).InitializeCollection(PlatformsDirectoryPath);
+                (Emulators as EmulatorsCollection).InitializeCollection(EmulatorsDirectoryPath);
+                (Genres as GenresCollection).InitializeCollection(GenresDirectoryPath);
+                (Companies as CompaniesCollection).InitializeCollection(CompaniesDirectoryPath);
+                (Tags as TagsCollection).InitializeCollection(TagsDirectoryPath);
+                (Categories as CategoriesCollection).InitializeCollection(CategoriesDirectoryPath);
+                (AgeRatings as AgeRatingsCollection).InitializeCollection(AgeRatingsDirectoryPath);
+                (Series as SeriesCollection).InitializeCollection(SeriesDirectoryPath);
+                (Regions as RegionsCollection).InitializeCollection(RegionsDirectoryPath);
+                (Sources as GamesSourcesCollection).InitializeCollection(SourcesDirectoryPath);
+                (Features as FeaturesCollection).InitializeCollection(FeaturesDirectoryPath);
+                (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
+                SoftwareApps.InitializeCollection(ToolsDirectoryPath);
 
-            Games.ItemUpdated += Games_ItemUpdated;
-            Games.ItemCollectionChanged += Games_ItemCollectionChanged;
-            Platforms.ItemCollectionChanged += Platforms_ItemCollectionChanged;
-            Genres.ItemCollectionChanged += Genres_ItemCollectionChanged;
-            Companies.ItemCollectionChanged += Companies_ItemCollectionChanged;
-            Tags.ItemCollectionChanged += Tags_ItemCollectionChanged;
-            Categories.ItemCollectionChanged += Categories_ItemCollectionChanged;
-            AgeRatings.ItemCollectionChanged += AgeRatings_ItemCollectionChanged;
-            Series.ItemCollectionChanged += Series_ItemCollectionChanged;
-            Regions.ItemCollectionChanged += Regions_ItemCollectionChanged;
-            Sources.ItemCollectionChanged += Sources_ItemCollectionChanged;
-            Features.ItemCollectionChanged += Features_ItemCollectionChanged;
+                Games.ItemUpdated += Games_ItemUpdated;
+                Games.ItemCollectionChanged += Games_ItemCollectionChanged;
+                Platforms.ItemCollectionChanged += Platforms_ItemCollectionChanged;
+                Genres.ItemCollectionChanged += Genres_ItemCollectionChanged;
+                Companies.ItemCollectionChanged += Companies_ItemCollectionChanged;
+                Tags.ItemCollectionChanged += Tags_ItemCollectionChanged;
+                Categories.ItemCollectionChanged += Categories_ItemCollectionChanged;
+                AgeRatings.ItemCollectionChanged += AgeRatings_ItemCollectionChanged;
+                Series.ItemCollectionChanged += Series_ItemCollectionChanged;
+                Regions.ItemCollectionChanged += Regions_ItemCollectionChanged;
+                Sources.ItemCollectionChanged += Sources_ItemCollectionChanged;
+                Features.ItemCollectionChanged += Features_ItemCollectionChanged;
+            }
         }
 
         private void LoadUsedItems()

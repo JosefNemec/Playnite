@@ -84,33 +84,36 @@ namespace Playnite.Database
             storagePath = path;
             if (Directory.Exists(storagePath))
             {
-                Parallel.ForEach(Directory.EnumerateFiles(storagePath, "*.json"), (objectFile) =>
-                {
-                    if (Guid.TryParse(Path.GetFileNameWithoutExtension(objectFile), out var _))
+                Parallel.ForEach(
+                    Directory.EnumerateFiles(storagePath, "*.json"),
+                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
+                    (objectFile) =>
                     {
-                        try
+                        if (Guid.TryParse(Path.GetFileNameWithoutExtension(objectFile), out var _))
                         {
-                            var obj = Serialization.FromJsonFile<TItem>(objectFile);
-                            if (obj != null)
+                            try
                             {
-                                initMethod?.Invoke(obj);
-                                Items.TryAdd(obj.Id, obj);
+                                var obj = Serialization.FromJsonFile<TItem>(objectFile);
+                                if (obj != null)
+                                {
+                                    initMethod?.Invoke(obj);
+                                    Items.TryAdd(obj.Id, obj);
+                                }
+                                else
+                                {
+                                    logger.Warn($"Failed to deserialize collection item {objectFile}");
+                                }
                             }
-                            else
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                             {
-                                logger.Warn($"Failed to deserialize collection item {objectFile}");
+                                logger.Error(e, $"Failed to load item from {objectFile}");
                             }
                         }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        else
                         {
-                            logger.Error(e, $"Failed to load item from {objectFile}");
+                            logger.Warn($"Skipping non-id collection item {objectFile}");
                         }
-                    }
-                    else
-                    {
-                        logger.Warn($"Skipping non-id collection item {objectFile}");
-                    }
-                });
+                    });
             }
             else
             {
