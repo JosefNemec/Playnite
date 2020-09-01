@@ -74,10 +74,14 @@ namespace Playnite.Database
             {
                 if (value != selectedField)
                 {
-                    selectedField = value;
                     if (selectedField != null)
                     {
                         ApplyFilter(selectedField.Field, null);
+                    }
+
+                    selectedField = value;
+                    if (selectedField != null)
+                    {
                         settings.ViewSettings.SelectedExplorerField = selectedField.Field;
                         LoadValues(selectedField.Field);
                     }
