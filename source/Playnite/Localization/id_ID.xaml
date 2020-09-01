@@ -134,7 +134,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCInstallationLabel">Instalasi</sys:String>
     <sys:String x:Key="LOCActionsLabel">Aksi</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Mengunduh…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Memuat...</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipe</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profil</sys:String>
@@ -144,7 +144,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCZoomLabel">Perbesaran</sys:String>
     <sys:String x:Key="LOCListViewLabel">Tampilan Daftar</sys:String>
     <sys:String x:Key="LOCCoversLabel">Sampul</sys:String>
-    <sys:String x:Key="LOCGridViewLabel"></sys:String>
+    <sys:String x:Key="LOCGridViewLabel">Tampilan Grid</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel">Tampilan Detail</sys:String>
     <sys:String x:Key="LOCCustomLabel">Kustom</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
@@ -165,10 +165,10 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCPastMonth">Bulan lalu</sys:String>
     <sys:String x:Key="LOCPastYear">Tahun Terakhir</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Lebih dari 1 tahun yang lalu</sys:String>
-    <sys:String x:Key="LOCImportCompleted"></sys:String>
+    <sys:String x:Key="LOCImportCompleted">Import berhasil dilakukan.</sys:String>
     <sys:String x:Key="LOCAllGames">Semua gim</sys:String>
-    <sys:String x:Key="LOCGameId"></sys:String>
-    <sys:String x:Key="LOCDatabaseId"></sys:String>
+    <sys:String x:Key="LOCGameId">ID Game</sys:String>
+    <sys:String x:Key="LOCDatabaseId">ID Database</sys:String>
     <sys:String x:Key="LOCPresets">Prasetel</sys:String>
     <sys:String x:Key="LOCColumn">Kolom</sys:String>
     <sys:String x:Key="LOCColumns">Kolom</sys:String>
@@ -179,28 +179,28 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Tidak bisa memuat ikon jika aksi Mainkan tidak ada atau diset ke URL.</sys:String>
 
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Download metadata yang hilang</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Pilih Game</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Pilih game mana yang akan diupdate dengan metadata baru:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Semua game di database</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Semua game yang difilter</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Hanya game yang dipilih</sys:String>
-    <sys:String x:Key="LOCMetaSourceStore"></sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
+    <sys:String x:Key="LOCMetaSourceStore">Situs Resmi</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Silahkan pilih baris mana yang akan otomatis diisi oleh Playnite dan source mana yang akan digunakan sebagai sumber data.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressMetadata"></sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
-    <sys:String x:Key="LOCProgressImportinGames"></sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">Mengupdate library Steam...</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">Mengupdate library GOG...</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Mengupdate library Origin...</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">Mengupdate library Battle.Net...</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">Mendownload metadata...</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Mengimport game yang terinstal...</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Mengimport {0} game...</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">Mengupdate library...</sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport">Mengupdate library...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Update library selesai</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
 
@@ -211,12 +211,12 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Setel Emulator…</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Pengelola Pustaka…</sys:String>
     <sys:String x:Key="LOCMenuTools">Alat</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">Mendownload metadata...</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Buka Client Pihak Ketiga</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Muat Ulang List Game</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Tambah Game</sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">Cari...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Scan otomatis...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
     <sys:String x:Key="LOCMenuAbout">Tentang Playnite</sys:String>
@@ -229,12 +229,12 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Hibernasikan Sistem</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Pilih Game Secara Acak</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">Spasi antar item</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
