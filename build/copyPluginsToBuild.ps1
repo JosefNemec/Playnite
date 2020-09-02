@@ -8,7 +8,6 @@ $ErrorActionPreference = "Stop"
 & (Join-Path $SolutionDir "..\build\common.ps1")
 
 $excludeFiles = Get-Content (Join-Path $SolutionDir "..\build\ExtensionsRefIgnoreList.txt")
-$excludeFiles | out-file "d:\downloads\test.txt2"
 foreach ($pluginDir in (Get-ChildItem (Join-Path $SolutionDir "Plugins\") -Directory))
 {
     if ($pluginDir -match "\.Tests")
