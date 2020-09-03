@@ -17,17 +17,8 @@ namespace Playnite.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private ApplicationMode mode;
-
-        private string exception;
-        public string Exception
-        {
-            get => exception;
-            set
-            {
-                exception = value;
-                OnPropertyChanged();
-            }
-        }
+        private ExceptionInfo exInfo;
+        private PlayniteSettings settings;
 
         private string description;
         public string Description
@@ -39,6 +30,19 @@ namespace Playnite.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private bool disableExtension;
+        public bool DisableExtension
+        {
+            get => disableExtension;
+            set
+            {
+                disableExtension = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ExtCrashDescription { get; set; }
 
         public RelayCommand<object> CreateDiagPackageCommand
         {
@@ -76,12 +80,43 @@ namespace Playnite.ViewModels
             });
         }
 
-        public CrashHandlerViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ApplicationMode mode)
+        public RelayCommand<object> SaveLogCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SaveLog();
+            });
+        }
+
+        public CrashHandlerViewModel(
+            CrashHandlerWindowFactory window,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ApplicationMode mode)
         {
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
             this.mode = mode;
+        }
+
+        public CrashHandlerViewModel(
+            ExtensionCrashHandlerWindowFactory window,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ApplicationMode mode,
+            ExceptionInfo exInfo,
+            PlayniteSettings settings)
+        {
+            this.window = window;
+            this.dialogs = dialogs;
+            this.resources = resources;
+            this.mode = mode;
+            this.exInfo = exInfo;
+            this.settings = settings;
+            ExtCrashDescription = resources.
+                GetString(mode == ApplicationMode.Desktop ? "LOCExtCrashDescription" : "LOCExtCrashDescriptionFS").
+                Format(exInfo.CrashExtension.Name);
         }
 
         public void OpenView()
@@ -115,6 +150,12 @@ namespace Playnite.ViewModels
 
         public void RestartApp()
         {
+            if (exInfo?.IsExtensionCrash == true && DisableExtension)
+            {
+                settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.DirectoryName);
+                settings.SaveSettings();
+            }
+
             if (mode == ApplicationMode.Desktop)
             {
                 Process.Start(PlaynitePaths.DesktopExecutablePath);
@@ -187,6 +228,15 @@ namespace Playnite.ViewModels
                 {
                     Explorer.NavigateToFileSystemEntry(diagPath);
                 }
+            }
+        }
+
+        private void SaveLog()
+        {
+            var targetPath = dialogs.SaveFile("Log file|*.log", true);
+            if (!targetPath.IsNullOrEmpty())
+            {
+                File.Copy(PlaynitePaths.LogPath, targetPath, true);
             }
         }
     }

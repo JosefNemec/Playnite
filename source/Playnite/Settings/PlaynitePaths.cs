@@ -31,6 +31,7 @@ namespace Playnite
         public static string UninstallerPath => Path.Combine(ProgramPath, "unins000.exe");
         public static string BrowserCachePath => Path.Combine(ConfigRootPath, "browsercache");
         public static string TempPath => Path.Combine(Path.GetTempPath(), "Playnite");
+        public static string LogPath => Path.Combine(ConfigRootPath, "playnite.log");
         public static string ConfigFilePath => Path.Combine(ConfigRootPath, "config.json");
         public static string FullscreenConfigFilePath => Path.Combine(ConfigRootPath, "fullscreenConfig.json");
         public static string WindowPositionsPath => Path.Combine(ConfigRootPath, "windowPositions.json");

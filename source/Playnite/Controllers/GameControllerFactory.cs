@@ -58,7 +58,7 @@ namespace Playnite.Controllers
 
         public void RemoveController(Guid gameId)
         {
-            var controller = Controllers.FirstOrDefault(a => a.Game.Id == gameId);
+            var controller = Controllers.FirstOrDefault(a => a.Game?.Id == gameId);
             if (controller != null)
             {
                 RemoveController(controller);
@@ -72,7 +72,15 @@ namespace Playnite.Controllers
             controller.Started -= Controller_Started;
             controller.Starting -= Controller_Starting;
             controller.Stopped -= Controller_Stopped;
-            controller.Dispose();
+            try
+            {
+                controller.Dispose();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to dispose game controller {controller.GetType()}");
+            }
+
             Controllers.Remove(controller);
         }
 

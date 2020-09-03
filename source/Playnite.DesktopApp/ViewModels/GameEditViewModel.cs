@@ -406,14 +406,21 @@ namespace Playnite.DesktopApp.ViewModels
                 });
 
                 LibraryPlugin = extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == Game?.PluginId);
-                LibraryPluginMetadataDownloader = LibraryPlugin?.GetMetadataDownloader();
-                if (LibraryPluginMetadataDownloader != null)
+                try
                 {
-                    MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
+                    LibraryPluginMetadataDownloader = LibraryPlugin?.GetMetadataDownloader();
+                    if (LibraryPluginMetadataDownloader != null)
                     {
-                        Downloader = LibraryPluginMetadataDownloader,
-                        Name = resources.GetString("LOCMetaSourceStore")
-                    });
+                        MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
+                        {
+                            Downloader = LibraryPluginMetadataDownloader,
+                            Name = resources.GetString("LOCMetaSourceStore")
+                        });
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get library metadata downloader {LibraryPlugin?.GetType()}");
                 }
             }
         }
@@ -426,7 +433,15 @@ namespace Playnite.DesktopApp.ViewModels
         public void CloseView(bool? result = false)
         {
             CleanupTempFiles();
-            LibraryPluginMetadataDownloader?.Dispose();
+            try
+            {
+                LibraryPluginMetadataDownloader?.Dispose();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to dispose library metadata downloader {LibraryPluginMetadataDownloader.GetType()}");
+            }
+
             window.Close(result);
         }
 

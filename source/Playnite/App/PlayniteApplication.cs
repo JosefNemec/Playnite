@@ -309,14 +309,29 @@ namespace Playnite
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var exception = (Exception)e.ExceptionObject;
+            var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions);
             logger.Error(exception, "Unhandled exception occured.");
-            var model = new CrashHandlerViewModel(
-                new CrashHandlerWindowFactory(),
-                Dialogs,
-                new ResourceProvider(),
-                Mode);
-            model.Exception = exception.ToString();
-            model.OpenView();
+            CrashHandlerViewModel crashModel = null;
+            if (crashInfo.IsExtensionCrash)
+            {
+                crashModel = new CrashHandlerViewModel(
+                    new ExtensionCrashHandlerWindowFactory(),
+                    Dialogs,
+                    new ResourceProvider(),
+                    Mode,
+                    crashInfo,
+                    AppSettings);
+            }
+            else
+            {
+                crashModel = new CrashHandlerViewModel(
+                    new CrashHandlerWindowFactory(),
+                    Dialogs,
+                    new ResourceProvider(),
+                    Mode);
+            }
+
+            crashModel.OpenView();
             Process.GetCurrentProcess().Kill();
         }
 

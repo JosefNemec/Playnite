@@ -386,6 +386,12 @@ namespace Playnite.Plugins
 
         private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -394,7 +400,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameUninstalled method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameUninstalled method from {script.Name} script.");
                 }
             }
 
@@ -406,13 +412,19 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameUninstalled method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameUninstalled method from {plugin.Description.Name} plugin.");
                 }
             }
         }
 
         private void Controllers_Stopped(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -421,7 +433,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStopped method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameStopped method from {script.Name} script.");
                 }
             }
 
@@ -433,13 +445,19 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStopped method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameStopped method from {plugin.Description.Name} plugin.");
                 }
             }
         }
 
         private void Controllers_Starting(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -448,7 +466,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStarting method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameStarting method from {script.Name} script.");
                 }
             }
 
@@ -460,13 +478,19 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStarting method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameStarting method from {plugin.Description.Name} plugin.");
                 }
             }
         }
 
         private void Controllers_Started(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -475,7 +499,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStarted method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameStarted method from {script.Name} script.");
                 }
             }
 
@@ -487,13 +511,19 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStarted method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameStarted method from {plugin.Description.Name} plugin.");
                 }
             }
         }
 
         private void Controllers_Installed(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -502,7 +532,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameInstalled method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameInstalled method from {script.Name} script.");
                 }
             }
 
@@ -514,7 +544,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameInstalled method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameInstalled method from {plugin.Description.Name} plugin.");
                 }
             }
         }
@@ -530,7 +560,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameSelected method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameSelected method from {script.Name} script.");
                 }
             }
 
@@ -542,7 +572,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameSelected method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameSelected method from {plugin.Description.Name} plugin.");
                 }
             }
         }
@@ -557,7 +587,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnApplicationStarted method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnApplicationStarted method from {script.Name} script.");
                 }
             }
 
@@ -569,7 +599,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnApplicationStarted method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnApplicationStarted method from {plugin.Description.Name} plugin.");
                 }
             }
         }
@@ -584,7 +614,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnApplicationStopped method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnApplicationStopped method from {script.Name} script.");
                 }
             }
 
@@ -596,7 +626,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnApplicationStopped method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnApplicationStopped method from {plugin.Description.Name} plugin.");
                 }
             }
         }
@@ -611,7 +641,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnLibraryUpdated method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnLibraryUpdated method from {script.Name} script.");
                 }
             }
 
@@ -623,7 +653,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnLibraryUpdated method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnLibraryUpdated method from {plugin.Description.Name} plugin.");
                 }
             }
         }

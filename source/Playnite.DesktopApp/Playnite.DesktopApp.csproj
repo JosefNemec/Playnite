@@ -277,6 +277,9 @@
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\MetadataComparisonViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
+    <Compile Include="Windows\ExtensionCrashHandlerWindow.xaml.cs">
+      <DependentUpon>ExtensionCrashHandlerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MetadataComparisonWindow.xaml.cs">
       <DependentUpon>MetadataComparisonWindow.xaml</DependentUpon>
     </Compile>
@@ -1001,6 +1004,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ExtensionCrashHandlerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
