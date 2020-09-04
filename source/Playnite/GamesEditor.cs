@@ -283,21 +283,33 @@ namespace Playnite
 
             try
             {
-                var expandedPath = game.ExpandVariables(game.InstallDirectory);
+                var installDirectory = game.InstallDirectory;
+                if (!Directory.Exists(installDirectory))
+                {
+                    var newInstallDirectory = FileSystem.LookupAlternativeDirectoryPath(installDirectory);
+                    if (!string.IsNullOrWhiteSpace(newInstallDirectory))
+                    {
+                        logger.Warn($"InstallDirectory \"{installDirectory}\" does not exist for game \"{game.Name}\"" +
+                        $" and is temporarily changed to {newInstallDirectory}");
+                        installDirectory = newInstallDirectory;
+                    }
+                }
+                
+                installDirectory = game.ExpandVariables(installDirectory);
                 if (AppSettings.DirectoryOpenCommand.IsNullOrWhiteSpace())
                 {
-                    Process.Start(expandedPath);
+                    Process.Start(installDirectory);
                 }
                 else
                 {
                     try
                     {
-                        ProcessStarter.ShellExecute(AppSettings.DirectoryOpenCommand.Replace("{Dir}", expandedPath));
+                        ProcessStarter.ShellExecute(AppSettings.DirectoryOpenCommand.Replace("{Dir}", installDirectory));
                     }
                     catch (Exception e)
                     {
                         logger.Error(e, "Failed to open directory using custom command.");
-                        Process.Start(expandedPath);
+                        Process.Start(installDirectory);
                     }
                 }
             }
