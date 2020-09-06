@@ -189,7 +189,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCMetaSourceStore">Situs Resmi</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Silahkan pilih baris mana yang akan otomatis diisi oleh Playnite dan source mana yang akan digunakan sebagai sumber data.</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Klik logo di atas untuk berkontribusi di igdb.com agar meningkatkan data yang bisa digunakan oleh Playnite.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Mengupdate library Steam...</sys:String>
@@ -217,7 +217,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCMenuAddGame">Tambah Game</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Cari...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scan otomatis...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Game Emulasi...</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Aplikasi Microsoft Store...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Tentang Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Kirim Timbal Balik</sys:String>
@@ -237,27 +237,27 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCSettingsGridItemSpacing">Spasi antar item</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Sumber icon game tidak ditemukan</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Sumber cover game tidak ditemukan</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Sumber background game tidak ditemukan</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Spasi vertikal dalam detail game</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posisi detail Grid View</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posisi daftar game di Detail view</sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Tambah separator di antara panel</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Tinggi gambar cover game</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Tinggi ikon di daftar game</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fon aplikasi</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posisi panel filter</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posisi panel Explorer</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendering gambar cover</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Target rasio aspek</sys:String>
-    <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">Regang gambar</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">Boks DVD</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Game Store</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Banner Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Cover vertikal Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">Restart untuk melihat perubahan</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Pengaturan</sys:String>
