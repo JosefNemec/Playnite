@@ -121,7 +121,7 @@ namespace Playnite.Plugins
             return installedExts;
         }
 
-        public static T InstallPackedFile<T>(string path, string nanifestFileName, string rootDir) where T : BaseExtensionManifest
+        public static T InstallPackedFile<T>(string path, string nanifestFileName, string rootDir, Func<string, T> newMan) where T : BaseExtensionManifest
         {
             logger.Info($"Installing extenstion/theme {path}");
             var manifest = GetPackedManifest<T>(path, nanifestFileName);
@@ -130,9 +130,13 @@ namespace Playnite.Plugins
                 throw new FileNotFoundException("Extenstion/theme manifest not found.");
             }
 
+            if (manifest is ThemeManifest themeMan)
+            {
+                rootDir = Path.Combine(rootDir, themeMan.Mode.ToString());
+            }
+
             var legacyInstallDir = Path.Combine(rootDir, manifest.LegacyDirId);
             var installDir = string.Empty;
-
             if (manifest.Id.IsNullOrEmpty())
             {
                 installDir = legacyInstallDir;
@@ -176,7 +180,7 @@ namespace Playnite.Plugins
                 Directory.Delete(oldBackPath, true);
             }
 
-            return manifest;
+            return newMan(Path.Combine(installDir, nanifestFileName));
         }
 
         public static ExtensionManifest InstallPackedExtension(string path)
@@ -184,7 +188,8 @@ namespace Playnite.Plugins
             return InstallPackedFile<ExtensionManifest>(
                 path,
                 PlaynitePaths.ExtensionManifestFileName,
-                PlayniteSettings.IsPortable ? PlaynitePaths.ExtensionsProgramPath : PlaynitePaths.ExtensionsUserDataPath);
+                PlayniteSettings.IsPortable ? PlaynitePaths.ExtensionsProgramPath : PlaynitePaths.ExtensionsUserDataPath,
+                (a) => ExtensionManifest.FromFile(a));
         }
 
         public static ThemeManifest InstallPackedTheme(string path)
@@ -192,7 +197,8 @@ namespace Playnite.Plugins
             return InstallPackedFile<ThemeManifest>(
                path,
                PlaynitePaths.ThemeManifestFileName,
-               PlayniteSettings.IsPortable ? PlaynitePaths.ThemesProgramPath : PlaynitePaths.ThemesUserDataPath);
+               PlayniteSettings.IsPortable ? PlaynitePaths.ThemesProgramPath : PlaynitePaths.ThemesUserDataPath,
+               (a) => new ThemeManifest(a));
         }
 
         private static T GetPackedManifest<T>(string packagePath, string nanifestFileName) where T : class
