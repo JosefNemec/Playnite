@@ -594,6 +594,11 @@ namespace Playnite.DesktopApp.ViewModels
                     game.Notes = EditingGame.Notes;
                 }
 
+                if (UseManualChanges)
+                {
+                    game.Manual = EditingGame.Manual;
+                }
+
                 if (UseInstallDirChanges)
                 {
                     game.InstallDirectory = EditingGame.InstallDirectory;

@@ -79,6 +79,12 @@ namespace Playnite
                 dummyGame.Notes = firstNotes;
             }
 
+            var firstManual = firstGame.Manual;
+            if (games.All(a => a.Manual == firstManual) == true)
+            {
+                dummyGame.Manual = firstManual;
+            }
+
             var firstPlatform = firstGame.PlatformId;
             if (games.All(a => a.PlatformId == firstPlatform) == true)
             {

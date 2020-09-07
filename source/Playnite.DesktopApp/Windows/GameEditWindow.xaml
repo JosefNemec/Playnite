@@ -428,6 +428,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -470,41 +471,62 @@
                     <ContentControl IsTabStop="False" Grid.Column="2" Grid.Row="3"
                                     DataContext="{Binding EditingGame}"
                                     Content="{StaticResource ComboCompletionStatusOptions}" />
+                    
+                    <!--Manual-->
+                    <CheckBox Grid.Column="0" Grid.Row="4"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseManualChanges}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{DynamicResource LOCGameManualTitle}"/>
+                    <TextBox Grid.Column="2" Grid.Row="4"
+                             Text="{Binding EditingGame.Manual, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <Canvas Height="20" Grid.Column="0" Grid.Row="4" />
+                    <Canvas Height="20" Grid.Column="0" Grid.Row="5" />
 
                     <!-- Hidden -->
-                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{DynamicResource LOCGameHiddenTitle}" />
-                    <CheckBox Grid.Column="0" Grid.Row="5"
+                    <TextBlock Grid.Column="1" Grid.Row="6" Text="{DynamicResource LOCGameHiddenTitle}" />
+                    <CheckBox Grid.Column="0" Grid.Row="6"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseHiddenChanges}"/>
-                    <CheckBox Grid.Column="2" Grid.Row="5" Margin="3"
+                    <CheckBox Grid.Column="2" Grid.Row="6" Margin="3"
                               IsChecked="{Binding EditingGame.Hidden}"/>
 
                     <!-- Favorite -->
-                    <TextBlock Grid.Column="1" Grid.Row="6" Text="{DynamicResource LOCGameFavoriteTitle}" />
-                    <CheckBox Grid.Column="0" Grid.Row="6"
+                    <TextBlock Grid.Column="1" Grid.Row="7" Text="{DynamicResource LOCGameFavoriteTitle}" />
+                    <CheckBox Grid.Column="0" Grid.Row="7"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseFavoriteChanges}"/>
-                    <CheckBox Grid.Column="2" Grid.Row="6" Margin="3"
+                    <CheckBox Grid.Column="2" Grid.Row="7" Margin="3"
                               IsChecked="{Binding EditingGame.Favorite}" />
 
-                    <Canvas Height="20" Grid.Column="0" Grid.Row="7" />
+                    <Canvas Height="20" Grid.Column="0" Grid.Row="8" />
 
                     <!-- Added -->
-                    <TextBlock Grid.Column="1" Grid.Row="8" Text="{DynamicResource LOCAddedLabel}"/>
-                    <CheckBox Grid.Column="0" Grid.Row="8"
+                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{DynamicResource LOCAddedLabel}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="9"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseAddedChanges}"/>
-                    <DatePicker Grid.Column="2" Grid.Row="8"
+                    <DatePicker Grid.Column="2" Grid.Row="9"
                                 SelectedDate="{Binding EditingGame.Added}"/>
 
                     <!-- Modified -->
-                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{DynamicResource LOCModifiedLabel}"
+                    <TextBlock Grid.Column="1" Grid.Row="10" Text="{DynamicResource LOCModifiedLabel}"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <TextBlock Grid.Column="2" Grid.Row="9" Margin="3,6,3,6"
+                    <TextBlock Grid.Column="2" Grid.Row="10" Margin="3,6,3,6"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
+                             Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>                   
+                    
+                    <!-- Notes -->
+                    <TextBlock Grid.Column="1" Grid.Row="11" Text="{DynamicResource LOCNotesLabel}"
+                               VerticalAlignment="Top" Margin="8,16,10,0" />
+                    <CheckBox Grid.Column="0" Grid.Row="11" 
+                              VerticalAlignment="Top" Margin="0,15,0,0"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseNotesChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="11" Margin="0,15,0,0"
+                             Text="{Binding EditingGame.Notes, UpdateSourceTrigger=PropertyChanged}"
+                             Grid.ColumnSpan="4"
+                             AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                             VerticalAlignment="Stretch" />
 
                     <!-- GameId -->
                     <TextBlock Grid.Column="4" Grid.Row="0" Text="{DynamicResource LOCGameId}"
@@ -523,19 +545,6 @@
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding LibraryPlugin.Name, FallbackValue='Playnite'}"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    
-                    <!-- Notes -->
-                    <TextBlock Grid.Column="1" Grid.Row="10" Text="{DynamicResource LOCNotesLabel}"
-                               VerticalAlignment="Top" Margin="8,16,10,0" />
-                    <CheckBox Grid.Column="0" Grid.Row="10" 
-                              VerticalAlignment="Top" Margin="0,15,0,0"
-                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                              IsChecked="{Binding UseNotesChanges}"/>
-                    <TextBox Grid.Column="2" Grid.Row="10" Margin="0,15,0,0"
-                             Text="{Binding EditingGame.Notes, UpdateSourceTrigger=PropertyChanged}"
-                             Grid.ColumnSpan="4"
-                             AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
-                             VerticalAlignment="Stretch" />
                 </Grid>
             </TabItem>
 

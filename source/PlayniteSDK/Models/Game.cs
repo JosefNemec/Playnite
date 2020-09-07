@@ -167,7 +167,9 @@ namespace Playnite.SDK.Models
         ///
         UseGlobalGameStartedScript,
         ///
-        Notes
+        Notes,
+        ///
+        Manual
     }
 
     /// <summary>
@@ -1048,6 +1050,25 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private string manual;
+        /// <summary>
+        /// Gets or sets game manual.
+        /// </summary>
+        [DefaultValue("")]
+        public string Manual
+        {
+            get
+            {
+                return manual;
+            }
+
+            set
+            {
+                manual = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region Expanded
 
         /// <summary>
@@ -1763,6 +1784,11 @@ namespace Playnite.SDK.Models
                 {
                     tro.UseGlobalGameStartedScript = UseGlobalGameStartedScript;
                 }
+
+                if (!string.Equals(Manual, tro.Manual, StringComparison.Ordinal))
+                {
+                    tro.Manual = Manual;
+                }
             }
             else
             {
@@ -2080,6 +2106,11 @@ namespace Playnite.SDK.Models
             if (UseGlobalGameStartedScript != otherGame.UseGlobalGameStartedScript)
             {
                 changes.Add(GameField.UseGlobalGameStartedScript);
+            }
+
+            if (!string.Equals(Manual, otherGame.Manual, StringComparison.Ordinal))
+            {
+                changes.Add(GameField.Manual);
             }
 
             return changes;

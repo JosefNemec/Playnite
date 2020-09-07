@@ -75,6 +75,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCGameStartActionError">Cannot start action: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Cannot open game location: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Failed to create shortcut: {0}</sys:String>
+    <sys:String x:Key="LOCManualOpenError">Failed to open manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Cannot install game: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Cannot un-install game: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Play action is not configured.</sys:String>
@@ -526,6 +527,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Background Image</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sorting Name</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Library</sys:String>
+    <sys:String x:Key="LOCGameManualTitle">Manual</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Name</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Account Name</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
@@ -747,6 +749,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCUninstallGame">Uninstall</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Open Installation Location</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Create Desktop Shortcut</sys:String>
+    <sys:String x:Key="LOCOpenGameManual">Open Manual</sys:String>
     <sys:String x:Key="LOCMoreAction">More</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">Managed by the library plugin</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">The game starting process will be managed by the library plugin responsible for this game.</sys:String>

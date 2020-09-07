@@ -294,7 +294,7 @@ namespace Playnite
                         installDirectory = newInstallDirectory;
                     }
                 }
-                
+
                 installDirectory = game.ExpandVariables(installDirectory);
                 if (AppSettings.DirectoryOpenCommand.IsNullOrWhiteSpace())
                 {
@@ -567,6 +567,40 @@ namespace Playnite
                 logger.Error(exc, "Failed to create shortcut: ");
                 Dialogs.ShowMessage(
                     string.Format(resources.GetString("LOCGameShortcutError"), exc.Message),
+                    resources.GetString("LOCGameError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void OpenManual(Game game)
+        {
+            if (game.Manual.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            try
+            {
+                var manualPath = game.Manual;
+                if (!manualPath.IsHttpUrl() && !File.Exists(manualPath))
+                {
+                    manualPath = Path.Combine(Database.GetFileStoragePath(game.Id), manualPath);
+                }
+
+                if (manualPath.IsHttpUrl())
+                {
+                    ProcessStarter.StartUrl(manualPath);
+                }
+                else
+                {
+                    ProcessStarter.StartProcess(manualPath);
+                }
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to open manual.");
+                Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCManualOpenError"), exc.Message),
                     resources.GetString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }

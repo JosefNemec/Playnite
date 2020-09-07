@@ -698,6 +698,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool useManualChanges;
+        public bool UseManualChanges
+        {
+            get
+            {
+                return useManualChanges;
+            }
+
+            set
+            {
+                useManualChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -748,7 +764,8 @@ namespace Playnite.DesktopApp.ViewModels
                     UseAddedChanges ||
                     UsePlayCountChanges ||
                     UseCompletionStatusChanges ||
-                    UseNotesChanges);
+                    UseNotesChanges ||
+                    UseManualChanges);
             }
         }
 
@@ -929,6 +946,16 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UseNotesChanges = true;
+                    }
+                    break;
+                case nameof(Game.Manual):
+                    if (IsSingleGameEdit)
+                    {
+                        UseManualChanges = Game.Manual != EditingGame.Manual;
+                    }
+                    else
+                    {
+                        UseManualChanges = true;
                     }
                     break;
                 case nameof(Game.CategoryIds):

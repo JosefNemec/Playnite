@@ -353,6 +353,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<IEnumerable<Game>> EditGamesCommand { get; private set; }
         public RelayCommand<Game> OpenGameLocationCommand { get; private set; }
         public RelayCommand<Game> CreateDesktopShortcutCommand { get; private set; }
+        public RelayCommand<Game> OpenManualCommand { get; private set; }
         public RelayCommand<Game> ToggleFavoritesCommand { get; private set; }
         public RelayCommand<Game> ToggleVisibilityCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> SetAsFavoritesCommand { get; private set; }
@@ -770,6 +771,11 @@ namespace Playnite.DesktopApp.ViewModels
             CreateDesktopShortcutCommand = new RelayCommand<Game>((a) =>
             {
                 GamesEditor.CreateDesktopShortcut(a);
+            });
+
+            OpenManualCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.OpenManual(a);
             });
 
             ToggleFavoritesCommand = new RelayCommand<Game>((a) =>

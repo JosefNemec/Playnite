@@ -63,6 +63,7 @@ namespace Playnite.DesktopApp.Controls
         private static object shortcutIcon;
         private static object installIcon;
         private static object editIcon;
+        private static object manualIcon;
         private static bool iconsLoaded = false;
 
         public Game Game
@@ -179,6 +180,7 @@ namespace Playnite.DesktopApp.Controls
                 shortcutIcon = MenuHelpers.GetIcon("DesktopShortcutIcon");
                 installIcon = MenuHelpers.GetIcon("InstallIcon");
                 editIcon = MenuHelpers.GetIcon("EditGameIcon");
+                manualIcon = MenuHelpers.GetIcon("ManualIcon");
                 iconsLoaded = true;
             }
 
@@ -385,6 +387,19 @@ namespace Playnite.DesktopApp.Controls
                 };
 
                 Items.Add(shortcutItem);
+
+                // Manual
+                if (!Game.Manual.IsNullOrEmpty())
+                {
+                    Items.Add(new MenuItem()
+                    {
+                        Header = resources.GetString("LOCOpenGameManual"),
+                        Icon = manualIcon,
+                        Command = model.OpenManualCommand,
+                        CommandParameter = Game
+                    });
+                }
+
                 Items.Add(new Separator());
 
                 // Toggle Favorites
