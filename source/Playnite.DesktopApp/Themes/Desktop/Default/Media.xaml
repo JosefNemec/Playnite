@@ -29,6 +29,9 @@
     <TextBlock x:Key="ClearTextIcon" Text="&#xef00;" FontFamily="{DynamicResource FontIcoFont}"/>
     <TextBlock x:Key="SearchTextIcon" Text="&#xed11;" FontFamily="{DynamicResource FontIcoFont}" />
 
+    <TextBlock x:Key="SidebarLibraryIcon" Text="&#xef65;" FontFamily="{DynamicResource FontIcoFont}"  FontWeight="ExtraLight"/>
+    <TextBlock x:Key="SidebarStatisticsIcon" Text="&#xe983;" FontFamily="{DynamicResource FontIcoFont}"  FontWeight="ExtraLight"/>
+
     <DataTemplate x:Key="ClearTextIconTemplate">
         <TextBlock Text="&#xef00;" FontFamily="{DynamicResource FontIcoFont}" />
     </DataTemplate>

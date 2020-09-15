@@ -405,5 +405,24 @@ namespace System.Collections.Generic
 
             return new List<T>();
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="action"></param>
+        public static void ForEach<T>(this ObservableCollection<T> source, Action<T> action)
+        {
+            if (source.HasItems() != true)
+            {
+                return;
+            }
+
+            foreach (var item in source)
+            {
+                action(item);
+            }
+        }
     }
 }

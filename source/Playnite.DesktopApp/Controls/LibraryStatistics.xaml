@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.LibraryStatistics"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="900"
+             d:DataContext="{x:Static StatisticsViewModel.DesignIntance}">
+
+    <UserControl.Resources>
+        <p:BindingProxy x:Key="DCProxy" Data="{Binding}" />
+        
+        <ControlTemplate x:Key="OverallStatsTemplate">
+            <ControlTemplate.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+            </ControlTemplate.Resources>
+            <GroupBox Header="{DynamicResource LOCOverviewLabel}" Margin="10" MaxHeight="330">
+                <GridEx GridEx.AutoLayoutColumns="3" GridEx.ColumnCount="3" GridEx.RowCount="20"                        
+                        GridEx.StarColumns="0" MinWidth="220" Margin="10">
+                    <TextBlock Text="{DynamicResource LOCAll}" Margin="0,3,15,3" />
+                    <TextBlock Text="{Binding TotalCount}" Margin="0,3,0,3" TextAlignment="Right" />
+                    <Canvas />
+
+                    <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,3,15,3" />
+                    <TextBlock Text="{Binding Installed.Value}" Margin="0,3,0,3" TextAlignment="Right" />
+                    <TextBlock Text="{Binding Installed.Percentage, StringFormat='{}{0}%'}" Margin="15,3,0,3" TextAlignment="Right" />
+
+                    <TextBlock Text="{DynamicResource LOCGameIsUnInstalledTitle}" Margin="0,3,15,3" />
+                    <TextBlock Text="{Binding NotInstalled.Value}" Margin="0,3,0,3" TextAlignment="Right" />
+                    <TextBlock Text="{Binding NotInstalled.Percentage, StringFormat='{}{0}%'}" Margin="15,3,0,3" TextAlignment="Right" />
+
+                    <TextBlock Text="{DynamicResource LOCGameHiddenTitle}" Margin="0,3,15,3" />
+                    <TextBlock Text="{Binding Hidden.Value}" Margin="0,3,0,3" TextAlignment="Right" />
+                    <TextBlock Text="{Binding Hidden.Percentage, StringFormat='{}{0}%'}" Margin="15,3,0,3" TextAlignment="Right" />
+
+                    <TextBlock Text="{DynamicResource LOCGameFavoriteTitle}" Margin="0,3,15,3" />
+                    <TextBlock Text="{Binding Favorite.Value}" Margin="0,3,0,3" TextAlignment="Right" />
+                    <TextBlock Text="{Binding Favorite.Percentage, StringFormat='{}{0}%'}" Margin="15,3,0,3" TextAlignment="Right" />
+
+                    <TextBlock Text="{DynamicResource LOCStatsTotalPlayTime}" Margin="0,15,15,3"/>
+                    <TextBlock Text="{Binding TotalPlayTime, Converter={StaticResource LongToTimePlayedConverter}}"
+                                       Grid.ColumnSpan="2" Margin="0,15,0,3" />
+
+                    <TextBlock Text="{DynamicResource LOCStatsAvaragePlayTime}" Margin="0,3,15,3" />
+                    <TextBlock Text="{Binding AvaragePlayTime, Converter={StaticResource LongToTimePlayedConverter}}"
+                                       Grid.ColumnSpan="2" Margin="0,3,0,3"/>
+                </GridEx>
+            </GroupBox>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="MostPlayedTemplate">
+            <ControlTemplate.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+            </ControlTemplate.Resources>
+            <GroupBox Header="{DynamicResource LOCStatsTopPlayTime}" Margin="10" MaxHeight="330">
+                <ItemsControl ItemsSource="{Binding TopPlayed}" Width="350" Margin="10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock Text="{Binding Percentage, StringFormat='{}{0}%'}"
+                                            Style="{DynamicResource BaseTextBlockStyle}" Width="30"
+                                            DockPanel.Dock="Right" Margin="10,3,0,3"
+                                            TextAlignment="Right"/>
+                                <TextBlock Text="{Binding Value, Converter={StaticResource LongToTimePlayedConverter}}"
+                                            Style="{DynamicResource BaseTextBlockStyle}"
+                                            DockPanel.Dock="Right" Margin="0,3,0,3"/>
+                                <TextBlock Margin="0,3,0,3" ToolTip="{Binding Name}">
+                                    <Hyperlink Command="{Binding Data.NavigateToGameCommand, Source={StaticResource DCProxy}}"
+                                               CommandParameter="{Binding Game}">
+                                        <TextBlock Text="{Binding Name}" Margin="0,0,15,0"                                                   
+                                                   TextTrimming="CharacterEllipsis" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                </ItemsControl>
+            </GroupBox>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="CompletionStatusTemplate">
+            <ControlTemplate.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+            </ControlTemplate.Resources>
+            <GroupBox Header="{DynamicResource LOCCompletionStatus}" Margin="10" MaxHeight="330" >
+                <ItemsControl ItemsSource="{Binding CompletionStates}"                                      
+                              Width="250" Margin="10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock Text="{Binding Percentage, StringFormat='{}{0}%'}"
+                                           Style="{DynamicResource BaseTextBlockStyle}" Width="30"
+                                           DockPanel.Dock="Right" Margin="10,3,0,3"
+                                           TextAlignment="Right"/>
+                                <TextBlock Text="{Binding Value}" Margin="0,3,0,3"
+                                           Style="{DynamicResource BaseTextBlockStyle}"
+                                           DockPanel.Dock="Right"/>
+                                <TextBlock Text="{Binding Name}" Margin="0,3,15,3" DockPanel.Dock="Left"
+                                           TextTrimming="CharacterEllipsis"
+                                           Style="{DynamicResource BaseTextBlockStyle}"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </GroupBox>
+        </ControlTemplate>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" Margin="10,10,0,0" DockPanel.Dock="Top">
+            <TextBlock VerticalAlignment="Center" WindowChrome.IsHitTestVisibleInChrome="True">
+                <Hyperlink Command="{Binding NavigateBackCommand}">
+                    <TextBlock Text="&#xea5c;" FontFamily="{DynamicResource FontIcoFont}"
+                               FontSize="26" />
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Text="{DynamicResource LOCStatistics}" VerticalAlignment="Center"
+                        Style="{StaticResource BaseTextBlockStyle}"
+                       Margin="10,0,0,0" FontSize="18"/>
+        </StackPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="10"
+                      VerticalScrollBarVisibility="Auto">
+            <DockPanel>
+                <Expander DockPanel.Dock="Top" Header="Global" IsExpanded="True"
+                          DataContext="{Binding GlobalStats}">
+                    <WrapPanel>
+                        <ContentControl Template="{StaticResource OverallStatsTemplate}" />
+                        <ContentControl Template="{StaticResource CompletionStatusTemplate}" />
+                        <ContentControl Template="{StaticResource MostPlayedTemplate}" />
+                    </WrapPanel>
+                </Expander>
+
+                <Expander DockPanel.Dock="Top" Header="Filtered" IsExpanded="True">
+                    <WrapPanel>
+                        <ContentControl Template="{StaticResource OverallStatsTemplate}"
+                                            DataContext="{Binding FilteredStats}"/>
+                        <ContentControl Template="{StaticResource CompletionStatusTemplate}"
+                                            DataContext="{Binding FilteredStats}"/>
+                        <ContentControl Template="{StaticResource MostPlayedTemplate}"
+                                            DataContext="{Binding FilteredStats}"/>
+                        <GroupBox Header="{DynamicResource LOCFilter}" Grid.Column="0" Margin="10"
+                                  MaxHeight="330">
+                            <DockPanel Width="220">
+                                <ComboBox SelectedValue="{Binding SelectedFilter}" ItemsSource="{Binding Filters}"
+                                          DisplayMemberPath="Name" DockPanel.Dock="Top"/>
+                                <ListBox BorderThickness="0" Margin="0,5,0,0" DockPanel.Dock="Top"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                         SelectedItem="{Binding SelectedFilterObject}" ItemsSource="{Binding FilterObjects}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DockPanel>
+                        </GroupBox>
+                    </WrapPanel>
+                </Expander>
+            </DockPanel>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

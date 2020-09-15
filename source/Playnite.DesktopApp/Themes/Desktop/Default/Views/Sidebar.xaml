@@ -3,19 +3,70 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     mc:Ignorable="d">
-
-
+    
     <Style TargetType="{x:Type Sidebar}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Sidebar}">
-                    <Border Background="Yellow"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            d:DesignWidth="64" d:DesignHeight="400"
-                            d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <TextBlock Text="Sidebar" />
+                    <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PanelSeparatorBrush}"
+                            x:Name="BorderContentHolder">
+                        <DockPanel x:Name="DockContentHolder">                            
+                            <Border x:Name="PART_ElemMainMenu" Background="Transparent"
+                                    Width="44" Height="44" Margin="0,0,0,5"
+                                    DockPanel.Dock="Top" Padding="5" Cursor="Hand"
+                                    WindowChrome.IsHitTestVisibleInChrome="True">
+                                <Image Source="{ThemeFile 'Images/applogo.png'}"
+                                       RenderOptions.BitmapScalingMode="Fant" />
+                            </Border>
+
+                            <ItemsControl x:Name="PART_ListSideBarItems"
+                                          DockPanel.Dock="Top" >
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <SidebarItem Style="{DynamicResource SideBarViewItem}"
+                                                     Width="44" Height="44" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DockPanel>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Settings SidebarPosition}" Value="Right">
+                            <Setter Property="Margin" Value="0,20,0,5" TargetName="PART_ElemMainMenu" />
+                            <Setter Property="BorderThickness" Value="1,0,0,0" TargetName="BorderContentHolder" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Settings SidebarPosition}" Value="Top">
+                            <Setter Property="Margin" Value="0,0,5,0" TargetName="PART_ElemMainMenu" />
+                            <Setter Property="BorderThickness" Value="0,0,0,1" TargetName="BorderContentHolder" />
+                            <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ElemMainMenu" />
+                            <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ListSideBarItems" />
+                            <Setter Property="ItemsPanel" TargetName="PART_ListSideBarItems">
+                                <Setter.Value>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Settings SidebarPosition}" Value="Bottom">
+                            <Setter Property="Margin" Value="0,0,5,0" TargetName="PART_ElemMainMenu" />
+                            <Setter Property="BorderThickness" Value="0,1,0,0" TargetName="BorderContentHolder" />
+                            <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ElemMainMenu" />
+                            <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ListSideBarItems" />
+                            <Setter Property="ItemsPanel" TargetName="PART_ListSideBarItems">
+                                <Setter.Value>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

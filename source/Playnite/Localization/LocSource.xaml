@@ -681,6 +681,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Module:</sys:String>
     <sys:String x:Key="LOCLibrary">Library</sys:String>
+    <sys:String x:Key="LOCStatistics">Statistics</sys:String>
     <sys:String x:Key="LOCAll">All</sys:String>
     <sys:String x:Key="LOCNone">None</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
@@ -839,6 +840,11 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCAddFromExe">Import file…</sys:String>
     <sys:String x:Key="LOCWhatIsThis">What is this?</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">Are you sure you want to do this?</sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime">Total play time</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">Avarage play time</sys:String>
+    <sys:String x:Key="LOCStatsTopPlayTime">Top play time</sys:String>
+    <sys:String x:Key="LOCOverviewLabel">Overview</sys:String>
+    <sys:String x:Key="LOCSidebar">Sidebar</sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>

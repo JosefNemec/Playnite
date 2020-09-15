@@ -829,11 +829,7 @@ namespace Playnite.Database
                     values.Add(noneDbObject);
                     if (settings.UsedFieldsOnlyOnFilterLists)
                     {
-                        var usedItems = database.Games.
-                            Where(a => a.FeatureIds.HasItems()).
-                            SelectMany(a => a.FeatureIds).
-                            Distinct().ToList();
-                        values.AddRange(database.Features.Where(a => usedItems.Contains(a.Id)).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                        values.AddRange(database.UsedFeastures.Select(a => database.Features[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
                     }
                     else
                     {

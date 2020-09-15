@@ -154,6 +154,9 @@
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\GameListItem.cs" />
+    <Compile Include="Controls\LibraryStatistics.xaml.cs">
+      <DependentUpon>LibraryStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MenuHelpers.cs" />
     <Compile Include="Controls\MetadataDownloadSettings.xaml.cs">
       <DependentUpon>MetadataDownloadSettings.xaml</DependentUpon>
@@ -226,6 +229,7 @@
     <Compile Include="Controls\SettingsSections\Scripting.xaml.cs">
       <DependentUpon>Scripting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SidebarItem.cs" />
     <Compile Include="Controls\SliderWithPopup.xaml.cs">
       <DependentUpon>SliderWithPopup.xaml</DependentUpon>
     </Compile>
@@ -276,6 +280,7 @@
     <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\MetadataComparisonViewModel.cs" />
+    <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
     <Compile Include="Windows\ExtensionCrashHandlerWindow.xaml.cs">
       <DependentUpon>ExtensionCrashHandlerWindow.xaml</DependentUpon>
@@ -537,6 +542,10 @@
     <Page Include="Controls\GameTaskView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LibraryStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MetadataDownloadSettings.xaml">
       <SubType>Designer</SubType>
@@ -999,6 +1008,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Themes\Desktop\Default\CustomControls\ExpanderEx.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\SidebarItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

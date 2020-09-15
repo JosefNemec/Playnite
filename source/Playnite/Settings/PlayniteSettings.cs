@@ -38,6 +38,12 @@ namespace Playnite
         Restore
     }
 
+    public enum ApplicationView
+    {
+        Library,
+        Statistics
+    }
+
     public enum TrayIconType
     {
         [Description("TrayIcon")]
@@ -222,21 +228,6 @@ namespace Playnite
             set
             {
                 gridViewDetailsPosition = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Dock sideBarPosition = Dock.Left;
-        public Dock SideBarPosition
-        {
-            get
-            {
-                return sideBarPosition;
-            }
-
-            set
-            {
-                sideBarPosition = value;
                 OnPropertyChanged();
             }
         }
@@ -860,7 +851,6 @@ namespace Playnite
         }
 
         private bool sidebarVisible = false;
-        [JsonIgnore]
         public bool SidebarVisible
         {
             get
@@ -876,7 +866,6 @@ namespace Playnite
         }
 
         private Dock sidebarPosition = Dock.Left;
-        [JsonIgnore]
         public Dock SidebarPosition
         {
             get
@@ -1480,6 +1469,18 @@ namespace Playnite
             set
             {
                 directoryOpenCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ApplicationView currentApplicationView;
+        [JsonIgnore]
+        public ApplicationView CurrentApplicationView
+        {
+            get => currentApplicationView;
+            set
+            {
+                currentApplicationView = value;
                 OnPropertyChanged();
             }
         }

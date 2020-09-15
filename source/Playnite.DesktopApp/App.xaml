@@ -61,6 +61,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SliderEx.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExpanderEx.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SidebarItem.xaml" />
 
                 <!--Derived Styles-->
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/TextBlockGameScore.xaml" />

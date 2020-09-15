@@ -26,9 +26,48 @@ using Playnite.DesktopApp.Windows;
 using System.Windows.Controls;
 using Playnite.SDK.Exceptions;
 using Playnite.Common.Media.Icons;
+using Playnite.DesktopApp.Markup;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Drawing.Imaging;
+using Playnite.DesktopApp.Controls;
 
 namespace Playnite.DesktopApp.ViewModels
 {
+    public class SideBarItem : ObservableObject
+    {
+        public ApplicationView ViewSource { get; set; }
+        public string Name { get; set; }
+        public string Image { get; set; }
+        public RelayCommand<SideBarItem> Command { get; set; }
+        public object CommandParameter { get; set; }
+        public object ImageObject
+        {
+            get
+            {
+                if (Image.IsNullOrEmpty())
+                {
+                    return null;
+                }
+                else
+                {
+                    return MenuHelpers.GetIcon(Image, default, default);
+                }
+            }
+        }
+
+        private bool selected;
+        public bool Selected
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public class DesktopAppViewModel : MainViewModelBase, IDisposable
     {
         public static ILogger Logger = LogManager.GetLogger();
@@ -37,6 +76,8 @@ namespace Playnite.DesktopApp.ViewModels
         protected bool ignoreSelectionChanges = false;
         private readonly SynchronizationContext context;
         private PlayniteApplication application;
+        private Controls.LibraryStatistics statsView;
+        private Controls.Views.Library libraryView;
 
         public PlayniteAPI PlayniteApi { get; set;  }
         public ExtensionFactory Extensions { get; set; }
@@ -53,6 +94,28 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 activeView = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<SideBarItem> appViewItems;
+        public ObservableCollection<SideBarItem> AppViewItems
+        {
+            get => appViewItems;
+            set
+            {
+                appViewItems = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StatisticsViewModel libraryStats;
+        public StatisticsViewModel LibraryStats
+        {
+            get => libraryStats;
+            set
+            {
+                libraryStats = value;
                 OnPropertyChanged();
             }
         }
@@ -339,6 +402,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> CheckForUpdateCommand { get; private set; }
         public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
         public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
+        public RelayCommand<SideBarItem> ChangeAppViewCommand { get; private set; }
         #endregion
 
         #region Game Commands
@@ -398,6 +462,7 @@ namespace Playnite.DesktopApp.ViewModels
             ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested; ;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
         }
@@ -848,6 +913,11 @@ namespace Playnite.DesktopApp.ViewModels
                 PlayRandomGame();
             }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.F6));
+
+            ChangeAppViewCommand = new RelayCommand<SideBarItem>((item) =>
+            {
+                AppSettings.CurrentApplicationView = item.ViewSource;
+            });
         }
 
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
@@ -871,6 +941,26 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 SelectedGame = null;
                 SelectedGameDetails = null;
+            }
+        }
+
+        private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PlayniteSettings.CurrentApplicationView))
+            {
+                AppViewItems.ForEach(a => a.Selected = false);
+
+                if (AppSettings.CurrentApplicationView == ApplicationView.Statistics)
+                {
+                    AppViewItems[1].Selected = true;
+                    ActiveView = statsView;
+                    LibraryStats.Calculate();
+                }
+                else if (AppSettings.CurrentApplicationView == ApplicationView.Library)
+                {
+                    AppViewItems[0].Selected = true;
+                    ActiveView = libraryView;
+                }
             }
         }
 
@@ -922,9 +1012,43 @@ namespace Playnite.DesktopApp.ViewModels
 
         protected void InitializeView()
         {
+            LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, (g) =>
+            {
+                appSettings.CurrentApplicationView = ApplicationView.Library;
+                SelectedGame = GamesView.Items.FirstOrDefault(a => g.Id == a.Id);
+            });
+
+            libraryView = new Controls.Views.Library(this);
+            statsView = new Controls.LibraryStatistics(LibraryStats);
+
+            AppViewItems = new ObservableCollection<SideBarItem>()
+            {
+                new SideBarItem
+                {
+                    Image = "SidebarLibraryIcon",
+                    Name = Resources.GetString(LOC.Library),
+                    Selected = true,
+                    ViewSource = ApplicationView.Library
+                },
+                new SideBarItem
+                {
+                    Image = "SidebarStatisticsIcon",
+                    Name = Resources.GetString(LOC.Statistics),
+                    Selected = false,
+                    ViewSource = ApplicationView.Statistics
+                }
+            };
+
+            AppViewItems.ForEach(a =>
+            {
+                a.CommandParameter = a;
+                a.Command = ChangeAppViewCommand;
+            });
+
+            AppSettings.CurrentApplicationView = ApplicationView.Library;
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
-            ActiveView = new Controls.Views.Library();
+
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             (_) =>
             {

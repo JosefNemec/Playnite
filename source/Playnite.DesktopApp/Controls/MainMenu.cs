@@ -131,6 +131,30 @@ namespace Playnite.DesktopApp.Controls
             // Settings
             AddMenuChild(Items, "LOCMenuPlayniteSettingsTitle", mainModel.OpenSettingsCommand, null, "SettingsIcon");
 
+            // View
+            var viewItem = AddMenuChild(Items, LOC.MenuView, null, null, null);
+            var sideBarItem = AddMenuChild(viewItem.Items, LOC.Sidebar, null, null, null);
+            var sideBarEnableItem = AddMenuChild(sideBarItem.Items, LOC.EnabledTitle, null);
+            sideBarEnableItem.IsCheckable = true;
+            BindingOperations.SetBinding(sideBarEnableItem, MenuItem.IsCheckedProperty,
+                new Binding
+                {
+                    Source = mainModel.AppSettings,
+                    Path = new PropertyPath(nameof(PlayniteSettings.SidebarVisible))
+                });
+
+            sideBarItem.Items.Add(new Separator());
+            MenuHelpers.PopulateEnumOptions<Dock>(sideBarItem.Items, nameof(PlayniteSettings.SidebarPosition), mainModel.AppSettings);
+            viewItem.Items.Add(new Separator());
+
+            var librarySideItem = MainMenu.AddMenuChild(viewItem.Items, LOC.Library, null);
+            librarySideItem.IsCheckable = true;
+            MenuHelpers.SetEnumBinding(librarySideItem, nameof(mainModel.AppSettings.CurrentApplicationView), mainModel.AppSettings, ApplicationView.Library);
+
+            var statsSideItem = MainMenu.AddMenuChild(viewItem.Items, LOC.Statistics, null);
+            statsSideItem.IsCheckable = true;
+            MenuHelpers.SetEnumBinding(statsSideItem, nameof(mainModel.AppSettings.CurrentApplicationView), mainModel.AppSettings, ApplicationView.Statistics);
+
             Items.Add(new Separator());
 
             // Open Client

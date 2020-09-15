@@ -1,4 +1,5 @@
 ﻿using Playnite.Common;
+using Playnite.Converters;
 using Playnite.DesktopApp.Markup;
 using Playnite.SDK;
 using System;
@@ -8,7 +9,9 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -16,7 +19,7 @@ namespace Playnite.DesktopApp.Controls
 {
     public class MenuHelpers
     {
-        public static object GetIcon(string iconName)
+        public static object GetIcon(string iconName, double imageHeight = 16, double imageWidth = 16)
         {
             if (iconName.IsNullOrEmpty())
             {
@@ -28,7 +31,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 if (resource is string stringIcon)
                 {
-                    return Images.GetImageFromFile(ThemeFile.GetFilePath(stringIcon));
+                    return Images.GetImageFromFile(ThemeFile.GetFilePath(stringIcon), BitmapScalingMode.Fant, imageHeight, imageWidth);
                 }
                 else if (resource is BitmapImage bitmap)
                 {
@@ -38,7 +41,19 @@ namespace Playnite.DesktopApp.Controls
                 }
                 else if (resource is TextBlock textIcon)
                 {
-                    return textIcon;
+                    var text = new TextBlock
+                    {
+                        Text = textIcon.Text,
+                        FontFamily = textIcon.FontFamily,
+                        FontStyle = textIcon.FontStyle
+                    };
+
+                    if (textIcon.ReadLocalValue(TextBlock.ForegroundProperty) != DependencyProperty.UnsetValue)
+                    {
+                        text.Foreground = textIcon.Foreground;
+                    }
+
+                    return text;
                 }
             }
             else if (System.IO.File.Exists(iconName))
@@ -50,7 +65,7 @@ namespace Playnite.DesktopApp.Controls
                 var themeFile = ThemeFile.GetFilePath(iconName);
                 if (themeFile != null)
                 {
-                    return Images.GetImageFromFile(themeFile);
+                    return Images.GetImageFromFile(themeFile, BitmapScalingMode.Fant, imageHeight, imageWidth);
                 }
             }
 
@@ -99,6 +114,53 @@ namespace Playnite.DesktopApp.Controls
             }
 
             return null;
+        }
+
+        public static void SetEnumBinding(
+            MenuItem target,
+            string bindingPath,
+            object bindingSource,
+            object bindingEnum)
+        {
+            BindingOperations.SetBinding(target, MenuItem.IsCheckedProperty,
+                new Binding
+                {
+                    Source = bindingSource,
+                    Path = new PropertyPath(bindingPath),
+                    Converter = new EnumToBooleanConverter(),
+                    ConverterParameter = bindingEnum
+                });
+        }
+
+        public static void PopulateEnumOptions<T>(
+            ItemCollection parent,
+            string bindingPath,
+            object bindingSource,
+            bool sorted = false,
+            List<T> ignoreValues = null) where T : Enum
+        {
+            var values = Enum.GetValues(typeof(T)).Cast<T>();
+            if (sorted)
+            {
+                values = values.OrderBy(a => a.GetDescription());
+            }
+
+            foreach (T type in values)
+            {
+                if (ignoreValues?.Contains(type) == true)
+                {
+                    continue;
+                }
+
+                var item = new MenuItem
+                {
+                    Header = type.GetDescription(),
+                    IsCheckable = true
+                };
+
+                SetEnumBinding(item, bindingPath, bindingSource, type);
+                parent.Add(item);
+            }
         }
     }
 }
