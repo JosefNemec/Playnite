@@ -32,6 +32,20 @@
                                     </DataTemplate>
                                 </ExtendedListBox.ItemTemplate>
                             </ExtendedListBox>
+                            <TextBlock FontSize="{StaticResource FontSizeLarge}" Margin="0,40,0,0"
+                                       Text="{DynamicResource LOCNoItemsFound}" TextWrapping="Wrap"                                      
+                                       TextAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Items.Count, ElementName=PART_ListGames, Mode=OneWay}" Value="0">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                             <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="1">
                                 <Label Content="{DynamicResource LOCZoomLabel}" Margin="10,0,10,0"/>
                                 <SliderWithPopup x:Name="PART_SliderZoom" />

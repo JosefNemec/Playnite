@@ -673,6 +673,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCReloadScripts">Reload Scripts</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">No games found for specified search/filter criteria</sys:String>
+    <sys:String x:Key="LOCNoItemsFound">No items found</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Switch to Desktop Mode</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Exit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Libraries</sys:String>
