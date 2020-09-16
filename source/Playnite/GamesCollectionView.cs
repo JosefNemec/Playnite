@@ -99,7 +99,7 @@ namespace Playnite
 
         private bool IsFilterMatchingSingle(FilterItemProperites filter, Guid idData, DatabaseObject objectData)
         {
-            if (objectData == null)
+            if (objectData == null && (filter == null || !filter.IsSet))
             {
                 return true;
             }
