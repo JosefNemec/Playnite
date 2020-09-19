@@ -279,6 +279,7 @@ namespace Steam
                 {
                     new Link(ResourceProvider.GetString("LOCSteamLinksCommunityHub"), $"https://steamcommunity.com/app/{appId}"),
                     new Link(ResourceProvider.GetString("LOCSteamLinksDiscussions"), $"https://steamcommunity.com/app/{appId}/discussions/"),
+                    new Link(ResourceProvider.GetString("LOCSteamLinksGuides"), $"https://steamcommunity.com/app/{appId}/guides/"),
                     new Link(ResourceProvider.GetString("LOCCommonLinksNews"), $"https://store.steampowered.com/news/?appids={appId}"),
                     new Link(ResourceProvider.GetString("LOCCommonLinksStorePage"), $"https://store.steampowered.com/app/{appId}"),
                     new Link("PCGamingWiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
