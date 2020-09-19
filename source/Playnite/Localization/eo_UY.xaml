@@ -3,64 +3,65 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-
     <sys:String x:Key="LanguageName">Esperanto</sys:String>
-
-    <sys:String x:Key="LOCLanguageSettingsLabel">Lingvo</sys:String>
-
+    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
     <sys:String x:Key="LOCExitAppLabel">Eliri</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
     <sys:String x:Key="LOCAditionalFilters"></sys:String>
     <sys:String x:Key="LOCFilters">Filtriloj</sys:String>
     <sys:String x:Key="LOCFilter">Filtrilo</sys:String>
-
     <sys:String x:Key="LOCInvalidDataTitle"></sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle"></sys:String>
-
     <sys:String x:Key="LOCAboutHomePageLink"></sys:String>
     <sys:String x:Key="LOCAboutSourceLink"></sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Pri Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Farita de Josef Němec</sys:String>
-
     <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
     <sys:String x:Key="LOCCategorySetButton"></sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton"></sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCNoCategory"></sys:String>
     <sys:String x:Key="LOCNoPlatform"></sys:String>
-
     <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
+    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
+    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Raporti kraŝon</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
-
     <sys:String x:Key="LOCLibraryManager"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Forigu ludo(j)n?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
-
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip"></sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
     <sys:String x:Key="LOCDBUpgradeFail"></sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
-
     <sys:String x:Key="LOCGameError"></sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame"></sys:String>
     <sys:String x:Key="LOCGameStartError"></sys:String>
     <sys:String x:Key="LOCGameStartActionError"></sys:String>
     <sys:String x:Key="LOCGameOpenLocationError"></sys:String>
     <sys:String x:Key="LOCGameShortcutError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError"></sys:String>
     <sys:String x:Key="LOCGameInstallError"></sys:String>
     <sys:String x:Key="LOCGameUninstallError"></sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
@@ -70,7 +71,6 @@
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
-
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ebligita</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Forigu</sys:String>
@@ -99,6 +99,7 @@
     <sys:String x:Key="LOCLastPlayedLabel"></sys:String>
     <sys:String x:Key="LOCMostPlayedLabel"></sys:String>
     <sys:String x:Key="LOCPlayCountLabel"></sys:String>
+    <sys:String x:Key="LOCNotesLabel"></sys:String>
     <sys:String x:Key="LOCAddedLabel"></sys:String>
     <sys:String x:Key="LOCDateAddedLabel"></sys:String>
     <sys:String x:Key="LOCModifiedLabel"></sys:String>
@@ -120,6 +121,7 @@
     <sys:String x:Key="LOCInstallationLabel"></sys:String>
     <sys:String x:Key="LOCActionsLabel"></sys:String>
     <sys:String x:Key="LOCDownloadingLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingMediaLabel"></sys:String>
     <sys:String x:Key="LOCLoadingLabel"></sys:String>
     <sys:String x:Key="LOCTypeLabel"></sys:String>
     <sys:String x:Key="LOCProfileLabel"></sys:String>
@@ -160,11 +162,8 @@
     <sys:String x:Key="LOCColumns"></sys:String>
     <sys:String x:Key="LOCRow"></sys:String>
     <sys:String x:Key="LOCRows"></sys:String>
-
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
-
     <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
-
     <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro"></sys:String>
@@ -176,7 +175,6 @@
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
-
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
     <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
@@ -189,7 +187,6 @@
     <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish"></sys:String>
     <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
-
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle"></sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle"></sys:String>
@@ -198,7 +195,9 @@
     <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
     <sys:String x:Key="LOCMenuTools"></sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata"></sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient"></sys:String>
+    <sys:String x:Key="LOCMenuClients"></sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary"></sys:String>
     <sys:String x:Key="LOCMenuAddGame"></sys:String>
     <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
@@ -217,7 +216,6 @@
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
-
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
@@ -237,6 +235,7 @@
     <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
@@ -281,10 +280,14 @@
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList"></sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
@@ -358,6 +361,7 @@
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling"></sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
@@ -377,19 +381,19 @@
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
-
+    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
     <sys:String x:Key="LOCStrechUniform"></sys:String>
     <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
-
     <sys:String x:Key="LOCDockLeft"></sys:String>
     <sys:String x:Key="LOCDockRight"></sys:String>
     <sys:String x:Key="LOCDockTop"></sys:String>
     <sys:String x:Key="LOCDockBottom"></sys:String>
-
     <sys:String x:Key="LOCImportError"></sys:String>
     <sys:String x:Key="LOCLoginChecking"></sys:String>
     <sys:String x:Key="LOCLoginRequired"></sys:String>
@@ -397,12 +401,10 @@
     <sys:String x:Key="LOCLoggedIn"></sys:String>
     <sys:String x:Key="LOCNotLoggedIn"></sys:String>
     <sys:String x:Key="LOCNotLoggedInError"></sys:String>
-
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle"></sys:String>
     <sys:String x:Key="LOCDownloadMetaButton"></sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
-
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
     <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
@@ -417,7 +419,6 @@
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
-
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
@@ -439,7 +440,6 @@
     <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
-
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
@@ -469,7 +469,6 @@
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
-
     <sys:String x:Key="LOCMenuSortByTitle"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
     <sys:String x:Key="LOCMenuSortAscending"></sys:String>
@@ -482,13 +481,13 @@
     <sys:String x:Key="LOCMenuView"></sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
-
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle"></sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle"></sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle"></sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle"></sys:String>
     <sys:String x:Key="LOCGameProviderTitle"></sys:String>
+    <sys:String x:Key="LOCGameManualTitle"></sys:String>
     <sys:String x:Key="LOCGameNameTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle"></sys:String>
     <sys:String x:Key="LOCGamePlatformTitle"></sys:String>
@@ -512,7 +511,6 @@
     <sys:String x:Key="LOCGameCoverTitle"></sys:String>
     <sys:String x:Key="LOCGameLinksTitle"></sys:String>
     <sys:String x:Key="LOCGameROMTitle"></sys:String>
-
     <sys:String x:Key="LOCGenreLabel"></sys:String>
     <sys:String x:Key="LOCGenresLabel"></sys:String>
     <sys:String x:Key="LOCCompanyLabel"></sys:String>
@@ -542,21 +540,17 @@
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
-
     <sys:String x:Key="LOCSteamCategoryImportError"></sys:String>
-
     <sys:String x:Key="LOCBnetInstalledImportError"></sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError"></sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError"></sys:String>
     <sys:String x:Key="LOCOriginInstalledImportError"></sys:String>
     <sys:String x:Key="LOCUplayInstalledImportError"></sys:String>
-
     <sys:String x:Key="LOCBnetLibraryImportError"></sys:String>
     <sys:String x:Key="LOCSteamLibraryImportError"></sys:String>
     <sys:String x:Key="LOCGOGLibraryImportError"></sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError"></sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError"></sys:String>
-
     <sys:String x:Key="LOCLibraryImportError"></sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError"></sys:String>
     <sys:String x:Key="LOCStartGenericError"></sys:String>
@@ -566,7 +560,7 @@
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
-
+    <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
     <sys:String x:Key="LOCUseExeIcon"></sys:String>
@@ -627,9 +621,11 @@
     <sys:String x:Key="LOCPlugins"></sys:String>
     <sys:String x:Key="LOCMetadataProviders"></sys:String>
     <sys:String x:Key="LOCExtensions"></sys:String>
+    <sys:String x:Key="LOCExtensionID"></sys:String>
     <sys:String x:Key="LOCReloadScripts"></sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
+    <sys:String x:Key="LOCNoItemsFound"></sys:String>
     <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite"></sys:String>
     <sys:String x:Key="LOCLibraries"></sys:String>
@@ -638,6 +634,7 @@
     <sys:String x:Key="LOCExtensionVersion"></sys:String>
     <sys:String x:Key="LOCExtensionModule"></sys:String>
     <sys:String x:Key="LOCLibrary"></sys:String>
+    <sys:String x:Key="LOCStatistics"></sys:String>
     <sys:String x:Key="LOCAll"></sys:String>
     <sys:String x:Key="LOCNone"></sys:String>
     <sys:String x:Key="LOCNotifications"></sys:String>
@@ -651,16 +648,22 @@
     <sys:String x:Key="LOCFontLargest"></sys:String>
     <sys:String x:Key="LOCDefault"></sys:String>
     <sys:String x:Key="LOCSelect"></sys:String>
+    <sys:String x:Key="LOCSelectAll"></sys:String>
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom"></sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
     <sys:String x:Key="LOCLoadMore"></sys:String>
     <sys:String x:Key="LOCTransparent"></sys:String>
-
+    <sys:String x:Key="LOCCollapse"></sys:String>
+    <sys:String x:Key="LOCExpand"></sys:String>
+    <sys:String x:Key="LOCCollapseAll"></sys:String>
+    <sys:String x:Key="LOCExpandAll"></sys:String>
+    <sys:String x:Key="LOCOther"></sys:String>
+    <sys:String x:Key="LOCThemes"></sys:String>
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
-
+    <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle"></sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle"></sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle"></sys:String>
@@ -674,7 +677,6 @@
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
-
     <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges"></sys:String>
@@ -682,7 +684,8 @@
     <sys:String x:Key="LOCScriptRuntime"></sys:String>
     <sys:String x:Key="LOCPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
-
+    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame"></sys:String>
@@ -700,10 +703,10 @@
     <sys:String x:Key="LOCUninstallGame"></sys:String>
     <sys:String x:Key="LOCOpenGameLocation"></sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
+    <sys:String x:Key="LOCOpenGameManual"></sys:String>
     <sys:String x:Key="LOCMoreAction"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
-
     <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
@@ -712,18 +715,15 @@
     <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
-
     <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
-
     <sys:String x:Key="LOCTimePlayed"></sys:String>
     <sys:String x:Key="LOCLastPlayed"></sys:String>
     <sys:String x:Key="LOCPlayedHours"></sys:String>
     <sys:String x:Key="LOCPlayedMinutes"></sys:String>
     <sys:String x:Key="LOCPlayedSeconds"></sys:String>
     <sys:String x:Key="LOCPlayedNone"></sys:String>
-
     <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
     <sys:String x:Key="LOCOpeningDatabase"></sys:String>
@@ -733,28 +733,23 @@
     <sys:String x:Key="LOCScriptError"></sys:String>
     <sys:String x:Key="LOCScriptExecutionError"></sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
-
     <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
     <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
-
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
-
     <sys:String x:Key="LOCRenameItem"></sys:String>
     <sys:String x:Key="LOCAddNewItem"></sys:String>
     <sys:String x:Key="LOCEnterName"></sys:String>
     <sys:String x:Key="LOCEnterNewName"></sys:String>
-
     <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
     <sys:String x:Key="LOCPLaytime1to10"></sys:String>
     <sys:String x:Key="LOCPLaytime10to100"></sys:String>
     <sys:String x:Key="LOCPLaytime100to500"></sys:String>
     <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
     <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
-
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
@@ -763,65 +758,73 @@
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
-
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
-
+    <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
+    <sys:String x:Key="LOCThemeUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
+    <sys:String x:Key="LOCDiagGenerating"></sys:String>
+    <sys:String x:Key="LOCDiagUploading"></sys:String>
+    <sys:String x:Key="LOCAddFromExe"></sys:String>
+    <sys:String x:Key="LOCWhatIsThis"></sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime"></sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
+    <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
+    <sys:String x:Key="LOCOverviewLabel"></sys:String>
+    <sys:String x:Key="LOCSidebar"></sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
     <sys:String x:Key="LOCCommonLinksForum"></sys:String>
     <sys:String x:Key="LOCCommonLinksNews"></sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
-
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
     <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
-
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin"></sys:String>
     <sys:String x:Key="LOCGOGUseAccountName"></sys:String>
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
-
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub"></sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
+    <sys:String x:Key="LOCSteamLinksGuides"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop"></sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
-
+    <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
-
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
     <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
-
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
-
     <!--Epic-->
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame"></sys:String>
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
-
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
-
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree"></sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip"></sys:String>
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch"></sys:String>
     <sys:String x:Key="LOCXboxImport360Games"></sys:String>
