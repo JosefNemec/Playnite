@@ -36,7 +36,7 @@
                 <StackPanel Margin="30">
                     <TextBlock Text="{Binding ExtCrashDescription}"
                                Style="{StaticResource TextBlockBaseStyle}"
-                               VerticalAlignment="Center" Margin="0,0,0,25"
+                               VerticalAlignment="Center" Margin="5,0,0,25"
                                TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartPlaynite}"                       

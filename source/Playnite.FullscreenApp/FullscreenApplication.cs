@@ -108,8 +108,8 @@ namespace Playnite.FullscreenApp
 
         private async void OpenMainViewAsync()
         {
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup);
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup);
             splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;

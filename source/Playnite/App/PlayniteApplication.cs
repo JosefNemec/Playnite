@@ -170,9 +170,9 @@ namespace Playnite
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
             ThemeManifest customTheme = null;
-            if (CmdLine.ForceDefaultTheme)
+            if (CmdLine.ForceDefaultTheme || CmdLine.SafeStartup)
             {
-                logger.Info("Default theme forced by cmdline.");
+                logger.Warn("Default theme forced by cmdline.");
             }
             else
             {

@@ -29,7 +29,7 @@ Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Whoops! Something went wrong…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">An unrecoverable error has occurred.
 
-If you would like to help us fix this issue, please briefly describe the actions taken before the crash, and then create a diagnostics package. If you are online, the package will be uploaded to the Playnite server for analysis.
+If you would like to help us fix this issue, please briefly describe the actions taken before the crash, and then send diagnostic information. If you are online, the package will be uploaded to the Playnite server for analysis.
 
 Alternatively, you can click on the 'Report Crash' button to create a new GitHub issue and report the crash manually.
 
@@ -45,8 +45,11 @@ We recommend reporting the issue to extension's developer. If the issue keeps re
 If you want to help us fix this issue, please send diagnostic information. Thank you.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Disable extension</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Save log file</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Send diag. info</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Report Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Restart Playnite</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Restart in Safe Mode</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Disabling all 3rd party extensions and using default theme.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Exit Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Actions taken before the crash (in English):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Library Manager</sys:String>

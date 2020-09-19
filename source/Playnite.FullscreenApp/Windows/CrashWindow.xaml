@@ -35,9 +35,9 @@
                 <StackPanel Margin="30">
                     <TextBlock Text="{DynamicResource LOCCrashDescriptionFullscreen}"
                                Style="{StaticResource TextBlockBaseStyle}"
-                               VerticalAlignment="Center" Margin="0,0,0,25"
+                               VerticalAlignment="Center" Margin="5,0,5,25"
                                TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <DockPanel LastChildFill="False">
                         <pctrls:ButtonEx Content="{DynamicResource LOCAboutSendDiagButton}"  
                                 Style="{StaticResource ButtonMessageBox}"
                                 Command="{Binding CreateDiagPackageCommand}"
@@ -46,7 +46,12 @@
                                 Style="{StaticResource ButtonMessageBox}"
                                 Command="{Binding RestartCommand}"
                                 x:Name="ButtonRestart" />
-                    </StackPanel>
+                        <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartSafe}"  
+                                TooltipEx="{DynamicResource LOCCrashRestartSafeTooltip}"                     
+                                Style="{StaticResource ButtonMessageBox}"
+                                Command="{Binding RestartSafeCommand}"
+                                DockPanel.Dock="Right"/>
+                    </DockPanel>
                 </StackPanel>
 
             </Border>

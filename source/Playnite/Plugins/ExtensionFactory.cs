@@ -251,7 +251,7 @@ namespace Playnite.Plugins
             return true;
         }
 
-        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList)
+        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly)
         {
             var allSuccess = true;
             DisposeScripts();
@@ -259,6 +259,12 @@ namespace Playnite.Plugins
 
             foreach (ScriptExtensionDescription desc in GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)))
             {
+                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
+                {
+                    logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
+                    continue;
+                }
+
                 PlayniteScript script = null;
                 var scriptPath = Path.Combine(Path.GetDirectoryName(desc.DescriptionPath), desc.Module);
                 if (!File.Exists(scriptPath))
@@ -297,12 +303,18 @@ namespace Playnite.Plugins
             return allSuccess;
         }
 
-        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList)
+        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly)
         {
             DisposePlugins();
             var funcs = new List<ExtensionFunction>();
             foreach (var desc in GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true))
             {
+                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
+                {
+                    logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
+                    continue;
+                }
+
                 try
                 {
                     var plugins = LoadPlugins(desc, injectingApi);

@@ -80,6 +80,14 @@ namespace Playnite.ViewModels
             });
         }
 
+        public RelayCommand<object> RestartSafeCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RestartAppSafe();
+            });
+        }
+
         public RelayCommand<object> SaveLogCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -163,6 +171,21 @@ namespace Playnite.ViewModels
             else
             {
                 Process.Start(PlaynitePaths.FullscreenExecutablePath);
+            }
+
+            CloseView();
+        }
+
+        public void RestartAppSafe()
+        {
+            var options = new CmdLineOptions { SafeStartup = true };
+            if (mode == ApplicationMode.Desktop)
+            {
+                Process.Start(PlaynitePaths.DesktopExecutablePath, options.ToString());
+            }
+            else
+            {
+                Process.Start(PlaynitePaths.FullscreenExecutablePath, options.ToString());
             }
 
             CloseView();

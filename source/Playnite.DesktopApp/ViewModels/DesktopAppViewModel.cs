@@ -697,7 +697,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             ReloadScriptsCommand = new RelayCommand<object>((f) =>
             {
-                Extensions.LoadScripts(PlayniteApi, AppSettings.DisabledPlugins);
+                Extensions.LoadScripts(PlayniteApi, AppSettings.DisabledPlugins, application.CmdLine.SafeStartup);
             }, new KeyGesture(Key.F12));
 
             ShowGameSideBarCommand = new RelayCommand<GamesCollectionViewEntry>((f) =>
