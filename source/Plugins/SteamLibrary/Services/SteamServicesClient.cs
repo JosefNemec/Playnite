@@ -19,9 +19,15 @@ namespace SteamLibrary.Services
         {
         }
 
-        public List<GetOwnedGamesResult.Game> GetSteamLibrary(string userName)
+        public List<GetOwnedGamesResult.Game> GetSteamLibrary(ulong userName, bool freeSub = false)
         {
-            return ExecuteGetRequest<List<GetOwnedGamesResult.Game>>("/steam/library/" + userName);
+            var url = "/steam/library/" + userName;
+            if (freeSub)
+            {
+                url += "?freeSub=true";
+            }
+
+            return ExecuteGetRequest<List<GetOwnedGamesResult.Game>>(url);
         }
     }
 }

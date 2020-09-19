@@ -47,6 +47,7 @@ namespace XboxLibrary
                 Replace("(Windows)", "").
                 Replace("for Windows 10", "").
                 Replace("- Windows 10", "").
+                RemoveTrademarks().
                 Trim(),
                 Platform = "PC",
                 Source = "Xbox"
@@ -159,8 +160,7 @@ namespace XboxLibrary
                                     WriteAppDataCache(libTitle);
                                 }
 
-                                if (libTitle.type == "Game" &&
-                                    libTitle.devices?.Contains("PC") == true)
+                                if (libTitle.type == "Game")
                                 {
                                     import = true;
                                 }

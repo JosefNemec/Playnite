@@ -30,7 +30,6 @@ namespace SteamLibrary
     {
         private ILogger logger = LogManager.GetLogger();
         private readonly Configuration config;
-        private readonly SteamApiClient apiClient = new SteamApiClient();
         private const string dbImportMessageId = "steamlibImportError";
 
         internal SteamLibrarySettings LibrarySettings { get; private set; }
@@ -101,10 +100,11 @@ namespace SteamLibrary
             {
                 Source = "Steam",
                 GameId = gameId.ToString(),
-                Name = name,
+                Name = name.RemoveTrademarks(),
                 InstallDirectory = installDir,
                 PlayAction = CreatePlayTask(gameId),
-                IsInstalled = true
+                IsInstalled = true,
+                Platform = "PC"
             };
 
             return game;
@@ -199,14 +199,15 @@ namespace SteamLibrary
             {
                 Source = "Steam",
                 GameId = modInfo.GameId.ToString(),
-                Name = modInfo.Name,
+                Name = modInfo.Name.RemoveTrademarks(),
                 InstallDirectory = path,
                 PlayAction = CreatePlayTask(modInfo.GameId),
                 IsInstalled = true,
                 Developers = new List<string>() { modInfo.Developer },
                 Links = modInfo.Links,
                 Tags = modInfo.Categories,
-                Icon = modInfo.IconPath
+                Icon = modInfo.IconPath,
+                Platform = "PC"
             };
 
             return game;
@@ -357,27 +358,32 @@ namespace SteamLibrary
                 throw new Exception(PlayniteApi.Resources.GetString("LOCNotLoggedInError"));
             }
 
+            var userId = ulong.Parse(settings.UserId);
             if (settings.IsPrivateAccount)
             {
-                return GetLibraryGames(ulong.Parse(settings.UserId), settings.ApiKey);
+                return GetLibraryGames(userId, GetPrivateOwnedGames(userId, LibrarySettings.ApiKey, LibrarySettings.IncludeFreeSubGames)?.response?.games);
             }
             else
             {
-                return GetLibraryGames(ulong.Parse(settings.UserId));
+                return GetLibraryGames(userId, ServicesClient.GetSteamLibrary(userId, LibrarySettings.IncludeFreeSubGames));
             }
         }
 
-        internal GetOwnedGamesResult GetPrivateOwnedGames(ulong userId, string apiKey)
+        internal GetOwnedGamesResult GetPrivateOwnedGames(ulong userId, string apiKey, bool freeSub)
         {
             var libraryUrl = @"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&include_played_free_games=1&format=json&steamid={1}";
+            if (freeSub)
+            {
+                libraryUrl += "&include_free_sub=1";
+            }
+
             var stringLibrary = HttpDownloader.DownloadString(string.Format(libraryUrl, apiKey, userId));
             return JsonConvert.DeserializeObject<GetOwnedGamesResult>(stringLibrary);
         }
 
-        internal List<GameInfo> GetLibraryGames(ulong userId, string apiKey)
+        internal List<GameInfo> GetLibraryGames(ulong userId, List<GetOwnedGamesResult.Game> ownedGames)
         {
-            var library = GetPrivateOwnedGames(userId, apiKey);
-            if (library.response.games == null)
+            if (ownedGames == null)
             {
                 throw new Exception("No games found on specified Steam account.");
             }
@@ -393,7 +399,7 @@ namespace SteamLibrary
             }
 
             var games = new List<GameInfo>();
-            foreach (var game in library.response.games)
+            foreach (var game in ownedGames)
             {
                 // Ignore games without name, like 243870
                 if (string.IsNullOrEmpty(game.name))
@@ -404,57 +410,11 @@ namespace SteamLibrary
                 var newGame = new GameInfo()
                 {
                     Source = "Steam",
-                    Name = game.name,
+                    Name = game.name.RemoveTrademarks(),
                     GameId = game.appid.ToString(),
                     Playtime = game.playtime_forever * 60,
-                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
-                };
-
-                if (lastActivity != null && lastActivity.TryGetValue(newGame.GameId, out var gameLastActivity))
-                {
-                    newGame.LastActivity = gameLastActivity;
-                }
-
-                games.Add(newGame);
-            }
-
-            return games;
-        }
-
-        internal List<GameInfo> GetLibraryGames(ulong userId)
-        {
-            var games = new List<GameInfo>();
-            var importedGames = ServicesClient.GetSteamLibrary(userId.ToString());
-            if (importedGames == null)
-            {
-                throw new Exception("No games found on specified Steam account.");
-            }
-
-            IDictionary<string, DateTime> lastActivity = null;
-            try
-            {
-                lastActivity = GetGamesLastActivity(userId);
-            }
-            catch (Exception exc)
-            {
-                logger.Warn(exc, "Failed to import Steam last activity.");
-            }
-
-            foreach (var game in importedGames)
-            {
-                // Ignore games without name, like 243870
-                if (string.IsNullOrEmpty(game.name))
-                {
-                    continue;
-                }
-
-                var newGame = new GameInfo()
-                {
-                    GameId = game.appid.ToString(),
-                    Source = "Steam",
-                    Name = game.name,
-                    Playtime = game.playtime_forever * 60,
-                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
+                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed,
+                    Platform = "PC"
                 };
 
                 if (lastActivity != null && lastActivity.TryGetValue(newGame.GameId, out var gameLastActivity))
@@ -727,7 +687,6 @@ namespace SteamLibrary
 
         public override void Dispose()
         {
-            apiClient.Logout();
         }
 
         public override ISettings GetSettings(bool firstRunSettings)
@@ -818,7 +777,7 @@ namespace SteamLibrary
 
         public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new SteamMetadataProvider(this, apiClient);
+            return new SteamMetadataProvider(this);
         }
 
         #endregion ILibraryPlugin

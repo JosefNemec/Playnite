@@ -12,7 +12,7 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public RegionsCollection(GameDatabase database) : base()
+        public RegionsCollection(GameDatabase database) : base(type: GameDatabaseCollection.Regions)
         {
             db = database;
         }

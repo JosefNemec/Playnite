@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/ComboBox.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/Button.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/ScrollViewer.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DefaultControls/ToolTip.xaml" />
 
                 <!--Custom Controls-->
                 <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterEnumListSelection.xaml" />

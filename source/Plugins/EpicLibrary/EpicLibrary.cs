@@ -69,9 +69,11 @@ namespace EpicLibrary
                         Type = GameActionType.URL,
                         Path = string.Format(EpicLauncher.GameLaunchUrlMask, app.AppName),
                         IsHandledByPlugin = true
-                    }
+                    },
+                    Platform = "PC"
                 };
 
+                game.Name = game.Name.RemoveTrademarks();
                 games.Add(game.GameId, game);
             }
 
@@ -108,7 +110,8 @@ namespace EpicLibrary
                 {
                     Source = "Epic",
                     GameId = gameAsset.appName,
-                    Name = catalogItem.title,
+                    Name = catalogItem.title.RemoveTrademarks(),
+                    Platform = "PC"
                 });
             }
 
@@ -132,7 +135,6 @@ namespace EpicLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
-            LibrarySettings.IsFirstRunUse = firstRunSettings;
             return LibrarySettings;
         }
 

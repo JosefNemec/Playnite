@@ -1,4 +1,5 @@
-﻿using HumbleLibrary.Models;
+﻿using AngleSharp.Parser.Html;
+using HumbleLibrary.Models;
 using Playnite.Common;
 using Playnite.SDK;
 using System;
@@ -28,7 +29,7 @@ namespace HumbleLibrary.Services
 
         public void Login()
         {
-            webView.NavigationChanged += (s, e) =>
+            webView.LoadingChanged += (s, e) =>
             {
                 if (webView.GetCurrentAddress() == libraryUrl)
                 {
@@ -51,16 +52,17 @@ namespace HumbleLibrary.Services
         internal List<string> GetLibraryKeys()
         {
             webView.NavigateAndWait(libraryUrl);
-            var libSource = webView.GetPageSource();
-            var match = Regex.Match(libSource, @"""gamekeys"":\s*(\[.+\])");
-            if (match.Success)
+            var parser = new HtmlParser();
+            var document = parser.Parse(webView.GetPageSource());
+            var userInfo = document.QuerySelector("#user-home-json-data");
+            if (userInfo == null)
             {
-                var strKeys = match.Groups[1].Value;
-                return Serialization.FromJson<List<string>>(strKeys);
+                throw new Exception("User is not authenticated.");
             }
             else
             {
-                throw new Exception("User is not authenticated.");
+                var parsedInfo = Serialization.FromJson<UserHome>(userInfo.TextContent);
+                return parsedInfo.gamekeys ?? new List<string>();
             }
         }
 

@@ -1,0 +1,18 @@
+Name: mGBA
+Website: 'https://mgba.io/'
+Profiles:
+  - Name: Nintendo Game Boy
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy]
+    ImageExtensions: [zip, 7z, rar, bin, gb, dmg]
+    ExecutableLookup: ^mGBA.exe$
+  - Name: Nintendo Game Boy Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Color]
+    ImageExtensions: [zip, 7z, rar, bin, gbc, cgb, sgb]
+    ExecutableLookup: ^mGBA.exe$
+  - Name: Nintendo Game Boy Advance
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Advance]
+    ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb]
+    ExecutableLookup: ^mGBA.exe$

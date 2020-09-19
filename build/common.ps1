@@ -79,7 +79,7 @@ function global:Get-MsBuildPath()
         $VSWHERE_CMD = "..\source\packages\vswhere.2.6.7\tools\vswhere.exe"
         if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
         {
-            Invoke-Nuget "install vswhere -Version 2.6.7 -SolutionDirectory `"$solutionDir`""
+            Invoke-Nuget "install vswhere -Version 2.6.7 -SolutionDirectory `"$solutionDir`"" | Out-Null
         }
     }
 

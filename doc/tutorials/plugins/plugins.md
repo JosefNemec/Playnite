@@ -28,13 +28,17 @@ Creating plugins
 
 Run [Toolbox](../toolbox.md) with arguments specific to a type of plugin you want to create.
 
-For example to create new library plugin run:
+For example, to create new library plugin:
 
 ```
 Toolbox.exe new LibraryPlugin "SomeLibrary importer" "d:\somefolder"
 ```
 
 This will generate new C# project, with all of required classes already premade.
+
+#### 2. Implement functionality
+
+Don't forget to implement functionality for template methods and properties that by default return `NotImplementedException` exception.
 
 ### Manually
 
@@ -45,7 +49,7 @@ Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. 
 > [!NOTE] 
 > PlayniteSDK is designed in a way that all versions from one major version branch (for example 1.0, 1.1, 1.2 etc.) are backwards compatible. Therefore plugin written for SDK version 1.0 will also work with Playnite containing all 1.x versions of SDK. When loading plugins Playnite checks all SDK references and won't load plugins referencing incompatible SDK versions.
 
-#### 2. Write plugin
+#### 2. Write a plugin
 
 - `Generic plugins` - see generic plugins [documentation page](genericPlugins.md).
 - `Library plugins` - see library plugins [documentation page](libraryPlugins.md).
@@ -54,6 +58,20 @@ Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. 
 #### 3. Create manifest file
 
 Described in [introduction section](../intro.md) to extensions.
+
+Plugin dependencies
+---------------------
+
+> [!WARNING] 
+> If you are using external dependencies (from NuGet for example), make sure that you use the same version that Playnite already references. Current plugin system doesn't allow loading of multiple versions of the same assembly and you may encounter issues if you use different version compared to what Playnite uses.
+
+You can check list of all Playnite's dependencies here:
+
+- [Playnite](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite/packages.config)
+- [Playnite.Common](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.Common/packages.config)
+- [Playnite.DesktopApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.DesktopApp/packages.config)
+- [Playnite.FullscreenApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.FullscreenApp/packages.config)
+
 
 Plugin settings
 ---------------------

@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
         xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         mc:Ignorable="d"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
@@ -35,7 +37,12 @@
                 <TextBlock Text="{Binding ProgressText}"
                            HorizontalAlignment="Center" Margin="0,20,0,0"
                            Style="{StaticResource TextBlockBaseStyle}" />
-                
+                <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}"
+                                 pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                                 Command="{Binding CancelCommand}"
+                                 Visibility="{Binding Cancelable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                 HorizontalContentAlignment="Center"
+                                 Margin="0,20,0,0" />
             </StackPanel>
         </Grid>
     </Viewbox>

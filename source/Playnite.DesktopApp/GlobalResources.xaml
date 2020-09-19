@@ -30,6 +30,7 @@
     <pcon:ImageStringToImageConverter x:Key="ImageStringToImageConverter" />
     <pcon:ImageStringToImageConverter x:Key="ImageStringToImageConverterCached" Cached="True" />
     <pcon:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+    <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
     <pcon:InvertedBoolenConverter x:Key="InvertedBoolenConverter" />
     <pcon:ListToStringConverter x:Key="ListToStringConverter" />
     <pcon:LongToTimePlayedConverter x:Key="LongToTimePlayedConverter" />

@@ -1,0 +1,13 @@
+Name: SameBoy
+Website: 'https://sameboy.github.io/'
+Profiles:
+  - Name: Nintendo - Game Boy
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy]
+    ImageExtensions: [gb]
+    ExecutableLookup: ^sameboy\.exe$
+  - Name: Nintendo - Game Boy Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Color]
+    ImageExtensions: [gbc]
+    ExecutableLookup: ^sameboy\.exe$

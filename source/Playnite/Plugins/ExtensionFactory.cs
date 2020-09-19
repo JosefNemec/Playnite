@@ -22,9 +22,9 @@ namespace Playnite.Plugins
     public class LoadedPlugin
     {
         public Plugin Plugin { get; }
-        public ExtensionDescription Description { get; }
+        public ExtensionManifest Description { get; }
 
-        public LoadedPlugin(Plugin plugin, ExtensionDescription description)
+        public LoadedPlugin(Plugin plugin, ExtensionManifest description)
         {
             Plugin = plugin;
             Description = description;
@@ -39,7 +39,7 @@ namespace Playnite.Plugins
 
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
-            get;
+            get; private set;
         } = new Dictionary<Guid, LoadedPlugin>();
 
         public List<LibraryPlugin> LibraryPlugins
@@ -59,7 +59,7 @@ namespace Playnite.Plugins
 
         public  List<PlayniteScript> Scripts
         {
-            get;
+            get; private set;
         } =  new List<PlayniteScript>();
 
         public bool HasExportedFunctions
@@ -149,7 +149,7 @@ namespace Playnite.Plugins
             }
             }
 
-            Scripts?.Clear();
+            Scripts = new List<PlayniteScript>();
             ScriptFunctions = null;
         }
 
@@ -170,7 +170,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            Plugins?.Clear();
+            Plugins = new Dictionary<Guid, LoadedPlugin>();
             PluginFunctions = null;
         }
 
@@ -184,39 +184,14 @@ namespace Playnite.Plugins
             }
         }
 
-        public static ExtensionDescription GetDescriptionFromPackedFile(string path)
+        public List<ExtensionManifest> GetExtensionDescriptors()
         {
-            using (var zip = ZipFile.OpenRead(path))
-            {
-                var manifest = zip.GetEntry(PlaynitePaths.ExtensionManifestFileName);
-                if (manifest == null)
-                {
-                    return null;
-                }
-
-                using (var logStream = manifest.Open())
-                {
-                    using (TextReader tr = new StreamReader(logStream))
-                    {
-                        return Serialization.FromYaml<ExtensionDescription>(tr.ReadToEnd());
-                    }
-                }
-            }
-        }
-
-        public static ExtensionDescription GetDescriptionFromFile(string path)
-        {
-            return Serialization.FromYaml<ExtensionDescription>(File.ReadAllText(path));
-        }
-
-        public List<ExtensionDescription> GetExtensionDescriptors()
-        {
-            var descs = new List<ExtensionDescription>();
+            var descs = new List<ExtensionManifest>();
             foreach (var file in GetExtensionDescriptorFiles())
             {
                 try
                 {
-                    descs.Add(ExtensionDescription.FromFile(file));
+                    descs.Add(ExtensionManifest.FromFile(file));
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -226,37 +201,6 @@ namespace Playnite.Plugins
             }
 
             return descs;
-        }
-
-        public static ExtensionDescription InstallFromPackedFile(string path)
-        {
-            logger.Info($"Installing extenstion {path}");
-            var desc = GetDescriptionFromPackedFile(path);
-            if (desc == null)
-            {
-                throw new FileNotFoundException("Extenstion manifest not found.");
-            }
-
-            var installDir = Paths.GetSafeFilename(desc.Name).Replace(" ", string.Empty) + "_" + (desc.Name + desc.Author).MD5();
-            var targetDir = PlayniteSettings.IsPortable ? PlaynitePaths.ExtensionsProgramPath : PlaynitePaths.ExtensionsUserDataPath;
-            targetDir = Path.Combine(targetDir, installDir);
-            var oldBackPath = targetDir + "_old";
-
-            if (Directory.Exists(targetDir))
-            {
-                logger.Debug($"Replacing existing extenstion installation: {targetDir}.");
-                Directory.Move(targetDir, oldBackPath);
-            }
-
-            FileSystem.CreateDirectory(targetDir, true);
-            ZipFile.ExtractToDirectory(path, targetDir);
-
-            if (Directory.Exists(oldBackPath))
-            {
-                Directory.Delete(oldBackPath, true);
-            }
-
-            return GetDescriptionFromFile(Path.Combine(targetDir, PlaynitePaths.ExtensionManifestFileName));
         }
 
         private List<string> GetExtensionDescriptorFiles()
@@ -307,14 +251,20 @@ namespace Playnite.Plugins
             return true;
         }
 
-        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList)
+        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly)
         {
             var allSuccess = true;
             DisposeScripts();
             var functions = new List<ScriptFunctionExport>();
 
-            foreach (ScriptExtensionDescription desc in GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.FolderName)))
+            foreach (ScriptExtensionDescription desc in GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)))
             {
+                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
+                {
+                    logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
+                    continue;
+                }
+
                 PlayniteScript script = null;
                 var scriptPath = Path.Combine(Path.GetDirectoryName(desc.DescriptionPath), desc.Module);
                 if (!File.Exists(scriptPath))
@@ -341,7 +291,7 @@ namespace Playnite.Plugins
                 }
 
                 Scripts.Add(script);
-                logger.Info($"Loaded script extension: {scriptPath}");
+                logger.Info($"Loaded script extension: {scriptPath}, version {desc.Version}");
 
                 if (desc.Functions?.Any() == true)
                 {
@@ -353,37 +303,55 @@ namespace Playnite.Plugins
             return allSuccess;
         }
 
-        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList)
+        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly)
         {
             DisposePlugins();
             var funcs = new List<ExtensionFunction>();
-            foreach (var desc in GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.FolderName) != true))
+            foreach (var desc in GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true))
             {
+                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
+                {
+                    logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
+                    continue;
+                }
+
                 try
                 {
                     var plugins = LoadPlugins(desc, injectingApi);
                     foreach (var plugin in plugins)
                     {
+                        if (Plugins.ContainsKey(plugin.Id))
+                        {
+                            logger.Warn($"Plugin {plugin.Id} is already loaded.");
+                            continue;
+                        }
+
                         Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
+#pragma warning disable 0618
                         var plugFunc = plugin.GetFunctions();
+#pragma warning restore 0618
                         if (plugFunc?.Any() == true)
                         {
                             funcs.AddRange(plugFunc);
                         }
 
-                        logger.Info($"Loaded plugin: {desc.Name}");
+                        logger.Info($"Loaded plugin: {desc.Name}, version {desc.Version}");
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e.InnerException, $"Failed to load plugin: {desc.Name}");
+                    if (e.InnerException == null)
+                    {
+                        logger.Error(e, string.Empty);
+                    }
                 }
             }
 
             PluginFunctions = funcs;
         }
 
-        public IEnumerable<Plugin> LoadPlugins(ExtensionDescription descriptor, IPlayniteAPI injectingApi)
+        public IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)
         {
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);
             var asmName = AssemblyName.GetAssemblyName(asmPath);
@@ -404,6 +372,10 @@ namespace Playnite.Plugins
                         }
                     }
                 }
+            }
+            else
+            {
+                // TODO: Unload assembly once Playnite switches to .NET Core
             }
         }
 
@@ -426,6 +398,12 @@ namespace Playnite.Plugins
 
         private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -434,7 +412,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameUninstalled method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameUninstalled method from {script.Name} script.");
                 }
             }
 
@@ -446,13 +424,19 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameUninstalled method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameUninstalled method from {plugin.Description.Name} plugin.");
                 }
             }
         }
 
         private void Controllers_Stopped(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -461,7 +445,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStopped method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameStopped method from {script.Name} script.");
                 }
             }
 
@@ -473,13 +457,19 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStopped method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameStopped method from {plugin.Description.Name} plugin.");
                 }
             }
         }
 
         private void Controllers_Starting(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -488,7 +478,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStarting method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameStarting method from {script.Name} script.");
                 }
             }
 
@@ -500,13 +490,19 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStarting method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameStarting method from {plugin.Description.Name} plugin.");
                 }
             }
         }
 
         private void Controllers_Started(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -515,7 +511,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStarted method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameStarted method from {script.Name} script.");
                 }
             }
 
@@ -527,13 +523,19 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameStarted method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameStarted method from {plugin.Description.Name} plugin.");
                 }
             }
         }
 
         private void Controllers_Installed(object sender, GameControllerEventArgs args)
         {
+            if (args.Controller?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
             foreach (var script in Scripts)
             {
                 try
@@ -542,7 +544,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameInstalled method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameInstalled method from {script.Name} script.");
                 }
             }
 
@@ -554,7 +556,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameInstalled method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameInstalled method from {plugin.Description.Name} plugin.");
                 }
             }
         }
@@ -570,7 +572,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameSelected method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnGameSelected method from {script.Name} script.");
                 }
             }
 
@@ -582,7 +584,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnGameSelected method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnGameSelected method from {plugin.Description.Name} plugin.");
                 }
             }
         }
@@ -597,7 +599,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnApplicationStarted method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnApplicationStarted method from {script.Name} script.");
                 }
             }
 
@@ -609,7 +611,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnApplicationStarted method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnApplicationStarted method from {plugin.Description.Name} plugin.");
                 }
             }
         }
@@ -624,7 +626,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnApplicationStopped method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnApplicationStopped method from {script.Name} script.");
                 }
             }
 
@@ -636,7 +638,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnApplicationStopped method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnApplicationStopped method from {plugin.Description.Name} plugin.");
                 }
             }
         }
@@ -651,7 +653,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnLibraryUpdated method from {script.Name} script.");
+                    logger.Error(e, $"Failed to execute OnLibraryUpdated method from {script.Name} script.");
                 }
             }
 
@@ -663,7 +665,7 @@ namespace Playnite.Plugins
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to load execute OnLibraryUpdated method from {plugin.Description.Name} plugin.");
+                    logger.Error(e, $"Failed to execute OnLibraryUpdated method from {plugin.Description.Name} plugin.");
                 }
             }
         }

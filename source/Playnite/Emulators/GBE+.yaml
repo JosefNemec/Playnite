@@ -1,0 +1,26 @@
+Name: GBE+
+Website: 'https://github.com/shonumi/gbe-plus'
+Profiles:
+  - Name: Game Boy
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy]
+    ImageExtensions: [gb]
+    ExecutableLookup: ^gbe_plus_qt*\.exe$
+
+  - Name: Game Boy Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Color]
+    ImageExtensions: [gbc]
+    ExecutableLookup: ^gbe_plus_qt*\.exe$
+
+  - Name: Game Boy Advance
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Advance]
+    ImageExtensions: [gba]
+    ExecutableLookup: ^gbe_plus_qt*\.exe$
+
+  - Name: Nintendo DS
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo DS]
+    ImageExtensions: [nds]
+    ExecutableLookup: ^gbe_plus_qt*\.exe$

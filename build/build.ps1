@@ -168,7 +168,7 @@ if (!$SkipBuild)
     $solutionDir = Join-Path $pwd "..\source"
     Invoke-Nuget "restore ..\source\Playnite.sln"
     $msbuildpath = Get-MsBuildPath
-    $arguments = "build.xml /p:SolutionDir=`"$solutionDir`" /p:OutputPath=`"$OutputDir`";Configuration=$configuration /property:Platform=$Platform /t:Build"
+    $arguments = "build.xml /p:SolutionDir=`"$solutionDir\\`" /p:OutputPath=`"$OutputDir`";Configuration=$configuration /property:Platform=$Platform /t:Build"
     $compilerResult = StartAndWait $msbuildPath $arguments
     if ($compilerResult -ne 0)
     {

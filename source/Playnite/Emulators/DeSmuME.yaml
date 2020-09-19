@@ -1,0 +1,8 @@
+Name: DeSmuME
+Website: 'https://desmume.org/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo DS]
+    ImageExtensions: [nds, zip, 7z, rar, gz]
+    ExecutableLookup: ^DeSmuME.*\.exe$

@@ -8,11 +8,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GroupItem}">
-                    <Expander BorderThickness="0" IsExpanded="True"
-                              ExpanderBehaviors.SaveState="True"
-                              ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
-                        <Expander.Header>
+                    <ExpanderEx BorderThickness="0" SaveGameGroupId="{Binding Name, Mode=OneWay}"
+                                IsExpanded="True">
+                        <ExpanderEx.Header>                            
                             <DockPanel Background="Transparent">
+                                <DockPanel.ContextMenu>
+                                    <GameGroupMenu />
+                                </DockPanel.ContextMenu>
                                 <TextBlock DockPanel.Dock="Left"
                                            VerticalAlignment="Center" HorizontalAlignment="Left"
                                            TextAlignment="Center" Margin="0,0,5,0">
@@ -36,9 +38,9 @@
                                            DockPanel.Dock="Left" TextAlignment="Center"
                                            Visibility="{Settings ShowGroupCount}"/>
                             </DockPanel>
-                        </Expander.Header>
+                        </ExpanderEx.Header>
                         <ItemsPresenter />
-                    </Expander>
+                    </ExpanderEx>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

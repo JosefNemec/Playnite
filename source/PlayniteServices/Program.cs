@@ -14,6 +14,8 @@ namespace PlayniteServices
 {
     public class Program
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         public static Database Database
         {
             get; private set;
@@ -38,7 +40,8 @@ namespace PlayniteServices
         {
             NLogLogger.ConfigureLogger();
             LogManager.Init(new NLogLogProvider());
+            logger.Info("Server starting...");
             BuildWebHost(args).Run();
-        }        
+        }
     }
 }

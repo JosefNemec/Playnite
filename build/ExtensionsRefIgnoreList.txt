@@ -20,8 +20,10 @@ Nett.dll
 Nett.xml
 Microsoft.WindowsAPICodePack.dll
 Microsoft.WindowsAPICodePack.Shell.dll
-x64\sqlite3.dll
-x86\sqlite3.dll
+sqlite3.dll
 SQLite-net.dll
 SQLite-net.pdb
 SQLitePCL.raw.dll
+Markdig.dll
+Markdig.xml
+Markdig.pdb

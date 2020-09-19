@@ -382,5 +382,20 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool notes = true;
+        public bool Notes
+        {
+            get
+            {
+                return notes;
+            }
+
+            set
+            {
+                notes = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

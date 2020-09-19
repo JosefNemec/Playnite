@@ -39,6 +39,7 @@ namespace Playnite
         private IResourceProvider resources = new ResourceProvider();
         private GameControllerFactory controllers;
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
+        private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
 
         public PlayniteApplication Application;
         public ExtensionFactory Extensions { get; private set; }
@@ -46,11 +47,23 @@ namespace Playnite
         public IDialogsFactory Dialogs { get; private set; }
         public PlayniteSettings AppSettings { get; private set; }
 
-        public List<Game> LastGames
+        public List<Game> QuickLaunchItems
         {
             get
             {
-                return Database.Games.Where(a => a.LastActivity != null && a.IsInstalled).OrderByDescending(a => a.LastActivity).Take(10).ToList();
+                if (AppSettings.QuickLaunchItems > 0)
+                {
+                    return Database.Games.
+                        Where(a => a.LastActivity != null && a.IsInstalled &&
+                            (!a.Hidden || (a.Hidden && AppSettings.ShowHiddenInQuickLaunch))).
+                        OrderByDescending(a => a.LastActivity).
+                        Take(AppSettings.QuickLaunchItems).
+                        ToList();
+                }
+                else
+                {
+                    return new List<Game>();
+                }
             }
         }
 
@@ -72,6 +85,16 @@ namespace Playnite
             controllers.Uninstalled += Controllers_Uninstalled;
             controllers.Started += Controllers_Started;
             controllers.Stopped += Controllers_Stopped;
+            AppSettings.PropertyChanged += AppSettings_PropertyChanged;
+        }
+
+        private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PlayniteSettings.ShowHiddenInQuickLaunch) ||
+                e.PropertyName == nameof(PlayniteSettings.QuickLaunchItems))
+            {
+                UpdateJumpList();
+            }
         }
 
         public void Dispose()
@@ -155,7 +178,7 @@ namespace Playnite
                     shutdownJobs.TryRemove(game.PluginId, out var _);
                 }
 
-                if (!AppSettings.PreScript.IsNullOrWhiteSpace())
+                if (!AppSettings.PreScript.IsNullOrWhiteSpace() && game.UseGlobalPreScript)
                 {
                     try
                     {
@@ -271,7 +294,24 @@ namespace Playnite
                         installDirectory = newInstallDirectory;
                     }
                 }
-                Process.Start(installDirectory);
+
+                installDirectory = game.ExpandVariables(installDirectory);
+                if (AppSettings.DirectoryOpenCommand.IsNullOrWhiteSpace())
+                {
+                    Process.Start(installDirectory);
+                }
+                else
+                {
+                    try
+                    {
+                        ProcessStarter.ShellExecute(AppSettings.DirectoryOpenCommand.Replace("{Dir}", installDirectory));
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to open directory using custom command.");
+                        Process.Start(installDirectory);
+                    }
+                }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -361,20 +401,46 @@ namespace Playnite
             if (game.IsInstalling || game.IsRunning || game.IsLaunching || game.IsUninstalling)
             {
                 Dialogs.ShowMessage(
-                    resources.GetString("LOCGameRemoveRunningError"),
-                    resources.GetString("LOCGameError"),
+                    "LOCGameRemoveRunningError",
+                    "LOCGameError",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
 
-            if (Dialogs.ShowMessage(
-                resources.GetString("LOCGameRemoveAskMessage"),
-                resources.GetString("LOCGameRemoveAskTitle"),
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question) != MessageBoxResult.Yes)
+            var addToExclusionList = false;
+            if (game.IsCustomGame)
             {
-                return;
+                if (Dialogs.ShowMessage(
+                    "LOCGameRemoveAskMessage",
+                    "LOCGameRemoveAskTitle",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                var options = new List<MessageBoxOption>
+                {
+                    new MessageBoxOption("LOCRemoveAskAddToExlusionListYesResponse"),
+                    new MessageBoxOption("LOCYesLabel", true),
+                    new MessageBoxOption("LOCNoLabel", false, true)
+                };
+                var result = Dialogs.ShowMessage(
+                    "LOCGameRemoveAskMessageIgnoreOption",
+                    "LOCGameRemoveAskTitle",
+                    MessageBoxImage.Question,
+                    options);
+                if (result == options[0])
+                {
+                    addToExclusionList = true;
+                }
+                else if (result == options[2])
+                {
+                    return;
+                }
             }
 
             if (Database.Games[game.Id] == null)
@@ -384,6 +450,10 @@ namespace Playnite
             else
             {
                 Database.Games.Remove(game);
+                if (addToExclusionList)
+                {
+                    AppSettings.ImportExclusionList.Add(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                }
             }
         }
 
@@ -392,20 +462,46 @@ namespace Playnite
             if (games.Exists(a => a.IsInstalling || a.IsRunning || a.IsLaunching || a.IsUninstalling))
             {
                 Dialogs.ShowMessage(
-                    resources.GetString("LOCGameRemoveRunningError"),
-                    resources.GetString("LOCGameError"),
+                    "LOCGameRemoveRunningError",
+                    "LOCGameError",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
 
-            if (Dialogs.ShowMessage(
-                string.Format(resources.GetString("LOCGamesRemoveAskMessage"), games.Count()),
-                resources.GetString("LOCGameRemoveAskTitle"),
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question) != MessageBoxResult.Yes)
+            var addToExclusionList = false;
+            if (games.All(a => a.IsCustomGame))
             {
-                return;
+                if (Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCGamesRemoveAskMessage"), games.Count()),
+                    "LOCGameRemoveAskTitle",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                var options = new List<MessageBoxOption>
+                {
+                    new MessageBoxOption("LOCRemoveAskAddToExlusionListYesResponse"),
+                    new MessageBoxOption("LOCYesLabel", true),
+                    new MessageBoxOption("LOCNoLabel", false, true)
+                };
+                var result = Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCGamesRemoveAskMessageIgnoreOption"), games.Count()),
+                    "LOCGameRemoveAskTitle",
+                    MessageBoxImage.Question,
+                    options);
+                if (result == options[0])
+                {
+                    addToExclusionList = true;
+                }
+                else if (result == options[2])
+                {
+                    return;
+                }
             }
 
             foreach (var game in games.ToList())
@@ -415,12 +511,17 @@ namespace Playnite
                     logger.Warn($"Failed to remove game {game.Name} {game.Id}, game doesn't exists anymore.");
                     games.Remove(game);
                 }
+
+                if (addToExclusionList && !game.IsCustomGame)
+                {
+                    AppSettings.ImportExclusionList.Add(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                }
             }
 
             Database.Games.Remove(games);
         }
 
-        public void CreateShortcut(Game game)
+        public void CreateDesktopShortcut(Game game)
         {
             try
             {
@@ -444,19 +545,12 @@ namespace Playnite
                 {
                     if (Path.GetExtension(icon) != ".ico")
                     {
-                        var targetIconPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".ico");
+                        FileSystem.CreateDirectory(PlaynitePaths.IconsCachePath);
+                        var targetIconPath = Path.Combine(PlaynitePaths.IconsCachePath, game.Id + ".ico");
                         BitmapExtensions.ConvertToIcon(icon, targetIconPath);
-                        var md5 = FileSystem.GetMD5(targetIconPath);
-                        var existingFile = Path.Combine(PlaynitePaths.TempPath, md5 + ".ico");
-                        if (File.Exists(existingFile))
+                        if (File.Exists(targetIconPath))
                         {
-                            icon = existingFile;
-                            File.Delete(targetIconPath);
-                        }
-                        else
-                        {
-                            File.Move(targetIconPath, existingFile);
-                            icon = existingFile;
+                            icon = targetIconPath;
                         }
                     }
                 }
@@ -478,11 +572,45 @@ namespace Playnite
             }
         }
 
-        public void CreateShortcuts(List<Game> games)
+        public void OpenManual(Game game)
+        {
+            if (game.Manual.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            try
+            {
+                var manualPath = game.Manual;
+                if (!manualPath.IsHttpUrl() && !File.Exists(manualPath))
+                {
+                    manualPath = Path.Combine(Database.GetFileStoragePath(game.Id), manualPath);
+                }
+
+                if (manualPath.IsHttpUrl())
+                {
+                    ProcessStarter.StartUrl(manualPath);
+                }
+                else
+                {
+                    ProcessStarter.StartProcess(manualPath);
+                }
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to open manual.");
+                Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCManualOpenError"), exc.Message),
+                    resources.GetString("LOCGameError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void CreateDesktopShortcuts(List<Game> games)
         {
             foreach (var game in games)
             {
-                CreateShortcut(game);
+                CreateDesktopShortcut(game);
             }
         }
 
@@ -587,35 +715,44 @@ namespace Playnite
         {
             try
             {
-                OnPropertyChanged(nameof(LastGames));
                 var jumpList = new JumpList();
-                foreach (var lastGame in LastGames)
+                jumpList.ShowFrequentCategory = false;
+                jumpList.ShowRecentCategory = false;
+
+                if (AppSettings.QuickLaunchItems > 0)
                 {
-                    var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
-                    JumpTask task = new JumpTask
+                    foreach (var lastGame in QuickLaunchItems)
                     {
-                        Title = lastGame.Name,
-                        Arguments = args,
-                        Description = string.Empty,
-                        CustomCategory = "Recent",
-                        ApplicationPath = PlaynitePaths.DesktopExecutablePath
-                    };
+                        var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
+                        JumpTask task = new JumpTask
+                        {
+                            Title = lastGame.Name,
+                            Arguments = args,
+                            Description = string.Empty,
+                            CustomCategory = "Recent",
+                            ApplicationPath = PlaynitePaths.DesktopExecutablePath
+                        };
 
-                    if (lastGame.Icon?.EndsWith(".ico", StringComparison.OrdinalIgnoreCase) == true)
-                    {
-                        task.IconResourcePath = Database.GetFullFilePath(lastGame.Icon);
-                    }
-                    else if (lastGame.PlayAction?.Type == GameActionType.File)
-                    {
-                        task.IconResourcePath = lastGame.GetRawExecutablePath();
+                        if (lastGame.Icon?.EndsWith(".ico", StringComparison.OrdinalIgnoreCase) == true)
+                        {
+                            task.IconResourcePath = Database.GetFullFilePath(lastGame.Icon);
+                        }
+                        else if (lastGame.PlayAction?.Type == GameActionType.File)
+                        {
+                            task.IconResourcePath = lastGame.GetRawExecutablePath();
+                        }
+
+                        jumpList.JumpItems.Add(task);
                     }
 
-                    jumpList.JumpItems.Add(task);
-                    jumpList.ShowFrequentCategory = false;
-                    jumpList.ShowRecentCategory = false;
+                    JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
+                }
+                else
+                {
+                    JumpList.SetJumpList(System.Windows.Application.Current, new JumpList());
                 }
 
-                JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
+                jumpList.Apply();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -626,7 +763,22 @@ namespace Playnite
         public void CancelGameMonitoring(Game game)
         {
             controllers.RemoveController(game.Id);
-            UpdateGameState(game.Id, null, false, false, false, false);
+            var dbGame = Database.Games.Get(game.Id);
+            dbGame.IsRunning = false;
+            dbGame.IsLaunching = false;
+            dbGame.IsInstalling = false;
+            dbGame.IsUninstalling = false;
+            if (gameStartups.TryRemove(game.Id, out var startupTime))
+            {
+                dbGame.Playtime += Convert.ToInt64((DateTime.Now - startupTime).TotalSeconds);
+            }
+
+            Database.Games.Update(dbGame);
+
+            if (AppSettings.DiscordPresenceEnabled)
+            {
+                Application.Discord?.ClearPresence();
+            }
         }
 
         private void UpdateGameState(Guid id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
@@ -675,6 +827,58 @@ namespace Playnite
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
+            gameStartups.TryAdd(game.Id, DateTime.Now);
+
+            if (!AppSettings.GameStartedScript.IsNullOrWhiteSpace() && game.UseGlobalGameStartedScript)
+            {
+                try
+                {
+                    var expanded = game.ExpandVariables(AppSettings.GameStartedScript);
+                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    var message = exc.Message;
+                    if (exc is ScriptRuntimeException err)
+                    {
+                        message = err.Message + "\n\n" + err.ScriptStackTrace;
+                    }
+
+                    logger.Error(exc, "Failed to execute global game-started action.");
+                    logger.Error(AppSettings.GameStartedScript);
+                    Dialogs.ShowMessage(
+                        message,
+                        resources.GetString("LOCErrorGlobalScriptAction"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+            }
+
+            if (!game.GameStartedScript.IsNullOrWhiteSpace())
+            {
+                try
+                {
+                    var expanded = game.ExpandVariables(game.GameStartedScript);
+                    ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    var message = exc.Message;
+                    if (exc is ScriptRuntimeException err)
+                    {
+                        message = err.Message + "\n\n" + err.ScriptStackTrace;
+                    }
+
+                    logger.Error(exc, "Failed to execute game's game-started action.");
+                    logger.Error(game.GameStartedScript);
+                    Dialogs.ShowMessage(
+                        message,
+                        resources.GetString("LOCErrorGameScriptAction"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+            }
+
             if (Application.Mode == ApplicationMode.Desktop)
             {
                 if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
@@ -697,6 +901,11 @@ namespace Playnite
                     Application.Minimize();
                 }
             }
+
+            if (AppSettings.DiscordPresenceEnabled)
+            {
+                Application.Discord?.SetPresence(game.Name);
+            }
         }
 
         private void Controllers_Stopped(object sender, GameControllerEventArgs args)
@@ -710,6 +919,7 @@ namespace Playnite
             dbGame.Playtime += args.EllapsedTime;
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
+            gameStartups.TryRemove(game.Id, out _);
             if (Application.Mode == ApplicationMode.Desktop)
             {
                 if (AppSettings.AfterGameClose == AfterGameCloseOptions.Restore)
@@ -720,6 +930,11 @@ namespace Playnite
             else
             {
                 Application.Restore();
+            }
+
+            if (AppSettings.DiscordPresenceEnabled)
+            {
+                Application.Discord?.ClearPresence();
             }
 
             if (!game.PostScript.IsNullOrWhiteSpace())
@@ -747,7 +962,7 @@ namespace Playnite
                 }
             }
 
-            if (!AppSettings.PostScript.IsNullOrWhiteSpace())
+            if (!AppSettings.PostScript.IsNullOrWhiteSpace() && game.UseGlobalPostScript)
             {
                 try
                 {

@@ -9,6 +9,69 @@ using System.Threading.Tasks;
 namespace Playnite.SDK
 {
     /// <summary>
+    /// Represents type of game database collection.
+    /// </summary>
+    public enum GameDatabaseCollection
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        Uknown,
+        /// <summary>
+        ///
+        /// </summary>
+        Games,
+        /// <summary>
+        ///
+        /// </summary>
+        Platforms,
+        /// <summary>
+        ///
+        /// </summary>
+        Emulators,
+        /// <summary>
+        ///
+        /// </summary>
+        Genres,
+        /// <summary>
+        ///
+        /// </summary>
+        Companies,
+        /// <summary>
+        ///
+        /// </summary>
+        Tags,
+        /// <summary>
+        ///
+        /// </summary>
+        Categories,
+        /// <summary>
+        ///
+        /// </summary>
+        Series,
+        /// <summary>
+        ///
+        /// </summary>
+        AgeRatings,
+        /// <summary>
+        ///
+        /// </summary>
+        Regions,
+        /// <summary>
+        ///
+        /// </summary>
+        Sources,
+        /// <summary>
+        ///
+        /// </summary>
+        Features,
+        /// <summary>
+        ///
+        /// </summary>
+        AppSoftware
+    }
+
+    /// <summary>
     /// Describes game databse API.
     /// </summary>
     public interface IGameDatabase

@@ -1,5 +1,6 @@
 ﻿using Playnite.Behaviors;
 using Playnite.Common;
+using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.ViewModels;
 using System;
@@ -12,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using BooleanToVisibilityConverter = System.Windows.Controls.BooleanToVisibilityConverter;
 
 namespace Playnite.DesktopApp.Controls.Views
 {
@@ -71,6 +73,12 @@ namespace Playnite.DesktopApp.Controls.Views
                     StaysOpen = false,
                     Placement = PlacementMode.Bottom
                 };
+
+                BindingTools.SetBinding(ElemMainMenu,
+                    FrameworkElement.VisibilityProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.SidebarVisible),
+                    converter: new InvertedBooleanToVisibilityConverter());
             }
 
             ElemViewMenu = Template.FindName("PART_ElemViewMenu", this) as FrameworkElement;

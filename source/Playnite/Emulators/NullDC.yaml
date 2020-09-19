@@ -1,0 +1,8 @@
+Name: NullDC
+Website: 'http://segaretro.org/NullDC'
+Profiles:
+  - Name: Default
+    DefaultArguments: '-config nullDC_GUI:Fullscreen=1 -config nullDC:Emulator.Autostart=1 -config ImageReader:LoadDefaultImage=1 -config ImageReader:DefaultImage="{ImagePath}"'
+    Platforms: [Sega Dreamcast]
+    ImageExtensions: [iso, bwt, cdi, b5t, b6t, ccd, cue, mds, nrg, pdi]
+    ExecutableLookup: ^nullDC.*\.exe$

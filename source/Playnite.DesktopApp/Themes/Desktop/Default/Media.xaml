@@ -24,9 +24,13 @@
     <TextBlock x:Key="EditGameIcon" Text="&#xeded;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
     <TextBlock x:Key="RemoveGameIcon" Text="&#xec53;" FontFamily="{DynamicResource FontIcoFont}" Foreground="OrangeRed" FontWeight="Light"/>
     <TextBlock x:Key="DiceIcon" Text="&#xef03;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="ManualIcon" Text="&#xead1;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
 
     <TextBlock x:Key="ClearTextIcon" Text="&#xef00;" FontFamily="{DynamicResource FontIcoFont}"/>
     <TextBlock x:Key="SearchTextIcon" Text="&#xed11;" FontFamily="{DynamicResource FontIcoFont}" />
+
+    <TextBlock x:Key="SidebarLibraryIcon" Text="&#xef65;" FontFamily="{DynamicResource FontIcoFont}"  FontWeight="ExtraLight"/>
+    <TextBlock x:Key="SidebarStatisticsIcon" Text="&#xe983;" FontFamily="{DynamicResource FontIcoFont}"  FontWeight="ExtraLight"/>
 
     <DataTemplate x:Key="ClearTextIconTemplate">
         <TextBlock Text="&#xef00;" FontFamily="{DynamicResource FontIcoFont}" />

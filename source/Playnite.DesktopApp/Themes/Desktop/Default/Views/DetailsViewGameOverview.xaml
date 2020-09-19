@@ -99,7 +99,7 @@
                                             <Style TargetType="Button" BasedOn="{StaticResource PropertyItemButton}" />
                                         </StackPanel.Resources>
 
-                                        <TextBlock Text="{DynamicResource LOCGameDetails}" Margin="0,15,0,10"
+                                        <TextBlock Text="{DynamicResource LOCGameDetails}" Margin="0,15,0,5"
                                                     Style="{DynamicResource BaseTextBlockStyle}" />
 
                                         <Separator Background="{DynamicResource PanelSeparatorBrush}" />
@@ -179,19 +179,30 @@
                                         </GridEx>
                                     </StackPanel>
 
-                                    <StackPanel Name="PART_ElemDescription"
-                                                DockPanel.Dock="Right" Margin="10,0,2,0">
-                                        <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,10"
+                                    <StackPanel DockPanel.Dock="Right" Margin="10,0,2,0">
+                                        <StackPanel Name="PART_ElemNotes">
+                                            <TextBlock Text="{DynamicResource LOCNotesLabel}" Margin="0,15,0,5"
+                                                       Style="{DynamicResource BaseTextBlockStyle}" />
+                                            <Separator Background="{DynamicResource PanelSeparatorBrush}" />
+                                            <TextBox Name="PART_TextNotes" IsReadOnly="True"
+                                                     BorderThickness="0"
+                                                     AcceptsReturn="True" TextWrapping="Wrap"
+                                                     Margin="-1,5,-1,5" Padding="0"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Name="PART_ElemDescription">
+                                            <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,5"
                                                     Style="{DynamicResource BaseTextBlockStyle}" />
-                                        <Separator Background="{DynamicResource PanelSeparatorBrush}" />
-                                        <HtmlTextView x:Name="PART_HtmlDescription"
-                                                      Margin="0,5,0,5"
+                                            <Separator Background="{DynamicResource PanelSeparatorBrush}" />
+                                            <HtmlTextView Name="PART_HtmlDescription"
+                                                        Margin="0,5,0,5"
                                                         HtmlFontSize="{DynamicResource FontSize}"
                                                         HtmlFontFamily="{DynamicResource FontFamily}"
                                                         HtmlForeground="{DynamicResource TextColor}"
                                                         LinkForeground="{DynamicResource GlyphColor}"                                      
                                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
                                     </StackPanel>
                                 </DockPanel>                              
                             </Grid>

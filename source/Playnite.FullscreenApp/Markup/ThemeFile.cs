@@ -12,7 +12,7 @@ namespace Playnite.FullscreenApp.Markup
         {
         }
 
-        public static ThemeDescription GetDesignTimeDefaultTheme()
+        public static ThemeManifest GetDesignTimeDefaultTheme()
         {
             return GetDesignTimeDefaultTheme(ApplicationMode.Fullscreen);
         }

@@ -36,8 +36,8 @@
                                 </Storyboard>
                             </Grid.Resources>
                             
-                            <DockPanel Grid.Row="1" Grid.Column="0">
-                                <Sidebar x:Name="PART_Sidebar"
+                            <DockPanel>
+                                <Sidebar x:Name="PART_Sidebar" Panel.ZIndex="999"
                                          DockPanel.Dock="{Settings SidebarPosition}" />                             
                                 <ContentControl Name="PART_ContentView"
                                                 DockPanel.Dock="Top" />

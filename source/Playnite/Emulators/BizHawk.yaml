@@ -1,0 +1,164 @@
+Name: BizHawk
+Website: 'http://tasvideos.org/Bizhawk.html/'
+Profiles:
+  - Name: Apple II
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Apple II]
+    ImageExtensions: [dsk, do, po, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Atari 2600
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Atari 2600]
+    ImageExtensions: [a26, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Atari 7800
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Atari 7800]
+    ImageExtensions: [a78, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Atari Lynx
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Atari Lynx]
+    ImageExtensions: [lnx, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Coleco ColecoVision
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Coleco ColecoVision]
+    ImageExtensions: [col, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Commodore 64
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Commodore 64]
+    ImageExtensions: [prg, d64, g64, crt, tap, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Mattel Intellivision
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Mattel Intellivision]
+    ImageExtensions: [int, bin, rom, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: NEC TurboGrafx 16
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [NEC TurboGrafx 16]
+    ImageExtensions: [pce, cue, ccd, mds, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: NEC TurboGrafx-CD
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [NEC TurboGrafx-CD]
+    ImageExtensions: [cue, ccd, mds, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Nintendo Entertainment System
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Entertainment System]
+    ImageExtensions: [nes, fds, unf, nsf, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Nintendo Game Boy
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy]
+    ImageExtensions: [gb, sgb, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Nintendo Game Boy Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Color]
+    ImageExtensions: [gbc, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Nintendo Game Boy Advance
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Advance]
+    ImageExtensions: [gba, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Nintendo Virtual Boy
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Virtual Boy]
+    ImageExtensions: [vb, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Nintendo 64
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo 64]
+    ImageExtensions: [z64, v64, n64]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: PC Engine SuperGrafx
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [NEC SuperGrafx]
+    ImageExtensions: [sgx, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Sega Game Gear
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Game Gear]
+    ImageExtensions: [gg, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Sega Genesis
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Genesis]
+    ImageExtensions: [gen, md, smd, 32x, bin, cue, ccd, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Sega Master System
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Master System]
+    ImageExtensions: [sms, gg, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Sega Saturn
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Saturn]
+    ImageExtensions: [iso, bin, cue]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: SNK Neo Geo Pocket
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [SNK Neo Geo Pocket]
+    ImageExtensions: [ngp, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: SNK Neo Geo Pocket Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [SNK Neo Geo Pocket Color]
+    ImageExtensions: [ngc, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Sony PlayStation
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sony PlayStation]
+    ImageExtensions: [cue, ccd, mds, m3u]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Super Nintendo Entertainment System
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Super Nintendo Entertainment System]
+    ImageExtensions: [smc, sfc, xml, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: WonderSwan
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Bandai WonderSwan]
+    ImageExtensions: [ws, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: WonderSwan Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Bandai WonderSwan Color]
+    ImageExtensions: [wsc, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$
+
+  - Name: Sinclair ZX Spectrum
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sinclair ZX Spectrum]
+    ImageExtensions: [tzx, tap, dsk, pzx, csw, wav, zip, rar, 7z, gz]
+    ExecutableLookup: ^EmuHawk\.exe$

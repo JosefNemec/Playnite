@@ -87,8 +87,9 @@ namespace GogLibrary
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     GameId = gameId,
                     Source = "GOG",
-                    Name = program.DisplayName,
-                    IsInstalled = true
+                    Name = program.DisplayName.RemoveTrademarks(),
+                    IsInstalled = true,
+                    Platform = "PC"
                 };
 
                 var tasks = GetGameTasks(game.GameId, game.InstallDirectory);
@@ -147,11 +148,12 @@ namespace GogLibrary
                 {
                     Source = "GOG",
                     GameId = game.game.id,
-                    Name = game.game.title,
+                    Name = game.game.title.RemoveTrademarks(),
                     Links = new List<Link>()
                     {
                         new Link("Store", @"https://www.gog.com" + game.game.url)
-                    }
+                    },
+                    Platform = "PC"
                 };
 
                 if (game.stats?.Keys?.Any() == true)

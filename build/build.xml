@@ -56,6 +56,10 @@
             Projects="../source/Plugins/AmazonGamesLibrary/AmazonGamesLibrary.csproj"
             Targets="Build"
             Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
+        <MSBuild
+            Projects="../source/Plugins/PSNLibrary/PSNLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
     </Target>
     <Target Name="Build" DependsOnTargets="Plugins">
         <MSBuild

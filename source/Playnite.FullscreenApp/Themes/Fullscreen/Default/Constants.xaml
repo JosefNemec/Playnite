@@ -27,7 +27,8 @@
     <SolidColorBrush x:Key="ControlBackgroundDarkBrush" Color="{DynamicResource ControlBackgroundColorDark}" />
     <SolidColorBrush x:Key="SelectionLightBrush" Color="{DynamicResource SelectionLightColor}" />
     <SolidColorBrush x:Key="OverlayBrush" Color="{DynamicResource OverlayColor}" />
-    
+
+    <sys:Double x:Key="FontSizeSmall">20</sys:Double>
     <sys:Double x:Key="FontSize">22</sys:Double>
 
     <sys:Double x:Key="FilterPanelWidth">300</sys:Double>

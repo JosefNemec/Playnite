@@ -118,9 +118,9 @@ namespace System.Diagnostics
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr OpenProcess(ProcessAccessFlags processAccess, bool bInheritHandle, int processId);
 
-        [DllImport("Kernel32.dll")]
+        [DllImport("Kernel32.dll", CharSet = CharSet.Auto)]
         private static extern bool QueryFullProcessImageName([In] IntPtr hProcess, [In] uint dwFlags, [Out] StringBuilder lpExeName, [In, Out] ref uint lpdwSize);
-               
+
         public static bool TryGetMainModuleFileName(this Process process, out string fileName, int buffer = 1024)
         {
             fileName = null;
@@ -145,7 +145,7 @@ namespace System.Diagnostics
             {
                 return false;
             }
-            
+
             var info = new PROCESS_BASIC_INFORMATION();
             int status = NtQueryInformationProcess(handle, 0, ref info, Marshal.SizeOf(info), out var returnLength);
             if (status != 0)

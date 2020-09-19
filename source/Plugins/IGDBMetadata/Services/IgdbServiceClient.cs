@@ -34,18 +34,18 @@ namespace IGDBMetadata.Services
                 { nameof(SdkModels.Game.PluginId), game.PluginId },
                 { nameof(SdkModels.Game.GameId), game.GameId }
             }.ToJson(false);
-            return ExecutePostRequest<IgdbModels.ExpandedGame>("/igdb/metadata", gameData);
+            return ExecutePostRequest<IgdbModels.ExpandedGame>("/igdb/metadata_v2", gameData);
         }
 
-        public List<IgdbModels.ExpandedGame> GetIGDBGames(string searchName)
+        public List<IgdbModels.ExpandedGameLegacy> GetIGDBGames(string searchName)
         {
             var encoded = Uri.EscapeDataString(searchName);
-            return ExecuteGetRequest<List<IgdbModels.ExpandedGame>>($"/igdb/games/{encoded}");
+            return ExecuteGetRequest<List<IgdbModels.ExpandedGameLegacy>>($"/igdb/games/{encoded}");
         }
 
-        public IgdbModels.ExpandedGame GetIGDBGameParsed(UInt64 id, string apiKey = null)
+        public IgdbModels.ExpandedGame GetIGDBGameExpanded(UInt64 id)
         {
-            return ExecuteGetRequest<IgdbModels.ExpandedGame>($"/igdb/game_parsed/{id}");
+            return ExecuteGetRequest<IgdbModels.ExpandedGame>($"/igdb/game_parsed_v2/{id}");
         }
     }
 }

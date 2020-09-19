@@ -11,6 +11,8 @@ using Xunit;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
+using PlayniteServices;
+using Playnite.SDK;
 
 namespace PlayniteServicesTests
 {
@@ -53,6 +55,9 @@ namespace PlayniteServicesTests
             }
 
             Database = new Database(Database.Path);
+
+            NLogLogger.ConfigureLogger();
+            LogManager.Init(new NLogLogProvider());
         }
 
         public void Dispose()

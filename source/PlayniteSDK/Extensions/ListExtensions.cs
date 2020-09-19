@@ -40,6 +40,18 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Check if collection has any items.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public static bool HasItems<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            return source?.Any(predicate) == true;
+        }
+
+        /// <summary>
         /// Adds new item to the list only if it's not already part of the list.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -57,6 +69,32 @@ namespace System.Collections.Generic
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Adds new items to the list only if they are not already part of the list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="items"></param>
+        /// <returns>True if an item was added, false if none item was added.</returns>
+        public static bool AddMissing<T>(this IList<T> source, IEnumerable<T> items)
+        {
+            if (!items.HasItems())
+            {
+                return false;
+            }
+
+            var anyAdded = false;
+            foreach (var item in items)
+            {
+                if (AddMissing(source, item))
+                {
+                    anyAdded = true;
+                }
+            }
+
+            return anyAdded;
         }
 
         /// <summary>
@@ -189,7 +227,42 @@ namespace System.Collections.Generic
 
             return true;
         }
-        
+
+        /// <summary>
+        /// Checks if two collections contain the same items in any order.
+        /// </summary>
+        public static bool IsListEqual<T>(this IEnumerable<T> source, IEnumerable<T> target, IEqualityComparer<T> comparer)
+        {
+            if (source == null && target == null)
+            {
+                return true;
+            }
+
+            if ((source == null && target != null) || (source != null && target == null))
+            {
+                return false;
+            }
+
+            if (source.Count() != target.Count())
+            {
+                return false;
+            }
+
+            var firstNotSecond = source.Except(target, comparer).ToList();
+            if (firstNotSecond.Count != 0)
+            {
+                return false;
+            }
+
+            var secondNotFirst = target.Except(source, comparer).ToList();
+            if (secondNotFirst.Count != 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Checks if two collections contain the same items in the same order.
         /// </summary>
@@ -214,6 +287,30 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Check if collection contains all items from other collection (in any order).
+        /// </summary>
+        public static bool Contains<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        {
+            if (source == null && target == null)
+            {
+                return true;
+            }
+
+            if ((source == null && target != null) || (source != null && target == null))
+            {
+                return false;
+            }
+
+            var targetCount = target.Count();
+            if (targetCount > source.Count())
+            {
+                return false;
+            }
+
+            return target.Intersect(source).Count() == targetCount;
+        }
+
+        /// <summary>
         /// Gets items contained in all colletions.
         /// </summary>
         public static HashSet<T> GetCommonItems<T>(IEnumerable<IEnumerable<T>> lists)
@@ -226,7 +323,11 @@ namespace System.Collections.Generic
             var set = new HashSet<T>(lists.First());
             foreach (var list in lists)
             {
-                if (list != null)
+                if (list == null)
+                {
+                    set.IntersectWith(new List<T>());
+                }
+                else
                 {
                     set.IntersectWith(list);
                 }
@@ -256,6 +357,72 @@ namespace System.Collections.Generic
 
             var listsCounts = lists.Count();
             return new HashSet<T>(set.GroupBy(a => a).Where(a => a.Count() < listsCounts).Select(a => a.Key));
+        }
+
+        /// <summary>
+        /// Merge collection together.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="lists"></param>
+        /// <returns></returns>
+        public static List<T> Merge<T>(IEnumerable<IEnumerable<T>> lists)
+        {
+            var allItems = new List<T>();
+            foreach (var list in lists)
+            {
+                if (list.HasItems())
+                {
+                    allItems.AddRange(list);
+                }
+            }
+
+            return allItems;
+        }
+
+        /// <summary>
+        /// Merge two collection together.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list1"></param>
+        /// <param name="list2"></param>
+        /// <returns></returns>
+        public static List<T> Merge<T>(IEnumerable<T> list1, IEnumerable<T> list2)
+        {
+            if (list1.HasItems() && list2.HasItems())
+            {
+                var allItems = new List<T>(list1.Count() + list2.Count());
+                allItems.AddRange(list1);
+                allItems.AddRange(list2);
+            }
+            else if (list1.HasItems() && !list2.HasItems())
+            {
+                return list1.ToList();
+            }
+            else if (!list1.HasItems() && list2.HasItems())
+            {
+                return list2.ToList();
+            }
+
+            return new List<T>();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="action"></param>
+        public static void ForEach<T>(this ObservableCollection<T> source, Action<T> action)
+        {
+            if (source.HasItems() != true)
+            {
+                return;
+            }
+
+            foreach (var item in source)
+            {
+                action(item);
+            }
         }
     }
 }

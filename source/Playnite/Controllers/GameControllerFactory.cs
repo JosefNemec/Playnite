@@ -37,7 +37,7 @@ namespace Playnite.Controllers
         {
             this.database = database;
         }
-        
+
         public void Dispose()
         {
             foreach (var controller in Controllers.ToList())
@@ -58,7 +58,7 @@ namespace Playnite.Controllers
 
         public void RemoveController(Guid gameId)
         {
-            var controller = Controllers.FirstOrDefault(a => a.Game.Id == gameId);
+            var controller = Controllers.FirstOrDefault(a => a.Game?.Id == gameId);
             if (controller != null)
             {
                 RemoveController(controller);
@@ -67,18 +67,21 @@ namespace Playnite.Controllers
 
         public void RemoveController(IGameController controller)
         {
-            DisposeController(controller);
-            Controllers.Remove(controller);
-        }
-
-        public void DisposeController(IGameController controller)
-        {
             controller.Installed -= Controller_Installed;
             controller.Uninstalled -= Controller_Uninstalled;
             controller.Started -= Controller_Started;
             controller.Starting -= Controller_Starting;
             controller.Stopped -= Controller_Stopped;
-            controller.Dispose();
+            try
+            {
+                controller.Dispose();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to dispose game controller {controller.GetType()}");
+            }
+
+            Controllers.Remove(controller);
         }
 
         public IGameController GetController(Guid gameId)

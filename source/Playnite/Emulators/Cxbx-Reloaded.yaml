@@ -1,0 +1,8 @@
+Name: Cxbx-Reloaded
+Website: 'https://github.com/Cxbx-Reloaded/Cxbx-Reloaded/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Microsoft Xbox]
+    ImageExtensions: [xbe]
+    ExecutableLookup: ^Cxbx\.exe$

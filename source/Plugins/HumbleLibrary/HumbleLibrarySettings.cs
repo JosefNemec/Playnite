@@ -20,6 +20,8 @@ namespace HumbleLibrary
 
         public bool IgnoreThirdPartyStoreGames { get; set; } = true;
 
+        public bool ImportThirdPartyDrmFree { get; set; } = false;
+
         public bool ImportTroveGames { get; set; } = false;
 
         [JsonIgnore]

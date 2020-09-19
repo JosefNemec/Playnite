@@ -60,6 +60,7 @@ namespace EpicLibrary.Models
                 public class About
                 {
                     public string developerAttribution;
+                    public string publisherAttribution;
                     public string description;
                     public string title;
                 }

@@ -30,8 +30,7 @@ To have a code executed on selected event define function with specific name in 
 
 Following example writes name of currently playing game into a text file.
 
-**PowerShell**:
-
+# [PowerShell](#tab/tabpowershell)
 ```powershell
 function global:OnGameStarted()
 {
@@ -43,20 +42,19 @@ function global:OnGameStarted()
 }
 ```
 
-**IronPython**:
-
+# [IronPython](#tab/tabpython)
 ```python
 def on_game_started(game):
     with open("RunningGame.txt", "w") as text_file:
         text_file.write(game.Name)
 ```
+***
 
 ### Game Stopped
 
 This example writes name of game that stopped running and the time game was running for into a text file.
 
-**PowerShell**:
-
+# [PowerShell](#tab/tabpowershell)
 ```powershell
 function global:OnGameStopped()
 {
@@ -68,18 +66,18 @@ function global:OnGameStopped()
     "$($game.Name) was running for $elapsedSeconds seconds" | Out-File "StoppedGame.txt"
 }
 ```
-**IronPython**:
 
+# [IronPython](#tab/tabpython)
 ```python
 def on_game_stopped(game, elapsed_seconds):
     with open("StoppedGame.txt", "w") as text_file:
         text_file.write("{0} was running for {1} seconds".format(game.Name, elapsed_seconds))
 ```
+***
 
 ### Full File Examples
 
-**PowerShell** (save as *.ps1 file):
-
+# [PowerShell](#tab/tabpowershell)
 ```powershell
 function global:OnGameStarted()
 {
@@ -101,8 +99,7 @@ function global:OnGameStopped()
 }
 ```
 
-**IronPython** (save as *.py file):
-
+# [IronPython](#tab/tabpython)
 ```python
 def on_game_started(game):
     with open("RunningGame.txt", "w") as text_file:
@@ -112,3 +109,4 @@ def on_game_stopped(game, elapsed_seconds):
     with open("StoppedGame.txt", "w") as text_file:
         text_file.write("{0} was running for {1} seconds".format(game.Name, elapsed_seconds))
 ```
+***

@@ -1,6 +1,7 @@
 ﻿using Playnite.Common;
 using Playnite.FullscreenApp.Windows;
 using Playnite.SDK;
+using Playnite.ViewModels;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
@@ -77,12 +78,12 @@ namespace Playnite.FullscreenApp
 
         public StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput)
         {
-            return Invoke(() => new TextInputWindow().ShowInput(WindowManager.CurrentWindow, messageBoxText, caption, defaultInput));           
+            return Invoke(() => new TextInputWindow().ShowInput(WindowManager.CurrentWindow, messageBoxText, caption, defaultInput));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
         {
-            return Invoke(() => new MessageBoxWindow().Show(WindowManager.CurrentWindow, messageBoxText, caption, button, icon, defaultResult, options));        
+            return Invoke(() => new MessageBoxWindow().Show(WindowManager.CurrentWindow, messageBoxText, caption, button, icon, defaultResult, options));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
@@ -112,12 +113,17 @@ namespace Playnite.FullscreenApp
 
         public void ShowSelectableString(string messageBoxText, string caption, string inputText)
         {
-            ShowMessage(messageBoxText + Environment.NewLine + inputText, caption);                        
+            ShowMessage(messageBoxText + Environment.NewLine + inputText, caption);
         }
 
         public MessageBoxResult ShowErrorMessage(string messageBoxText, string caption)
         {
             return ShowMessage(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public MessageBoxOption ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<MessageBoxOption> options)
+        {
+            return Invoke(() => new MessageBoxWindow().ShowCustom(WindowManager.CurrentWindow, messageBoxText, caption, icon, options));
         }
 
         public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180)
@@ -128,6 +134,11 @@ namespace Playnite.FullscreenApp
         public GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null)
         {
             throw new NotImplementedException();
+        }
+
+        public GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
+        {
+            return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
         }
     }
 }

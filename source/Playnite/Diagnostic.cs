@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
 
 namespace Playnite
 {
@@ -39,7 +40,27 @@ namespace Playnite
             return allFiles;
         }
 
-        public static void CreateDiagPackage(string path, string userActionsDescription)
+        private static string GetManifestInfo(string rootDir, string manFileName)
+        {
+            var total = new StringBuilder();
+            foreach (var dir in Directory.GetDirectories(rootDir))
+            {
+                var manifest = Path.Combine(dir, manFileName);
+                if (File.Exists(manifest))
+                {
+                    total.Append(Path.GetFileName(dir));
+                    total.AppendLine();
+                    total.AppendLine("--------------------------");
+                    total.Append(File.ReadAllText(manifest));
+                    total.AppendLine();
+                    total.AppendLine();
+                }
+            }
+
+            return total.ToString();
+        }
+
+        public static void CreateDiagPackage(string path, string userActionsDescription, DiagnosticPackageInfo packageInfo)
         {
             var diagTemp = Path.Combine(PlaynitePaths.TempPath, "diag");
             FileSystem.CreateDirectory(diagTemp, true);
@@ -50,6 +71,11 @@ namespace Playnite
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
+                    // Package info
+                    var packagePath = Path.Combine(diagTemp, DiagnosticPackageInfo.PackageInfoFileName);
+                    File.WriteAllText(packagePath, Serialization.ToJson(packageInfo));
+                    archive.CreateEntryFromFile(packagePath, Path.GetFileName(packagePath));
+
                     // Config
                     if (Directory.Exists(PlaynitePaths.ConfigRootPath))
                     {
@@ -70,24 +96,64 @@ namespace Playnite
                         }
                     }
 
+                    // Installed extensions/themes
+                    try
+                    {
+                        var extensionsPath = Path.Combine(diagTemp, "extensions.txt");
+                        File.WriteAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName));
+                        File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesProgramPath, PlaynitePaths.ThemeManifestFileName));
+                        if (!PlayniteSettings.IsPortable)
+                        {
+                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName));
+                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesUserDataPath, PlaynitePaths.ThemeManifestFileName));
+                        }
+
+                        archive.CreateEntryFromFile(extensionsPath, Path.GetFileName(extensionsPath));
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed to package extensions list.");
+                    }
+
                     // System Info
-                    var infoPath = Path.Combine(diagTemp, "sysinfo.txt");
-                    File.WriteAllText(infoPath, Serialization.ToJson(Computer.GetSystemInfo(), true));
-                    archive.CreateEntryFromFile(infoPath, Path.GetFileName(infoPath));
+                    try
+                    {
+                        var infoPath = Path.Combine(diagTemp, "sysinfo.txt");
+                        File.WriteAllText(infoPath, Serialization.ToJson(Computer.GetSystemInfo(), true));
+                        archive.CreateEntryFromFile(infoPath, Path.GetFileName(infoPath));
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed gather system info.");
+                    }
 
                     // Uninstall regkey export
-                    var regKeyPath = Path.Combine(diagTemp, "uninstall.txt");
-                    var programs = Programs.GetUnistallProgramsList();
-                    File.WriteAllText(regKeyPath, Serialization.ToJson(programs, true));
-                    archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
+                    try
+                    {
+                        var regKeyPath = Path.Combine(diagTemp, "uninstall.txt");
+                        var programs = Programs.GetUnistallProgramsList();
+                        File.WriteAllText(regKeyPath, Serialization.ToJson(programs, true));
+                        archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed gather install app list.");
+                    }
 
                     // UWP app info
-                    if (Computer.WindowsVersion == WindowsVersion.Win10)
+                    try
                     {
-                        var uwpInfoPath = Path.Combine(diagTemp, "uwp.txt");
-                        var uwpApps = Programs.GetUWPApps();
-                        File.WriteAllText(uwpInfoPath, Serialization.ToJson(uwpApps, true));
-                        archive.CreateEntryFromFile(uwpInfoPath, Path.GetFileName(uwpInfoPath));
+                        if (Computer.WindowsVersion == WindowsVersion.Win10)
+                        {
+                            var uwpInfoPath = Path.Combine(diagTemp, "uwp.txt");
+                            var uwpApps = Programs.GetUWPApps();
+                            File.WriteAllText(uwpInfoPath, Serialization.ToJson(uwpApps, true));
+                            archive.CreateEntryFromFile(uwpInfoPath, Path.GetFileName(uwpInfoPath));
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed gather UWP install list.");
                     }
 
                     // Playnite info
@@ -98,7 +164,12 @@ namespace Playnite
                         { "Portable", PlayniteSettings.IsPortable },
                         { "Memory", (PlayniteProcess.WorkingSetMemory / 1024f) / 1024f },
                         { "Path", PlayniteProcess.Path },
-                        { "Cmdline", PlayniteProcess.Cmdline }
+                        { "Cmdline", PlayniteProcess.Cmdline },
+                        { "Playnite.DesktopApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.DesktopExecutablePath) },
+                        { "Playnite.FullscreenApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.FullscreenExecutablePath) },
+                        { "Playnite.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteAssemblyPath) },
+                        { "Playnite.Common.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteCommonAssemblyPath) },
+                        { "Playnite.SDK.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteSDKAssemblyPath) }
                     };
 
                     File.WriteAllText(playnitePath, Serialization.ToJson(playniteInfo, true));

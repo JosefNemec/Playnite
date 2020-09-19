@@ -20,6 +20,7 @@ namespace Playnite.Common
         public string Path { get; set; }
         public string Arguments { get; set; }
         public string Icon { get; set; }
+        public int IconIndex { get; set; }
         public string WorkDir { get; set; }
         public string Name { get; set; }
         public string AppId { get; set; }
@@ -94,7 +95,7 @@ IconIndex=0";
             return await Task.Run(() =>
             {
                 var execs = new List<Program>();
-                var files = new SafeFileEnumerator(path, "*.exe", SearchOption.AllDirectories);
+                var files = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
 
                 foreach (var file in files)
                 {
@@ -113,20 +114,87 @@ IconIndex=0";
                         continue;
                     }
 
-                    var versionInfo = FileVersionInfo.GetVersionInfo(file.FullName);
-                    var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
-
-                    execs.Add(new Program()
+                    if (file.Extension.IsNullOrEmpty())
                     {
-                        Path = file.FullName,
-                        Icon = file.FullName,
-                        WorkDir = Path.GetDirectoryName(file.FullName),
-                        Name = programName
-                    });
+                        continue;
+                    }
+
+                    if (file.Extension.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true ||
+                        file.Extension.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) == true ||
+                        file.Extension.EndsWith(".bat", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        execs.Add(GetProgramData(file.FullName));
+                    }
                 }
 
                 return execs;
             });
+        }
+
+        public static Program GetProgramData(string filePath)
+        {
+            var file = new FileInfo(filePath);
+            if (file.Extension?.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                var versionInfo = FileVersionInfo.GetVersionInfo(file.FullName);
+                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
+                return new Program
+                {
+                    Path = file.FullName,
+                    Icon = file.FullName,
+                    WorkDir = Path.GetDirectoryName(file.FullName),
+                    Name = programName
+                };
+            }
+            else if (file.Extension?.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                var data = GetLnkShortcutData(file.FullName);
+                var name = file.Name;
+                if (File.Exists(data.Path))
+                {
+                    var versionInfo = FileVersionInfo.GetVersionInfo(data.Path);
+                    name = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
+                }
+
+                var program = new Program
+                {
+                    Path = data.Path,
+                    WorkDir = data.WorkDir,
+                    Arguments = data.Arguments,
+                    Name = name
+                };
+
+                if (!data.Icon.IsNullOrEmpty())
+                {
+                    var reg = Regex.Match(data.Icon, @"^(.+),(\d+)$");
+                    if (reg.Success)
+                    {
+                        program.Icon = reg.Groups[1].Value;
+                        program.IconIndex = int.Parse(reg.Groups[2].Value);
+                    }
+                    else
+                    {
+                        program.Icon = data.Icon;
+                    }
+                }
+                else
+                {
+                    program.Icon = data.Path;
+                }
+
+                return program;
+            }
+            else if (file.Extension?.EndsWith(".bat", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return new Program
+                {
+                    Path = file.FullName,
+                    Name = Path.GetFileNameWithoutExtension(file.FullName),
+                    WorkDir = Path.GetDirectoryName(file.FullName)
+                };
+            }
+
+            throw new NotSupportedException("Only exe and lnk files are supported.");
         }
 
         public static Program GetLnkShortcutData(string lnkPath)
@@ -136,9 +204,10 @@ IconIndex=0";
             return new Program()
             {
                 Path = link.TargetPath,
-                Icon = link.IconLocation,
+                Icon = link.IconLocation == ",0" ? link.TargetPath : link.IconLocation,
                 Arguments = link.Arguments,
-                WorkDir = link.WorkingDirectory
+                WorkDir = link.WorkingDirectory,
+                Name = link.FullName
             };
         }
 
@@ -437,21 +506,6 @@ IconIndex=0";
 
             progs.AddRange(GetUninstallProgsFromView(RegistryView.Registry32));
             return progs;
-        }
-
-        public static Program ParseShortcut(string path)
-        {
-            var shell = new IWshRuntimeLibrary.WshShell();
-            var link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(path);
-
-            return new Program()
-            {
-                Path = link.TargetPath,
-                Icon = link.IconLocation,
-                Name = link.FullName,
-                WorkDir = link.WorkingDirectory,
-                Arguments = link.Arguments
-            };
         }
     }
 }

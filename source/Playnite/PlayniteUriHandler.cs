@@ -9,12 +9,18 @@ using System.Threading.Tasks;
 
 namespace Playnite
 {
+    internal class UriCommands
+    {
+        internal const string StartGame = "start";
+        internal const string CreateDiag = "creatediag";
+    }
+
     public class PlayniteUriHandler : IUriHandlerAPI
     {
         private static readonly ILogger logger = LogManager.GetLogger();
 
-        internal readonly Dictionary<string, Action<PlayniteUriEventArgs>> Handlers = 
-            new Dictionary<string, Action<PlayniteUriEventArgs>>();        
+        internal readonly Dictionary<string, Action<PlayniteUriEventArgs>> Handlers =
+            new Dictionary<string, Action<PlayniteUriEventArgs>>();
 
         public void RegisterSource(string source, Action<PlayniteUriEventArgs> handler)
         {
@@ -42,7 +48,7 @@ namespace Playnite
             if (handler.Value != null)
             {
                 Handlers.Remove(handler.Key);
-            }                 
+            }
         }
 
         internal void ProcessUri(string uri)

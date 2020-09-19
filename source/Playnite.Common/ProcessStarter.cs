@@ -1,9 +1,11 @@
 ﻿using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Playnite.Common
@@ -18,6 +20,51 @@ namespace Playnite.Common
     public static class ProcessStarter
     {
         private static ILogger logger = LogManager.GetLogger();
+
+        public static int ShellExecute(string cmdLine)
+        {
+            logger.Debug($"Executing shell command: {cmdLine}");
+            var startInfo = new Interop.STARTUPINFO();
+            var procInfo = new Interop.PROCESS_INFORMATION();
+            var procAtt = new Interop.SECURITY_ATTRIBUTES();
+            var threadAtt = new Interop.SECURITY_ATTRIBUTES();
+            procAtt.nLength = Marshal.SizeOf(procAtt);
+            threadAtt.nLength = Marshal.SizeOf(threadAtt);
+
+            try
+            {
+                if (Interop.CreateProcess(
+                    null,
+                    cmdLine,
+                    ref procAtt,
+                    ref threadAtt,
+                    false,
+                    0x0020,
+                    IntPtr.Zero,
+                    null,
+                    ref startInfo,
+                    out procInfo))
+                {
+                    return procInfo.dwProcessId;
+                }
+                else
+                {
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                }
+            }
+            finally
+            {
+                if (procInfo.hProcess != IntPtr.Zero)
+                {
+                    Interop.CloseHandle(procInfo.hProcess);
+                }
+
+                if (procInfo.hThread != IntPtr.Zero)
+                {
+                    Interop.CloseHandle(procInfo.hThread);
+                }
+            }
+        }
 
         public static Process StartUrl(string url)
         {
@@ -79,7 +126,7 @@ namespace Playnite.Common
             var info = new ProcessStartInfo(startupPath)
             {
                 Arguments = arguments,
-                WorkingDirectory = string.IsNullOrEmpty(workDir) ? (new FileInfo(startupPath)).Directory.FullName : workDir                
+                WorkingDirectory = string.IsNullOrEmpty(workDir) ? (new FileInfo(startupPath)).Directory.FullName : workDir
             };
 
             if (noWindow)

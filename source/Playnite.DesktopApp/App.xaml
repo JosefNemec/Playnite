@@ -51,6 +51,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedListBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedListView.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/GameMenu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/GameGroupMenu.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/HtmlTextView.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/MainMenu.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/TrayContextMenu.xaml" />
@@ -58,7 +59,9 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/NumericBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ViewSettingsMenu.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SliderEx.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExpanderEx.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SidebarItem.xaml" />
 
                 <!--Derived Styles-->
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/TextBlockGameScore.xaml" />

@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
              xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
@@ -21,6 +23,12 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                            x:Key="AgeRatingOrgValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="pm:AgeRatingOrg" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </UserControl.Resources>
 
     <DockPanel Margin="15">
@@ -36,7 +44,17 @@
                            Text="{DynamicResource LOCSettingsImmediateBackgroundDownloadTooltip}" />
             </CheckBox.ToolTip>
         </CheckBox>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <StackPanel Margin="0,10,0,0" Orientation="Horizontal"
+                    DockPanel.Dock="Top">
+            <TextBlock Text="{DynamicResource LOCSettingsPreferredAgeRatingOrg}" Margin="0,0,5,0" 
+                       VerticalAlignment="Center"/>
+            <ComboBox SelectedValue="{Binding Settings.AgeRatingOrgPriority}"
+                      ItemsSource="{Binding Source={StaticResource AgeRatingOrgValues}}" />
+        </StackPanel>
+        
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      DockPanel.Dock="Top">
             <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}" />
         </ScrollViewer>
     </DockPanel>

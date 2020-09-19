@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayniteServices", "Playnit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.SDK", "..\PlayniteSDK\Playnite.SDK.csproj", "{19BC9097-5705-4352-90E2-99F0C63230D0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayniteServices.Tests", "..\PlayniteServices.Tests\PlayniteServices.Tests.csproj", "{AE1E4C0B-5C86-4C6A-87AA-2588935A6C53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{19BC9097-5705-4352-90E2-99F0C63230D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19BC9097-5705-4352-90E2-99F0C63230D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19BC9097-5705-4352-90E2-99F0C63230D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1E4C0B-5C86-4C6A-87AA-2588935A6C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1E4C0B-5C86-4C6A-87AA-2588935A6C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1E4C0B-5C86-4C6A-87AA-2588935A6C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1E4C0B-5C86-4C6A-87AA-2588935A6C53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

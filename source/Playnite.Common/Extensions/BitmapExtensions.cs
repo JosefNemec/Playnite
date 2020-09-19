@@ -75,7 +75,14 @@ namespace System.Drawing.Imaging
 
         public static bool operator ==(BitmapLoadProperties obj1, BitmapLoadProperties obj2)
         {
-            return obj1?.Equals(obj2) == true;
+            if (obj1 is null && obj2 is null)
+            {
+                return true;
+            }
+            else
+            {
+                return obj1?.Equals(obj2) == true;
+            }
         }
 
         public static bool operator !=(BitmapLoadProperties obj1, BitmapLoadProperties obj2)

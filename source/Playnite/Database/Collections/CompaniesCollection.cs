@@ -12,7 +12,7 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public CompaniesCollection(GameDatabase database) : base()
+        public CompaniesCollection(GameDatabase database) : base(type: GameDatabaseCollection.Companies)
         {
             db = database;
         }
@@ -21,17 +21,23 @@ namespace Playnite.Database
         {
             foreach (var game in db.Games)
             {
+                var modified = false;
                 if (game.PublisherIds?.Contains(companyId) == true)
                 {
                     game.PublisherIds.Remove(companyId);
+                    modified = true;
                 }
 
                 if (game.DeveloperIds?.Contains(companyId) == true)
                 {
                     game.DeveloperIds.Remove(companyId);
+                    modified = true;
                 }
 
-                db.Games.Update(game);
+                if (modified)
+                {
+                    db.Games.Update(game);
+                }
             }
         }
 
@@ -56,6 +62,7 @@ namespace Playnite.Database
                     RemoveUsage(item.Id);
                 }
             }
+
             return base.Remove(itemsToRemove);
         }
     }

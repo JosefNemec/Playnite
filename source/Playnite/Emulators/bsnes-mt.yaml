@@ -1,0 +1,8 @@
+Name: bsnes-mt
+Website: 'https://tanalin.com/en/projects/bsnes-mt/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Super Nintendo Entertainment System]
+    ImageExtensions: [sfc, smc, zip, 7z]
+    ExecutableLookup: ^bsnes-mt\.exe$

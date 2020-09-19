@@ -1,5 +1,6 @@
 ﻿using LiteDB;
 using PlayniteServices.Models.IGDB;
+using PlayniteServices.Models.Steam;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,11 +14,12 @@ namespace PlayniteServices.Databases
         public const string SteamIgdbMatchCollectionName = "IGBDSteamIdCache";
         public const string IGBDGameIdMatchesCollectionName = "IGBDGameIdMatches";
         public const string IGDBSearchIdMatchesCollectionName = "IGDBSearchIdMatches";
+        public const string SteamUserNamesCacheCollectionName = "SteamUserNamesCache";
 
         public static LiteCollection<GameIdMatch> IGBDGameIdMatches { get; private set; }
         public static LiteCollection<SearchIdMatch> IGDBSearchIdMatches { get; private set; }
         public static LiteCollection<SteamIdGame> SteamIgdbMatches { get; private set; }
-
+        public static LiteCollection<SteamNameCache> SteamUserNamesCache { get; private set; }
         public static string Path
         {
             get
@@ -30,7 +32,7 @@ namespace PlayniteServices.Databases
                 else
                 {
                     return System.IO.Path.Combine(Paths.ExecutingDirectory, path);
-                }               
+                }
             }
         }
 
@@ -48,6 +50,9 @@ namespace PlayniteServices.Databases
 
             SteamIgdbMatches = liteDB.GetCollection<SteamIdGame>(SteamIgdbMatchCollectionName);
             SteamIgdbMatches.EnsureIndex(nameof(SteamIdGame.steamId));
+
+            SteamUserNamesCache = liteDB.GetCollection<SteamNameCache>(SteamUserNamesCacheCollectionName);
+            SteamUserNamesCache.EnsureIndex(nameof(SteamNameCache.Name));
         }
 
         public void Dispose()

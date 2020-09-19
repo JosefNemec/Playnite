@@ -1,0 +1,74 @@
+Name: higan
+Website: 'https://byuu.org/higan/'
+Profiles:
+  - Name: Nintendo - Famicom
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Entertainment System]
+    ImageExtensions: [zip, nes]  
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Nintendo - Super Famicom
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Super Nintendo Entertainment System, Nintendo Sufami Turbo, Nintendo Satellaview]
+    ImageExtensions: [sfc, smc, bs, zip]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Nintendo - Game Boy
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy]
+    ImageExtensions: [zip, gb]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Nintendo - Game Boy Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Color]
+    ImageExtensions: [zip, gbc]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Nintendo - Game Boy Advance
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Advance]
+    ImageExtensions: [zip, gba]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Sega - Master System
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Master System]
+    ImageExtensions: [zip, sms]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Sega - Mega Drive
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Genesis]
+    ImageExtensions: [zip, bin, smd, md] 
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Sega - Game Gear
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Game Gear]
+    ImageExtensions: [zip, gg]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: NEC - PC Engine
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [NEC TurboGrafx 16, NEC TurboGrafx-CD]
+    ImageExtensions: [zip, pce, cue, ccd, chd]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: PC Engine SuperGrafx
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [NEC SuperGrafx]
+    ImageExtensions: [zip, pce]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Bandai - WonderSwan
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Bandai WonderSwan]
+    ImageExtensions: [zip, ws]
+    ExecutableLookup: ^higan.*\.exe$
+
+  - Name: Bandai - WonderSwan Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Bandai WonderSwan Color]
+    ImageExtensions: [zip, wsc]
+    ExecutableLookup: ^higan.*\.exe$

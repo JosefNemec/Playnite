@@ -99,9 +99,30 @@ namespace Playnite.Common
 
         public static string GetMD5(string filePath)
         {
-            using (var stream = File.OpenRead(filePath))
+            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 return GetMD5(stream);
+            }
+        }
+
+        public static bool AreFileContentsEqual(string path1, string path2)
+        {
+            var info1 = new FileInfo(path1);
+            var info2 = new FileInfo(path2);
+            if (info1.Length != info2.Length)
+            {
+                return false;
+            }
+            else
+            {
+                if (GetMD5(path1) == GetMD5(path2))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -190,6 +211,26 @@ namespace Playnite.Common
             throw new IOException($"Failed to read {path}", ioException);
         }
 
+        public static Stream CreateWriteFileStreamSafe(string path, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return new FileStream(path, FileMode.Create, FileAccess.ReadWrite);
+                }
+                catch (IOException exc)
+                {
+                    logger.Debug($"Can't open write file stream, trying again. {path}");
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
+        }
+
         public static Stream OpenReadFileStreamSafe(string path, int retryAttempts = 5)
         {
             IOException ioException = null;
@@ -201,7 +242,7 @@ namespace Playnite.Common
                 }
                 catch (IOException exc)
                 {
-                    logger.Debug($"Can't open file stream, trying again. {path}");
+                    logger.Debug($"Can't open read file stream, trying again. {path}");
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }

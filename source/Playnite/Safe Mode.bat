@@ -1,0 +1,1 @@
+start Playnite.DesktopApp.exe --safestartup

@@ -1,0 +1,13 @@
+Name: Altirra
+Website: 'http://www.virtualdub.org/altirra.html'
+Profiles:
+  - Name: Atari 800
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Atari 800]
+    ImageExtensions: [atr, atx, xfd, dcm, pro, cas, wav, rom, bin, car, xex, obx, com, arc, sap, zip]
+    ExecutableLookup: ^altirra.*\.exe$
+  - Name: Atari 5200
+    DefaultArguments: '/hardware:5200 /kernel:5200 "{ImagePath}"'
+    Platforms: [Atari 5200]
+    ImageExtensions: [rom, bin, car, a52, zip]
+    ExecutableLookup: ^altirra.*\.exe$

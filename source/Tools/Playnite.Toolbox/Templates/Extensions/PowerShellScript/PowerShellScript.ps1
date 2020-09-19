@@ -52,7 +52,3 @@ function global:OnGameSelected()
         $args
     )    
 }
-
-function global:MenuFunction()
-{
-}

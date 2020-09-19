@@ -54,15 +54,10 @@ namespace Playnite.DesktopApp
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashHandlerWindow>();
+            ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashHandlerWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
-
-            if (CheckOtherInstances())
-            {
-                return;
-            }
-
             ConfigureApplication();
             if (AppSettings.DisableDpiAwareness)
             {
@@ -76,7 +71,7 @@ namespace Playnite.DesktopApp
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
 #pragma warning disable CS4014
-            StartUpdateCheckerAsync();            
+            StartUpdateCheckerAsync();
             SendUsageDataAsync();
 #pragma warning restore CS4014
             ProcessArguments();
@@ -140,7 +135,8 @@ namespace Playnite.DesktopApp
                 new ResourceProvider(),
                 new NotificationsAPI(),
                 GamesEditor,
-                new PlayniteUriHandler());
+                new PlayniteUriHandler(),
+                new PlayniteSettingsAPI(AppSettings));
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new DesktopAppViewModel(
@@ -180,8 +176,8 @@ namespace Playnite.DesktopApp
 
         private async void OpenMainViewAsync(bool isFirstStart)
         {
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup);
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup);
 
             try
             {
@@ -193,7 +189,7 @@ namespace Playnite.DesktopApp
             }
 
             MainModel.OpenView();
-            CurrentNative.MainWindow = MainModel.Window.Window;  
+            CurrentNative.MainWindow = MainModel.Window.Window;
 
             if (isFirstStart)
             {
@@ -291,6 +287,18 @@ namespace Playnite.DesktopApp
                 ResourceProvider.GetResource(AppSettings.TrayIcon.GetDescription()) as BitmapImage ??
                 ResourceProvider.GetResource("TrayIcon") as BitmapImage;
             return new Icon(trayIconImage.UriSource.LocalPath);
+        }
+
+        public override void SwitchAppMode(ApplicationMode mode)
+        {
+            if (mode == ApplicationMode.Fullscreen)
+            {
+                MainModel.SwitchToFullscreenMode();
+            }
+            else
+            {
+                Restore();
+            }
         }
     }
 }

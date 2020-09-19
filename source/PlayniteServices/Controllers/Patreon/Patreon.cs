@@ -56,7 +56,7 @@ namespace PlayniteServices.Controllers.Patreon
                 {
                     accessToken = GetConfig("AccessToken");
                 }
-                
+
                 return accessToken;
             }
 
@@ -97,7 +97,7 @@ namespace PlayniteServices.Controllers.Patreon
         {
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri(Endpoint + url),
+                RequestUri = url.StartsWith("https") ? new Uri(url) : new Uri(Endpoint + url),
                 Method = HttpMethod.Get
             };
 

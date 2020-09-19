@@ -209,6 +209,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.Description && !game.Description.IsNullOrEmpty()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility NotesVisibility
+        {
+            get => (settings.DetailsVisibility.Notes && !game.Notes.IsNullOrEmpty()) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public Visibility CoverVisibility
         {
             get => (settings.DetailsVisibility.CoverImage) ? Visibility.Visible : Visibility.Collapsed;
@@ -275,166 +280,57 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public RelayCommand<Guid> SetLibraryFilterCommand
+        public RelayCommand<Guid> SetLibraryFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetPlatformFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetPublisherFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetDeveloperFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetGenreFilterCommand { get; }
+        public RelayCommand<DateTime?> SetReleaseDateFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetCategoryFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetTagFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetFeatureFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetAgeRatingCommand { get; }
+        public RelayCommand<DatabaseObject> SetSeriesFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetSourceFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetRegionFilterCommand { get; }
+        public RelayCommand<string> SetVersionFilterCommand { get; }
+        public RelayCommand<Link> OpenLinkCommand { get; }
+        public RelayCommand<DatabaseObject> PlayCommand { get; }
+        public RelayCommand<object> InstallCommand { get; }
+        public RelayCommand<object> CheckSetupCommand { get; }
+        public RelayCommand<object> CheckExecutionCommand { get; }
+        public RelayCommand<object> EditGameCommand { get; }
+        public RelayCommand<object> ContextActionCommand { get; }
+
+        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings)
         {
-            get => new RelayCommand<Guid>((filter) =>
-            {
-                SetLibraryFilter(filter);
-            });
+            this.resources = new ResourceProvider();
+            Game = game;
         }
 
-        public RelayCommand<DatabaseObject> SetPlatformFilterCommand
+        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, DesktopGamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Platform);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetPublisherFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Publishers);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetDeveloperFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Developers);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetGenreFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Genres);
-            });
-        }
-
-        public RelayCommand<DateTime?> SetReleaseDateFilterCommand
-        {
-            get => new RelayCommand<DateTime?>((filter) =>
-            {
-                SetReleaseDateFilter(filter);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetCategoryFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Categories);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetTagFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Tags);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetFeatureFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Features);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetAgeRatingCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.AgeRating);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetSeriesFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Series);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetSourceFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Source);
-            });
-        }
-
-        public RelayCommand<DatabaseObject> SetRegionFilterCommand
-        {
-            get => new RelayCommand<DatabaseObject>((filter) =>
-            {
-                SetFilter(filter, GameField.Region);
-            });
-        }
-
-        public RelayCommand<string> SetVersionFilterCommand
-        {
-            get => new RelayCommand<string>((filter) =>
-            {
-                SetVersionFilter(filter);
-            });
-        }
-
-        public RelayCommand<object> OpenLinkCommand
-        {
-            get => GlobalCommands.NavigateUrlCommand;
-        }
-
-        public RelayCommand<DatabaseObject> PlayCommand
-        {
-            get => new RelayCommand<DatabaseObject>((a) =>
-            {
-                Play();
-            });
-        }
-
-        public RelayCommand<object> InstallCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                Install();
-            });
-        }
-
-        public RelayCommand<object> CheckSetupCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                CheckSetup();
-            });
-        }
-
-        public RelayCommand<object> CheckExecutionCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                CheckExecution();
-            });
-        }
-
-        public RelayCommand<object> EditGameCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                EditGame();
-            });
-        }
-
-        public RelayCommand<object> ContextActionCommand
-        {
-            get => new RelayCommand<object>((a) =>
+            OpenLinkCommand = new RelayCommand<Link>((a) => GlobalCommands.NavigateUrl(Game.Game.ExpandVariables(a.Url)));
+            SetLibraryFilterCommand = new RelayCommand<Guid>((a) => SetLibraryFilter(a));
+            SetPlatformFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Platform));
+            SetPublisherFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Publishers));
+            SetDeveloperFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Developers));
+            SetGenreFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Genres));
+            SetReleaseDateFilterCommand = new RelayCommand<DateTime?>((a) => SetReleaseDateFilter(a));
+            SetCategoryFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Categories));
+            SetTagFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Tags));
+            SetFeatureFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Features));
+            SetAgeRatingCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.AgeRating));
+            SetSeriesFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Series));
+            SetSourceFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Source));
+            SetRegionFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Region));
+            SetVersionFilterCommand = new RelayCommand<string>((filter) => SetVersionFilter(filter));
+            PlayCommand = new RelayCommand<DatabaseObject>((a) => Play());
+            InstallCommand = new RelayCommand<object>((a) => Install());
+            CheckSetupCommand = new RelayCommand<object>((a) => CheckSetup());
+            CheckExecutionCommand = new RelayCommand<object>((a) => CheckExecution());
+            EditGameCommand = new RelayCommand<object>((a) => EditGame());
+            ContextActionCommand = new RelayCommand<object>((a) =>
             {
                 if (Game?.IsInstalling == true || Game?.IsUnistalling == true)
                 {
@@ -448,21 +344,12 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     Install();
                 }
-                else if(Game?.IsInstalled == true)
+                else if (Game?.IsInstalled == true)
                 {
                     Play();
                 }
             });
-        }
 
-        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings)
-        {
-            this.resources = new ResourceProvider();
-            Game = game;
-        }
-
-        public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, DesktopGamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
-        {
             this.resources = resources;
             this.dialogs = dialogs;
             this.editor = editor;

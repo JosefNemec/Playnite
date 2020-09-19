@@ -1,4 +1,5 @@
 ﻿using JsonApiSerializer;
+using JsonApiSerializer.JsonApi;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PlayniteServices.Filters;
@@ -33,10 +34,26 @@ namespace PlayniteServices.Controllers.Patreon
         {
             if (cache == null || (DateTime.Now - cache.Created).TotalSeconds > 60)
             {
-                var stringData = await Patreon.SendStringRequest("api/campaigns/1400397/pledges?include=patron.null&page%5Bcount%5D=9999");
-                var pledges = JsonConvert.DeserializeObject<Pledge[]>(stringData, new JsonApiSerializerSettings());
-                var patrons = pledges.Select(a => a.patron.full_name).ToList();
-                cache = new ListCache(patrons);
+                var allPatrons = new List<string>();
+                var nextLink = "api/campaigns/1400397/pledges?include=patron.null&page%5Bcount%5D=9999";
+
+                do
+                {
+                    var stringData = await Patreon.SendStringRequest(nextLink);
+                    var document = JsonConvert.DeserializeObject<DocumentRoot<Pledge[]>>(stringData, new JsonApiSerializerSettings());
+                    allPatrons.AddRange(document.Data.Where(a => a.declined_since == null).Select(a => a.patron.full_name));
+                    if (document.Links.ContainsKey("next"))
+                    {
+                        nextLink = document.Links["next"].Href;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                while (!string.IsNullOrEmpty(nextLink));
+
+                cache = new ListCache(allPatrons.OrderBy(a => a).ToList());
             }
 
             return new ServicesResponse<List<string>>(cache.Names);

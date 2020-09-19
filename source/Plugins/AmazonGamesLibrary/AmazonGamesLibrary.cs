@@ -76,9 +76,10 @@ namespace AmazonGamesLibrary
                         InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                         GameId = gameId,
                         Source = "Amazon",
-                        Name = program.DisplayName,
+                        Name = program.DisplayName.RemoveTrademarks(),
                         IsInstalled = true,
-                        PlayAction = GetPlayAction(gameId)
+                        PlayAction = GetPlayAction(gameId),
+                        Platform = "PC"
                     };
 
                     games.Add(game.GameId, game);
@@ -104,7 +105,8 @@ namespace AmazonGamesLibrary
                 {
                     Source = "Amazon",
                     GameId = item.product.id,
-                    Name = item.product.title
+                    Name = item.product.title.RemoveTrademarks(),
+                    Platform = "PC"
                 };
 
                 games.Add(game);
@@ -115,6 +117,7 @@ namespace AmazonGamesLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
+            LibrarySettings.IsFirstRunUse = firstRunSettings;
             return LibrarySettings;
         }
 

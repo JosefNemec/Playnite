@@ -55,8 +55,9 @@ namespace BethesdaLibrary
                     Source = "Bethesda",
                     InstallDirectory = installDir,
                     PlayAction = GetGamePlayTask(gameId),
-                    Name = program.DisplayName,
-                    IsInstalled = true
+                    Name = program.DisplayName.RemoveTrademarks(),
+                    IsInstalled = true,
+                    Platform = "PC"
                 };
 
                 games.Add(newGame);
