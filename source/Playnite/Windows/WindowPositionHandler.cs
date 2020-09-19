@@ -134,10 +134,33 @@ namespace Playnite.Windows
             };
         }
 
+        private void ConstrainWindow(int x, int y)
+        {
+            var positioned = false;
+            // Make sure that position is part of at least one connected screen
+            foreach (var monitor in Computer.GetScreens())
+            {
+                if (monitor.WorkingArea.Contains(x, y))
+                {
+                    window.Left = x;
+                    window.Top = y;
+                    positioned = true;
+                    break;
+                }
+            }
+
+            if (!positioned)
+            {
+                window.Left = 0;
+                window.Top = 0;
+            }
+        }
+
         private void RestoreSizeAndLocation()
         {
             if (!configuration.Positions.ContainsKey(windowName))
             {
+                ConstrainWindow((int)window.Left, (int)window.Top);
                 return;
             }
 
@@ -148,24 +171,7 @@ namespace Playnite.Windows
                 var data = configuration.Positions[windowName];
                 if (data.Position != null)
                 {
-                    var positioned = false;
-                    // Make sure that position is part of at least one connected screen
-                    foreach (var monitor in Computer.GetScreens())
-                    {
-                        if (monitor.WorkingArea.Contains((int)data.Position.X, (int)data.Position.Y))
-                        {
-                            window.Left = data.Position.X;
-                            window.Top = data.Position.Y;
-                            positioned = true;
-                            break;
-                        }
-                    }
-
-                    if (!positioned)
-                    {
-                        window.Left = 0;
-                        window.Top = 0;
-                    }
+                    ConstrainWindow((int)data.Position.X, (int)data.Position.Y);
                 }
 
                 if (data.Size != null)
