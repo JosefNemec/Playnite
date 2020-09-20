@@ -838,9 +838,6 @@ Versió {2}
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Usar captures de pantalla si l'art no esta disponible</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Si múltiples imatges estan disponibles llavors usa:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Selecciona imatge de fons per {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Quan sigui possible intenta començar el joc sense arrencar el client Epic</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorar tendes de jocs de tercers</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Importar jocs de Trove</sys:String>
