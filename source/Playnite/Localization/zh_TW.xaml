@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">繁體中文</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">變更語言</sys:String>
     <sys:String x:Key="LOCExitAppLabel">離開</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">過濾器已啟用</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">過濾器已停用</sys:String>
@@ -27,7 +27,7 @@
 不確定 - 不更改(當編輯多個遊戲時)</sys:String>
     <sys:String x:Key="LOCNoCategory">沒有分類</sys:String>
     <sys:String x:Key="LOCNoPlatform">沒有平台</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">哎喲! 出錯了。</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
@@ -838,9 +838,6 @@ By {1}
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">如無圖片則使用擷圖</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">如有多張圖片則使用:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">選擇 {0} 的背景圖片</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">可能的話直接啟動遊戲而不透過Epic客戶端啟動。</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">忽略第三方商店遊戲</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">匯入Trove遊戲</sys:String>
