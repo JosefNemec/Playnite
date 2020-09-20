@@ -834,9 +834,6 @@ apenas funciona com contas cujas bibliotecas de jogos tenham sido definidas nas 
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Usar capturas de ecrã se não houver capa disponível</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Se múltiplas imagens estiverem disponíveis, utilizar:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Selecionar imagem de fundo para {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Sempre que possível, iniciar jogo diretamente sem executar o cliente Epic</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorar jogos de lojas de terceiros</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Importar jogos do Humble Trove</sys:String>
