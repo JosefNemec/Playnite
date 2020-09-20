@@ -837,9 +837,6 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Utiliser des captures d'écran si aucune image de fond n'est disponible</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">À choisir si plusieurs images sont disponibles :</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Sélectionner une image de fond pour {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Lancer les jeux sans le client Epic lorsque cela est possible</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorer les jeux dépendant de clients tiers</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Importer les jeux du Humble Trove</sys:String>
