@@ -889,9 +889,6 @@ Nota che l'opzione Nome Account funziona solo per gli account le cui librerie di
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Usa le schermate se l'illustrazione non è disponibile</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Se sono disponibili immagini multiple, usa:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Seleziona l'Immagine di sfondo per {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Avviare il gioco direttamente senza il client Epic quando possibile</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">Questa opzione non funzionerà per tutti i giochi. Consulta il link di risoluzione problemi per possibili soluzioni alternative.</sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignora i giochi dei negozi di terze parti</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Importa giochi Humble Trove</sys:String>
