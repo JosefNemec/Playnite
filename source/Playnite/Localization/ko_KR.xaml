@@ -834,9 +834,6 @@
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">아트워크가 없을 때 스크린샷 사용</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">다수의 이미지를 사용할 수 있을 때 사용하기:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} 배경 이미지 선택</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">가능하다면 Epic 클라이언트를 실행하지 않고 게임을 직접 실행을 시도하기</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">제3자 스토어 게임 무시</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Trove  게임 가져오기</sys:String>
