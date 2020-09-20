@@ -853,9 +853,6 @@
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">השתמש בתצלומי מסך אם עטיפה אינה זמינה</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">אם כמה תמונות קיימות אז בחר:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">בחר תמונת רקע עבור {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">כאשר ניתן, התחל את המשחק מבלי להפעיל את הקליינט של Epic</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">התעלם ממשחקי חנויות חיצוניות</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">ייבא משחקים מ- Trove</sys:String>
