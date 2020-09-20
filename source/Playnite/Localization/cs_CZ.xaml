@@ -836,9 +836,6 @@ Pozor že možnost zadání jména účtu funguje pouze pro ty účty, které ma
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Použít snímek obrazovky, pokud není k dispozici obrázek</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Pokud je k dispozici víc obrázků, použít:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Vyberte obrázek pozadí pro {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Pokud možno, pokusit se spustit hry na přímo bez použití Epic aplikace</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignorovat hry z obchodů třetích stran</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Importovat Trove hry</sys:String>
