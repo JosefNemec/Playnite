@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Magyar</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Nyelv</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Kilépés</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Szűrő bekapcsolva</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Szűrő kikapcsolva</sys:String>
@@ -27,36 +27,50 @@
 Négyzet - Ne változzon (több játék állításakor)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nincs kategória</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ismeretlen platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Hoppá! Valami hiba történt…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Helyrehozhatatlan hiba történt.
+
+Ha segíteni szeretnél a hiba elhárításában, röviden foglald össze, mit csináltál az összeomlás előtt és hozz létre egy diagnosztikai csomagot. Ha online vagy, a csomagot elküldöm a Playnite szerverre, elemzésre.
+
+Más esetben használhatod a 'Hibajelentés küldése' gombot hogy új hibajegyet hozz létre a GitHub-on és kézzel készítsd el a hibáról az összefoglalót. Angol nyelven kommunikálj, ha kérhetem.
+
+Köszönöm a segítséged.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">&quot;{0}&quot; bővítmény összeomlott.
+
+Javasoljuk, hogy mentsd el a naplófájlt, és jelentsd a problémát a bővítmény készítőjének. Ha ismétlődik a probléma, tiltsd le a bővítményt.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">&quot;{0}&quot; bővítmény összeomlott.
+
+Javasoljuk, hogy jelentsd a problémát a bővítmény készítőjének. Ha ismétlődik a probléma, tiltsd le a bővítményt.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Helyrehozhatatlan hiba történt.
 
 Ha segíteni szeretnél a hiba elhárításában, küldj hibajelentést. Köszönöm!
 </sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Bővítmény tiltása</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Naplófájl mentése</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Diagnosztika küldése</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Hibajelentés küldése</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite újraindítása</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Újraindítás csökkentett módban</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Minden harmadik féltől származó bővítmény letiltása és az alap téma használata.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Kilépés a Playnite-ból.</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Röviden foglald össze, mit csináltál az összeomlás előtt (angolul):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Könyvtárkezelő</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Listából való törlés megerősítése</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Nem tudom törölni, a játék vagy a telepítője még fut.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Nem tudom eltávolítani, a játék még fut.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Biztos, hogy eltávolítod ezt a játékot?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Biztos, hogy eltávolítasz {0} játékot?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Biztosan eltávolítod ezt a játékot?
+        
+A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályozhatod, hogy a következő könyvtárfrissítéskor hozzáadja ismét a játékot.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Biztosan eltávolítasz {0} játékot?
+        
+A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályozhatod, hogy a következő könyvtárfrissítéskor hozzáadja ismét a játékot.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Biztosan eltávolitasz {0} nem használt játékot?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Nem található üres mező.</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Igen (hozzáadás a kivételekhez)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam barátok</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Nem mentett változások vannak</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Játékkönyvtár formátumának frissítése...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Adatbázis frissítése sikertelen.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Játékkönyvtár frissítése nem sikerült. {0} MB üres hely kell hozzá.</sys:String>
@@ -832,9 +846,6 @@ A fióknév opció csak akkor működik, ha a GOG adatvédelmi beállításainá
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Képernyőkép használata, ha nincs játékgrafika</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Ha több találat van, válassza:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} háttérképének kiválasztása</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Mindig próbálja meg az Epic kliens nélkül futtatni a játékot</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Harmadik féltől származó játékok figyelmen kívül hagyása</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Trove játékok importálása</sys:String>
