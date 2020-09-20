@@ -879,9 +879,6 @@
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Использовать скриншоты игры в подборе изображения</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Если доступно несколько изображений, то используйте:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Выбрать фоновое изображение для: {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">По возможности запускать игру напрямую, без запуска Epic client</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Игнорировать сторонний магазин игр.</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Импорт игр с Xbox </sys:String>
