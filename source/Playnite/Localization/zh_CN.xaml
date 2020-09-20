@@ -838,9 +838,6 @@ By {1}
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">如果没有图片，则使用截图</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">如果有多个图像，则使用：</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">选择 {0} 的背景图像</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">尝试不启动Epic客户端直接运行游戏</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">忽略第三方游戏平台的游戏</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">导入Trove游戏</sys:String>
