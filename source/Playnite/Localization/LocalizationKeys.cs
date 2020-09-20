@@ -3170,14 +3170,6 @@ namespace Playnite
         /// </summary>
         public const string IgdbSelectBackgroundTitle = "LOCIgdbSelectBackgroundTitle";
         /// <summary>
-        /// When possible try to start game directly without running Epic client
-        /// </summary>
-        public const string EpicSkipLauncherWhenStartingGame = "LOCEpicSkipLauncherWhenStartingGame";
-        /// <summary>
-        /// This option will not work for all games. See the 'Troubleshooting' link for possible workarounds.
-        /// </summary>
-        public const string EpicSkipLauncherWhenStartingGameTooltip = "LOCEpicSkipLauncherWhenStartingGameTooltip";
-        /// <summary>
         /// Ignore third party store games
         /// </summary>
         public const string HumbleIgnoreThirdPartyStoreGames = "LOCHumbleIgnoreThirdPartyStoreGames";
