@@ -837,9 +837,6 @@
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">آثار هنری در دسترس نیست اگر از اسکرین شات ها استفاده کنید</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">اگر چندین تصویر موجود است، از آن استفاده کنید:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">تصویر پس زمینه را برای {0} انتخاب کنید</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">در صورت امکان سعی کنید بازی را مستقیماً بدون اجرای EPIC GAMES شروع کنید</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">بازی های فروشگاه شخص ثالث را نادیده بگیرید</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">وارد کردن بازی های Trove</sys:String>
