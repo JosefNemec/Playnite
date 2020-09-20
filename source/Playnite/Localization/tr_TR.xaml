@@ -836,9 +836,6 @@ Sürüm {2}</sys:String>
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Resim kullanılamıyorsa ekran görüntüsü kullan</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Birden fazla resim mevcutsa, şunu kullan:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} için arka plan resmi seç</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Mümkün olduğunda, oyunu Epic istemcisini açmadan başlatmayı dene</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Üçüncü parti mağaza oyunlarını yok say</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Trove Oyunlarını İçe Aktar</sys:String>
