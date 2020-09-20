@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Suomi</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playniten kieli</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Poistu</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Suodatin käytössä</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Suodatin pois käytöstä</sys:String>
@@ -27,35 +27,39 @@ Ei valittu - Poista kategoria
 Määrittelemätön - Ei muutoksia (kun muokataan useita pelejä)</sys:String>
     <sys:String x:Key="LOCNoCategory">Ei kategoriaa</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ei alustaa</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Hups, jokin meni pieleen…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Peruuttamaton virhe tapahtui.
 
 Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diagnostiikkatiedot. Kiitos.</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Poista laajennus käytöstä</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Tallenna lokitiedosto</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Lähetä diagnostiikkatiedot</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Ilmoita virheestä</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Uudelleenkäynnistä Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Käynnistä uudelleen vikasietotilassa</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Poistetaan kaikki kolmannen osapuolen laajennukset käytöstä ja käytetään oletusteemaa.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Poistu Playnitesta</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Mitä tein ennen kuin ohjelma kaatui (Englanniksi):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Kirjaston hallinta</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Poista peli(t)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Ei voi poistaa - peli tai asennusohjelma on käynnissä. </sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Asennusta ei voi poistaa - peli on käynnissä.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Haluatko varmasti poistaa tämän pelin?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Haluatko varmasti poistaa {0} peliä?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Oletko varma, että haluat poistaa tämän pelin?
+
+Jos valitset &quot;lisää kieltolistalle&quot; -valinnan tätä peliä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Oletko varma, että haluat poistaa {0} peliä?
+
+Jos valitset &quot;lisää kieltolistalle&quot; -valinnan näitä pelejä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Oletko varma, että haluat poistaa {0} merkintää, jotka eivät tällä hetkellä ole käytössä?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Käyttämättömiä kenttiä ei löytynyt.</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Kyllä (lisää kieltolistalle)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam-kaverit</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Tässä osiossa on muutoksia, joita ei ole tallennettu</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Päivitetään pelikirjaston formaattia…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Tietokannan päivitys epäonnistui.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Pelikirjastoa ei voida päivittää. Vapaata tilaa tarvitaan {0} megatavua.</sys:String>
@@ -65,11 +69,11 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCGameStartActionError">Toimintoa ei voida käynnistää: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Pelin sijaintia ei voitu avata: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Virhe luotaessa pikakuvaketta: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">Ohjekirjan avaaminen epäonnistui: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Peliä ei voida asentaa: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Peliä ei voida poistaa: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Pelaa-toimintoa ei ole määritetty.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Tälle pelille ei ole asennettu kirjastoliitännäistä tai se ei ole käytössä.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Virallista metatietoa ei ole saatavilla.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Yhtään peliä ei ole valittu.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">Pelin skriptin suoritus epäonnistui.</sys:String>
@@ -103,7 +107,7 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCLastPlayedLabel">Viimeksi pelattu</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Eniten pelattu</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Pelikerrat</sys:String>
-    <sys:String x:Key="LOCNotesLabel"></sys:String>
+    <sys:String x:Key="LOCNotesLabel">Merkinnät</sys:String>
     <sys:String x:Key="LOCAddedLabel">Lisätty</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Lisäyspäivä</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Muokattu</sys:String>
@@ -125,7 +129,7 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCInstallationLabel">Asenna</sys:String>
     <sys:String x:Key="LOCActionsLabel">Toiminnot</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Ladataan…</sys:String>
-    <sys:String x:Key="LOCDownloadingMediaLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingMediaLabel">Ladataan mediaa…</sys:String>
     <sys:String x:Key="LOCLoadingLabel">Ladataan…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tyyppi</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profiili</sys:String>
@@ -199,9 +203,9 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Kirjaston hallinta…</sys:String>
     <sys:String x:Key="LOCMenuTools">Työkalut</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Lataa metatieto…</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">Ohjelmistotyökalut…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Avaa kolmannen osapuolen sovellus</sys:String>
-    <sys:String x:Key="LOCMenuClients"></sys:String>
+    <sys:String x:Key="LOCMenuClients">Kolmannen osapuolen sovellukset</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Päivitä kirjasto</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Lisää peli</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuaalisesti…</sys:String>
@@ -239,7 +243,7 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Selainpaneelin paikka</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kansitaiteen renderöinti</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Kuvasuhdetavoite</sys:String>
-    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Seuraavat asetukset vaikuttavat myös ruutujen esitykseen kokoruututilassa!</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Sovitustapa</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD-laatikko</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
@@ -263,7 +267,7 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCSettingsImportLabel">Tuo kirjaston muutokset automaattisesti</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Tuo asennetut pelit</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">Yhdistä tili</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Tuo pelit joita ei ole asennettu</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Tuo kaikki pelit</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Tuo kaikki pelit (julkinen tunnus tai API avain vaaditaan)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Virheellinen tietokannan sijainti, oikea polku vaaditaan.</sys:String>
@@ -272,16 +276,16 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Steam-tunnusta ei valittu kategorian tuontiin.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Lataa kolmannen osapuolen kirjastopäivitykset käynnistäessä</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Lataa metadata pelien tuonnin jälkeen</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Käynnistä Playnite pienennettynä</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Käynnistä Playnite kun tietokone käynnistyy</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Playniten asettaminen koneen käynnistykseen epäonnistui.</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Käynnistä kokoruututilassa</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Sisältää Steamin, Originin ja muut.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynkroninen kuvan lataus</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Parantaa rullauksen sujuvuutta pelilistoissa mutta hidastaa hieman kuvien lataamista.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Näytä pelin nimi jos kansitaide puuttuu</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Näytä pelien nimet ruudukkonäkymässä</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Himmennä pelit joita ei ole asennettu</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Näytä pelien kuvakkeet lisätietonäkymässä</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Näytä määrä ryhmien kuvauksissa</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
@@ -310,13 +314,13 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCImportSteamLastActivityLabel">Tuo Viimeksi pelatut Steamista</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Tyhjennä välimuisti</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Saattaa ratkaista ongelmia tunnusten linkittämisessä.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Näytä järjestelmäkuvake</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Pienennä Playnite ilmoitusalueelle</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Pienennä Playnite ilmoitusalueelle kun sovellusikkuna on suljettu</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Kun peli käynnistyy:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Kun peli sulkeutuu:</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy"></sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Käynnistä pelit käyttämällä GOG Galaxy -sovellusta</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Tämä ottaa käyttöön GOG Galaxyn ominaisuudet, kuten pilvitallennukset, peliajan seuranta jne.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">Tämä ylikirjoittaa nykyiset kategoriat kuin myös piiloitukset sekä suosikit kaikissa Steam-peleissä. Haluatko jatkaa eteenpäin?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Tuo kategoriat?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Ei voida tuoda kategorioita, tunnusta ei ole valittu.</sys:String>
@@ -334,7 +338,7 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCSettingsCreateThemes">Luo uusi teema</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Hanki lisää laajennuksia</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Luo uusi laajennus</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Auta meitä kääntämään Playnite muille kielille</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Uudelleenkäynnistä Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
@@ -351,7 +355,7 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Ei oteta takautuvasti käyttöön olemassa olevissa peleissä ilman että metadataa ladataan uudelleen.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Tuettujen kirjastojen peliajan priorisointi</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Älä huomioi Playniten kirjaamaa peliaikaa vaan lataa kirjattu peliaika aina etäkirjastosta kirjaston synkronoinnin aikana.</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Ota peliohjaintuki käyttöön työpöytätilassa</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Opas-näppäin avaa koko näytön tilan</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor">Kohdenäyttö</sys:String>
@@ -365,8 +369,8 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Vaakasuuntainen vieritys</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Valitse yksi alakohdista</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Ei asetuksia</sys:String>
-    <sys:String x:Key="LOCSettingsErrorLoadingSettings"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice">Nämä skriptit suoritetaa jokaiselle kirjaston pelille. Jokaiseen peliin voi liittää yksilöityjä skriptejä muokkaamalla pelin tietoja.</sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings">Asetusten lataus epäonnistui</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Nämä skriptit suoritetaan jokaiselle kirjaston pelille. Jokaiseen peliin voi liittää yksilöityjä skriptejä muokkaamalla pelin tietoja.</sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animoi taustakuvien siirtymät</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Kirjasinkoot</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automaattinen</sys:String>
@@ -377,17 +381,17 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Näyttö</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Tekstin muotoilutila</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Tekstin esitystila</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Tekstin esitys- ja muotoilutapoja ei tällä hetkellä käytetä pelien kuvausteksteihin.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Esilataa taustakuvat</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Jos kytketty päälle, Playnite lataa taidekuvia metatietoja ladatessaan, käyttäen enemmän tilaa ja mahdollistaen taidekuvien käytön offline käytössäkin.
 
 Jos poiskytketty, taustakuvat ladataan vain kun niitä ensimmäisen kerran tarvitaan, käyttäen vähemmän tilaa, mutta taustojen lataus viivästyy, sekä jotkut kuvat voivat puuttua offline käytössä.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Sulje automaattisesti kolmannen osapuolen apuohjelmat pelin sammuttua</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Älä sulje, jos pelisessio on lyhyempi kuin (sekunneissa)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automaattisesti sulje seuraavat asiakasohjelmat:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Sulje automaattisesti seuraavat asiakasohjelmat:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Sulje automaattisesti apuohjelmat</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Tuo kieltolista</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Näytä varoitus kun ollaan liittämässä liian suurta peliä</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Käynnistä pelit suoraan käyttämättä virallista ohjelmaa</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
@@ -513,7 +517,7 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCGameInstallationStatus">Asennuksen tila</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Asennettu</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Asennettu</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Ei asennettu</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Piilotettu</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Suosikki</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Viimeksi pelattu</sys:String>
@@ -522,7 +526,7 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCGameInstallDirTitle">Asennushakemisto</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Kansikuva</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Linkit</sys:String>
-    <sys:String x:Key="LOCGameROMTitle">Levykuva, ROM tai ISO polku</sys:String>
+    <sys:String x:Key="LOCGameROMTitle">Levykuva-, ROM- tai ISO-polku</sys:String>
     <sys:String x:Key="LOCGenreLabel">Lajityyppi</sys:String>
     <sys:String x:Key="LOCGenresLabel">Lajityypit</sys:String>
     <sys:String x:Key="LOCCompanyLabel">Yritys</sys:String>
@@ -635,11 +639,11 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCPlugins">Liitännäiset</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Metadatan lähteet</sys:String>
     <sys:String x:Key="LOCExtensions">Laajennukset</sys:String>
-    <sys:String x:Key="LOCExtensionID"></sys:String>
+    <sys:String x:Key="LOCExtensionID">Laajennuksen tunnus</sys:String>
     <sys:String x:Key="LOCReloadScripts">Lataa skriptit uudelleen</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Kaikki skriptit on ladattu uudelleen onnistuneesti.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Hakua/suodatinta vastaavia pelejä ei löytynyt</sys:String>
-    <sys:String x:Key="LOCNoItemsFound"></sys:String>
+    <sys:String x:Key="LOCNoItemsFound">Nimikkeitä ei löytynyt</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Vaihda työpöytätilaan</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Poistu Playnitesta</sys:String>
     <sys:String x:Key="LOCLibraries">Kirjastot</sys:String>
@@ -648,7 +652,7 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCExtensionVersion">Versio:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Moduuli:</sys:String>
     <sys:String x:Key="LOCLibrary">Kirjasto</sys:String>
-    <sys:String x:Key="LOCStatistics"></sys:String>
+    <sys:String x:Key="LOCStatistics">Tilastot</sys:String>
     <sys:String x:Key="LOCAll">Kaikki</sys:String>
     <sys:String x:Key="LOCNone">Ei mitään</sys:String>
     <sys:String x:Key="LOCNotifications">Ilmoitukset</sys:String>
@@ -662,22 +666,22 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCFontLargest">Suurin</sys:String>
     <sys:String x:Key="LOCDefault">Oletus</sys:String>
     <sys:String x:Key="LOCSelect">Valitse</sys:String>
-    <sys:String x:Key="LOCSelectAll"></sys:String>
+    <sys:String x:Key="LOCSelectAll">Valitse kaikki</sys:String>
     <sys:String x:Key="LOCFirst">Ensimmäinen</sys:String>
     <sys:String x:Key="LOCRandom">Satunnainen</sys:String>
     <sys:String x:Key="LOCUserSelect">Käyttäjän valinta</sys:String>
     <sys:String x:Key="LOCLoadMore">Lataa lisää</sys:String>
     <sys:String x:Key="LOCTransparent">Läpinäkyvä</sys:String>
-    <sys:String x:Key="LOCCollapse"></sys:String>
-    <sys:String x:Key="LOCExpand"></sys:String>
-    <sys:String x:Key="LOCCollapseAll"></sys:String>
-    <sys:String x:Key="LOCExpandAll"></sys:String>
-    <sys:String x:Key="LOCOther"></sys:String>
-    <sys:String x:Key="LOCThemes"></sys:String>
+    <sys:String x:Key="LOCCollapse">Kutista</sys:String>
+    <sys:String x:Key="LOCExpand">Laajenna</sys:String>
+    <sys:String x:Key="LOCCollapseAll">Kutista kaikki</sys:String>
+    <sys:String x:Key="LOCExpandAll">Laajenna kaikki</sys:String>
+    <sys:String x:Key="LOCOther">Muut</sys:String>
+    <sys:String x:Key="LOCThemes">Teemat</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulaattorien argumentit</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Emulaattorin lisä-argumentit</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Ohita emulaattorien argumentit</sys:String>
-    <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
+    <sys:String x:Key="LOCMedataDiffWindowTitle">Valitse tuotava metadata</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Valitse tuotavat pelit</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadatan haku</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Päivitys saatavilla</sys:String>
@@ -688,15 +692,15 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCUpdateCheckFailMessage">Uuden version tarkistaminen epäonnistui.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Olet ajan tasalla.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Päivityksen lataaminen ja asentaminen epäonnistui.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Taustatehtävä on parhaillaan käynnissä. Haluatko keskeyttää sen ja jatkaa päivitystä?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Taustatehtävä on parhaillaan käynnissä. Haluatko keskeyttää sen ja sulkea Playniten?</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playniteen on saatavilla päivitys</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Lataa teemalista uudelleen</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Ota käyttöön valittu teema</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Seuraa tiedostomuutoksia</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Ota teema automaattisesti käyttöön kun lähdetiedosto muuttuu</sys:String>
-    <sys:String x:Key="LOCScriptRuntime">Skriptin suoritusaika</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Skriptin suoritus</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Ennen pelin käynnistämistä suoritettava skripti</sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
@@ -704,7 +708,7 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCSaveAsDefault">Tallenna oletukseksi</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Lisää suosikkeihin</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Poista suosikeista</sys:String>
-    <sys:String x:Key="LOCHideGame"></sys:String>
+    <sys:String x:Key="LOCHideGame">Piilota tämä peli</sys:String>
     <sys:String x:Key="LOCUnHideGame"></sys:String>
     <sys:String x:Key="LOCEditGame">Muokkaa…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Aseta kategoria…</sys:String>
@@ -717,7 +721,7 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCUninstallGame">Poista asennus</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Avaa asennuksen sijainti</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Luo pikakuvake työpöydälle</sys:String>
-    <sys:String x:Key="LOCOpenGameManual"></sys:String>
+    <sys:String x:Key="LOCOpenGameManual">Avaa ohjekirja</sys:String>
     <sys:String x:Key="LOCMoreAction">Enemmän</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
@@ -764,7 +768,7 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCPLaytime100to500">100-500 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500-1000 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite pitää käynnistää uudestaan asennuksen viimeistelyä varten. Haluatko uudelleenkäynnistää nyt?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Teema/Laajennus käyttää API-versiota, jota ei tueta.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Asennus onnistui.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Asenna laajennus?</sys:String>
@@ -779,37 +783,48 @@ Versio {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Teeman asennus epäonnistui.
  
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Haluatko asentaa uuden teeman? Aiempi asennus ylikirjoitetaan.
+ 
+{0}
+Tekijä: {1}
+Versio {2}</sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Olet poistumassa Playnitesta ja avaamassa seuraavaa verkkosivua oletussselaimellasi. Haluatko jatkaa?
+ 
+{0}</sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Valitut kuvat ovat niin suuria, että ne saattavat heikentää suorituskykyä. Erittäin suurien kuvien käyttö voi hidastaa käyttöliittymän vasteaikaa  sekä lisätä muistin käyttöä. 
+
+Suurimmat suositellut mitat:
+Kuvakkeet: {0} megapikseliä
+Kansikuvat: {1} megapikseliä
+Taustakuvat: {2} megapikseliä</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Suorituskykyvaroitus</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Älä näytä uudelleen</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Valittu kuvatiedosto saattaa olla liian suuri optimi tehokkuuteen.</sys:String>
-    <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
-    <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCThemeUnsupported"></sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
-    <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
-    <sys:String x:Key="LOCDiagGenerating"></sys:String>
-    <sys:String x:Key="LOCDiagUploading"></sys:String>
-    <sys:String x:Key="LOCAddFromExe"></sys:String>
-    <sys:String x:Key="LOCWhatIsThis"></sys:String>
-    <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
-    <sys:String x:Key="LOCStatsTotalPlayTime"></sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
+    <sys:String x:Key="LOCThemeUninstallQuestion">Haluatko varmasti poistaa valitun teeman asennuksen? Asennus poistetaan, kun sovellus käynnistyy seuraavan kerran.</sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint">Sisäänrakennettuja teemoja ei voi poistaa.</sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">Tämä teema ei tue Playniten tämänhetkistä versiota.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">Haluatko varmasti poistaa valitun laajennuksen asennuksen? Asennus poistetaan, kun sovellus käynnistyy seuraavan kerran.</sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Sisäänrakennettuja laajennuksia ei voi poistaa.</sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported">Tämä laajennus ei tue Playniten tämänhetkistä versiota.</sys:String>
+    <sys:String x:Key="LOCDiagGenerating">Luodaan diagnostiikkapakettia…</sys:String>
+    <sys:String x:Key="LOCDiagUploading">Lähetetään diagnostiikkapakettia…</sys:String>
+    <sys:String x:Key="LOCAddFromExe">Tuo tiedosto…</sys:String>
+    <sys:String x:Key="LOCWhatIsThis">Mikä tämä on?</sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">Haluatko varmasti tehdä tämän?</sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime">Pelattu aika</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">Keskimääräinen peliaika</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
-    <sys:String x:Key="LOCOverviewLabel"></sys:String>
-    <sys:String x:Key="LOCSidebar"></sys:String>
+    <sys:String x:Key="LOCOverviewLabel">Yleiskatsaus</sys:String>
+    <sys:String x:Key="LOCSidebar">Sivupalkki</sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Saavutukset</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Keskustelupalsta</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">Uutiset</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">Kaupan sivu</sys:String>
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io-sovellus käynnistetään. Kirjaudu sisään ja sulje sen jälkeen tämä viesti.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Odotetaan käyttäjän sisäänkirjautumista, sulje tämä kun olet valmis…</sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">itch.io-sovelluksen versiota 25 tai uudempaa ei ole asennettu.</sys:String>
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Tunnus</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Tilin nimi</sys:String>
@@ -821,7 +836,7 @@ Huomioi, että Tilin nimi -vaihtoehdon käyttäminen toimii vain tileillä, jotk
     <sys:String x:Key="LOCSteamRequiresApiKey">Tili on yksityinen, API-avain vaaditaan.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub">Yhteisökeskus</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Keskustelut</sys:String>
-    <sys:String x:Key="LOCSteamLinksGuides"></sys:String>
+    <sys:String x:Key="LOCSteamLinksGuides">Oppaat</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Workshop</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers">Lataa pystysuuntaiset kansikuvat</sys:String>
     <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
@@ -840,13 +855,13 @@ Huomioi, että Tilin nimi -vaihtoehdon käyttäminen toimii vain tileillä, jotk
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Jos useampia kuvia on saatavilla, käytä:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Valitse taustakuva kohteelle {0}</sys:String>
     <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Käynnistä peli ilman Epic asiakasohjelmaa, silloin kun mahdollista</sys:String>
+    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Käynnistä peli ilman Epic-asiakasohjelmaa, silloin kun mahdollista</sys:String>
     <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ohita kolmannen osapuolen kauppojen pelit</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Tuo sisään Trove pelit</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree"></sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree">Tuo DRM-vapaa versio jos saatavilla</sys:String>
     <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip"></sys:String>
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Käynnistä Xbox ohjelma ennemmin kuin Microsoft kauppa</sys:String>
