@@ -838,9 +838,6 @@
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Користи снимке екрана ако слике нису доступне</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Ако је више слика доступно користи:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Изабери позадинску слику за {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Када је могуће, пробај да покренеш игру директно без покретања Epic клијента</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Игнориши игре из продавница треће стране</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Уведи Trove игре</sys:String>
