@@ -838,9 +838,6 @@ Opcija unošenja naziva vašeg računa će da radi samo za račune čije bibliot
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Koristi screenshotove ako ilustracije nisu dostupne</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Ako je više slika dostupno, onda koristi:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Odaberite pozadinu za {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Ako je moguće, probaj da pokreneš igru bez pokretanja Epic klijenta</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ignoriraj igre treće strane u radnji</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Uvezi Trove igre</sys:String>
