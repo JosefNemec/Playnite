@@ -844,9 +844,6 @@
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">استخدم لقطات الشاشة اذا العمل الفني غير متاح</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">اذا اكثر من صورة متاحات اذن استخدم:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">حدد صورة خلفية لـ{0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">عندما يكون الأمر ممكن، حاول بدء اللعبة مباشرة بدون تشغيل عميل Epic</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">تجاهُل ألعاب متجر الطرف الثالث</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">استيراد ألعاب Trove</sys:String>
