@@ -29,8 +29,12 @@ Määrittelemätön - Ei muutoksia (kun muokataan useita pelejä)</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ei alustaa</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Hups, jokin meni pieleen…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Laajennus &quot;{0}&quot; aiheutti peruuttamattoman virheen.
+
+Suosittelemme, että tallennat lokitiedoston ja raportoit virheestä laajennuksen kehittäjälle. Jos ongelma toistuu, ota laajennus pois käytöstä.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Laajennus &quot;{0}&quot; aiheutti peruuttamattoman virheen.
+
+Suosittelemme, että raportoit virheestä laajennuksen kehittäjälle. Jos ongelma toistuu, ota laajennus pois käytöstä.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Peruuttamaton virhe tapahtui.
 
 Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diagnostiikkatiedot. Kiitos.</sys:String>
@@ -51,13 +55,13 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Haluatko varmasti poistaa {0} peliä?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Oletko varma, että haluat poistaa tämän pelin?
 
-Jos valitset &quot;lisää kieltolistalle&quot; -valinnan tätä peliä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
+Jos valitset &quot;lisää ohituslistalle&quot; -valinnan tätä peliä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Oletko varma, että haluat poistaa {0} peliä?
 
-Jos valitset &quot;lisää kieltolistalle&quot; -valinnan näitä pelejä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
+Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Oletko varma, että haluat poistaa {0} merkintää, jotka eivät tällä hetkellä ole käytössä?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Käyttämättömiä kenttiä ei löytynyt.</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Kyllä (lisää kieltolistalle)</sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Kyllä (lisää ohituslistalle)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam-kaverit</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Tässä osiossa on muutoksia, joita ei ole tallennettu</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Päivitetään pelikirjaston formaattia…</sys:String>
@@ -295,7 +299,7 @@ Jos valitset &quot;lisää kieltolistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Näytä Steam-kaverit -painike</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems">Pikakäynnistysnimikkeiden määrä</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Käytä pelin taustakuvaa ikkunan taustakuvana</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Sumenna tausta</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">Korkea laatu</sys:String>
@@ -391,7 +395,7 @@ Jos poiskytketty, taustakuvat ladataan vain kun niitä ensimmäisen kerran tarvi
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Älä sulje, jos pelisessio on lyhyempi kuin (sekunneissa)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Sulje automaattisesti seuraavat asiakasohjelmat:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Sulje automaattisesti apuohjelmat</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList">Tuo kieltolista</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Tuo ohituslista</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Näytä varoitus kun ollaan liittämässä liian suurta peliä</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Käynnistä pelit suoraan käyttämättä virallista ohjelmaa</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
@@ -854,9 +858,6 @@ Huomioi, että Tilin nimi -vaihtoehdon käyttäminen toimii vain tileillä, jotk
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Käytä kuvakaappauksia, jos taidekuvia ei ole saatavilla</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Jos useampia kuvia on saatavilla, käytä:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">Valitse taustakuva kohteelle {0}</sys:String>
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">Käynnistä peli ilman Epic-asiakasohjelmaa, silloin kun mahdollista</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip"></sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ohita kolmannen osapuolen kauppojen pelit</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Tuo sisään Trove pelit</sys:String>
