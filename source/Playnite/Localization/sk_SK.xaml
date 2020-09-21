@@ -761,7 +761,7 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Ak editujete hru pomocou položky &quot;Upraviť&quot;, môžete použiť pokročilé preberanie metadát.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Nie je dostupné keď práve prebiehajú iné akcie.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">V popise je možné použiť značky HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Odohraný čas sa zaznamenáva v sekundách.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Hodnoty od 0 do 100, prípadne prázdne ak skóre neexistuje.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Vývoj Playnite podporujú títo patróni:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Do slovenského jazyka preložil Michal Žila. Ďalší prispievatelia do kódu (bez poradia):</sys:String>
