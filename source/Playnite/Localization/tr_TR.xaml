@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Türkçe</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite dili</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Çıkış</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtre Etkin</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtre Devre Dışı</sys:String>
@@ -27,8 +27,14 @@
 Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
     <sys:String x:Key="LOCNoCategory">Kategori Yok</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platform Yok</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Amanın! Bir şeyler ters gitti.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kurtarılamaz bir hata oluştu.
+ 
+Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen çökmeden önce gerçekleştirilen eylemleri kısaca açıklayın ve ardından bir tanı bilgisi gönderin. Çevrimiçiyseniz, paket, analiz için Playnite sunucusuna yüklenecektir.
+
+Alternatif olarak, GitHub'da yeni bir sorun oluşturmak ve çöküşü elle bildirmek için 'Hata Bildir' düğmesini kullanabilirsiniz.
+
+Yardımınız için teşekkürler.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz hata oluştu.
