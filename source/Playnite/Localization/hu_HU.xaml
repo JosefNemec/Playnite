@@ -820,7 +820,7 @@ Jelenleg {1} játék és {2} emulátor használja.</sys:String>
     <sys:String x:Key="LOCWhatIsThis">Mi ez?</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">Biztosan ezt szeretnéd tenni?</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Teljes játékidő</sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime">Átlagos játékidő</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Leghosszabb játékidő</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Áttekintés</sys:String>
     <sys:String x:Key="LOCSidebar">Oldalsáv</sys:String>
