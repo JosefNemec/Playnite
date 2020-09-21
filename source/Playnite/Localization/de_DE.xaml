@@ -839,7 +839,7 @@ Hintergründe: {2} Megapixel</sys:String>
     <sys:String x:Key="LOCWhatIsThis">Was ist das?</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">Bist du sicher, dass du das tun möchtest?</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Gesamtspielzeit</sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime">Durchschnittliche Spielzeit</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Höchstspielzeit</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Übersicht</sys:String>
     <sys:String x:Key="LOCSidebar">Seitenleiste</sys:String>
