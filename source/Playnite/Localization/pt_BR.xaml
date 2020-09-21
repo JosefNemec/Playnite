@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Português Brasileiro</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Idioma do Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Sair</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro ativado</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtro desativado</sys:String>
@@ -27,7 +27,7 @@ Não selecionada - Remove a categoria
 Indeterminada - Nenhuma alteração (quando editando vários jogos)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sem categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sem plataforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Ops! Algo deu errado…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
