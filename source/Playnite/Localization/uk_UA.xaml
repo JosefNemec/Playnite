@@ -458,10 +458,7 @@
     <sys:String x:Key="LOCEmuWizardScanning">Сканування…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Налаштування при першому запуску</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Цей майстер проведе вас через автоматичний процес імпортування і налаштування зовнішніх бібліотек. Playnite може автоматично імпортувати ігри з декількох ігрових сервісів таких як Steam чи GOG, а також тримати вашу бібліотеку в актуальному стані, автоматично оновлюючи її під час запуску програми.
-
-Майте на увазі, що ви можете додати будь-яку власну гру для будь-якої платформи пізніше, натиснувши кнопку &quot;Playnite&quot; в головному меню.
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Розташування даних програми за замовчуванням для всіх користувачів</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Настроюване розташування</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Інтерграція бібліотеки</sys:String>
@@ -846,7 +843,7 @@
     <sys:String x:Key="LOCWhatIsThis">Що це?</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">Ви впевнені, що ви хочете зробити це?</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Загальний час у грі</sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime">Середній час у грі</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Найдовший час у грі</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Огляд</sys:String>
     <sys:String x:Key="LOCSidebar">Бічна панель</sys:String>
