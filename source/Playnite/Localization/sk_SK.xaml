@@ -458,10 +458,9 @@ Môžete tiež nakonfigurovať a importovať akýkoľvek vlastný emulátor aj n
     <sys:String x:Key="LOCEmuWizardScanning">Prehľadáva sa…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Úvodné nastavenie</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Tento sprievodca vás prevedie procesom automatického importu a konfigurácie externých knižníc hier. Playnite môže automaticky importovať hry z viacerých herných služieb, ako napr. Steam alebo GOG, a tiež udržovať knižnicu aktuálnu automatickou aktualizáciou pri každom spustení aplikácie.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Tento sprievodca vás prevedie procesom automatického importu a konfigurácie externých knižníc hier. Playnite môže automaticky importovať hry z viacerých herných služieb ako napr. Steam alebo GOG, a tiež udržovať knižnicu aktuálnu automatickou aktualizáciou pri každom spustení aplikácie.
 
-Nezabudnite, že ľubovoľnú vlastnú hru pre ľubovoľnú platformu môžete pridať aj neskôr ručne kliknutím na tlačidlo 'Playnite' v hlavnej ponuke.
-    </sys:String>
+Nezabudnite, že ľubovoľnú vlastnú hru pre ľubovoľnú platformu môžete pridať aj neskôr ručne kliknutím na tlačidlo 'Playnite' v hlavnej ponuke.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Predvolené umiestnenie údajov programu pre všetkých používateľov</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Vlastné umiestnenie</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integrácia knižnice</sys:String>
