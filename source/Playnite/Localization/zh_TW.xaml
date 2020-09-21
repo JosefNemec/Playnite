@@ -168,8 +168,8 @@
     <sys:String x:Key="LOCRows">列</sys:String>
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">若啟動指令未設置或被設定為網址，則無法取得圖示</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmpty">只下載缺失的原數據</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">啟用此選項則已存有資料的儲存格不會從元資料更新數據。</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">只下載缺少的元資料</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">啟用此選項則已有資料的欄位不會從元資料更新數據。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">遊戲選擇</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">請選擇需要從元資料更新訊息的遊戲:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">數據庫中的所有遊戲</sys:String>
@@ -178,7 +178,7 @@
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">請選擇透過Playnite自動輸入的資料範圍以及資料來源</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif">請點擊上方圖示並協助更新Igdb.com數據庫以助Playnite提供用戶更詳盡的資訊。</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">請點擊上方圖示並協助更新Igdb.com數據庫幫助Playnite提供用戶更詳盡的資訊。</sys:String>
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">正在下載Steam資料庫更新...</sys:String>
     <sys:String x:Key="LOCProgressGOGLibImport">正在下載GOG資料庫更新...</sys:String>
@@ -225,9 +225,9 @@
     <sys:String x:Key="LOCSettingsGridItemSpacing">物件間隔</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">繪製網格化物件背景</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">網格化物件邊界寬度</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource">找不到遊戲圖示來源</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource">缺失遊戲封面來源</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">缺失遊戲背景圖片來源</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">缺少遊戲圖示時從此處抓取</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">找不到遊戲封面時從此處抓取</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">找不到遊戲背景圖片時從此處抓取</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">到遊戲詳細信息的垂直間距</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">網格檢視詳細資訊位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">列表檢視遊戲列表位置</sys:String>
@@ -277,7 +277,7 @@
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">無法設定Playnite於開機後自動啟動</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">包含Steam, Origin以及其他</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">載入非同步圖片中</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">非同步縮圖載入</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提升瀏覽遊戲列表時的滑鼠滾動順暢度，但圖片讀取速度相對較慢</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">如無封面圖片則顯示遊戲名稱</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在網格檢視中顯示遊戲名稱</sys:String>
@@ -286,7 +286,7 @@
     <sys:String x:Key="LOCSettingsShowGroupCount">在分組描述中顯示遊戲數量</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">停用硬體加速</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">遇到卡頓或類似的界面問題時使用</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">可用於改善畫面停頓等界面問題</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">停用DPI縮放</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">顯示Steam好友按鈕</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
@@ -307,9 +307,9 @@
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite設定</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportMetadata">從Steam帳號匯入元資料:</sys:String>
     <sys:String x:Key="LOCImportSteamCategoriesLabel">匯入Steam分類</sys:String>
-    <sys:String x:Key="LOCImportSteamLastActivityLabel">匯入Steam最後遊玩</sys:String>
+    <sys:String x:Key="LOCImportSteamLastActivityLabel">匯入Steam最後遊玩資料</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">清除快取</sys:String>
-    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">可能解決連結帳號時的問題</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">可改善帳號連結問題</sys:String>
     <sys:String x:Key="LOCSettingsShowTray"></sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
@@ -322,9 +322,9 @@
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">無法匯入分類，未選擇帳號。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">無法匯入分類，未開啟數據庫。</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">匯入Steam分類失敗: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">無法匯入最後遊玩資訊，未選擇匯入帳號</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">無法匯入最後遊玩資訊，未開啟數據庫</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">無法匯入Steam最後遊玩資訊: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">無法匯入最後遊玩資料，未選擇匯入帳號</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">無法匯入最後遊玩資料，未開啟數據庫</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">無法匯入Steam最後遊玩資料: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">即將登出所有已連結服務並重啟程式，是否繼續?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">清除快取？</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">需要API密鑰以使用Steam個人帳號</sys:String>
@@ -348,7 +348,7 @@
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截圖</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">商店背景</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceBanner">橫幅</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下載元資料則不會往前套用於現有遊戲</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">未重新下載元資料時現有遊戲不會被覆蓋</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">為支援的媒體庫設定遊玩時間優先等級</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">在資料庫同步時總是下載遠端資料庫的遊玩時數，覆蓋Playnite紀錄的遊玩時數</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
@@ -373,22 +373,22 @@
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">鋸齒化</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">灰階</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">清除類型</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">理想</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">顯示</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">最佳化</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">顯示器</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">文本格式化模式</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">文本渲染模式</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">若啟用本功能則Playnite會於下載元數據時一併下載背景圖片。會佔用額外的硬碟空間且可於離線時瀏覽圖片。
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">若啟用本功能則Playnite會於下載元資料時一併下載背景圖片。會佔用額外的硬碟空間且可於離線時瀏覽圖片。
  
 若禁用本功能則Playnite僅會在首次訪問時才下載背景圖片。會節省硬碟空間但可能造成圖片讀取速度緩慢, 且離線時將無法觀看部分圖片。</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">退出遊戲時自動關閉遊戲啟動器</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">當遊戲時間低於(秒) 則不關閉</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自動關閉以下客戶端:</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉遊戲啟動器</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自動關閉以下登入器:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉登入器</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">設定容量過大的遊戲媒材時顯示警告</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">當設定的遊戲素材過大時顯示警告</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">不透過啟動器直接開始遊戲</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
@@ -632,7 +632,7 @@
     <sys:String x:Key="LOCCommunityScore">社群評分</sys:String>
     <sys:String x:Key="LOCScripts">腳本</sys:String>
     <sys:String x:Key="LOCPlugins">外掛</sys:String>
-    <sys:String x:Key="LOCMetadataProviders">原數據來源</sys:String>
+    <sys:String x:Key="LOCMetadataProviders">元資料來源</sys:String>
     <sys:String x:Key="LOCExtensions">附加元件</sys:String>
     <sys:String x:Key="LOCExtensionID"></sys:String>
     <sys:String x:Key="LOCReloadScripts">重新載入腳本</sys:String>
@@ -836,7 +836,7 @@ By {1}
     <sys:String x:Key="LOCRandomGamePickAnother">選擇另一個</sys:String>
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">如無圖片則使用擷圖</sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">如有多張圖片則使用:</sys:String>
+    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">有多張圖片時:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">選擇 {0} 的背景圖片</sys:String>
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">忽略第三方商店遊戲</sys:String>
