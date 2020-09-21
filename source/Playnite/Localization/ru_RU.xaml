@@ -462,7 +462,7 @@
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Этот помощник проведет вас через автоматический процесс импорта игр и настройку внешних игровых библиотек. Playnite может автоматически импортировать игры из нескольких игровых клиентов, таких как Steam или GOG, а также обновлять свою библиотеку, автоматически обновляя ее во время запуска приложения.
 
 Имейте в виду, что вы всегда можете добавить какую-либо игру для любой платформы вручную из главного меню, нажав кнопку &quot;Playnite&quot;.
-    </sys:String>
+.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Стандартное расположение базы данных</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Собственное расположение базы данных</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Интеграция библиотеки</sys:String>
@@ -837,7 +837,7 @@
     <sys:String x:Key="LOCWhatIsThis"></sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime"></sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">Среднее время выполнения</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
     <sys:String x:Key="LOCOverviewLabel"></sys:String>
     <sys:String x:Key="LOCSidebar"></sys:String>
