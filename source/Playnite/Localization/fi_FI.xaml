@@ -417,8 +417,8 @@ Jos poiskytketty, taustakuvat ladataan vain kun niitä ensimmäisen kerran tarvi
     <sys:String x:Key="LOCSettingsImportExclusionList">Tuo ohituslista</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Näytä varoitus kun ollaan liittämässä liian suurta peliä</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Käynnistä pelit suoraan käyttämättä virallista ohjelmaa</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Hakemiston avauskomento</sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Ensisijainen ikärajaorganisaatio</sys:String>
     <sys:String x:Key="LOCStrechNone">Ei mitään</sys:String>
     <sys:String x:Key="LOCStrechFill">Täytä</sys:String>
     <sys:String x:Key="LOCStrechUniform">Yhtenäinen</sys:String>
@@ -445,13 +445,13 @@ Voidaan muuttaa myös ohjelman asetuksista.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">Pidä mielessä, että voit aina lisätä emulaattoreita ja/tai pelejä jälkeenpäin päävalikon kautta 
 (Kirjasto valikkon alta Emulaattori-asetuksista sekä &quot;Lisää peli&quot; valikosta emulaattoripelejä).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Voit tuoda minkä tahansa tietokoneellesi asennetun emulaattorin painamalla &quot;Tunnista automaattisesti kansiosta…&quot; -nappia. Playnite etsii valitusta kansiosta tuntemiaan emulaattoreita ja tarjoaa mahdollisuuden tuoda ne. Voit tuoda useista kansioista käyttämällä em. nappia useamman kerran. Emulaattorit lisätään listan loppuun.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Emulaattoreita ei ole valittu tuontia varten. Et voi automaattisesti tuoda emuloituja pelejä ilman että määrität emulaattorit ensin. Haluatko varmasti jatkaa ja lopettaa tuontiprosessin?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Skannaa hakemisto käyttäen emulaattoria</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Valitse tiedostot</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Tunnista automaattisesti kansiosta…</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Määritä emulaattorit…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Skannaus…</sys:String>
     <!--FirstTime Wizard-->
@@ -578,7 +578,8 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCDiagPackageCreationError">Diagnostiikkapaketin luominen epäonnistui.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Automaattinen diagnostiikkapaketin lähettäminen epäonnistui.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnostiikkatietojen lähetys onnistui.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Ongelmanmäärityspaketti on luotu ja lähetetty onnistuneesti.
+Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCSteamCategoryImportError">Steam-kategorioiden tuonti epäonnistui.</sys:String>
     <sys:String x:Key="LOCBnetInstalledImportError">Asennettujen Battle.net-pelien tuonti epäonnistui.</sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError">Asennettujen Steam-pelien tuonti epäonnistui.</sys:String>
@@ -592,13 +593,18 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCUplayLibraryImportError">Uplay-kirjaston lataus epäonnistui.</sys:String>
     <sys:String x:Key="LOCLibraryImportError">Pelejä ei voitu tuoda sijainnista {0}.</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Ei voida etsiä pelejä valitun emulaattoriprofiilin mukaan. Profiili ei sisällä tiedostopäätteitä tai alustoja.</sys:String>
-    <sys:String x:Key="LOCStartGenericError"></sys:String>
+    <sys:String x:Key="LOCStartGenericError">Playniten käynnistys epäonnistui. Sulje ohjelman kaikki muut esiintymät ja yritä uudelleen.</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Teeman &quot;{0}&quot; käyttöönotto epäonnistui, väri profiili &quot;{1}&quot;
  
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Linkkiä ei voida alita, URL ei ole oikeassa formaatissa.</sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCAppStartupError">Sovelluksen käynnistys epäonnistui.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">WebView-komponentin alustus epäonnistui. Playnite ei voi jatkaa käynnistystä.
+
+Ongelman korjaamiseksi voit kokeilla seuraavaa:
+  • Tarkista, että kaikki tiedostot on asennettu oikein. Uudelleenasennus voi auttaa
+  • Tarkista, että virustentorjuntaohjelma ei estä Playniten kansiossa olevia tiedostoja
+  • Kokeile asennusta toiseen paikkaan</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">XInput käyttöliittymän alustus epäonnistui. </sys:String>
     <sys:String x:Key="LOCMenuActionExecError"></sys:String>
@@ -835,7 +841,7 @@ Taustakuvat: {2} megapikseliä</sys:String>
     <sys:String x:Key="LOCWhatIsThis">Mikä tämä on?</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">Haluatko varmasti tehdä tämän?</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Pelattu aika</sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime">Keskimääräinen peliaika</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
     <sys:String x:Key="LOCOverviewLabel">Yleiskatsaus</sys:String>
     <sys:String x:Key="LOCSidebar">Sivupalkki</sys:String>
