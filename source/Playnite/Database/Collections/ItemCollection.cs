@@ -82,6 +82,13 @@ namespace Playnite.Database
             }
 
             storagePath = path;
+            // This fixes an issue where people mess up their library with custom scripts
+            // which create collection files instead of directories :|
+            if (File.Exists(storagePath))
+            {
+                File.Delete(storagePath);
+            }
+
             if (Directory.Exists(storagePath))
             {
                 Parallel.ForEach(

@@ -375,6 +375,13 @@ namespace Playnite.Database
                 throw new Exception($"Can't write to \"{DatabasePath}\" folder.");
             }
 
+            // This fixes an issue where people mess up their library with custom scripts
+            // which create collection files instead of directories :|
+            if (File.Exists(FilesDirectoryPath))
+            {
+                File.Delete(FilesDirectoryPath);
+            }
+
             if (!dbExists)
             {
                 FileSystem.CreateDirectory(DatabasePath);

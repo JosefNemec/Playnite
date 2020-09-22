@@ -117,7 +117,9 @@ namespace Playnite.DesktopApp.ViewModels
                 if (newIcon != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.Icon);
-                    if (currentPath.IsNullOrEmpty() || !FileSystem.AreFileContentsEqual(newIcon, currentPath))
+                    if (currentPath.IsNullOrEmpty() ||
+                        !File.Exists(currentPath) ||
+                        !FileSystem.AreFileContentsEqual(newIcon, currentPath))
                     {
                         metadata.Icon = new MetadataFile(newIcon);
                         diffFields.Add(GameField.Icon);
@@ -139,7 +141,9 @@ namespace Playnite.DesktopApp.ViewModels
                 if (newCover != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.CoverImage);
-                    if (currentPath.IsNullOrEmpty() || !FileSystem.AreFileContentsEqual(newCover, currentPath))
+                    if (currentPath.IsNullOrEmpty() ||
+                        !File.Exists(currentPath) ||
+                        !FileSystem.AreFileContentsEqual(newCover, currentPath))
                     {
                         metadata.CoverImage = new MetadataFile(newCover);
                         diffFields.Add(GameField.CoverImage);
@@ -161,7 +165,9 @@ namespace Playnite.DesktopApp.ViewModels
                 if (newBack != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.BackgroundImage);
-                    if (currentPath.IsNullOrEmpty() || !FileSystem.AreFileContentsEqual(newBack, currentPath))
+                    if (currentPath.IsNullOrEmpty() ||
+                        !File.Exists(currentPath) ||
+                        !FileSystem.AreFileContentsEqual(newBack, currentPath))
                     {
                         metadata.BackgroundImage = new MetadataFile(newBack);
                         diffFields.Add(GameField.BackgroundImage);
