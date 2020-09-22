@@ -447,10 +447,10 @@ Kann auch in den Anwendungseinstellungen geändert werden.</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Die folgende Liste enthält Emulatoren, die Playnite automatisch erkennen und konfigurieren kann. Du kannst die Installationsdateien von der jeweiligen Website herunterladen. Sobald du die Emulatoren installiert hast, fahre mit dem nächsten Bildschirm fort, um sie in Playnite zu importieren.
 
 Weitere Emulatoren kannst du auch später im Konfigurationsmenü konfigurieren und importieren.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Du kannst jeden auf deinem PC installierten Emulator importieren, indem du auf die Schaltfläche »Ordner autom. durchsuchen …« klickst. Playnite wird den ausgewählten Ordner nach allen bekannten Emulatoren durchsuchen und diese optional importieren. Du kannst diese Schaltfläche mehrfach verwenden, um Emulatoren aus verschiedenen Ordnern zu importieren. Die Emulatoren werden am Ende der aktuellen Liste hinzugefügt.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Du kannst Spiele importieren, indem du auf die Schaltfläche »Ordner via Emulator durchsuchen« klickst. Die Auswahl des passenden Emulators ermöglicht Playnite, die entsprechenden Dateitypen zu suchen und zu importieren. Du kannst diese Schaltfläche mehrfach verwenden, um Spiele aus verschiedenen Ordnern zu importieren. Die Spiele werden am Ende der aktuellen Liste hinzugefügt.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Du hast keinen Emulator ausgewählt, weshalb Playnite nicht in der Lage sein wird Spiele automatisch zu importieren. Bist du sicher, dass du den Import abbrechen möchtest?</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Derzeit sind in Playnite keine Emulatoren konfiguriert. Du kannst keine Spiele importieren, ohne zuvor den Emulator zu konfigurieren und die passenden Dateitypen auszuwählen. Möchtest du jetzt einige Emulatoren hinzufügen?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Ordner via Emulator durchsuchen</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Dateien auswählen</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Ordner autom. durchsuchen …</sys:String>
@@ -458,11 +458,14 @@ Weitere Emulatoren kannst du auch später im Konfigurationsmenü konfigurieren u
     <sys:String x:Key="LOCEmuWizardScanning">Suchvorgang …</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Einrichtungsassistent</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Dieser Assistent hilft dir beim automatischen Importieren von Spielen und der Konfiguration externer Spielebibliotheken. Playnite kann Spiele von mehreren Spieleplattformen wie Steam oder GOG automatisch importieren und zudem deine Bibliothek durch automatisches Aktualisieren während des Programmstarts aktuell halten.
+        
+Natürlich kannst du auch später Spiele sämtlicher Plattformen manuell hinzufügen, indem du im Hauptmenü auf die Schaltfläche »Playnite« klickst.
+.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Standardmäßiger Programmpfad für alle Benutzer</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Benutzerdefinierter Programmpfad</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Bibliotheksintegration</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Spiele automatisch von den unten aufgeführten Diensten importieren. Spätere Spieländerungen (Installationsstatus) werden beim Starten von Playnite automatisch oder aber manuell ausgelöst aktualisiert. Die ausgewählten Einstellungen beeinflussen die ursprünglichen und alle nachfolgenden Importe.</sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration">Steam-Integration</sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration">Origin-Integration</sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration">GOG-Integration</sys:String>
