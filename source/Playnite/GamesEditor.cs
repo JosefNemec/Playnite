@@ -1073,6 +1073,11 @@ namespace Playnite
                 dbGame.OtherActions = args.InstalledInfo.OtherActions.ToObservable();
             }
 
+            if (!args.InstalledInfo.GameImagePath.IsNullOrEmpty())
+            {
+                dbGame.GameImagePath = args.InstalledInfo.GameImagePath;
+            }
+
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
         }
