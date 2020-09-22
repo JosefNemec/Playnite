@@ -31,6 +31,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Drawing.Imaging;
 using Playnite.DesktopApp.Controls;
+using System.Diagnostics;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -403,6 +404,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
         public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
         public RelayCommand<SideBarItem> ChangeAppViewCommand { get; private set; }
+        public RelayCommand<object> RestartInSafeMode { get; private set; }
         #endregion
 
         #region Game Commands
@@ -918,6 +920,11 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 AppSettings.CurrentApplicationView = item.ViewSource;
             });
+
+            RestartInSafeMode = new RelayCommand<object>((a) =>
+            {
+                RestartAppSafe();
+            });
         }
 
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
@@ -1008,6 +1015,22 @@ namespace Playnite.DesktopApp.ViewModels
         {
             Dispose();
             application.Quit();
+        }
+
+        public void RestartAppSafe()
+        {
+            CloseView();
+            application.Quit();
+
+            var options = new CmdLineOptions { SafeStartup = true };
+            if (application.Mode == ApplicationMode.Desktop)
+            {
+                Process.Start(PlaynitePaths.DesktopExecutablePath, options.ToString());
+            }
+            else
+            {
+                Process.Start(PlaynitePaths.FullscreenExecutablePath, options.ToString());
+            }
         }
 
         protected void InitializeView()
