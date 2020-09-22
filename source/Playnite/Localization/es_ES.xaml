@@ -458,7 +458,9 @@ También puede configurar e importar cualquier emulador personalizado desde el m
     <sys:String x:Key="LOCEmuWizardScanning">Escaneando…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Configuración de primera vez</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Este asistente lo guiará a través del proceso automático de importación y configuración de bibliotecas de juegos externas. Playnite puede importar juegos automáticamente desde múltiples servicios de juegos, como Steam o GOG, y también mantener su biblioteca actualizada actualizándola automáticamente cuando se inicia la aplicación.
+
+Tenga en cuenta que puede agregar manualmente cualquier juego personalizado para cualquier plataforma más adelante haciendo clic en el botón 'Playnite' en el menú principal.</sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">Ubicación de datos de programa predeterminada para todos los usuarios</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">Ubicación personalizada</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integración de Biblioteca</sys:String>
@@ -843,7 +845,7 @@ Fondos: {2} megapíxeles</sys:String>
     <sys:String x:Key="LOCWhatIsThis">¿Qué es esto?</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">¿Estás seguro de que quieres hacer esto?</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Tiempo total de juego</sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">Tiempo promedio de juego</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Tiempo máximo de juego</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Panorama general</sys:String>
     <sys:String x:Key="LOCSidebar">Barra lateral</sys:String>
