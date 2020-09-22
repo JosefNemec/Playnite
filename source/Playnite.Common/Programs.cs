@@ -359,94 +359,101 @@ IconIndex=0";
         {
             var apps = new List<Program>();
 
-            var manager = new PackageManager();
-            IEnumerable<Package> packages = manager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.Value);
-            foreach (var package in packages)
+            try
             {
-                if (package.IsFramework || package.IsResourcePackage || package.SignatureKind != PackageSignatureKind.Store)
+                var manager = new PackageManager();
+                IEnumerable<Package> packages = manager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.Value);
+                foreach (var package in packages)
                 {
-                    continue;
-                }
-
-                try
-                {
-                    if (package.InstalledLocation == null)
+                    if (package.IsFramework || package.IsResourcePackage || package.SignatureKind != PackageSignatureKind.Store)
                     {
                         continue;
                     }
-                }
-                catch
-                {
-                    // InstalledLocation accessor may throw Win32 exception for unknown reason
-                    continue;
-                }
 
-                try
-                {
-                    string manifestPath;
-                    if (package.IsBundle)
+                    try
                     {
-                        manifestPath = @"AppxMetadata\AppxBundleManifest.xml";
+                        if (package.InstalledLocation == null)
+                        {
+                            continue;
+                        }
                     }
-                    else
+                    catch
                     {
-                        manifestPath = "AppxManifest.xml";
+                        // InstalledLocation accessor may throw Win32 exception for unknown reason
+                        continue;
                     }
 
-                    manifestPath = Path.Combine(package.InstalledLocation.Path, manifestPath);
-                    var manifest = new XmlDocument();
-                    manifest.Load(manifestPath);
-
-                    var apxApp = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Applications']//*[local-name() = 'Application'][1]");
-                    var appId = apxApp.Attributes["Id"].Value;
-
-                    var visuals = apxApp.SelectSingleNode(@"//*[local-name() = 'VisualElements']");
-                    var iconPath = visuals.Attributes["Square150x150Logo"]?.Value;
-                    if (iconPath.IsNullOrEmpty())
+                    try
                     {
-                        iconPath = visuals.Attributes["Square70x70Logo"]?.Value;
+                        string manifestPath;
+                        if (package.IsBundle)
+                        {
+                            manifestPath = @"AppxMetadata\AppxBundleManifest.xml";
+                        }
+                        else
+                        {
+                            manifestPath = "AppxManifest.xml";
+                        }
+
+                        manifestPath = Path.Combine(package.InstalledLocation.Path, manifestPath);
+                        var manifest = new XmlDocument();
+                        manifest.Load(manifestPath);
+
+                        var apxApp = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Applications']//*[local-name() = 'Application'][1]");
+                        var appId = apxApp.Attributes["Id"].Value;
+
+                        var visuals = apxApp.SelectSingleNode(@"//*[local-name() = 'VisualElements']");
+                        var iconPath = visuals.Attributes["Square150x150Logo"]?.Value;
                         if (iconPath.IsNullOrEmpty())
                         {
-                            iconPath = visuals.Attributes["Square44x44Logo"]?.Value;
+                            iconPath = visuals.Attributes["Square70x70Logo"]?.Value;
                             if (iconPath.IsNullOrEmpty())
                             {
-                                iconPath = visuals.Attributes["Logo"]?.Value;
+                                iconPath = visuals.Attributes["Square44x44Logo"]?.Value;
+                                if (iconPath.IsNullOrEmpty())
+                                {
+                                    iconPath = visuals.Attributes["Logo"]?.Value;
+                                }
                             }
                         }
-                    }
 
-                    if (!iconPath.IsNullOrEmpty())
-                    {
-                        iconPath = Path.Combine(package.InstalledLocation.Path, iconPath);
-                        iconPath = GetUWPGameIcon(iconPath);
-                    }
-
-                    var name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Properties']/*[local-name() = 'DisplayName']").InnerText;
-                    if (name.StartsWith("ms-resource"))
-                    {
-                        name = Resources.GetIndirectResourceString(package.Id.FullName, package.Id.Name, name);
-                        if (name.IsNullOrEmpty())
+                        if (!iconPath.IsNullOrEmpty())
                         {
-                            name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Identity']").Attributes["Name"].Value;
+                            iconPath = Path.Combine(package.InstalledLocation.Path, iconPath);
+                            iconPath = GetUWPGameIcon(iconPath);
                         }
+
+                        var name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Properties']/*[local-name() = 'DisplayName']").InnerText;
+                        if (name.StartsWith("ms-resource"))
+                        {
+                            name = Resources.GetIndirectResourceString(package.Id.FullName, package.Id.Name, name);
+                            if (name.IsNullOrEmpty())
+                            {
+                                name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Identity']").Attributes["Name"].Value;
+                            }
+                        }
+
+                        var app = new Program()
+                        {
+                            Name = StringExtensions.NormalizeGameName(name),
+                            WorkDir = package.InstalledLocation.Path,
+                            Path = "explorer.exe",
+                            Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",
+                            Icon = iconPath,
+                            AppId = package.Id.FamilyName
+                        };
+
+                        apps.Add(app);
                     }
-
-                    var app = new Program()
+                    catch (Exception e)
                     {
-                        Name = StringExtensions.NormalizeGameName(name),
-                        WorkDir = package.InstalledLocation.Path,
-                        Path = "explorer.exe",
-                        Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",
-                        Icon = iconPath,
-                        AppId = package.Id.FamilyName
-                    };
-
-                    apps.Add(app);
+                        logger.Error(e, $"Failed to parse UWP game info.");
+                    }
                 }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to parse UWP game info.");
-                }
+            }
+            catch (Exception e) when (!Debugger.IsAttached)
+            {
+                logger.Error(e, "Failed to get list of installed UWP apps.");
             }
 
             return apps;
