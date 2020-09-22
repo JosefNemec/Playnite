@@ -13,7 +13,7 @@
     <sys:String x:Key="LOCFilter">Suodatin</sys:String>
     <sys:String x:Key="LOCInvalidDataTitle">Epäkelpo tieto</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Tallenna muutokset?</sys:String>
-    <sys:String x:Key="LOCAboutHomePageLink">Kotisivu osoitteessa www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Kotisivut osoitteessa www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Lähdekoodi GitHubissa</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Luo diag. paketti</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Lähetä diag. tiedot</sys:String>
@@ -240,7 +240,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCMenuHelpTitle">Ohjeet</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Tue Patreonissa</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentaatio</sys:String>
-    <sys:String x:Key="LOCMenuRestartSystem">Uudelleenkäynnistä järjestelmä</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem">Käynnistä järjestelmä uudelleen</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Sammuta järjestelmä</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Aseta järjestelmä valmiustilaan</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Aseta järjestelmä horrostilaan</sys:String>
@@ -350,11 +350,11 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount">Tietoja viimeksi pelatuista ei voida tuoda, tuontia varten ei ole valittu tiliä.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb">Tietoja viimeksi pelatuista ei voida tuoda, tietokantaa ei ole avattu.</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Steamin Viimeksi pelatut -tietojen tuonti epäonnistui: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheWarn">Tämä kirjaa sinut ulos kaikista linkitetyistä palveluista. Sovelluksen uudelleenkäynnistys vaaditaan, haluatko jatkaa?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">Tämä kirjaa sinut ulos kaikista linkitetyistä palveluista. Sovellus pitää käynnistää uudelleen, haluatko jatkaa?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Tyhjennä välimuisti?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">API avain tarvitaan Steamin yksityisille tunnuksille</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyUrlText">Hanki API-avain</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart">Playniten uudelleenkäynnistys vaaditaan teeman käyttöön ottamiseksi</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite pitää käynnistää uudelleen teeman käyttöönottamiseksi</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Hanki lisää teemoja</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Luo uusi teema</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Hanki lisää laajennuksia</sys:String>
@@ -363,7 +363,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite pitää käynnistää uudelleen, jotta uudet asetukset tulevat voimaan. Käynnistä uudelleen nyt?
 
 Uudelleenkäynnistys peruuttaa kaikki käynnissä olevat aktiiviset tehtävät (lataukset).</sys:String>
-    <sys:String x:Key="LOCSettingsRestartTitle">Uudelleenkäynnistä Playnite?</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">Käynnistä Playnite uudelleen?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite ei voi siirtää kirjaston tiedostoja automaattisesti. Sinun pitää itse siirtää tai kopioida tiedostot ennen sijainnin vaihtamista. Jos kohdehakemistossa ei ole kirjastoa, sinne luodaan uusi kirjasto.
 
 Tietokannan uusi sijainti ei tule käyttöön ennen kuin Playnite on käynnistetty uudelleen. </sys:String>
@@ -440,7 +440,7 @@ Jos poiskytketty, taustakuvat ladataan vain kun niitä ensimmäisen kerran tarvi
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadatan tuonti</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Lataa metadata</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Aseta valittu määritys käytettäväksi jatkossa ladattaessa mitä tahansa metadataa.
-Voidaan muuttaa myös ohjelman asetuksista.</sys:String>
+Voidaan muuttaa myös sovelluksen asetuksista.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulaation tuontivelho</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Tämä ohjattu toiminto opastaa sinua konsoliemulaattorien lataamisessa ja tuomisessa sekä emuloitujen pelien tuomisessa.</sys:String>
@@ -460,7 +460,7 @@ Voit myös konfiguroida ja tuoda minkä tahansa emulaattorin myöhemmin konfigur
     <sys:String x:Key="LOCEmuWizardScanning">Skannaus…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Ensimmäisen käynnistyksen määritys</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Tämä ohjattu toiminto opastaa sinua ulkopuolisten pelikirjastojen automaattisessa tuonnissa sekä määrittämisessä. Playnite voi automaattisesti tuoda pelejä useista pelipalveluista, kuten Steam tai GOG, sekä pitää kirjastosi ajan tasalla päivittämällä sen automaattisesti ohjelman käynnistyksen yhteydessä.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Tämä ohjattu toiminto opastaa sinua ulkopuolisten pelikirjastojen automaattisessa tuonnissa sekä määrittämisessä. Playnite voi automaattisesti tuoda pelejä useista pelipalveluista, kuten Steam tai GOG, sekä pitää kirjastosi ajan tasalla päivittämällä sen automaattisesti sovelluksen käynnistyksen yhteydessä.
 
 Muista, että voit aina manuaalisesti lisätä minkä tahansa pelin mille tahansa alustalle klikkaamalla päävalikon &quot;Playnite&quot;-nappia.
     </sys:String>
@@ -483,7 +483,7 @@ Muista, että voit aina manuaalisesti lisätä minkä tahansa pelin mille tahans
 Voit myöhemmin myös lisätä minkä tahansa pelin painamalla Playnite-logoa.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Käynnisty emulaatioiden tuonnin ohjattu toiminto</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">Ruudukkonäkymän asettelu</sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Valitse Playniten ruudukkonäkymän ensisijainen asettelu. Kuva-asettelua voidaan muuttaa milloin tahansa ohjelman asetuksista, kuvien venytysvaihtoehdot mukaan lukien.</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Valitse Playniten ruudukkonäkymän ensisijainen asettelu. Kuva-asettelua voidaan muuttaa milloin tahansa sovelluksen asetuksista, kuvien venytysvaihtoehdot mukaan lukien.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Määritä alustat ja emulaattorit</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Määritä emulaattorit</sys:String>
@@ -804,7 +804,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCPLaytime100to500">100-500 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500-1000 tuntia</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
-    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite pitää käynnistää uudestaan asennuksen viimeistelyä varten. Haluatko uudelleenkäynnistää nyt?</sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite pitää käynnistää uudelleen asennuksen viimeistelyä varten. Haluatko käynnistää uudelleen nyt?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Teema/Laajennus käyttää API-versiota, jota ei tueta.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Asennus onnistui.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Asenna laajennus?</sys:String>
