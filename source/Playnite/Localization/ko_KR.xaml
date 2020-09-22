@@ -199,7 +199,7 @@
     <sys:String x:Key="LOCMenuLibraryManagerTitle">라이브러리 관리…</sys:String>
     <sys:String x:Key="LOCMenuTools">도구</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">메타데이터 다운로드...</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">소프트웨어 도구…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">서드파티 클라이언트 열기</sys:String>
     <sys:String x:Key="LOCMenuClients"></sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">게임 라이브러리 업데이트</sys:String>
@@ -334,7 +334,7 @@
     <sys:String x:Key="LOCSettingsCreateThemes">새로운 테마 생성</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">더 많은 확장프로그램 받기</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">새 확장 만들기</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Playnite 번역을 도와주세요</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Playnite를 재시작하시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
@@ -498,7 +498,7 @@
     <sys:String x:Key="LOCGameBackgroundTitle">배경 이미지</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">정렬 이름</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">라이브러리</sys:String>
-    <sys:String x:Key="LOCGameManualTitle"></sys:String>
+    <sys:String x:Key="LOCGameManualTitle">수동</sys:String>
     <sys:String x:Key="LOCGameNameTitle">이름</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">계정이름</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">플랫폼</sys:String>
@@ -512,7 +512,7 @@
     <sys:String x:Key="LOCGameInstallationStatus">설치 상태</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">설치됨</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">설치됨</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">설치되지 않음</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">숨겨짐</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">즐겨찾기</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">최근 플레이</sys:String>
@@ -634,11 +634,11 @@
     <sys:String x:Key="LOCPlugins">플러그인</sys:String>
     <sys:String x:Key="LOCMetadataProviders">메타데이터 출처</sys:String>
     <sys:String x:Key="LOCExtensions">확장</sys:String>
-    <sys:String x:Key="LOCExtensionID"></sys:String>
+    <sys:String x:Key="LOCExtensionID">확장 ID</sys:String>
     <sys:String x:Key="LOCReloadScripts">스크립트를 다시 로드</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">모든 스크립트 다시 로드 성공.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">특정 검색/필터 기준에 맞는 게임이 없음</sys:String>
-    <sys:String x:Key="LOCNoItemsFound"></sys:String>
+    <sys:String x:Key="LOCNoItemsFound">항목 없음</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">데스크톱 모드로 전환</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite 나가기</sys:String>
     <sys:String x:Key="LOCLibraries">라이브러리</sys:String>
@@ -647,7 +647,7 @@
     <sys:String x:Key="LOCExtensionVersion">버전:</sys:String>
     <sys:String x:Key="LOCExtensionModule">모듈:</sys:String>
     <sys:String x:Key="LOCLibrary">라이브러리</sys:String>
-    <sys:String x:Key="LOCStatistics"></sys:String>
+    <sys:String x:Key="LOCStatistics">통계</sys:String>
     <sys:String x:Key="LOCAll">모두</sys:String>
     <sys:String x:Key="LOCNone">없음</sys:String>
     <sys:String x:Key="LOCNotifications">알림</sys:String>
@@ -661,18 +661,18 @@
     <sys:String x:Key="LOCFontLargest">가장 크게</sys:String>
     <sys:String x:Key="LOCDefault">기본</sys:String>
     <sys:String x:Key="LOCSelect">선택</sys:String>
-    <sys:String x:Key="LOCSelectAll"></sys:String>
+    <sys:String x:Key="LOCSelectAll">모두 선택</sys:String>
     <sys:String x:Key="LOCFirst">첫번째</sys:String>
     <sys:String x:Key="LOCRandom">무작위</sys:String>
     <sys:String x:Key="LOCUserSelect">유저 선택</sys:String>
     <sys:String x:Key="LOCLoadMore">더 보기</sys:String>
     <sys:String x:Key="LOCTransparent">투명</sys:String>
-    <sys:String x:Key="LOCCollapse"></sys:String>
-    <sys:String x:Key="LOCExpand"></sys:String>
-    <sys:String x:Key="LOCCollapseAll"></sys:String>
-    <sys:String x:Key="LOCExpandAll"></sys:String>
-    <sys:String x:Key="LOCOther"></sys:String>
-    <sys:String x:Key="LOCThemes"></sys:String>
+    <sys:String x:Key="LOCCollapse">접기</sys:String>
+    <sys:String x:Key="LOCExpand">펼치기</sys:String>
+    <sys:String x:Key="LOCCollapseAll">모두 접기</sys:String>
+    <sys:String x:Key="LOCExpandAll">모두 펼치기</sys:String>
+    <sys:String x:Key="LOCOther">기타</sys:String>
+    <sys:String x:Key="LOCThemes">테마</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">에뮬레이터 실행 변수</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">추가 에뮬레이터 변수</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">에뮬레이터 변수 덮어쓰기</sys:String>
@@ -703,8 +703,8 @@
     <sys:String x:Key="LOCSaveAsDefault">기본값으로 저장</sys:String>
     <sys:String x:Key="LOCFavoriteGame">즐겨찾기에 추가</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">즐겨찾기에서 제거</sys:String>
-    <sys:String x:Key="LOCHideGame"></sys:String>
-    <sys:String x:Key="LOCUnHideGame"></sys:String>
+    <sys:String x:Key="LOCHideGame">이 게임 숨기기</sys:String>
+    <sys:String x:Key="LOCUnHideGame">숨김에서 제거</sys:String>
     <sys:String x:Key="LOCEditGame">편집...</sys:String>
     <sys:String x:Key="LOCSetGameCategory">카테고리 설정...</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">완료 상황 설정</sys:String>
@@ -716,7 +716,7 @@
     <sys:String x:Key="LOCUninstallGame">설치 제거</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">설치 위치 열기</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">바탕화면 바로가기 생성</sys:String>
-    <sys:String x:Key="LOCOpenGameManual"></sys:String>
+    <sys:String x:Key="LOCOpenGameManual">설명서 열기</sys:String>
     <sys:String x:Key="LOCMoreAction">더 보기</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
@@ -787,15 +787,15 @@
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
     <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
-    <sys:String x:Key="LOCDiagUploading"></sys:String>
-    <sys:String x:Key="LOCAddFromExe"></sys:String>
-    <sys:String x:Key="LOCWhatIsThis"></sys:String>
-    <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
-    <sys:String x:Key="LOCStatsTotalPlayTime"></sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
-    <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
-    <sys:String x:Key="LOCOverviewLabel"></sys:String>
-    <sys:String x:Key="LOCSidebar"></sys:String>
+    <sys:String x:Key="LOCDiagUploading">분석 패키지 업로드 중…</sys:String>
+    <sys:String x:Key="LOCAddFromExe">파일 가져오기…</sys:String>
+    <sys:String x:Key="LOCWhatIsThis">이게 뭔가요?</sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">정말로 이 작업을 수행하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime">총 플레이 시간</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">평균 플레이 시간</sys:String>
+    <sys:String x:Key="LOCStatsTopPlayTime">최고 플레이 시간</sys:String>
+    <sys:String x:Key="LOCOverviewLabel">개요</sys:String>
+    <sys:String x:Key="LOCSidebar">사이드바</sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">도전 과제</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">포럼</sys:String>
@@ -804,7 +804,7 @@
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">로그인을 기다리고 있습니다. 로그인 후 이 창을 닫아주십시오...</sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">itch.io 앱 버전 25 이상의 최신 버전이 설치되지 않았습니다.</sys:String>
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">계정 로그인</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">계정명</sys:String>
@@ -816,7 +816,7 @@
     <sys:String x:Key="LOCSteamRequiresApiKey">계정이 비공개 입니다. API 키가 필요합니다.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub">커뮤니티 허브</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">토론</sys:String>
-    <sys:String x:Key="LOCSteamLinksGuides"></sys:String>
+    <sys:String x:Key="LOCSteamLinksGuides">가이드</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">창작마당</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers">수직 커버 이미지 다운로드</sys:String>
     <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
