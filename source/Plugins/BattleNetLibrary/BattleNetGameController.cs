@@ -53,7 +53,7 @@ namespace BattleNetLibrary
                     throw new Exception("Cannot start game, Battle.net launcher is not installed properly.");
                 }
 
-                OnStarting(this, new GameControllerEventArgs(this, 0));     
+                OnStarting(this, new GameControllerEventArgs(this, 0));
                 StartBnetRunningWatcher();
             }
             else if (app.Type == BNetAppType.Classic && Game.PlayAction.Path.Contains(app.ClassicExecutable))
@@ -95,7 +95,17 @@ namespace BattleNetLibrary
                 Arguments = string.Format("--exec=\"launch {0}\"", Game.GameId)
             };
 
-            GameActionActivator.ActivateAction(task);
+            try
+            {
+                GameActionActivator.ActivateAction(task);
+            }
+            catch (Exception e) when (!Debugger.IsAttached)
+            {
+                logger.Error(e, "Failed to start battle.net game.");
+                OnStopped(this, new GameControllerEventArgs(this, 0));
+                return;
+            }
+
             if (Directory.Exists(Game.InstallDirectory))
             {
                 procMon.TreeStarted += ProcMon_TreeStarted;
@@ -105,7 +115,6 @@ namespace BattleNetLibrary
             {
                 OnStopped(this, new GameControllerEventArgs(this, 0));
             }
-
         }
 
         public override void Install()
@@ -180,7 +189,7 @@ namespace BattleNetLibrary
                     {
                         InstallDirectory = install.InstallLocation
                     };
-                 
+
                     if (app.Type == BNetAppType.Classic)
                     {
                         installInfo.PlayAction = new GameAction()
