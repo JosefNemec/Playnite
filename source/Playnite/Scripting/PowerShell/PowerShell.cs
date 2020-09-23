@@ -26,9 +26,10 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public PowerShellRuntime()
+        public PowerShellRuntime(string name)
         {
             runspace = RunspaceFactory.CreateRunspace();
+            runspace.Name = name;
             runspace.ApartmentState = System.Threading.ApartmentState.MTA;
             runspace.ThreadOptions = PSThreadOptions.UseCurrentThread;
             runspace.Open();
@@ -48,9 +49,9 @@ namespace Playnite.Scripting.PowerShell
             runspace.Close();
         }
 
-        public static PowerShellRuntime CreateRuntime()
+        public static PowerShellRuntime CreateRuntime(string name)
         {
-            return new PowerShellRuntime();
+            return new PowerShellRuntime(name);
         }
 
         public object Execute(string script, string workDir = null)
