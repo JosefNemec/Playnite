@@ -140,6 +140,7 @@ namespace Playnite.Tests.Database
                 Assert.AreEqual(1, db.UsedTags.Count);
 
                 var addedCat = db.Categories.Add("new category");
+                var addedCat2 = db.Categories.Add("new category2");
                 Assert.AreEqual(1, db.UsedCategories.Count);
 
                 var game = db.Games.First();
@@ -150,7 +151,7 @@ namespace Playnite.Tests.Database
                 Assert.AreEqual(1, db.UsedCategories.Count);
 
                 var newGame = new Game("test");
-                newGame.CategoryIds = new List<Guid> { addedCat.Id };
+                newGame.CategoryIds = new List<Guid> { addedCat.Id, addedCat2.Id };
                 db.Games.Add(newGame);
                 Assert.AreEqual(2, db.UsedCategories.Count);
             }

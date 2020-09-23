@@ -27,7 +27,6 @@ namespace Playnite.Tests.Plugins
 
             factory.LoadPlugins(api.Object, null, false);
             Assert.AreEqual(2, factory.Plugins.Count);
-            Assert.AreEqual(1, factory.ExportedFunctions.Count);
         }
     }
 }
