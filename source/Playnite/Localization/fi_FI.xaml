@@ -94,7 +94,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCEnabledTitle">Käytössä</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Poista</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Poista käyttämättömät</sys:String>
-    <sys:String x:Key="LOCRenameTitle">Uudelleennimeä</sys:String>
+    <sys:String x:Key="LOCRenameTitle">Nimeä uudelleen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopioi</sys:String>
     <sys:String x:Key="LOCAddTitle">Lisää</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Oletuskuvake</sys:String>
@@ -271,7 +271,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-juliste</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam pystysuuntainen kansikuva</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steamin pystysuuntainen kansikuva</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Käyttöönotto vaatii uudelleenkäynnistyksen</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Asetukset</sys:String>
@@ -342,7 +342,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsAfterGameClose">Kun peli sulkeutuu:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Käynnistä pelit käyttämällä GOG Galaxy -sovellusta</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Tämä ottaa käyttöön GOG Galaxyn ominaisuudet, kuten pilvitallennukset, peliajan seuranta jne.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Tämä ylikirjoittaa nykyiset kategoriat kuin myös piiloitukset sekä suosikit kaikissa Steam-peleissä. Haluatko jatkaa eteenpäin?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Tämä korvaa nykyiset kategoriat sekä piilotukset ja suosikit kaikissa Steam-peleissä. Haluatko jatkaa?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Tuo kategoriat?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Ei voida tuoda kategorioita, tunnusta ei ole valittu.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Kategorioita ei voiti tuoda, tietokanta ei ole avoinna.</sys:String>
@@ -408,9 +408,9 @@ Tietokannan uusi sijainti ei tule käyttöön ennen kuin Playnite on käynnistet
     <sys:String x:Key="LOCSettingsTextRenderingMode">Tekstin esitystila</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice">Tekstin esitys- ja muotoilutapoja ei tällä hetkellä käytetä pelien kuvausteksteihin.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Esilataa taustakuvat</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Jos kytketty päälle, Playnite lataa taidekuvia metatietoja ladatessaan, käyttäen enemmän tilaa ja mahdollistaen taidekuvien käytön offline käytössäkin.
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Jos käytössä, Playnite lataa taustakuvat metatietoja ladatessaan, mikä vie enemmän levytilaa mutta kuvat voidaan näyttää myös offline-tilassa.
 
-Jos poiskytketty, taustakuvat ladataan vain kun niitä ensimmäisen kerran tarvitaan, käyttäen vähemmän tilaa, mutta taustojen lataus viivästyy, sekä jotkut kuvat voivat puuttua offline käytössä.</sys:String>
+Jos ei käytössä, taustakuvat ladataan vain kun niitä ensimmäisen kerran tarvitaan, mikä vie vähemmän levytilaa, mutta taustakuvat saatetaan näyttää viiveellä eikä kaikkia kuvia ole välttämättä saatavilla offline-tilassa.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Sulje automaattisesti kolmannen osapuolen sovellukset pelin sammuttua</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Sovelluksen sammutuksen viive (sekunneissa)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Älä sulje, jos pelisessio on lyhyempi kuin (sekunneissa)</sys:String>
