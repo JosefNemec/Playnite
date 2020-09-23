@@ -47,6 +47,7 @@ namespace Playnite.Scripting.PowerShell
         public void Dispose()
         {
             runspace.Close();
+            runspace.Dispose();
         }
 
         public static PowerShellRuntime CreateRuntime(string name)
