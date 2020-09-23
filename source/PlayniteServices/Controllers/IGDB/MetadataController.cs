@@ -21,15 +21,15 @@ namespace PlayniteServices.Controllers.IGDB
     public class MetadataController : Controller
     {
         private readonly static ILogger logger = LogManager.GetLogger();
-        private readonly AppSettings appSettings;
+        private UpdatableAppSettings appSettings;
         private static readonly Regex separatorRegex = new Regex(@"\s*(:|-)\s*", RegexOptions.Compiled);
         private static readonly Regex noIntroArticleRegEx = new Regex(@",\s*(the|a|an|der|das|die)$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly char[] bracketsMatchList = new char[] { '[', ']', '(', ')', '{', '}' };
         private static readonly char[] whereQueryBlacklist = new char[2] { ':', '-' };
 
-        public MetadataController(IOptions<AppSettings> settings)
+        public MetadataController(UpdatableAppSettings settings)
         {
-            appSettings = settings.Value;
+            appSettings = settings;
         }
 
         [HttpPost("metadata_v2")]
@@ -86,7 +86,7 @@ namespace PlayniteServices.Controllers.IGDB
             else
             {
                 igdbId = await TryMatchGame(game, false);
-                var useAlt = appSettings.IGDB.AlternativeSearch && !game.Name.ContainsAny(whereQueryBlacklist);
+                var useAlt = appSettings.Settings.IGDB.AlternativeSearch && !game.Name.ContainsAny(whereQueryBlacklist);
                 if (useAlt && igdbId == 0)
                 {
                     igdbId = await TryMatchGame(game, true);

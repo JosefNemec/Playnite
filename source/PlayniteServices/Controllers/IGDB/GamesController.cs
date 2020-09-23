@@ -26,18 +26,18 @@ namespace PlayniteServices.Controllers.IGDB
         private static ILogger logger = LogManager.GetLogger();
         private static readonly char[] bracketsMatchList = new char[] { '[', ']', '(', ')', '{', '}' };
 
-        private AppSettings appSettings;
+        private UpdatableAppSettings appSettings;
 
-        public GamesController(IOptions<AppSettings> settings)
+        public GamesController(UpdatableAppSettings settings)
         {
-            appSettings = settings.Value;
+            appSettings = settings;
         }
 
         [HttpGet("{gameName}")]
         public async Task<ServicesResponse<List<ExpandedGameLegacy>>> Get(string gameName)
         {
-            var result = await GetSearchResults(gameName, appSettings.IGDB.AlternativeSearch);
-            if (result.Count == 0 && appSettings.IGDB.AlternativeSearch)
+            var result = await GetSearchResults(gameName, appSettings.Settings.IGDB.AlternativeSearch);
+            if (result.Count == 0 && appSettings.Settings.IGDB.AlternativeSearch)
             {
                 result = await GetSearchResults(gameName, false);
             }

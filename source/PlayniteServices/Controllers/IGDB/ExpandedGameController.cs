@@ -13,11 +13,8 @@ namespace PlayniteServices.Controllers.IGDB
     [Route("igdb/game_parsed_v2")]
     public class ExpandedGameController : Controller
     {
-        private IOptions<AppSettings> appSettings;
-
-        public ExpandedGameController(IOptions<AppSettings> settings)
+        public ExpandedGameController()
         {
-            appSettings = settings;
         }
 
         [HttpGet("{gameId}")]

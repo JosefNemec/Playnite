@@ -23,11 +23,8 @@ namespace PlayniteServices.Controllers.IGDB
         private static readonly object CacheLock = new object();
         private const string endpointPath = "games";
 
-        private AppSettings appSettings;
-
-        public GameController(IOptions<AppSettings> settings)
+        public GameController()
         {
-            appSettings = settings.Value;
         }
 
         [ServiceFilter(typeof(PlayniteVersionFilter))]
@@ -100,11 +97,8 @@ namespace PlayniteServices.Controllers.IGDB
     [Route("igdb/game_parsed")]
     public class GameParsedController : Controller
     {
-        private IOptions<AppSettings> appSettings;
-
-        public GameParsedController(IOptions<AppSettings> settings)
+        public GameParsedController()
         {
-            appSettings = settings;
         }
 
         [HttpGet("{gameId}")]

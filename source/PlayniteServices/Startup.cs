@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using PlayniteServices.Filters;
 
 namespace PlayniteServices
@@ -48,7 +49,10 @@ namespace PlayniteServices
             });
 
             services.Configure<AppSettings>(Configuration);
+
+            services.AddSingleton(s => new UpdatableAppSettings(s.GetService<IOptionsMonitor<AppSettings>>()));
             services.AddSingleton<PlayniteVersionFilter>();
+            services.AddSingleton<ServiceKeyFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

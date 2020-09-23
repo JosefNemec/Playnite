@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Playnite;
 using Playnite.Common;
+using PlayniteServices.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,21 +16,14 @@ namespace PlayniteServices.Controllers.PlayniteTools
     [Route("playnite/diag")]
     public class DiagnosticsController : Controller
     {
-        private AppSettings appSettings;
-
-        public DiagnosticsController(IOptions<AppSettings> settings)
+        public DiagnosticsController()
         {
-            appSettings = settings.Value;
         }
 
-        [HttpGet("{packageId}/{serviceKey}")]
+        [ServiceFilter(typeof(ServiceKeyFilter))]
+        [HttpGet("{packageId}")]
         public IActionResult GetPackage(Guid packageId, string serviceKey)
         {
-            if (appSettings.ServiceKey != serviceKey)
-            {
-                return BadRequest();
-            }
-
             var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, $"{packageId}.zip", SearchOption.AllDirectories);
             if (diagFiles.Length == 0)
             {
@@ -40,14 +34,10 @@ namespace PlayniteServices.Controllers.PlayniteTools
             return PhysicalFile(diagFile.FullName, System.Net.Mime.MediaTypeNames.Application.Zip, diagFile.Name);
         }
 
-        [HttpDelete("{packageId}/{serviceKey}")]
+        [ServiceFilter(typeof(ServiceKeyFilter))]
+        [HttpDelete("{packageId}")]
         public IActionResult DeletePackage(Guid packageId, string serviceKey)
         {
-            if (appSettings.ServiceKey != serviceKey)
-            {
-                return BadRequest();
-            }
-
             var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, $"{packageId}.zip", SearchOption.AllDirectories);
             if (diagFiles.Length == 0)
             {
@@ -64,14 +54,10 @@ namespace PlayniteServices.Controllers.PlayniteTools
             return Ok();
         }
 
-        [HttpGet("{serviceKey}")]
+        [ServiceFilter(typeof(ServiceKeyFilter))]
+        [HttpGet]
         public ServicesResponse<List<string>> GetPackages(string serviceKey)
         {
-            if (appSettings.ServiceKey != serviceKey)
-            {
-                return new ServicesResponse<List<string>>(null) { Error = "bad request" };
-            }
-
             var diagFiles = Directory.
                 GetFiles(Playnite.DiagsLocation, "*.zip", SearchOption.AllDirectories).
                 Select(a => a.Replace(Playnite.DiagsLocation, "").Trim(Path.DirectorySeparatorChar) + $",{new FileInfo(a).CreationTime}").
@@ -79,6 +65,7 @@ namespace PlayniteServices.Controllers.PlayniteTools
             return new ServicesResponse<List<string>>(diagFiles);
         }
 
+        [ServiceFilter(typeof(PlayniteVersionFilter))]
         [HttpPost]
         public ServicesResponse<Guid> UploadPackage()
         {

@@ -10,21 +10,21 @@ namespace PlayniteServices.Filters
 {
     public class PlayniteVersionFilter : ActionFilterAttribute
     {
-        private AppSettings appSettings;
+        private UpdatableAppSettings appSettings;
 
-        public PlayniteVersionFilter(IOptions<AppSettings> settings)
+        public PlayniteVersionFilter(UpdatableAppSettings settings)
         {
-            appSettings = settings.Value;
+            appSettings = settings;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (appSettings.RestrictPlayniteVersion && appSettings.RestrictedPlayniteVersions?.Any() == true)
+            if (appSettings.Settings.RestrictPlayniteVersion && appSettings.Settings.RestrictedPlayniteVersions?.Any() == true)
             {
                 var allowRequest = false;
                 if (context.HttpContext.Request.Headers.TryGetValue("Playnite-Version", out var headerVer))
                 {
-                    if (appSettings.RestrictedPlayniteVersions.Contains(headerVer))
+                    if (appSettings.Settings.RestrictedPlayniteVersions.Contains(headerVer))
                     {
                         allowRequest = true;
                     }
@@ -32,7 +32,7 @@ namespace PlayniteServices.Filters
 
                 if (!allowRequest)
                 {
-                    context.Result = new JsonResult(new ErrorResponse("Bad version request."));
+                    context.Result = new JsonResult(new ErrorResponse("Bad request."));
                 }
             }
 

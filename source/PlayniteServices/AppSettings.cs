@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,5 +50,16 @@ namespace PlayniteServices
         public IgdbSettings IGDB { get; set; }
         public PatreonSettings Patreon { get; set; }
         public GitHubSettings GitHub { get; set; }
+    }
+
+    public class UpdatableAppSettings
+    {
+        public AppSettings Settings { get; private set; }
+
+        public UpdatableAppSettings(IOptionsMonitor<AppSettings> settings)
+        {
+            Settings = settings.CurrentValue;
+            settings.OnChange((s) => Settings = s);
+        }
     }
 }
