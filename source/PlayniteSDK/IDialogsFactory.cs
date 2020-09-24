@@ -387,7 +387,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="progresAction">Action to be executed.</param>
         /// <param name="progressOptions">Options for progress dialog.</param>
-        /// <returns>Status of the action execution. True if action finished sucessfully and completely.</returns>
+        /// <returns>Status of the action execution.</returns>
         GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressOptions);
     }
 }

@@ -72,6 +72,16 @@ You can check list of all Playnite's dependencies here:
 - [Playnite.DesktopApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.DesktopApp/packages.config)
 - [Playnite.FullscreenApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.FullscreenApp/packages.config)
 
+Referencing Playnite assemblies
+---------------------
+
+> [!WARNING] 
+> **DO NOT** reference non-SDK Playnite assemblies in your project (`Playnite`, `Playnite.Common` etc.). Playnite will refuse to load plugins that reference those assemblies.
+
+If you want to use functionality/code from non-SDK assemblies, you have several options:
+* Open GitHub issues for the functionality to be exposed in the SDK.
+* Link the source code to your project (choose "Add as link" when adding a source file into plugin project) and compile it with your plugin assembly.
+
 
 Plugin settings
 ---------------------

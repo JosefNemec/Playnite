@@ -1,5 +1,27 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 5.3.0
+
+* **Breaking Changes**:
+  * Playnite will no longer load plugins that reference non-SDK Playnite assemblies. See [this page](tutorials/plugins/plugins.md#referencing-playnite-assemblies) for more information.
+
+* **Now obsolete**:
+
+  * These changes do not break compatibility in current version (mentioned methods are still available in SDK), but they will be made breaking in future major Playnite updates.
+  * Added `Id` to extension and theme [manifests](tutorials/extensionsManifest.md). This field is currently not mandatory (will be in next major Playnite update), but should be provided for better extension installation and update support.
+  * The way custom menu items are implemented (for main menu and game menu) has been completely changed (the old system still works temporarily). See [related documentation page](tutorials/menus.md) for more information.  
+  * [NavigationChanged](xref:Playnite.SDK.IWebView) from IWebView is now obsolete, use new `LoadingChanged` instead.
+
+* New
+  * Metadata plugins can now provide `Features`, `AgeRating`, `Series`, `Region` and `Platform` data.
+  * Extensions can now provide [custom menu items](tutorials/menus.md) for game menus, including nested entries.
+  * Most useful Playnite settings are now exposed in [IPlayniteSettingsAPI](xref:Playnite.SDK.IPlayniteSettingsAPI).
+  * [ActivateGlobalProgress](xref:Playnite.SDK.IDialogsFactory) method to show blocking progress dialog.
+  * [LoadingChanged](xref:Playnite.SDK.IWebView) event for WebViews.
+  * [EvaluateScriptAsync](xref:Playnite.SDK.IWebView) method to execute JS code in a WebView.
+  * [GetCookies](xref:Playnite.SDK.IWebView) method to get webview cookies.
+  * [MarkdownToHtml](xref:Playnite.SDK.Data.Markup.MarkdownToHtml(System.String)) method for converting Markdown markup to HTML.
+
 #### 5.2.0
 
 * **Breaking Changes**:

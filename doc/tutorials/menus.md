@@ -4,7 +4,7 @@ Custom application menus
 Basics
 ---------------------
 
-You can currently add new entries into main menu and game menu. Custom menu entries are currently only supported in Desktop mode.
+You can add new entries into main menu and game menu. Custom menu entries are currently only supported in Desktop mode.
 
 Basics
 ---------------------
