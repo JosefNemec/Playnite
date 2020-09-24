@@ -315,7 +315,7 @@ Tuottaa tuloksen: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Poista DPI-skaalaus käytöstä</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Näytä Steam-kaverit -painike</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Näytä piilotetut pelit pikakäynnistyslistoilla</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Vaikuttaa ohjelmaikonin listaan sekä ilmaisinalueen ikonin listaan.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Pikakäynnistysnimikkeiden määrä</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Käytä pelin taustakuvaa ikkunan taustakuvana</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Sumenna tausta</sys:String>
