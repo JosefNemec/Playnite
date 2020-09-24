@@ -14,3 +14,4 @@ Playnite executable accepts following arguments from command line.
 | --hidesplashscreen | Won't show startup splash screen. |
 | --clearwebcache | Clears web (CEF) cache on startup. |
 | --shutdown | Shuts down any existing instances of Playnite. |
+| --safestartup | Start playnite in Safe Mode, only loading built-in extensions and using default theme. |
