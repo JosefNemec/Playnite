@@ -233,18 +233,27 @@ namespace Playnite.Plugins
             return plugins;
         }
 
-        private bool VerifySdkReference(Assembly asm)
+        private bool VerifyAssemblyReferences(Assembly asm, ExtensionManifest manifest)
         {
-            var sdkReference = asm.GetReferencedAssemblies().FirstOrDefault(a => a.Name == "Playnite.SDK");
+            var references = asm.GetReferencedAssemblies();
+            if (references.Any(a => a.Name == "Playnite" || a.Name == "Playnite.Common") &&
+                !BuiltinExtensions.BuiltinExtensionIds.Contains(manifest.Id))
+            {
+                logger.Error($"Unsupported Playnite assemblies are referenced by {manifest.Name} plugin.");
+                return false;
+            }
+
+            var sdkReference = references.FirstOrDefault(a => a.Name == "Playnite.SDK");
             if (sdkReference == null)
             {
                 logger.Error($"Assembly doesn't reference Playnite SDK.");
                 return false;
             }
 
-            if (sdkReference.Version.Major != SDK.SdkVersions.SDKVersion.Major)
+            if (sdkReference.Version.Major != SDK.SdkVersions.SDKVersion.Major ||
+                sdkReference.Version > SDK.SdkVersions.SDKVersion)
             {
-                logger.Error($"Plugin doesn't support this version of Playnite SDK.");
+                logger.Error($"Plugin doesn't support current version of Playnite SDK, supports {sdkReference.Version}");
                 return false;
             }
 
@@ -356,7 +365,7 @@ namespace Playnite.Plugins
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);
             var asmName = AssemblyName.GetAssemblyName(asmPath);
             var assembly = Assembly.Load(asmName);
-            if (VerifySdkReference(assembly))
+            if (VerifyAssemblyReferences(assembly, descriptor))
             {
                 foreach (Type type in assembly.GetTypes())
                 {
@@ -375,6 +384,7 @@ namespace Playnite.Plugins
             }
             else
             {
+                logger.Error($"Plugin dependencices are not compatible: {descriptor.Name}");
                 // TODO: Unload assembly once Playnite switches to .NET Core
             }
         }

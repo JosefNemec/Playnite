@@ -73,6 +73,28 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
+        public static string[] BuiltinExtensionIds { get; } = new string[]
+        {
+            "AmazonLibrary_Builtin",
+            "BattlenetLibrary_Builtin",
+            "BethesdaLibrary_Builtin",
+            "EpicGamesLibrary_Builtin",
+            "GogLibrary_Builtin",
+            "HumbleLibrary_Builtin",
+            "IGDBMetadata_Builtin",
+            "ItchioLibrary_Builtin",
+            "LibraryExporterPS_Builtin",
+            "OriginLibrary_Builtin",
+            "PlayStationLibrary_Builtin",
+            "SteamLibrary_Builtin",
+            "TwitchLibrary_Builtin",
+            "UplayLibrary_Builtin",
+            "XboxLibrary_Builtin"
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
         public static string[] BuiltinDesktopThemeFolders { get; } = new string[]
         {
             "Classic",
