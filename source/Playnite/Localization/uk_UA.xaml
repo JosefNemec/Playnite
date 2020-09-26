@@ -659,7 +659,7 @@
     <sys:String x:Key="LOCCompletionStatusNotPlayed">Не зіграно</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayed">Зіграно</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten">Повністю завершено</sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted">Завершено</sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Пройдено</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlaying">В процесі гри</sys:String>
     <sys:String x:Key="LOCCompletionStatusAbandoned">Покинуто</sys:String>
     <sys:String x:Key="LOCCompletionStatusOnHold">Призупинено</sys:String>
