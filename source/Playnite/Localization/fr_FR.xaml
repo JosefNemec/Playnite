@@ -35,8 +35,12 @@ Si vous souhaitez nous aider à corriger ce problème, vous pouvez brièvement d
 Vous pouvez également cliquer sur le bouton 'Signaler un Crash' pour créer une nouvelle entrée dans GitHub et rédiger le rapport de crash manuellement. 
 
 Merci de votre aide.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">L'extension &quot;{0}&quot; a causé une erreur critique.
+
+Il est recommandé de signaler ce problème au développeur de l'extension (via un fichier log) et de la désactiver si il devait persister.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">L'extension &quot;{0}&quot; a causé une erreur critique.
+
+Il est recommandé de signaler ce problème au développeur de l'extension et de la désactiver si il devait persister.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Une erreur est survenue.
         
 Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rapport de bug. Merci.</sys:String>
@@ -304,13 +308,13 @@ Résultats dans : -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Assombrir les jeux non installés</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans le mode d'affichage détaillé</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Afficher le nombre d'items dans la description des groupes</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Ne montrer que les champs utilisés dans le panneaux de filtres et explorateur</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Afficher le bouton d'accès aux amis Steam</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Afficher les jeux masqués dans la liste de lancement rapide</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Affecte les listes en mode barre des tâches et minimisé.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Nombre de jeux dans la liste de lancement rapide</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utiliser les image de fond des jeux comme arrière-plan de fenêtre</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Flouter les images de fond</sys:String>
@@ -412,8 +416,8 @@ Si cette option est désactivée, les images de fond ne seront téléchargées q
     <sys:String x:Key="LOCSettingsImportExclusionList">Liste d'exclusion d'importation :</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Avertissement lorsqu'une image dépasse la taille recommandée</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Lancer les jeux sans passer par le client officiel</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Ouverture des répertoires par invite de commande</sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Système d'évaluation d'âge requis par défaut</sys:String>
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
     <sys:String x:Key="LOCStrechUniform">Préserver le rapport largeur/hauteur</sys:String>
@@ -604,7 +608,7 @@ Veuillez essayer les solutions suivantes :
   • Essayez d'installer Playnite dans un autre emplacement.</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Impossible d'importer des émulateurs, le fichier de définition d'émulateur n'existe pas.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Échec de l'initialisation de l'interface XInput.</sys:String>
-    <sys:String x:Key="LOCMenuActionExecError"></sys:String>
+    <sys:String x:Key="LOCMenuActionExecError">Échec de l'exécution de l'action.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Modifier les propriétés</sys:String>
     <sys:String x:Key="LOCUseExeIcon">Icône par défaut</sys:String>
