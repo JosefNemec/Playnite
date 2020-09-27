@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Eesti</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite'i keel</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Välju</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Aktiivne filter</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
@@ -806,7 +806,7 @@
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Viimati mängitud</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Lemmikud</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Enim mängitud</sys:String>
-    <sys:String x:Key="LOCQuickFilterAllGames"></sys:String>
+    <sys:String x:Key="LOCQuickFilterAllGames">Kõik</sys:String>
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
     <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
