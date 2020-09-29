@@ -17,7 +17,7 @@ namespace Playnite.Services
 
         public HttpClient HttpClient = new HttpClient()
         {
-            Timeout = new TimeSpan(0, 0, 45)
+            Timeout = new TimeSpan(0, 0, 60)
         };
 
         public BaseServicesClient(string endpoint, Version playniteVersion)
