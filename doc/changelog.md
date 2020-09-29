@@ -4,6 +4,7 @@
 
 * **Breaking Changes**:
   * Playnite will no longer load plugins that reference non-SDK Playnite assemblies. See [this page](tutorials/plugins/plugins.md#referencing-playnite-assemblies) for more information.
+  * Playnite will no longer install extensions and themes that don't have proper version specified. The version string must a valid [.NET version string](https://docs.microsoft.com/en-us/dotnet/api/system.version)!
 
 * **Now obsolete**:
 

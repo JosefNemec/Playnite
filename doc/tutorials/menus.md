@@ -26,7 +26,11 @@ public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
         new GameMenuItem
         {
             Description = "Name of game menu item",
-            Action = (a) => Console.WriteLine("Invoked from game menu item!")
+            Action = (args) =>
+            {
+                 // use args.Games to get list of games attached to the menu source
+                 Console.WriteLine("Invoked from game menu item!");
+            }
         }
     };
 }
@@ -39,7 +43,7 @@ public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
         new MainMenuItem
         {
             Description = "Name of main menu item",
-            Action = (a) => Console.WriteLine("Invoked from main menu item!")
+            Action = (args) => Console.WriteLine("Invoked from main menu item!")
         }
     };
 }
@@ -72,6 +76,7 @@ function global:GetMainMenuItems()
 function global:InvokeGameMenuFunction()
 {
     param($menuArgs)
+    # use $menuArgs.Games to get list of games attached to the menu source
 }
 
 function global:InvokeMainMenuFunction()
@@ -98,6 +103,7 @@ def get_mainmenu_items(menu_args):
     yield menu_item    
 
 def game_menu_function(menu_args):
+    # use menu_args.Games to get list of games attached to the menu source
     pass
 
 def main_menu_function(menu_args):

@@ -13,7 +13,7 @@ Manifest is YAML formatted file with following properties:
 | Id | Unique string identifier for the extension. Must not be shared with any other extension. |
 | Name | Extension name. |
 | Author | Extension author. |
-| Version | Extension version. |
+| Version | Extension version, must be a valid [.NET version string](https://docs.microsoft.com/en-us/dotnet/api/system.version). |
 | Module | File name of assembly `*.dll` file for plugins, `*.ps1` or `*.py` file for scripts. |
 | Type | Extension type, available values are: `Script`, `GenericPlugin`, `GameLibrary`, `MetadataProvider`. |
 | Icon | Optional relative file name of extension icon. |
