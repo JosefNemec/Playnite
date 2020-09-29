@@ -3,28 +3,22 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-
     <sys:String x:Key="LanguageName">한국어</sys:String>
-
-    <sys:String x:Key="LOCLanguageSettingsLabel">언어</sys:String>
-
+    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
     <sys:String x:Key="LOCExitAppLabel">종료</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">필터 활성화됨</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">필터 비활성화됨</sys:String>
     <sys:String x:Key="LOCAditionalFilters">추가 필터</sys:String>
     <sys:String x:Key="LOCFilters">필터</sys:String>
     <sys:String x:Key="LOCFilter">필터</sys:String>
-
     <sys:String x:Key="LOCInvalidDataTitle">잘못된 데이터</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">변경 사항을 저장하시겠습니까?</sys:String>
-
     <sys:String x:Key="LOCAboutHomePageLink">홈페이지: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">GitHub에서 소스 코드 보기</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">진단 패키지 생성</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">시스템 정보 전송</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Playnite에 관하여</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Josef Němec이 개발함</sys:String>
-
     <sys:String x:Key="LOCCategoryWindowTitle">카테고리 지정</sys:String>
     <sys:String x:Key="LOCCategorySetButton">카테고리 설정</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">카테고리 추가</sys:String>
@@ -33,58 +27,54 @@
 다중 값 - 변경 사항 없음 (여러 게임 편집 시)</sys:String>
     <sys:String x:Key="LOCNoCategory">카테고리 없음</sys:String>
     <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
-
-    <sys:String x:Key="LOCCrashWindowTitle">이런, 문제가 발생했습니다…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구할 수 없는 오류가 발생했습니다.
-
-이슈를 고칠 수 있도록 돕고 싶으시다면 충돌 전에 어떤 행동을 하셨는지 간단하게 설명해주시고 분석 패키지를 만들어주세요. 온라인이라면 패키지가 분석을 위해서 Playnite 서버에 업로드됩니다.
-
-또는 '충돌 보고' 버튼을 눌러서 GitHub에 새 이슈를 만들어서 직접 충돌을 제보하실 수 있습니다.
-
-도움을 주셔서 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">복구할 수 없는 오류가 발생했습니다.
 
 이 이슈를 고칠 수 있도록 돕고 싶다면 분석 정보를 보내주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
+    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
+    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite 나가기</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">충돌이 발생하기 전의 행동 (영어로 작성):</sys:String>
-
     <sys:String x:Key="LOCLibraryManager">라이브러리 관리자</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 제거 하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">게임이 실행 중이거나 설치, 삭제되는 중에는 게임을 제거할 수 없습니다.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">게임이 실행 중일 때 설치 제거를 할 수 없습니다.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">정말로 이 게임을 제거하시겠습니까?
-
-자동으로 불러온 게임은 다음에 불러오기를 시도할 때 Playnite에 다시 나타날 수 있습니다 (설정에 따라 다름).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">정말로 {0}개의 게임을 제거하시겠습니까?
-
-자동으로 불러온 게임은 다음에 불러오기를 시도할 때 Playnite에 다시 나타날 수 있습니다 (설정에 따라 다름).</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">정말로 현재 사용하지 않는 {0}개의 항목을 제거하시겠습니까?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">사용하지 않는 필드를 찾을 수 없습니다.</sys:String>
-
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam 친구</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif">저장해야 할 변경 사항이 있습니다</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">게임 라이브러리 형식 업데이트 중…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">데이터베이스 업데이트를 실패했습니다.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">게임 라이브러리를 업데이트할 수 없습니다. {0} MB의 여유 공간이 필요합니다.</sys:String>
-
     <sys:String x:Key="LOCGameError">게임 에러</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">게임을 시작할 수 없습니다. '{0}'을 데이터베이스에서 찾을 수 없습니다.</sys:String>
     <sys:String x:Key="LOCGameStartError">게임을 시작할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">액션을 시작할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">게임 위치를 열 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">바로가기를 생성하지 못했습니다: {0}</sys:String>
+    <sys:String x:Key="LOCManualOpenError"></sys:String>
     <sys:String x:Key="LOCGameInstallError">게임을 설치할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">게임을 삭제할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">시작 액션이 설정되지 않았습니다.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound">이 게임을 담당하는 라이브러리 플러그인이 설치되거나 활성화되지 않았습니다.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">공식 메타데이터 다운로드를 사용할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">선택한 게임이 없습니다.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">게임의 스크립트 액션 실행 실패.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">전역 스크립트 액션 실행 실패.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 또는 그 이후 버전이 설치되어 있지 않습니다.</sys:String>
-
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">활성화</sys:String>
     <sys:String x:Key="LOCRemoveTitle">제거</sys:String>
@@ -113,6 +103,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">최근 플레이</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">가장 많이 플레이</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">플레이 횟수</sys:String>
+    <sys:String x:Key="LOCNotesLabel"></sys:String>
     <sys:String x:Key="LOCAddedLabel">추가일</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">날짜 추가됨</sys:String>
     <sys:String x:Key="LOCModifiedLabel">수정일</sys:String>
@@ -134,6 +125,7 @@
     <sys:String x:Key="LOCInstallationLabel">설치</sys:String>
     <sys:String x:Key="LOCActionsLabel">액션</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">다운로드 중…</sys:String>
+    <sys:String x:Key="LOCDownloadingMediaLabel"></sys:String>
     <sys:String x:Key="LOCLoadingLabel">로딩 중…</sys:String>
     <sys:String x:Key="LOCTypeLabel">유형</sys:String>
     <sys:String x:Key="LOCProfileLabel">프로필</sys:String>
@@ -174,21 +166,8 @@
     <sys:String x:Key="LOCColumns">열</sys:String>
     <sys:String x:Key="LOCRow">행</sys:String>
     <sys:String x:Key="LOCRows">행</sys:String>
-
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">동적 부분을 추가하기 위해서 특별한 변수를 추가할 수 있습니다:
-{InstallDir} - 게임 설치 경로
-{InstallDirName} - 설치 폴더
-{ImagePath} - 설정되어 있을 경우 게임 ISO/ROM 경로
-{ImageName} - 게임 ISO/ROM 파일 이름
-{ImageNameNoExt} - 확장자 없는 게임 ISO/ROM 파일 이름
-{PlayniteDir} - Playnite 설치 경로
-{Name} - 게임 이름
-
-예시: -image &quot;{ImagePath}&quot; -fullscreen
-결과: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
-
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">실행 액션이 손실되었거나 실행 액션이 URL로 설정된 경우 아이콘을 불러올 수 없습니다.</sys:String>
-
     <sys:String x:Key="LOCMetaSkipNonEmpty">잃어버린 메타데이터만 다운로드</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">이 옵션을 활성화할 경우 이미 다운로드 받은 정보는 다운로드하지 않습니다.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">게임 선택</sys:String>
@@ -200,7 +179,6 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">어떤 필드를 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하세요.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">위의 로고를 클릭하여 Playnite가 사용하는 igdb.com의 데이터 베이스 강화에 기여해주십시오.</sys:String>
-
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Steam 라이브러리 업데이트 중…</sys:String>
     <sys:String x:Key="LOCProgressGOGLibImport">GOG 라이브러리 업데이트 중…</sys:String>
@@ -213,7 +191,6 @@
     <sys:String x:Key="LOCProgressSteamCategoryImport">라이브러리 업데이트 중…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">라이브러리 업데이트 완료</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">리소스 해제 중...</sys:String>
-
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">설정</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">설정…</sys:String>
@@ -222,7 +199,9 @@
     <sys:String x:Key="LOCMenuLibraryManagerTitle">라이브러리 관리…</sys:String>
     <sys:String x:Key="LOCMenuTools">도구</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">메타데이터 다운로드...</sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">소프트웨어 도구…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">서드파티 클라이언트 열기</sys:String>
+    <sys:String x:Key="LOCMenuClients"></sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">게임 라이브러리 업데이트</sys:String>
     <sys:String x:Key="LOCMenuAddGame">게임 추가</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">직접추가...</sys:String>
@@ -241,7 +220,6 @@
     <sys:String x:Key="LOCMenuSuspendSystem">시스템 정지</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">시스템 최대 절전</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">무작위로 게임 고르기</sys:String>
-
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">상세보기에 표시할 게임 정보</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">간격</sys:String>
@@ -261,6 +239,7 @@
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">탐색창 방식에서 상세정보 위치</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">커버 아트 렌더링</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">고정 비율 설정</sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">늘이기 모드</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD 박스</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">에픽게임즈 스토어</sys:String>
@@ -284,7 +263,7 @@
     <sys:String x:Key="LOCSettingsImportLabel">라이브러리 변경 사항을 자동으로 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">설치된 게임 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">계정 연결</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel">설치되지 않은 게임 가져오기</sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">모든 게임 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">모든 게임 가져오기 (공개된 계정이나 API 키가 필요합니다)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">올바르지 않은 데이터베이스 파일 위치입니다. 올바른 파일 위치로 설정되어야 합니다.</sys:String>
@@ -293,22 +272,26 @@
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">카테고리를 가져오기 위한 Steam 계정이 선택되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">시작 시 서드파티 라이브러리 업데이트 다운로드</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">게임을 가져온 후 메타데이터 다운로드</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized">최소화 상태로 시작</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot">컴퓨터 시작 시 Playnite 실행</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Playnite를 시작프로그램으로 등록하지 못했습니다.</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen">전체 화면 모드로 시작</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Steam, Origin 등 포함.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">비동기 이미지 로딩</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">이미지 로드 시간을 늦추는 대신 게임 목록의 스크롤이 더 부드러워집니다.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">커버 아트가 손실된 경우 게임 이름 표시</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">바둑판식 보기에서 게임 이름 표시</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">삭제한 게임 어둡게 표시하기</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">자세히 보기 방식의 목록에서 게임 아이콘 표시</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">그룹 설명에 항목 수 표시</sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">하드웨어 가속 비활성화</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">끊기는 현상이 발생하거나 비슷한 UI 문제가 발생할 때 사용하세요</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI 스케일링 비활성화</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Steam 친구 버튼 표시</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">게임 이미지를 배경으로 사용</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">배경 흐림</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">고품질</sys:String>
@@ -327,13 +310,13 @@
     <sys:String x:Key="LOCImportSteamLastActivityLabel">Steam에서 최근 플레이 가져오기</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">웹 캐시 삭제</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">계정을 연동하는데 발생하는 문제를 해결할 수도 있습니다.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">트레이 아이콘 표시하기</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray">트레이로 최소화</sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray">닫은 후 트레이로</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">게임을 시작할 시:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">게임을 종료할 시:</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Galaxy 클라이언트로 게임 시작</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">클라우드 저장, 플레이 시간 기록 등의 기능이 활성화됩니다.</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy"></sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">모든 Steam 게임에서 현재 카테고리와 숨김과 즐겨찾기 상태를 덮어씁니다. 정말로 계속하시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">카테고리를 가져오시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">카테고리를 가져올 계정이 선택되지 않아 카테고리를 가져올 수 없습니다.</sys:String>
@@ -351,14 +334,10 @@
     <sys:String x:Key="LOCSettingsCreateThemes">새로운 테마 생성</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">더 많은 확장프로그램 받기</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">새 확장 만들기</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization">번역에 기여하기</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">몇몇 변경 사항은 Planite가 재시작을 필요로 합니다. 지금 Playnite를 재시작하시겠습니까?
-
-현재 진행 중인 작업 (메타데이터 다운로드)이 취소될 수 있습니다.</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Playnite 번역을 도와주세요</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Playnite를 재시작하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite는 자동으로 데이터베이스 파일을 이동시킬 수 없습니다. 데이터베이스 파일 위치가 변경된 경우 수동으로 이동/복사 하여야 합니다. 만약 데이터베이스가 지정된 위치에 없다면 새로 생성합니다.
-
-새로운 데이터베이스 위치는 재시작후 적용됩니다.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">&quot;닫기&quot; 액션이 설정되어있으면 플레이 시간이 기록되지 않습니다.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">행 수</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">열 수</sys:String>
@@ -372,9 +351,9 @@
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">메타데이터를 다시 다운로드하지 않으면 기존 게임에는 소급 적용되지 않습니다.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">지원 라이브러리의 게임 시간을 우선하기</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">라이브러리 동기화 중에 Playnite가 기록한 플레이 시간을 적용하는 대신 원격 라이브러리에서 기록된 플레이 시간을 다운로드합니다.</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">데스크탑 모드에서 컨트롤러 지원 활성화</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">가이드 버튼을 전체 화면으로 열기</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">새로운 게임을 불러온 후 자동으로 다운로드 되는 메타데이터 설정.</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor">표시 모니터</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">게임 이름 표시</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">배터리 상태 보기</sys:String>
@@ -386,6 +365,7 @@
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">수평 스크롤</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">하위 섹션 중 하나 선택</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">사용 가능한 설정이 없습니다</sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings"></sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">이 스크립트는 라이브러리의 모든 게임에서 실행됩니다. 독립된 스크립트는 각각의 게임에 게임 자세한 정보 설정을 통해서 지정할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation">배경 이미지 애니메이션 전환</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">글꼴 크기</sys:String>
@@ -397,29 +377,29 @@
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">디스플레이</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">텍스트 서식 지정 모드</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">텍스트 렌더링 모드</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice">텍스트 렌더링 및 서식 지정 설정은 현재 게임 설명 텍스트에 적용되지 않습니다.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">배경 이미지 즉시 다운로드</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">활성화되면 Playnite는 메타데이터를 다운로드할 때 배경 아트워크를 다운로드하며, 더 많은 디스크 공간을 사용하며 오프라인에서 아트워크를 사용할 수 있습니다.
 
 비활성화되면 배경 아트워크는 처음에 필요할 때에만 다운로드되며, 더 적은 공간을 사용하지만 아트워크가 표시되기까지 시간이 걸리며 몇몇 이미지는 오프라인에서 사용할 수 없게 됩니다.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">게임을 나가면 자동으로 제3자 클라이언트 닫기</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">클라이언트 종료까지 남은 시간 (초)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">게임 세션이 다음보다 짧으면 닫지 마세요 (초)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">다음 클라이언트 자동으로 닫기:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">자동으로 클라이언트 닫기</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">너무 큰 게임 미디어를 지정할 때 경고 표시하기</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">정식 클라이언트 실행 없이 바로 게임 시작하기</sys:String>
-
+    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
     <sys:String x:Key="LOCStrechUniform">원본 비율로 크기에 맞추기</sys:String>
     <sys:String x:Key="LOCStrechUniformToFill">원본 비율로 가장 크게 맞추기</sys:String>
-
     <sys:String x:Key="LOCDockLeft">왼쪽</sys:String>
     <sys:String x:Key="LOCDockRight">오른쪽</sys:String>
     <sys:String x:Key="LOCDockTop">상단</sys:String>
     <sys:String x:Key="LOCDockBottom">하단</sys:String>
-
     <sys:String x:Key="LOCImportError">가져오기 오류</sys:String>
     <sys:String x:Key="LOCLoginChecking">권한 상태 확인 중...</sys:String>
     <sys:String x:Key="LOCLoginRequired">인증이 필요함</sys:String>
@@ -427,40 +407,32 @@
     <sys:String x:Key="LOCLoggedIn">사용자 인증됨</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">인증이 필요함</sys:String>
     <sys:String x:Key="LOCNotLoggedInError">사용자 인증에 실패하였습니다.</sys:String>
-
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">메타데이터 가져오기</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">메타데이터 다운로드</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">선택된 설정을 모든 메타데이터 다운로드에 적용합니다.
 설정에서도 수정할 수 있습니다.</sys:String>
-
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">에뮬레이터 게임 가져오기 도구</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro">이 도구는 콘솔 에뮬레이터를 다운로드하고 가져오는 작업과, 에뮬레이터 게임을 가져오는 작업을 안내합니다.</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">추가적인 에뮬레이터나 게임을 언제든 메인 메뉴에서 추가할 수 있다는 것을 기억하십시오. (에뮬레이터 설정은 &quot;라이브러리&quot; 메뉴에서 가능하며 에뮬레이터 게임은 &quot;게임 추가&quot; 메뉴에서 가능합니다.)</sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Playnite는 해당 목록의 에뮬레이터를 찾을 수 있으며 자동으로 설정할 수 있습니다. 그쪽 웹사이트에 방문해서 다운로드 및 설치를 할 수 있습니다. 한 번 에뮬레이터를 설치하면 Playnite에 가져오기 위해 다음 화면으로 진행해주세요.
-
-또한 설정 메뉴에서 아무 사용자 지정 에뮬레이터를 설정하고 가져올 수 있습니다.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">&quot;폴더에서 자동감지&quot; 버튼을 눌러 PC에 설치된 에뮬레이터를 불러올 수 있습니다. Playnite가 선택된 폴더에서 알려진 에뮬레이터를 찾고 불러오기 옵션을 제공할 것입니다. &quot;폴더에서 자동감지&quot; 버튼을 통하여 아래의 현재 리스트에 여러개의 에뮬레이터를 추가 할 수 있습니다.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">&quot;에뮬레이터를 사용하여 폴더 스캔&quot; 버튼을 통하여 게임을 불러올 수 있습니다. 에뮬레이터를 선택하면 어떤 파일 형식을 스캔하고 불러와야하는지 Playnite에 제공합니다. &quot;에뮬레이터를 사용하여 폴더 스캔&quot; 버튼을 통하여 아래의 현재 리스트에 여러개의 게임을 추가 할 수 있습니다.</sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">불러오기 위한 에뮬레이터가 선택되지 않았습니다. 에뮬레이터 설정 없이 자동으로 에뮬레이터 게임을 불러올 수 없습니다. 불러오기 과정을 계속 진행하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playnite에 에뮬레이터 설정이 없습니다. 에뮬레이터 설정과 파일 형식 없이 게임을 불러올 수 없습니다. 에뮬레이터를 추가하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">에뮬레이터를 사용하여 폴더 스캔</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">파일 선택</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">폴더에서 자동감지</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">에뮬레이터 설정…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">스캔중...</sys:String>
-
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">처음 설정</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">이 마법사는 게임 자동 불러오기 과정과 외부 게임 라이브러리 설정을 할 수 있도록 해줍니다. Playnite는 Steam이나 GOG 같은 다수의 게임 서비스에서 게임을 자동으로 불러올 수 있으며 애플리케이션을 시작할 때마다 자동으로 라이브러리를 최신으로 유지합니다.
-메인 메뉴에서 'Playnite' 버튼을 누름으로서 언제나 어떤 플랫폼의 어떤 사용자 지정 게임이든 항상 추가할 수 있습니다.
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">모든 유저를 위한 기본 프로그램 데이터 위치</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">변경 위치</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">라이브러리 통합</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">자동적으로 다음과 같은 서비스에서 게임을 불러옵니다. 게임에 변화(설치 상태)가 Playnite의 초기 실행 또는 설정을 통하여 자동으로 업데이트 됩니다. 
-선택된 설정은 초기 불러오기 및 불러오기 절차에 반영됩니다.</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration">Steam 통합</sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration">Origin 통합</sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration">GOG 통합</sys:String>
@@ -474,10 +446,9 @@
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">초기 설정이 완료되었습니다. 이후에도 '설정' 메뉴에서 모든 설정을 변경할 수 있습니다.
 
 또한 Playnite 로고 메뉴를 눌러서 이후에도 다른 게임을 추가할 수 있습니다.</sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport">에뮬레이터 불러오기 가이드 열기</sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">바둑판식 보기 레이아웃</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">선호하는 Playnite의 바둑판식 레이아웃을 선택하십시오. 레이아웃 이미지 및 이미지 늘리기 설정은 프로그램 설정에서 언제든 변경할 수 있습니다.</sys:String>
-
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">플랫폼 및 에뮬레이터 설정</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">에뮬레이터 설정</sys:String>
@@ -509,7 +480,6 @@
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">정말로 {0} 플랫폼을 제거하시겠습니까?
 현재 {1} 게임과 {2} 에뮬레이터에서 사용되고 있습니다.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">설정 도움말</sys:String>
-
     <sys:String x:Key="LOCMenuSortByTitle">정렬 기준</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">묶기 기준</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">오름차순</sys:String>
@@ -522,13 +492,13 @@
     <sys:String x:Key="LOCMenuView">보기</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">탐색창</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">필터 창</sys:String>
-
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">아이콘</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">커버 이미지</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">배경 이미지</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">정렬 이름</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">라이브러리</sys:String>
+    <sys:String x:Key="LOCGameManualTitle">수동</sys:String>
     <sys:String x:Key="LOCGameNameTitle">이름</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">계정이름</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">플랫폼</sys:String>
@@ -542,7 +512,7 @@
     <sys:String x:Key="LOCGameInstallationStatus">설치 상태</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">설치됨</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">설치됨</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle">설치 제거됨</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">설치되지 않음</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">숨겨짐</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">즐겨찾기</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">최근 플레이</sys:String>
@@ -552,7 +522,6 @@
     <sys:String x:Key="LOCGameCoverTitle">커버 이미지</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">링크</sys:String>
     <sys:String x:Key="LOCGameROMTitle">이미지, ROM or ISO 경로</sys:String>
-
     <sys:String x:Key="LOCGenreLabel">장르</sys:String>
     <sys:String x:Key="LOCGenresLabel">장르</sys:String>
     <sys:String x:Key="LOCCompanyLabel">회사</sys:String>
@@ -581,40 +550,30 @@
     <sys:String x:Key="LOCDiagPackageCreationError">진단 패키지 생성 실패.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">진단 패키지 자동 업로드 실패.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">진단 정보가 성공적으로 보내졌습니다.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">분석 패키지가 성공적으로 생성되었으며 업로드되었습니다.
-다음 아이디를 이슈 리포트에 첨부해주세요:</sys:String>
-
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSteamCategoryImportError">Steam 카테고리 불러오기 실패.</sys:String>
-
     <sys:String x:Key="LOCBnetInstalledImportError">설치된 Battle.net 게임 불러오기 실패.</sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError">설치된 Steam 게임 불러오기 실패.</sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError">설치된 GOG 게임 불러오기 실패.</sys:String>
     <sys:String x:Key="LOCOriginInstalledImportError">설치된 Origin 게임 불러오기 실패.</sys:String>
     <sys:String x:Key="LOCUplayInstalledImportError">설치된 Uplay 게임 불러오기 실패.</sys:String>
-
     <sys:String x:Key="LOCBnetLibraryImportError">Battle.net 라이브러리 다운로드 실패.</sys:String>
     <sys:String x:Key="LOCSteamLibraryImportError">Steam 라이브러리 다운로드 실패.</sys:String>
     <sys:String x:Key="LOCGOGLibraryImportError">GOG 라이브러리 다운로드 실패.</sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError">Origin 라이브러리 다운로드 실패.</sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError">Uplay 라이브러리 다운로드 실패.</sys:String>
-
     <sys:String x:Key="LOCLibraryImportError">{0} 으로부터 게임 불러오기 실패.</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">선택된 에뮬레이터 프로파일로 부터 게임을 찾을 수 없습니다. 프로파일이 파일 확장자나 플랫폼 정보를 포함 하고 있지 않습니다.</sys:String>
-    <sys:String x:Key="LOCStartGenericError">Playnite 실행 실패. 실행 중인 프로그램을 모두 종료하고 다시 시도해 보십시오.</sys:String>
+    <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">&quot;{0}&quot;, 색상 프로필 &quot;{1}&quot; 적용 실패
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">링크를 열 수 없습니다. URL이 올바른 포맷이 아닙니다.</sys:String>
-    <sys:String x:Key="LOCAppStartupError">프로그램 실행 실패.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">웹 뷰 구성요소를 불러오는 데에 실패했으며, Planite가 계속 시작될 수 없습니다.
-
-해당 문제를 해결하기 위해서 다음 방법을 시도해보세요:
-  • 모든 파일이 제대로 설치되었는지 확인해보세요, 재설치가 도움이 될 수도 있습니다
-  • 안티 바이러스가 Playnite 디렉토리 안에 있는 파일을 차단하는지 확인해보세요
-  • 다른 곳에 설치해보세요</sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">에뮬레이터 정의 파일이 없기 때문에 에뮬레이터를 가져올 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCAppStartupError"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Xinput 인터페이스 초기화에 실패했습니다.</sys:String>
-
+    <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">게임 상세정보 편집</sys:String>
     <sys:String x:Key="LOCUseExeIcon">실행 액션파일로 부터 가져오기</sys:String>
@@ -675,9 +634,11 @@
     <sys:String x:Key="LOCPlugins">플러그인</sys:String>
     <sys:String x:Key="LOCMetadataProviders">메타데이터 출처</sys:String>
     <sys:String x:Key="LOCExtensions">확장</sys:String>
+    <sys:String x:Key="LOCExtensionID">확장 ID</sys:String>
     <sys:String x:Key="LOCReloadScripts">스크립트를 다시 로드</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">모든 스크립트 다시 로드 성공.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">특정 검색/필터 기준에 맞는 게임이 없음</sys:String>
+    <sys:String x:Key="LOCNoItemsFound">항목 없음</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">데스크톱 모드로 전환</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite 나가기</sys:String>
     <sys:String x:Key="LOCLibraries">라이브러리</sys:String>
@@ -686,6 +647,7 @@
     <sys:String x:Key="LOCExtensionVersion">버전:</sys:String>
     <sys:String x:Key="LOCExtensionModule">모듈:</sys:String>
     <sys:String x:Key="LOCLibrary">라이브러리</sys:String>
+    <sys:String x:Key="LOCStatistics">통계</sys:String>
     <sys:String x:Key="LOCAll">모두</sys:String>
     <sys:String x:Key="LOCNone">없음</sys:String>
     <sys:String x:Key="LOCNotifications">알림</sys:String>
@@ -699,16 +661,22 @@
     <sys:String x:Key="LOCFontLargest">가장 크게</sys:String>
     <sys:String x:Key="LOCDefault">기본</sys:String>
     <sys:String x:Key="LOCSelect">선택</sys:String>
+    <sys:String x:Key="LOCSelectAll">모두 선택</sys:String>
     <sys:String x:Key="LOCFirst">첫번째</sys:String>
     <sys:String x:Key="LOCRandom">무작위</sys:String>
     <sys:String x:Key="LOCUserSelect">유저 선택</sys:String>
     <sys:String x:Key="LOCLoadMore">더 보기</sys:String>
     <sys:String x:Key="LOCTransparent">투명</sys:String>
-
+    <sys:String x:Key="LOCCollapse">접기</sys:String>
+    <sys:String x:Key="LOCExpand">펼치기</sys:String>
+    <sys:String x:Key="LOCCollapseAll">모두 접기</sys:String>
+    <sys:String x:Key="LOCExpandAll">모두 펼치기</sys:String>
+    <sys:String x:Key="LOCOther">기타</sys:String>
+    <sys:String x:Key="LOCThemes">테마</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">에뮬레이터 실행 변수</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">추가 에뮬레이터 변수</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">에뮬레이터 변수 덮어쓰기</sys:String>
-
+    <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">불러올 게임 선택</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">메타데이터 검색</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">업데이트 사용 가능</sys:String>
@@ -719,24 +687,24 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">새로운 버전 확인에 실패했습니다.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">새로운 버전을 찾지 못했습니다. 최신 버전입니다.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">업데이트 다운로드 및 설치 실패.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">백그라운드 작업이 실행중입니다. 취소하고 업데이트 설치를 진행 하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">백그라운드 작업이 실행중입니다. 취소하고 Playnite를 닫으시겠습니까?</sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite의 새 업데이트가 있습니다</sys:String>
-
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">테마 이미지 다시 불러오기</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">선택된 테마 적용</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">파일 변화 감시</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">감시 파일이 변경되었을 경우 자동으로 테마 적용</sys:String>
     <sys:String x:Key="LOCScriptRuntime">스크립트 런타임</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription">게임 시작하기 전에 실행</sys:String>
-    <sys:String x:Key="LOCPostScriptDescription">게임이 끝난 후에 실행</sys:String>
-
+    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">기본값으로 저장</sys:String>
     <sys:String x:Key="LOCFavoriteGame">즐겨찾기에 추가</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">즐겨찾기에서 제거</sys:String>
-    <sys:String x:Key="LOCHideGame">숨기기</sys:String>
-    <sys:String x:Key="LOCUnHideGame">라이브러리에 표시</sys:String>
+    <sys:String x:Key="LOCHideGame">이 게임 숨기기</sys:String>
+    <sys:String x:Key="LOCUnHideGame">숨김에서 제거</sys:String>
     <sys:String x:Key="LOCEditGame">편집...</sys:String>
     <sys:String x:Key="LOCSetGameCategory">카테고리 설정...</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">완료 상황 설정</sys:String>
@@ -748,30 +716,27 @@
     <sys:String x:Key="LOCUninstallGame">설치 제거</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">설치 위치 열기</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">바탕화면 바로가기 생성</sys:String>
+    <sys:String x:Key="LOCOpenGameManual">설명서 열기</sys:String>
     <sys:String x:Key="LOCMoreAction">더 보기</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin">라이브러리 플러그인 적용</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip">이 게임의 실행 과정이 라이브러리 플러그인에 의해 관리됩니다.</sys:String>
-
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">'{0}' 게임에 관련된 정보를 찾지 못하였습니다.</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">팁: 하나의 게임 정보를 편집하는동안 편집 메뉴에서 고급 메타데이터 다운로드를 이용할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">다른 절차가 진행중일 경우 사용할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">설명은 html 구문에 민감합니다.</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">플레이 시간은 초단위로 측정 및 저장됩니다.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0에서 100사이의 값 또는 점수가 없으면 빈칸.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 개발은 다음의 후원자에 지원을 받습니다.</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">코드, 번역 및 기타 기여는 특별한 순서가 없습니다:</sys:String>
-
     <sys:String x:Key="LOCCancelMonitoringAskTitle">게임 모니터링을 취소하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk">설치 모니터링이 실행중입니다. 중단하고 게임을 이전 상태로 되돌리시겠습니까?</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">게임 실행 모니터링이 실행중입니다. 중단하고 게임을 이전 상태로 되돌리시겠습니까?</sys:String>
-
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
     <sys:String x:Key="LOCTimePlayed">플레이 시간</sys:String>
     <sys:String x:Key="LOCLastPlayed">최근 플레이</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}시간 {1}분</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} 분</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} 초</sys:String>
     <sys:String x:Key="LOCPlayedNone">플레이 하지 않음</sys:String>
-
     <sys:String x:Key="LOCOpeningDesktopModeMessage">데스크탑 모드 실행...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">전체화면 실행...</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">게임 라이브러리 불러오는중...</sys:String>
@@ -781,29 +746,24 @@
     <sys:String x:Key="LOCScriptError">스크립트 오류</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">확장기능을 수행하는데 실패하였습니다.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">메타데이터 폴더 열기</sys:String>
-
     <sys:String x:Key="LOCClientNotInstalledError">{0} 클라이언트가 설치되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} 클라이언트가 실행됩니다. 로그인후 이 메세지를 닫아주세요.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">로그인을 기다리고 있습니다. 로그인 후 이 창을 닫아주십시오...</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">게임 설치 폴더를 찾을 수 없음.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">잘못된 액션 설정.</sys:String>
-
     <sys:String x:Key="LOCTroubleShootingAccountLink">계정 연동 문제 가이드</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">문제 해결</sys:String>
-
     <sys:String x:Key="LOCRenameItem">항목 이름 재설정</sys:String>
     <sys:String x:Key="LOCAddNewItem">새 항목 추가</sys:String>
     <sys:String x:Key="LOCEnterName">이름 입력</sys:String>
     <sys:String x:Key="LOCEnterNewName">새로운 이름 입력</sys:String>
-
     <sys:String x:Key="LOCPLaytimeLessThenAnHour">1시간 미만</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1시간에서 10시간</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10시간에서 100시간</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100시간에서 500시간</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500시간에서 1000시간</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000시간 이상</sys:String>
-
-    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite를 설치하기 위해서 재시작이 필요합니다. 지금 재시작 하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">테마/확장 기능이 지원하지 않는 API 버전을 사용중입니다.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">설치 성공.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">확장기능을 설치하시겠습니까?</sys:String>
@@ -814,79 +774,72 @@
 {1} 제공
 버전 {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">테마 설치에 실패했습니다.</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">정말로 새 테마를 설치하시겠어요. 이미 설치되어 있는 건 덮어씌워집니다.
-
-{0}
-{1} 제공
-버전 {2}</sys:String>
-
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Playnite에서 나가서 기본 브라우저를 통해 해당 웹 페이지로 가려고 합니다. 계속하시겠습니까?
-
-{0}</sys:String>
-
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">선택한 이미지는 너무 크며 성능이 저하될 수 있습니다. 큰 이미지를 사용하는 것은 UI 반응에 나쁜 결과를 가져올 수 있으며 더 많은 메모리를 사용합니다.
-
-추천 최대 해상도:
-아이콘: {0} 메가 픽셀
-커버: {1} 메가 픽셀
-배경: {2} 메가 픽셀</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">퍼포먼스 주의</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">다시 표시 안함</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">선택한 이미지는 너무 크며 성능이 저하될 수 있습니다.</sys:String>
-
+    <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
+    <sys:String x:Key="LOCThemeUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
+    <sys:String x:Key="LOCDiagGenerating"></sys:String>
+    <sys:String x:Key="LOCDiagUploading">분석 패키지 업로드 중…</sys:String>
+    <sys:String x:Key="LOCAddFromExe">파일 가져오기…</sys:String>
+    <sys:String x:Key="LOCWhatIsThis">이게 뭔가요?</sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">정말로 이 작업을 수행하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime">총 플레이 시간</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">평균 플레이 시간</sys:String>
+    <sys:String x:Key="LOCStatsTopPlayTime">최고 플레이 시간</sys:String>
+    <sys:String x:Key="LOCOverviewLabel">개요</sys:String>
+    <sys:String x:Key="LOCSidebar">사이드바</sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">도전 과제</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">포럼</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">소식</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">상점 페이지</sys:String>
-
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif">itch.io 클라이언트가 열립니다. 가입한뒤 이 메세지를 닫아주십시오.</sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">로그인을 기다리고 있습니다. 로그인 후 이 창을 닫아주십시오...</sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError">Itch 클라이언트 버전 25 이상의 최신 버전이 설치되지 않았습니다.</sys:String>
-
+    <sys:String x:Key="LOCItchioClientNotInstalledError">itch.io 앱 버전 25 이상의 최신 버전이 설치되지 않았습니다.</sys:String>
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">계정 로그인</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">계정명</sys:String>
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">전체 라이브러리 동기화를 위하여 계정에 로그인 하거나 공개 계정 이름을 작성하십시오.
 공개 계정 이름을 사용할 경우, GOG 개인정보 설정에 라이브러리 공개로 설정되어 있어야 합니다.</sys:String>
-
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">계정 URL 이름</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">인증됨</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">계정이 비공개 입니다. API 키가 필요합니다.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub">커뮤니티 허브</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">토론</sys:String>
+    <sys:String x:Key="LOCSteamLinksGuides">가이드</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">창작마당</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers">수직 커버 이미지 다운로드</sys:String>
-
-    <sys:String x:Key="LOCFullscreenFirstTimeError">최초 설치가 완료되지 않았습니다. 최초 설치를 완료하기 위하여 Playnite가 데스크탑 모드로 재실행됩니다.</sys:String>
+    <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">최근 플레이</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">즐겨찾기</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">가장 많이 플레이</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">모두</sys:String>
-
     <sys:String x:Key="LOCGameListFiltered">필터 적용됨.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">검색 결과:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">같은 이름이 이미 사용중입니다.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">현재 필터로 선택 제한</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">다른 거 고르기</sys:String>
-
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">아트워크가 없을 때 스크린샷 사용</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">다수의 이미지를 사용할 수 있을 때 사용하기:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">{0} 배경 이미지 선택</sys:String>
-
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">가능하다면 Epic 클라이언트를 실행하지 않고 게임을 직접 실행을 시도하기</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">이 옵션은 모든 게임에서 작동하지 않습니다. 문제 해결 링크에서 가능한 해결 방법을 확인해보세요.</sys:String>
-
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">제3자 스토어 게임 무시</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Trove  게임 가져오기</sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">활성화되어 있을 경우 제3자 클라이언트가 필요한 게임은 가져오지 않습니다.
-중복을 방지하기 위해서 이미 Playnite에서 지원하는 게임도 포함됩니다.</sys:String>
-
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree"></sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip"></sys:String>
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">클라이언트를 열 때 Microsoft Store 대신 Xbox Pass 앱 시작하기</sys:String>
     <sys:String x:Key="LOCXboxImport360Games">Xbox 360 게임 가져오기</sys:String>
