@@ -229,12 +229,18 @@ namespace Playnite.DesktopApp.Controls
             {
                 foreach (var tool in mainModel.Database.SoftwareApps.OrderBy(a => a.Name))
                 {
+                    string icon = null;
+                    if (!tool.Icon.IsNullOrEmpty())
+                    {
+                        icon = mainModel.Database.GetFullFilePath(tool.Icon);
+                    }
+
                     AddMenuChild(
                         toolsItem.Items,
                         tool.Name,
                         mainModel.StartSoftwareToolCommand,
                         tool,
-                        mainModel.Database.GetFullFilePath(tool.Icon));
+                        icon);
                 }
 
                 toolsItem.Visibility = Visibility.Visible;
