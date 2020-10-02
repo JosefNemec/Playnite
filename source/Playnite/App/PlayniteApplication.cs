@@ -339,6 +339,7 @@ namespace Playnite
         {
             logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");
             SDK.Data.Markup.Init(new MarkupConverter());
+            SDK.Data.Serialization.Init(new DataSerializer());
             Startup();
             logger.Info($"Application {CurrentVersion} started");
         }

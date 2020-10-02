@@ -1,6 +1,7 @@
 ﻿using Nett;
 using Newtonsoft.Json;
 using Playnite.SDK;
+using Playnite.SDK.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +17,59 @@ namespace Playnite.Common
         public static string ToJson(this object obj, bool formatted = false)
         {
             return Serialization.ToJson(obj, formatted);
+        }
+    }
+
+    public class DataSerializer : IDataSerializer
+    {
+        public string ToYaml(object obj)
+        {
+            return Serialization.ToYaml(obj);
+        }
+
+        public T FromYaml<T>(string yaml) where T : class, new()
+        {
+            return Serialization.FromYaml<T>(yaml);
+        }
+
+        public T FromYamlFile<T>(string filePath) where T : class, new()
+        {
+            return Serialization.FromYamlFile<T>(filePath);
+        }
+
+        public string ToJson(object obj, bool formatted = false)
+        {
+            return Serialization.ToJson(obj, formatted);
+        }
+
+        public void ToJsonSteam(object obj, Stream stream, bool formatted = false)
+        {
+            Serialization.ToJsonSteam(obj, stream, formatted);
+        }
+
+        public T FromJson<T>(string json) where T : class, new()
+        {
+            return Serialization.FromJson<T>(json);
+        }
+
+        public T FromJsonStream<T>(Stream stream) where T : class, new()
+        {
+            return Serialization.FromJsonStream<T>(stream);
+        }
+
+        public T FromJsonFile<T>(string filePath) where T : class, new()
+        {
+            return Serialization.FromJsonFile<T>(filePath);
+        }
+
+        public T FromToml<T>(string toml) where T : class, new()
+        {
+            return Serialization.FromToml<T>(toml);
+        }
+
+        public T FromTomlFile<T>(string filePath) where T : class, new()
+        {
+            return Serialization.FromTomlFile<T>(filePath);
         }
     }
 
@@ -86,7 +140,7 @@ namespace Playnite.Common
             }
         }
 
-        public static T FromStream<T>(Stream stream) where T : class
+        public static T FromJsonStream<T>(Stream stream) where T : class
         {
             using (var sr = new StreamReader(stream))
             using (var reader = new JsonTextReader(sr))
@@ -99,7 +153,7 @@ namespace Playnite.Common
         {
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                return FromStream<T>(fs);
+                return FromJsonStream<T>(fs);
             }
         }
 

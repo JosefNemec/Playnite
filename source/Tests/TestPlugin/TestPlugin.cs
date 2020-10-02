@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK;
+using Playnite.SDK.Data;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -85,6 +86,15 @@ namespace TestPlugin
                         window.Height = 640;
                         window.Width = 480;
                         window.ShowDialog();
+                    }
+                },
+                new MainMenuItem
+                {
+                    Description = "serialization test",
+                    Action = (_) =>
+                    {
+                        var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
+                        PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
                     }
                 }
             };

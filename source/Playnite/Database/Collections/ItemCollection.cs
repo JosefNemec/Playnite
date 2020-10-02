@@ -154,7 +154,7 @@ namespace Playnite.Database
         {
             using (var fs = FileSystem.OpenReadFileStreamSafe(GetItemFilePath(id)))
             {
-                return Serialization.FromStream<TItem>(fs);
+                return Serialization.FromJsonStream<TItem>(fs);
             }
         }
 

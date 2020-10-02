@@ -61,6 +61,7 @@
     <Compile Include="Database\IGameDatabase.cs" />
     <Compile Include="Database\IItemCollection.cs" />
     <Compile Include="Data\MarkupConverter.cs" />
+    <Compile Include="Data\DataSerialization.cs" />
     <Compile Include="Events\ApplicationEvents.cs" />
     <Compile Include="Events\PlayniteUriEventArgs.cs" />
     <Compile Include="Events\WebViewEvents.cs" />
