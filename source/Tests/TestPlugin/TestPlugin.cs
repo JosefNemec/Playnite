@@ -62,5 +62,32 @@ namespace TestPlugin
         {
             logger.Info("TestPluginDev OnApplicationStarted");
         }
+
+        public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        {
+            return new List<MainMenuItem>
+            {
+                new MainMenuItem
+                {
+                    Description = "window test",
+                    Action = (_) =>
+                    {
+                        var window = PlayniteApi.Dialogs.CreateWindow(new WindowCreationOptions()
+                        {
+                            ShowCloseButton = false,
+                            ShowMaximizeButton = false
+                        }
+                        );
+                        window.Title = "window plugin test";
+                        window.Content = new TestPluginSettingsView();
+                        window.Owner = PlayniteApi.Dialogs.GetCurrentAppWindow();
+                        window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                        window.Height = 640;
+                        window.Width = 480;
+                        window.ShowDialog();
+                    }
+                }
+            };
+        }
     }
 }

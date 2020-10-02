@@ -1,4 +1,5 @@
 ﻿using Playnite.Common;
+using Playnite.Controls;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.DesktopApp.Windows;
 using Playnite.SDK;
@@ -162,6 +163,22 @@ namespace Playnite.DesktopApp
         public GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
         {
             return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
+        }
+
+        public Window CreateWindow(WindowCreationOptions options)
+        {
+            return new WindowBase()
+            {
+                ShowMaximizeButton = options.ShowMaximizeButton,
+                ShowMinimizeButton = options.ShowMinimizeButton,
+                ShowCloseButton = options.ShowCloseButton,
+                Style = ResourceProvider.GetResource("StandardWindowStyle") as Style
+            };
+        }
+
+        public Window GetCurrentAppWindow()
+        {
+            return WindowManager.CurrentWindow;
         }
     }
 }

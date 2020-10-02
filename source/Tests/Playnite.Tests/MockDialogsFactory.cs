@@ -98,5 +98,15 @@ namespace Playnite.Tests
         {
             return null;
         }
+
+        public Window CreateWindow(WindowCreationOptions options)
+        {
+            return null;
+        }
+
+        public Window GetCurrentAppWindow()
+        {
+            return null;
+        }
     }
 }

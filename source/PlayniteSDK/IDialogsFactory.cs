@@ -241,6 +241,27 @@ namespace Playnite.SDK
     }
 
     /// <summary>
+    /// Represents option for new window creation.
+    /// </summary>
+    public class WindowCreationOptions
+    {
+        /// <summary>
+        /// Gets or sets value indicating whether the minimize button should be shown.
+        /// </summary>
+        public bool ShowMinimizeButton { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets value indicating whether the maximize button should be shown.
+        /// </summary>
+        public bool ShowMaximizeButton { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets value indicating whether the close button should be shown.
+        /// </summary>
+        public bool ShowCloseButton { get; set; } = true;
+    }
+
+    /// <summary>
     /// Describes object providing methods for dialog based actions.
     /// </summary>
     public interface IDialogsFactory
@@ -389,5 +410,18 @@ namespace Playnite.SDK
         /// <param name="progressOptions">Options for progress dialog.</param>
         /// <returns>Status of the action execution.</returns>
         GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressOptions);
+
+        /// <summary>
+        /// Creates new window with Playnite's default styling applied.
+        /// </summary>
+        /// <param name="options">Custom window options.</param>
+        /// <returns>New window instance.</returns>
+        Window CreateWindow(WindowCreationOptions options);
+
+        /// <summary>
+        /// Gets a window which currently in use an active.
+        /// </summary>
+        /// <returns>Window object.</returns>
+        Window GetCurrentAppWindow();
     }
 }

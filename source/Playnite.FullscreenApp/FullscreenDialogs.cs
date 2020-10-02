@@ -1,4 +1,5 @@
 ﻿using Playnite.Common;
+using Playnite.Controls;
 using Playnite.FullscreenApp.Windows;
 using Playnite.SDK;
 using Playnite.ViewModels;
@@ -139,6 +140,16 @@ namespace Playnite.FullscreenApp
         public GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
         {
             return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
+        }
+
+        public Window CreateWindow(WindowCreationOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Window GetCurrentAppWindow()
+        {
+            return WindowManager.CurrentWindow;
         }
     }
 }
