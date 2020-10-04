@@ -17,6 +17,11 @@ namespace Playnite
 {
     public class PlayniteLanguage
     {
+        public int TranslatedPercentage
+        {
+            get; set;
+        } = -1;
+
         public string LocaleString
         {
             get; set;
@@ -25,6 +30,23 @@ namespace Playnite
         public string Id
         {
             get; set;
+        }
+
+        public string DisplayString
+        {
+            get => ToString();
+        }
+
+        public override string ToString()
+        {
+            if (TranslatedPercentage > -1)
+            {
+                return $"{LocaleString}   ({Id}, {TranslatedPercentage}%)";
+            }
+            else
+            {
+                return LocaleString;
+            }
         }
     }
 
@@ -53,7 +75,7 @@ namespace Playnite
 
         public static bool IsRightToLeft
         {
-            get 
+            get
             {
                 return ApplicationLanguageCultureInfo.TextInfo.IsRightToLeft;
             }
@@ -61,6 +83,7 @@ namespace Playnite
 
         public static List<PlayniteLanguage> GetLanguagesFromFolder(string path)
         {
+            var coverage = Serialization.FromJsonFile<Dictionary<string, int>>(PlaynitePaths.LocalizationsStatusPath);
             var langs = new List<PlayniteLanguage>() {
                 new PlayniteLanguage()
                 {
@@ -81,6 +104,12 @@ namespace Playnite
                     continue;
                 }
 
+                var fileCode = Path.GetFileNameWithoutExtension(file);
+                if (!coverage.TryGetValue(fileCode.Replace('_', '-'), out var lngCov))
+                {
+                    coverage.TryGetValue(fileCode.Split('_')[0], out lngCov);
+                }
+
                 var langPath = Path.Combine(path, file);
                 ResourceDictionary res = null;
                 try
@@ -96,7 +125,8 @@ namespace Playnite
                 langs.Add(new PlayniteLanguage()
                 {
                     Id = Path.GetFileNameWithoutExtension(langPath),
-                    LocaleString = res["LanguageName"].ToString()
+                    LocaleString = res["LanguageName"].ToString(),
+                    TranslatedPercentage = lngCov
                 });
             }
 

@@ -26,6 +26,7 @@ namespace Playnite
         public static string ExtensionsDataPath => Path.Combine(ConfigRootPath, "ExtensionsData");
         public static string ExtensionQueueFilePath => Path.Combine(ConfigRootPath, "extinstalls.json");
         public static string LocalizationsPath => Path.Combine(ProgramPath, "Localization");
+        public static string LocalizationsStatusPath => Path.Combine(LocalizationsPath, "locstatus.json");
         public static string ThemesProgramPath => Path.Combine(ProgramPath, "Themes");
         public static string ThemesUserDataPath => Path.Combine(ConfigRootPath, "Themes");
         public static string UninstallerPath => Path.Combine(ProgramPath, "unins000.exe");
