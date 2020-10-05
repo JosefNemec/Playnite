@@ -193,6 +193,17 @@ namespace Playnite.DesktopApp.Controls
 
             if (Games != null)
             {
+                // Create Desktop Shortcut
+                var shortcutItem = new MenuItem()
+                {
+                    Header = resources.GetString("LOCCreateDesktopShortcut"),
+                    Icon = shortcutIcon,
+                    Command = model.CreateDesktopShortcutsCommand,
+                    CommandParameter = Games
+                };
+
+                Items.Add(shortcutItem);
+
                 // Set Favorites
                 var favoriteItem = new MenuItem()
                 {

@@ -521,6 +521,14 @@ namespace Playnite
             Database.Games.Remove(games);
         }
 
+        public void CreateDesktopShortcut(List<Game> games)
+        {
+            foreach (var game in games)
+            {
+                CreateDesktopShortcut(game);
+            }
+        }
+
         public void CreateDesktopShortcut(Game game)
         {
             try
