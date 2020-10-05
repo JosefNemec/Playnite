@@ -26,10 +26,10 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public PowerShellRuntime(string name)
+        public PowerShellRuntime(string runspaceName = "PowerShell")
         {
             runspace = RunspaceFactory.CreateRunspace();
-            runspace.Name = name;
+            runspace.Name = runspaceName;
             runspace.ApartmentState = System.Threading.ApartmentState.MTA;
             runspace.ThreadOptions = PSThreadOptions.UseCurrentThread;
             runspace.Open();
@@ -41,18 +41,13 @@ namespace Playnite.Scripting.PowerShell
                 pipe.Invoke();
             }
 
-            SetVariable("__logger", new Logger("PowerShell"));
+            SetVariable("__logger", new Logger(runspaceName));
         }
 
         public void Dispose()
         {
             runspace.Close();
             runspace.Dispose();
-        }
-
-        public static PowerShellRuntime CreateRuntime(string name)
-        {
-            return new PowerShellRuntime(name);
         }
 
         public object Execute(string script, string workDir = null)

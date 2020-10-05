@@ -1115,10 +1115,10 @@ namespace Playnite
             switch (language)
             {
                 case ScriptLanguage.PowerShell:
-                    runtime = new Scripting.PowerShell.PowerShellRuntime($"Inline script: {game.Name}");
+                    runtime = new Scripting.PowerShell.PowerShellRuntime($"PS script: {game.Name}");
                     break;
                 case ScriptLanguage.IronPython:
-                    runtime = new Scripting.IronPython.IronPythonRuntime();
+                    runtime = new Scripting.IronPython.IronPythonRuntime($"IP script: {game.Name}");
                     break;
                 case ScriptLanguage.Batch:
                     runtime = new Scripting.Batch.BatchRuntime();

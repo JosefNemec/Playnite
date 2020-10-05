@@ -21,7 +21,7 @@ namespace Playnite.Scripting.IronPython
 
         public IronPythonScript(string path) : base(path)
         {
-            Runtime = new IronPythonRuntime();
+            Runtime = new IronPythonRuntime(Name);
             Runtime.ExecuteFile(path);
             SupportedEvents = GetSupportedEvents();
             SupportedMenus = GetSupportedMenus();
