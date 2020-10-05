@@ -613,9 +613,6 @@
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\DescriptionView.html" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Safe Mode.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

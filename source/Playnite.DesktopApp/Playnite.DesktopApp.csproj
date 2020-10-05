@@ -479,6 +479,9 @@
     <None Include="Themes\Desktop\Default\Images\applogo_dark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Themes\Desktop\Default\DescriptionView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Themes\Desktop\Default\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -135,7 +135,7 @@
                                     </Style>
                                 </Border.Style>
                                 <ScrollViewerEx>
-                                    <HtmlTextView HtmlText="{Binding Description}"
+                                    <HtmlTextView x:Name="PART_HtmlDescription"
                                                   HtmlFontSize="16"
                                                   HtmlForeground="{DynamicResource TextColor}"
                                                   LinkForeground="{DynamicResource GlyphColor}"

@@ -2,6 +2,7 @@
 using Playnite.Common;
 using Playnite.Controls;
 using Playnite.Converters;
+using Playnite.DesktopApp.Markup;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK.Models;
 using System;
@@ -263,6 +264,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(HtmlDescription,
                     HtmlTextView.VisibilityProperty,
                     nameof(GameDetailsViewModel.DescriptionVisibility));
+                HtmlDescription.TemplatePath = ThemeFile.GetFilePath("DescriptionView.html");
             }
 
             TextNotes = Template.FindName("PART_TextNotes", this) as TextBox;
