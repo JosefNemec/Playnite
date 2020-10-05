@@ -187,7 +187,7 @@ namespace Playnite.Controls
             content = content.Replace("{link_foreground}", LinkForeground.ToHtml());
             content = content.Replace("{font_family}", HtmlFontFamily.ToString());
             content = content.Replace("{font_size}", HtmlFontSize.ToString());
-            Text = content.Replace("{text}", HtmlText.ToString());
+            Text = content.Replace("{text}", HtmlText?.ToString());
         }
 
         static HtmlTextView()
