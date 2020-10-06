@@ -9,7 +9,7 @@
 * **Now obsolete**:
 
   * These changes do not break compatibility in current version (mentioned methods are still available in SDK), but they will be made breaking in future major Playnite updates.
-  * Added `Id` to extension and theme [manifests](tutorials/extensionsManifest.md). This field is currently not mandatory (will be in next major Playnite update), but should be provided for better extension installation and update support.
+  * Added `Id` to extension and theme [manifests](tutorials/extensionsManifest.md). This field is currently not mandatory for existing extensions (Playnite 8 will load extensions without ID), but should be provided for better extension installation and update support. Toolbox will not pack new extensions unless `Id` is present.
   * The way custom menu items are implemented (for main menu and game menu) has been completely changed (the old system still works temporarily). See [related documentation page](tutorials/menus.md) for more information.  
   * [NavigationChanged](xref:Playnite.SDK.IWebView) from IWebView is now obsolete, use new `LoadingChanged` instead.
 
