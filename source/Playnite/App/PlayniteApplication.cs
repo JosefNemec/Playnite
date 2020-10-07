@@ -962,12 +962,8 @@ namespace Playnite
         {
             try
             {
+                ExtensionInstaller.VerifyThemePackage(themeFile);
                 var desc = ExtensionInstaller.GetPackedThemeManifest(themeFile);
-                if (desc == null)
-                {
-                    throw new FileNotFoundException("Theme manifest not found.");
-                }
-
                 desc.VerifyManifest();
 
                 if (new Version(desc.ThemeApiVersion).Major != ThemeManager.GetApiVersion(desc.Mode).Major)
@@ -1006,12 +1002,8 @@ namespace Playnite
         {
             try
             {
+                ExtensionInstaller.VerifyExtensionPackage(extensionFile);
                 var desc = ExtensionInstaller.GetPackedExtensionManifest(extensionFile);
-                if (desc == null)
-                {
-                    throw new FileNotFoundException("Extension manifest not found.");
-                }
-
                 desc.VerifyManifest();
 
                 if (Dialogs.ShowMessage(

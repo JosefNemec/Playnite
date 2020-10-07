@@ -122,6 +122,10 @@ namespace Playnite
         /// </summary>
         public const string CrashSaveLog = "LOCCrashSaveLog";
         /// <summary>
+        /// Send diag. info
+        /// </summary>
+        public const string CrashSendDiag = "LOCCrashSendDiag";
+        /// <summary>
         /// Report Crash
         /// </summary>
         public const string CrashReportIssue = "LOCCrashReportIssue";
@@ -129,6 +133,14 @@ namespace Playnite
         /// Restart Playnite
         /// </summary>
         public const string CrashRestartPlaynite = "LOCCrashRestartPlaynite";
+        /// <summary>
+        /// Restart in Safe Mode
+        /// </summary>
+        public const string CrashRestartSafe = "LOCCrashRestartSafe";
+        /// <summary>
+        /// Disabling all 3rd party extensions and using default theme.
+        /// </summary>
+        public const string CrashRestartSafeTooltip = "LOCCrashRestartSafeTooltip";
         /// <summary>
         /// Exit Playnite
         /// </summary>
@@ -2438,6 +2450,10 @@ namespace Playnite
         /// </summary>
         public const string NoGamesFound = "LOCNoGamesFound";
         /// <summary>
+        /// No items found
+        /// </summary>
+        public const string NoItemsFound = "LOCNoItemsFound";
+        /// <summary>
         /// Switch to Desktop Mode
         /// </summary>
         public const string BackToDesktopMode = "LOCBackToDesktopMode";
@@ -2934,6 +2950,14 @@ namespace Playnite
         /// </summary>
         public const string ExtInstallationRestartNotif = "LOCExtInstallationRestartNotif";
         /// <summary>
+        /// Extension is not packaged properly.
+        /// </summary>
+        public const string GeneralExtensionPackageError = "LOCGeneralExtensionPackageError";
+        /// <summary>
+        /// Theme is not packaged properly.
+        /// </summary>
+        public const string GeneralThemePackageError = "LOCGeneralThemePackageError";
+        /// <summary>
         /// Theme/Extension is using unsupported API version.
         /// </summary>
         public const string GeneralExtensionInstallApiVersionFails = "LOCGeneralExtensionInstallApiVersionFails";
@@ -3030,7 +3054,7 @@ namespace Playnite
         /// </summary>
         public const string StatsTotalPlayTime = "LOCStatsTotalPlayTime";
         /// <summary>
-        /// Avarage play time
+        /// Average play time
         /// </summary>
         public const string StatsAvaragePlayTime = "LOCStatsAvaragePlayTime";
         /// <summary>
@@ -3105,6 +3129,10 @@ namespace Playnite
         /// Discussions
         /// </summary>
         public const string SteamLinksDiscussions = "LOCSteamLinksDiscussions";
+        /// <summary>
+        /// Guides
+        /// </summary>
+        public const string SteamLinksGuides = "LOCSteamLinksGuides";
         /// <summary>
         /// Workshop
         /// </summary>

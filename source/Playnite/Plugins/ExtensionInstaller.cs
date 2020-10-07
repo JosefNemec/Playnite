@@ -287,5 +287,84 @@ namespace Playnite.Plugins
 
             FileSystem.WriteStringToFile(PlaynitePaths.ExtensionQueueFilePath, Serialization.ToJson(currentQueue));
         }
+
+        public static void VerifyExtensionPackage(string packagePath)
+        {
+            using (var zip = ZipFile.OpenRead(packagePath))
+            {
+                var manifestEntry = zip.GetEntry(PlaynitePaths.ExtensionManifestFileName);
+                if (manifestEntry == null)
+                {
+                    logger.Error("Extension package is invalid, no manifest found.");
+                    throw new LocalizedException(LOC.GeneralExtensionPackageError);
+                }
+
+                using (var logStream = manifestEntry.Open())
+                {
+                    using (TextReader tr = new StreamReader(logStream))
+                    {
+                        var manifest = Serialization.FromYaml<ExtensionManifest>(tr.ReadToEnd());
+                        if (manifest.Id.IsNullOrEmpty())
+                        {
+                            logger.Error("Extension package is invalid, no extension ID found.");
+                            throw new LocalizedException(LOC.GeneralExtensionPackageError);
+                        }
+
+                        if (!Version.TryParse(manifest.Version, out var _))
+                        {
+                            logger.Error($"Extension package is invalid, version is not in correct format {manifest.Version}.");
+                            throw new LocalizedException(LOC.GeneralExtensionPackageError);
+                        }
+                    }
+                }
+
+                if (zip.Entries.Any(a => a.Name == "Playnite.dll" || a.Name == "Playnite.Common.dll"))
+                {
+                    logger.Error($"Extension package is invalid, includes not allowed Playnite dependencies.");
+                    throw new LocalizedException(LOC.GeneralExtensionPackageError);
+                }
+            }
+        }
+
+        public static void VerifyThemePackage(string packagePath)
+        {
+            using (var zip = ZipFile.OpenRead(packagePath))
+            {
+                var manifestEntry = zip.GetEntry(PlaynitePaths.ThemeManifestFileName);
+                if (manifestEntry == null)
+                {
+                    logger.Error("Theme package is invalid, no manifest found.");
+                    throw new LocalizedException(LOC.GeneralThemePackageError);
+                }
+
+                using (var logStream = manifestEntry.Open())
+                {
+                    using (TextReader tr = new StreamReader(logStream))
+                    {
+                        var manifest = Serialization.FromYaml<ThemeManifest>(tr.ReadToEnd());
+                        if (manifest.Id.IsNullOrEmpty())
+                        {
+                            logger.Error("Theme package is invalid, no extension ID found.");
+                            throw new LocalizedException(LOC.GeneralThemePackageError);
+                        }
+
+                        if (!Version.TryParse(manifest.Version, out var _))
+                        {
+                            logger.Error($"Theme package is invalid, version is not in correct format {manifest.Version}.");
+                            throw new LocalizedException(LOC.GeneralThemePackageError);
+                        }
+                    }
+                }
+
+                if (zip.Entries.Any(a =>
+                    a.Name == PlaynitePaths.ThemeSlnFileName ||
+                    a.Name == PlaynitePaths.ThemeProjFileName ||
+                    a.Name == PlaynitePaths.AppXamlFileName))
+                {
+                    logger.Error($"Theme package is invalid, includes not allowed theme project files.");
+                    throw new LocalizedException(LOC.GeneralThemePackageError);
+                }
+            }
+        }
     }
 }

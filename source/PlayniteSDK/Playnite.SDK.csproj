@@ -65,6 +65,7 @@
     <Compile Include="Events\ApplicationEvents.cs" />
     <Compile Include="Events\PlayniteUriEventArgs.cs" />
     <Compile Include="Events\WebViewEvents.cs" />
+    <Compile Include="Exceptions\LocalizedException.cs" />
     <Compile Include="Exceptions\ScriptRuntimeException.cs" />
     <Compile Include="Exceptions\TypeMismatchException.cs" />
     <Compile Include="Exceptions\ReferenceException.cs" />
