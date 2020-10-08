@@ -87,24 +87,29 @@ def test_func():
         [Test]
         public void ExecuteWorkDirTest()
         {
-            using (var tempDir = TempDirectory.Create())
-            using (var runtime = new IronPythonRuntime())
-            {
-                var outPath = "workDirTest.txt";
-                FileSystem.DeleteFile(outPath);
-                FileAssert.DoesNotExist(outPath);
-                runtime.Execute(@"f = open('workDirTest.txt', 'w')
+            using (var tempDir = TempDirectory.Create()) {
+                Directory.SetCurrentDirectory(tempDir.TempPath);
+                using (var runtime = new IronPythonRuntime())
+                {
+                    var outPath = "workDirTest.txt";
+                    FileSystem.DeleteFile(outPath);
+                    FileAssert.DoesNotExist(outPath);
+                    runtime.Execute(@"f = open('workDirTest.txt', 'w')
 f.write('test')
 f.close()");
-                FileAssert.Exists(outPath);
+                    FileAssert.Exists(outPath);
 
-                outPath = Path.Combine(tempDir.TempPath, outPath);
-                FileSystem.DeleteFile(outPath);
-                FileAssert.DoesNotExist(outPath);
-                runtime.Execute(@"f = open('workDirTest.txt', 'w')
+                    FileSystem.CreateDirectory("subdirectory");
+                    var tempDir2 = Path.Combine(tempDir.TempPath, "subdirectory");
+                    outPath = Path.Combine(tempDir2, outPath);
+                    FileSystem.DeleteFile(outPath);
+                    FileAssert.DoesNotExist(outPath);
+                    runtime.Execute(@"f = open('workDirTest.txt', 'w')
 f.write('test')
 f.close()", tempDir.TempPath);
-                FileAssert.Exists(outPath);
+                    FileAssert.Exists(outPath);
+                }
+                Directory.SetCurrentDirectory("\\");
             }
         }
     }
