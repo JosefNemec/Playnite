@@ -22,7 +22,7 @@ namespace Playnite.Scripting.PowerShell
         public PowerShellScript(string path) : base(path)
         {
             Runtime = new PowerShellRuntime(Name);
-            Runtime.ExecuteFile(path);
+            Runtime.ImportModule(path);
             SupportedEvents = GetSupportedEvents();
             SupportedMenus = GetSupportedMenus();
         }

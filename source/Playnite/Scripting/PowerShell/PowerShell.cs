@@ -19,6 +19,7 @@ namespace Playnite.Scripting.PowerShell
         private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
         private System.Management.Automation.PowerShell powershell;
         private Runspace runspace;
+        private PSModuleInfo module;
         private InitialSessionState initialSessionState;
 
         public static bool IsInstalled
@@ -45,6 +46,18 @@ namespace Playnite.Scripting.PowerShell
         {
             runspace.Close();
             runspace.Dispose();
+        }
+
+        public void ImportModule(string path)
+        {
+            powershell.Runspace.SessionStateProxy.Path.SetLocation(Path.GetDirectoryName(path));
+            module = powershell
+                .AddCommand("Import-Module")
+                .AddParameter("PassThru")
+                .AddArgument(path)
+                .Invoke<PSModuleInfo>().FirstOrDefault();
+            powershell.Streams.ClearStreams();
+            powershell.Commands.Clear();
         }
 
         public object Execute(string script, string workDir = null)
