@@ -10,13 +10,16 @@ using Playnite.API;
 using Microsoft.Win32;
 using System.IO;
 using Playnite.SDK.Exceptions;
+using Microsoft.PowerShell;
 
 namespace Playnite.Scripting.PowerShell
 {
     public class PowerShellRuntime : IScriptRuntime
     {
         private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
+        private System.Management.Automation.PowerShell powershell;
         private Runspace runspace;
+        private InitialSessionState initialSessionState;
 
         public static bool IsInstalled
         {
@@ -28,19 +31,13 @@ namespace Playnite.Scripting.PowerShell
 
         public PowerShellRuntime(string runspaceName = "PowerShell")
         {
-            runspace = RunspaceFactory.CreateRunspace();
+            initialSessionState = InitialSessionState.CreateDefault();
+            initialSessionState.ExecutionPolicy = ExecutionPolicy.Unrestricted;
+            initialSessionState.ThreadOptions = PSThreadOptions.UseCurrentThread;
+            powershell = System.Management.Automation.PowerShell.Create(initialSessionState);
+            runspace = powershell.Runspace;
             runspace.Name = runspaceName;
-            runspace.ApartmentState = System.Threading.ApartmentState.MTA;
-            runspace.ThreadOptions = PSThreadOptions.UseCurrentThread;
-            runspace.Open();
-
-            using (var pipe = runspace.CreatePipeline())
-            {
-                pipe.Commands.AddScript("Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted");
-                pipe.Commands.AddScript("$global:ErrorActionPreference = \"Stop\"");
-                pipe.Invoke();
-            }
-
+            SetVariable("ErrorActionPreference", "Stop");
             SetVariable("__logger", new Logger(runspaceName));
         }
 
