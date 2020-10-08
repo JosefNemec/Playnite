@@ -96,7 +96,7 @@ namespace PlayniteServices.Controllers.PlayniteTools
                 {
                     using (var infoStream = diagInfo.Open())
                     {
-                        var info = Serialization.FromStream<DiagnosticPackageInfo>(infoStream);
+                        var info = Serialization.FromJsonStream<DiagnosticPackageInfo>(infoStream);
                         version = info.PlayniteVersion;
                         isCrash = info.IsCrashPackage;
                     }
@@ -128,7 +128,7 @@ namespace PlayniteServices.Controllers.PlayniteTools
                     {
                         using (var infoStream = playniteInfo.Open())
                         {
-                            var info = Serialization.FromStream<Dictionary<string, object>>(infoStream);
+                            var info = Serialization.FromJsonStream<Dictionary<string, object>>(infoStream);
                             version = info["Version"].ToString();
                         }
                     }
