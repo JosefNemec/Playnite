@@ -72,14 +72,14 @@ function TestFunc()
         {
             using (var ps = new PowerShellRuntime("GetFunctionExitsTest"))
             {
-                Assert.IsFalse(ps.GetFunctionExits("TestFunc"));
+                Assert.IsTrue(ps.GetFunction("TestFunc") == null);
                 ps.Execute(@"
 function TestFunc()
 {
     return 4 + 4
 }
 ");
-                Assert.IsTrue(ps.GetFunctionExits("TestFunc"));
+                Assert.IsTrue(ps.GetFunction("TestFunc") != null);
             }
         }
 

@@ -138,12 +138,42 @@ namespace Playnite.Scripting.PowerShell
             return runspace.SessionStateProxy.GetVariable(name);
         }
 
-        public bool GetFunctionExits(string name)
+        public CommandInfo GetFunction(string name)
         {
-            using (var pipe = runspace.CreatePipeline($"Get-Command {name} -EA 0"))
+            var command = powershell
+                .AddCommand("Get-Command")
+                .AddArgument(name)
+                .AddParameter("PassThru")
+                .AddParameter("ErrorAction", ActionPreference.SilentlyContinue)
+                .Invoke<CommandInfo>().FirstOrDefault();
+            powershell.Streams.ClearStreams();
+            powershell.Commands.Clear();
+            return command;
+        }
+
+        public object InvokeFunction(string name, List<object> arguments)
+        {
+            var command = GetFunction(name);
+            powershell.AddCommand(command);
+            // Don't pass arguments to commands not expecting parameters
+            if (command.Parameters.Count != 0)
             {
-                var res = pipe.Invoke();
-                return res.Count != 0;
+                foreach (var argument in arguments)
+                {
+                    powershell.AddArgument(argument);
+                }
+            }
+            var result = powershell.Invoke();
+            powershell.Streams.ClearStreams();
+            powershell.Commands.Clear();
+
+            if (result.Count == 1)
+            {
+                return result[0].BaseObject;
+            }
+            else
+            {
+                return result.Select(a => a?.BaseObject).ToList();
             }
         }
     }

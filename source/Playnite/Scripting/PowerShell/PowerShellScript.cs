@@ -37,7 +37,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedMenus.Contains(SupportedMenuMethods.GameMenu))
             {
-                var res = InvokeFunction("GetGameMenuItems", new List<object> { args });
+                var res = InvokeFunction(nameof(Plugin.GetGameMenuItems), new List<object> { args });
                 if (res is ScriptGameMenuItem item)
                 {
                     return new List<ScriptGameMenuItem> { item };
@@ -61,7 +61,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedMenus.Contains(SupportedMenuMethods.MainMenu))
             {
-                var res = InvokeFunction("GetMainMenuItems", new List<object> { args });
+                var res = InvokeFunction(nameof(Plugin.GetMainMenuItems), new List<object> { args });
                 if (res is ScriptMainMenuItem item)
                 {
                     return new List<ScriptMainMenuItem> { item };
@@ -84,82 +84,28 @@ namespace Playnite.Scripting.PowerShell
         internal List<SupportedMenuMethods> GetSupportedMenus()
         {
             var menus = new List<SupportedMenuMethods>();
-            var existingMenuFunctions = Runtime.Execute($"Get-Command -Name \"Get*MenuItems\" -CommandType Function");
-            if (existingMenuFunctions is FunctionInfo menuFunction)
+            if (Runtime.GetFunction(nameof(Plugin.GetMainMenuItems)) != null)
             {
-                var func = GetMenuFunctionFromFunction(menuFunction);
-                if (func != null)
-                {
-                    menus.Add(func.Value);
-                }
+                menus.Add(SupportedMenuMethods.MainMenu);
             }
-            else if (existingMenuFunctions is List<object> menuFunctions)
+            if (Runtime.GetFunction(nameof(Plugin.GetGameMenuItems)) != null)
             {
-                foreach (FunctionInfo fnc in menuFunctions)
-                {
-                    var func = GetMenuFunctionFromFunction(fnc);
-                    if (func != null)
-                    {
-                        menus.Add(func.Value);
-                    }
-                }
+                menus.Add(SupportedMenuMethods.GameMenu);
             }
-
             return menus;
         }
 
         internal List<ApplicationEvent> GetSupportedEvents()
         {
             var events = new List<ApplicationEvent>();
-            var existingEvents = Runtime.Execute($"Get-Command -Name \"On*\" -CommandType Function");
-            if (existingEvents is FunctionInfo appEvent)
-            {
-                var ev = GetEventFromFunction(appEvent);
-                if (ev != null)
-                {
-                    events.Add(ev.Value);
-                }
-            }
-            else if (existingEvents is List<object> appEvents)
-            {
-                foreach (FunctionInfo appev in appEvents)
-                {
-                    var ev = GetEventFromFunction(appev);
-                    if (ev != null)
-                    {
-                        events.Add(ev.Value);
-                    }
-                }
-            }
-
-            return events;
-        }
-
-        private ApplicationEvent? GetEventFromFunction(FunctionInfo function)
-        {
             foreach (ApplicationEvent ev in Enum.GetValues(typeof(ApplicationEvent)))
             {
-                if (function.Name.Equals(ev.ToString(), StringComparison.OrdinalIgnoreCase))
+                if (Runtime.GetFunction(ev.ToString()) != null)
                 {
-                    return ev;
+                    events.Add(ev);
                 }
             }
-
-            return null;
-        }
-
-        private SupportedMenuMethods? GetMenuFunctionFromFunction(FunctionInfo menuFunction)
-        {
-            if (menuFunction.Name.Equals(nameof(Plugin.GetMainMenuItems), StringComparison.Ordinal))
-            {
-                return SupportedMenuMethods.MainMenu;
-            }
-            else if (menuFunction.Name.Equals(nameof(Plugin.GetGameMenuItems), StringComparison.Ordinal))
-            {
-                return SupportedMenuMethods.GameMenu;
-            }
-
-            return null;
+            return events;
         }
 
         public override void InvokeExportedFunction(ScriptFunctionExport function)
@@ -176,7 +122,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnApplicationStarted))
             {
-                Runtime.Execute("OnApplicationStarted");
+                InvokeFunction(ApplicationEvent.OnApplicationStarted.ToString());
             }
         }
 
@@ -184,7 +130,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnApplicationStopped))
             {
-                Runtime.Execute("OnApplicationStopped");
+                InvokeFunction(ApplicationEvent.OnApplicationStopped.ToString());
             }
         }
 
@@ -192,7 +138,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnLibraryUpdated))
             {
-                Runtime.Execute("OnLibraryUpdated");
+                InvokeFunction(ApplicationEvent.OnLibraryUpdated.ToString());
             }
         }
 
@@ -200,10 +146,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStarting))
             {
-                Runtime.Execute("OnGameStarting $__game", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                InvokeFunction(ApplicationEvent.OnGameStarting.ToString(), new List<object> { game });
             }
         }
 
@@ -211,10 +154,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStarted))
             {
-                Runtime.Execute("OnGameStarted $__game", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                InvokeFunction(ApplicationEvent.OnGameStarted.ToString(), new List<object> { game });
             }
         }
 
@@ -222,11 +162,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStopped))
             {
-                Runtime.Execute("OnGameStopped $__game $__ellapsedSeconds", new Dictionary<string, object>()
-                {
-                    { "__game", game },
-                    { "__ellapsedSeconds", ellapsedSeconds }
-                });
+                InvokeFunction(ApplicationEvent.OnGameStopped.ToString(), new List<object> { game, ellapsedSeconds });
             }
         }
 
@@ -234,10 +170,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameInstalled))
             {
-                Runtime.Execute("OnGameInstalled $__game", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                InvokeFunction(ApplicationEvent.OnGameInstalled.ToString(), new List<object> { game });
             }
         }
 
@@ -245,10 +178,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameUninstalled))
             {
-                Runtime.Execute("OnGameUninstalled $__game", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                InvokeFunction(ApplicationEvent.OnGameUninstalled.ToString(), new List<object> { game });
             }
         }
 
@@ -256,29 +186,18 @@ namespace Playnite.Scripting.PowerShell
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameSelected))
             {
-                Runtime.Execute("OnGameSelected $__eventArgs", new Dictionary<string, object>()
-                {
-                    { "__eventArgs", args }
-                });
+                InvokeFunction(ApplicationEvent.OnGameSelected.ToString(), new List<object> { args });
             }
         }
 
         public override object InvokeFunction(string functionName)
         {
-            return Runtime.Execute(functionName);
+            return Runtime.InvokeFunction(functionName, new List<object>());
         }
 
         public override object InvokeFunction(string functionName, List<object> arguments)
         {
-            var scriptString = functionName;
-            var args = new Dictionary<string, object>();
-            for (int i = 0; i < arguments.Count; i++)
-            {
-                scriptString += $" $__arg{i}";
-                args.Add($"__arg{i}", arguments[i]);
-            }
-
-            return Runtime.Execute(scriptString, args);
+            return Runtime.InvokeFunction(functionName, arguments);
         }
     }
 }
