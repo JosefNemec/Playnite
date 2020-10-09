@@ -625,7 +625,11 @@
     <Resource Include="Resources\Images\DesignCover.jpg" />
     <Resource Include="Resources\Images\DesignIcon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

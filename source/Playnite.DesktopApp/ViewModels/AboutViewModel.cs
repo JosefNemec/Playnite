@@ -47,6 +47,16 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public string InstallDir
+        {
+            get => PlaynitePaths.ProgramPath;
+        }
+
+        public string UserDir
+        {
+            get => PlaynitePaths.ConfigRootPath;
+        }
+
         public string Contributors
         {
             get
@@ -99,6 +109,14 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 CloseView();
+            });
+        }
+
+        public RelayCommand<object> OpenLicensesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ProcessStarter.StartProcess(Path.Combine(PlaynitePaths.ProgramPath, "license.txt"));
             });
         }
 

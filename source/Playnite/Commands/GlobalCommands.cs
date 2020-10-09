@@ -4,6 +4,7 @@ using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,6 +27,24 @@ namespace Playnite.Commands
                 catch (Exception e) when (!Debugger.IsAttached)
                 {
                     logger.Error(e, "Failed to open url.");
+                }
+            });
+        }
+
+        public static RelayCommand<string> NavigateDirectoryCommand
+        {
+            get => new RelayCommand<string>((path) =>
+            {
+                try
+                {
+                    if (Directory.Exists(path))
+                    {
+                        Process.Start(path);
+                    }
+                }
+                catch (Exception e) when (!Debugger.IsAttached)
+                {
+                    logger.Error(e, "Failed to open directory.");
                 }
             });
         }
