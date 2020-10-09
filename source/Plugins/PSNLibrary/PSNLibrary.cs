@@ -165,6 +165,11 @@ namespace PSNLibrary
                     continue;
                 }
 
+                if (newGame.Name.IsNullOrEmpty())
+                {
+                    continue;
+                }
+
                 if (newGame.Name.Contains("demo", StringComparison.OrdinalIgnoreCase) ||
                     newGame.Name.Contains("trial", StringComparison.OrdinalIgnoreCase) ||
                     newGame.Name.Contains("language pack", StringComparison.OrdinalIgnoreCase) ||

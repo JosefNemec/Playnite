@@ -21,7 +21,8 @@ namespace PSNLibrary.Services
         private readonly PSNLibrary library;
         private readonly string tokenPath;
         private const int pageRequestLimit = 100;
-        private const string loginUrl = @"https://my.account.sony.com/central/signin/?response_type=token&scope=capone%3Areport_submission%2Ckamaji%3Agame_list%2Ckamaji%3Aget_account_hash%2Cuser%3Aaccount.get%2Cuser%3Aaccount.profile.get%2Ckamaji%3Asocial_get_graph%2Ckamaji%3Augc%3Adistributor%2Cuser%3Aaccount.identityMapper%2Ckamaji%3Amusic_views%2Ckamaji%3Aactivity_feed_get_feed_privacy%2Ckamaji%3Aactivity_feed_get_news_feed%2Ckamaji%3Aactivity_feed_submit_feed_story%2Ckamaji%3Aactivity_feed_internal_feed_submit_story%2Ckamaji%3Aaccount_link_token_web%2Ckamaji%3Augc%3Adistributor_web%2Ckamaji%3Aurl_preview&client_id=656ace0b-d627-47e6-915c-13b259cd06b2&redirect_uri=https%3A%2F%2Fmy.playstation.com%2Fauth%2Fresponse.html%3FrequestID%3Dexternal_request_f760aa9a-8d9f-43e9-a656-1453915314ea%26baseUrl%3D%2F%26returnRoute%3D%2F%26targetOrigin%3Dhttps%3A%2F%2Fmy.playstation.com%26excludeQueryParams%3Dtrue&tp_console=true&ui=pr&cid=cf9cfa51-1e05-452a-94c6-bca2248f217d&error=login_required&error_code=4165&no_captcha=true#/signin/ca?entry=ca";
+        private const string loginUrl = @"https://my.account.sony.com/central/signin/?response_type=token&scope=capone%3Areport_submission%2Ckamaji%3Agame_list%2Ckamaji%3Aget_account_hash%2Cuser%3Aaccount.get%2Cuser%3Aaccount.profile.get%2Ckamaji%3Asocial_get_graph%2Ckamaji%3Augc%3Adistributor%2Cuser%3Aaccount.identityMapper%2Ckamaji%3Amusic_views%2Ckamaji%3Aactivity_feed_get_feed_privacy%2Ckamaji%3Aactivity_feed_get_news_feed%2Ckamaji%3Aactivity_feed_submit_feed_story%2Ckamaji%3Aactivity_feed_internal_feed_submit_story%2Ckamaji%3Aaccount_link_token_web%2Ckamaji%3Augc%3Adistributor_web%2Ckamaji%3Aurl_preview&client_id=656ace0b-d627-47e6-915c-13b259cd06b2&redirect_uri=https%3A%2F%2Fmy.playstation.com%2Fauth%2Fresponse.html%3FrequestID%3Dexternal_request_a90959ab-afa3-4594-824b-ad00b6617f57%26baseUrl%3D%2F%26returnRoute%3D%2F%26targetOrigin%3Dhttps%3A%2F%2Fmy.playstation.com%26excludeQueryParams%3Dtrue&tp_console=true&ui=pr&cid=b7895274-2de2-45da-add9-3afd775eb65f&error=login_required&error_code=4165&no_captcha=true#/signin/ca?entry=ca";
+        private const string loginTokenUrl = @"https://ca.account.sony.com/api/v1/oauth/authorize?response_type=token&scope=capone:report_submission,kamaji:game_list,kamaji:get_account_hash,user:account.get,user:account.profile.get,kamaji:social_get_graph,kamaji:ugc:distributor,user:account.identityMapper,kamaji:music_views,kamaji:activity_feed_get_feed_privacy,kamaji:activity_feed_get_news_feed,kamaji:activity_feed_submit_feed_story,kamaji:activity_feed_internal_feed_submit_story,kamaji:account_link_token_web,kamaji:ugc:distributor_web,kamaji:url_preview&client_id=656ace0b-d627-47e6-915c-13b259cd06b2&redirect_uri=https://my.playstation.com/auth/response.html?requestID=iframe_request_ecd7cd01-27ad-4851-9c0d-0798c1a65e53&baseUrl=/&targetOrigin=https://my.playstation.com&prompt=none";
         private const string tokenUrl = @"https://ca.account.sony.com/api/v1/oauth/authorize?response_type=token&scope=capone:report_submission,kamaji:game_list,kamaji:get_account_hash,user:account.get,user:account.profile.get,kamaji:social_get_graph,kamaji:ugc:distributor,user:account.identityMapper,kamaji:music_views,kamaji:activity_feed_get_feed_privacy,kamaji:activity_feed_get_news_feed,kamaji:activity_feed_submit_feed_story,kamaji:activity_feed_internal_feed_submit_story,kamaji:account_link_token_web,kamaji:ugc:distributor_web,kamaji:url_preview&client_id=656ace0b-d627-47e6-915c-13b259cd06b2&redirect_uri=https://my.playstation.com/auth/response.html?requestID=iframe_request_b0f09e04-8206-49be-8be6-b2cfe05249e2&baseUrl=/&targetOrigin=https://my.playstation.com&prompt=none";
         private const string gameListUrl = @"https://gamelist.api.playstation.com/v1/users/me/titles?type=owned,played&app=richProfile&sort=-lastPlayedDate&iw=240&ih=240&fields=@default&limit={0}&offset={1}&npLanguage=en";
         private const string trophiesUrl = @"https://us-tpy.np.community.playstation.net/trophy/v1/trophyTitles?fields=@default,trophyTitleSmallIconUrl&platform=PS3,PS4,PSVITA&limit={0}&offset={1}&npLanguage=en";
@@ -51,6 +52,10 @@ namespace PSNLibrary.Services
                     {
                         callbackUrl = address;
                         webView.Close();
+                    }
+                    else if (address.EndsWith("/friends"))
+                    {
+                        webView.Navigate(loginTokenUrl);
                     }
                 };
 
@@ -97,7 +102,7 @@ namespace PSNLibrary.Services
             using (var webView = library.PlayniteApi.WebViews.CreateOffscreenView())
             {
                 var loadComplete = new AutoResetEvent(false);
-                List<DownloadListEntitlement> items = null;
+                var items = new List<DownloadListEntitlement>();
                 var processingDownload = false;
 
                 webView.LoadingChanged += async (_, e) =>
@@ -111,18 +116,45 @@ namespace PSNLibrary.Services
                         }
 
                         processingDownload = true;
-                        // Don't know how to reliable tell if the data are ready because they are laoded post page load
-                        await Task.Delay(10000);
-                        // Need to use this hack since the data we need are stored in browser's local storage
-                        // Based on https://github.com/RePod/psdle/blob/master/psdle.js
-                        var res = await webView.EvaluateScriptAsync(@"JSON.stringify(Ember.Application.NAMESPACES_BY_ID['valkyrie-storefront'].__container__.lookup('service:macross-brain').macrossBrainInstance.getEntitlementStore().getAllEntitlements()._result)");
-                        items = Serialization.FromJson<List<DownloadListEntitlement>>((string)res.Result);
-                        loadComplete.Set();
+                        var numberOfTries = 0;
+                        while (numberOfTries < 6)
+                        {
+                            // Don't know how to reliable tell if the data are ready because they are laoded post page load
+                            await Task.Delay(10000);
+                            if (!webView.CanExecuteJavascriptInMainFrame)
+                            {
+                                logger.Warn("PSN JS execution not ready yet.");
+                                continue;
+                            }
+
+                            // Need to use this hack since the data we need are stored in browser's local storage
+                            // Based on https://github.com/RePod/psdle/blob/master/psdle.js
+                            var res = await webView.EvaluateScriptAsync(@"JSON.stringify(Ember.Application.NAMESPACES_BY_ID['valkyrie-storefront'].__container__.lookup('service:macross-brain').macrossBrainInstance.getEntitlementStore().getAllEntitlements()._result)");
+                            var strRes = (string)res.Result;
+                            if (strRes.IsNullOrEmpty())
+                            {
+                                numberOfTries++;
+                                continue;
+                            }
+
+                            try
+                            {
+                                items = Serialization.FromJson<List<DownloadListEntitlement>>(strRes);
+                            }
+                            catch (Exception exc)
+                            {
+                                logger.Error(exc, "Failed to deserialize PSN's download list.");
+                                logger.Debug(strRes);
+                            }
+
+                            loadComplete.Set();
+                            break;
+                        }
                     }
                 };
 
                 webView.Navigate(downloadListUrl);
-                loadComplete.WaitOne(15000);
+                loadComplete.WaitOne(60000);
                 return items;
             }
         }
