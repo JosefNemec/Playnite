@@ -17,6 +17,7 @@ namespace Playnite.WebView
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
 
+        public bool CanExecuteJavascriptInMainFrame => browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 

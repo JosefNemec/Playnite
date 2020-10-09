@@ -21,6 +21,7 @@ namespace Playnite.WebView
 
         private WebViewWindow window;
 
+        public bool CanExecuteJavascriptInMainFrame => window.Browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 

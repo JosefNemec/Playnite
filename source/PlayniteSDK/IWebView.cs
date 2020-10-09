@@ -51,6 +51,11 @@ namespace Playnite.SDK
     public interface IWebView : IDisposable
     {
         /// <summary>
+        /// Gets a flag that indicates if you can execute javascript in the main frame.
+        /// </summary>
+        bool CanExecuteJavascriptInMainFrame { get; }
+
+        /// <summary>
         /// Open view.
         /// </summary>
         void Open();
