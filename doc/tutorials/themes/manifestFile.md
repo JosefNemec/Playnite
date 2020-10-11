@@ -13,7 +13,7 @@ Available fields
 | Id | Unique string identifier for the theme. Must not be shared with any other theme. |
 | Name | Theme's name that will be displayed during installation and on theme selection dialogs. |
 | Author | Name of theme's author.  |
-| Version  | Theme version. Any version string you want to assign to theme, not used by Playnite for anything specific right now. |
+| Version | Extension version, must be a valid [.NET version string](https://docs.microsoft.com/en-us/dotnet/api/system.version). |
 | Mode  | Specifies whether the theme is for Desktop of Fullscreen mode. |
 | ThemeApiVersion | Theme API version required for theme to work. |
 | Links | Optional list of links (extension website, changelog etc.) |
