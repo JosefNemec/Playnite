@@ -85,6 +85,29 @@
                                Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
                                Visibility="{Binding Description.IsBuiltInExtension, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
+            <TextBlock Margin="0,10,0,0"  DockPanel.Dock="Top">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
+                           CommandParameter="{Binding Description.DirectoryPath}">
+                    <Run Text="{DynamicResource LOCExtensionInstallDir}" />
+                </Hyperlink>
+            </TextBlock>
+
+            <TextBlock Margin="0,5,0,0"  DockPanel.Dock="Top">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Description.Type}" Value="Script">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+                <Hyperlink Command="{Binding Data.OpenExtensionDataDirCommand, Source={StaticResource RootDataContext}}"
+                           CommandParameter="{Binding}">
+                    <Run Text="{DynamicResource LOCExtensionDataDir}" />
+                </Hyperlink>
+            </TextBlock>
+
             <!--<TextBlock Text="{DynamicResource LOCExtensionUnsupported}" 
                                Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
                                FontWeight="Bold"

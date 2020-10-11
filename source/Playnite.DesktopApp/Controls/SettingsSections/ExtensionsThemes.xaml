@@ -87,6 +87,13 @@
                                FontWeight="Bold"
                                Visibility="{Binding IsCompatible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
 
+                    <TextBlock Margin="0,10,0,0"  DockPanel.Dock="Top">
+                        <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
+                                   CommandParameter="{Binding DirectoryPath}">
+                            <Run Text="{DynamicResource LOCExtensionInstallDir}" />
+                        </Hyperlink>
+                    </TextBlock>
+
                     <TextBlock Margin="5,0,0,10"  DockPanel.Dock="Bottom">
                         <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                                     CommandParameter="https://playnite.link/forum/forum-3.html">

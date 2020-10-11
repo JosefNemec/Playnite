@@ -20,6 +20,7 @@ using Playnite.Windows;
 using Playnite.DesktopApp.Markup;
 using System.Text.RegularExpressions;
 using Playnite.DesktopApp.Controls;
+using System.Diagnostics;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -285,6 +286,23 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<ThemeManifest>((a) =>
             {
                 UninstallTheme(a);
+            });
+        }
+
+        public RelayCommand<SelectablePlugin> OpenExtensionDataDirCommand
+        {
+            get => new RelayCommand<SelectablePlugin>((plugin) =>
+            {
+                if (plugin.Description.Type == ExtensionType.Script)
+                {
+                    return;
+                }
+
+                var p = Extensions.Plugins.Values.FirstOrDefault(a => a.Description.DirectoryPath == plugin.Description.DirectoryPath);
+                if (p != null)
+                {
+                    Process.Start(p.Plugin.GetPluginUserDataPath());
+                }
             });
         }
 
