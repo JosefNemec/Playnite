@@ -274,12 +274,14 @@
     <Compile Include="ViewModels\GoogleImageDownloadViewModel.cs" />
     <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel.cs" />
+    <Compile Include="ViewModels\LibraryIntegrationsViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ImageSelectionViewModel.cs" />
     <Compile Include="ViewModels\ItemSelectionWithSearchViewModel.cs" />
     <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\MetadataComparisonViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModelBase.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
     <Compile Include="Windows\ExtensionCrashHandlerWindow.xaml.cs">
@@ -287,6 +289,9 @@
     </Compile>
     <Compile Include="Windows\MetadataComparisonWindow.xaml.cs">
       <DependentUpon>MetadataComparisonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LibraryIntegrationsWindow.xaml.cs">
+      <DependentUpon>LibraryIntegrationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ToolsConfigWindow.xaml.cs">
       <DependentUpon>ToolsConfigWindow.xaml</DependentUpon>
@@ -1029,6 +1034,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\MetadataComparisonWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\LibraryIntegrationsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

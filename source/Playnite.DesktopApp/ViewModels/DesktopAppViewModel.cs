@@ -402,6 +402,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> CheckForUpdateCommand { get; private set; }
         public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
+        public RelayCommand<object> OpenLibraryIntegrationsConfigCommand { get; private set; }
         public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
         public RelayCommand<SideBarItem> ChangeAppViewCommand { get; private set; }
         public RelayCommand<object> RestartInSafeMode { get; private set; }
@@ -670,6 +671,18 @@ namespace Playnite.DesktopApp.ViewModels
                             Resources));
             }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.W, ModifierKeys.Control));
+
+            OpenLibraryIntegrationsConfigCommand = new RelayCommand<object>((a) =>
+            {
+                OpenIntegrationSettings(
+                    new LibraryIntegrationsViewModel(Database,
+                    AppSettings,
+                    new LibraryIntegrationsWindowFactory(),
+                    Dialogs,
+                    Resources,
+                    Extensions,
+                    application));
+            });
 
             UpdateLibraryCommand = new RelayCommand<LibraryPlugin>((a) =>
             {
@@ -1440,6 +1453,11 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         public void OpenSettings(SettingsViewModel model)
+        {
+            model.OpenView();
+        }
+
+        public void OpenIntegrationSettings(LibraryIntegrationsViewModel model)
         {
             model.OpenView();
         }

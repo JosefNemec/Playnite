@@ -104,6 +104,7 @@ namespace Playnite.DesktopApp.Controls
 
             // Library
             var libraryItem = AddMenuChild(Items, "LOCLibrary", null);
+            AddMenuChild(libraryItem.Items, "LOCMenuConfigureIntegrations", mainModel.OpenLibraryIntegrationsConfigCommand);
             AddMenuChild(libraryItem.Items, "LOCMenuLibraryManagerTitle", mainModel.OpenDbFieldsManagerCommand);
             AddMenuChild(libraryItem.Items, "LOCMenuConfigureEmulatorsMenuTitle", mainModel.OpenEmulatorsCommand);
             AddMenuChild(libraryItem.Items, "LOCMenuDownloadMetadata", mainModel.DownloadMetadataCommand);
