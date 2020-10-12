@@ -46,7 +46,7 @@ namespace Playnite.SDK
     /// <summary>
     /// Represents arguments for global progress action.
     /// </summary>
-    public class GlobalProgressActionArgs
+    public class GlobalProgressActionArgs : ObservableObject
     {
         /// <summary>
         /// Gets synchronization context of main thread.
@@ -62,6 +62,34 @@ namespace Playnite.SDK
         /// Gets cancelation token source.
         /// </summary>
         public CancellationTokenSource CancelToken { get; }
+
+        private double progressMaxValue = 0;
+        /// <summary>
+        /// Gets or sets maximum value represented on progress track.
+        /// </summary>
+        public double ProgressMaxValue
+        {
+            get => progressMaxValue;
+            set
+            {
+                progressMaxValue = value;
+                MainDispatcher?.Invoke(() => OnPropertyChanged(), DispatcherPriority.Send);
+            }
+        }
+
+        private double currentProgressValue = 0;
+        /// <summary>
+        /// Gets or sets currect value represented on progress track.
+        /// </summary>
+        public double CurrentProgressValue
+        {
+            get => currentProgressValue;
+            set
+            {
+                currentProgressValue = value;
+                MainDispatcher?.Invoke(() => OnPropertyChanged(), DispatcherPriority.Send);
+            }
+        }
 
         /// <summary>
         /// Creates new instance of <see cref="GlobalProgressActionArgs"/>.
@@ -125,6 +153,11 @@ namespace Playnite.SDK
         /// Gets or sets value indicating whether the progress can be canceled.
         /// </summary>
         public bool Cancelable { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether the progress is indeterminated.
+        /// </summary>
+        public bool IsIndeterminate { get; set; } = true;
 
         /// <summary>
         /// Creates new instance of <see cref="GlobalProgressOptions"/>.

@@ -19,6 +19,28 @@ namespace Playnite.ViewModels
         private CancellationTokenSource cancellationToken = new CancellationTokenSource();
         private bool canCancel = false;
 
+        private GlobalProgressActionArgs progressArgs;
+        public GlobalProgressActionArgs ProgressArgs
+        {
+            get => progressArgs;
+            set
+            {
+                progressArgs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool indeterminate = true;
+        public bool Indeterminate
+        {
+            get => indeterminate;
+            set
+            {
+                indeterminate = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool cancelable;
         public bool Cancelable
         {
@@ -76,10 +98,11 @@ namespace Playnite.ViewModels
             {
                 try
                 {
-                    progresAction(new GlobalProgressActionArgs(
+                    ProgressArgs = new GlobalProgressActionArgs(
                         PlayniteApplication.Current.SyncContext,
                         PlayniteApplication.CurrentNative.Dispatcher,
-                        cancellationToken));
+                        cancellationToken);
+                    progresAction(ProgressArgs);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -100,7 +123,10 @@ namespace Playnite.ViewModels
     {
         public static GlobalProgressResult ActivateProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
         {
-            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progresAction, progressArgs);
+            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progresAction, progressArgs)
+            {
+                Indeterminate = progressArgs.IsIndeterminate
+            };
             return progressModel.ActivateProgress();
         }
     }
