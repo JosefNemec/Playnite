@@ -63,7 +63,9 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <CheckBox Content="{DynamicResource LOCEnabledTitle}" Margin="0,15,0,0"
+            <CheckBox Margin="0,15,0,0"
+                      Content="{DynamicResource LOCEnabledTitle}"
+                      ContentStringFormat="{}{0} *"
                       IsChecked="{Binding Selected}" DockPanel.Dock="Top" />
 
             <Button Content="{DynamicResource LOCUninstallGame}" DockPanel.Dock="Top"
