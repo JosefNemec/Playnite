@@ -1,0 +1,4 @@
+A	source/Playnite.DesktopApp/Themes/Desktop/Default/DescriptionView.html
+A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/ProgressBar.xaml
+A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DescriptionView.html
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/GameDetails.xaml
