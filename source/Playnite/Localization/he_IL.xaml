@@ -215,6 +215,7 @@
     <sys:String x:Key="LOCMenuTools">כלים</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">מוריד נתונים…</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools">כלי תכנה…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">פתח תוכנת לקוח צד שלישי</sys:String>
     <sys:String x:Key="LOCMenuClients">לקוחות צד שלישי</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">עדכון ספריית המשחקים</sys:String>
@@ -779,6 +780,8 @@
     <sys:String x:Key="LOCPLaytime500to1000">500 עד 1000 שעות</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">מעל 1000</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">ערכת נושא\הרחבה משתמשת בגירסת API שאינה נתמכת.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">ההתקנה הסתיימה בהצלחה.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">להתקין הרחבה?</sys:String>
@@ -805,6 +808,8 @@
     <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
     <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
+    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
     <sys:String x:Key="LOCAddFromExe"></sys:String>

@@ -26,3 +26,4 @@ foreach ($lng in $locProgress.data)
 }
 
 $locProgressData | ConvertTo-Json | Out-File (Join-Path $locDir "locstatus.json")
+.\VerifyLanguageFiles.ps1

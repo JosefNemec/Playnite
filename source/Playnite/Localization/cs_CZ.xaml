@@ -200,6 +200,7 @@ Pokud nám chcete pomoci tento problém napravit, odešlete prosím diagnostick�
     <sys:String x:Key="LOCMenuTools">Nástroje</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Stáhnout metadata…</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Otevřít externího klienta</sys:String>
     <sys:String x:Key="LOCMenuClients"></sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Aktualizovat herní knihovnu</sys:String>
@@ -762,6 +763,8 @@ Nyní ji využívá {1} her a {2} emulátorů.</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 až 1000 hodin</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motiv vzhledu/rozšíření používá nepodporovanou verzi API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalace byla úspěšná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainstalovat rozšíření?</sys:String>
@@ -788,6 +791,8 @@ Verze {2}</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
     <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
+    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
     <sys:String x:Key="LOCAddFromExe"></sys:String>

@@ -224,6 +224,7 @@ Bude vo výsledku:  -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:Stri
     <sys:String x:Key="LOCMenuTools">Nástroje</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Prevziať metadáta…</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools">Softvérové nástroje…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Konfigurovať integrácie</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Otvoriť externého klienta</sys:String>
     <sys:String x:Key="LOCMenuClients">Klienti tretích strán</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Aktualizovať hernú knižnicu</sys:String>
@@ -800,6 +801,8 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCPLaytime500to1000">500 až 1000 hodín</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">Na dokončenie inštalácie je potrebné Playnite reštartovať. Chcete teraz reštartovať?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">Rozšírenie nie je správne zabalené.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">Motív vzhľadu nie je správne zabalený.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motív vzhľadu/rozširenie používa nepodporovanu verziu API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Inštalácia bola úspešná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainštalovať rozšírenie?</sys:String>
@@ -838,6 +841,8 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">Naozaj chcete odinštalovať vybrané rozšírenie? Odinštalácia sa vykoná pri ďalšom štarte aplikácie.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Vstavané rozšírenia nemožno odinštalovať.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Toto rozšírenie nepodporuje túto verziu Playnite.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Inštalačný priečinok</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Adresár s dátami</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Vytvára sa diagnostický balíček…</sys:String>
     <sys:String x:Key="LOCDiagUploading">Nahráva sa diagnostický balíček…</sys:String>
     <sys:String x:Key="LOCAddFromExe">Importovať súbor…</sys:String>

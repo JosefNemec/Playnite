@@ -224,6 +224,7 @@ Risulterà: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuTools">Strumenti</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Scaricamento metadata…</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools">Strumenti software...</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Configurare l'integrazione</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Aprire Client di terze parti</sys:String>
     <sys:String x:Key="LOCMenuClients">Client di terze parti</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Aggiorna la lista dei giochi</sys:String>
@@ -803,6 +804,8 @@ Puoi provare i seguenti:
     <sys:String x:Key="LOCPLaytime500to1000">da 500 a 1000 ore</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">Più di 1000</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite deve essere riavviato per compeltare l'installazione. Desidera raivviare ora?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">L'estensione non è stata impacchettata a dovere.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">Il tema non è stato impacchettato a dovere.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Estensione sta usando una versione API non supportata.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installazione avvenuta con successo.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installare l'estensione?</sys:String>
@@ -841,6 +844,8 @@ Sfondi: {2} px altezza</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">Sicuro di voler disinstallare l'estensione selezionata?  La disintallazione sarà messa in coda al prossimo avvio dell'applicazione.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Le estensioni native non possono essere disinstallate</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Questa estensione non è supportata da questa versione di Playnite</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Cartella d'installazione</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Dati della directory</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Generazione pacchetto di diagnostica...</sys:String>
     <sys:String x:Key="LOCDiagUploading">Invio pacchetto di diagnostica...</sys:String>
     <sys:String x:Key="LOCAddFromExe">importazione file...</sys:String>

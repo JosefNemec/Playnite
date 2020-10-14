@@ -181,12 +181,12 @@
     <sys:String x:Key="LOCRow">Рядок</sys:String>
     <sys:String x:Key="LOCRows">Рядки</sys:String>
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Спеціальні змінні можуть бути використані при створені динамічного рядка:
-{InstallDir} - Директорія зі встановленою грою
+{InstallDir} - Каталог із встановленою грою
 {InstallDirName} - Тека для встановлення
 {ImagePath} - Шлях до ISO/ROM гри, якщо заданий
 {ImageName} - Назва ISO/ROM файлу гри
 {ImageNameNoExt} - Назва ISO/ROM файлу гри без розширення
-{PlayniteDir} - Директорія встановлення Playnite
+{PlayniteDir} - Каталог встановлення Playnite
 {Name} - Назва гри
         
 Приклад: -image &quot;{ImagePath}&quot; -fullscreen
@@ -224,6 +224,7 @@
     <sys:String x:Key="LOCMenuTools">Інструменти</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Завантажити метадані...</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools">Програмні інструменти...</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Налаштування інтеграцій...</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Відкрити сторонній клієнт</sys:String>
     <sys:String x:Key="LOCMenuClients">Сторонні клієнти</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Оновити ігрову бібліотеку</sys:String>
@@ -502,7 +503,7 @@
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Ви хочете зберегти зміни емулятора?</sys:String>
     <sys:String x:Key="LOCExecutableTitle">Виконуваний файл</sys:String>
     <sys:String x:Key="LOCArgumentsTitle">Аргументи</sys:String>
-    <sys:String x:Key="LOCWorkingDirTitle">Робоча директорія</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">Робочий каталог</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Підтримувані типи файлів</sys:String>
     <sys:String x:Key="LOCImportEmulatorsButton">Імпортувати емулятори...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">Завантажити емулятори...</sys:String>
@@ -787,7 +788,7 @@
     <sys:String x:Key="LOCClientNotInstalledError">{0} клієнт не встановлено.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Клієнт {0} зараз буде відкрито. Будь ласка авторизуйтеся після чого закрийте це повідомлення.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Очікування на вхід користувача, будь ласка закрийте це коли завершите...</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError">Теку встановлення гри не знайдено</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Каталог встановлення гри не знайдено</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Невірна конфігурація дії Грати</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Вирішення проблем із синхронізацією облікового запису</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Вирішення проблем</sys:String>
@@ -802,6 +803,8 @@
     <sys:String x:Key="LOCPLaytime500to1000">Від 500 до 1000 годин</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">Щоб завершити встановлення, Playnite потрібно перезапустити. Хочете перезапустити зараз?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">Розширення не упаковано належним чином.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">Тема не упакована належним чином.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема/Розширення використовує непідтримувану версію API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Встановлення завершилося успішно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Встановити розширення?</sys:String>
@@ -839,6 +842,8 @@
     <sys:String x:Key="LOCExtensionUninstallQuestion">Ви впевнені що хочете видалити вибране розширення? Видалення буде заплановано при наступному запуску додатку.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Вбудовані розширення неможливо видалити.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Це розширення не підтримує цю версію Playnite.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Шлях встановлення</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Каталог даних</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Створення пакету діагностики...</sys:String>
     <sys:String x:Key="LOCDiagUploading">Надсилання пакету діагностики...</sys:String>
     <sys:String x:Key="LOCAddFromExe">Завантажити з файлу</sys:String>

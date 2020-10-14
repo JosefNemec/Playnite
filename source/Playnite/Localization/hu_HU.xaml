@@ -225,6 +225,7 @@ Eredménye: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuTools">Eszközök</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Metaadatok importálása...</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools">Szoftvereszközök…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Integrációk beállításai…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Külső kliens megnyitása</sys:String>
     <sys:String x:Key="LOCMenuClients">Harmadik féltől származó alkalmazások</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Játékkönyvtár frissítése</sys:String>
@@ -803,6 +804,8 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCPLaytime500to1000">500-tól 1000 óráig</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000 óra felett</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">A Playnite-ot újra kell indítani a telepítés befejezéséhez. Szeretnéd újraindítani most?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">A bővítmény helytelenül csomagolt.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">A téma helytelenül csomagolt.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">A Téma/Bővítmény nem támogatott API-t használ.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Sikeres telepítés.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Telepítsem a bővitményt?</sys:String>
@@ -828,6 +831,8 @@ Hátterek: {2} megapixel</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">Biztos eltávolítod a kijelölt bővítményt? A következő indításnál fog törlődni.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Beépitett bővítményt nem lehet eltávolítani.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Ez a bővítmény nem támogatja ezt a Playnite verziót.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Telepítési hely</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Adatmappa</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Diagnosztikai csomag létrehozása…</sys:String>
     <sys:String x:Key="LOCDiagUploading">Diagnosztikai csomag feltöltése…</sys:String>
     <sys:String x:Key="LOCAddFromExe">Fájl importálás…</sys:String>

@@ -200,6 +200,7 @@
     <sys:String x:Key="LOCMenuTools">Алати</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Преузми метаподатке…</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Отвори клијент треће стране</sys:String>
     <sys:String x:Key="LOCMenuClients"></sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Ажурирај библиотеку игара</sys:String>
@@ -764,6 +765,8 @@
     <sys:String x:Key="LOCPLaytime500to1000">Од 500 до 1000 сати</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема/екстензија користи неподржану API верзију.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Инсталација је успешна.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Инсталирај екстензију?</sys:String>
@@ -790,6 +793,8 @@
     <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
     <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
+    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
     <sys:String x:Key="LOCAddFromExe"></sys:String>

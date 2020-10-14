@@ -224,6 +224,7 @@ Resultados en: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuTools">Herramientas</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Descargar Metadatos…</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools">Herramientas de software…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Configurar integraciones…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Abrir Cliente de Tercero</sys:String>
     <sys:String x:Key="LOCMenuClients">Clientes de terceros</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Actualizar la Biblioteca de Juegos</sys:String>
@@ -550,7 +551,7 @@ Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:Str
     <sys:String x:Key="LOCGameLastActivityTitle">Jugado por última vez</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Categoría</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Descripción</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle">Directorio de Instalación</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Directorio de instalación</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Imágen de Portada</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Enlaces</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Ruta de Imágen, ROM o ISO</sys:String>
@@ -802,6 +803,8 @@ Puede intentar resolver el problema:
     <sys:String x:Key="LOCPLaytime500to1000">De 500 a 1000 horas</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite debe reiniciarse para completar la instalación. ¿Quieres reiniciar ahora?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">La extensión no está empaquetada correctamente.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">El tema no está empaquetado correctamente.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Extensión está usando una versión de API no soportada.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instalación fue exitosa.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">¿Instalar extensión?</sys:String>
@@ -839,6 +842,8 @@ Fondos: {2} megapíxeles</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">¿Está seguro de que desea desinstalar la extensión seleccionada? La desinstalación se pondrá en cola para el próximo inicio de la aplicación.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Las extensiones predeterminadas no se pueden desinstalar.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Esta extensión no es compatible con esta versión de Playnite.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Directorio de instalación</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Directorio de datos</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Generando paquete de diagnóstico…</sys:String>
     <sys:String x:Key="LOCDiagUploading">Subiendo paquete de diagnóstico…</sys:String>
     <sys:String x:Key="LOCAddFromExe">Importar archivo…</sys:String>

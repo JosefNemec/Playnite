@@ -201,6 +201,7 @@
     <sys:String x:Key="LOCMenuTools">ابزار</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">دانلود ابر داده</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">بازکردن مشتری سوم شخص</sys:String>
     <sys:String x:Key="LOCMenuClients"></sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">بروزرسانی کتابخانه بازی</sys:String>
@@ -763,6 +764,8 @@
     <sys:String x:Key="LOCPLaytime500to1000">500 تا 1000 ساعت</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">+١٠٠٠</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">تم/افزونه از نسخه API پشتیبانی نشده استفاده می کند.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">نصب موفقیت آمیز بود.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">نصب افزونه؟</sys:String>
@@ -789,6 +792,8 @@
     <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
     <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
+    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
     <sys:String x:Key="LOCAddFromExe"></sys:String>

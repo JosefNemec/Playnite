@@ -224,6 +224,7 @@
     <sys:String x:Key="LOCMenuTools">Инструменты</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Загрузить метаданные...</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools">Программные инструменты... </sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Настройка Интеграции...</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Открыть сторонний клиент</sys:String>
     <sys:String x:Key="LOCMenuClients">Сторонние клиенты</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Перезагрузить игровой список</sys:String>
@@ -759,18 +760,18 @@
     <sys:String x:Key="LOCOpenGameManual">Открыть руководство</sys:String>
     <sys:String x:Key="LOCMoreAction">Другое</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">Управление плагином библиотеки</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">Процесс запуска игры будет осуществляться плагином библиотеки, ответственным за эту игру.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Не найдено никакой  информации об игре '{0}'.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню &quot;Редактировать&quot;.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Время игры записывается в секундах.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Введите значение от 0 до 100(либо оставьте пустое если не хотите оценивать)</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Разработка Playnite осуществляется благодаря средствам этих людей:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Люди, принимающие участие в написании кода, локализаций и т.д.:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Отменить мониторинг игры?</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">В настоящее время запущен мониторинг установки, вы хотите отменить процесс и вернуть игру в предыдущее состояние?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">В настоящее время ведется мониторинг запуска игры. Вы хотите отменить процесс и вернуть игру в предыдущее состояние?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Времени сыграно</sys:String>
     <sys:String x:Key="LOCLastPlayed">Последний запуск</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}ч {1}м</sys:String>
@@ -803,7 +804,9 @@
     <sys:String x:Key="LOCPLaytime100to500">От 100 до 500 часов</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">От 500 до 1000 часов</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite необходимо перезапустить, чтобы завершить установку. Перезапустить сейчас?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">Расширение не упаковано должным образом.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">Тема не упакована должным образом.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема оформления/Расширение использует неподдерживаемую версию API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Установка прошла успешно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить расширение?</sys:String>
@@ -819,37 +822,50 @@
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Не удалось установить тему
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Вы хотите установить новую тему? Предыдущая установка будет перезаписана.
+
+{0}
+Автор {1}
+Версия {2}</sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Вы собираетесь покинуть Playnite и перейти на следующую веб-страницу, используя свой веб-браузер по умолчанию. Вы хотите продолжить?
+
+{0}</sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Выбранные изображения могут быть слишком большими для оптимальной производительности. Использование очень больших изображений может привести к ухудшению отклика пользовательского интерфейса и увеличению использования памяти.
+
+Максимальное рекомендуемое разрешение:
+Иконки: {0} мегапикс
+Обложки: {1} мегапикс
+Фоны: {2} мегапикс</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Предупреждение о падении производительности</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Не показывать снова</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Выбранный файл изображения может быть слишком большим для оптимальной производительности.</sys:String>
-    <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
-    <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCThemeUnsupported"></sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
-    <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
-    <sys:String x:Key="LOCDiagGenerating"></sys:String>
-    <sys:String x:Key="LOCDiagUploading"></sys:String>
-    <sys:String x:Key="LOCAddFromExe"></sys:String>
-    <sys:String x:Key="LOCWhatIsThis"></sys:String>
-    <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
-    <sys:String x:Key="LOCStatsTotalPlayTime"></sys:String>
+    <sys:String x:Key="LOCThemeUninstallQuestion">Вы уверены, что хотите удалить выбранную тему? Деинсталляция будет запланирована в очереди на следующий запуск приложения.</sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint">Встроенные темы не могут быть удалены.</sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">Эта тема не поддерживает эту версию Playnite.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">Вы уверены, что хотите удалить выбранное расширение? Деинсталляция будет запланирована в очереди на следующий запуск приложения.</sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Встроенные расширения не могут быть удалены.</sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported">Это расширение не поддерживает данную версию Playnite.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Путь установки</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Каталог данных</sys:String>
+    <sys:String x:Key="LOCDiagGenerating">Генерация диагностического пакета…</sys:String>
+    <sys:String x:Key="LOCDiagUploading">Загрузка диагностического пакета…</sys:String>
+    <sys:String x:Key="LOCAddFromExe">Импорт файла…</sys:String>
+    <sys:String x:Key="LOCWhatIsThis">Что это?</sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">Вы уверены, что вы хотите это сделать?</sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime">Общее время</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Среднее время выполнения</sys:String>
-    <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
-    <sys:String x:Key="LOCOverviewLabel"></sys:String>
-    <sys:String x:Key="LOCSidebar"></sys:String>
+    <sys:String x:Key="LOCStatsTopPlayTime">Общее время</sys:String>
+    <sys:String x:Key="LOCOverviewLabel">Обзор</sys:String>
+    <sys:String x:Key="LOCSidebar">Боковая панель</sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Достижения</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Форум</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">Новости</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">Страница в магазине</sys:String>
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">Откроется клиент itch.io. Пожалуйста, войдите в систему и закройте это сообщение.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Ожидание входа пользователя, пожалуйста, закройте сообщение, когда войдете…</sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Клиент Itch версии 25 или новее не установлен.</sys:String>
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Логин аккаунта</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Имя пользователя</sys:String>
@@ -861,11 +877,11 @@
     <sys:String x:Key="LOCSteamRequiresApiKey">Аккаунт приватный, требуется API ключ.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub">Центр сообщества</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">Обсуждения</sys:String>
-    <sys:String x:Key="LOCSteamLinksGuides"></sys:String>
+    <sys:String x:Key="LOCSteamLinksGuides">Инструкции</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">Мастерская</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers">Загружать вертикальные обложки</sys:String>
-    <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCSteamImportFreeSubGames">Импорт универсальных бесплатных товаров</sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">Первичная настройка не завершена. Playnite будет запущен в обычном режиме, чтобы закончить процедуру.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Последние запущенные</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Избранные</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Часто играемые</sys:String>
@@ -882,9 +898,10 @@
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Игнорировать сторонний магазин игр.</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Импорт игр с Xbox </sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree"></sys:String>
-    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip"></sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Включите возможность пропустить импорт игр, для которых требуются сторонние клиенты,
+включая магазины, уже управляемые в Playnite, чтобы предотвратить дубликаты.</sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree">Импорт, если доступна бесплатная версия DRM</sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip">Импортируйте игры, требующие стороннего клиента, Если также доступна бесплатная версия DRM.</sys:String>
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Запустить приложение Xbox Pass вместо Microsoft Store при открытии клиента</sys:String>
     <sys:String x:Key="LOCXboxImport360Games">Импорт игр с Xbox 360</sys:String>
