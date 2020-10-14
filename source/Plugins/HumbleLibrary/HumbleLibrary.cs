@@ -72,7 +72,7 @@ namespace HumbleLibrary
                         {
                             var game = new GameInfo
                             {
-                                Name = troveGame.human_name,
+                                Name = troveGame.human_name.RemoveTrademarks(),
                                 GameId = GetGameId(troveGame),
                                 Description = troveGame.description_text,
                                 Publishers = troveGame.publishers?.Select(a => a.publisher_name).ToList(),
@@ -126,24 +126,30 @@ namespace HumbleLibrary
                     {
                         foreach (var product in order.subproducts)
                         {
+                            var alreadyAdded = selectedProducts.FirstOrDefault(a => a.human_name == product.human_name);
+                            if (alreadyAdded != null)
+                            {
+                                continue;
+                            }
+
                             if (product.downloads?.Any(a => a.platform == "windows") == true)
                             {
                                 if (Settings.IgnoreThirdPartyStoreGames && order.tpkd_dict?.all_tpks.HasItems() == true)
                                 {
                                     var exst = allTpks.FirstOrDefault(a =>
                                     !a.human_name.IsNullOrEmpty() &&
-                                    (a.human_name == product.human_name || Regex.IsMatch(a.human_name, product.human_name + @".+\sKey$")));
-                                    if (exst != null)
+                                    (a.human_name.Equals(product.human_name, StringComparison.OrdinalIgnoreCase) ||
+                                    Regex.IsMatch(a.human_name, product.human_name + @".+\sKey$", RegexOptions.IgnoreCase) ||
+                                    Regex.IsMatch(a.human_name, product.human_name + @".*\s\(?Steam\)?$", RegexOptions.IgnoreCase) ||
+                                    Regex.IsMatch(a.human_name + @"\s*+$", product.human_name, RegexOptions.IgnoreCase)));
+
+                                    if (exst != null && !Settings.ImportThirdPartyDrmFree)
                                     {
                                         continue;
                                     }
                                 }
 
-                                var alreadyAdded = selectedProducts.FirstOrDefault(a => a.human_name == product.human_name);
-                                if (alreadyAdded == null)
-                                {
-                                    selectedProducts.Add(product);
-                                }
+                                selectedProducts.Add(product);
                             }
                         }
                     }
@@ -152,13 +158,18 @@ namespace HumbleLibrary
                 foreach (var product in selectedProducts)
                 {
                     var gameId = GetGameId(product);
+                    if (PlayniteApi.ApplicationSettings.GetGameExcludedFromImport(gameId, Id))
+                    {
+                        continue;
+                    }
+
                     var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == gameId && a.PluginId == Id);
                     if (alreadyImported == null)
                     {
                         importedGames.Add(PlayniteApi.Database.ImportGame(new GameInfo()
                         {
-                            Name = product.human_name,
-                            GameId = GetGameId(product),
+                            Name = product.human_name.RemoveTrademarks(),
+                            GameId = gameId,
                             Icon = product.icon,
                             Platform = "PC",
                             Source = "Humble"
@@ -170,8 +181,14 @@ namespace HumbleLibrary
                 {
                     foreach (var troveGame in GetTroveGames())
                     {
+                        // Don't import Trove game if it's part of main library
+                        if (selectedProducts.Any(a => a.human_name.RemoveTrademarks().Equals(troveGame.Name, StringComparison.OrdinalIgnoreCase)))
+                        {
+                            continue;
+                        }
+
                         var alreadyImported = PlayniteApi.Database.Games.FirstOrDefault(a => a.GameId == troveGame.GameId && a.PluginId == Id);
-                        if (alreadyImported == null)
+                        if (alreadyImported == null && !PlayniteApi.ApplicationSettings.GetGameExcludedFromImport(troveGame.GameId, Id))
                         {
                             importedGames.Add(PlayniteApi.Database.ImportGame(troveGame, this));
                         }
@@ -180,7 +197,7 @@ namespace HumbleLibrary
             }
             catch (Exception e)
             {
-                logger.Error(e, "Failed to import installed Humble games.");
+                logger.Error(e, "Failed to import Humble games.");
                 importError = e;
             }
 

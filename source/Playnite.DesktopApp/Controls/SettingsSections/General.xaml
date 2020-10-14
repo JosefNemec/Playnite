@@ -69,7 +69,7 @@
                             VerticalAlignment="Center" Margin="5,0,10,0" />
             <ComboBox Name="ComboLanguage" VerticalAlignment="Center"
                       SelectedValue="{Binding Settings.Language}"
-                      SelectedValuePath="Id" DisplayMemberPath="LocaleString"
+                      SelectedValuePath="Id" DisplayMemberPath="DisplayString"
                       ItemsSource="{Binding AvailableLanguages}"/>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"

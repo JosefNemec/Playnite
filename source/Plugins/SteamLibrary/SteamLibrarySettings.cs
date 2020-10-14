@@ -41,6 +41,8 @@ namespace SteamLibrary
 
         public string UserId { get; set; } = string.Empty;
 
+        public bool IncludeFreeSubGames { get; set; } = false;
+
         private bool isPrivateAccount;
         public bool IsPrivateAccount
         {
@@ -98,7 +100,7 @@ namespace SteamLibrary
 
                         try
                         {
-                            var games = library.GetPrivateOwnedGames(ulong.Parse(UserId), ApiKey);
+                            var games = library.GetPrivateOwnedGames(ulong.Parse(UserId), ApiKey, false);
                             if (games?.response?.games.HasItems() == true)
                             {
                                 return AuthStatus.Ok;
@@ -114,7 +116,7 @@ namespace SteamLibrary
                     }
                     else
                     {
-                        var games = library.ServicesClient.GetSteamLibrary(UserId);
+                        var games = library.ServicesClient.GetSteamLibrary(ulong.Parse(UserId));
                         if (games.HasItems())
                         {
                             return AuthStatus.Ok;
@@ -246,7 +248,7 @@ namespace SteamLibrary
                 var userName = "Unknown";
                 using (var view = api.WebViews.CreateView(675, 440, Colors.Black))
                 {
-                    view.NavigationChanged += async (s, e) =>
+                    view.LoadingChanged += async (s, e) =>
                     {
                         var address = view.GetCurrentAddress();
                         if (address.Contains(@"steamcommunity.com"))

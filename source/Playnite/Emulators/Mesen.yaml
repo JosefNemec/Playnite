@@ -1,0 +1,8 @@
+Name: Mesen
+Website: 'https://www.mesen.ca/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '/fullscreen "{ImagePath}"'
+    Platforms: [Nintendo Entertainment System]
+    ImageExtensions: [nes, unf, fds, nsf, nsfe, zip, 7z, ips, bps, ups]
+    ExecutableLookup: ^Mesen\.exe$

@@ -2,11 +2,183 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Playnite.SDK
 {
+    /// <summary>
+    /// Represents message box response options.
+    /// </summary>
+    public class MessageBoxOption
+    {
+        /// <summary>
+        /// Gets or sets title of response option.
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether this is default option.
+        /// </summary>
+        public bool IsDefault { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether this is option to cancel the request.
+        /// </summary>
+        public bool IsCancel { get; set; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="MessageBoxOption"/>.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="isDefault"></param>
+        /// <param name="isCancel"></param>
+        public MessageBoxOption(string title, bool isDefault = false, bool isCancel = false)
+        {
+            Title = title;
+            IsDefault = isDefault;
+            IsCancel = isCancel;
+        }
+    }
+
+    /// <summary>
+    /// Represents arguments for global progress action.
+    /// </summary>
+    public class GlobalProgressActionArgs : ObservableObject
+    {
+        /// <summary>
+        /// Gets synchronization context of main thread.
+        /// </summary>
+        public SynchronizationContext MainContext { get; }
+
+        /// <summary>
+        /// Gets dispatcher for main UI thread.
+        /// </summary>
+        public Dispatcher MainDispatcher { get; }
+
+        /// <summary>
+        /// Gets cancelation token source.
+        /// </summary>
+        public CancellationTokenSource CancelToken { get; }
+
+        private double progressMaxValue = 0;
+        /// <summary>
+        /// Gets or sets maximum value represented on progress track.
+        /// </summary>
+        public double ProgressMaxValue
+        {
+            get => progressMaxValue;
+            set
+            {
+                progressMaxValue = value;
+                MainDispatcher?.Invoke(() => OnPropertyChanged(), DispatcherPriority.Send);
+            }
+        }
+
+        private double currentProgressValue = 0;
+        /// <summary>
+        /// Gets or sets currect value represented on progress track.
+        /// </summary>
+        public double CurrentProgressValue
+        {
+            get => currentProgressValue;
+            set
+            {
+                currentProgressValue = value;
+                MainDispatcher?.Invoke(() => OnPropertyChanged(), DispatcherPriority.Send);
+            }
+        }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GlobalProgressActionArgs"/>.
+        /// </summary>
+        /// <param name="mainContext"></param>
+        /// <param name="mainDispatcher"></param>
+        /// <param name="cancelToken"></param>
+        public GlobalProgressActionArgs(SynchronizationContext mainContext, Dispatcher mainDispatcher, CancellationTokenSource cancelToken)
+        {
+            MainContext = mainContext;
+            MainDispatcher = mainDispatcher;
+            CancelToken = cancelToken;
+        }
+    }
+
+    /// <summary>
+    /// Represents result of global progress dialog.
+    /// </summary>
+    public class GlobalProgressResult
+    {
+        /// <summary>
+        /// Gets failure exception record.
+        /// </summary>
+        public Exception Error { get; }
+
+        /// <summary>
+        /// Gets execution result.
+        /// </summary>
+        public bool? Result { get; }
+
+        /// <summary>
+        /// Gets value indicating whether the action was canceled by user.
+        /// </summary>
+        public bool Canceled { get; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GlobalProgressResult"/>.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="canceled"></param>
+        /// <param name="error"></param>
+        public GlobalProgressResult(bool? result, bool canceled, Exception error)
+        {
+            Result = result;
+            Error = error;
+            Canceled = canceled;
+        }
+    }
+
+    /// <summary>
+    /// Represents option for global progress dialog.
+    /// </summary>
+    public class GlobalProgressOptions
+    {
+        /// <summary>
+        /// Gets or sets progress text.
+        /// </summary>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether the progress can be canceled.
+        /// </summary>
+        public bool Cancelable { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether the progress is indeterminated.
+        /// </summary>
+        public bool IsIndeterminate { get; set; } = true;
+
+        /// <summary>
+        /// Creates new instance of <see cref="GlobalProgressOptions"/>.
+        /// </summary>
+        /// <param name="text"></param>
+        public GlobalProgressOptions(string text)
+        {
+            Text = text;
+        }
+
+        /// <summary>
+        /// Creates new instance of <see cref="GlobalProgressOptions"/>.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="cancelable"></param>
+        public GlobalProgressOptions(string text, bool cancelable) : this(text)
+        {
+            Cancelable = cancelable;
+        }
+    }
+
     /// <summary>
     /// Represents item for image selection dialog.
     /// </summary>
@@ -102,6 +274,27 @@ namespace Playnite.SDK
     }
 
     /// <summary>
+    /// Represents option for new window creation.
+    /// </summary>
+    public class WindowCreationOptions
+    {
+        /// <summary>
+        /// Gets or sets value indicating whether the minimize button should be shown.
+        /// </summary>
+        public bool ShowMinimizeButton { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets value indicating whether the maximize button should be shown.
+        /// </summary>
+        public bool ShowMaximizeButton { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets value indicating whether the close button should be shown.
+        /// </summary>
+        public bool ShowCloseButton { get; set; } = true;
+    }
+
+    /// <summary>
     /// Describes object providing methods for dialog based actions.
     /// </summary>
     public interface IDialogsFactory
@@ -119,7 +312,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <param name="caption">Dialog window caption.</param>
-        /// <param name="button">Available respose button.</param>
+        /// <param name="button">Available response button.</param>
         /// <param name="icon">Dialog icon.</param>
         /// <returns>Selected dialog response.</returns>
         MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon);
@@ -129,7 +322,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <param name="caption">Dialog window caption.</param>
-        /// <param name="button">Available respose button.</param>
+        /// <param name="button">Available response button.</param>
         /// <returns>Selected dialog response.</returns>
         MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button);
 
@@ -147,6 +340,16 @@ namespace Playnite.SDK
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <returns>Selected dialog response.</returns>
         MessageBoxResult ShowMessage(string messageBoxText);
+
+        /// <summary>
+        /// Displays dialog window custom response options.
+        /// </summary>
+        /// <param name="messageBoxText">Dialog message text.</param>
+        /// <param name="caption">Dialog window caption.</param>
+        /// <param name="icon">Dialog icon.</param>
+        /// <param name="options">Response options.</param>
+        /// <returns>Selected dialog option.</returns>
+        MessageBoxOption ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<MessageBoxOption> options);
 
         /// <summary>
         /// Displays system dialog for folder selection.
@@ -232,5 +435,26 @@ namespace Playnite.SDK
         /// <param name="caption"></param>
         /// <returns>Null if dialog was canceled otherwise selected <see cref="GenericItemOption"/> object.</returns>
         GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null);
+
+        /// <summary>
+        /// Activates progress dialog blocking app interaction until progress is finished or canceled.
+        /// </summary>
+        /// <param name="progresAction">Action to be executed.</param>
+        /// <param name="progressOptions">Options for progress dialog.</param>
+        /// <returns>Status of the action execution.</returns>
+        GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressOptions);
+
+        /// <summary>
+        /// Creates new window with Playnite's default styling applied.
+        /// </summary>
+        /// <param name="options">Custom window options.</param>
+        /// <returns>New window instance.</returns>
+        Window CreateWindow(WindowCreationOptions options);
+
+        /// <summary>
+        /// Gets a window which currently in use an active.
+        /// </summary>
+        /// <returns>Window object.</returns>
+        Window GetCurrentAppWindow();
     }
 }

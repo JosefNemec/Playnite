@@ -30,7 +30,7 @@
         <StackPanel Orientation="Horizontal" Margin="0,15,0,15">
             <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" VerticalAlignment="Center"
                       Content="{DynamicResource LOCSettingsIndentGameDetails}" />
-            <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+            <pctrls:NullableIntBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
                                    Value="{Binding Settings.GameDetailsIndentation}"
                                    IsEnabled="{Binding Settings.IndentGameDetails}" />
         </StackPanel>
@@ -38,14 +38,14 @@
         <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
             <TextBlock VerticalAlignment="Center"
                        Text="{DynamicResource LOCSettingsGameDetailsCoverHeight}"/>
-            <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+            <pctrls:NullableIntBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
                                    Value="{Binding Settings.GameDetailsCoverHeight}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
             <TextBlock VerticalAlignment="Center"
                        Text="{DynamicResource LOCSettingsGameDetailsListIconSize}"/>
-            <pctrls:NullableIntBox MinValue="0" MaxValue="2048" Width="60" Margin="10,0,0,0"
+            <pctrls:NullableIntBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
                                    Value="{Binding Settings.DetailsViewListIconSize}" />
         </StackPanel>
 
@@ -125,6 +125,9 @@
                                               Margin="0,10,0,0"/>
             <CheckBox Content="{DynamicResource LOCGameDescriptionTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Description}"
+                                              Margin="0,10,0,0"/>
+            <CheckBox Content="{DynamicResource LOCNotesLabel}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Notes}"
                                               Margin="0,10,0,0"/>
         </UniformGrid>
     </StackPanel>

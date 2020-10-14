@@ -132,6 +132,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\ExpanderEx.cs" />
     <Compile Include="Controls\FilterStringSelectionBox.xaml.cs">
       <DependentUpon>FilterStringSelectionBox.xaml</DependentUpon>
     </Compile>
@@ -144,6 +145,7 @@
     <Compile Include="Controls\FilterSelectionBox.xaml.cs">
       <DependentUpon>FilterSelectionBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GameGroupMenu.cs" />
     <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
@@ -152,6 +154,10 @@
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\GameListItem.cs" />
+    <Compile Include="Controls\LibraryStatistics.xaml.cs">
+      <DependentUpon>LibraryStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MenuHelpers.cs" />
     <Compile Include="Controls\MetadataDownloadSettings.xaml.cs">
       <DependentUpon>MetadataDownloadSettings.xaml</DependentUpon>
     </Compile>
@@ -177,6 +183,24 @@
     </Compile>
     <Compile Include="Controls\SettingsSections\ClientShutdown.xaml.cs">
       <DependentUpon>ClientShutdown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ExtensionsThemes.xaml.cs">
+      <DependentUpon>ExtensionsThemes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ExtensionsOther.xaml.cs">
+      <DependentUpon>ExtensionsOther.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ExtensionsLibraries.xaml.cs">
+      <DependentUpon>ExtensionsLibraries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ExtensionsMetadata.xaml.cs">
+      <DependentUpon>ExtensionsMetadata.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ImportExlusionList.xaml.cs">
+      <DependentUpon>ImportExlusionList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\ErrorLoading.xaml.cs">
+      <DependentUpon>ErrorLoading.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsSections\Performance.xaml.cs">
       <DependentUpon>Performance.xaml</DependentUpon>
@@ -205,6 +229,7 @@
     <Compile Include="Controls\SettingsSections\Scripting.xaml.cs">
       <DependentUpon>Scripting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SidebarItem.cs" />
     <Compile Include="Controls\SliderWithPopup.xaml.cs">
       <DependentUpon>SliderWithPopup.xaml</DependentUpon>
     </Compile>
@@ -243,14 +268,34 @@
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\GameEditViewModel.cs" />
+    <Compile Include="ViewModels\GameEditViewModelCommands.cs" />
+    <Compile Include="ViewModels\GameEditViewModelFieldChecks.cs" />
+    <Compile Include="ViewModels\GameEditViewModelMetadata.cs" />
     <Compile Include="ViewModels\GoogleImageDownloadViewModel.cs" />
     <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel.cs" />
+    <Compile Include="ViewModels\LibraryIntegrationsViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ImageSelectionViewModel.cs" />
     <Compile Include="ViewModels\ItemSelectionWithSearchViewModel.cs" />
     <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\MetadataComparisonViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModelBase.cs" />
+    <Compile Include="ViewModels\StatisticsViewModel.cs" />
+    <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
+    <Compile Include="Windows\ExtensionCrashHandlerWindow.xaml.cs">
+      <DependentUpon>ExtensionCrashHandlerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MetadataComparisonWindow.xaml.cs">
+      <DependentUpon>MetadataComparisonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LibraryIntegrationsWindow.xaml.cs">
+      <DependentUpon>LibraryIntegrationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ToolsConfigWindow.xaml.cs">
+      <DependentUpon>ToolsConfigWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
@@ -439,6 +484,9 @@
     <None Include="Themes\Desktop\Default\Images\applogo_dark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Themes\Desktop\Default\DescriptionView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Themes\Desktop\Default\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -503,6 +551,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\LibraryStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MetadataDownloadSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -532,6 +584,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SettingsSections\ClientShutdown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ExtensionsThemes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ExtensionsOther.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ExtensionsLibraries.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ExtensionsMetadata.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ImportExlusionList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\ErrorLoading.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -934,7 +1010,38 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\GameGroupMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ExpanderEx.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\SidebarItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ExtensionCrashHandlerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MetadataComparisonWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\LibraryIntegrationsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ToolsConfigWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1027,20 +1134,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)
-xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BattleNetLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\BethesdaLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BethesdaLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\EpicLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\EpicLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\GogLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\GogLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\ItchioLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\ItchioLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\OriginLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\SteamLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\IGDBMetadata\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\IGDBMetadata\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y
-xcopy "$(SolutionDir)\Plugins\HumbleLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\HumbleLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\XboxLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\XboxLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Plugins\AmazonGamesLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\AmazonGamesLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt</PostBuildEvent>
+"C:\Program Files\PowerShell\7\pwsh.exe" -file "$(SolutionDir)\..\build\copyPluginsToBuild.ps1" "$(ConfigurationName)" "$(TargetDir)\" "$(SolutionDir)\"</PostBuildEvent>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <Import Project="..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets" Condition="Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" />

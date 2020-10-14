@@ -73,6 +73,18 @@ namespace Playnite
                 dummyGame.Description = firstDescription;
             }
 
+            var firstNotes = firstGame.Notes;
+            if (games.All(a => a.Notes == firstNotes) == true)
+            {
+                dummyGame.Notes = firstNotes;
+            }
+
+            var firstManual = firstGame.Manual;
+            if (games.All(a => a.Manual == firstManual) == true)
+            {
+                dummyGame.Manual = firstManual;
+            }
+
             var firstPlatform = firstGame.PlatformId;
             if (games.All(a => a.PlatformId == firstPlatform) == true)
             {
@@ -163,6 +175,24 @@ namespace Playnite
                 dummyGame.Hidden = firstHidden;
             }
 
+            var firstInstalled = firstGame.IsInstalled;
+            if (games.All(a => a.IsInstalled == firstInstalled) == true)
+            {
+                dummyGame.IsInstalled = firstInstalled;
+            }
+
+            var firstInstallDir = firstGame.InstallDirectory;
+            if (games.All(a => a.InstallDirectory == firstInstallDir) == true)
+            {
+                dummyGame.InstallDirectory = firstInstallDir;
+            }
+
+            var firstRomPath = firstGame.GameImagePath;
+            if (games.All(a => a.GameImagePath == firstRomPath) == true)
+            {
+                dummyGame.GameImagePath = firstRomPath;
+            }
+
             var firstFavorite = firstGame.Favorite;
             if (games.All(a => a.Favorite == firstFavorite) == true)
             {
@@ -176,15 +206,45 @@ namespace Playnite
             }
 
             var firstPreScript = firstGame.PreScript;
-            if (games.All(a => string.Equals(a.PreScript, firstPreScript)))
+            if (games.All(a => string.Equals(a.PreScript, firstPreScript, StringComparison.Ordinal)))
             {
                 dummyGame.PreScript = firstPreScript;
             }
 
             var firstPostScript = firstGame.PostScript;
-            if (games.All(a => string.Equals(a.PostScript, firstPostScript)))
+            if (games.All(a => string.Equals(a.PostScript, firstPostScript, StringComparison.Ordinal)))
             {
                 dummyGame.PostScript = firstPostScript;
+            }
+
+            var firstGameStartedScript = firstGame.GameStartedScript;
+            if (games.All(a => string.Equals(a.GameStartedScript, firstGameStartedScript, StringComparison.Ordinal)))
+            {
+                dummyGame.GameStartedScript = firstGameStartedScript;
+            }
+
+            var firstUseGlobalPreSrc = firstGame.UseGlobalPreScript;
+            if (games.All(a => a.UseGlobalPreScript == firstUseGlobalPreSrc) == true)
+            {
+                dummyGame.UseGlobalPreScript = firstUseGlobalPreSrc;
+            }
+
+            var firstUseGlobalPostSrc = firstGame.UseGlobalPostScript;
+            if (games.All(a => a.UseGlobalPostScript == firstUseGlobalPostSrc) == true)
+            {
+                dummyGame.UseGlobalPostScript = firstUseGlobalPostSrc;
+            }
+
+            var firstUseGlobalGameStartedSrc = firstGame.UseGlobalGameStartedScript;
+            if (games.All(a => a.UseGlobalGameStartedScript == firstUseGlobalGameStartedSrc) == true)
+            {
+                dummyGame.UseGlobalGameStartedScript = firstUseGlobalGameStartedSrc;
+            }
+
+            var firstPlayAction = firstGame.PlayAction;
+            if (games.All(a => a.PlayAction?.Equals(firstPlayAction) == true))
+            {
+                dummyGame.PlayAction = firstPlayAction;
             }
 
             return dummyGame;

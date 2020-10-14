@@ -47,6 +47,7 @@ namespace XboxLibrary
                 Replace("(Windows)", "").
                 Replace("for Windows 10", "").
                 Replace("- Windows 10", "").
+                RemoveTrademarks().
                 Trim(),
                 Platform = "PC",
                 Source = "Xbox"
@@ -113,8 +114,7 @@ namespace XboxLibrary
 
             if (Computer.WindowsVersion != WindowsVersion.Win10)
             {
-                logger.Error("Xbox game library is only supported on Windows 10.");
-                return allGames;
+                throw new Exception("Xbox game library is only supported on Windows 10.");
             }
 
             var titles = new List<TitleHistoryResponse.Title>();

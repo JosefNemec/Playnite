@@ -70,13 +70,6 @@
             </StackPanel>
         </StackPanel>
 
-        <CheckBox Content="{DynamicResource LOCEpicSkipLauncherWhenStartingGame}"
-                  ToolTip="{DynamicResource LOCEpicSkipLauncherWhenStartingGameTooltip}"
-                  Visibility="{Binding IsFirstRunUse, Converter={pcon:InvertedBooleanToVisibilityConverter}}"
-                  ToolTipService.InitialShowDelay="0"
-                  IsChecked="{Binding StartGamesWithoutLauncher}"
-                  Margin="0,5,0,0"/>
-
         <TextBlock VerticalAlignment="Center" Margin="0,20,0,0">
             <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/Epic-Game-Store-troubleshooting"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"

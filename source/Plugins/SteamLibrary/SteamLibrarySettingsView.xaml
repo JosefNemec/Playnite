@@ -55,6 +55,12 @@
                       IsChecked="{Binding ImportUninstalledGames}"
                       Margin="0,10,0,0"
                       Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
+            
+            <CheckBox DockPanel.Dock="Top"
+                      IsChecked="{Binding IncludeFreeSubGames}"
+                      Margin="0,10,0,0"
+                      Visibility="{Binding IsFirstRunUse, Converter={pcon:InvertedBooleanToVisibilityConverter}}"
+                      Content="{DynamicResource LOCSteamImportFreeSubGames}"/>
 
             <StackPanel Orientation="Horizontal"
                         DockPanel.Dock="Top" Margin="0,15,5,5" HorizontalAlignment="Left">

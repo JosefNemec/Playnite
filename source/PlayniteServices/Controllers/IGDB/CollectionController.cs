@@ -19,6 +19,11 @@ namespace PlayniteServices.Controllers.IGDB
 
         public async Task<ServicesResponse<Collection>> Get(ulong collectionId)
         {
+            return await GetItem(collectionId);
+        }
+
+        public static async Task<ServicesResponse<Collection>> GetItem(ulong collectionId)
+        {
             return new ServicesResponse<Collection>(await GetItem<Collection>(collectionId, endpointPath, CacheLock));
         }
     }

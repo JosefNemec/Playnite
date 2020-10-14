@@ -57,13 +57,14 @@
         <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />        
         <Separator />
 
-        <controls:GridEx ColumnCount="2" RowCount="5"
+        <controls:GridEx ColumnCount="2" RowCount="6" AutoLayoutColumns="2"
                          Margin="0,10,0,0">
+            <TextBlock Text="{DynamicResource LOCSettingsGridTileLayoutFSNote}"
+                       FontStyle="Italic"
+                       Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0,0,0,5" />
             <TextBlock Text="{DynamicResource LOCSettingsTargetAspectRatioLabel}"
-                       VerticalAlignment="Center" Margin="0,10,0,10"
-                       Grid.Column="0" Grid.Row="0"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
-                        Grid.Column="1" Grid.Row="0">
+                       VerticalAlignment="Center" Margin="0,10,0,10" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <pctrls:NullableIntBox MinValue="1" MaxValue="999" Width="30"
                                         Margin="10,0,0,0"
                                         Value="{Binding Settings.GridItemWidthRatio}"/>
@@ -81,17 +82,17 @@
                                     CommandParameter="27:38"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectEpicGamesStore}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
-                                    CommandParameter="171:241"/>
+                                    CommandParameter="3:4"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectGogGalaxy2}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
-                                    CommandParameter="171:241"/>
+                                    CommandParameter="22:31"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectIgdb}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="3:4"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteam}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="92:43"/>
-                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteamNewUI}"
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteamVertical}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="2:3"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectTwitch}"
@@ -103,32 +104,26 @@
             </StackPanel>
 
             <TextBlock Text="{DynamicResource LOCSettingsStrechModeLabel}"
-                        VerticalAlignment="Center" Margin="0,10,0,10"
-                        Grid.Column="0" Grid.Row="1"/>
+                        VerticalAlignment="Center" Margin="0,10,0,10" />
             <ContentControl DataContext="{Binding Settings}"
-                            Grid.Column="1" Grid.Row="1"
                             Content="{StaticResource ComboStrechOptions}"
                             MinWidth="140" Margin="10,0,0,0"
                             VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
             <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}"
-                        VerticalAlignment="Center" Margin="0,10,0,10"
-                        Grid.Column="0" Grid.Row="2"/>
-            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+                        VerticalAlignment="Center" Margin="0,10,0,10"/>
+            <pctrls:NullableIntBox MinValue="0" MaxValue="4096" Margin="10,0,0,0" Width="40"
                                 HorizontalAlignment="Left" VerticalAlignment="Center"
-                                Value="{Binding Settings.GridItemSpacing}"
-                                Grid.Column="1" Grid.Row="2"/>
+                                Value="{Binding Settings.GridItemSpacing}" />
 
             <TextBlock Text="{DynamicResource LOCSettingsGridItemCoverMargin}"
-                        VerticalAlignment="Center" Margin="0,10,0,10"
-                        Grid.Column="0" Grid.Row="3"/>
-            <pctrls:NullableIntBox MinValue="0" MaxValue="100" Margin="10,0,0,0" Width="40"
+                        VerticalAlignment="Center" Margin="0,10,0,10" />
+            <pctrls:NullableIntBox MinValue="0" MaxValue="4096" Margin="10,0,0,0" Width="40"
                                     HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Value="{Binding Settings.GridItemMargin}"
-                                    Grid.Column="1" Grid.Row="3"/>
+                                    Value="{Binding Settings.GridItemMargin}" />
 
             <CheckBox Content="{DynamicResource LOCSettingsGridItemDrawBackground}"
-                    Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0"
+                      Grid.ColumnSpan="2" Margin="0,10,0,0"
                     IsChecked="{Binding Settings.ShowGridItemBackground}"/>
         </controls:GridEx>
     </StackPanel>

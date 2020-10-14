@@ -1,0 +1,8 @@
+Name: VisualBoyAdvance-M
+Website: 'https://vba-m.com/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
+    ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
+    ExecutableLookup: ^visualboyadvance-m\.exe$

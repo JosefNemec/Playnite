@@ -197,7 +197,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CloseView(bool? result)
         {
-            Settings.DisabledPlugins = LibraryPlugins.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
+            Settings.DisabledPlugins = LibraryPlugins.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList();
             foreach (var plugin in LibraryPlugins)
             {
                 plugin.Plugin.Dispose();

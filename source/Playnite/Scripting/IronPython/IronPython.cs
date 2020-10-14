@@ -26,7 +26,7 @@ namespace Playnite.Scripting.IronPython
         private ScriptEngine engine;
         private ScriptScope scope;
 
-        public IronPythonRuntime()
+        public IronPythonRuntime(string runspaceName = "IronPython")
         {
             engine = Python.CreateEngine();
             var paths = engine.GetSearchPaths();
@@ -48,7 +48,7 @@ clr.AddReference('PresentationFramework')
 from Playnite.SDK.Models import *
 ", PlaynitePaths.ProgramPath.Replace(Path.DirectorySeparatorChar, '/')), scope);
 
-            SetVariable("__logger", new Logger("Python"));
+            SetVariable("__logger", new Logger(runspaceName));
         }
 
         public void Dispose()

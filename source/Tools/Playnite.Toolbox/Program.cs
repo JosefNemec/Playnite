@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace Playnite.Toolbox
 
         static void Main(string[] args)
         {
+            FileSystem.CreateDirectory(PlaynitePaths.JitProfilesPath);
+            ProfileOptimization.SetProfileRoot(PlaynitePaths.JitProfilesPath);
+            ProfileOptimization.StartProfile("toolbox");
+
             logger.Debug("Toolbox started.");
             logger.Debug(Environment.CommandLine);
 
@@ -48,7 +53,7 @@ namespace Playnite.Toolbox
             var extMan = Path.Combine(directory, PlaynitePaths.ExtensionManifestFileName);
             if (File.Exists(themeMan))
             {
-                var desc = ThemeManager.GetDescriptionFromFile(themeMan);
+                var desc = ExtensionInstaller.GetThemeManifest(themeMan);
                 switch (desc.Mode)
                 {
                     case ApplicationMode.Desktop:
@@ -59,7 +64,7 @@ namespace Playnite.Toolbox
             }
             else if (File.Exists(extMan))
             {
-                var desc = ExtensionFactory.GetDescriptionFromFile(extMan);
+                var desc = ExtensionInstaller.GetExtensionManifest(extMan);
                 switch (desc.Type)
                 {
                     case ExtensionType.GenericPlugin:

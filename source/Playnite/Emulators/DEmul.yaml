@@ -1,0 +1,33 @@
+Name: DEmul
+Website: 'http://demul.emulation64.com/'
+Profiles:
+  - Name: Sega Dreamcast
+    DefaultArguments: '-run=dc -image="{ImagePath}"'
+    Platforms: [Sega Dreamcast]
+    ImageExtensions: [chd, cue, iso, cdi, ccd, mds, nrg]
+    ExecutableLookup: ^demul\.exe$   
+  - Name: Sega Naomi
+    DefaultArguments: '-run=naomi -rom="{ImageNameNoExt}"'
+    Platforms: [Sega NAOMI]
+    ImageExtensions: [zip, 7z]
+    ExecutableLookup: ^demul\.exe$      
+  - Name: Sammy Atomiswave
+    DefaultArguments: '-run=awave -rom="{ImageNameNoExt}"'
+    Platforms: [Sammy Atomiswave]
+    ImageExtensions: [zip, 7z]
+    ExecutableLookup: ^demul\.exe$
+  - Name: Sega Hikaru
+    DefaultArguments: '-run=hikaru -rom="{ImageNameNoExt}"'
+    Platforms: [Sega Hikaru]
+    ImageExtensions: [zip, 7z]
+    ExecutableLookup: ^demul\.exe$
+  - Name: Cave CV1000
+    DefaultArguments: '-run=cave3rd -rom="{ImageNameNoExt}"'
+    Platforms: [CAVE CV1000]
+    ImageExtensions: [zip, 7z]
+    ExecutableLookup: ^demul\.exe$
+  - Name: Gaelco
+    DefaultArguments: '-run=gaelco -rom="{ImageNameNoExt}"'
+    Platforms: [Gaelco]
+    ImageExtensions: [zip, 7z]
+    ExecutableLookup: ^demul\.exe$

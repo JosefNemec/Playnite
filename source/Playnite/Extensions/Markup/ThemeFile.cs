@@ -26,8 +26,8 @@ namespace Playnite.Extensions.Markup
         private static FileInfo lastUserTheme = null;
         private static bool? lastUserThemeFound = null;
 
-        public ThemeDescription CurrentTheme { get; set; }
-        public ThemeDescription DefaultTheme { get; set; }
+        public ThemeManifest CurrentTheme { get; set; }
+        public ThemeManifest DefaultTheme { get; set; }
 
         public string RelativePath { get; set; }
 
@@ -49,7 +49,7 @@ namespace Playnite.Extensions.Markup
             RelativePath = path;
         }
 
-        public static ThemeDescription GetDesignTimeDefaultTheme(ApplicationMode mode)
+        public static ThemeManifest GetDesignTimeDefaultTheme(ApplicationMode mode)
         {
             if (lastUserThemeFound == null)
             {
@@ -72,7 +72,7 @@ namespace Playnite.Extensions.Markup
 
             if (lastUserThemeFound == true)
             {
-                return new ThemeDescription()
+                return new ThemeManifest()
                 {
                     DirectoryName = lastUserTheme.DirectoryName,
                     DirectoryPath = lastUserTheme.Directory.FullName,
@@ -85,7 +85,7 @@ namespace Playnite.Extensions.Markup
             var projectName = mode == ApplicationMode.Fullscreen ? "Playnite.FullscreenApp" : "Playnite.DesktopApp";
             var slnPath = Path.Combine(Environment.GetEnvironmentVariable("PLAYNITE_SLN", EnvironmentVariableTarget.User), projectName);
             var themePath = Path.Combine(slnPath, "Themes", ThemeManager.GetThemeRootDir(mode), defaultTheme);
-            return new ThemeDescription()
+            return new ThemeManifest()
             {
                 DirectoryName = defaultTheme,
                 DirectoryPath = themePath,
@@ -98,12 +98,12 @@ namespace Playnite.Extensions.Markup
             return GetFilePath(relPath, ThemeManager.DefaultTheme, ThemeManager.CurrentTheme);
         }
 
-        public static string GetFilePath(string relPath, ThemeDescription defaultTheme)
+        public static string GetFilePath(string relPath, ThemeManifest defaultTheme)
         {
             return GetFilePath(relPath, defaultTheme, ThemeManager.CurrentTheme);
         }
 
-        public static string GetFilePath(string relPath, ThemeDescription defaultTheme, ThemeDescription currentTheme)
+        public static string GetFilePath(string relPath, ThemeManifest defaultTheme, ThemeManifest currentTheme)
         {
             var relativePath = Paths.FixSeparators(relPath).TrimStart(new char[] { Path.DirectorySeparatorChar });
 

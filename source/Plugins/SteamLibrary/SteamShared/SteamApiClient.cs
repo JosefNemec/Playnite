@@ -58,6 +58,7 @@ namespace Steam
         private AutoResetEvent onDisconnectedEvent = new AutoResetEvent(false);
         private void onDisconnected(SteamKit2.SteamClient.DisconnectedCallback callback)
         {
+            isRunning = false;
             onDisconnectedEvent.Set();
         }
 
@@ -137,6 +138,7 @@ namespace Steam
             steamClient.Disconnect();
             isConnected = false;
             isLoggedIn = false;
+            isRunning = false;
         }
 
         public async Task<KeyValue> GetProductInfo(uint id)

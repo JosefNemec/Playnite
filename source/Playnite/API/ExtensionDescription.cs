@@ -1,4 +1,6 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.Common;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,8 +19,10 @@ namespace Playnite.API
         MetadataProvider
     }
 
-    public class BaseExtensionDescription
+    public class BaseExtensionManifest
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public string Author { get; set; }
@@ -26,15 +30,51 @@ namespace Playnite.API
         public string Version { get; set; }
 
         public List<Link> Links { get; set; }
-    }
 
-    public class ExtensionDescription : BaseExtensionDescription
-    {
+        [YamlIgnore]
+        public string DirectoryPath { get; set; }
+
+        [YamlIgnore]
+        public string DirectoryName { get; set; }
+
         [YamlIgnore]
         public string DescriptionPath { get; set; }
 
         [YamlIgnore]
-        public string FolderName { get; set; }
+        public string LegacyDirId
+        {
+            get
+            {
+                if (Name.IsNullOrEmpty())
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return Paths.GetSafeFilename(Name).Replace(" ", string.Empty) + "_" + (Name + Author).MD5();
+                }
+            }
+        }
+
+        public void VerifyManifest()
+        {
+            if (!System.Version.TryParse(Version, out var extver))
+            {
+                throw new Exception("Extension version string must be a real version!");
+            }
+        }
+    }
+
+    public class ExtensionManifest : BaseExtensionManifest
+    {
+        [YamlIgnore]
+        public bool IsBuiltInExtension { get; set; }
+
+        [YamlIgnore]
+        public bool IsCustomExtension => !IsBuiltInExtension;
+
+        //[YamlIgnore]
+        //public bool IsCompatible { get; } = false;
 
         public string Module { get; set; }
 
@@ -42,21 +82,23 @@ namespace Playnite.API
 
         public ExtensionType Type { get; set; }
 
-        public ExtensionDescription()
+        public ExtensionManifest()
         {
         }
 
-        public static ExtensionDescription FromFile(string descriptorPath)
+        public static ExtensionManifest FromFile(string descriptorPath)
         {
             var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
-            var description = deserializer.Deserialize<ExtensionDescription>(File.ReadAllText(descriptorPath));
+            var description = deserializer.Deserialize<ExtensionManifest>(File.ReadAllText(descriptorPath));
             if (description.Type == ExtensionType.Script)
             {
                 description = deserializer.Deserialize<ScriptExtensionDescription>(File.ReadAllText(descriptorPath));
             }
 
             description.DescriptionPath = descriptorPath;
-            description.FolderName = Path.GetFileNameWithoutExtension(Path.GetDirectoryName(descriptorPath));
+            description.DirectoryPath = Path.GetDirectoryName(descriptorPath);
+            description.DirectoryName = Path.GetFileNameWithoutExtension(description.DirectoryPath);
+            description.IsBuiltInExtension = BuiltinExtensions.BuiltinExtensionFolders.Contains(description.DirectoryName);
             return description;
         }
     }

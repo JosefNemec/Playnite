@@ -19,5 +19,10 @@ namespace Steam.Models
         {
             get; set;
         }
+
+        public AppReviewsResult.QuerySummary UserReviewDetails
+        {
+            get; set;
+        }
     }
 }

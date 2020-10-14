@@ -70,7 +70,7 @@ namespace Playnite.DesktopApp.Controls
 
                 if (!DesignerProperties.GetIsInDesignMode(this))
                 {
-                    PanelHost.ContextMenu = new GameMenu(mainModel);
+                    PanelHost.ContextMenu = new GameMenu(mainModel) { ShowStartSection = true };
                     BindingTools.SetBinding(PanelHost.ContextMenu,
                         Button.DataContextProperty,
                         mainModel,

@@ -9,12 +9,12 @@ namespace Playnite.SDK
     /// <summary>
     /// Represents errors related to object references.
     /// </summary>
-    public class ReferenceException : Exception
+    public class ReferenceException : LocalizedException
     {
         /// <summary>
         /// Creates new instance of <see cref="ReferenceException"/>.
         /// </summary>
-        public ReferenceException()
+        public ReferenceException() : base()
         {
         }
 

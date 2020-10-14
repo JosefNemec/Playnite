@@ -1,0 +1,13 @@
+Name: Fuse
+Website: 'http://fuse-emulator.sourceforge.net/'
+Profiles:
+  - Name: Sinclair ZX Spectrum
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sinclair ZX Spectrum]
+    ImageExtensions: [tzx, tap, z80, rzx, scl, trd]
+    ExecutableLookup: ^fuse\.exe$
+  - Name: Sinclair ZX Spectrum +3
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sinclair ZX Spectrum +3]
+    ImageExtensions: [tzx, tap, z80, rzx, scl, trd]
+    ExecutableLookup: ^fuse\.exe$

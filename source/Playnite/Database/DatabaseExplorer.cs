@@ -12,6 +12,7 @@ using System.Windows.Controls;
 
 namespace Playnite.Database
 {
+    // TODO: Rewrite this mess.
     public class DatabaseExplorer : ObservableObject
     {
         public class ExplorableField
@@ -57,7 +58,7 @@ namespace Playnite.Database
             }
         }
 
-        private readonly IGameDatabase database;
+        private readonly GameDatabase database;
         private readonly ExtensionFactory extensions;
         private readonly FilterSettings filters;
         private readonly PlayniteSettings settings;
@@ -71,15 +72,22 @@ namespace Playnite.Database
             get => selectedField;
             set
             {
-                if (selectedField != null)
+                if (value != selectedField)
                 {
-                    ApplyFilter(selectedField.Field, null);
-                }
+                    if (selectedField != null)
+                    {
+                        ApplyFilter(selectedField.Field, null);
+                    }
 
-                selectedField = value;
-                settings.ViewSettings.SelectedExplorerField = selectedField.Field;
-                LoadValues(selectedField.Field);
-                OnPropertyChanged();
+                    selectedField = value;
+                    if (selectedField != null)
+                    {
+                        settings.ViewSettings.SelectedExplorerField = selectedField.Field;
+                        LoadValues(selectedField.Field);
+                    }
+
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -109,7 +117,7 @@ namespace Playnite.Database
             }
         }
 
-        public DatabaseExplorer(IGameDatabase database, ExtensionFactory extensions, PlayniteSettings settings)
+        public DatabaseExplorer(GameDatabase database, ExtensionFactory extensions, PlayniteSettings settings)
         {
             this.database = database;
             this.extensions = extensions;
@@ -120,18 +128,31 @@ namespace Playnite.Database
             Fields = new List<ExplorableField>();
             foreach (GroupableField val in Enum.GetValues(typeof(GroupableField)))
             {
-                if (val != GroupableField.None && val != GroupableField.InstallationStatus)
+                if (val != GroupableField.None &&
+                    val != GroupableField.InstallationStatus &&
+                    val != GroupableField.Name)
                 {
                     Fields.Add(new ExplorableField(val));
                 }
             }
 
             Fields = Fields.OrderBy(a => a.Field.GetDescription()).ToList();
-
-            SelectedField = Fields.FirstOrDefault(a => a.Field == settings.ViewSettings.SelectedExplorerField);
-            if (!database.IsOpen)
+            if (database.IsOpen)
             {
-                database.DatabaseOpened += (s, e) => LoadValues(SelectedField.Field);
+                if (settings.ExplorerPanelVisible)
+                {
+                    SelectedField = Fields.FirstOrDefault(a => a.Field == settings.ViewSettings.SelectedExplorerField);
+                }
+            }
+            else
+            {
+                database.DatabaseOpened += (s, e) =>
+                {
+                    if (settings.ExplorerPanelVisible)
+                    {
+                        SelectedField = Fields.FirstOrDefault(a => a.Field == settings.ViewSettings.SelectedExplorerField);
+                    }
+                };
             }
 
             database.Games.ItemUpdated += Games_ItemUpdated;
@@ -165,6 +186,48 @@ namespace Playnite.Database
                 DatabaseCollection_ItemUpdated(GroupableField.Publisher, e);
                 DatabaseCollection_ItemUpdated(GroupableField.Developer, e);
             };
+
+            database.AgeRatingsInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.AgeRating);
+            database.CategoriesInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Category);
+            database.DevelopersInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Developer);
+            database.FeaturesInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Feature);
+            database.GenresInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Genre);
+            database.PlatformsInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Platform);
+            database.PublishersInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Publisher);
+            database.RegionsInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Region);
+            database.SeriesInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Series);
+            database.SourcesInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Source);
+            database.TagsInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(GroupableField.Tag);
+        }
+
+        private void Database_DatabaseCollectionInUseUpdated(GroupableField field)
+        {
+            if (!settings.UsedFieldsOnlyOnFilterLists)
+            {
+                return;
+            }
+
+            if (settings.ExplorerPanelVisible && SelectedField.Field == field)
+            {
+                var oldSelection = SelectedFieldObject;
+                ignoreObjectSelectionChanges = true;
+                var refreshSelection = false;
+                LoadValues(field);
+                if (oldSelection != null && FieldValues.FirstOrDefault(a => a.Value.Equals(oldSelection.Value)) != null)
+                {
+                    SelectedFieldObject = FieldValues.FirstOrDefault(a => a.Value.Equals(oldSelection.Value));
+                }
+                else
+                {
+                    refreshSelection = true;
+                }
+
+                ignoreObjectSelectionChanges = false;
+                if (refreshSelection)
+                {
+                    SelectedFieldObject = FieldValues[0];
+                }
+            }
         }
 
         private void DatabaseCollection_ItemUpdated<T>(GroupableField field, ItemUpdatedEventArgs<T> e) where T : DatabaseObject
@@ -180,35 +243,78 @@ namespace Playnite.Database
 
         private void DatabaseCollection_ItemCollectionChanged<T>(GroupableField field, ItemCollectionChangedEventArgs<T> e) where T : DatabaseObject
         {
+            if (settings.UsedFieldsOnlyOnFilterLists)
+            {
+                return;
+            }
+
             if (settings.ExplorerPanelVisible && SelectedField.Field == field)
             {
                 var oldSelection = SelectedFieldObject;
                 ignoreObjectSelectionChanges = true;
+                var refreshSelection = false;
                 LoadValues(field);
-                if (oldSelection != null)
+                if (oldSelection != null && FieldValues.FirstOrDefault(a => a.Value.Equals(oldSelection.Value)) != null)
                 {
                     SelectedFieldObject = FieldValues.FirstOrDefault(a => a.Value.Equals(oldSelection.Value));
                 }
+                else
+                {
+                    refreshSelection = true;
+                }
 
                 ignoreObjectSelectionChanges = false;
+                if (refreshSelection)
+                {
+                    SelectedFieldObject = FieldValues[0];
+                }
             }
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.ExplorerPanelVisible) && settings.ExplorerPanelVisible)
+            if (e.PropertyName == nameof(PlayniteSettings.ExplorerPanelVisible))
             {
-                SelectedField = Fields.FirstOrDefault(a => a.Field == settings.ViewSettings.SelectedExplorerField);
+                if (settings.ExplorerPanelVisible)
+                {
+                    SelectedField = Fields.FirstOrDefault(a => a.Field == settings.ViewSettings.SelectedExplorerField);
+                }
+                else
+                {
+                    SelectedField = null;
+                }
+            }
+            else if (e.PropertyName == nameof(PlayniteSettings.UsedFieldsOnlyOnFilterLists) && settings.ExplorerPanelVisible)
+            {
+                DatabaseCollection_ItemCollectionChanged<DatabaseObject>(SelectedField.Field, null);
             }
         }
 
         private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> e)
         {
-            if (settings.ExplorerPanelVisible && SelectedField.Field == GroupableField.ReleaseYear)
+            if (e.AddedItems.HasItems())
             {
-                foreach (var change in e.AddedItems)
+                ProcessGameDataChages(e.AddedItems);
+            }
+        }
+
+        private void Games_ItemUpdated(object sender, ItemUpdatedEventArgs<Game> e)
+        {
+            ProcessGameDataChages(e.UpdatedItems.Select(a => a.NewData));
+        }
+
+        private void ProcessGameDataChages(IEnumerable<Game> gameUpdates)
+        {
+            if (!settings.ExplorerPanelVisible)
+            {
+                return;
+            }
+
+            if (SelectedField.Field == GroupableField.ReleaseYear)
+            {
+                foreach (var change in gameUpdates)
                 {
-                    if (!LoadedReleaseYears().Contains(change.ReleaseYear))
+                    if (!IsReleaseYearLoaded(change.ReleaseYear))
                     {
                         UpdateReleaseDateValues();
                         break;
@@ -217,19 +323,149 @@ namespace Playnite.Database
             }
         }
 
-        private void Games_ItemUpdated(object sender, ItemUpdatedEventArgs<Game> e)
+        private bool IsRelevantGameFieldLoaded(Game game)
         {
-            if (settings.ExplorerPanelVisible && SelectedField.Field == GroupableField.ReleaseYear)
+            var relevantFieldChanged = false;
+            switch (SelectedField.Field)
             {
-                foreach (var change in e.UpdatedItems)
+                case GroupableField.Category:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.CategoryIds);
+                    break;
+                case GroupableField.Genre:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.GenreIds);
+                    break;
+                case GroupableField.Developer:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.DeveloperIds);
+                    break;
+                case GroupableField.Publisher:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.PublisherIds);
+                    break;
+                case GroupableField.Tag:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.TagIds);
+                    break;
+                case GroupableField.Platform:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.PlatformId);
+                    break;
+                case GroupableField.Series:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.SeriesId);
+                    break;
+                case GroupableField.AgeRating:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.AgeRatingId);
+                    break;
+                case GroupableField.Region:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.RegionId);
+                    break;
+                case GroupableField.Source:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.SourceId);
+                    break;
+                case GroupableField.ReleaseYear:
+                    relevantFieldChanged = IsReleaseYearLoaded(game.ReleaseYear);
+                    break;
+                case GroupableField.Feature:
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.FeatureIds);
+                    break;
+            }
+
+            return relevantFieldChanged;
+        }
+
+        private GameField GetRelevantGameFielToFilter()
+        {
+            var relevantField = GameField.None;
+            switch (SelectedField.Field)
+            {
+                case GroupableField.Category:
+                    relevantField = GameField.CategoryIds;
+                    break;
+                case GroupableField.Genre:
+                    relevantField = GameField.GenreIds;
+                    break;
+                case GroupableField.Developer:
+                    relevantField = GameField.DeveloperIds;
+                    break;
+                case GroupableField.Publisher:
+                    relevantField = GameField.PublisherIds;
+                    break;
+                case GroupableField.Tag:
+                    relevantField = GameField.TagIds;
+                    break;
+                case GroupableField.Platform:
+                    relevantField = GameField.PlatformId;
+                    break;
+                case GroupableField.Series:
+                    relevantField = GameField.SeriesId;
+                    break;
+                case GroupableField.AgeRating:
+                    relevantField = GameField.AgeRatingId;
+                    break;
+                case GroupableField.Region:
+                    relevantField = GameField.RegionId;
+                    break;
+                case GroupableField.Source:
+                    relevantField = GameField.SourceId;
+                    break;
+                case GroupableField.ReleaseYear:
+                    relevantField = GameField.ReleaseYear;
+                    break;
+                case GroupableField.CompletionStatus:
+                    relevantField = GameField.CompletionStatus;
+                    break;
+                case GroupableField.UserScore:
+                    relevantField = GameField.UserScoreGroup;
+                    break;
+                case GroupableField.CriticScore:
+                    relevantField = GameField.CriticScoreGroup;
+                    break;
+                case GroupableField.CommunityScore:
+                    relevantField = GameField.CommunityScoreGroup;
+                    break;
+                case GroupableField.LastActivity:
+                    relevantField = GameField.LastActivitySegment;
+                    break;
+                case GroupableField.Added:
+                    relevantField = GameField.AddedSegment;
+                    break;
+                case GroupableField.Modified:
+                    relevantField = GameField.ModifiedSegment;
+                    break;
+                case GroupableField.Feature:
+                    relevantField = GameField.FeatureIds;
+                    break;
+                case GroupableField.PlayTime:
+                    relevantField = GameField.PlaytimeCategory;
+                    break;
+                default:
+                    relevantField = GameField.None;
+                    break;
+            }
+
+            return relevantField;
+        }
+
+        private bool IsExplorableDbObjectLoaded(Guid id)
+        {
+            foreach (var val in FieldValues)
+            {
+                if (val.Value is DatabaseObject obj)
                 {
-                    if (change.OldData.ReleaseDate != change.NewData.ReleaseDate && !LoadedReleaseYears().Contains(change.NewData.ReleaseYear))
+                    if (obj.Id == id)
                     {
-                        UpdateReleaseDateValues();
-                        break;
+                        return true;
                     }
                 }
             }
+
+            return false;
+        }
+
+        private bool IsExplorableDbObjectLoaded(List<Guid> ids)
+        {
+            if (!ids.HasItems())
+            {
+                return true;
+            }
+
+            return FieldValues.Where(a => a.Value is DatabaseObject).Select(a => ((DatabaseObject)a.Value).Id).Contains(ids);
         }
 
         private void UpdateReleaseDateValues()
@@ -245,15 +481,33 @@ namespace Playnite.Database
             ignoreObjectSelectionChanges = false;
         }
 
-        private IEnumerable<int?> LoadedReleaseYears()
+        private bool IsReleaseYearLoaded(int? year)
         {
+            if (year == null)
+            {
+                return true;
+            }
+
             foreach (var obj in FieldValues)
             {
-                if (obj is SelectionObject year)
+                if (obj is SelectionObject y)
                 {
-                    yield return year.Value as int?;
+                    if (y.Value == null && year == null)
+                    {
+                        return true;
+                    }
+
+                    if (int.TryParse(y.Value.ToString(), out var parsedYear))
+                    {
+                        if (parsedYear == year)
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
+
+            return false;
         }
 
         private FilterItemProperites GetIdFilter(SelectionObject filter)
@@ -442,43 +696,113 @@ namespace Playnite.Database
                     break;
                 case GroupableField.Category:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Categories.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedCategories.Select(a => database.Categories[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Categories.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.Genre:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Genres.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedGenres.Select(a => database.Genres[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Genres.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.Developer:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Companies.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedDevelopers.Select(a => database.Companies[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Companies.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.Publisher:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Companies.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedPublishers.Select(a => database.Companies[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Companies.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.Tag:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Tags.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedTags.Select(a => database.Tags[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Tags.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.Platform:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Platforms.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedPlatforms.Select(a => database.Platforms[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Platforms.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.Series:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Series.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedSeries.Select(a => database.Series[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Series.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.AgeRating:
                     values.Add(noneDbObject);
-                    values.AddRange(database.AgeRatings.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedAgeRatings.Select(a => database.AgeRatings[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.AgeRatings.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.Region:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Regions.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedRegions.Select(a => database.Regions[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Regions.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.Source:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Sources.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedSources.Select(a => database.Sources[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Sources.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.ReleaseYear:
                     values.Add(noneDbObject);
@@ -503,7 +827,14 @@ namespace Playnite.Database
                     break;
                 case GroupableField.Feature:
                     values.Add(noneDbObject);
-                    values.AddRange(database.Features.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedFeastures.Select(a => database.Features[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.Features.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)

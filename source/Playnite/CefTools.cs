@@ -21,15 +21,18 @@ namespace Playnite
             var settings = new CefSettings();
             settings.WindowlessRenderingEnabled = true;
 
-            if (!settings.CefCommandLineArgs.ContainsKey("disable-gpu"))
+            if (settings.CefCommandLineArgs.ContainsKey("disable-gpu"))
             {
-                settings.CefCommandLineArgs.Add("disable-gpu", "1");
+                settings.CefCommandLineArgs.Remove("disable-gpu");
             }
 
-            if (!settings.CefCommandLineArgs.ContainsKey("disable-gpu-compositing"))
+            if (settings.CefCommandLineArgs.ContainsKey("disable-gpu-compositing"))
             {
-                settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
+                settings.CefCommandLineArgs.Remove("disable-gpu-compositing");
             }
+
+            settings.CefCommandLineArgs.Add("disable-gpu", "1");
+            settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
 
             settings.CachePath = PlaynitePaths.BrowserCachePath;
             settings.PersistSessionCookies = true;

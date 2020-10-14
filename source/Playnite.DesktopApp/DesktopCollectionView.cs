@@ -22,7 +22,6 @@ namespace Playnite.DesktopApp
         private PlayniteSettings settings;
         private ViewSettings viewSettings;
         private GroupableField? currentGrouping = null;
-        private GamesViewType? loadedViewType = null;
 
         private Dictionary<GroupableField, string> groupFields = new Dictionary<GroupableField, string>()
         {
@@ -47,7 +46,8 @@ namespace Playnite.DesktopApp
             { GroupableField.Modified, nameof(GamesCollectionViewEntry.ModifiedSegment) },
             { GroupableField.PlayTime, nameof(GamesCollectionViewEntry.PlaytimeCategory) },
             { GroupableField.Feature, nameof(GamesCollectionViewEntry.Feature) },
-            { GroupableField.InstallationStatus, nameof(GamesCollectionViewEntry.InstallationState) }
+            { GroupableField.InstallationStatus, nameof(GamesCollectionViewEntry.InstallationState) },
+            { GroupableField.Name, nameof(GamesCollectionViewEntry.NameGroup) }
         };
 
         private Dictionary<GroupableField, Type> groupTypes = new Dictionary<GroupableField, Type>()
@@ -123,8 +123,7 @@ namespace Playnite.DesktopApp
             {
                 nameof(ViewSettings.SortingOrder),
                 nameof(ViewSettings.GroupingOrder),
-                nameof(ViewSettings.SortingOrderDirection),
-                nameof(ViewSettings.GamesViewType)
+                nameof(ViewSettings.SortingOrderDirection)
             }).Contains(e.PropertyName))
             {
                 Logger.Debug("Updating collection view settings.");
@@ -140,44 +139,38 @@ namespace Playnite.DesktopApp
         private void SetViewDescriptions()
         {
             var sortDirection = viewSettings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
-            if (viewSettings.GamesViewType == Playnite.ViewType.Grid)
+            switch (viewSettings.GroupingOrder)
             {
-                ViewType = GamesViewType.Standard;
-            }
-            else
-            {
-                switch (viewSettings.GroupingOrder)
-                {
-                    case GroupableField.Category:
-                    case GroupableField.Genre:
-                    case GroupableField.Developer:
-                    case GroupableField.Publisher:
-                    case GroupableField.Tag:
-                    case GroupableField.Feature:
-                        ViewType = GamesViewType.ListGrouped;
-                        break;
-                    case GroupableField.None:
-                    case GroupableField.Library:
-                    case GroupableField.Platform:
-                    case GroupableField.Series:
-                    case GroupableField.AgeRating:
-                    case GroupableField.Region:
-                    case GroupableField.Source:
-                    case GroupableField.ReleaseYear:
-                    case GroupableField.CompletionStatus:
-                    case GroupableField.UserScore:
-                    case GroupableField.CriticScore:
-                    case GroupableField.CommunityScore:
-                    case GroupableField.LastActivity:
-                    case GroupableField.Added:
-                    case GroupableField.Modified:
-                    case GroupableField.PlayTime:
+                case GroupableField.Category:
+                case GroupableField.Genre:
+                case GroupableField.Developer:
+                case GroupableField.Publisher:
+                case GroupableField.Tag:
+                case GroupableField.Feature:
+                    ViewType = GamesViewType.ListGrouped;
+                    break;
+                case GroupableField.None:
+                case GroupableField.Library:
+                case GroupableField.Platform:
+                case GroupableField.Series:
+                case GroupableField.AgeRating:
+                case GroupableField.Region:
+                case GroupableField.Source:
+                case GroupableField.ReleaseYear:
+                case GroupableField.CompletionStatus:
+                case GroupableField.UserScore:
+                case GroupableField.CriticScore:
+                case GroupableField.CommunityScore:
+                case GroupableField.LastActivity:
+                case GroupableField.Added:
+                case GroupableField.Modified:
+                case GroupableField.PlayTime:
                     case GroupableField.InstallationStatus:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    default:
-                        throw new Exception("Uknown GroupingOrder");
-                }
+                    case GroupableField.Name:
+                    ViewType = GamesViewType.Standard;
+                    break;
+                default:
+                    throw new Exception("Uknown GroupingOrder");
             }
 
             currentGrouping = viewSettings.GroupingOrder;
@@ -189,14 +182,19 @@ namespace Playnite.DesktopApp
 
             if (viewSettings.GroupingOrder != GroupableField.None)
             {
-                if (viewSettings.GamesViewType != Playnite.ViewType.Grid)
-                {
-                    CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(groupFields[viewSettings.GroupingOrder]));
-                }
-
+                CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(groupFields[viewSettings.GroupingOrder]));
                 if (CollectionView.SortDescriptions.First().PropertyName != groupFields[viewSettings.GroupingOrder])
                 {
-                    CollectionView.SortDescriptions.Insert(0, new SortDescription(groupFields[viewSettings.GroupingOrder], ListSortDirection.Ascending));
+                    var order = ListSortDirection.Ascending;
+                    if (viewSettings.GroupingOrder == GroupableField.PlayTime ||
+                        viewSettings.GroupingOrder == GroupableField.CommunityScore ||
+                        viewSettings.GroupingOrder == GroupableField.CriticScore ||
+                        viewSettings.GroupingOrder == GroupableField.UserScore)
+                    {
+                        order = ListSortDirection.Descending;
+                    }
+
+                    CollectionView.SortDescriptions.Insert(0, new SortDescription(groupFields[viewSettings.GroupingOrder], order));
                 }
             }
         }
@@ -247,7 +245,7 @@ namespace Playnite.DesktopApp
 
         public void SetViewType(GamesViewType? viewType)
         {
-            if (currentGrouping == viewSettings.GroupingOrder && viewType == loadedViewType)
+            if (currentGrouping == viewSettings.GroupingOrder)
             {
                 return;
             }
@@ -283,7 +281,6 @@ namespace Playnite.DesktopApp
             }
 
             this.viewType = viewType;
-            loadedViewType = viewType;
         }
 
         private void ClearItems()
@@ -444,6 +441,8 @@ namespace Playnite.DesktopApp
                     return oldData.Playtime != newData.Playtime;
                 case GroupableField.InstallationStatus:
                     return oldData.IsInstalled != newData.IsInstalled;
+                case GroupableField.Name:
+                    return oldData.Name != newData.Name;
                 default:
                     throw new Exception("Uknown GroupableField");
             }

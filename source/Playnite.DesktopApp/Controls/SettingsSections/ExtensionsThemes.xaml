@@ -1,0 +1,236 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.ExtensionsThemes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style TargetType="ContentControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <TextBlock Style="{DynamicResource BaseTextBlockStyle}">
+                            <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <p:BindingProxy x:Key="RootDataContext" Data="{Binding}" />
+    </UserControl.Resources>
+
+    <TabControl Margin="5">
+        <TabItem Header="Desktop">
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="250" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <DockPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListDesktopThemeList}"
+                           Margin="10,5,0,0" LastChildFill="False">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionCreatedBy}" />
+                        <TextBlock Text="{Binding Author}" Margin="5,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0" DockPanel.Dock="Top">
+                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionVersion}" />
+                        <TextBlock Text="{Binding Version}" Margin="5,0,0,0" />
+                    </StackPanel>
+
+                    <ItemsControl ItemsSource="{Binding Links}"
+                          Margin="0,10,0,0" DockPanel.Dock="Top">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="0,0,0,5"  DockPanel.Dock="Bottom">
+                            <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                       CommandParameter="{Binding Url}"
+                                       ToolTip="{Binding Url}">
+                                <Run Text="{Binding Name}" />
+                            </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Button Content="{DynamicResource LOCUninstallGame}" DockPanel.Dock="Top"
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,15,0,0"
+                            Command="{Binding Data.UninstallThemeCommand, Source={StaticResource RootDataContext}}"
+                            CommandParameter="{Binding}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsBuiltInTheme}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <TextBlock Text="{DynamicResource LOCThemeBuiltInUninstallHint}" 
+                               Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
+                               Visibility="{Binding IsBuiltInTheme, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                    <TextBlock Text="{DynamicResource LOCThemeUnsupported}" 
+                               Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
+                               FontWeight="Bold"
+                               Visibility="{Binding IsCompatible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+
+                    <TextBlock Margin="0,10,0,0"  DockPanel.Dock="Top">
+                        <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
+                                   CommandParameter="{Binding DirectoryPath}">
+                            <Run Text="{DynamicResource LOCExtensionInstallDir}" />
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock Margin="5,0,0,10"  DockPanel.Dock="Bottom">
+                        <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                    CommandParameter="https://playnite.link/forum/forum-3.html">
+                            <Run Text="{DynamicResource LOCSettingsGetThemes}" />
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock Margin="5,10,0,10"  DockPanel.Dock="Bottom">
+                        <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                    CommandParameter="https://playnite.link/docs/tutorials/intro.html">
+                            <Run Text="{DynamicResource LOCSettingsCreateThemes}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </DockPanel>
+
+                <ListBox Grid.Column="0" Name="ListDesktopThemeList" SelectedIndex="0"
+                         ItemsSource="{Binding DesktopThemeList}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                            <Setter Property="Opacity" Value="1" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsCompatible}" Value="False">
+                                    <Setter Property="Opacity" Value="0.7" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center"
+                                           Margin="0,2,5,2"
+                                           Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Fullscreen">
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="250" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <DockPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListFullscreenThemeList}"
+                           Margin="10,5,0,0" LastChildFill="False">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionCreatedBy}" />
+                        <TextBlock Text="{Binding Author}" Margin="5,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0" DockPanel.Dock="Top">
+                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionVersion}" />
+                        <TextBlock Text="{Binding Version}" Margin="5,0,0,0" />
+                    </StackPanel>
+
+                    <ItemsControl ItemsSource="{Binding Links}"
+                          Margin="0,10,0,0" DockPanel.Dock="Top">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="0,0,0,5"  DockPanel.Dock="Bottom">
+                            <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                       CommandParameter="{Binding Url}"
+                                       ToolTip="{Binding Url}">
+                                <Run Text="{Binding Name}" />
+                            </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Button Content="{DynamicResource LOCUninstallGame}" DockPanel.Dock="Top"
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,15,0,0"
+                            Command="{Binding Data.UninstallThemeCommand, Source={StaticResource RootDataContext}}"
+                            CommandParameter="{Binding}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsBuiltInTheme}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <TextBlock Text="{DynamicResource LOCThemeBuiltInUninstallHint}" 
+                               Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
+                               Visibility="{Binding IsBuiltInTheme, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                    <TextBlock Text="{DynamicResource LOCThemeUnsupported}" 
+                               Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
+                               FontWeight="Bold"
+                               Visibility="{Binding IsCompatible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+
+                    <TextBlock Margin="5,0,0,10"  DockPanel.Dock="Bottom">
+                        <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                    CommandParameter="https://playnite.link/forum/forum-3.html">
+                            <Run Text="{DynamicResource LOCSettingsGetThemes}" />
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock Margin="5,10,0,10"  DockPanel.Dock="Bottom">
+                        <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                    CommandParameter="https://playnite.link/docs/tutorials/intro.html">
+                            <Run Text="{DynamicResource LOCSettingsCreateThemes}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </DockPanel>
+
+                <ListBox Grid.Column="0" Name="ListFullscreenThemeList" SelectedIndex="0"
+                         ItemsSource="{Binding FullscreenThemeList}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                            <Setter Property="Opacity" Value="1" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsCompatible}" Value="False">
+                                    <Setter Property="Opacity" Value="0.7" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center"
+                                           Margin="0,2,5,2"
+                                           Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

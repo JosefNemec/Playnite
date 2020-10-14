@@ -44,15 +44,26 @@ namespace SteamLibrary
         public override void Play()
         {
             ReleaseResources();
+
+            var installDirectory = Game.InstallDirectory;
+            if (gameId.IsMod)
+            {
+                var allGames = library.GetInstalledGames(false);
+                if (allGames.TryGetValue(gameId.AppID.ToString(), out GameInfo realGame))
+                {
+                    installDirectory = realGame.InstallDirectory;
+                }
+            }
+
             OnStarting(this, new GameControllerEventArgs(this, 0));
             stopWatch = Stopwatch.StartNew();
             ProcessStarter.StartUrl($"steam://rungameid/{Game.GameId}");
             procMon = new ProcessMonitor();
             procMon.TreeStarted += ProcMon_TreeStarted;
             procMon.TreeDestroyed += Monitor_TreeDestroyed;
-            if (Directory.Exists(Game.InstallDirectory))
+            if (Directory.Exists(installDirectory))
             {
-                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                procMon.WatchDirectoryProcesses(installDirectory, false);
             }
             else
             {

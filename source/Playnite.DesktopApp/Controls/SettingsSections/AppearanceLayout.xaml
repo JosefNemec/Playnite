@@ -58,7 +58,7 @@
                     Margin="5" Grid.Column="1" Grid.Row="0" />
             <TextBlock Text="{DynamicResource LOCWidth}" Grid.Column="2" Grid.Row="0"
                        VerticalAlignment="Center" Margin="15,0,5,0"/>
-            <pctrls:NullableIntBox MinValue="50" MaxValue="1024" Width="50"
+            <pctrls:NullableIntBox MinValue="50" MaxValue="4096" Width="50"
                                     Grid.Column="3" Grid.Row="0"
                                     Value="{Binding Settings.FilterPanelWitdh}"
                                     VerticalAlignment="Center"/>
@@ -72,7 +72,7 @@
                     Margin="5" Grid.Column="1" Grid.Row="1" />
             <TextBlock Text="{DynamicResource LOCWidth}" Grid.Column="2" Grid.Row="1"
                        VerticalAlignment="Center" Margin="15,0,5,0"/>
-            <pctrls:NullableIntBox MinValue="50" MaxValue="1024" Width="50"
+            <pctrls:NullableIntBox MinValue="50" MaxValue="4096" Width="50"
                                 Grid.Column="3" Grid.Row="1"
                                 Value="{Binding Settings.ExplorerPanelWitdh}"
                                 VerticalAlignment="Center"/>
@@ -86,7 +86,7 @@
                     Margin="5" Grid.Column="1" Grid.Row="2" />
             <TextBlock Text="{DynamicResource LOCWidth}" Grid.Column="2" Grid.Row="2"
                        VerticalAlignment="Center" Margin="15,0,5,0"/>
-            <pctrls:NullableIntBox MinValue="50" MaxValue="1024" Width="50"
+            <pctrls:NullableIntBox MinValue="50" MaxValue="4096" Width="50"
                                     Grid.Column="3" Grid.Row="2"
                                     Value="{Binding Settings.GrdiDetailsWitdh}"
                                     VerticalAlignment="Center"/>
@@ -100,7 +100,7 @@
                     Margin="5" Grid.Column="1" Grid.Row="3" />
             <TextBlock Text="{DynamicResource LOCWidth}" Grid.Column="2" Grid.Row="3"
                        VerticalAlignment="Center" Margin="15,0,5,0"/>
-            <pctrls:NullableIntBox MinValue="50" MaxValue="1024" Width="50"
+            <pctrls:NullableIntBox MinValue="50" MaxValue="4096" Width="50"
                                 Grid.Column="3" Grid.Row="3"
                                 Value="{Binding Settings.DetailsListWitdh}"
                                 VerticalAlignment="Center"/>

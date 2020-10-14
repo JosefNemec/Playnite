@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO.Compression;
 using Playnite.SDK;
+using System.Diagnostics;
 
 namespace Playnite.Common
 {
@@ -98,9 +99,30 @@ namespace Playnite.Common
 
         public static string GetMD5(string filePath)
         {
-            using (var stream = File.OpenRead(filePath))
+            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 return GetMD5(stream);
+            }
+        }
+
+        public static bool AreFileContentsEqual(string path1, string path2)
+        {
+            var info1 = new FileInfo(path1);
+            var info2 = new FileInfo(path2);
+            if (info1.Length != info2.Length)
+            {
+                return false;
+            }
+            else
+            {
+                if (GetMD5(path1) == GetMD5(path2))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -189,6 +211,26 @@ namespace Playnite.Common
             throw new IOException($"Failed to read {path}", ioException);
         }
 
+        public static Stream CreateWriteFileStreamSafe(string path, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return new FileStream(path, FileMode.Create, FileAccess.ReadWrite);
+                }
+                catch (IOException exc)
+                {
+                    logger.Debug($"Can't open write file stream, trying again. {path}");
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
+        }
+
         public static Stream OpenReadFileStreamSafe(string path, int retryAttempts = 5)
         {
             IOException ioException = null;
@@ -200,7 +242,7 @@ namespace Playnite.Common
                 }
                 catch (IOException exc)
                 {
-                    logger.Debug($"Can't open file stream, trying again. {path}");
+                    logger.Debug($"Can't open read file stream, trying again. {path}");
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }
@@ -318,6 +360,49 @@ namespace Playnite.Common
                     CopyDirectory(subdir.FullName, temppath, copySubDirs);
                 }
             }
+        }
+
+        public static string LookupAlternativeFilePath(string filePath)
+        {
+            return CheckDrivesForPath(filePath, path => File.Exists(path));
+        }
+
+        public static string LookupAlternativeDirectoryPath(string directoryPath)
+        {
+            return CheckDrivesForPath(directoryPath, path => Directory.Exists(path));
+        }
+
+        private static string CheckDrivesForPath(string originalPath, Predicate<string> predicate)
+        {
+            try
+            {
+                if (!Paths.IsFullPath(originalPath))
+                {
+                    return string.Empty;
+                }
+
+                var rootPath = Path.GetPathRoot(originalPath);
+                var availableDrives = DriveInfo.GetDrives()
+                    .Where(d => d.IsReady && !d.Name.Equals(rootPath, StringComparison.OrdinalIgnoreCase));
+
+                foreach (var drive in availableDrives)
+                {
+                    var pathWithoutDrive = originalPath.Substring(drive.Name.Length);
+                    var newDirectoryPath = Path.Combine(drive.Name, pathWithoutDrive);
+                    if (predicate(newDirectoryPath))
+                    {
+                        return newDirectoryPath;
+                    }
+                }
+
+                return string.Empty;
+            }
+            catch (Exception ex) when (!Debugger.IsAttached)
+            {
+                logger.Error(ex, $"Error looking for alternative path for original path \"{originalPath}\"");
+            }
+
+            return string.Empty;
         }
     }
 }

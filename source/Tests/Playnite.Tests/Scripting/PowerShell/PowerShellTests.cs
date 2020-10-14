@@ -18,7 +18,7 @@ namespace Playnite.Tests.Scripting.PowerShell
         [Test]
         public void ExecuteTest()
         {
-            using (var ps = new PowerShellRuntime())
+            using (var ps = new PowerShellRuntime("ExecuteTest"))
             {
                 var res = ps.Execute("return 2 + 2");
                 Assert.AreEqual(4, res);
@@ -28,7 +28,7 @@ namespace Playnite.Tests.Scripting.PowerShell
         [Test]
         public void ExecuteArgumentsTest()
         {
-            using (var ps = new PowerShellRuntime())
+            using (var ps = new PowerShellRuntime("ExecuteArgumentsTest"))
             {
                 var res = ps.Execute("return $param1 + $param2",
                     new Dictionary<string, object>()
@@ -44,7 +44,7 @@ namespace Playnite.Tests.Scripting.PowerShell
         [Test]
         public void FunctionExecuteTest()
         {
-            using (var ps = new PowerShellRuntime())
+            using (var ps = new PowerShellRuntime("FunctionExecuteTest"))
             {
                 ps.Execute(@"
 function TestFunc()
@@ -60,7 +60,7 @@ function TestFunc()
         [Test]
         public void ErrorHandlingTest()
         {
-            using (var ps = new PowerShellRuntime())
+            using (var ps = new PowerShellRuntime("ErrorHandlingTest"))
             {
                 Assert.Throws<ScriptRuntimeException>(() => ps.Execute("throw \"Testing Exception\""));
                 Assert.Throws<ScriptRuntimeException>(() => ps.Execute("1 / 0"));
@@ -70,7 +70,7 @@ function TestFunc()
         [Test]
         public void GetFunctionExitsTest()
         {
-            using (var ps = new PowerShellRuntime())
+            using (var ps = new PowerShellRuntime("GetFunctionExitsTest"))
             {
                 Assert.IsFalse(ps.GetFunctionExits("TestFunc"));
                 ps.Execute(@"
@@ -87,7 +87,7 @@ function TestFunc()
         public void ExecuteWorkDirTest()
         {
             using (var tempDir = TempDirectory.Create())
-            using (var runtime = new PowerShellRuntime())
+            using (var runtime = new PowerShellRuntime("ExecuteWorkDirTest"))
             {
                 var outPath = "workDirTest.txt";
                 FileSystem.DeleteFile(outPath);

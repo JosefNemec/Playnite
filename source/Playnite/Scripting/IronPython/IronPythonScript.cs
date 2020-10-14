@@ -9,27 +9,95 @@ using Playnite.SDK.Models;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.Common;
+using Playnite.SDK.Plugins;
 
 namespace Playnite.Scripting.IronPython
 {
     public class IronPythonScript : PlayniteScript
     {
         private static ILogger logger = LogManager.GetLogger();
-        private readonly List<ApplicationEvent> supportedEvents;
 
-        public IronPythonRuntime Runtime
-        {
-            get; private set;
-        }
+        public IronPythonRuntime Runtime { get; }
 
         public IronPythonScript(string path) : base(path)
         {
-            Runtime = new IronPythonRuntime();
+            Runtime = new IronPythonRuntime(Name);
             Runtime.ExecuteFile(path);
-            supportedEvents = GetSupportedEvents();
+            SupportedEvents = GetSupportedEvents();
+            SupportedMenus = GetSupportedMenus();
         }
 
-        private List<ApplicationEvent> GetSupportedEvents()
+        public override void Dispose()
+        {
+            base.Dispose();
+            Runtime.Dispose();
+        }
+
+        public override List<ScriptGameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+        {
+            if (SupportedMenus.Contains(SupportedMenuMethods.GameMenu))
+            {
+                var res = InvokeFunction("get_gamemenu_items", new List<object> { args });
+                if (res is ScriptGameMenuItem item)
+                {
+                    return new List<ScriptGameMenuItem> { item };
+                }
+                else if (res is IEnumerable items)
+                {
+                    return items.Cast<ScriptGameMenuItem>().ToList();
+                }
+                else
+                {
+                    return base.GetGameMenuItems(args);
+                }
+            }
+            else
+            {
+                return base.GetGameMenuItems(args);
+            }
+        }
+
+        public override List<ScriptMainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        {
+            if (SupportedMenus.Contains(SupportedMenuMethods.MainMenu))
+            {
+                var res = InvokeFunction("get_mainmenu_items", new List<object> { args });
+                if (res is ScriptMainMenuItem item)
+                {
+                    return new List<ScriptMainMenuItem> { item };
+                }
+                else if (res is IEnumerable items)
+                {
+                    return items.Cast<ScriptMainMenuItem>().ToList();
+                }
+                else
+                {
+                    return base.GetMainMenuItems(args);
+                }
+            }
+            else
+            {
+                return base.GetMainMenuItems(args);
+            }
+        }
+
+        internal List<SupportedMenuMethods> GetSupportedMenus()
+        {
+            var menus = new List<SupportedMenuMethods>();
+            if (Runtime.GetFunctionExits("get_gamemenu_items"))
+            {
+                menus.Add(SupportedMenuMethods.GameMenu);
+            }
+
+            if (Runtime.GetFunctionExits("get_mainmenu_items"))
+            {
+                menus.Add(SupportedMenuMethods.MainMenu);
+            }
+
+            return menus;
+        }
+
+        internal List<ApplicationEvent> GetSupportedEvents()
         {
             var events = new List<ApplicationEvent>();
 
@@ -81,12 +149,6 @@ namespace Playnite.Scripting.IronPython
             return events;
         }
 
-        public override void Dispose()
-        {
-            base.Dispose();
-            Runtime.Dispose();
-        }
-
         public override void InvokeExportedFunction(ScriptFunctionExport function)
         {
             Runtime.Execute(function.FunctionName + "()");
@@ -99,7 +161,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnApplicationStarted()
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnApplicationStarted))
+            if (SupportedEvents.Contains(ApplicationEvent.OnApplicationStarted))
             {
                 Runtime.Execute("on_application_started()");
             }
@@ -107,7 +169,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnApplicationStopped()
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnApplicationStopped))
+            if (SupportedEvents.Contains(ApplicationEvent.OnApplicationStopped))
             {
                 Runtime.Execute("on_application_stopped()");
             }
@@ -115,7 +177,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnLibraryUpdated()
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnLibraryUpdated))
+            if (SupportedEvents.Contains(ApplicationEvent.OnLibraryUpdated))
             {
                 Runtime.Execute("on_library_updated()");
             }
@@ -123,7 +185,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnGameStarting(Game game)
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnGameStarting))
+            if (SupportedEvents.Contains(ApplicationEvent.OnGameStarting))
             {
                 Runtime.Execute("on_game_starting(__game)", new Dictionary<string, object>()
                 {
@@ -134,7 +196,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnGameStarted(Game game)
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnGameStarted))
+            if (SupportedEvents.Contains(ApplicationEvent.OnGameStarted))
             {
                 Runtime.Execute("on_game_started(__game)", new Dictionary<string, object>()
                 {
@@ -145,7 +207,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnGameStopped(Game game, long ellapsedSeconds)
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnGameStopped))
+            if (SupportedEvents.Contains(ApplicationEvent.OnGameStopped))
             {
                 Runtime.Execute("on_game_stopped(__game, __ellapsed_seconds)", new Dictionary<string, object>()
                 {
@@ -157,7 +219,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnGameInstalled(Game game)
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnGameInstalled))
+            if (SupportedEvents.Contains(ApplicationEvent.OnGameInstalled))
             {
                 Runtime.Execute("on_game_installed(__game)", new Dictionary<string, object>()
                 {
@@ -168,7 +230,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnGameUninstalled(Game game)
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnGameUninstalled))
+            if (SupportedEvents.Contains(ApplicationEvent.OnGameUninstalled))
             {
                 Runtime.Execute("on_game_uninstalled(__game)", new Dictionary<string, object>()
                 {
@@ -179,13 +241,32 @@ namespace Playnite.Scripting.IronPython
 
         public override void OnGameSelected(GameSelectionEventArgs args)
         {
-            if (supportedEvents.Contains(ApplicationEvent.OnGameSelected))
+            if (SupportedEvents.Contains(ApplicationEvent.OnGameSelected))
             {
                 Runtime.Execute("on_game_selected(__event_args)", new Dictionary<string, object>()
                 {
                     { "__event_args", args }
                 });
             }
+        }
+
+        public override object InvokeFunction(string functionName)
+        {
+            return Runtime.Execute(functionName + "()");
+        }
+
+        public override object InvokeFunction(string functionName, List<object> arguments)
+        {
+            var scriptString = functionName + "(";
+            var args = new Dictionary<string, object>();
+            for (int i = 0; i < arguments.Count; i++)
+            {
+                scriptString += $"__arg{i},";
+                args.Add($"__arg{i}", arguments[i]);
+            }
+
+            scriptString = scriptString.TrimEnd(new char[] { ',' }) + ")";
+            return Runtime.Execute(scriptString, args);
         }
     }
 }

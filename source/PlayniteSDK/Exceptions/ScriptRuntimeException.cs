@@ -9,7 +9,7 @@ namespace Playnite.SDK.Exceptions
     /// <summary>
     /// Represents exception from scripting runtime.
     /// </summary>
-    public class ScriptRuntimeException : Exception
+    public class ScriptRuntimeException : LocalizedException
     {
         /// <summary>
         /// Gets script runtime stack trace.
@@ -19,7 +19,7 @@ namespace Playnite.SDK.Exceptions
         /// <summary>
         /// Creates new instance of <see cref="ScriptRuntimeException"/>.
         /// </summary>
-        public ScriptRuntimeException()
+        public ScriptRuntimeException() : base()
         {
         }
 

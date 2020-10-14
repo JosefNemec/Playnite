@@ -1,0 +1,28 @@
+Name: Kega Fusion
+Website: 'https://www.carpeludum.com/kega-fusion/'
+Profiles:
+  - Name: Sega Genesis
+    DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+    Platforms: [Sega Genesis]
+    ImageExtensions: [bin, smd, md, raw, gen, zip]
+    ExecutableLookup: ^Fusion\.exe$
+  - Name: Sega 32X
+    DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+    Platforms: [Sega 32X]
+    ImageExtensions: [32x, raw, zip]
+    ExecutableLookup: ^Fusion\.exe$
+  - Name: Sega CD
+    DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+    Platforms: [Sega CD]
+    ImageExtensions: [cue, bin, iso, raw, zip]
+    ExecutableLookup: ^Fusion\.exe$
+  - Name: Sega Master System
+    DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+    Platforms: [Sega Master System]
+    ImageExtensions: [sms, sg, sc, mv, bin, raw, zip]
+    ExecutableLookup: ^Fusion\.exe$
+  - Name: Sega Game Gear
+    DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+    Platforms: [Sega Game Gear]
+    ImageExtensions: [bin, gg, raw, zip]
+    ExecutableLookup: ^Fusion\.exe$

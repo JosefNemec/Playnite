@@ -1,4 +1,5 @@
-﻿Name: Battle.net Library Importer
+﻿Id: BattlenetLibrary_Builtin
+Name: Battle.net Library Importer
 Author: Playnite
 Version: 1.0
 Module: BattleNetLibrary.dll

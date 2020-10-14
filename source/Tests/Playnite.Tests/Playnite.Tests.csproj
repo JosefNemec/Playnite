@@ -111,6 +111,7 @@
     <Compile Include="Database\EmulatorsCollectionTests.cs" />
     <Compile Include="Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
+    <Compile Include="GameFieldComparerTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
     <Compile Include="GoogleImageDownloaderTests.cs" />
     <Compile Include="ImageSourceManagerTests.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Models\GameActionTests.cs" />
     <Compile Include="ImagesTests.cs" />
     <Compile Include="PlayniteUriHandlerTests.cs" />
+    <Compile Include="Plugins\ExtensionManifestTests.cs" />
     <Compile Include="ProcessStarterTests.cs" />
     <Compile Include="Scripting\Batch\BatchTests.cs" />
     <Compile Include="SigningToolsTests.cs" />

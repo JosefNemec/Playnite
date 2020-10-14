@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace PlayniteServices.Models.IGDB
 {
     public enum WebSiteCategory : ulong
     {
+        [Description("Official Website")]
         Official = 1,
         Wikia = 2,
         Wikipedia = 3,
@@ -18,7 +20,9 @@ namespace PlayniteServices.Models.IGDB
         Twitch = 6,
         Instagram = 8,
         Youtube = 9,
+        [Description("iPhone")]
         Iphone = 10,
+        [Description("iPad")]
         Ipad = 11,
         Android = 12,
         Steam = 13,
@@ -26,9 +30,7 @@ namespace PlayniteServices.Models.IGDB
         Itch = 15,
         Epic = 16,
         GOG = 17,
-        LinkedIn = 18,
-        Pinterest = 19,
-        SoundCloud = 20,
+        Discord = 18
     }
 
     public enum GameCategory : ulong
@@ -85,6 +87,42 @@ namespace PlayniteServices.Models.IGDB
         Computer = 6,
     }
 
+    public enum AgeRatingOrganization
+    {
+        ESRB = 1,
+        PEGI = 2
+    }
+
+    public enum AgeRatingType
+    {
+        [Description("3")]
+        Three = 1,
+        [Description("7")]
+        Seven = 2,
+        [Description("12")]
+        Twelve = 3,
+        [Description("16")]
+        Sixteen = 4,
+        [Description("18")]
+        Eighteen = 5,
+        RP = 6,
+        EC = 7,
+        E = 8,
+        E10 = 9,
+        T = 10,
+        M = 11,
+        AO = 12
+    }
+
+    public class AgeRating : IgdbItem
+    {
+        public AgeRatingOrganization category { get; set; }
+        public List<ulong> content_descriptions { get; set; }
+        public AgeRatingType rating { get; set; }
+        public string rating_cover_url { get; set; }
+        public string synopsis { get; set; }
+    }
+
     public class Website : IgdbItem
     {
         public WebSiteCategory category { get; set; }
@@ -139,6 +177,11 @@ namespace PlayniteServices.Models.IGDB
         public string name { get; set; }
         public string slug { get; set; }
         public string url { get; set; }
+
+        public override string ToString()
+        {
+            return $"{name} : {id}";
+        }
     }
 
     public class ExternalGame : IgdbItem
@@ -215,7 +258,7 @@ namespace PlayniteServices.Models.IGDB
         public List<ulong> games { get; set; }
     }
 
-    public class ExpandedGame : Game
+    public class ExpandedGameLegacy : Game
     {
         public new Franchise franchise { get; set; }
         public new Collection collection { get; set; }
@@ -242,6 +285,43 @@ namespace PlayniteServices.Models.IGDB
         public List<string> publishers { get; set; }
         public new List<string> genres { get; set; }
         public new List<string> game_modes { get; set; }
+    }
+
+    public class ExpandedGame
+    {
+        public ulong id { get; set; }
+        public string name { get; set; }
+        public string slug { get; set; }
+        public string url { get; set; }
+        public string summary { get; set; }
+        public string storyline { get; set; }
+        public double popularity { get; set; }
+        public Franchise franchise { get; set; }
+        public Collection collection { get; set; }
+        public Game version_parent { get; set; }
+        public string version_title { get; set; }
+        public GameCategory category { get; set; }
+        public TimeTobeat time_to_beat { get; set; }
+        public List<ExpandedInvolvedCompany> involved_companies { get; set; }
+        public List<Genre> genres { get; set; }
+        public List<Theme> themes { get; set; }
+        public List<GameMode> game_modes { get; set; }
+        public long first_release_date { get; set; }
+        public GameImage cover { get; set; }
+        public List<Website> websites { get; set; }
+        public double rating { get; set; }
+        public double aggregated_rating { get; set; }
+        public double total_rating { get; set; }
+        public List<AlternativeName> alternative_names { get; set; }
+        public List<ExternalGame> external_games { get; set; }
+        public List<GameImage> screenshots { get; set; }
+        public List<GameImage> artworks { get; set; }
+        public List<Video> videos { get; set; }
+        public List<Platform> platforms { get; set; }
+        public List<ReleaseDate> release_dates { get; set; }
+        public List<AgeRating> age_ratings { get; set; }
+        public List<PlayerPerspective> player_perspectives { get; set; }
+        public ulong parent_game { get; set; }
     }
 
     public class Game : IgdbItem

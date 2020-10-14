@@ -39,7 +39,7 @@ namespace Playnite
     [ServiceContract]
     public interface IPipeService
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void InvokeCommand(CmdlineCommand command, string args);
     }
 
@@ -72,7 +72,7 @@ namespace Playnite
     }
 
     public class PipeClient : ClientBase<IPipeService>
-    {        
+    {
         public PipeClient(string endpoint)
             : base(new ServiceEndpoint(ContractDescription.GetContract(typeof(IPipeService)), new NetNamedPipeBinding(), new EndpointAddress(endpoint.TrimEnd('/') + @"/PlayniteService")))
         {

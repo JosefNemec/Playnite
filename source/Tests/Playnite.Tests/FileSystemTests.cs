@@ -36,8 +36,8 @@ namespace Playnite.Tests
         {
             var testPath = Path.Combine(PlayniteTests.TempPath, "ReadFileAsStringSafeTest.txt");
             FileSystem.DeleteFile(testPath);
-            var fs = new FileStream(testPath, FileMode.OpenOrCreate);
-            fs.Write(new byte[] { 1 }, 0, 1); 
+            var fs = new FileStream(testPath, FileMode.Create);
+            fs.Write(new byte[] { 1 }, 0, 1);
             Assert.Throws<IOException>(() => FileSystem.ReadFileAsStringSafe(testPath));
             string result = null;
             var task = Task.Run(() => result = FileSystem.ReadFileAsStringSafe(testPath));
@@ -52,8 +52,8 @@ namespace Playnite.Tests
         {
             var testPath = Path.Combine(PlayniteTests.TempPath, "WriteStringToFileSafeTest.txt");
             FileSystem.DeleteFile(testPath);
-            var fs = new FileStream(testPath, FileMode.OpenOrCreate);
-            Assert.Throws<IOException>(() => FileSystem.WriteStringToFileSafe(testPath, "test"));                                    
+            var fs = new FileStream(testPath, FileMode.Create);
+            Assert.Throws<IOException>(() => FileSystem.WriteStringToFileSafe(testPath, "test"));
             var task = Task.Run(() => FileSystem.WriteStringToFileSafe(testPath, "test"));
             await Task.Delay(1000);
             fs.Dispose();

@@ -1,4 +1,5 @@
-﻿Name: Epic Store Library Importer
+﻿Id: EpicGamesLibrary_Builtin
+Name: Epic Store Library Importer
 Author: Playnite
 Version: 1.0
 Module: EpicLibrary.dll

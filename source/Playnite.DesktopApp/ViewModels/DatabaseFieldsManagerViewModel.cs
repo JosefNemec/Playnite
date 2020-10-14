@@ -287,7 +287,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                RemoveUnusedItems(EditingPlatforms, g => g.PlatformId);
+                RemoveUnusedPlatforms();
             }, (a) => EditingPlatforms.Count > 0);
         }
 
@@ -717,6 +717,53 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         var srcItem = sourceCollection.First(a => a.Id == item);
                         sourceCollection.Remove(srcItem);
+                    }
+                }
+            }
+            else
+            {
+                dialogs.ShowMessage(resources.GetString("LOCRemoveUnusedFieldsNoUnusedMessage"));
+            }
+        }
+
+        public void RemoveUnusedPlatforms()
+        {
+            if (EditingPlatforms.Count == 0)
+            {
+                return;
+            }
+
+            var unused = new List<Guid>(EditingPlatforms.Select(a => a.Id));
+            foreach (var game in database.Games)
+            {
+                if (unused.Contains(game.PlatformId))
+                {
+                    unused.Remove(game.PlatformId);
+                }
+            }
+
+            foreach (var emulator in database.Emulators)
+            {
+                foreach (var profile in emulator.Profiles)
+                {
+                    var usedIds = profile.Platforms ?? new List<Guid>();
+                    foreach (var item in unused.Intersect(usedIds).ToList())
+                    {
+                        unused.Remove(item);
+                    }
+                }
+            }
+
+            if (unused.Count > 0)
+            {
+                if (dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCRemoveUnusedFieldsAskMessage"), unused.Count),
+                    "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    foreach (var item in unused)
+                    {
+                        var srcItem = EditingPlatforms.First(a => a.Id == item);
+                        EditingPlatforms.Remove(srcItem);
                     }
                 }
             }

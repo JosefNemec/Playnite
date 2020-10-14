@@ -112,8 +112,26 @@ namespace Playnite.SDK
     /// <summary>
     /// Describes collection of items for game database.
     /// </summary>
+    public interface IItemCollection
+    {
+        /// <summary>
+        /// Gets item collection type.
+        /// </summary>
+        GameDatabaseCollection CollectionType { get; }
+
+        /// <summary>
+        /// Check if an item is in the collection.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        bool ContainsItem(Guid id);
+    }
+
+    /// <summary>
+    /// Describes collection of items for game database.
+    /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public interface IItemCollection<TItem> : ICollection<TItem> where TItem : DatabaseObject
+    public interface IItemCollection<TItem> : IItemCollection, ICollection<TItem> where TItem : DatabaseObject
     {
         /// <summary>
         /// Gets or sets item from collection.
@@ -128,6 +146,13 @@ namespace Playnite.SDK
         /// <param name="id">Id of an item.</param>
         /// <returns><c>null</c> if no item is found otherwise item represents by specified id.</returns>
         TItem Get(Guid id);
+
+        /// <summary>
+        /// Gets items from collection.
+        /// </summary>
+        /// <param name="ids">Id of items.</param>
+        /// <returns>List of items from collection.</returns>
+        List<TItem> Get(IList<Guid> ids);
 
         /// <summary>
         /// Adds new item into collection.

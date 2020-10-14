@@ -19,6 +19,7 @@
     <Compile Include="..\Playnite.Common\Serialization.cs" Link="Common\Serialization.cs" />
     <Compile Include="..\Playnite.Common\FileSystem.cs" Link="Common\FileSystem.cs" />
     <Compile Include="..\Playnite.Common\Paths.cs" Link="Common\Paths.cs" />
+    <Compile Include="..\Playnite\DiagnosticPackageInfo.cs" Link="Common\DiagnosticPackageInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JsonApiSerializer" Version="1.0.0" />
+    <PackageReference Include="JsonApiSerializer" Version="1.7.4" />
     <PackageReference Include="LiteDB" Version="4.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Nett" Version="0.12.0" />

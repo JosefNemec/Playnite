@@ -1,0 +1,128 @@
+Name: Mednafen
+Website: 'https://mednafen.github.io/'
+Profiles:
+  - Name: Apple II
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Apple II]
+    ImageExtensions: [d13, sk, do, po, woz, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Atari Lynx
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Atari Lynx]
+    ImageExtensions: [lnx, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: NEC TurboGrafx 16
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [NEC TurboGrafx 16]
+    ImageExtensions: [pce, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: NEC TurboGrafx-CD
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [NEC TurboGrafx-CD]
+    ImageExtensions: [cue, ccd, chd]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: NEC PC-FX
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [NEC PC-FX]
+    ImageExtensions: [cue, ccd, chd, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Nintendo Entertainment System
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Entertainment System]
+    ImageExtensions: [nes, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Nintendo Game Boy
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy]
+    ImageExtensions: [gb, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Nintendo Game Boy Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Color]
+    ImageExtensions: [gbc, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Nintendo Game Boy Advance
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Game Boy Advance]
+    ImageExtensions: [gba, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Nintendo Virtual Boy
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Virtual Boy]
+    ImageExtensions: [vb, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: PC Engine SuperGrafx
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [PC Engine SuperGrafx]
+    ImageExtensions: [sgx, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Sega Game Gear
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Game Gear]
+    ImageExtensions: [sgg, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Sega Genesis
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Genesis]
+    ImageExtensions: [gen, md, bin, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Sega Master System
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Master System]
+    ImageExtensions: [sms, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Sega Saturn
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Saturn]
+    ImageExtensions: [chd, iso, bin, cue]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: SNK Neo Geo Pocket
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [SNK Neo Geo Pocket]
+    ImageExtensions: [ngp, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: SNK Neo Geo Pocket Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [SNK Neo Geo Pocket Color]
+    ImageExtensions: [ngc, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Sony PlayStation
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sony PlayStation]
+    ImageExtensions: [chd, cue, ccd, mds, m3u]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Super Nintendo Entertainment System
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Super Nintendo Entertainment System]
+    ImageExtensions: [smc, sfc, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Bandai WonderSwan
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Bandai WonderSwan]
+    ImageExtensions: [ws, zip]
+    ExecutableLookup: ^mednafen\.exe$
+
+  - Name: Bandai WonderSwan Color
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Bandai WonderSwan Color]
+    ImageExtensions: [wsc, zip]
+    ExecutableLookup: ^mednafen\.exe$

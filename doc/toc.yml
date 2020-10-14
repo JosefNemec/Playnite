@@ -1,5 +1,7 @@
 - name: Tutorials
   href: tutorials/
-- name: Api Documentation
+- name: Manual
+  href: manual/
+- name: API Documentation
   href: api/
   homepage: api/index.md

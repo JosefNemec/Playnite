@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Newtonsoft.Json;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -31,6 +32,8 @@ namespace Playnite.Database
 
         public bool IsReadOnly => false;
 
+        public GameDatabaseCollection CollectionType { get; } = GameDatabaseCollection.Uknown;
+
         public TItem this[Guid id]
         {
             get => Get(id);
@@ -44,25 +47,29 @@ namespace Playnite.Database
 
         public event EventHandler<ItemUpdatedEventArgs<TItem>> ItemUpdated;
 
-        public ItemCollection(bool isPersistent = true)
+        internal bool IsEventsEnabled { get; set; } = true;
+
+        public ItemCollection(bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
         {
             this.isPersistent = isPersistent;
             Items = new ConcurrentDictionary<Guid, TItem>();
+            CollectionType = type;
         }
 
-        public ItemCollection(Action<TItem> initMethod, bool isPersistent = true) : this(isPersistent)
+        public ItemCollection(Action<TItem> initMethod, bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(isPersistent, type)
         {
             this.initMethod = initMethod;
         }
 
-        public ItemCollection(string path)
+        public ItemCollection(string path, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
         {
             this.isPersistent = true;
             Items = new ConcurrentDictionary<Guid, TItem>();
             InitializeCollection(path);
+            CollectionType = type;
         }
 
-        public ItemCollection(string path, Action<TItem> initMethod) : this(path)
+        public ItemCollection(string path, Action<TItem> initMethod, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(path, type)
         {
             this.initMethod = initMethod;
         }
@@ -75,21 +82,49 @@ namespace Playnite.Database
             }
 
             storagePath = path;
+            // This fixes an issue where people mess up their library with custom scripts
+            // which create collection files instead of directories :|
+            if (File.Exists(storagePath))
+            {
+                File.Delete(storagePath);
+            }
+
             if (Directory.Exists(storagePath))
             {
-                Parallel.ForEach(Directory.EnumerateFiles(storagePath, "*.json"), (objectFile) =>
-                {
-                    try
+                Parallel.ForEach(
+                    Directory.EnumerateFiles(storagePath, "*.json"),
+                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
+                    (objectFile) =>
                     {
-                        var obj = Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(objectFile));
-                        initMethod?.Invoke(obj);
-                        Items.TryAdd(obj.Id, obj);
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(e, $"Failed to load item from {objectFile}");
-                    }
-                });
+                        if (Guid.TryParse(Path.GetFileNameWithoutExtension(objectFile), out var _))
+                        {
+                            try
+                            {
+                                var obj = Serialization.FromJsonFile<TItem>(objectFile);
+                                if (obj != null)
+                                {
+                                    initMethod?.Invoke(obj);
+                                    Items.TryAdd(obj.Id, obj);
+                                }
+                                else
+                                {
+                                    logger.Warn($"Failed to deserialize collection item {objectFile}");
+                                }
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                logger.Error(e, $"Failed to load item from {objectFile}");
+                            }
+                        }
+                        else
+                        {
+                            logger.Warn($"Skipping non-id collection item {objectFile}");
+                        }
+                    });
+            }
+            else
+            {
+                FileSystem.CreateDirectory(storagePath);
             }
         }
 
@@ -100,12 +135,27 @@ namespace Playnite.Database
 
         internal void SaveItemData(TItem item)
         {
-            FileSystem.WriteStringToFileSafe(GetItemFilePath(item.Id), Serialization.ToJson(item, false));
+            using (var fs = FileSystem.CreateWriteFileStreamSafe(GetItemFilePath(item.Id)))
+            using (var sw = new StreamWriter(fs))
+            using (var writer = new JsonTextWriter(sw))
+            {
+                var ser = JsonSerializer.Create(new JsonSerializerSettings()
+                {
+                    Formatting = Formatting.None,
+                    NullValueHandling = NullValueHandling.Ignore,
+                    DefaultValueHandling = DefaultValueHandling.Ignore
+                });
+
+                ser.Serialize(writer, item);
+            }
         }
 
         internal TItem GetItemData(Guid id)
         {
-            return Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(GetItemFilePath(id)));
+            using (var fs = FileSystem.OpenReadFileStreamSafe(GetItemFilePath(id)))
+            {
+                return Serialization.FromJsonStream<TItem>(fs);
+            }
         }
 
         public TItem Get(Guid id)
@@ -118,6 +168,26 @@ namespace Playnite.Database
             {
                 return null;
             }
+        }
+
+        public bool ContainsItem(Guid id)
+        {
+            return Items?.ContainsKey(id) == true;
+        }
+
+        public List<TItem> Get(IList<Guid> ids)
+        {
+            var items = new List<TItem>(ids.Count);
+            foreach (var id in ids)
+            {
+                var item = Get(id);
+                if (item != null)
+                {
+                    items.Add(item);
+                }
+            }
+
+            return items;
         }
 
         public virtual TItem Add(string itemName, Func<TItem, string, bool> existingComparer)
@@ -406,6 +476,11 @@ namespace Playnite.Database
 
         internal void OnCollectionChanged(List<TItem> addedItems, List<TItem> removedItems)
         {
+            if (!IsEventsEnabled)
+            {
+                return;
+            }
+
             if (!isEventBufferEnabled)
             {
                 ItemCollectionChanged?.Invoke(this, new ItemCollectionChangedEventArgs<TItem>(addedItems, removedItems));
@@ -419,6 +494,11 @@ namespace Playnite.Database
 
         internal void OnItemUpdated(IEnumerable<ItemUpdateEvent<TItem>> updates)
         {
+            if (!IsEventsEnabled)
+            {
+                return;
+            }
+
             if (!isEventBufferEnabled)
             {
                 ItemUpdated?.Invoke(this, new ItemUpdatedEventArgs<TItem>(updates));

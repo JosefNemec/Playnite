@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Playnite;
+using Playnite.Common;
+using PlayniteServices.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,21 +16,14 @@ namespace PlayniteServices.Controllers.PlayniteTools
     [Route("playnite/diag")]
     public class DiagnosticsController : Controller
     {
-        private AppSettings appSettings;
-
-        public DiagnosticsController(IOptions<AppSettings> settings)
+        public DiagnosticsController()
         {
-            appSettings = settings.Value;
         }
 
-        [HttpGet("{packageId}/{serviceKey}")]
+        [ServiceFilter(typeof(ServiceKeyFilter))]
+        [HttpGet("{packageId}")]
         public IActionResult GetPackage(Guid packageId, string serviceKey)
         {
-            if (appSettings.ServiceKey != serviceKey)
-            {
-                return BadRequest();
-            }
-
             var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, $"{packageId}.zip", SearchOption.AllDirectories);
             if (diagFiles.Length == 0)
             {
@@ -38,19 +34,38 @@ namespace PlayniteServices.Controllers.PlayniteTools
             return PhysicalFile(diagFile.FullName, System.Net.Mime.MediaTypeNames.Application.Zip, diagFile.Name);
         }
 
-        [HttpGet("{serviceKey}")]
-        public ServicesResponse<List<string>> GetPackages(string serviceKey)
+        [ServiceFilter(typeof(ServiceKeyFilter))]
+        [HttpDelete("{packageId}")]
+        public IActionResult DeletePackage(Guid packageId, string serviceKey)
         {
-            if (appSettings.ServiceKey != serviceKey)
+            var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, $"{packageId}.zip", SearchOption.AllDirectories);
+            if (diagFiles.Length == 0)
             {
-                return new ServicesResponse<List<string>>(null) { Error = "bad request" };
+                return NotFound();
+            }
+            else
+            {
+                foreach (var file in diagFiles)
+                {
+                    System.IO.File.Delete(file);
+                }
             }
 
-            var diagFiles = Directory.GetFiles(Playnite.DiagsLocation, "*.zip", SearchOption.AllDirectories).
-                Select(a => a.Replace(Playnite.DiagsLocation, "").Trim(Path.DirectorySeparatorChar)).ToList();
+            return Ok();
+        }
+
+        [ServiceFilter(typeof(ServiceKeyFilter))]
+        [HttpGet]
+        public ServicesResponse<List<string>> GetPackages(string serviceKey)
+        {
+            var diagFiles = Directory.
+                GetFiles(Playnite.DiagsLocation, "*.zip", SearchOption.AllDirectories).
+                Select(a => a.Replace(Playnite.DiagsLocation, "").Trim(Path.DirectorySeparatorChar) + $",{new FileInfo(a).CreationTime}").
+                ToList();
             return new ServicesResponse<List<string>>(diagFiles);
         }
 
+        [ServiceFilter(typeof(PlayniteVersionFilter))]
         [HttpPost]
         public ServicesResponse<Guid> UploadPackage()
         {
@@ -76,31 +91,46 @@ namespace PlayniteServices.Controllers.PlayniteTools
 
             using (var zip = ZipFile.OpenRead(targetPath))
             {
-                var log = zip.GetEntry("playnite.log");
-                using (var logStream = log.Open())
+                var diagInfo = zip.GetEntry(DiagnosticPackageInfo.PackageInfoFileName);
+                if (diagInfo != null)
                 {
-                    using (var tr = new StreamReader(logStream))
+                    using (var infoStream = diagInfo.Open())
                     {
-                        while (!tr.EndOfStream)
+                        var info = Serialization.FromJsonStream<DiagnosticPackageInfo>(infoStream);
+                        version = info.PlayniteVersion;
+                        isCrash = info.IsCrashPackage;
+                    }
+                }
+                else
+                {
+                    var log = zip.GetEntry("playnite.log");
+                    if (log != null)
+                    {
+                        using (var logStream = log.Open())
                         {
-                            var line = tr.ReadLine();
-                            if (line.Contains("Unhandled exception"))
+                            using (var tr = new StreamReader(logStream))
                             {
-                                isCrash = true;
-                                break;
+                                while (!tr.EndOfStream)
+                                {
+                                    var line = tr.ReadLine();
+                                    if (line.Contains("Unhandled exception"))
+                                    {
+                                        isCrash = true;
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }
-                }
 
-                var playniteInfo = zip.GetEntry("playniteInfo.txt");
-                using (var infoStream = playniteInfo.Open())
-                {
-                    using (var tr = new StreamReader(infoStream))
+                    var playniteInfo = zip.GetEntry("playniteInfo.txt");
+                    if (playniteInfo != null)
                     {
-                        var infoContent = tr.ReadToEnd();
-                        var info = JsonConvert.DeserializeObject<Dictionary<string, object>>(infoContent);
-                        version = info["Version"].ToString();
+                        using (var infoStream = playniteInfo.Open())
+                        {
+                            var info = Serialization.FromJsonStream<Dictionary<string, object>>(infoStream);
+                            version = info["Version"].ToString();
+                        }
                     }
                 }
             }

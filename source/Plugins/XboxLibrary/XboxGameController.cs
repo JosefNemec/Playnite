@@ -65,6 +65,7 @@ namespace XboxLibrary
                 throw new Exception("Cannot start UWP game, installation not found.");
             }
 
+            OnStarting(this, new GameControllerEventArgs(this, 0));
             ProcessStarter.StartProcess(prg.Path, prg.Arguments);
             stopWatch = Stopwatch.StartNew();
             procMon = new ProcessMonitor();

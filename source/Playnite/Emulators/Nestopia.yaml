@@ -1,0 +1,8 @@
+Name: Nestopia
+Website: 'http://nestopia.sourceforge.net/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Entertainment System]
+    ImageExtensions: [nes, unf, fds, nsf, zip]
+    ExecutableLookup: ^nestopia\.exe$

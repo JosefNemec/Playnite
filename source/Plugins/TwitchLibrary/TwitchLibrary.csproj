@@ -56,6 +56,9 @@
     <Compile Include="..\..\Playnite\Commands\GlobalCommands.cs">
       <Link>Commands\GlobalCommands.cs</Link>
     </Compile>
+    <Compile Include="..\..\Playnite\Converters\InvertableBooleanToVisibilityConverter.cs">
+      <Link>Converters\InvertableBooleanToVisibilityConverter.cs</Link>
+    </Compile>
     <Compile Include="..\..\Playnite\Converters\NegateConverter.cs">
       <Link>Converters\NegateConverter.cs</Link>
     </Compile>

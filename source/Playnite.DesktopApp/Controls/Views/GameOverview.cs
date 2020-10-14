@@ -2,6 +2,7 @@
 using Playnite.Common;
 using Playnite.Controls;
 using Playnite.Converters;
+using Playnite.DesktopApp.Markup;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK.Models;
 using System;
@@ -33,6 +34,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ElemFeatures", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemLinks", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemDescription", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ElemNotes", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemAgeRating", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemSeries", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemRegion", Type = typeof(FrameworkElement))]
@@ -44,6 +46,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_TextPlayTime", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextLastActivity", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextCompletionStatus", Type = typeof(TextBlock))]
+    [TemplatePart(Name = "PART_TextNotes", Type = typeof(TextBox))]
     [TemplatePart(Name = "PART_TextCommunityScore", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextCriticScore", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextUserScore", Type = typeof(TextBlock))]
@@ -89,6 +92,15 @@ namespace Playnite.DesktopApp.Controls.Views
         private FrameworkElement ElemFeatures;
         private FrameworkElement ElemLinks;
         private FrameworkElement ElemDescription;
+        private FrameworkElement ElemNotes;
+        private FrameworkElement ElemAgeRating;
+        private FrameworkElement ElemSeries;
+        private FrameworkElement ElemRegion;
+        private FrameworkElement ElemSource;
+        private FrameworkElement ElemVersion;
+        private FrameworkElement ElemCommunityScore;
+        private FrameworkElement ElemCriticScore;
+        private FrameworkElement ElemUserScore;
 
         private TextBlock TextPlayTime;
         private TextBlock TextLastActivity;
@@ -96,6 +108,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private TextBlock TextCommunityScore;
         private TextBlock TextCriticScore;
         private TextBlock TextUserScore;
+        private TextBox TextNotes;
         private Button ButtonLibrary;
         private Button ButtonPlatform;
         private Button ButtonReleaseDate;
@@ -251,6 +264,18 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(HtmlDescription,
                     HtmlTextView.VisibilityProperty,
                     nameof(GameDetailsViewModel.DescriptionVisibility));
+                HtmlDescription.TemplatePath = ThemeFile.GetFilePath("DescriptionView.html");
+            }
+
+            TextNotes = Template.FindName("PART_TextNotes", this) as TextBox;
+            if (TextNotes != null)
+            {
+                BindingTools.SetBinding(TextNotes,
+                    TextBox.TextProperty,
+                    GetGameBindingPath(nameof(GamesCollectionViewEntry.Notes)));
+                BindingTools.SetBinding(TextNotes,
+                    TextBox.VisibilityProperty,
+                    nameof(GameDetailsViewModel.NotesVisibility));
             }
 
             ImageCover = Template.FindName("PART_ImageCover", this) as Image;
@@ -320,14 +345,15 @@ namespace Playnite.DesktopApp.Controls.Views
             SetElemVisibility(ref ElemCategories, "PART_ElemCategories", nameof(GameDetailsViewModel.CategoryVisibility));
             SetElemVisibility(ref ElemLinks, "PART_ElemLinks", nameof(GameDetailsViewModel.LinkVisibility));
             SetElemVisibility(ref ElemDescription, "PART_ElemDescription", nameof(GameDetailsViewModel.DescriptionVisibility));
-            SetElemVisibility(ref ElemDescription, "PART_ElemAgeRating", nameof(GameDetailsViewModel.AgeRatingVisibility));
-            SetElemVisibility(ref ElemDescription, "PART_ElemSeries", nameof(GameDetailsViewModel.SeriesVisibility));
-            SetElemVisibility(ref ElemDescription, "PART_ElemRegion", nameof(GameDetailsViewModel.RegionVisibility));
-            SetElemVisibility(ref ElemDescription, "PART_ElemSource", nameof(GameDetailsViewModel.SourceVisibility));
-            SetElemVisibility(ref ElemDescription, "PART_ElemVersion", nameof(GameDetailsViewModel.VersionVisibility));
-            SetElemVisibility(ref ElemDescription, "PART_ElemCommunityScore", nameof(GameDetailsViewModel.CommunityScoreVisibility));
-            SetElemVisibility(ref ElemDescription, "PART_ElemCriticScore", nameof(GameDetailsViewModel.CriticScoreVisibility));
-            SetElemVisibility(ref ElemDescription, "PART_ElemUserScore", nameof(GameDetailsViewModel.UserScoreVisibility));
+            SetElemVisibility(ref ElemAgeRating, "PART_ElemAgeRating", nameof(GameDetailsViewModel.AgeRatingVisibility));
+            SetElemVisibility(ref ElemSeries, "PART_ElemSeries", nameof(GameDetailsViewModel.SeriesVisibility));
+            SetElemVisibility(ref ElemRegion, "PART_ElemRegion", nameof(GameDetailsViewModel.RegionVisibility));
+            SetElemVisibility(ref ElemSource, "PART_ElemSource", nameof(GameDetailsViewModel.SourceVisibility));
+            SetElemVisibility(ref ElemVersion, "PART_ElemVersion", nameof(GameDetailsViewModel.VersionVisibility));
+            SetElemVisibility(ref ElemCommunityScore, "PART_ElemCommunityScore", nameof(GameDetailsViewModel.CommunityScoreVisibility));
+            SetElemVisibility(ref ElemCriticScore, "PART_ElemCriticScore", nameof(GameDetailsViewModel.CriticScoreVisibility));
+            SetElemVisibility(ref ElemUserScore, "PART_ElemUserScore", nameof(GameDetailsViewModel.UserScoreVisibility));
+            SetElemVisibility(ref ElemNotes, "PART_ElemNotes", nameof(GameDetailsViewModel.NotesVisibility));
 
             SetGameItemButtonBinding(ref ButtonLibrary, "PART_ButtonLibrary",
                 nameof(GameDetailsViewModel.SetLibraryFilterCommand),

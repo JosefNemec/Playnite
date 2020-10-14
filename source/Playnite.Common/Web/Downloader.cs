@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.Common.Web
@@ -127,6 +128,25 @@ namespace Playnite.Common.Web
             using (var webClient = new WebClient())
             {
                 webClient.DownloadFile(url, path);
+            }
+        }
+
+        public void DownloadFile(string url, string path, CancellationTokenSource cancelToken)
+        {
+            logger.Debug($"Downloading data from {url} to {path}.");
+            FileSystem.CreateDirectory(Path.GetDirectoryName(path));
+
+            try
+            {
+                using (var webClient = new WebClient())
+                using (var registration = cancelToken.Token.Register(() => webClient.CancelAsync()))
+                {
+                    webClient.DownloadFileTaskAsync(new Uri(url), path).GetAwaiter().GetResult();
+                }
+            }
+            catch (WebException ex) when (ex.Status == WebExceptionStatus.RequestCanceled)
+            {
+                logger.Warn("Download canceled.");
             }
         }
 

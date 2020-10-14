@@ -45,7 +45,7 @@ namespace Playnite.Windows
 
         public WindowFactory()
         {
-            context = SynchronizationContext.Current;
+            context = SynchronizationContext.Current ?? PlayniteApplication.Current.SyncContext;
         }
 
         public bool? CreateAndOpenDialog(object dataContext)
@@ -56,9 +56,13 @@ namespace Playnite.Windows
                 Window = CreateNewWindowInstance();
                 Window.Closed += Window_Closed;
                 Window.DataContext = dataContext;
-                if (Window != WindowManager.CurrentWindow)
+                var currentWindow = WindowManager.CurrentWindow;
+                if (currentWindow != null && Window != currentWindow)
                 {
-                    Window.Owner = WindowManager.CurrentWindow;
+                    if (typeof(WindowBase).IsAssignableFrom(currentWindow.GetType()) && ((WindowBase)currentWindow).IsShown)
+                    {
+                        Window.Owner = currentWindow;
+                    }
                 }
 
                 if (Window.Owner == null)

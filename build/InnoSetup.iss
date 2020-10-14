@@ -48,6 +48,7 @@ Source: "{#SourcePath}\*"; DestDir: "{app}"; Flags: ignoreversion createallsubdi
 
 [Icons]
 Name: "{userappdata}\Microsoft\Windows\Start Menu\Programs\Playnite\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: startmenu; Check: GetCreateIcons
+Name: "{userappdata}\Microsoft\Windows\Start Menu\Programs\Playnite\Safe Mode"; Filename: "{app}\Safe Mode.bat"; Tasks: startmenu; Check: GetCreateIcons
 Name: "{userappdata}\Microsoft\Windows\Start Menu\Programs\Playnite\Uninstall"; Filename: "{uninstallexe}"; Tasks: startmenu; Check: GetCreateIcons
 Name: "{commondesktop}\Playnite"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Check: GetCreateIcons
 

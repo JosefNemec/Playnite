@@ -1,0 +1,8 @@
+Name: Reicast
+Website: 'https://reicast.com/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sega Dreamcast]
+    ImageExtensions: [gdi, cdi, chd]
+    ExecutableLookup: ^reicast.*\.exe$

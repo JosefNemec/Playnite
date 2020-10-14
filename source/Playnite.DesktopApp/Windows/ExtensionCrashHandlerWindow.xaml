@@ -1,0 +1,32 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.ExtensionCrashHandlerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
+        Title="{DynamicResource LOCCrashWindowTitle}" SizeToContent="Height" Width="600"
+        WindowStartupLocation="CenterScreen"
+        AutomationProperties.AutomationId="WindowCrash">
+
+    <DockPanel Margin="5">
+        <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
+            <Button Content="{DynamicResource LOCCrashSaveLog}" DockPanel.Dock="Left"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding SaveLogCommand}"/>
+            <Button Content="{DynamicResource LOCCrashRestartPlaynite}" DockPanel.Dock="Right" 
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding RestartCommand}"/>
+            <CheckBox Content="{DynamicResource LOCCrashDisableExtension}" DockPanel.Dock="Right"
+                      IsChecked="{Binding DisableExtension}"
+                      VerticalAlignment="Center" Margin="0,0,10,0"/>
+        </DockPanel>
+        <TextBlock Text="{Binding ExtCrashDescription}"
+                   Margin="10,10,10,15"
+                   FontSize="{DynamicResource FontSize}"
+                   VerticalAlignment="Center" DockPanel.Dock="Top" 
+                   TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
+    </DockPanel>
+</controls:WindowBase>

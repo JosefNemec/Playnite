@@ -40,7 +40,7 @@ namespace Playnite.Tests.Database
         {
             var appData = Environment.ExpandEnvironmentVariables("%AppData%");
             var progPath = PlaynitePaths.ProgramPath;
-            Assert.AreEqual(Path.Combine(appData, @"playnite\games"), GameDatabase.GetFullDbPath(@"%AppData%\playnite\games"));            
+            Assert.AreEqual(Path.Combine(appData, @"playnite\games"), GameDatabase.GetFullDbPath(@"%AppData%\playnite\games"));
             Assert.AreEqual(Path.Combine(progPath, "games"), GameDatabase.GetFullDbPath(@"{PlayniteDir}\games"));
             Assert.AreEqual(@"c:\test\games", GameDatabase.GetFullDbPath(@"c:\test\games"));
             Assert.AreEqual(Path.Combine(Environment.CurrentDirectory, @"games"), GameDatabase.GetFullDbPath("games"));
@@ -102,6 +102,58 @@ namespace Playnite.Tests.Database
                 db.Games.Remove(game);
                 files = Directory.GetFiles(db.GetFileStoragePath(game.Id));
                 Assert.AreEqual(0, files.Count());
+            }
+        }
+
+        [Test]
+        public void FieldsInUseTests()
+        {
+            using (var temp = TempDirectory.Create())
+            {
+                var db = new GameDatabase(temp.TempPath);
+                db.OpenDatabase();
+                GameDatabase.GenerateSampleData(db);
+
+                var eventCount = 0;
+                db.AgeRatingsInUseUpdated += (_, __) => eventCount++;
+                db.CategoriesInUseUpdated += (_, __) => eventCount++;
+                db.DevelopersInUseUpdated += (_, __) => eventCount++;
+                db.FeaturesInUseUpdated += (_, __) => eventCount++;
+                db.GenresInUseUpdated += (_, __) => eventCount++;
+                db.PlatformsInUseUpdated += (_, __) => eventCount++;
+                db.PublishersInUseUpdated += (_, __) => eventCount++;
+                db.RegionsInUseUpdated += (_, __) => eventCount++;
+                db.SeriesInUseUpdated += (_, __) => eventCount++;
+                db.SourcesInUseUpdated += (_, __) => eventCount++;
+                db.TagsInUseUpdated += (_, __) => eventCount++;
+
+                Assert.AreEqual(1, db.UsedAgeRatings.Count);
+                Assert.AreEqual(1, db.UsedCategories.Count);
+                Assert.AreEqual(1, db.UsedDevelopers.Count);
+                Assert.AreEqual(1, db.UsedFeastures.Count);
+                Assert.AreEqual(1, db.UsedGenres.Count);
+                Assert.AreEqual(1, db.UsedPlatforms.Count);
+                Assert.AreEqual(1, db.UsedPublishers.Count);
+                Assert.AreEqual(1, db.UsedRegions.Count);
+                Assert.AreEqual(1, db.UsedSeries.Count);
+                Assert.AreEqual(1, db.UsedSources.Count);
+                Assert.AreEqual(1, db.UsedTags.Count);
+
+                var addedCat = db.Categories.Add("new category");
+                var addedCat2 = db.Categories.Add("new category2");
+                Assert.AreEqual(1, db.UsedCategories.Count);
+
+                var game = db.Games.First();
+                game.CategoryIds.Add(addedCat.Id);
+                db.Games.Update(game);
+                Assert.AreEqual(2, db.UsedCategories.Count);
+                db.Categories.Remove(addedCat);
+                Assert.AreEqual(1, db.UsedCategories.Count);
+
+                var newGame = new Game("test");
+                newGame.CategoryIds = new List<Guid> { addedCat.Id, addedCat2.Id };
+                db.Games.Add(newGame);
+                Assert.AreEqual(2, db.UsedCategories.Count);
             }
         }
     }

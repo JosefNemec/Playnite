@@ -19,7 +19,7 @@ namespace Playnite.API
     {
         private readonly GamesEditor gameEditor;
 
-        public PlayniteAPI(            
+        public PlayniteAPI(
             IGameDatabaseAPI databaseApi,
             IDialogsFactory dialogs,
             IMainViewAPI mainViewApi,
@@ -29,7 +29,8 @@ namespace Playnite.API
             IResourceProvider resources,
             INotificationsAPI notifications,
             GamesEditor gameEditor,
-            IUriHandlerAPI uriHandler)
+            IUriHandlerAPI uriHandler,
+            IPlayniteSettingsAPI settingsApi)
         {
             WebViews = webViewFactory;
             Paths = pathsApi;
@@ -41,6 +42,7 @@ namespace Playnite.API
             Notifications = notifications;
             this.gameEditor = gameEditor;
             UriHandler = uriHandler;
+            ApplicationSettings = settingsApi;
         }
 
         public IDialogsFactory Dialogs { get; }
@@ -60,6 +62,8 @@ namespace Playnite.API
         public INotificationsAPI Notifications { get; }
 
         public IUriHandlerAPI UriHandler { get; }
+
+        public IPlayniteSettingsAPI ApplicationSettings { get; }
 
         public string ExpandGameVariables(Game game, string inputString)
         {

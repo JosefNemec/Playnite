@@ -1,0 +1,8 @@
+Name: melonDS
+Website: 'http://melonds.kuribo64.net/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo DS]
+    ImageExtensions: [nds]
+    ExecutableLookup: ^melonDS\.exe$

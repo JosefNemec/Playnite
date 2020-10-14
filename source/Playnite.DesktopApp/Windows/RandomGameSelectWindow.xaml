@@ -9,6 +9,11 @@
             d:DesignStyle="{StaticResource WindowDesignStyle}"
             Style="{DynamicResource StandardWindowStyle}"
             WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    
+    <WindowBase.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
+    </WindowBase.InputBindings>
+
     <StackPanel Margin="0,10,0,20">
         <Image Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
                Height="200" HorizontalAlignment="Center">

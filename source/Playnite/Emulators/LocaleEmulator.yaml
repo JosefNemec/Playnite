@@ -1,0 +1,8 @@
+Name: Locale Emulator
+Website: 'https://pooi.moe/Locale-Emulator/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [PC]
+    ImageExtensions: [exe]
+    ExecutableLookup: ^LEProc\.exe$

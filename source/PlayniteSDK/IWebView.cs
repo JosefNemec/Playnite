@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,10 +25,36 @@ namespace Playnite.SDK
     }
 
     /// <summary>
+    /// Represents JavaScript evaluation resut.
+    /// </summary>
+    public class JavaScriptEvaluationResult
+    {
+        /// <summary>
+        /// Gets or sets error message.
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether the javascript executed successfully.
+        /// </summary>
+        public bool Success { get; set; }
+
+        /// <summary>
+        /// Gets or sets result of script evaluation.
+        /// </summary>
+        public object Result { get; set; }
+    }
+
+    /// <summary>
     /// Describes web view object.
     /// </summary>
     public interface IWebView : IDisposable
     {
+        /// <summary>
+        /// Gets a flag that indicates if you can execute javascript in the main frame.
+        /// </summary>
+        bool CanExecuteJavascriptInMainFrame { get; }
+
         /// <summary>
         /// Open view.
         /// </summary>
@@ -95,6 +122,12 @@ namespace Playnite.SDK
         void DeleteCookies(string url, string name);
 
         /// <summary>
+        /// Gets all cookies.
+        /// </summary>
+        /// <returns>List of cookies.</returns>
+        List<HttpCookie> GetCookies();
+
+        /// <summary>
         /// Sets cookie data.
         /// </summary>
         /// <param name="url">Cookie URL.</param>
@@ -113,7 +146,20 @@ namespace Playnite.SDK
         /// <summary>
         /// Occurs when web view navigatates to a new page.
         /// </summary>
+        [Obsolete("Use LoadingChanged event instead.")]
         event EventHandler NavigationChanged;
+
+        /// <summary>
+        /// Occurs when web view loading changes, for example when page is loaded.
+        /// </summary>
+        event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
+
+        /// <summary>
+        /// Evaluates JavaScript script in the browser instance.
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
+        Task<JavaScriptEvaluationResult> EvaluateScriptAsync(string script);
     }
 
     /// <summary>
@@ -150,5 +196,48 @@ namespace Playnite.SDK
         /// <param name="background">View background color.</param>
         /// <returns>Web view.</returns>
         IWebView CreateView(int width, int height, Color background);
+    }
+
+    /// <summary>
+    /// Represetn web view cookie object.
+    /// </summary>
+    public class HttpCookie
+    {
+        /// <summary>
+        /// Creates new instance of <see cref="HttpCookie"/>.
+        /// </summary>
+        public HttpCookie()
+        {
+        }
+
+        /// <summary>
+        /// The cookie name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The cookie value.
+        /// </summary>
+        public string Value { get; set; }
+
+        /// <summary>
+        /// The cookie domain.
+        /// </summary>
+        public string Domain { get; set; }
+
+        /// <summary>
+        /// The cookie path.
+        /// </summary>
+        public string Path { get; set; }
+
+        /// <summary>
+        /// The cookie expire date.
+        /// </summary>
+        public DateTime? Expires { get; set; }
+
+        /// <summary>
+        /// The cookie creation date.
+        /// </summary>
+        public DateTime Creation { get; set; }
     }
 }

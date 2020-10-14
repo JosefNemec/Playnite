@@ -1,0 +1,8 @@
+Name: Vita3K
+Website: 'https://vita3k.org/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sony PlayStation Vita]
+    ImageExtensions: [vpk]
+    ExecutableLookup: ^Vita3K.*\.exe$

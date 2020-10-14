@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,36 +10,49 @@ using System.Threading.Tasks;
 
 namespace Playnite.WebView
 {
-    public class OffscreenWebView : IWebView
+    public class OffscreenWebView : WebViewBase, IWebView
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
-
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
 
+        public bool CanExecuteJavascriptInMainFrame => browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
+        public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 
         public OffscreenWebView()
         {
-            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
-            browser.LoadingStateChanged += Browser_LoadingStateChanged;
-            browser.BrowserInitialized += Browser_BrowserInitialized;
-            browser.CreateBrowser();
-            browserInitializedEvent.WaitOne(5000);
+            Initialize();
         }
 
         public OffscreenWebView(WebViewSettings settings)
         {
-            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
-            browser.LoadingStateChanged += Browser_LoadingStateChanged;
-            browser.BrowserInitialized += Browser_BrowserInitialized;
-            var brwSet = new BrowserSettings
+            Initialize(new BrowserSettings
             {
                 Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled,
                 ApplicationCache = settings.CacheEnabled ? CefState.Enabled : CefState.Disabled
-            };
-            browser.CreateBrowser(null, brwSet);
-            browserInitializedEvent.WaitOne(5000);
+            });
+        }
+
+        private void Initialize(BrowserSettings settings = null)
+        {
+            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
+            browser.LoadingStateChanged += Browser_LoadingStateChanged;
+            browser.BrowserInitialized += Browser_BrowserInitialized;
+            if (settings != null)
+            {
+                browser.CreateBrowser(null, settings);
+            }
+            else
+            {
+                browser.CreateBrowser();
+            }
+
+            if (!browserInitializedEvent.WaitOne(30000))
+            {
+                logger.Error("Failed to initialize OffscreenWebView in timely manner.");
+            }
         }
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
@@ -48,6 +62,7 @@ namespace Playnite.WebView
                 loadCompleteEvent.Set();
             }
 
+            LoadingChanged?.Invoke(this, new WebViewLoadingChangedEventArgs { IsLoading = e.IsLoading });
             NavigationChanged?.Invoke(this, new EventArgs());
         }
 
@@ -111,42 +126,15 @@ namespace Playnite.WebView
             throw new NotImplementedException();
         }
 
-        public void DeleteDomainCookies(string domain)
+        public async Task<JavaScriptEvaluationResult> EvaluateScriptAsync(string script)
         {
-            using (var destoyer = new CookieDestroyer(domain))
+            var res = await browser.EvaluateScriptAsync(script);
+            return new JavaScriptEvaluationResult
             {
-                using (var manager = Cef.GetGlobalCookieManager())
-                {
-                    manager.VisitAllCookies(destoyer);
-                }
-            }
-        }
-
-        public void DeleteCookies(string url, string name)
-        {
-            using (var manager = Cef.GetGlobalCookieManager())
-            {
-                manager.DeleteCookies(url, name);
-            }
-        }
-
-        public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
-        {
-            using (var manager = Cef.GetGlobalCookieManager())
-            {
-                manager.SetCookie(url, new Cookie()
-                {
-                    Domain = domain,
-                    Name = name,
-                    Value = value,
-                    Expires = expires,
-                    Creation = DateTime.Now,
-                    HttpOnly = false,
-                    LastAccess = DateTime.Now,
-                    Secure = false,
-                    Path = path
-                });
-            }
+                Message = res.Message,
+                Result = res.Result,
+                Success = res.Success
+            };
         }
     }
 }

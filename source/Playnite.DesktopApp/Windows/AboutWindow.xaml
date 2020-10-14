@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
-        xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
+        xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"                     
+        xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
@@ -17,6 +18,8 @@
                     Command="{Binding CreateDiagPackageCommand}"/>
             <Button TabIndex="5" Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
                     Style="{StaticResource BottomButton}" Command="{Binding CloseCommand}"/>
+            <Button TabIndex="5" Content="{DynamicResource LOCLicenseLabel}" DockPanel.Dock="Left" IsCancel="True"
+                    Style="{StaticResource BottomButton}" Command="{Binding OpenLicensesCommand}"/>
         </DockPanel>
 
         <GridEx KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="10"
@@ -29,22 +32,16 @@
                 <TextBlock Text="{DynamicResource LOCAboutAuthor}" Foreground="LightGray"/>
                 <TextBlock KeyboardNavigation.TabIndex="1">
                 <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
-                           Command="{Binding NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                           Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                     <Run Text="{DynamicResource LOCAboutHomePageLink}"/>
                 </Hyperlink>
                 </TextBlock>
                 <TextBlock KeyboardNavigation.TabIndex="2">
                 <Hyperlink Name="HyperlinkSource" FontSize="12" NavigateUri="https://github.com/JosefNemec/Playnite/"
-                           Command="{Binding NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                           Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                     <Run Text="{DynamicResource LOCAboutSourceLink}"/>
                 </Hyperlink>
                 </TextBlock>
-            </StackPanel>
-            <StackPanel Grid.Column="2">
-                <Label Content="{Binding SDKVersion}" Foreground="{StaticResource TextBrush}"
-                       FontSize="16" Margin="10,0,0,0"/>
-                <Label Content="{Binding ThemeApiVersion}" Foreground="{StaticResource TextBrush}"
-                       FontSize="16" Margin="10,10,0,0"/>
             </StackPanel>
         </GridEx>
 
@@ -73,6 +70,29 @@
                          HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto"
                          Text="{Binding Contributors, Mode=OneWay}"/>
                 </DockPanel>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LOCOther}">
+                <StackPanel Margin="5">
+                    <TextBlock Text="{Binding SDKVersion}" />
+                    <TextBlock Text="{Binding ThemeApiVersion}" Margin="0,5,0,5" />
+
+                    <TextBlock>
+                        <Hyperlink FontSize="12" Focusable="False"
+                                   Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
+                                   CommandParameter="{Binding InstallDir}">
+                            <Run Text="Program directory"/>
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock Margin="0,5,0,5">
+                        <Hyperlink FontSize="12" Focusable="False"                  
+                                   Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
+                                   CommandParameter="{Binding UserDir}">
+                            <Run Text="User data directory"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </DockPanel>

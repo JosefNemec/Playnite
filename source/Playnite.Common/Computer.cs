@@ -19,6 +19,10 @@ namespace Playnite.Common
 
         public string WindowsVersion { get; set; }
 
+        public string WindowsEdition { get; set; }
+
+        public int WindowsBuildVersion { get; set; }
+
         public string Cpu { get; set; }
 
         public int Ram { get; set; }
@@ -99,6 +103,11 @@ namespace Playnite.Common
             return Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ReleaseId", ""));
         }
 
+        public static string GetWindowsProductName()
+        {
+            return Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+        }
+
         public static Guid GetMachineGuid()
         {
             RegistryKey root = null;
@@ -129,7 +138,9 @@ namespace Playnite.Common
             var info = new SystemInfo
             {
                 Is64Bit = Environment.Is64BitOperatingSystem,
-                WindowsVersion = Environment.OSVersion.VersionString
+                WindowsVersion = Environment.OSVersion.VersionString,
+                WindowsBuildVersion = GetWindowsReleaseId(),
+                WindowsEdition = GetWindowsProductName()
             };
 
             using (var win32Proc = new ManagementObjectSearcher("SELECT * FROM Win32_Processor"))

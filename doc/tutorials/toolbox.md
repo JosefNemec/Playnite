@@ -45,7 +45,7 @@ Toolbox.exe new IronPythonScript "Testing Script" "d:\somefolder"
 ### Plugins
 
 ```
-Toolbox.exe new <plugintype> <plugintype> <targetfolder>
+Toolbox.exe new <plugintype> <pluginname> <targetfolder>
 ```
 
 `<plugintype>` available options:
@@ -53,7 +53,7 @@ Toolbox.exe new <plugintype> <plugintype> <targetfolder>
 - **MetadataPlugin**
 - **LibraryPlugin**
 
-`<plugintype>` - name of the new plugin extension.
+`<pluginname>` - name of the new plugin extension.
 
 `<targetfolder>` - folder to create plugin in.
 

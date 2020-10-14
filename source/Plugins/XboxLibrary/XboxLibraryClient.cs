@@ -23,6 +23,11 @@ namespace XboxLibrary
 
         public override void Open()
         {
+            if (Computer.WindowsVersion != WindowsVersion.Win10)
+            {
+                throw new Exception("Xbox game library is only supported on Windows 10.");
+            }
+
             if (settings.XboxAppClientPriorityLaunch && Xbox.IsXboxPassAppInstalled)
             {
                 Xbox.OpenXboxPassApp();

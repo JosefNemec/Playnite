@@ -3,6 +3,7 @@ using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,12 @@ using System.Threading.Tasks;
 
 namespace Playnite.Scripting
 {
+    public enum SupportedMenuMethods
+    {
+        GameMenu,
+        MainMenu
+    }
+
     public class ScriptFunctionExport : ExtensionFunction
     {
         public string FunctionName
@@ -45,6 +52,8 @@ namespace Playnite.Scripting
     public abstract class PlayniteScript: IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
+        public List<ApplicationEvent> SupportedEvents { get; internal set; }
+        public List<SupportedMenuMethods> SupportedMenus { get; internal set; }
 
         public List<ScriptFunctionExport> FunctionExports
         {
@@ -64,6 +73,16 @@ namespace Playnite.Scripting
         public PlayniteScript(string path)
         {
             Path = path;
+        }
+
+        public virtual List<ScriptGameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+        {
+            return new List<ScriptGameMenuItem>();
+        }
+
+        public virtual List<ScriptMainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        {
+            return new List<ScriptMainMenuItem>();
         }
 
         public static PlayniteScript FromFile(string path)
@@ -100,6 +119,8 @@ namespace Playnite.Scripting
         {
         }
 
+        public abstract object InvokeFunction(string functionName);
+        public abstract object InvokeFunction(string functionName, List<object> arguments);
         public abstract void InvokeExportedFunction(ScriptFunctionExport function);
         public abstract void SetVariable(string name, object value);
         public abstract void OnApplicationStarted();

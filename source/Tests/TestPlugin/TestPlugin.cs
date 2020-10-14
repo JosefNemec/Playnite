@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK;
+using Playnite.SDK.Data;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
- 
+
 namespace TestPlugin
 {
     public class TestPlugin : Plugin
@@ -31,19 +32,6 @@ namespace TestPlugin
         public override UserControl GetSettingsView(bool firstRunView)
         {
             return new TestPluginSettingsView();
-        }
-
-        public override IEnumerable<ExtensionFunction> GetFunctions()
-        {
-            return new List<ExtensionFunction>()
-            {
-                new ExtensionFunction(
-                    "Test Func from TestPlugin",
-                    () =>
-                    {
-                        logger.Info($"TestPluginDev ExtensionFunction {PlayniteApi.Database.Games.Count}");
-                    })
-            };
         }
 
         public override void OnGameInstalled(Game game)
@@ -74,6 +62,42 @@ namespace TestPlugin
         public override void OnApplicationStarted()
         {
             logger.Info("TestPluginDev OnApplicationStarted");
+        }
+
+        public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        {
+            return new List<MainMenuItem>
+            {
+                new MainMenuItem
+                {
+                    Description = "window test",
+                    Action = (_) =>
+                    {
+                        var window = PlayniteApi.Dialogs.CreateWindow(new WindowCreationOptions()
+                        {
+                            ShowCloseButton = false,
+                            ShowMaximizeButton = false
+                        }
+                        );
+                        window.Title = "window plugin test";
+                        window.Content = new TestPluginSettingsView();
+                        window.Owner = PlayniteApi.Dialogs.GetCurrentAppWindow();
+                        window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                        window.Height = 640;
+                        window.Width = 480;
+                        window.ShowDialog();
+                    }
+                },
+                new MainMenuItem
+                {
+                    Description = "serialization test",
+                    Action = (_) =>
+                    {
+                        var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
+                        PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
+                    }
+                }
+            };
         }
     }
 }

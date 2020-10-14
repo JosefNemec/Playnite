@@ -10,11 +10,11 @@
                 <ControlTemplate TargetType="{x:Type LibraryDetailsView}">
                     <DockPanel d:DesignWidth="1280" d:DesignHeight="960"
                                d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <ExtendedListBox x:Name="PART_ListGames"
+                        <Grid DockPanel.Dock="{Settings DetailsListPosition}"
+                              Width="{Settings DetailsListWitdh}">
+                            <ExtendedListBox x:Name="PART_ListGames"
                                          SelectionMode="Extended" 
-                                         Width="{Settings DetailsListWitdh}"
                                          BorderBrush="{DynamicResource PanelSeparatorBrush}"
-                                         DockPanel.Dock="{Settings DetailsListPosition}"
                                          ItemContainerStyle="{DynamicResource DetailsViewItemStyle}"
                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                          ScrollViewer.PanningMode="VerticalOnly"
@@ -22,28 +22,43 @@
                                          VirtualizingPanel.CacheLength="5"
                                          VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                                          VirtualizingPanel.VirtualizationMode="Recycling">
-                            <ExtendedListBox.Style>
-                                <Style TargetType="ExtendedListBox" BasedOn="{StaticResource {x:Type ExtendedListBox}}">
-                                    <Setter Property="BorderThickness" Value="0,0,1,0" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Settings DetailsListPosition}" Value="Right">
-                                            <Setter Property="BorderThickness" Value="1,0,0,0" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
-                                            <Setter Property="BorderThickness" Value="0" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ExtendedListBox.Style>
-                            <ExtendedListBox.GroupStyle>
-                                <GroupStyle ContainerStyle="{StaticResource DetailsViewGroupStyle}"/>
-                            </ExtendedListBox.GroupStyle>
-                            <ExtendedListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <GameListItem Style="{StaticResource DetailsViewItemTemplate}" />
-                                </DataTemplate>
-                            </ExtendedListBox.ItemTemplate>
-                        </ExtendedListBox>
+                                <ExtendedListBox.Style>
+                                    <Style TargetType="ExtendedListBox" BasedOn="{StaticResource {x:Type ExtendedListBox}}">
+                                        <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Settings DetailsListPosition}" Value="Right">
+                                                <Setter Property="BorderThickness" Value="1,0,0,0" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                                <Setter Property="BorderThickness" Value="0" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ExtendedListBox.Style>
+                                <ExtendedListBox.GroupStyle>
+                                    <GroupStyle ContainerStyle="{StaticResource DetailsViewGroupStyle}"/>
+                                </ExtendedListBox.GroupStyle>
+                                <ExtendedListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <GameListItem Style="{StaticResource DetailsViewItemTemplate}" />
+                                    </DataTemplate>
+                                </ExtendedListBox.ItemTemplate>
+                            </ExtendedListBox>
+                            <TextBlock FontSize="{StaticResource FontSizeLarge}" Margin="0,15,0,0"
+                                       Text="{DynamicResource LOCNoItemsFound}" TextWrapping="Wrap"                                       
+                                       TextAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Items.Count, ElementName=PART_ListGames, Mode=OneWay}" Value="0">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
                         <DetailsViewGameOverview x:Name="PART_ControlGameView" DockPanel.Dock="Left" />
                     </DockPanel>
                 </ControlTemplate>

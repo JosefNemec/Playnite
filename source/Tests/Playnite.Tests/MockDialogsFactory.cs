@@ -77,7 +77,6 @@ namespace Playnite.Tests
 
         public void ShowSelectableString(string messageBoxText, string caption, string defaultInput)
         {
-            
         }
 
         public ImageFileOption ChooseImageFile(List<ImageFileOption> files, string caption = null, double itemWidth = 240, double itemHeight = 180)
@@ -86,6 +85,26 @@ namespace Playnite.Tests
         }
 
         public GenericItemOption ChooseItemWithSearch(List<GenericItemOption> items, Func<string, List<GenericItemOption>> searchFunction, string defaultSearch = null, string caption = null)
+        {
+            return null;
+        }
+
+        public MessageBoxOption ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<MessageBoxOption> options)
+        {
+            return null;
+        }
+
+        public GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
+        {
+            return null;
+        }
+
+        public Window CreateWindow(WindowCreationOptions options)
+        {
+            return null;
+        }
+
+        public Window GetCurrentAppWindow()
         {
             return null;
         }

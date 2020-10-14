@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
@@ -23,22 +24,13 @@
     </UserControl.Resources>
 
     <StackPanel Margin="20">
-        <DockPanel>
-            <ContentControl Content="{DynamicResource LOCSettingsDBLocation}"
-                            ContentStringFormat="{}{0} *" 
-                            DockPanel.Dock="Left" VerticalAlignment="Center"/>
-            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
-                    DockPanel.Dock="Right" Padding="5,0,5,0"
-                    Command="{Binding SelectDbFileCommand}"/>
-            <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
-                    DockPanel.Dock="Left" Margin="10,0,10,0"
-                    IsReadOnly="True"/>
-        </DockPanel>
+        <CheckBox Content="Discord Rich Presence"
+                  IsChecked="{Binding Settings.DiscordPresenceEnabled}" />
         <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}"
                 ContentStringFormat="{}{0} *"
                 ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                 Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
-                Margin="0,45,0,0"/>
+                Margin="0,15,0,0"/>
         <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
                   Visibility="{Binding ShowDpiSettings, Converter={StaticResource BooleanToVisibilityConverter}}"
                 ContentStringFormat="{}{0} *"
@@ -49,9 +41,34 @@
                 ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
                 Margin="0,15,0,0"
                 Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
+        
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+            <TextBlock Text="{DynamicResource LOCOpenDirectoryCommand}" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding Settings.DirectoryOpenCommand}"
+                     Margin="10,0,0,0" Width="250"/>
+            <TextBlock VerticalAlignment="Center" Margin="10,0,0,0">
+                <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/Custom-directory-open-command"
+                           Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                           CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                    <Run Text="{DynamicResource LOCWhatIsThis}" />
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+        
         <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}"
                 HorizontalAlignment="Left" Margin="0,45,0,0"
                 ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
                 Command="{Binding ClearWebCacheCommand}"/>
+        <DockPanel Margin="0,20,0,0">
+            <ContentControl Content="{DynamicResource LOCSettingsDBLocation}"
+                            ContentStringFormat="{}{0} *" 
+                            DockPanel.Dock="Left" VerticalAlignment="Center"/>
+            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
+                    DockPanel.Dock="Right" Padding="5,0,5,0"
+                    Command="{Binding SelectDbFileCommand}"/>
+            <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
+                    DockPanel.Dock="Left" Margin="10,0,10,0"
+                    IsReadOnly="True"/>
+        </DockPanel>
     </StackPanel>
 </UserControl>

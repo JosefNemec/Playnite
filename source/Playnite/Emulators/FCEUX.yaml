@@ -1,0 +1,8 @@
+Name: FCEUX
+Website: 'http://www.fceux.com'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Entertainment System]
+    ImageExtensions: [7z, zip, rar, tar, nes, fds, nsf, unf, nez, unif]
+    ExecutableLookup: ^fceux\.exe$

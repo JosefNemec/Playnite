@@ -18,10 +18,10 @@ namespace EpicLibrary
     {
         private static List<string> launchelessExceptions = new List<string>
         {
-            "Duckbill", // Yooka-Laylee and the Impossible Lair
-            "Vulture", // Faeria
-            "Stellula", // Farming Simulator 19
-            "Albacore", // Assassins Creed Syndicate
+            "Duckbill",     // Yooka-Laylee and the Impossible Lair
+            "Vulture",      // Faeria
+            "Stellula",     // Farming Simulator 19
+            "Albacore",     // Assassins Creed Syndicate
             "Sundrop",      // For Honor
             "Wombat",       // World War Z
             "Eel",          // Kingdom Come Deliverance
@@ -30,6 +30,8 @@ namespace EpicLibrary
             "Kinglet",      // Civ 6
             "9d2d0eb64d5c44529cece33fe2a46482", // GTA 5
             "UnrealTournamentDev",  // Unreal Tournament 4
+            "AzaleaAlpha",  // The Cycle
+            "11e598b192324994abce05bad4f81b50", // A Total War Saga: TROY
         };
 
         private static ILogger logger = LogManager.GetLogger();
@@ -63,44 +65,7 @@ namespace EpicLibrary
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var startUri = string.Format(EpicLauncher.GameLaunchUrlMask, game.GameId);
-            var startViaLauncher = true;
-            Models.InstalledManifiest manifest = null;
-
-            if (!launchelessExceptions.Contains(game.GameId) && settings.StartGamesWithoutLauncher)
-            {
-                manifest = EpicLauncher.GetInstalledManifests().FirstOrDefault(a => a.AppName == game.GameId);
-                if (manifest?.bCanRunOffline == true)
-                {
-                    startViaLauncher = false;
-                }
-            }
-
-            if (startViaLauncher)
-            {
-                ProcessStarter.StartUrl(startUri);
-            }
-            else
-            {
-                try
-                {
-                    var path = Path.Combine(manifest.InstallLocation, manifest.LaunchExecutable);
-                    var defaultArgs = $" -epicapp={game.GameId} -epicenv=Prod -EpicPortal";
-                    if (manifest.LaunchCommand.IsNullOrEmpty())
-                    {
-                        ProcessStarter.StartProcess(path, defaultArgs);
-                    }
-                    else
-                    {
-                        ProcessStarter.StartProcess(path, manifest.LaunchCommand + defaultArgs);
-                    }
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, "Failed to start Epic game directly.");
-                    ProcessStarter.StartUrl(startUri);
-                }
-            }
-
+            ProcessStarter.StartUrl(startUri);
             if (Directory.Exists(Game.InstallDirectory))
             {
                 stopWatch = Stopwatch.StartNew();
@@ -122,7 +87,7 @@ namespace EpicLibrary
                 throw new Exception("Epic Launcher is not installed.");
             }
 
-            EpicLauncher.StartClient();
+            ProcessStarter.StartUrl(EpicLauncher.LibraryLaunchUrl);
             StartInstallWatcher();
         }
 
@@ -133,7 +98,7 @@ namespace EpicLibrary
                 throw new Exception("Epic Launcher is not installed.");
             }
 
-            EpicLauncher.StartClient();
+            ProcessStarter.StartUrl(EpicLauncher.LibraryLaunchUrl);
             StartUninstallWatcher();
         }
 

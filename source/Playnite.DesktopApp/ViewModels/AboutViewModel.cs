@@ -47,6 +47,16 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public string InstallDir
+        {
+            get => PlaynitePaths.ProgramPath;
+        }
+
+        public string UserDir
+        {
+            get => PlaynitePaths.ConfigRootPath;
+        }
+
         public string Contributors
         {
             get
@@ -102,6 +112,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> OpenLicensesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ProcessStarter.StartProcess(Path.Combine(PlaynitePaths.ProgramPath, "license.txt"));
+            });
+        }
+
         public RelayCommand<object> NavigateUrlCommand => GlobalCommands.NavigateUrlCommand;
 
         public AboutViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
@@ -123,8 +141,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CreateDiagPackage()
         {
-            var model = new CrashHandlerViewModel(null, dialogs, resources, ApplicationMode.Desktop);
-            model.CreateDiagPackage();
+            CrashHandlerViewModel.CreateDiagPackage(dialogs);
         }
     }
 }

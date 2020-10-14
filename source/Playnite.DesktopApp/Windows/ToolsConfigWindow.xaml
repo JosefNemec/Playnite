@@ -1,0 +1,95 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.ToolsConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
+        mc:Ignorable="d"
+        Style="{DynamicResource StandardWindowStyle}"
+        Title="{DynamicResource LOCMenuSoftwareTools}"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Height="600" Width="800"
+        ShowMinimizeButton="False" ShowMaximizeButton="False">
+
+    <controls:WindowBase.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Thickness x:Key="EditSeparatorMargin">5,5,5,7</Thickness>
+    </controls:WindowBase.Resources>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+            <DockPanel LastChildFill="False" Margin="5">
+                <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
+                        Style="{StaticResource BottomButton}" IsCancel="True"
+                        Command="{Binding CancelCommand}"/>
+                <Button Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right" 
+                        Style="{StaticResource BottomButton}"
+                        Command="{Binding ConfirmCommand}"/>
+            </DockPanel>
+        </Border>
+        
+        <Grid Margin="5" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Column="0">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                    <Button Content="{DynamicResource LOCAddTitle}"
+                            Margin="0,5,0,5"
+                            Command="{Binding AddAppCommand}"/>
+                    <Button Content="{DynamicResource LOCAddFromExe}"
+                            Margin="5,5,0,5"
+                            Command="{Binding AddAppFromExeCommand}"/>
+                    <Button Content="{DynamicResource LOCRemoveTitle}"
+                            Margin="5,5,0,5"
+                            Command="{Binding RemoveAppCommand}"
+                            CommandParameter="{Binding SelectedApp}"/>
+                </StackPanel>
+                <ListBox DockPanel.Dock="Top"
+                         DisplayMemberPath="Name"
+                         ItemsSource="{Binding EditingApps}"
+                         SelectedItem="{Binding SelectedApp, Mode=TwoWay}"/>
+            </DockPanel>
+
+            <StackPanel Grid.Column="1" DataContext="{Binding SelectedApp}" Margin="5,0,0,0">
+                <TextBlock Text="{DynamicResource LOCNameLabel}" Margin="5,0,5,0"  />
+                <TextBox Margin="5"
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>     
+                
+                <TextBlock Text="{DynamicResource LOCPathLabel}" Margin="5,5,5,0"  />
+                <TextBox Margin="5"
+                         Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <TextBlock Text="{DynamicResource LOCArgumentsTitle}" Margin="5,5,5,0"  />
+                <TextBox Margin="5"
+                         Text="{Binding Arguments, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" Margin="5,5,5,0"  />
+                <TextBox Margin="5"
+                         Text="{Binding WorkingDir, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="{DynamicResource LOCGameIconTitle}" Margin="5,5,5,0" />    
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <Button Content="{DynamicResource LOCSelectIconTitle}"
+                            Margin="5" MaxWidth="160" HorizontalAlignment="Left"
+                            Command="{Binding DataContext.SelectIconCommand, RelativeSource={RelativeSource AncestorType=Grid}}"
+                            CommandParameter="{Binding}"/>
+                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5"
+                            Command="{Binding DataContext.RemoveIconCommand, RelativeSource={RelativeSource AncestorType=Grid}}"
+                            CommandParameter="{Binding}"/>
+                </StackPanel>
+                <Image Stretch="Uniform" StretchDirection="DownOnly"
+                        RenderOptions.BitmapScalingMode="Fant"
+                        Margin="5,5,0,0"
+                        Height="64" Width="64" HorizontalAlignment="Left"
+                        Source="{Binding Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}" />                
+            </StackPanel>            
+        </Grid>
+    </DockPanel>
+</controls:WindowBase>

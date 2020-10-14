@@ -3,28 +3,22 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-
     <sys:String x:Key="LanguageName">עברית</sys:String>
-
-    <sys:String x:Key="LOCLanguageSettingsLabel">שפה</sys:String>
-
+    <sys:String x:Key="LOCLanguageSettingsLabel">שפת התצוגה של Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">יציאה</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">סינון פעיל</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">סינון כבוי</sys:String>
     <sys:String x:Key="LOCAditionalFilters">מסננים נוספים</sys:String>
     <sys:String x:Key="LOCFilters">מסננים</sys:String>
     <sys:String x:Key="LOCFilter">מסנן</sys:String>
-
     <sys:String x:Key="LOCInvalidDataTitle">מידע שגוי</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">לשמור שינויים?</sys:String>
-
     <sys:String x:Key="LOCAboutHomePageLink">אתר הבית ב www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">קוד המקור ב github</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">צור חבילה דיאגנוסטית</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">שלח מידע דיאגנוסטי</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">אודות Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">נוצר על ידי Josef Němec</sys:String>
-
     <sys:String x:Key="LOCCategoryWindowTitle">הצמד קטגוריה</sys:String>
     <sys:String x:Key="LOCCategorySetButton">הגדר קטגוריות</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">הוסף קטגוריה</sys:String>
@@ -33,57 +27,59 @@
 ביניים - ללא שינוי (בעריכה של מספר משחקים)</sys:String>
     <sys:String x:Key="LOCNoCategory">אין קטגוריה</sys:String>
     <sys:String x:Key="LOCNoPlatform">אין פלטפורמה</sys:String>
-
-    <sys:String x:Key="LOCCrashWindowTitle">אוי לא, משהו רע קרה…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">קרתה שגיאה שלא ניתנת להתאוששות.
+    <sys:String x:Key="LOCCrashWindowTitle">אופס! משהו השתבש…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">קרתה שגיאה שלא ניתנת לתיקון.
         
-אם ברצונך לעזור לנו לתקן את הבעיה, אנא תאר בקצרה את הפעולות שנעשו לפני הקריסה ואז צור חבילת אבחון. אם אתם מקוונים, החבילה תועלה לשרתי Playnite לתחקור.
+אם ברצונך לעזור לנו לתקן את הבעיה, אנא תאר בקצרה את הפעולות שנעשו לפני הקריסה ולאחר מכן שלח מידע אבחוני. אם אתם מקוונים, האבחון יועלה לשרתי Playnite לבדיקה.
 
-ניתן גם להשתמש בכפתור &quot;דווח על קריסה&quot; ליצירת באג חדש ב GitHub ולדווח על הקריסה ידנית.
+ניתן גם להשתמש בכפתור &quot;Report Crash&quot; ליצירת באג חדש בGitHub ולדווח על הקריסה באופן ידני.
 
 תודה על העזרה.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">אירעה שגיאה שלא ניתנת לתיקון.
 אם ברצונך לעזור לנו לתקן את הבעיה, אנא אבחן את התקלה ושלח לנו את מידע האבחון. תודה.</sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">השבתת ההרחבה</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">שמור קובץ יומן (log) </sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">שלח מידע אבחון</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">דווח על קריסה</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">הפעל מחדש את Playnite</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">התחל מחדש במצב בטוח</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">משבית את כל הרחבות הצד השלישי ומשתמש בערכת נושא ברירת מחדל</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">צא מ Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">פעולות שקרו לפני הקריסה (באנגלית):</sys:String>
-
     <sys:String x:Key="LOCLibraryManager">מנהל ספרייה</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">הסר משחק(ים)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">לא יכול להסיר משחק שרץ או שמותקן/מוסר.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">לא יכול להסיר משחק שרץ.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">האם אתה בטוח שברצונך להסיר את המשחק הזה?
-
-משחקים שמיובאים אוטומטית יכולים להופיע שוב ב- Playnite אחרי תהליך היבוא הבא (תלוי בהגדרות שלך).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">האם אתה בטוח שברצונך להסיר {0} משחקים?
-
-משחקים שמיובאים אוטומטית יכולים להופיע שוב ב- Playnite אחרי תהליך היבוא הבא (תלוי בהגדרות שלך).</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">לא ניתן למחוק משום שהמשחק או תוכנת ההתקנה רצים כרגע</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">לא ניתן להסיר התקנה של משחק שרץ</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">אתה בטוח שברצונך להסיר משחק זה?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">אתה בטוח שברצונך להסיר {0} משחקים?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">האם אתה בטוח שברצונך להסיר {0} פריטים שאינם בשימוש כרגע?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">לא נמצאו שדות שאינם בשימוש.</sys:String>
-
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">חברים ב Steam</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif">המקטע מכיל שינויים לשמירה</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">קיימים שינויים שלא נשמרו באיזור זה</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">מעדכן את מבנה ספריית המשחקים…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">עדכון בסיס הנתונים נכשל.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">עדכון ספריית המשחקים נכשל. {0} MBs של מקום פנוי דרושים.</sys:String>
-
     <sys:String x:Key="LOCGameError">שגיאת משחק</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">לא ניתן להפעיל את המשחק. '{0}' לא נמצא בבסיס הנתונים.</sys:String>
     <sys:String x:Key="LOCGameStartError">אי אפשר להתחיל משחק: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">לא ניתן להחיל את הפעולה: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">לא ניתן לפתוח את מיקום המשחק: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">נכשל ביצירת קיצור דרך: {0}</sys:String>
+    <sys:String x:Key="LOCManualOpenError">פתיחת המדריך נכשלה: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">לא ניתן להתקין את המשחק: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">לא ניתן להסיר את המשחק: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">פעולת ההפעלה אינה מוגדרת.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound">תוסף ספריה אחראי למשחק זה אינו מותקן או מאופשר.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">תוסף הספריה האחראי למשחק זה מושבת או אינו מותקן.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">הורדת נתונים רשמית אינו זמין.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">אף משחק אינו בחור.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">נכשל הניסיון לביצוע פעולת הסקריפט של המשחק.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">נכשל ניסיון לבצע את פעולת הסקריפט הכללית.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 או חדשה יותר אינה מותקנת.</sys:String>
-
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">פעיל</sys:String>
     <sys:String x:Key="LOCRemoveTitle">הסר</sys:String>
@@ -112,6 +108,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">שוחק לאחרונה</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">הכי משוחקים</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">כמות משחקים</sys:String>
+    <sys:String x:Key="LOCNotesLabel">הערות</sys:String>
     <sys:String x:Key="LOCAddedLabel">נוסף</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">תאריך הוספה</sys:String>
     <sys:String x:Key="LOCModifiedLabel">נערך</sys:String>
@@ -133,6 +130,7 @@
     <sys:String x:Key="LOCInstallationLabel">התקנה</sys:String>
     <sys:String x:Key="LOCActionsLabel">פעולות</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">מוריד…</sys:String>
+    <sys:String x:Key="LOCDownloadingMediaLabel">מוריד נתונים…</sys:String>
     <sys:String x:Key="LOCLoadingLabel">טוען…</sys:String>
     <sys:String x:Key="LOCTypeLabel">סוג</sys:String>
     <sys:String x:Key="LOCProfileLabel">פרופיל</sys:String>
@@ -173,21 +171,18 @@
     <sys:String x:Key="LOCColumns">עמודות</sys:String>
     <sys:String x:Key="LOCRow">שורה</sys:String>
     <sys:String x:Key="LOCRows">שורות</sys:String>
-
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">משתנים מיוחדים ניתנים לשימוש כדי להוסיף מחרוזות דינמיות:
-{InstallDir} - תיקיית התקנת המשחק
-{InstallDirName} - שם תיקיית ההתקנה
-{ImagePath} - נתיב ISO\ROM המשחק אם הוגדר
-{ImageName} - שם קובץ ISO\ROM המשחק
-{ImageNameNoExt} - שם קובץ ISO\ROM המשחק ללא סיומת
-{PlayniteDir} - תיקיית התקנת Playnite
+{InstallDir} - תיקיית ההתקנה של המשחק
+{InstallDirName} - שמה של תיקיית ההתקנה
+{ImagePath} - נתיב ISO\ROM של המשחק אם הוגדר
+{ImageName} - שם קובץ ISO\ROM של המשחק
+{ImageNameNoExt} - שם קובץ ISO\ROM של המשחק ללא סיומת
+{PlayniteDir} - תיקיית ההתקנה של Playnite
 {Name} - שם המשחק
  
 דוגמה: -image &quot;{ImagePath}&quot; -fullscreen
 יתפרש כ: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
-
     <sys:String x:Key="LOCExecIconMissingPlayAction">לא ניתן להשיג סמל אם פעולת המשחק אינה קיימת או נקבעה ל URL.</sys:String>
-
     <sys:String x:Key="LOCMetaSkipNonEmpty">הורד רק נתונים חסרים</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">הפעלת אפשרות זו תדלג על הורדת נתונים עבור שדות אשר כבר מכילים מידע.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">בחירת משקים</sys:String>
@@ -199,7 +194,6 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">אנא בחרו אילו שדות יאוכלסו אוטומטית על ידי Playnite ובאילו מקורות להשתמש כדי להשיג את הנתונים.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">אנא שיקלו ללחוץ על הלוגו מעל ולתרום עדכונים לבסיס הנתונים של igdb.com כדי לשפר את המידע שבשימוש Playnite.</sys:String>
-
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">מוריד עדכוני ספריית Steam…</sys:String>
     <sys:String x:Key="LOCProgressGOGLibImport">מוריד עדכוני ספריית GOG…</sys:String>
@@ -212,7 +206,6 @@
     <sys:String x:Key="LOCProgressSteamCategoryImport">מוריד עדכוני ספריה…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">עדכון הספריה הושלם</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">משחרר משאבים…</sys:String>
-
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">הגדרות</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">הגדרות…</sys:String>
@@ -221,7 +214,10 @@
     <sys:String x:Key="LOCMenuLibraryManagerTitle">מנהל הספריה…</sys:String>
     <sys:String x:Key="LOCMenuTools">כלים</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">מוריד נתונים…</sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">כלי תכנה…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations"></sys:String>
     <sys:String x:Key="LOCMenuOpenClient">פתח תוכנת לקוח צד שלישי</sys:String>
+    <sys:String x:Key="LOCMenuClients">לקוחות צד שלישי</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">עדכון ספריית המשחקים</sys:String>
     <sys:String x:Key="LOCMenuAddGame">הוסף משחק</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">ידנית…</sys:String>
@@ -240,7 +236,6 @@
     <sys:String x:Key="LOCMenuSuspendSystem">השהה מערכת</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">מצב שינה</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">בחר משחק אקראי</sys:String>
-
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">שדות משחק להצגה בפאנל הפרטים:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">ריווח פריטים</sys:String>
@@ -260,6 +255,7 @@
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">מיקום פאנל סייר</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">עיבוד עטיפת משחק</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">יחס גובה-רוחב יעד</sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">מצב מתיחה</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">קופסת DVD</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
@@ -283,7 +279,7 @@
     <sys:String x:Key="LOCSettingsImportLabel">ייבא אוטומטית שינויים בספרייה</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">ייבא משחקים שהותקנו</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">חבר חשבון</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel">ייבא משחקים שהוסרו</sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">ייבא משחקים שלא הותקנו</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">יבא את כל המשחקים</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">ייבא את כל המשחקים (חובה לציין חשבון ציבורי או מפתח API)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">מיקום קובץ בסיס נתונים לא תקין, חובה לספק מיקום קובץ מתאים.</sys:String>
@@ -292,22 +288,26 @@
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">לא נבחר חשבון Steam עבור ייבוא קטגוריה.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">הורד עדכוני ספריות צד שלישי בעלייה</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">הורד נתונים לאחר יבוא משחקים</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized">הפעל ממוזער</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot">הרץ את Playnite כשהמחשב עולה</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">התחל את Playnite בצורה ממוזערת</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">הפעל את Playnite בצורה אוטומטית כאשר המחשב יופעל</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">נכשל ברישום Playnite לרוץ בהפעלת המחשב.</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen">הפעל במסך מלא</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">התחל במצב מסך מלא</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">כלול Steam, Origin ואחרים.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">טעינת תמונות ברקע</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">משפר החלקת גלילה של רשימת משחקים בתמורה לטעינה איטית יותר של תמונות.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">הצג את שם המשחק אם העטיפה אינה זמינה</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">הצג שמות משחקים בתצוגת רשת</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">השחר משחקים שהוסרו</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">החשך משחקים שלא מותקנים</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">הצג סמלי משחקים בתצוגה מפורטת</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">הצג כמות פריטים בתיאור קבוצות</sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">בטל האצת חומרה</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">השתמש כשנחווה גמגום או בעיות ממשק דומות</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">בטל כוון DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">הצג כפתור חברי Steam</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">השתמש בתמונת רקע המשחק כרקע החלון</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">טשטוש הרקע</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">איכות גבוהה</sys:String>
@@ -326,13 +326,13 @@
     <sys:String x:Key="LOCImportSteamLastActivityLabel">יבא משחקים ששיחקתי לאחרונה מ Steam</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">ניקוי מטמון</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">יכול לפתור בעיות הנגרמות בעת חיבור חשבונות.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">הצג סמל בשורת המשימות</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray">מזער למגש המערכת</sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray">סגור למגש המערכת</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">הצג אייקון ממוזער</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">מזער לאייקון בשורת המשימות</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">מזער לאייקון בשורת המשימות כאשר חלון האפליקציה סגור</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">כשהמשחק מתחיל:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">אחרי שהמשחק נסגר:</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy">הפעל משחקים באמצעות תוכנת Galaxy</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">יאפשר תכונות כגון שמירה בענן, ספירת זמן משחק ועוד.</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">הפעל משחקים באמצעות GOG Galaxy</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">זה יחליף את הקטגוריות הנוכחיות כמו גם נסתרים ומועדפים בכל משחקי Steam. האם אתה רוצה להמשיך?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">לייבא קטגוריות?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">לא ניתן לייבא קטגוריות, לא נבחר חשבון לייבוא.</sys:String>
@@ -350,14 +350,10 @@
     <sys:String x:Key="LOCSettingsCreateThemes">צור ערכת נושא חדשה</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">השג הרחבות נוספות</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">צור הרחבה חדשה</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization">תרום לתרגום חדש</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">חלק מההגדרות ששונו דורשות הפעלה מחדש של Playnite. האם אתה רוצה להפעיל מחדש את Playnite עכשיו?
-
-כל המשימות הפעילות כרגע (הורדות נתונים) יבוטלו.</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">עזור לנו לתרגם את Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">הפעל מחדש את Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite אינו מזיז קבצי ספריות אוטומטית, נדרש להעתיק\להזיז את הקבצים לפני שהמיקום משתנה. אם שום ספריה לא קיימת במיקום היעד, ספריה חדשה תיווצר.
-
-ייעשה שימוש במיקום מסד נתונים חדש רק לאחר אתחול האפליקציה.</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">משך זמן משחק לא יירשם אם פעולת &quot;סגירה&quot; נקבעה.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">מספר שורות</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">מספר עמודות</sys:String>
@@ -371,9 +367,9 @@
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">אינו מוכל רטרואקטיבית על משחקים קיימים ללא הורדת נתונים מחדש.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">קבע סדר עדיפויות משך זמן משחק לספריות נתמכות</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">תמיד הורד זמן משך משחק מספריה מרוחקת בזמן סנכרון ספריות, תוך כדי התעלמות מהקלטות שנעשו על ידי Playnite.</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">אפשר תמיכה בבקר במצב שולחן עבודה</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">אפשר תמיכה בשלט כאשר נמצא במצב חלון </sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">כפתור מנחה פותח מצב מסך מלא</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">קבע הגדרות לשימוש בעת הורדת נתונים אוטומטית אחרי ייבוא משחקים.</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">הורד נתוני משחקים באופן אוטומטי</sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor">צג יעד</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">הצג כותרות משחקים</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">הצג מצב סוללה</sys:String>
@@ -385,6 +381,7 @@
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">גלילה אופקית</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">בחר אחד מתתי הסעיפים</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">אין אפשרויות זמינות</sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings">נכשל בטעינת ההגדרות</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">סקריפטים אלה מבוצעים עבור כל משחק בספריה. ניתן להקצות סקריפטים בודדים לכל משחק בנפרד תוך עריכת פרטי המשחק.</sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation">הנפשת מעברי תמונת רקע</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">גודלי גופנים</sys:String>
@@ -396,29 +393,29 @@
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">תצוגה</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">מצב עיצוב טקסט</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">מצב עיבוד טקסט</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice">אפשרויות עיבוד ועיצוב טקסט לא מופעלות על טקסט תיאור המשחק כעת.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">הורד תמונות רקע מיד</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">אם פונקציה זו מופעלת, Playnite תוריד תמונות רקע בעת הורדת נתונים. הפעלת הפונקציה תגרום לצריכת שטח נוסף ותאפשר לך לגלוש בתמונות במצב לא מקוון.
  
 אם תכונה זו אינה זמינה, Playnite תוריד תמונות רקע רק בגישה ראשונה. אי הפעלת הפונקציה תחסוך בשטח אך עלולה לגרום לקריאה איטית של תמונות, ושלא יהיה ניתן להציג תמונות מסוימות במצב לא מקוון.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">סגור אוטומטית את תוכנת הפתיחה של המשחק בעת היציאה מהמשחק</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">השהיית זמן כיבוי הלקוח (בשניות)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">אל תיסגר לאחר הפעלות במשחק קצר מ- (בשניות)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">סגור אוטומטית את התוכנות הבאות:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">סגור קליינטים אוטומטית</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">הצג אזהרה בעת הקצאת מדיה גדולה מדי למשחק</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">הפעל את המשחקים בלי להריץ את הקליינט המקורי שלהם</sys:String>
-
+    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
     <sys:String x:Key="LOCStrechNone">ללא</sys:String>
     <sys:String x:Key="LOCStrechFill">מילוי</sys:String>
     <sys:String x:Key="LOCStrechUniform">אחיד</sys:String>
     <sys:String x:Key="LOCStrechUniformToFill">אחיד למילוי</sys:String>
-
     <sys:String x:Key="LOCDockLeft">שמאלה</sys:String>
     <sys:String x:Key="LOCDockRight">ימינה</sys:String>
     <sys:String x:Key="LOCDockTop">למעלה</sys:String>
     <sys:String x:Key="LOCDockBottom">למטה</sys:String>
-
     <sys:String x:Key="LOCImportError">שגיאה בייבוא</sys:String>
     <sys:String x:Key="LOCLoginChecking">בודק מצב אימות…</sys:String>
     <sys:String x:Key="LOCLoginRequired">נדרש אימות</sys:String>
@@ -426,41 +423,32 @@
     <sys:String x:Key="LOCLoggedIn">המשתמש מאומת</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">מחייב אימות</sys:String>
     <sys:String x:Key="LOCNotLoggedInError">נכשל באימות משתמש.</sys:String>
-
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">יבוא נתונים</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">הורד נתונים</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">קבע הגדרה נבחרת לשימוש עבור כל הורדת נתונים עתידית.
 ניתן לשנות גם דרך הגדרות האפליקציה.</sys:String>
-
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">אשף ייבוא האמולציה</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro">אשף זה ילווה אותך בתהליך הורדה וייבוא של אמולטור קונסולה, וכמו כן ייבוא של משחקי אמולציה.</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">זכור שתמיד באפשרותך להוסיף אמולטורים ו\או משחקים נוספים מאוחר יותר דרך התפריט הראשי (תחת תפריט &quot;כלים&quot; של הגדרות אמולטורים ותפריט &quot;הוסף משחקים&quot; עבור משחקי אמולציה).</sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">הרשימה הבאה היא של האמולטורים ש Playnite יכול לזהות ולהגדיר אוטומטית. ניתן להוריד ולהתקין אותם על ידי ביקור באתר אינטרנט שלהם. כשהאמולטורים מותקנים, המשיכו למסך הבא לייבא אותם ל Playnite.
- 
-ניתן גם להגדיר ולייבא כל אמולטור מותאם אישית מאוחר יותר דרך תפריט ההגדרה.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">ניתן לייבא כל אמולטור המותקן על המחשב על ידי לחיצה על כפתור &quot;זיהוי אוטומטי מתיקיה…&quot;. Playnite יחפש בתיקיה הנבחרת עבור אמולטורים ידועים ויספק אפשרות לייבא אותם.
-ניתן לייבא ממספר תיקיות על ידי שימוש בכפתור הנ&quot;ל מספר פעמים, אמולטורים יתווספו לתחתית הרשימה.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">ניתן לייבא משחקים על ידי לחיצה על כפתור &quot;סרוק תיקיה על ידי אמולטור&quot;. בחירת אמולטור נכון יאמר ל Playnite, אילו סוגי קבצים צריכים להיסרק ולייבא. ניתן לייבא מכמה תיקיות על ידי הכפתור הנ&quot;ל כמה פעמים, המשחקים יתווספו לתחתית הרשימה הנוכחית.</sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">אין אמולטורים שנבחרו לייבוא. לא תוכלו לייבא אוטומטית משחקים בלי להגדיר קודם אמולטורים. האם אתה בטוח שברצונך להמשיך ולצאת מתהליך הייבוא?</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">אין אמולטורים שהוגדרו ב Playnite. אין באפשרותך לייבא משחקים בלי להגדיר ראשית אמולטורים ולבחור את סוגי הקבצים הרלוונטיים. האם ברצונך להוסיף אמולטורים כעת?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">סרוק תיקיה באמצעות אמולטור</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">בחר קבצים</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">זיהוי אוטומטי מתיקיה…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">הגדר אמולטורים…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">סורק…</sys:String>
-
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">הגדרת הפעם הראשונה</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">האשף ינחה אתכם בתהליך ייבוא משחק אוטומטי והגדרה של ספריות משחק חיצוניות. Playnite יכול לייבא אוטומטית משחקים ממספר שירותים כמו Steam או GOG, וגם לשמור על הספריה שלכם מעודכנת על ידי עדכון אוטומטי בעליית האפליקציה.
- 
-זכרו שתמיד ניתן להוסיף משחק מותאם אישית לכל פלטפורמה ידנית מהתפריט הראשי על ידי לחיצה על כפתור ה 'Playnite'.
-    </sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDBLocDefault">מיקום ברירת מחדל עבור מידע התוכנה לכל המשתמשים</sys:String>
     <sys:String x:Key="LOCFirstDBLocCustom">מיקום מותאם אישית</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">אינטגרציית ספריה</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">ייבוא אוטומטי של משחקים מהשירותים הבאים. שינויי משחק עתידיים (מצב התקנה) יעודכנו אוטומטית בעליה של Playnite או שיופעלו ידנית. האפשרויות הנבחרות ישפיעו על הייבוא הראשוני וכל והבאים אחריו.</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstSteamIntegration">אינטגרציית Steam</sys:String>
     <sys:String x:Key="LOCFirstOriginIntegration">אינטגרציית Origin</sys:String>
     <sys:String x:Key="LOCFirstGOGIntegration">אינטגרציית GOG</sys:String>
@@ -474,10 +462,9 @@
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">ההתקנה הראשונית הושלמה. זכור שתוכל לשנות את כל ההגדרות בהמשך בתפריט 'הגדרות'.
 
 אתה יכול גם להוסיף כל משחק אחר בהמשך על ידי לחיצה על תפריט הלוגו של Playnite. </sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport">פתח מנחה ייבוא אמולציה</sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayout">פריסת תצוגת רשת</sys:String>
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">בחרו פריסה מועדפת לתצוגת רשת ב Playnite. פריסת תמונות ניתנת לשינוי בכל זמן בהגדרות האפליקציה, כולל אפשרויות מתיחת תמונה.</sys:String>
-
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">הגדר פלטפורמות ואמולטורים</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">הגדר אמולטורים</sys:String>
@@ -509,7 +496,6 @@
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">האם אתה בטוח שברצונך להסיר את הפלטפורמה {0}? 
 היא כרגע בשימוש על ידי {1} משחק(ים) ו {2} אמולטור(ים).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">עזרה בהגדרות</sys:String>
-
     <sys:String x:Key="LOCMenuSortByTitle">מיין לפי</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">קבץ לפי</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">סדר עולה</sys:String>
@@ -522,13 +508,13 @@
     <sys:String x:Key="LOCMenuView">תצוגה</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">פאנל סייר</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">פאנל מסנן</sys:String>
-
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">סמל</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">תמונת עטיפה</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">תמונת רקע</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">שם מיון</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">ספריה</sys:String>
+    <sys:String x:Key="LOCGameManualTitle"></sys:String>
     <sys:String x:Key="LOCGameNameTitle">שם</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">שם חשבון</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">פלטפורמה</sys:String>
@@ -542,7 +528,7 @@
     <sys:String x:Key="LOCGameInstallationStatus">מצב ההתקנה</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">מותקן</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">מותקן</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle">הוסר</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">מוסתר</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">מועדף</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">שוחק לאחרונה</sys:String>
@@ -552,7 +538,6 @@
     <sys:String x:Key="LOCGameCoverTitle">תמונת עטיפה</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">קישורים</sys:String>
     <sys:String x:Key="LOCGameROMTitle">נתיב קובץ תמונה, ROM או ISO</sys:String>
-
     <sys:String x:Key="LOCGenreLabel">ז'אנר</sys:String>
     <sys:String x:Key="LOCGenresLabel">ז'אנרים</sys:String>
     <sys:String x:Key="LOCCompanyLabel">חברה</sys:String>
@@ -581,40 +566,30 @@
     <sys:String x:Key="LOCDiagPackageCreationError">נכשל ביצירת חבילת אבחון.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">נכשל בהעלאה אוטומטית של חבילת אבחון.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">מידע אבחון נשלח בהצלחה.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">חבילת אבחון נוצרה ונשלחה בהצלחה.
-אנא צרף את המזהה הבא לדוח הקריסה:</sys:String>
-
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSteamCategoryImportError">נכשל בייבוא קטגוריות Steam.</sys:String>
-
     <sys:String x:Key="LOCBnetInstalledImportError">נכשל בייבוא משחקי Battle.net מותקנים.</sys:String>
     <sys:String x:Key="LOCSteamInstalledImportError">נכשל בייבוא משחקי Steam מותקנים.</sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError">נכשל בייבוא משחקי GOG מותקנים.</sys:String>
     <sys:String x:Key="LOCOriginInstalledImportError">נכשל בייבוא משחקי Origin מותקנים.</sys:String>
     <sys:String x:Key="LOCUplayInstalledImportError">נכשל בייבוא משחקי Uplay מותקנים.</sys:String>
-
     <sys:String x:Key="LOCBnetLibraryImportError">נכשל בהורדת ספרית Battle.net.</sys:String>
     <sys:String x:Key="LOCSteamLibraryImportError">נכשל בהורדת ספרית Steam.</sys:String>
     <sys:String x:Key="LOCGOGLibraryImportError">נכשל בהורדת ספרית GOG.</sys:String>
     <sys:String x:Key="LOCOriginLibraryImportError">נכשל בהורדת ספרית Origin.</sys:String>
     <sys:String x:Key="LOCUplayLibraryImportError">נכשל בהורדת ספרית Uplay.</sys:String>
-
     <sys:String x:Key="LOCLibraryImportError">נכשל ביבוא משחקים מ {0}.</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">לא ניתן לחפש עבור משחקים על ידי פרופיל האמולטור הנבחר. הפרופיל לא מכיל סיומות קבצים או פלטפורמות.</sys:String>
-    <sys:String x:Key="LOCStartGenericError">Playnite נכשל להתחיל. אנא סגרו את כל המופעים הרצים של האפליקציה ונסו שוב.</sys:String>
+    <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">כישלון בהחלת ערכת נושא &quot;{0}&quot;, פרופיל צבע &quot;{1}&quot;
  
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">לא ניתן לפתוח קישור, URL לא תקין.</sys:String>
-    <sys:String x:Key="LOCAppStartupError">נכשלה הפעלת האפליקציה.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">כישלון באתחול פקד תצוגת רשת, Playnite לא יכול להמשיך בהפעלה.
-        
-ניתן לנסות את הדרכים הבאות לפתרון:        
-  • בדוק שכל הקבצים מותקנים כהלכה, התקנה מחדש יכולה לעזור
-  • בדוק שאנטי וירוס לא חוסם את תיקיית Playnite
-  • נסה תיקיה שונה להתקנה</sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">לא ניתן לייבא אמולטורים, קובץ ההגדרות של האמולטור אינו קיים.</sys:String>
+    <sys:String x:Key="LOCAppStartupError"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">אתחול ממשק ה- XInput נכשל.</sys:String>
-
+    <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ערוך פרטי משחק</sys:String>
     <sys:String x:Key="LOCUseExeIcon">מפעולת משחק</sys:String>
@@ -675,9 +650,11 @@
     <sys:String x:Key="LOCPlugins">תוספים</sys:String>
     <sys:String x:Key="LOCMetadataProviders">מקורות נתונים</sys:String>
     <sys:String x:Key="LOCExtensions">הרחבות</sys:String>
+    <sys:String x:Key="LOCExtensionID"></sys:String>
     <sys:String x:Key="LOCReloadScripts">טען מחדש סקריפטים</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">כל הסקריפטים נטענו מחדש בהצלחה.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">לא נמצאו משחקים עבור קריטריון חיפוש\מסנן</sys:String>
+    <sys:String x:Key="LOCNoItemsFound"></sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">עבור למצב שולחן עבודה</sys:String>
     <sys:String x:Key="LOCExitPlaynite">צא מ Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">ספריות</sys:String>
@@ -686,6 +663,7 @@
     <sys:String x:Key="LOCExtensionVersion">גירסה:</sys:String>
     <sys:String x:Key="LOCExtensionModule">מודול:</sys:String>
     <sys:String x:Key="LOCLibrary">ספריה</sys:String>
+    <sys:String x:Key="LOCStatistics"></sys:String>
     <sys:String x:Key="LOCAll">הכל</sys:String>
     <sys:String x:Key="LOCNone">ללא</sys:String>
     <sys:String x:Key="LOCNotifications">התראות</sys:String>
@@ -699,16 +677,22 @@
     <sys:String x:Key="LOCFontLargest">הכי גדול</sys:String>
     <sys:String x:Key="LOCDefault">ברירת מחדל</sys:String>
     <sys:String x:Key="LOCSelect">בחר</sys:String>
+    <sys:String x:Key="LOCSelectAll"></sys:String>
     <sys:String x:Key="LOCFirst">ראשון</sys:String>
     <sys:String x:Key="LOCRandom">אקראי</sys:String>
     <sys:String x:Key="LOCUserSelect">בחירת משתמש</sys:String>
     <sys:String x:Key="LOCLoadMore">טען עוד</sys:String>
     <sys:String x:Key="LOCTransparent">שקיפות</sys:String>
-
+    <sys:String x:Key="LOCCollapse"></sys:String>
+    <sys:String x:Key="LOCExpand"></sys:String>
+    <sys:String x:Key="LOCCollapseAll"></sys:String>
+    <sys:String x:Key="LOCExpandAll"></sys:String>
+    <sys:String x:Key="LOCOther"></sys:String>
+    <sys:String x:Key="LOCThemes"></sys:String>
     <sys:String x:Key="LOCEmulatorArguments">ארגומנטים לאמולטור</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">ארגומנטים נוספים לאמולטור</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">דרוס ארגומנטים לאמולטור</sys:String>
-
+    <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">בחר משחקים לייבא</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">חיפוש נתונים</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">עדכון זמין</sys:String>
@@ -719,24 +703,24 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">נכשל בחיפוש גרסה חדשה.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">לא נמצאה גירסה חדשה, אתה מעודכן.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">נכשל בהורדה והתקנת עדכון.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">משימת רקע רצה כעת, האם ברצונך לבטלה ולהמשיך בתהליך העדכון?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">משימת רקע רצה כעת, האם ברצונך לבטלה ולסגור את Playnite?</sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">עדכון חדש זמין ל Playnite</sys:String>
-
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">טען רשימת ערכות נושא מחדש</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">הפעל ערכת נושא נבחרת</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">האזן לשינויי קבצים</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">החל ערכת נושא אוטומטית כאשר קובץ המקור משתנה</sys:String>
     <sys:String x:Key="LOCScriptRuntime">סביבת סקריפטים</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription">הרץ לפני תחילת המשחק</sys:String>
-    <sys:String x:Key="LOCPostScriptDescription">הרץ לאחר יציאה מהמשחק</sys:String>
-
+    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">שמור כברירת המחדל</sys:String>
     <sys:String x:Key="LOCFavoriteGame">הוסף למעודפים</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">הסר ממועדפים</sys:String>
-    <sys:String x:Key="LOCHideGame">הסתר</sys:String>
-    <sys:String x:Key="LOCUnHideGame">הצג בספריה</sys:String>
+    <sys:String x:Key="LOCHideGame">הסתר משחק זה</sys:String>
+    <sys:String x:Key="LOCUnHideGame">הסר מהסתרה</sys:String>
     <sys:String x:Key="LOCEditGame">ערוך…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">הגדר קטגוריה…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">הגדר סטטוס השלמה</sys:String>
@@ -748,30 +732,27 @@
     <sys:String x:Key="LOCUninstallGame">הסר התקנה</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">פתח מיקום התקנה</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">צור קיצור דרך בשולחן העבודה</sys:String>
+    <sys:String x:Key="LOCOpenGameManual">פתח את המדריך</sys:String>
     <sys:String x:Key="LOCMoreAction">עוד</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin">מנוהל על ידי תוסף ספריה</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">מנוהל על ידי תוסף הספריה</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">תהליך הרצת המשחק ינוהל על ידי התוסף תיקיה האחראי על משחק זה.</sys:String>
-
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">לא נמצאו נתונים רלוונטיים על המשחק '{0}' בדף שהוזן.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">טיפ: ניתן להשתמש בתהליך הורדת נתונים מתקדם יותר בעת עריכת משחק בודד על ידי התפריט &quot;עריכה&quot;.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">לא זמין כאשר פעולה כלשהי בתהליך.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">טקסט התיאור הינו רגיש לתחביר HTML</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">זמן משחק נרשם ונשמר בשניות.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">זמן המשחק מוקלט לפי שניות</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">ערכים בין 0 ל 100 או ריק לללא ציון.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">פיתוח Playnite נתמך על יד הפטרונים הבאים:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">תורמים לקוד, תרגום ואחרים לא בסדר כלשהו:</sys:String>
-
     <sys:String x:Key="LOCCancelMonitoringAskTitle">בטל ניטור משחקים?</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk">ניתור התקנה כרגע רץ, הרם ברצונך לבטל את התהליך ולהחזיר את המשחק למצבו הקודם?</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">ניתור הרצת משחק כרגע רץ, הרם ברצונך לבטל את התהליך ולהחזיר את המשחק למצבו הקודם?</sys:String>
-
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
     <sys:String x:Key="LOCTimePlayed">משך המשחק</sys:String>
     <sys:String x:Key="LOCLastPlayed">שוחק לאחרונה</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}ש {1}ד</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} דקות</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} שניות</sys:String>
     <sys:String x:Key="LOCPlayedNone">לא שוחקו</sys:String>
-
     <sys:String x:Key="LOCOpeningDesktopModeMessage">פותח מצב שולחן עבודה…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">פותח מצב מסך מלא…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">טוען ספרית משחקים…</sys:String>
@@ -781,29 +762,26 @@
     <sys:String x:Key="LOCScriptError">שגיאת סקריפט</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">ביצוע פעולת תוסף נכשלה.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">פתח תיקיית נתונים</sys:String>
-
     <sys:String x:Key="LOCClientNotInstalledError">תוכנת {0} אינה מותקנת.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">תוכנת {0} תפתח כעת. אנא התחבר ואז סגור את הודעה זו.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">מחכה להתחברות משתמש, אנא סגרו את זה בסיום…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">תיקיית התקנת משחק לא נמצאה.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">תצורת פעולת משחק לא תקינה.</sys:String>
-
     <sys:String x:Key="LOCTroubleShootingAccountLink">טיפול בתקלות סנכרון חשבון</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">פתרון בעיות</sys:String>
-
     <sys:String x:Key="LOCRenameItem">שנה שם פריט</sys:String>
     <sys:String x:Key="LOCAddNewItem">הוסף פריט חדש</sys:String>
     <sys:String x:Key="LOCEnterName">הכנס שם</sys:String>
     <sys:String x:Key="LOCEnterNewName">הזן שם חדש</sys:String>
-
     <sys:String x:Key="LOCPLaytimeLessThenAnHour">פחות משעה</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">שעה עד 10 שעות</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 עד 100 שעות</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 עד 500 שעות</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 עד 1000 שעות</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">מעל 1000</sys:String>
-
-    <sys:String x:Key="LOCExtInstallationRestartNotif">כדי לסיים את ההתקנה, חובה לאתחל את Playnite. האם ברצונך לאתחל כעת?</sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">ערכת נושא\הרחבה משתמשת בגירסת API שאינה נתמכת.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">ההתקנה הסתיימה בהצלחה.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">להתקין הרחבה?</sys:String>
@@ -818,79 +796,74 @@
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">נכשלה התקנת ערכת נושא.
  
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">האם ברצונך להתקין ערכת נושא חדשה? התקנה קיימת תידרס.
- 
-{0}
-על ידי {1}
-גירסה {2}</sys:String>
-
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">אתם עומדים לעזוב את Playnite ולנווט לדף אינטרנט על ידי דפדפן ברירת המחדל. האם ברצונך להמשיך?
- 
-{0}</sys:String>
-
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">תמונה/תמונות שנבחרו עשויות להיות גדולות מדי לביצוע מיטבי. שימוש בתמונות גדולות מאוד עלול לגרום לתגובה הרבה פחות טובה של ממשק המשתמש ולשיפור השימוש בזיכרון.
-
-מקסימום החלטות מומלצות:
-סמלים: {0} מגה פיקסלים
-מכסה: {1} מגה פיקסלים
-רקעים: {2} מגה פיקסלים</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">אזהרת ביצועים</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">אל תציג שוב</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">קובץ תמונה שנבחר עשוי להיות גדול מדי לביצועים מיטביים.</sys:String>
-
+    <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
+    <sys:String x:Key="LOCThemeUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
+    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
+    <sys:String x:Key="LOCDiagGenerating"></sys:String>
+    <sys:String x:Key="LOCDiagUploading"></sys:String>
+    <sys:String x:Key="LOCAddFromExe"></sys:String>
+    <sys:String x:Key="LOCWhatIsThis"></sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime"></sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
+    <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
+    <sys:String x:Key="LOCOverviewLabel"></sys:String>
+    <sys:String x:Key="LOCSidebar"></sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">הישגים</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">פורום</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">חדשות</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">דף חנות</sys:String>
-
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif">תוכנת itch.io תפתח כעת. אנא התחבר ואז סגור את הודעה זו.</sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">מחכה לחיבור משתמש, אנא סגור הודעה זו כשתסיים…</sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError">תוכנת Itch גירסה 25 או חדשה יותר אינה מותקנת.</sys:String>
-
+    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">כניסה לחשבון</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">שם חשבון</sys:String>
     <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">התחבר לחשבון שלך או השתמש בשם החשבון הציבורי שלך כדי לסנכרן את כל הספריה שלך.
 שים לב שאפשרות שם החשבון תעבוד רק עבור חשבונות שספריות המשחק שלהם נקבעו להיות פומביות לתצוגה בהגדרות הפרטיות ב GOG.</sys:String>
-
     <!--Steam-->
     <sys:String x:Key="LOCSteamCustomUrlName">שם URL חשבון</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">משתמש מאומת</sys:String>
     <sys:String x:Key="LOCSteamRequiresApiKey">החשבון הוא פרטי, יש צורך במפתח API.</sys:String>
     <sys:String x:Key="LOCSteamLinksCommunityHub">אזור הקהילה</sys:String>
     <sys:String x:Key="LOCSteamLinksDiscussions">דיונים</sys:String>
+    <sys:String x:Key="LOCSteamLinksGuides"></sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">סדנא</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers">הורד תמונות עטיפה אנכיות</sys:String>
-
-    <sys:String x:Key="LOCFullscreenFirstTimeError">הגדרה ראשונית לא הושלמה. Playnite כעת יאותחל למצב שולחן עבודה לסיום התהליך.</sys:String>
+    <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">שוחק לאחרונה</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">מועדפים</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">הכי משוחקים</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">הכל</sys:String>
-
     <sys:String x:Key="LOCGameListFiltered">יש מסננים מופעלים.</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">תוצאות חיפוש עבור:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">פריט בעל שם זהה כבר קיים.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">הגבל בחירה למסנן הנוכחי</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">בחר נוסף</sys:String>
-
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">השתמש בתצלומי מסך אם עטיפה אינה זמינה</sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">אם כמה תמונות קיימות אז בחר:</sys:String>
     <sys:String x:Key="LOCIgdbSelectBackgroundTitle">בחר תמונת רקע עבור {0}</sys:String>
-
-    <!--Epic-->
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGame">כאשר ניתן, התחל את המשחק מבלי להפעיל את הקליינט של Epic</sys:String>
-    <sys:String x:Key="LOCEpicSkipLauncherWhenStartingGameTooltip">אפשרות זו אינה עובדת עבור כל המשחקים. לקבלת דרכים לעקיפת הבעיה, ראה קישור לפתרון בעיות.</sys:String>
-
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">התעלם ממשחקי חנויות חיצוניות</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">ייבא משחקים מ- Trove</sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">אם פועל, לא יובאו משחקים הדורשים קליינטים חיצוניים.
-כולל חנויות שכבר נתמכות ב- Playnite כדי למנוע כפילויות.</sys:String>
-
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree"></sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip"></sys:String>
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">הפעל את אפליקציית Xbox Game Pass במקום חנות מיקרוסופט בעת פתיחת לקוח</sys:String>
     <sys:String x:Key="LOCXboxImport360Games">יבא משחקים של אקסבוקס 360</sys:String>

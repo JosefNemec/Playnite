@@ -49,6 +49,7 @@ namespace Playnite
         public GameAction PlayAction => Game.PlayAction;
         public string DisplayName => Game.Name;
         public string Description => Game.Description;
+        public string Notes => Game.Notes;
         public bool IsInstalled => Game.IsInstalled;
         public bool IsInstalling => Game.IsInstalling;
         public bool IsUnistalling => Game.IsUninstalling;
@@ -75,6 +76,7 @@ namespace Playnite
         public PastTimeSegment ModifiedSegment => Game.ModifiedSegment;
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
         public InstallationStatus InstallationState => Game.InstallationStatus;
+        public char NameGroup => GetNameGroup();
 
         public List<Guid> CategoryIds => Game.CategoryIds;
         public List<Guid> GenreIds => Game.GenreIds;
@@ -108,27 +110,27 @@ namespace Playnite
 
         public Series Series
         {
-            get => Game.SeriesId == Guid.Empty ? Series.Empty : Game.Series;
+            get => Game.Series ?? Series.Empty;
         }
 
         public Platform Platform
         {
-            get => Game.PlatformId == Guid.Empty ? Platform.Empty : Game.Platform;
+            get => Game.Platform ?? Platform.Empty;
         }
 
         public Region Region
         {
-            get => Game.RegionId == Guid.Empty ? Region.Empty : Game.Region;
+            get => Game.Region ?? Region.Empty;
         }
 
         public GameSource Source
         {
-            get => Game.SourceId == Guid.Empty ? GameSource.Empty : Game.Source;
+            get => Game.Source ?? GameSource.Empty;
         }
 
         public AgeRating AgeRating
         {
-            get => Game.AgeRatingId == Guid.Empty ? AgeRating.Empty : Game.AgeRating;
+            get => Game.AgeRating ?? AgeRating.Empty;
         }
 
         public Category Category
@@ -290,6 +292,7 @@ namespace Playnite
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Game.Name)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayName)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NameGroup)));
             }
 
             if (propertyName == nameof(Game.Icon))
@@ -413,6 +416,19 @@ namespace Playnite
         public static explicit operator Game(GamesCollectionViewEntry entry)
         {
             return entry.Game;
+        }
+
+        private char GetNameGroup()
+        {
+            if (Game.Name.IsNullOrEmpty())
+            {
+                return '#';
+            }
+            else
+            {
+                var firstChar = char.ToUpper(Game.Name[0]);
+                return char.IsLetter(firstChar) ? firstChar : '#';
+            }
         }
     }
 }

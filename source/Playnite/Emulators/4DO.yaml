@@ -1,0 +1,8 @@
+Name: 4DO
+Website: 'https://sourceforge.net/projects/fourdo/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '-StartLoadFile "{ImagePath}" --StartFullScreen'  
+    Platforms: [3DO Interactive Multiplayer]
+    ImageExtensions: [cue, bin, iso]
+    ExecutableLookup: ^4do\.exe$

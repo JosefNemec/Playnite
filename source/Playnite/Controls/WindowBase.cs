@@ -126,6 +126,8 @@ namespace Playnite.Controls
         public static readonly DependencyProperty ShowTitleProperty =
             DependencyProperty.Register(nameof(ShowTitle), typeof(bool), typeof(WindowBase), new PropertyMetadata(true, ShowTitlePropertyChanged));
 
+        public bool IsShown { get; private set; }
+
         static WindowBase()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowBase), new FrameworkPropertyMetadata(typeof(WindowBase)));
@@ -147,6 +149,8 @@ namespace Playnite.Controls
 
             TextOptions.SetTextFormattingMode(this, TextFormattingMode);
             TextOptions.SetTextRenderingMode(this, TextRenderingMode);
+            Closed += (_, __) => IsShown = false;
+            Loaded += (_, __) => IsShown = true;
         }
 
         public static void SetTextRenderingOptions(TextFormattingModeOptions formatting, TextRenderingModeOptions rendering)

@@ -1,0 +1,8 @@
+Name: Project64
+Website: 'https://www.pj64-emu.com/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    ImageExtensions: [rom, n64, v64, z64, jap, pal, usa, zip]
+    Platforms: [Nintendo 64]
+    ExecutableLookup: ^Project64\.exe$

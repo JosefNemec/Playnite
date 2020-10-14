@@ -1,4 +1,5 @@
-﻿Name: GOG Library Importer
+﻿Id: GogLibrary_Builtin
+Name: GOG Library Importer
 Author: Playnite
 Version: 1.0
 Module: GogLibrary.dll

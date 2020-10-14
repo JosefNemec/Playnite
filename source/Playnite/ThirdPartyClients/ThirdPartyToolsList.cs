@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Common;
+using Playnite.SDK;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace Playnite
 
         public string Name { get; set; }
 
+        public System.Windows.Controls.Image Icon { get; set; }
+
         public void Start()
         {
             Client.Open();
@@ -29,15 +32,26 @@ namespace Playnite
             var tools = new List<ThirdPartyTool>();
             if (plugins?.Any() == true)
             {
-                foreach (var plugin in plugins)
+                foreach (var plugin in plugins.OrderBy(a => a.Name))
                 {
                     if (plugin.Client != null && plugin.Client.IsInstalled)
                     {
-                        tools.Add(new ThirdPartyTool()
+                        var tool = new ThirdPartyTool()
                         {
                             Client = plugin.Client,
                             Name = plugin.Name
-                        });
+                        };
+
+                        if (plugin.Client?.Icon != null && File.Exists(plugin.Client.Icon))
+                        {
+                            tool.Icon = Images.GetImageFromFile(
+                                plugin.Client.Icon,
+                                System.Windows.Media.BitmapScalingMode.Fant,
+                                double.NaN,
+                                double.NaN);
+                        }
+
+                        tools.Add(tool);
                     }
                 }
             }

@@ -64,16 +64,14 @@ namespace Steam
             }
         }
 
-        internal StoreAppDetailsResult.AppDetails GetStoreData(uint appId)
+        private T SendDelayedStoreRequest<T>(Func<T> request, uint appId) where T : class
         {
-            var stringData = string.Empty;
             // Steam may return 429 if we put too many request
             for (int i = 0; i < 10; i++)
             {
                 try
                 {
-                    stringData = WebApiClient.GetRawStoreAppDetail(appId);
-                    break;
+                    return request();
                 }
                 catch (WebException e)
                 {
@@ -95,18 +93,33 @@ namespace Steam
                 }
             }
 
-            if (!string.IsNullOrEmpty(stringData))
-            {
-                var response = WebApiClient.ParseStoreData(appId, stringData);
-                if (response.success != true)
-                {
-                    return null;
-                }
-
-                return response.data;
-            }
-
             return null;
+        }
+
+        private int CalculateUserScore(AppReviewsResult.QuerySummary reviews)
+        {
+            var totalVotes = reviews.total_positive + reviews.total_negative;
+            double average = (double)reviews.total_positive / (double)totalVotes;
+            double score = average - (average - 0.5) * Math.Pow(2, -Math.Log10(totalVotes + 1));
+            return Convert.ToInt32(score * 100);
+        }
+
+        internal StoreAppDetailsResult.AppDetails GetStoreData(uint appId)
+        {
+            return SendDelayedStoreRequest(() => WebApiClient.GetStoreAppDetail(appId), appId);
+        }
+
+        internal AppReviewsResult.QuerySummary GetUserReviewsData(uint appId)
+        {
+            var ratings = SendDelayedStoreRequest(() => WebApiClient.GetUserRating(appId), appId);
+            if (ratings?.success == 1)
+            {
+                return ratings.query_summary;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         internal SteamGameMetadata DownloadGameMetadata(
@@ -125,6 +138,15 @@ namespace Steam
             catch (Exception e)
             {
                 logger.Error(e, $"Failed to download Steam store metadata {appId}");
+            }
+
+            try
+            {
+                metadata.UserReviewDetails = GetUserReviewsData(appId);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to download Steam user reviews metadata {appId}");
             }
 
             // Icon
@@ -257,6 +279,7 @@ namespace Steam
                 {
                     new Link(ResourceProvider.GetString("LOCSteamLinksCommunityHub"), $"https://steamcommunity.com/app/{appId}"),
                     new Link(ResourceProvider.GetString("LOCSteamLinksDiscussions"), $"https://steamcommunity.com/app/{appId}/discussions/"),
+                    new Link(ResourceProvider.GetString("LOCSteamLinksGuides"), $"https://steamcommunity.com/app/{appId}/guides/"),
                     new Link(ResourceProvider.GetString("LOCCommonLinksNews"), $"https://store.steampowered.com/news/?appids={appId}"),
                     new Link(ResourceProvider.GetString("LOCCommonLinksStorePage"), $"https://store.steampowered.com/app/{appId}"),
                     new Link("PCGamingWiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
@@ -289,6 +312,10 @@ namespace Steam
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 gameInfo.ReleaseDate = downloadedMetadata.StoreDetails.release_date.date;
                 gameInfo.CriticScore = downloadedMetadata.StoreDetails.metacritic?.score;
+                if (downloadedMetadata.UserReviewDetails != null)
+                {
+                    gameInfo.CommunityScore = CalculateUserScore(downloadedMetadata.UserReviewDetails);
+                }
 
                 if (downloadedMetadata.StoreDetails.publishers.HasNonEmptyItems())
                 {

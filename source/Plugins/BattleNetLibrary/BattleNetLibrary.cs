@@ -90,7 +90,7 @@ namespace BattleNetLibrary
                         {
                             GameId = product.ProductId,
                             Source = "Battle.net",
-                            Name = product.Name,
+                            Name = product.Name.RemoveTrademarks(),
                             PlayAction = new GameAction()
                             {
                                 Type = GameActionType.File,
@@ -99,7 +99,8 @@ namespace BattleNetLibrary
                                 IsHandledByPlugin = true
                             },
                             InstallDirectory = prog.InstallLocation,
-                            IsInstalled = true
+                            IsInstalled = true,
+                            Platform = "PC"
                         };
 
                         // Check in case there are more versions of single games installed.
@@ -138,10 +139,11 @@ namespace BattleNetLibrary
                     {
                         GameId = product.ProductId,
                         Source = "Battle.net",
-                        Name = product.Name,
+                        Name = product.Name.RemoveTrademarks(),
                         PlayAction = GetGamePlayTask(product.ProductId),
                         InstallDirectory = prog.InstallLocation,
-                        IsInstalled = true
+                        IsInstalled = true,
+                        Platform = "PC"
                     };
 
                     // Check in case there are more versions of single games installed.
@@ -185,7 +187,8 @@ namespace BattleNetLibrary
                             {
                                 Source = "Battle.net",
                                 GameId = gameInfo.ProductId,
-                                Name = gameInfo.Name
+                                Name = gameInfo.Name.RemoveTrademarks(),
+                                Platform = "PC"
                             });
                         }
                     }
@@ -213,7 +216,8 @@ namespace BattleNetLibrary
                             {
                                 Source = "Battle.net",
                                 GameId = w3x.ProductId,
-                                Name = w3x.Name
+                                Name = w3x.Name,
+                                Platform = "PC"
                             });
                         }
                     }
@@ -237,7 +241,8 @@ namespace BattleNetLibrary
                             {
                                 Source = "Battle.net",
                                 GameId = d2x.ProductId,
-                                Name = d2x.Name
+                                Name = d2x.Name,
+                                Platform = "PC"
                             });
                         }
                     }

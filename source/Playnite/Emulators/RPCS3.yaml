@@ -1,0 +1,8 @@
+Name: RPCS3
+Website: 'https://rpcs3.net/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Sony PlayStation 3]
+    ImageExtensions: [bin]
+    ExecutableLookup: ^rpcs3.*\.exe$

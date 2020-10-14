@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
         xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         mc:Ignorable="d"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
@@ -15,11 +17,12 @@
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <Viewbox>
-        <Grid Height="1080">
+        <Grid Height="1080" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=c:WindowBase}}"              
+              HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
@@ -31,11 +34,25 @@
                        Height="200"
                        Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" />
                 <ContentControl Style="{StaticResource ProgressIndicator}" Focusable="False"
-                                Height="38" Width="38" />                
+                                Height="38" Width="38"
+                                Visibility="{Binding Indeterminate, Converter={StaticResource BooleanToVisibilityConverter}}"/>                
                 <TextBlock Text="{Binding ProgressText}"
                            HorizontalAlignment="Center" Margin="0,20,0,0"
                            Style="{StaticResource TextBlockBaseStyle}" />
-                
+
+                <ProgressBar Height="40" Margin="0,20,0,0"
+                             IsIndeterminate="{Binding Indeterminate}"
+                             Value="{Binding ProgressArgs.CurrentProgressValue}"
+                             Maximum="{Binding ProgressArgs.ProgressMaxValue}"
+                             Visibility="{Binding Indeterminate, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+
+                <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}"
+                                 HorizontalAlignment="Center" MinWidth="180"
+                                 pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                                 Command="{Binding CancelCommand}"
+                                 Visibility="{Binding Cancelable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                 HorizontalContentAlignment="Center"
+                                 Margin="0,20,0,0" />
             </StackPanel>
         </Grid>
     </Viewbox>

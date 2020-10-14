@@ -1,0 +1,7 @@
+Name: ScummVM
+Website: 'https://www.scummvm.org/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '-f'
+    Platforms: [PC, DOS]
+    ExecutableLookup: ^scummvm\.exe$

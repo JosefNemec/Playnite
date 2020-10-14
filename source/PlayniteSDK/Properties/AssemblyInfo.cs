@@ -11,7 +11,7 @@ using System.Windows.Markup;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Playnite")]
-[assembly: AssemblyCopyright("Copyright © Josef Nemec 2018")]
+[assembly: AssemblyCopyright("Copyright © Josef Nemec 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,9 +33,10 @@ using System.Windows.Markup;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("5.2.0.0")]
-[assembly: AssemblyFileVersion("5.2.0.0")]
+[assembly: AssemblyVersion("5.4.0.0")]
+[assembly: AssemblyFileVersion("5.4.0.0")]
 [assembly: InternalsVisibleTo("Playnite.DesktopApp")]
 [assembly: InternalsVisibleTo("Playnite.FullscreenApp")]
 [assembly: InternalsVisibleTo("Playnite.Tests")]
+[assembly: InternalsVisibleTo("Playnite")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Playnite.SDK.Models")]

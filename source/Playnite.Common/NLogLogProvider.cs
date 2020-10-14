@@ -91,7 +91,8 @@ namespace Playnite.Common
                 ArchiveFileName = Path.Combine(loggerDir, "nlog.{#####}.log"),
                 ArchiveAboveSize = 4096000,
                 ArchiveNumbering = ArchiveNumberingMode.Sequence,
-                MaxArchiveFiles = 2
+                MaxArchiveFiles = 2,
+                Encoding = Encoding.UTF8
             };
 
             config.AddTarget("file", fileTarget);

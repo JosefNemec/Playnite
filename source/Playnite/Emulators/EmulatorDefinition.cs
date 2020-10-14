@@ -1,4 +1,6 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.Common;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
@@ -7,11 +9,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YamlDotNet.Serialization;
 
 namespace Playnite.Emulators
 {
-
     public class EmulatorDefinitionProfile
     {
         public string Name
@@ -50,13 +50,15 @@ namespace Playnite.Emulators
             {
                 Arguments = DefaultArguments,
                 ImageExtensions = ImageExtensions,
-                Name = Name                
+                Name = Name
             };
         }
     }
 
     public class EmulatorDefinition
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         public string Name
         {
             get; set;
@@ -79,10 +81,10 @@ namespace Playnite.Emulators
             }
         }
 
-        public static string DefinitionsPath
+        public static string DefinitionsDir
         {
-            get => Path.Combine(PlaynitePaths.ProgramPath, "Emulators", "Definitions.yaml");
-        }        
+            get => Path.Combine(PlaynitePaths.ProgramPath, "Emulators");
+        }
 
         public override string ToString()
         {
@@ -91,14 +93,30 @@ namespace Playnite.Emulators
 
         public static List<EmulatorDefinition> GetDefinitions()
         {
-            if (!File.Exists(DefinitionsPath))
+            if (!Directory.Exists(DefinitionsDir))
             {
-                throw new Exception("Emulator definitions file not found.");
+                return new List<EmulatorDefinition>();
             }
 
-            var deserializer = new DeserializerBuilder().Build();
-            var definitions = deserializer.Deserialize<List<EmulatorDefinition>>(File.ReadAllText(DefinitionsPath)).OrderBy(a => a.Name).ToList();
-            return definitions;
+            var defs = new List<EmulatorDefinition>();
+            foreach (var file in Directory.GetFiles(DefinitionsDir, "*.yaml", SearchOption.TopDirectoryOnly))
+            {
+                if (Path.GetFileName(file).Equals("Definitions.yaml", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                try
+                {
+                    defs.Add(Serialization.FromYamlFile<EmulatorDefinition>(file));
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to read emulator definition from {file}");
+                }
+            }
+
+            return defs;
         }
     }
 }

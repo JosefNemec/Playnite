@@ -17,19 +17,34 @@ using SdkModels = Playnite.SDK.Models;
 namespace PlayniteServices.Controllers.IGDB
 {
     [ServiceFilter(typeof(PlayniteVersionFilter))]
-    [Route("igdb/metadata")]
+    [Route("igdb")]
     public class MetadataController : Controller
     {
         private readonly static ILogger logger = LogManager.GetLogger();
-        private readonly AppSettings appSettings;
+        private UpdatableAppSettings appSettings;
+        private static readonly Regex separatorRegex = new Regex(@"\s*(:|-)\s*", RegexOptions.Compiled);
+        private static readonly Regex noIntroArticleRegEx = new Regex(@",\s*(the|a|an|der|das|die)$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly char[] bracketsMatchList = new char[] { '[', ']', '(', ')', '{', '}' };
+        private static readonly char[] whereQueryBlacklist = new char[2] { ':', '-' };
 
-        public MetadataController(IOptions<AppSettings> settings)
+        public MetadataController(UpdatableAppSettings settings)
         {
-            appSettings = settings.Value;
+            appSettings = settings;
         }
 
-        [HttpPost]
-        public async Task<ServicesResponse<ExpandedGame>> Post([FromBody]SdkModels.Game game)
+        [HttpPost("metadata_v2")]
+        public async Task<ServicesResponse<ExpandedGame>> PostMetadataV2([FromBody]SdkModels.Game game)
+        {
+            return await GetMetadata(game, ExpandedGameController.GetExpandedGame);
+        }
+
+        [HttpPost("metadata")]
+        public async Task<ServicesResponse<ExpandedGameLegacy>> PostMetadata([FromBody]SdkModels.Game game)
+        {
+            return await GetMetadata(game, GameParsedController.GetExpandedGame);
+        }
+
+        private async Task<ServicesResponse<T>> GetMetadata<T>(SdkModels.Game game, Func<ulong, Task<T>> expandFunc) where T : new()
         {
             var isKnownPlugin = game.PluginId != Guid.Empty;
             var isSteamPlugin = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.SteamLibrary) == game.PluginId;
@@ -63,17 +78,23 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var foundMetadata = new ExpandedGame();
+            var foundMetadata = new T();
             if (igdbId != 0)
             {
-                return new ServicesResponse<ExpandedGame>(await GameParsedController.GetExpandedGame(igdbId));
+                return new ServicesResponse<T>(await expandFunc(igdbId));
             }
             else
             {
-                igdbId = await TryMatchGame(game);
+                igdbId = await TryMatchGame(game, false);
+                var useAlt = appSettings.Settings.IGDB.AlternativeSearch && !game.Name.ContainsAny(whereQueryBlacklist);
+                if (useAlt && igdbId == 0)
+                {
+                    igdbId = await TryMatchGame(game, true);
+                }
+
                 if (igdbId != 0)
                 {
-                    foundMetadata = await GameParsedController.GetExpandedGame(igdbId);
+                    foundMetadata = await expandFunc(igdbId);
                 }
             }
 
@@ -99,12 +120,28 @@ namespace PlayniteServices.Controllers.IGDB
                 });
             }
 
-            return new ServicesResponse<ExpandedGame>(foundMetadata);
+            return new ServicesResponse<T>(foundMetadata);
         }
 
-        private async Task<ulong> TryMatchGame(SdkModels.Game game)
+        private string FixNointroNaming(string name)
+        {
+            var match = noIntroArticleRegEx.Match(name);
+            if (match.Success)
+            {
+                return match.Groups[1].Value.Trim() + " " + noIntroArticleRegEx.Replace(name, "");
+            }
+
+            return name;
+        }
+
+        private async Task<ulong> TryMatchGame(SdkModels.Game game, bool alternativeSearch)
         {
             if (game.Name.IsNullOrEmpty())
+            {
+                return 0;
+            }
+
+            if (game.Name.ContainsAny(bracketsMatchList))
             {
                 return 0;
             }
@@ -112,11 +149,12 @@ namespace PlayniteServices.Controllers.IGDB
             ulong matchedGame = 0;
             var copyGame = game.GetClone();
             copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
+            copyGame.Name = FixNointroNaming(copyGame.Name);
             var name = copyGame.Name;
             name = Regex.Replace(name, @"\s+RHCP$", "", RegexOptions.IgnoreCase);
             name = Regex.Replace(name, @"\s+RU$", "", RegexOptions.IgnoreCase);
 
-            var results = await GamesController.GetSearchResults(name);
+            var results = await GamesController.GetSearchResults(name, alternativeSearch);
             results.ForEach(a => a.name = StringExtensions.NormalizeGameName(a.name));
             string testName = string.Empty;
 
@@ -161,12 +199,12 @@ namespace PlayniteServices.Controllers.IGDB
             }
 
             // Try removing all ":" and "-"
-            testName = Regex.Replace(name, @"\s*(:|-)\s*", " ");
+            testName = separatorRegex.Replace(name, " ");
             resCopy = results.GetClone();
             foreach (var res in resCopy)
             {
-                res.name = Regex.Replace(res.name, @"\s*(:|-)\s*", " ");
-                res.alternative_names?.ForEach(a => a.name = Regex.Replace(a.name, @"\s*(:|-)\s*", " "));
+                res.name = separatorRegex.Replace(res.name, " ");
+                res.alternative_names?.ForEach(a => a.name = separatorRegex.Replace(a.name, " "));
             }
 
             matchedGame = MatchFun(game, testName, resCopy);
@@ -176,30 +214,33 @@ namespace PlayniteServices.Controllers.IGDB
             }
 
             // Try without subtitle
-            var testResult = results.OrderBy(a => a.first_release_date).FirstOrDefault(a =>
+            if (!alternativeSearch)
             {
-                if (a.first_release_date == 0)
+                var testResult = results.OrderBy(a => a.first_release_date).FirstOrDefault(a =>
                 {
+                    if (a.first_release_date == 0)
+                    {
+                        return false;
+                    }
+
+                    if (!string.IsNullOrEmpty(a.name) && a.name.Contains(":"))
+                    {
+                        return string.Equals(name, a.name.Split(':')[0], StringComparison.InvariantCultureIgnoreCase);
+                    }
+
                     return false;
-                }
+                });
 
-                if (!string.IsNullOrEmpty(a.name) && a.name.Contains(":"))
+                if (testResult != null)
                 {
-                    return string.Equals(name, a.name.Split(':')[0], StringComparison.InvariantCultureIgnoreCase);
+                    return testResult.id;
                 }
-
-                return false;
-            });
-
-            if (testResult != null)
-            {
-                return testResult.id;
             }
 
             return 0;
         }
 
-        private ulong MatchFun(SdkModels.Game game, string matchName, List<ExpandedGame> list)
+        private ulong MatchFun(SdkModels.Game game, string matchName, List<ExpandedGameLegacy> list)
         {
             var res = list.Where(a => string.Equals(matchName, a.name, StringComparison.InvariantCultureIgnoreCase));
             if (!res.Any())

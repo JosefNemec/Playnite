@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,6 +11,8 @@ namespace System
 {
     public static class StringExtensions
     {
+        private static readonly CultureInfo enUSCultInfo = new CultureInfo("en-US", false);
+
         public static string MD5(this string s)
         {
             using (var provider = System.Security.Cryptography.MD5.Create())
@@ -39,14 +42,14 @@ namespace System
             return newName;
         }
 
-        public static string RemoveTrademarks(this string str)
+        public static string RemoveTrademarks(this string str, string remplacement = "")
         {
             if (str.IsNullOrEmpty())
             {
                 return str;
             }
 
-            return Regex.Replace(str, @"[™©®]", string.Empty);
+            return Regex.Replace(str, @"[™©®]", remplacement);
         }
 
         public static bool IsNullOrEmpty(this string source)
@@ -59,7 +62,39 @@ namespace System
             return string.IsNullOrWhiteSpace(source);
         }
 
-        public static string NormalizeGameName(string name)
+        public static string Format(this string source, params object[] args)
+        {
+            return string.Format(source, args);
+        }
+
+        public static string TrimEndString(this string source, string value, StringComparison comp = StringComparison.Ordinal)
+        {
+            if (!source.EndsWith(value, comp))
+            {
+                return source;
+            }
+
+            return source.Remove(source.LastIndexOf(value, comp));
+        }
+
+        public static string ToTileCase(this string source, CultureInfo culture = null)
+        {
+            if (source.IsNullOrEmpty())
+            {
+                return source;
+            }
+
+            if (culture != null)
+            {
+                return culture.TextInfo.ToTitleCase(source);
+            }
+            else
+            {
+                return enUSCultInfo.TextInfo.ToTitleCase(source);
+            }
+        }
+
+        public static string NormalizeGameName(this string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -71,6 +106,7 @@ namespace System
             newName = newName.Replace("_", " ");
             newName = newName.Replace(".", " ");
             newName = RemoveTrademarks(newName);
+            newName = newName.Replace('’', '\'');
             newName = Regex.Replace(newName, @"\[.*?\]", "");
             newName = Regex.Replace(newName, @"\(.*?\)", "");
             newName = Regex.Replace(newName, @"\s*:\s*", ": ");
@@ -107,6 +143,11 @@ namespace System
             return str.IndexOf(value, 0, comparisonType) != -1;
         }
 
+        public static bool ContainsAny(this string str, char[] chars)
+        {
+            return str.IndexOfAny(chars) >= 0;
+        }
+
         public static bool IsHttpUrl(this string str)
         {
             if (string.IsNullOrEmpty(str))
@@ -117,7 +158,7 @@ namespace System
             return Regex.IsMatch(str, @"^https?:\/\/", RegexOptions.IgnoreCase);
         }
 
-        // Courtesy of https://stackoverflow.com/questions/6275980/string-replace-ignoring-case        
+        // Courtesy of https://stackoverflow.com/questions/6275980/string-replace-ignoring-case
         public static string Replace(this string str, string oldValue, string @newValue, StringComparison comparisonType)
         {
             // Check inputs.
@@ -170,7 +211,7 @@ namespace System
                 }
 
                 // Prepare start index for the next search.
-                // This needed to prevent infinite loop, otherwise method always start search 
+                // This needed to prevent infinite loop, otherwise method always start search
                 // from the start of the string. For example: if an oldValue == "EXAMPLE", newValue == "example"
                 // and comparisonType == "any ignore case" will conquer to replacing:
                 // "EXAMPLE" to "example" to "example" to "example" … infinite loop.
@@ -178,7 +219,7 @@ namespace System
                 if (startSearchFromIndex == str.Length)
                 {
                     // It is end of the input string: no more space for the next search.
-                    // The input string ends with a value that has already been replaced. 
+                    // The input string ends with a value that has already been replaced.
                     // Therefore, the string builder with the result is complete and no further action is required.
                     return resultStringBuilder.ToString();
                 }

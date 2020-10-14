@@ -67,9 +67,10 @@ namespace TwitchLibrary
                         InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                         GameId = gameId,
                         Source = "Twitch",
-                        Name = program.DisplayName,
+                        Name = program.DisplayName.RemoveTrademarks(),
                         IsInstalled = true,
-                        PlayAction = GetPlayAction(gameId)
+                        PlayAction = GetPlayAction(gameId),
+                        Platform = "PC"
                     };
 
                     games.Add(game.GameId, game);
@@ -115,7 +116,6 @@ namespace TwitchLibrary
                 throw new Exception("Authentication is required.");
             }
 
-
             var games = new List<GameInfo>();
             var entitlements = AmazonEntitlementClient.GetAccountEntitlements(token);
 
@@ -130,7 +130,8 @@ namespace TwitchLibrary
                 {
                     Source = "Twitch",
                     GameId = item.product.id,
-                    Name = item.product.title
+                    Name = item.product.title.RemoveTrademarks(),
+                    Platform = "PC"
                 };
 
                 games.Add(game);
@@ -156,6 +157,7 @@ namespace TwitchLibrary
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
+            LibrarySettings.IsFirstRunUse = firstRunSettings;
             return LibrarySettings;
         }
 

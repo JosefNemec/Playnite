@@ -382,38 +382,50 @@ namespace Playnite.FullscreenApp.Controls.Views
                 }
 
                 AssignButtonWithCommand(ref ButtonInstall, "PART_ButtonInstall", mainModel.ActivateSelectedCommand);
-                BindingTools.SetBinding(
-                    ButtonInstall,
-                    ButtonBase.VisibilityProperty,
-                    mainModel,
-                    $"{nameof(FullscreenAppViewModel.SelectedGame)}.{nameof(GamesCollectionViewEntry.IsInstalled)}",
-                    converter: new InvertedBooleanToVisibilityConverter(),
-                    fallBackValue: Visibility.Collapsed);
+                if (ButtonInstall != null)
+                {
+                    BindingTools.SetBinding(
+                        ButtonInstall,
+                        ButtonBase.VisibilityProperty,
+                        mainModel,
+                        $"{nameof(FullscreenAppViewModel.SelectedGame)}.{nameof(GamesCollectionViewEntry.IsInstalled)}",
+                        converter: new InvertedBooleanToVisibilityConverter(),
+                        fallBackValue: Visibility.Collapsed);
+                }
 
                 AssignButtonWithCommand(ref ButtonPlay, "PART_ButtonPlay", mainModel.ActivateSelectedCommand);
-                BindingTools.SetBinding(
-                    ButtonPlay,
-                    ButtonBase.VisibilityProperty,
-                    mainModel,
-                    $"{nameof(FullscreenAppViewModel.SelectedGame)}.{nameof(GamesCollectionViewEntry.IsInstalled)}",
-                    converter: new Converters.BooleanToVisibilityConverter(),
-                    fallBackValue: Visibility.Collapsed);
+                if (ButtonPlay != null)
+                {
+                    BindingTools.SetBinding(
+                        ButtonPlay,
+                        ButtonBase.VisibilityProperty,
+                        mainModel,
+                        $"{nameof(FullscreenAppViewModel.SelectedGame)}.{nameof(GamesCollectionViewEntry.IsInstalled)}",
+                        converter: new Converters.BooleanToVisibilityConverter(),
+                        fallBackValue: Visibility.Collapsed);
+                }
 
                 AssignButtonWithCommand(ref ButtonDetails, "PART_ButtonDetails", mainModel.ToggleGameDetailsCommand);
-                BindingTools.SetBinding(
-                    ButtonDetails,
-                    ButtonBase.VisibilityProperty,
-                    mainModel,
-                    nameof(FullscreenAppViewModel.GameDetailsButtonVisible),
-                    converter: new Converters.BooleanToVisibilityConverter());
+                if (ButtonDetails != null)
+                {
+                    BindingTools.SetBinding(
+                        ButtonDetails,
+                        ButtonBase.VisibilityProperty,
+                        mainModel,
+                        nameof(FullscreenAppViewModel.GameDetailsButtonVisible),
+                        converter: new Converters.BooleanToVisibilityConverter());
+                }
 
                 AssignButtonWithCommand(ref ButtonGameOptions, "PART_ButtonGameOptions", mainModel.ToggleGameOptionsCommand);
-                BindingTools.SetBinding(
-                    ButtonGameOptions,
-                    ButtonBase.VisibilityProperty,
-                    mainModel,
-                    nameof(FullscreenAppViewModel.GameDetailsButtonVisible),
-                    converter: new Converters.BooleanToVisibilityConverter());
+                if (ButtonGameOptions != null)
+                {
+                    BindingTools.SetBinding(
+                        ButtonGameOptions,
+                        ButtonBase.VisibilityProperty,
+                        mainModel,
+                        nameof(FullscreenAppViewModel.GameDetailsButtonVisible),
+                        converter: new Converters.BooleanToVisibilityConverter());
+                }
 
                 AssignButtonWithCommand(ref ButtonSearch, "PART_ButtonSearch", mainModel.OpenSearchCommand);
                 AssignButtonWithCommand(ref ButtonFilter, "PART_ButtonFilter", mainModel.ToggleFiltersCommand);

@@ -24,6 +24,3 @@ def on_game_uninstalled(game):
 
 def on_game_selected(args):
     pass
-
-def menu_function():
-    pass

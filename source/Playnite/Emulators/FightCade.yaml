@@ -1,0 +1,8 @@
+Name: FightCade
+Website: 'https://www.fightcade.com/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImageNameNoExt}"'
+    Platforms: [Various]
+    ImageExtensions: [zip, bin]
+    ExecutableLookup: ^ggpofba\.exe$

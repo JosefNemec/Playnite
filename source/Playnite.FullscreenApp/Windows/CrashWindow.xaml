@@ -8,6 +8,7 @@
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
         xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         mc:Ignorable="d"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
@@ -34,18 +35,23 @@
                 <StackPanel Margin="30">
                     <TextBlock Text="{DynamicResource LOCCrashDescriptionFullscreen}"
                                Style="{StaticResource TextBlockBaseStyle}"
-                               VerticalAlignment="Center" Margin="0,0,0,25"
+                               VerticalAlignment="Center" Margin="5,0,5,25"
                                TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Button Content="{DynamicResource LOCAboutSendDiagButton}"  
+                    <DockPanel LastChildFill="False">
+                        <pctrls:ButtonEx Content="{DynamicResource LOCAboutSendDiagButton}"  
                                 Style="{StaticResource ButtonMessageBox}"
                                 Command="{Binding CreateDiagPackageCommand}"
-                                Name="ButtonGeneratePackage" />
-                        <Button Content="{DynamicResource LOCCrashRestartPlaynite}"                       
+                                x:Name="ButtonGeneratePackage" />
+                        <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartPlaynite}"                       
                                 Style="{StaticResource ButtonMessageBox}"
                                 Command="{Binding RestartCommand}"
-                                Name="ButtonRestart" />
-                    </StackPanel>
+                                x:Name="ButtonRestart" />
+                        <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartSafe}"  
+                                TooltipEx="{DynamicResource LOCCrashRestartSafeTooltip}"                     
+                                Style="{StaticResource ButtonMessageBox}"
+                                Command="{Binding RestartSafeCommand}"
+                                DockPanel.Dock="Right"/>
+                    </DockPanel>
                 </StackPanel>
 
             </Border>

@@ -1,0 +1,58 @@
+Name: MAME
+Website: 'https://www.mamedev.org/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Various]
+    ImageExtensions: [zip, chd, 7z, cmd]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Philips CD-i
+    DefaultArguments: 'cdimono1 -cdrom "{ImagePath}"'
+    Platforms: [Philips CD-i]
+    ImageExtensions: [chd, cue, 7z, zip]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Sony PlayStation (USA)
+    DefaultArguments: 'psu -cdrom "{ImagePath}"'
+    Platforms: [Sony PlayStation]
+    ImageExtensions: [chd, cue, 7z, zip]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Sony PlayStation (Japan)
+    DefaultArguments: 'psj -cdrom "{ImagePath}"'
+    Platforms: [Sony PlayStation]
+    ImageExtensions: [chd, cue, 7z, zip]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Sony PlayStation (Europe)
+    DefaultArguments: 'pse -cdrom "{ImagePath}"'
+    Platforms: [Sony PlayStation]
+    ImageExtensions: [chd, cue, 7z, zip]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Apple //
+    DefaultArguments: 'apple2 -flop1 "{ImagePath}"'
+    Platforms: [Apple II]
+    ImageExtensions: [7z, zip, dsk]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Apple //e
+    DefaultArguments: 'apple2e -flop1 "{ImagePath}"'
+    Platforms: [Apple II]
+    ImageExtensions: [7z, zip, dsk]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Apple ///
+    DefaultArguments: 'apple3 -flop1 "{ImagePath}"'
+    Platforms: [Apple III]
+    ImageExtensions: [7z, zip, dsk]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Apple IIgs (DSK)
+    DefaultArguments: 'apple2gs -flop1 "{ImagePath}"'
+    Platforms: [Apple IIgs]
+    ImageExtensions: [7z, zip, dsk, 2mg]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: Apple IIgs (2MG)
+    DefaultArguments: 'apple2gs -flop3 "{ImagePath}"'
+    Platforms: [Apple IIgs]
+    ImageExtensions: [7z, zip, dsk, 2mg]
+    ExecutableLookup: ^mame.*\.exe$
+  - Name: SNK Neo Geo CD
+    DefaultArguments: 'neocdz -cdrom "{ImagePath}"'
+    Platforms: [SNK Neo Geo CD]
+    ImageExtensions: [chd, cue, 7z, zip]
+    ExecutableLookup: ^mame.*\.exe$

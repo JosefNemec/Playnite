@@ -20,8 +20,7 @@ namespace SteamLibrary.Tests
         public void StandardDownloadTest()
         {
             var provider = new SteamMetadataProvider(
-                new SteamLibrary(PlayniteTests.GetTestingApi().Object, null),
-                new SteamApiClient());
+                new SteamLibrary(PlayniteTests.GetTestingApi().Object, null));
             var data = provider.GetMetadata(new Game() { GameId = "578080" });
             Assert.IsNotNull(data.GameInfo);
             Assert.IsNotNull(data.Icon);
@@ -41,8 +40,7 @@ namespace SteamLibrary.Tests
         public void VRMetadataTest()
         {
             var provider = new SteamMetadataProvider(
-                new SteamLibrary(PlayniteTests.GetTestingApi().Object, null),
-                new SteamApiClient());
+                new SteamLibrary(PlayniteTests.GetTestingApi().Object, null));
             var data = provider.GetMetadata(new Game() { GameId = "378860" });
             Assert.IsTrue(data.GameInfo.Features.Contains("VR"));
         }

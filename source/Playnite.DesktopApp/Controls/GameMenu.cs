@@ -1,12 +1,15 @@
-﻿using Playnite.Common;
+﻿using Playnite.Commands;
+using Playnite.Common;
 using Playnite.DesktopApp.Markup;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -25,6 +28,8 @@ namespace Playnite.DesktopApp.Controls
 {
     public class GameMenu : ContextMenu
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         public bool ShowStartSection
         {
             get
@@ -42,18 +47,10 @@ namespace Playnite.DesktopApp.Controls
             DependencyProperty.Register(
                 nameof(ShowStartSection),
                 typeof(bool),
-                typeof(GameMenu),
-                new PropertyMetadata(true, ShowStartSectionPropertyChangedCallback));
-
-        private static void ShowStartSectionPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var obj = sender as GameMenu;
-            obj.InitializeItems();
-        }
+                typeof(GameMenu));
 
         private IResourceProvider resources;
         private DesktopAppViewModel model;
-        private readonly SynchronizationContext context;
 
         private static object startIcon;
         private static object removeIcon;
@@ -66,6 +63,8 @@ namespace Playnite.DesktopApp.Controls
         private static object shortcutIcon;
         private static object installIcon;
         private static object editIcon;
+        private static object manualIcon;
+        private static bool iconsLoaded = false;
 
         public Game Game
         {
@@ -80,21 +79,10 @@ namespace Playnite.DesktopApp.Controls
         static GameMenu()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GameMenu), new FrameworkPropertyMetadata(typeof(GameMenu)));
-            startIcon = GetIcon("PlayIcon");
-            removeIcon = GetIcon("RemoveGameIcon");
-            linksIcon = GetIcon("LinksIcon");
-            favoriteIcon = GetIcon("AddFavoritesIcon");
-            unFavoriteIcon = GetIcon("RemoveFavoritesIcon");
-            hideIcon = GetIcon("HideIcon");
-            unHideIcon = GetIcon("UnHideIcon");
-            browseIcon = GetIcon("OpenFolderIcon");
-            shortcutIcon = GetIcon("DesktopShortcutIcon");
-            installIcon = GetIcon("InstallIcon");
-            editIcon = GetIcon("EditGameIcon");
         }
 
         public GameMenu() : this(DesktopApplication.Current?.MainModel)
-        {            
+        {
         }
 
         public GameMenu(DesktopAppViewModel model)
@@ -104,41 +92,21 @@ namespace Playnite.DesktopApp.Controls
                 return;
             }
 
-            context = SynchronizationContext.Current;
             this.model = model;
             resources = new ResourceProvider();
             Opened += GameMenu_Opened;
+            Closed += GameMenu_Closed;
             DataContextChanged += GameMenu_DataContextChanged;
-            InitializeItems();
+        }
+
+        private void GameMenu_Closed(object sender, RoutedEventArgs e)
+        {
+            Deinitialize();
         }
 
         private void GameMenu_Opened(object sender, RoutedEventArgs e)
         {
             InitializeItems();
-        }
-
-        private static object GetIcon(string iconName)
-        {
-            var resource = ResourceProvider.GetResource(iconName);
-            if (resource != null)
-            {
-                if (resource is string stringIcon)
-                {
-                    return Images.GetImageFromFile(ThemeFile.GetFilePath(stringIcon));
-                }
-                else if (resource is BitmapImage bitmap)
-                {
-                    var image = new Image() { Source = bitmap };
-                    RenderOptions.SetBitmapScalingMode(image, RenderOptions.GetBitmapScalingMode(bitmap));
-                    return image;
-                }
-                else if (resource is TextBlock textIcon)
-                {
-                    return textIcon;
-                }
-            }
-
-            return null;
         }
 
         private void GameMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -191,8 +159,31 @@ namespace Playnite.DesktopApp.Controls
             Game = game;
         }
 
+        public void Deinitialize()
+        {
+            Items.Clear();
+        }
+
         public void InitializeItems()
         {
+            // Have to load icons as late as possible to make sure ovewritten theme resources are loaded.
+            if (!iconsLoaded)
+            {
+                startIcon = MenuHelpers.GetIcon("PlayIcon");
+                removeIcon = MenuHelpers.GetIcon("RemoveGameIcon");
+                linksIcon = MenuHelpers.GetIcon("LinksIcon");
+                favoriteIcon = MenuHelpers.GetIcon("AddFavoritesIcon");
+                unFavoriteIcon = MenuHelpers.GetIcon("RemoveFavoritesIcon");
+                hideIcon = MenuHelpers.GetIcon("HideIcon");
+                unHideIcon = MenuHelpers.GetIcon("UnHideIcon");
+                browseIcon = MenuHelpers.GetIcon("OpenFolderIcon");
+                shortcutIcon = MenuHelpers.GetIcon("DesktopShortcutIcon");
+                installIcon = MenuHelpers.GetIcon("InstallIcon");
+                editIcon = MenuHelpers.GetIcon("EditGameIcon");
+                manualIcon = MenuHelpers.GetIcon("ManualIcon");
+                iconsLoaded = true;
+            }
+
             Items.Clear();
 
             if (Games?.Count == 0 && Game == null)
@@ -202,6 +193,17 @@ namespace Playnite.DesktopApp.Controls
 
             if (Games != null)
             {
+                // Create Desktop Shortcut
+                var shortcutItem = new MenuItem()
+                {
+                    Header = resources.GetString("LOCCreateDesktopShortcut"),
+                    Icon = shortcutIcon,
+                    Command = model.CreateDesktopShortcutsCommand,
+                    CommandParameter = Games
+                };
+
+                Items.Add(shortcutItem);
+
                 // Set Favorites
                 var favoriteItem = new MenuItem()
                 {
@@ -266,6 +268,12 @@ namespace Playnite.DesktopApp.Controls
                 };
 
                 Items.Add(categoryItem);
+
+                // Set Completion Status
+                Items.Add(LoadCompletionStatusItem());
+
+                // Extensions items
+                AddExtensionItems();
                 Items.Add(new Separator());
 
                 // Remove
@@ -358,11 +366,10 @@ namespace Playnite.DesktopApp.Controls
                         linksItem.Items.Add(new MenuItem()
                         {
                             Header = link.Name,
-                            Command = Commands.GlobalCommands.NavigateUrlCommand,
-                            CommandParameter = link.Url
+                            Command = new RelayCommand<Link>((_) => GlobalCommands.NavigateUrl(Game.ExpandVariables(link.Url)))
                         });
-                    }     
-                    
+                    }
+
                     Items.Add(linksItem);
                     Items.Add(new Separator());
                 }
@@ -386,11 +393,24 @@ namespace Playnite.DesktopApp.Controls
                 {
                     Header = resources.GetString("LOCCreateDesktopShortcut"),
                     Icon = shortcutIcon,
-                    Command = model.CreateGameShortcutCommand,
+                    Command = model.CreateDesktopShortcutCommand,
                     CommandParameter = Game
                 };
 
                 Items.Add(shortcutItem);
+
+                // Manual
+                if (!Game.Manual.IsNullOrEmpty())
+                {
+                    Items.Add(new MenuItem()
+                    {
+                        Header = resources.GetString("LOCOpenGameManual"),
+                        Icon = manualIcon,
+                        Command = model.OpenManualCommand,
+                        CommandParameter = Game
+                    });
+                }
+
                 Items.Add(new Separator());
 
                 // Toggle Favorites
@@ -399,7 +419,7 @@ namespace Playnite.DesktopApp.Controls
                     Header = Game.Favorite ? resources.GetString("LOCRemoveFavoriteGame") : resources.GetString("LOCFavoriteGame"),
                     Icon = Game.Favorite ? unFavoriteIcon : favoriteIcon,
                     Command = model.ToggleFavoritesCommand,
-                    CommandParameter = Game                    
+                    CommandParameter = Game
                 };
 
                 Items.Add(favoriteItem);
@@ -437,8 +457,14 @@ namespace Playnite.DesktopApp.Controls
                 };
 
                 Items.Add(categoryItem);
+
+                // Set Completion Status
+                Items.Add(LoadCompletionStatusItem());
+
+                // Extensions items
+                AddExtensionItems();
                 Items.Add(new Separator());
-                
+
                 // Remove
                 var removeItem = new MenuItem()
                 {
@@ -467,9 +493,148 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        public override void OnApplyTemplate()
+        private MenuItem LoadCompletionStatusItem()
         {
-            base.OnApplyTemplate();
+            var completionItem = new MenuItem()
+            {
+                Header = resources.GetString("LOCSetCompletionStatus")
+            };
+
+            foreach (CompletionStatus status in Enum.GetValues(typeof(CompletionStatus)))
+            {
+                if (Games != null)
+                {
+                    completionItem.Items.Add(new MenuItem
+                    {
+                        Header = status.GetDescription(),
+                        Command = model.SetGamesCompletionStatusCommand,
+                        CommandParameter = new Tuple<IEnumerable<Game>, CompletionStatus>(Games, status)
+                    });
+                }
+                else if (Game != null)
+                {
+                    completionItem.Items.Add(new MenuItem
+                    {
+                        Header = status.GetDescription(),
+                        Command = model.SetGameCompletionStatusCommand,
+                        CommandParameter = new Tuple<Game, CompletionStatus>(Game, status)
+                    });
+                }
+            }
+
+            return completionItem;
+        }
+
+        private void AddExtensionItems()
+        {
+            var args = new GetGameMenuItemsArgs();
+            var toAdd = new List<GameMenuItem>();
+            if (Games != null)
+            {
+                args.Games = Games;
+            }
+            else
+            {
+                args.Games = new List<Game>(1) { Game };
+            }
+
+            foreach (var plugin in model.Extensions.Plugins.Values)
+            {
+                try
+                {
+                    var items = plugin.Plugin.GetGameMenuItems(args);
+                    if (items.HasItems())
+                    {
+                        toAdd.AddRange(items);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get menu items from plugin {plugin.Description.Name}");
+                }
+            }
+
+            foreach (var script in model.Extensions.Scripts)
+            {
+                if (script.SupportedMenus.Contains(Scripting.SupportedMenuMethods.GameMenu))
+                {
+                    try
+                    {
+                        var items = script.GetGameMenuItems(args);
+                        if (items.HasItems())
+                        {
+                            foreach (var item in items)
+                            {
+                                var newItem = GameMenuItem.FromScriptGameMenuItem(item);
+                                newItem.Action = (a) =>
+                                {
+                                    script.InvokeFunction(item.FunctionName, new List<object>
+                                    {
+                                        new ScriptGameMenuItemActionArgs
+                                        {
+                                            Games = a.Games,
+                                            SourceItem = item
+                                        }
+                                    });
+                                };
+
+                                toAdd.Add(newItem);
+                            }
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to get menu items from script {script.Name}");
+                    }
+                }
+            }
+
+            if (toAdd.Count > 0)
+            {
+                Items.Add(new Separator());
+                var menuItems = new Dictionary<string, MenuItem>();
+                foreach (var item in toAdd)
+                {
+                    var newItem = new MenuItem()
+                    {
+                        Header = item.Description,
+                        Icon = MenuHelpers.GetIcon(item.Icon)
+                    };
+
+                    if (item.Action != null)
+                    {
+                        newItem.Click += (_, __) =>
+                        {
+                            try
+                            {
+                                item.Action(new GameMenuItemActionArgs
+                                {
+                                    Games = args.Games,
+                                    SourceItem = item
+                                });
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                logger.Error(e, "Game menu extension action failed.");
+                                Dialogs.ShowErrorMessage(
+                                    ResourceProvider.GetString("LOCMenuActionExecError") +
+                                    Environment.NewLine + Environment.NewLine +
+                                    e.Message, "");
+                            }
+                        };
+                    }
+
+                    if (item.MenuSection.IsNullOrEmpty())
+                    {
+                        Items.Add(newItem);
+                    }
+                    else
+                    {
+                        var parent = MenuHelpers.GenerateMenuParents(menuItems, item.MenuSection, Items);
+                        parent?.Items.Add(newItem);
+                    }
+                }
+            }
         }
     }
 }

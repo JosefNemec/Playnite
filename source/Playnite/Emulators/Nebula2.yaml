@@ -1,0 +1,8 @@
+Name: Nebula 2
+Website: 'http://nebula.emulatronia.com/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '{ImageNameNoExt}'
+    Platforms: [Sega Model 2]
+    ImageExtensions: [zip]
+    ExecutableLookup: ^nebula\.exe$

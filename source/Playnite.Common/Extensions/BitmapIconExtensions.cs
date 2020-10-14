@@ -120,7 +120,7 @@ namespace System.Drawing.Imaging
         public static bool ConvertToIcon(string inputPath, string outputPath)
         {
             using (FileStream inputStream = new FileStream(inputPath, FileMode.Open))
-            using (FileStream outputStream = new FileStream(outputPath, FileMode.OpenOrCreate))
+            using (FileStream outputStream = new FileStream(outputPath, FileMode.Create))
             {
                 return ConvertToIcon(inputStream, outputStream);
             }
@@ -134,7 +134,7 @@ namespace System.Drawing.Imaging
         /// <returns>Wether or not the icon was succesfully generated</returns>
         public static bool ConvertToIcon(Image inputImage, string outputPath)
         {
-            using (FileStream outputStream = new FileStream(outputPath, FileMode.OpenOrCreate))
+            using (FileStream outputStream = new FileStream(outputPath, FileMode.Create))
             {
                 return ConvertToIcon(new Bitmap(inputImage), outputStream);
             }

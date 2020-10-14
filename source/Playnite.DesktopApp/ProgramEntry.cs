@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +17,10 @@ namespace Playnite.DesktopApp
         [STAThread]
         public static void Main(string[] args)
         {
+            FileSystem.CreateDirectory(PlaynitePaths.JitProfilesPath);
+            ProfileOptimization.SetProfileRoot(PlaynitePaths.JitProfilesPath);
+            ProfileOptimization.StartProfile("desktop");
+
             if (PlaynitePaths.ProgramPath.Contains(@"temp\rar$", StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show(

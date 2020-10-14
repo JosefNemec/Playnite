@@ -56,22 +56,14 @@
             Projects="../source/Plugins/AmazonGamesLibrary/AmazonGamesLibrary.csproj"
             Targets="Build"
             Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
+        <MSBuild
+            Projects="../source/Plugins/PSNLibrary/PSNLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
     </Target>
     <Target Name="Build" DependsOnTargets="Plugins">
         <MSBuild
-            Projects="../source/Playnite.Common/Playnite.Common.csproj"
-            Targets="Build"
-            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
-        <MSBuild
-            Projects="../source/PlayniteSDK/Playnite.SDK.csproj"
-            Targets="Build"
-            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
-        <MSBuild
             Projects="../source/tools/Playnite.Toolbox/Playnite.Toolbox.csproj"
-            Targets="Build"
-            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
-        <MSBuild
-            Projects="../source/tools/Playnite.UIWrapper/Playnite.UIWrapper.csproj"
             Targets="Build"
             Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
         <MSBuild
@@ -82,5 +74,13 @@
             Projects="../source/Playnite.FullscreenApp/Playnite.FullscreenApp.csproj"
             Targets="Build"
             Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Playnite.Common/Playnite.Common.csproj"
+            Targets="Build"
+            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
+        <MSBuild
+            Projects="../source/PlayniteSDK/Playnite.SDK.csproj"
+            Targets="Build"
+            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
     </Target>
 </Project>
