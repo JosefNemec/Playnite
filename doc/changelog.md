@@ -1,5 +1,14 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 5.4.0
+
+* New
+  * [ActivateGlobalProgress](xref:Playnite.SDK.IDialogsFactory) can now report specific progress status.
+  * [CanExecuteJavascriptInMainFrame](xref:Playnite.SDK.IWebView) property for WebViews.
+  * Various [data serialization methods](xref:Playnite.SDK.Data.Serialization) (JSON, YAML, TOML)
+  * [CreateWindow](xref:Playnite.SDK.IDialogsFactory) for creating native Playnite windows with styling.
+  * [GetCurrentAppWindow](xref:Playnite.SDK.IDialogsFactory) to get currently active Playnite window.
+
 #### 5.3.0
 
 * **Breaking Changes**:
@@ -9,8 +18,8 @@
 * **Now obsolete**:
 
   * These changes do not break compatibility in current version (mentioned methods are still available in SDK), but they will be made breaking in future major Playnite updates.
-  * Added `Id` to extension and theme [manifests](tutorials/extensionsManifest.md). This field is currently not mandatory for existing extensions (Playnite 8 will load extensions without ID), but should be provided for better extension installation and update support. Toolbox will not pack new extensions unless `Id` is present.
-  * The way custom menu items are implemented (for main menu and game menu) has been completely changed (the old system still works temporarily). See [related documentation page](tutorials/menus.md) for more information.  
+  * Added `Id` to extension and theme [manifests](tutorials/extensionsManifest.md). This field is currently not mandatory for existing extensions (Playnite 8 will load installed extensions without an ID, but will not install new ones without an ID), but should be provided for better extension installation and update support. Toolbox will not pack new extensions unless `Id` is present.
+  * The way custom menu items are implemented (for main menu and game menu) has been completely changed (the old system still works temporarily). See [related documentation page](tutorials/menus.md) for more information.
   * [NavigationChanged](xref:Playnite.SDK.IWebView) from IWebView is now obsolete, use new `LoadingChanged` instead.
 
 * New
