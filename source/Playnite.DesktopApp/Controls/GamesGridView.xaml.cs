@@ -106,6 +106,7 @@ namespace Playnite.DesktopApp.Controls
         public static readonly DependencyProperty AppSettingsProperty = DependencyProperty.Register(nameof(AppSettings), typeof(PlayniteSettings), typeof(GamesGridView));
 
         private bool ignoreColumnChanges = false;
+        private bool initialized = false;
 
         public GamesGridView()
         {
@@ -113,42 +114,16 @@ namespace Playnite.DesktopApp.Controls
             GridGames.SelectionChanged += GridGames_SelectionChanged;
             ActualGridView.Columns.CollectionChanged += Columns_CollectionChanged;
             Loaded += GamesGridView_Loaded;
-            Unloaded += GamesGridView_Unloaded;
-        }
-
-        private void GamesGridView_Unloaded(object sender, RoutedEventArgs e)
-        {
-            AppSettings.ViewSettings.ListViewColumns.Added.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.AgeRating.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Categories.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.CommunityScore.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.CompletionStatus.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.CriticScore.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Developers.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Features.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Genres.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Icon.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.InstallDirectory.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.IsInstalled.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.LastActivity.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Modified.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Name.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Platform.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.PlayCount.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Playtime.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.PluginId.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Publishers.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Region.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.ReleaseDate.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Series.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Source.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Tags.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.UserScore.PropertyChanged -= ListViewColumn_PropertyChanged;
-            AppSettings.ViewSettings.ListViewColumns.Version.PropertyChanged -= ListViewColumn_PropertyChanged;
         }
 
         private void GamesGridView_Loaded(object sender, RoutedEventArgs e)
         {
+            if (initialized)
+            {
+                return;
+            }
+
+            initialized = true;
             InitializeColumns();
             AppSettings.ViewSettings.ListViewColumns.Added.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.AgeRating.PropertyChanged += ListViewColumn_PropertyChanged;
