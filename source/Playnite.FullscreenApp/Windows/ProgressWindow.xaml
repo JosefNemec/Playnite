@@ -35,8 +35,8 @@
                        Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" />
                 <ContentControl Style="{StaticResource ProgressIndicator}" Focusable="False"
                                 Height="38" Width="38"
-                                Visibility="{Binding Indeterminate, Converter={StaticResource BooleanToVisibilityConverter}}"/>                
-                <TextBlock Text="{Binding ProgressText}"
+                                Visibility="{Binding Indeterminate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <TextBlock Text="{Binding ProgressArgs.Text}"
                            HorizontalAlignment="Center" Margin="0,20,0,0"
                            Style="{StaticResource TextBlockBaseStyle}" />
 
