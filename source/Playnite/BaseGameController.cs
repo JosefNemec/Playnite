@@ -48,29 +48,29 @@ namespace Playnite
 
         public virtual void OnStarting(object sender, GameControllerEventArgs args)
         {
-            execContext.Post((a) => Starting?.Invoke(sender, args), null);
+            execContext.Send((a) => Starting?.Invoke(sender, args), null);
         }
 
         public virtual void OnStarted(object sender, GameControllerEventArgs args)
         {
             IsGameRunning = true;
-            execContext.Post((a) => Started?.Invoke(sender, args), null);
+            execContext.Send((a) => Started?.Invoke(sender, args), null);
         }
 
         public virtual void OnStopped(object sender, GameControllerEventArgs args)
         {
             IsGameRunning = false;
-            execContext.Post((a) => Stopped?.Invoke(sender, args), null);
+            execContext.Send((a) => Stopped?.Invoke(sender, args), null);
         }
 
         public virtual void OnUninstalled(object sender, GameControllerEventArgs args)
         {
-            execContext.Post((a) => Uninstalled?.Invoke(sender, args), null);
+            execContext.Send((a) => Uninstalled?.Invoke(sender, args), null);
         }
 
         public virtual void OnInstalled(object sender, GameInstalledEventArgs args)
         {
-            execContext.Post((a) => Installed?.Invoke(sender, args), null);
+            execContext.Send((a) => Installed?.Invoke(sender, args), null);
         }
     }
 }
