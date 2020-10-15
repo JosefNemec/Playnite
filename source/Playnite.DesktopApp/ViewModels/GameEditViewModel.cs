@@ -366,7 +366,10 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.Links.CollectionChanged += Links_CollectionChanged;
                 foreach (var link in EditingGame.Links)
                 {
-                    link.PropertyChanged += Link_PropertyChanged;
+                    if (link != null)
+                    {
+                        link.PropertyChanged += Link_PropertyChanged;
+                    }
                 }
             }
 
