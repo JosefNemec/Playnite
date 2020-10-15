@@ -46,7 +46,8 @@
         <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
                 DockPanel.Dock="Left">
             <ListBox MinWidth="160" BorderThickness="0" ScrollViewer.CanContentScroll="False"
-                     ItemsSource="{Binding OptionsList}" SelectedIndex="0">
+                     ItemsSource="{Binding OptionsList}" SelectedIndex="0"
+                     DisplayMemberPath="Name">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged" >
                         <prism:InvokeCommandAction Command="{Binding LibraryItemChangedCommand}" />

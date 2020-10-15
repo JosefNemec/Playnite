@@ -1,6 +1,8 @@
 ﻿using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
@@ -35,8 +37,12 @@ namespace Playnite.DesktopApp.ViewModels
             ExtensionFactory extensions,
             PlayniteApplication app) : base(database, settings, window, dialogs, resources, extensions, app)
         {
-            OptionsList = new List<object>() { ResourceProvider.GetString(LOC.Libraries), new Separator() };
-            OptionsList.AddRange(LibraryPluginList);
+            OptionsList = new List<object>()
+            {
+                new DatabaseObject { Name = ResourceProvider.GetString(LOC.Libraries) },
+                new Separator()
+            };
+            OptionsList.AddRange(Extensions.LibraryPlugins);
 
             pluginListView = new Controls.SettingsSections.ExtensionsLibraries() { DataContext = this };
             SelectedSectionView = pluginListView;
@@ -50,13 +56,13 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             var item = args.AddedItems[0];
-            if (item is string)
+            if (item is DatabaseObject)
             {
                 SelectedSectionView = pluginListView;
             }
-            else if (item is SelectablePlugin plugin)
+            else if (item is Plugin plugin)
             {
-                SelectedSectionView = GetPluginSettingsView(plugin.Plugin.Id);
+                SelectedSectionView = GetPluginSettingsView(plugin.Id);
             }
         }
 
