@@ -126,22 +126,6 @@ namespace BattleNetLibrary
             },
             new BNetApp()
             {
-                ApiId = 1146311730,
-                ProductId = "DST2",
-                InternalId = "destiny2",
-                IconUrl = @"https://blznav.akamaized.net/img/games/logo-dest2-933dcf397eb647e0.png",
-                BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//fbd/22512bcb91e4a3b3d9ee208be2ee3beb-prod-mobile-bg.jpg",
-                CoverUrl = "http://bnetproduct-a.akamaihd.net//f84/7d453e354c9df8ca335ad45da020704c-prod-card-tall.jpg",
-                Name = "Destiny 2",
-                Type = BNetAppType.Default,
-                Links = new List<Link>()
-                {
-                    new Link("Homepage", "https://www.destinythegame.com/"),
-                    new Link("Forums", "https://www.bungie.net/en/Forums/Topics?pNumber=0&tg=Destiny2")
-                }
-            },
-            new BNetApp()
-            {
                 ProductId = "D2",
                 InternalId = "Diablo II",
                 IconUrl = @"https://bneteu-a.akamaihd.net/account/static/local-common/images/game-icons/d2dv-32.4PqK2.png",
