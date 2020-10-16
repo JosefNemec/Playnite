@@ -484,8 +484,8 @@ namespace Playnite
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     MessageBox.Show(
-                        ResourceProvider.GetString("LOCStartGenericError"),
-                        ResourceProvider.GetString("LOCStartupError"));
+                        "Playnite failed to start. Please close all other instances and try again.",
+                        "Startup Error");
                     logger.Error(exc, "Can't process communication with other instances.");
                 }
 
