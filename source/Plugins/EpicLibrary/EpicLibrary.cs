@@ -93,7 +93,7 @@ namespace EpicLibrary
 
             foreach (var gameAsset in assets.Where(a => a.@namespace != "ue"))
             {
-                var cacheFile = Paths.GetSafeFilename($"{gameAsset.@namespace}_{gameAsset.catalogItemId}_{gameAsset.buildVersion}.json");
+                var cacheFile = Paths.GetSafePathName($"{gameAsset.@namespace}_{gameAsset.catalogItemId}_{gameAsset.buildVersion}.json");
                 cacheFile = Path.Combine(cacheDir, cacheFile);
                 var catalogItem = accountApi.GetCatalogItem(gameAsset.@namespace, gameAsset.catalogItemId, cacheFile);
                 if (catalogItem?.categories?.Any(a => a.path == "applications") != true)

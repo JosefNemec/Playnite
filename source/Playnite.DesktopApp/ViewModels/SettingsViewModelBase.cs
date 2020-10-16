@@ -1,4 +1,5 @@
 ﻿using Playnite.API;
+using Playnite.Common;
 using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.SDK;
@@ -184,23 +185,31 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<SelectablePlugin>((plugin) =>
             {
+                var extDir = string.Empty;
                 if (plugin.Description.Type == ExtensionType.Script)
                 {
-                    return;
+                    if (!plugin.Description.Id.IsNullOrEmpty())
+                    {
+                        extDir = Path.Combine(PlaynitePaths.ExtensionsDataPath, Paths.GetSafePathName(plugin.Description.Id));
+                    }
                 }
 
                 var p = Extensions.Plugins.Values.FirstOrDefault(a => a.Description.DirectoryPath == plugin.Description.DirectoryPath);
                 if (p != null)
                 {
-                    var dir = p.Plugin.GetPluginUserDataPath();
+                    extDir = p.Plugin.GetPluginUserDataPath();
+                }
 
+                if (!extDir.IsNullOrEmpty())
+                {
                     try
                     {
-                        Process.Start(dir);
+                        FileSystem.CreateDirectory(extDir);
+                        Process.Start(extDir);
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
-                        logger.Error(e, $"Failed to open dir {dir}.");
+                        logger.Error(e, $"Failed to open dir {extDir}.");
                     }
                 }
             });

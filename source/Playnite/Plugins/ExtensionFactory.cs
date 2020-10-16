@@ -292,6 +292,12 @@ namespace Playnite.Plugins
 
                     script.SetVariable("PlayniteApi", injectingApi);
                     script.SetVariable("CurrentExtensionInstallPath", desc.DirectoryPath);
+                    if (!desc.Id.IsNullOrEmpty())
+                    {
+                        var extDir = Path.Combine(PlaynitePaths.ExtensionsDataPath, Paths.GetSafePathName(desc.Id));
+                        FileSystem.CreateDirectory(extDir);
+                        script.SetVariable("CurrentExtensionDataPath", extDir);
+                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

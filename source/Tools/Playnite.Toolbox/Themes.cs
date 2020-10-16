@@ -178,7 +178,7 @@ namespace Playnite.Toolbox
             }
 
             var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
-            targetPath = Path.Combine(targetPath, $"{Common.Paths.GetSafeFilename(extInfo.Name).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedThemeFileExtention}");
+            targetPath = Path.Combine(targetPath, $"{Common.Paths.GetSafePathName(extInfo.Name).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedThemeFileExtention}");
             FileSystem.PrepareSaveFile(targetPath);
             using (var zipStream = new FileStream(targetPath, FileMode.Create))
             {
@@ -419,7 +419,7 @@ namespace Playnite.Toolbox
 
         public static string GenerateNewTheme(ApplicationMode mode, string themeName)
         {
-            var themeDirName = Common.Paths.GetSafeFilename(themeName).Replace(" ", string.Empty);
+            var themeDirName = Common.Paths.GetSafePathName(themeName).Replace(" ", string.Empty);
             var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
             var outDir = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), themeDirName);
             if (Directory.Exists(outDir))

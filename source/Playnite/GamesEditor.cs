@@ -533,7 +533,7 @@ namespace Playnite
         {
             try
             {
-                var path = Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Paths.GetSafeFilename(game.Name) + ".url"));
+                var path = Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Paths.GetSafePathName(game.Name) + ".url"));
                 string icon = string.Empty;
 
                 if (!game.Icon.IsNullOrEmpty())

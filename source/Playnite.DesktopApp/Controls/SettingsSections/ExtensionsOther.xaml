@@ -95,15 +95,6 @@
             </TextBlock>
 
             <TextBlock Margin="0,5,0,0"  DockPanel.Dock="Top">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Description.Type}" Value="Script">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
                 <Hyperlink Command="{Binding Data.OpenExtensionDataDirCommand, Source={StaticResource RootDataContext}}"
                            CommandParameter="{Binding}">
                     <Run Text="{DynamicResource LOCExtensionDataDir}" />
