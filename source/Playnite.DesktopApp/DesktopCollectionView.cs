@@ -1,4 +1,5 @@
-﻿using Playnite.Plugins;
+﻿using Playnite.Database;
+using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -220,7 +221,7 @@ namespace Playnite.DesktopApp
             }
         }
 
-        private IEnumerable<Guid> GetGroupingIds(GroupableField orderField, Game sourceGame)
+        private List<Guid> GetGroupingIds(GroupableField orderField, Game sourceGame)
         {
             switch (orderField)
             {
@@ -260,21 +261,30 @@ namespace Playnite.DesktopApp
                 case GamesViewType.ListGrouped:
                     Items.AddRange(Database.Games.SelectMany(x =>
                     {
+                        var entries = new List<GamesCollectionViewEntry>();
                         var ids = GetGroupingIds(viewSettings.GroupingOrder, x);
-                        if (ids?.Any() == true)
+                        if (ids.HasItems())
                         {
-                            return ids.Select(c =>
+                            foreach (var id in ids)
                             {
-                            return new GamesCollectionViewEntry(x, GetLibraryPlugin(x), groupTypes[viewSettings.GroupingOrder], c, settings);
-                            });
+                                var newItem = GamesCollectionViewEntry.GetAdvancedGroupedEntry(x, GetLibraryPlugin(x), groupTypes[viewSettings.GroupingOrder], id, Database, settings);
+                                if (newItem != null)
+                                {
+                                    entries.Add(newItem);
+                                }
+                            }
+
+                            if (entries.Count == 0)
+                            {
+                                entries.Add(new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings));
+                            }
                         }
                         else
                         {
-                            return new List<GamesCollectionViewEntry>()
-                            {
-                                new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings)
-                            };
+                            entries.Add(new GamesCollectionViewEntry(x, GetLibraryPlugin(x), settings));
                         }
+
+                        return entries;
                     }));
 
                     break;
@@ -513,20 +523,30 @@ namespace Playnite.DesktopApp
                         break;
 
                     case GamesViewType.ListGrouped:
-
+                        var entries = new List<GamesCollectionViewEntry>();
                         var ids = GetGroupingIds(viewSettings.GroupingOrder, game);
-                        if (ids?.Any() == true)
+                        if (ids.HasItems())
                         {
-                            addList.AddRange(ids.Select(c =>
+                            foreach (var id in ids)
                             {
-                                return new GamesCollectionViewEntry(game, GetLibraryPlugin(game), groupTypes[viewSettings.GroupingOrder], c, settings);
-                            }));
+                                var newItem = GamesCollectionViewEntry.GetAdvancedGroupedEntry(game, GetLibraryPlugin(game), groupTypes[viewSettings.GroupingOrder], id, Database, settings);
+                                if (newItem != null)
+                                {
+                                    entries.Add(newItem);
+                                }
+                            }
+
+                            if (entries.Count == 0)
+                            {
+                                entries.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game), settings));
+                            }
                         }
                         else
                         {
-                            addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game), settings));
+                            entries.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game), settings));
                         }
 
+                        addList.AddRange(entries);
                         break;
                 }
             }

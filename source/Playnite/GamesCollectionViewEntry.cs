@@ -19,8 +19,6 @@ namespace Playnite
     {
         private PlayniteSettings settings;
         private PlayniteApplication application;
-        private readonly Type colGroupType;
-        private readonly Guid colGroupId;
         private BitmapLoadProperties detailsListIconProperties;
         private BitmapLoadProperties gridViewCoverProperties;
         private BitmapLoadProperties backgroundImageProperties;
@@ -244,35 +242,64 @@ namespace Playnite
             }
         }
 
-        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, Type colGroupType, Guid colGroupId, PlayniteSettings settings) : this(game, plugin, settings)
+        public static GamesCollectionViewEntry GetAdvancedGroupedEntry(
+            Game game,
+            LibraryPlugin plugin,
+            Type colGroupType,
+            Guid groupObjId,
+            IGameDatabase database,
+            PlayniteSettings settings)
         {
-            this.colGroupType = colGroupType;
-            this.colGroupId = colGroupId;
-
             if (colGroupType == typeof(Genre))
             {
-                Genre = game.Genres?.FirstOrDefault(a => a.Id == colGroupId);
+                var obj = database.Genres.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Genre = obj };
+                }
             }
             else if (colGroupType == typeof(Developer))
             {
-                Developer = game.Developers?.FirstOrDefault(a => a.Id == colGroupId);
+                var obj = database.Companies.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Developer = obj };
+                }
             }
             else if (colGroupType == typeof(Publisher))
             {
-                Publisher = game.Publishers?.FirstOrDefault(a => a.Id == colGroupId);
+                var obj = database.Companies.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Publisher = obj };
+                }
             }
             else if (colGroupType == typeof(Tag))
             {
-                Tag = game.Tags?.FirstOrDefault(a => a.Id == colGroupId);
+                var obj = database.Tags.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Tag = obj };
+                }
             }
             else if (colGroupType == typeof(GameFeature))
             {
-                Feature = game.Features?.FirstOrDefault(a => a.Id == colGroupId);
+                var obj = database.Features.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Feature = obj };
+                }
             }
             else if (colGroupType == typeof(Category))
             {
-                Category = game.Categories?.FirstOrDefault(a => a.Id == colGroupId);
+                var obj = database.Categories.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Category = obj };
+                }
             }
+
+            return null;
         }
 
         public void Dispose()
