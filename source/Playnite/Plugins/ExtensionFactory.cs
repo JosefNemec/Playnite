@@ -37,6 +37,8 @@ namespace Playnite.Plugins
         private IGameDatabase database;
         private GameControllerFactory controllers;
 
+        public List<ExtensionManifest> FailedExtensions { get; } = new List<ExtensionManifest>();
+
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
             get; private set;
@@ -279,6 +281,7 @@ namespace Playnite.Plugins
                 if (!File.Exists(scriptPath))
                 {
                     logger.Error($"Cannot load script extension, {scriptPath} not found.");
+                    FailedExtensions.Add(desc);
                     continue;
                 }
 
@@ -287,6 +290,7 @@ namespace Playnite.Plugins
                     script = PlayniteScript.FromFile(scriptPath);
                     if (script == null)
                     {
+                        FailedExtensions.Add(desc);
                         continue;
                     }
 
@@ -303,6 +307,7 @@ namespace Playnite.Plugins
                 {
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {scriptPath}");
+                    FailedExtensions.Add(desc);
                     continue;
                 }
 
@@ -361,6 +366,8 @@ namespace Playnite.Plugins
                     {
                         logger.Error(e, string.Empty);
                     }
+
+                    FailedExtensions.Add(desc);
                 }
             }
 
@@ -392,6 +399,7 @@ namespace Playnite.Plugins
             else
             {
                 logger.Error($"Plugin dependencices are not compatible: {descriptor.Name}");
+                FailedExtensions.Add(descriptor);
                 // TODO: Unload assembly once Playnite switches to .NET Core
             }
         }

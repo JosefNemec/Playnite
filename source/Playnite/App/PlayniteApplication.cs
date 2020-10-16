@@ -342,6 +342,13 @@ namespace Playnite
             SDK.Data.Serialization.Init(new DataSerializer());
             Startup();
             logger.Info($"Application {CurrentVersion} started");
+            foreach (var fail in Extensions.FailedExtensions)
+            {
+                Api.Notifications.Add(new NotificationMessage(
+                    fail.DirectoryPath,
+                    ResourceProvider.GetString(LOC.SpecificExtensionLoadError).Format(fail.Name),
+                    NotificationType.Error));
+            }
         }
 
         private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)

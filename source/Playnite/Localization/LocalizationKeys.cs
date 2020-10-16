@@ -766,6 +766,10 @@ namespace Playnite
         /// </summary>
         public const string MenuSoftwareTools = "LOCMenuSoftwareTools";
         /// <summary>
+        /// Configure Integrations…
+        /// </summary>
+        public const string MenuConfigureIntegrations = "LOCMenuConfigureIntegrations";
+        /// <summary>
         /// Open 3rd Party Client
         /// </summary>
         public const string MenuOpenClient = "LOCMenuOpenClient";
@@ -2958,6 +2962,22 @@ namespace Playnite
         /// </summary>
         public const string GeneralThemePackageError = "LOCGeneralThemePackageError";
         /// <summary>
+        /// Extension "{0}" failed to load properly.
+        /// </summary>
+        public const string SpecificExtensionLoadError = "LOCSpecificExtensionLoadError";
+        /// <summary>
+        /// Theme "{0}" failed to load properly.
+        /// </summary>
+        public const string SpecificThemeLoadError = "LOCSpecificThemeLoadError";
+        /// <summary>
+        /// Extension failed to load properly.
+        /// </summary>
+        public const string GeneralExtensionLoadError = "LOCGeneralExtensionLoadError";
+        /// <summary>
+        /// Theme failed to load properly.
+        /// </summary>
+        public const string GeneralThemeLoadError = "LOCGeneralThemeLoadError";
+        /// <summary>
         /// Theme/Extension is using unsupported API version.
         /// </summary>
         public const string GeneralExtensionInstallApiVersionFails = "LOCGeneralExtensionInstallApiVersionFails";
@@ -3029,6 +3049,14 @@ namespace Playnite
         /// This extension doesn't support this version of Playnite.
         /// </summary>
         public const string ExtensionUnsupported = "LOCExtensionUnsupported";
+        /// <summary>
+        /// Installation directory
+        /// </summary>
+        public const string ExtensionInstallDir = "LOCExtensionInstallDir";
+        /// <summary>
+        /// Data directory
+        /// </summary>
+        public const string ExtensionDataDir = "LOCExtensionDataDir";
         /// <summary>
         /// Generating diagnostics package…
         /// </summary>
