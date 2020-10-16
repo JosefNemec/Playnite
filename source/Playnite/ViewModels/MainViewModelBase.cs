@@ -64,6 +64,7 @@ namespace Playnite.ViewModels
             }
         }
 
+        public bool IsDisposing { get; set; } = false;
         public BaseCollectionView GamesView { get; set; }
         public GamesCollectionViewEntry SelectedGame { get; set; }
         public IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }

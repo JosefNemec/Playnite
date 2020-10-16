@@ -200,9 +200,12 @@ namespace Playnite.DesktopApp.ViewModels
                 }
 
                 OnPropertyChanged();
-                Extensions.InvokeOnGameSelected(
-                    oldValue?.Select(a => a.Game).ToList(),
-                    SelectedGames?.Select(a => a.Game).ToList());
+                if (!IsDisposing)
+                {
+                    Extensions.InvokeOnGameSelected(
+                        oldValue?.Select(a => a.Game).ToList(),
+                        SelectedGames?.Select(a => a.Game).ToList());
+                }
             }
         }
 
@@ -1706,8 +1709,9 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings.FilterSettings.ClearFilters();
         }
 
-        public virtual void Dispose()
+        public void Dispose()
         {
+            IsDisposing = true;
             GamesView?.Dispose();
             GamesStats?.Dispose();
             AppSettings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
