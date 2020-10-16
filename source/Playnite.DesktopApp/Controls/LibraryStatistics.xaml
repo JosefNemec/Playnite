@@ -130,7 +130,7 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="10"
                       VerticalScrollBarVisibility="Auto">
             <DockPanel>
-                <Expander DockPanel.Dock="Top" Header="Global" IsExpanded="True"
+                <Expander DockPanel.Dock="Top" Header="{DynamicResource LOCStatsGlobal}" IsExpanded="True"
                           DataContext="{Binding GlobalStats}">
                     <WrapPanel>
                         <ContentControl Template="{StaticResource OverallStatsTemplate}" />
@@ -139,7 +139,7 @@
                     </WrapPanel>
                 </Expander>
 
-                <Expander DockPanel.Dock="Top" Header="Filtered" IsExpanded="True">
+                <Expander DockPanel.Dock="Top" Header="{DynamicResource LOCStatsFiltered}" IsExpanded="True">
                     <WrapPanel>
                         <ContentControl Template="{StaticResource OverallStatsTemplate}"
                                             DataContext="{Binding FilteredStats}"/>

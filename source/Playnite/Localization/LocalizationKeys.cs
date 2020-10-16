@@ -2698,6 +2698,22 @@ namespace Playnite
         /// </summary>
         public const string ExecuteGlobalScript = "LOCExecuteGlobalScript";
         /// <summary>
+        /// Global
+        /// </summary>
+        public const string StatsGlobal = "LOCStatsGlobal";
+        /// <summary>
+        /// Filtered
+        /// </summary>
+        public const string StatsFiltered = "LOCStatsFiltered";
+        /// <summary>
+        /// Current
+        /// </summary>
+        public const string MetadataDiffCurrent = "LOCMetadataDiffCurrent";
+        /// <summary>
+        /// New
+        /// </summary>
+        public const string MetadataDiffNew = "LOCMetadataDiffNew";
+        /// <summary>
         /// Save as default
         /// </summary>
         public const string SaveAsDefault = "LOCSaveAsDefault";

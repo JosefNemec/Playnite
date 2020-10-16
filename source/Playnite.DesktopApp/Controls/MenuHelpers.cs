@@ -145,20 +145,26 @@ namespace Playnite.DesktopApp.Controls
                 values = values.OrderBy(a => a.GetDescription());
             }
 
-            foreach (T type in values)
+            foreach (T value in values)
             {
-                if (ignoreValues?.Contains(type) == true)
+                if (ignoreValues?.Contains(value) == true)
                 {
                     continue;
                 }
 
+                var headerText = value.GetDescription();
+                if (value is Dock dock)
+                {
+                    headerText = DockToStringConverter.GetString(dock);
+                }
+
                 var item = new MenuItem
                 {
-                    Header = type.GetDescription(),
+                    Header = headerText,
                     IsCheckable = true
                 };
 
-                SetEnumBinding(item, bindingPath, bindingSource, type);
+                SetEnumBinding(item, bindingPath, bindingSource, value);
                 parent.Add(item);
             }
         }

@@ -46,8 +46,8 @@
                     Margin="5,0,5,0"
                     RowCount="40" AutoLayoutColumns="3">                
                 <Canvas />
-                <TextBlock Text="Current"  />
-                <TextBlock Text="New"  />
+                <TextBlock Text="{DynamicResource LOCMetadataDiffCurrent}"  />
+                <TextBlock Text="{DynamicResource LOCMetadataDiffNew}"  />
                 
                 <Canvas />
                 <Button Content="{DynamicResource LOCSelectAll}" HorizontalAlignment="Left"
