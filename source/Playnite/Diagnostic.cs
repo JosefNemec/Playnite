@@ -42,6 +42,11 @@ namespace Playnite
 
         private static string GetManifestInfo(string rootDir, string manFileName)
         {
+            if (!Directory.Exists(rootDir))
+            {
+                return string.Empty;
+            }
+
             var total = new StringBuilder();
             foreach (var dir in Directory.GetDirectories(rootDir))
             {
