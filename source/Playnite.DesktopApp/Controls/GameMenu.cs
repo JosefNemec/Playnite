@@ -363,11 +363,14 @@ namespace Playnite.DesktopApp.Controls
 
                     foreach (var link in Game.Links)
                     {
-                        linksItem.Items.Add(new MenuItem()
+                        if (link != null)
                         {
-                            Header = link.Name,
-                            Command = new RelayCommand<Link>((_) => GlobalCommands.NavigateUrl(Game.ExpandVariables(link.Url)))
-                        });
+                            linksItem.Items.Add(new MenuItem()
+                            {
+                                Header = link.Name,
+                                Command = new RelayCommand<Link>((_) => GlobalCommands.NavigateUrl(Game.ExpandVariables(link.Url)))
+                            });
+                        }
                     }
 
                     Items.Add(linksItem);

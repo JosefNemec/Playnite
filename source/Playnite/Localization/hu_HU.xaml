@@ -739,6 +739,10 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCPostScriptDescription">Játékból kilépés után futtatott szkript</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Játék indítása után futtatott szkript</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Globális szkript futtatása</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Globális</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Szűrt</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Jelenlegi</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Új</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Mentés alapértelmezettként</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Kedvencekhez ad</sys:String>
@@ -806,6 +810,10 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCExtInstallationRestartNotif">A Playnite-ot újra kell indítani a telepítés befejezéséhez. Szeretnéd újraindítani most?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">A bővítmény helytelenül csomagolt.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">A téma helytelenül csomagolt.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">{0} bővítményt nem sikerült betölteni.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">{0} témát nem sikerült betölteni.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">A bővítményt nem sikerült betölteni.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">A témát nem sikerült betölteni.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">A Téma/Bővítmény nem támogatott API-t használ.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Sikeres telepítés.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Telepítsem a bővitményt?</sys:String>

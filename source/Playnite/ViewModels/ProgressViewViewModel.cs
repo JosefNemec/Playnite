@@ -101,7 +101,10 @@ namespace Playnite.ViewModels
                     ProgressArgs = new GlobalProgressActionArgs(
                         PlayniteApplication.Current.SyncContext,
                         PlayniteApplication.CurrentNative.Dispatcher,
-                        cancellationToken);
+                        cancellationToken)
+                    {
+                        Text = ProgressText
+                    };
                     progresAction(ProgressArgs);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)

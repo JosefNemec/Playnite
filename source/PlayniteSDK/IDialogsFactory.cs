@@ -91,6 +91,20 @@ namespace Playnite.SDK
             }
         }
 
+        private string text;
+        /// <summary>
+        /// Gets or sets progress text.
+        /// </summary>
+        public string Text
+        {
+            get => text;
+            set
+            {
+                text = value;
+                MainDispatcher?.Invoke(() => OnPropertyChanged(), DispatcherPriority.Send);
+            }
+        }
+
         /// <summary>
         /// Creates new instance of <see cref="GlobalProgressActionArgs"/>.
         /// </summary>

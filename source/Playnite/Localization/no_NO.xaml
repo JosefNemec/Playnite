@@ -738,6 +738,10 @@ Du kan prøve disse for å løse problemet:
     <sys:String x:Key="LOCPostScriptDescription">Skript som skal utføres etter du avslutter et spill</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Skript som skal utføres etter at et spill er startet</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Utfør globalt skript</sys:String>
+    <sys:String x:Key="LOCStatsGlobal"></sys:String>
+    <sys:String x:Key="LOCStatsFiltered"></sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Lagre som standard</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Legg til i favoritter</sys:String>
@@ -806,6 +810,10 @@ Du kan prøve disse for å løse problemet:
 Playnite må startes på nytt for å fullføre installasjonen. Vil du starte på nytt nå?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Utvidelse er ikke pakket ordentlig.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Tema er ikke pakket ordentlig.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme / Extension bruker ikke-støttet API-versjon.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installasjonen var vellykket.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installér utvidelsen?</sys:String>

@@ -736,6 +736,10 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCPostScriptDescription">Skript, ktorý sa má vykonať po ukončení hry</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Skript, ktorý sa má vykonať po spustení hry</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Spustiť globálny skript</sys:String>
+    <sys:String x:Key="LOCStatsGlobal"></sys:String>
+    <sys:String x:Key="LOCStatsFiltered"></sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Uložiť ako predvolené</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Pridať do obľúbených</sys:String>
@@ -803,6 +807,10 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCExtInstallationRestartNotif">Na dokončenie inštalácie je potrebné Playnite reštartovať. Chcete teraz reštartovať?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Rozšírenie nie je správne zabalené.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Motív vzhľadu nie je správne zabalený.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motív vzhľadu/rozširenie používa nepodporovanu verziu API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Inštalácia bola úspešná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainštalovať rozšírenie?</sys:String>

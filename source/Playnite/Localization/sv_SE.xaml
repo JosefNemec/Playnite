@@ -4,10 +4,10 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Svenska</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite språk</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Avsluta</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filtret aktivt</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filtret inaktiverat</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Ytterligare filter</sys:String>
     <sys:String x:Key="LOCFilters">Filter</sys:String>
     <sys:String x:Key="LOCFilter">Filter</sys:String>
@@ -27,33 +27,52 @@ Avbockad - Ta bort kategori
 Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCNoCategory">Ingen kategori</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen plattform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Hoppsan! Något gick fel.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ett oåterkallelig fel har inträffat.
+
+Om du vill hjälpa oss att åtgärda problemet, beskriv kortfattat vad som hände före kraschen, och skicka sedan diagnosinformationen. Om du är uppkopplad laddas paketet upp till Playnite-servern för analys.
+
+Alternativt kan du klicka på knappen 'Rapportera krasch' för att skapa ett nytt GitHub issue och rapportera kraschen manuellt.
+
+Tack för din hjälp.
+
+</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Tillägget &quot;{0}&quot; orsakade ett oåterkalleligt fel.
+
+Vi rekommenderar att du sparar loggfilen och rapporterar problemet till tilläggets utvecklare. Om problemet fortsätter att återkomma, inaktivera tillägget.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Tillägget &quot;{0}&quot; orsakade ett oåterkalleligt fel.
+
+Vi rekommenderar att du rapporterar problemet till tilläggets utvecklare. Om problemet fortsätter att återkomma, inaktivera tillägget.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ett oåterkallelig fel har inträffat.
+
+Om du vill hjälpa oss att lösa problemet, skicka diagnostisk information. Tack.</sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Inaktivera tillägg</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Spara loggfil</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Send diag. info
+Skicka diagnosinfo</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapportera en krasch</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Starta om Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Starta om i felsäkert läge</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Inaktivera alla tillägg från tredje part och använda standardtema.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Avsluta Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Åtgärder som vidtagits före kraschen (på engelska):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Bibliotekshanterare</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Ta bort Spel?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Kan inte ta bort - Spelet eller installationsprogrammet körs.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Kan inte avinstallera - Spelet körs.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Är du säker på att du vill ta bort det här spelet?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Är du säker på att du vill ta bort {0} spel?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Är du säker på att du vill ta bort det här spelet?
+
+Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindras spelet att importeras igen nästa gång biblioteket uppdateras.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Är du säker på att du vill ta bort {0} spel?
+
+Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindras spel att importeras igen nästa gång biblioteket uppdateras.</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Är du säker på att du vill ta bort {0} poster som för närvarande inte används?</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Inga oanvända fält hittades.</sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (lägg till i undantagslistan)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Vänner</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Det finns osparade ändringar i denna sektion</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Uppdaterar databasversionen…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Databasuppdatering misslyckades, kan inte öppna databasfilen.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Det går inte att uppdatera spelbiblioteket. {0} MB ledigt diskutrymme krävs.</sys:String>
@@ -63,11 +82,11 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Kan inte starta åtgärd: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Kan inte öppna spelplats: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Misslyckades med att skapa genväg: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">Det gick inte att öppna manualen: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan inte installera spel: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan inte avinstallera spel: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Spela-handligen är inte konfigurerade.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Biblioteksplugin som ansvarar för detta spel är inaktiverat eller inte installerat.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Officiell nedladdningskälla för metadata är inte tällgänglig.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Inget spel är markerat.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
@@ -101,7 +120,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Senast spelad</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Mest spelade</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Antal speltillfällen</sys:String>
-    <sys:String x:Key="LOCNotesLabel"></sys:String>
+    <sys:String x:Key="LOCNotesLabel">Noteringar</sys:String>
     <sys:String x:Key="LOCAddedLabel">Tillagd</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Tillagd datum</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Ändrad</sys:String>
@@ -124,7 +143,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCActionsLabel">Handlingar</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Laddar ner…</sys:String>
     <sys:String x:Key="LOCDownloadingMediaLabel"></sys:String>
-    <sys:String x:Key="LOCLoadingLabel"></sys:String>
+    <sys:String x:Key="LOCLoadingLabel">Laddar…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Typ</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profiler</sys:String>
@@ -241,9 +260,9 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Tänj</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Låda</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectIgdb"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Omslag</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
@@ -368,12 +387,12 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatisk</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Gråskala</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Skärm</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
@@ -490,7 +509,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Bakgrundsbild</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sorteringsnamn</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Leverantör</sys:String>
-    <sys:String x:Key="LOCGameManualTitle"></sys:String>
+    <sys:String x:Key="LOCGameManualTitle">Handbok</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Titel</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Kontonamn</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plattform</sys:String>
@@ -501,10 +520,10 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Utvecklare</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Utgivare</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">Installationsstatus</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installerad</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installerad</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Inte installerad</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Dold</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorit</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Senast Aktivitet</sys:String>
@@ -515,15 +534,15 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Länk</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Image/ISO Sökväg</sys:String>
     <sys:String x:Key="LOCGenreLabel">Genre(r)</sys:String>
-    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCGenresLabel">Genrer</sys:String>
     <sys:String x:Key="LOCCompanyLabel">Företag</sys:String>
     <sys:String x:Key="LOCCompaniesLabel"></sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Utvecklare</sys:String>
-    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
+    <sys:String x:Key="LOCDevelopersLabel">Utvecklare</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Utgivare</sys:String>
-    <sys:String x:Key="LOCPublishersLabel"></sys:String>
+    <sys:String x:Key="LOCPublishersLabel">Utgivare</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Kategori</sys:String>
-    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">Kategorier</sys:String>
     <sys:String x:Key="LOCTagLabel">Etikett</sys:String>
     <sys:String x:Key="LOCTagsLabel">Etiketter</sys:String>
     <sys:String x:Key="LOCFeatureLabel"></sys:String>
@@ -608,10 +627,10 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCChange">Ändra</sys:String>
     <sys:String x:Key="LOCAdvanced">Avancerat</sys:String>
     <sys:String x:Key="LOCNever">Aldrig</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusNotPlayed">Aldrig spelat</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayed">Spelat</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Slutförd</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
     <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
     <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
@@ -628,7 +647,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCReloadScripts">Ladda om skript</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Alla skript blev omladdade.</sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCNoItemsFound"></sys:String>
+    <sys:String x:Key="LOCNoItemsFound">Inga objekt hittades</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
     <sys:String x:Key="LOCExitPlaynite">Avsluta Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotek</sys:String>
@@ -637,7 +656,7 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
     <sys:String x:Key="LOCLibrary">Bibliotek</sys:String>
-    <sys:String x:Key="LOCStatistics"></sys:String>
+    <sys:String x:Key="LOCStatistics">Statistik</sys:String>
     <sys:String x:Key="LOCAll">Alla</sys:String>
     <sys:String x:Key="LOCNone">Ingen</sys:String>
     <sys:String x:Key="LOCNotifications">Aviseringar</sys:String>
@@ -650,19 +669,19 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCFontLarger">Större</sys:String>
     <sys:String x:Key="LOCFontLargest">Störst</sys:String>
     <sys:String x:Key="LOCDefault">Standard</sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
-    <sys:String x:Key="LOCSelectAll"></sys:String>
-    <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
+    <sys:String x:Key="LOCSelect">Välj</sys:String>
+    <sys:String x:Key="LOCSelectAll">Välj alla</sys:String>
+    <sys:String x:Key="LOCFirst">Första</sys:String>
+    <sys:String x:Key="LOCRandom">Slumpmässigt</sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
     <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
+    <sys:String x:Key="LOCTransparent">Genomskinlig</sys:String>
     <sys:String x:Key="LOCCollapse"></sys:String>
     <sys:String x:Key="LOCExpand"></sys:String>
     <sys:String x:Key="LOCCollapseAll"></sys:String>
     <sys:String x:Key="LOCExpandAll"></sys:String>
     <sys:String x:Key="LOCOther"></sys:String>
-    <sys:String x:Key="LOCThemes"></sys:String>
+    <sys:String x:Key="LOCThemes">Teman</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argument till Emulatorn</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ytterligare Emulator Arguments</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Skriv över Emulator Arguments</sys:String>
@@ -689,6 +708,10 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
+    <sys:String x:Key="LOCStatsGlobal"></sys:String>
+    <sys:String x:Key="LOCStatsFiltered"></sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Spara som standard</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Lägg till i Favoriter</sys:String>
@@ -756,6 +779,10 @@ Obestämd - Inga ändringar (vid redigering av flera spel)</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installationen lyckades.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installera tillägg?</sys:String>

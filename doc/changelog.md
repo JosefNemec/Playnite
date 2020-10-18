@@ -1,5 +1,11 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 5.5.0
+
+* New
+  * Ability to change progress text when using [ActivateGlobalProgress](xref:Playnite.SDK.IDialogsFactory)
+  * `CurrentExtensionInstallPath` and `CurrentExtensionDataPath` global variables for script extensions
+  
 #### 5.4.0
 
 * New

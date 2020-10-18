@@ -51,7 +51,7 @@ namespace Playnite.API
                 }
                 else
                 {
-                    return Paths.GetSafeFilename(Name).Replace(" ", string.Empty) + "_" + (Name + Author).MD5();
+                    return Paths.GetSafePathName(Name).Replace(" ", string.Empty) + "_" + (Name + Author).MD5();
                 }
             }
         }

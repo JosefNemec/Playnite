@@ -21,6 +21,39 @@ namespace Playnite.Controls
 {
     public class HtmlTextView : HtmlPanel
     {
+        private const string defaultTemplate = @"
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""UTF-8"">
+    <style type=""text/css"">
+        HTML,BODY
+        {
+            color: {foreground};
+            font-family: ""{font_family}"";
+            font-size: {font_size}px;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: {link_foreground};
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+    <title>Game Description</title>
+</head>
+<body>
+<div>
+{text}
+</div>
+</body>
+</html>";
+
         internal string templateContent = string.Empty;
 
         public string TemplatePath
@@ -182,7 +215,16 @@ namespace Playnite.Controls
 
         internal void UpdateTextContent()
         {
-            var content = templateContent;
+            var content = string.Empty;
+            if (!templateContent.IsNullOrEmpty())
+            {
+                content = templateContent;
+            }
+            else if (HtmlText?.Contains("<html>") != true)
+            {
+                content = defaultTemplate;
+            }
+
             content = content.Replace("{foreground}", HtmlForeground.ToHtml());
             content = content.Replace("{link_foreground}", LinkForeground.ToHtml());
             content = content.Replace("{font_family}", HtmlFontFamily.ToString());

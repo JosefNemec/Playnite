@@ -1,4 +1,5 @@
 ﻿using Playnite.API;
+using Playnite.Common;
 using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.SDK;
@@ -33,15 +34,18 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public bool FailedLoading { get; set; }
+
         public SelectablePlugin()
         {
         }
 
-        public SelectablePlugin(bool selected, Plugin plugin, ExtensionManifest description)
+        public SelectablePlugin(bool selected, Plugin plugin, ExtensionManifest description, bool failedLoading)
         {
             Selected = selected;
             Plugin = plugin;
             Description = description;
+            FailedLoading = failedLoading;
             if (!string.IsNullOrEmpty(description.Icon))
             {
                 PluginIcon = Path.Combine(Path.GetDirectoryName(description.DescriptionPath), description.Icon);
@@ -184,23 +188,31 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<SelectablePlugin>((plugin) =>
             {
+                var extDir = string.Empty;
                 if (plugin.Description.Type == ExtensionType.Script)
                 {
-                    return;
+                    if (!plugin.Description.Id.IsNullOrEmpty())
+                    {
+                        extDir = Path.Combine(PlaynitePaths.ExtensionsDataPath, Paths.GetSafePathName(plugin.Description.Id));
+                    }
                 }
 
                 var p = Extensions.Plugins.Values.FirstOrDefault(a => a.Description.DirectoryPath == plugin.Description.DirectoryPath);
                 if (p != null)
                 {
-                    var dir = p.Plugin.GetPluginUserDataPath();
+                    extDir = p.Plugin.GetPluginUserDataPath();
+                }
 
+                if (!extDir.IsNullOrEmpty())
+                {
                     try
                     {
-                        Process.Start(dir);
+                        FileSystem.CreateDirectory(extDir);
+                        Process.Start(extDir);
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
-                        logger.Error(e, $"Failed to open dir {dir}.");
+                        logger.Error(e, $"Failed to open dir {extDir}.");
                     }
                 }
             });
@@ -230,21 +242,31 @@ namespace Playnite.DesktopApp.ViewModels
             var descriptions = Extensions.GetExtensionDescriptors();
             LibraryPluginList = descriptions
                 .Where(a => a.Type == ExtensionType.GameLibrary)
-                .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
-                    Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin, a))
+                .Select(a => new SelectablePlugin(
+                    Settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin,
+                    a,
+                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
                 .OrderBy(a => a.Description.Name)
                 .ToList();
 
             MetadataPluginList = descriptions
                 .Where(a => a.Type == ExtensionType.MetadataProvider)
-                .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
-                    Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin, a))
+                .Select(a => new SelectablePlugin(
+                    Settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin,
+                    a,
+                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
                 .OrderBy(a => a.Description.Name)
                 .ToList();
 
             OtherPluginList = descriptions
                 .Where(a => a.Type == ExtensionType.GenericPlugin || a.Type == ExtensionType.Script)
-                .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.DirectoryName) != true, null, a))
+                .Select(a => new SelectablePlugin(
+                    Settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    null,
+                    a,
+                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
                 .OrderBy(a => a.Description.Name)
                 .ToList();
 

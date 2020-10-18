@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Suomi</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel">Playniten kieli</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Ohjelman kieli</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Poistu</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Suodatin käytössä</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Suodatin pois käytöstä</sys:String>
@@ -741,6 +741,10 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCPostScriptDescription">Pelin sulkeutumisen jälkeen suoritettava skripti</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Pelin käynnistymisen jälkeen suoritettava skripti</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Suorita yleinen skripti</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Maailmanlaajuinen</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Suodatettu</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Ajantasainen</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Uusi</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Tallenna oletukseksi</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Lisää suosikkeihin</sys:String>
@@ -808,6 +812,10 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite pitää käynnistää uudelleen asennuksen viimeistelyä varten. Haluatko käynnistää uudelleen nyt?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Laajennusta ei ole paketoitu oikein.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Teemaa ei ole paketoitu oikein.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Laajennuksen &quot;{0}&quot; oikein lataaminen epäonnistui.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Teeman &quot;{0}&quot; oikein lataaminen epäonnistui.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Laajennuksen oikein latautuminen epäonnistui.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Teeman oikein lataaminen epäonnistui.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Teema/Laajennus käyttää API-versiota, jota ei tueta.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Asennus onnistui.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Asenna laajennus?</sys:String>

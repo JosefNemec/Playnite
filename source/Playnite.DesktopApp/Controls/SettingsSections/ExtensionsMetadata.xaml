@@ -76,16 +76,26 @@
                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Description.IsBuiltInExtension}" Value="True">
-                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
             </Button>
 
-            <TextBlock Text="{DynamicResource LOCExtensionBuiltInUninstallHint}" 
-                               Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
-                               Visibility="{Binding Description.IsBuiltInExtension, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <TextBlock Text="{DynamicResource LOCGeneralExtensionLoadError}" Foreground="{DynamicResource NegativeRatingBrush}"
+                       Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FailedLoading}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <TextBlock Margin="0,10,0,0"  DockPanel.Dock="Top">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
@@ -130,9 +140,9 @@
                         <DataTrigger Binding="{Binding Selected}" Value="False">
                             <Setter Property="Opacity" Value="0.7" />
                         </DataTrigger>
-                        <!--<DataTrigger Binding="{Binding Description.IsCompatible}" Value="False">
-                            <Setter Property="Opacity" Value="0.7" />
-                        </DataTrigger>-->
+                        <DataTrigger Binding="{Binding FailedLoading}" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource NegativeRatingBrush}" />
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ListBox.ItemContainerStyle>

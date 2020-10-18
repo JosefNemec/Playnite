@@ -766,6 +766,10 @@ namespace Playnite
         /// </summary>
         public const string MenuSoftwareTools = "LOCMenuSoftwareTools";
         /// <summary>
+        /// Configure Integrations…
+        /// </summary>
+        public const string MenuConfigureIntegrations = "LOCMenuConfigureIntegrations";
+        /// <summary>
         /// Open 3rd Party Client
         /// </summary>
         public const string MenuOpenClient = "LOCMenuOpenClient";
@@ -2694,6 +2698,22 @@ namespace Playnite
         /// </summary>
         public const string ExecuteGlobalScript = "LOCExecuteGlobalScript";
         /// <summary>
+        /// Global
+        /// </summary>
+        public const string StatsGlobal = "LOCStatsGlobal";
+        /// <summary>
+        /// Filtered
+        /// </summary>
+        public const string StatsFiltered = "LOCStatsFiltered";
+        /// <summary>
+        /// Current
+        /// </summary>
+        public const string MetadataDiffCurrent = "LOCMetadataDiffCurrent";
+        /// <summary>
+        /// New
+        /// </summary>
+        public const string MetadataDiffNew = "LOCMetadataDiffNew";
+        /// <summary>
         /// Save as default
         /// </summary>
         public const string SaveAsDefault = "LOCSaveAsDefault";
@@ -2958,6 +2978,22 @@ namespace Playnite
         /// </summary>
         public const string GeneralThemePackageError = "LOCGeneralThemePackageError";
         /// <summary>
+        /// Extension "{0}" failed to load properly.
+        /// </summary>
+        public const string SpecificExtensionLoadError = "LOCSpecificExtensionLoadError";
+        /// <summary>
+        /// Theme "{0}" failed to load properly.
+        /// </summary>
+        public const string SpecificThemeLoadError = "LOCSpecificThemeLoadError";
+        /// <summary>
+        /// Extension failed to load properly.
+        /// </summary>
+        public const string GeneralExtensionLoadError = "LOCGeneralExtensionLoadError";
+        /// <summary>
+        /// Theme failed to load properly.
+        /// </summary>
+        public const string GeneralThemeLoadError = "LOCGeneralThemeLoadError";
+        /// <summary>
         /// Theme/Extension is using unsupported API version.
         /// </summary>
         public const string GeneralExtensionInstallApiVersionFails = "LOCGeneralExtensionInstallApiVersionFails";
@@ -3029,6 +3065,14 @@ namespace Playnite
         /// This extension doesn't support this version of Playnite.
         /// </summary>
         public const string ExtensionUnsupported = "LOCExtensionUnsupported";
+        /// <summary>
+        /// Installation directory
+        /// </summary>
+        public const string ExtensionInstallDir = "LOCExtensionInstallDir";
+        /// <summary>
+        /// Data directory
+        /// </summary>
+        public const string ExtensionDataDir = "LOCExtensionDataDir";
         /// <summary>
         /// Generating diagnostics package…
         /// </summary>

@@ -15,10 +15,9 @@ namespace Playnite.Converters
 {
     public class DockToStringConverter : MarkupExtension, IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public static string GetString(Dock value)
         {
-            var source = (Dock)value;
-            switch (source)
+            switch (value)
             {
                 case Dock.Left:
                     return ResourceProvider.GetString("LOCDockLeft");
@@ -31,6 +30,11 @@ namespace Playnite.Converters
             }
 
             return "<UknownDockMode>";
+        }
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return GetString((Dock)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

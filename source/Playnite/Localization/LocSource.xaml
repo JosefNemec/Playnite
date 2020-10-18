@@ -737,6 +737,10 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCPostScriptDescription">Script to execute after exiting a game</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Script to execute after a game is started</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Execute global script</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Filtered</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Current</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">New</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Save as default</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Add to Favorites</sys:String>
@@ -804,6 +808,10 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite must be restarted to complete the installation. Do you want to restart now?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Extension is not packaged properly.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Theme is not packaged properly.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Extension "{0}" failed to load properly.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Theme "{0}" failed to load properly.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Extension failed to load properly.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Theme failed to load properly.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme/Extension is using unsupported API version.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install extension?</sys:String>

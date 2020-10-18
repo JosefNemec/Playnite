@@ -18,7 +18,7 @@ namespace Playnite.Common
         {
             var stack = new StackTrace(1);
             var method = stack.GetFrame(0).GetMethod();
-            var dirName = Paths.GetSafeFilename($"{method.DeclaringType.Name}_{method.Name}");
+            var dirName = Paths.GetSafePathName($"{method.DeclaringType.Name}_{method.Name}");
             return new TempDirectory(dirName, autoDelete);
         }
 

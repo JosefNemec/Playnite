@@ -74,7 +74,7 @@ namespace Playnite.Tests
         [Test]
         public void GetSafeFilenameTest()
         {
-            Assert.AreEqual("test aaa", Paths.GetSafeFilename("test >> aaa "));
+            Assert.AreEqual("test aaa", Paths.GetSafePathName("test >> aaa "));
         }
     }
 }

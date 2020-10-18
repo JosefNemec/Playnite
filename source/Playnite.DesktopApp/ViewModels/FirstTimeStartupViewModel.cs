@@ -185,7 +185,7 @@ namespace Playnite.DesktopApp.ViewModels
                         selected = provider.Client.IsInstalled;
                     }
 
-                    LibraryPlugins.Add(new SelectablePlugin(selected, provider, description));
+                    LibraryPlugins.Add(new SelectablePlugin(selected, provider, description, false));
                 }
             }
         }

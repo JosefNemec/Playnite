@@ -143,7 +143,7 @@ namespace Playnite.Plugins
             }
             else
             {
-                installDir = Path.Combine(rootDir, Paths.GetSafeFilename(manifest.Id));
+                installDir = Path.Combine(rootDir, Paths.GetSafePathName(manifest.Id));
 
                 // Delete installation in legacy path
                 if (Directory.Exists(legacyInstallDir))

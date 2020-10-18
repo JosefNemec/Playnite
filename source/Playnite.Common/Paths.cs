@@ -140,7 +140,7 @@ namespace Playnite.Common
             }
         }
 
-        public static string GetSafeFilename(string filename)
+        public static string GetSafePathName(string filename)
         {
             var path = string.Join(" ", filename.Split(Path.GetInvalidFileNameChars()));
             return Regex.Replace(path, @"\s+", " ").Trim();

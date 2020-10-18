@@ -24,7 +24,7 @@
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
                    Grid.Row="0" TextTrimming="CharacterEllipsis" Margin="0,10,0,5"
                    Style="{DynamicResource BaseTextBlockStyle}"                   
-                   Text="{Binding ProgressText}"/>
+                   Text="{Binding ProgressArgs.Text}"/>
         <ProgressBar Height="25" IsIndeterminate="{Binding Indeterminate}" Grid.Row="1"
                      Value="{Binding ProgressArgs.CurrentProgressValue}"
                      Maximum="{Binding ProgressArgs.ProgressMaxValue}"

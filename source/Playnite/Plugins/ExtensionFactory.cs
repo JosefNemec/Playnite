@@ -37,6 +37,8 @@ namespace Playnite.Plugins
         private IGameDatabase database;
         private GameControllerFactory controllers;
 
+        public List<ExtensionManifest> FailedExtensions { get; } = new List<ExtensionManifest>();
+
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
             get; private set;
@@ -279,6 +281,7 @@ namespace Playnite.Plugins
                 if (!File.Exists(scriptPath))
                 {
                     logger.Error($"Cannot load script extension, {scriptPath} not found.");
+                    FailedExtensions.Add(desc);
                     continue;
                 }
 
@@ -287,15 +290,24 @@ namespace Playnite.Plugins
                     script = PlayniteScript.FromFile(scriptPath);
                     if (script == null)
                     {
+                        FailedExtensions.Add(desc);
                         continue;
                     }
 
                     script.SetVariable("PlayniteApi", injectingApi);
+                    script.SetVariable("CurrentExtensionInstallPath", desc.DirectoryPath);
+                    if (!desc.Id.IsNullOrEmpty())
+                    {
+                        var extDir = Path.Combine(PlaynitePaths.ExtensionsDataPath, Paths.GetSafePathName(desc.Id));
+                        FileSystem.CreateDirectory(extDir);
+                        script.SetVariable("CurrentExtensionDataPath", extDir);
+                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {scriptPath}");
+                    FailedExtensions.Add(desc);
                     continue;
                 }
 
@@ -354,6 +366,8 @@ namespace Playnite.Plugins
                     {
                         logger.Error(e, string.Empty);
                     }
+
+                    FailedExtensions.Add(desc);
                 }
             }
 
@@ -385,6 +399,7 @@ namespace Playnite.Plugins
             else
             {
                 logger.Error($"Plugin dependencices are not compatible: {descriptor.Name}");
+                FailedExtensions.Add(descriptor);
                 // TODO: Unload assembly once Playnite switches to .NET Core
             }
         }

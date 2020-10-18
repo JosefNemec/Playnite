@@ -186,9 +186,12 @@ namespace Playnite.FullscreenApp.ViewModels
                     }
                 }
 
-                Extensions.InvokeOnGameSelected(
-                    oldValue == null ? null : new List <Game> { oldValue.Game },
-                    selectedGame == null ? null : new List<Game> { selectedGame.Game });
+                if (!IsDisposing)
+                {
+                    Extensions.InvokeOnGameSelected(
+                        oldValue == null ? null : new List<Game> { oldValue.Game },
+                        selectedGame == null ? null : new List<Game> { selectedGame.Game });
+                }
             }
         }
 
@@ -1423,6 +1426,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void Dispose()
         {
+            IsDisposing = true;
             GamesView?.Dispose();
             Window.Window.LocationChanged -= Window_LocationChanged;
         }

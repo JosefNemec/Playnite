@@ -427,8 +427,7 @@
                                                 <DockPanel.ContextMenu>
                                                     <pc:GameGroupMenu />
                                                 </DockPanel.ContextMenu>
-                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                           TextAlignment="Center" Margin="0,0,5,0"
+                                                <TextBlock VerticalAlignment="Center" Margin="0,0,5,0"
                                                            DockPanel.Dock="Left">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
@@ -446,7 +445,6 @@
                                                 </TextBlock>
                                                 <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}"
                                                            VerticalAlignment="Center" DockPanel.Dock="Left"
-                                                           HorizontalAlignment="Center" TextAlignment="Center"
                                                            Foreground="{StaticResource TextBrush}"
                                                            Visibility="{Binding Path=AppSettings.ShowGroupCount, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                             </DockPanel>

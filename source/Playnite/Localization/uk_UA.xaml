@@ -210,7 +210,7 @@
     <sys:String x:Key="LOCProgressBattleNetLibImport">Завантаження оновлень бібліотеки Battle.net...</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Завантаження метаданих...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Імпортування встановлених ігор...</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Імпортування {0} ігор...</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Імпортування ігор {0}...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Завантаження оновлень бібліотеки...</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Завантаження оновлень бібліотеки...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Оновлення бібліотеки завершено</sys:String>
@@ -738,6 +738,10 @@
     <sys:String x:Key="LOCPostScriptDescription">Сценарій для виконання після виходу з гри</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Сценарій для виконання після запуску гри</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Виконати глобальний сценарій</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Глобально</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Відфільтровано </sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Поточні</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Нові</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Зберегти за замовчуванням</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Додати в Обране</sys:String>
@@ -805,6 +809,10 @@
     <sys:String x:Key="LOCExtInstallationRestartNotif">Щоб завершити встановлення, Playnite потрібно перезапустити. Хочете перезапустити зараз?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Розширення не упаковано належним чином.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Тема не упакована належним чином.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Розширення &quot;{0}&quot; не змогло завантажитися коректно.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Тема &quot;{0}&quot; не змогла завантажитися коректно.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Розширення не змогло завантажитися коректно.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Тема не змогла завантажитися коректно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема/Розширення використовує непідтримувану версію API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Встановлення завершилося успішно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Встановити розширення?</sys:String>
