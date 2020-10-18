@@ -99,7 +99,7 @@
     <sys:String x:Key="LOCDefaultIconTitle">Стандартная иконка</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Стандартная обложка</sys:String>
     <sys:String x:Key="LOCDefaultBackgroundTitle">Фоновое изображение по умолчанию</sys:String>
-    <sys:String x:Key="LOCFinishLabel">Закончить</sys:String>
+    <sys:String x:Key="LOCFinishLabel">Завершить</sys:String>
     <sys:String x:Key="LOCNextLabel">Далее</sys:String>
     <sys:String x:Key="LOCBackLabel">Назад</sys:String>
     <sys:String x:Key="LOCDoneCapLabel">ГОТОВО</sys:String>
@@ -324,7 +324,7 @@
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Показать в сетке</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Тема оформления</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Цвет темы</sys:String>
-    <sys:String x:Key="LOCSettingsSkinFullscreen"> </sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">Полноэкранная тема</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Кнопки контроллера в полноэкранном режиме</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Расположение базы данных</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Имя моего аккаунта?</sys:String>
@@ -426,10 +426,10 @@
     <sys:String x:Key="LOCStrechFill">Заполнить</sys:String>
     <sys:String x:Key="LOCStrechUniform">Форма</sys:String>
     <sys:String x:Key="LOCStrechUniformToFill">Форма для заполнения</sys:String>
-    <sys:String x:Key="LOCDockLeft">Лево</sys:String>
-    <sys:String x:Key="LOCDockRight">Право</sys:String>
-    <sys:String x:Key="LOCDockTop">Верх</sys:String>
-    <sys:String x:Key="LOCDockBottom">Низ</sys:String>
+    <sys:String x:Key="LOCDockLeft">Слева</sys:String>
+    <sys:String x:Key="LOCDockRight">Справа</sys:String>
+    <sys:String x:Key="LOCDockTop">Сверху</sys:String>
+    <sys:String x:Key="LOCDockBottom">Снизу</sys:String>
     <sys:String x:Key="LOCImportError">Ошибка при импортировании</sys:String>
     <sys:String x:Key="LOCLoginChecking">Проверка статуса аутентификации…</sys:String>
     <sys:String x:Key="LOCLoginRequired">Нужна аутентификация</sys:String>
@@ -524,7 +524,7 @@
     <sys:String x:Key="LOCMenuGroupCategory">По категории</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">По платформе</sys:String>
     <sys:String x:Key="LOCViewType">Тип просмотра</sys:String>
-    <sys:String x:Key="LOCMenuView">Посмотреть</sys:String>
+    <sys:String x:Key="LOCMenuView">Просмотр</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">Панель проводника</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Панель фильтров</sys:String>
     <!--Game fields-->
@@ -740,6 +740,10 @@
     <sys:String x:Key="LOCPostScriptDescription">Скрипт для выполнения после выхода игры</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Скрипт для выполнения после запуска игры</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Выполнение глобальных скриптов</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Общее</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Отфильтровано</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Текущее</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Создать</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Сохранить по умолчанию</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Добавить в избранные</sys:String>
@@ -754,7 +758,7 @@
     <sys:String x:Key="LOCInstallGame">Установить</sys:String>
     <sys:String x:Key="LOCGameOptions">Настройки игры</sys:String>
     <sys:String x:Key="LOCGameDetails">Подробная информация</sys:String>
-    <sys:String x:Key="LOCUninstallGame">Установить</sys:String>
+    <sys:String x:Key="LOCUninstallGame">Удалить</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Открыть расположение игры</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Создать ярлык на рабочем столе</sys:String>
     <sys:String x:Key="LOCOpenGameManual">Открыть руководство</sys:String>
@@ -807,6 +811,10 @@
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite необходимо перезапустить, чтобы завершить установку. Перезапустить сейчас?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Расширение не упаковано должным образом.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Тема не упакована должным образом.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Не удалось загрузить должным образом расширение &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Не удалось загрузить должным образом тему &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Не удалось загрузить должным образом расширение.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Не удалось загрузить должным образом тему.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема оформления/Расширение использует неподдерживаемую версию API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Установка прошла успешно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить расширение?</sys:String>

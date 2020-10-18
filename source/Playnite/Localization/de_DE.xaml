@@ -739,6 +739,10 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCPostScriptDescription">Nach Spielende auszuführendes Skript</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Nach Spielstart auszuführendes Skript</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Globales Skript ausführen</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Gefiltert</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Aktuell</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Neu</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Als Standard speichern</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Zu Favoriten hinzufügen</sys:String>
@@ -806,6 +810,10 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite muss zum Abschließen der Installation neu gestartet werden. Möchtest du jetzt neu starten?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Erweiterung ist nicht ordnungsgemäß verpackt.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Design ist nicht ordnungsgemäß verpackt.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Erweiterung »{0}« konnte nicht ordnungsgemäß geladen werden.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Design »{0}« konnte nicht ordnungsgemäß geladen werden.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Erweiterung konnte nicht ordnungsgemäß geladen werden.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Design konnte nicht ordnungsgemäß geladen werden.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Design/Erweiterung verwendet eine nicht unterstützte API-Version.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation war erfolgreich.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Erweiterung installieren?</sys:String>

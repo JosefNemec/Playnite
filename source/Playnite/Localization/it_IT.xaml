@@ -739,6 +739,10 @@ Puoi provare i seguenti:
     <sys:String x:Key="LOCPostScriptDescription">Script da eseguire dopo l'uscita da un gioco</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Script da eseguire dopo l'avvio di un gioco</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Esegui lo script globale</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Globale</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Filtrato</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Corrente</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Nuovo</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Salva come predefiniti</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Aggiungi ai preferiti</sys:String>
@@ -806,6 +810,10 @@ Puoi provare i seguenti:
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite deve essere riavviato per compeltare l'installazione. Desidera raivviare ora?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">L'estensione non è stata impacchettata a dovere.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Il tema non è stato impacchettato a dovere.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">L'estensione &quot;{0}&quot; non è stata caricata correttamente.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Tema &quot;{0}&quot; non è stato caricato correttamente.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">L'estensione non è stata caricata correttamente.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Tema non è stato caricato correttamente.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Estensione sta usando una versione API non supportata.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installazione avvenuta con successo.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installare l'estensione?</sys:String>
