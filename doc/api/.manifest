@@ -136,6 +136,7 @@
   "Playnite.SDK.GlobalProgressActionArgs.MainContext": "Playnite.SDK.GlobalProgressActionArgs.yml",
   "Playnite.SDK.GlobalProgressActionArgs.MainDispatcher": "Playnite.SDK.GlobalProgressActionArgs.yml",
   "Playnite.SDK.GlobalProgressActionArgs.ProgressMaxValue": "Playnite.SDK.GlobalProgressActionArgs.yml",
+  "Playnite.SDK.GlobalProgressActionArgs.Text": "Playnite.SDK.GlobalProgressActionArgs.yml",
   "Playnite.SDK.GlobalProgressOptions": "Playnite.SDK.GlobalProgressOptions.yml",
   "Playnite.SDK.GlobalProgressOptions.#ctor(System.String)": "Playnite.SDK.GlobalProgressOptions.yml",
   "Playnite.SDK.GlobalProgressOptions.#ctor(System.String,System.Boolean)": "Playnite.SDK.GlobalProgressOptions.yml",
