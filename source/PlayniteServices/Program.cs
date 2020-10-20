@@ -29,6 +29,7 @@ namespace PlayniteServices
                 {
                     config.AddJsonFile("customSettings.json", optional: true, reloadOnChange: true);
                     config.AddJsonFile("patreonTokens.json", optional: true, reloadOnChange: true);
+                    config.AddJsonFile("twitchTokens.json", optional: true, reloadOnChange: true);
                 })
                 .Build();
 

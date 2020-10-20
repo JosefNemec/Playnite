@@ -21,27 +21,35 @@ namespace PlayniteServices.Controllers.IGDB
     public class MetadataController : Controller
     {
         private readonly static ILogger logger = LogManager.GetLogger();
-        private UpdatableAppSettings appSettings;
+        private UpdatableAppSettings settings;
+        private IgdbApi igdbApi;
         private static readonly Regex separatorRegex = new Regex(@"\s*(:|-)\s*", RegexOptions.Compiled);
         private static readonly Regex noIntroArticleRegEx = new Regex(@",\s*(the|a|an|der|das|die)$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly char[] bracketsMatchList = new char[] { '[', ']', '(', ')', '{', '}' };
         private static readonly char[] whereQueryBlacklist = new char[2] { ':', '-' };
+        private GamesController gamesController;
+        private ExpandedGameController expandedController;
+        private GameParsedController parsedController;
 
-        public MetadataController(UpdatableAppSettings settings)
+        public MetadataController(UpdatableAppSettings settings, IgdbApi igdbApi)
         {
-            appSettings = settings;
+            this.settings = settings;
+            this.igdbApi = igdbApi;
+            gamesController = new GamesController(settings, igdbApi);
+            expandedController = new ExpandedGameController(settings, igdbApi);
+            parsedController = new GameParsedController(settings, igdbApi);
         }
 
         [HttpPost("metadata_v2")]
         public async Task<ServicesResponse<ExpandedGame>> PostMetadataV2([FromBody]SdkModels.Game game)
         {
-            return await GetMetadata(game, ExpandedGameController.GetExpandedGame);
+            return await GetMetadata(game, expandedController.GetExpandedGame);
         }
 
         [HttpPost("metadata")]
         public async Task<ServicesResponse<ExpandedGameLegacy>> PostMetadata([FromBody]SdkModels.Game game)
         {
-            return await GetMetadata(game, GameParsedController.GetExpandedGame);
+            return await GetMetadata(game, parsedController.GetExpandedGame);
         }
 
         private async Task<ServicesResponse<T>> GetMetadata<T>(SdkModels.Game game, Func<ulong, Task<T>> expandFunc) where T : new()
@@ -57,7 +65,7 @@ namespace PlayniteServices.Controllers.IGDB
             {
                 if (isSteamPlugin)
                 {
-                    igdbId = await GamesBySteamIdController.GetIgdbMatch(ulong.Parse(game.GameId));
+                    igdbId = await igdbApi.GetSteamIgdbMatch(ulong.Parse(game.GameId));
                 }
                 else
                 {
@@ -86,7 +94,7 @@ namespace PlayniteServices.Controllers.IGDB
             else
             {
                 igdbId = await TryMatchGame(game, false);
-                var useAlt = appSettings.Settings.IGDB.AlternativeSearch && !game.Name.ContainsAny(whereQueryBlacklist);
+                var useAlt = settings.Settings.IGDB.AlternativeSearch && !game.Name.ContainsAny(whereQueryBlacklist);
                 if (useAlt && igdbId == 0)
                 {
                     igdbId = await TryMatchGame(game, true);
@@ -154,7 +162,7 @@ namespace PlayniteServices.Controllers.IGDB
             name = Regex.Replace(name, @"\s+RHCP$", "", RegexOptions.IgnoreCase);
             name = Regex.Replace(name, @"\s+RU$", "", RegexOptions.IgnoreCase);
 
-            var results = await GamesController.GetSearchResults(name, alternativeSearch);
+            var results = await gamesController.GetSearchResults(name, alternativeSearch);
             results.ForEach(a => a.name = StringExtensions.NormalizeGameName(a.name));
             string testName = string.Empty;
 
