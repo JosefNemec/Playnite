@@ -212,7 +212,11 @@ namespace PlayniteServices.Controllers.IGDB
             foreach (var res in resCopy)
             {
                 res.name = separatorRegex.Replace(res.name, " ");
-                res.alternative_names?.ForEach(a => a.name = separatorRegex.Replace(a.name, " "));
+                if (res.alternative_names.HasItems())
+                {
+                    res.alternative_names = res.alternative_names.Where(a => !a.name.IsNullOrEmpty()).ToList();
+                    res.alternative_names.ForEach(a => a.name = separatorRegex.Replace(a.name, " "));
+                }
             }
 
             matchedGame = MatchFun(game, testName, resCopy);

@@ -54,6 +54,11 @@ namespace PlayniteServices.Controllers.IGDB
 
         public async Task<List<ExpandedGameLegacy>> GetSearchResults(string searchString, bool alternativeSearch)
         {
+            if (searchString.IsNullOrEmpty())
+            {
+                return new List<ExpandedGameLegacy>();
+            }
+
             List<Game> searchResult = null;
             var modifiedSearchString = ModelsUtils.GetIgdbSearchString(searchString);
             var cachePath = Path.Combine(

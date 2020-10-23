@@ -148,9 +148,8 @@ namespace PlayniteServices.Controllers.IGDB
             }
             else
             {
-                logger.Error("Uknown IGDB API response.");
                 logger.Error(await response.Content.ReadAsStringAsync());
-                throw new Exception($"Uknown IGDB API response.");
+                throw new Exception($"Uknown IGDB API response {response.StatusCode}.");
             }
         }
 
