@@ -119,29 +119,39 @@ namespace PlayniteServices.Controllers.IGDB
         {
             logger.Debug($"IGDB Live: {url}, {query}");
             var sharedRequest = CreateRequest(url, query, settings.Settings.IGDB.AccessToken);
-            var sharedResponse = await HttpClient.SendAsync(sharedRequest);
-            var authFailed = sharedResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized || sharedResponse.StatusCode == System.Net.HttpStatusCode.Forbidden;
+            var response = await HttpClient.SendAsync(sharedRequest);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+
+            var authFailed = response.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.StatusCode == System.Net.HttpStatusCode.Forbidden;
             if (authFailed && reTry)
             {
-                logger.Error($"IGDB request failed on authentication {sharedResponse.StatusCode}.");
+                logger.Error($"IGDB request failed on authentication {response.StatusCode}.");
                 await Authenticate();
                 return await SendStringRequest(url, query, false);
             }
             else if (authFailed)
             {
-                throw new Exception($"Failed to authenticate IGDB {sharedResponse.StatusCode}.");
+                throw new Exception($"Failed to authenticate IGDB {response.StatusCode}.");
             }
-            else if (sharedResponse.StatusCode == System.Net.HttpStatusCode.TooManyRequests && reTry)
+            else if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests && reTry)
             {
                 await Task.Delay(250);
                 return await SendStringRequest(url, query, false);
             }
-            else if (sharedResponse.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+            else if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
             {
                 throw new Exception($"IGDB failed due to too many requests.");
             }
-
-            return await sharedResponse.Content.ReadAsStringAsync();
+            else
+            {
+                logger.Error("Uknown IGDB API response.");
+                logger.Error(await response.Content.ReadAsStringAsync());
+                throw new Exception($"Uknown IGDB API response.");
+            }
         }
 
         public async Task<ulong> GetSteamIgdbMatch(ulong gameId)
