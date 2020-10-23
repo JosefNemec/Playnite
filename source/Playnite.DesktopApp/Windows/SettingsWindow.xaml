@@ -69,7 +69,7 @@
                 <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8">
                     <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="15"/>
                     <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="16" />
-                    <TreeViewItem Header="{DynamicResource LOCOther}" Tag="17" />
+                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="17" />
                     <TreeViewItem Header="{DynamicResource LOCThemes}" Tag="18" />
                 </TreeViewItem>
                 <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10"
