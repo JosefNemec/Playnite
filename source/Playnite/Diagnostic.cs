@@ -198,10 +198,24 @@ namespace Playnite
                     {
                         if (Path.GetFileName(logFile) == "cef.log")
                         {
-                            continue;
+                            try
+                            {
+                                var cefEntry = archive.CreateEntry("cef.log");
+                                using (var cefS = new FileStream(logFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                                using (var writer = new StreamWriter(cefEntry.Open()))
+                                {
+                                    cefS.CopyTo(writer.BaseStream);
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                logger.Error(e, "Failed to pack CEF log.");
+                            }
                         }
-
-                        archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
+                        else
+                        {
+                            archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
+                        }
                     }
                 }
             }
