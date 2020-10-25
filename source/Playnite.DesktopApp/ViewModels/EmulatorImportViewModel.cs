@@ -63,22 +63,34 @@ namespace Playnite.DesktopApp.ViewModels
 
         public class ImportableEmulator : ScannedEmulator
         {
+            private bool import = true;
             public bool Import
             {
-                get; set;
-            } = true;
+                get => import;
+                set
+                {
+                    import = value;
+                    OnPropertyChanged();
+                }
+            }
 
             public ImportableEmulator(ScannedEmulator emulator) : base(emulator.Name, emulator.Profiles)
             {
             }
         }
 
-        public class ImportableGame
+        public class ImportableGame : ObservableObject
         {
+            private bool import = true;
             public bool Import
             {
-                get; set;
-            } = true;
+                get => import;
+                set
+                {
+                    import = value;
+                    OnPropertyChanged();
+                }
+            }
 
             public Game Game
             {
@@ -229,6 +241,30 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 isLoading = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private bool markImportAllEmulators;
+        public bool MarkImportAllEmulators
+        {
+            get => markImportAllEmulators;
+            set
+            {
+                markImportAllEmulators = value;
+                OnPropertyChanged();
+                EmulatorList.ForEach(a => a.Import = markImportAllEmulators);
+            }
+        }
+
+        private bool markImportAllGames;
+        public bool MarkImportAllGames
+        {
+            get => markImportAllGames;
+            set
+            {
+                markImportAllGames = value;
+                OnPropertyChanged();
+                GamesList.ForEach(a => a.Import = markImportAllGames);
             }
         }
 
