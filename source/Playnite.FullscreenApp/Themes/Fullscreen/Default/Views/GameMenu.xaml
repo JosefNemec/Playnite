@@ -28,15 +28,27 @@
                                                HorizontalAlignment="Stretch"
                                                VerticalAlignment="Bottom">
                                     </TextBlock>
-                                </Grid>                                
-                                <ItemsControlEx x:Name="PART_ItemsHost" Focusable="False">
+                                </Grid>
+                                <ItemsControlEx x:Name="PART_ItemsHost" Focusable="False"
+                                                KeyboardNavigation.DirectionalNavigation="Once">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <ButtonEx Content="{Binding Title}"
                                                       Command="{Binding Command}"
+                                                      CommandParameter="{Binding CommandParameter}"
                                                       Margin="5" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
+                                    <ItemsControl.Template>
+                                        <ControlTemplate>
+                                            <ScrollViewer Focusable="False"
+                                                          HorizontalScrollBarVisibility="Disabled"
+                                                          VerticalScrollBarVisibility="Auto"
+                                                          CanContentScroll="True">
+                                                <ItemsPresenter />
+                                            </ScrollViewer>
+                                        </ControlTemplate>
+                                    </ItemsControl.Template>
                                 </ItemsControlEx>
                             </DockPanel>
                         </Border>
