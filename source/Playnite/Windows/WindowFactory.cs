@@ -72,7 +72,6 @@ namespace Playnite.Windows
                 }
 
                 asDialog = true;
-                WindowManager.NotifyChildOwnershipChanges();
                 IsClosed = false;
                 result = Window.ShowDialog();
             }, null);
@@ -99,7 +98,6 @@ namespace Playnite.Windows
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            WindowManager.NotifyChildOwnershipChanges();
             IsClosed = true;
         }
 
@@ -126,7 +124,6 @@ namespace Playnite.Windows
                 }
 
                 Window.Close();
-                WindowManager.NotifyChildOwnershipChanges();
             }, null);
         }
     }
