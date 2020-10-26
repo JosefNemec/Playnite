@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:psdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"
-             xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"           
+             xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite" 
+             xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"          
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     
@@ -29,7 +30,7 @@
             <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}"
                        Grid.Row="0" TextWrapping="Wrap" Margin="0,0,0,10" />
 
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,5,0,5">
+            <DockPanel Grid.Row="1" Margin="0,5,0,5" LastChildFill="False">
                 <TextBlock Text="{DynamicResource LOCScriptRuntime}" VerticalAlignment="Center" />
                 <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
                                   SelectedValue="{Binding Settings.ActionsScriptLanguage}">
@@ -46,7 +47,10 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </StackPanel>
+                <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Right"
+                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-scripts" />
+            </DockPanel>
 
             <TextBlock Text="{DynamicResource LOCPreScriptDescription}" Grid.Row="2" Margin="0,5,0,5" />
             <TextBox AcceptsReturn="True" Grid.Row="3"
