@@ -397,5 +397,10 @@ namespace ItchioLibrary.Models
         public CaveStats stats;
         public CaveInstallInfo installInfo;
         public Upload upload;
+
+        public override string ToString()
+        {
+            return game?.title ?? base.ToString();
+        }
     }
 }

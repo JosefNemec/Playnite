@@ -121,7 +121,7 @@ namespace Playnite.Common
 
         public event EventHandler<JsonRpcRequestEventArgs> RequestReceived;
         public event EventHandler<JsonRpcNotificationEventArgs> NotificationReceived;
-               
+
         public JsonRpcClient(string address)
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -207,23 +207,38 @@ namespace Playnite.Common
             else if (request.Id != null && !string.IsNullOrEmpty(request.Method))
             {
                 // Request
-                RequestReceived?.Invoke(this, new JsonRpcRequestEventArgs()
+                RequestReceived?.BeginInvoke(this, new JsonRpcRequestEventArgs()
                 {
                     Request = Serialization.FromJson<JsonRpcRequest>(data)
-                });
+                }, EventEndCallback<JsonRpcRequestEventArgs>, null);
             }
             else if (request.Id == null)
             {
                 // Notification
-                NotificationReceived?.Invoke(this, new JsonRpcNotificationEventArgs()
+                NotificationReceived?.BeginInvoke(this, new JsonRpcNotificationEventArgs()
                 {
                     Notification = Serialization.FromJson<JsonRpcNotification>(data)
-                });
+                }, EventEndCallback<JsonRpcNotificationEventArgs>, null);
             }
             else
             {
                 logger.Error("Recevied invalid RPC message:");
                 logger.Error(data);
+            }
+        }
+
+        private void EventEndCallback<T>(IAsyncResult result)
+        {
+            var ar = (System.Runtime.Remoting.Messaging.AsyncResult)result;
+            var invokedMethod = (EventHandler<T>)ar.AsyncDelegate;
+
+            try
+            {
+                invokedMethod.EndInvoke(result);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"JsonRpcClient event listener failed.");
             }
         }
 
@@ -256,7 +271,7 @@ namespace Playnite.Common
             byte[] msg = encoding.GetBytes(data + '\n');
             return socket.Send(msg);
         }
-        
+
         public void SendRequest(string method)
         {
             SendRequest<Dictionary<string, object>>(method, new Dictionary<string, object>());
@@ -268,7 +283,7 @@ namespace Playnite.Common
         }
 
         public TResult SendRequest<TResult>(string method) where TResult : class
-        {           
+        {
             return SendRequest<TResult>(method, new Dictionary<string, object>());
         }
 
@@ -279,7 +294,7 @@ namespace Playnite.Common
             var response = Serialization.FromJson<JsonRpcResponse<TResult>>(strResponse);
             if (response.Error != null)
             {
-                throw new JsonRpcException(response.Error.Code, response.Error.Message);                    
+                throw new JsonRpcException(response.Error.Code, response.Error.Message);
             }
             else
             {
