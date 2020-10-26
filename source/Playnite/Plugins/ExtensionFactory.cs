@@ -186,7 +186,7 @@ namespace Playnite.Plugins
             }
         }
 
-        public List<ExtensionManifest> GetExtensionDescriptors()
+        public static List<ExtensionManifest> GetExtensionDescriptors()
         {
             var descs = new List<ExtensionManifest>();
             foreach (var file in GetExtensionDescriptorFiles())
@@ -205,7 +205,7 @@ namespace Playnite.Plugins
             return descs;
         }
 
-        private List<string> GetExtensionDescriptorFiles()
+        private static List<string> GetExtensionDescriptorFiles()
         {
             var added = new List<string>();
             var plugins = new List<string>();

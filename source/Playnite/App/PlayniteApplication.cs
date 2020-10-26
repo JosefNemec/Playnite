@@ -978,9 +978,17 @@ namespace Playnite
                     throw new Exception(ResourceProvider.GetString("LOCGeneralExtensionInstallApiVersionFails"));
                 }
 
+                var message = string.Format(ResourceProvider.GetString("LOCThemeInstallPrompt"),
+                    desc.Name, desc.Author, desc.Version);
+                var existing = ThemeManager.GetAvailableThemes(desc.Mode).FirstOrDefault(a => a.Id == desc.Id);
+                if (existing != null)
+                {
+                    message = string.Format(ResourceProvider.GetString("LOCThemeUpdatePrompt"),
+                        desc.Name, existing.Version, desc.Version);
+                }
+
                 if (Dialogs.ShowMessage(
-                        string.Format(ResourceProvider.GetString("LOCThemeInstallPrompt"),
-                            desc.Name, desc.Author, desc.Version),
+                        message,
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
@@ -1013,9 +1021,17 @@ namespace Playnite
                 var desc = ExtensionInstaller.GetPackedExtensionManifest(extensionFile);
                 desc.VerifyManifest();
 
+                var message = string.Format(ResourceProvider.GetString("LOCExtensionInstallPrompt"),
+                    desc.Name, desc.Author, desc.Version);
+                var existing = ExtensionFactory.GetExtensionDescriptors().FirstOrDefault(a => a.Id == desc.Id);
+                if (existing != null)
+                {
+                    message = string.Format(ResourceProvider.GetString("LOCExtensionUpdatePrompt"),
+                        desc.Name, existing.Version, desc.Version);
+                }
+
                 if (Dialogs.ShowMessage(
-                        string.Format(ResourceProvider.GetString("LOCExtensionInstallPrompt"),
-                            desc.Name, desc.Author, desc.Version),
+                        message,
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {

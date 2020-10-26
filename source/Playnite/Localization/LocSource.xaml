@@ -819,19 +819,27 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Failed to install extension.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Do you want to install new extension? Existing installation will be overwritten.
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Do you want to install a new extension?
 
 {0}
 By {1}
 Version {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Do you want to update "{0}" extension?
+
+Current version: {1}
+New version: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Failed to install theme.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Do you want to install a new theme? The previous installation will be overwritten.
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Do you want to install a new theme?
 
 {0}
 By {1}
 Version {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Do you want to update "{0}" theme?
+
+Current version: {1}
+New version: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">You are about to leave Playnite and navigate to the following web page using your default web browser. Do you want to continue?
 
 {0}</sys:String>

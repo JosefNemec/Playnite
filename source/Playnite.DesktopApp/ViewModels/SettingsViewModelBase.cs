@@ -239,7 +239,7 @@ namespace Playnite.DesktopApp.ViewModels
             Settings.ImportExclusionList = settings.ImportExclusionList.GetClone();
             Settings.PropertyChanged += (s, e) => editedFields.AddMissing(e.PropertyName);
 
-            var descriptions = Extensions.GetExtensionDescriptors();
+            var descriptions = ExtensionFactory.GetExtensionDescriptors();
             LibraryPluginList = descriptions
                 .Where(a => a.Type == ExtensionType.GameLibrary)
                 .Select(a => new SelectablePlugin(
