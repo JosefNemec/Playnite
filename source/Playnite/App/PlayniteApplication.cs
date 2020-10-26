@@ -25,6 +25,7 @@ using Polly;
 using System.Windows.Media;
 using Playnite.SDK.Events;
 using System.Windows.Threading;
+using System.Net;
 
 namespace Playnite
 {
@@ -81,6 +82,14 @@ namespace Playnite
             if (Current != null)
             {
                 throw new Exception("Only one application instance is allowed.");
+            }
+
+            // TODO: remove after switch to .NET 5
+            // Fixes various network issues on 2004+ Win10 if TLS 1.3 is forced via registry.
+            if (Computer.IsTLS13SystemWideEnabled())
+            {
+                logger.Warn("System wide TLS 1.3 is enabled, forcing 1.2.");
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             }
 
             SyncContext = new DispatcherSynchronizationContext(nativeApp.Dispatcher);
