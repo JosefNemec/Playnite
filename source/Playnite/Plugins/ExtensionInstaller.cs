@@ -152,14 +152,17 @@ namespace Playnite.Plugins
                 }
 
                 // Also delete manually installed instance
-                foreach (var extDir in Directory.GetDirectories(rootDir))
+                if (Directory.Exists(rootDir))
                 {
-                    var man = GetManifestFromDir(extDir);
-                    if (man != null)
+                    foreach (var extDir in Directory.GetDirectories(rootDir))
                     {
-                        if (manifest.LegacyDirId == man.LegacyDirId)
+                        var man = GetManifestFromDir(extDir);
+                        if (man != null)
                         {
-                            Directory.Delete(extDir, true);
+                            if (manifest.LegacyDirId == man.LegacyDirId)
+                            {
+                                Directory.Delete(extDir, true);
+                            }
                         }
                     }
                 }
