@@ -25,6 +25,7 @@ using Polly;
 using System.Windows.Media;
 using Playnite.SDK.Events;
 using System.Windows.Threading;
+using System.Net;
 
 namespace Playnite
 {
@@ -81,6 +82,14 @@ namespace Playnite
             if (Current != null)
             {
                 throw new Exception("Only one application instance is allowed.");
+            }
+
+            // TODO: remove after switch to .NET 5
+            // Fixes various network issues on 2004+ Win10 if TLS 1.3 is forced via registry.
+            if (Computer.IsTLS13SystemWideEnabled())
+            {
+                logger.Warn("System wide TLS 1.3 is enabled, forcing 1.2.");
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             }
 
             SyncContext = new DispatcherSynchronizationContext(nativeApp.Dispatcher);
@@ -978,9 +987,17 @@ namespace Playnite
                     throw new Exception(ResourceProvider.GetString("LOCGeneralExtensionInstallApiVersionFails"));
                 }
 
+                var message = string.Format(ResourceProvider.GetString("LOCThemeInstallPrompt"),
+                    desc.Name, desc.Author, desc.Version);
+                var existing = ThemeManager.GetAvailableThemes(desc.Mode).FirstOrDefault(a => a.Id == desc.Id);
+                if (existing != null)
+                {
+                    message = string.Format(ResourceProvider.GetString("LOCThemeUpdatePrompt"),
+                        desc.Name, existing.Version, desc.Version);
+                }
+
                 if (Dialogs.ShowMessage(
-                        string.Format(ResourceProvider.GetString("LOCThemeInstallPrompt"),
-                            desc.Name, desc.Author, desc.Version),
+                        message,
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
@@ -1013,9 +1030,17 @@ namespace Playnite
                 var desc = ExtensionInstaller.GetPackedExtensionManifest(extensionFile);
                 desc.VerifyManifest();
 
+                var message = string.Format(ResourceProvider.GetString("LOCExtensionInstallPrompt"),
+                    desc.Name, desc.Author, desc.Version);
+                var existing = ExtensionFactory.GetExtensionDescriptors().FirstOrDefault(a => a.Id == desc.Id);
+                if (existing != null)
+                {
+                    message = string.Format(ResourceProvider.GetString("LOCExtensionUpdatePrompt"),
+                        desc.Name, existing.Version, desc.Version);
+                }
+
                 if (Dialogs.ShowMessage(
-                        string.Format(ResourceProvider.GetString("LOCExtensionInstallPrompt"),
-                            desc.Name, desc.Author, desc.Version),
+                        message,
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {

@@ -21,6 +21,25 @@ namespace PlayniteServices.Controllers.PlayniteTools
         }
 
         [ServiceFilter(typeof(ServiceKeyFilter))]
+        [HttpGet("serverlog")]
+        public IActionResult GetServerLog(Guid packageId, string serviceKey)
+        {
+            var logPath = Path.Combine(Paths.ExecutingDirectory, "playnite.log");
+            var zipLog = Path.Combine(Paths.ExecutingDirectory, "serverlog.zip");
+            if (System.IO.File.Exists(zipLog))
+            {
+                System.IO.File.Delete(zipLog);
+            }
+
+            using (var zip = ZipFile.Open(zipLog, ZipArchiveMode.Create))
+            {
+                zip.CreateEntryFromFile(logPath, "serverlog.log");
+            }
+
+            return PhysicalFile(zipLog, System.Net.Mime.MediaTypeNames.Application.Zip, "serverlog.zip");
+        }
+
+        [ServiceFilter(typeof(ServiceKeyFilter))]
         [HttpGet("{packageId}")]
         public IActionResult GetPackage(Guid packageId, string serviceKey)
         {

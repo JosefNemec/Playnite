@@ -174,7 +174,7 @@ namespace Playnite.DesktopApp.ViewModels
             this.extensions = extensions;
             this.playniteApi = playniteApi;
 
-            var plugins = extensions.GetExtensionDescriptors().Where(a => a.Type == ExtensionType.GameLibrary);
+            var plugins = ExtensionFactory.GetExtensionDescriptors().Where(a => a.Type == ExtensionType.GameLibrary);
             foreach (var description in plugins)
             {
                 foreach (LibraryPlugin provider in extensions.LoadPlugins(description, playniteApi).Where(a => a is LibraryPlugin))

@@ -17,7 +17,9 @@ namespace PlayniteServices
     public class IgdbSettings
     {
         public string ApiEndpoint { get; set; }
-        public string ApiKey { get; set; }
+        public string ClientId { get; set; }
+        public string AccessToken { get; set; }
+        public string ClientSecret { get; set; }
         public string CacheDirectory { get; set; }
         public int SearchCacheTimeout { get; set; }
         public string WebHookSecret { get; set; }

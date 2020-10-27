@@ -125,7 +125,10 @@
                         </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="{DynamicResource LOCImportLabel}">
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <CheckBox IsChecked="{Binding MarkImportAllEmulators}" />
+                                    </GridViewColumn.Header>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <CheckBox IsChecked="{Binding Import, Mode=TwoWay}" Padding="5" HorizontalAlignment="Right" />
@@ -215,7 +218,10 @@
                         </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="{DynamicResource LOCImportLabel}">
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <CheckBox IsChecked="{Binding MarkImportAllGames}" />
+                                    </GridViewColumn.Header>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <CheckBox IsChecked="{Binding Import, Mode=TwoWay}" HorizontalAlignment="Right" />

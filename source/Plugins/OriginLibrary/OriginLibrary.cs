@@ -261,6 +261,33 @@ namespace OriginLibrary
             return playAction;
         }
 
+        public string GetInstallDirectory(GameLocalDataResponse localData)
+        {
+            var platform = localData.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
+            if (platform == null)
+            {
+                return null;
+            }
+
+            var installPath = GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
+            if (installPath == null ||
+                installPath.CompletePath.IsNullOrEmpty() ||
+                !File.Exists(installPath.CompletePath))
+            {
+                return null;
+            }
+
+            var action = GetGamePlayTask(localData);
+            if (action?.Type == GameActionType.File)
+            {
+                return action.WorkingDir;
+            }
+            else
+            {
+                return Path.GetDirectoryName(installPath.CompletePath);
+            }
+        }
+
         public Dictionary<string, GameInfo> GetInstalledGames()
         {
             var contentPath = Path.Combine(Origin.DataPath, "LocalContent");
@@ -319,82 +346,21 @@ namespace OriginLibrary
                         }
 
                         newGame.Name = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
-                        var platform = localData.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
-
-                        if (platform == null)
-                        {
-                            logger.Warn(gameId + " game doesn't have windows platform, skipping install import.");
-                            continue;
-                        }
-
-                        var installPath = GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-                        if (installPath == null ||
-                            installPath.CompletePath.IsNullOrEmpty() ||
-                            !File.Exists(installPath.CompletePath))
+                        var installDir = GetInstallDirectory(localData);
+                        if (installDir.IsNullOrEmpty())
                         {
                             continue;
                         }
 
-                        var installDirReplacement = ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar;
-                        newGame.PlayAction = GetGamePlayTask(localData);
-                        if (newGame.PlayAction?.Type == GameActionType.File)
+                        newGame.InstallDirectory = installDir;
+                        newGame.PlayAction = new GameAction
                         {
-                            newGame.InstallDirectory = newGame.PlayAction.WorkingDir;
-                            newGame.PlayAction.Path = newGame.PlayAction.Path.Replace(newGame.InstallDirectory, installDirReplacement);
-                        }
-                        else
-                        {
-                            newGame.InstallDirectory = Path.GetDirectoryName(installPath.CompletePath);
-                        }
+                            IsHandledByPlugin = true,
+                            Type = GameActionType.URL,
+                            Path = Origin.GetLaunchString(gameId)
+                        };
 
-                        // For games like Sims 4
-                        if (newGame.PlayAction?.Path.EndsWith("exe", StringComparison.OrdinalIgnoreCase) == false)
-                        {
-                            var task = GetGamePlayTask(newGame.InstallDirectory);
-                            newGame.InstallDirectory = task.WorkingDir;
-                            newGame.PlayAction.Path = task.Path.Replace(newGame.InstallDirectory, installDirReplacement);
-                        }
-
-                        // If game uses EasyAntiCheat then use executable referenced by it
-                        if (Origin.GetGameUsesEasyAntiCheat(newGame.InstallDirectory))
-                        {
-                            var eac = EasyAntiCheat.GetLauncherSettings(newGame.InstallDirectory);
-                            if (newGame.PlayAction == null)
-                            {
-                                newGame.PlayAction = new GameAction
-                                {
-                                    Type = GameActionType.File,
-                                    IsHandledByPlugin = true
-                                };
-                            }
-
-                            newGame.PlayAction.Path = eac.Executable.Replace(newGame.InstallDirectory, installDirReplacement);
-                            if (!string.IsNullOrEmpty(eac.Parameters) && eac.UseCmdlineParameters == "1")
-                            {
-                                newGame.PlayAction.Arguments = eac.Parameters;
-                            }
-
-                            if (!string.IsNullOrEmpty(eac.WorkingDirectory))
-                            {
-                                newGame.PlayAction.WorkingDir = Path.Combine(ExpandableVariables.InstallationDirectory, eac.WorkingDirectory);
-                            }
-                        }
-
-                        if (newGame.PlayAction != null)
-                        {
-                            if (!newGame.PlayAction.Path.Contains(ExpandableVariables.InstallationDirectory))
-                            {
-                                newGame.PlayAction.Path = installDirReplacement + newGame.PlayAction.Path;
-                            }
-
-                            newGame.PlayAction.WorkingDir = null;
-                            games.Add(newGame.GameId, newGame);
-                        }
-                        else
-                        {
-                            logger.Warn("Found installed Origin game that's not launchable, skipping import.");
-                            logger.Warn(newGame.ToString());
-                        }
+                        games.Add(newGame.GameId, newGame);
                     }
                     catch (Exception e) when (!Environment.IsDebugBuild)
                     {
@@ -529,7 +495,7 @@ namespace OriginLibrary
                 }
             }
 
-            if (LibrarySettings.ConnectAccount)
+            if (LibrarySettings.ConnectAccount && LibrarySettings.ImportUninstalledGames)
             {
                 try
                 {

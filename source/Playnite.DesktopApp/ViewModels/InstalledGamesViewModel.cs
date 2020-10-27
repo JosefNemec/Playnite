@@ -122,9 +122,15 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            private bool import;
             public bool Import
             {
-                get; set;
+                get => import;
+                set
+                {
+                    import = value;
+                    OnPropertyChanged();
+                }
             }
 
             public ImportableProgram(Program program, ProgramType type) : base(program)
@@ -178,6 +184,18 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 isLoading = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private bool markImportAll;
+        public bool MarkImportAll
+        {
+            get => markImportAll;
+            set
+            {
+                markImportAll = value;
+                OnPropertyChanged();
+                Programs.ForEach(a => a.Import = markImportAll);
             }
         }
 

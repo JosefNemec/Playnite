@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using PlayniteServices.Controllers.IGDB;
 using PlayniteServices.Filters;
 
 namespace PlayniteServices
@@ -51,6 +52,7 @@ namespace PlayniteServices
             services.Configure<AppSettings>(Configuration);
 
             services.AddSingleton(s => new UpdatableAppSettings(s.GetService<IOptionsMonitor<AppSettings>>()));
+            services.AddSingleton<IgdbApi>();
             services.AddSingleton<PlayniteVersionFilter>();
             services.AddSingleton<ServiceKeyFilter>();
         }

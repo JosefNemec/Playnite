@@ -109,7 +109,7 @@ namespace Playnite.DesktopApp.Controls
         {
             if (mainModel?.GamesView != null)
             {
-                var groups = mainModel.GamesView.CollectionView.Groups.Select(a => ((CollectionViewGroup)a).Name.ToString()).ToList();
+                var groups = mainModel.GamesView.CollectionView.Groups.Select(a => ((CollectionViewGroup)a).Name?.ToString()).ToList();
                 settings.ViewSettings.CollapseGroups(settings.ViewSettings.GroupingOrder, groups);
             }
         }

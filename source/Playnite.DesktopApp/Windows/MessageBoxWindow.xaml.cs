@@ -157,7 +157,6 @@ namespace Playnite.DesktopApp.Windows
                 Owner = owner;
             }
 
-            WindowManager.NotifyChildOwnershipChanges();
             TextInputText.Focus();
             SetStrings(messageBoxText, caption);
             ShowInputField = true;
@@ -167,7 +166,6 @@ namespace Playnite.DesktopApp.Windows
             InputText = inputText ?? string.Empty;
             IsTextReadOnly = true;
             ShowDialog();
-            WindowManager.NotifyChildOwnershipChanges();
         }
 
         public StringSelectionDialogResult ShowInput(
@@ -186,7 +184,6 @@ namespace Playnite.DesktopApp.Windows
                 Owner = owner;
             }
 
-            WindowManager.NotifyChildOwnershipChanges();
             TextInputText.Focus();
             SetStrings(messageBoxText, caption);
             ShowInputField = true;
@@ -196,7 +193,6 @@ namespace Playnite.DesktopApp.Windows
             ButtonCancel.IsCancel = true;
             InputText = defaultInput ?? string.Empty;
             ShowDialog();
-            WindowManager.NotifyChildOwnershipChanges();
 
             if (result == MessageBoxResult.Cancel)
             {
@@ -227,7 +223,6 @@ namespace Playnite.DesktopApp.Windows
                 Owner = owner;
             }
 
-            WindowManager.NotifyChildOwnershipChanges();
             result = defaultResult;
             SetStrings(messageBoxText, caption);
             DisplayIcon = icon;
@@ -269,7 +264,6 @@ namespace Playnite.DesktopApp.Windows
             }
 
             ShowDialog();
-            WindowManager.NotifyChildOwnershipChanges();
             return result;
         }
 
@@ -290,7 +284,6 @@ namespace Playnite.DesktopApp.Windows
                 Owner = owner;
             }
 
-            WindowManager.NotifyChildOwnershipChanges();
             SetStrings(messageBoxText, caption);
             DisplayIcon = icon;
 
@@ -323,7 +316,6 @@ namespace Playnite.DesktopApp.Windows
             }
 
             ShowDialog();
-            WindowManager.NotifyChildOwnershipChanges();
             return resultCustom;
         }
 

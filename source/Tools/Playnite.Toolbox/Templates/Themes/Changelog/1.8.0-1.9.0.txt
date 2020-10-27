@@ -1,0 +1,3 @@
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Constants.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/MainPanel.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/GameMenu.xaml

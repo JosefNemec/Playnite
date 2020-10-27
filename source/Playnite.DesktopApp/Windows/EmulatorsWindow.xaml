@@ -39,6 +39,10 @@
                 <Button TabIndex="1" Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}" 
                         Command="{Binding ConfirmCommand}"/>
+                <Button Content="{DynamicResource LOCMenuHelpTitle}"
+                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Adding-new-emulator"                        
+                        DockPanel.Dock="Left" Style="{StaticResource BottomButton}"/>
             </DockPanel>
         </Border>
         <Grid Margin="5" DockPanel.Dock="Bottom">
@@ -105,12 +109,6 @@
                     <StackPanel Grid.Row="1" Margin="{StaticResource EditSeparatorMargin}">
                         <TextBlock Text="{DynamicResource LOCProfilesLabel}" />
                         <DockPanel Margin="0,5,0,0">
-                            <TextBlock KeyboardNavigation.TabIndex="6" DockPanel.Dock="Right" Padding="10,0,10,0" VerticalAlignment="Center">
-                                    <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                                                CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Emulator-Settings">
-                                        <Run Text="?" FontSize="22" ToolTip="{DynamicResource LOCEmulatorSettingsHelp}" />
-                                    </Hyperlink>
-                            </TextBlock>
                             <Button TabIndex="5" Content="{DynamicResource LOCRemoveTitle}" DockPanel.Dock="Right" Margin="5,0,5,0"
                                     Command="{Binding RemoveEmulatorProfileCommand}"
                                     CommandParameter="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}"/>

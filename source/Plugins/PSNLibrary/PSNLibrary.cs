@@ -203,7 +203,6 @@ namespace PSNLibrary
                 var allGames = new List<GameInfo>();
                 allGames.AddRange(ParseAccountList(clientApi));
                 allGames.AddRange(ParseThrophies(clientApi));
-                allGames.AddRange(ParseDownloadList(clientApi));
 
                 foreach (var group in allGames.GroupBy(a => a.Name.ToLower().Replace(":", "")))
                 {

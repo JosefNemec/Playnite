@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using PlayniteServices.Controllers.IGDB.DataGetter;
 using PlayniteServices.Filters;
 using PlayniteServices.Models.IGDB;
 using System;
@@ -13,8 +14,13 @@ namespace PlayniteServices.Controllers.IGDB
     [Route("igdb/game_parsed_v2")]
     public class ExpandedGameController : Controller
     {
-        public ExpandedGameController()
+        private UpdatableAppSettings settings;
+        private IgdbApi igdbApi;
+
+        public ExpandedGameController(UpdatableAppSettings settings, IgdbApi igdbApi)
         {
+            this.settings = settings;
+            this.igdbApi = igdbApi;
         }
 
         [HttpGet("{gameId}")]
@@ -23,9 +29,9 @@ namespace PlayniteServices.Controllers.IGDB
             return new ServicesResponse<ExpandedGame>(await GetExpandedGame(gameId));
         }
 
-        public async static Task<ExpandedGame> GetExpandedGame(ulong gameId)
+        public async Task<ExpandedGame> GetExpandedGame(ulong gameId)
         {
-            var game = (await GameController.GetItem(gameId)).Data;
+            var game = await igdbApi.Games.Get(gameId);
             if (game.id == 0)
             {
                 new ExpandedGame();
@@ -53,7 +59,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.alternative_names = new List<AlternativeName>();
                 foreach (var nameId in game.alternative_names)
                 {
-                    parsedGame.alternative_names.Add((await AlternativeNameController.GetItem(nameId)).Data);
+                    parsedGame.alternative_names.Add(await igdbApi.AlternativeNames.Get(nameId));
                 }
             }
 
@@ -62,7 +68,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.involved_companies = new List<ExpandedInvolvedCompany>();
                 foreach (var companyId in game.involved_companies)
                 {
-                    parsedGame.involved_companies.Add((await InvolvedCompanyController.GetItem(companyId)).Data);
+                    parsedGame.involved_companies.Add(await igdbApi.InvolvedCompanies.GetItem(companyId));
                 }
             }
 
@@ -71,7 +77,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.genres = new List<Genre>();
                 foreach (var genreId in game.genres)
                 {
-                    parsedGame.genres.Add((await GenreController.GetItem(genreId)).Data);
+                    parsedGame.genres.Add(await igdbApi.Genres.Get(genreId));
                 }
             }
 
@@ -80,7 +86,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.websites = new List<Website>();
                 foreach (var websiteId in game.websites)
                 {
-                    parsedGame.websites.Add((await WebsiteController.GetItem(websiteId)).Data);
+                    parsedGame.websites.Add(await igdbApi.Websites.Get(websiteId));
                 }
             }
 
@@ -89,7 +95,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.game_modes = new List<GameMode>();
                 foreach (var modeId in game.game_modes)
                 {
-                    parsedGame.game_modes.Add((await GameModeController.GetItem(modeId)).Data);
+                    parsedGame.game_modes.Add(await igdbApi.GameModes.Get(modeId));
                 }
             }
 
@@ -98,13 +104,13 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.player_perspectives = new List<PlayerPerspective>();
                 foreach (var persId in game.player_perspectives)
                 {
-                    parsedGame.player_perspectives.Add((await PlayerPerspectiveController.GetItem(persId)).Data);
+                    parsedGame.player_perspectives.Add(await igdbApi.PlayerPerspectives.Get(persId));
                 }
             }
 
             if (game.cover > 0)
             {
-                parsedGame.cover = (await CoverController.GetItem(game.cover)).Data;
+                parsedGame.cover = await igdbApi.Covers.Get(game.cover);
             }
 
             if (game.artworks?.Any() == true)
@@ -112,7 +118,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.artworks = new List<GameImage>();
                 foreach (var artworkId in game.artworks)
                 {
-                    parsedGame.artworks.Add((await ArtworkController.GetItem(artworkId)).Data);
+                    parsedGame.artworks.Add(await igdbApi.Artworks.Get(artworkId));
                 }
             }
 
@@ -121,7 +127,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.screenshots = new List<GameImage>();
                 foreach (var screenshotId in game.screenshots)
                 {
-                    parsedGame.screenshots.Add((await ScreenshotController.GetItem(screenshotId)).Data);
+                    parsedGame.screenshots.Add(await igdbApi.Screenshots.Get(screenshotId));
                 }
             }
 
@@ -130,13 +136,13 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.age_ratings = new List<AgeRating>();
                 foreach (var ageId in game.age_ratings)
                 {
-                    parsedGame.age_ratings.Add((await AgeRatingController.GetItem(ageId)).Data);
+                    parsedGame.age_ratings.Add(await igdbApi.AgeRatings.Get(ageId));
                 }
             }
 
             if (game.collection > 0)
             {
-                parsedGame.collection = (await CollectionController.GetItem(game.collection)).Data;
+                parsedGame.collection = await igdbApi.Collections.Get(game.collection);
             }
 
             return parsedGame;

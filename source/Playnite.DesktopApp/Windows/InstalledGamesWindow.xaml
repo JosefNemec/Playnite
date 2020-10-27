@@ -39,7 +39,10 @@
                 </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="{DynamicResource LOCImportLabel}">
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <CheckBox IsChecked="{Binding MarkImportAll}" />
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding Import}" HorizontalAlignment="Right" />

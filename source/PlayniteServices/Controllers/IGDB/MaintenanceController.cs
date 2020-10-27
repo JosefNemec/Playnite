@@ -12,18 +12,18 @@ namespace PlayniteServices.Controllers.IGDB
     [Route("igdb/maintenance")]
     public class MaintenanceController : Controller
     {
-        private UpdatableAppSettings appSettings;
+        private UpdatableAppSettings settings;
 
         public MaintenanceController(UpdatableAppSettings settings)
         {
-            appSettings = settings;
+            this.settings = settings;
         }
 
         [HttpDelete("cache/{collectionName}/{objectId}")]
         public IActionResult DeleteCache(string collectionName, uint objectId)
         {
             var itemPath = Path.Combine(
-                IGDB.CacheDirectory,
+                settings.Settings.IGDB.CacheDirectory,
                 collectionName,
                 $"{objectId}.json");
             if (System.IO.File.Exists(itemPath))
