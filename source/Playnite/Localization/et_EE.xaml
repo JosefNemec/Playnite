@@ -153,7 +153,7 @@
     <sys:String x:Key="LOCPastMonth">Eelmine kuu</sys:String>
     <sys:String x:Key="LOCPastYear">Eelmine aasta</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Rohkem kui aasta tagasi</sys:String>
-    <sys:String x:Key="LOCImportCompleted"></sys:String>
+    <sys:String x:Key="LOCImportCompleted">Importimine on edukalt lõpetatud.</sys:String>
     <sys:String x:Key="LOCAllGames">Kõik mängud</sys:String>
     <sys:String x:Key="LOCGameId">Mängu id</sys:String>
     <sys:String x:Key="LOCDatabaseId">Andmebaasi id</sys:String>
@@ -609,11 +609,11 @@
     <sys:String x:Key="LOCCompletionStatusNotPlayed">Pole mänginud</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayed">Mängitud</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusCompleted">Lõpetatud</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">Mängimisel</sys:String>
+    <sys:String x:Key="LOCCompletionStatusAbandoned">Mahajäetud</sys:String>
+    <sys:String x:Key="LOCCompletionStatusOnHold">Ootel</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlanToPlay">Plaan mängida</sys:String>
     <sys:String x:Key="LOCCompletionStatus"></sys:String>
     <sys:String x:Key="LOCUserScore"></sys:String>
     <sys:String x:Key="LOCCriticScore"></sys:String>
@@ -689,8 +689,8 @@
     <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
     <sys:String x:Key="LOCStatsGlobal"></sys:String>
     <sys:String x:Key="LOCStatsFiltered"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Käesolev</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Uus</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Salvesta vaikimisi</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Lisa lemmikutesse</sys:String>
@@ -699,14 +699,14 @@
     <sys:String x:Key="LOCUnHideGame"></sys:String>
     <sys:String x:Key="LOCEditGame">Muuda…</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Määra kategooria…</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Määra lõpetamise olek</sys:String>
     <sys:String x:Key="LOCRemoveGame">Eemalda</sys:String>
     <sys:String x:Key="LOCPlayGame">Mängi</sys:String>
     <sys:String x:Key="LOCInstallGame">Paigalda</sys:String>
     <sys:String x:Key="LOCGameOptions"></sys:String>
     <sys:String x:Key="LOCGameDetails">Üksikasjad</sys:String>
     <sys:String x:Key="LOCUninstallGame">Desinstalli</sys:String>
-    <sys:String x:Key="LOCOpenGameLocation"></sys:String>
+    <sys:String x:Key="LOCOpenGameLocation">Ava paigalduse asukoht</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Loo töölaua otsetee</sys:String>
     <sys:String x:Key="LOCOpenGameManual"></sys:String>
     <sys:String x:Key="LOCMoreAction">Rohkem</sys:String>
@@ -765,10 +765,13 @@
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Paigaldamine oli edukas.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Paigalda laiendus?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>

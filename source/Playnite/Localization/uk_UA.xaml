@@ -816,22 +816,31 @@
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Тема/Розширення використовує непідтримувану версію API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Встановлення завершилося успішно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Встановити розширення?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Загальні</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Не вдалося встановити розширення.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Ви хочете встановити нове розширення? Наявне встановлення буде перезаписано.
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Ви хочете встановити нове розширення?
 
 {0}
 Автор: {1}
 Версія {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Ви хочете оновити розширення &quot;{0}&quot;?
+
+Поточна версія: {1}
+Нова версія: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Не вдалося встановити тему.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Ви хочете встановити нову тему? Попередня установка буде замінена.
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Ви хочете встановити нову тему?
 
 {0}
 Автор: {1}
 Версія {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Ви хочете оновити тему &quot;{0}&quot;?
+
+Поточна версія: {1}
+Нова версія: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Ви збираєтеся покинути Playnite і перейти на наступну веб-сторінку, використовуючи ваш основний веб-браузер. Хочете продовжити?
 
 {0}</sys:String>

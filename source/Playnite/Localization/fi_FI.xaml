@@ -379,8 +379,8 @@ Tietokannan uusi sijainti ei tule käyttöön ennen kuin Playnite on käynnistet
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Kaupan taustakuva</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceBanner">Mainospalkki</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Ei oteta takautuvasti käyttöön olemassa olevissa peleissä ilman että metadataa ladataan uudelleen.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Tuettujen kirjastojen peliajan priorisointi</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Älä huomioi Playniten kirjaamaa peliaikaa vaan lataa kirjattu peliaika aina etäkirjastosta kirjaston synkronoinnin aikana.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Käytä kauppapaikan ilmoittamaa peliaikaa paikallisen tiedon sijaan.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Lataa ja käytä pelikaupan ilmoittamaa peliaikaa ja hylkää paikallisesti Playniten laskema peliaika.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Ota peliohjaintuki käyttöön työpöytätilassa</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Opas-näppäin avaa koko näytön tilan</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Uusien tuotujen pelien metadatan automaattisen latauksen asetukset.</sys:String>
@@ -741,7 +741,7 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCPostScriptDescription">Pelin sulkeutumisen jälkeen suoritettava skripti</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Pelin käynnistymisen jälkeen suoritettava skripti</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Suorita yleinen skripti</sys:String>
-    <sys:String x:Key="LOCStatsGlobal">Maailmanlaajuinen</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Yleinen</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Suodatettu</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">Ajantasainen</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Uusi</sys:String>
@@ -819,22 +819,31 @@ Ongelman korjaamiseksi voit kokeilla seuraavaa:
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Teema/Laajennus käyttää API-versiota, jota ei tueta.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Asennus onnistui.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Asenna laajennus?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Yleinen</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Laajennuksen asennus epäonnistui.
  
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Haluatko asentaa uuden laajennuksen? Olemassa oleva laajennus ylikirjoitetaan.
- 
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Haluatko asentaa uuden laajennuksen?
+
 {0}
 Tekijä: {1}
-Versio {2}</sys:String>
+Versio: {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Haluatko päivittää &quot;{0}&quot; -laajennuksen?
+
+Nykyinen versio: {1}
+Uusi versio: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Teeman asennus epäonnistui.
  
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Haluatko asentaa uuden teeman? Aiempi asennus ylikirjoitetaan.
- 
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Haluatko asentaa uuden teeman?
+
 {0}
 Tekijä: {1}
-Versio {2}</sys:String>
+Versio: {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Haluatko päivittää &quot;{0}&quot; -teeman?
+
+Nykyinen versio: {1}
+Uusi versio: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Olet poistumassa Playnitesta ja avaamassa seuraavaa verkkosivua oletussselaimellasi. Haluatko jatkaa?
  
 {0}</sys:String>
@@ -906,7 +915,7 @@ Huomioi, että Tilin nimi -vaihtoehdon käyttäminen toimii vain tileillä, jotk
     <!--Humble-->
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">Ohita kolmannen osapuolen kauppojen pelit</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">Tuo sisään Trove pelit</sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Ota käyttöön ohittaaksesi kolmannen osapuolen sovelluksen vaativien pelien tuonti, mukaan lukien Playniten jo hallinnoimat kaupat, kaksoiskappaleiden estämiseksi.</sys:String>
+    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve">Duplikaattien välttämiseksi, ota käyttöön kolmannen osapuolen tuen vaativien pelien ohitus, ohittaen myös Playniten jo hallitsemat kaupat.</sys:String>
     <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree">Tuo DRM-vapaa versio jos saatavilla</sys:String>
     <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip">Tuo kolmannen osapuolen sovelluksen vaativat pelit jos myös DRM-vapaa versio on saatavilla.</sys:String>
     <!--Xbox-->
