@@ -28,7 +28,7 @@ namespace OriginLibrary
             get
             {
                 var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
-                var key = root.OpenSubKey(@"SOFTWARE\Origin");             
+                var key = root.OpenSubKey(@"SOFTWARE\Origin");
                 if (key?.GetValueNames().Contains("ClientPath") == true)
                 {
                     return key.GetValue("ClientPath").ToString();
@@ -99,6 +99,11 @@ namespace OriginLibrary
 
             var fileEnumerator = new SafeFileEnumerator(installDir, "EasyAntiCheat*.dll", SearchOption.AllDirectories);
             return fileEnumerator.Any() == true;
+        }
+
+        public static string GetLaunchString(string offerId)
+        {
+            return $"origin2://game/launch?offerIds={offerId}";
         }
     }
 }

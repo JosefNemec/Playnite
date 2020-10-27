@@ -46,12 +46,11 @@ namespace OriginLibrary
             OnStarting(this, new GameControllerEventArgs(this, 0));
             if (Directory.Exists(Game.InstallDirectory))
             {
-                var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();
                 procMon.TreeDestroyed += ProcMon_TreeDestroyed;
                 procMon.TreeStarted += ProcMon_TreeStarted;
-                GameActionActivator.ActivateAction(playAction);
+                ProcessStarter.StartUrl(Origin.GetLaunchString(Game.GameId));
                 StartRunningWatcher();
             }
             else
@@ -79,7 +78,7 @@ namespace OriginLibrary
         public override void Install()
         {
             ReleaseResources();
-            ProcessStarter.StartUrl($"origin2://game/launch?offerIds={Game.GameId}&autoDownload=true");
+            ProcessStarter.StartUrl($"origin2://library/open");
             StartInstallWatcher();
         }
 
@@ -128,8 +127,13 @@ namespace OriginLibrary
                     {
                         var installInfo = new GameInfo()
                         {
-                            PlayAction = origin.GetGamePlayTask(manifest),
-                            InstallDirectory = Path.GetDirectoryName(executablePath.CompletePath)
+                            PlayAction = new GameAction
+                            {
+                                Type = GameActionType.URL,
+                                Path = Origin.GetLaunchString(Game.GameId),
+                                IsHandledByPlugin = true
+                            },
+                            InstallDirectory = origin.GetInstallDirectory(manifest)
                         };
 
                         OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));

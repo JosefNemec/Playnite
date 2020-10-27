@@ -85,35 +85,6 @@ namespace OriginLibrary
                 };
             }
 
-            // There's not icon available on Origin servers so we will load one from EXE
-            if (game.IsInstalled && string.IsNullOrEmpty(game.Icon))
-            {
-                var playAction = library.PlayniteApi.ExpandGameVariables(game, game.PlayAction);
-                var executable = string.Empty;
-                if (File.Exists(playAction.Path))
-                {
-                    executable = playAction.Path;
-                }
-                else if (!string.IsNullOrEmpty(playAction.WorkingDir))
-                {
-                    executable = Path.Combine(playAction.WorkingDir, playAction.Path);
-                }
-
-                if (string.IsNullOrEmpty(executable))
-                {
-                    return storeMetadata;
-                }
-
-                using (var ms = new MemoryStream())
-                {
-                    if (IconExtractor.ExtractMainIconFromFile(executable, ms))
-                    {
-                        var iconName = Guid.NewGuid() + ".ico";
-                        metadata.Icon = new MetadataFile(iconName, ms.ToArray());
-                    }
-                }
-            }
-
             return metadata;
         }
 
