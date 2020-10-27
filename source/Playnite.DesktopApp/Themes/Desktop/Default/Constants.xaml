@@ -50,6 +50,8 @@
     <SolidColorBrush x:Key="NegativeRatingBrush" Color="#ff6b6b" />
     <SolidColorBrush x:Key="MixedRatingBrush" Color="#fffca1" />
 
+    <SolidColorBrush x:Key="WarningBrush" Color="#ff6b6b" />
+
     <LinearGradientBrush x:Key="ExpanderBackgroundBrush" StartPoint="-0.1,0.5" EndPoint="1.2,1" >
         <GradientStop Color="#FF2C3A67" Offset="0"/>
         <GradientStop Color="#002C3A67" Offset="0.7"/>

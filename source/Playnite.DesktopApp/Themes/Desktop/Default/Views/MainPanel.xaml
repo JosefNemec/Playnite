@@ -50,16 +50,17 @@
                                       DockPanel.Dock="Left" Margin="10,6,0,6" MinWidth="35">
                                 <CheckBox.Style>
                                     <Style TargetType="CheckBox">
+                                        <Setter Property="Background" Value="Transparent" />
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
                                                     <Border Style="{DynamicResource HighlightBorder}"
-                                                            Background="Transparent">
+                                                            Background="{TemplateBinding Background}">
                                                         <StackPanel Orientation="Horizontal" Margin="6,0,6,0">
                                                             <TextBlock Text="&#xef29;"
                                                                        FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
                                                                        VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                                       Foreground="{TemplateBinding Foreground}"/>
+                                                                       Foreground="{DynamicResource TextBrush}"/>
                                                             <TextBlock Text="{DynamicResource LOCFilterActiveLabel}"
                                                                        Style="{DynamicResource BaseTextBlockStyle}"
                                                                        Margin="3,0,0,0" VerticalAlignment="Center"
@@ -68,11 +69,10 @@
                                                     </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="Tag" Value="{StaticResource True}">
-                                                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                                                             <Setter Property="Visibility" Value="Visible" TargetName="TextFilter" />
+                                                            <Setter Property="Background" Value="{DynamicResource NormalBrush}" />
                                                         </Trigger>
                                                         <Trigger Property="Tag" Value="{StaticResource False}">
-                                                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                                                             <Setter Property="Visibility" Value="Collapsed" TargetName="TextFilter" />
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
