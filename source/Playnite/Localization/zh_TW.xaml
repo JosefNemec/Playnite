@@ -804,18 +804,17 @@
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">主題/附加元件使用了未支援的API版本</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安裝成功</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">安裝附加元件?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安裝附加元件失敗。
  
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">是否安裝新的附加元件? 舊的元件將被覆蓋。
- 
-{0}
-By {1}
-版本 {2}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">安裝主題失敗。
  
 {0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">效能警告</sys:String>

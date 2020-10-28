@@ -43,7 +43,9 @@
     - name: Working With Dynamic Variables
       href: expandingVariables.md
     - name: Writing to Log Files
-      href: logging.md  
+      href: logging.md
+    - name: Custom windows
+      href: windows.md  
 
 - name: Themes
   items:

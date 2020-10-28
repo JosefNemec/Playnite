@@ -817,12 +817,19 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">A Téma/Bővítmény nem támogatott API-t használ.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Sikeres telepítés.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Telepítsem a bővitményt?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Általános</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">{0} bővítmény telepítése nem sikerült.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Telepíted az új bővítményt? A régi felül lesz írva.
-{0} ezzel {1}, {2} verziószámmal.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Telepíted az új bővítményt? {0} 
+Készítő: {1}
+Verziószám: {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Frissíted {0} bővítményt?
+Jelenlegi: {1}, új verziószám: {2}.</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">{0} téma telepítése nem sikerült.</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Telepíted az új témát? A régi felül lesz írva.
-{0} ezzel {1}, {2} verziószámmal.</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Telepíted az új témát? {0} 
+Készítő: {1}
+Verziószám: {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Frissíted {0} témát?
+Jelenlegi: {1}, új verziószám: {2}.</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Elhagyod a Playnite-ot és megnyitod a {0} weboldalt a böngésződdel. Folytatod?</sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">A választott kép(ek) túl nagy méretűek az optimális működéshez. A nagy képek miatt több memória lesz használatban és lassabb lesz a felület reakcióideje.
 

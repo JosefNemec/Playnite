@@ -305,9 +305,9 @@
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">השתמש כשנחווה גמגום או בעיות ממשק דומות</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">בטל כוון DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">הצג כפתור חברי Steam</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">הצג משחקים מוסתרים ברשימות הפעלה מהירה</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems">מספר פריטי הפעלה מהירה</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">השתמש בתמונת רקע המשחק כרקע החלון</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">טשטוש הרקע</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">איכות גבוהה</sys:String>
@@ -585,7 +585,7 @@
  
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">לא ניתן לפתוח קישור, URL לא תקין.</sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
+    <sys:String x:Key="LOCAppStartupError">נכשלה הפעלת האפליקציה.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">אתחול ממשק ה- XInput נכשל.</sys:String>
@@ -705,16 +705,16 @@
     <sys:String x:Key="LOCGeneralUpdateFailMessage">נכשל בהורדה והתקנת עדכון.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">עדכון זמין ל Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">טען רשימת ערכות נושא מחדש</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">הפעל ערכת נושא נבחרת</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">האזן לשינויי קבצים</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">החל ערכת נושא אוטומטית כאשר קובץ המקור משתנה</sys:String>
     <sys:String x:Key="LOCScriptRuntime">סביבת סקריפטים</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
-    <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">סקריפט להרצה לפני תחילת המשחק</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">סקריפט להרצה לאחר יציאה מהמשחק</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">סקריפט להרצה אחרי שמשחק מתחיל</sys:String>
+    <sys:String x:Key="LOCExecuteGlobalScript">הרץ סקריפט גלובלי</sys:String>
     <sys:String x:Key="LOCStatsGlobal">גלובלי</sys:String>
     <sys:String x:Key="LOCStatsFiltered">מסונן</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">נוכחי</sys:String>
@@ -784,45 +784,44 @@
     <sys:String x:Key="LOCPLaytime500to1000">500 עד 1000 שעות</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">מעל 1000</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">הרחבה אינה ארוזה כראוי.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">ערכת נושא אינה ארוזה כראוי.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">הרחבה &quot;{0}&quot; נכשלה להיטען כראוי.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">ערכת נושא &quot;{0}&quot; נכשלה להיטען כראוי.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">הרחבה נכשלה להיטען כראוי.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">ערכת נושא נכשלה להיטען כראוי.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">ערכת נושא\הרחבה משתמשת בגירסת API שאינה נתמכת.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">ההתקנה הסתיימה בהצלחה.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">להתקין הרחבה?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">נכשלה התקנת הרחבה.
  
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">האם ברצונך להתקין הרחבה חדשה? התקנה קיימת תידרס.
- 
-{0}
-על ידי {1}
-גירסה {2}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">נכשלה התקנת ערכת נושא.
  
 {0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">אזהרת ביצועים</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">אל תציג שוב</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">קובץ תמונה שנבחר עשוי להיות גדול מדי לביצועים מיטביים.</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
-    <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCThemeUnsupported"></sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint">ערכות נושא מובנות לא ניתנות להסרה.</sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">ערכת נושא זו אינה תומכת בגירסא זו של Playnite.</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
-    <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint">הרחבות מובנות לא ניתנות להסרה.</sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported">הרחבה זו אינה תומכת בגירסא זו של Playnite.</sys:String>
     <sys:String x:Key="LOCExtensionInstallDir">תיקיית התקנה</sys:String>
     <sys:String x:Key="LOCExtensionDataDir">תיקיית מידע</sys:String>
-    <sys:String x:Key="LOCDiagGenerating"></sys:String>
-    <sys:String x:Key="LOCDiagUploading"></sys:String>
+    <sys:String x:Key="LOCDiagGenerating">מייצר חבילת דיאגנוסטיקה...</sys:String>
+    <sys:String x:Key="LOCDiagUploading">מעלה חבילת דיאגנוסטיקה...</sys:String>
     <sys:String x:Key="LOCAddFromExe">ייבא קובץ</sys:String>
     <sys:String x:Key="LOCWhatIsThis">מה זה?</sys:String>
-    <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">אתה בטוח שברצונך לעשות את זה?</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">זמן משחק כולל</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">זמן משחק ממוצע</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">זמן משחק מירבי</sys:String>
@@ -851,8 +850,8 @@
     <sys:String x:Key="LOCSteamLinksGuides">מדריכים</sys:String>
     <sys:String x:Key="LOCSteamLinksWorkshop">סדנא</sys:String>
     <sys:String x:Key="LOCSteamUseVerticalCovers">הורד תמונות עטיפה אנכיות</sys:String>
-    <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
-    <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
+    <sys:String x:Key="LOCSteamImportFreeSubGames">ייבא פריטים כללים בחינם</sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">הגדרה ראשונית לא הושלמה. Playnite כעת יאותחל למצב שולחן עבודה לסיום התהליך.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">שוחק לאחרונה</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">מועדפים</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">הכי משוחקים</sys:String>
@@ -870,7 +869,7 @@
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames">התעלם ממשחקי חנויות חיצוניות</sys:String>
     <sys:String x:Key="LOCHumbleImportTroveGames">ייבא משחקים מ- Trove</sys:String>
     <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree"></sys:String>
+    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree">ייבא אם גירסא ללא DRM קיימת</sys:String>
     <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip"></sys:String>
     <!--Xbox-->
     <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">הפעל את אפליקציית Xbox Game Pass במקום חנות מיקרוסופט בעת פתיחת לקוח</sys:String>

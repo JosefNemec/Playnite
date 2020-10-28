@@ -816,22 +816,31 @@ Puede intentar resolver el problema:
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Extensión está usando una versión de API no soportada.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instalación fue exitosa.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">¿Instalar extensión?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Genérica</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">No se pudo instalar la extensión.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">¿Quieres instalar una nueva extensión? La instalación existente se sobrescribirá.
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">¿Quieres instalar una nueva extensión?
 
 {0}
 Por {1}
 Versión {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">¿Quieres actualizar la extensión &quot;{0}&quot;?
+
+Versión actual: {1}
+Nueva versión: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">No se pudo instalar el tema.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">¿Quieres instalar un tema nuevo? Se sobrescribirá la instalación anterior.
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">¿Quieres instalar un tema nuevo?
 
 {0}
 Por {1}
 Versión {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">¿Quieres actualizar el tema &quot;{0}&quot;?
+
+Versión actual: {1}
+Nueva versión: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Está a punto de salir de Playnite y navegar a la siguiente página web utilizando su navegador web predeterminado. ¿Quieres continuar?
 
 {0}</sys:String>
