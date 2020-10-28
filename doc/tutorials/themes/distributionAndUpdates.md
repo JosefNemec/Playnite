@@ -38,6 +38,9 @@ Updating themes
 
 You will need to update themes from time to time to make sure they work with new Playnite versions properly. You can follow changes to theme files by subscribing to [change tracking GitHub issue](https://github.com/JosefNemec/Playnite/issues/1259).
 
+> [!WARNING] 
+> Keeping your theme update is essential if you want theme users to take advantage of newly added Playnite features and fixes.
+
 Updates are necessary in these two cases:
 
 * Theme API is updated with breaking changes (major version number changes, for example from `1.0.0` to `2.0.0`).
@@ -46,6 +49,8 @@ Updates are necessary in these two cases:
 
 * New functionality is added to Playnite that requires update in theme file.
   * This usually means that your theme will still work (unless update means breaking change to Theme API), but users won't be able to make use of new features until the theme is updated.
+
+You generally don't need to update your theme if you didn't modify any files mentioned in the changelog for a specific version and you are packaging your theme using Toolbox utility.
 
 Blend made themes
 ---------------------
