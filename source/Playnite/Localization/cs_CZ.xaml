@@ -661,7 +661,7 @@ Může zkusit vyřešit tyto problémemy:
     <sys:String x:Key="LOCCompletionStatusPlayed">Hráno</sys:String>
     <sys:String x:Key="LOCCompletionStatusBeaten">Dohráno</sys:String>
     <sys:String x:Key="LOCCompletionStatusCompleted">Dokončeno</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying">Právě hráno</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlaying">Právě Hráno</sys:String>
     <sys:String x:Key="LOCCompletionStatusAbandoned">Opuštěno</sys:String>
     <sys:String x:Key="LOCCompletionStatusOnHold">Odloženo</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlanToPlay">Plánováno Hrát</sys:String>
