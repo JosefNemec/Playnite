@@ -41,27 +41,20 @@ namespace UplayLibrary
         public override void Play()
         {
             ReleaseResources();
-            if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("uplay", StringComparison.OrdinalIgnoreCase))
+            OnStarting(this, new GameControllerEventArgs(this, 0));
+            if (Directory.Exists(Game.InstallDirectory))
             {
-                OnStarting(this, new GameControllerEventArgs(this, 0));
-                if (Directory.Exists(Game.InstallDirectory))
-                {
-                    var requiresUplay = Uplay.GetGameRequiresUplay(Game);
-                    stopWatch = Stopwatch.StartNew();
-                    procMon = new ProcessMonitor();
-                    procMon.TreeStarted += ProcMon_TreeStarted;
-                    procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    GameActionActivator.ActivateAction(Game.PlayAction);
-                    StartRunningWatcher(requiresUplay);
-                }
-                else
-                {
-                    OnStopped(this, new GameControllerEventArgs(this, 0));
-                }
+                var requiresUplay = Uplay.GetGameRequiresUplay(Game);
+                stopWatch = Stopwatch.StartNew();
+                procMon = new ProcessMonitor();
+                procMon.TreeStarted += ProcMon_TreeStarted;
+                procMon.TreeDestroyed += Monitor_TreeDestroyed;
+                ProcessStarter.StartUrl(Uplay.GetLaunchString(Game.GameId));
+                StartRunningWatcher(requiresUplay);
             }
             else
             {
-                throw new Exception("Unknown Play action configuration.");
+                OnStopped(this, new GameControllerEventArgs(this, 0));
             }
         }
 
@@ -122,7 +115,7 @@ namespace UplayLibrary
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-   
+
             while (true)
             {
                 if (watcherToken.IsCancellationRequested)
@@ -150,7 +143,7 @@ namespace UplayLibrary
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-        
+
             while (true)
             {
                 if (watcherToken.IsCancellationRequested)
