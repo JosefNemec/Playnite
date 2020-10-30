@@ -817,7 +817,7 @@ Playnite må startes på nytt for å fullføre installasjonen. Vil du starte på
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme / Extension bruker ikke-støttet API-versjon.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installasjonen var vellykket.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installér utvidelsen?</sys:String>
-    <sys:String x:Key="LOCExtensionGeneric">Represents generic type of an extension (Library integration and Metadata provider being the other types).</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Generelt</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Kunne ikke installere utvidelsen.
 
 {0}</sys:String>
