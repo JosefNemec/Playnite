@@ -150,11 +150,6 @@ function PackExtensionTemplate()
 
 .\VerifyLanguageFiles.ps1
 
-if ($Sign)
-{
-    Start-SigningWatcher $Sign
-}
-
 # -------------------------------------------
 #            Compile application 
 # -------------------------------------------
@@ -292,11 +287,6 @@ if ($Portable)
     Write-OperationLog "Building portable package..."
     $packageName = Join-Path $BuildsStorageDir "Playnite$buildNumberPlain.zip"
     New-ZipFromDirectory $OutputDir $packageName
-}
-
-if ($Sign)
-{
-    Stop-SigningWatcher
 }
 
 return $true

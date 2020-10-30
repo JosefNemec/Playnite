@@ -22,29 +22,6 @@ function global:StartAndWait()
     return $proc.ExitCode
 }
 
-function global:Start-SigningWatcher()
-{
-    param(
-        [string]$Pass
-    )
-
-    Write-OperationLog "Starting signing watcher..."
-    $global:SigningWatcherJob = Start-Job {
-        Import-Module PSNativeAutomation
-        while ($true)
-        {
-            $window = Get-UIWindow -ControlType Dialog -Name "Common profile login" -EA 0
-            if ($window)
-            {
-                $window | Get-UIEdit | Set-UIValue $args[0]
-                $window | Get-UIButton -AutomationId 1010 | Invoke-UIInvokePattern
-            }
-
-            Start-Sleep -Seconds 1
-        }
-    } -ArgumentList $Pass
-}
-
 function global:Invoke-Nuget()
 {
     param(
@@ -96,15 +73,6 @@ function global:Get-MsBuildPath()
     }
 
     throw "MS Build not found."
-}
-
-function global:Stop-SigningWatcher()
-{
-    Write-OperationLog "Stopping signing watcher..."
-    if ($SigningWatcherJob)
-    {
-        $SigningWatcherJob.StopJob()
-    }
 }
 
 function global:SignFile()
