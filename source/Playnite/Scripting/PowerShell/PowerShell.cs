@@ -140,15 +140,12 @@ namespace Playnite.Scripting.PowerShell
 
         public CommandInfo GetFunction(string name)
         {
-            var command = powershell
-                .AddCommand("Get-Command")
-                .AddArgument(name)
-                .AddParameter("PassThru")
-                .AddParameter("ErrorAction", ActionPreference.SilentlyContinue)
-                .Invoke<CommandInfo>().FirstOrDefault();
-            powershell.Streams.ClearStreams();
-            powershell.Commands.Clear();
-            return command;
+            if (module == null)
+            {
+                return null;
+            }
+            CommandInfo command;
+            return module.ExportedCommands.TryGetValue(name, out command) ? command : null;
         }
 
         public object InvokeFunction(string name, List<object> arguments)

@@ -34,7 +34,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LibraryExporter", "LibraryExporter", "{EDD5E5EF-5115-42FF-8C8B-F664A08FC52B}"
 	ProjectSection(SolutionItems) = preProject
 		Plugins\LibraryExporter\extension.yaml = Plugins\LibraryExporter\extension.yaml
-		Plugins\LibraryExporter\LibraryExporter.ps1 = Plugins\LibraryExporter\LibraryExporter.ps1
+		Plugins\LibraryExporter\LibraryExporter.psm1 = Plugins\LibraryExporter\LibraryExporter.psm1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OriginLibrary", "OriginLibrary", "{AD72E6CE-B2C2-46B0-8B3D-4E7318EABA92}"

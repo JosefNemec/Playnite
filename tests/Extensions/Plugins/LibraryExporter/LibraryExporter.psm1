@@ -1,4 +1,4 @@
-function global:ExportLibrary()
+function ExportLibrary()
 {
     $games = $PlayniteApi.Database.GetGames()
     $path = $PlayniteApi.Dialogs.SaveFile("CSV|*.csv|Formated TXT|*.txt")

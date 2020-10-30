@@ -1,4 +1,4 @@
-function global:Get-IniContent()
+function Get-IniContent()
 {
     param(
         $filePath
@@ -30,7 +30,7 @@ function global:Get-IniContent()
     return $ini
 }
 
-function global:ImportScummVMGames()
+function ImportScummVMGames()
 {
     $scummvmConfig = Join-Path $env:APPDATA "ScummVM\scummvm.ini"
     if (!(Test-Path $scummvmConfig))

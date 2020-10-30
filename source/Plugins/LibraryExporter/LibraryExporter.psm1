@@ -1,4 +1,4 @@
-function global:ExportLibrary()
+function ExportLibrary()
 {
     $path = $PlayniteApi.Dialogs.SaveFile("CSV|*.csv|Formated TXT|*.txt")
     if ($path)
@@ -16,7 +16,7 @@ function global:ExportLibrary()
     }
 }
 
-function global:GetMainMenuItems()
+function GetMainMenuItems()
 {
     param(
         $menuArgs

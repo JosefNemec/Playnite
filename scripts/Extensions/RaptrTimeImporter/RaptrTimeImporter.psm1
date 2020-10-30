@@ -1,5 +1,5 @@
 # Imports time from Raptr database export
-function global:ImportRaptr()
+function ImportRaptr()
 {
     if (!($raptrPath = $PlayniteApi.Dialogs.SelectFile("*.json|*.json")))
     {

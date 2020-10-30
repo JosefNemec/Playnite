@@ -1,7 +1,8 @@
-﻿Name: ScummVM game importer
+﻿Id: ScummVMimporter_Builtin
+Name: ScummVM game importer
 Author: Josef Nemec
 Version: 1.0.1
-Module: ScummVMImporter.ps1
+Module: ScummVMImporter.psm1
 Type: Script
 Functions: 
     - Description: Import ScummVM Games

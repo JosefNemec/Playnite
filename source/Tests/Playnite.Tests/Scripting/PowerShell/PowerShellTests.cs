@@ -68,18 +68,23 @@ function TestFunc()
         }
 
         [Test]
-        public void GetFunctionExitsTest()
+        public void GetFunctionTest()
         {
-            using (var ps = new PowerShellRuntime("GetFunctionExitsTest"))
+            using (var tempDir = TempDirectory.Create())
             {
-                Assert.IsTrue(ps.GetFunction("TestFunc") == null);
-                ps.Execute(@"
+                using (var ps = new PowerShellRuntime("GetFunctionTest"))
+                {
+                    Assert.IsTrue(ps.GetFunction("TestFunc") == null);
+                    var path = Path.Combine(tempDir.TempPath, "GetFunctionTest.psm1");
+                    File.WriteAllText(path, @"
 function TestFunc()
 {
     return 4 + 4
 }
 ");
-                Assert.IsTrue(ps.GetFunction("TestFunc") != null);
+                    ps.ImportModule(path);
+                    Assert.IsTrue(ps.GetFunction("TestFunc") != null);
+                }
             }
         }
 
