@@ -18,7 +18,6 @@ namespace GogLibrary
     public class GogGameController : BaseGameController
     {
         private CancellationTokenSource watcherToken;
-        private FileSystemWatcher fileWatcher;
         private GogLibrarySettings settings;
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
@@ -39,7 +38,6 @@ namespace GogLibrary
 
         public void ReleaseResources()
         {
-            fileWatcher?.Dispose();
             procMon?.Dispose();
         }
 
@@ -115,23 +113,7 @@ namespace GogLibrary
             }
 
             Process.Start(uninstaller);
-            var infoFile = string.Format("goggame-{0}.info", Game.GameId);
-            if (File.Exists(Path.Combine(Game.InstallDirectory, infoFile)))
-            {
-                fileWatcher = new FileSystemWatcher()
-                {
-                    NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName,
-                    Path = Game.InstallDirectory,
-                    Filter = Path.GetFileName(infoFile)
-                };
-
-                fileWatcher.Deleted += FileWatcher_Deleted;
-                fileWatcher.EnableRaisingEvents = true;
-            }
-            else
-            {
-                OnUninstalled(this, new GameControllerEventArgs(this, 0));
-            }
+            StartUninstallWatcher();
         }
 
         private void ProcMon_TreeStarted(object sender, EventArgs args)
@@ -145,16 +127,32 @@ namespace GogLibrary
             OnStopped(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
         }
 
-        private void FileWatcher_Deleted(object sender, FileSystemEventArgs e)
+        public async void StartUninstallWatcher()
         {
-            fileWatcher.EnableRaisingEvents = false;
-            fileWatcher.Dispose();
-            OnUninstalled(this, new GameControllerEventArgs(this, 0));
+            watcherToken = new CancellationTokenSource();
+            var stopWatch = Stopwatch.StartNew();
+
+            while (true)
+            {
+                if (watcherToken.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                var games = library.GetInstalledGames();
+                if (!games.ContainsKey(Game.GameId))
+                {
+                    OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
 
         public async void StartInstallWatcher()
         {
-            watcherToken = new CancellationTokenSource();  
+            watcherToken = new CancellationTokenSource();
             var stopWatch = Stopwatch.StartNew();
 
             while (true)
