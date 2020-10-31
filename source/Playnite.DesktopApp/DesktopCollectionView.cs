@@ -100,8 +100,6 @@ namespace Playnite.DesktopApp
 
         public override void Dispose()
         {
-            ClearItems();
-            base.Dispose();
             Database.Games.ItemCollectionChanged -= Database_GamesCollectionChanged;
             Database.Games.ItemUpdated -= Database_GameUpdated;
             Database.Platforms.ItemUpdated -= Database_PlatformUpdated;
@@ -116,6 +114,8 @@ namespace Playnite.DesktopApp
             Database.Tags.ItemUpdated -= Tags_ItemUpdated;
             Database.Features.ItemUpdated -= Features_ItemUpdated;
             viewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
+            ClearItems();
+            base.Dispose();
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
