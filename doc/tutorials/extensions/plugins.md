@@ -6,14 +6,12 @@ Basics
 
 Plugins can be written in any .NET Framework compatible languages, this includes C#, VB.NET, F# and others, targeting .NET Framework 4.6.
 
-Plugins use the same Playnite API as [scripts](../scripts/scripting.md). All available interfaces and classes are exactly the same as is their use. For those reasons this plugin documentation mainly focuses on how to compile plugins and other differences compared to scripting. For specific API use cases see [scripts](../scripts/scripting.md) documentation sections.
-
 Plugin types
 ---------------------
 
 There are currently two types of plugins:
 
-- `Generic plugins` Generic plugins offer same extensibility as scripts. You can add new entries to main menu or react to various [game events](../scripts/scriptingEvents.md).
+- `Generic plugins` Generic plugins offer same extensibility as scripts. You can add new entries to main menu or react to various [game events](events.md).
 
 - `Library plugins`: Add ability to import games automatically as well as methods for metadata download for those games.
 

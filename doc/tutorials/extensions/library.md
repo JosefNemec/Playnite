@@ -1,4 +1,4 @@
-Working with Game Database
+Working with game library
 =====================
 
 Introduction
@@ -12,19 +12,30 @@ Handling Games
 
 To get list of all games in library use [Database](xref:Playnite.SDK.IPlayniteAPI.Database) property from `IPlayniteAPI` and [Games](xref:Playnite.SDK.IGameDatabase.Games) collection.
 
+# [C#](#tab/csharp)
+```csharp
+foreach (var game in PlayniteApi.Database.Games)
+{
+    // Do stuff with a game
+}
+
+// Get a game with known Id
+var game = $PlayniteApi.Database.Games[SomeGuidId];
+```
+
 # [PowerShell](#tab/tabpowershell)
 ```powershell
 # Get all games
 $games = $PlayniteApi.Database.Games
-# Get game with known Id
-$game = $PlayniteApi.Database.Games[SomeGuidId]
+# Get a game with known Id
+$game = $PlayniteApi.Database.Games[$SomeGuidId]
 ```
 
 # [IronPython](#tab/tabpython)
 ```python
 # Get all games
 games = PlayniteApi.Database.Games
-# Get game with known Id
+# Get a game with known Id
 game = PlayniteApi.Database.Games[SomeGuidId]
 ```
 ***
@@ -32,6 +43,12 @@ game = PlayniteApi.Database.Games[SomeGuidId]
 ### Adding New Game
 
 To add a new game create new instance of [Game](xref:Playnite.SDK.Models.Game) class and call `Add` method from [Games](xref:Playnite.SDK.IGameDatabase.Games) collection.
+
+# [C#](#tab/csharp)
+```csharp
+var newGame = new Game("New Game");
+PlayniteApi.Database.Games.Add(newGame);
+```
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell
@@ -52,9 +69,16 @@ PlayniteApi.Database.Games.Add(new_game)
 
 Changing properties on a `Game` object doesn't automatically update the game in Playnite's database and changes are lost with application restart. To make permanent changes game object must be updated in database manually using `Update` method from [Games](xref:Playnite.SDK.IGameDatabase.Games) collection.
 
+# [C#](#tab/csharp)
+```csharp
+var game = PlayniteApi.Database.Games[SomeId];
+game.Name = "Changed Name";
+PlayniteApi.Database.Games.Update(game);
+```
+
 # [PowerShell](#tab/tabpowershell)
 ```powershell
-$game = $PlayniteApi.Database.Games[SomeId]
+$game = $PlayniteApi.Database.Games[$SomeId]
 $game.Name = "Changed Name"
 $PlayniteApi.Database.Games.Update($game)
 ```
@@ -71,16 +95,19 @@ PlayniteApi.Database.Games.Update(game)
 
 To remove game from database use `Remove` method from [Games](xref:Playnite.SDK.IGameDatabase.Games) collection.
 
+# [C#](#tab/csharp)
+```csharp
+PlayniteApi.Database.Games.Remove(SomeId);
+```
+
 # [PowerShell](#tab/tabpowershell)
 ```powershell
-$game = $PlayniteApi.Database.Games[SomeId]
-$PlayniteApi.Database.Games.Remove($game.Id)
+$PlayniteApi.Database.Games.Remove($SomeId)
 ```
 
 # [IronPython](#tab/tabpython)
 ```python
-game = PlayniteApi.Database.Games[SomeId]
-PlayniteApi.Database.Games.Remove(game.Id)
+PlayniteApi.Database.Games.Remove(SomeId)
 ```
 ***
 
@@ -114,9 +141,15 @@ All game related image files are stored in game database itself, with only refer
 
 Game cover images are referenced in [CoverImage](xref:Playnite.SDK.Models.Game.CoverImage) property. To save a file first get the file record by calling [GetFullFilePath](xref:Playnite.SDK.IGameDatabaseAPI.GetFullFilePath(System.String)) method. `GetFullFilePath` returns full path to a file on the disk drive.
 
+# [C#](#tab/csharp)
+```csharp
+var game = PlayniteApi.Database.Games[SomeId];
+var coverPath = PlayniteApi.Database.GetFullFilePath(game.CoverImage);
+```
+
 # [PowerShell](#tab/tabpowershell)
 ```powershell
-$game = $PlayniteApi.Database.Games[SomeId]
+$game = $PlayniteApi.Database.Games[$SomeId]
 $coverPath = $PlayniteApi.Database.GetFullFilePath($game.CoverImage)
 ```
 
@@ -132,6 +165,14 @@ coverPath = PlayniteApi.Database.GetFullFilePath(game.CoverImage)
 Changing cover image involves several steps. First remove original image by calling [RemoveFile](xref:Playnite.SDK.IGameDatabaseAPI.RemoveFile(System.String)) method. Then add new image file to a database using [AddFile](xref:Playnite.SDK.IGameDatabaseAPI.AddFile(System.String,System.Guid)). And lastly assign Id of new image to a game.
 
 Following example changes cover image of first game in database:
+
+# [C#](#tab/csharp)
+```csharp
+var game = PlayniteApi.Database.Games[SomeId];
+PlayniteApi.Database.RemoveFile(game.CoverImage);
+game.CoverImage = PlayniteApi.Database.AddFile(@"c:\file.png", game.Id);
+PlayniteApi.Database.Games.Update(game);
+```
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell

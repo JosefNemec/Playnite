@@ -1,51 +1,38 @@
 - name: Introduction
   href: intro.md
 
-- name: Toolbox utility
-  href: toolbox.md
-
-- name: Scripting
+- name: Extensions
   items:
     - name: Introduction
-      href: scripts/scripting.md
-    - name: Reacting to Events
-      href: scripts/scriptingEvents.md
-    - name: Working with Game Database
-      href: scripts/scriptingDatabase.md
-    - name: UI Interaction
-      href: scripts/scriptingUI.md
-    - name: Data directory
-      href: scripts/dataDirectory.md
-
-- name: Plugins
-  items:
-    - name: Introduction
-      href: plugins/plugins.md
-    - name: Generic Plugins
-      href: plugins/genericPlugins.md
+      href: extensions/intro.md
+    - name: Scripts
+      href: extensions/scripting.md
+    - name: Plugins
+      href: extensions/plugins.md
     - name: Library Plugins
-      href: plugins/libraryPlugins.md
+      href: extensions/libraryPlugins.md
     - name: Metadata Plugins
-      href: plugins/metadataPlugins.md
+      href: extensions/metadataPlugins.md
+    - name: Data directories
+      href: extensions/dataDirectory.md
+    - name: Logging
+      href: extensions/logging.md
     - name: Plugin settings
-      href: plugins/pluginSettings.md
-    - name: Playnite URI support
-      href: plugins/uriSupport.md
-    - name: Data directory
-      href: plugins/dataDirectory.md
-
-- name: Various
-  items:
-    - name: Extension Manifest
-      href: extensionsManifest.md  
-    - name: Custom menu items
-      href: menus.md
-    - name: Working With Dynamic Variables
-      href: expandingVariables.md
-    - name: Writing to Log Files
-      href: logging.md
+      href: extensions/pluginSettings.md
+    - name: Working with game library
+      href: extensions/library.md
+    - name: Events
+      href: extensions/events.md
+    - name: Menu items
+      href: extensions/menus.md
+    - name: UI Interaction
+      href: extensions/ui.md
     - name: Custom windows
-      href: windows.md  
+      href: extensions/windows.md
+    - name: Game variables
+      href: extensions/expandingVariables.md
+    - name: Playnite URI support
+      href: extensions/uriSupport.md
 
 - name: Themes
   items:
@@ -63,3 +50,6 @@
       href: themes/installing.md
     - name: Manifest file
       href: themes/manifestFile.md
+
+- name: Toolbox utility
+  href: toolbox.md
