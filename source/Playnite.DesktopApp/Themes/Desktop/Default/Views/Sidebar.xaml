@@ -24,7 +24,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <SidebarItem Style="{DynamicResource SideBarViewItem}"
-                                                     Width="44" Height="44" />
+                                                    Width="44" Height="44" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>

@@ -23,13 +23,10 @@ namespace Playnite.DesktopApp.Controls
 
             BindingTools.SetBinding(this,
                 Button.CommandProperty,
-                nameof(SideBarItem.Command));
-            BindingTools.SetBinding(this,
-                Button.CommandParameterProperty,
-                nameof(SideBarItem.CommandParameter));
+                nameof(SidebarWrapperItem.Command));
             BindingTools.SetBinding(this,
                 ContentPresenter.ContentProperty,
-                nameof(SideBarItem.ImageObject));
+                nameof(SidebarWrapperItem.ImageObject));
         }
     }
 }

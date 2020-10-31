@@ -55,7 +55,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(ListSideBarItems,
                     ItemsControl.ItemsSourceProperty,
                     mainModel,
-                    nameof(DesktopAppViewModel.AppViewItems));
+                    nameof(DesktopAppViewModel.SidebarItems));
             }
 
             ElemMainMenu = Template.FindName("PART_ElemMainMenu", this) as FrameworkElement;

@@ -67,6 +67,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool showOnSidebar;
+        /// <summary>
+        ///
+        /// </summary>
+        public bool ShowOnSidebar
+        {
+            get => showOnSidebar;
+            set
+            {
+                showOnSidebar = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Creates new instance of <see cref="AppSoftware"/>.
         /// </summary>
@@ -108,6 +122,11 @@ namespace Playnite.SDK.Models
                 if (!string.Equals(WorkingDir, tro.WorkingDir, StringComparison.Ordinal))
                 {
                     tro.WorkingDir = WorkingDir;
+                }
+
+                if (ShowOnSidebar != tro.ShowOnSidebar)
+                {
+                    tro.ShowOnSidebar = ShowOnSidebar;
                 }
             }
             else

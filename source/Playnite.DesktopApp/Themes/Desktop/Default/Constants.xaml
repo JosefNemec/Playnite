@@ -12,6 +12,7 @@
     <Thickness x:Key="ControlBorderThickness">1</Thickness>
     <sys:Double x:Key="EllipseBorderThickness">1</sys:Double>
     <CornerRadius x:Key="ControlCornerRadius">1</CornerRadius>
+    <Thickness x:Key="SidebarItemPadding">8</Thickness>
 
     <Color x:Key="BlackColor">#FF000000</Color>
     <Color x:Key="WhiteColor">#FFFFFFFF</Color>
