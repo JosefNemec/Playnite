@@ -817,13 +817,27 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">L'installation de l'extension a échoué.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Souhaitez-vous installer une nouvelle extension ?
+
+{0}
+Par {1}
+Version {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Souhaitez-vous mettre à jour l'extension &quot;{0}&quot; ?
+
+Version actuelle : {1}
+Nouvelle version : {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">L'installation du thème a échoué.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Souhaitez-vous installer un nouveau thème ?
+
+{0}
+Par {1}
+Version {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Souhaitez-vous mettre à jour le thème &quot;{0}&quot; ?
+
+Version actuelle : {1}
+Nouvelle version : {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Vous êtes sur le point de quitter Playnite pour ouvrir la page web suivante à l'aide de votre navigateur par défaut. Voulez-vous continuer ?
     
 {0}</sys:String>
