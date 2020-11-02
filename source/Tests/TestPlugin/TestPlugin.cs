@@ -138,6 +138,11 @@ namespace TestPlugin
                     FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
                 };
             }
+
+            public override Control Opened()
+            {
+                return new Button { Content = "test" };
+            }
         }
 
         public override List<SidebarItem> GetSidebarItems()

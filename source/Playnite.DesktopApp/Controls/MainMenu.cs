@@ -28,6 +28,7 @@ namespace Playnite.DesktopApp.Controls
         private readonly DesktopAppViewModel mainModel;
         private MenuItem extensionsItem;
         private MenuItem toolsItem;
+        private MenuItem viewItem;
         private Separator extensionsEndItem;
         private static readonly ILogger logger = LogManager.GetLogger();
 
@@ -133,7 +134,7 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(Items, "LOCMenuPlayniteSettingsTitle", mainModel.OpenSettingsCommand, null, "SettingsIcon");
 
             // View
-            var viewItem = AddMenuChild(Items, LOC.MenuView, null, null, null);
+            viewItem = AddMenuChild(Items, LOC.MenuView, null, null, null);
             var sideBarItem = AddMenuChild(viewItem.Items, LOC.Sidebar, null, null, null);
             var sideBarEnableItem = AddMenuChild(sideBarItem.Items, LOC.EnabledTitle, null);
             sideBarEnableItem.IsCheckable = true;
@@ -147,14 +148,6 @@ namespace Playnite.DesktopApp.Controls
             sideBarItem.Items.Add(new Separator());
             MenuHelpers.PopulateEnumOptions<Dock>(sideBarItem.Items, nameof(PlayniteSettings.SidebarPosition), mainModel.AppSettings);
             viewItem.Items.Add(new Separator());
-
-            var librarySideItem = MainMenu.AddMenuChild(viewItem.Items, LOC.Library, null);
-            librarySideItem.IsCheckable = true;
-            MenuHelpers.SetEnumBinding(librarySideItem, nameof(mainModel.AppSettings.CurrentApplicationView), mainModel.AppSettings, ApplicationView.Library);
-
-            var statsSideItem = MainMenu.AddMenuChild(viewItem.Items, LOC.Statistics, null);
-            statsSideItem.IsCheckable = true;
-            MenuHelpers.SetEnumBinding(statsSideItem, nameof(mainModel.AppSettings.CurrentApplicationView), mainModel.AppSettings, ApplicationView.Statistics);
 
             Items.Add(new Separator());
 
@@ -221,6 +214,20 @@ namespace Playnite.DesktopApp.Controls
         {
             AddExtensionItems();
             AddToolsItems();
+            AddSidebarViewItems();
+        }
+
+        private void AddSidebarViewItems()
+        {
+            while (viewItem.Items.Count > 2)
+            {
+                viewItem.Items.RemoveAt(2);
+            }
+
+            foreach (var sideItem in mainModel.SidebarItems.Where(a => a.SideItem.Type == SiderbarItemType.View))
+            {
+                AddMenuChild(viewItem.Items, sideItem.SideItem.Title, mainModel.SelectSidebarViewCommand, sideItem);
+            }
         }
 
         private void AddToolsItems()

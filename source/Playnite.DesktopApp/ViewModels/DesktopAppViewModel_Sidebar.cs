@@ -21,31 +21,32 @@ namespace Playnite.DesktopApp.ViewModels
     public class SidebarWrapperItem : ObservableObject
     {
         private DesktopAppViewModel model;
-        private SidebarItem sideItem;
         public RelayCommand<object> Command { get; set; }
+
+        public SidebarItem SideItem { get; }
 
         public string Name
         {
-            get => sideItem.Title;
+            get => SideItem.Title;
         }
 
         public Thickness IconPadding
         {
-            get => sideItem.IconPadding;
+            get => SideItem.IconPadding;
             set
             { }
         }
 
         public double ProgressValue
         {
-            get => sideItem.ProgressValue;
+            get => SideItem.ProgressValue;
             set
             { }
         }
 
         public double ProgressMaximum
         {
-            get => sideItem.ProgressMaximum;
+            get => SideItem.ProgressMaximum;
             set
             { }
         }
@@ -54,7 +55,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                var icon = sideItem.Icon;
+                var icon = SideItem.Icon;
                 if (icon == null)
                 {
                     return null;
@@ -122,14 +123,14 @@ namespace Playnite.DesktopApp.ViewModels
             get => selected;
             set
             {
-                if (sideItem.Type == SiderbarItemType.Button)
+                if (SideItem.Type == SiderbarItemType.Button)
                 {
                     return;
                 }
 
                 if (selected != value && value == false)
                 {
-                    sideItem.Closed();
+                    SideItem.Closed();
                 }
 
                 selected = value;
@@ -140,7 +141,7 @@ namespace Playnite.DesktopApp.ViewModels
         public SidebarWrapperItem(SidebarItem item, DesktopAppViewModel model)
         {
             this.model = model;
-            sideItem = item;
+            SideItem = item;
             Command = new RelayCommand<object>(Activation);
         }
 
@@ -151,13 +152,13 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            if (sideItem.Type == SiderbarItemType.Button)
+            if (SideItem.Type == SiderbarItemType.Button)
             {
-                sideItem.Activated();
+                SideItem.Activated();
             }
             else
             {
-                var view = sideItem.Opened();
+                var view = SideItem.Opened();
                 model.SidebarItems.ForEach(a =>
                 {
                     if (a.Selected)

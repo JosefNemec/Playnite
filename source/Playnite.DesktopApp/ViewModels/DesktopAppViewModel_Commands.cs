@@ -81,6 +81,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<Game> RemoveGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
         public RelayCommand<object> SelectRandomGameCommand { get; private set; }
+        public RelayCommand<SidebarWrapperItem> SelectSidebarViewCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -549,6 +550,11 @@ namespace Playnite.DesktopApp.ViewModels
             RestartInSafeMode = new RelayCommand<object>((a) =>
             {
                 RestartAppSafe();
+            });
+
+            SelectSidebarViewCommand = new RelayCommand<SidebarWrapperItem>((a) =>
+            {
+                a.Command.Execute(null);
             });
         }
     }
