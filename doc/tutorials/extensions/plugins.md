@@ -38,6 +38,9 @@ This will generate new C# project, with all of required classes already premade.
 
 Don't forget to implement functionality for template methods and properties that by default return `NotImplementedException` exception.
 
+> [!NOTE] 
+If you are having issue compiling plugin created from template, then make sure that nuget dependencies are downloaded and installed properly. You can do that by using "Manage NuGet Packages" menu after right-clicking on plugin solution/project in solution explorer.
+
 ### Manually
 
 #### 1. Create plugin project
