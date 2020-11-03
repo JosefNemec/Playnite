@@ -23,7 +23,7 @@ namespace PlayniteServices.Controllers.IGDB
     {
         private static readonly JsonSerializer jsonSerializer = new JsonSerializer();
         private static readonly object CacheLock = new object();
-        private const string cacheDir = "game_search";
+        private const string cacheDirName = "game_search";
         private static ILogger logger = LogManager.GetLogger();
         private static readonly char[] bracketsMatchList = new char[] { '[', ']', '(', ')', '{', '}' };
 
@@ -43,13 +43,21 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpGet("{gameName}")]
         public async Task<ServicesResponse<List<ExpandedGameLegacy>>> Get(string gameName)
         {
-            var result = await GetSearchResults(gameName, settings.Settings.IGDB.AlternativeSearch);
-            if (result.Count == 0 && settings.Settings.IGDB.AlternativeSearch)
+            var search = await GetSearchResults(gameName, false);
+            var altSearch = await GetSearchResults(gameName, settings.Settings.IGDB.AlternativeSearch);
+            foreach (var alt in altSearch)
             {
-                result = await GetSearchResults(gameName, false);
+                if (search.Any(a => a.id == alt.id))
+                {
+                    continue;
+                }
+                else
+                {
+                    search.Add(alt);
+                }
             }
 
-            return new ServicesResponse<List<ExpandedGameLegacy>>(result);
+            return new ServicesResponse<List<ExpandedGameLegacy>>(search);
         }
 
         public async Task<List<ExpandedGameLegacy>> GetSearchResults(string searchString, bool alternativeSearch)
@@ -62,8 +70,8 @@ namespace PlayniteServices.Controllers.IGDB
             List<Game> searchResult = null;
             var modifiedSearchString = ModelsUtils.GetIgdbSearchString(searchString);
             var cachePath = Path.Combine(
-                settings.Settings.IGDB.CacheDirectory,
-                cacheDir,
+                igdbApi.CacheRoot,
+                cacheDirName,
                 (alternativeSearch ? "alt_" : "srch_") + Playnite.Common.Paths.GetSafePathName(modifiedSearchString) + ".json");
             lock (CacheLock)
             {
