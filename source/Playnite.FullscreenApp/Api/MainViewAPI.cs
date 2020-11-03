@@ -25,7 +25,7 @@ namespace Playnite.FullscreenApp.API
                 else
                 {
                     return mainModel.SelectedGames?.Select(a => a.Game).ToList();
-                }                
+                }
             }
         }
 
@@ -37,6 +37,11 @@ namespace Playnite.FullscreenApp.API
         public bool OpenPluginSettings(Guid pluginId)
         {
             throw new NotSupportedException("Cannot open plugin settings in Fullscreen mode.");
+        }
+
+        public void SwitchToLibraryView()
+        {
+            throw new NotSupportedException("Not supported in Fullscreen mode.");
         }
     }
 }

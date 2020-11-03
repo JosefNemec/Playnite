@@ -1473,18 +1473,6 @@ namespace Playnite
             }
         }
 
-        private ApplicationView currentApplicationView;
-        [JsonIgnore]
-        public ApplicationView CurrentApplicationView
-        {
-            get => currentApplicationView;
-            set
-            {
-                currentApplicationView = value;
-                OnPropertyChanged();
-            }
-        }
-
         private AgeRatingOrg ageRatingOrgPriority = AgeRatingOrg.PEGI;
         public AgeRatingOrg AgeRatingOrgPriority
         {

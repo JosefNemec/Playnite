@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -143,6 +144,12 @@ namespace Playnite.DesktopApp.ViewModels
             this.model = model;
             SideItem = item;
             Command = new RelayCommand<object>(Activation);
+            item.PropertyChanged += Item_PropertyChanged;
+        }
+
+        private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(e.PropertyName);
         }
 
         private void Activation(object arg)
@@ -176,12 +183,13 @@ namespace Playnite.DesktopApp.ViewModels
     public class MainSidebarViewItem : SidebarItem
     {
         private Control view;
-        private ApplicationView appView;
         private DesktopAppViewModel model;
+
+        public ApplicationView AppView { get; }
+
         public override Control Opened()
         {
-            model.AppSettings.CurrentApplicationView = appView;
-            if (appView == ApplicationView.Statistics)
+            if (AppView == ApplicationView.Statistics)
             {
                 model.LibraryStats.Calculate();
             }
@@ -196,7 +204,7 @@ namespace Playnite.DesktopApp.ViewModels
         public MainSidebarViewItem(Control view, DesktopAppViewModel model, ApplicationView appView)
         {
             this.view = view;
-            this.appView = appView;
+            this.AppView = appView;
             this.model = model;
             Type = SiderbarItemType.View;
         }
@@ -252,19 +260,22 @@ namespace Playnite.DesktopApp.ViewModels
                 Title = Resources.GetString(LOC.Statistics)
             };
 
-            SidebarItems.Add(new SidebarWrapperItem(libraryItem, this));
-            SidebarItems.Add(new SidebarWrapperItem(statsItem, this));
-            SidebarItems[0].Command.Execute(null);
-
+            var sideItems = new List<SidebarWrapperItem>();
             foreach (var plugin in Extensions.Plugins)
             {
                 // TODO catch exceptions
                 var items = plugin.Value.Plugin.GetSidebarItems();
                 if (items.HasItems())
                 {
-                    items.ForEach(a => SidebarItems.Add(new SidebarWrapperItem(a, this)));
+                    items.ForEach(a => sideItems.Add(new SidebarWrapperItem(a, this)));
                 }
             }
+
+            sideItems = sideItems.OrderByDescending(a => a.SideItem.Type).ThenBy(a => a.SideItem.Title).ToList();
+            sideItems.Insert(0, new SidebarWrapperItem(statsItem, this));
+            sideItems.Insert(0, new SidebarWrapperItem(libraryItem, this));
+            sideItems[0].Command.Execute(null);
+            SidebarItems.AddRange(sideItems);
         }
 
         public void LoadSoftwareToolsSidebarItems()
@@ -274,8 +285,20 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            // TODO update when lists changes
-            foreach (var tool in Database.SoftwareApps)
+            Database.SoftwareApps.ItemUpdated += (_, __) => RefreshSoftwareToolsSidebarItems();
+            foreach (var tool in Database.SoftwareApps.OrderBy(a => a.Name))
+            {
+                if (tool.ShowOnSidebar)
+                {
+                    SidebarItems.Add(new SidebarWrapperItem(new SoftwareToolSidebarItem(tool, this), this));
+                }
+            }
+        }
+
+        public void RefreshSoftwareToolsSidebarItems()
+        {
+            SidebarItems.Where(a => a.SideItem is SoftwareToolSidebarItem).ToList().ForEach(a => SidebarItems.Remove(a));
+            foreach (var tool in Database.SoftwareApps.OrderBy(a => a.Name))
             {
                 if (tool.ShowOnSidebar)
                 {

@@ -384,10 +384,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.CurrentApplicationView))
-            {
-                // TODO
-            }
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -454,14 +450,13 @@ namespace Playnite.DesktopApp.ViewModels
 
         protected void InitializeView()
         {
-            LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, (g) =>
+            LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, PlayniteApi, (g) =>
             {
-                appSettings.CurrentApplicationView = ApplicationView.Library;
+                SwitchToLibraryView();
                 SelectedGame = GamesView.Items.FirstOrDefault(a => g.Id == a.Id);
             });
 
             LoadSideBarItems();
-            AppSettings.CurrentApplicationView = ApplicationView.Library;
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
 
@@ -1127,6 +1122,11 @@ namespace Playnite.DesktopApp.ViewModels
                     e.Message,
                     "LOCStartupError");
             }
+        }
+
+        public void SwitchToLibraryView()
+        {
+            SidebarItems.First(a => a.SideItem is MainSidebarViewItem item && item.AppView == ApplicationView.Library).Command.Execute(null);
         }
     }
 }
