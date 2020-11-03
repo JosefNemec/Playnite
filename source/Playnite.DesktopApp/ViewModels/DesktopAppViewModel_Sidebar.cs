@@ -21,10 +21,16 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class SidebarWrapperItem : ObservableObject
     {
+        private static ILogger logger = LogManager.GetLogger();
         private DesktopAppViewModel model;
         public RelayCommand<object> Command { get; set; }
 
         public SidebarItem SideItem { get; }
+
+        public SiderbarItemType Type
+        {
+            get => SideItem.Type;
+        }
 
         public string Name
         {
@@ -161,11 +167,23 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (SideItem.Type == SiderbarItemType.Button)
             {
-                SideItem.Activated();
+                try
+                {
+                    SideItem.Activated();
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to activate sidebar item.");
+                }
             }
             else
             {
                 var view = SideItem.Opened();
+                if (view == null)
+                {
+                    return;
+                }
+
                 model.SidebarItems.ForEach(a =>
                 {
                     if (a.Selected)
@@ -263,11 +281,17 @@ namespace Playnite.DesktopApp.ViewModels
             var sideItems = new List<SidebarWrapperItem>();
             foreach (var plugin in Extensions.Plugins)
             {
-                // TODO catch exceptions
-                var items = plugin.Value.Plugin.GetSidebarItems();
-                if (items.HasItems())
+                try
                 {
-                    items.ForEach(a => sideItems.Add(new SidebarWrapperItem(a, this)));
+                    var items = plugin.Value.Plugin.GetSidebarItems();
+                    if (items.HasItems())
+                    {
+                        items.ForEach(a => sideItems.Add(new SidebarWrapperItem(a, this)));
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    Logger.Error(e, $"Failed to GetSidebarItems, from {plugin.Value.Description.Name}");
                 }
             }
 

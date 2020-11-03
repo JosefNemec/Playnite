@@ -25,7 +25,7 @@ namespace Playnite.SDK
         bool OpenPluginSettings(Guid pluginId);
 
         /// <summary>
-        ///
+        /// Switches Playnite to Library view.
         /// </summary>
         void SwitchToLibraryView();
     }

@@ -74,7 +74,7 @@
                 <TextBox Margin="5"
                          Text="{Binding WorkingDir, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <CheckBox Content="Show on Sidebar" Margin="5"
+                <CheckBox Content="{DynamicResource LOCToolsShowOnSidebar}" Margin="5"
                           IsChecked="{Binding ShowOnSidebar}" />
 
                 <TextBlock Text="{DynamicResource LOCGameIconTitle}" Margin="5,5,5,0" />    
