@@ -24,11 +24,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddPlatformCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemovePlatformCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenamePlatformCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemovePlatformCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedPlatformsCommand}"/>
@@ -107,11 +107,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddCategoryCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveCategoryCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListCategories}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameCategoryCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListCategories}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveCategoryCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListCategories}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedCategoriesCommand}"/>
@@ -128,11 +128,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddGenreCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveGenreCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListGenres}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameGenreCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListGenres}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveGenreCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListGenres}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedGenresCommand}"/>
@@ -149,11 +149,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddCompanyCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveCompanyCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListCompanies}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameCompanyCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListCompanies}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveCompanyCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListCompanies}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedCompaniesCommand}"/>
@@ -170,11 +170,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddFeatureCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveFeatureCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListFeatures}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameFeatureCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFeatures}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveFeatureCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListFeatures}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedFeaturesCommand}"/>
@@ -191,11 +191,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddTagCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveTagCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListTags}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameTagCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListTags}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveTagCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListTags}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedTagsCommand}"/>
@@ -212,11 +212,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddSeriesCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveSeriesCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListSeries}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameSeriesCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListSeries}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveSeriesCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListSeries}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedSeriesCommand}"/>
@@ -233,11 +233,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddAgeRatingCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveAgeRatingCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListAgeRatings}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameAgeRatingCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListAgeRatings}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveAgeRatingCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListAgeRatings}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedAgeRatingsCommand}"/>
@@ -254,11 +254,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddRegionCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveRegionCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListRegions}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameRegionCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListRegions}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveRegionCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListRegions}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedRegionsCommand}"/>
@@ -275,11 +275,11 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddSourceCommand}"/>
-                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5"
-                                Command="{Binding RemoveSourceCommand}"
-                                CommandParameter="{Binding SelectedItems, ElementName=ListSources}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
                                 Command="{Binding RenameSourceCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListSources}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveSourceCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListSources}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedSourcesCommand}"/>
