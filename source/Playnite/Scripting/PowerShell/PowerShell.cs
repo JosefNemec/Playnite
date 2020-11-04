@@ -152,13 +152,9 @@ namespace Playnite.Scripting.PowerShell
         {
             var command = GetFunction(name);
             powershell.AddCommand(command);
-            // Don't pass arguments to commands not expecting parameters
-            if (command.Parameters.Count != 0)
+            foreach (var argument in arguments)
             {
-                foreach (var argument in arguments)
-                {
-                    powershell.AddArgument(argument);
-                }
+                powershell.AddArgument(argument);
             }
             var result = powershell.Invoke();
             powershell.Streams.ClearStreams();
