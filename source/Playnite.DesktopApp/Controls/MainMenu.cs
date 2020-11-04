@@ -312,7 +312,11 @@ namespace Playnite.DesktopApp.Controls
                 {
                     try
                     {
-                        var items = script.GetMainMenuItems(args);
+                        List<ScriptMainMenuItem> items;
+                        using (var timer = new ExecutionTimer("script.GetMainMenuItems"))
+                        {
+                            items = script.GetMainMenuItems(args);
+                        }
                         if (items.HasItems())
                         {
                             foreach (var item in items)
