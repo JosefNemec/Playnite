@@ -4,7 +4,7 @@ Playnite URI support
 Introduction
 ---------------------
 
-Plugins can register custom methods to be executed when specific `playnite://` URI is opened. This can be done using `RegisterSource` method from [UriHandler](xref:Playnite.SDK.IPlayniteAPI.UriHandler) API.
+Plugins (scripts are not supported) can register custom methods to be executed when specific `playnite://` URI is opened. This can be done using `RegisterSource` method from [UriHandler](xref:Playnite.SDK.IPlayniteAPI.UriHandler) API.
 
 Example
 ---------------------
