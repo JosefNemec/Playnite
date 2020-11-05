@@ -45,6 +45,9 @@ namespace Playnite
         [Option("safestartup")]
         public bool SafeStartup { get; set; }
 
+        [Option("resetsettings")]
+        public bool ResetSettings { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);

@@ -113,6 +113,15 @@ namespace Playnite
 
             PlayniteSettings.MigrateSettingsConfig();
             AppSettings = PlayniteSettings.LoadSettings();
+            if (CmdLine.ResetSettings)
+            {
+                var settings = PlayniteSettings.GetDefaultSettings();
+                settings.FirstTimeWizardComplete = true;
+                settings.DatabasePath = AppSettings.DatabasePath;
+                settings.ImportExclusionList = AppSettings.ImportExclusionList;
+                settings.SaveSettings();
+                AppSettings = settings;
+            }
 
             var relaunchPath = string.Empty;
             if (AppSettings.StartInFullscreen && mode == ApplicationMode.Desktop && !CmdLine.StartInDesktop)

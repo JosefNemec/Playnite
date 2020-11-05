@@ -80,25 +80,18 @@
                   IsChecked="{Binding OverrideDefaultArgs}" Checked="CheckOverrideArgs_Checked" Unchecked="CheckOverrideArgs_Checked"/>
 
         <Label Content="{DynamicResource LOCEmulatorTitle}" Grid.Column="0" Grid.Row="3" />
-        <Grid IsEnabled="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Grid.Column="1" Grid.Row="3" Margin="3,5,3,5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="{DynamicResource LOCTypeLabel}" Grid.Column="0"/>
+        <StackPanel Orientation="Horizontal"
+                    IsEnabled="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+                    Grid.Column="1" Grid.Row="3" Margin="3,5,3,5">
             <ComboBox TabIndex="4" Name="ComboEmulator" SelectionChanged="ComboEmulator_SelectionChanged"
-                      Grid.Column="1" Margin="5,0,15,0"
+                      Margin="0,0,10,0"
                       ItemsSource="{Binding Emulators, RelativeSource={RelativeSource AncestorType=UserControl}}"
                       SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}"/>
-
-            <Label Content="{DynamicResource LOCProfileLabel}" Grid.Column="2"/>
+            <Label Content="{DynamicResource LOCProfileLabel}" />
             <ComboBox TabIndex="5" Name="ComboEmulatorConfig" SelectionChanged="ComboEmulatorConfig_SelectionChanged"
-                      Grid.Column="3" Margin="5,0,5,0"
-                      ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboEmulator}"
+                      Margin="5,0,5,0"
+                      ItemsSource="{Binding SelectedItem.SortedProfiles, ElementName=ComboEmulator}"
                       SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId}"/>
-        </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>

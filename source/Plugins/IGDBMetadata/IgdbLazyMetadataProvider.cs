@@ -66,11 +66,11 @@ namespace IGDBMetadata
                 List<IgdbServerModels.GameImage> possibleBackgrounds = null;
                 if (IgdbData.artworks.HasItems())
                 {
-                    possibleBackgrounds = IgdbData.artworks;
+                    possibleBackgrounds = IgdbData.artworks.Where(a => !a.url.IsNullOrEmpty()).ToList();
                 }
                 else if (plugin.Settings.UseScreenshotsIfNecessary && IgdbData.screenshots.HasItems())
                 {
-                    possibleBackgrounds = IgdbData.screenshots;
+                    possibleBackgrounds = IgdbData.screenshots.Where(a => !a.url.IsNullOrEmpty()).ToList();
                 }
 
                 if (possibleBackgrounds.HasItems())

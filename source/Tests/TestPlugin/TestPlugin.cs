@@ -4,10 +4,14 @@ using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace TestPlugin
 {
@@ -98,6 +102,71 @@ namespace TestPlugin
                     }
                 }
             };
+        }
+
+        public class CalcSidebar : SidebarItem
+        {
+            public CalcSidebar()
+            {
+                Type = SiderbarItemType.Button;
+                Title = "Calculator";
+                Icon = new TextBlock
+                {
+                    Text = char.ConvertFromUtf32(Convert.ToInt32(0xef08)),
+                    FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily,
+                    Foreground = Brushes.OrangeRed
+                };
+                ProgressValue = 40;
+                ProgressMaximum = 100;
+            }
+
+            public override void Activated()
+            {
+                Process.Start("calc");
+            }
+        }
+
+        public class ViewSidebarTest : SidebarItem
+        {
+            public ViewSidebarTest()
+            {
+                Type = SiderbarItemType.View;
+                Title = "TestView";
+                Icon = new TextBlock
+                {
+                    Text = char.ConvertFromUtf32(Convert.ToInt32(0xeaf1)),
+                    FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
+                };
+            }
+
+            public override Control Opened()
+            {
+                return new Button { Content = "test" };
+            }
+        }
+
+        public override List<SidebarItem> GetSidebarItems()
+        {
+            var items = new List<SidebarItem>
+            {
+                new CalcSidebar(),
+                new ViewSidebarTest(),
+                new CalcSidebar()
+                {
+                    Title = "zaltulator",
+                    Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"),
+                    IconPadding = new System.Windows.Thickness(4),
+                    ProgressValue = 0
+                },
+                new CalcSidebar() { Title = null }
+            };
+
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    items.Add(new CalcSidebar { Title = i.ToString() });
+            //}
+
+            return items;
         }
     }
 }

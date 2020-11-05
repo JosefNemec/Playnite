@@ -25,7 +25,7 @@ namespace Playnite.DesktopApp.API
                 else
                 {
                     return mainModel.SelectedGames?.Select(a => a.Game).ToList();
-                }                
+                }
             }
         }
 
@@ -37,6 +37,11 @@ namespace Playnite.DesktopApp.API
         public bool OpenPluginSettings(Guid pluginId)
         {
             return mainModel.OpenPluginSettings(pluginId);
+        }
+
+        public void SwitchToLibraryView()
+        {
+            mainModel.SwitchToLibraryView();
         }
     }
 }

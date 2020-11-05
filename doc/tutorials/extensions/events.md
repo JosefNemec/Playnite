@@ -4,12 +4,12 @@ Reacting to events
 Basics
 ---------------------
 
-Playnite's API allows script to react to various events like when game is started or installed.
+Playnite's API allows extensions to react to various events like when game is started or installed.
 
 Available Events
 ---------------------
 
-|PowerShell Name | Python Name | Event | Passed Arguments |
+|PowerShell Name / Plugin name | Python Name | Event | Passed Arguments |
 | - | - | - | - |
 | OnGameStarting | on_game_starting | Before game is started. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameStarted | on_game_started | Game started running. | [Game](xref:Playnite.SDK.Models.Game) |
@@ -21,6 +21,16 @@ Available Events
 | OnApplicationStopped | on_application_stopped | Playnite is shutting down. | None |
 | OnLibraryUpdated | on_library_updated | Library was updated. | None |
 
+
+Scripts
+---------------------
+
+
+
+Plugins
+---------------------
+
+
 Example - Handling start/stop events
 ---------------------
 
@@ -29,6 +39,14 @@ To have a code executed on selected event define function with specific name in 
 ### Game Starting
 
 Following example writes name of currently playing game into a text file.
+
+# [C#](#tab/csharp)
+```csharp
+public override void OnGameStarted(Game game)
+{
+    logger.Info($"Game started: {game.Name}");
+}
+```
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell
@@ -54,6 +72,14 @@ def on_game_started(game):
 
 This example writes name of game that stopped running and the time game was running for into a text file.
 
+# [C#](#tab/csharp)
+```csharp
+public override void OnGameStopped(Game game, double elapsedSeconds)
+{
+    logger.Info($"{game.Name} was running for {elapsedSeconds} seconds");
+}
+```
+
 # [PowerShell](#tab/tabpowershell)
 ```powershell
 function OnGameStopped()
@@ -73,40 +99,3 @@ def on_game_stopped(game, elapsed_seconds):
     with open("StoppedGame.txt", "w") as text_file:
         text_file.write("{0} was running for {1} seconds".format(game.Name, elapsed_seconds))
 ```
-***
-
-### Full File Examples
-
-# [PowerShell](#tab/tabpowershell)
-```powershell
-function OnGameStarted()
-{
-    param(
-        $game
-    )
-
-    $game.Name | Out-File "RunningGame.txt"
-}
-
-function OnGameStopped()
-{
-    param(
-        $game,
-        $elapsedSeconds
-    )
-
-    "$($game.Name) was running for $elapsedSeconds seconds" | Out-File "StoppedGame.txt"
-}
-```
-
-# [IronPython](#tab/tabpython)
-```python
-def on_game_started(game):
-    with open("RunningGame.txt", "w") as text_file:
-        text_file.write(game.Name)
-
-def on_game_stopped(game, elapsed_seconds):
-    with open("StoppedGame.txt", "w") as text_file:
-        text_file.write("{0} was running for {1} seconds".format(game.Name, elapsed_seconds))
-```
-***

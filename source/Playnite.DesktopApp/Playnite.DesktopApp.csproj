@@ -263,6 +263,8 @@
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\DatabaseFieldsManagerViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
+    <Compile Include="ViewModels\DesktopAppViewModel_Sidebar.cs" />
+    <Compile Include="ViewModels\DesktopAppViewModel_Commands.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\EmulatorsViewModel.cs" />
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />

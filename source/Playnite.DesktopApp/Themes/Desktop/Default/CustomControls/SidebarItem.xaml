@@ -12,15 +12,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type SidebarItem}">
-                    <Border Background="{TemplateBinding Background}" Padding="8"
+                    <Grid>
+                        <ProgressBar Value="{Binding ProgressValue}"
+                                     Maximum="{Binding ProgressMaximum}"
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch" />
+                        <Border Background="{TemplateBinding Background}"
+                            Padding="{Binding IconPadding}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             ToolTip="{Binding Name}">
-                        <Viewbox>
-                            <ContentPresenter HorizontalAlignment="Stretch"
-                                                VerticalAlignment="Stretch" />
-                        </Viewbox>
-                    </Border>
+                            <Viewbox>
+                                <ContentPresenter HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Stretch" />
+                            </Viewbox>
+                        </Border>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

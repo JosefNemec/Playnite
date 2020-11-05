@@ -3006,21 +3006,33 @@ namespace Playnite
         /// </summary>
         public const string GeneralExtensionInstallTitle = "LOCGeneralExtensionInstallTitle";
         /// <summary>
+        /// Generic
+        /// </summary>
+        public const string ExtensionGeneric = "LOCExtensionGeneric";
+        /// <summary>
         /// Failed to install extension.
         /// </summary>
         public const string ExtensionInstallFail = "LOCExtensionInstallFail";
         /// <summary>
-        /// Do you want to install new extension? Existing installation will be overwritten.
+        /// Do you want to install a new extension?
         /// </summary>
         public const string ExtensionInstallPrompt = "LOCExtensionInstallPrompt";
+        /// <summary>
+        /// Do you want to update "{0}" extension?
+        /// </summary>
+        public const string ExtensionUpdatePrompt = "LOCExtensionUpdatePrompt";
         /// <summary>
         /// Failed to install theme.
         /// </summary>
         public const string ThemeInstallFail = "LOCThemeInstallFail";
         /// <summary>
-        /// Do you want to install a new theme? The previous installation will be overwritten.
+        /// Do you want to install a new theme?
         /// </summary>
         public const string ThemeInstallPrompt = "LOCThemeInstallPrompt";
+        /// <summary>
+        /// Do you want to update "{0}" theme?
+        /// </summary>
+        public const string ThemeUpdatePrompt = "LOCThemeUpdatePrompt";
         /// <summary>
         /// You are about to leave Playnite and navigate to the following web page using your default web browser. Do you want to continue?
         /// </summary>
@@ -3113,6 +3125,18 @@ namespace Playnite
         /// Sidebar
         /// </summary>
         public const string Sidebar = "LOCSidebar";
+        /// <summary>
+        /// Show on Sidebar
+        /// </summary>
+        public const string ToolsShowOnSidebar = "LOCToolsShowOnSidebar";
+        /// <summary>
+        /// Reset settings
+        /// </summary>
+        public const string SettingsReset = "LOCSettingsReset";
+        /// <summary>
+        /// All application settings will be reset to default values, excluding:
+        /// </summary>
+        public const string SettingsDefaultResetDesc = "LOCSettingsDefaultResetDesc";
         /// <summary>
         /// Achievements
         /// </summary>

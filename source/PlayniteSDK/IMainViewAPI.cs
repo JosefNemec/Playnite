@@ -23,5 +23,10 @@ namespace Playnite.SDK
         /// <param name="pluginId">Plugin ID.</param>
         /// <returns>True if user saved any changes, False if dialog was canceled.</returns>
         bool OpenPluginSettings(Guid pluginId);
+
+        /// <summary>
+        /// Switches Playnite to Library view.
+        /// </summary>
+        void SwitchToLibraryView();
     }
 }

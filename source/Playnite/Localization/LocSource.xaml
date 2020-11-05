@@ -870,6 +870,14 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Top play time</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Overview</sys:String>
     <sys:String x:Key="LOCSidebar">Sidebar</sys:String>
+    <sys:String x:Key="LOCToolsShowOnSidebar">Show on Sidebar</sys:String>
+    <sys:String x:Key="LOCSettingsReset">Reset settings</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve">All application settings will be reset to default values, excluding:
+- Database location
+- Import exclusion list
+- Extension settings, including library integrations
+    
+Application restart is requred to finish the process. Do you want to reset settings?</sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>

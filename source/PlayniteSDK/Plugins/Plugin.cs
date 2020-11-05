@@ -244,5 +244,10 @@ namespace Playnite.SDK.Plugins
 
             return PlayniteApi.MainView.OpenPluginSettings(Id);
         }
+
+        public virtual List<SidebarItem> GetSidebarItems()
+        {
+            return null;
+        }
     }
 }

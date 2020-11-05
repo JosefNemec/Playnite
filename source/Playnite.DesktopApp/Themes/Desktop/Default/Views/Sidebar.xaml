@@ -24,7 +24,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <SidebarItem Style="{DynamicResource SideBarViewItem}"
-                                                     Width="44" Height="44" />
+                                                    Width="44" Height="44" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
@@ -32,6 +32,14 @@
                                         <StackPanel Orientation="Vertical" />
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
+                                <ItemsControl.Template>
+                                    <ControlTemplate>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden"
+                                                      CanContentScroll="True">
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </ControlTemplate>
+                                </ItemsControl.Template>
                             </ItemsControl>
                         </DockPanel>
                     </Border>
@@ -45,6 +53,7 @@
                             <Setter Property="BorderThickness" Value="0,0,0,1" TargetName="BorderContentHolder" />
                             <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ElemMainMenu" />
                             <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ListSideBarItems" />
+                            <Setter Property="Margin" Value="0,0,100,0" TargetName="PART_ListSideBarItems" />
                             <Setter Property="ItemsPanel" TargetName="PART_ListSideBarItems">
                                 <Setter.Value>
                                     <ItemsPanelTemplate>

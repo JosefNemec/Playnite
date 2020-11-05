@@ -162,6 +162,14 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
+        /// Gets list of emulator profiles sorted by name.
+        /// </summary>
+        public List<EmulatorProfile> SortedProfiles
+        {
+            get => Profiles.OrderBy(a => a.Name).ToList();
+        }
+
+        /// <summary>
         /// Creates new instance of Emulator.
         /// </summary>
         public Emulator() : base()

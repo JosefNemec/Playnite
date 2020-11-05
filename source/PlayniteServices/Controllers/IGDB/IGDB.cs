@@ -42,6 +42,8 @@ namespace PlayniteServices.Controllers.IGDB
         public AgeRatings AgeRatings;
         public Collections Collections;
 
+        public string CacheRoot { get; }
+
         public HttpClient HttpClient { get; }
 
         public IgdbApi(UpdatableAppSettings settings)
@@ -52,6 +54,11 @@ namespace PlayniteServices.Controllers.IGDB
                 .AsDelegatingHandler();
             HttpClient = new HttpClient(requestLimiterHandler);
             HttpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+            CacheRoot = settings.Settings.IGDB.CacheDirectory;
+            if (!Path.IsPathRooted(CacheRoot))
+            {
+                CacheRoot = Path.Combine(Paths.ExecutingDirectory, CacheRoot);
+            }
 
             Games = new Games(this);
             AlternativeNames = new AlternativeNames(this);
@@ -182,13 +189,7 @@ namespace PlayniteServices.Controllers.IGDB
 
         public async Task<TItem> GetItem<TItem>(ulong itemId, string endpointPath, object cacheLock)
         {
-            var cacheRoot = settings.Settings.IGDB.CacheDirectory;
-            if (!Path.IsPathRooted(cacheRoot))
-            {
-                cacheRoot = Path.Combine(Paths.ExecutingDirectory, cacheRoot);
-            }
-
-            var cachePath = Path.Combine(cacheRoot, endpointPath, itemId + ".json");
+            var cachePath = Path.Combine(CacheRoot, endpointPath, itemId + ".json");
             lock (cacheLock)
             {
                 if (System.IO.File.Exists(cachePath))
