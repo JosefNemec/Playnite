@@ -32,12 +32,12 @@ Following example writes name of currently playing game into a text file.
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell
-function global:OnGameStarted()
+function OnGameStarted()
 {
     param(
         $game
     )
-    
+
     $game.Name | Out-File "RunningGame.txt"
 }
 ```
@@ -56,13 +56,13 @@ This example writes name of game that stopped running and the time game was runn
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell
-function global:OnGameStopped()
+function OnGameStopped()
 {
     param(
         $game,
         $elapsedSeconds
     )
-    
+
     "$($game.Name) was running for $elapsedSeconds seconds" | Out-File "StoppedGame.txt"
 }
 ```
@@ -79,22 +79,22 @@ def on_game_stopped(game, elapsed_seconds):
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell
-function global:OnGameStarted()
+function OnGameStarted()
 {
     param(
         $game
     )
-    
+
     $game.Name | Out-File "RunningGame.txt"
 }
 
-function global:OnGameStopped()
+function OnGameStopped()
 {
     param(
         $game,
         $elapsedSeconds
     )
-    
+
     "$($game.Name) was running for $elapsedSeconds seconds" | Out-File "StoppedGame.txt"
 }
 ```

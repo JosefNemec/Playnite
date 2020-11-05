@@ -16,6 +16,8 @@
       href: scripts/scriptingUI.md
     - name: Data directory
       href: scripts/dataDirectory.md
+    - name: Debugging Scripts
+      href: scripts/scriptingDebugging.md
 
 - name: Plugins
   items:
