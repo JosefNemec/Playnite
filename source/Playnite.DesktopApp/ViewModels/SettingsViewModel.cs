@@ -143,6 +143,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> SetDefaultsCommand
+        {
+            get => new RelayCommand<object>((ratio) =>
+            {
+                SetDefaults();
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -339,6 +347,21 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 extUninstallQeueued = true;
                 ExtensionInstaller.QueueExtensionUninstall(a.DirectoryPath);
+            }
+        }
+
+        private void SetDefaults()
+        {
+            if (dialogs.ShowMessage(
+                LOC.SettingsDefaultResetDesc,
+                string.Empty,
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                application.Restart(new CmdLineOptions
+                {
+                    SkipLibUpdate = true,
+                    ResetSettings = true
+                });
             }
         }
     }

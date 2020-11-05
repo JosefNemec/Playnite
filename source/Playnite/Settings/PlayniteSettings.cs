@@ -1547,6 +1547,33 @@ namespace Playnite
             FileSystem.WriteStringToFile(path, JsonConvert.SerializeObject(settings, Formatting.Indented));
         }
 
+        public static PlayniteSettings GetDefaultSettings()
+        {
+            var settings = new PlayniteSettings();
+            settings.ViewSettings.ListViewColumsOrder = new List<GameField>
+                {
+                    GameField.Icon,
+                    GameField.Name,
+                    GameField.ReleaseDate,
+                    GameField.Genres,
+                    GameField.LastActivity,
+                    GameField.Playtime,
+                    GameField.PluginId
+                };
+
+            var columns = new ListViewColumnsProperties();
+            columns.Icon.Visible = true;
+            columns.Name.Visible = true;
+            columns.ReleaseDate.Visible = true;
+            columns.Genres.Visible = true;
+            columns.LastActivity.Visible = true;
+            columns.Playtime.Visible = true;
+            columns.PluginId.Visible = true;
+            settings.ViewSettings.ListViewColumns = columns;
+            settings.MetadataSettings = MetadataDownloaderSettings.GetDefaultSettings();
+            return settings;
+        }
+
         public static PlayniteSettings LoadSettings()
         {
             var settings = LoadSettingFile<PlayniteSettings>(PlaynitePaths.ConfigFilePath);
