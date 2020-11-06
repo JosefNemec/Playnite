@@ -287,10 +287,7 @@ namespace Playnite.Plugins
 
                 try
                 {
-                    using (var timer = new ExecutionTimer("PlayniteScript.FromFile"))
-                    {
-                        script = PlayniteScript.FromFile(scriptPath);
-                    }
+                    script = PlayniteScript.FromFile(scriptPath);
                     if (script == null)
                     {
                         FailedExtensions.Add(desc);
