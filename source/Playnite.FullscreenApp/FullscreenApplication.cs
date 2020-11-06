@@ -57,6 +57,7 @@ namespace Playnite.FullscreenApp
 
             ConfigureApplication();
             InstantiateApp();
+            AppUriHandler = MainModel.ProcessUriRequest;
             MigrateDatabase();
             SetupInputs(true);
             OpenMainViewAsync();

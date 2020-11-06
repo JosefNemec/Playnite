@@ -9,6 +9,7 @@ using Playnite.FullscreenApp.Windows;
 using Playnite.Metadata;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.ViewModels;
 using Playnite.Windows;
@@ -1434,6 +1435,23 @@ namespace Playnite.FullscreenApp.ViewModels
         private void Window_LocationChanged(object sender, EventArgs e)
         {
             application.UpdateScreenInformation(Window.Window);
+        }
+
+        internal void ProcessUriRequest(PlayniteUriEventArgs args)
+        {
+            var arguments = args.Arguments;
+            if (args.Arguments.Count() == 0)
+            {
+                return;
+            }
+
+            var command = arguments[0];
+            switch (command)
+            {
+                default:
+                    Logger.Warn($"Uknown URI command {command}");
+                    break;
+            }
         }
     }
 }

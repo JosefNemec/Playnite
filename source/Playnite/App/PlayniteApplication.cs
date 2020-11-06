@@ -69,7 +69,7 @@ namespace Playnite
         public ComputerScreen CurrentScreen { get; set; } = Computer.GetPrimaryScreen();
         public DiscordManager Discord { get; set; }
         public SynchronizationContext SyncContext { get; private set; }
-
+        public Action<PlayniteUriEventArgs> AppUriHandler { get; set; }
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
 
@@ -693,7 +693,7 @@ namespace Playnite
                     break;
 
                 default:
-                    logger.Warn($"Uknown URI command {command}");
+                    AppUriHandler(args);
                     break;
             }
         }

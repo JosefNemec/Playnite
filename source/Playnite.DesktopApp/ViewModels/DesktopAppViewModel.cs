@@ -32,6 +32,7 @@ using System.Windows.Media;
 using System.Drawing.Imaging;
 using Playnite.DesktopApp.Controls;
 using System.Diagnostics;
+using Playnite.SDK.Events;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -1127,6 +1128,45 @@ namespace Playnite.DesktopApp.ViewModels
         public void SwitchToLibraryView()
         {
             SidebarItems.First(a => a.SideItem is MainSidebarViewItem item && item.AppView == ApplicationView.Library).Command.Execute(null);
+        }
+
+        internal void ProcessUriRequest(PlayniteUriEventArgs args)
+        {
+            var arguments = args.Arguments;
+            if (args.Arguments.Count() == 0)
+            {
+                return;
+            }
+
+            var command = arguments[0];
+            switch (command)
+            {
+                case UriCommands.ShowGame:
+                    if (Guid.TryParse(arguments[1], out var gameId))
+                    {
+                        var game = Database.Games[gameId];
+                        if (game == null)
+                        {
+                            Logger.Error($"Cannot display game, game {arguments[1]} not found.");
+                        }
+                        else
+                        {
+                            RestoreWindow();
+                            SwitchToLibraryView();
+                            SelectedGame = GamesView.Items.FirstOrDefault(a => game.Id == a.Id);
+                        }
+                    }
+                    else
+                    {
+                        Logger.Error($"Can't display game, failed to parse game id: {arguments[1]}");
+                    }
+
+                    break;
+
+                default:
+                    Logger.Warn($"Uknown URI command {command}");
+                    break;
+            }
         }
     }
 }

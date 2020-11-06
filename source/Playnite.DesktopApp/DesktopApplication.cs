@@ -11,6 +11,7 @@ using Playnite.DesktopApp.Windows;
 using Playnite.Metadata;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.Settings;
 using Playnite.ViewModels;
@@ -68,6 +69,7 @@ namespace Playnite.DesktopApp
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
             InstantiateApp();
+            AppUriHandler = MainModel.ProcessUriRequest;
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
             SetupInputs(false);
