@@ -1511,6 +1511,22 @@ namespace Playnite
             get; set;
         } = new ImportExclusionList();
 
+        private List<SelectableItem<string>> develExtenions = new List<SelectableItem<string>>();
+        [RequiresRestart]
+        public List<SelectableItem<string>> DevelExtenions
+        {
+            get
+            {
+                return develExtenions;
+            }
+
+            set
+            {
+                develExtenions = value;
+                OnPropertyChanged();
+            }
+        }
+
         public PlayniteSettings()
         {
             var gpus = Computer.GetGpuVendors();

@@ -25,7 +25,7 @@ namespace Playnite.Tests.Plugins
             var descriptors = ExtensionFactory.GetExtensionDescriptors();
             Assert.AreEqual(2, descriptors.Count);
 
-            factory.LoadPlugins(api.Object, null, false);
+            factory.LoadPlugins(api.Object, null, false, null);
             Assert.AreEqual(2, factory.Plugins.Count);
         }
     }

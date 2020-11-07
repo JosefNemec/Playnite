@@ -186,19 +186,34 @@ namespace Playnite.Plugins
             }
         }
 
+        public static ExtensionManifest GetManifestFromDir(string directory)
+        {
+            var manfFile = Path.Combine(directory, PlaynitePaths.ExtensionManifestFileName);
+            if (File.Exists(manfFile))
+            {
+                try
+                {
+                    return ExtensionManifest.FromFile(manfFile);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to parse plugin description: {manfFile}");
+                    return null;
+                }
+            }
+
+            return null;
+        }
+
         public static List<ExtensionManifest> GetExtensionDescriptors()
         {
             var descs = new List<ExtensionManifest>();
             foreach (var file in GetExtensionDescriptorFiles())
             {
-                try
+                var man = GetManifestFromDir(file);
+                if (man != null)
                 {
-                    descs.Add(ExtensionManifest.FromFile(file));
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, $"Failed to parse plugin description: {file}");
-                    continue;
+                    descs.Add(man);
                 }
             }
 
@@ -262,13 +277,22 @@ namespace Playnite.Plugins
             return true;
         }
 
-        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly)
+        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             var allSuccess = true;
             DisposeScripts();
             var functions = new List<ScriptFunctionExport>();
+            var manifests = GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)).ToList();
+            foreach (var ext in externals)
+            {
+                var man = GetManifestFromDir(ext);
+                if (man?.Type == ExtensionType.Script)
+                {
+                    manifests.Add(man);
+                }
+            }
 
-            foreach (ScriptExtensionDescription desc in GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)))
+            foreach (ScriptExtensionDescription desc in manifests)
             {
                 if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
                 {
@@ -324,11 +348,21 @@ namespace Playnite.Plugins
             return allSuccess;
         }
 
-        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly)
+        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             DisposePlugins();
             var funcs = new List<ExtensionFunction>();
-            foreach (var desc in GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true))
+            var manifests = GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true).ToList();
+            foreach (var ext in externals)
+            {
+                var man = GetManifestFromDir(ext);
+                if (man != null && man.Type != ExtensionType.Script)
+                {
+                    manifests.Add(man);
+                }
+            }
+
+            foreach (var desc in manifests)
             {
                 if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
                 {

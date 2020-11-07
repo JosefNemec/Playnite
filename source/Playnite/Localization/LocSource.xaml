@@ -878,6 +878,9 @@ Backgrounds: {2} mega pixels</sys:String>
 - Extension settings, including library integrations
     
 Application restart is requred to finish the process. Do you want to reset settings?</sys:String>
+    <sys:String x:Key="LOCSettingsForDevelopers">For developers</sys:String>
+    <sys:String x:Key="LOCSettingsExternalExtensions">External extensions</sys:String>
+    <sys:String x:Key="LOCSettingsNewExternalExtensionBox">Enter full directory path.</sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>

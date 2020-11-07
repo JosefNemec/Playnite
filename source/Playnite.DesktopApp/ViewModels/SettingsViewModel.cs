@@ -127,6 +127,31 @@ namespace Playnite.DesktopApp.ViewModels
             }, (items) => items != null && items.Count > 0);
         }
 
+        public RelayCommand<object> AddDevelExtensionCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var res = dialogs.SelectString(LOC.SettingsNewExternalExtensionBox, "", "");
+                if (res.Result)
+                {
+                    Settings.DevelExtenions.Add(new SelectableItem<string>(res.SelectedString) { Selected = true });
+                    Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
+                }
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveDevelExtensionCommand
+        {
+            get => new RelayCommand<IList<object>>((items) =>
+            {
+                foreach (SelectableItem<string> item in items.ToList())
+                {
+                    Settings.DevelExtenions.Remove(item);
+                    Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
+                }
+            }, (items) => items != null && items.Count > 0);
+        }
+
         public RelayCommand<RoutedPropertyChangedEventArgs<object>> SettingsTreeSelectedItemChangedCommand
         {
             get => new RelayCommand<RoutedPropertyChangedEventArgs<object>>((a) =>
@@ -189,7 +214,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { 15, new Controls.SettingsSections.ExtensionsLibraries() { DataContext = this } },
                 { 16, new Controls.SettingsSections.ExtensionsMetadata() { DataContext = this } },
                 { 17, new Controls.SettingsSections.ExtensionsOther() { DataContext = this } },
-                { 18, new Controls.SettingsSections.ExtensionsThemes() { DataContext = this } }
+                { 18, new Controls.SettingsSections.ExtensionsThemes() { DataContext = this } },
+                { 19, new Controls.SettingsSections.Development() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];

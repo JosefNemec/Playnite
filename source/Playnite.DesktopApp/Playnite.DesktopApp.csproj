@@ -196,6 +196,9 @@
     <Compile Include="Controls\SettingsSections\ExtensionsMetadata.xaml.cs">
       <DependentUpon>ExtensionsMetadata.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\Development.xaml.cs">
+      <DependentUpon>Development.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\ImportExlusionList.xaml.cs">
       <DependentUpon>ImportExlusionList.xaml</DependentUpon>
     </Compile>
@@ -602,6 +605,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\ExtensionsMetadata.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\Development.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

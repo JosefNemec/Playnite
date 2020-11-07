@@ -109,8 +109,8 @@ namespace Playnite.FullscreenApp
 
         private async void OpenMainViewAsync()
         {
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup);
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup);
+            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;

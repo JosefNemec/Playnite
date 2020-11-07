@@ -3138,6 +3138,18 @@ namespace Playnite
         /// </summary>
         public const string SettingsDefaultResetDesc = "LOCSettingsDefaultResetDesc";
         /// <summary>
+        /// For developers
+        /// </summary>
+        public const string SettingsForDevelopers = "LOCSettingsForDevelopers";
+        /// <summary>
+        /// External extensions
+        /// </summary>
+        public const string SettingsExternalExtensions = "LOCSettingsExternalExtensions";
+        /// <summary>
+        /// Enter full directory path.
+        /// </summary>
+        public const string SettingsNewExternalExtensionBox = "LOCSettingsNewExternalExtensionBox";
+        /// <summary>
         /// Achievements
         /// </summary>
         public const string CommonLinksAchievements = "LOCCommonLinksAchievements";

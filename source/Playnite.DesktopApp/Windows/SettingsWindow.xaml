@@ -63,6 +63,7 @@
                 <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="12" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsImportExclusionList}" Tag="14" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsForDevelopers}" Tag="19" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" IsExpanded="True">
                     <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="13" />
                 </TreeViewItem>
