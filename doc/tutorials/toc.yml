@@ -33,6 +33,8 @@
       href: extensions/expandingVariables.md
     - name: Playnite URI support
       href: extensions/uriSupport.md
+    - name: Debugging scripts
+      href: extensions/scriptingDebugging.md
 
 - name: Themes
   items:

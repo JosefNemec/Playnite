@@ -10,7 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerShellScript", "PowerShellScript", "{8072DE03-C24F-4EC3-BBEE-313790A02113}"
 	ProjectSection(SolutionItems) = preProject
 		PowerShellScript\extension.yaml = PowerShellScript\extension.yaml
-		PowerShellScript\PowerShellScript.ps1 = PowerShellScript\PowerShellScript.ps1
+		PowerShellScript\PowerShellScript.psm1 = PowerShellScript\PowerShellScript.psm1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IronPythonScript", "IronPythonScript", "{4AEEF359-2C59-4F43-AAF9-EA1E20F47708}"

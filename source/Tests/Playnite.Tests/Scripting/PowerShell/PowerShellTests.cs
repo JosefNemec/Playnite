@@ -68,18 +68,23 @@ function TestFunc()
         }
 
         [Test]
-        public void GetFunctionExitsTest()
+        public void GetFunctionTest()
         {
-            using (var ps = new PowerShellRuntime("GetFunctionExitsTest"))
+            using (var tempDir = TempDirectory.Create())
             {
-                Assert.IsFalse(ps.GetFunctionExits("TestFunc"));
-                ps.Execute(@"
+                using (var ps = new PowerShellRuntime("GetFunctionTest"))
+                {
+                    Assert.IsTrue(ps.GetFunction("TestFunc") == null);
+                    var path = Path.Combine(tempDir.TempPath, "GetFunctionTest.psm1");
+                    File.WriteAllText(path, @"
 function TestFunc()
 {
     return 4 + 4
 }
 ");
-                Assert.IsTrue(ps.GetFunctionExits("TestFunc"));
+                    ps.ImportModule(path);
+                    Assert.IsTrue(ps.GetFunction("TestFunc") != null);
+                }
             }
         }
 
@@ -87,20 +92,27 @@ function TestFunc()
         public void ExecuteWorkDirTest()
         {
             using (var tempDir = TempDirectory.Create())
-            using (var runtime = new PowerShellRuntime("ExecuteWorkDirTest"))
             {
-                var outPath = "workDirTest.txt";
-                FileSystem.DeleteFile(outPath);
-                FileAssert.DoesNotExist(outPath);
-                runtime.Execute($"'test' | Out-File workDirTest.txt");
-                FileAssert.Exists(outPath);
+                Directory.SetCurrentDirectory(tempDir.TempPath);
+                using (var runtime = new PowerShellRuntime("ExecuteWorkDirTest"))
+                {
+                    var outPath = "workDirTest.txt";
+                    FileSystem.DeleteFile(outPath);
+                    FileAssert.DoesNotExist(outPath);
+                    runtime.Execute($"'test' | Out-File workDirTest.txt");
+                    FileAssert.Exists(outPath);
 
-                outPath = Path.Combine(tempDir.TempPath, outPath);
-                FileSystem.DeleteFile(outPath);
-                FileAssert.DoesNotExist(outPath);
-                runtime.Execute($"'test' | Out-File workDirTest.txt", tempDir.TempPath);
-                FileAssert.Exists(outPath);
+                    FileSystem.CreateDirectory("subdirectory");
+                    var tempDir2 = Path.Combine(tempDir.TempPath, "subdirectory");
+                    outPath = Path.Combine(tempDir2, outPath);
+                    FileSystem.DeleteFile(outPath);
+                    FileAssert.DoesNotExist(outPath);
+                    runtime.Execute($"'test' | Out-File workDirTest.txt", tempDir2);
+                    FileAssert.Exists(outPath);
+                }
+                Directory.SetCurrentDirectory("\\");
             }
+
         }
     }
 }

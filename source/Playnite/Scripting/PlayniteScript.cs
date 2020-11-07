@@ -92,8 +92,10 @@ namespace Playnite.Scripting
             {
                 return new IronPythonScript(path);
             }
-            else if (extension == ".ps1")
+            // ps1 and dll PowerShell modules are not supported
+            else if (extension == ".psm1" || extension == ".psd1")
             {
+                
                 if (PowerShellRuntime.IsInstalled)
                 {
                     return new PowerShellScript(path);

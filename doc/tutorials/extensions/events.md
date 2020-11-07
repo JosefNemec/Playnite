@@ -50,12 +50,12 @@ public override void OnGameStarted(Game game)
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell
-function global:OnGameStarted()
+function OnGameStarted()
 {
     param(
         $game
     )
-    
+
     $game.Name | Out-File "RunningGame.txt"
 }
 ```
@@ -82,13 +82,13 @@ public override void OnGameStopped(Game game, double elapsedSeconds)
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell
-function global:OnGameStopped()
+function OnGameStopped()
 {
     param(
         $game,
         $elapsedSeconds
     )
-    
+
     "$($game.Name) was running for $elapsedSeconds seconds" | Out-File "StoppedGame.txt"
 }
 ```

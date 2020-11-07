@@ -14,7 +14,7 @@ Manifest is YAML formatted file with following properties:
 | Name | Extension name. |
 | Author | Extension author. |
 | Version | Extension version, must be a valid [.NET version string](https://docs.microsoft.com/en-us/dotnet/api/system.version). |
-| Module | File name of assembly `*.dll` file for plugins, `*.ps1` or `*.py` file for scripts. |
+| Module | File name of assembly `*.dll` file for plugins, `*.psm1`, `*.psd1` or `*.py` file for scripts. |
 | Type | Extension type, available values are: `Script`, `GenericPlugin`, `GameLibrary`, `MetadataProvider`. |
 | Icon | Optional relative file name of extension icon. |
 | Links | Optional list of links (extension website, changelog etc.) |
@@ -29,7 +29,7 @@ Id: LibraryExporter_Playnite_Script
 Name: Library Exporter
 Author: Playnite
 Version: 1.0
-Module: LibraryExporter.ps1
+Module: LibraryExporter.psm1
 Type: Script
 Links:
     - Name: Website

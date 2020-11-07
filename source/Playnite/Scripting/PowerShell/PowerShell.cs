@@ -10,13 +10,17 @@ using Playnite.API;
 using Microsoft.Win32;
 using System.IO;
 using Playnite.SDK.Exceptions;
+using Microsoft.PowerShell;
 
 namespace Playnite.Scripting.PowerShell
 {
     public class PowerShellRuntime : IScriptRuntime
     {
         private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
+        private System.Management.Automation.PowerShell powershell;
         private Runspace runspace;
+        private PSModuleInfo module;
+        private InitialSessionState initialSessionState;
 
         public static bool IsInstalled
         {
@@ -28,19 +32,13 @@ namespace Playnite.Scripting.PowerShell
 
         public PowerShellRuntime(string runspaceName = "PowerShell")
         {
-            runspace = RunspaceFactory.CreateRunspace();
+            initialSessionState = InitialSessionState.CreateDefault();
+            initialSessionState.ExecutionPolicy = ExecutionPolicy.Unrestricted;
+            initialSessionState.ThreadOptions = PSThreadOptions.UseCurrentThread;
+            powershell = System.Management.Automation.PowerShell.Create(initialSessionState);
+            runspace = powershell.Runspace;
             runspace.Name = runspaceName;
-            runspace.ApartmentState = System.Threading.ApartmentState.MTA;
-            runspace.ThreadOptions = PSThreadOptions.UseCurrentThread;
-            runspace.Open();
-
-            using (var pipe = runspace.CreatePipeline())
-            {
-                pipe.Commands.AddScript("Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted");
-                pipe.Commands.AddScript("$global:ErrorActionPreference = \"Stop\"");
-                pipe.Invoke();
-            }
-
+            SetVariable("ErrorActionPreference", "Stop");
             SetVariable("__logger", new Logger(runspaceName));
         }
 
@@ -48,6 +46,18 @@ namespace Playnite.Scripting.PowerShell
         {
             runspace.Close();
             runspace.Dispose();
+        }
+
+        public void ImportModule(string path)
+        {
+            powershell.Runspace.SessionStateProxy.Path.SetLocation(Path.GetDirectoryName(path));
+            module = powershell
+                .AddCommand("Import-Module")
+                .AddParameter("PassThru")
+                .AddArgument(path)
+                .Invoke<PSModuleInfo>().FirstOrDefault();
+            powershell.Streams.ClearStreams();
+            powershell.Commands.Clear();
         }
 
         public object Execute(string script, string workDir = null)
@@ -128,12 +138,35 @@ namespace Playnite.Scripting.PowerShell
             return runspace.SessionStateProxy.GetVariable(name);
         }
 
-        public bool GetFunctionExits(string name)
+        public CommandInfo GetFunction(string name)
         {
-            using (var pipe = runspace.CreatePipeline($"Get-Command {name} -EA 0"))
+            if (module == null)
             {
-                var res = pipe.Invoke();
-                return res.Count != 0;
+                return null;
+            }
+            CommandInfo command;
+            return module.ExportedCommands.TryGetValue(name, out command) ? command : null;
+        }
+
+        public object InvokeFunction(string name, List<object> arguments)
+        {
+            var command = GetFunction(name);
+            powershell.AddCommand(command);
+            foreach (var argument in arguments)
+            {
+                powershell.AddArgument(argument);
+            }
+            var result = powershell.Invoke();
+            powershell.Streams.ClearStreams();
+            powershell.Commands.Clear();
+
+            if (result.Count == 1)
+            {
+                return result[0].BaseObject;
+            }
+            else
+            {
+                return result.Select(a => a?.BaseObject).ToList();
             }
         }
     }

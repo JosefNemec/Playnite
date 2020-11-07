@@ -13,6 +13,8 @@ To add new custom menu entries, implement appropriate menu script/plugin functio
 
 You can use those argument objects to decide what elements to return. For example, in case of game menu, `GetGameMenuItemsArgs` contains `Games` field listing all currently selected games that are being used as a source for the game menu.
 
+When the function associated with the menu item is invoked, it will be passed an arguments object. For game menu actions, C# extensions will be passed [GameMenuItemActionArgs](xref:Playnite.SDK.Plugins.GameMenuItemActionArgs) and script extensions will be passed [ScriptGameMenuItemActionArgs](xref:Playnite.SDK.Plugins.ScriptGameMenuItemActionArgs). `GameMenuItemActionArgs` has a `Games` property to access the selected list of games. For main menu actions, C# extensions will be passed [MainMenuItemActionArgs](xref:Playnite.SDK.Plugins.MainMenuItemActionArgs) and script extensions will be passed [ScriptMainMenuItemActionArgs](xref:Playnite.SDK.Plugins.ScriptMainMenuItemActionArgs).
+
 > [!NOTE] 
 > `Get*MenuItems` menu methods are executed each time a menu is opened. For that reason, make sure you are not executing long running code in those methods. It would otherwise result in a noticeable delay when opening the menu.
 
@@ -52,9 +54,9 @@ public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
 # [PowerShell](#tab/tabpowershell)
 ```powershell
 # To add new game menu items implement GetGameMenuItems
-function global:GetGameMenuItems()
+function GetGameMenuItems()
 {
-    param($menuArgs)
+    param($getGameMenuItemsArgs)
 
     $menuItem = New-Object Playnite.SDK.Plugins.ScriptGameMenuItem
     $menuItem.Description = "PowerShell game menu item"
@@ -63,9 +65,9 @@ function global:GetGameMenuItems()
 }
 
 # To add new main menu items implement GetMainMenuItems
-function global:GetMainMenuItems()
+function GetMainMenuItems()
 {
-    param($menuArgs)
+    param($getMainMenuItemsArgs)
 
     $menuItem = New-Object Playnite.SDK.Plugins.ScriptMainMenuItem
     $menuItem.Description = "PowerShell main menu item"
@@ -73,15 +75,15 @@ function global:GetMainMenuItems()
 	return $menuItem
 }
 
-function global:InvokeGameMenuFunction()
+function InvokeGameMenuFunction()
 {
-    param($menuArgs)
-    # use $menuArgs.Games to get list of games attached to the menu source
+    param($scriptGameMenuItemActionArgs)
+    # use $scriptGameMenuItemActionArgs.Games to get list of games attached to the menu source
 }
 
-function global:InvokeMainMenuFunction()
+function InvokeMainMenuFunction()
 {
-    param($menuArgs)
+    param($scriptMainMenuItemActionArgs)
 }
 ```
 
@@ -100,7 +102,7 @@ def get_mainmenu_items(menu_args):
     menu_item = ScriptMainMenuItem()
     menu_item.Description = "IronPython"
     menu_item.FunctionName = "main_menu_function"
-    yield menu_item    
+    yield menu_item
 
 def game_menu_function(menu_args):
     # use menu_args.Games to get list of games attached to the menu source
