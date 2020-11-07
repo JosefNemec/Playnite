@@ -282,18 +282,6 @@ namespace Playnite.DesktopApp.Controls
             extensionsItem.Items.Clear();
             AddMenuChild(extensionsItem.Items, "LOCReloadScripts", mainModel.ReloadScriptsCommand);
             extensionsItem.Items.Add(new Separator());
-            foreach (var function in mainModel.Extensions.ExportedFunctions)
-            {
-                var item = new MenuItem
-                {
-                    Header = function.Name,
-                    Command = mainModel.InvokeExtensionFunctionCommand,
-                    CommandParameter = function
-                };
-
-                extensionsItem.Items.Add(item);
-            }
-
             var args = new GetMainMenuItemsArgs();
             var toAdd = new List<MainMenuItem>();
 

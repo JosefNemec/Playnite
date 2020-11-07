@@ -64,54 +64,6 @@ namespace Playnite.Plugins
             get; private set;
         } =  new List<PlayniteScript>();
 
-        public bool HasExportedFunctions
-        {
-            get => ExportedFunctions?.Any() == true;
-        }
-
-        private List<ScriptFunctionExport> scriptFunctions;
-        public List<ScriptFunctionExport> ScriptFunctions
-        {
-            get => scriptFunctions;
-            set
-            {
-                scriptFunctions = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ExportedFunctions));
-            }
-        }
-
-        private List<ExtensionFunction> pluginFunctions;
-        public List<ExtensionFunction> PluginFunctions
-        {
-            get => pluginFunctions;
-            set
-            {
-                pluginFunctions = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ExportedFunctions));
-            }
-        }
-
-        public List<ExtensionFunction> ExportedFunctions
-        {
-            get
-            {
-                var funcs = new List<ExtensionFunction>();
-                if (ScriptFunctions?.Any() == true)
-                {
-                    funcs.AddRange(ScriptFunctions);
-                }
-
-                if (PluginFunctions?.Any() == true)
-                {
-                    funcs.AddRange(PluginFunctions);
-                }
-
-                return funcs;
-            }
-        }
-
         public ExtensionFactory(IGameDatabase database, GameControllerFactory controllers)
         {
             this.database = database;
@@ -152,7 +104,6 @@ namespace Playnite.Plugins
             }
 
             Scripts = new List<PlayniteScript>();
-            ScriptFunctions = null;
         }
 
         private void DisposePlugins()
@@ -173,7 +124,6 @@ namespace Playnite.Plugins
             }
 
             Plugins = new Dictionary<Guid, LoadedPlugin>();
-            PluginFunctions = null;
         }
 
         public static void CreatePluginFolders()
@@ -280,7 +230,6 @@ namespace Playnite.Plugins
         {
             var allSuccess = true;
             DisposeScripts();
-            var functions = new List<ScriptFunctionExport>();
             var manifests = GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)).ToList();
             foreach (var ext in externals)
             {
@@ -291,7 +240,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            foreach (ScriptExtensionDescription desc in manifests)
+            foreach (var desc in manifests)
             {
                 if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
                 {
@@ -336,21 +285,14 @@ namespace Playnite.Plugins
 
                 Scripts.Add(script);
                 logger.Info($"Loaded script extension: {scriptPath}, version {desc.Version}");
-
-                if (desc.Functions?.Any() == true)
-                {
-                    functions.AddRange(desc.Functions.Select(a => new ScriptFunctionExport(a.Description, a.FunctionName, script)));
-                }
             }
 
-            ScriptFunctions = functions;
             return allSuccess;
         }
 
         public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             DisposePlugins();
-            var funcs = new List<ExtensionFunction>();
             var manifests = GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true).ToList();
             foreach (var ext in externals)
             {
@@ -381,14 +323,6 @@ namespace Playnite.Plugins
                         }
 
                         Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
-#pragma warning disable 0618
-                        var plugFunc = plugin.GetFunctions();
-#pragma warning restore 0618
-                        if (plugFunc?.Any() == true)
-                        {
-                            funcs.AddRange(plugFunc);
-                        }
-
                         logger.Info($"Loaded plugin: {desc.Name}, version {desc.Version}");
                     }
                 }
@@ -403,8 +337,6 @@ namespace Playnite.Plugins
                     FailedExtensions.Add(desc);
                 }
             }
-
-            PluginFunctions = funcs;
         }
 
         public IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)

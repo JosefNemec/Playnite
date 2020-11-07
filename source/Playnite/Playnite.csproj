@@ -176,7 +176,6 @@
     <Compile Include="API\DesignData\DesignPlayniteAPI.cs" />
     <Compile Include="API\NotificationsAPI.cs" />
     <Compile Include="API\PlayniteSettingsAPI.cs" />
-    <Compile Include="API\ScriptExtensionDescription.cs" />
     <Compile Include="API\Logger.cs" />
     <Compile Include="API\PlayniteAPI.cs" />
     <Compile Include="API\PlayniteInfoAPI.cs" />

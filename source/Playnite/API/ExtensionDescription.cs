@@ -90,11 +90,6 @@ namespace Playnite.API
         {
             var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
             var description = deserializer.Deserialize<ExtensionManifest>(File.ReadAllText(descriptorPath));
-            if (description.Type == ExtensionType.Script)
-            {
-                description = deserializer.Deserialize<ScriptExtensionDescription>(File.ReadAllText(descriptorPath));
-            }
-
             description.DescriptionPath = descriptorPath;
             description.DirectoryPath = Path.GetDirectoryName(descriptorPath);
             description.DirectoryName = Path.GetFileNameWithoutExtension(description.DirectoryPath);
