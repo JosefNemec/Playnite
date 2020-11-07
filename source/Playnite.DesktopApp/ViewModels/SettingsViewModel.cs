@@ -299,6 +299,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             var shutdownPlugins = AutoCloseClientsList.Where(a => a.Selected == true).Select(a => a.Item.Id).ToList();
             Settings.ClientAutoShutdown.ShutdownPlugins = shutdownPlugins;
+            var develExtListUpdated = !Settings.DevelExtenions.IsEqualJson(originalSettings.DevelExtenions);
 
             EndEdit();
             originalSettings.SaveSettings();
@@ -308,7 +309,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true ||
-                extUninstallQeueued)
+                extUninstallQeueued ||
+                develExtListUpdated)
             {
                 if (dialogs.ShowMessage(
                     resources.GetString("LOCSettingsRestartAskMessage"),

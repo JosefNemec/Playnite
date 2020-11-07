@@ -186,18 +186,17 @@ namespace Playnite.Plugins
             }
         }
 
-        public static ExtensionManifest GetManifestFromDir(string directory)
+        public static ExtensionManifest GetManifestFromDir(string file)
         {
-            var manfFile = Path.Combine(directory, PlaynitePaths.ExtensionManifestFileName);
-            if (File.Exists(manfFile))
+            if (File.Exists(file))
             {
                 try
                 {
-                    return ExtensionManifest.FromFile(manfFile);
+                    return ExtensionManifest.FromFile(file);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e, $"Failed to parse plugin description: {manfFile}");
+                    logger.Error(e, $"Failed to parse plugin description: {file}");
                     return null;
                 }
             }
@@ -285,7 +284,7 @@ namespace Playnite.Plugins
             var manifests = GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)).ToList();
             foreach (var ext in externals)
             {
-                var man = GetManifestFromDir(ext);
+                var man = GetManifestFromDir(Path.Combine(ext, PlaynitePaths.ExtensionManifestFileName));
                 if (man?.Type == ExtensionType.Script)
                 {
                     manifests.Add(man);
@@ -355,7 +354,7 @@ namespace Playnite.Plugins
             var manifests = GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true).ToList();
             foreach (var ext in externals)
             {
-                var man = GetManifestFromDir(ext);
+                var man = GetManifestFromDir(Path.Combine(ext, PlaynitePaths.ExtensionManifestFileName));
                 if (man != null && man.Type != ExtensionType.Script)
                 {
                     manifests.Add(man);

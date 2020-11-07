@@ -50,7 +50,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 PluginIcon = Path.Combine(Path.GetDirectoryName(description.DescriptionPath), description.Icon);
             }
-            else if (description.Type == ExtensionType.Script && description.Module.EndsWith("ps1", StringComparison.OrdinalIgnoreCase))
+            else if (description.Type == ExtensionType.Script && description.Module.Contains(".ps", StringComparison.OrdinalIgnoreCase))
             {
                 PluginIcon = ResourceProvider.GetResource("PowerShellIcon");
             }

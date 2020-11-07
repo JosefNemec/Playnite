@@ -1512,7 +1512,6 @@ namespace Playnite
         } = new ImportExclusionList();
 
         private List<SelectableItem<string>> develExtenions = new List<SelectableItem<string>>();
-        [RequiresRestart]
         public List<SelectableItem<string>> DevelExtenions
         {
             get
