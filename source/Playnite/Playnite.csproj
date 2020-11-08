@@ -80,6 +80,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\references\LiteDB.dll</HintPath>
     </Reference>
+    <Reference Include="Markdig, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Markdig.0.18.0\lib\net40\Markdig.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Dynamic, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.Dynamic.dll</HintPath>
     </Reference>
@@ -110,6 +113,9 @@
     <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="Nett, Version=0.10.0.0, Culture=neutral, PublicKeyToken=605dcfe7a1d3365b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nett.0.10.1\lib\Net40\Nett.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -131,6 +137,9 @@
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SQLNado">
+      <HintPath>..\..\references\SQLNado.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -142,6 +151,7 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
@@ -153,9 +163,11 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Management.Automation" />
+    <Reference Include="Windows">
+      <HintPath>..\..\references\Windows.winmd</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsInput, Version=1.0.6.0, Culture=neutral, PublicKeyToken=de2685b4776e9c2e, processorArchitecture=MSIL">
       <HintPath>..\packages\InputSimulatorPlus.1.0.7\lib\net20\WindowsInput.dll</HintPath>
@@ -196,6 +208,56 @@
     <Compile Include="CmdlineCommands.cs" />
     <Compile Include="Commands\GlobalCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
+    <Compile Include="Common\BindingTools.cs" />
+    <Compile Include="Common\Computer.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\DesignerTools.cs" />
+    <Compile Include="Common\Exceptions.cs" />
+    <Compile Include="Common\Explorer.cs" />
+    <Compile Include="Common\Extensions\BitmapExtensions.cs" />
+    <Compile Include="Common\Extensions\BitmapIconExtensions.cs" />
+    <Compile Include="Common\Extensions\CloneObject.cs" />
+    <Compile Include="Common\Extensions\Enums.cs" />
+    <Compile Include="Common\Extensions\IconExtension.cs" />
+    <Compile Include="Common\Extensions\ItemsControlExtensions.cs" />
+    <Compile Include="Common\Extensions\LongExtensions.cs" />
+    <Compile Include="Common\Extensions\ObjectExtensions.cs" />
+    <Compile Include="Common\Extensions\ProcessExtensions.cs" />
+    <Compile Include="Common\Extensions\StringExtensions.cs" />
+    <Compile Include="Common\Extensions\WindowExtensions.cs" />
+    <Compile Include="Common\FileSystem.cs" />
+    <Compile Include="Common\GlobalRandom.cs" />
+    <Compile Include="Common\Images.cs" />
+    <Compile Include="Common\IniParser.cs" />
+    <Compile Include="Common\InteropMethods.cs" />
+    <Compile Include="Common\ItemsSource.cs" />
+    <Compile Include="Common\JsonRpcClient.cs" />
+    <Compile Include="Common\MarkupConverter.cs" />
+    <Compile Include="Common\Media\Icons\IconExtractor.cs" />
+    <Compile Include="Common\Media\Icons\IconUtil.cs" />
+    <Compile Include="Common\MemoryCache.cs" />
+    <Compile Include="Common\NLogLogProvider.cs" />
+    <Compile Include="Common\Paths.cs" />
+    <Compile Include="Common\ProcessMonitor.cs" />
+    <Compile Include="Common\ProcessStarter.cs" />
+    <Compile Include="Common\Programs.cs" />
+    <Compile Include="Common\Programs2.cs" />
+    <Compile Include="Common\Resources.cs" />
+    <Compile Include="Common\Roman.cs" />
+    <Compile Include="Common\SafeFileEnumerator.cs" />
+    <Compile Include="Common\Serialization.cs" />
+    <Compile Include="Common\SigningTools.cs" />
+    <Compile Include="Common\Sizes.cs" />
+    <Compile Include="Common\Sqlite.cs" />
+    <Compile Include="Common\SystemDialogs.cs" />
+    <Compile Include="Common\TempDirectory.cs" />
+    <Compile Include="Common\TGASharpLib.cs" />
+    <Compile Include="Common\Timer.cs" />
+    <Compile Include="Common\Units.cs" />
+    <Compile Include="Common\Web\Downloader.cs" />
+    <Compile Include="Common\Web\HttpDownloader.cs" />
+    <Compile Include="Common\Xaml.cs" />
+    <Compile Include="Common\Xml.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
     <Compile Include="Controls\ExtendedListView.cs" />
     <Compile Include="Controls\FadeImage.xaml.cs">
@@ -396,10 +458,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>
@@ -609,6 +667,11 @@
       <Link>Dependencies\IronPythonStdLib.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>IronPythonStdLib.zip</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\sqlite3.x86.dll">
+      <Link>Dependencies\sqlite3.x86.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>sqlite3.x86.dll</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup>

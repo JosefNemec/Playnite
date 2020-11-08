@@ -15,7 +15,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.Common;
 using Playnite.SDK.Models;
-using System.IO.Compression;
 
 namespace Playnite.Plugins
 {

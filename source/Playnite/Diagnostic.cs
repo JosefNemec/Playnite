@@ -173,7 +173,6 @@ namespace Playnite
                         { "Playnite.DesktopApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.DesktopExecutablePath) },
                         { "Playnite.FullscreenApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.FullscreenExecutablePath) },
                         { "Playnite.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteAssemblyPath) },
-                        { "Playnite.Common.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteCommonAssemblyPath) },
                         { "Playnite.SDK.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteSDKAssemblyPath) }
                     };
 

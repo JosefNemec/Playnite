@@ -1,6 +1,0 @@
-﻿Id: LibraryExporterPS_Builtin
-Name: Library Exporter
-Author: Playnite
-Version: 1.0
-Module: LibraryExporter.psm1
-Type: Script

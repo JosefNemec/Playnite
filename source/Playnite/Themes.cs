@@ -11,7 +11,6 @@ using System.Text.RegularExpressions;
 using Playnite.Settings;
 using Playnite.Common;
 using Playnite.SDK;
-using System.IO.Compression;
 using YamlDotNet.Serialization;
 using Playnite.API;
 

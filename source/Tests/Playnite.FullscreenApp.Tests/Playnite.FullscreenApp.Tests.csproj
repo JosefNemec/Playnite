@@ -69,13 +69,10 @@
     <Compile Include="ViewModels\FullscreenAppViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Playnite.FullscreenApp\Playnite.FullscreenApp.csproj">
       <Project>{df38bfd7-c6b8-4cf7-942f-378548ed76b6}</Project>
       <Name>Playnite.FullscreenApp</Name>

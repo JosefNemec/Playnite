@@ -51,7 +51,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -127,10 +126,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19BC9097-5705-4352-90E2-99F0C63230D0}</Project>
       <Name>Playnite.SDK</Name>

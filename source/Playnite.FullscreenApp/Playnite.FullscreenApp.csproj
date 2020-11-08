@@ -94,9 +94,6 @@
     <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCL.raw, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCL.raw.0.8.4\lib\net45\SQLitePCL.raw.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -112,7 +109,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -498,10 +494,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{DEB1B9F3-6FC9-4185-8DAA-4FCA15B46F83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19BC9097-5705-4352-90E2-99F0C63230D0}</Project>
       <Name>Playnite.SDK</Name>
@@ -513,15 +505,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)
-"C:\Program Files\PowerShell\7\pwsh.exe" -file "$(SolutionDir)\..\build\copyPluginsToBuild.ps1" "$(ConfigurationName)" "$(TargetDir)\" "$(SolutionDir)\"</PostBuildEvent>
+    <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)</PostBuildEvent>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
-  <Import Project="..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets" Condition="Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets'))" />
-  </Target>
 </Project>

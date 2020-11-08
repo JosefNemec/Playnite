@@ -46,7 +46,7 @@ namespace Playnite.Emulators
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static async Task<List<ScannedEmulator>> SearchForEmulators(DirectoryInfoBase path, List<EmulatorDefinition> definitions, CancellationTokenSource cancelToken = null)
+        public static async Task<List<ScannedEmulator>> SearchForEmulators(string path, List<EmulatorDefinition> definitions, CancellationTokenSource cancelToken = null)
         {
             return await Task.Run(() =>
             {
@@ -125,12 +125,7 @@ namespace Playnite.Emulators
             });
         }
 
-        public static async Task<List<ScannedEmulator>> SearchForEmulators(string path, List<EmulatorDefinition> definitions, CancellationTokenSource cancelToken = null)
-        {
-            return await SearchForEmulators(new DirectoryInfo(path), definitions, cancelToken);
-        }
-
-        public static async Task<List<Game>> SearchForGames(DirectoryInfoBase path, EmulatorProfile profile, CancellationTokenSource cancelToken = null)
+        public static async Task<List<Game>> SearchForGames(string path, EmulatorProfile profile, CancellationTokenSource cancelToken = null)
         {
             return await Task.Run(() =>
             {
@@ -177,11 +172,6 @@ namespace Playnite.Emulators
 
                 return games;
             });
-        }
-
-        public static async Task<List<Game>> SearchForGames(string path, EmulatorProfile profile, CancellationTokenSource cancelToken = null)
-        {
-            return await SearchForGames(new DirectoryInfo(path), profile, cancelToken);
         }
     }
 }

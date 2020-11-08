@@ -23,7 +23,6 @@ namespace Playnite
         public static string DesktopExecutablePath => Path.Combine(ProgramPath, "Playnite.DesktopApp.exe");
         public static string FullscreenExecutablePath => Path.Combine(ProgramPath, "Playnite.FullscreenApp.exe");
         public static string PlayniteAssemblyPath => Path.Combine(ProgramPath, "Playnite.dll");
-        public static string PlayniteCommonAssemblyPath => Path.Combine(ProgramPath, "Playnite.Common.dll");
         public static string PlayniteSDKAssemblyPath => Path.Combine(ProgramPath, "Playnite.SDK.dll");
         public static string ExtensionsUserDataPath => Path.Combine(ConfigRootPath, "Extensions");
         public static string ExtensionsProgramPath => Path.Combine(ProgramPath, "Extensions");
