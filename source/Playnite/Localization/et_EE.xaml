@@ -17,7 +17,7 @@
     <sys:String x:Key="LOCAboutSourceLink"></sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutWindowTitle"></sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">Playnite'i teave</sys:String>
     <sys:String x:Key="LOCAboutAuthor"></sys:String>
     <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
     <sys:String x:Key="LOCCategorySetButton">Määra kategooriad</sys:String>
@@ -25,7 +25,7 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCNoCategory">Kategooriata</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platvormita</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Ups! Miskit läks valesti…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
@@ -33,7 +33,7 @@
     <sys:String x:Key="LOCCrashDisableExtension">Keela laiendus</sys:String>
     <sys:String x:Key="LOCCrashSaveLog"></sys:String>
     <sys:String x:Key="LOCCrashSendDiag"></sys:String>
-    <sys:String x:Key="LOCCrashReportIssue"></sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Teavita krahhist</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Taaskäivita Playnite</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
