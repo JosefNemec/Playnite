@@ -49,6 +49,15 @@ namespace PlayniteServicesTests.Controllers.IGDB
         }
 
         [Fact]
+        public async Task CrashNameTests()
+        {
+            await GetMetadata(new SdkModels.Game(@"\millennium 2"));
+            await GetMetadata(new SdkModels.Game("BroForce.v864.201901211236"));
+            await GetMetadata(new SdkModels.Game("Danganronpa １・２ Reload"));
+            await GetMetadata(new SdkModels.Game("ココロクローバー パート１/Kokoro Clover Part1"));
+        }
+
+        [Fact]
         public async Task SteamIdUseTest()
         {
             var metadata = await GetMetadata(new SdkModels.Game("")

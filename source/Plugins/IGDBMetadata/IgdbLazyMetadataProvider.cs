@@ -412,13 +412,21 @@ namespace IGDBMetadata
             }
             else
             {
-                var metadata = plugin.Client.GetMetadata(options.GameData);
-                if (metadata.id > 0)
+                try
                 {
-                    IgdbData = metadata;
+                    var metadata = plugin.Client.GetMetadata(options.GameData);
+                    if (metadata.id > 0)
+                    {
+                        IgdbData = metadata;
+                    }
+                    else
+                    {
+                        IgdbData = new IgdbServerModels.ExpandedGame() { id = 0 };
+                    }
                 }
-                else
+                catch (Exception e)
                 {
+                    logger.Error(e, "Failed to get IGDB metadata.");
                     IgdbData = new IgdbServerModels.ExpandedGame() { id = 0 };
                 }
             }
