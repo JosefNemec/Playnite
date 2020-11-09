@@ -35,6 +35,8 @@
       href: extensions/uriSupport.md
     - name: Debugging scripts
       href: extensions/scriptingDebugging.md
+    - name: String localizations
+      href: extensions/localizations.md
 
 - name: Themes
   items:

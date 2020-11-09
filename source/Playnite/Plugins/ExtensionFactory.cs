@@ -273,6 +273,8 @@ namespace Playnite.Plugins
                         FileSystem.CreateDirectory(extDir);
                         script.SetVariable("CurrentExtensionDataPath", extDir);
                     }
+
+                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -323,6 +325,7 @@ namespace Playnite.Plugins
 
                         Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
                         logger.Info($"Loaded plugin: {desc.Name}, version {desc.Version}");
+                        Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
