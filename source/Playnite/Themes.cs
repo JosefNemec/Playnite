@@ -137,6 +137,12 @@ namespace Playnite
 
         public static bool ApplyTheme(Application app, ThemeManifest theme, ApplicationMode mode)
         {
+            if (theme.Id.IsNullOrEmpty())
+            {
+                logger.Error($"Theme {theme.Name}, doesn't have ID.");
+                return false;
+            }
+
             var apiVesion = mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
             if (!theme.ThemeApiVersion.IsNullOrEmpty())
             {

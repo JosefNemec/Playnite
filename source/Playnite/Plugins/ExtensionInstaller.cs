@@ -135,54 +135,15 @@ namespace Playnite.Plugins
                 rootDir = Path.Combine(rootDir, themeMan.Mode.ToString());
             }
 
-            var legacyInstallDir = Path.Combine(rootDir, manifest.LegacyDirId);
-            var installDir = string.Empty;
-            if (manifest.Id.IsNullOrEmpty())
-            {
-                installDir = legacyInstallDir;
-            }
-            else
-            {
-                installDir = Path.Combine(rootDir, Paths.GetSafePathName(manifest.Id));
-
-                // Delete installation in legacy path
-                if (Directory.Exists(legacyInstallDir))
-                {
-                    Directory.Delete(legacyInstallDir, true);
-                }
-
-                // Also delete manually installed instance
-                if (Directory.Exists(rootDir))
-                {
-                    foreach (var extDir in Directory.GetDirectories(rootDir))
-                    {
-                        var man = GetManifestFromDir(extDir);
-                        if (man != null)
-                        {
-                            if (manifest.LegacyDirId == man.LegacyDirId)
-                            {
-                                Directory.Delete(extDir, true);
-                            }
-                        }
-                    }
-                }
-            }
-
-            var oldBackPath = installDir + "_old";
+            var installDir = Path.Combine(rootDir, Paths.GetSafePathName(manifest.Id));
+            // TODO delete all existing plugin instances
             if (Directory.Exists(installDir))
             {
                 logger.Debug($"Replacing existing extenstion/theme installation: {installDir}.");
-                Directory.Move(installDir, oldBackPath);
             }
 
             FileSystem.CreateDirectory(installDir, true);
             ZipFile.ExtractToDirectory(path, installDir);
-
-            if (Directory.Exists(oldBackPath))
-            {
-                Directory.Delete(oldBackPath, true);
-            }
-
             return newMan(Path.Combine(installDir, nanifestFileName));
         }
 

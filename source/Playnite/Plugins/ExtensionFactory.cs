@@ -241,6 +241,12 @@ namespace Playnite.Plugins
 
             foreach (var desc in manifests)
             {
+                if (desc.Id.IsNullOrEmpty())
+                {
+                    logger.Error($"Extension {desc.Name}, doesn't have ID.");
+                    continue;
+                }
+
                 if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
                 {
                     logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
@@ -306,6 +312,12 @@ namespace Playnite.Plugins
 
             foreach (var desc in manifests)
             {
+                if (desc.Id.IsNullOrEmpty())
+                {
+                    logger.Error($"Extension {desc.Name}, doesn't have ID.");
+                    continue;
+                }
+
                 if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
                 {
                     logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");

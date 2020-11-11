@@ -40,22 +40,6 @@ namespace Playnite.API
         [YamlIgnore]
         public string DescriptionPath { get; set; }
 
-        [YamlIgnore]
-        public string LegacyDirId
-        {
-            get
-            {
-                if (Name.IsNullOrEmpty())
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return Paths.GetSafePathName(Name).Replace(" ", string.Empty) + "_" + (Name + Author).MD5();
-                }
-            }
-        }
-
         public void VerifyManifest()
         {
             if (!System.Version.TryParse(Version, out var extver))
