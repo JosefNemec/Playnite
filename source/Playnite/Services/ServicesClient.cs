@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using Playnite.SDK;
+using Playnite.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -33,7 +34,7 @@ namespace Playnite.Services
         {
             var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
             var winId = root.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", false).GetValue("ProductId").ToString().GetSHA256Hash();
-            var user = new PlayniteServices.Models.Playnite.User()
+            var user = new User()
             {
                 Id = winId,
                 WinVersion = Environment.OSVersion.VersionString,
