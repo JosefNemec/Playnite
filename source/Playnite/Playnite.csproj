@@ -180,9 +180,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\PlayniteServices\Models\Playnite\Playnite.cs">
-      <Link>Services\Models\Playnite\Playnite.cs</Link>
-    </Compile>
     <Compile Include="API\DatabaseAPI.cs" />
     <Compile Include="API\DesignData\DesignNotificationsAPI.cs" />
     <Compile Include="API\DesignData\DesignPlayniteAPI.cs" />
@@ -386,6 +383,7 @@
     <Compile Include="Controllers\GameControllerFactory.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
+    <Compile Include="Services\Models\Playnite.cs" />
     <Compile Include="Settings\AutoClientShutdownSettings.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
@@ -692,6 +690,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
