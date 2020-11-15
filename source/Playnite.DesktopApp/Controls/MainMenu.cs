@@ -130,6 +130,9 @@ namespace Playnite.DesktopApp.Controls
             // Random game select
             AddMenuChild(Items, "LOCMenuSelectRandomGame", mainModel.SelectRandomGameCommand, null, "DiceIcon");
 
+            // Addons
+            AddMenuChild(Items, "LOCMenuAddons", mainModel.OpenAddonsCommand, null, "AddonsIcon");
+
             // Settings
             AddMenuChild(Items, "LOCMenuPlayniteSettingsTitle", mainModel.OpenSettingsCommand, null, "SettingsIcon");
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.Services.Models;
 using System;
@@ -63,6 +64,19 @@ namespace Playnite.Services
 
                     return result.Data;
                 }
+            }
+        }
+
+        public IEnumerable<AddonManifest> GetAllAddons()
+        {
+            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\"))
+            {
+                yield return Serialization.FromYamlFile<AddonManifest>(file);
+            }
+
+            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\themes\"))
+            {
+                yield return Serialization.FromYamlFile<AddonManifest>(file);
             }
         }
     }

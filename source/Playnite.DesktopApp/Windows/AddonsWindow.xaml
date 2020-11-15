@@ -1,0 +1,52 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.AddonsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"                     
+        xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+        mc:Ignorable="d"
+        Style="{DynamicResource StandardWindowStyle}"
+        WindowStartupLocation="CenterOwner"
+        Title="{DynamicResource LOCMenuAddons}" Height="600" Width="800"
+        AutomationProperties.AutomationId="WindowExtensions" ShowMinimizeButton="False" ShowMaximizeButton="False">
+
+
+    <DockPanel>
+        <DockPanel LastChildFill="False" Margin="5" DockPanel.Dock="Bottom">
+            <Button Content="{DynamicResource LOCClose}" DockPanel.Dock="Right"
+                    Style="{StaticResource BottomButton}" IsCancel="True" />
+        </DockPanel>
+        
+        <TreeView MinWidth="160" DockPanel.Dock="Left" BorderThickness="0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectedItemChanged" >
+                    <prism:InvokeCommandAction Command="{Binding SectionChangedChangedCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <TreeViewItem Header="{DynamicResource LOCExtensionsInstalled}" IsExpanded="True">
+                <TreeViewItem Header="{DynamicResource LOCLibraries}" />
+                <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" />
+                <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" />
+                <TreeViewItem Header="Themes Desktop" />
+                <TreeViewItem Header="Themes Fullscren" />
+            </TreeViewItem>
+            <TreeViewItem Header="{DynamicResource LOCExtensionsBrowse}" IsExpanded="True">
+                <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="0" IsSelected="True" />
+                <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="1" />
+                <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="2" />
+                <TreeViewItem Header="Themes Desktop" Tag="3"/>
+                <TreeViewItem Header="Themes Fullscren" Tag="4"/>
+            </TreeViewItem>
+            <TreeViewItem Header="{DynamicResource LOCExtensionsUpdates}" IsExpanded="True">
+
+            </TreeViewItem>
+        </TreeView>
+
+        <ContentControl Content="{Binding SelectedSectionView}"
+                        DockPanel.Dock="Left"/>
+    </DockPanel>
+</controls:WindowBase>

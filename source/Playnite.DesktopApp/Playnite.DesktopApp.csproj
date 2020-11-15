@@ -128,6 +128,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\AddonsSections\BrowseAddons.xaml.cs">
+      <DependentUpon>BrowseAddons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ExpanderEx.cs" />
     <Compile Include="Controls\FilterStringSelectionBox.xaml.cs">
       <DependentUpon>FilterStringSelectionBox.xaml</DependentUpon>
@@ -259,6 +262,7 @@
     <Compile Include="Markup\Settings.cs" />
     <Compile Include="Markup\ThemeFile.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\AddonsViewModel.cs" />
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\DatabaseFieldsManagerViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
@@ -285,6 +289,9 @@
     <Compile Include="ViewModels\SettingsViewModelBase.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
+    <Compile Include="Windows\AddonsWindow.xaml.cs">
+      <DependentUpon>AddonsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ExtensionCrashHandlerWindow.xaml.cs">
       <DependentUpon>ExtensionCrashHandlerWindow.xaml</DependentUpon>
     </Compile>
@@ -524,6 +531,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Controls\AddonsSections\BrowseAddons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\FilterStringSelectionBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1027,6 +1038,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\AddonsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

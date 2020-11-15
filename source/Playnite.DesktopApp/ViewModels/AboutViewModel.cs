@@ -20,6 +20,7 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
+        private ServicesClient client;
 
         public string VersionInfo
         {
@@ -79,7 +80,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     if (patronsList == null)
                     {
-                        patronsList = string.Join(Environment.NewLine, (new ServicesClient()).GetPatrons());
+                        patronsList = string.Join(Environment.NewLine, client.GetPatrons());
                     }
                 }
                 catch (Exception e)
@@ -122,11 +123,12 @@ namespace Playnite.DesktopApp.ViewModels
 
         public RelayCommand<object> NavigateUrlCommand => GlobalCommands.NavigateUrlCommand;
 
-        public AboutViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public AboutViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ServicesClient client)
         {
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
+            this.client = client;
         }
 
         public void OpenView()

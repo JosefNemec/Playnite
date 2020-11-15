@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 
-namespace Playnite.API
+namespace Playnite
 {
     public enum ExtensionType
     {
@@ -53,6 +53,9 @@ namespace Playnite.API
     {
         [YamlIgnore]
         public bool IsBuiltInExtension { get; set; }
+
+        [YamlIgnore]
+        public bool IsExternalDev { get; set; }
 
         [YamlIgnore]
         public bool IsCustomExtension => !IsBuiltInExtension;

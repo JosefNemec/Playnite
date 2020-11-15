@@ -72,6 +72,7 @@ namespace Playnite
         public Action<PlayniteUriEventArgs> AppUriHandler { get; set; }
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
+        public ServicesClient ServicesClient { get; private set; }
 
         public PlayniteApplication(
             Application nativeApp,
@@ -145,6 +146,7 @@ namespace Playnite
                 return;
             }
 
+            ServicesClient = new ServicesClient();
             CurrentNative.SessionEnding += Application_SessionEnding;
             CurrentNative.Exit += Application_Exit;
             CurrentNative.Startup += Application_Startup;
@@ -851,8 +853,7 @@ namespace Playnite
             {
                 try
                 {
-                    var client = new ServicesClient();
-                    client.PostUserUsage(AppSettings.InstallInstanceId);
+                    ServicesClient.PostUserUsage(AppSettings.InstallInstanceId);
                 }
                 catch (Exception exc)
                 {

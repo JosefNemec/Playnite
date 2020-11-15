@@ -32,6 +32,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenAboutCommand { get; private set; }
         public RelayCommand<object> OpenEmulatorsCommand { get; private set; }
         public RelayCommand<object> OpenSettingsCommand { get; private set; }
+        public RelayCommand<object> OpenAddonsCommand { get; private set; }
         public RelayCommand<object> AddCustomGameCommand { get; private set; }
         public RelayCommand<object> AddInstalledGamesCommand { get; private set; }
         public RelayCommand<object> AddEmulatedGamesCommand { get; private set; }
@@ -179,7 +180,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             OpenAboutCommand = new RelayCommand<object>((a) =>
             {
-                OpenAboutWindow(new AboutViewModel(new AboutWindowFactory(), Dialogs, Resources));
+                OpenAboutWindow(new AboutViewModel(new AboutWindowFactory(), Dialogs, Resources, application.ServicesClient));
             }, new KeyGesture(Key.F1));
 
             OpenEmulatorsCommand = new RelayCommand<object>((a) =>
@@ -350,6 +351,14 @@ namespace Playnite.DesktopApp.ViewModels
                     Extensions,
                     application));
             }, new KeyGesture(Key.F4));
+
+            OpenAddonsCommand = new RelayCommand<object>((a) =>
+            {
+                new AddonsViewModel(
+                    new AddonsWindowFactory(),
+                    PlayniteApi,
+                    application.ServicesClient).OpenView();
+            }, new KeyGesture(Key.F9));
 
             StartGameCommand = new RelayCommand<Game>((game) =>
             {

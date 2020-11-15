@@ -235,6 +235,7 @@ namespace Playnite.Plugins
                 var man = GetManifestFromDir(Path.Combine(ext, PlaynitePaths.ExtensionManifestFileName));
                 if (man?.Type == ExtensionType.Script)
                 {
+                    man.IsExternalDev = true;
                     manifests.Add(man);
                 }
             }
@@ -306,6 +307,7 @@ namespace Playnite.Plugins
                 var man = GetManifestFromDir(Path.Combine(ext, PlaynitePaths.ExtensionManifestFileName));
                 if (man != null && man.Type != ExtensionType.Script)
                 {
+                    man.IsExternalDev = true;
                     manifests.Add(man);
                 }
             }
