@@ -418,15 +418,23 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 IsLoading = true;
                 cancelToken = new CancellationTokenSource();
-                var emulators = await EmulatorFinder.SearchForEmulators(path, EmulatorDefinitions, cancelToken);
-                if (emulators != null)
+                try
                 {
-                    if (EmulatorList == null)
+                    var emulators = await EmulatorFinder.SearchForEmulators(path, EmulatorDefinitions, cancelToken);
+                    if (emulators != null)
                     {
-                        EmulatorList = new RangeObservableCollection<ImportableEmulator>();
-                    }
+                        if (EmulatorList == null)
+                        {
+                            EmulatorList = new RangeObservableCollection<ImportableEmulator>();
+                        }
 
-                    EmulatorList.AddRange(emulators.Select(a => new ImportableEmulator(a)));
+                        EmulatorList.AddRange(emulators.Select(a => new ImportableEmulator(a)));
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to search for emulators in {path}.");
+                    dialogs.ShowErrorMessage(e.Message, "");
                 }
             }
             finally
@@ -443,26 +451,34 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 IsLoading = true;
                 cancelToken = new CancellationTokenSource();
-                var games = await EmulatorFinder.SearchForGames(path, profile, cancelToken);
-                if (games?.Any() == true)
+                try
                 {
-                    if (GamesList == null)
+                    var games = await EmulatorFinder.SearchForGames(path, profile, cancelToken);
+                    if (games?.Any() == true)
                     {
-                        GamesList = new RangeObservableCollection<ImportableGame>();
-                    }
+                        if (GamesList == null)
+                        {
+                            GamesList = new RangeObservableCollection<ImportableGame>();
+                        }
 
-                    var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
-                    var importedRoms = database.Games.Where(a => !a.GameImagePath.IsNullOrEmpty()).Select(a => a.GameImagePath).ToList();
-                    GamesList.AddRange(games
-                        .Where(a =>
-                        {
-                            return !importedRoms.ContainsString(a.GameImagePath, StringComparison.OrdinalIgnoreCase);
-                        })
-                        .Select(a =>
-                        {
-                            a.PlatformId = profile.Platforms?.FirstOrDefault() ?? Guid.Empty;
-                            return new ImportableGame(a, emulator, profile);
-                        }));
+                        var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
+                        var importedRoms = database.Games.Where(a => !a.GameImagePath.IsNullOrEmpty()).Select(a => a.GameImagePath).ToList();
+                        GamesList.AddRange(games
+                            .Where(a =>
+                            {
+                                return !importedRoms.ContainsString(a.GameImagePath, StringComparison.OrdinalIgnoreCase);
+                            })
+                            .Select(a =>
+                            {
+                                a.PlatformId = profile.Platforms?.FirstOrDefault() ?? Guid.Empty;
+                                return new ImportableGame(a, emulator, profile);
+                            }));
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to search for emulated games in {path}.");
+                    dialogs.ShowErrorMessage(e.Message, "");
                 }
             }
             finally
