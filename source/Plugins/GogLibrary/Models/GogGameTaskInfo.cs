@@ -45,7 +45,7 @@ namespace GogLibrary.Models
                     var fixedWorkDir = Paths.FixSeparators(workingDir);
                     if (action.Path.StartsWith(fixedWorkDir))
                     {
-                        action.Path = action.Path.Replace(fixedWorkDir, string.Empty).TrimStart(Path.DirectorySeparatorChar);                        
+                        action.Path = action.Path.Remove(0, fixedWorkDir.Length).TrimStart(Path.DirectorySeparatorChar);
                     }
                 }
 
@@ -69,6 +69,5 @@ namespace GogLibrary.Models
                 return playTasks.First(a => a.isPrimary);
             }
         }
-
     }
 }
