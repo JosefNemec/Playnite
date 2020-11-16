@@ -22,7 +22,7 @@ For example to create new desktop theme with "Super Clear Modern" name:
 Toolbox.exe new desktoptheme "Super Clear Modern"
 ```
 
-This will create new theme folder with all files needed for theme to be edited in Blend. If theme creation is successful then Explorer window will open with your new theme folder.
+This will create new theme folder with all files needed for theme to be edited in Blend. If theme creation is successful then Explorer window will open with your new theme folder. DO NOT move theme's directory, designer in Blend will not work properly unless the theme is opened from the location where Toolbox created it!
 
 > [!NOTE] 
 > There might be issues with above examples if you installed Playnite into folder where write access is not enabled by default unless you have elevated privileges (folders like `c:\Program Files`). In that case you will need to run command prompt and Blend with admin privileges. However better approach would be to use different install location.
