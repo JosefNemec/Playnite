@@ -104,11 +104,14 @@ namespace Playnite
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             }
 
-            if (CheckOtherInstances() || CmdLine.Shutdown)
+            if (!CmdLine.MasterInstance)
             {
-                resourcesReleased = true;
-                CurrentNative.Shutdown(0);
-                return;
+                if (CheckOtherInstances() || CmdLine.Shutdown)
+                {
+                    resourcesReleased = true;
+                    CurrentNative.Shutdown(0);
+                    return;
+                }
             }
 
             PlayniteSettings.MigrateSettingsConfig();
@@ -312,7 +315,6 @@ namespace Playnite
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             ReleaseResources();
-            appMutex?.ReleaseMutex();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -346,7 +348,7 @@ namespace Playnite
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");
+            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}'");
             SDK.Data.Markup.Init(new MarkupConverter());
             SDK.Data.Serialization.Init(new DataSerializer());
             Startup();
@@ -716,6 +718,14 @@ namespace Playnite
             CurrentNative.Shutdown(0);
         }
 
+        public void QuitAndStart(string path, string arguments, bool asAdmin = false)
+        {
+            logger.Info("Shutting down Playnite and starting an app.");
+            ReleaseResources();
+            ProcessStarter.StartProcess(path, arguments, asAdmin);
+            CurrentNative.Shutdown(0);
+        }
+
         public abstract void Restart();
 
         public abstract void Restart(CmdLineOptions options);
@@ -728,6 +738,7 @@ namespace Playnite
             }
 
             logger.Debug("Releasing Playnite resources...");
+            appMutex?.ReleaseMutex();
             Discord?.Dispose();
             updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();

@@ -93,7 +93,7 @@ namespace Playnite.Common
 
         public static Process StartProcess(string path, string arguments, string workDir, bool asAdmin = false)
         {
-            logger.Debug($"Starting process: {path}, {arguments}, {workDir}");
+            logger.Debug($"Starting process: {path}, {arguments}, {workDir}, {asAdmin}");
             var startupPath = path;
             if (path.Contains(".."))
             {

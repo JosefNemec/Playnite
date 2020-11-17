@@ -56,6 +56,7 @@ namespace Playnite.DesktopApp
             }
 
             PlayniteSettings.ConfigureLogger();
+            LogManager.GetLogger().Info($"App arguments: '{string.Join(",", args)}'");
             var app = new DesktopApplication(new App(), splash, cmdLine);
             app.Run();
         }

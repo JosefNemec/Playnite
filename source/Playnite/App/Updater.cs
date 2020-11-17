@@ -176,21 +176,10 @@ namespace Playnite
         {
             var portable = PlayniteSettings.IsPortable ? "/PORTABLE" : "";
             logger.Info("Installing new update to {0}, in {1} mode", PlaynitePaths.ProgramPath, portable);
-
-            Task.Run(() =>
-            {
-                var args = string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", PlaynitePaths.ProgramPath, portable);
-                if (FileSystem.CanWriteToFolder(PlaynitePaths.ProgramPath))
-                {
-                    ProcessStarter.StartProcess(updaterPath, args);
-                }
-                else
-                {
-                    ProcessStarter.StartProcess(updaterPath, args, true);
-                }
-            });
-
-            playniteApp.Quit();
+            playniteApp.QuitAndStart(
+                updaterPath,
+                string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", PlaynitePaths.ProgramPath, portable),
+                !FileSystem.CanWriteToFolder(PlaynitePaths.ProgramPath));
         }
 
         public UpdateManifest DownloadManifest()

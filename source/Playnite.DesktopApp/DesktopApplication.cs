@@ -114,16 +114,13 @@ namespace Playnite.DesktopApp
 
         public override void Restart()
         {
-            ReleaseResources();
-            Process.Start(PlaynitePaths.DesktopExecutablePath);
-            CurrentNative.Shutdown(0);
+            Restart(new CmdLineOptions { MasterInstance = true });
         }
 
         public override void Restart(CmdLineOptions options)
         {
-            ReleaseResources();
-            Process.Start(PlaynitePaths.DesktopExecutablePath, options.ToString());
-            CurrentNative.Shutdown(0);
+            options.MasterInstance = true;
+            QuitAndStart(PlaynitePaths.DesktopExecutablePath, options.ToString());
         }
 
         public override void InstantiateApp()
