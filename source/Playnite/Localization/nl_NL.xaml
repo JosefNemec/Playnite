@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Nederlands</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite Taal</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Afsluiten</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filter Actief</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filter Uitgeschakeld</sys:String>
@@ -27,26 +27,36 @@ Uitgevinkt - Verwijder categorie
 Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCNoCategory">Geen Categorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Geen Platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Oops! Er ging iets fout...</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Er onherstelbare fout heeft opgetreden.
+
+Als je ons wilt helpen dit probleem op te lossen, omschrijf dan alsjeblieft kort welke acties je hebt ondernomen vóór de crash, en maak dan een diagnose pakket. Als je online bent wordt dit pakket geüpload naar de Playnite server voor analyse.
+
+Als alternatief kan je de 'Rapporteer Crash' knop gebruiken om een nieuw probleem topic aan te maken op GitHub en de crash handmatig te rapporteren.
+
+Bedankt voor je hulp.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Extensi {0} veroorzaakte een onoplosbare fout.
+
+We raden aan om het log bestand op te slaan en het probleem te rapporteren aan extensie ontwikkelaar. Als het probleem zich blijft voordoen. Schakel de extensie dan uit.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extensie {0} heeft onherstelbare fout veroorzaakt.
+
+We raden aan om het probleem te rapporteren aan de extensie ontwikkelaar. Als het probleem zich blijft voordoen, schakel de extensie dan uit.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
 
 Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diagnostische informatie. Bedankt.</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Schakel de extensie uit.</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Sla het log bestand op.</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Verstuur diag. info</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporteer Probleem</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Herstart Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Herstart in Veilige modus</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Schakel alle 3de partij extensies uit en gebruik het standaard thema.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sluit Playnite af</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Acties ondernomen vóór de crash (in Engels):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Bibliotheek Beheerder</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Kan niet verwijderen - Game of de installer is bezig.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Kan niet deinstalleren - Game is bezig.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>

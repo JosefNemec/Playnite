@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Polski</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Język</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Zakończ</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtr aktywny</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtr wyłączony</sys:String>
@@ -27,16 +27,26 @@
   • Nieokreślone pozostaną bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nieskategoryzowane</sys:String>
     <sys:String x:Key="LOCNoPlatform">Brak platformy</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Ups! Coś poszło nie tak...</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Wystąpił nieodwracalny błąd.
+
+Jeśli chcesz nam pomóc w naprawieniu tego błędu, prosimy o krótki opis działań podjętych przed awarią, a następnie stworzenie pakietu diagnostycznego. Jeśli jesteś online, pakiet zostanie przesłany na serwer Playnite do analizy.
+
+Alternatywnie, możesz użyć przycisku 'Zgłoś awarię', aby utworzyć nowy problem na GitHubie i zgłosić awarię ręcznie.
+
+Dziękujemy za pomoc.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Dodatek „{0}” spowodował nieodwracalny błąd.
+
+Zalecamy zapisanie pliku dziennika i zgłoszenie problemu twórcy dodatku. Jeśli problem będzie się powtarzał, wyłącz ten dodatek.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Dodatek „{0}” spowodował nieodwracalny błąd.
+
+Zalecamy zapisanie pliku dziennika i zgłoszenie problemu twórcy dodatku. Jeśli problem będzie się powtarzał, wyłącz ten dodatek.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Wystąpił nieodwracalny błąd.
  
 Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostyczne. Dziękujemy.</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Wyłącz dodatek</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Zapisz plik dziennika</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Wyślij dane diagnostyczne</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Zgłoś błąd</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
