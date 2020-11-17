@@ -149,11 +149,11 @@ IconIndex=0";
             else if (file.Extension?.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) == true)
             {
                 var data = GetLnkShortcutData(file.FullName);
-                var name = file.Name;
+                var name = Path.GetFileNameWithoutExtension(file.Name);
                 if (File.Exists(data.Path))
                 {
                     var versionInfo = FileVersionInfo.GetVersionInfo(data.Path);
-                    name = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
+                    name = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : Path.GetFileNameWithoutExtension(file.FullName);
                 }
 
                 var program = new Program
