@@ -1,3 +1,5 @@
+#Requires -Version 7
+
 param(
     [string]$ConfigurationName,
     [string]$TargetDir,

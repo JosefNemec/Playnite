@@ -514,7 +514,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)
-"C:\Program Files\PowerShell\7\pwsh.exe" -file "$(SolutionDir)\..\build\copyPluginsToBuild.ps1" "$(ConfigurationName)" "$(TargetDir)\" "$(SolutionDir)\"</PostBuildEvent>
+"pwsh.exe" -file "$(SolutionDir)\..\build\copyPluginsToBuild.ps1" "$(ConfigurationName)" "$(TargetDir)\" "$(SolutionDir)\"</PostBuildEvent>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <Import Project="..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets" Condition="Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" />
