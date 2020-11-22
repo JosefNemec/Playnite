@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Microsoft Xbox 360]
     ImageExtensions: [iso, xex, cci, cxi, elf]
-    ExecutableLookup: ^xenia\.exe$
+    ExecutableLookup: ^xenia\.exe$|^xenia-canary\.exe$
