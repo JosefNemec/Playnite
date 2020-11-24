@@ -4,10 +4,10 @@ Profiles:
   - Name: Nintendo GameCube
     DefaultArguments: '--exec="{ImagePath}" --batch'
     Platforms: [Nintendo GameCube]
-    ImageExtensions: [elf, dol, gcm, tgc, ciso, gcz, iso, wad, dff]
+    ImageExtensions: [elf, dol, gcm, tgc, ciso, gcz, iso, wad, dff, rvz]
     ExecutableLookup: ^Dolphin\.exe$
   - Name: Nintendo Wii
     DefaultArguments: '--exec="{ImagePath}" --batch'
     Platforms: [Nintendo Wii]
-    ImageExtensions: [elf, dol, tgc, wbfs, ciso, gcz, iso, wad, dff]
+    ImageExtensions: [elf, dol, tgc, wbfs, ciso, gcz, iso, wad, dff, rvz, wia]
     ExecutableLookup: ^Dolphin\.exe$
