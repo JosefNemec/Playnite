@@ -9,5 +9,5 @@ Profiles:
   - Name: Nintendo Wii
     DefaultArguments: '--exec="{ImagePath}" --batch'
     Platforms: [Nintendo Wii]
-    ImageExtensions: [elf, dol, tgc, wbfs, ciso, gcz, iso, wad, dff, rvz]
+    ImageExtensions: [elf, dol, tgc, wbfs, ciso, gcz, iso, wad, dff, rvz, wia]
     ExecutableLookup: ^Dolphin\.exe$
