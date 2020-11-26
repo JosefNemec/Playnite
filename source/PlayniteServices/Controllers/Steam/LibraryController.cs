@@ -82,7 +82,7 @@ namespace PlayniteServices.Controllers.Steam
             // ID can be passed directly
             var steamId = ulong.TryParse(userName, out var directId) ? directId.ToString() : GetUserId(userName);
             var libraryUrl = string.Format(
-                @"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}&include_played_free_games=1",
+                @"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}&include_played_free_games=1&skip_unvetted_apps=0",
                 Steam.ApiKey, steamId);
             if (freeSub)
             {
