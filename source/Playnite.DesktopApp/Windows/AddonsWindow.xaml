@@ -35,7 +35,7 @@
                 <TreeViewItem Header="Themes Fullscren" />
             </TreeViewItem>
             <TreeViewItem Header="{DynamicResource LOCExtensionsBrowse}" IsExpanded="True">
-                <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="0" IsSelected="True" />
+                <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="0" />
                 <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="1" />
                 <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="2" />
                 <TreeViewItem Header="Themes Desktop" Tag="3"/>

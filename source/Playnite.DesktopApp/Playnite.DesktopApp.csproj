@@ -183,16 +183,16 @@
     <Compile Include="Controls\SettingsSections\ClientShutdown.xaml.cs">
       <DependentUpon>ClientShutdown.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingsSections\ExtensionsThemes.xaml.cs">
+    <Compile Include="Controls\AddonsSections\ExtensionsThemes.xaml.cs">
       <DependentUpon>ExtensionsThemes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingsSections\ExtensionsOther.xaml.cs">
+    <Compile Include="Controls\AddonsSections\ExtensionsOther.xaml.cs">
       <DependentUpon>ExtensionsOther.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingsSections\ExtensionsLibraries.xaml.cs">
+    <Compile Include="Controls\AddonsSections\ExtensionsLibraries.xaml.cs">
       <DependentUpon>ExtensionsLibraries.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingsSections\ExtensionsMetadata.xaml.cs">
+    <Compile Include="Controls\AddonsSections\ExtensionsMetadata.xaml.cs">
       <DependentUpon>ExtensionsMetadata.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsSections\Development.xaml.cs">
@@ -595,19 +595,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SettingsSections\ExtensionsThemes.xaml">
+    <Page Include="Controls\AddonsSections\ExtensionsThemes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SettingsSections\ExtensionsOther.xaml">
+    <Page Include="Controls\AddonsSections\ExtensionsOther.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SettingsSections\ExtensionsLibraries.xaml">
+    <Page Include="Controls\AddonsSections\ExtensionsLibraries.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SettingsSections\ExtensionsMetadata.xaml">
+    <Page Include="Controls\AddonsSections\ExtensionsMetadata.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

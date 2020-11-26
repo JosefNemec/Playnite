@@ -6,7 +6,7 @@
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              xmlns:p="clr-namespace:Playnite;assembly=Playnite"
              mc:Ignorable="d"
-             d:DesignHeight="500" d:DesignWidth="600">
+             Height="500" Width="700">
 
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
@@ -28,8 +28,8 @@
     <Grid>        
         <Grid Visibility="{Binding IsOnlineListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -59,42 +59,45 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <StackPanel Grid.Column="1" Grid.Row="1"
-                       DataContext="{Binding SelectedItem, ElementName=ListOnlineAddons}"
-                       Margin="5,0,0,0">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{DynamicResource LOCExtensionCreatedBy}" />
-                    <TextBlock Text="{Binding Author}" Margin="5,0,0,0" />
-                </StackPanel>
+            <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"
+                          HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel DataContext="{Binding SelectedItem, ElementName=ListOnlineAddons}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{DynamicResource LOCExtensionCreatedBy}" />
+                        <TextBlock Text="{Binding Author}" Margin="5,0,0,0" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <TextBlock Text="Version:" />
-                    <TextBlock Text="{Binding Author}" Margin="5,0,0,0" />
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <TextBlock Text="Version:" />
+                        <TextBlock Text="{Binding LatestPackage.Version}" Margin="5,0,0,0" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <TextBlock Text="Updated:" />
-                    <TextBlock Text="{Binding Author}" Margin="5,0,0,0" />
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <TextBlock Text="Updated:" />
+                        <TextBlock Text="{Binding LatestPackage.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" Margin="5,0,0,0" />
+                    </StackPanel>
 
-                <TextBlock Margin="0,10,0,0">
-                    <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
-                               CommandParameter="{Binding Description.DirectoryPath}">
+                    <TextBlock Margin="0,10,0,0">
+                    <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                               CommandParameter="{Binding Website}">
                         <Run Text="Website" />
                     </Hyperlink>
-                </TextBlock>
+                    </TextBlock>
 
-                <TextBlock Margin="0,5,0,0">
-                    <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
-                               CommandParameter="{Binding Description.DirectoryPath}">
+                    <TextBlock Margin="0,5,0,0">
+                    <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}">
                         <Run Text="Changelog" />
                     </Hyperlink>
-                </TextBlock>
+                    </TextBlock>
 
-                <Button Content="Install" HorizontalAlignment="Left" Margin="0,20,0,0"  />
+                    <Button Content="Install" HorizontalAlignment="Left" Margin="0,20,0,0" />
 
-                <TextBlock TextWrapping="Wrap" Text="Description" Margin="0,10,0,0" />
-            </StackPanel>
+                    <TextBlock TextWrapping="Wrap" Margin="0,10,0,0"
+                               Text="{Binding Description}"
+                               FontSize="{DynamicResource FontSizeSmall}" />
+                </StackPanel>
+            </ScrollViewer>
+            
         </Grid>
 
         <TextBlock Visibility="{Binding IsOnlineListLoading, Converter={StaticResource BooleanToVisibilityConverter}}"

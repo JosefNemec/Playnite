@@ -133,7 +133,7 @@ namespace Playnite.DesktopApp.ViewModels
                 case View.BrowseLibraries:
                     IsOnlineListLoading = true;
                     SelectedSectionView = sectionViews[view];
-                    Task.Run(async () =>
+                    Task.Run(() =>
                     {
                         try
                         {

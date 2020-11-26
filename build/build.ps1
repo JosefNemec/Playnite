@@ -38,7 +38,7 @@
     [string]$TempDir = (Join-Path $env:TEMP "PlayniteBuild")
 )
 
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Break"
 & .\common.ps1
 
 function BuildInnoInstaller()
