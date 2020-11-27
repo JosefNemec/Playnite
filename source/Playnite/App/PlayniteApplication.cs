@@ -114,6 +114,20 @@ namespace Playnite
                 }
             }
 
+            appMutex = new Mutex(true, instanceMuxet);
+
+            try
+            {
+                pipeService = new PipeService();
+                pipeService.CommandExecuted += PipeService_CommandExecuted;
+                pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
+                pipeServer.StartServer(pipeService);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to start pipe service.");
+            }
+
             PlayniteSettings.MigrateSettingsConfig();
             AppSettings = PlayniteSettings.LoadSettings();
 
@@ -525,20 +539,6 @@ namespace Playnite
                     CurrentNative.Shutdown(0);
                     return true;
                 }
-
-                appMutex = new Mutex(true, instanceMuxet);
-
-                try
-                {
-                    pipeService = new PipeService();
-                    pipeService.CommandExecuted += PipeService_CommandExecuted;
-                    pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
-                    pipeServer.StartServer(pipeService);
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, "Failed to start pipe service.");
-                }
             }
 
             return false;
@@ -738,7 +738,12 @@ namespace Playnite
             }
 
             logger.Debug("Releasing Playnite resources...");
-            appMutex?.ReleaseMutex();
+            CurrentNative.Dispatcher.Invoke(() =>
+            {
+                appMutex?.ReleaseMutex();
+            });
+
+            pipeServer?.StopServer();
             Discord?.Dispose();
             updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();
