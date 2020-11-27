@@ -39,6 +39,7 @@ namespace Playnite
         private PipeServer pipeServer;
         private XInputDevice xdevice;
         private System.Threading.Timer updateCheckTimer;
+        private bool installingAddon = false;
 
         private bool isActive;
         public bool IsActive
@@ -411,6 +412,11 @@ namespace Playnite
                     break;
 
                 case CmdlineCommand.ExtensionInstall:
+                    if (installingAddon)
+                    {
+                        return;
+                    }
+
                     var extPath = args.Args;
                     if (!File.Exists(extPath))
                     {
@@ -418,6 +424,7 @@ namespace Playnite
                         return;
                     }
 
+                    installingAddon = true;
                     var ext = Path.GetExtension(extPath).ToLower();
                     if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                     {
@@ -428,6 +435,7 @@ namespace Playnite
                         InstallExtensionFile(extPath);
                     }
 
+                    installingAddon = false;
                     break;
 
                 case CmdlineCommand.SwitchMode:
