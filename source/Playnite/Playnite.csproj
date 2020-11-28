@@ -377,6 +377,9 @@
     <None Include="Common.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="crash_reporter.cfg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Emulators\*.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
