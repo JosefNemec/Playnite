@@ -523,5 +523,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets'))" />
+    <Error Condition="!Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets'))" />
   </Target>
+  <Import Project="..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets" Condition="Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" />  
+  <PropertyGroup>
+    <LargeAddressAware>true</LargeAddressAware>
+  </PropertyGroup>
 </Project>
