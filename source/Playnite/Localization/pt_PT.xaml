@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Português Europeu</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Idioma do Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Sair</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro Ativado</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtro Desativado</sys:String>
@@ -27,35 +27,49 @@ Desmarcado - Remover categoria
 Indeterminado - Sem alterações (ao editar vários jogos)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sem Categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sem Plataforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Ups! Algo correu mal...</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Um erro irrecuperável ocorreu.
+ 
+Se queres ajudar-nos a corrigir este problema, por favor descreve, de forma breve, que ações foram tomadas antes do erro ter ocorrido e depois cria um pacote de diagnóstico. Se estiveres online, o pacote será transferido para o servidor do Playnite para análise.
+
+Alternativamente, podes usar o botão &quot;Reportar Crash&quot; para criar um novo tópico nas Issues do GitHub e reportar o crash manualmente.
+
+Obrigado pela tua ajuda.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Extensão &quot;{0}&quot; causou um erro irrecuperável.
+
+Nós recomendamos salvar o teu ficheiro de log e reportar o problema para o desenvolvedor da extensão. Se o problema continuar a acontecer, desabilita a extensão.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extensão &quot;{0}&quot; causou um erro irrecuperável.
+
+Nós recomendamos reportar o problema para o desenvolvedor da extensão. Se o problema continuar a ocorrer, desabilita a extensão.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ocorreu um erro irrecuperável.
 
 Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de diagnóstico. Obrigado.</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Desabilitar extensão</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Guardar o arquivo log </sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Enviar informação do diagnóstico</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar o Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Reiniciar no Modo Seguro</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Desabilitando todas as extensões de terceiros e usando o tema padrão.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sair do Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Ações tomadas antes do crash (em Inglês):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Gestor de Biblioteca</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Remover Jogo(s)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Não foi possível remover - Jogo ou instalador em execução.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Não foi possível desinstalar - Jogo em execução.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Tem certeza de que queres remover este jogo?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Tens a certeza de que queres remover estes {0} jogos?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Tem certeza de que deseja remover este jogo?
+
+Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que o jogo seja importado novamente na próxima vez que a biblioteca for atualizada.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Tem certeza de que deseja remover estes {0} jogos?
+
+Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que o jogo seja importado novamente na próxima vez que a biblioteca for atualizada.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Tens a certeza que pretendes remover {0} entradas que não estão atualmente em uso?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Não foram encontrados campos não utilizados.</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Sim (adicionar à lista de exclusão)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Amigos do Steam</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Existem alterações não salvas nesta secção</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">A atualizar o formato da biblioteca de jogos…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Falha na atualização da base de dados.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Não é possível atualizar a biblioteca de jogos. É necessário {0} MBs de espaço livre.</sys:String>
@@ -65,11 +79,11 @@ Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de
     <sys:String x:Key="LOCGameStartActionError">Não foi possível iniciar a ação: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Não foi possível abrir a localização do jogo: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Falha ao criar atalho: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">Falha ao abrir o manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Não foi possível instalar o jogo: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Não foi possível desinstalar o jogo: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Ação de jogo não está configurada.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">O plugin da biblioteca responsável por este jogo está desabilitado ou desinstalado.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Transferência de metadados oficiais não disponível.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nenhum jogo selecionado.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">A execução da ação de script do jogo falhou.</sys:String>
@@ -103,7 +117,8 @@ Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de
     <sys:String x:Key="LOCLastPlayedLabel">Última sessão de jogo</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Mais Jogado</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Número de Sessões de jogo</sys:String>
-    <sys:String x:Key="LOCNotesLabel"></sys:String>
+    <sys:String x:Key="LOCNotesLabel">Notas
+</sys:String>
     <sys:String x:Key="LOCAddedLabel">Adicionado</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Data de Adição</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificado</sys:String>
@@ -125,7 +140,7 @@ Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de
     <sys:String x:Key="LOCInstallationLabel">Instalação</sys:String>
     <sys:String x:Key="LOCActionsLabel">Ações</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">A transferir…</sys:String>
-    <sys:String x:Key="LOCDownloadingMediaLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingMediaLabel">Fazendo download da media...</sys:String>
     <sys:String x:Key="LOCLoadingLabel">A carregar…</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipo</sys:String>
     <sys:String x:Key="LOCProfileLabel">Perfil</sys:String>
@@ -166,7 +181,17 @@ Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de
     <sys:String x:Key="LOCColumns">Colunas</sys:String>
     <sys:String x:Key="LOCRow">Linha</sys:String>
     <sys:String x:Key="LOCRows">Linhas</sys:String>
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Variáveis especiais podem ser usadas para adicionar linhas dinâmicos:
+{InstallDir} - Local de instalação do jogo
+{InstallDirName} - Nome do local de instalação
+{ImagePath} - Caminho do arquivo ISO/ROM, se definido
+{ImageName} - Nome do arquivo ISO/ROM
+{ImageNameNoExt} - Nome do arquivo ISO/ROM sem extensão
+{PlayniteDir} - Local de instalação do Playnite
+{Name} - Nome do jogo
+
+Exemplo: -image &quot;{ImagePath}&quot; -fullscreen
+Resulta em: -image &quot;c:\pasta\imagem.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Não é possível obter o ícone se a ação de jogo estiver em falta ou estiver definida como um endereço.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Transferir apenas metadados em falta</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ativar esta opção irá saltar a transferência de metadados para campos já preenchidos.</sys:String>
@@ -199,10 +224,10 @@ Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Gestor de Biblioteca…</sys:String>
     <sys:String x:Key="LOCMenuTools">Ferramentas</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Transferir Metadados…</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">Ferramentas do Software...</sys:String>
     <sys:String x:Key="LOCMenuConfigureIntegrations">Configurar integrações…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Abrir Cliente de terceiros</sys:String>
-    <sys:String x:Key="LOCMenuClients"></sys:String>
+    <sys:String x:Key="LOCMenuClients">Clientes de terceiros</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Atualizar biblioteca de jogos</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Adicionar Jogo</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente…</sys:String>
@@ -240,7 +265,7 @@ Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posicionamento do painel do explorador</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderização de arte da capa</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Rácio de aspeto a utilizar</sys:String>
-    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">As seguintes opções também afectam a renderização de mosaicos no modo de ecrã inteiro!</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Modo de redimensionamento</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Caixa de DVD</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Loja Epic Games</sys:String>
@@ -264,7 +289,7 @@ Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de
     <sys:String x:Key="LOCSettingsImportLabel">Importar alterações da biblioteca automaticamente</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importar jogos instalados</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">Ligar conta</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importar jogos não instalados</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importar todos os jogos</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importar todos os jogos (conta pública ou chave de API deve ser fornecida)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Localização do ficheiro da base de dados inválida, um caminho correto deve ser definido.</sys:String>
@@ -273,19 +298,19 @@ Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nenhuma conta Steam selecionada para importação de categoria.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Transferir atualizações de biblioteca de terceiros ao iniciar</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Transferir metadados após importar jogos</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Executar o Playnite minimizado</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Abrir Playnite quando o seu computador for ligado</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Falha ao registar o Playnite para iniciar quando o computador iniciar.</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Iniciar no Modo de Ecrã Inteiro</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclui Steam, Origin e outros.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Carregamento assíncrono de imagens</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Melhora a suavidade de scroll nas listas de jogos, em troca de carregamento de imagens mais lento.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar nome do jogo se a capa estiver em falta</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar nomes dos jogos em vista de Grelha</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Escurecer jogos não instalados</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostra ícones do jogo na vista de Detalhes</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostra a contagem de itens nas descrições de grupo</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Mostrar somente campos selecionados nos painéis de filtro e explorador</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desativar aceleração de hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Usa em caso de bloqueios ou problemas similares com a interface</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Desativar Escalamento de DPI</sys:String>
@@ -672,8 +697,8 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCExpand"></sys:String>
     <sys:String x:Key="LOCCollapseAll"></sys:String>
     <sys:String x:Key="LOCExpandAll"></sys:String>
-    <sys:String x:Key="LOCOther"></sys:String>
-    <sys:String x:Key="LOCThemes"></sys:String>
+    <sys:String x:Key="LOCOther">Outros</sys:String>
+    <sys:String x:Key="LOCThemes">Temas</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do Emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos de Emulador Adicionais</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Substituir Argumentos de Emulador</sys:String>
