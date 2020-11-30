@@ -39,6 +39,14 @@ namespace PlayniteServicesTests.Controllers.IGDB
         }
 
         [Fact]
+        public async Task DashSearch()
+        {
+            var response = await (await client.GetAsync(@"/igdb/games/x-com")).Content.ReadAsStringAsync();
+            var data = Serialization.FromJson<ServicesResponse<List<ExpandedGameLegacy>>>(response);
+            Assert.NotNull(data.Data.FirstOrDefault(a => a.name == "X-COM: UFO Defense"));
+        }
+
+        [Fact]
         public async Task AlternateNameUseTest()
         {
             var metadata = await GetMetadata(new SdkModels.Game("pubg"));
