@@ -357,7 +357,11 @@ namespace Playnite.DesktopApp.ViewModels
                 new AddonsViewModel(
                     new AddonsWindowFactory(),
                     PlayniteApi,
-                    application.ServicesClient).OpenView();
+                    Dialogs,
+                    Resources,
+                    application.ServicesClient,
+                    Extensions,
+                    AppSettings).OpenView();
             }, new KeyGesture(Key.F9));
 
             StartGameCommand = new RelayCommand<Game>((game) =>

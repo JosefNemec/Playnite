@@ -120,10 +120,10 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public List<SelectablePlugin> LibraryPlugins
+        public List<InstalledPlugin> LibraryPlugins
         {
             get;
-        } = new List<SelectablePlugin>();
+        } = new List<InstalledPlugin>();
 
         #region Commands
 
@@ -185,7 +185,7 @@ namespace Playnite.DesktopApp.ViewModels
                         selected = provider.Client.IsInstalled;
                     }
 
-                    LibraryPlugins.Add(new SelectablePlugin(selected, provider, description, false));
+                    LibraryPlugins.Add(new InstalledPlugin(selected, provider, description, false));
                 }
             }
         }

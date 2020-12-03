@@ -160,14 +160,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<ThemeManifest> UninstallThemeCommand
-        {
-            get => new RelayCommand<ThemeManifest>((a) =>
-            {
-                UninstallTheme(a);
-            });
-        }
-
         public RelayCommand<object> SetDefaultsCommand
         {
             get => new RelayCommand<object>((ratio) =>
@@ -281,8 +273,6 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            UpdateDisabledExtensions();
-
             if (editedFields.Contains(nameof(Settings.StartOnBoot)))
             {
                 try
@@ -309,7 +299,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true ||
-                extUninstallQeueued ||
                 develExtListUpdated)
             {
                 if (dialogs.ShowMessage(
@@ -362,19 +351,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Settings.GridItemWidthRatio = Convert.ToInt32(regex.Groups[1].Value);
                 Settings.GridItemHeightRatio = Convert.ToInt32(regex.Groups[2].Value);
-            }
-        }
-
-        private void UninstallTheme(ThemeManifest a)
-        {
-            if (dialogs.ShowMessage(
-               "LOCThemeUninstallQuestion",
-               string.Empty,
-               MessageBoxButton.YesNo,
-               MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                extUninstallQeueued = true;
-                ExtensionInstaller.QueueExtensionUninstall(a.DirectoryPath);
             }
         }
 

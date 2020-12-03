@@ -44,7 +44,7 @@ namespace Playnite.DesktopApp.ViewModels
             };
             OptionsList.AddRange(Extensions.LibraryPlugins);
 
-            pluginListView = new Controls.SettingsSections.ExtensionsLibraries() { DataContext = this };
+            pluginListView = new Controls.SettingsSections.AddonsMoveInfo() { DataContext = this };
             SelectedSectionView = pluginListView;
         }
 
@@ -95,23 +95,9 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            UpdateDisabledExtensions();
-            EndEdit();
-            originalSettings.SaveSettings();
             foreach (var plugin in loadedPluginSettings.Values)
             {
                 plugin.Settings.EndEdit();
-            }
-
-            if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true)
-            {
-                if (dialogs.ShowMessage(
-                    resources.GetString("LOCSettingsRestartAskMessage"),
-                    resources.GetString("LOCSettingsRestartTitle"),
-                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    application.Restart(new CmdLineOptions() { SkipLibUpdate = true });
-                }
             }
 
             closingHanled = true;

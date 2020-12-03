@@ -198,6 +198,9 @@
     <Compile Include="Controls\SettingsSections\Development.xaml.cs">
       <DependentUpon>Development.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsSections\AddonsMoveInfo.xaml.cs">
+      <DependentUpon>AddonsMoveInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\ImportExlusionList.xaml.cs">
       <DependentUpon>ImportExlusionList.xaml</DependentUpon>
     </Compile>
@@ -263,6 +266,8 @@
     <Compile Include="Markup\ThemeFile.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AddonsViewModel.cs" />
+    <Compile Include="ViewModels\AddonsViewModel_Installed.cs" />
+    <Compile Include="ViewModels\AddonsViewModel_Online.cs" />
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\DatabaseFieldsManagerViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
@@ -612,6 +617,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\Development.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\AddonsMoveInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -1,8 +1,13 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Common;
+using Playnite.Plugins;
+using Playnite.SDK;
+using Playnite.SDK.Plugins;
 using Playnite.Services;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +16,7 @@ using System.Windows.Controls;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public class AddonsViewModel : ObservableObject
+    public partial class AddonsViewModel : ObservableObject
     {
         private enum View : int
         {
@@ -22,10 +27,17 @@ namespace Playnite.DesktopApp.ViewModels
             BrowseThemesFullscreen = 4
         }
 
+        private static ILogger logger = LogManager.GetLogger();
+        private IDialogsFactory dialogs;
+        private IResourceProvider resources;
         private IWindowFactory window;
         private IPlayniteAPI api;
         private ServicesClient serviceClient;
+        private PlayniteSettings settings;
         private readonly Dictionary<View, UserControl> sectionViews;
+        internal bool extUninstallQeueued = false;
+
+        public ExtensionFactory Extensions { get; set; }
 
         private UserControl selectedSectionView;
         public UserControl SelectedSectionView
@@ -38,37 +50,70 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private List<AddonManifest> onlineAddonList;
-        public List<AddonManifest> OnlineAddonList
+        public RelayCommand<InstalledPlugin> UninstallExtensionCommand
         {
-            get => onlineAddonList;
-            set
+            get => new RelayCommand<InstalledPlugin>((a) =>
             {
-                onlineAddonList = value;
-                OnPropertyChanged();
-            }
+                UninstallExtension(a);
+            });
         }
 
-        private bool isOnlineListLoading;
-        public bool IsOnlineListLoading
+        public RelayCommand<ThemeManifest> UninstallThemeCommand
         {
-            get => isOnlineListLoading;
-            set
+            get => new RelayCommand<ThemeManifest>((a) =>
             {
-                isOnlineListLoading = value;
-                OnPropertyChanged();
-            }
+                UninstallTheme(a);
+            });
         }
 
-        private string addonSearchText;
-        public string AddonSearchText
+        public RelayCommand<InstalledPlugin> OpenExtensionDataDirCommand
         {
-            get => addonSearchText;
-            set
+            get => new RelayCommand<InstalledPlugin>((plugin) =>
             {
-                addonSearchText = value;
-                OnPropertyChanged();
-            }
+                var extDir = string.Empty;
+                if (plugin.Description.Type == ExtensionType.Script)
+                {
+                    if (!plugin.Description.Id.IsNullOrEmpty())
+                    {
+                        extDir = Path.Combine(PlaynitePaths.ExtensionsDataPath, Paths.GetSafePathName(plugin.Description.Id));
+                    }
+                }
+
+                var p = Extensions.Plugins.Values.FirstOrDefault(a => a.Description.DirectoryPath == plugin.Description.DirectoryPath);
+                if (p != null)
+                {
+                    extDir = p.Plugin.GetPluginUserDataPath();
+                }
+
+                if (!extDir.IsNullOrEmpty())
+                {
+                    try
+                    {
+                        FileSystem.CreateDirectory(extDir);
+                        Process.Start(extDir);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to open dir {extDir}.");
+                    }
+                }
+            });
+        }
+
+        public RelayCommand<object> CancelCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CloseView();
+            });
+        }
+
+        public RelayCommand<object> ConfirmCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ConfirmDialog();
+            });
         }
 
         public RelayCommand<RoutedPropertyChangedEventArgs<object>> SectionChangedChangedCommand
@@ -90,11 +135,19 @@ namespace Playnite.DesktopApp.ViewModels
         public AddonsViewModel(
             IWindowFactory window,
             IPlayniteAPI api,
-            ServicesClient serviceClient)
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ServicesClient serviceClient,
+            ExtensionFactory extensions,
+            PlayniteSettings settings)
         {
             this.window = window;
             this.api = api;
+            this.dialogs = dialogs;
+            this.resources = resources;
             this.serviceClient = serviceClient;
+            this.settings = settings;
+            Extensions = extensions;
 
             sectionViews = new Dictionary<View, UserControl>()
             {
@@ -104,6 +157,40 @@ namespace Playnite.DesktopApp.ViewModels
                 { View.BrowseThemesDesktop, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
                 { View.BrowseThemesFullscreen, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
             };
+
+            var descriptions = ExtensionFactory.GetExtensionDescriptors();
+            LibraryPluginList = descriptions
+                .Where(a => a.Type == ExtensionType.GameLibrary)
+                .Select(a => new InstalledPlugin(
+                    settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin,
+                    a,
+                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
+                .OrderBy(a => a.Description.Name)
+                .ToList();
+
+            MetadataPluginList = descriptions
+                .Where(a => a.Type == ExtensionType.MetadataProvider)
+                .Select(a => new InstalledPlugin(
+                    settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin,
+                    a,
+                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
+                .OrderBy(a => a.Description.Name)
+                .ToList();
+
+            OtherPluginList = descriptions
+                .Where(a => a.Type == ExtensionType.GenericPlugin || a.Type == ExtensionType.Script)
+                .Select(a => new InstalledPlugin(
+                    settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    null,
+                    a,
+                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
+                .OrderBy(a => a.Description.Name)
+                .ToList();
+
+            DesktopThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
+            FullscreenThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
         }
 
         public bool? OpenView()
@@ -160,6 +247,55 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void SearchAddon()
         {
+        }
+
+        private void UninstallExtension(InstalledPlugin a)
+        {
+            if (dialogs.ShowMessage(
+                LOC.ExtensionUninstallQuestion,
+                string.Empty,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                extUninstallQeueued = true;
+                ExtensionInstaller.QueueExtensionUninstall(a.Description.DirectoryPath);
+            }
+        }
+
+        private void UninstallTheme(ThemeManifest a)
+        {
+            if (dialogs.ShowMessage(
+               "LOCThemeUninstallQuestion",
+               string.Empty,
+               MessageBoxButton.YesNo,
+               MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                extUninstallQeueued = true;
+                ExtensionInstaller.QueueExtensionUninstall(a.DirectoryPath);
+            }
+        }
+
+        internal void UpdateDisabledExtensions()
+        {
+            var disabledPlugs = LibraryPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList();
+            disabledPlugs.AddMissing(MetadataPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList());
+            disabledPlugs.AddMissing(OtherPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList());
+            if (settings.DisabledPlugins?.IsListEqual(disabledPlugs) != true)
+            {
+                settings.DisabledPlugins = disabledPlugs;
+            }
+        }
+
+        public void CloseView()
+        {
+            window.Close(false);
+        }
+
+        public void ConfirmDialog()
+        {
+            //UpdateDisabledExtensions();
+
+            window.Close(true);
         }
     }
 }
