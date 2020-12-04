@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    <sys:String x:Key="LanguageName">Nederlands</sys:String>
+    <sys:String x:Key="LanguageName">Engels</sys:String>
     <sys:String x:Key="LOCLanguageSettingsLabel">Playnite Taal</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Afsluiten</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filter Actief</sys:String>
@@ -57,15 +57,21 @@ Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diag
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan niet verwijderen - Game of de installer is bezig.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kan niet deinstalleren - Game is bezig.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Weet u zeker dat u dit spel wilt verwijderen?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Weet u zeker dat u {0} spellen wilt verwijderen?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Weet u zeker dat u dit spel wilt verwijderen?
+
+Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voorkomen dat de game de volgende keer dat de bibliotheek wordt bijgewerkt, opnieuw wordt geïmporteerd.
+</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Weet u zeker dat u {0} spellen wilt verwijderen?
+
+Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voorkomen dat de game de volgende keer dat de bibliotheek wordt bijgewerkt, opnieuw wordt geïmporteerd.
+</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Weet je zeker dat je {0} entries wilt verwijderen die momenteel niet worden gebruikt?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Geen ongebruikte velden gevonden.</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (voeg toe aan uitsluitingslijst)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Vrienden</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Er zijn niet-opgeslagen wijzigingen in deze sectie</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Database versie aan het updaten…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Database update mislukt. Kan het database bestand niet openen.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Kan de spelbibliotheek niet bijwerken. {0} MB vrije ruimte is vereist.</sys:String>
@@ -75,11 +81,11 @@ Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diag
     <sys:String x:Key="LOCGameStartActionError">Kan de actie niet starten: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Kan de spellocatie niet openen: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Snelkoppeling maken mislukt: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">Kan handleiding niet openen: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan het spel niet installeren: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan het spel niet deïnstalleren: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Speel actie is niet geconfigureerd.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">De bibliotheek plug-in die verantwoordelijk is voor deze game is uitgeschakeld of niet geïnstalleerd.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Officiële metadata download is niet beschikbaar.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Er is geen spel geselecteerd.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
@@ -113,7 +119,7 @@ Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diag
     <sys:String x:Key="LOCLastPlayedLabel">Laatst Gespeeld</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Meest gespeeld</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Aantal Keer Gespeeld</sys:String>
-    <sys:String x:Key="LOCNotesLabel"></sys:String>
+    <sys:String x:Key="LOCNotesLabel">Notities</sys:String>
     <sys:String x:Key="LOCAddedLabel">Toegevoegd</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Datum Toegevoegd</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Bewerkt</sys:String>
