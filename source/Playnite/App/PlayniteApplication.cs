@@ -748,7 +748,16 @@ namespace Playnite
             logger.Debug("Releasing Playnite resources...");
             CurrentNative.Dispatcher.Invoke(() =>
             {
-                appMutex?.ReleaseMutex();
+                try
+                {
+                    appMutex?.ReleaseMutex();
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    // Only happens when trying to release mutext created by a different process.
+                    // This shouldn't normally happen since the mutex is released here before starting another instance.
+                    logger.Error(e, "Failed to release app mutext.");
+                }
             });
 
             pipeServer?.StopServer();
