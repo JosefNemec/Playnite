@@ -6,7 +6,7 @@
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              xmlns:p="clr-namespace:Playnite;assembly=Playnite"
              mc:Ignorable="d"
-             Height="500" Width="700">
+             d:DesignHeight="500" d:DesignWidth="700">
 
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
@@ -25,7 +25,7 @@
         <p:BindingProxy x:Key="RootDataContext" Data="{Binding}" />
     </UserControl.Resources>
 
-    <Grid>        
+    <Grid>
         <Grid Visibility="{Binding IsOnlineListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />

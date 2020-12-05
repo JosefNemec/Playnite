@@ -196,17 +196,13 @@ namespace Playnite.DesktopApp.ViewModels
                 { 5, new Controls.SettingsSections.AppearanceLayout() { DataContext = this } },
                 { 6, new Controls.SettingsSections.GeneralAdvanced() { DataContext = this } },
                 { 7, new Controls.SettingsSections.Input() { DataContext = this } },
-                { 8, new Controls.SettingsSections.Extensions() { DataContext = this } },
+                { 8, new Controls.SettingsSections.AddonsMoveInfo() { DataContext = this } },
                 { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
                 { 10, new Controls.SettingsSections.EmptyParent() { DataContext = this } },
                 { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
                 { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
                 { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
-                { 15, new Controls.SettingsSections.ExtensionsLibraries() { DataContext = this } },
-                { 16, new Controls.SettingsSections.ExtensionsMetadata() { DataContext = this } },
-                { 17, new Controls.SettingsSections.ExtensionsOther() { DataContext = this } },
-                { 18, new Controls.SettingsSections.ExtensionsThemes() { DataContext = this } },
                 { 19, new Controls.SettingsSections.Development() { DataContext = this } }
             };
 
