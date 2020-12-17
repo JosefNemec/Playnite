@@ -31,6 +31,15 @@ namespace Playnite
                     crashModules.AddMissing(frame.GetMethod().Module.Name);
                 }
 
+                if (exception.InnerException != null)
+                {
+                    stack = new StackTrace(exception.InnerException);
+                    foreach (var frame in stack.GetFrames())
+                    {
+                        crashModules.AddMissing(frame.GetMethod().Module.Name);
+                    }
+                }
+
                 var extDesc = extensions.Plugins.FirstOrDefault(a => crashModules.ContainsString(a.Value.Description.Module, StringComparison.OrdinalIgnoreCase)).Value;
                 if (extDesc != null)
                 {
