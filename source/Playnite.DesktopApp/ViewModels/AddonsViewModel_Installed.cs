@@ -75,6 +75,28 @@ namespace Playnite.DesktopApp.ViewModels
 
     public partial class AddonsViewModel : ObservableObject
     {
+        private List<InstalledPlugin> activeInstalledExtensionsList;
+        public List<InstalledPlugin> ActiveInstalledExtensionsList
+        {
+            get => activeInstalledExtensionsList;
+            set
+            {
+                activeInstalledExtensionsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<ThemeManifest> activeInstalledThemeList;
+        public List<ThemeManifest> ActiveInstalledThemeList
+        {
+            get => activeInstalledThemeList;
+            set
+            {
+                activeInstalledThemeList = value;
+                OnPropertyChanged();
+            }
+        }
+
         public List<InstalledPlugin> LibraryPluginList
         {
             get;

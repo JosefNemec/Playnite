@@ -128,6 +128,7 @@
     <Compile Include="GamesStatsTests.cs" />
     <Compile Include="IniParserTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />
+    <Compile Include="Manifests\AddonManifestTests.cs" />
     <Compile Include="Models\DatabaseObjectTests.cs" />
     <Compile Include="Models\GameActionTests.cs" />
     <Compile Include="ImagesTests.cs" />
@@ -243,6 +244,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

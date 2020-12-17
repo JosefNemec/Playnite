@@ -170,7 +170,11 @@ namespace Playnite
                         {
                             var info = new FileInfo(descriptorPath);
                             added.Add(info.Directory.Name);
-                            themes.Add(new ThemeManifest(descriptorPath));
+                            var man = new ThemeManifest(descriptorPath);
+                            if (!man.Id.IsNullOrEmpty())
+                            {
+                                themes.Add(man);
+                            }
                         }
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -193,7 +197,11 @@ namespace Playnite
                             var info = new FileInfo(descriptorPath);
                             if (!added.Contains(info.Directory.Name))
                             {
-                                themes.Add(new ThemeManifest(descriptorPath));
+                                var man = new ThemeManifest(descriptorPath);
+                                if (!man.Id.IsNullOrEmpty())
+                                {
+                                    themes.Add(man);
+                                }
                             }
                         }
                     }

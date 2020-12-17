@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Playnite.Common;
 using Playnite.Common.Web;
+using Playnite.Plugins;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,18 @@ namespace Playnite
         public string AddonId { get; set; }
         public List<AddonInstallerPackage> Packages { get; set; }
         public Dictionary<Version, List<string>> Changelog { get; set; }
+
+        public AddonInstallerPackage GetLatestCompatiblePackage(Version apiVersion)
+        {
+            if (!Packages.HasItems())
+            {
+                return null;
+            }
+
+            return Packages.
+                Where(a => a.RequiredApiVersion.Major == apiVersion.Major && a.RequiredApiVersion <= apiVersion).
+                OrderByDescending(a => a.Version).FirstOrDefault();
+        }
     }
 
     public enum AddonType
@@ -44,7 +57,7 @@ namespace Playnite
         ThemeFullscreen
     }
 
-    public class AddonManifest
+    public class AddonManifest : ObservableObject
     {
         private static ILogger logger = LogManager.GetLogger();
 
@@ -111,7 +124,71 @@ namespace Playnite
                     return null;
                 }
 
-                return manifest.Packages.OrderBy(a => a.Version).First();
+                return manifest.Packages.OrderBy(a => a.Version).FirstOrDefault();
+            }
+        }
+
+        [YamlIgnore]
+        [JsonIgnore]
+        public bool IsQueuedForInstall
+        {
+            get
+            {
+                var fileName = Path.GetFileName(GetTargetDownloadPath());
+                return ExtensionInstaller.GetQueuedItems().Any(a => Path.GetFileName(a.Path) == fileName);
+            }
+        }
+
+        [YamlIgnore]
+        [JsonIgnore]
+        public bool IsInstalled
+        {
+            get
+            {
+                if (IsTheme)
+                {
+                    if (Type == AddonType.ThemeDesktop)
+                    {
+                        return ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).Any(a => a.Id == AddonId);
+                    }
+                    else
+                    {
+                        return ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).Any(a => a.Id == AddonId);
+                    }
+                }
+                else
+                {
+                    return ExtensionFactory.GetExtensionDescriptors().Any(a => a.Id == AddonId);
+                }
+            }
+        }
+
+        [YamlIgnore]
+        [JsonIgnore]
+        public bool IsTheme => Type == AddonType.ThemeDesktop || Type == AddonType.ThemeFullscreen;
+
+        [YamlIgnore]
+        [JsonIgnore]
+        public bool IsExtension => Type == AddonType.Generic || Type == AddonType.Library || Type == AddonType.Metadata;
+
+        public string GetTargetDownloadPath()
+        {
+            return Path.Combine(PlaynitePaths.TempPath, Paths.GetSafePathName(AddonId) + GetAddonPackageExtension(Type));
+        }
+
+        public static string GetAddonPackageExtension(AddonType type)
+        {
+            switch (type)
+            {
+                case AddonType.Library:
+                case AddonType.Metadata:
+                case AddonType.Generic:
+                    return PlaynitePaths.PackedExtensionFileExtention;
+                case AddonType.ThemeDesktop:
+                case AddonType.ThemeFullscreen:
+                    return PlaynitePaths.PackedThemeFileExtention;
+                default:
+                    throw new Exception($"Uknown addon type {type}");
             }
         }
     }

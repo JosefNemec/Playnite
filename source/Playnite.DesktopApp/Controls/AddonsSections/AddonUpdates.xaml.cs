@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Playnite.DesktopApp.Controls.SettingsSections
+namespace Playnite.DesktopApp.Controls.AddonsSections
 {
     /// <summary>
     /// Interaction logic for Extensions.xaml
     /// </summary>
-    public partial class ExtensionsLibraries : UserControl
+    public partial class AddonUpdates : UserControl
     {
-        public ExtensionsLibraries()
+        public AddonUpdates()
         {
             InitializeComponent();
         }

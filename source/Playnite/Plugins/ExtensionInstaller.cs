@@ -44,17 +44,22 @@ namespace Playnite.Plugins
         private static readonly ILogger logger = LogManager.GetLogger();
         private static List<ExtensionInstallQueueItem> currentQueue = new List<ExtensionInstallQueueItem>();
 
+        public static List<ExtensionInstallQueueItem> GetQueuedItems()
+        {
+            if (!File.Exists(PlaynitePaths.ExtensionQueueFilePath))
+            {
+                return new List<ExtensionInstallQueueItem>();
+            }
+
+            return Serialization.FromJsonFile<List<ExtensionInstallQueueItem>>(PlaynitePaths.ExtensionQueueFilePath);
+        }
+
         public static List<BaseExtensionManifest> InstallExtensionQueue()
         {
             var anyFailed = false;
             var installedExts = new List<BaseExtensionManifest>();
-            if (!File.Exists(PlaynitePaths.ExtensionQueueFilePath))
-            {
-                return installedExts;
-            }
 
-            var queue = Serialization.FromJsonFile<List<ExtensionInstallQueueItem>>(PlaynitePaths.ExtensionQueueFilePath);
-            foreach (var queueItem in queue)
+            foreach (var queueItem in GetQueuedItems())
             {
                 if (queueItem.InstallType == ExtInstallType.Install)
                 {

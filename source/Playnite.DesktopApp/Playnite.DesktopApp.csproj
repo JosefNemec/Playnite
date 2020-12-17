@@ -128,8 +128,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\AddonsSections\AddonUpdates.xaml.cs">
+      <DependentUpon>AddonUpdates.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\AddonsSections\BrowseAddons.xaml.cs">
       <DependentUpon>BrowseAddons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AddonsSections\InstalledExtensions.xaml.cs">
+      <DependentUpon>InstalledExtensions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ExpanderEx.cs" />
     <Compile Include="Controls\FilterStringSelectionBox.xaml.cs">
@@ -183,17 +189,8 @@
     <Compile Include="Controls\SettingsSections\ClientShutdown.xaml.cs">
       <DependentUpon>ClientShutdown.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AddonsSections\ExtensionsThemes.xaml.cs">
-      <DependentUpon>ExtensionsThemes.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\AddonsSections\ExtensionsOther.xaml.cs">
-      <DependentUpon>ExtensionsOther.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\AddonsSections\ExtensionsLibraries.xaml.cs">
-      <DependentUpon>ExtensionsLibraries.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\AddonsSections\ExtensionsMetadata.xaml.cs">
-      <DependentUpon>ExtensionsMetadata.xaml</DependentUpon>
+    <Compile Include="Controls\AddonsSections\InstalledThemes.xaml.cs">
+      <DependentUpon>InstalledThemes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsSections\Development.xaml.cs">
       <DependentUpon>Development.xaml</DependentUpon>
@@ -536,7 +533,15 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Controls\AddonsSections\AddonUpdates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\AddonsSections\BrowseAddons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\AddonsSections\InstalledExtensions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -600,19 +605,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\AddonsSections\ExtensionsThemes.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\AddonsSections\ExtensionsOther.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\AddonsSections\ExtensionsLibraries.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\AddonsSections\ExtensionsMetadata.xaml">
+    <Page Include="Controls\AddonsSections\InstalledThemes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -361,7 +361,8 @@ namespace Playnite.DesktopApp.ViewModels
                     Resources,
                     application.ServicesClient,
                     Extensions,
-                    AppSettings).OpenView();
+                    AppSettings,
+                    application).OpenView();
             }, new KeyGesture(Key.F9));
 
             StartGameCommand = new RelayCommand<Game>((game) =>

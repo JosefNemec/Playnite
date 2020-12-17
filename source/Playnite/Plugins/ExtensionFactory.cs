@@ -159,7 +159,7 @@ namespace Playnite.Plugins
             foreach (var file in GetExtensionDescriptorFiles())
             {
                 var man = GetManifestFromDir(file);
-                if (man != null)
+                if (man?.Id.IsNullOrEmpty() == false)
                 {
                     descs.Add(man);
                 }

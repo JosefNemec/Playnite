@@ -446,10 +446,6 @@ namespace Playnite
         /// </summary>
         public const string LocalUserLabel = "LOCLocalUserLabel";
         /// <summary>
-        /// Authenticate
-        /// </summary>
-        public const string AuthenticateLabel = "LOCAuthenticateLabel";
-        /// <summary>
         /// General
         /// </summary>
         public const string GeneralLabel = "LOCGeneralLabel";
@@ -690,22 +686,6 @@ namespace Playnite
         /// </summary>
         public const string MetaIgdbContribNotif = "LOCMetaIgdbContribNotif";
         /// <summary>
-        /// Downloading Steam library updates…
-        /// </summary>
-        public const string ProgressSteamLibImport = "LOCProgressSteamLibImport";
-        /// <summary>
-        /// Downloading GOG library updates…
-        /// </summary>
-        public const string ProgressGOGLibImport = "LOCProgressGOGLibImport";
-        /// <summary>
-        /// Downloading Origin library updates…
-        /// </summary>
-        public const string ProgressOriginLibImport = "LOCProgressOriginLibImport";
-        /// <summary>
-        /// Downloading Battle.net library updates…
-        /// </summary>
-        public const string ProgressBattleNetLibImport = "LOCProgressBattleNetLibImport";
-        /// <summary>
         /// Downloading metadata…
         /// </summary>
         public const string ProgressMetadata = "LOCProgressMetadata";
@@ -721,10 +701,6 @@ namespace Playnite
         /// Downloading library updates…
         /// </summary>
         public const string ProgressLibraryGames = "LOCProgressLibraryGames";
-        /// <summary>
-        /// Downloading library updates…
-        /// </summary>
-        public const string ProgressSteamCategoryImport = "LOCProgressSteamCategoryImport";
         /// <summary>
         /// Library update finished
         /// </summary>
@@ -1010,26 +986,6 @@ namespace Playnite
         /// </summary>
         public const string SettingsImportLabel = "LOCSettingsImportLabel";
         /// <summary>
-        /// Import installed games
-        /// </summary>
-        public const string SettingsImportInstalledLabel = "LOCSettingsImportInstalledLabel";
-        /// <summary>
-        /// Connect account
-        /// </summary>
-        public const string SettingsConnectAccount = "LOCSettingsConnectAccount";
-        /// <summary>
-        /// Import not installed games
-        /// </summary>
-        public const string SettingsImportUninstalledLabel = "LOCSettingsImportUninstalledLabel";
-        /// <summary>
-        /// Import all games
-        /// </summary>
-        public const string SettingsImportLibraryLabel = "LOCSettingsImportLibraryLabel";
-        /// <summary>
-        /// Import all games (Public account or API key must be provided)
-        /// </summary>
-        public const string SettingsImportSteamLibraryLabel = "LOCSettingsImportSteamLibraryLabel";
-        /// <summary>
         /// Invalid database file location, proper file path must be set.
         /// </summary>
         public const string SettingsInvalidDBLocation = "LOCSettingsInvalidDBLocation";
@@ -1037,14 +993,6 @@ namespace Playnite
         /// Account name cannot be empty.
         /// </summary>
         public const string SettingsInvalidAccountName = "LOCSettingsInvalidAccountName";
-        /// <summary>
-        /// No Steam account selected for library import.
-        /// </summary>
-        public const string SettingsInvalidSteamAccountLibImport = "LOCSettingsInvalidSteamAccountLibImport";
-        /// <summary>
-        /// No Steam account selected for category import.
-        /// </summary>
-        public const string SettingsInvalidSteamAccountCatImport = "LOCSettingsInvalidSteamAccountCatImport";
         /// <summary>
         /// Download 3rd party library updates on startup
         /// </summary>
@@ -1174,10 +1122,6 @@ namespace Playnite
         /// </summary>
         public const string SettingsDBLocation = "LOCSettingsDBLocation";
         /// <summary>
-        /// What's my account name?
-        /// </summary>
-        public const string SettingsWhatsSteamName = "LOCSettingsWhatsSteamName";
-        /// <summary>
         /// Login status:
         /// </summary>
         public const string SettingsLoginStatus = "LOCSettingsLoginStatus";
@@ -1185,18 +1129,6 @@ namespace Playnite
         /// Playnite Settings
         /// </summary>
         public const string SettingsWindowTitle = "LOCSettingsWindowTitle";
-        /// <summary>
-        /// Import metadata from Steam account:
-        /// </summary>
-        public const string SettingsSteamImportMetadata = "LOCSettingsSteamImportMetadata";
-        /// <summary>
-        /// Import Steam Categories
-        /// </summary>
-        public const string ImportSteamCategoriesLabel = "LOCImportSteamCategoriesLabel";
-        /// <summary>
-        /// Import Steam Last Played
-        /// </summary>
-        public const string ImportSteamLastActivityLabel = "LOCImportSteamLastActivityLabel";
         /// <summary>
         /// Clear web cache
         /// </summary>
@@ -1226,46 +1158,6 @@ namespace Playnite
         /// </summary>
         public const string SettingsAfterGameClose = "LOCSettingsAfterGameClose";
         /// <summary>
-        /// Launch games using GOG Galaxy client
-        /// </summary>
-        public const string SettingsGOGUseGalaxy = "LOCSettingsGOGUseGalaxy";
-        /// <summary>
-        /// This will enable GOG Galaxy features like cloud saves, game time tracking, etc.
-        /// </summary>
-        public const string SettingsGOGUseGalaxyTooltip = "LOCSettingsGOGUseGalaxyTooltip";
-        /// <summary>
-        /// This will overwrite current categories as well as hidden and favorite states on all Steam games. Do you want to continue?
-        /// </summary>
-        public const string SettingsSteamCatImportWarn = "LOCSettingsSteamCatImportWarn";
-        /// <summary>
-        /// Import Categories?
-        /// </summary>
-        public const string SettingsSteamCatImportWarnTitle = "LOCSettingsSteamCatImportWarnTitle";
-        /// <summary>
-        /// Cannot import categories, account for import is not selected.
-        /// </summary>
-        public const string SettingsSteamCatImportErrorAccount = "LOCSettingsSteamCatImportErrorAccount";
-        /// <summary>
-        /// Cannot import categories, database is not opened.
-        /// </summary>
-        public const string SettingsSteamCatImportErrorDb = "LOCSettingsSteamCatImportErrorDb";
-        /// <summary>
-        /// Failed to import Steam categories: {0}
-        /// </summary>
-        public const string SettingsSteamCatImportError = "LOCSettingsSteamCatImportError";
-        /// <summary>
-        /// Cannot import last played information, account for import is not selected.
-        /// </summary>
-        public const string SettingsSteamLastActivityImportErrorAccount = "LOCSettingsSteamLastActivityImportErrorAccount";
-        /// <summary>
-        /// Cannot import last played information, database is not opened.
-        /// </summary>
-        public const string SettingsSteamLastActivityImportErrorDb = "LOCSettingsSteamLastActivityImportErrorDb";
-        /// <summary>
-        /// Failed to import Steam last played information: {0}
-        /// </summary>
-        public const string SettingsSteamLastActivityImportError = "LOCSettingsSteamLastActivityImportError";
-        /// <summary>
         /// This will log you out of all linked services. Application restart is required, do you want to proceed?
         /// </summary>
         public const string SettingsClearCacheWarn = "LOCSettingsClearCacheWarn";
@@ -1273,14 +1165,6 @@ namespace Playnite
         /// Clear Cache?
         /// </summary>
         public const string SettingsClearCacheTitle = "LOCSettingsClearCacheTitle";
-        /// <summary>
-        /// API Key is required for Steam private accounts
-        /// </summary>
-        public const string SettingsApiKeyTooltip = "LOCSettingsApiKeyTooltip";
-        /// <summary>
-        /// Get API key
-        /// </summary>
-        public const string SettingsApiKeyUrlText = "LOCSettingsApiKeyUrlText";
         /// <summary>
         /// Playnite restart is required to apply new theme
         /// </summary>
@@ -1337,26 +1221,6 @@ namespace Playnite
         /// Show Background Image on Main Screen
         /// </summary>
         public const string SettingsFullscreenBackgroundOnMainScreen = "LOCSettingsFullscreenBackgroundOnMainScreen";
-        /// <summary>
-        /// Background image source:
-        /// </summary>
-        public const string SteamBackgroundSource = "LOCSteamBackgroundSource";
-        /// <summary>
-        /// Game Image
-        /// </summary>
-        public const string SteamBackgroundSourceImage = "LOCSteamBackgroundSourceImage";
-        /// <summary>
-        /// Store Screenshot
-        /// </summary>
-        public const string SteamBackgroundSourceScreenshot = "LOCSteamBackgroundSourceScreenshot";
-        /// <summary>
-        /// Store Background
-        /// </summary>
-        public const string SteamBackgroundSourceStore = "LOCSteamBackgroundSourceStore";
-        /// <summary>
-        /// Banner
-        /// </summary>
-        public const string SteamBackgroundSourceBanner = "LOCSteamBackgroundSourceBanner";
         /// <summary>
         /// Doesn't apply retrospectively to existing games without re-downloading metadata.
         /// </summary>
@@ -1514,10 +1378,6 @@ namespace Playnite
         /// </summary>
         public const string SettingsShowMediaSizeWarning = "LOCSettingsShowMediaSizeWarning";
         /// <summary>
-        /// Start games directly without running official client
-        /// </summary>
-        public const string SettingsStartGameDirectly = "LOCSettingsStartGameDirectly";
-        /// <summary>
         /// Directory open command
         /// </summary>
         public const string OpenDirectoryCommand = "LOCOpenDirectoryCommand";
@@ -1562,10 +1422,6 @@ namespace Playnite
         /// </summary>
         public const string ImportError = "LOCImportError";
         /// <summary>
-        /// Checking authentication status…
-        /// </summary>
-        public const string LoginChecking = "LOCLoginChecking";
-        /// <summary>
         /// Authentification required
         /// </summary>
         public const string LoginRequired = "LOCLoginRequired";
@@ -1573,18 +1429,6 @@ namespace Playnite
         /// Authentification failed
         /// </summary>
         public const string LoginFailed = "LOCLoginFailed";
-        /// <summary>
-        /// User is authenticated
-        /// </summary>
-        public const string LoggedIn = "LOCLoggedIn";
-        /// <summary>
-        /// Requires authentication
-        /// </summary>
-        public const string NotLoggedIn = "LOCNotLoggedIn";
-        /// <summary>
-        /// Failed to authenticate user.
-        /// </summary>
-        public const string NotLoggedInError = "LOCNotLoggedInError";
         /// <summary>
         /// Metadata Import
         /// </summary>
@@ -1673,30 +1517,6 @@ namespace Playnite
         /// Automatically import games from the services listed below. Any later game changes (Installation Status) will be updated automatically on Playnite startup or when triggered manually. The selected settings will affect the initial and all subsequent imports.
         /// </summary>
         public const string FirstImportIntroduction = "LOCFirstImportIntroduction";
-        /// <summary>
-        /// Steam Integration
-        /// </summary>
-        public const string FirstSteamIntegration = "LOCFirstSteamIntegration";
-        /// <summary>
-        /// Origin Integration
-        /// </summary>
-        public const string FirstOriginIntegration = "LOCFirstOriginIntegration";
-        /// <summary>
-        /// GOG Integration
-        /// </summary>
-        public const string FirstGOGIntegration = "LOCFirstGOGIntegration";
-        /// <summary>
-        /// Battle.net Integration
-        /// </summary>
-        public const string FirstBattleNetIntegration = "LOCFirstBattleNetIntegration";
-        /// <summary>
-        /// Uplay Integration
-        /// </summary>
-        public const string FirstUplayIntegration = "LOCFirstUplayIntegration";
-        /// <summary>
-        /// Import categories from account:
-        /// </summary>
-        public const string FirstSteamImportCategories = "LOCFirstSteamImportCategories";
         /// <summary>
         /// Other games
         /// </summary>
@@ -2117,50 +1937,6 @@ namespace Playnite
         /// The diagnostics package has been created and submitted successfully.
         /// </summary>
         public const string DiagPackageCreationSuccess = "LOCDiagPackageCreationSuccess";
-        /// <summary>
-        /// Failed to import Steam categories.
-        /// </summary>
-        public const string SteamCategoryImportError = "LOCSteamCategoryImportError";
-        /// <summary>
-        /// Failed to import installed Battle.net games.
-        /// </summary>
-        public const string BnetInstalledImportError = "LOCBnetInstalledImportError";
-        /// <summary>
-        /// Failed to import installed Steam games.
-        /// </summary>
-        public const string SteamInstalledImportError = "LOCSteamInstalledImportError";
-        /// <summary>
-        /// Failed to import installed GOG games.
-        /// </summary>
-        public const string GOGInstalledImportError = "LOCGOGInstalledImportError";
-        /// <summary>
-        /// Failed to import installed Origin games.
-        /// </summary>
-        public const string OriginInstalledImportError = "LOCOriginInstalledImportError";
-        /// <summary>
-        /// Failed to import installed Uplay games.
-        /// </summary>
-        public const string UplayInstalledImportError = "LOCUplayInstalledImportError";
-        /// <summary>
-        /// Failed to download Battle.net library.
-        /// </summary>
-        public const string BnetLibraryImportError = "LOCBnetLibraryImportError";
-        /// <summary>
-        /// Failed to download Steam library.
-        /// </summary>
-        public const string SteamLibraryImportError = "LOCSteamLibraryImportError";
-        /// <summary>
-        /// Failed to download GOG library.
-        /// </summary>
-        public const string GOGLibraryImportError = "LOCGOGLibraryImportError";
-        /// <summary>
-        /// Failed to download Origin library.
-        /// </summary>
-        public const string OriginLibraryImportError = "LOCOriginLibraryImportError";
-        /// <summary>
-        /// Failed to download Uplay library.
-        /// </summary>
-        public const string UplayLibraryImportError = "LOCUplayLibraryImportError";
         /// <summary>
         /// Failed to import games from {0}.
         /// </summary>
@@ -3166,66 +2942,6 @@ namespace Playnite
         /// </summary>
         public const string CommonLinksStorePage = "LOCCommonLinksStorePage";
         /// <summary>
-        /// itch.io will be launched. Please sign in and then close this message.
-        /// </summary>
-        public const string ItchioSignInNotif = "LOCItchioSignInNotif";
-        /// <summary>
-        /// Waiting for user to sign in, please close this when you're done…
-        /// </summary>
-        public const string ItchioSignInWaitMessage = "LOCItchioSignInWaitMessage";
-        /// <summary>
-        /// itch.io app version 25 or newer is not installed.
-        /// </summary>
-        public const string ItchioClientNotInstalledError = "LOCItchioClientNotInstalledError";
-        /// <summary>
-        /// Account Login
-        /// </summary>
-        public const string GOGUseLogin = "LOCGOGUseLogin";
-        /// <summary>
-        /// Account Name
-        /// </summary>
-        public const string GOGUseAccountName = "LOCGOGUseAccountName";
-        /// <summary>
-        /// Login to your account or use your public account name to sync your full library.
-        /// </summary>
-        public const string GOGAccountSyncDescription = "LOCGOGAccountSyncDescription";
-        /// <summary>
-        /// Account URL Name
-        /// </summary>
-        public const string SteamCustomUrlName = "LOCSteamCustomUrlName";
-        /// <summary>
-        /// Authenticated User
-        /// </summary>
-        public const string SteamLoggedInUser = "LOCSteamLoggedInUser";
-        /// <summary>
-        /// Account is private, API Key is required.
-        /// </summary>
-        public const string SteamRequiresApiKey = "LOCSteamRequiresApiKey";
-        /// <summary>
-        /// Community Hub
-        /// </summary>
-        public const string SteamLinksCommunityHub = "LOCSteamLinksCommunityHub";
-        /// <summary>
-        /// Discussions
-        /// </summary>
-        public const string SteamLinksDiscussions = "LOCSteamLinksDiscussions";
-        /// <summary>
-        /// Guides
-        /// </summary>
-        public const string SteamLinksGuides = "LOCSteamLinksGuides";
-        /// <summary>
-        /// Workshop
-        /// </summary>
-        public const string SteamLinksWorkshop = "LOCSteamLinksWorkshop";
-        /// <summary>
-        /// Download vertical cover images
-        /// </summary>
-        public const string SteamUseVerticalCovers = "LOCSteamUseVerticalCovers";
-        /// <summary>
-        /// Import generic free items
-        /// </summary>
-        public const string SteamImportFreeSubGames = "LOCSteamImportFreeSubGames";
-        /// <summary>
         /// The initial setup is not complete. Playnite will now restart to Desktop Mode to finish the procedure.
         /// </summary>
         public const string FullscreenFirstTimeError = "LOCFullscreenFirstTimeError";
@@ -3266,48 +2982,96 @@ namespace Playnite
         /// </summary>
         public const string RandomGamePickAnother = "LOCRandomGamePickAnother";
         /// <summary>
-        /// Use screenshots if artwork is not available
+        /// Add-ons…
         /// </summary>
-        public const string IgdbUseScreenshotIfNecessary = "LOCIgdbUseScreenshotIfNecessary";
+        public const string MenuAddons = "LOCMenuAddons";
         /// <summary>
-        /// If multiple images are available then use:
+        /// Installed
         /// </summary>
-        public const string IgdbMultipleArtworkOptionsTitle = "LOCIgdbMultipleArtworkOptionsTitle";
+        public const string ExtensionsInstalled = "LOCExtensionsInstalled";
         /// <summary>
-        /// Select background image for {0}
+        /// Browse
         /// </summary>
-        public const string IgdbSelectBackgroundTitle = "LOCIgdbSelectBackgroundTitle";
+        public const string ExtensionsBrowse = "LOCExtensionsBrowse";
         /// <summary>
-        /// Ignore third party store games
+        /// Updates
         /// </summary>
-        public const string HumbleIgnoreThirdPartyStoreGames = "LOCHumbleIgnoreThirdPartyStoreGames";
+        public const string ExtensionsUpdates = "LOCExtensionsUpdates";
         /// <summary>
-        /// Import Trove games
+        /// Updates ({0})
         /// </summary>
-        public const string HumbleImportTroveGames = "LOCHumbleImportTroveGames";
+        public const string ExtensionsUpdatesCount = "LOCExtensionsUpdatesCount";
         /// <summary>
-        /// Enable to skip importing games that require third-party clients,
+        /// Management of installed extensions and themes has been moved to a new "Add-ons" menu.
         /// </summary>
-        public const string HumbleIgnoreThirdPartyStoreGamesTooltip = "LOCHumbleIgnoreThirdPartyStoreGamesTooltip";
+        public const string AddonsConfigMoveInfo = "LOCAddonsConfigMoveInfo";
         /// <summary>
-        /// Import if DRM free version is available
+        /// Themes Desktop
         /// </summary>
-        public const string HumbleImportThirdPartyDrmFree = "LOCHumbleImportThirdPartyDrmFree";
+        public const string AddonsThemesDesktop = "LOCAddonsThemesDesktop";
         /// <summary>
-        /// Import games requiring 3rd party client if DRM free version is also available.
+        /// Themes Fullscren
         /// </summary>
-        public const string HumbleImportThirdPartyDrmFreeTooltip = "LOCHumbleImportThirdPartyDrmFreeTooltip";
+        public const string AddonsThemesFullscren = "LOCAddonsThemesFullscren";
         /// <summary>
-        /// Start Xbox Pass app instead of Microsoft Store when opening client
+        /// Searching…
         /// </summary>
-        public const string XboxXboxAppClientPriorityLaunch = "LOCXboxXboxAppClientPriorityLaunch";
+        public const string AddonsSearching = "LOCAddonsSearching";
         /// <summary>
-        /// Import Xbox 360 games
+        /// Add-on is not compatbile with this version of Playnite.
         /// </summary>
-        public const string XboxImport360Games = "LOCXboxImport360Games";
+        public const string AddonErrorNotCompatible = "LOCAddonErrorNotCompatible";
         /// <summary>
-        /// Import Xbox One games
+        /// Failed to download add-on installation package.
         /// </summary>
-        public const string XboxImportXboneGames = "LOCXboxImportXboneGames";
+        public const string AddonErrorDownloadFailed = "LOCAddonErrorDownloadFailed";
+        /// <summary>
+        /// Failed to download add-on installation manifest.
+        /// </summary>
+        public const string AddonErrorManifestDownloadError = "LOCAddonErrorManifestDownloadError";
+        /// <summary>
+        /// Application restart is required to apply pending changes.
+        /// </summary>
+        public const string AddonChangesRestart = "LOCAddonChangesRestart";
+        /// <summary>
+        /// This add-on is scheduled for installation.
+        /// </summary>
+        public const string AddonQueuedForInstall = "LOCAddonQueuedForInstall";
+        /// <summary>
+        /// Install
+        /// </summary>
+        public const string AddonInstall = "LOCAddonInstall";
+        /// <summary>
+        /// Uninstall
+        /// </summary>
+        public const string AddonUninstall = "LOCAddonUninstall";
+        /// <summary>
+        /// Already installed
+        /// </summary>
+        public const string AddonAlreadyInstalled = "LOCAddonAlreadyInstalled";
+        /// <summary>
+        /// Checking add-on updates…
+        /// </summary>
+        public const string AddonCheckingUpdates = "LOCAddonCheckingUpdates";
+        /// <summary>
+        /// Update add-ons
+        /// </summary>
+        public const string AddonUpdateAddons = "LOCAddonUpdateAddons";
+        /// <summary>
+        /// Changelog is not available
+        /// </summary>
+        public const string AddonChangelogNotAvailavble = "LOCAddonChangelogNotAvailavble";
+        /// <summary>
+        /// Downloaded
+        /// </summary>
+        public const string AddonUpdateStatusDownloaded = "LOCAddonUpdateStatusDownloaded";
+        /// <summary>
+        /// Changelog is not available
+        /// </summary>
+        public const string AddonUpdateStatusFailed = "LOCAddonUpdateStatusFailed";
+        /// <summary>
+        /// Downloading {0}…
+        /// </summary>
+        public const string AddonDownloadingAddon = "LOCAddonDownloadingAddon";
     }
 }

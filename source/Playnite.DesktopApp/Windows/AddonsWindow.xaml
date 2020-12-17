@@ -6,19 +6,24 @@
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
-        xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"                     
+        xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
         xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
         Title="{DynamicResource LOCMenuAddons}" Height="600" Width="900"
-        AutomationProperties.AutomationId="WindowExtensions" ShowMinimizeButton="False" ShowMaximizeButton="False">
+        AutomationProperties.AutomationId="WindowExtensions">
 
 
     <DockPanel>
         <DockPanel LastChildFill="False" Margin="5" DockPanel.Dock="Bottom">
             <Button Content="{DynamicResource LOCClose}" DockPanel.Dock="Right"
-                    Style="{StaticResource BottomButton}" IsCancel="True" />
+                    Command="{Binding ConfirmCommand}"
+                    Style="{StaticResource BottomButton}" IsDefault="True" IsCancel="True" />
+            <TextBlock Text="{DynamicResource LOCAddonChangesRestart}" DockPanel.Dock="Left" Margin="5,0,0,0"
+                       Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center"
+                       Foreground="{DynamicResource WarningBrush}"
+                       Visibility="{Binding IsRestartRequired, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </DockPanel>
         
         <TreeView MinWidth="160" DockPanel.Dock="Left" BorderThickness="0">
@@ -28,21 +33,32 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <TreeViewItem Header="{DynamicResource LOCExtensionsInstalled}" IsExpanded="True">
-                <TreeViewItem Header="{DynamicResource LOCLibraries}" />
-                <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" />
-                <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" />
-                <TreeViewItem Header="Themes Desktop" />
-                <TreeViewItem Header="Themes Fullscren" />
-            </TreeViewItem>
-            <TreeViewItem Header="{DynamicResource LOCExtensionsBrowse}" IsExpanded="True">
                 <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="0" />
                 <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="1" />
                 <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="2" />
-                <TreeViewItem Header="Themes Desktop" Tag="3"/>
-                <TreeViewItem Header="Themes Fullscren" Tag="4"/>
+                <TreeViewItem Header="{DynamicResource LOCAddonsThemesDesktop}" Tag="3" />
+                <TreeViewItem Header="{DynamicResource LOCAddonsThemesFullscren}" Tag="4" />
             </TreeViewItem>
-            <TreeViewItem Header="{DynamicResource LOCExtensionsUpdates}" IsExpanded="True">
-
+            <TreeViewItem Header="{DynamicResource LOCExtensionsBrowse}" IsExpanded="True">
+                <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="5" />
+                <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="6" />
+                <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="7" />
+                <TreeViewItem Header="{DynamicResource LOCAddonsThemesDesktop}" Tag="8" />
+                <TreeViewItem Header="{DynamicResource LOCAddonsThemesFullscren}" Tag="9"/>
+            </TreeViewItem>
+            <TreeViewItem Tag="10">
+                <TreeViewItem.Style>
+                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                        <Setter Property="Header" Value="{Binding UpdateAddonCount}" />
+                        <Setter Property="HeaderStringFormat" Value="{DynamicResource LOCExtensionsUpdatesCount}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding UpdateAddonCount}" Value="0">
+                                <Setter Property="Header" Value="{DynamicResource LOCExtensionsUpdates}" />
+                                <Setter Property="HeaderStringFormat" Value="{x:Null}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TreeViewItem.Style>
             </TreeViewItem>
         </TreeView>
 

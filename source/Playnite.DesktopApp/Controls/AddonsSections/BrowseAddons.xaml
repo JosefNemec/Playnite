@@ -25,7 +25,7 @@
         <p:BindingProxy x:Key="RootDataContext" Data="{Binding}" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="5">
         <Grid Visibility="{Binding IsOnlineListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
@@ -36,11 +36,13 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,4">
-                <TextBox Text="{Binding AddonSearchText, UpdateSourceTrigger=PropertyChanged}" Width="200" />
-                <Button Content="{DynamicResource LOCSearchLabel}" Margin="5,0,0,0"
-                        Command="{Binding SearchAddonCommand}"/>
-            </StackPanel>
+            <DockPanel Grid.Column="0" Margin="0,0,0,4">
+                <Button Content="{DynamicResource LOCSearchLabel}"
+                        Command="{Binding SearchAddonCommand}"
+                        Margin="5,0,0,0" DockPanel.Dock="Right"/>
+                <TextBox Text="{Binding AddonSearchText, UpdateSourceTrigger=PropertyChanged}"
+                         DockPanel.Dock="Left"  />
+            </DockPanel>
 
             <ListBox ItemsSource="{Binding OnlineAddonList}"
                      Name="ListOnlineAddons" Grid.Column="0" Grid.Row="1"
@@ -61,7 +63,8 @@
 
             <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"
                           HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <StackPanel DataContext="{Binding SelectedItem, ElementName=ListOnlineAddons}">
+                <StackPanel DataContext="{Binding SelectedItem, ElementName=ListOnlineAddons}"
+                            Visibility="{Binding SelectedItem, ElementName=ListOnlineAddons, Converter={StaticResource NullToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{DynamicResource LOCExtensionCreatedBy}" />
                         <TextBlock Text="{Binding Author}" Margin="5,0,0,0" />
@@ -90,7 +93,27 @@
                     </Hyperlink>
                     </TextBlock>
 
-                    <Button Content="Install" HorizontalAlignment="Left" Margin="0,20,0,0" />
+                    <Button HorizontalAlignment="Left" Margin="0,20,0,0"
+                            Command="{Binding Data.InstallAddonCommand, Source={StaticResource RootDataContext}}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding IsQueuedForInstall, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Content" Value="{DynamicResource LOCAddonInstall}" />
+                                <Style.Triggers>                                    
+                                    <DataTrigger Binding="{Binding IsInstalled}" Value="True">
+                                        <Setter Property="Content" Value="{DynamicResource LOCAddonAlreadyInstalled}" />
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <TextBlock Text="{DynamicResource LOCAddonQueuedForInstall}"
+                               Margin="0,10,0,0" TextWrapping="Wrap"
+                               Foreground="{DynamicResource WarningBrush}"
+                               Visibility="{Binding IsQueuedForInstall, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <TextBlock TextWrapping="Wrap" Margin="0,10,0,0"
                                Text="{Binding Description}"
@@ -101,7 +124,7 @@
         </Grid>
 
         <TextBlock Visibility="{Binding IsOnlineListLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
-                   Text="{DynamicResource LOCDownloadingLabel}"
+                   Text="{DynamicResource LOCAddonsSearching}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>    
 </UserControl>

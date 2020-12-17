@@ -845,5 +845,23 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCExtensionsInstalled">Installed</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">Browse</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">Updates</sys:String>
+    <sys:String x:Key="LOCExtensionsUpdatesCount">Updates ({0})</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo">Management of installed extensions and themes has been moved to a new "Add-ons" menu.</sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">Themes Desktop</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">Themes Fullscren</sys:String>
+    <sys:String x:Key="LOCAddonsSearching">Searching…</sys:String>
+    <sys:String x:Key="LOCAddonErrorNotCompatible">Add-on is not compatbile with this version of Playnite.</sys:String>
+    <sys:String x:Key="LOCAddonErrorDownloadFailed">Failed to download add-on installation package.</sys:String>
+    <sys:String x:Key="LOCAddonErrorManifestDownloadError">Failed to download add-on installation manifest.</sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">Application restart is required to apply pending changes.</sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">This add-on is scheduled for installation.</sys:String>
+    <sys:String x:Key="LOCAddonInstall">Install</sys:String>
+    <sys:String x:Key="LOCAddonUninstall">Uninstall</sys:String>
+    <sys:String x:Key="LOCAddonAlreadyInstalled">Already installed</sys:String>
+    <sys:String x:Key="LOCAddonCheckingUpdates">Checking add-on updates…</sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">Update add-ons</sys:String>
+    <sys:String x:Key="LOCAddonChangelogNotAvailavble">Changelog is not available</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Scheduled for installation</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusFailed">Download failed</sys:String>
+    <sys:String x:Key="LOCAddonDownloadingAddon">Downloading {0}…</sys:String>
 </ResourceDictionary>

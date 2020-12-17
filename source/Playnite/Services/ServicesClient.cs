@@ -67,7 +67,7 @@ namespace Playnite.Services
             }
         }
 
-        public IEnumerable<AddonManifest> GetAllAddons()
+        public IEnumerable<AddonManifest> GetAllAddons(AddonType type, string searchTerm)
         {
             foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\"))
             {
@@ -78,6 +78,29 @@ namespace Playnite.Services
             {
                 yield return Serialization.FromYamlFile<AddonManifest>(file);
             }
+        }
+
+        public AddonManifest GetAddon(string addonId)
+        {
+            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\"))
+            {
+                var addon = Serialization.FromYamlFile<AddonManifest>(file);
+                if (addon.AddonId == addonId)
+                {
+                    return addon;
+                }
+            }
+
+            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\themes\"))
+            {
+                var addon = Serialization.FromYamlFile<AddonManifest>(file);
+                if (addon.AddonId == addonId)
+                {
+                    return addon;
+                }
+            }
+
+            return null;
         }
     }
 }

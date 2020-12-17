@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.AddonsSections.AddonUpdates"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+             xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="700">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style TargetType="ContentControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <TextBlock Style="{DynamicResource BaseTextBlockStyle}">
+                            <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <p:BindingProxy x:Key="RootDataContext" Data="{Binding}" />
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <DockPanel Visibility="{Binding IsUpdateListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+                <Button Content="{DynamicResource LOCAddonUpdateAddons}" Margin="0,5,0,5"
+                        Command="{Binding UpdateAddonsCommand}"/>
+            </StackPanel>
+            <ScrollViewer DockPanel.Dock="Top"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding UpdateAddonList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="2"
+                                    BorderThickness="{DynamicResource ControlBorderThickness}"
+                                    CornerRadius="{DynamicResource ControlCornerRadius}"
+                                    BorderBrush="{DynamicResource NormalBorderBrush}">
+                                <DockPanel>
+                                    <CheckBox DockPanel.Dock="Left" VerticalAlignment="Top" Margin="5,5,0,0"
+                                              IsChecked="{Binding Selected}"/>
+                                    <Expander DockPanel.Dock="Right" Background="Transparent">
+                                        <Expander.Header>
+                                            <DockPanel>
+                                                <TextBlock Text="{Binding Status, Converter={StaticResource ObjectToStringConverter}}" DockPanel.Dock="Right"
+                                                           ToolTip="{Binding StatusMessage}" ToolTipService.InitialShowDelay="0"
+                                                           VerticalAlignment="Center" Margin="5,5,15,5">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Status}" Value="2">
+                                                                    <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <StackPanel DockPanel.Dock="Left">
+                                                    <TextBlock Text="{Binding Item.Name}" Margin="0,5,5,5"
+                                                       Style="{StaticResource BaseTextBlockStyle}"/>
+                                                    <TextBlock Text="{Binding UpdateInfo}" Margin="0,0,5,5"
+                                                       Style="{StaticResource BaseTextBlockStyle}" />
+                                                </StackPanel>
+                                            </DockPanel>
+                                        </Expander.Header>
+                                        <TextBlock Text="{Binding Changelog}" Margin="5,5,5,5" TextWrapping="Wrap"
+                                               Style="{StaticResource BaseTextBlockStyle}"/>
+                                    </Expander>
+                                </DockPanel>
+                            </Border>                            
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+        
+        <TextBlock Visibility="{Binding IsUpdateListLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Text="{DynamicResource LOCAddonCheckingUpdates}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>    
+</UserControl>

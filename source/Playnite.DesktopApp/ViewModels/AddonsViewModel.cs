@@ -20,11 +20,17 @@ namespace Playnite.DesktopApp.ViewModels
     {
         private enum View : int
         {
-            BrowseLibraries = 0,
-            BrowseMetadata = 1,
-            BrowseGeneric = 2,
-            BrowseThemesDesktop = 3,
-            BrowseThemesFullscreen = 4
+            InstalledLibraries = 0,
+            InstalledMetadata = 1,
+            InstalledGeneric = 2,
+            InstalledThemesDesktop = 3,
+            InstalledThemesFullscreen = 4,
+            BrowseLibraries = 5,
+            BrowseMetadata = 6,
+            BrowseGeneric = 7,
+            BrowseThemesDesktop = 8,
+            BrowseThemesFullscreen = 9,
+            Updates = 10
         }
 
         private static ILogger logger = LogManager.GetLogger();
@@ -35,9 +41,20 @@ namespace Playnite.DesktopApp.ViewModels
         private ServicesClient serviceClient;
         private PlayniteSettings settings;
         private readonly Dictionary<View, UserControl> sectionViews;
-        internal bool extUninstallQeueued = false;
+        private PlayniteApplication application;
 
         public ExtensionFactory Extensions { get; set; }
+
+        private bool isRestartRequired = false;
+        public bool IsRestartRequired
+        {
+            get => isRestartRequired;
+            set
+            {
+                isRestartRequired = value;
+                OnPropertyChanged();
+            }
+        }
 
         private UserControl selectedSectionView;
         public UserControl SelectedSectionView
@@ -100,14 +117,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> CancelCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                CloseView();
-            });
-        }
-
         public RelayCommand<object> ConfirmCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -124,14 +133,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> SearchAddonCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                SearchAddon();
-            });
-        }
-
         public AddonsViewModel(
             IWindowFactory window,
             IPlayniteAPI api,
@@ -139,7 +140,8 @@ namespace Playnite.DesktopApp.ViewModels
             IResourceProvider resources,
             ServicesClient serviceClient,
             ExtensionFactory extensions,
-            PlayniteSettings settings)
+            PlayniteSettings settings,
+            PlayniteApplication application)
         {
             this.window = window;
             this.api = api;
@@ -147,15 +149,22 @@ namespace Playnite.DesktopApp.ViewModels
             this.resources = resources;
             this.serviceClient = serviceClient;
             this.settings = settings;
+            this.application = application;
             Extensions = extensions;
 
             sectionViews = new Dictionary<View, UserControl>()
             {
+                { View.InstalledLibraries, new Controls.AddonsSections.InstalledExtensions() { DataContext = this } },
+                { View.InstalledMetadata, new Controls.AddonsSections.InstalledExtensions() { DataContext = this } },
+                { View.InstalledGeneric, new Controls.AddonsSections.InstalledExtensions() { DataContext = this } },
+                { View.InstalledThemesDesktop, new Controls.AddonsSections.InstalledThemes() { DataContext = this } },
+                { View.InstalledThemesFullscreen, new Controls.AddonsSections.InstalledThemes() { DataContext = this } },
                 { View.BrowseLibraries, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
                 { View.BrowseMetadata, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
                 { View.BrowseGeneric, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
                 { View.BrowseThemesDesktop, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
                 { View.BrowseThemesFullscreen, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
+                { View.Updates, new Controls.AddonsSections.AddonUpdates() { DataContext = this } },
             };
 
             var descriptions = ExtensionFactory.GetExtensionDescriptors();
@@ -191,6 +200,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             DesktopThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
             FullscreenThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
+            CheckUpdates();
         }
 
         public bool? OpenView()
@@ -215,38 +225,50 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             var view = (View)viewIndex;
+            SelectedSectionView = sectionViews[view];
             switch (view)
             {
                 case View.BrowseLibraries:
-                    IsOnlineListLoading = true;
-                    SelectedSectionView = sectionViews[view];
-                    Task.Run(() =>
-                    {
-                        try
-                        {
-                            OnlineAddonList = serviceClient.GetAllAddons().ToList();
-                        }
-                        finally
-                        {
-                            IsOnlineListLoading = false;
-                        }
-                    });
+                    activeAddonSearchMode = AddonType.Library;
+                    SearchAddon();
                     break;
                 case View.BrowseMetadata:
+                    activeAddonSearchMode = AddonType.Metadata;
+                    SearchAddon();
                     break;
                 case View.BrowseGeneric:
+                    activeAddonSearchMode = AddonType.Generic;
+                    SearchAddon();
                     break;
                 case View.BrowseThemesDesktop:
+                    activeAddonSearchMode = AddonType.ThemeDesktop;
+                    SearchAddon();
                     break;
                 case View.BrowseThemesFullscreen:
+                    activeAddonSearchMode = AddonType.ThemeFullscreen;
+                    SearchAddon();
+                    break;
+                case View.InstalledLibraries:
+                    ActiveInstalledExtensionsList = LibraryPluginList;
+                    break;
+                case View.InstalledMetadata:
+                    ActiveInstalledExtensionsList = MetadataPluginList;
+                    break;
+                case View.InstalledGeneric:
+                    ActiveInstalledExtensionsList = OtherPluginList;
+                    break;
+                case View.InstalledThemesDesktop:
+                    ActiveInstalledThemeList = DesktopThemeList;
+                    break;
+                case View.InstalledThemesFullscreen:
+                    ActiveInstalledThemeList = FullscreenThemeList;
+                    break;
+                case View.Updates:
+                    CheckUpdates();
                     break;
                 default:
                     break;
             }
-        }
-
-        private void SearchAddon()
-        {
         }
 
         private void UninstallExtension(InstalledPlugin a)
@@ -257,7 +279,7 @@ namespace Playnite.DesktopApp.ViewModels
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                extUninstallQeueued = true;
+                IsRestartRequired = true;
                 ExtensionInstaller.QueueExtensionUninstall(a.Description.DirectoryPath);
             }
         }
@@ -270,7 +292,7 @@ namespace Playnite.DesktopApp.ViewModels
                MessageBoxButton.YesNo,
                MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                extUninstallQeueued = true;
+                IsRestartRequired = true;
                 ExtensionInstaller.QueueExtensionUninstall(a.DirectoryPath);
             }
         }
@@ -282,18 +304,24 @@ namespace Playnite.DesktopApp.ViewModels
             disabledPlugs.AddMissing(OtherPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList());
             if (settings.DisabledPlugins?.IsListEqual(disabledPlugs) != true)
             {
+                IsRestartRequired = true;
                 settings.DisabledPlugins = disabledPlugs;
             }
         }
 
-        public void CloseView()
-        {
-            window.Close(false);
-        }
-
         public void ConfirmDialog()
         {
-            //UpdateDisabledExtensions();
+            UpdateDisabledExtensions();
+            if (IsRestartRequired)
+            {
+                if (dialogs.ShowMessage(
+                       LOC.SettingsRestartAskMessage,
+                       LOC.SettingsRestartTitle,
+                       MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    application.Restart(new CmdLineOptions() { SkipLibUpdate = true });
+                }
+            }
 
             window.Close(true);
         }
