@@ -135,9 +135,9 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public object IconImageObject => ImageSourceManager.GetImage(EditingGame.Icon, false, new BitmapLoadProperties(256, 256));
-        public object CoverImageObject => ImageSourceManager.GetImage(EditingGame.CoverImage, false, new BitmapLoadProperties(900, 900));
-        public object BackgroundImageObject => ImageSourceManager.GetImage(EditingGame.BackgroundImage, false, new BitmapLoadProperties(1920, 1080));
+        public object IconImageObject => ImageSourceManager.GetImage(EditingGame.Icon, false, new BitmapLoadProperties(0, 256));
+        public object CoverImageObject => ImageSourceManager.GetImage(EditingGame.CoverImage, false, new BitmapLoadProperties(0, 900));
+        public object BackgroundImageObject => ImageSourceManager.GetImage(EditingGame.BackgroundImage, false, new BitmapLoadProperties(0, 1080));
 
         #region Database fields
 
