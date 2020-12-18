@@ -26,6 +26,7 @@ using Playnite.SDK.Plugins;
 using Playnite.Metadata.Providers;
 using System.Text.RegularExpressions;
 using Playnite.Common.Media.Icons;
+using System.Diagnostics;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -1188,7 +1189,22 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void OpenMetadataFolder()
         {
-            Explorer.OpenDirectory(database.GetFileStoragePath(EditingGame.Id));
+            if (appSettings.DirectoryOpenCommand.IsNullOrWhiteSpace())
+            {
+                Process.Start(database.GetFileStoragePath(EditingGame.Id));
+            }
+            else
+            {
+                try
+                {
+                    ProcessStarter.ShellExecute(appSettings.DirectoryOpenCommand.Replace("{Dir}", database.GetFileStoragePath(EditingGame.Id)));
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to open directory using custom command.");
+                    Process.Start(database.GetFileStoragePath(EditingGame.Id));
+                }
+            }
         }
 
         public void AddNewItemsToDb<TItem>(SelectableDbItemList sourceList, List<Guid> itemsToAdd, IItemCollection<TItem> targetCollection) where TItem : DatabaseObject
