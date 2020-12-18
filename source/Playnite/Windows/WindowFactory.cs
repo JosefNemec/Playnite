@@ -120,6 +120,7 @@ namespace Playnite.Windows
 
         public void Close(bool? result)
         {
+            logger.Debug($"Closing window {GetType()}, {result}.");
             context.Send((a) =>
             {
                 if (asDialog)
@@ -131,7 +132,7 @@ namespace Playnite.Windows
                     }
                     catch (Exception e)
                     {
-                        logger.Error(e, $"DialogResult fail {GetType()}");
+                        logger.Error(e, $"DialogResult fail {GetType()}, {result}");
                         throw;
                     }
                 }
