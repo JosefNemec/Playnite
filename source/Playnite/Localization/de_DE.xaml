@@ -678,7 +678,7 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCReloadScripts">Skripte neu laden</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Alle Skripte erfolgreich neu geladen.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Für die angegebenen Such-/Filterkriterien wurden keine Spiele gefunden</sys:String>
-    <sys:String x:Key="LOCNoItemsFound">Keine Elemente gefunden</sys:String>
+    <sys:String x:Key="LOCNoItemsFound">Keine Inhalte gefunden</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Zu Desktopmodus wechseln</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite beenden</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotheken</sys:String>
