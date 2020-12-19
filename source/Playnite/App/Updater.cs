@@ -129,13 +129,6 @@ namespace Playnite
                 return false;
             }
 
-#if !DEBUG
-            if (!SigningTools.IsTrusted(path))
-            {
-                return false;
-            }
-#endif
-
             return true;
         }
 
