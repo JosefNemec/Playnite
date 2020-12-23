@@ -218,6 +218,11 @@ namespace Playnite.DesktopApp
                     await MainModel.UpdateDatabase(AppSettings.DownloadMetadataOnImport);
                 }
             }
+
+            if (!PlayniteEnvironment.InOfflineMode)
+            {
+                await MainModel.CheckForAddonUpdates();
+            }
         }
 
         private bool ProcessStartupWizard()

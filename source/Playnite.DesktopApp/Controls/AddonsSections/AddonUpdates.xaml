@@ -28,7 +28,7 @@
     <Grid Margin="5">
         <DockPanel Visibility="{Binding IsUpdateListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
             <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left">
-                <Button Content="{DynamicResource LOCAddonUpdateAddons}" Margin="0,5,0,5"
+                <Button Content="{DynamicResource LOCAddonUpdateAddons}" Margin="0,5,0,0"
                         Command="{Binding UpdateAddonsCommand}"/>
             </StackPanel>
             <ScrollViewer DockPanel.Dock="Top"

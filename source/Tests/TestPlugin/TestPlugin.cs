@@ -157,8 +157,7 @@ namespace TestPlugin
                     Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"),
                     IconPadding = new System.Windows.Thickness(4),
                     ProgressValue = 0
-                },
-                new CalcSidebar() { Title = null }
+                }
             };
 
             //for (int i = 0; i < 20; i++)

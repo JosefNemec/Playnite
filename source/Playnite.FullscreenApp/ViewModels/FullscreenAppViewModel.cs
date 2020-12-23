@@ -1367,6 +1367,56 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        public async Task CheckForAddonUpdates()
+        {
+            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
+            {
+                GlobalTaskHandler.CancelToken.Cancel();
+                await GlobalTaskHandler.ProgressTask;
+            }
+
+            GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+            GlobalTaskHandler.ProgressTask = Task.Run(() =>
+            {
+                ProgressVisible = true;
+                ProgressValue = 0;
+                ProgressTotal = 1;
+                ProgressStatus = Resources.GetString(LOC.AddonLookingForUpdates);
+
+                try
+                {
+                    var updates = Addons.CheckAddonUpdates(application.ServicesClient);
+                    if (updates.HasItems())
+                    {
+                        PlayniteApi.Notifications.Add(new NotificationMessage("AddonUpdateAvailable", Resources.GetString(LOC.AddonUpdatesAvailable), NotificationType.Info,
+                            () =>
+                            {
+                                new AddonsViewModel(
+                                     new AddonsUpdateWindowFactory(),
+                                     PlayniteApi,
+                                     Dialogs,
+                                     Resources,
+                                     application.ServicesClient,
+                                     Extensions,
+                                     AppSettings,
+                                     application,
+                                     updates).OpenView();
+                            }));
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    Logger.Error(e, "Failed to check for addon updates.");
+                }
+                finally
+                {
+                    ProgressVisible = false;
+                }
+            });
+
+            await GlobalTaskHandler.ProgressTask;
+        }
+
         private void OnFileDropped(DragEventArgs args)
         {
             if (args.Data.GetDataPresent(DataFormats.FileDrop))

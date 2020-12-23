@@ -46,6 +46,7 @@
 
             <ListBox ItemsSource="{Binding OnlineAddonList}"
                      Name="ListOnlineAddons" Grid.Column="0" Grid.Row="1"
+                     ScrollViewer.CanContentScroll="False"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -61,7 +62,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"
+            <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="15,0,5,0"
                           HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                 <StackPanel DataContext="{Binding SelectedItem, ElementName=ListOnlineAddons}"
                             Visibility="{Binding SelectedItem, ElementName=ListOnlineAddons, Converter={StaticResource NullToVisibilityConverter}}">

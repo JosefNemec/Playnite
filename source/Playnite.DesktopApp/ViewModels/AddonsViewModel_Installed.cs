@@ -73,7 +73,7 @@ namespace Playnite.DesktopApp.ViewModels
         }
     }
 
-    public partial class AddonsViewModel : ObservableObject
+    public partial class AddonsViewModel : Playnite.ViewModels.AddonsViewModelBase
     {
         private List<InstalledPlugin> activeInstalledExtensionsList;
         public List<InstalledPlugin> ActiveInstalledExtensionsList
@@ -99,27 +99,27 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<InstalledPlugin> LibraryPluginList
         {
-            get;
+            get; private set;
         }
 
         public List<InstalledPlugin> MetadataPluginList
         {
-            get;
+            get; private set;
         }
 
         public List<InstalledPlugin> OtherPluginList
         {
-            get;
+            get; private set;
         }
 
         public List<ThemeManifest> DesktopThemeList
         {
-            get;
+            get; private set;
         }
 
         public List<ThemeManifest> FullscreenThemeList
         {
-            get;
+            get; private set;
         }
     }
 }

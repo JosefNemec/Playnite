@@ -3062,16 +3062,28 @@ namespace Playnite
         /// </summary>
         public const string AddonChangelogNotAvailavble = "LOCAddonChangelogNotAvailavble";
         /// <summary>
-        /// Downloaded
+        /// Scheduled for installation
         /// </summary>
         public const string AddonUpdateStatusDownloaded = "LOCAddonUpdateStatusDownloaded";
         /// <summary>
-        /// Changelog is not available
+        /// Download failed
         /// </summary>
         public const string AddonUpdateStatusFailed = "LOCAddonUpdateStatusFailed";
         /// <summary>
         /// Downloading {0}…
         /// </summary>
         public const string AddonDownloadingAddon = "LOCAddonDownloadingAddon";
+        /// <summary>
+        /// Looking for add-on updates…
+        /// </summary>
+        public const string AddonLookingForUpdates = "LOCAddonLookingForUpdates";
+        /// <summary>
+        /// One or more add-on updates are available.
+        /// </summary>
+        public const string AddonUpdatesAvailable = "LOCAddonUpdatesAvailable";
+        /// <summary>
+        /// Select items to update
+        /// </summary>
+        public const string AddonSelectToUpdate = "LOCAddonSelectToUpdate";
     }
 }

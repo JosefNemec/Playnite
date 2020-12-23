@@ -148,6 +148,7 @@
     <Compile Include="Markup\MainViewModel.cs" />
     <Compile Include="Markup\Settings.cs" />
     <Compile Include="Markup\ThemeFile.cs" />
+    <Compile Include="ViewModels\AddonsViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
@@ -171,6 +172,9 @@
     </Compile>
     <Compile Include="Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddonsUpdateWindow.xaml.cs">
+      <DependentUpon>AddonsUpdateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
@@ -401,6 +405,10 @@
     <Page Include="Windows\RandomGameSelectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddonsUpdateWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\UpdateWindow.xaml">
       <SubType>Designer</SubType>

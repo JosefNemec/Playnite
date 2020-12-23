@@ -864,4 +864,7 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Scheduled for installation</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">Download failed</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Downloading {0}…</sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates">Looking for add-on updates…</sys:String>
+    <sys:String x:Key="LOCAddonUpdatesAvailable">One or more add-on updates are available.</sys:String>
+    <sys:String x:Key="LOCAddonSelectToUpdate">Select items to update</sys:String>
 </ResourceDictionary>

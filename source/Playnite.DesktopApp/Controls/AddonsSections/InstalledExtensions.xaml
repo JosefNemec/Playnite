@@ -133,6 +133,7 @@
         </DockPanel>
 
         <ListBox Grid.Column="0" Name="ListPlugins" SelectedIndex="0"
+                 ScrollViewer.CanContentScroll="False"
                  ItemsSource="{Binding ActiveInstalledExtensionsList}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">

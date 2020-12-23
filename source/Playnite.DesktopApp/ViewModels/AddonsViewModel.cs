@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public partial class AddonsViewModel : ObservableObject
+    public partial class AddonsViewModel : Playnite.ViewModels.AddonsViewModelBase
     {
         private enum View : int
         {
@@ -34,27 +34,14 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         private static ILogger logger = LogManager.GetLogger();
-        private IDialogsFactory dialogs;
-        private IResourceProvider resources;
         private IWindowFactory window;
         private IPlayniteAPI api;
         private ServicesClient serviceClient;
         private PlayniteSettings settings;
-        private readonly Dictionary<View, UserControl> sectionViews;
+        private Dictionary<View, UserControl> sectionViews;
         private PlayniteApplication application;
 
         public ExtensionFactory Extensions { get; set; }
-
-        private bool isRestartRequired = false;
-        public bool IsRestartRequired
-        {
-            get => isRestartRequired;
-            set
-            {
-                isRestartRequired = value;
-                OnPropertyChanged();
-            }
-        }
 
         private UserControl selectedSectionView;
         public UserControl SelectedSectionView
@@ -141,12 +128,58 @@ namespace Playnite.DesktopApp.ViewModels
             ServicesClient serviceClient,
             ExtensionFactory extensions,
             PlayniteSettings settings,
+            PlayniteApplication application) : base(dialogs, resources)
+        {
+            Init(
+                window,
+                api,
+                dialogs,
+                resources,
+                serviceClient,
+                extensions,
+                settings,
+                application);
+            CheckUpdates();
+        }
+
+        public AddonsViewModel(
+            IWindowFactory window,
+            IPlayniteAPI api,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ServicesClient serviceClient,
+            ExtensionFactory extensions,
+            PlayniteSettings settings,
+            PlayniteApplication application,
+            List<AddonUpdate> addonUpdates) : base(dialogs, resources)
+        {
+            Init(
+                window,
+                api,
+                dialogs,
+                resources,
+                serviceClient,
+                extensions,
+                settings,
+                application);
+            UpdateAddonList = addonUpdates;
+            UpdateAddonCount = addonUpdates.Count;
+            IsUpdateSectionSelected = true;
+            SelectedSectionView = sectionViews[View.Updates];
+        }
+
+        private void Init(
+            IWindowFactory window,
+            IPlayniteAPI api,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ServicesClient serviceClient,
+            ExtensionFactory extensions,
+            PlayniteSettings settings,
             PlayniteApplication application)
         {
             this.window = window;
             this.api = api;
-            this.dialogs = dialogs;
-            this.resources = resources;
             this.serviceClient = serviceClient;
             this.settings = settings;
             this.application = application;
@@ -200,7 +233,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             DesktopThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
             FullscreenThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
-            CheckUpdates();
         }
 
         public bool? OpenView()
