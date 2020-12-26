@@ -15,7 +15,9 @@ namespace Playnite.Database
         public EmulatorsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(type: GameDatabaseCollection.Emulators)
         {
             db = database;
-            mapper.Entity<Emulator>().Id(a => a.Id, false);
+            mapper.Entity<Emulator>().
+                Id(a => a.Id, false).
+                Ignore(a => a.SortedProfiles);
         }
 
         private void RemoveUsage(Guid id)
