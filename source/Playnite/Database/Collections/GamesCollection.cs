@@ -12,7 +12,7 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public GamesCollection(GameDatabase database) : base((Game game) =>
+        public GamesCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base((Game game) =>
         {
             game.IsInstalling = false;
             game.IsUninstalling = false;
@@ -21,6 +21,32 @@ namespace Playnite.Database
         }, type: GameDatabaseCollection.Games)
         {
             db = database;
+            mapper.Entity<Game>().
+                Id(a => a.Id, false).
+                Ignore(a => a.Genres).
+                Ignore(a => a.Developers).
+                Ignore(a => a.Publishers).
+                Ignore(a => a.Tags).
+                Ignore(a => a.Features).
+                Ignore(a => a.Categories).
+                Ignore(a => a.Platform).
+                Ignore(a => a.Series).
+                Ignore(a => a.AgeRating).
+                Ignore(a => a.Region).
+                Ignore(a => a.Source).
+                Ignore(a => a.ReleaseYear).
+                Ignore(a => a.UserScoreRating).
+                Ignore(a => a.CommunityScoreRating).
+                Ignore(a => a.CriticScoreRating).
+                Ignore(a => a.UserScoreGroup).
+                Ignore(a => a.CommunityScoreGroup).
+                Ignore(a => a.CriticScoreGroup).
+                Ignore(a => a.LastActivitySegment).
+                Ignore(a => a.AddedSegment).
+                Ignore(a => a.ModifiedSegment).
+                Ignore(a => a.PlaytimeCategory).
+                Ignore(a => a.IsCustomGame).
+                Ignore(a => a.InstallationStatus);
         }
 
         public override Game Add(string itemName)

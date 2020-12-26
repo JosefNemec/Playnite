@@ -20,7 +20,7 @@ using Playnite.Common.Media.Icons;
 
 namespace Playnite.Database
 {
-    public partial class GameDatabase : IGameDatabase
+    public partial class GameDatabase : IGameDatabase, IDisposable
     {
         public const double MaximumRecommendedIconSize = 0.1;
         public const double MaximumRecommendedCoverSize = 1;
@@ -149,9 +149,7 @@ namespace Playnite.Database
             }
         }
 
-        public static readonly ushort DBVersion = 6;
-
-        public static readonly ushort NewFormatVersion = 2;
+        public static readonly ushort NewFormatVersion = 3;
 
         #region Events
 
@@ -276,20 +274,49 @@ namespace Playnite.Database
 
         public GameDatabase(string path)
         {
+            var mapper = LiteDB.BsonMapper.Global;
+            mapper.SerializeNullValues = false;
+            mapper.TrimWhitespace = false;
+            mapper.EmptyStringToNull = true;
+            mapper.IncludeFields = false;
+            mapper.IncludeNonPublic = false;
+
             DatabasePath = GetFullDbPath(path);
-            Platforms = new PlatformsCollection(this);
-            Games = new GamesCollection(this);
-            Emulators = new EmulatorsCollection(this);
-            Genres = new GenresCollection(this);
-            Companies = new CompaniesCollection(this);
-            Tags = new TagsCollection(this);
-            Categories = new CategoriesCollection(this);
-            AgeRatings = new AgeRatingsCollection(this);
-            Series = new SeriesCollection(this);
-            Regions = new RegionsCollection(this);
-            Sources = new GamesSourcesCollection(this);
-            Features = new FeaturesCollection(this);
-            SoftwareApps = new AppSoftwareCollection(this);
+            Platforms = new PlatformsCollection(this, mapper);
+            Games = new GamesCollection(this, mapper);
+            Emulators = new EmulatorsCollection(this, mapper);
+            Genres = new GenresCollection(this, mapper);
+            Companies = new CompaniesCollection(this, mapper);
+            Tags = new TagsCollection(this, mapper);
+            Categories = new CategoriesCollection(this, mapper);
+            AgeRatings = new AgeRatingsCollection(this, mapper);
+            Series = new SeriesCollection(this, mapper);
+            Regions = new RegionsCollection(this, mapper);
+            Sources = new GamesSourcesCollection(this, mapper);
+            Features = new FeaturesCollection(this, mapper);
+            SoftwareApps = new AppSoftwareCollection(this, mapper);
+        }
+
+        public void Dispose()
+        {
+            if (!IsOpen)
+            {
+                return;
+            }
+
+            Platforms.Dispose();
+            Games.Dispose();
+            Emulators.Dispose();
+            Genres.Dispose();
+            Companies.Dispose();
+            Tags.Dispose();
+            Categories.Dispose();
+            AgeRatings.Dispose();
+            Series.Dispose();
+            Regions.Dispose();
+            Sources.Dispose();
+            Features.Dispose();
+            SoftwareApps.Dispose();
         }
 
         public static string GetDefaultPath(bool portable)

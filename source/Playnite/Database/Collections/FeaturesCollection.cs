@@ -12,9 +12,10 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public FeaturesCollection(GameDatabase database) : base(type: GameDatabaseCollection.Features)
+        public FeaturesCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(type: GameDatabaseCollection.Features)
         {
             db = database;
+            mapper.Entity<GameFeature>().Id(a => a.Id, false);
         }
 
         private void RemoveUsage(Guid id)

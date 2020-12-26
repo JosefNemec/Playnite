@@ -112,7 +112,7 @@ namespace Playnite.SDK
     /// <summary>
     /// Describes collection of items for game database.
     /// </summary>
-    public interface IItemCollection
+    public interface IItemCollection : IDisposable
     {
         /// <summary>
         /// Gets item collection type.

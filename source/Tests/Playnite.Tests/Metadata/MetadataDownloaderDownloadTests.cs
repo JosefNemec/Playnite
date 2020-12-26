@@ -4,7 +4,6 @@ using Playnite;
 using Playnite.Common;
 using Playnite.Database;
 using Playnite.Metadata;
-using Playnite.Models;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;

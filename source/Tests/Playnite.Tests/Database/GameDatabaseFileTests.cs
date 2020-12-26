@@ -4,7 +4,6 @@ using NUnit.Framework;
 using Playnite;
 using Playnite.Common;
 using Playnite.Database;
-using Playnite.Models;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;

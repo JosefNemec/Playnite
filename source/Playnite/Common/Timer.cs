@@ -23,7 +23,7 @@ namespace Playnite.Common
         public void Dispose()
         {
             watch.Stop();
-            logger.Debug($"--- Timer '{name}', {watch.ElapsedMilliseconds} ms to complete.");
+            logger.Warn($"--- Timer '{name}', {watch.ElapsedMilliseconds} ms to complete.");
         }
     }
 
@@ -50,7 +50,7 @@ namespace Playnite.Common
         {
             return seconds * 1000;
         }
-        
+
         public static DateTime GetRandomDateTime()
         {
             var startDate = new DateTime(1970, 1, 1);

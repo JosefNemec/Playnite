@@ -21,12 +21,12 @@ namespace Playnite.Tests
             var current = new Application();
             PlayniteTests.SetEntryAssembly(Assembly.GetExecutingAssembly());
             FileSystem.CreateDirectory(PlayniteTests.TempPath, true);
+            PlayniteSettings.ConfigureLogger();
         }
 
         [OneTimeTearDown]
         public void GlobalTeardown()
         {
-
         }
     }
 }

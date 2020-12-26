@@ -12,9 +12,10 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public GenresCollection(GameDatabase database) : base(type: GameDatabaseCollection.Genres)
+        public GenresCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(type: GameDatabaseCollection.Genres)
         {
             db = database;
+            mapper.Entity<Genre>().Id(a => a.Id, false);
         }
 
         private void RemoveUsage(Guid genreId)

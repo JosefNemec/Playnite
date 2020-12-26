@@ -12,9 +12,10 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public EmulatorsCollection(GameDatabase database) : base(type: GameDatabaseCollection.Emulators)
+        public EmulatorsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(type: GameDatabaseCollection.Emulators)
         {
             db = database;
+            mapper.Entity<Emulator>().Id(a => a.Id, false);
         }
 
         private void RemoveUsage(Guid id)

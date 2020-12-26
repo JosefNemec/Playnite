@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using Playnite.Emulators;
-using Playnite.Models;
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;

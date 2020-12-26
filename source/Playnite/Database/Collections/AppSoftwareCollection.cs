@@ -12,9 +12,10 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public AppSoftwareCollection(GameDatabase database) : base(type: GameDatabaseCollection.AppSoftware)
+        public AppSoftwareCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(type: GameDatabaseCollection.AppSoftware)
         {
             db = database;
+            mapper.Entity<AppSoftware>().Id(a => a.Id, false);
         }
 
         public override bool Remove(Guid id)

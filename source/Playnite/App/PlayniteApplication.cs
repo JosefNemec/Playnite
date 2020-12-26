@@ -777,6 +777,7 @@ namespace Playnite
                 });
             }
 
+            Database.Dispose();
             resourcesReleased = true;
         }
 
@@ -914,43 +915,9 @@ namespace Playnite
         {
             if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
             {
-                var migrationProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
-                (_) =>
+                var migrationProgress = new ProgressViewViewModel(new ProgressWindowFactory(), (_) =>
                 {
-                    if (AppSettings.DatabasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var newDbPath = GameDatabase.GetMigratedDbPath(AppSettings.DatabasePath);
-                        var newResolvedDbPath = GameDatabase.GetFullDbPath(newDbPath);
-                        if (Directory.Exists(newResolvedDbPath))
-                        {
-                            newDbPath += "_db";
-                            newResolvedDbPath += "_db";
-                        }
-
-                        if (!File.Exists(AppSettings.DatabasePath))
-                        {
-                            AppSettings.DatabasePath = newDbPath;
-                        }
-                        else
-                        {
-                            var dbSize = new FileInfo(AppSettings.DatabasePath).Length;
-                            if (FileSystem.GetFreeSpace(newResolvedDbPath) < dbSize)
-                            {
-                                throw new NoDiskSpaceException(dbSize);
-                            }
-
-                            GameDatabase.MigrateOldDatabaseFormat(AppSettings.DatabasePath);
-                            GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
-                            FileSystem.DeleteFile(AppSettings.DatabasePath);
-                            AppSettings.DatabasePath = newDbPath;
-                        }
-
-                        GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
-                    }
-                    else
-                    {
-                        GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
-                    }
+                    GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
                 }, new GlobalProgressOptions("LOCDBUpgradeProgress"));
 
                 if (migrationProgress.ActivateProgress().Result != true)

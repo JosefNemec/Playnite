@@ -12,9 +12,10 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public PlatformsCollection(GameDatabase database) : base(type: GameDatabaseCollection.Platforms)
+        public PlatformsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(type: GameDatabaseCollection.Platforms)
         {
             db = database;
+            mapper.Entity<Platform>().Id(a => a.Id, false);
         }
 
         private void RemoveUsage(Guid platformId)

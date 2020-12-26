@@ -76,9 +76,8 @@
     <Reference Include="IronPython.Wpf, Version=2.7.8.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\IronPython.2.7.8.1\lib\net45\IronPython.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\references\LiteDB.dll</HintPath>
+    <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
     </Reference>
     <Reference Include="Markdig, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Markdig.0.18.0\lib\net40\Markdig.dll</HintPath>
@@ -327,10 +326,6 @@
     <Compile Include="Database\OldModels\NewVer1\OldGame.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldGameAction.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldLink.cs" />
-    <Compile Include="Database\OldModels\Ver3\Emulator.cs" />
-    <Compile Include="Database\OldModels\Ver6\Emulator.cs" />
-    <Compile Include="Database\OldModels\Ver6\Game.cs" />
-    <Compile Include="Database\OldModels\Ver6\Platform.cs" />
     <Compile Include="Database\Collections\CompaniesCollection.cs" />
     <Compile Include="Database\Collections\PlatformsCollection.cs" />
     <Compile Include="DiagnosticPackageInfo.cs" />

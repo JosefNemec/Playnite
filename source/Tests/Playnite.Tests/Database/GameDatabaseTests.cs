@@ -26,16 +26,6 @@ namespace Playnite.Tests.Database
         }
 
         [Test]
-        public void GetMigratedDbPathTest()
-        {
-            Assert.AreEqual(@"{PlayniteDir}\games", GameDatabase.GetMigratedDbPath(@"games.db"));
-            Assert.AreEqual(@"c:\games", GameDatabase.GetMigratedDbPath(@"c:\games.db"));
-            Assert.AreEqual(@"c:\test\games", GameDatabase.GetMigratedDbPath(@"c:\test\games.db"));
-            var appData = Environment.ExpandEnvironmentVariables("%AppData%");
-            Assert.AreEqual(@"%AppData%\playnite\games", GameDatabase.GetMigratedDbPath(Path.Combine(appData, "playnite", "games.db")));
-        }
-
-        [Test]
         public void GetFullDbPathTest()
         {
             var appData = Environment.ExpandEnvironmentVariables("%AppData%");

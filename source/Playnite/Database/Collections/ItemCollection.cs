@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
-using Playnite.Common;
+﻿using LiteDB;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using SqlNado;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,8 @@ namespace Playnite.Database
         private List<TItem> RemovedItemsEventBuffer = new List<TItem>();
         private Dictionary<Guid, ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new Dictionary<Guid, ItemUpdateEvent<TItem>>();
         private readonly bool isPersistent = true;
+        private LiteDatabase liteDb;
+        private LiteCollection<TItem> liteCollection;
 
         public ConcurrentDictionary<Guid, TItem> Items { get; }
 
@@ -74,6 +77,11 @@ namespace Playnite.Database
             this.initMethod = initMethod;
         }
 
+        public void Dispose()
+        {
+            liteDb?.Dispose();
+        }
+
         public void InitializeCollection(string path)
         {
             if (!string.IsNullOrEmpty(storagePath))
@@ -89,43 +97,22 @@ namespace Playnite.Database
                 File.Delete(storagePath);
             }
 
-            if (Directory.Exists(storagePath))
-            {
-                Parallel.ForEach(
-                    Directory.EnumerateFiles(storagePath, "*.json"),
-                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
-                    (objectFile) =>
+            var dpPath = path + ".litedb";
+            liteDb = new LiteDatabase($"Filename={dpPath};Mode=Exclusive");
+            liteCollection = liteDb.GetCollection<TItem>();
+            liteCollection.EnsureIndex(a => a.Id, true);
+
+            Parallel.ForEach(
+                liteCollection.FindAll(),
+                new ParallelOptions { MaxDegreeOfParallelism = 4 },
+                (objectFile) =>
+                {
+                    if (objectFile != null)
                     {
-                        if (Guid.TryParse(Path.GetFileNameWithoutExtension(objectFile), out var _))
-                        {
-                            try
-                            {
-                                var obj = Serialization.FromJsonFile<TItem>(objectFile);
-                                if (obj != null)
-                                {
-                                    initMethod?.Invoke(obj);
-                                    Items.TryAdd(obj.Id, obj);
-                                }
-                                else
-                                {
-                                    logger.Warn($"Failed to deserialize collection item {objectFile}");
-                                }
-                            }
-                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                            {
-                                logger.Error(e, $"Failed to load item from {objectFile}");
-                            }
-                        }
-                        else
-                        {
-                            logger.Warn($"Skipping non-id collection item {objectFile}");
-                        }
-                    });
-            }
-            else
-            {
-                FileSystem.CreateDirectory(storagePath);
-            }
+                        initMethod?.Invoke(objectFile);
+                        Items.TryAdd(objectFile.Id, objectFile);
+                    }
+                });
         }
 
         internal string GetItemFilePath(Guid id)
@@ -135,27 +122,17 @@ namespace Playnite.Database
 
         internal void SaveItemData(TItem item)
         {
-            using (var fs = FileSystem.CreateWriteFileStreamSafe(GetItemFilePath(item.Id)))
-            using (var sw = new StreamWriter(fs))
-            using (var writer = new JsonTextWriter(sw))
-            {
-                var ser = JsonSerializer.Create(new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.None,
-                    NullValueHandling = NullValueHandling.Ignore,
-                    DefaultValueHandling = DefaultValueHandling.Ignore
-                });
+            liteCollection.Upsert(item);
+        }
 
-                ser.Serialize(writer, item);
-            }
+        internal void SaveItemData(IEnumerable<TItem> items)
+        {
+            liteCollection.Upsert(items);
         }
 
         internal TItem GetItemData(Guid id)
         {
-            using (var fs = FileSystem.OpenReadFileStreamSafe(GetItemFilePath(id)))
-            {
-                return Serialization.FromJsonStream<TItem>(fs);
-            }
+            return liteCollection.FindById(id);
         }
 
         public TItem Get(Guid id)
@@ -276,12 +253,12 @@ namespace Playnite.Database
                         throw new Exception($"Item {item.Id} already exists.");
                     }
 
-                    if (isPersistent)
-                    {
-                        SaveItemData(item);
-                    }
-
                     Items.TryAdd(item.Id, item);
+                }
+
+                if (isPersistent)
+                {
+                    SaveItemData(itemsToAdd);
                 }
             }
 
@@ -300,7 +277,7 @@ namespace Playnite.Database
             {
                 if (isPersistent)
                 {
-                    FileSystem.DeleteFile(GetItemFilePath(id));
+                    liteCollection.Delete(id);
                 }
 
                 Items.TryRemove(id, out var removed);
@@ -334,7 +311,7 @@ namespace Playnite.Database
 
                     if (isPersistent)
                     {
-                        FileSystem.DeleteFile(GetItemFilePath(item.Id));
+                        liteCollection.Delete(item.Id);
                     }
 
                     Items.TryRemove(item.Id, out var removed);
@@ -431,11 +408,6 @@ namespace Playnite.Database
                         throw new Exception($"Item {oldData.Id} doesn't exists.");
                     }
 
-                    if (isPersistent)
-                    {
-                        SaveItemData(item);
-                    }
-
                     var loadedItem = Get(item.Id);
                     if (!ReferenceEquals(loadedItem, item))
                     {
@@ -443,6 +415,11 @@ namespace Playnite.Database
                     }
 
                     updates.Add(new ItemUpdateEvent<TItem>(oldData, loadedItem));
+                }
+
+                if (isPersistent)
+                {
+                    SaveItemData(itemsToUpdate);
                 }
             }
 

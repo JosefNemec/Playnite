@@ -113,7 +113,7 @@ namespace Playnite.Common
 
         public static void ToJsonSteam(object obj, Stream stream, bool formatted = false)
         {
-            using (var sw = new StreamWriter(stream))
+            using (var sw = new StreamWriter(stream, Encoding.UTF8, 4096, true))
             using (var writer = new JsonTextWriter(sw))
             {
                 var ser = JsonSerializer.Create(new JsonSerializerSettings()

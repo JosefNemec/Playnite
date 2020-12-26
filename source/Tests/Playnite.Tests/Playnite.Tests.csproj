@@ -55,8 +55,8 @@
     <Reference Include="IronPython.Wpf, Version=2.7.8.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\..\packages\IronPython.2.7.8.1\lib\net45\IronPython.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="LiteDB">
-      <HintPath>..\..\..\references\LiteDB.dll</HintPath>
+    <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Dynamic, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
@@ -146,12 +146,6 @@
     <Compile Include="TestResourceProvider.cs" />
     <Compile Include="MockWindowFactory.cs" />
     <Compile Include="Models\GameTests.cs" />
-    <Compile Include="Models\Old\0\Game.cs" />
-    <Compile Include="Models\Old\1\Emulator.cs" />
-    <Compile Include="Models\Old\1\Game.cs" />
-    <Compile Include="Models\Old\1\GameTask.cs" />
-    <Compile Include="Models\Old\1\Platform.cs" />
-    <Compile Include="Models\Old\Provider.cs" />
     <Compile Include="PathsTests.cs" />
     <Compile Include="PlayniteTests.cs" />
     <Compile Include="Plugins\ExtensionFactoryTests.cs" />
