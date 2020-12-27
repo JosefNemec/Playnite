@@ -1,11 +1,13 @@
 ﻿using Nett;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Playnite.SDK;
 using Playnite.SDK.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
@@ -20,6 +22,20 @@ namespace Playnite.Common
         }
     }
 
+    public class JsonResolver : DefaultContractResolver
+    {
+        public static JsonResolver Global { get; } = new JsonResolver();
+
+        protected override List<MemberInfo> GetSerializableMembers(Type objectType)
+        {
+            return objectType.
+                GetMembers(BindingFlags.Public | BindingFlags.Instance).
+                Where(a => a is PropertyInfo || a is FieldInfo).
+                Where(a => !Attribute.IsDefined(a, typeof(JsonDontSerializeAttribute)) && !Attribute.IsDefined(a, typeof(JsonIgnoreAttribute))).
+                ToList();
+        }
+    }
+
     public class DataSerializer : IDataSerializer
     {
         public string ToYaml(object obj)
@@ -27,12 +43,12 @@ namespace Playnite.Common
             return Serialization.ToYaml(obj);
         }
 
-        public T FromYaml<T>(string yaml) where T : class, new()
+        public T FromYaml<T>(string yaml) where T : class
         {
             return Serialization.FromYaml<T>(yaml);
         }
 
-        public T FromYamlFile<T>(string filePath) where T : class, new()
+        public T FromYamlFile<T>(string filePath) where T : class
         {
             return Serialization.FromYamlFile<T>(filePath);
         }
@@ -47,27 +63,27 @@ namespace Playnite.Common
             Serialization.ToJsonSteam(obj, stream, formatted);
         }
 
-        public T FromJson<T>(string json) where T : class, new()
+        public T FromJson<T>(string json) where T : class
         {
             return Serialization.FromJson<T>(json);
         }
 
-        public T FromJsonStream<T>(Stream stream) where T : class, new()
+        public T FromJsonStream<T>(Stream stream) where T : class
         {
             return Serialization.FromJsonStream<T>(stream);
         }
 
-        public T FromJsonFile<T>(string filePath) where T : class, new()
+        public T FromJsonFile<T>(string filePath) where T : class
         {
             return Serialization.FromJsonFile<T>(filePath);
         }
 
-        public T FromToml<T>(string toml) where T : class, new()
+        public T FromToml<T>(string toml) where T : class
         {
             return Serialization.FromToml<T>(toml);
         }
 
-        public T FromTomlFile<T>(string filePath) where T : class, new()
+        public T FromTomlFile<T>(string filePath) where T : class
         {
             return Serialization.FromTomlFile<T>(filePath);
         }
@@ -76,6 +92,7 @@ namespace Playnite.Common
     public static class Serialization
     {
         private static readonly ILogger logger = LogManager.GetLogger();
+
         public static string ToYaml(object obj)
         {
             var serializer = new SerializerBuilder().Build();
@@ -107,7 +124,8 @@ namespace Playnite.Common
             return JsonConvert.SerializeObject(obj, new JsonSerializerSettings()
             {
                 Formatting = formatted ? Formatting.Indented : Formatting.None,
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = JsonResolver.Global
             });
         }
 
@@ -119,7 +137,8 @@ namespace Playnite.Common
                 var ser = JsonSerializer.Create(new JsonSerializerSettings()
                 {
                     Formatting = formatted ? Formatting.Indented : Formatting.None,
-                    NullValueHandling = NullValueHandling.Ignore
+                    NullValueHandling = NullValueHandling.Ignore,
+                    ContractResolver = JsonResolver.Global
                 });
 
                 ser.Serialize(writer, obj);

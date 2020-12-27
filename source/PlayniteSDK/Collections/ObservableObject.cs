@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,8 +16,7 @@ namespace System.Collections.Generic
         /// <summary>
         /// If set to <c>true</c> no <see cref="PropertyChanged"/> events will be fired.
         /// </summary>
-        [JsonIgnore]
-        public bool SuppressNotifications
+        internal bool SuppressNotifications
         {
             get; set;
         } = false;

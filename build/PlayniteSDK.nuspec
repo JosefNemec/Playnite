@@ -15,7 +15,7 @@
     <copyright>Copyright © Josef Nemec 2018</copyright>
     <tags>sdk gaming</tags>
     <dependencies>
-        <dependency id="Newtonsoft.Json" version="10.0" />
+      <group targetFramework=".NETFramework4.6.2" />
     </dependencies>
   </metadata>
   <files>

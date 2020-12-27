@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Data
 {
     /// <summary>
+    ///
+    /// </summary>
+    public class JsonDontSerializeAttribute : Attribute
+    {
+    }
+
+    /// <summary>
     /// Describes data serializer.
     /// </summary>
     public interface IDataSerializer
@@ -25,7 +32,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="yaml"></param>
         /// <returns></returns>
-        T FromYaml<T>(string yaml) where T : class, new();
+        T FromYaml<T>(string yaml) where T : class;
 
         /// <summary>
         /// Deserialize an object from a file containing YAML string.
@@ -33,7 +40,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        T FromYamlFile<T>(string filePath) where T : class, new();
+        T FromYamlFile<T>(string filePath) where T : class;
 
         /// <summary>
         /// Serailize an object to JSON string.
@@ -57,7 +64,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="json"></param>
         /// <returns></returns>
-        T FromJson<T>(string json) where T : class, new();
+        T FromJson<T>(string json) where T : class;
 
         /// <summary>
         /// Deserialize an object from JSON data stream.
@@ -65,7 +72,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="stream"></param>
         /// <returns></returns>
-        T FromJsonStream<T>(Stream stream) where T : class, new();
+        T FromJsonStream<T>(Stream stream) where T : class;
 
         /// <summary>
         /// Deserialize an object from a file containing JSON string.
@@ -73,7 +80,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        T FromJsonFile<T>(string filePath) where T : class, new();
+        T FromJsonFile<T>(string filePath) where T : class;
 
         /// <summary>
         /// Deserialize an object from TOML string.
@@ -81,7 +88,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="toml"></param>
         /// <returns></returns>
-        T FromToml<T>(string toml) where T : class, new();
+        T FromToml<T>(string toml) where T : class;
 
         /// <summary>
         /// Deserialize an object from a file containing TOML string.
@@ -89,7 +96,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        T FromTomlFile<T>(string filePath) where T : class, new();
+        T FromTomlFile<T>(string filePath) where T : class;
     }
 
     /// <summary>
@@ -120,7 +127,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="yaml"></param>
         /// <returns></returns>
-        public static T FromYaml<T>(string yaml) where T : class, new()
+        public static T FromYaml<T>(string yaml) where T : class
         {
             return serializer.FromYaml<T>(yaml);
         }
@@ -131,7 +138,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static T FromYamlFile<T>(string filePath) where T : class, new()
+        public static T FromYamlFile<T>(string filePath) where T : class
         {
             return serializer.FromYamlFile<T>(filePath);
         }
@@ -164,7 +171,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="json"></param>
         /// <returns></returns>
-        public static T FromJson<T>(string json) where T : class, new()
+        public static T FromJson<T>(string json) where T : class
         {
             return serializer.FromJson<T>(json);
         }
@@ -175,7 +182,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="stream"></param>
         /// <returns></returns>
-        public static T FromJsonStream<T>(Stream stream) where T : class, new()
+        public static T FromJsonStream<T>(Stream stream) where T : class
         {
             return serializer.FromJsonStream<T>(stream);
         }
@@ -186,7 +193,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static T FromJsonFile<T>(string filePath) where T : class, new()
+        public static T FromJsonFile<T>(string filePath) where T : class
         {
             return serializer.FromJsonFile<T>(filePath);
         }
@@ -197,7 +204,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="toml"></param>
         /// <returns></returns>
-        public static T FromToml<T>(string toml) where T : class, new()
+        public static T FromToml<T>(string toml) where T : class
         {
             return serializer.FromToml<T>(toml);
         }
@@ -208,7 +215,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static T FromTomlFile<T>(string filePath) where T : class, new()
+        public static T FromTomlFile<T>(string filePath) where T : class
         {
             return serializer.FromTomlFile<T>(filePath);
         }

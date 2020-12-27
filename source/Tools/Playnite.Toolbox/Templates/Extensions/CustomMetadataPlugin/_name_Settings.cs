@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Playnite.SDK;
+﻿using Playnite.SDK;
+using Playnite.SDK.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace _namespace_
 
         // Playnite serializes settings object to a JSON object and saves it as text file.
         // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
-        [JsonIgnore]
+        [JsonDontSerialize]
         public bool OptionThatWontBeSaved { get; set; } = false;
 
         // Parameterless constructor must exist if you want to use LoadPluginSettings method.

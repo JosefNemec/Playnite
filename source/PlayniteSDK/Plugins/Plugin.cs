@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using Playnite.SDK.Data;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
@@ -186,7 +186,7 @@ namespace Playnite.SDK.Plugins
             var pluginConfig = Path.Combine(pluginDir, "plugin.cfg");
             if (File.Exists(pluginConfig))
             {
-                return JsonConvert.DeserializeObject<TConfig>(File.ReadAllText(pluginConfig));
+                return Serialization.FromJsonFile<TConfig>(pluginConfig);
             }
             else
             {
@@ -204,8 +204,7 @@ namespace Playnite.SDK.Plugins
             var setFile = Path.Combine(GetPluginUserDataPath(), pluginSettingFileName);
             if (File.Exists(setFile))
             {
-                var strConf = File.ReadAllText(setFile);
-                return JsonConvert.DeserializeObject<TSettings>(strConf);
+                return Serialization.FromJsonFile<TSettings>(setFile);
             }
             else
             {
@@ -227,7 +226,7 @@ namespace Playnite.SDK.Plugins
                 Directory.CreateDirectory(setDir);
             }
 
-            var strConf = JsonConvert.SerializeObject(settings, Formatting.Indented);
+            var strConf = Serialization.ToJson(settings, true);
             File.WriteAllText(setFile, strConf);
         }
 

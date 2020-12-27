@@ -126,6 +126,7 @@
     <Compile Include="Extensions\EnumsTests.cs" />
     <Compile Include="FileSystemTests.cs" />
     <Compile Include="GamesStatsTests.cs" />
+    <Compile Include="SerializationTests.cs" />
     <Compile Include="IniParserTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />
     <Compile Include="Manifests\AddonManifestTests.cs" />

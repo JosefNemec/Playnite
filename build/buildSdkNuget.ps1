@@ -3,7 +3,8 @@
     [string]$Configuration = "Release",
     [string]$OutputPath = (Join-Path $PWD "$($Configuration)SDK"),
     [switch]$SkipBuild = $false,
-    [switch]$Sign = $false
+    [switch]$Sign = $false,
+    [string]$LocalPublish
 )
 
 $ErrorActionPreference = "Stop"
@@ -15,7 +16,6 @@ $ErrorActionPreference = "Stop"
 if (!$SkipBuild)
 {
     New-EmptyFolder $OutputPath
-    Invoke-Nuget "restore ..\source\PlayniteSDK\packages.config -PackagesDirectory ..\source\packages"
     $project = Join-Path $pwd "..\source\PlayniteSDK\Playnite.SDK.csproj"
     $msbuildPath = Get-MsBuildPath
     $arguments = "`"$project`" /p:OutputPath=`"$outputPath`";Configuration=$configuration /t:Build"
@@ -55,6 +55,11 @@ try
 finally
 {
     Remove-Item $specFile -EA 0
+}
+
+if ($LocalPublish)
+{
+    Invoke-Nuget "init `"$pwd`" `"$LocalPublish`""
 }
 
 return $true
