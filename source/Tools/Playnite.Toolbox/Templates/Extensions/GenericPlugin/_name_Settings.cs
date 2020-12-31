@@ -8,25 +8,33 @@ using System.Threading.Tasks;
 
 namespace _namespace_
 {
-    public class _name_Settings : ISettings
+    public class _name_Settings
     {
-        private readonly _name_ plugin;
-
         public string Option1 { get; set; } = string.Empty;
-
         public bool Option2 { get; set; } = false;
 
         // Playnite serializes settings object to a JSON object and saves it as text file.
-        // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
+        // If you want to exclude some property from being saved then use `JsonDontSerialize` ignore attribute.
         [JsonDontSerialize]
         public bool OptionThatWontBeSaved { get; set; } = false;
+    }
 
-        // Parameterless constructor must exist if you want to use LoadPluginSettings method.
-        public _name_Settings()
+    public class _name_SettingsViewModel : ObservableObject, ISettings
+    {
+        private readonly _name_ plugin;
+
+        private _name_Settings settings;
+        public _name_Settings Settings
         {
+            get => settings;
+            set
+            {
+                settings = value;
+                OnPropertyChanged();
+            }
         }
 
-        public _name_Settings(_name_ plugin)
+        public _name_SettingsViewModel(_name_ plugin)
         {
             // Injecting your plugin instance is required for Save/Load method because Playnite saves data to a location based on what plugin requested the operation.
             this.plugin = plugin;
@@ -37,8 +45,11 @@ namespace _namespace_
             // LoadPluginSettings returns null if not saved data is available.
             if (savedSettings != null)
             {
-                Option1 = savedSettings.Option1;
-                Option2 = savedSettings.Option2;
+                Settings = savedSettings;
+            }
+            else
+            {
+                Settings = new _name_Settings();
             }
         }
 
