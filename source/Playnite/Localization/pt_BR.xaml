@@ -739,10 +739,10 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCPostScriptDescription">Script para executar depois de sair de um jogo</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Script para executar quando um jogo é iniciado</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Executar o script global</sys:String>
-    <sys:String x:Key="LOCStatsGlobal"></sys:String>
-    <sys:String x:Key="LOCStatsFiltered"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Filtrado</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Atual</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Novo</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Salvar como padrão</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Adicionar aos favoritos</sys:String>
@@ -810,24 +810,38 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite precisa ser reiniciado para completar a instalação. Deseja reiniciar agora?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Extensão não foi empacotada corretamente.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">O tema não foi empacotado corretamente.</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Falha ao carregar extensão &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Falha ao carregar tema &quot;{0}&quot;</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Falha ao carregar extensão.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Falha ao carregar tema.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">O tema ou extensão está usando uma versão não compatível da API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalação bem-sucedida.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instalar extensão?</sys:String>
-    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Genérico</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha ao instalar extensão.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Deseja instalar a nova extensão?
+
+{0}
+Por {1}
+Versão {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Deseja atualizar a extensão {0}?
+
+Versão atual: {1}
+Nova versão: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Falha ao instalar tema.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Deseja instalar o novo tema?
+
+{0}
+Por {1}
+Versão {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Deseja atualizar o tema {0}?
+
+Versão atual: {1}
+Nova versão: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Você está prestes a deixar o Playnite e abrir a seguinte página da web usando o seu navegador padrão. Você deseja continuar?
  
 {0}</sys:String>

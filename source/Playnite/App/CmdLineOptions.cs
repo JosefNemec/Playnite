@@ -47,6 +47,9 @@ namespace Playnite
 
         [Option("resetsettings")]
         public bool ResetSettings { get; set; }
+        
+        [Option("masterinstance")]
+        public bool MasterInstance { get; set; }
 
         public override string ToString()
         {

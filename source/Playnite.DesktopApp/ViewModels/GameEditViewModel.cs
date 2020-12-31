@@ -26,6 +26,7 @@ using Playnite.SDK.Plugins;
 using Playnite.Metadata.Providers;
 using System.Text.RegularExpressions;
 using Playnite.Common.Media.Icons;
+using System.Diagnostics;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -135,9 +136,9 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public object IconImageObject => ImageSourceManager.GetImage(EditingGame.Icon, false, new BitmapLoadProperties(256, 256));
-        public object CoverImageObject => ImageSourceManager.GetImage(EditingGame.CoverImage, false, new BitmapLoadProperties(900, 900));
-        public object BackgroundImageObject => ImageSourceManager.GetImage(EditingGame.BackgroundImage, false, new BitmapLoadProperties(1920, 1080));
+        public object IconImageObject => ImageSourceManager.GetImage(EditingGame.Icon, false, new BitmapLoadProperties(0, 256));
+        public object CoverImageObject => ImageSourceManager.GetImage(EditingGame.CoverImage, false, new BitmapLoadProperties(0, 900));
+        public object BackgroundImageObject => ImageSourceManager.GetImage(EditingGame.BackgroundImage, false, new BitmapLoadProperties(0, 1080));
 
         #region Database fields
 
@@ -1188,7 +1189,22 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void OpenMetadataFolder()
         {
-            Explorer.OpenDirectory(database.GetFileStoragePath(EditingGame.Id));
+            if (appSettings.DirectoryOpenCommand.IsNullOrWhiteSpace())
+            {
+                Process.Start(database.GetFileStoragePath(EditingGame.Id));
+            }
+            else
+            {
+                try
+                {
+                    ProcessStarter.ShellExecute(appSettings.DirectoryOpenCommand.Replace("{Dir}", database.GetFileStoragePath(EditingGame.Id)));
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to open directory using custom command.");
+                    Process.Start(database.GetFileStoragePath(EditingGame.Id));
+                }
+            }
         }
 
         public void AddNewItemsToDb<TItem>(SelectableDbItemList sourceList, List<Guid> itemsToAdd, IItemCollection<TItem> targetCollection) where TItem : DatabaseObject

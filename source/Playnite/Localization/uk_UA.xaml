@@ -15,7 +15,7 @@
     <sys:String x:Key="LOCSaveChangesAskTitle">Зберегти зміни?</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">Домашня сторінка: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Вихідний код на GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">Діагностика</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Створити пакунок для діагностики</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Надіслати інформацію для діагностики</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Про Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Розробник: Josef Němec</sys:String>
@@ -580,10 +580,10 @@
     <sys:String x:Key="LOCDatabaseOpenError">Не вдалося відкрити базу даних бібліотеки.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Базу даних не відкрито.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Не вдалося отримати доступ до бази даних бібліотек. Файл &quot;{0}&quot; використовується іншим процесом, або він недосяжний.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationError">Не вдалося створити пакет діагностики.</sys:String>
-    <sys:String x:Key="LOCDiagPackageUploadError">Не вдалося автоматично завантажити пакет діагностики.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">Не вдалося створити пакунок діагностики.</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">Не вдалося автоматично завантажити пакунок діагностики.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Інформацію для діагностики успішно відіслано.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Пакет діагностики був створений та висланий успішно.
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Пакунок діагностики був створений та висланий успішно.
 Будь ласка, додайте наступний ID до звіту про проблему:</sys:String>
     <sys:String x:Key="LOCSteamCategoryImportError">Не вдалося імпортувати категорії Steam.</sys:String>
     <sys:String x:Key="LOCBnetInstalledImportError">Не вдалося імпортувати встановлені ігри Battle.net.</sys:String>
@@ -861,8 +861,8 @@
     <sys:String x:Key="LOCExtensionUnsupported">Це розширення не підтримує цю версію Playnite.</sys:String>
     <sys:String x:Key="LOCExtensionInstallDir">Шлях встановлення</sys:String>
     <sys:String x:Key="LOCExtensionDataDir">Каталог даних</sys:String>
-    <sys:String x:Key="LOCDiagGenerating">Створення пакету діагностики...</sys:String>
-    <sys:String x:Key="LOCDiagUploading">Надсилання пакету діагностики...</sys:String>
+    <sys:String x:Key="LOCDiagGenerating">Створення пакунку діагностики...</sys:String>
+    <sys:String x:Key="LOCDiagUploading">Надсилання пакунку діагностики...</sys:String>
     <sys:String x:Key="LOCAddFromExe">Завантажити з файлу</sys:String>
     <sys:String x:Key="LOCWhatIsThis">Що це?</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">Ви впевнені, що ви хочете зробити це?</sys:String>

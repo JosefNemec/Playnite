@@ -590,12 +590,12 @@ namespace Playnite
             try
             {
                 var manualPath = game.Manual;
-                if (!manualPath.IsHttpUrl() && !File.Exists(manualPath))
+                if (!manualPath.IsUri() && !File.Exists(manualPath))
                 {
                     manualPath = Path.Combine(Database.GetFileStoragePath(game.Id), manualPath);
                 }
 
-                if (manualPath.IsHttpUrl())
+                if (manualPath.IsUri())
                 {
                     ProcessStarter.StartUrl(manualPath);
                 }

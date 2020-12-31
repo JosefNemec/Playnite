@@ -727,12 +727,12 @@ namespace Playnite
             }
         }
 
-        private bool suppressFilterChanges = false;
+        public bool SuppressFilterChanges = false;
         public event EventHandler<FilterChangedEventArgs> FilterChanged;
 
         public void OnFilterChanged(string field)
         {
-            if (!suppressFilterChanges)
+            if (!SuppressFilterChanges)
             {
                 FilterChanged?.Invoke(this, new FilterChangedEventArgs(new List<string>() { field }));
             }
@@ -742,7 +742,7 @@ namespace Playnite
 
         public void OnFilterChanged(List<string> fields)
         {
-            if (!suppressFilterChanges)
+            if (!SuppressFilterChanges)
             {
                 FilterChanged?.Invoke(this, new FilterChangedEventArgs(fields));
             }
@@ -750,9 +750,9 @@ namespace Playnite
             OnPropertyChanged(nameof(IsActive));
         }
 
-        public void ClearFilters()
+        public void ClearFilters(bool notify = true)
         {
-            suppressFilterChanges = true;
+            SuppressFilterChanges = true;
             var filterChanges = new List<string>();
 
             if (Name != null)
@@ -917,8 +917,11 @@ namespace Playnite
                 filterChanges.Add(nameof(Feature));
             }
 
-            suppressFilterChanges = false;
-            OnFilterChanged(filterChanges);
+            SuppressFilterChanges = false;
+            if (notify)
+            {
+                OnFilterChanged(filterChanges);
+            }
         }
 
         #region Serialization Conditions

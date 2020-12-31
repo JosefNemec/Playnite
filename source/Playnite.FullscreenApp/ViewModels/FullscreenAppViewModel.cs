@@ -521,7 +521,10 @@ namespace Playnite.FullscreenApp.ViewModels
 
         internal void SetQuickFilter(FullscreenSettings settings)
         {
-            settings.FilterSettings.ClearFilters();
+            settings.FilterSettings.ClearFilters(false);
+            settings.ViewSettings.SuppressNotifications = true;
+            settings.FilterSettings.SuppressFilterChanges = true;
+
             switch (settings.ActiveView)
             {
                 case ActiveFullscreenView.RecentlyPlayed:
@@ -552,6 +555,10 @@ namespace Playnite.FullscreenApp.ViewModels
                 //case ActiveFullscreenView.Explore:
                 //    break;
             }
+
+            settings.FilterSettings.SuppressFilterChanges = false;
+            settings.ViewSettings.SuppressNotifications = false;
+            settings.ViewSettings.OnPropertyChanged(nameof(settings.ViewSettings.SortingOrder));
         }
 
         internal bool GetIsExtraFilterActive(FullscreenSettings settings)
@@ -1026,14 +1033,14 @@ namespace Playnite.FullscreenApp.ViewModels
             }
 
             CloseView();
-            application.Quit();
-            var cmdline = new CmdLineOptions()
-            {
-                SkipLibUpdate = true,
-                StartInDesktop = true
-            };
-
-            ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, cmdline.ToString());
+            application.QuitAndStart(
+                PlaynitePaths.DesktopExecutablePath,
+                new CmdLineOptions()
+                {
+                    SkipLibUpdate = true,
+                    StartInDesktop = true,
+                    MasterInstance = true
+                }.ToString());
         }
 
         private GamesCollectionViewEntry SelectClosestGameDetails()

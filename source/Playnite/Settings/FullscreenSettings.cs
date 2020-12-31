@@ -129,8 +129,11 @@ namespace Playnite
 
             set
             {
-                activeView = value;
-                OnPropertyChanged();
+                if (value != activeView)
+                {
+                    activeView = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

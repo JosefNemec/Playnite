@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Català</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Idioma de Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Sortir</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtre Actiu</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtre Desativat</sys:String>
@@ -27,35 +27,49 @@ Sense marcar - Eliminar categoria
 Indeterminat - Sense canvis (al editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sense categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sense plataforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Vaja! Alguna cosa ha anat malament…</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ha succeït un error irrecuperable.
+
+Si vols ajudar-nos a solucionar el problema, descriu breument les accions preses abans del problema i crea un paquet de diagnòstic. Si estàs en línia, el paquet serà pujat al servidor de Playnite per la seva anàlisi.
+
+Alternativament, pots usar el botó 'Reportar problema' per crear una nova versió en Github i reportar manualment el problema.
+
+Gràcies per la teva ajuda.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">L'extensió &quot;{0}&quot; ha causat un error irrecuperable.
+
+Es recomana desar el fitxer de registre i informar del problema al desenvolupador de l'extensió. Si el problema es repeteix, desactiveu l'extensió.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">L'extensió &quot;{0}&quot; ha provocat un error irrecuperable.
+
+Us recomanem que informeu del problema al desenvolupador de l'extensió. Si el problema es repeteix, desactiveu l'extensió.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">S'ha produït un error irrecuperable.
 
 Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació de diagnòstic. Gràcies.</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Deshabilita l'extensió</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Desa el fitxer de registre</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Envia la informació de diagnòstic</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar un problema</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reinicia Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Reinicieu en mode segur</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Desactivar totes les extensions de tercers i utilitzar el tema predeterminat.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sortir de Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Accions preses abans del tancament sobtat (en anglès):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Organitzador de Llibreria</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Eliminar joc(s)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">No es pot eliminar - El joc o l'instal·lador s'està executant. </sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">No es pot eliminar - El joc s'està executant.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Segur que voleu eliminar aquest joc?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Segur que voleu eliminar {0} jocs?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Segur que voleu eliminar aquest joc?
+
+Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà que el joc es torni a importar la propera vegada que s'actualitzi la biblioteca.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Segur que voleu eliminar {0} jocs?
+
+Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà que els jocs es tornin a importar la propera vegada que s'actualitzi la biblioteca.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Estas segur que vols eliminar  {0} entrades que no estan en us actualment?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">No s'han trobat camps no usats</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Sí (afegeix a la llista d'exclusions)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Amics de Steam</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Hi ha canvis sense desar en aquesta secció</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Actualitzant format de la biblioteca de jocs…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Ha fallat l’actualització de la base de dades, no es pot obrir el fitxer de base de dades.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">No es pot actualitzar la biblioteca de jocs. Es requereixen {0} MB d’espai lliure.</sys:String>
@@ -65,11 +79,11 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCGameStartActionError">No es pot iniciar l’acció: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">No es pot obrir la ubicació del joc: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">No s’ha pogut crear la drecera: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">No s'ha pogut obrir el manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">No es pot instal·lar el joc: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">No es pot desinstal·lar el joc: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Acció de joc no configurada</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">El plugin de biblioteca responsable d'aquest joc està desactivat o no està instal·lat.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Descàrrega de metadades oficials no disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No hi ha cap joc seleccionat.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">Ha fallat l'execució de l'acció del Script de joc</sys:String>
@@ -103,7 +117,7 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCLastPlayedLabel">Última Vegada</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Més Jugat</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Contador de Partides</sys:String>
-    <sys:String x:Key="LOCNotesLabel"></sys:String>
+    <sys:String x:Key="LOCNotesLabel">Notes</sys:String>
     <sys:String x:Key="LOCAddedLabel">Afegit</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Data en què es va afegir</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modificat</sys:String>
@@ -125,7 +139,7 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCInstallationLabel">Instal·lació</sys:String>
     <sys:String x:Key="LOCActionsLabel">Accions</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Descarregant…</sys:String>
-    <sys:String x:Key="LOCDownloadingMediaLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingMediaLabel">Descarregant media…</sys:String>
     <sys:String x:Key="LOCLoadingLabel">Carregant...</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipus</sys:String>
     <sys:String x:Key="LOCProfileLabel">Perfil</sys:String>
@@ -166,7 +180,17 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCColumns">Columnes</sys:String>
     <sys:String x:Key="LOCRow">Filera</sys:String>
     <sys:String x:Key="LOCRows">Fileres</sys:String>
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Les variables especials es poden utilitzar per afegir una cadena dinàmica:
+{InstallDir} - Directori d'instal·lació del joc
+{InstallDirName} - Nom de la carpeta d'instal·lació
+{ImagePath} - Camí del fitxer ISO/ROM del joc si està definit
+{ImageName} - Nom del fitxer ISO/ROM del joc
+{ImageNameNoExt} - Nom del fitxer ISO/ROM del joc sense extensió
+{PlayniteDir} - Directori d'instal·lació de Playnite
+{Name} - Nom del joc
+        
+Exemple: -image &quot;{ImagePath}&quot; -fullscreen
+Resultat: -image &quot;c:\folder\image.iso&quot; -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">No es pot obtenir la icona si falta l’acció de Jugar o estàmarcat com URL.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Només descarregar metadades que faltin</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Activar aquesta opció farà que s'ometi la descàrrega de metadades pels camps que ja contenen informació.</sys:String>
@@ -199,10 +223,10 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Organitzador de Llibreria…</sys:String>
     <sys:String x:Key="LOCMenuTools">Eines</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Descarregant metadades…</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
-    <sys:String x:Key="LOCMenuConfigureIntegrations"></sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">Eines de programari…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Configura integracions…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Obre client de tercers</sys:String>
-    <sys:String x:Key="LOCMenuClients"></sys:String>
+    <sys:String x:Key="LOCMenuClients">Clients de tercers</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Actualitza la biblioteca de jocs</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Afegir joc</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manualment…</sys:String>
@@ -264,7 +288,7 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCSettingsImportLabel">Importa els canvis a la biblioteca automàticament</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importa jocs instal·lats</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">Compte Connect</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importa els jocs no instal·lats</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importa tots els jocs</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importa tots els jocs (cal proporcionar un compte públic o la clau API)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">La ubicació del fitxer de base de dades no és vàlida; cal definir la ruta del fitxer adequada.</sys:String>
@@ -273,24 +297,24 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">No s'ha seleccionat cap compte de Steam per a la importació de categories.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Descarregueu les actualitzacions de la biblioteca de tercers a l'iniciar</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Descarregar base de dades després d'importar jocs</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Inicieu Playnite minimitzat</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Inicieu Playnite quan engegueu l'ordinador</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">No s’ha pogut registrar Playnite per iniciar-se quan s'obri de l’ordinador.</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Inicia en el mode de pantalla completa</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclou Steam, Origin i altres.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Càrrega d’imatge asíncrona</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Millora la suavitat de desplaçament de les llistes de jocs a canvi de temps de càrrega d'imatges més lents.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostra el nom del joc si no hi ha imatge de caràtula</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostra els noms dels jocs a la vista de cobertes</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Enfosqueix els jocs no instal·lats</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostra les icones del joc a la vista de llista</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostra el recompte d’elements a les descripcions de grups</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Mostra només els camps assignats als panells de filtre i explorador</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Inhabilita l'acceleració de hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Fes-ho servir quan tinguis problemes de rendiment o d'UI</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Inhabilita l'escala de DPI</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostra el botó d'amics de Steam</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Mostra els jocs ocults a les llistes de llançament ràpid</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utilitza la imatge de fons del joc com a fons per la finestra</sys:String>
@@ -311,13 +335,13 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCImportSteamLastActivityLabel">Importa la llista dels jugats recentment de Steam</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Esborreu la cache web</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Pot resoldre els problemes que s’han trobat mentre s'enllacen els comptes.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Activar icona a la safata del sistema</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Minimitzeu Playnite a la safata del sistema</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Minimitzeu Playnite a la safata del sistema quan la finestra de l’aplicació estigui tancada</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Quan el joc comença:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Després de tancar el joc:</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy"></sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Iniciar els jocs amb el client  GOG Galaxy</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Això permetrà activar funcions de GOG Galaxy com partides de guardat al núvol, seguiment del temps del joc, etc.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">Aixó sobrescriurà les categories actuals així com els estats ocults i favorits en tots el jocs Steam. Vols continuar?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importar categories?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">No es poden importar categories, no s'ha seleccionat el compte per importar.</sys:String>
@@ -335,10 +359,14 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCSettingsCreateThemes">Crea un nou tema</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Obtén més extensions</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Crea nova extensió</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Ajuda'ns a traduir Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Cal reiniciar Playnite per poder aplicar una nova configuració. Reiniciar ara?
+
+Si reinicieu, es cancel·laran les tasques actives (baixades) en curs.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Reiniciar Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite no pot moure els fitxers de la biblioteca automàticament. Heu de moure/copiar manualment els fitxers abans de canviar la ubicació. Si no hi ha cap biblioteca a la ubicació de destinació, se'n crearà una de nova.
+
+La nova ubicació de la base de dades no s'utilitzarà fins que es reiniciï Playnite. </sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">El temps de joc no es gravarà si s'activa l'opció &quot;Tanca&quot;.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de files</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de columnes</sys:String>
@@ -352,9 +380,9 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">No s'aplica retrospectivament als jocs existents sense tornar a descarregar les bases de dades.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Prioritzar temps de joc per les biblioteques suportades</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Descarregar sempre el temps de joc enregistrat de la biblioteca remota durant la sincronització de la biblioteca, ignorant el temps enregistrat per Playnite.</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activar la compatibilitat amb el comandament en mode Escriptori</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">El botó Guia obre el mode de Pantalla completa</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Configuració de descàrrega automàtica de metadades per a jocs recentment importats.</sys:String>
     <sys:String x:Key="LOCSettingsTargetMonitor">Monitor objectiu</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Mostra títol dels jocs</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Mostra estat de la bateria</sys:String>
@@ -366,7 +394,7 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Desplaçament horitzontal</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Selecciona una de les subseccions</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">No hi han paràmetres disponibles</sys:String>
-    <sys:String x:Key="LOCSettingsErrorLoadingSettings"></sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings">No s'ha pogut carregar la configuració</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">Aquests scripts son executats per cada joc de la biblioteca. Scripts individuals poden ser assignats per cada joc per separat mentre s'editen els detalls del joc</sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animar transicions de fons de pantalla</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Tamanys de Font</sys:String>
@@ -379,21 +407,21 @@ Si vols ajudar-nos a arreglar aquest problema, si us plau envia'ns informació d
     <sys:String x:Key="LOCSettingsTextFormattingMode">Mode de format de text</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Mode de renderitzat de text
 </sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Actualment no s’utilitzen mètodes de renderització i format de text per a la descripció de jocs.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Precarregar les imatges de fons</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Si activat, Playnite descarregarà imatges d'art de fons mentre descarrega metadades, usant més espai de dic i fent l'art disponible quan s'estigui fora de línia.
 
 Si desactivat, les imatges d'art de fons seran descarregades només quan es necessitin per primera vegada, usant menys espai, pero pot causar un retràs abans que l'art sigui presentat i algunes imatges poden no estar disponibles quan s'estigui fora de línia. </sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Tancar automàticament clients tercers després de sortir del joc.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Retard d'apagada del client (en segons)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">No tancar després de les sessions de joc de menys de (en segons)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Tancar automàticament els següents clients</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Tanca automàticament els Clients</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Importar la llista d'exclusions</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Mostrar avís quan s'assignin medis del joc molt grans</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Arrencar jocs directament sense usar el client oficial</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Organització de classificació per edat preferida</sys:String>
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
     <sys:String x:Key="LOCStrechUniform">Uniforme</sys:String>
@@ -735,8 +763,8 @@ Actualment està sent utilitzat per {1} jocs i {2} emuladors.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">El desenvolupament de Playnite és possible gràcies aquests usuaris:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Codi, localització i altres col·laboradors sense cap ordre particular:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Cancel·lar la monitorització del joc?</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">Actualment s’està executant la supervisió de la instal·lació. Voleu cancel·lar el procés i tornar el joc a l'estat anterior?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Actualment s’està executant la supervisió de l’execució del joc. Voleu cancel·lar el procés i tornar el joc a l'estat anterior?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Temps jugat</sys:String>
     <sys:String x:Key="LOCLastPlayed">Última partida</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
@@ -769,25 +797,39 @@ Actualment està sent utilitzat per {1} jocs i {2} emuladors.</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 a 500 hores</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 a 1000 hores</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">S'ha de reiniciar Playnite per a completar la instal·lació. Vols reiniciar-lo ara?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">L'extensió no està empaquetada correctament.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">El tema no està empaquetat correctament.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">No s'ha pogut carregar correctament l'extensió &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">No s'ha pogut carregar correctament el tema &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">No s'ha pogut carregar correctament l'extensió.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">No s'ha pogut carregar correctament el tema.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Aquest tema o extensió utilitza una versió de l'API que no té suport.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instal·lació s'ha realitzat correctament.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instal·la extensió?</sys:String>
-    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">General</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">No s'ha pogut instal·lar l'extensió.
         
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vols instal·lar una nova extensió?
+
+{0}
+Per {1}
+Versió {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Vols actualitzar l'extensió &quot;{0}&quot;?
+
+Versió actual: {1}
+Nova versió: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">No ha pogut instal·lar el tema</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Vols instal·lar un tema nou?
+
+{0}
+Per {1}
+Versió {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Vols actualitzar el tema &quot;{0}&quot;?
+
+Versió actual: {1}
+Nova versió: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Alerta de rendiment</sys:String>

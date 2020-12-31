@@ -63,6 +63,16 @@ namespace Playnite.Tests
         }
 
         [Test]
+        public void IsUriTest()
+        {
+            Assert.IsTrue(@"http://www.playnite.link".IsUri());
+            Assert.IsTrue(@"mailto:someadress@test.cz".IsUri());
+            Assert.IsTrue(@"playnite://test/test".IsUri());
+            Assert.IsFalse(@"testsstring".IsUri());
+            Assert.IsFalse(@"c:\test\aa.txt".IsUri());
+        }
+
+        [Test]
         public void IsNullOrWhiteSpaceTest()
         {
             var multiLine = @"

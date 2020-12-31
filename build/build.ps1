@@ -289,4 +289,6 @@ if ($Portable)
     New-ZipFromDirectory $OutputDir $packageName
 }
 
+(Get-ChildItem (Join-Path $OutputDir "Playnite.dll")).VersionInfo.FileVersion | Write-Host -ForegroundColor Green
+
 return $true

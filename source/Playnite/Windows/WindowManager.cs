@@ -14,7 +14,7 @@ namespace Playnite.Windows
         {
             get
             {
-                var window = PlayniteApplication.CurrentNative.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+                var window = PlayniteApplication.CurrentNative.Windows.OfType<Window>().LastOrDefault(w => w.IsActive);
                 return window ?? PlayniteApplication.CurrentNative.MainWindow;
             }
         }

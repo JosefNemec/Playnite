@@ -1752,7 +1752,7 @@ namespace Playnite
 #if DEBUG
             var consoleTarget = new ColoredConsoleTarget()
             {
-                Layout = @"${level:uppercase=true}|${logger}:${message}${exception}"
+                Layout = @"${level:uppercase=true}|${logger}:${message}${onexception:${newline}${exception}}"
             };
 
             config.AddTarget("console", consoleTarget);
@@ -1763,7 +1763,7 @@ namespace Playnite
             var fileTarget = new FileTarget()
             {
                 FileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.log"),
-                Layout = "${date:format=dd-MM HH\\:mm\\:ss.fff}|${level:uppercase=true}|${logger}:${message}${exception:format=toString}",
+                Layout = "${date:format=dd-MM HH\\:mm\\:ss.fff}|${level:uppercase=true}|${logger}:${message}${onexception:${newline}${exception:format=toString}}",
                 KeepFileOpen = false,
                 ArchiveFileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.{#####}.log"),
                 ArchiveAboveSize = 4096000,

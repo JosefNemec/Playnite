@@ -1,0 +1,8 @@
+Name: Ryujinx
+Website: 'https://ryujinx.org/'
+Profiles:
+  - Name: Default
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Nintendo Switch]
+    ImageExtensions: [xci, nsp]
+    ExecutableLookup: ^ryujinx\.exe$

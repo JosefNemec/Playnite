@@ -158,6 +158,16 @@ namespace System
             return Regex.IsMatch(str, @"^https?:\/\/", RegexOptions.IgnoreCase);
         }
 
+        public static bool IsUri(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return false;
+            }
+
+            return Uri.IsWellFormedUriString(str, UriKind.Absolute);
+        }
+
         // Courtesy of https://stackoverflow.com/questions/6275980/string-replace-ignoring-case
         public static string Replace(this string str, string oldValue, string @newValue, StringComparison comparisonType)
         {

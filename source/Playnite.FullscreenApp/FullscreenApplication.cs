@@ -143,16 +143,13 @@ namespace Playnite.FullscreenApp
 
         public override void Restart()
         {
-            ReleaseResources();
-            Process.Start(PlaynitePaths.FullscreenExecutablePath);
-            CurrentNative.Shutdown(0);
+            Restart(new CmdLineOptions { MasterInstance = true });
         }
 
         public override void Restart(CmdLineOptions options)
         {
-            ReleaseResources();
-            Process.Start(PlaynitePaths.FullscreenExecutablePath, options.ToString());
-            CurrentNative.Shutdown(0);
+            options.MasterInstance = true;
+            QuitAndStart(PlaynitePaths.FullscreenExecutablePath, options.ToString());
         }
 
         public override void ShowWindowsNotification(string title, string body, Action action)

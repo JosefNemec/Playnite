@@ -6,3 +6,8 @@ Profiles:
     Platforms: [Microsoft Xbox 360]
     ImageExtensions: [iso, xex, cci, cxi, elf]
     ExecutableLookup: ^xenia\.exe$
+  - Name: Canary
+    DefaultArguments: '"{ImagePath}"'
+    Platforms: [Microsoft Xbox 360]
+    ImageExtensions: [iso, xex, cci, cxi, elf]
+    ExecutableLookup: ^xenia-canary\.exe$

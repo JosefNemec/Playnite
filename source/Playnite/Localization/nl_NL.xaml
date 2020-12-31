@@ -3,8 +3,8 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    <sys:String x:Key="LanguageName">Nederlands</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LanguageName">Engels</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite Taal</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Afsluiten</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filter Actief</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filter Uitgeschakeld</sys:String>
@@ -27,35 +27,51 @@ Uitgevinkt - Verwijder categorie
 Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCNoCategory">Geen Categorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Geen Platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Oops! Er ging iets fout...</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Er onherstelbare fout heeft opgetreden.
+
+Als je ons wilt helpen dit probleem op te lossen, omschrijf dan alsjeblieft kort welke acties je hebt ondernomen vóór de crash, en maak dan een diagnose pakket. Als je online bent wordt dit pakket geüpload naar de Playnite server voor analyse.
+
+Als alternatief kan je de 'Rapporteer Crash' knop gebruiken om een nieuw probleem topic aan te maken op GitHub en de crash handmatig te rapporteren.
+
+Bedankt voor je hulp.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Extensi {0} veroorzaakte een onoplosbare fout.
+
+We raden aan om het log bestand op te slaan en het probleem te rapporteren aan extensie ontwikkelaar. Als het probleem zich blijft voordoen. Schakel de extensie dan uit.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extensie {0} heeft onherstelbare fout veroorzaakt.
+
+We raden aan om het probleem te rapporteren aan de extensie ontwikkelaar. Als het probleem zich blijft voordoen, schakel de extensie dan uit.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
 
 Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diagnostische informatie. Bedankt.</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Schakel de extensie uit.</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Sla het log bestand op.</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Verstuur diag. info</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Rapporteer Probleem</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Herstart Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Herstart in Veilige modus</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Schakel alle 3de partij extensies uit en gebruik het standaard thema.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Sluit Playnite af</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Acties ondernomen vóór de crash (in Engels):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Bibliotheek Beheerder</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Kan niet verwijderen - Game of de installer is bezig.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Kan niet deinstalleren - Game is bezig.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Weet u zeker dat u dit spel wilt verwijderen?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Weet u zeker dat u {0} spellen wilt verwijderen?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Weet u zeker dat u dit spel wilt verwijderen?
+
+Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voorkomen dat de game de volgende keer dat de bibliotheek wordt bijgewerkt, opnieuw wordt geïmporteerd.
+</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Weet u zeker dat u {0} spellen wilt verwijderen?
+
+Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voorkomen dat de game de volgende keer dat de bibliotheek wordt bijgewerkt, opnieuw wordt geïmporteerd.
+</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Weet je zeker dat je {0} entries wilt verwijderen die momenteel niet worden gebruikt?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Geen ongebruikte velden gevonden.</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (voeg toe aan uitsluitingslijst)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Vrienden</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Er zijn niet-opgeslagen wijzigingen in deze sectie</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Database versie aan het updaten…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Database update mislukt. Kan het database bestand niet openen.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Kan de spelbibliotheek niet bijwerken. {0} MB vrije ruimte is vereist.</sys:String>
@@ -65,11 +81,11 @@ Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diag
     <sys:String x:Key="LOCGameStartActionError">Kan de actie niet starten: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Kan de spellocatie niet openen: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Snelkoppeling maken mislukt: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">Kan handleiding niet openen: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan het spel niet installeren: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan het spel niet deïnstalleren: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Speel actie is niet geconfigureerd.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">De bibliotheek plug-in die verantwoordelijk is voor deze game is uitgeschakeld of niet geïnstalleerd.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Officiële metadata download is niet beschikbaar.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Er is geen spel geselecteerd.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
@@ -103,7 +119,7 @@ Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diag
     <sys:String x:Key="LOCLastPlayedLabel">Laatst Gespeeld</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Meest gespeeld</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Aantal Keer Gespeeld</sys:String>
-    <sys:String x:Key="LOCNotesLabel"></sys:String>
+    <sys:String x:Key="LOCNotesLabel">Notities</sys:String>
     <sys:String x:Key="LOCAddedLabel">Toegevoegd</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Datum Toegevoegd</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Bewerkt</sys:String>
