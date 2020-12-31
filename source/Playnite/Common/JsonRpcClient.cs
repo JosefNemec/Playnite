@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.SDK.Data;
 using System;
 using System.Collections.Concurrent;
@@ -15,7 +14,7 @@ namespace Playnite.Common
 {
     public class JsonRpcResponse<TResult> : RpcMessage where TResult : class
     {
-        [JsonProperty(PropertyName = "result")]
+        [SerializationPropertyName("result")]
         public new TResult Result;
     }
 
@@ -60,31 +59,31 @@ namespace Playnite.Common
     }
     public class JsonRpcResponseError
     {
-        [JsonProperty(PropertyName = "code")]
+        [SerializationPropertyName("code")]
         public int Code;
 
-        [JsonProperty(PropertyName = "message")]
+        [SerializationPropertyName("message")]
         public string Message;
     }
 
     public class RpcMessage
     {
-        [JsonProperty(PropertyName = "jsonrpc")]
+        [SerializationPropertyName("jsonrpc")]
         public string JsonRpcProtocol = "2.0";
 
-        [JsonProperty(PropertyName = "id")]
+        [SerializationPropertyName("id")]
         public int? Id;
 
-        [JsonProperty(PropertyName = "result")]
+        [SerializationPropertyName("result")]
         public object Result;
 
-        [JsonProperty(PropertyName = "method")]
+        [SerializationPropertyName("method")]
         public string Method;
 
-        [JsonProperty(PropertyName = "params")]
+        [SerializationPropertyName("params")]
         public object Params;
 
-        [JsonProperty(PropertyName = "error")]
+        [SerializationPropertyName("error")]
         public JsonRpcResponseError Error;
 
         public TParams GetParams<TParams>() where TParams : class, new()

@@ -135,17 +135,40 @@ namespace Playnite.Plugins
             }
         }
 
-        public static ExtensionManifest GetManifestFromDir(string file)
+        public static IEnumerable<ExtensionManifest> GetManifestsFromPath(string path)
         {
-            if (File.Exists(file))
+            if (Directory.Exists(path))
+            {
+                var man = GetManifestFromFile(Path.Combine(path, PlaynitePaths.ExtensionManifestFileName));
+                if (man != null)
+                {
+                    yield return man;
+                }
+            }
+            else if (File.Exists(path))
+            {
+                foreach (var dirPath in Serialization.FromJsonFile<List<string>>(path))
+                {
+                    var man = GetManifestFromFile(Path.Combine(dirPath, PlaynitePaths.ExtensionManifestFileName));
+                    if (man != null)
+                    {
+                        yield return man;
+                    }
+                }
+            }
+        }
+
+        public static ExtensionManifest GetManifestFromFile(string directory)
+        {
+            if (File.Exists(directory))
             {
                 try
                 {
-                    return ExtensionManifest.FromFile(file);
+                    return ExtensionManifest.FromFile(directory);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e, $"Failed to parse plugin description: {file}");
+                    logger.Error(e, $"Failed to parse plugin description: {directory}");
                     return null;
                 }
             }
@@ -158,7 +181,7 @@ namespace Playnite.Plugins
             var descs = new List<ExtensionManifest>();
             foreach (var file in GetExtensionDescriptorFiles())
             {
-                var man = GetManifestFromDir(file);
+                var man = GetManifestFromFile(file);
                 if (man?.Id.IsNullOrEmpty() == false)
                 {
                     descs.Add(man);
@@ -232,11 +255,13 @@ namespace Playnite.Plugins
             var manifests = GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)).ToList();
             foreach (var ext in externals)
             {
-                var man = GetManifestFromDir(Path.Combine(ext, PlaynitePaths.ExtensionManifestFileName));
-                if (man?.Type == ExtensionType.Script)
+                foreach (var man in GetManifestsFromPath(ext))
                 {
-                    man.IsExternalDev = true;
-                    manifests.Add(man);
+                    if (man?.Type == ExtensionType.Script)
+                    {
+                        man.IsExternalDev = true;
+                        manifests.Add(man);
+                    }
                 }
             }
 
@@ -304,11 +329,13 @@ namespace Playnite.Plugins
             var manifests = GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true).ToList();
             foreach (var ext in externals)
             {
-                var man = GetManifestFromDir(Path.Combine(ext, PlaynitePaths.ExtensionManifestFileName));
-                if (man != null && man.Type != ExtensionType.Script)
+                foreach (var man in GetManifestsFromPath(ext))
                 {
-                    man.IsExternalDev = true;
-                    manifests.Add(man);
+                    if (man != null && man.Type != ExtensionType.Script)
+                    {
+                        man.IsExternalDev = true;
+                        manifests.Add(man);
+                    }
                 }
             }
 
@@ -372,7 +399,12 @@ namespace Playnite.Plugins
                     {
                         if (typeof(Plugin).IsAssignableFrom(type))
                         {
-                            yield return (Plugin)Activator.CreateInstance(type, new object[] { injectingApi });
+                            var ignore = Attribute.IsDefined(type, typeof(IgnorePluginAttribute));
+                            var load = Attribute.IsDefined(type, typeof(LoadPluginAttribute));
+                            if ((ignore && load) || !ignore)
+                            {
+                                yield return (Plugin)Activator.CreateInstance(type, new object[] { injectingApi });
+                            }
                         }
                     }
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Data;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -163,6 +164,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets list of emulator profiles sorted by name.
         /// </summary>
+        [DontSerializeAttribute]
         public List<EmulatorProfile> SortedProfiles
         {
             get => Profiles.OrderBy(a => a.Name).ToList();

@@ -26,12 +26,24 @@ namespace Playnite.Common
     {
         public static JsonResolver Global { get; } = new JsonResolver();
 
+        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+        {
+            var prop = base.CreateProperty(member, memberSerialization);
+            if (Attribute.IsDefined(member, typeof(SerializationPropertyNameAttribute)))
+            {
+                var att = (SerializationPropertyNameAttribute)Attribute.GetCustomAttribute(member, typeof(SerializationPropertyNameAttribute));
+                prop.PropertyName = att.PropertyName;
+            }
+
+            return prop;
+        }
+
         protected override List<MemberInfo> GetSerializableMembers(Type objectType)
         {
             return objectType.
                 GetMembers(BindingFlags.Public | BindingFlags.Instance).
                 Where(a => a is PropertyInfo || a is FieldInfo).
-                Where(a => !Attribute.IsDefined(a, typeof(JsonDontSerializeAttribute)) && !Attribute.IsDefined(a, typeof(JsonIgnoreAttribute))).
+                Where(a => !Attribute.IsDefined(a, typeof(DontSerializeAttribute)) && !Attribute.IsDefined(a, typeof(JsonIgnoreAttribute))).
                 ToList();
         }
     }
@@ -87,11 +99,32 @@ namespace Playnite.Common
         {
             return Serialization.FromTomlFile<T>(filePath);
         }
+
+        public T GetClone<T>(T source) where T : class
+        {
+            return source.GetClone<T>();
+        }
+
+        public U GetClone<T, U>(T source)
+            where T : class
+            where U : class
+        {
+            return source.GetClone<T, U>();
+        }
+
+        public bool AreObjectsEqual(object object1, object object2)
+        {
+            return object1.IsEqualJson(object2);
+        }
     }
 
     public static class Serialization
     {
         private static readonly ILogger logger = LogManager.GetLogger();
+        private static readonly JsonSerializerSettings jsonDesSettings = new JsonSerializerSettings
+        {
+            ContractResolver = JsonResolver.Global
+        };
 
         public static string ToYaml(object obj)
         {
@@ -149,7 +182,7 @@ namespace Playnite.Common
         {
             try
             {
-                return JsonConvert.DeserializeObject<T>(json);
+                return JsonConvert.DeserializeObject<T>(json, jsonDesSettings);
             }
             catch (Exception e)
             {
@@ -164,7 +197,7 @@ namespace Playnite.Common
             using (var sr = new StreamReader(stream))
             using (var reader = new JsonTextReader(sr))
             {
-                return new JsonSerializer().Deserialize<T>(reader);
+                return JsonSerializer.Create(jsonDesSettings).Deserialize<T>(reader);
             }
         }
 
@@ -180,7 +213,7 @@ namespace Playnite.Common
         {
             try
             {
-                deserialized = JsonConvert.DeserializeObject<T>(json);
+                deserialized = JsonConvert.DeserializeObject<T>(json, jsonDesSettings);
                 return true;
             }
             catch

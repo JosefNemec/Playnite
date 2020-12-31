@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
-using System.Linq.Expressions;
+using Playnite.SDK.Data;
 
 namespace Playnite.SDK.Models
 {
@@ -1074,6 +1074,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's genres.
         /// </summary>
+        [DontSerializeAttribute]
         public List<Genre> Genres
         {
             get
@@ -1090,6 +1091,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's developers.
         /// </summary>
+        [DontSerializeAttribute]
         public List<Company> Developers
         {
             get
@@ -1106,6 +1108,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's publishers.
         /// </summary>
+        [DontSerializeAttribute]
         public List<Company> Publishers
         {
             get
@@ -1122,6 +1125,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's tags.
         /// </summary>
+        [DontSerializeAttribute]
         public List<Tag> Tags
         {
             get
@@ -1138,6 +1142,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's features.
         /// </summary>
+        [DontSerializeAttribute]
         public List<GameFeature> Features
         {
             get
@@ -1154,6 +1159,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's categories.
         /// </summary>
+        [DontSerializeAttribute]
         public List<Category> Categories
         {
             get
@@ -1170,6 +1176,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's platform.
         /// </summary>
+        [DontSerializeAttribute]
         public Platform Platform
         {
             get => DatabaseReference?.Platforms[platformId];
@@ -1178,6 +1185,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's series.
         /// </summary>
+        [DontSerializeAttribute]
         public Series Series
         {
             get => DatabaseReference?.Series[seriesId];
@@ -1186,6 +1194,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Get game's age rating.
         /// </summary>
+        [DontSerializeAttribute]
         public AgeRating AgeRating
         {
             get => DatabaseReference?.AgeRatings[ageRatingId];
@@ -1194,6 +1203,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's region.
         /// </summary>
+        [DontSerializeAttribute]
         public Region Region
         {
             get => DatabaseReference?.Regions[regionId];
@@ -1202,6 +1212,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's source.
         /// </summary>
+        [DontSerializeAttribute]
         public GameSource Source
         {
             get => DatabaseReference?.Sources[sourceId];
@@ -1210,6 +1221,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's release year.
         /// </summary>
+        [DontSerializeAttribute]
         public int? ReleaseYear
         {
             get => ReleaseDate?.Year;
@@ -1218,6 +1230,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's user score rating.
         /// </summary>
+        [DontSerializeAttribute]
         public ScoreRating UserScoreRating
         {
             get => GetScoreRating(UserScore);
@@ -1226,6 +1239,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's community score rating.
         /// </summary>
+        [DontSerializeAttribute]
         public ScoreRating CommunityScoreRating
         {
             get => GetScoreRating(CommunityScore);
@@ -1234,6 +1248,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's critic score rating.
         /// </summary>
+        [DontSerializeAttribute]
         public ScoreRating CriticScoreRating
         {
             get => GetScoreRating(CriticScore);
@@ -1242,6 +1257,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's user score group.
         /// </summary>
+        [DontSerializeAttribute]
         public ScoreGroup UserScoreGroup
         {
             get => GetScoreGroup(UserScore);
@@ -1250,6 +1266,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's community score group.
         /// </summary>
+        [DontSerializeAttribute]
         public ScoreGroup CommunityScoreGroup
         {
             get => GetScoreGroup(CommunityScore);
@@ -1258,6 +1275,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's critic score group.
         /// </summary>
+        [DontSerializeAttribute]
         public ScoreGroup CriticScoreGroup
         {
             get => GetScoreGroup(CriticScore);
@@ -1266,6 +1284,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets time segment for games last activity.
         /// </summary>
+        [DontSerializeAttribute]
         public PastTimeSegment LastActivitySegment
         {
             get => GetPastTimeSegment(LastActivity);
@@ -1274,6 +1293,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets time segment for games added date.
         /// </summary>
+        [DontSerializeAttribute]
         public PastTimeSegment AddedSegment
         {
             get => GetPastTimeSegment(Added);
@@ -1282,6 +1302,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets time segment for games modified date..
         /// </summary>
+        [DontSerializeAttribute]
         public PastTimeSegment ModifiedSegment
         {
             get => GetPastTimeSegment(Modified);
@@ -1290,6 +1311,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's play time category.
         /// </summary>
+        [DontSerializeAttribute]
         public PlaytimeCategory PlaytimeCategory
         {
             get => GetPlayTimeCategory(Playtime);
@@ -1298,6 +1320,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets value indicating wheter the game is custom game.
         /// </summary>
+        [DontSerializeAttribute]
         public bool IsCustomGame
         {
             get => PluginId == Guid.Empty;
@@ -1306,6 +1329,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game installation state.
         /// </summary>
+        [DontSerializeAttribute]
         public InstallationStatus InstallationStatus
         {
             get => IsInstalled ? InstallationStatus.Installed : InstallationStatus.Uninstalled;

@@ -7,14 +7,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Bson;
 
 namespace Playnite.Common
 {
     public class Resources
     {
-
         public static void ExtractResource(string path, string name, string type, string destination)
         {
             IntPtr hMod = Interop.LoadLibraryEx(path, IntPtr.Zero, 0x00000002);

@@ -11,6 +11,14 @@ using System.Windows.Controls;
 
 namespace Playnite.SDK.Plugins
 {
+    public class LoadPluginAttribute : Attribute
+    {
+    }
+
+    public class IgnorePluginAttribute : Attribute
+    {
+    }
+
     /// <summary>
     /// Represents base Playnite plugin.
     /// </summary>

@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Playnite.SDK;
+﻿using Playnite.SDK;
+using Playnite.SDK.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace Playnite.Services
         {
             var url = Uri.EscapeUriString(Endpoint + subUrl);
             var strResult = HttpClient.GetStringAsync(url).GetAwaiter().GetResult();
-            var result = JsonConvert.DeserializeObject<ServicesResponse<T>>(strResult);
+            var result = Serialization.FromJson<ServicesResponse<T>>(strResult);
 
             if (!string.IsNullOrEmpty(result.Error))
             {
@@ -47,7 +47,7 @@ namespace Playnite.Services
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
             var response = HttpClient.PostAsync(url, content).GetAwaiter().GetResult();
             var strResult = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            var result = JsonConvert.DeserializeObject<ServicesResponse<T>>(strResult);
+            var result = Serialization.FromJson<ServicesResponse<T>>(strResult);
 
             if (!string.IsNullOrEmpty(result.Error))
             {

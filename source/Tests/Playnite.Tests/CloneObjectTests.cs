@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Playnite;
 using Playnite.SDK.Models;
 using Newtonsoft.Json;
+using Playnite.SDK.Data;
 
 namespace Playnite.Tests
 {
@@ -78,6 +79,9 @@ namespace Playnite.Tests
 
             [JsonIgnore]
             public int Prop2 { get; set; }
+
+            [DontSerializeAttribute]
+            public int Prop3 { get; set; }
         }
 
         [Test]
@@ -86,18 +90,21 @@ namespace Playnite.Tests
             var source = new JsonTestObject()
             {
                 Prop1 = 10,
-                Prop2 = 20
+                Prop2 = 20,
+                Prop3 = 30
             };
 
             var target = new JsonTestObject();
             source.CopyProperties(target, false, null, true);
             Assert.AreEqual(10, target.Prop1);
             Assert.AreNotEqual(20, target.Prop2);
+            Assert.AreNotEqual(30, target.Prop3);
 
             target = new JsonTestObject();
             source.CopyProperties(target, false, null, false);
             Assert.AreEqual(10, target.Prop1);
             Assert.AreEqual(20, target.Prop2);
+            Assert.AreEqual(30, target.Prop3);
         }
 
         [Test]
@@ -114,7 +121,7 @@ namespace Playnite.Tests
             var target = new TestObject();
 
             // Standard copy of all properties
-            source.CopyProperties(target, true);            
+            source.CopyProperties(target, true);
             Assert.AreEqual(source.Prop1, target.Prop1);
             Assert.AreEqual(source.Prop2, target.Prop2);
             Assert.IsNotNull(target.Prop3);

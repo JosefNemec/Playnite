@@ -6,11 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Reflection;
+using Playnite.SDK.Data;
+using Playnite.Common;
 
 namespace System
 {
     public static class CloneObject
     {
+        private static readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
+        {
+            Formatting = Formatting.None,
+            ContractResolver = JsonResolver.Global
+        };
+
         /// <summary>
         /// Perform a deep copy of the object, using Json as a serialisation method.
         /// </summary>
@@ -24,17 +32,7 @@ namespace System
                 return default(T);
             }
 
-            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
-        }
-
-        public static T GetClone<T>(this T source, JsonSerializerSettings settings)
-        {
-            if (Object.ReferenceEquals(source, null))
-            {
-                return default(T);
-            }
-
-            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source, settings), settings);
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source, jsonSerializerSettings));
         }
 
         public static U GetClone<T, U>(this T source)
@@ -44,23 +42,13 @@ namespace System
                 return default(U);
             }
 
-            return JsonConvert.DeserializeObject<U>(JsonConvert.SerializeObject(source));
-        }
-
-        public static U GetClone<T, U>(this T source, JsonSerializerSettings settings)
-        {
-            if (Object.ReferenceEquals(source, null))
-            {
-                return default(U);
-            }
-
-            return JsonConvert.DeserializeObject<U>(JsonConvert.SerializeObject(source, settings), settings);
+            return JsonConvert.DeserializeObject<U>(JsonConvert.SerializeObject(source, jsonSerializerSettings));
         }
 
         public static bool IsEqualJson(this object source, object targer)
         {
-            var first = JsonConvert.SerializeObject(source);
-            var second = JsonConvert.SerializeObject(targer);
+            var first = JsonConvert.SerializeObject(source, jsonSerializerSettings);
+            var second = JsonConvert.SerializeObject(targer, jsonSerializerSettings);
             return first == second;
         }
 
@@ -79,8 +67,8 @@ namespace System
             Type typeDest = destination.GetType();
             Type typeSrc = source.GetType();
 
-            // Iterate the Properties of the source instance and  
-            // populate them from their desination counterparts  
+            // Iterate the Properties of the source instance and
+            // populate them from their desination counterparts
             PropertyInfo[] srcProps = typeSrc.GetProperties();
             foreach (PropertyInfo srcProp in srcProps)
             {
@@ -120,7 +108,7 @@ namespace System
                     continue;
                 }
 
-                if (acceptJsonIgnore && targetProperty.GetCustomAttributes(typeof(JsonIgnoreAttribute), true).Length > 0)
+                if (acceptJsonIgnore && (Attribute.IsDefined(targetProperty, typeof(DontSerializeAttribute)) || Attribute.IsDefined(targetProperty, typeof(JsonIgnoreAttribute))))
                 {
                     continue;
                 }
@@ -140,7 +128,7 @@ namespace System
                     {
                         targetProperty.SetValue(destination, sourceValue);
                     }
-                } 
+                }
                 else
                 {
                     if (sourceValue != null)
@@ -163,5 +151,4 @@ namespace System
             }
         }
     }
-
 }

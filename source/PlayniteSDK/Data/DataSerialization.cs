@@ -10,8 +10,28 @@ namespace Playnite.SDK.Data
     /// <summary>
     ///
     /// </summary>
-    public class JsonDontSerializeAttribute : Attribute
+    public class DontSerializeAttribute : Attribute
     {
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class SerializationPropertyNameAttribute : Attribute
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string PropertyName { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="propertyName"></param>
+        public SerializationPropertyNameAttribute(string propertyName)
+        {
+            PropertyName = propertyName;
+        }
     }
 
     /// <summary>
@@ -97,6 +117,14 @@ namespace Playnite.SDK.Data
         /// <param name="filePath"></param>
         /// <returns></returns>
         T FromTomlFile<T>(string filePath) where T : class;
+
+        T GetClone<T>(T source) where T : class;
+
+        U GetClone<T, U>(T source)
+            where T : class
+            where U : class;
+
+        bool AreObjectsEqual(object object1, object object2);
     }
 
     /// <summary>
@@ -218,6 +246,23 @@ namespace Playnite.SDK.Data
         public static T FromTomlFile<T>(string filePath) where T : class
         {
             return serializer.FromTomlFile<T>(filePath);
+        }
+
+        public static T GetClone<T>(T source) where T : class
+        {
+            return serializer.GetClone<T>(source);
+        }
+
+        public U GetClone<T, U>(T source)
+            where T : class
+            where U : class
+        {
+            return serializer.GetClone<T, U>(source);
+        }
+
+        public bool AreObjectsEqual(object object1, object object2)
+        {
+            return serializer.AreObjectsEqual(object1, object2);
         }
     }
 }
