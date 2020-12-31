@@ -17,16 +17,15 @@ namespace Playnite.Tests.Database
         public void UsageRemovalTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
-
                 var emulator = new Emulator("test")
                 {
                     Profiles = new System.Collections.ObjectModel.ObservableCollection<EmulatorProfile>()
-                    {
-                        new EmulatorProfile() { Name = "test profile" }
-                    }
+                        {
+                            new EmulatorProfile() { Name = "test profile" }
+                        }
                 };
 
                 db.Emulators.Add(emulator);

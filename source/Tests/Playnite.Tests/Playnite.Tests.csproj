@@ -149,7 +149,6 @@
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="PathsTests.cs" />
     <Compile Include="PlayniteTests.cs" />
-    <Compile Include="Plugins\ExtensionFactoryTests.cs" />
     <Compile Include="ProgramsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafeFileEnumeratorTests.cs" />

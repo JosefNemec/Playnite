@@ -18,9 +18,13 @@ namespace Playnite.Database
             game.IsUninstalling = false;
             game.IsLaunching = false;
             game.IsRunning = false;
-        }, type: GameDatabaseCollection.Games)
+        }, mapper, type: GameDatabaseCollection.Games)
         {
             db = database;
+        }
+
+        public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
+        {
             mapper.Entity<Game>().
                 Id(a => a.Id, false).
                 Ignore(a => a.Genres).

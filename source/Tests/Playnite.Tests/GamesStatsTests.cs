@@ -20,8 +20,8 @@ namespace Playnite.Tests
         public void BasicTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 db.Games.Add(new List<Game>
                 {

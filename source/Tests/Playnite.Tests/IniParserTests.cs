@@ -20,10 +20,5 @@ namespace Playnite.Tests
             Assert.AreEqual("true", ini["RegionDoesRequirePermission"]["GameDev"]);
             Assert.IsNull(ini["test"]?["test2"]);
         }
-        [Test]
-        public void StandardTest2()
-        {
-            var tset = Serialization.FromYamlFile<AddonInstallerManifest>(@"e:\Devel\PlayniteExtensions\manifests\RockstarLibrary.yaml");
-        }
     }
 }

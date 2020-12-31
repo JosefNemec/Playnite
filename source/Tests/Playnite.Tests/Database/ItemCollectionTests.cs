@@ -20,13 +20,10 @@ namespace Playnite.Tests.Database
         {
             var newGame = new Game("TestGame");
             using (var temp = TempDirectory.Create())
-            {                
-                var col = new ItemCollection<Game>(temp.TempPath);
-                col.Add(newGame);                
-                var files = Directory.GetFiles(temp.TempPath);
+            using (var col = new ItemCollection<Game>(Path.Combine(temp.TempPath, "db"), null))
+            {
+                col.Add(newGame);
                 Assert.AreEqual(1, col.Count);
-                Assert.AreEqual(1, files.Count());
-                Assert.AreEqual(newGame.Id.ToString() + ".json", Path.GetFileName(files[0]));
             }
         }
 
@@ -34,10 +31,10 @@ namespace Playnite.Tests.Database
         public void EventsInvokeCountNonBufferedTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var col = new ItemCollection<DatabaseObject>(Path.Combine(temp.TempPath, "db"), null))
             {
                 var itemUpdates = 0;
                 var colUpdates = 0;
-                var col = new ItemCollection<DatabaseObject>(temp.TempPath);
                 col.ItemUpdated += (e, args) => itemUpdates++;
                 col.ItemCollectionChanged += (e, args) => colUpdates++;
 
@@ -54,10 +51,10 @@ namespace Playnite.Tests.Database
         public void EventsInvokeCountBufferedTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var col = new ItemCollection<DatabaseObject>(Path.Combine(temp.TempPath, "db"), null))
             {
                 var itemUpdates = 0;
                 var colUpdates = 0;
-                var col = new ItemCollection<DatabaseObject>(temp.TempPath);
                 col.ItemUpdated += (e, args) => itemUpdates++;
                 col.ItemCollectionChanged += (e, args) => colUpdates++;
 
@@ -68,24 +65,24 @@ namespace Playnite.Tests.Database
                 col.Remove(item);
                 Assert.AreEqual(0, itemUpdates);
                 Assert.AreEqual(0, colUpdates);
-                col.EndBufferUpdate();                
+                col.EndBufferUpdate();
                 Assert.AreEqual(1, itemUpdates);
                 Assert.AreEqual(1, colUpdates);
-            }            
+            }
         }
 
         [Test]
         public void EventsArgsNonBufferedTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var col = new ItemCollection<DatabaseObject>(Path.Combine(temp.TempPath, "db"), null))
             {
                 ItemCollectionChangedEventArgs<DatabaseObject> itemColArgs = null;
                 ItemUpdatedEventArgs<DatabaseObject> itemUpdateArgs = null;
-                var col = new ItemCollection<DatabaseObject>(temp.TempPath);
                 col.ItemUpdated += (e, args) => itemUpdateArgs = args;
                 col.ItemCollectionChanged += (e, args) => itemColArgs = args;
                 var item = new DatabaseObject() { Name = "Original" };
-                
+
                 col.Add(item);
                 Assert.AreEqual(1, itemColArgs.AddedItems.Count);
                 Assert.AreEqual(item, itemColArgs.AddedItems[0]);
@@ -108,10 +105,10 @@ namespace Playnite.Tests.Database
         public void EventsArgsBufferedTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var col = new ItemCollection<DatabaseObject>(Path.Combine(temp.TempPath, "db"), null))
             {
                 ItemCollectionChangedEventArgs<DatabaseObject> itemColArgs = null;
                 ItemUpdatedEventArgs<DatabaseObject> itemUpdateArgs = null;
-                var col = new ItemCollection<DatabaseObject>(temp.TempPath);
                 col.ItemUpdated += (e, args) => itemUpdateArgs = args;
                 col.ItemCollectionChanged += (e, args) => itemColArgs = args;
                 var item = new DatabaseObject();
@@ -134,10 +131,10 @@ namespace Playnite.Tests.Database
         public void NestedBufferTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var col = new ItemCollection<DatabaseObject>(Path.Combine(temp.TempPath, "db"), null))
             {
                 var colChanges = 0;
                 var colUpdates = 0;
-                var col = new ItemCollection<DatabaseObject>(temp.TempPath);
                 col.ItemUpdated += (e, args) => colUpdates++;
                 col.ItemCollectionChanged += (e, args) => colChanges++;
                 var item = new DatabaseObject();
@@ -168,10 +165,10 @@ namespace Playnite.Tests.Database
         public void BufferConsolidationTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var col = new ItemCollection<DatabaseObject>(Path.Combine(temp.TempPath, "db"), null))
             {
                 ItemCollectionChangedEventArgs<DatabaseObject> colChanges = null;
                 ItemUpdatedEventArgs<DatabaseObject> colUpdates = null;
-                var col = new ItemCollection<DatabaseObject>(temp.TempPath);
                 col.ItemUpdated += (e, args) => colUpdates = args;
                 col.ItemCollectionChanged += (e, args) => colChanges = args;
 

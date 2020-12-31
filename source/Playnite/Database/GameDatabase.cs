@@ -17,6 +17,7 @@ using System.Drawing.Imaging;
 using System.Threading;
 using System.Collections.Concurrent;
 using Playnite.Common.Media.Icons;
+using System.Reflection;
 
 namespace Playnite.Database
 {
@@ -27,6 +28,23 @@ namespace Playnite.Database
         public const double MaximumRecommendedBackgroundSize = 4;
 
         private static ILogger logger = LogManager.GetLogger();
+
+        private static Dictionary<string, Type> collectionsSpec = new Dictionary<string, Type>
+        {
+            { nameof(Platforms), typeof(PlatformsCollection) },
+            { nameof(Emulators), typeof(EmulatorsCollection) },
+            { nameof(Genres), typeof(GenresCollection) },
+            { nameof(Companies), typeof(CompaniesCollection) },
+            { nameof(Tags), typeof(TagsCollection) },
+            { nameof(Categories), typeof(CategoriesCollection) },
+            { nameof(AgeRatings), typeof(AgeRatingsCollection) },
+            { nameof(Series), typeof(SeriesCollection) },
+            { nameof(Regions), typeof(RegionsCollection) },
+            { nameof(Sources), typeof(GamesSourcesCollection) },
+            { nameof(Features), typeof(FeaturesCollection) },
+            { nameof(SoftwareApps), typeof(AppSoftwareCollection) },
+            { nameof(Games), typeof(GamesCollection) }
+        };
 
         #region Locks
 
@@ -272,29 +290,37 @@ namespace Playnite.Database
         {
         }
 
+        public static LiteDB.BsonMapper GetCollectionMapper()
+        {
+            var mapper = new LiteDB.BsonMapper()
+            {
+                SerializeNullValues = false,
+                TrimWhitespace = false,
+                EmptyStringToNull = true,
+                IncludeFields = false,
+                IncludeNonPublic = false
+            };
+
+            foreach (var col in collectionsSpec)
+            {
+                col.Value.
+                    GetMethod(nameof(GamesCollection.MapLiteDbEntities), BindingFlags.Public | BindingFlags.Static).
+                    Invoke(null, new object[] { mapper });
+            }
+
+            return mapper;
+        }
+
         public GameDatabase(string path)
         {
-            var mapper = LiteDB.BsonMapper.Global;
-            mapper.SerializeNullValues = false;
-            mapper.TrimWhitespace = false;
-            mapper.EmptyStringToNull = true;
-            mapper.IncludeFields = false;
-            mapper.IncludeNonPublic = false;
-
+            var mapper = GetCollectionMapper();
             DatabasePath = GetFullDbPath(path);
-            Platforms = new PlatformsCollection(this, mapper);
-            Games = new GamesCollection(this, mapper);
-            Emulators = new EmulatorsCollection(this, mapper);
-            Genres = new GenresCollection(this, mapper);
-            Companies = new CompaniesCollection(this, mapper);
-            Tags = new TagsCollection(this, mapper);
-            Categories = new CategoriesCollection(this, mapper);
-            AgeRatings = new AgeRatingsCollection(this, mapper);
-            Series = new SeriesCollection(this, mapper);
-            Regions = new RegionsCollection(this, mapper);
-            Sources = new GamesSourcesCollection(this, mapper);
-            Features = new FeaturesCollection(this, mapper);
-            SoftwareApps = new AppSoftwareCollection(this, mapper);
+
+            foreach (var col in collectionsSpec)
+            {
+                var collection = Activator.CreateInstance(col.Value, this, mapper);
+                typeof(GameDatabase).GetProperty(col.Key).SetValue(this, collection);
+            }
         }
 
         public void Dispose()

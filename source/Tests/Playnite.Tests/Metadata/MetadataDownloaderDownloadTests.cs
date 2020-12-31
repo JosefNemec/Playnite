@@ -348,8 +348,8 @@ namespace Playnite.Tests.Metadata
             };
 
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 Game.DatabaseReference = db;
 
@@ -445,8 +445,8 @@ namespace Playnite.Tests.Metadata
             };
 
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 Game.DatabaseReference = db;
                 var addedGame = db.ImportGame(new GameInfo()

@@ -12,9 +12,13 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public AgeRatingsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(type: GameDatabaseCollection.AgeRatings)
+        public AgeRatingsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.AgeRatings)
         {
             db = database;
+        }
+
+        public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
+        {
             mapper.Entity<AgeRating>().Id(a => a.Id, false);
         }
 

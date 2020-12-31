@@ -12,9 +12,13 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public RegionsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(type: GameDatabaseCollection.Regions)
+        public RegionsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.Regions)
         {
             db = database;
+        }
+
+        public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
+        {
             mapper.Entity<Region>().Id(a => a.Id, false);
         }
 

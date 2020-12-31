@@ -32,8 +32,8 @@ namespace Playnite.Tests.Database
             });
 
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 db.ImportGames(libPlugin.Object, true, new List<ImportExclusionItem>());
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);

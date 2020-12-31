@@ -11,7 +11,7 @@ namespace Playnite.Database
 {
     public class InMemoryItemCollection<TItem> : ItemCollection<TItem> where TItem : DatabaseObject
     {
-        public InMemoryItemCollection() : base(false)
+        public InMemoryItemCollection() : base(null, false)
         {
         }
     }

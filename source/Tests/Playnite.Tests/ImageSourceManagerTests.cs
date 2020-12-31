@@ -48,8 +48,8 @@ namespace Playnite.Tests
         {
             var file = Path.Combine(PlaynitePaths.ProgramPath, "Resources", "Images", "applogo.png");
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 var image = db.AddFile("image.png", File.ReadAllBytes(file), Guid.NewGuid());
                 ImageSourceManager.SetDatabase(db);

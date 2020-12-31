@@ -28,6 +28,7 @@ namespace Playnite.Database
         private readonly bool isPersistent = true;
         private LiteDatabase liteDb;
         private LiteCollection<TItem> liteCollection;
+        private BsonMapper mapper;
 
         public ConcurrentDictionary<Guid, TItem> Items { get; }
 
@@ -52,29 +53,26 @@ namespace Playnite.Database
 
         internal bool IsEventsEnabled { get; set; } = true;
 
-        public ItemCollection(bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
+        public ItemCollection(BsonMapper mapper, bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
         {
             this.isPersistent = isPersistent;
+            this.mapper = mapper;
             Items = new ConcurrentDictionary<Guid, TItem>();
             CollectionType = type;
         }
 
-        public ItemCollection(Action<TItem> initMethod, bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(isPersistent, type)
+        public ItemCollection(Action<TItem> initMethod, BsonMapper mapper, bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(mapper, isPersistent, type)
         {
             this.initMethod = initMethod;
         }
 
-        public ItemCollection(string path, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
+        public ItemCollection(string path, BsonMapper mapper, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
         {
             this.isPersistent = true;
+            this.mapper = mapper;
             Items = new ConcurrentDictionary<Guid, TItem>();
             InitializeCollection(path);
             CollectionType = type;
-        }
-
-        public ItemCollection(string path, Action<TItem> initMethod, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(path, type)
-        {
-            this.initMethod = initMethod;
         }
 
         public void Dispose()
@@ -98,7 +96,7 @@ namespace Playnite.Database
             }
 
             var dpPath = path + ".litedb";
-            liteDb = new LiteDatabase($"Filename={dpPath};Mode=Exclusive");
+            liteDb = new LiteDatabase($"Filename={dpPath};Mode=Exclusive", mapper);
             liteCollection = liteDb.GetCollection<TItem>();
             liteCollection.EnsureIndex(a => a.Id, true);
 
