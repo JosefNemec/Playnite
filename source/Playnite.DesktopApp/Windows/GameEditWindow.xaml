@@ -525,7 +525,7 @@
                               IsChecked="{Binding UseNotesChanges}"/>
                     <TextBox Grid.Column="2" Grid.Row="11" Margin="0,15,0,0"
                              Text="{Binding EditingGame.Notes, UpdateSourceTrigger=PropertyChanged}"
-                             Grid.ColumnSpan="4"
+                             Grid.ColumnSpan="4" TextWrapping="Wrap"
                              AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
                              VerticalAlignment="Stretch" />
 
