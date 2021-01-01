@@ -52,13 +52,7 @@ namespace Playnite
     public class ExtensionManifest : BaseExtensionManifest
     {
         [YamlIgnore]
-        public bool IsBuiltInExtension { get; set; }
-
-        [YamlIgnore]
         public bool IsExternalDev { get; set; }
-
-        [YamlIgnore]
-        public bool IsCustomExtension => !IsBuiltInExtension;
 
         //[YamlIgnore]
         //public bool IsCompatible { get; } = false;
@@ -80,7 +74,6 @@ namespace Playnite
             description.DescriptionPath = descriptorPath;
             description.DirectoryPath = Path.GetDirectoryName(descriptorPath);
             description.DirectoryName = Path.GetFileNameWithoutExtension(description.DirectoryPath);
-            description.IsBuiltInExtension = BuiltinExtensions.BuiltinExtensionFolders.Contains(description.DirectoryName);
             return description;
         }
     }

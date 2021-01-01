@@ -135,7 +135,7 @@ namespace Playnite.Plugins
             }
         }
 
-        public static IEnumerable<ExtensionManifest> GetManifestsFromPath(string path)
+        private static IEnumerable<ExtensionManifest> GetManifestsFromPath(string path)
         {
             if (Directory.Exists(path))
             {
@@ -158,17 +158,17 @@ namespace Playnite.Plugins
             }
         }
 
-        public static ExtensionManifest GetManifestFromFile(string directory)
+        private static ExtensionManifest GetManifestFromFile(string file)
         {
-            if (File.Exists(directory))
+            if (File.Exists(file))
             {
                 try
                 {
-                    return ExtensionManifest.FromFile(directory);
+                    return ExtensionManifest.FromFile(file);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e, $"Failed to parse plugin description: {directory}");
+                    logger.Error(e, $"Failed to parse plugin description: {file}");
                     return null;
                 }
             }
@@ -176,34 +176,47 @@ namespace Playnite.Plugins
             return null;
         }
 
-        public static List<ExtensionManifest> GetExtensionDescriptors()
-        {
-            var descs = new List<ExtensionManifest>();
-            foreach (var file in GetExtensionDescriptorFiles())
-            {
-                var man = GetManifestFromFile(file);
-                if (man?.Id.IsNullOrEmpty() == false)
-                {
-                    descs.Add(man);
-                }
-            }
-
-            return descs;
-        }
-
-        private static List<string> GetExtensionDescriptorFiles()
+        public static IEnumerable<ExtensionManifest> GetExtensionDescriptors(List<string> externalPaths = null)
         {
             var added = new List<string>();
-            var plugins = new List<string>();
+            if (externalPaths.HasItems())
+            {
+                foreach (var ext in externalPaths)
+                {
+                    foreach (var man in GetManifestsFromPath(ext))
+                    {
+                        if (added.Contains(man.Id))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            added.Add(man.Id);
+                            man.IsExternalDev = true;
+                            yield return man;
+                        }
+                    }
+                }
+            }
 
             if (!PlayniteSettings.IsPortable && Directory.Exists(PlaynitePaths.ExtensionsUserDataPath))
             {
                 var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)
                 {
-                    plugins.Add(desc.FullName);
-                    var info = new FileInfo(desc.FullName);
-                    added.Add(info.Directory.Name);
+                    var man = GetManifestFromFile(desc.FullName);
+                    if (man?.Id.IsNullOrEmpty() == false)
+                    {
+                        if (added.Contains(man.Id))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            added.Add(man.Id);
+                            yield return man;
+                        }
+                    }
                 }
             }
 
@@ -212,13 +225,21 @@ namespace Playnite.Plugins
                 var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)
                 {
-                    plugins.Add(desc.FullName);
-                    var info = new FileInfo(desc.FullName);
-                    added.Add(info.Directory.Name);
+                    var man = GetManifestFromFile(desc.FullName);
+                    if (man?.Id.IsNullOrEmpty() == false)
+                    {
+                        if (added.Contains(man.Id))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            added.Add(man.Id);
+                            yield return man;
+                        }
+                    }
                 }
             }
-
-            return plugins;
         }
 
         private bool VerifyAssemblyReferences(Assembly asm, ExtensionManifest manifest)
@@ -252,19 +273,7 @@ namespace Playnite.Plugins
         {
             var allSuccess = true;
             DisposeScripts();
-            var manifests = GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)).ToList();
-            foreach (var ext in externals)
-            {
-                foreach (var man in GetManifestsFromPath(ext))
-                {
-                    if (man?.Type == ExtensionType.Script)
-                    {
-                        man.IsExternalDev = true;
-                        manifests.Add(man);
-                    }
-                }
-            }
-
+            var manifests = GetExtensionDescriptors(externals).Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.Id)).ToList();
             foreach (var desc in manifests)
             {
                 if (desc.Id.IsNullOrEmpty())
@@ -326,19 +335,7 @@ namespace Playnite.Plugins
         public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             DisposePlugins();
-            var manifests = GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true).ToList();
-            foreach (var ext in externals)
-            {
-                foreach (var man in GetManifestsFromPath(ext))
-                {
-                    if (man != null && man.Type != ExtensionType.Script)
-                    {
-                        man.IsExternalDev = true;
-                        manifests.Add(man);
-                    }
-                }
-            }
-
+            var manifests = GetExtensionDescriptors(externals).Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.Id) != true).ToList();
             foreach (var desc in manifests)
             {
                 if (desc.Id.IsNullOrEmpty())

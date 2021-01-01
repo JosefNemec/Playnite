@@ -867,4 +867,5 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCAddonLookingForUpdates">Looking for add-on updates…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">One or more add-on updates are available.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Select items to update</sys:String>
+    <sys:String x:Key="LOCAddonDevReferenceLoaded">Extension development instance</sys:String>
 </ResourceDictionary>

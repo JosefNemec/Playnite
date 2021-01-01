@@ -70,13 +70,13 @@
                       IsChecked="{Binding Selected}" DockPanel.Dock="Top" />
 
             <Button Content="{DynamicResource LOCUninstallGame}" DockPanel.Dock="Top"
-                            HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,15,0,0"
-                            Command="{Binding Data.UninstallExtensionCommand, Source={StaticResource RootDataContext}}"
-                            CommandParameter="{Binding}">
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,15,0,0"
+                    Command="{Binding Data.UninstallExtensionCommand, Source={StaticResource RootDataContext}}"
+                    CommandParameter="{Binding}">
                 <Button.Style>
                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Description.IsBuiltInExtension}" Value="True">
+                            <DataTrigger Binding="{Binding Description.IsExternalDev}" Value="True">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -84,19 +84,13 @@
                 </Button.Style>
             </Button>
 
+            <TextBlock Text="{DynamicResource LOCAddonDevReferenceLoaded}" Foreground="{DynamicResource WarningBrush}"
+                       Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
+                       Visibility="{Binding Description.IsExternalDev, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
             <TextBlock Text="{DynamicResource LOCGeneralExtensionLoadError}" Foreground="{DynamicResource WarningBrush}"
-                       Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding FailedLoading}" Value="True">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+                       Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
+                       Visibility="{Binding FailedLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
             <TextBlock Margin="0,10,0,0"  DockPanel.Dock="Top">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"

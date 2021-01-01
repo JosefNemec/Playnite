@@ -160,7 +160,7 @@ namespace Playnite.ViewModels
         {
             if (exInfo?.IsExtensionCrash == true && DisableExtension)
             {
-                settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.DirectoryName);
+                settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.Id);
                 settings.SaveSettings();
             }
 

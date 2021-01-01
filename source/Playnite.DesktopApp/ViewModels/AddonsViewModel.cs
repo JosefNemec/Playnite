@@ -200,11 +200,11 @@ namespace Playnite.DesktopApp.ViewModels
                 { View.Updates, new Controls.AddonsSections.AddonUpdates() { DataContext = this } },
             };
 
-            var descriptions = ExtensionFactory.GetExtensionDescriptors();
+            var descriptions = ExtensionFactory.GetExtensionDescriptors(settings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             LibraryPluginList = descriptions
                 .Where(a => a.Type == ExtensionType.GameLibrary)
                 .Select(a => new InstalledPlugin(
-                    settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    settings.DisabledPlugins?.Contains(a.Id) != true,
                     Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin,
                     a,
                     extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
@@ -214,7 +214,7 @@ namespace Playnite.DesktopApp.ViewModels
             MetadataPluginList = descriptions
                 .Where(a => a.Type == ExtensionType.MetadataProvider)
                 .Select(a => new InstalledPlugin(
-                    settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    settings.DisabledPlugins?.Contains(a.Id) != true,
                     Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin,
                     a,
                     extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
@@ -224,7 +224,7 @@ namespace Playnite.DesktopApp.ViewModels
             OtherPluginList = descriptions
                 .Where(a => a.Type == ExtensionType.GenericPlugin || a.Type == ExtensionType.Script)
                 .Select(a => new InstalledPlugin(
-                    settings.DisabledPlugins?.Contains(a.DirectoryName) != true,
+                    settings.DisabledPlugins?.Contains(a.Id) != true,
                     null,
                     a,
                     extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
@@ -331,9 +331,9 @@ namespace Playnite.DesktopApp.ViewModels
 
         internal void UpdateDisabledExtensions()
         {
-            var disabledPlugs = LibraryPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList();
-            disabledPlugs.AddMissing(MetadataPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList());
-            disabledPlugs.AddMissing(OtherPluginList.Where(a => !a.Selected)?.Select(a => a.Description.DirectoryName).ToList());
+            var disabledPlugs = LibraryPluginList.Where(a => !a.Selected)?.Select(a => a.Description.Id).ToList();
+            disabledPlugs.AddMissing(MetadataPluginList.Where(a => !a.Selected)?.Select(a => a.Description.Id).ToList());
+            disabledPlugs.AddMissing(OtherPluginList.Where(a => !a.Selected)?.Select(a => a.Description.Id).ToList());
             if (settings.DisabledPlugins?.IsListEqual(disabledPlugs) != true)
             {
                 IsRestartRequired = true;
