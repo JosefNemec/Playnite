@@ -118,12 +118,31 @@ namespace Playnite.SDK.Data
         /// <returns></returns>
         T FromTomlFile<T>(string filePath) where T : class;
 
+        /// <summary>
+        /// Creates clone of an object using json serialization.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         T GetClone<T>(T source) where T : class;
 
+        /// <summary>
+        /// Creates clone of an object using json serialization.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         U GetClone<T, U>(T source)
             where T : class
             where U : class;
 
+        /// <summary>
+        /// Compares two objects using json serialization.
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
         bool AreObjectsEqual(object object1, object object2);
     }
 
@@ -248,11 +267,24 @@ namespace Playnite.SDK.Data
             return serializer.FromTomlFile<T>(filePath);
         }
 
+        /// <summary>
+        /// Creates clone of an object using json serialization.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static T GetClone<T>(T source) where T : class
         {
             return serializer.GetClone<T>(source);
         }
 
+        /// <summary>
+        /// Creates clone of an object using json serialization.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public U GetClone<T, U>(T source)
             where T : class
             where U : class
@@ -260,6 +292,12 @@ namespace Playnite.SDK.Data
             return serializer.GetClone<T, U>(source);
         }
 
+        /// <summary>
+        /// Compares two objects using json serialization.
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
         public bool AreObjectsEqual(object object1, object object2)
         {
             return serializer.AreObjectsEqual(object1, object2);
