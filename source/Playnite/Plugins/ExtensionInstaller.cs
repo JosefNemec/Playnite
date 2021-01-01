@@ -135,13 +135,19 @@ namespace Playnite.Plugins
                 throw new FileNotFoundException("Extenstion/theme manifest not found.");
             }
 
+            var entries = Archive.GetArchiveFiles(path);
+            if (entries.Any(a => a.EndsWith(".sln", StringComparison.OrdinalIgnoreCase)))
+            {
+                // Check for themes that are not packaged via Toolbox.
+                throw new Exception("Package content invalid.");
+            }
+
             if (manifest is ThemeManifest themeMan)
             {
                 rootDir = Path.Combine(rootDir, themeMan.Mode.ToString());
             }
 
             var installDir = Path.Combine(rootDir, Paths.GetSafePathName(manifest.Id));
-            // TODO delete all existing plugin instances
             if (Directory.Exists(installDir))
             {
                 logger.Debug($"Replacing existing extenstion/theme installation: {installDir}.");

@@ -282,7 +282,7 @@ namespace Playnite.Plugins
                     continue;
                 }
 
-                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
+                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionIds.Contains(desc.Id))
                 {
                     logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
                     continue;
@@ -344,7 +344,7 @@ namespace Playnite.Plugins
                     continue;
                 }
 
-                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
+                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionIds.Contains(desc.Id))
                 {
                     logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
                     continue;

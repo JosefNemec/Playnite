@@ -38,11 +38,11 @@ namespace Playnite
             DirectoryName = Path.GetFileNameWithoutExtension(DirectoryPath);
             if (Mode == ApplicationMode.Desktop)
             {
-                IsBuiltInTheme = BuiltinExtensions.BuiltinDesktopThemeFolders.Contains(DirectoryName);
+                IsBuiltInTheme = BuiltinExtensions.BuiltinThemeIds.Contains(thm.Id);
             }
             else
             {
-                IsBuiltInTheme = BuiltinExtensions.BuiltinFullscreenThemeFolders.Contains(DirectoryName);
+                IsBuiltInTheme = BuiltinExtensions.BuiltinThemeIds.Contains(thm.Id);
             }
 
             var apiVesion = Mode == ApplicationMode.Desktop ? ThemeManager.DesktopApiVersion : ThemeManager.FullscreenApiVersion;
