@@ -859,6 +859,7 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCAddonUninstall">Uninstall</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Already installed</sys:String>
     <sys:String x:Key="LOCAddonCheckingUpdates">Checking add-on updates…</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">No add-on updates available.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Update add-ons</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Changelog is not available</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Scheduled for installation</sys:String>

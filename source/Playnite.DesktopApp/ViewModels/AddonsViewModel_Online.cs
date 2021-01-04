@@ -50,7 +50,13 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 updateAddonCount = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsUpdateAvailable));
             }
+        }
+
+        public bool IsUpdateAvailable
+        {
+            get => UpdateAddonCount > 0;
         }
 
         private bool isOnlineListLoading;

@@ -29,6 +29,7 @@
         <DockPanel Visibility="{Binding IsUpdateListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
             <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left">
                 <Button Content="{DynamicResource LOCAddonUpdateAddons}" Margin="0,5,0,0"
+                        Visibility="{Binding IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding UpdateAddonsCommand}"/>
             </StackPanel>
             <ScrollViewer DockPanel.Dock="Top"
@@ -85,5 +86,23 @@
         <TextBlock Visibility="{Binding IsUpdateListLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
                    Text="{DynamicResource LOCAddonCheckingUpdates}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <TextBlock Text="{DynamicResource LOCAddonNoAddonsAvailable}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsUpdateAvailable}" Value="False" />
+                                <Condition Binding="{Binding IsUpdateListLoading}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
     </Grid>    
 </UserControl>
