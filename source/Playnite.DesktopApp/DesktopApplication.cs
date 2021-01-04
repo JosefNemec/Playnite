@@ -58,6 +58,7 @@ namespace Playnite.DesktopApp
             CrashHandlerWindowFactory.SetWindowType<CrashHandlerWindow>();
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashHandlerWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
+            LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
             ConfigureApplication();

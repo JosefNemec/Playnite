@@ -87,6 +87,9 @@
                                                             <DataTrigger Binding="{Binding Status}" Value="2">
                                                                 <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
                                                             </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="3">
+                                                                <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
+                                                            </DataTrigger>
                                                             <DataTrigger Binding="{Binding Status}" Value="0">
                                                                 <Setter Property="Visibility" Value="Collapsed" />
                                                             </DataTrigger>

@@ -56,6 +56,9 @@
                                                                 <DataTrigger Binding="{Binding Status}" Value="2">
                                                                     <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
                                                                 </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Status}" Value="3">
+                                                                    <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
+                                                                </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
                                                     </TextBlock.Style>

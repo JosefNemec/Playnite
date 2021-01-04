@@ -152,6 +152,9 @@
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
+    <Compile Include="Windows\LicenseAgreementWindow.xaml.cs">
+      <DependentUpon>LicenseAgreementWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ExtensionCrashWindow.xaml.cs">
       <DependentUpon>ExtensionCrashWindow.xaml</DependentUpon>
     </Compile>
@@ -398,6 +401,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Windows\LicenseAgreementWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\ExtensionCrashWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -522,7 +529,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets'))" />
   </Target>
-  <Import Project="..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets" Condition="Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" />  
+  <Import Project="..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets" Condition="Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" />
   <PropertyGroup>
     <LargeAddressAware>true</LargeAddressAware>
   </PropertyGroup>

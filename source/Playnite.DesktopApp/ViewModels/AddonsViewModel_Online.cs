@@ -1,8 +1,10 @@
 ﻿using Playnite.Common;
 using Playnite.Common.Web;
+using Playnite.DesktopApp.Windows;
 using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.Services;
+using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,6 +104,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void InstallAddon(AddonManifest addon)
         {
+            if (!CheckAddonLicense(addon))
+            {
+                return;
+            }
+
             AddonInstallerManifest manifest = null;
             dialogs.ActivateGlobalProgress(
                 (a) => manifest = addon.InstallerManifest,

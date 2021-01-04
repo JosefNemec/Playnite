@@ -13,14 +13,6 @@ using YamlDotNet.Serialization;
 
 namespace Playnite
 {
-    //public class ExtensionInstallerPackage : AddonInstallerPackage
-    //{
-    //}
-
-    //public class ThemeInstallerPackage : AddonInstallerPackage
-    //{
-    //}
-
     public class AddonInstallerPackage
     {
         public Version Version { get; set; }
@@ -59,10 +51,22 @@ namespace Playnite
 
     public class AddonManifest : ObservableObject
     {
+        public class AddonUserAgreement
+        {
+            public DateTime Updated { get; set; }
+            public string AgreementUrl { get; set; }
+        }
+
+        public class AddonScreenshot
+        {
+            public string Thumbnail { get; set; }
+            public string Image { get; set; }
+        }
+
         private static ILogger logger = LogManager.GetLogger();
 
         public string IconUrl { get; set; }
-        public string ScreenshotUrl { get; set; }
+        public List<AddonScreenshot> Screenshots { get; set; }
         public AddonType Type { get; set; }
         public string InstallerManifestUrl { get; set; }
         public string ShortDescription { get; set; }
@@ -70,7 +74,10 @@ namespace Playnite
         public string Name { get; set; }
         public string AddonId { get; set; }
         public string Author { get; set; }
-        public string Website { get; set; }
+        public Dictionary<string, string> Links { get; set; }
+        public List<string> Tags { get; set; }
+        public AddonUserAgreement UserAgreement { get; set; }
+        public string SourceUrl { get; set; }
 
         private AddonInstallerManifest installerManifest;
         [YamlIgnore]
@@ -190,6 +197,11 @@ namespace Playnite
                 default:
                     throw new Exception($"Uknown addon type {type}");
             }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

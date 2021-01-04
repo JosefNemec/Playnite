@@ -3070,6 +3070,10 @@ namespace Playnite
         /// </summary>
         public const string AddonUpdateStatusFailed = "LOCAddonUpdateStatusFailed";
         /// <summary>
+        /// License rejected
+        /// </summary>
+        public const string AddonUpdateStatusLicenseRejected = "LOCAddonUpdateStatusLicenseRejected";
+        /// <summary>
         /// Downloading {0}…
         /// </summary>
         public const string AddonDownloadingAddon = "LOCAddonDownloadingAddon";
@@ -3085,5 +3089,21 @@ namespace Playnite
         /// Select items to update
         /// </summary>
         public const string AddonSelectToUpdate = "LOCAddonSelectToUpdate";
+        /// <summary>
+        /// Extension development instance
+        /// </summary>
+        public const string AddonDevReferenceLoaded = "LOCAddonDevReferenceLoaded";
+        /// <summary>
+        /// {0} license agreement
+        /// </summary>
+        public const string AddonLicenseWindowTitle = "LOCAddonLicenseWindowTitle";
+        /// <summary>
+        /// Accept
+        /// </summary>
+        public const string LicenseAccept = "LOCLicenseAccept";
+        /// <summary>
+        /// Decline
+        /// </summary>
+        public const string LicenseDecline = "LOCLicenseDecline";
     }
 }

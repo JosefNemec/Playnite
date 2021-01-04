@@ -43,6 +43,46 @@ namespace Playnite.Plugins
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private static List<ExtensionInstallQueueItem> currentQueue = new List<ExtensionInstallQueueItem>();
+        private static Dictionary<string, DateTime> agreedLicenses;
+
+        static ExtensionInstaller()
+        {
+            if (File.Exists(PlaynitePaths.AddonLicenseAgreementsFilePath))
+            {
+                agreedLicenses = Serialization.FromJsonFile<Dictionary<string, DateTime>>(PlaynitePaths.AddonLicenseAgreementsFilePath);
+            }
+            else
+            {
+                agreedLicenses = new Dictionary<string, DateTime>();
+            }
+        }
+
+        public static void AgreeAddonLicense(string addonId)
+        {
+            agreedLicenses[addonId] = DateTime.Today;
+            File.WriteAllText(PlaynitePaths.AddonLicenseAgreementsFilePath, Serialization.ToJson(agreedLicenses, true));
+        }
+
+        public static void RemoveAddonLicenseAgreement(string addonId)
+        {
+            if (agreedLicenses.ContainsKey(addonId))
+            {
+                agreedLicenses.Remove(addonId);
+                File.WriteAllText(PlaynitePaths.AddonLicenseAgreementsFilePath, Serialization.ToJson(agreedLicenses, true));
+            }
+        }
+
+        public static DateTime? GetAddonLicenseAgreed(string addonId)
+        {
+            if (agreedLicenses.ContainsKey(addonId))
+            {
+                return agreedLicenses[addonId];
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public static List<ExtensionInstallQueueItem> GetQueuedItems()
         {

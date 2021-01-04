@@ -39,16 +39,16 @@
                    Visibility="{Binding SelectedItem, ElementName=ListPlugins, Converter={StaticResource NullToVisibilityConverter}}"
                    Margin="10,5,0,0" LastChildFill="False">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionCreatedBy}" />
-                <TextBlock Text="{Binding Description.Author}" Margin="5,0,0,0" />
+                <TextBlock Text="{DynamicResource LOCExtensionCreatedBy}" />
+                <TextBlock Text="{Binding Description.Author}" FontWeight="Bold" Margin="5,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0" DockPanel.Dock="Top">
-                <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionVersion}" />
-                <TextBlock Text="{Binding Description.Version}" Margin="5,0,0,0" />
+                <TextBlock Text="{DynamicResource LOCExtensionVersion}" />
+                <TextBlock Text="{Binding Description.Version}" FontWeight="Bold" Margin="5,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0" DockPanel.Dock="Top">
-                <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionModule}" />
-                <TextBlock Text="{Binding Description.Module}" Margin="5,0,0,0" />
+                <TextBlock Text="{DynamicResource LOCExtensionModule}" />
+                <TextBlock Text="{Binding Description.Module}" FontWeight="Bold" Margin="5,0,0,0" />
             </StackPanel>
             <ItemsControl ItemsSource="{Binding Description.Links}"
                           Margin="0,10,0,0" DockPanel.Dock="Top">

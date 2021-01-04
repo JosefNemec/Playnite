@@ -17,7 +17,9 @@ namespace Playnite
         [Description(LOC.AddonUpdateStatusDownloaded)]
         Downloaded,
         [Description(LOC.AddonUpdateStatusFailed)]
-        Failed
+        Failed,
+        [Description(LOC.AddonUpdateStatusLicenseRejected)]
+        LicenseRejected,
     }
 
     public class AddonUpdate : SelectableItem<AddonManifest>

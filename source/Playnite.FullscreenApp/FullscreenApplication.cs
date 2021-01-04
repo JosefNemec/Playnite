@@ -43,6 +43,7 @@ namespace Playnite.FullscreenApp
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashWindow>();
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashWindow>();
+            LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
             Dialogs = new FullscreenDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);

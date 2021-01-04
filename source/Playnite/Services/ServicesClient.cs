@@ -69,12 +69,12 @@ namespace Playnite.Services
 
         public IEnumerable<AddonManifest> GetAllAddons(AddonType type, string searchTerm)
         {
-            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\"))
+            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\", "*.yaml"))
             {
                 yield return Serialization.FromYamlFile<AddonManifest>(file);
             }
 
-            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\themes\"))
+            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\themes\", "*.yaml"))
             {
                 yield return Serialization.FromYamlFile<AddonManifest>(file);
             }
@@ -82,7 +82,7 @@ namespace Playnite.Services
 
         public AddonManifest GetAddon(string addonId)
         {
-            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\"))
+            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\", "*.yaml"))
             {
                 var addon = Serialization.FromYamlFile<AddonManifest>(file);
                 if (addon.AddonId == addonId)
@@ -91,7 +91,7 @@ namespace Playnite.Services
                 }
             }
 
-            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\themes\"))
+            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\themes\", "*.yaml"))
             {
                 var addon = Serialization.FromYamlFile<AddonManifest>(file);
                 if (addon.AddonId == addonId)
