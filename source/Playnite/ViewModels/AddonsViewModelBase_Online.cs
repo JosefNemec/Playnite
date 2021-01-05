@@ -57,51 +57,6 @@ namespace Playnite.ViewModels
             this.resources = resources;
         }
 
-        public bool CheckAddonLicense(AddonManifest addon)
-        {
-            try
-            {
-                if (addon.UserAgreement != null)
-                {
-                    var acceptState = ExtensionInstaller.GetAddonLicenseAgreed(addon.AddonId);
-                    if (acceptState == null || acceptState < addon.UserAgreement.Updated)
-                    {
-                        var license = HttpDownloader.DownloadString(addon.UserAgreement.AgreementUrl);
-                        var licenseAgree = new LicenseAgreementViewModel(
-                            new LicenseAgreementWindowFactory(),
-                            license,
-                            addon.Name);
-
-                        if (licenseAgree.OpenView() == true)
-                        {
-                            ExtensionInstaller.AgreeAddonLicense(addon.AddonId);
-                            return true;
-                        }
-                        else
-                        {
-                            ExtensionInstaller.RemoveAddonLicenseAgreement(addon.AddonId);
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, $"Failed to process addon license.");
-                dialogs.ShowErrorMessage(LOC.AddonErrorDownloadFailed, string.Empty);
-            }
-
-            return false;
-        }
-
         public void UpdateAddons()
         {
             var addons = UpdateAddonList.Where(a => a.Selected == true);
@@ -122,7 +77,14 @@ namespace Playnite.ViewModels
                         prg.Text = string.Format(resources.GetString(LOC.AddonDownloadingAddon), update.Item.Name);
                         Thread.Sleep(500);
 
-                        if (!CheckAddonLicense(update.Item))
+                        var licenseRes = update.Item.CheckAddonLicense();
+                        if (licenseRes == null)
+                        {
+                            update.Status = AddonUpdateStatus.Failed;
+                            continue;
+                        }
+
+                        if (licenseRes == false)
                         {
                             update.Status = AddonUpdateStatus.LicenseRejected;
                             continue;

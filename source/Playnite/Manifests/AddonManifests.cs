@@ -3,6 +3,8 @@ using Playnite.Common;
 using Playnite.Common.Web;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.ViewModels;
+using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +15,61 @@ using YamlDotNet.Serialization;
 
 namespace Playnite
 {
+    public class AddonInstallerPackage
+    {
+        public Version Version { get; set; }
+        public string PackageUrl { get; set; }
+        public Version RequiredApiVersion { get; set; }
+        public DateTime ReleaseDate { get; set; }
+    }
+
+    public class AddonInstallerManifest
+    {
+        public string AddonId { get; set; }
+        public List<AddonInstallerPackage> Packages { get; set; }
+        public Dictionary<Version, List<string>> Changelog { get; set; }
+
+        public AddonInstallerPackage GetLatestCompatiblePackage(AddonType type)
+        {
+            if (!Packages.HasItems())
+            {
+                return null;
+            }
+
+            var apiVersion = GetApiVersion(type);
+            return GetLatestCompatiblePackage(apiVersion);
+        }
+
+        public AddonInstallerPackage GetLatestCompatiblePackage(Version apiVersion)
+        {
+            if (!Packages.HasItems())
+            {
+                return null;
+            }
+
+            return Packages.
+                Where(a => a.RequiredApiVersion.Major == apiVersion.Major && a.RequiredApiVersion <= apiVersion).
+                OrderByDescending(a => a.Version).FirstOrDefault();
+        }
+
+        private static Version GetApiVersion(AddonType type)
+        {
+            switch (type)
+            {
+                case AddonType.GameLibrary:
+                case AddonType.MetadataProvider:
+                case AddonType.Generic:
+                    return SdkVersions.SDKVersion;
+                case AddonType.ThemeDesktop:
+                    return ThemeManager.DesktopApiVersion;
+                case AddonType.ThemeFullscreen:
+                    return ThemeManager.FullscreenApiVersion;
+            }
+
+            return new Version(999, 0);
+        }
+    }
+
     public class AddonManifest : AddonManifestBase
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -103,7 +160,7 @@ namespace Playnite
                 }
                 else
                 {
-                    return ExtensionFactory.GetExtensionDescriptors().Any(a => a.Id == AddonId);
+                    return ExtensionFactory.GetInstalledManifests().Any(a => a.Id == AddonId);
                 }
             }
         }
@@ -134,6 +191,49 @@ namespace Playnite
                     return PlaynitePaths.PackedThemeFileExtention;
                 default:
                     throw new Exception($"Uknown addon type {type}");
+            }
+        }
+
+        public bool? CheckAddonLicense()
+        {
+            try
+            {
+                if (UserAgreement != null)
+                {
+                    var acceptState = ExtensionInstaller.GetAddonLicenseAgreed(AddonId);
+                    if (acceptState == null || acceptState < UserAgreement.Updated)
+                    {
+                        var license = HttpDownloader.DownloadString(UserAgreement.AgreementUrl);
+                        var licenseAgree = new LicenseAgreementViewModel(
+                            new LicenseAgreementWindowFactory(),
+                            license,
+                            Name);
+
+                        if (licenseAgree.OpenView() == true)
+                        {
+                            ExtensionInstaller.AgreeAddonLicense(AddonId);
+                            return true;
+                        }
+                        else
+                        {
+                            ExtensionInstaller.RemoveAddonLicenseAgreement(AddonId);
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to process addon license.");
+                return null;
             }
         }
 

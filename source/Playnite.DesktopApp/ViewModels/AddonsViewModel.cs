@@ -200,7 +200,7 @@ namespace Playnite.DesktopApp.ViewModels
                 { View.Updates, new Controls.AddonsSections.AddonUpdates() { DataContext = this } },
             };
 
-            var descriptions = ExtensionFactory.GetExtensionDescriptors(settings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            var descriptions = ExtensionFactory.GetInstalledManifests(settings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             LibraryPluginList = descriptions
                 .Where(a => a.Type == ExtensionType.GameLibrary)
                 .Select(a => new InstalledPlugin(

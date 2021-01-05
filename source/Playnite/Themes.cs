@@ -152,6 +152,19 @@ namespace Playnite
             return false;
         }
 
+        public static IEnumerable<ThemeManifest> GetAvailableThemes()
+        {
+            foreach (var theme in GetAvailableThemes(ApplicationMode.Desktop))
+            {
+                yield return theme;
+            }
+
+            foreach (var theme in GetAvailableThemes(ApplicationMode.Fullscreen))
+            {
+                yield return theme;
+            }
+        }
+
         public static List<ThemeManifest> GetAvailableThemes(ApplicationMode mode)
         {
             var modeDir = GetThemeRootDir(mode);

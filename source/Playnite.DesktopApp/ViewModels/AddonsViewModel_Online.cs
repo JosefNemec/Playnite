@@ -110,7 +110,14 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void InstallAddon(AddonManifest addon)
         {
-            if (!CheckAddonLicense(addon))
+            var licenseRes = addon.CheckAddonLicense();
+            if (licenseRes == null)
+            {
+                dialogs.ShowErrorMessage(LOC.AddonErrorDownloadFailed, string.Empty);
+                return;
+            }
+
+            if (licenseRes == false)
             {
                 return;
             }
@@ -125,7 +132,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var latestPackage = manifest.GetLatestCompatiblePackage(Addons.GetApiVersion(addon));
+            var latestPackage = manifest.GetLatestCompatiblePackage(addon.Type);
             if (latestPackage == null || latestPackage.PackageUrl.IsNullOrEmpty())
             {
                 dialogs.ShowErrorMessage(LOC.AddonErrorNotCompatible, string.Empty);

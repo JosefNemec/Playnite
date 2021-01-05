@@ -26,6 +26,7 @@ using System.Windows.Media;
 using Playnite.SDK.Events;
 using System.Windows.Threading;
 using System.Net;
+using Playnite.Common.Web;
 
 namespace Playnite
 {
@@ -705,6 +706,15 @@ namespace Playnite
 
                     break;
 
+                case UriCommands.InstallAddon:
+                    if (arguments.Count() != 2)
+                    {
+                        return;
+                    }
+
+                    InstallOnlineAddon(arguments[1]);
+                    break;
+
                 default:
                     AppUriHandler(args);
                     break;
@@ -985,6 +995,90 @@ namespace Playnite
             }
         }
 
+        public void InstallOnlineAddon(string addonId)
+        {
+            try
+            {
+                var addon = ServicesClient.GetAddon(addonId);
+                var package = addon.InstallerManifest.GetLatestCompatiblePackage(addon.Type);
+                if (package == null)
+                {
+                    Dialogs.ShowErrorMessage(LOC.AddonErrorNotCompatible, "");
+                    return;
+                }
+
+                var message = string.Format(
+                    ResourceProvider.GetString(addon.IsTheme ? LOC.ThemeInstallPrompt : LOC.ExtensionInstallPrompt),
+                    addon.Name, addon.Author, package.Version);
+                BaseExtensionManifest existing = null;
+                if (addon.IsTheme)
+                {
+                    existing = ThemeManager.GetAvailableThemes().FirstOrDefault(a => a.Id == addon.AddonId);
+                }
+                else
+                {
+                    existing = ExtensionFactory.GetInstalledManifests().FirstOrDefault(a => a.Id == addon.AddonId);
+                }
+
+                if (existing != null)
+                {
+                    message = string.Format(
+                    ResourceProvider.GetString(addon.IsTheme ? LOC.ThemeUpdatePrompt : LOC.ExtensionUpdatePrompt),
+                    addon.Name, existing.Version, package.Version);
+                }
+
+                if (Dialogs.ShowMessage(message, LOC.GeneralExtensionInstallTitle, MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
+                var licenseRes = addon.CheckAddonLicense();
+                if (licenseRes == null)
+                {
+                    Dialogs.ShowErrorMessage(LOC.AddonErrorDownloadFailed, string.Empty);
+                    return;
+                }
+
+                if (licenseRes == false)
+                {
+                    return;
+                }
+
+                var locaPath = addon.GetTargetDownloadPath();
+                FileSystem.DeleteFile(locaPath);
+                var res = Dialogs.ActivateGlobalProgress((_) =>
+                {
+                    if (package.PackageUrl.IsHttpUrl())
+                    {
+                        FileSystem.PrepareSaveFile(locaPath);
+                        HttpDownloader.DownloadFile(package.PackageUrl, locaPath);
+                    }
+                    else
+                    {
+                        File.Copy(package.PackageUrl, locaPath);
+                    }
+                },
+                new GlobalProgressOptions(LOC.DownloadingLabel, false));
+                if (res.Error != null)
+                {
+                    logger.Error(res.Error, $"Failed to download addon {package.PackageUrl}");
+                    Dialogs.ShowErrorMessage(LOC.AddonErrorDownloadFailed, string.Empty);
+                    return;
+                }
+
+                ExtensionInstaller.QueuePackageInstall(locaPath);
+                if (Dialogs.ShowMessage(LOC.ExtInstallationRestartNotif, LOC.SettingsRestartTitle,
+                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Restart(new CmdLineOptions { SkipLibUpdate = true });
+                };
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to install addon from uri {addonId}");
+            }
+        }
+
         public void InstallThemeFile(string themeFile)
         {
             try
@@ -1043,7 +1137,7 @@ namespace Playnite
 
                 var message = string.Format(ResourceProvider.GetString("LOCExtensionInstallPrompt"),
                     desc.Name, desc.Author, desc.Version);
-                var existing = ExtensionFactory.GetExtensionDescriptors().FirstOrDefault(a => a.Id == desc.Id);
+                var existing = ExtensionFactory.GetInstalledManifests().FirstOrDefault(a => a.Id == desc.Id);
                 if (existing != null)
                 {
                     message = string.Format(ResourceProvider.GetString("LOCExtensionUpdatePrompt"),

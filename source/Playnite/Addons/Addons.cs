@@ -59,23 +59,6 @@ namespace Playnite
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public static Version GetApiVersion(AddonManifest addon)
-        {
-            switch (addon.Type)
-            {
-                case AddonType.GameLibrary:
-                case AddonType.MetadataProvider:
-                case AddonType.Generic:
-                    return SdkVersions.SDKVersion;
-                case AddonType.ThemeDesktop:
-                    return ThemeManager.DesktopApiVersion;
-                case AddonType.ThemeFullscreen:
-                    return ThemeManager.FullscreenApiVersion;
-            }
-
-            return new Version(999, 0);
-        }
-
         private static List<AddonUpdate> CheckAddonsForUpdate(IEnumerable<BaseExtensionManifest> manifests, ServicesClient serviceClient)
         {
             var updateList = new List<AddonUpdate>();
@@ -90,7 +73,7 @@ namespace Playnite
                     }
 
                     var installer = addonManifest.InstallerManifest;
-                    var package = installer.GetLatestCompatiblePackage(GetApiVersion(addonManifest));
+                    var package = installer.GetLatestCompatiblePackage(addonManifest.Type);
                     var currentVersion = Version.Parse(manifest.Version);
                     var changeLog = string.Empty;
                     if (package != null && package.Version > currentVersion)
@@ -130,7 +113,7 @@ namespace Playnite
         public static List<AddonUpdate> CheckAddonUpdates(ServicesClient serviceClient)
         {
             var updateList = new List<AddonUpdate>();
-            var descriptions = ExtensionFactory.GetExtensionDescriptors();
+            var descriptions = ExtensionFactory.GetInstalledManifests();
             updateList.AddRange(CheckAddonsForUpdate(descriptions.Where(a => a.Type == ExtensionType.MetadataProvider), serviceClient));
             updateList.AddRange(CheckAddonsForUpdate(descriptions.Where(a => a.Type == ExtensionType.GameLibrary), serviceClient));
             updateList.AddRange(CheckAddonsForUpdate(descriptions.Where(a => a.Type == ExtensionType.GenericPlugin), serviceClient));

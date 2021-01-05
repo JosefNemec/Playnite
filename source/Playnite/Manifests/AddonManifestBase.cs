@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,33 +7,6 @@ using System.Threading.Tasks;
 
 namespace Playnite
 {
-    public class AddonInstallerPackage
-    {
-        public Version Version { get; set; }
-        public string PackageUrl { get; set; }
-        public Version RequiredApiVersion { get; set; }
-        public DateTime ReleaseDate { get; set; }
-    }
-
-    public class AddonInstallerManifest
-    {
-        public string AddonId { get; set; }
-        public List<AddonInstallerPackage> Packages { get; set; }
-        public Dictionary<Version, List<string>> Changelog { get; set; }
-
-        public AddonInstallerPackage GetLatestCompatiblePackage(Version apiVersion)
-        {
-            if (!Packages.HasItems())
-            {
-                return null;
-            }
-
-            return Packages.
-                Where(a => a.RequiredApiVersion.Major == apiVersion.Major && a.RequiredApiVersion <= apiVersion).
-                OrderByDescending(a => a.Version).FirstOrDefault();
-        }
-    }
-
     public enum AddonType
     {
         GameLibrary,

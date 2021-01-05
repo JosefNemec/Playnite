@@ -176,7 +176,7 @@ namespace Playnite.Plugins
             return null;
         }
 
-        public static IEnumerable<ExtensionManifest> GetExtensionDescriptors(List<string> externalPaths = null)
+        public static IEnumerable<ExtensionManifest> GetInstalledManifests(List<string> externalPaths = null)
         {
             var added = new List<string>();
             if (externalPaths.HasItems())
@@ -273,7 +273,7 @@ namespace Playnite.Plugins
         {
             var allSuccess = true;
             DisposeScripts();
-            var manifests = GetExtensionDescriptors(externals).Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.Id)).ToList();
+            var manifests = GetInstalledManifests(externals).Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.Id)).ToList();
             foreach (var desc in manifests)
             {
                 if (desc.Id.IsNullOrEmpty())
@@ -335,7 +335,7 @@ namespace Playnite.Plugins
         public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             DisposePlugins();
-            var manifests = GetExtensionDescriptors(externals).Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.Id) != true).ToList();
+            var manifests = GetInstalledManifests(externals).Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.Id) != true).ToList();
             foreach (var desc in manifests)
             {
                 if (desc.Id.IsNullOrEmpty())
