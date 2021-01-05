@@ -152,6 +152,15 @@ namespace Playnite.Common
             return FromYaml<T>(File.ReadAllText(filePath));
         }
 
+        public static T FromYamlStream<T>(Stream stream) where T : class
+        {
+            using (var sr = new StreamReader(stream, true))
+            {
+                var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
+                return deserializer.Deserialize<T>(sr);
+            }
+        }
+
         public static string ToJson(object obj, bool formatted = false)
         {
             return JsonConvert.SerializeObject(obj, new JsonSerializerSettings()

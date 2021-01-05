@@ -261,23 +261,28 @@ namespace Playnite.DesktopApp.ViewModels
             switch (view)
             {
                 case View.BrowseLibraries:
-                    activeAddonSearchMode = AddonType.Library;
+                    activeAddonSearchMode = AddonType.GameLibrary;
+                    AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.BrowseMetadata:
-                    activeAddonSearchMode = AddonType.Metadata;
+                    activeAddonSearchMode = AddonType.MetadataProvider;
+                    AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.BrowseGeneric:
                     activeAddonSearchMode = AddonType.Generic;
+                    AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.BrowseThemesDesktop:
                     activeAddonSearchMode = AddonType.ThemeDesktop;
+                    AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.BrowseThemesFullscreen:
                     activeAddonSearchMode = AddonType.ThemeFullscreen;
+                    AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.InstalledLibraries:

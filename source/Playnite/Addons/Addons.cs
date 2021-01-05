@@ -63,8 +63,8 @@ namespace Playnite
         {
             switch (addon.Type)
             {
-                case AddonType.Library:
-                case AddonType.Metadata:
+                case AddonType.GameLibrary:
+                case AddonType.MetadataProvider:
                 case AddonType.Generic:
                     return SdkVersions.SDKVersion;
                 case AddonType.ThemeDesktop:

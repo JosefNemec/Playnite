@@ -67,40 +67,14 @@ namespace Playnite.Services
             }
         }
 
-        public IEnumerable<AddonManifest> GetAllAddons(AddonType type, string searchTerm)
+        public List<AddonManifest> GetAllAddons(AddonType type, string searchTerm)
         {
-            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\", "*.yaml"))
-            {
-                yield return Serialization.FromYamlFile<AddonManifest>(file);
-            }
-
-            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\themes\", "*.yaml"))
-            {
-                yield return Serialization.FromYamlFile<AddonManifest>(file);
-            }
+            return ExecuteGetRequest<List<AddonManifest>>($"/addons?type={type}&searchTerm={searchTerm}".UrlEncode());
         }
 
         public AddonManifest GetAddon(string addonId)
         {
-            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\extensions\", "*.yaml"))
-            {
-                var addon = Serialization.FromYamlFile<AddonManifest>(file);
-                if (addon.AddonId == addonId)
-                {
-                    return addon;
-                }
-            }
-
-            foreach (var file in Directory.GetFiles(@"e:\Devel\PlayniteAddonDatabase\addons\themes\", "*.yaml"))
-            {
-                var addon = Serialization.FromYamlFile<AddonManifest>(file);
-                if (addon.AddonId == addonId)
-                {
-                    return addon;
-                }
-            }
-
-            return null;
+            return ExecuteGetRequest<List<AddonManifest>>($"/addons?addonId={addonId}".UrlEncode()).FirstOrDefault();
         }
     }
 }
