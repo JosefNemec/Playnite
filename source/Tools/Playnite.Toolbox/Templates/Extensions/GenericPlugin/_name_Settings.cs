@@ -15,13 +15,14 @@ namespace _namespace_
 
         // Playnite serializes settings object to a JSON object and saves it as text file.
         // If you want to exclude some property from being saved then use `JsonDontSerialize` ignore attribute.
-        [JsonDontSerialize]
+        [DontSerialize]
         public bool OptionThatWontBeSaved { get; set; } = false;
     }
 
     public class _name_SettingsViewModel : ObservableObject, ISettings
     {
         private readonly _name_ plugin;
+        private _name_Settings editingClone { get; set; }
 
         private _name_Settings settings;
         public _name_Settings Settings
@@ -56,12 +57,14 @@ namespace _namespace_
         public void BeginEdit()
         {
             // Code executed when settings view is opened and user starts editing values.
+            editingClone = Serialization.GetClone(Settings);
         }
 
         public void CancelEdit()
         {
             // Code executed when user decides to cancel any changes made since BeginEdit was called.
             // This method should revert any changes made to Option1 and Option2.
+            Settings = editingClone;
         }
 
         public void EndEdit()
