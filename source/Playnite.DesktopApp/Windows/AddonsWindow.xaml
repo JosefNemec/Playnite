@@ -19,8 +19,8 @@
         <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <Button Content="{DynamicResource LOCClose}" DockPanel.Dock="Right"
-                    Command="{Binding ConfirmCommand}"
-                    Style="{StaticResource BottomButton}" IsDefault="True" IsCancel="True" />
+                        Command="{Binding ConfirmCommand}"
+                        Style="{StaticResource BottomButton}" />
                 <TextBlock Text="{DynamicResource LOCAddonChangesRestart}" DockPanel.Dock="Left" Margin="5,0,0,0"
                        Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center"
                        Foreground="{DynamicResource WarningBrush}"

@@ -42,7 +42,11 @@
                         Command="{Binding SearchAddonCommand}"
                         Margin="5,0,0,0" DockPanel.Dock="Right"/>
                 <TextBox Text="{Binding AddonSearchText, UpdateSourceTrigger=PropertyChanged}"
-                         DockPanel.Dock="Left"  />
+                         DockPanel.Dock="Left">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding SearchAddonCommand}" Key="Return" />
+                    </TextBox.InputBindings>
+                </TextBox>
             </DockPanel>
 
             <ListBox ItemsSource="{Binding OnlineAddonList}"
