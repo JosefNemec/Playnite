@@ -770,18 +770,25 @@ namespace Playnite
 
         public void CancelGameMonitoring(Game game)
         {
+            var wasRunning = game.IsRunning;
             controllers.RemoveController(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
             dbGame.IsLaunching = false;
             dbGame.IsInstalling = false;
             dbGame.IsUninstalling = false;
+            long ellapsedTime = 0;
             if (gameStartups.TryRemove(game.Id, out var startupTime))
             {
-                dbGame.Playtime += Convert.ToInt64((DateTime.Now - startupTime).TotalSeconds);
+                ellapsedTime = Convert.ToInt64((DateTime.Now - startupTime).TotalSeconds);
+                dbGame.Playtime += ellapsedTime;
             }
 
             Database.Games.Update(dbGame);
+            if (wasRunning)
+            {
+                Extensions.InvokeOnGameStopped(game, ellapsedTime);
+            }
 
             if (AppSettings.DiscordPresenceEnabled)
             {

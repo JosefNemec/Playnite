@@ -472,11 +472,16 @@ namespace Playnite.Plugins
                 return;
             }
 
+            InvokeOnGameStopped(args.Controller.Game, args.EllapsedTime);
+        }
+
+        public void InvokeOnGameStopped(Game game, long ellapsedTime)
+        {
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameStopped(database.Games[args.Controller.Game.Id], args.EllapsedTime);
+                    script.OnGameStopped(database.Games[game.Id], ellapsedTime);
                 }
                 catch (Exception e)
                 {
@@ -488,7 +493,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStopped(database.Games[args.Controller.Game.Id], args.EllapsedTime);
+                    plugin.Plugin.OnGameStopped(database.Games[game.Id], ellapsedTime);
                 }
                 catch (Exception e)
                 {
