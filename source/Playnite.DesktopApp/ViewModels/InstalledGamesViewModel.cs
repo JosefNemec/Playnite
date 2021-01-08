@@ -340,23 +340,34 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectExecutable()
         {
-            var path = dialogs.SelectFile("Executable (.exe)|*.exe");
+            var path = dialogs.SelectFile("Executable (.exe,.bat,lnk)|*.exe;*.bat;*.lnk");
             if (string.IsNullOrEmpty(path))
             {
                 return;
             }
+            var program = Common.Programs.GetProgramData(path);
 
-            var productName = FileVersionInfo.GetVersionInfo(path).ProductName;
-            var import = new ImportableProgram(new Program()
+            // Ignore all target files that are not bat or exe files
+            if (!program.Path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) &&
+                !program.Path.EndsWith(".bat", StringComparison.OrdinalIgnoreCase))
             {
-                Icon = path,
-                Name = string.IsNullOrWhiteSpace(productName) ? new DirectoryInfo(Path.GetDirectoryName(path)).Name : productName,
-                Path = path,
-                WorkDir = Path.GetDirectoryName(path)
-            }, ProgramType.Win32)
+                return;
+            }
+
+            var import = new ImportableProgram(program, ProgramType.Win32)
             {
                 Selected = true
             };
+
+            // Use shortcut name as game name for .lnk shortcuts
+            if (Path.GetExtension(path).EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
+            {
+                var shortcutName = Path.GetFileNameWithoutExtension(path);
+                if (!shortcutName.IsNullOrEmpty())
+                {
+                    import.Item.Name = Path.GetFileNameWithoutExtension(path);
+                }
+            }
 
             Programs.Add(import);
             SelectedProgram = import;
