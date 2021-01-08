@@ -365,7 +365,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var shortcutName = Path.GetFileNameWithoutExtension(path);
                 if (!shortcutName.IsNullOrEmpty())
                 {
-                    import.Item.Name = Path.GetFileNameWithoutExtension(path);
+                    import.Item.Name = shortcutName;
                 }
             }
 
