@@ -18,6 +18,12 @@ namespace Playnite.SDK
         IEnumerable<Game> SelectedGames { get; }
 
         /// <summary>
+        /// Selects game.
+        /// </summary>
+        /// <param name="gameId">Game's database ID.</param>
+        void SelectGame(Guid gameId);
+
+        /// <summary>
         /// Opens settings view for specified plugin.
         /// </summary>
         /// <param name="pluginId">Plugin ID.</param>

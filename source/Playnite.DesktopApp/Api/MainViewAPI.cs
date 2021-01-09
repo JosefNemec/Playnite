@@ -38,5 +38,10 @@ namespace Playnite.DesktopApp.API
         {
             return mainModel.OpenPluginSettings(pluginId);
         }
+
+        public void SelectGame(Guid gameId)
+        {
+            mainModel.SelectGame(gameId);
+        }
     }
 }
