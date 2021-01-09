@@ -41,7 +41,15 @@ namespace Playnite.DesktopApp.API
 
         public void SelectGame(Guid gameId)
         {
-            mainModel.SelectGame(gameId);
+            var game = mainModel.Database.Games.Get(gameId);
+            if (game == null)
+            {
+                throw new Exception($"Can't select game, game ID {gameId} not found.");
+            }
+            else
+            {
+                mainModel.SelectGame(gameId);
+            } 
         }
     }
 }
