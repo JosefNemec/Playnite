@@ -62,12 +62,17 @@ namespace Playnite
 
                 game.Name = Path.GetFileNameWithoutExtension(path);
                 game.InstallDirectory = prog.WorkDir.IsNullOrEmpty() ? fileInfo.Directory.FullName : prog.WorkDir;
-                game.PlayAction = new GameAction()
+                game.GameActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>
                 {
-                    Type = GameActionType.File,
-                    WorkingDir = ExpandableVariables.InstallationDirectory,
-                    Path = fileInfo.FullName.Substring(game.InstallDirectory.Length).Trim(Path.DirectorySeparatorChar),
-                    Arguments = prog.Arguments
+                    new GameAction()
+                    {
+                        Type = GameActionType.File,
+                        WorkingDir = ExpandableVariables.InstallationDirectory,
+                        Path = fileInfo.FullName.Substring(game.InstallDirectory.Length).Trim(Path.DirectorySeparatorChar),
+                        Arguments = prog.Arguments,
+                        IsPlayAction = true,
+                        Name = game.Name
+                    }
                 };
 
                 if (!prog.Icon.IsNullOrEmpty())
@@ -94,11 +99,16 @@ namespace Playnite
                 var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
                 game.Name = programName;
                 game.InstallDirectory = file.DirectoryName;
-                game.PlayAction = new GameAction()
+                game.GameActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>
                 {
-                    Type = GameActionType.File,
-                    WorkingDir = ExpandableVariables.InstallationDirectory,
-                    Path = file.Name
+                    new GameAction()
+                    {
+                        Type = GameActionType.File,
+                        WorkingDir = ExpandableVariables.InstallationDirectory,
+                        Path = file.Name,
+                        IsPlayAction = true,
+                        Name = game.Name
+                    }
                 };
             };
 
@@ -173,12 +183,13 @@ namespace Playnite
 
         public static string GetRawExecutablePath(this Game game)
         {
-            if (game.PlayAction == null)
+            var playAction = game.GameActions?.FirstOrDefault(a => a.IsPlayAction);
+            if (playAction == null)
             {
                 return null;
             }
 
-            var playAction = game.PlayAction.ExpandVariables(game);
+            playAction = playAction.ExpandVariables(game);
             if (playAction.Type == GameActionType.File)
             {
                 if (string.IsNullOrEmpty(playAction.WorkingDir))

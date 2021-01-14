@@ -28,11 +28,17 @@ namespace Playnite.Database
         {
             foreach (var game in db.Games)
             {
-                if (game.PlayAction?.Type == GameActionType.Emulator && game.PlayAction?.EmulatorId == id)
+                if (game.GameActions.HasItems())
                 {
-                    game.PlayAction.EmulatorId = Guid.Empty;
-                    game.PlayAction.EmulatorProfileId = Guid.Empty;
-                    db.Games.Update(game);
+                    foreach (var action in game.GameActions)
+                    {
+                        if (action?.Type == GameActionType.Emulator && action?.EmulatorId == id)
+                        {
+                            action.EmulatorId = Guid.Empty;
+                            action.EmulatorProfileId = Guid.Empty;
+                            db.Games.Update(game);
+                        }
+                    }
                 }
             }
         }

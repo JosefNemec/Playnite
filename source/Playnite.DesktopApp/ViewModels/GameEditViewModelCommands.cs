@@ -243,22 +243,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> AddPlayActionCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                AddPlayAction();
-            });
-        }
-
-        public RelayCommand<object> DeletePlayActionCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                RemovePlayAction();
-            });
-        }
-
         public RelayCommand<object> AddActionCommand
         {
             get => new RelayCommand<object>((a) =>

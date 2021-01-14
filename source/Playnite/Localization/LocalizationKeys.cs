@@ -254,6 +254,10 @@ namespace Playnite
         /// </summary>
         public const string ErrorNoPlayAction = "LOCErrorNoPlayAction";
         /// <summary>
+        /// Installation implementation is not available.
+        /// </summary>
+        public const string ErrorNoInstallAction = "LOCErrorNoInstallAction";
+        /// <summary>
         /// The library plugin responsible for this game is disabled or not installed.
         /// </summary>
         public const string ErrorLibraryPluginNotFound = "LOCErrorLibraryPluginNotFound";
@@ -2382,6 +2386,10 @@ namespace Playnite
         /// </summary>
         public const string OverrideEmulatorArguments = "LOCOverrideEmulatorArguments";
         /// <summary>
+        /// Play action
+        /// </summary>
+        public const string IsPlayAction = "LOCIsPlayAction";
+        /// <summary>
         /// Select metadata to import
         /// </summary>
         public const string MedataDiffWindowTitle = "LOCMedataDiffWindowTitle";
@@ -2738,7 +2746,7 @@ namespace Playnite
         /// </summary>
         public const string PLaytime500to1000 = "LOCPLaytime500to1000";
         /// <summary>
-        /// 1000+
+        /// Over 1000 hours
         /// </summary>
         public const string PLaytime1000plus = "LOCPLaytime1000plus";
         /// <summary>
@@ -2778,7 +2786,7 @@ namespace Playnite
         /// </summary>
         public const string GeneralExtensionInstallSuccess = "LOCGeneralExtensionInstallSuccess";
         /// <summary>
-        /// Install extension?
+        /// Install add-on?
         /// </summary>
         public const string GeneralExtensionInstallTitle = "LOCGeneralExtensionInstallTitle";
         /// <summary>
@@ -3054,6 +3062,10 @@ namespace Playnite
         /// </summary>
         public const string AddonCheckingUpdates = "LOCAddonCheckingUpdates";
         /// <summary>
+        /// No add-on updates available.
+        /// </summary>
+        public const string AddonNoAddonsAvailable = "LOCAddonNoAddonsAvailable";
+        /// <summary>
         /// Update add-ons
         /// </summary>
         public const string AddonUpdateAddons = "LOCAddonUpdateAddons";
@@ -3105,5 +3117,13 @@ namespace Playnite
         /// Decline
         /// </summary>
         public const string LicenseDecline = "LOCLicenseDecline";
+        /// <summary>
+        /// Include library integration play actions
+        /// </summary>
+        public const string IncludePluginGameActions = "LOCIncludePluginGameActions";
+        /// <summary>
+        /// Select action
+        /// </summary>
+        public const string SelectActionTitle = "LOCSelectActionTitle";
     }
 }

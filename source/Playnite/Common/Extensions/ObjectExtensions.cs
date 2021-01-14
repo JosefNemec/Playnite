@@ -61,5 +61,10 @@ namespace System
                 return prop.GetCustomAttribute(typeof(TAttribute)) != null;
             }
         }
+
+        public static bool InheritsFrom<T>(this object obj)
+        {
+            return typeof(T).IsAssignableFrom(obj.GetType());
+        }
     }
 }

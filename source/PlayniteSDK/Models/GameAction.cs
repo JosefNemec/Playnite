@@ -134,10 +134,25 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool isPlayAction;
+        /// <summary>
+        /// Gets or sets value indicating wheter an action is play action.
+        /// </summary>
+        public bool IsPlayAction
+        {
+            get => isPlayAction;
+            set
+            {
+                isPlayAction = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool isHandledByPlugin;
         /// <summary>
         /// Gets or sets value indicating wheter a action's execution should be handled by a plugin.
         /// </summary>
+        [Obsolete("No longer used since Playnite 9.")]
         public bool IsHandledByPlugin
         {
             get => isHandledByPlugin;
@@ -248,7 +263,7 @@ namespace Playnite.SDK.Models
                 return false;
             }
 
-            if (IsHandledByPlugin != other.IsHandledByPlugin)
+            if (IsPlayAction != other.IsPlayAction)
             {
                 return false;
             }

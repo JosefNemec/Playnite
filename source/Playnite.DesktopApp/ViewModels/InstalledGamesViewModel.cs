@@ -317,13 +317,17 @@ namespace Playnite.DesktopApp.ViewModels
                     path = program.Item.Path.Replace(program.Item.WorkDir, string.Empty).TrimStart('\\');
                 }
 
-                newGame.PlayAction = new GameAction()
+                newGame.GameActions = new List<GameAction>
                 {
-                    Path = path,
-                    Arguments = program.Item.Arguments,
-                    Type = GameActionType.File,
-                    WorkingDir = program.Type == ProgramType.Win32 ? ExpandableVariables.InstallationDirectory : string.Empty,
-                    Name = "Play"
+                     new GameAction()
+                    {
+                        Path = path,
+                        Arguments = program.Item.Arguments,
+                        Type = GameActionType.File,
+                        WorkingDir = program.Type == ProgramType.Win32 ? ExpandableVariables.InstallationDirectory : string.Empty,
+                        Name = newGame.Name,
+                        IsPlayAction = true
+                    }
                 };
 
                 if (program.IconSource != null &&  program.IconSource != ImportableProgram.EmptyImage)

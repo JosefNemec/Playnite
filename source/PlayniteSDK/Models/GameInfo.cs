@@ -44,11 +44,18 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Other Actions.
         /// </summary>
+        public List<GameAction> GameActions { get; set; }
+
+        /// <summary>
+        /// Gets or sets Other Actions.
+        /// </summary>
+        [Obsolete("Use new GameActions field.")]
         public List<GameAction> OtherActions { get; set; }
 
         /// <summary>
         /// Gets or sets PlayAction.
         /// </summary>
+        [Obsolete("Use new GameActions field.")]
         public GameAction PlayAction { get; set; }
 
         /// <summary>

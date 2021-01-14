@@ -10,6 +10,7 @@ namespace Playnite.SDK.Events
     /// <summary>
     /// Represents game event.
     /// </summary>
+    [Obsolete]
     public class GameInstalledEventArgs : GameControllerEventArgs
     {
         /// <summary>

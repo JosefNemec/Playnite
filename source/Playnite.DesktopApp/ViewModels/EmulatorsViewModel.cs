@@ -256,7 +256,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void RemoveEmulator(Emulator emulator)
         {
-            var games = database.Games.Where(a => a.PlayAction != null && a.PlayAction.Type == GameActionType.Emulator && a.PlayAction.EmulatorId == emulator.Id);
+            var games = database.Games.Where(a => a.GameActions?.FirstOrDefault(action => action.Type == GameActionType.Emulator && action.EmulatorId == emulator.Id) != null);
             if (games.Count() > 0)
             {
                 if (dialogs.ShowMessage(

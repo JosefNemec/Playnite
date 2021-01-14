@@ -5,7 +5,6 @@ using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.Controllers;
 using Playnite.SDK;
-using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.Settings;
 using Playnite.ViewModels;
@@ -23,6 +22,7 @@ using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using Playnite.SDK.Exceptions;
 using System.Drawing.Imaging;
+using Playnite.SDK.Plugins;
 
 namespace Playnite
 {
@@ -99,7 +99,12 @@ namespace Playnite
 
         public void Dispose()
         {
-            foreach (var controller in controllers.Controllers)
+            foreach (var controller in controllers.PlayControllers)
+            {
+                UpdateGameState(controller.Game.Id, null, false, false, false, false);
+            }
+
+            foreach (var controller in controllers.InstallControllers)
             {
                 UpdateGameState(controller.Game.Id, null, false, false, false, false);
             }
@@ -130,7 +135,7 @@ namespace Playnite
                 return;
             }
 
-            IGameController controller = null;
+            PlayController controller = null;
 
             try
             {
@@ -140,7 +145,8 @@ namespace Playnite
                     return;
                 }
 
-                if (game.PlayAction == null)
+                var gameActions = controllers.GetPlayActions(game, Extensions);
+                if (!gameActions.Item1.HasItems() && !gameActions.Item2.HasItems())
                 {
                     Dialogs.ShowErrorMessage(
                         resources.GetString("LOCErrorNoPlayAction"),
@@ -148,15 +154,38 @@ namespace Playnite
                     return;
                 }
 
-                if (game.PlayAction.IsHandledByPlugin)
+                object playAction = null;
+                if ((gameActions.Item1.Count + gameActions.Item2.Count) > 1)
+                {
+                    var model = new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory(), gameActions.Item1, gameActions.Item2);
+                    playAction = model.SelectAction();
+                }
+                else
+                {
+                    if (gameActions.Item1.Count > 0)
+                    {
+                        playAction = gameActions.Item1[0];
+                    }
+                    else
+                    {
+                        playAction = gameActions.Item2[0];
+                    }
+                }
+
+                if (playAction == null)
+                {
+                    return;
+                }
+
+                if (playAction.InheritsFrom<PlayAction>())
                 {
                     logger.Info("Using library plugin to start the game.");
-                    controller = controllers.GetGameBasedController(game, Extensions);
+                    controller = ((PlayAction)playAction).GetPlayController(new GetPlayControllerArgs());
                 }
                 else
                 {
                     logger.Info("Using generic controller start the game.");
-                    controller = controllers.GetGenericGameController(game);
+                    controller = new GenericPlayController(Database, game);
                 }
 
                 if (controller == null)
@@ -167,7 +196,7 @@ namespace Playnite
                     return;
                 }
 
-                controllers.RemoveController(game.Id);
+                controllers.RemovePlayController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
 
@@ -200,7 +229,7 @@ namespace Playnite
                             resources.GetString("LOCErrorGlobalScriptAction"),
                             MessageBoxButton.OK,
                             MessageBoxImage.Error);
-                        controllers.RemoveController(game.Id);
+                        controllers.RemovePlayController(game.Id);
                         UpdateGameState(game.Id, null, null, null, null, false);
                         return;
                     }
@@ -228,13 +257,20 @@ namespace Playnite
                             resources.GetString("LOCErrorGameScriptAction"),
                             MessageBoxButton.OK,
                             MessageBoxImage.Error);
-                        controllers.RemoveController(game.Id);
+                        controllers.RemovePlayController(game.Id);
                         UpdateGameState(game.Id, null, null, null, null, false);
                         return;
                     }
                 }
 
-                controller.Play();
+                if (playAction is PluginGameAction action)
+                {
+                    controller.Play(action);
+                }
+                else
+                {
+                    ((GenericPlayController)controller).PlayCustom((GameAction)playAction);
+                }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -246,7 +282,7 @@ namespace Playnite
 
                 if (controller != null)
                 {
-                    controllers.RemoveController(game.Id);
+                    controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                 }
 
@@ -625,26 +661,37 @@ namespace Playnite
         public void InstallGame(Game game)
         {
             logger.Info($"Installing {game.GetIdentifierInfo()}");
-            IGameController controller = null;
+            InstallController controller = null;
             try
             {
-                controller = controllers.GetGameBasedController(game, Extensions);
+                var gameActions = controllers.GetInstallActions(game, Extensions, false);
+                if (!gameActions.HasItems())
+                {
+                    Dialogs.ShowErrorMessage(LOC.ErrorNoInstallAction, LOC.GameError);
+                    return;
+                }
+
+                object installAction = null;
+                if (gameActions.Count > 1)
+                {
+                    var model = new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory(), gameActions);
+                    installAction = model.SelectAction();
+                }
+
+                if (installAction == null)
+                {
+                    return;
+                }
+
+                controller = ((InstallAction)installAction).GetInstallController(new GetInstallControllerArgs());
                 if (controller == null)
                 {
-                    logger.Error("Game installation failed, library plugin not found.");
-                    Dialogs.ShowErrorMessage(
-                        resources.GetString("LOCErrorLibraryPluginNotFound"),
-                        resources.GetString("LOCGameError"));
+                    logger.Error("Game installation failed, no controller available.");
+                    Dialogs.ShowErrorMessage(LOC.ErrorNoInstallAction, LOC.GameError);
                     return;
                 }
 
-                if (controller is GenericGameController)
-                {
-                    logger.Error("Game installation failed, library plugin doesn't provide game controller.");
-                    return;
-                }
-
-                controllers.RemoveController(game.Id);
+                controllers.RemoveInstallController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, true, null, null);
                 controller.Install();
@@ -659,7 +706,7 @@ namespace Playnite
 
                 if (controller != null)
                 {
-                    controllers.RemoveController(game.Id);
+                    controllers.RemoveInstallController(game.Id);
                     UpdateGameState(game.Id, null, null, false, null, null);
                 }
             }
@@ -678,27 +725,38 @@ namespace Playnite
             }
 
             logger.Info($"Uninstalling {game.GetIdentifierInfo()}");
-            IGameController controller = null;
+            InstallController controller = null;
 
             try
             {
-                controller = controllers.GetGameBasedController(game, Extensions);
+                var gameActions = controllers.GetInstallActions(game, Extensions, true);
+                if (!gameActions.HasItems())
+                {
+                    Dialogs.ShowErrorMessage(LOC.ErrorNoInstallAction, LOC.GameError);
+                    return;
+                }
+
+                object installAction = null;
+                if (gameActions.Count > 1)
+                {
+                    var model = new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory(), gameActions);
+                    installAction = model.SelectAction();
+                }
+
+                if (installAction == null)
+                {
+                    return;
+                }
+
+                controller = ((InstallAction)installAction).GetInstallController(new GetInstallControllerArgs());
                 if (controller == null)
                 {
-                    logger.Error("Game uninstallation failed, library plugin not found.");
-                    Dialogs.ShowErrorMessage(
-                        resources.GetString("LOCErrorLibraryPluginNotFound"),
-                        resources.GetString("LOCGameError"));
+                    logger.Error("Game uninstallation failed, no controller available.");
+                    Dialogs.ShowErrorMessage(LOC.ErrorNoInstallAction, LOC.GameError);
                     return;
                 }
 
-                if (controller is GenericGameController)
-                {
-                    logger.Error("Game uninstallation failed, library plugin doesn't provide game controller.");
-                    return;
-                }
-
-                controllers.RemoveController(game.Id);
+                controllers.RemoveInstallController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, true, null);
                 controller.Uninstall();
@@ -713,7 +771,7 @@ namespace Playnite
 
                 if (controller != null)
                 {
-                    controllers.RemoveController(game.Id);
+                    controllers.RemoveInstallController(game.Id);
                     UpdateGameState(game.Id, null, null, null, false, null);
                 }
             }
@@ -745,7 +803,7 @@ namespace Playnite
                         {
                             task.IconResourcePath = Database.GetFullFilePath(lastGame.Icon);
                         }
-                        else if (lastGame.PlayAction?.Type == GameActionType.File)
+                        else
                         {
                             task.IconResourcePath = lastGame.GetRawExecutablePath();
                         }
@@ -771,7 +829,8 @@ namespace Playnite
         public void CancelGameMonitoring(Game game)
         {
             var wasRunning = game.IsRunning;
-            controllers.RemoveController(game.Id);
+            controllers.RemoveInstallController(game.Id);
+            controllers.RemovePlayController(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
             dbGame.IsLaunching = false;
@@ -837,7 +896,7 @@ namespace Playnite
             Database.Games.Update(game);
         }
 
-        private void Controllers_Started(object sender, GameControllerEventArgs args)
+        private void Controllers_Started(object sender, GameStartedEventArgs args)
         {
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
@@ -923,15 +982,15 @@ namespace Playnite
             }
         }
 
-        private void Controllers_Stopped(object sender, GameControllerEventArgs args)
+        private void Controllers_Stopped(object sender, GameStoppedEventArgs args)
         {
             var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} stopped after {args.EllapsedTime} seconds.");
+            logger.Info($"Game {game.Name} stopped after {args.SessionLength} seconds.");
 
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
             dbGame.IsLaunching = false;
-            dbGame.Playtime += args.EllapsedTime;
+            dbGame.Playtime += args.SessionLength;
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
             gameStartups.TryRemove(game.Id, out _);
@@ -1004,7 +1063,7 @@ namespace Playnite
 
             if (AppSettings.ClientAutoShutdown.ShutdownClients && !game.IsCustomGame)
             {
-                if (args.EllapsedTime <= AppSettings.ClientAutoShutdown.MinimalSessionTime)
+                if (args.SessionLength <= AppSettings.ClientAutoShutdown.MinimalSessionTime)
                 {
                     logger.Debug("Game session was too short for client to be shutdown.");
                 }
@@ -1071,23 +1130,12 @@ namespace Playnite
         private void Controllers_Installed(object sender, GameInstalledEventArgs args)
         {
             var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} installed after {args.EllapsedTime} seconds.");
+            logger.Info($"Game {game.Name} installed.");
 
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsInstalling = false;
             dbGame.IsInstalled = true;
             dbGame.InstallDirectory = args.InstalledInfo.InstallDirectory;
-
-            if (args.InstalledInfo.PlayAction != null)
-            {
-                dbGame.PlayAction = args.InstalledInfo.PlayAction;
-            }
-
-            if (args.InstalledInfo.OtherActions != null)
-            {
-                dbGame.OtherActions = args.InstalledInfo.OtherActions.ToObservable();
-            }
-
             if (!args.InstalledInfo.GameImagePath.IsNullOrEmpty())
             {
                 dbGame.GameImagePath = args.InstalledInfo.GameImagePath;
@@ -1097,10 +1145,10 @@ namespace Playnite
             controllers.RemoveController(args.Controller);
         }
 
-        private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
+        private void Controllers_Uninstalled(object sender, GameUninstalledEventArgs args)
         {
             var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} uninstalled after {args.EllapsedTime} seconds.");
+            logger.Info($"Game {game.Name} uninstalled.");
 
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsUninstalling = false;

@@ -3,7 +3,6 @@ using Playnite.Database;
 using Playnite.Controllers;
 using Playnite.Scripting;
 using Playnite.SDK;
-using Playnite.SDK.Events;
 using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using System;
@@ -80,9 +79,9 @@ namespace Playnite.Plugins
             DisposeScripts();
             controllers.Installed -= Controllers_Installed;
             controllers.Starting -= Controllers_Starting;
-            controllers.Started -= Controllers_Installed;
-            controllers.Stopped -= Controllers_Installed;
-            controllers.Uninstalled -= Controllers_Installed;
+            controllers.Started -= Controllers_Started;
+            controllers.Stopped -= Controllers_Stopped;
+            controllers.Uninstalled -= Controllers_Uninstalled;
         }
 
         private void DisposeScripts()
@@ -431,7 +430,7 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
+        private void Controllers_Uninstalled(object sender, GameUninstalledEventArgs args)
         {
             if (args.Controller?.Game == null)
             {
@@ -464,7 +463,7 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Stopped(object sender, GameControllerEventArgs args)
+        private void Controllers_Stopped(object sender, GameStoppedEventArgs args)
         {
             if (args.Controller?.Game?.Id == null)
             {
@@ -472,7 +471,7 @@ namespace Playnite.Plugins
                 return;
             }
 
-            InvokeOnGameStopped(args.Controller.Game, args.EllapsedTime);
+            InvokeOnGameStopped(args.Controller.Game, args.SessionLength);
         }
 
         public void InvokeOnGameStopped(Game game, long ellapsedTime)
@@ -502,7 +501,7 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Starting(object sender, GameControllerEventArgs args)
+        private void Controllers_Starting(object sender, GameStartingEventArgs args)
         {
             if (args.Controller?.Game?.Id == null)
             {
@@ -535,7 +534,7 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Started(object sender, GameControllerEventArgs args)
+        private void Controllers_Started(object sender, GameStartedEventArgs args)
         {
             if (args.Controller?.Game?.Id == null)
             {
@@ -568,7 +567,7 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Installed(object sender, GameControllerEventArgs args)
+        private void Controllers_Installed(object sender, GameInstalledEventArgs args)
         {
             if (args.Controller?.Game?.Id == null)
             {
@@ -603,7 +602,7 @@ namespace Playnite.Plugins
 
         public void InvokeOnGameSelected(List<Game> oldValue, List<Game> newValue)
         {
-            var args = new GameSelectionEventArgs(oldValue, newValue);
+            var args = new SDK.Events.GameSelectionEventArgs(oldValue, newValue);
             foreach (var script in Scripts)
             {
                 try

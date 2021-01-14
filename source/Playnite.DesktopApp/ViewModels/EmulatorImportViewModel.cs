@@ -502,11 +502,16 @@ namespace Playnite.DesktopApp.ViewModels
                     continue;
                 }
 
-                game.Game.PlayAction = new GameAction()
+                game.Game.GameActions = new ObservableCollection<GameAction>
                 {
-                    EmulatorId = game.Emulator.Id,
-                    EmulatorProfileId = game.EmulatorProfile.Id,
-                    Type = GameActionType.Emulator
+                    new GameAction()
+                    {
+                        EmulatorId = game.Emulator.Id,
+                        EmulatorProfileId = game.EmulatorProfile.Id,
+                        Type = GameActionType.Emulator,
+                        IsPlayAction = true,
+                        Name = game.Game.Name
+                    }
                 };
 
                 game.Game.IsInstalled = true;

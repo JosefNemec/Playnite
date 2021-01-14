@@ -88,6 +88,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="game">Game to be handled.</param>
         /// <returns>Game controller.</returns>
+        [Obsolete("Use GetGameController instead.")]
         public virtual IGameController GetGameController(Game game)
         {
             return null;
@@ -101,5 +102,46 @@ namespace Playnite.SDK.Plugins
         {
             return null;
         }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetPlayActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetInstallActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool IsUninstall { get; set; } = false;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetPlayControllerArgs
+    {
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetInstallControllerArgs
+    {
     }
 }

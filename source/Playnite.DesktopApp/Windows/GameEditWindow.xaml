@@ -867,89 +867,50 @@
                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="10">
                     <StackPanel>
-                        <GroupBox Margin="10">
-                            <GroupBox.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" VerticalAlignment="Center"
-                                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                              IsChecked="{Binding UsePlayActionChanges}"/>
-                                    <TextBlock Text="{DynamicResource LOCPlayAction}" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </GroupBox.Header>
-                            <StackPanel KeyboardNavigation.TabNavigation="Local">
-                                <Button TabIndex="1" Name="ButtonAddPlay" Content="{DynamicResource LOCAddPlayAction}" HorizontalAlignment="Left"
-                                        Margin="0,5,0,5" Command="{Binding AddPlayActionCommand}"
-                                        Visibility="{Binding EditingGame.PlayAction, Converter={pcon:InvertedNullToVisibilityConverter}}">
-                                </Button>
-                                <Button TabIndex="2" Name="ButtonRemovePlay" Content="{DynamicResource LOCRemovePlayAction}" HorizontalAlignment="Left"
-                                        Margin="0,5,0,5" Command="{Binding DeletePlayActionCommand}"
-                                        Visibility="{Binding EditingGame.PlayAction, Converter={pcon:NullToVisibilityConverter}}">
-                                </Button>
-                                <CheckBox Content="{DynamicResource LOCPlayActionUsePlugin}"
-                                          ToolTip="{DynamicResource LOCPlayActionUsePluginTooltip}"
-                                          ToolTipService.InitialShowDelay="0"
-                                          IsChecked="{Binding EditingGame.PlayAction.IsHandledByPlugin}"
-                                          Visibility="{Binding EditingGame.IsCustomGame, Converter={pcon:InvertedBooleanToVisibilityConverter}}"
-                                          Margin="5"/>
-                                <pctrls:GameTaskView x:Name="TaskPlay" Margin="5,0,5,5" DataContext="{Binding EditingGame.PlayAction}"
-                                                     Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"
-                                                     DefaultSelectionDir="{Binding Data.EditingGame.InstallDirectory, Mode=OneWay, Source={StaticResource Proxy}}">
-                                    <pctrls:GameTaskView.Style>
-                                        <Style TargetType="{x:Type pctrls:GameTaskView}">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsHandledByPlugin}" Value="True">
-                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Data.EditingGame.PlayAction, Source={StaticResource Proxy}}" Value="{x:Null}">
-                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </pctrls:GameTaskView.Style>
-                                </pctrls:GameTaskView>
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox Margin="10">
-                            <GroupBox.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" VerticalAlignment="Center"
-                                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                              IsChecked="{Binding UseOtherActionsChanges}"/>
-                                    <TextBlock Text="{DynamicResource LOCOtherActions}" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </GroupBox.Header>
-                            <StackPanel>
-                                <ItemsControl IsTabStop="False" Name="OtherTasksItems" ItemsSource="{Binding EditingGame.OtherActions}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
-                                                <StackPanel Margin="10">
-                                                    <pctrls:GameTaskView x:Name="TaskCustom" ShowNameRow="True"
-                                                                         Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"
-                                                                         DefaultSelectionDir="{Binding Data.EditingGame.InstallDirectory, Mode=OneWay, Source={StaticResource Proxy}}"/>
-                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-                                                        <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0"
-                                                                Command="{Binding Data.MoveUpActionCommand, Source={StaticResource Proxy}}"
-                                                                CommandParameter="{Binding }"/>
-                                                        <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0"
-                                                                Command="{Binding Data.MoveDownActionCommand, Source={StaticResource Proxy}}"
-                                                                CommandParameter="{Binding }"/>
-                                                        <Button Name="ButtonDeleteAction" Content="{DynamicResource LOCDeleteAction}"
-                                                                Command="{Binding Data.DeleteActionCommand, Source={StaticResource Proxy}}"
-                                                                CommandParameter="{Binding }"/>
-                                                    </StackPanel>
-                                                </StackPanel>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                                <Button Name="ButtonAddAction" Content="{DynamicResource LOCAddAction}" HorizontalAlignment="Left" Margin="0,5,0,5"
-                                        Command="{Binding AddActionCommand}"/>
-                            </StackPanel>
-                        </GroupBox>
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding ShowIncludeLibraryPluginAction, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <CheckBox VerticalAlignment="Center" ToolTip="{DynamicResource LOCSaveChanges}"
+                                      Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      IsChecked="{Binding UseIncludeLibraryPluginAction}"/>
+                            <TextBlock VerticalAlignment="Center"
+                                       Text="{DynamicResource LOCIncludePluginGameActions}" />
+                            <CheckBox Margin="5,5,5,5" VerticalAlignment="Center"
+                                      IsChecked="{Binding EditingGame.IncludeLibraryPluginAction}"/>
+                        </StackPanel>
+
+                        <CheckBox Content="{DynamicResource LOCSaveChanges}" VerticalAlignment="Center" Margin="0,5,0,10"
+                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding UseGameActionsChanges}"/>
+
+                        <ItemsControl IsTabStop="False" Name="OtherTasksItems" ItemsSource="{Binding EditingGame.GameActions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
+                                        <StackPanel Margin="10">
+                                            <pctrls:GameTaskView x:Name="TaskCustom" ShowNameRow="True"
+                                                                    Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"
+                                                                    DefaultSelectionDir="{Binding Data.EditingGame.InstallDirectory, Mode=OneWay, Source={StaticResource Proxy}}"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                                <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0"
+                                                        Command="{Binding Data.MoveUpActionCommand, Source={StaticResource Proxy}}"
+                                                        CommandParameter="{Binding }"/>
+                                                <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0"
+                                                        Command="{Binding Data.MoveDownActionCommand, Source={StaticResource Proxy}}"
+                                                        CommandParameter="{Binding }"/>
+                                                <Button Name="ButtonDeleteAction" Content="{DynamicResource LOCDeleteAction}"
+                                                        Command="{Binding Data.DeleteActionCommand, Source={StaticResource Proxy}}"
+                                                        CommandParameter="{Binding }"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <Button Content="{DynamicResource LOCAddAction}" HorizontalAlignment="Left" Margin="0,10,0,0"
+                                Command="{Binding AddActionCommand}"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

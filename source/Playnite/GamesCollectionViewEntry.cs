@@ -43,8 +43,7 @@ namespace Playnite
         public bool Hidden => Game.Hidden;
         public bool Favorite => Game.Favorite;
         public string InstallDirectory => Game.InstallDirectory;
-        public ObservableCollection<GameAction> OtherActions => Game.OtherActions;
-        public GameAction PlayAction => Game.PlayAction;
+        public ObservableCollection<GameAction> GameActions => Game.GameActions;
         public string DisplayName => Game.Name;
         public string Description => Game.Description;
         public string Notes => Game.Notes;

@@ -331,14 +331,14 @@ namespace Playnite.DesktopApp.Controls
                 }
 
                 // Custom Actions
-                if (Game.OtherActions != null && Game.OtherActions.Count > 0)
+                var otherActions = Game.GameActions?.Where(a => !a.IsPlayAction).ToList();
+                if (otherActions.HasItems())
                 {
-                    foreach (var task in Game.OtherActions)
+                    foreach (var task in otherActions)
                     {
                         var taskItem = new MenuItem()
                         {
-                            Header = task.Name,
-                            //Icon = Images.GetEmptyImage()
+                            Header = task.Name
                         };
 
                         taskItem.Click += (s, e) =>

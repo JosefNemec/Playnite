@@ -45,8 +45,10 @@ namespace Playnite.SDK.Models
         ///
         PluginId,
         ///
+        [Obsolete("Use new GameActions field.")]
         OtherActions,
         ///
+        [Obsolete("Use new GameActions field.")]
         PlayAction,
         ///
         PlatformId,
@@ -169,7 +171,11 @@ namespace Playnite.SDK.Models
         ///
         Notes,
         ///
-        Manual
+        Manual,
+        ///
+        GameActions,
+        ///
+        IncludeLibraryPluginAction
     }
 
     /// <summary>
@@ -332,14 +338,6 @@ namespace Playnite.SDK.Models
         {
             get
             {
-                if (string.IsNullOrEmpty(installDirectory))
-                {
-                    if (PlayAction != null)
-                    {
-                        return PlayAction.WorkingDir;
-                    }
-                }
-
                 return installDirectory;
             }
 
@@ -441,10 +439,47 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool includeLibraryPluginAction = true;
+        /// <summary>
+        /// Gets or sets id of plugin responsible for handling this game.
+        /// </summary>
+        public bool IncludeLibraryPluginAction
+        {
+            get
+            {
+                return includeLibraryPluginAction;
+            }
+
+            set
+            {
+                includeLibraryPluginAction = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<GameAction> gameActions;
+        /// <summary>
+        /// Gets or sets list of additional game actions.
+        /// </summary>
+        public ObservableCollection<GameAction> GameActions
+        {
+            get
+            {
+                return gameActions;
+            }
+
+            set
+            {
+                gameActions = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<GameAction> otherActions;
         /// <summary>
         /// Gets or sets list of additional game actions.
         /// </summary>
+        [Obsolete("Use new GameActions field.")]
         public ObservableCollection<GameAction> OtherActions
         {
             get
@@ -463,6 +498,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets game action used to starting the game.
         /// </summary>
+        [Obsolete("Use new GameActions field.")]
         public GameAction PlayAction
         {
             get
@@ -1610,14 +1646,9 @@ namespace Playnite.SDK.Models
                     tro.PluginId = PluginId;
                 }
 
-                if (!OtherActions.IsListEqualExact(tro.OtherActions))
+                if (!GameActions.IsListEqualExact(tro.GameActions))
                 {
-                    tro.OtherActions = OtherActions;
-                }
-
-                if (!GameAction.Equals(PlayAction, tro.PlayAction))
-                {
-                    tro.PlayAction = PlayAction;
+                    tro.GameActions = GameActions;
                 }
 
                 if (PlatformId != tro.PlatformId)
@@ -1789,6 +1820,11 @@ namespace Playnite.SDK.Models
                 {
                     tro.Manual = Manual;
                 }
+
+                if (IncludeLibraryPluginAction != tro.IncludeLibraryPluginAction)
+                {
+                    tro.IncludeLibraryPluginAction = IncludeLibraryPluginAction;
+                }
             }
             else
             {
@@ -1879,14 +1915,9 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.PluginId);
             }
 
-            if (!OtherActions.IsListEqualExact(otherGame.OtherActions))
+            if (!GameActions.IsListEqualExact(otherGame.GameActions))
             {
-                changes.Add(GameField.OtherActions);
-            }
-
-            if (!GameAction.Equals(PlayAction, otherGame.PlayAction))
-            {
-                changes.Add(GameField.PlayAction);
+                changes.Add(GameField.GameActions);
             }
 
             if (PlatformId != otherGame.PlatformId)
@@ -2111,6 +2142,11 @@ namespace Playnite.SDK.Models
             if (!string.Equals(Manual, otherGame.Manual, StringComparison.Ordinal))
             {
                 changes.Add(GameField.Manual);
+            }
+
+            if (IncludeLibraryPluginAction != otherGame.IncludeLibraryPluginAction)
+            {
+                changes.Add(GameField.IncludeLibraryPluginAction);
             }
 
             return changes;

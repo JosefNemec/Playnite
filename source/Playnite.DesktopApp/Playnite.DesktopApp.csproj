@@ -291,6 +291,9 @@
     <Compile Include="ViewModels\SettingsViewModelBase.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
+    <Compile Include="Windows\ActionSelectionWindow.xaml.cs">
+      <DependentUpon>ActionSelectionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LicenseAgreementWindow.xaml.cs">
       <DependentUpon>LicenseAgreementWindow.xaml</DependentUpon>
     </Compile>
@@ -1043,6 +1046,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ActionSelectionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

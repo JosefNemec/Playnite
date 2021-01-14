@@ -296,6 +296,14 @@ namespace Playnite.Database
                 dbSettings.Version = 3;
                 SaveSettingsToDbPath(dbSettings, databasePath);
             }
+
+            // 3 to 4
+            if (dbSettings.Version == 3 && NewFormatVersion > 3)
+            {
+                throw new NotImplementedException();
+                //dbSettings.Version = 4;
+                //SaveSettingsToDbPath(dbSettings, databasePath);
+            }
         }
 
         public static bool GetMigrationRequired(string databasePath)

@@ -650,33 +650,33 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool usePlayActionChanges;
-        public bool UsePlayActionChanges
+        private bool useGameActionsChanges;
+        public bool UseGameActionsChanges
         {
             get
             {
-                return usePlayActionChanges;
+                return useGameActionsChanges;
             }
 
             set
             {
-                usePlayActionChanges = value;
+                useGameActionsChanges = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ShowActionsChangeNotif));
             }
         }
 
-        private bool useOtherActionsChanges;
-        public bool UseOtherActionsChanges
+        private bool useIncludeLibraryPluginAction;
+        public bool UseIncludeLibraryPluginAction
         {
             get
             {
-                return useOtherActionsChanges;
+                return useIncludeLibraryPluginAction;
             }
 
             set
             {
-                useOtherActionsChanges = value;
+                useIncludeLibraryPluginAction = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ShowActionsChangeNotif));
             }
@@ -808,8 +808,7 @@ namespace Playnite.DesktopApp.ViewModels
             get
             {
                 return ShowCheckBoxes &&
-                    (UseOtherActionsChanges ||
-                    UsePlayActionChanges);
+                    (UseGameActionsChanges || UseIncludeLibraryPluginAction);
             }
         }
 
@@ -1248,28 +1247,23 @@ namespace Playnite.DesktopApp.ViewModels
                         UseGameStartedGlobalScriptChanges = true;
                     }
                     break;
-                case nameof(Game.PlayAction):
-                    UsePlayActionChanges = true;
+                case nameof(Game.IncludeLibraryPluginAction):
+                    UseIncludeLibraryPluginAction = true;
                     break;
-                case nameof(Game.OtherActions):
-                    UseOtherActionsChanges = true;
+                case nameof(Game.GameActions):
+                    UseGameActionsChanges = true;
                     break;
             }
         }
 
         private void OtherActions_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            UseOtherActionsChanges = true;
+            UseGameActionsChanges = true;
         }
 
-        private void OtherAction_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void GameAction_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            UseOtherActionsChanges = true;
-        }
-
-        private void PlayAction_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            UsePlayActionChanges = true;
+            UseGameActionsChanges = true;
         }
     }
 }

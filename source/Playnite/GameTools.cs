@@ -241,11 +241,18 @@ namespace Playnite
                 dummyGame.UseGlobalGameStartedScript = firstUseGlobalGameStartedSrc;
             }
 
-            var firstPlayAction = firstGame.PlayAction;
-            if (games.All(a => a.PlayAction?.Equals(firstPlayAction) == true))
+            var firstIncludeLibraryPluginAction = firstGame.IncludeLibraryPluginAction;
+            if (games.All(a => a.IncludeLibraryPluginAction == firstIncludeLibraryPluginAction) == true)
             {
-                dummyGame.PlayAction = firstPlayAction;
+                dummyGame.IncludeLibraryPluginAction = firstIncludeLibraryPluginAction;
             }
+
+            // TODO
+            //var firstPlayAction = firstGame.PlayAction;
+            //if (games.All(a => a.PlayAction?.Equals(firstPlayAction) == true))
+            //{
+            //    dummyGame.PlayAction = firstPlayAction;
+            //}
 
             return dummyGame;
         }

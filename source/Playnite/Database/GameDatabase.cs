@@ -167,7 +167,7 @@ namespace Playnite.Database
             }
         }
 
-        public static readonly ushort NewFormatVersion = 3;
+        public static readonly ushort NewFormatVersion = 4;
 
         #region Events
 
@@ -956,8 +956,7 @@ namespace Playnite.Database
                 InstallDirectory = game.InstallDirectory,
                 GameImagePath = game.GameImagePath,
                 SortingName = game.SortingName,
-                OtherActions = game.OtherActions == null ? null : new ObservableCollection<GameAction>(game.OtherActions),
-                PlayAction = game.PlayAction,
+                GameActions = game.GameActions == null ? null : new ObservableCollection<GameAction>(game.GameActions),
                 ReleaseDate = game.ReleaseDate,
                 Links = game.Links == null ? null : new ObservableCollection<Link>(game.Links),
                 IsInstalled = game.IsInstalled,
@@ -1047,6 +1046,7 @@ namespace Playnite.Database
             toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
             toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
             toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
+            toAdd.IncludeLibraryPluginAction = true;
             Games.Add(toAdd);
             return toAdd;
         }
@@ -1114,11 +1114,6 @@ namespace Playnite.Database
                     {
                         existingGame.IsInstalled = newGame.IsInstalled;
                         existingGame.InstallDirectory = newGame.InstallDirectory;
-                        if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
-                        {
-                            existingGame.PlayAction = newGame.PlayAction;
-                        }
-
                         if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
                            (newGame.Playtime > 0 && forcePlayTimeSync))
                         {
@@ -1134,9 +1129,9 @@ namespace Playnite.Database
                             }
                         }
 
-                        if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
+                        if (!existingGame.GameActions.HasItems() && newGame.GameActions.HasItems())
                         {
-                            existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
+                            existingGame.GameActions = new ObservableCollection<GameAction>(newGame.GameActions);
                         }
 
                         Games.Update(existingGame);

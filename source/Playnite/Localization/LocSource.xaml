@@ -82,6 +82,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCGameInstallError">Cannot install game: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Cannot un-install game: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Play action is not configured.</sys:String>
+    <sys:String x:Key="LOCErrorNoInstallAction">Installation implementation is not available.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">The library plugin responsible for this game is disabled or not installed.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Official metadata download is not available.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No game is selected.</sys:String>
@@ -659,6 +660,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Override Emulator Arguments</sys:String>
+    <sys:String x:Key="LOCIsPlayAction">Play action</sys:String>
     <sys:String x:Key="LOCMedataDiffWindowTitle">Select metadata to import</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Select Games to Import</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadata search</sys:String>
@@ -873,4 +875,6 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCAddonLicenseWindowTitle">{0} license agreement</sys:String>
     <sys:String x:Key="LOCLicenseAccept">Accept</sys:String>
     <sys:String x:Key="LOCLicenseDecline">Decline</sys:String>
+    <sys:String x:Key="LOCIncludePluginGameActions">Include library integration play actions</sys:String>
+    <sys:String x:Key="LOCSelectActionTitle">Select action</sys:String>
 </ResourceDictionary>

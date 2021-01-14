@@ -3,6 +3,7 @@ using Playnite.Database;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Playnite.Controllers
 {
-    public class GenericGameController : BaseGameController
+    public class GenericPlayController : PlayController
     {
         protected CancellationTokenSource watcherToken;
         protected Stopwatch stopWatch;
@@ -23,20 +24,24 @@ namespace Playnite.Controllers
         private GameDatabase database;
         private static ILogger logger = LogManager.GetLogger();
 
-        public GenericGameController(GameDatabase db, Game game) : base(game)
+        public GenericPlayController(GameDatabase db, Game game)
         {
             database = db;
+            Game = game;
         }
 
-        public override void Play()
+        public override void Play(PluginGameAction playAction)
         {
-            if (Game.PlayAction == null)
+        }
+
+        public void PlayCustom(GameAction playAction)
+        {
+            if (playAction == null)
             {
                 throw new Exception("Cannot start game without play action.");
             }
 
             var gameClone = Game.GetClone();
-            var playAction = gameClone.PlayAction;
             var emulators = database.Emulators.ToList();
             var profileClone = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.GetClone();
 
@@ -47,12 +52,12 @@ namespace Playnite.Controllers
                 CheckEmulatorConfig(profileClone);
             }
 
-            playAction = gameClone.PlayAction.ExpandVariables(gameClone);
+            playAction = playAction.ExpandVariables(gameClone);
             profileClone = profileClone?.ExpandVariables(gameClone);
 
             Dispose();
 
-            OnStarting(this, new GameControllerEventArgs(this, 0));
+            InvokeOnStarting(this, new GameStartingEventArgs(this));
             var proc = GameActionActivator.ActivateAction(playAction, profileClone);
 
             if (playAction.Type != GameActionType.URL)
@@ -85,19 +90,19 @@ namespace Playnite.Controllers
                     }
                     else
                     {
-                        OnStopped(this, new GameControllerEventArgs(this, 0));
+                        InvokeOnStopped(this, new GameStoppedEventArgs(this));
                     }
                 }
                 else
                 {
                     if (proc != null)
                     {
-                        OnStarted(this, new GameControllerEventArgs(this, 0));
+                        InvokeOnStarted(this, new GameStartedEventArgs(this));
                         procMon.WatchProcessTree(proc);
                     }
                     else
                     {
-                        OnStopped(this, new GameControllerEventArgs(this, 0));
+                        InvokeOnStopped(this, new GameStoppedEventArgs(this));
                     }
                 }
             }
@@ -105,7 +110,7 @@ namespace Playnite.Controllers
             {
                 if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && Directory.Exists(gameClone.InstallDirectory))
                 {
-                    OnStarted(this, new GameControllerEventArgs(this, 0));
+                    InvokeOnStarted(this, new GameStartedEventArgs(this));
                     stopWatch = Stopwatch.StartNew();
                     procMon = new ProcessMonitor();
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
@@ -113,17 +118,9 @@ namespace Playnite.Controllers
                 }
                 else
                 {
-                    OnStopped(this, new GameControllerEventArgs(this, 0));
+                    InvokeOnStopped(this, new GameStoppedEventArgs(this));
                 }
             }
-        }
-
-        public override void Install()
-        {
-        }
-
-        public override void Uninstall()
-        {
         }
 
         public override void Dispose()
@@ -139,13 +136,13 @@ namespace Playnite.Controllers
 
         private void ProcMon_TreeStarted(object sender, EventArgs e)
         {
-            OnStarted(this, new GameControllerEventArgs(this, 0));
+            InvokeOnStarted(this, new GameStartedEventArgs(this));
         }
 
         private void Monitor_TreeDestroyed(object sender, EventArgs args)
         {
             stopWatch.Stop();
-            OnStopped(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+            InvokeOnStopped(this, new GameStoppedEventArgs(this) { SessionLength = Convert.ToInt64(stopWatch.Elapsed.TotalSeconds) });
         }
 
         private void CheckGameImagePath(Game game)

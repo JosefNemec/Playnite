@@ -31,58 +31,63 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding ShowNameRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Name="RowPath" Height="{Binding ShowPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             <RowDefinition Name="RowEmulator" Height="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             <RowDefinition Name="RowOverrideArgs" Height="{Binding ShowOverrideArgsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             <RowDefinition Name="RowArguments" Height="{Binding ShowArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             <RowDefinition Name="RowDefaultArguments" Height="{Binding ShowDefaultArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             <RowDefinition Name="RowAdditionalArgs" Height="{Binding ShowAdditionalArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
-            <RowDefinition Name="RowWorkingDir" Height="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+            <RowDefinition Name="RowWorkingDir" Height="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>            
         </Grid.RowDefinitions>
 
-        <Label Content="{DynamicResource LOCNameLabel}" Grid.Column="0" Grid.Row="0"/>
-        <TextBox IsEnabled="{Binding ShowNameRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="1" Name="TextName" Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
+        <Label Content="{DynamicResource LOCIsPlayAction}" Grid.Column="0" Grid.Row="0" />
+        <CheckBox Grid.Column="1" Grid.Row="0" Margin="3,5,3,5"
+                  IsChecked="{Binding IsPlayAction}" />
+        
+        <Label Content="{DynamicResource LOCNameLabel}" Grid.Column="0" Grid.Row="1"/>
+        <TextBox IsEnabled="{Binding ShowNameRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="1" Name="TextName" Grid.Column="1" Grid.Row="1" Text="{Binding Name}"/>
 
-        <Label Content="{DynamicResource LOCTypeLabel}" Grid.Column="0" Grid.Row="1"/>
-        <ComboBox TabIndex="2" Name="ComboType" Grid.Column="1" Grid.Row="1" SelectedIndex="{Binding Type, Converter={StaticResource BidirectionalEnumAndNumberConverter}}"
+        <Label Content="{DynamicResource LOCTypeLabel}" Grid.Column="0" Grid.Row="2"/>
+        <ComboBox TabIndex="2" Name="ComboType" Grid.Column="1" Grid.Row="2" SelectedIndex="{Binding Type, Converter={StaticResource BidirectionalEnumAndNumberConverter}}"
                   SelectionChanged="ComboType_SelectionChanged">
             <ComboBoxItem Content="{DynamicResource LOCExecutableTitle}" />
             <ComboBoxItem Content="{DynamicResource LOCURLLabel}" />
             <ComboBoxItem Content="{DynamicResource LOCEmulatorTitle}" />
         </ComboBox>
 
-        <Label Content="{DynamicResource LOCPathLabel}" Grid.Column="0" Grid.Row="2" />
-        <DockPanel IsEnabled="{Binding ShowPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" Grid.Column="1" Grid.Row="2" LastChildFill="True" >
+        <Label Content="{DynamicResource LOCPathLabel}" Grid.Column="0" Grid.Row="3" />
+        <DockPanel IsEnabled="{Binding ShowPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" Grid.Column="1" Grid.Row="3" LastChildFill="True" >
             <Button TabIndex="2" Name="ButtonBrowse" Content="..." DockPanel.Dock="Right" Click="ButtonBrowsePath_Click" 
                     Height="{Binding ActualHeight, ElementName=TextPath}" Margin="0,0,3,0"/>
             <TextBox TabIndex="1" Name="TextPath" Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"
                      ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
         </DockPanel>
 
-        <Label Content="{DynamicResource LOCArgumentsTitle}" Grid.Column="0" Grid.Row="5" />
-        <TextBox IsEnabled="{Binding ShowArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="7" Name="TextArguments" Grid.Column="1" Grid.Row="5" Text="{Binding Arguments}" ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
+        <Label Content="{DynamicResource LOCArgumentsTitle}" Grid.Column="0" Grid.Row="6" />
+        <TextBox IsEnabled="{Binding ShowArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="7" Name="TextArguments" Grid.Column="1" Grid.Row="6" Text="{Binding Arguments}" ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
 
-        <Label Content="{DynamicResource LOCEmulatorArguments}" Grid.Column="0" Grid.Row="6" />
-        <TextBox TabIndex="8" Name="TextEmulatorArguments" Grid.Column="1" Grid.Row="6" 
+        <Label Content="{DynamicResource LOCEmulatorArguments}" Grid.Column="0" Grid.Row="7" />
+        <TextBox TabIndex="8" Name="TextEmulatorArguments" Grid.Column="1" Grid.Row="7" 
                  Text="{Binding SelectedEmulatorArguments, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
                  ToolTip="{DynamicResource LOCGameVariablesTooltip}" IsEnabled="False"/>
 
-        <Label Content="{DynamicResource LOCWorkingDirTitle}" Grid.Column="0" Grid.Row="8" />
-        <TextBox IsEnabled="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Name="TextWorkDir" Grid.Column="1" Grid.Row="8" Text="{Binding WorkingDir}"
+        <Label Content="{DynamicResource LOCWorkingDirTitle}" Grid.Column="0" Grid.Row="9" />
+        <TextBox IsEnabled="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Name="TextWorkDir" Grid.Column="1" Grid.Row="9" Text="{Binding WorkingDir}"
                  ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
 
-        <Label Content="{DynamicResource LOCAdditionalEmulatorArguments}" Grid.Column="0" Grid.Row="7" />
-        <TextBox IsEnabled="{Binding ShowAdditionalArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="7" Text="{Binding AdditionalArguments}"
+        <Label Content="{DynamicResource LOCAdditionalEmulatorArguments}" Grid.Column="0" Grid.Row="8" />
+        <TextBox IsEnabled="{Binding ShowAdditionalArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="8" Text="{Binding AdditionalArguments}"
                  ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
 
-        <Label Content="{DynamicResource LOCOverrideEmulatorArguments}" Grid.Column="0" Grid.Row="4"  />
-        <CheckBox IsEnabled="{Binding ShowOverrideArgsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="6" Name="CheckOverrideArgs" Grid.Column="1" Grid.Row="4" Margin="3,5,3,5"
+        <Label Content="{DynamicResource LOCOverrideEmulatorArguments}" Grid.Column="0" Grid.Row="5"  />
+        <CheckBox IsEnabled="{Binding ShowOverrideArgsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="6" Name="CheckOverrideArgs" Grid.Column="1" Grid.Row="5" Margin="3,5,3,5"
                   IsChecked="{Binding OverrideDefaultArgs}" Checked="CheckOverrideArgs_Checked" Unchecked="CheckOverrideArgs_Checked"/>
 
-        <Label Content="{DynamicResource LOCEmulatorTitle}" Grid.Column="0" Grid.Row="3" />
+        <Label Content="{DynamicResource LOCEmulatorTitle}" Grid.Column="0" Grid.Row="4" />
         <StackPanel Orientation="Horizontal"
                     IsEnabled="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-                    Grid.Column="1" Grid.Row="3" Margin="3,5,3,5">
+                    Grid.Column="1" Grid.Row="4" Margin="3,5,3,5">
             <ComboBox TabIndex="4" Name="ComboEmulator" SelectionChanged="ComboEmulator_SelectionChanged"
                       Margin="0,0,10,0"
                       ItemsSource="{Binding Emulators, RelativeSource={RelativeSource AncestorType=UserControl}}"

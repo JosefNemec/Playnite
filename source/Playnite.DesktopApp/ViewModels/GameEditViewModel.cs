@@ -242,6 +242,11 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public bool ShowIncludeLibraryPluginAction
+        {
+            get => IsMultiGameEdit || !EditingGame.IsCustomGame;
+        }
+
         public bool IsSingleGameEdit
         {
             get;
@@ -374,18 +379,13 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (EditingGame.OtherActions != null)
+            if (EditingGame.GameActions != null)
             {
-                EditingGame.OtherActions.CollectionChanged += OtherActions_CollectionChanged;
-                foreach (var action in EditingGame.OtherActions)
+                EditingGame.GameActions.CollectionChanged += OtherActions_CollectionChanged;
+                foreach (var action in EditingGame.GameActions)
                 {
-                    action.PropertyChanged += OtherAction_PropertyChanged;
+                    action.PropertyChanged += GameAction_PropertyChanged;
                 }
-            }
-
-            if (EditingGame.PlayAction != null)
-            {
-                EditingGame.PlayAction.PropertyChanged += PlayAction_PropertyChanged;
             }
 
             if (IsSingleGameEdit)
@@ -733,14 +733,9 @@ namespace Playnite.DesktopApp.ViewModels
                     game.UseGlobalGameStartedScript = EditingGame.UseGlobalGameStartedScript;
                 }
 
-                if (UsePlayActionChanges)
+                if (UseGameActionsChanges)
                 {
-                    game.PlayAction = EditingGame.PlayAction;
-                }
-
-                if (UseOtherActionsChanges)
-                {
-                    game.OtherActions = EditingGame.OtherActions;
+                    game.GameActions = EditingGame.GameActions;
                 }
 
                 if (UseLinksChanges)
@@ -786,6 +781,11 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id);
                     }
+                }
+
+                if (UseIncludeLibraryPluginAction)
+                {
+                    game.IncludeLibraryPluginAction = EditingGame.IncludeLibraryPluginAction;
                 }
 
                 game.Modified = changeDate;
@@ -845,7 +845,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void UseExeIcon()
         {
-            if (EditingGame.PlayAction == null || EditingGame.PlayAction.Type == GameActionType.URL)
+            var playAction = EditingGame.GameActions?.FirstOrDefault(a => a.IsPlayAction);
+            if (playAction == null || playAction.Type == GameActionType.URL)
             {
                 dialogs.ShowMessage(resources.GetString("LOCExecIconMissingPlayAction"));
                 return;
@@ -1033,77 +1034,44 @@ namespace Playnite.DesktopApp.ViewModels
             return null;
         }
 
-        public void AddPlayAction()
-        {
-            if (EditingGame.PlayAction != null)
-            {
-                EditingGame.PlayAction.PropertyChanged -= PlayAction_PropertyChanged;
-            }
-
-            EditingGame.PlayAction = new GameAction()
-            {
-                Name = "Play",
-                IsHandledByPlugin = false
-            };
-
-            EditingGame.PlayAction.PropertyChanged += PlayAction_PropertyChanged;
-        }
-
-        public void RemovePlayAction()
-        {
-            if (EditingGame.PlayAction != null)
-            {
-                EditingGame.PlayAction.PropertyChanged -= PlayAction_PropertyChanged;
-            }
-
-            EditingGame.PlayAction = null;
-        }
-
         public void AddAction()
         {
-            if (EditingGame.OtherActions == null)
+            if (EditingGame.GameActions == null)
             {
-                EditingGame.OtherActions = new ObservableCollection<GameAction>();
-                EditingGame.OtherActions.CollectionChanged += OtherActions_CollectionChanged;
+                EditingGame.GameActions = new ObservableCollection<GameAction>();
+                EditingGame.GameActions.CollectionChanged += OtherActions_CollectionChanged;
             }
 
             var newAction = new GameAction()
             {
-                Name = "New Action",
-                IsHandledByPlugin = false
+                Name = "New Action"
             };
 
-            newAction.PropertyChanged += OtherAction_PropertyChanged;
-            if (EditingGame.PlayAction != null && EditingGame.PlayAction.Type == GameActionType.File)
-            {
-                newAction.WorkingDir = EditingGame.PlayAction.WorkingDir;
-                newAction.Path = EditingGame.PlayAction.Path;
-            }
-
-            EditingGame.OtherActions.Add(newAction);
+            newAction.PropertyChanged += GameAction_PropertyChanged;
+            EditingGame.GameActions.Add(newAction);
         }
 
         public void RemoveAction(GameAction action)
         {
-            action.PropertyChanged -= OtherAction_PropertyChanged;
-            EditingGame.OtherActions.Remove(action);
+            action.PropertyChanged -= GameAction_PropertyChanged;
+            EditingGame.GameActions.Remove(action);
         }
 
         public void MoveActionUp(GameAction action)
         {
-            var index = EditingGame.OtherActions.IndexOf(action);
+            var index = EditingGame.GameActions.IndexOf(action);
             if (index != 0)
             {
-                EditingGame.OtherActions.Move(index, index - 1);
+                EditingGame.GameActions.Move(index, index - 1);
             }
         }
 
         public void MoveActionDown(GameAction action)
         {
-            var index = EditingGame.OtherActions.IndexOf(action);
-            if (index != EditingGame.OtherActions.Count - 1)
+            var index = EditingGame.GameActions.IndexOf(action);
+            if (index != EditingGame.GameActions.Count - 1)
             {
-                EditingGame.OtherActions.Move(index, index + 1);
+                EditingGame.GameActions.Move(index, index + 1);
             }
         }
 
