@@ -177,10 +177,15 @@ namespace Playnite
                     return;
                 }
 
-                if (playAction.InheritsFrom<PlayAction>())
+                if (playAction is GenericPlayAction genAction)
+                {
+                    logger.Info("Using generic controller start the game.");
+                    controller = new GenericPlayController(Database, game);
+                }
+                else if (playAction is PlayAction plugAction)
                 {
                     logger.Info("Using library plugin to start the game.");
-                    controller = ((PlayAction)playAction).GetPlayController(new GetPlayControllerArgs());
+                    controller = plugAction.GetPlayController(new GetPlayControllerArgs());
                 }
                 else
                 {
@@ -263,13 +268,24 @@ namespace Playnite
                     }
                 }
 
-                if (playAction is PluginGameAction action)
+                if (controller is GenericPlayController genCtrl)
                 {
-                    controller.Play(action);
+                    if (playAction is GenericPlayAction genAct)
+                    {
+                        genCtrl.PlayCustom(genAct);
+                    }
+                    else if (playAction is GameAction act)
+                    {
+                        genCtrl.PlayCustom(act);
+                    }
+                    else
+                    {
+                        throw new NotSupportedException("Uknown play action type.");
+                    }
                 }
                 else
                 {
-                    ((GenericPlayController)controller).PlayCustom((GameAction)playAction);
+                    controller.Play((PlayAction)playAction);
                 }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)

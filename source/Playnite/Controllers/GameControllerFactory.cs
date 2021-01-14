@@ -150,11 +150,24 @@ namespace Playnite.Controllers
 
         public Tuple<List<PlayAction>, List<GameAction>> GetPlayActions(Game game, ExtensionFactory extensions)
         {
-            List<PlayAction> plugActions = null;
-            var plugin = extensions.GetLibraryPlugin(game.PluginId);
-            if (plugin != null)
+            var plugActions = new List<PlayAction>();
+            foreach (var plugin in extensions.Plugins.Values)
             {
-                plugActions = plugin.GetPlayActions(new GetPlayActionsArgs { Game = game });
+                List<PlayAction> actions = null;
+                try
+                {
+                    actions = plugin.Plugin.GetPlayActions(new GetPlayActionsArgs { Game = game });
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get play actions from {plugin.Description.Name}");
+                    continue;
+                }
+
+                if (actions.HasItems())
+                {
+                    plugActions.AddRange(actions);
+                }
             }
 
             var customActions = game.GameActions?.Where(a => a.IsPlayAction).ToList();

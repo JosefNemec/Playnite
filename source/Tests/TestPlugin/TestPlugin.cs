@@ -167,5 +167,18 @@ namespace TestPlugin
 
             return items;
         }
+
+        public override List<PlayAction> GetPlayActions(GetPlayActionsArgs args)
+        {
+            return new List<PlayAction>
+            {
+                new GenericPlayAction
+                {
+                    Name = "Test Action",
+                    Path = "calc",
+                    Type = GenericPlayActionType.File
+                }
+            };
+        }
     }
 }

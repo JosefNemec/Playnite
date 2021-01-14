@@ -30,8 +30,19 @@ namespace Playnite.Controllers
             Game = game;
         }
 
-        public override void Play(PluginGameAction playAction)
+        public override void Play(PlayAction playAction)
         {
+        }
+
+        public void PlayCustom(GenericPlayAction playAction)
+        {
+            PlayCustom(new GameAction
+            {
+                Type = playAction.Type == GenericPlayActionType.Url ? GameActionType.URL : GameActionType.File,
+                Arguments = playAction.Arguments,
+                Path = playAction.Path,
+                WorkingDir = playAction.WorkingDir
+            });
         }
 
         public void PlayCustom(GameAction playAction)

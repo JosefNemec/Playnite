@@ -179,7 +179,7 @@ namespace Playnite.SDK
         ///
         /// </summary>
         /// <param name="action"></param>
-        public abstract void Play(PluginGameAction action);
+        public abstract void Play(PlayAction action);
 
         /// <summary>
         ///

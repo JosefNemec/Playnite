@@ -78,6 +78,7 @@
     <Compile Include="Models\ScoreGroup.cs" />
     <Compile Include="Events\GameSelectionEvent.cs" />
     <Compile Include="Models\GameFeature.cs" />
+    <Compile Include="Plugins\Actions.cs" />
     <Compile Include="Plugins\MenuEntry.cs" />
     <Compile Include="Plugins\MetadataPlugin.cs" />
     <Compile Include="Plugins\SidebarItem.cs" />

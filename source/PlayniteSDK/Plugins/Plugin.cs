@@ -26,54 +26,6 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
-    /// </summary>
-    public class PluginGameAction
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public Game Game { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class PlayAction : PluginGameAction
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public virtual PlayController GetPlayController(GetPlayControllerArgs args)
-        {
-            return null;
-        }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class InstallAction : PluginGameAction
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public virtual InstallController GetInstallController(GetInstallControllerArgs args)
-        {
-            return null;
-        }
-    }
-
-    /// <summary>
     /// Represents base Playnite plugin.
     /// </summary>
     public abstract class Plugin : IDisposable, IIdentifiable
