@@ -16,6 +16,7 @@ namespace Playnite
             expaded.AdditionalArguments = game.ExpandVariables(expaded.AdditionalArguments);
             expaded.Arguments = game.ExpandVariables(expaded.Arguments);
             expaded.WorkingDir = game.ExpandVariables(expaded.WorkingDir, true);
+            expaded.TrackingPath = game.ExpandVariables(expaded.TrackingPath, true);
             if (expaded.Type != GameActionType.URL)
             {
                 expaded.Path = game.ExpandVariables(expaded.Path, true);

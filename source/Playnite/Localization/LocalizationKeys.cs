@@ -3125,5 +3125,33 @@ namespace Playnite
         /// Select action
         /// </summary>
         public const string SelectActionTitle = "LOCSelectActionTitle";
+        /// <summary>
+        /// Tracking mode
+        /// </summary>
+        public const string ActionTrackingMode = "LOCActionTrackingMode";
+        /// <summary>
+        /// Link
+        /// </summary>
+        public const string GameActionTypeLink = "LOCGameActionTypeLink";
+        /// <summary>
+        /// File
+        /// </summary>
+        public const string GameActionTypeFile = "LOCGameActionTypeFile";
+        /// <summary>
+        /// Emulator
+        /// </summary>
+        public const string GameActionTypeEmulator = "LOCGameActionTypeEmulator";
+        /// <summary>
+        /// Default
+        /// </summary>
+        public const string ActionTrackingModeDefault = "LOCActionTrackingModeDefault";
+        /// <summary>
+        /// Process
+        /// </summary>
+        public const string ActionTrackingModeProcess = "LOCActionTrackingModeProcess";
+        /// <summary>
+        /// Directory
+        /// </summary>
+        public const string ActionTrackingModeDirectory = "LOCActionTrackingModeDirectory";
     }
 }

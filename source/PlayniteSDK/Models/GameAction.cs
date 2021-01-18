@@ -10,6 +10,28 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
+    ///
+    /// </summary>
+    public enum TrackingMode
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCActionTrackingModeDefault")]
+        Default,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCActionTrackingModeProcess")]
+        Process,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCActionTrackingModeDirectory")]
+        Directory
+    }
+
+    /// <summary>
     /// Represents game action type.
     /// </summary>
     public enum GameActionType : int
@@ -17,14 +39,17 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Game action executes a file.
         /// </summary>
+        [Description("LOCGameActionTypeFile")]
         File = 0,
         /// <summary>
         /// Game action navigates to a web based URL.
         /// </summary>
+        [Description("LOCGameActionTypeLink")]
         URL = 1,
         /// <summary>
         /// Game action starts an emulator.
         /// </summary>
+        [Description("LOCGameActionTypeEmulator")]
         Emulator = 2
     }
 
@@ -191,6 +216,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private TrackingMode trackingMode = TrackingMode.Default;
+        /// <summary>
+        /// Gets or sets executable arguments for File type tasks.
+        /// </summary>
+        public TrackingMode TrackingMode
+        {
+            get => trackingMode;
+            set
+            {
+                trackingMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string trackingPath;
+        /// <summary>
+        /// Gets or sets executable arguments for File type tasks.
+        /// </summary>
+        public string TrackingPath
+        {
+            get => trackingPath;
+            set
+            {
+                trackingPath = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -279,6 +332,16 @@ namespace Playnite.SDK.Models
             }
 
             if (OverrideDefaultArgs != other.OverrideDefaultArgs)
+            {
+                return false;
+            }
+
+            if (!string.Equals(TrackingPath, other.TrackingPath, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (TrackingMode != other.TrackingMode)
             {
                 return false;
             }

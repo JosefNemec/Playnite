@@ -32,6 +32,7 @@ namespace Playnite.Controllers
 
         public override void Play(PlayAction playAction)
         {
+            throw new NotSupportedException("This shouldn't be called.");
         }
 
         public void PlayCustom(GenericPlayAction playAction)
@@ -41,7 +42,9 @@ namespace Playnite.Controllers
                 Type = playAction.Type == GenericPlayActionType.Url ? GameActionType.URL : GameActionType.File,
                 Arguments = playAction.Arguments,
                 Path = playAction.Path,
-                WorkingDir = playAction.WorkingDir
+                WorkingDir = playAction.WorkingDir,
+                TrackingMode = playAction.TrackingMode,
+                TrackingPath = playAction.TrackingPath
             });
         }
 
@@ -53,63 +56,80 @@ namespace Playnite.Controllers
             }
 
             var gameClone = Game.GetClone();
+            var action = playAction.GetClone();
             var emulators = database.Emulators.ToList();
-            var profileClone = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.GetClone();
+            var profileClone = GameActionActivator.GetGameActionEmulatorConfig(action, emulators)?.GetClone();
 
             CheckGameImagePath(gameClone);
-            CheckGameAction(playAction);
-            if (playAction.Type == GameActionType.Emulator && profileClone != null)
+            CheckGameAction(action);
+            if (action.Type == GameActionType.Emulator && profileClone != null)
             {
                 CheckEmulatorConfig(profileClone);
             }
 
-            playAction = playAction.ExpandVariables(gameClone);
+            action = action.ExpandVariables(gameClone);
             profileClone = profileClone?.ExpandVariables(gameClone);
 
             Dispose();
 
             InvokeOnStarting(this, new GameStartingEventArgs(this));
-            var proc = GameActionActivator.ActivateAction(playAction, profileClone);
+            var proc = GameActionActivator.ActivateAction(action, profileClone);
+            procMon = new ProcessMonitor();
+            procMon.TreeStarted += ProcMon_TreeStarted;
+            procMon.TreeDestroyed += Monitor_TreeDestroyed;
 
-            if (playAction.Type != GameActionType.URL)
+            if (action.TrackingMode == TrackingMode.Default)
             {
-                stopWatch = Stopwatch.StartNew();
-                procMon = new ProcessMonitor();
-                procMon.TreeDestroyed += Monitor_TreeDestroyed;
-
-                // Handle Windows store apps
-                var uwpMatch = Regex.Match(playAction.Arguments ?? string.Empty, @"shell:AppsFolder\\(.+)!.+");
-                if (playAction.Path == "explorer.exe" && uwpMatch.Success)
+                if (action.Type != GameActionType.URL)
                 {
-                    var scanDirectory = gameClone.InstallDirectory;
-                    procMon.TreeStarted += ProcMon_TreeStarted;
+                    stopWatch = Stopwatch.StartNew();
 
-                    if (!gameClone.GameId.IsNullOrEmpty())
+                    // Handle Windows store apps
+                    var uwpMatch = Regex.Match(action.Arguments ?? string.Empty, @"shell:AppsFolder\\(.+)!.+");
+                    if (action.Path == "explorer.exe" && uwpMatch.Success)
                     {
-                        var prg = Programs.GetUWPApps().FirstOrDefault(a => a.AppId == gameClone.GameId);
-                        if (prg != null)
+                        var scanDirectory = gameClone.InstallDirectory;
+
+                        if (!gameClone.GameId.IsNullOrEmpty())
                         {
-                            scanDirectory = prg.WorkDir;
+                            var prg = Programs.GetUWPApps().FirstOrDefault(a => a.AppId == gameClone.GameId);
+                            if (prg != null)
+                            {
+                                scanDirectory = prg.WorkDir;
+                            }
                         }
-                    }
 
-                    // TODO switch to WatchUwpApp once we are building as 64bit app
-                    //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
-                    if (Directory.Exists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
-                    {
-                        procMon.WatchDirectoryProcesses(scanDirectory, false, true);
+                        // TODO switch to WatchUwpApp once we are building as 64bit app
+                        //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
+                        if (Directory.Exists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
+                        {
+                            procMon.WatchDirectoryProcesses(scanDirectory, false, true);
+                        }
+                        else
+                        {
+                            InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                        }
                     }
                     else
                     {
-                        InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                        if (proc != null)
+                        {
+                            InvokeOnStarted(this, new GameStartedEventArgs(this));
+                            procMon.WatchProcessTree(proc);
+                        }
+                        else
+                        {
+                            InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                        }
                     }
                 }
                 else
                 {
-                    if (proc != null)
+                    if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && Directory.Exists(gameClone.InstallDirectory))
                     {
                         InvokeOnStarted(this, new GameStartedEventArgs(this));
-                        procMon.WatchProcessTree(proc);
+                        stopWatch = Stopwatch.StartNew();
+                        procMon.WatchDirectoryProcesses(gameClone.InstallDirectory, false);
                     }
                     else
                     {
@@ -117,20 +137,35 @@ namespace Playnite.Controllers
                     }
                 }
             }
-            else
+            else if (action.TrackingMode == TrackingMode.Process)
             {
-                if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && Directory.Exists(gameClone.InstallDirectory))
+                if (proc != null)
                 {
                     InvokeOnStarted(this, new GameStartedEventArgs(this));
                     stopWatch = Stopwatch.StartNew();
-                    procMon = new ProcessMonitor();
-                    procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.WatchDirectoryProcesses(gameClone.InstallDirectory, false);
+                    procMon.WatchProcessTree(proc);
                 }
                 else
                 {
                     InvokeOnStopped(this, new GameStoppedEventArgs(this));
                 }
+            }
+            else if (action.TrackingMode == TrackingMode.Directory)
+            {
+                var watchDir = action.TrackingPath.IsNullOrEmpty() ? gameClone.InstallDirectory : action.TrackingPath;
+                if (!watchDir.IsNullOrEmpty() && Directory.Exists(watchDir))
+                {
+                    stopWatch = Stopwatch.StartNew();
+                    procMon.WatchDirectoryProcesses(watchDir, false);
+                }
+                else
+                {
+                    InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                }
+            }
+            else
+            {
+                throw new NotSupportedException();
             }
         }
 
@@ -143,6 +178,7 @@ namespace Playnite.Controllers
         {
             watcherToken?.Cancel();
             procMon?.Dispose();
+            stopWatch?.Stop();
         }
 
         private void ProcMon_TreeStarted(object sender, EventArgs e)

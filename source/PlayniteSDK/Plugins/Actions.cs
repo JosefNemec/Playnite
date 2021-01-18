@@ -81,6 +81,16 @@ namespace Playnite.SDK.Plugins
         public GenericPlayActionType Type { get; set; }
 
         /// <summary>
+        ///
+        /// </summary>
+        public TrackingMode TrackingMode { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string TrackingPath { get; set; }
+
+        /// <summary>
         /// Gets or sets executable arguments for File type tasks.
         /// </summary>
         public string Arguments { get; set; }

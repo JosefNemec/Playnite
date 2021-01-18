@@ -869,16 +869,21 @@
                 </TabItem.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="10">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal"
+                        <DockPanel LastChildFill="False" Margin="0,5,0,5">
+                            <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding ShowIncludeLibraryPluginAction, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <CheckBox VerticalAlignment="Center" ToolTip="{DynamicResource LOCSaveChanges}"
+                                <CheckBox VerticalAlignment="Center" ToolTip="{DynamicResource LOCSaveChanges}"
                                       Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                       IsChecked="{Binding UseIncludeLibraryPluginAction}"/>
-                            <TextBlock VerticalAlignment="Center"
+                                <TextBlock VerticalAlignment="Center"
                                        Text="{DynamicResource LOCIncludePluginGameActions}" />
-                            <CheckBox Margin="5,5,5,5" VerticalAlignment="Center"
+                                <CheckBox Margin="5,5,5,5" VerticalAlignment="Center"
                                       IsChecked="{Binding EditingGame.IncludeLibraryPluginAction}"/>
-                        </StackPanel>
+                            </StackPanel>
+                            <Button Content="{DynamicResource LOCMenuHelpTitle}" VerticalAlignment="Center" DockPanel.Dock="Right" MinWidth="80"
+                                    Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                    CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-actions" />
+                        </DockPanel>
 
                         <CheckBox Content="{DynamicResource LOCSaveChanges}" VerticalAlignment="Center" Margin="0,5,0,10"
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -909,7 +914,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <Button Content="{DynamicResource LOCAddAction}" HorizontalAlignment="Left" Margin="0,10,0,0"
+                        <Button Content="{DynamicResource LOCAddAction}" HorizontalAlignment="Left" Margin="0,0,0,0"
                                 Command="{Binding AddActionCommand}"/>
                     </StackPanel>
                 </ScrollViewer>
@@ -956,7 +961,7 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Right"
+                        <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Right" MinWidth="80"
                                 Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                                 CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-scripts" />
                     </DockPanel>

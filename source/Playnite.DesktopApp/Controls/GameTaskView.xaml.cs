@@ -134,6 +134,19 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
+        public bool ShowTrackingPathRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                return GameTask.TrackingMode == TrackingMode.Directory;
+            }
+        }
+
         public GameAction GameTask
         {
             get
@@ -189,7 +202,7 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        public static readonly DependencyProperty ShowNameRowProperty = 
+        public static readonly DependencyProperty ShowNameRowProperty =
             DependencyProperty.Register(nameof(ShowNameRow), typeof(bool), typeof(GameTaskView));
 
         public string DefaultSelectionDir
@@ -227,13 +240,18 @@ namespace Playnite.DesktopApp.Controls
             {
                 return;
             }
-            
+
             TextPath.Text = path;
         }
 
         private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NotifyRowChange();
+        }
+
+        private void ComboTrackingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(ShowTrackingPathRow));
         }
 
         private void NotifyRowChange()
@@ -292,7 +310,7 @@ namespace Playnite.DesktopApp.Controls
                 SelectedEmulatorArguments = string.Empty;
                 return;
             }
-            
+
             if (GameTask?.EmulatorId != Guid.Empty && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
             {
                 var emulator = Emulators.First(a => a.Id == GameTask.EmulatorId);
