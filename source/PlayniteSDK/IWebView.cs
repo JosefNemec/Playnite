@@ -139,6 +139,13 @@ namespace Playnite.SDK
         void SetCookies(string url, string domain, string name, string value, string path, DateTime expires);
 
         /// <summary>
+        /// Sets cookie data.
+        /// </summary>
+        /// <param name="url">Cookie URL.</param>
+        /// <param name="cookie">Cookie data.</param>
+        void SetCookies(string url, HttpCookie cookie);
+
+        /// <summary>
         /// Closes view.
         /// </summary>
         void Close();
@@ -239,5 +246,81 @@ namespace Playnite.SDK
         /// The cookie creation date.
         /// </summary>
         public DateTime Creation { get; set; }
+
+        /// <summary>
+        /// If true the cookie will only be sent for HTTPS requests.
+        /// </summary>
+        public bool Secure { get; set; }
+
+        /// <summary>
+        /// If true the cookie will only be sent for HTTP requests.
+        /// </summary>
+        public bool HttpOnly { get; set; }
+
+        /// <summary>
+        /// The cookie last access date. This is automatically populated by the system on access.
+        /// </summary>
+        public DateTime LastAccess { get; set; }
+
+        /// <summary>
+        /// Same site
+        /// </summary>
+        public CookieSameSite SameSite { get; set; }
+
+        /// <summary>
+        /// Priority
+        /// </summary>
+        public CookiePriority Priority { get; set; }
+    }
+
+    /// <summary>
+    /// Cookie same site values.
+    /// </summary>
+    /// <remarks>
+    /// See https://source.chromium.org/chromium/chromium/src/+/master:net/cookies/cookie_constants.h
+    /// </remarks>
+    public enum CookieSameSite
+    {
+        /// <summary>
+        /// Unspecified
+        /// </summary>
+        Unspecified = 0,
+        /// <summary>
+        /// Cookies will be sent in all contexts, i.e sending cross-origin is allowed. None
+        /// used to be the default value, but recent browser versions made Lax the default
+        /// value to have reasonably robust defense against some classes of cross-site request
+        /// forgery (CSRF) attacks.
+        /// </summary>
+        NoRestriction = 1,
+        /// <summary>
+        /// Cookies are allowed to be sent with top-level navigations and will be sent along
+        /// with GET request initiated by third party website. This is the default value
+        /// in modern browsers.
+        /// </summary>
+        LaxMode = 2,
+        /// <summary>
+        /// Cookies will only be sent in a first-party context and not be sent along with
+        /// requests initiated by third party websites.
+        /// </summary>
+        StrictMode = 3
+    }
+
+    /// <summary>
+    /// Cookie priority values.
+    /// </summary>
+    public enum CookiePriority
+    {
+        /// <summary>
+        /// Low Priority
+        /// </summary>
+        Low = -1,
+        /// <summary>
+        /// Medium Priority
+        /// </summary>
+        Medium = 0,
+        /// <summary>
+        /// High Priority
+        /// </summary>
+        High = 1
     }
 }
