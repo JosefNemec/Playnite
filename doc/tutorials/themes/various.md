@@ -9,6 +9,13 @@ For example creating image that uses `applogo.png` file stored in `Images` subfo
 <Image Source="{ThemeFile 'Images/applogo.png'}" />
 ```
 
+If you need to reference theme files based on game property, use `ThemeFileBinding` markup extension.
+
+For example to bind to an image based on game's platform name:
+```xml 
+<Image Source="{ThemeFileBinding Game.Platform.Name, PathFormat='Platforms/{0}.jpg'}" />
+```
+
 Adding video to a theme
 ---------------------
 

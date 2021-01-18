@@ -191,6 +191,8 @@
     <Compile Include="API\PlaynitePathsAPI.cs" />
     <Compile Include="Archive.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
+    <Compile Include="Converters\GenericTypeConverter.cs" />
+    <Compile Include="Extensions\Markup\ThemeFileBinding.cs" />
     <Compile Include="Manifests\AddonManifestBase.cs" />
     <Compile Include="Manifests\ExtensionManifest.cs" />
     <Compile Include="App\CmdLineOptions.cs" />

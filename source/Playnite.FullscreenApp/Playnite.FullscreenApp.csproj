@@ -148,6 +148,7 @@
     <Compile Include="Markup\MainViewModel.cs" />
     <Compile Include="Markup\Settings.cs" />
     <Compile Include="Markup\ThemeFile.cs" />
+    <Compile Include="Markup\ThemeFileBinding.cs" />
     <Compile Include="ViewModels\AddonsViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel.cs" />
@@ -183,8 +184,8 @@
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
     <SplashScreen Include="SplashScreen.png" />
-    <Resource Include="..\..\references\Fonts\*.*">    
-        <Link>Fonts\%(Filename)%(Extension)</Link>
+    <Resource Include="..\..\references\Fonts\*.*">
+      <Link>Fonts\%(Filename)%(Extension)</Link>
     </Resource>
     <None Include="app.manifest" />
     <None Include="Themes\Fullscreen\DefaultLime\theme.yaml">

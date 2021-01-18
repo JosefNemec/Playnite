@@ -93,24 +93,28 @@ namespace Playnite.Extensions.Markup
             };
         }
 
-        public static string GetFilePath(string relPath)
+        public static string GetFilePath(string relPath, bool checkExistance = true)
         {
-            return GetFilePath(relPath, ThemeManager.DefaultTheme, ThemeManager.CurrentTheme);
+            return GetFilePath(relPath, ThemeManager.DefaultTheme, ThemeManager.CurrentTheme, checkExistance);
         }
 
-        public static string GetFilePath(string relPath, ThemeManifest defaultTheme)
+        public static string GetFilePath(string relPath, ThemeManifest defaultTheme, bool checkExistance = true)
         {
-            return GetFilePath(relPath, defaultTheme, ThemeManager.CurrentTheme);
+            return GetFilePath(relPath, defaultTheme, ThemeManager.CurrentTheme, checkExistance);
         }
 
-        public static string GetFilePath(string relPath, ThemeManifest defaultTheme, ThemeManifest currentTheme)
+        public static string GetFilePath(string relPath, ThemeManifest defaultTheme, ThemeManifest currentTheme, bool checkExistance = true)
         {
             var relativePath = Paths.FixSeparators(relPath).TrimStart(new char[] { Path.DirectorySeparatorChar });
 
             if (currentTheme != null)
             {
                 var themePath = Path.Combine(currentTheme.DirectoryPath, relativePath);
-                if (File.Exists(themePath))
+                if (File.Exists(themePath) && checkExistance)
+                {
+                    return themePath;
+                }
+                else
                 {
                     return themePath;
                 }
@@ -119,7 +123,11 @@ namespace Playnite.Extensions.Markup
             if (defaultTheme != null)
             {
                 var defaultPath = Path.Combine(defaultTheme.DirectoryPath, relativePath);
-                if (File.Exists(defaultPath))
+                if (File.Exists(defaultPath) && checkExistance)
+                {
+                    return defaultPath;
+                }
+                else
                 {
                     return defaultPath;
                 }

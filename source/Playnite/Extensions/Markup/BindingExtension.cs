@@ -25,7 +25,6 @@ namespace Playnite.Extensions.Markup
 
         public BindingExtension()
         {
-
         }
 
         public BindingExtension(string path)
@@ -34,14 +33,18 @@ namespace Playnite.Extensions.Markup
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
-        {            
+        {
             var binding = new Binding()
             {
-                Source = Source,
                 Path = new PropertyPath(PathRoot + Path),
                 Delay = Delay,
-                Mode = Mode                
+                Mode = Mode
             };
+
+            if (Source != null)
+            {
+                binding.Source = Source;
+            }
 
             if (TargetNullValue != null)
             {
