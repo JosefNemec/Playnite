@@ -64,6 +64,11 @@ namespace Playnite.SDK
         IPlayniteSettingsAPI ApplicationSettings { get; }
 
         /// <summary>
+        /// Gets addons API.
+        /// </summary>
+        IAddons Addons { get; }
+
+        /// <summary>
         /// Expands dynamic game variables in specified string.
         /// </summary>
         /// <param name="game">Game to use dynamic variables from.</param>

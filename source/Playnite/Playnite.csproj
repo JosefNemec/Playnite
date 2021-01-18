@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addons\Addons.cs" />
+    <Compile Include="API\AddonsAPI.cs" />
     <Compile Include="API\DatabaseAPI.cs" />
     <Compile Include="API\DesignData\DesignNotificationsAPI.cs" />
     <Compile Include="API\DesignData\DesignPlayniteAPI.cs" />

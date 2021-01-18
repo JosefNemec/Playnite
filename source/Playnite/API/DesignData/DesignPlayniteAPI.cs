@@ -31,6 +31,8 @@ namespace Playnite.API.DesignData
 
         public IPlayniteSettingsAPI ApplicationSettings => throw new NotImplementedException();
 
+        public IAddons Addons => throw new NotImplementedException();
+
         public ILogger CreateLogger(string name)
         {
             throw new NotImplementedException();

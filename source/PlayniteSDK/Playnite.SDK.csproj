@@ -67,6 +67,7 @@
     <Compile Include="Exceptions\TypeMismatchException.cs" />
     <Compile Include="Exceptions\ReferenceException.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="IAddons.cs" />
     <Compile Include="IPlayniteSettingsAPI.cs" />
     <Compile Include="IUriHandlerAPI.cs" />
     <Compile Include="Models\AgeRatingOrg.cs" />
