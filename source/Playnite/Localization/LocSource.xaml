@@ -884,4 +884,5 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCActionTrackingModeDefault">Default</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">Process</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Directory</sys:String>
+    <sys:String x:Key="LOCDevelTraceLogEnable">Log trace messages</sys:String>
 </ResourceDictionary>

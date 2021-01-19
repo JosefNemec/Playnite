@@ -38,5 +38,7 @@
                     Command="{Binding RemoveDevelExtensionCommand}" 
                     CommandParameter="{Binding SelectedItems, ElementName=ListDevelExtensions}"/>
         </StackPanel>
+        <CheckBox Content="{DynamicResource LOCDevelTraceLogEnable}" Margin="0,15,0,0"
+                  IsChecked="{Binding Settings.TraceLogEnabled}" />
     </StackPanel>
 </UserControl>

@@ -13,6 +13,7 @@ namespace Playnite.Common
 {
     public class NLogLogger : ILogger
     {
+        public static bool IsTraceEnabled { get; set; } = false;
         private NLog.Logger logger;
 
         public NLogLogger(string loggerName)
@@ -58,6 +59,22 @@ namespace Playnite.Common
         public void Warn(Exception exception, string message)
         {
             logger.Warn(exception, message);
+        }
+
+        public void Trace(string message)
+        {
+            if (IsTraceEnabled)
+            {
+                logger.Trace(message);
+            }
+        }
+
+        public void Trace(Exception exception, string message)
+        {
+            if (IsTraceEnabled)
+            {
+                logger.Trace(exception, message);
+            }
         }
     }
 

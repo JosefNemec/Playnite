@@ -51,6 +51,16 @@ namespace Playnite.SDK
         public void Warn(Exception exception, string message)
         {
         }
+
+        /// <inheritdoc />
+        public void Trace(string message)
+        {
+        }
+
+        /// <inheritdoc />
+        public void Trace(Exception exception, string message)
+        {
+        }
     }
 
     /// <summary>

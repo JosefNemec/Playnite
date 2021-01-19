@@ -1,5 +1,6 @@
 ﻿using Playnite.SDK;
 using Playnite.SDK.Data;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -66,6 +67,12 @@ namespace TestPlugin
         public override void OnApplicationStarted()
         {
             logger.Info("TestPluginDev OnApplicationStarted");
+        }
+
+        public override void OnGameSelected(GameSelectionEventArgs args)
+        {
+            logger.Info("TestPluginDev INFO OnGameSelected");
+            logger.Trace("TestPluginDev TRACE OnGameSelected");
         }
 
         public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)

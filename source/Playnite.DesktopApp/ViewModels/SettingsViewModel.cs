@@ -311,6 +311,11 @@ namespace Playnite.DesktopApp.ViewModels
                 application.Discord.IsPresenceEnabled = Settings.DiscordPresenceEnabled;
             }
 
+            if (editedFields.Contains(nameof(Settings.TraceLogEnabled)))
+            {
+                NLogLogger.IsTraceEnabled = Settings.TraceLogEnabled;
+            }
+
             closingHanled = true;
             window.Close(true);
         }

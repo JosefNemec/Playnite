@@ -81,7 +81,7 @@ namespace Playnite.API
 
         public ILogger CreateLogger(string name)
         {
-            return new Logger(name);
+            return LogManager.GetLogger(name);
         }
 
         public ILogger CreateLogger()

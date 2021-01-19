@@ -1484,6 +1484,17 @@ namespace Playnite
             }
         }
 
+        private bool traceLogEnabled = true;
+        public bool TraceLogEnabled
+        {
+            get => traceLogEnabled;
+            set
+            {
+                traceLogEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -1774,7 +1785,7 @@ namespace Playnite
 
             config.AddTarget("file", fileTarget);
 
-            var rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
+            var rule2 = new LoggingRule("*", LogLevel.Trace, fileTarget);
             config.LoggingRules.Add(rule2);
 
             NLog.LogManager.Configuration = config;

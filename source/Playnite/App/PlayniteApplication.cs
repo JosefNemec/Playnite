@@ -133,6 +133,7 @@ namespace Playnite
 
             PlayniteSettings.MigrateSettingsConfig();
             AppSettings = PlayniteSettings.LoadSettings();
+            NLogLogger.IsTraceEnabled = AppSettings.TraceLogEnabled;
             if (CmdLine.ResetSettings)
             {
                 var settings = PlayniteSettings.GetDefaultSettings();

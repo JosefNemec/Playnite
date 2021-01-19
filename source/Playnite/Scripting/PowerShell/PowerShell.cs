@@ -11,12 +11,12 @@ using Microsoft.Win32;
 using System.IO;
 using Playnite.SDK.Exceptions;
 using Microsoft.PowerShell;
+using Playnite.SDK;
 
 namespace Playnite.Scripting.PowerShell
 {
     public class PowerShellRuntime : IScriptRuntime
     {
-        private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
         private System.Management.Automation.PowerShell powershell;
         private Runspace runspace;
         private PSModuleInfo module;
@@ -39,7 +39,7 @@ namespace Playnite.Scripting.PowerShell
             runspace = powershell.Runspace;
             runspace.Name = runspaceName;
             SetVariable("ErrorActionPreference", "Stop");
-            SetVariable("__logger", new Logger(runspaceName));
+            SetVariable("__logger", LogManager.GetLogger(runspaceName));
         }
 
         public void Dispose()

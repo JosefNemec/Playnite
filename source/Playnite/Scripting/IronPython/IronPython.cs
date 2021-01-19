@@ -3,6 +3,7 @@ using IronPython.Modules;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 using Playnite.API;
+using Playnite.SDK;
 using Playnite.SDK.Exceptions;
 using Playnite.Settings;
 using System;
@@ -22,7 +23,6 @@ namespace Playnite.Scripting.IronPython
         /// </summary>
         private object z = new ArrayModule.array("c");
 
-        private static NLog.Logger logger = NLog.LogManager.GetLogger("Python");
         private ScriptEngine engine;
         private ScriptScope scope;
 
@@ -48,7 +48,7 @@ clr.AddReference('PresentationFramework')
 from Playnite.SDK.Models import *
 ", PlaynitePaths.ProgramPath.Replace(Path.DirectorySeparatorChar, '/')), scope);
 
-            SetVariable("__logger", new Logger(runspaceName));
+            SetVariable("__logger", LogManager.GetLogger(runspaceName));
         }
 
         public void Dispose()
