@@ -31,18 +31,21 @@ namespace Playnite.Tests.Database
                 db.Emulators.Add(emulator);
                 var game = new Game("test")
                 {
-                    PlayAction = new GameAction()
+                    GameActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>
                     {
-                        Type = GameActionType.Emulator,
-                        EmulatorId = emulator.Id,
-                        EmulatorProfileId = emulator.Profiles[0].Id
+                        new GameAction()
+                        {
+                            Type = GameActionType.Emulator,
+                            EmulatorId = emulator.Id,
+                            EmulatorProfileId = emulator.Profiles[0].Id
+                        }
                     }
                 };
 
                 db.Games.Add(game);
                 db.Emulators.Remove(emulator);
-                Assert.AreEqual(Guid.Empty, game.PlayAction.EmulatorId);
-                Assert.AreEqual(Guid.Empty, game.PlayAction.EmulatorProfileId);
+                Assert.AreEqual(Guid.Empty, game.GameActions[0].EmulatorId);
+                Assert.AreEqual(Guid.Empty, game.GameActions[0].EmulatorProfileId);
             }
         }
     }

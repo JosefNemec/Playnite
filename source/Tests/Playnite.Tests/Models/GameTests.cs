@@ -116,8 +116,7 @@ namespace Playnite.Tests.Models
                 TagIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
                 FeatureIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
                 UserScore = 30,
-                PlayAction = new GameAction(),
-                OtherActions = new ObservableCollection<GameAction> { new GameAction() }
+                GameActions = new ObservableCollection<GameAction> { new GameAction() }
             };
 
             var changes = 0;
@@ -125,22 +124,19 @@ namespace Playnite.Tests.Models
             var game1 = new Game()
             {
                 GameId = "id",
-                PlayAction = new GameAction() { Name = "play1" },
-                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
+                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
             };
 
             var game2 = new Game()
             {
                 GameId = "id",
-                PlayAction = new GameAction() { Name = "play1" },
-                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
+                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
             };
 
             var game3 = new Game()
             {
                 GameId = "id",
-                PlayAction = new GameAction() { Name = "play3" },
-                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action3" }, new GameAction() { Name = "action4" } }
+                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action3" }, new GameAction() { Name = "action4" } }
             };
 
             game1.PropertyChanged += (s, e) => changes++;
