@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -96,12 +98,15 @@ namespace Playnite.SDK
         /// Gets logger with name of calling class.
         /// </summary>
         /// <returns>Logger.</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static ILogger GetLogger()
         {
-            var className = (new StackFrame(1)).GetMethod().DeclaringType.Name;
             if (logManager != null)
             {
-                return logManager.GetLogger(className);
+                var asmName = Assembly.GetCallingAssembly().GetName().Name;
+                var isCore = asmName == "Playnite.DesktopApp" || asmName == "Playnite.FullscreenApp" || asmName == "Playnite";
+                var className = (new StackFrame(1)).GetMethod().DeclaringType.Name;
+                return logManager.GetLogger(className + (isCore ? string.Empty : $"#{asmName}"));
             }
             else
             {
@@ -114,9 +119,12 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="loggerName">Logger name.</param>
         /// <returns>Logger.</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static ILogger GetLogger(string loggerName)
         {
-            return logManager.GetLogger(loggerName);
+            var asmName = Assembly.GetCallingAssembly().GetName().Name;
+            var isCore = asmName == "Playnite.DesktopApp" || asmName == "Playnite.FullscreenApp" || asmName == "Playnite";
+            return logManager.GetLogger(loggerName + (isCore ? string.Empty : $"#{asmName}"));
         }
     }
 }

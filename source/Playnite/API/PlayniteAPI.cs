@@ -79,11 +79,13 @@ namespace Playnite.API
             return action?.ExpandVariables(game);
         }
 
+        [Obsolete("Use LogManager class instead.")]
         public ILogger CreateLogger(string name)
         {
             return LogManager.GetLogger(name);
         }
 
+        [Obsolete("Use LogManager class instead.")]
         public ILogger CreateLogger()
         {
             var className = (new StackFrame(1)).GetMethod().DeclaringType.Name;

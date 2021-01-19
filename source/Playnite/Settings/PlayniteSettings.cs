@@ -1763,7 +1763,7 @@ namespace Playnite
 #if DEBUG
             var consoleTarget = new ColoredConsoleTarget()
             {
-                Layout = @"${level:uppercase=true}|${logger}:${message}${onexception:${newline}${exception}}"
+                Layout = @"${level:uppercase=true:padding=-5}|${logger}:${message}${onexception:${newline}${exception}}"
             };
 
             config.AddTarget("console", consoleTarget);
@@ -1771,10 +1771,10 @@ namespace Playnite
             var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
             config.LoggingRules.Add(rule1);
 #endif
-            var fileTarget = new FileTarget()
+            var coreFileTarget = new FileTarget()
             {
                 FileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.log"),
-                Layout = "${date:format=dd-MM HH\\:mm\\:ss.fff}|${level:uppercase=true}|${logger}:${message}${onexception:${newline}${exception:format=toString}}",
+                Layout = "${date:format=dd-MM HH\\:mm\\:ss.fff}|${level:uppercase=true:padding=-5}|${logger}:${message}${onexception:${newline}${exception:format=toString}}",
                 KeepFileOpen = false,
                 ArchiveFileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.{#####}.log"),
                 ArchiveAboveSize = 4096000,
@@ -1783,10 +1783,27 @@ namespace Playnite
                 Encoding = Encoding.UTF8
             };
 
-            config.AddTarget("file", fileTarget);
+            var extensionFileTarget = new FileTarget()
+            {
+                FileName = Path.Combine(PlaynitePaths.ConfigRootPath, "extensions.log"),
+                Layout = "${date:format=dd-MM HH\\:mm\\:ss.fff}|${level:uppercase=true:padding=-5}|${logger}:${message}${onexception:${newline}${exception:format=toString}}",
+                KeepFileOpen = false,
+                ArchiveFileName = Path.Combine(PlaynitePaths.ConfigRootPath, "extensions.{#####}.log"),
+                ArchiveAboveSize = 4096000,
+                ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                MaxArchiveFiles = 2,
+                Encoding = Encoding.UTF8
+            };
 
-            var rule2 = new LoggingRule("*", LogLevel.Trace, fileTarget);
-            config.LoggingRules.Add(rule2);
+            var allRule = new LoggingRule("*", LogLevel.Trace, coreFileTarget);
+            allRule.Filters.Add(new NLog.Filters.ConditionBasedFilter()
+            {
+                Condition = "contains('${logger}', '#')",
+                Action = NLog.Filters.FilterResult.Ignore
+            });
+
+            config.LoggingRules.Add(allRule);
+            config.LoggingRules.Add(new LoggingRule("*#*", LogLevel.Trace, extensionFileTarget));
 
             NLog.LogManager.Configuration = config;
             SDK.LogManager.Init(new NLogLogProvider());

@@ -18,7 +18,7 @@ namespace TestPlugin
 {
     public class TestPlugin : Plugin
     {
-        private ILogger logger;
+        private static ILogger logger = LogManager.GetLogger();
 
         public ISettings Settings { get; private set; } = new TestPluginSettings();
 
@@ -26,7 +26,6 @@ namespace TestPlugin
 
         public TestPlugin(IPlayniteAPI api) : base(api)
         {
-            logger = api.CreateLogger();
         }
 
         public override ISettings GetSettings(bool firstRunSettings)
@@ -67,6 +66,13 @@ namespace TestPlugin
         public override void OnApplicationStarted()
         {
             logger.Info("TestPluginDev OnApplicationStarted");
+            //CrashTest();
+        }
+
+        private async void CrashTest()
+        {
+            await Task.Delay(100);
+            throw new NotImplementedException();
         }
 
         public override void OnGameSelected(GameSelectionEventArgs args)

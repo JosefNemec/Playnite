@@ -256,10 +256,10 @@ namespace Playnite.ViewModels
 
         private void SaveLog()
         {
-            var targetPath = dialogs.SaveFile("Log file|*.log", true);
+            var targetPath = dialogs.SaveFile("zip file|*.zip", true);
             if (!targetPath.IsNullOrEmpty())
             {
-                File.Copy(PlaynitePaths.LogPath, targetPath, true);
+                Diagnostic.CreateLogPackage(targetPath);
             }
         }
     }

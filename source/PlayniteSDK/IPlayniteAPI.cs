@@ -89,12 +89,14 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="name">Logger name.</param>
         /// <returns>Logger object.</returns>
+        [Obsolete("Use LogManager class instead.")]
         ILogger CreateLogger(string name);
 
         /// <summary>
         /// Creates new instance of Playnite logger with name of calling class.
         /// </summary>
         /// <returns>Logger object.</returns>
+        [Obsolete("Use LogManager class instead.")]
         ILogger CreateLogger();
 
         /// <summary>

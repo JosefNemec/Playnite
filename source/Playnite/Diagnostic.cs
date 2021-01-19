@@ -226,5 +226,25 @@ namespace Playnite
 
             FileSystem.DeleteDirectory(diagTemp);
         }
+
+        public static void CreateLogPackage(string path)
+        {
+            FileSystem.DeleteFile(path);
+            using (FileStream zipToOpen = new FileStream(path, FileMode.Create))
+            using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
+            {
+                foreach (var logFile in Directory.GetFiles(PlaynitePaths.ConfigRootPath, "*.log", SearchOption.TopDirectoryOnly))
+                {
+                    if (Path.GetFileName(logFile) == "cef.log" || Path.GetFileName(logFile) == "debug.log")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
+                    }
+                }
+            }
+        }
     }
 }
