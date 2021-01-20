@@ -114,7 +114,7 @@ namespace Playnite.Extensions.Markup
                 {
                     return themePath;
                 }
-                else
+                else if (!checkExistance)
                 {
                     return themePath;
                 }
@@ -127,7 +127,7 @@ namespace Playnite.Extensions.Markup
                 {
                     return defaultPath;
                 }
-                else
+                else if (!checkExistance)
                 {
                     return defaultPath;
                 }
