@@ -1198,14 +1198,19 @@ namespace Playnite
 
             using (runtime)
             {
+                var scriptVars = new Dictionary<string, object>
+                {
+                    {  "PlayniteApi", Application.Api },
+                    {  "Game", game.GetClone() }
+                };
                 var dir = game.ExpandVariables(game.InstallDirectory, true);
                 if (!dir.IsNullOrEmpty() && Directory.Exists(dir))
                 {
-                    runtime.Execute(script, dir);
+                    runtime.Execute(script, dir, scriptVars);
                 }
                 else
                 {
-                    runtime.Execute(script);
+                    runtime.Execute(script, variables: scriptVars);
                 }
             }
         }

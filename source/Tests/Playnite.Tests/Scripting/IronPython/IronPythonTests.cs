@@ -51,7 +51,7 @@ def test_func(param1, param2):
 ");
 
                 var res = py.Execute("test_func(pr1, pr2)",
-                    new Dictionary<string, object>()
+                    variables: new Dictionary<string, object>()
                     {
                         { "pr1", 1 },
                         { "pr2", 2 }

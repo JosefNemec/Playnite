@@ -187,7 +187,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStarting))
             {
-                Runtime.Execute("on_game_starting(__game)", new Dictionary<string, object>()
+                Runtime.Execute("on_game_starting(__game)", variables: new Dictionary<string, object>()
                 {
                     { "__game", game }
                 });
@@ -198,7 +198,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStarted))
             {
-                Runtime.Execute("on_game_started(__game)", new Dictionary<string, object>()
+                Runtime.Execute("on_game_started(__game)", variables: new Dictionary<string, object>()
                 {
                     { "__game", game }
                 });
@@ -209,7 +209,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStopped))
             {
-                Runtime.Execute("on_game_stopped(__game, __ellapsed_seconds)", new Dictionary<string, object>()
+                Runtime.Execute("on_game_stopped(__game, __ellapsed_seconds)", variables: new Dictionary<string, object>()
                 {
                     { "__game", game },
                     { "__ellapsed_seconds", ellapsedSeconds }
@@ -221,7 +221,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameInstalled))
             {
-                Runtime.Execute("on_game_installed(__game)", new Dictionary<string, object>()
+                Runtime.Execute("on_game_installed(__game)", variables: new Dictionary<string, object>()
                 {
                     { "__game", game }
                 });
@@ -232,7 +232,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameUninstalled))
             {
-                Runtime.Execute("on_game_uninstalled(__game)", new Dictionary<string, object>()
+                Runtime.Execute("on_game_uninstalled(__game)", variables: new Dictionary<string, object>()
                 {
                     { "__game", game }
                 });
@@ -243,7 +243,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameSelected))
             {
-                Runtime.Execute("on_game_selected(__event_args)", new Dictionary<string, object>()
+                Runtime.Execute("on_game_selected(__event_args)", variables: new Dictionary<string, object>()
                 {
                     { "__event_args", args }
                 });
@@ -266,7 +266,7 @@ namespace Playnite.Scripting.IronPython
             }
 
             scriptString = scriptString.TrimEnd(new char[] { ',' }) + ")";
-            return Runtime.Execute(scriptString, args);
+            return Runtime.Execute(scriptString, variables: args);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Playnite.Tests.Scripting.PowerShell
             using (var ps = new PowerShellRuntime("ExecuteArgumentsTest"))
             {
                 var res = ps.Execute("return $param1 + $param2",
-                    new Dictionary<string, object>()
+                    variables: new Dictionary<string, object>()
                     {
                         { "param1", 1 },
                         { "param2", 2 }
@@ -112,7 +112,6 @@ function TestFunc()
                 }
                 Directory.SetCurrentDirectory("\\");
             }
-
         }
     }
 }

@@ -60,12 +60,7 @@ namespace Playnite.Scripting.PowerShell
             powershell.Commands.Clear();
         }
 
-        public object Execute(string script, string workDir = null)
-        {
-            return Execute(script, null, workDir);
-        }
-
-        public object Execute(string script, Dictionary<string, object> variables, string workDir = null)
+        public object Execute(string script, string workDir = null, Dictionary<string, object> variables = null)
         {
             if (!workDir.IsNullOrEmpty())
             {
@@ -125,7 +120,7 @@ namespace Playnite.Scripting.PowerShell
         public object ExecuteFile(string path, string workDir = null)
         {
             var content = File.ReadAllText(path);
-            return Execute(content, null, workDir);
+            return Execute(content, workDir, null);
         }
 
         public void SetVariable(string name, object value)

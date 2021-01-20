@@ -56,12 +56,7 @@ from Playnite.SDK.Models import *
             engine.Runtime.Shutdown();
         }
 
-        public object Execute(string script, string workDir = null)
-        {
-            return Execute(script, null, workDir);
-        }
-
-        public object Execute(string script, Dictionary<string, object> variables, string workDir = null)
+        public object Execute(string script, string workDir = null, Dictionary<string, object> variables = null)
         {
             if (variables != null)
             {

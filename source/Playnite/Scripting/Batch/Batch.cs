@@ -29,7 +29,7 @@ namespace Playnite.Scripting.Batch
         {
         }
 
-        public object Execute(string script, string workDir = null)
+        public object Execute(string script, string workDir = null, Dictionary<string, object> variables = null)
         {
             var scriptPath = Path.Combine(PlaynitePaths.TempPath, $"BatchRuntime_{GlobalRandom.Next()}.bat");
             FileSystem.PrepareSaveFile(scriptPath);
@@ -43,11 +43,6 @@ namespace Playnite.Scripting.Batch
             {
                 FileSystem.DeleteFile(scriptPath);
             }
-        }
-
-        public object Execute(string script, Dictionary<string, object> variables, string workDir = null)
-        {
-            throw new NotImplementedException();
         }
 
         public object ExecuteFile(string scriptPath, string workDir = null)
