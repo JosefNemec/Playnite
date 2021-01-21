@@ -45,6 +45,7 @@ namespace Playnite.FullscreenApp
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashWindow>();
             LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
+            ActionSelectionWindowFactory.SetWindowType<ActionSelectionWindow>();
             Dialogs = new FullscreenDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
             if (!AppSettings.FirstTimeWizardComplete)
