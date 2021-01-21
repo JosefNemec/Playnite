@@ -19,7 +19,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="True" />
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="DefaultBorder" />
                             <Setter Property="Opacity" TargetName="Grid" Value="0.5" />
                         </Trigger>
                     </ControlTemplate.Triggers>
