@@ -166,16 +166,16 @@ namespace Playnite.Plugins
             return installedExts;
         }
 
-        public static T InstallPackedFile<T>(string path, string nanifestFileName, string rootDir, Func<string, T> newMan) where T : BaseExtensionManifest
+        public static T InstallPackedFile<T>(string packagePath, string nanifestFileName, string rootDir, Func<string, T> newMan) where T : BaseExtensionManifest
         {
-            logger.Info($"Installing extenstion/theme {path}");
-            var manifest = GetPackedManifest<T>(path, nanifestFileName);
+            logger.Info($"Installing extenstion/theme {packagePath}");
+            var manifest = GetPackedManifest<T>(packagePath, nanifestFileName);
             if (manifest == null)
             {
                 throw new FileNotFoundException("Extenstion/theme manifest not found.");
             }
 
-            var entries = Archive.GetArchiveFiles(path);
+            var entries = Archive.GetArchiveFiles(packagePath);
             if (entries.Any(a => a.EndsWith(".sln", StringComparison.OrdinalIgnoreCase)))
             {
                 // Check for themes that are not packaged via Toolbox.
@@ -194,7 +194,12 @@ namespace Playnite.Plugins
             }
 
             FileSystem.CreateDirectory(installDir, true);
-            ZipFile.ExtractToDirectory(path, installDir);
+            ZipFile.ExtractToDirectory(packagePath, installDir);
+            if (Paths.AreEqual(PlaynitePaths.TempPath, Path.GetDirectoryName(packagePath)))
+            {
+                File.Delete(packagePath);
+            }
+
             return newMan(Path.Combine(installDir, nanifestFileName));
         }
 
