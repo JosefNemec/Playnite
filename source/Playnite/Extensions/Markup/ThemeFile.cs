@@ -26,8 +26,8 @@ namespace Playnite.Extensions.Markup
         private static FileInfo lastUserTheme = null;
         private static bool? lastUserThemeFound = null;
 
-        public ThemeManifest CurrentTheme { get; set; }
-        public ThemeManifest DefaultTheme { get; set; }
+        internal ThemeManifest CurrentTheme { get; set; }
+        internal ThemeManifest DefaultTheme { get; set; }
 
         public string RelativePath { get; set; }
 
