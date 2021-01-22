@@ -116,6 +116,13 @@ namespace Playnite.DesktopApp.Controls.Views
                 ListGames.InputBindings.Add(new KeyBinding(mainModel.EditSelectedGamesCommand, mainModel.EditSelectedGamesCommand.Gesture));
                 ListGames.InputBindings.Add(new KeyBinding(mainModel.RemoveSelectedGamesCommand, mainModel.RemoveSelectedGamesCommand.Gesture));
                 ListGames.InputBindings.Add(new KeyBinding(mainModel.StartSelectedGameCommand, mainModel.StartSelectedGameCommand.Gesture));
+
+                ListGames.SelectionMode = SelectionMode.Extended;
+                VirtualizingPanel.SetCacheLengthUnit(ListGames, VirtualizationCacheLengthUnit.Item);
+                VirtualizingPanel.SetCacheLength(ListGames, new VirtualizationCacheLength(5));
+                VirtualizingPanel.SetScrollUnit(ListGames, ScrollUnit.Pixel);
+                VirtualizingPanel.SetIsVirtualizingWhenGrouping(ListGames, true);
+                VirtualizingPanel.SetVirtualizationMode(ListGames, VirtualizationMode.Recycling);
             }
         }
     }

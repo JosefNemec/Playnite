@@ -68,6 +68,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/PropertyItemButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsScrollViewer.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/Simplebutton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewGroupStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemTemplate.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemTemplate.xaml" />

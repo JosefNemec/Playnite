@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Xml.Linq;
+using WpfToolkit.Controls;
 using BooleanToVisibilityConverter = Playnite.Converters.BooleanToVisibilityConverter;
 
 namespace Playnite.DesktopApp.Controls.Views
@@ -75,10 +76,14 @@ namespace Playnite.DesktopApp.Controls.Views
         private ItemsPanelTemplate GetItemsPanelTemplate()
         {
             XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
-            XNamespace pctrls = "clr-namespace:Playnite.Controls;assembly=Playnite";
+            XNamespace wpftk = "clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel";
             var templateDoc = new XDocument(
-                new XElement(pns + nameof(ItemsPanelTemplate), 
-                    new XElement(pctrls + nameof(VirtualizingUniformPanel)))
+                new XElement(pns + nameof(ItemsPanelTemplate),
+                    new XElement(wpftk + nameof(VirtualizingWrapPanel),
+                        new XAttribute(nameof(VirtualizingWrapPanel.MouseWheelDelta), 196),
+                        new XAttribute(nameof(VirtualizingWrapPanel.Orientation), Orientation.Vertical),
+                        new XAttribute(nameof(VirtualizingWrapPanel.SpacingMode), SpacingMode.StartAndEndOnly),
+                        new XAttribute(nameof(VirtualizingWrapPanel.StretchItems), false)))
             );
 
             return Xaml.FromString<ItemsPanelTemplate>(templateDoc.ToString());
