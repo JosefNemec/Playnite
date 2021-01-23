@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
             xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
             xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -53,6 +53,19 @@
                   Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
         <CheckBox Content="{DynamicResource LOCSettingsDarkenUninstalledGridCovers}" Margin="0,15,0,0"
                   Name="CheckDarkenUninstalledCovers" IsChecked="{Binding Settings.DarkenUninstalledGamesGrid}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+            <ContentControl Content="{DynamicResource LOCGridViewSpacingMode}" VerticalAlignment="Center" Margin="0,0,5,0"
+                            ContentStringFormat="{}{0} *"/>
+            <ComboBox SelectedValue="{Binding Settings.GridViewSpacingMode}"
+                      pbeh:SelectorBehaviors.EnumSource="{x:Type playnite:GridViewSpacingMode}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+            <TextBlock Text="{DynamicResource LOCGridViewScrollAmountModifier}" VerticalAlignment="Center" Margin="0,0,5,0" />
+            <pctrls:NumericDoubleBox MinValue="0" MaxValue="999" Width="40"
+                                     Value="{Binding Settings.GridViewScrollModifier}"/>
+        </StackPanel>
 
         <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />        
         <Separator />

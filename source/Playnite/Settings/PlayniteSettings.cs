@@ -25,6 +25,18 @@ using Playnite.SDK.Models;
 
 namespace Playnite
 {
+    public enum GridViewSpacingMode
+    {
+        [Description(LOC.GridViewSpacingModeNone)]
+        None = 0,
+        [Description(LOC.GridViewSpacingModeUniform)]
+        Uniform = 1,
+        [Description(LOC.GridViewSpacingModeBetweenItemsOnly)]
+        BetweenItemsOnly = 2,
+        [Description(LOC.GridViewSpacingModeStartAndEndOnly)]
+        StartAndEndOnly = 3
+    }
+
     public enum AfterLaunchOptions
     {
         None,
@@ -1491,6 +1503,29 @@ namespace Playnite
             set
             {
                 traceLogEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double gridViewScrollModifier = 1.5;
+        public double GridViewScrollModifier
+        {
+            get => gridViewScrollModifier;
+            set
+            {
+                gridViewScrollModifier = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private GridViewSpacingMode gridViewSpacingMode = GridViewSpacingMode.StartAndEndOnly;
+        [RequiresRestart]
+        public GridViewSpacingMode GridViewSpacingMode
+        {
+            get => gridViewSpacingMode;
+            set
+            {
+                gridViewSpacingMode = value;
                 OnPropertyChanged();
             }
         }

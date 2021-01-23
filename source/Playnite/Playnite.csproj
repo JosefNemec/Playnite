@@ -192,7 +192,9 @@
     <Compile Include="API\PlayniteInfoAPI.cs" />
     <Compile Include="API\PlaynitePathsAPI.cs" />
     <Compile Include="Archive.cs" />
+    <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
+    <Compile Include="Common\Extensions\KeyExtensions.cs" />
     <Compile Include="Converters\GenericTypeConverter.cs" />
     <Compile Include="Extensions\Markup\ThemeFileBinding.cs" />
     <Compile Include="Manifests\AddonManifestBase.cs" />

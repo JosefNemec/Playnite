@@ -1,0 +1,188 @@
+﻿using Playnite.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Playnite.DesktopApp.Controls
+{
+    public class NumericDoubleBox : TextBox
+    {
+        public double MinValue
+        {
+            get
+            {
+                return (double)GetValue(MinValueProperty);
+            }
+
+            set
+            {
+                SetValue(MinValueProperty, value);
+            }
+        }
+
+        public double MaxValue
+        {
+            get
+            {
+                return (double)GetValue(MaxValueProperty);
+            }
+
+            set
+            {
+                SetValue(MaxValueProperty, value);
+            }
+        }
+
+        private double lastValue;
+        public double Value
+        {
+            get
+            {
+                return (double)GetValue(ValueProperty);
+            }
+
+            set
+            {
+                lastValue = value;
+                SetValue(ValueProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register(nameof(Value), typeof(double), typeof(NumericDoubleBox),
+                new FrameworkPropertyMetadata(
+                    (double)0,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    DoubleValuePropertyChanged,
+                    CoerceDoubleValue,
+                    false,
+                    UpdateSourceTrigger.PropertyChanged));
+
+        public static readonly DependencyProperty MinValueProperty =
+            DependencyProperty.Register(nameof(MinValue), typeof(double), typeof(NumericDoubleBox),
+                new PropertyMetadata((double)0, MinDoubleValuePropertyChanged));
+
+        public static readonly DependencyProperty MaxValueProperty =
+            DependencyProperty.Register(nameof(MaxValue), typeof(double), typeof(NumericDoubleBox),
+                new PropertyMetadata(double.MaxValue, MaxDoubleValuePropertyChanged));
+
+        static NumericDoubleBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericDoubleBox), new FrameworkPropertyMetadata(typeof(NumericDoubleBox)));
+        }
+
+        public NumericDoubleBox()
+        {
+            Text = Value.ToString();
+            LostFocus += NumericDoubleBox_LostFocus;
+            Loaded += NumericDoubleBox_Loaded;
+            TextChanged += NumericDoubleBox_TextChanged;
+            PreviewKeyDown += NumericDoubleBox_PreviewKeyDown;
+        }
+
+        private void NumericDoubleBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.IsNumericKey() || e.Key == Key.OemPeriod || e.Key == Key.OemComma || e.Key == Key.Delete ||
+                e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void NumericDoubleBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            NumericDoubleBox_LostFocus(sender, e);
+        }
+
+        private void NumericDoubleBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            lastValue = Value;
+        }
+
+        private void NumericDoubleBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(Text))
+            {
+                Text = "0";
+            }
+
+            if (!double.TryParse(Text.Replace(".", ","), out var result))
+            {
+                e.Handled = true;
+                Value = lastValue;
+            }
+            else
+            {
+                if (result >= MinValue && result <= MaxValue)
+                {
+                    Value = result;
+                }
+                else
+                {
+                    e.Handled = true;
+                    Value = lastValue;
+                    Text = lastValue.ToString();
+                }
+            }
+        }
+
+        private static object CoerceDoubleValue(DependencyObject element, object baseValue)
+        {
+            var box = (NumericDoubleBox)element;
+            var current = (double)baseValue;
+            if (current < box.MinValue)
+            {
+                current = box.MinValue;
+            }
+
+            if (current > box.MaxValue)
+            {
+                current = box.MaxValue;
+            }
+
+            return current;
+        }
+
+        private static void DoubleValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = (NumericDoubleBox)sender;
+            if (obj.Text.IsNullOrEmpty())
+            {
+                obj.Text = e.NewValue.ToString();
+            }
+            else
+            {
+                if (double.TryParse(obj.Text.Replace(".", ","), out var result) && result == (double)e.NewValue)
+                {
+                }
+                else
+                {
+                    obj.Text = e.NewValue.ToString();
+                }
+            }
+        }
+
+        private static void MinDoubleValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+        }
+
+        private static void MaxDoubleValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+        }
+    }
+}

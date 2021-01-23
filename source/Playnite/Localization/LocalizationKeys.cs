@@ -3153,5 +3153,37 @@ namespace Playnite
         /// Directory
         /// </summary>
         public const string ActionTrackingModeDirectory = "LOCActionTrackingModeDirectory";
+        /// <summary>
+        /// Log trace messages
+        /// </summary>
+        public const string DevelTraceLogEnable = "LOCDevelTraceLogEnable";
+        /// <summary>
+        /// Following changes overwrite data for all currently selected game!
+        /// </summary>
+        public const string MultiEditOverwriteWarning = "LOCMultiEditOverwriteWarning";
+        /// <summary>
+        /// Grid view item spacing mode
+        /// </summary>
+        public const string GridViewSpacingMode = "LOCGridViewSpacingMode";
+        /// <summary>
+        /// None
+        /// </summary>
+        public const string GridViewSpacingModeNone = "LOCGridViewSpacingModeNone";
+        /// <summary>
+        /// Uniform
+        /// </summary>
+        public const string GridViewSpacingModeUniform = "LOCGridViewSpacingModeUniform";
+        /// <summary>
+        /// Items only
+        /// </summary>
+        public const string GridViewSpacingModeBetweenItemsOnly = "LOCGridViewSpacingModeBetweenItemsOnly";
+        /// <summary>
+        /// Start and end only
+        /// </summary>
+        public const string GridViewSpacingModeStartAndEndOnly = "LOCGridViewSpacingModeStartAndEndOnly";
+        /// <summary>
+        /// Scroll amount modifier
+        /// </summary>
+        public const string GridViewScrollAmountModifier = "LOCGridViewScrollAmountModifier";
     }
 }

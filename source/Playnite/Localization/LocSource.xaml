@@ -886,4 +886,10 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCActionTrackingModeDirectory">Directory</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Log trace messages</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Following changes overwrite data for all currently selected game!</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingMode">Grid view item spacing mode</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeNone">None</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeUniform">Uniform</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Items only</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">Start and end only</sys:String>
+    <sys:String x:Key="LOCGridViewScrollAmountModifier">Scroll amount modifier</sys:String>
 </ResourceDictionary>

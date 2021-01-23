@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Playnite.Behaviors;
+using Playnite.Common;
 using Playnite.Controls;
 using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
@@ -30,10 +31,32 @@ namespace Playnite.DesktopApp.Controls.Views
 
         public LibraryGridView() : base(ViewType.Grid)
         {
+            Loaded += LibraryGridView_Loaded;
+            Unloaded += LibraryGridView_Unloaded;
         }
 
         public LibraryGridView(DesktopAppViewModel mainModel) : base(ViewType.Grid, mainModel)
         {
+            Loaded += LibraryGridView_Loaded;
+            Unloaded += LibraryGridView_Unloaded;
+        }
+
+        private void LibraryGridView_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.PropertyChanged += ViewSettings_PropertyChanged;
+        }
+
+        private void LibraryGridView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.PropertyChanged -= ViewSettings_PropertyChanged;
+        }
+
+        private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PlayniteSettings.GridViewScrollModifier))
+            {
+                ScrollViewerBehaviours.SetScrollAmount(ListGames, mainModel.AppSettings.GridViewScrollModifier);
+            }
         }
 
         public override void OnApplyTemplate()
@@ -43,6 +66,7 @@ namespace Playnite.DesktopApp.Controls.Views
             if (ListGames != null)
             {
                 ListGames.ItemsPanel = GetItemsPanelTemplate();
+                ScrollViewerBehaviours.SetScrollAmount(ListGames, mainModel.AppSettings.GridViewScrollModifier);
             }
 
             if (ControlGameView != null)
@@ -80,9 +104,8 @@ namespace Playnite.DesktopApp.Controls.Views
             var templateDoc = new XDocument(
                 new XElement(pns + nameof(ItemsPanelTemplate),
                     new XElement(wpftk + nameof(VirtualizingWrapPanel),
-                        new XAttribute(nameof(VirtualizingWrapPanel.MouseWheelDelta), 196),
                         new XAttribute(nameof(VirtualizingWrapPanel.Orientation), Orientation.Vertical),
-                        new XAttribute(nameof(VirtualizingWrapPanel.SpacingMode), SpacingMode.StartAndEndOnly),
+                        new XAttribute(nameof(VirtualizingWrapPanel.SpacingMode), (SpacingMode)mainModel.AppSettings.GridViewSpacingMode),
                         new XAttribute(nameof(VirtualizingWrapPanel.StretchItems), false)))
             );
 
