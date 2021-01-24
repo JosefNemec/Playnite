@@ -5,10 +5,14 @@ jobs:
   Launcher:
     runs-on: windows-2019
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Nuget.exe
+      uses: nuget/setup-nuget@v1
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
     - name: Restore packages
-      run: msbuild /t:restore source/Playnite.sln
+      run: nuget restore source/Playnite.sln
     - name: Build with MSBuild
       run: msbuild source/Playnite.sln
