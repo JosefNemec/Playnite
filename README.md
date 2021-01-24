@@ -1,5 +1,5 @@
 
-# <img src="https://github.com/JosefNemec/Playnite/raw/master/web/applogo.png" width="32">  Playnite
+# <img src="https://github.com/JosefNemec/Playnite/raw/master/web/applogo.png" width="32">  Playnite ![Build](https://github.com/JosefNemec/Playnite/workflows/Build/badge.svg)
 An open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin, Battle.net and Uplay. Includes game emulation support, providing one unified interface for your games.
 
 Screenshots are available at the [Homepage](http://playnite.link/)
