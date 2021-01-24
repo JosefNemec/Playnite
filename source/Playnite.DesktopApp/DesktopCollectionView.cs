@@ -190,7 +190,8 @@ namespace Playnite.DesktopApp
                     if (viewSettings.GroupingOrder == GroupableField.PlayTime ||
                         viewSettings.GroupingOrder == GroupableField.CommunityScore ||
                         viewSettings.GroupingOrder == GroupableField.CriticScore ||
-                        viewSettings.GroupingOrder == GroupableField.UserScore)
+                        viewSettings.GroupingOrder == GroupableField.UserScore ||
+                        viewSettings.GroupingOrder == GroupableField.ReleaseYear)
                     {
                         order = ListSortDirection.Descending;
                     }
