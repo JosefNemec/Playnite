@@ -2,7 +2,7 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  Launcher:
+  Playnite-sln:
     runs-on: windows-2019
     steps:
     - name: Checkout repository
