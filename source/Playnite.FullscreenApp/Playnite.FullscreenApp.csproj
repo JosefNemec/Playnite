@@ -191,9 +191,6 @@
       <Link>Fonts\%(Filename)%(Extension)</Link>
     </Resource>
     <None Include="app.manifest" />
-    <None Include="Themes\Fullscreen\DefaultLime\theme.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Themes\Fullscreen\Default\Images\custom_cover_background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -351,11 +348,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Themes\Fullscreen\DefaultLime\Constants.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Themes\Fullscreen\Default\DefaultControls\ToolTip.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
