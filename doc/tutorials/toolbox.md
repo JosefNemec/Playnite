@@ -6,7 +6,7 @@ Creating new extensions
 
 ### Themes
 
-```
+```cmd
 Toolbox.exe new <themetype> <themename>
 ```
 
@@ -18,13 +18,13 @@ Toolbox.exe new <themetype> <themename>
 
 #### Example
 
-```
+```cmd
 Toolbox.exe new desktoptheme "New Desktop Theme"
 ```
 
 ### Scripts
 
-```
+```cmd
 Toolbox.exe new <scripttype> <scriptname> <targetfolder>
 ```
 
@@ -38,13 +38,13 @@ Toolbox.exe new <scripttype> <scriptname> <targetfolder>
 
 #### Example
 
-```
+```cmd
 Toolbox.exe new IronPythonScript "Testing Script" "d:\somefolder"
 ```
 
 ### Plugins
 
-```
+```cmd
 Toolbox.exe new <plugintype> <pluginname> <targetfolder>
 ```
 
@@ -59,14 +59,14 @@ Toolbox.exe new <plugintype> <pluginname> <targetfolder>
 
 #### Example
 
-```
+```cmd
 Toolbox.exe new MetadataPlugin "GameDatabase metadata provider" "d:\somefolder"
 ```
 
 Packing extensions
 ---------------------
 
-```
+```cmd
 Toolbox.exe pack <extensionfolder> <targetfolder>
 ```
 
@@ -76,7 +76,7 @@ Toolbox.exe pack <extensionfolder> <targetfolder>
 
 #### Example
 
-```
+```cmd
 Toolbox.exe pack "C:\Playnite\Themes\Fullscreen\TestingFullscreen" "c:\somefolder"
 ```
 

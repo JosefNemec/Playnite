@@ -14,13 +14,13 @@ Packaging themes
 
 To package theme, run [Toolbox](../toolbox.md) utility with following arguments:
 
-```
+```cmd
 Toolbox.exe pack <ThemeDirectoryPath> <TargetFolder>
 ```
 
 For example...
 
-```
+```cmd
 Toolbox.exe pack "c:\playnite\Themes\Desktop\Default\TestingTheme" "c:\somedir"
 ```
 
@@ -59,7 +59,7 @@ Blend made themes
 
 To update existing theme run Toolbox with following arguments:
 
-```
+```cmd
 Toolbox.exe update "<ThemeDirectoryPath>"
 ```
 

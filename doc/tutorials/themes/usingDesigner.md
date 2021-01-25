@@ -5,20 +5,17 @@ Installing Blend
 
 Blend is part of [Visual Studio IDE](https://visualstudio.microsoft.com/), which is available for free with Community edition. Visual Studio comes with lot of components for workloads you might not be interested in, for theme development you only need `.NET Desktop development` workload.
 
-> [!NOTE] 
-> Playnite is currently being developed using 2017 edition of Visual Studio even though 2019 is now available. This means there might be unexcpected issues when using 2019 version. If you need to download 2017 version then it's available in [old downloads section](https://visualstudio.microsoft.com/vs/older-downloads/). Proper support for 2019 version is being worked on.
-
 Creating new theme
 ---------------------
 [Open command prompt](https://www.windows-commandline.com/how-to-open-command-prompt/) and [navigate](https://www.windows-commandline.com/command-prompt-change-directory/) to Playnite's installation folder. To create new theme you need to run `Toolbox.exe` utility with these arguments:
 
-```
+```cmd
 Toolbox.exe new desktoptheme|fullscreentheme <ThemeName>
 ```
 
 For example to create new desktop theme with "Super Clear Modern" name:
 
-```
+```cmd
 Toolbox.exe new desktoptheme "Super Clear Modern"
 ```
 
@@ -59,9 +56,27 @@ To open live preview (design view):
 Now the preview for the specific control/panel should be visible. Something like this:
 ![image](images/designExample.png)
 
-> [!NOTE] 
-> Opening style's design view for the first sometimes doesn't properly load referenced resources (like fonts, colors etc). This is a Blend issue and can be fixed easily by editing some part of the style, which will force the design view to reload.
+Troubleshooting
+---------------------
 
+### Fonts, colors and other resources are not applied
+
+Opening style's design view for the first sometimes doesn't properly load referenced resources (like fonts, colors etc). This is a Blend issue and can be fixed easily by editing some part of the style, which will force the design view to reload. Switching to a different file tab and back also resolves this sometimes.
+
+### Updating ThemeFile markup doesn't update in a preview
+
+Specifically declare `RelativePath` property if this happens:
+```xml 
+<Image Source="{ThemeFile RelativePath='Images/applogo.png'}" />
+```
+...instead of just:
+```xml 
+<Image Source="{ThemeFile 'Images/applogo.png'}" />
+```
+
+### Design view just doesn't work
+
+This happens if theme is not opened from correct directory. As mentioned above, theme's .sln file must be opened from the directory that Toolbox created it in. Moving to a different directory will cause issues!
 
 Testing changes
 ---------------------

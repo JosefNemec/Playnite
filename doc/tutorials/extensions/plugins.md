@@ -28,7 +28,7 @@ Run [Toolbox](../toolbox.md) with arguments specific to a type of plugin you wan
 
 For example, to create new library plugin:
 
-```
+```cmd
 Toolbox.exe new LibraryPlugin "SomeLibrary importer" "d:\somefolder"
 ```
 
@@ -58,7 +58,7 @@ Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. 
 
 #### 3. Create manifest file
 
-Described in [introduction section](../intro.md) to extensions.
+Described in [introduction section](intro.md) to extensions.
 
 Plugin dependencies
 ---------------------

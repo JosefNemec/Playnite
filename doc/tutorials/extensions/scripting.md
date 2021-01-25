@@ -18,7 +18,7 @@ Run [Toolbox](../toolbox.md) with arguments specific to a type of script you wan
 
 For example, to create new PowerShell script extension:
 
-```
+```cmd
 Toolbox.exe new PowerShellScript "Some script" "d:\somefolder"
 ```
 
