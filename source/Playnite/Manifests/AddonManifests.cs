@@ -21,13 +21,13 @@ namespace Playnite
         public string PackageUrl { get; set; }
         public Version RequiredApiVersion { get; set; }
         public DateTime ReleaseDate { get; set; }
+        public List<string> Changelog { get; set; }
     }
 
     public class AddonInstallerManifest
     {
         public string AddonId { get; set; }
         public List<AddonInstallerPackage> Packages { get; set; }
-        public Dictionary<Version, List<string>> Changelog { get; set; }
 
         public AddonInstallerPackage GetLatestCompatiblePackage(AddonType type)
         {

@@ -78,15 +78,15 @@ namespace Playnite
                     var changeLog = string.Empty;
                     if (package != null && package.Version > currentVersion)
                     {
-                        if (installer.Changelog.HasItems())
+                        if (installer.Packages.HasItems())
                         {
-                            var changes = installer.Changelog.Where(a => a.Key > currentVersion && a.Key <= package.Version).ToList();
+                            var changes = installer.Packages.Where(a => a.Version > currentVersion && a.Version <= package.Version).ToList();
                             if (changes.HasItems())
                             {
                                 changes.ForEach(a =>
                                 {
-                                    changeLog += a.Key.ToString();
-                                    a.Value.ForEach(b => changeLog += Environment.NewLine + $"  • {b}");
+                                    changeLog += a.Version.ToString();
+                                    a.Changelog?.ForEach(b => changeLog += Environment.NewLine + $"  • {b}");
                                     changeLog += Environment.NewLine;
                                 });
                             }
