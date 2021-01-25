@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+             xmlns:mkr="clr-namespace:Playnite.DesktopApp.Markup"
              xmlns:p="clr-namespace:Playnite;assembly=Playnite"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="700">
@@ -21,8 +22,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <p:BindingProxy x:Key="RootDataContext" Data="{Binding}" />
+        <BitmapImage x:Key="FallbackIcon" UriSource="{mkr:ThemeFile 'Images/applogo_dark.png'}" />
     </UserControl.Resources>
 
     <Grid Margin="5">
@@ -56,7 +58,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <Image Source="{Binding IconUrl}" DockPanel.Dock="Left" VerticalAlignment="Center"
+                            <Image Source="{Binding IconUrl, FallbackValue={StaticResource FallbackIcon}, TargetNullValue={StaticResource FallbackIcon}}"
+                                   DockPanel.Dock="Left" VerticalAlignment="Center"
                                    Width="32" Height="32" RenderOptions.BitmapScalingMode="Fant" />
                             <TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5" />
                             <TextBlock Text="{Binding ShortDescription}" TextWrapping="Wrap" DockPanel.Dock="Top"

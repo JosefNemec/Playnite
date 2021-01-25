@@ -86,7 +86,7 @@ namespace Playnite
                                 changes.ForEach(a =>
                                 {
                                     changeLog += a.Key.ToString();
-                                    a.Value.ForEach(b => changeLog += Environment.NewLine + $"  - {b}");
+                                    a.Value.ForEach(b => changeLog += Environment.NewLine + $"  • {b}");
                                     changeLog += Environment.NewLine;
                                 });
                             }
