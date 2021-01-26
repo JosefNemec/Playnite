@@ -19,9 +19,10 @@ namespace Playnite.Toolbox
 {
     class Program
     {
+        public static int AppResult { get; set; } = 0;
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             FileSystem.CreateDirectory(PlaynitePaths.JitProfilesPath);
             ProfileOptimization.SetProfileRoot(PlaynitePaths.JitProfilesPath);
@@ -37,6 +38,7 @@ namespace Playnite.Toolbox
                 .WithParsed<UpdateCmdLineOptions>(ProcessUpdateOptions);
             if (result.Tag == ParserResultType.NotParsed)
             {
+                AppResult = 2;
                 logger.Error("No acceptable arguments given.");
             }
 
@@ -44,6 +46,8 @@ namespace Playnite.Toolbox
             {
                 Console.ReadLine();
             }
+
+            return AppResult;
         }
 
         public static ItemType GetExtensionType(string directory)
@@ -71,7 +75,7 @@ namespace Playnite.Toolbox
                     case ExtensionType.GameLibrary:
                         return ItemType.LibraryPlugin;
                     case ExtensionType.Script:
-                        return desc.Module.EndsWith("ps1", StringComparison.OrdinalIgnoreCase) ? ItemType.PowerShellScript : ItemType.IronPythonScript;
+                        return desc.Module.EndsWith("psm1", StringComparison.OrdinalIgnoreCase) ? ItemType.PowerShellScript : ItemType.IronPythonScript;
                     case ExtensionType.MetadataProvider:
                         return ItemType.MetadataPlugin;
                 }
@@ -117,6 +121,7 @@ namespace Playnite.Toolbox
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
+                AppResult = 1;
                 logger.Error(e, $"Failed to create new {options.Type}." + Environment.NewLine + e.Message);
             }
         }
@@ -150,7 +155,8 @@ namespace Playnite.Toolbox
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                logger.Error(e, $"Failed to pack extension." + Environment.NewLine + e.Message);
+                AppResult = 1;
+                logger.Error(e, $"Failed to pack extension: {options.Directory}." + Environment.NewLine + e.Message);
             }
         }
 
@@ -178,6 +184,7 @@ namespace Playnite.Toolbox
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
+                AppResult = 1;
                 logger.Error(e, "Failed to update extension." + Environment.NewLine + e.Message);
             }
         }
