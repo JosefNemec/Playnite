@@ -54,17 +54,17 @@
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
-                                        <Style TargetType="SearchBox">
+                                        <Style TargetType="SearchBox" BasedOn="{StaticResource {x:Type SearchBox}}">
                                             <Setter Property="Margin" Value="8,0,6,0" />
                                             <Setter Property="ShowImage" Value="False" />
                                         </Style>
-                                        <Style TargetType="FilterSelectionBox">
+                                        <Style TargetType="FilterSelectionBox" BasedOn="{StaticResource {x:Type FilterSelectionBox}}">
                                             <Setter Property="Margin" Value="8,0,6,0" />
                                         </Style>
-                                        <Style TargetType="FilterEnumSelectionBox">
+                                        <Style TargetType="FilterEnumSelectionBox" BasedOn="{StaticResource {x:Type FilterEnumSelectionBox}}">
                                             <Setter Property="Margin" Value="8,0,6,0" />
                                         </Style>
-                                        <Style TargetType="FilterStringSelectionBox">
+                                        <Style TargetType="FilterStringSelectionBox" BasedOn="{StaticResource {x:Type FilterStringSelectionBox}}">
                                             <Setter Property="Margin" Value="8,0,6,0" />
                                         </Style>
                                     </StackPanel.Resources>

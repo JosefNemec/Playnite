@@ -102,6 +102,12 @@ namespace Playnite.SDK.Plugins
         {
             return null;
         }
+
+        ///<inheritdoc/>
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     /// <summary>

@@ -40,18 +40,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <CheckBoxEx IsChecked="{Binding Selected}"
-                                                Margin="{StaticResource ItemMargin}">
-                                        <CheckBoxEx.Style>
-                                            <Style TargetType="CheckBoxEx" BasedOn="{StaticResource {x:Type CheckBoxEx}}">
-                                                <Setter Property="Content" Value="{Binding}" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Item}" Value="{}{}">
-                                                        <Setter Property="Content" Value="{DynamicResource LOCNone}" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </CheckBoxEx.Style>
-                                    </CheckBoxEx>
+                                                Content="{Binding}"
+                                                Margin="{StaticResource ItemMargin}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                             <ItemsControl.Template>

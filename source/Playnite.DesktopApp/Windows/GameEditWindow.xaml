@@ -71,7 +71,7 @@
                             <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
                                 <Setter Property="Margin" Value="3" />
                             </Style>
-                            <Style TargetType="pctrls:DdItemListSelectionBox">
+                            <Style TargetType="pctrls:DdItemListSelectionBox" BasedOn="{StaticResource {x:Type pctrls:DdItemListSelectionBox}}" >
                                 <Setter Property="Margin" Value="3" />
                             </Style>
                             <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >

@@ -141,18 +141,7 @@
       <DependentUpon>InstalledExtensions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ExpanderEx.cs" />
-    <Compile Include="Controls\FilterStringSelectionBox.xaml.cs">
-      <DependentUpon>FilterStringSelectionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FilterEnumSelectionBox.xaml.cs">
-      <DependentUpon>FilterEnumSelectionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DdItemListSelectionBox.xaml.cs">
-      <DependentUpon>DdItemListSelectionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FilterSelectionBox.xaml.cs">
-      <DependentUpon>FilterSelectionBox.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controls\FilterSelectionBoxBase.cs" />
     <Compile Include="Controls\GameGroupMenu.cs" />
     <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
@@ -172,9 +161,6 @@
     <Compile Include="Controls\NullableIntBox.cs" />
     <Compile Include="Controls\NumericDoubleBox.cs" />
     <Compile Include="Controls\NumericBox.cs" />
-    <Compile Include="Controls\SearchBox.xaml.cs">
-      <DependentUpon>SearchBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SettingsSections\AppearanceAdvanced.xaml.cs">
       <DependentUpon>AppearanceAdvanced.xaml</DependentUpon>
     </Compile>
@@ -235,6 +221,11 @@
     <Compile Include="Controls\SettingsSections\Scripting.xaml.cs">
       <DependentUpon>Scripting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SearchBox.cs" />
+    <Compile Include="Controls\DdItemListSelectionBox.cs" />
+    <Compile Include="Controls\FilterEnumSelectionBox.cs" />
+    <Compile Include="Controls\FilterSelectionBox.cs" />
+    <Compile Include="Controls\FilterStringSelectionBox.cs" />
     <Compile Include="Controls\SidebarItem.cs" />
     <Compile Include="Controls\SliderWithPopup.xaml.cs">
       <DependentUpon>SliderWithPopup.xaml</DependentUpon>
@@ -541,22 +532,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\FilterStringSelectionBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\FilterEnumSelectionBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DdItemListSelectionBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\FilterSelectionBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\GamesGridView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -572,10 +547,6 @@
     <Page Include="Controls\MetadataDownloadSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SearchBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\AppearanceAdvanced.xaml">
       <SubType>Designer</SubType>
@@ -996,6 +967,31 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Themes\Desktop\Default\CustomControls\NumericDoubleBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\SearchBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\DdItemListSelectionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\FilterEnumSelectionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\FilterSelectionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\FilterStringSelectionBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

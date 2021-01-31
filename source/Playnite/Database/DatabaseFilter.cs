@@ -165,8 +165,8 @@ namespace Playnite.Database
             }
         }
 
-        private SelectableStringList releaseYears;
-        public SelectableStringList ReleaseYears
+        private SelectableObjectList<NamedObject<string>> releaseYears;
+        public SelectableObjectList<NamedObject<string>> ReleaseYears
         {
             get => releaseYears;
             private set
@@ -260,8 +260,10 @@ namespace Playnite.Database
 
         internal void LoadFilterCollection()
         {
-            var years = database.Games.Where(a => a.ReleaseYear != null).Select(a => a.ReleaseYear).Distinct().OrderBy(a => a.Value).Select(a => a.ToString());
-            ReleaseYears = new SelectableStringList(years, null, true);
+            var years = database.Games.Where(a => a.ReleaseYear != null).Select(a => a.ReleaseYear).Distinct().OrderBy(a => a.Value).
+                Select(a => new NamedObject<string>(a.ToString())).ToList();
+            years.Insert(0, new NamedObject<string>(FilterSettings.MissingFieldString, ResourceProvider.GetString(LOC.None)));
+            ReleaseYears = new SelectableObjectList<NamedObject<string>>(years, null);
 
             if (settings.UsedFieldsOnlyOnFilterLists)
             {
@@ -322,7 +324,7 @@ namespace Playnite.Database
             {
                 if (update.OldData.ReleaseDate != update.NewData.ReleaseDate && update.NewData.ReleaseDate != null)
                 {
-                    ReleaseYears.Add(update.NewData.ReleaseYear.ToString());
+                    ReleaseYears.Add(new NamedObject<string>(update.NewData.ReleaseYear.ToString()));
                 }
             }
         }
@@ -340,7 +342,7 @@ namespace Playnite.Database
             {
                 if (update.ReleaseDate != null)
                 {
-                    ReleaseYears.Add(update.ReleaseYear.ToString());
+                    ReleaseYears.Add(new NamedObject<string>(update.ReleaseYear.ToString()));
                 }
             }
         }
@@ -358,8 +360,10 @@ namespace Playnite.Database
             switch (field)
             {
                 case GameDatabaseCollection.Games:
-                    var years = database.Games.Where(a => a.ReleaseYear != null).Select(a => a.ReleaseYear).Distinct().OrderBy(a => a.Value).Select(a => a.ToString());
-                    ReleaseYears.SetItems(years, filter.ReleaseYear?.Values);
+                    var years = database.Games.Where(a => a.ReleaseYear != null).Select(a => a.ReleaseYear).Distinct().OrderBy(a => a.Value).Select(a => a.ToString()).
+                        Select(a => new NamedObject<string>(a.ToString())).ToList();
+                    years.Insert(0, new NamedObject<string>(FilterSettings.MissingFieldString, ResourceProvider.GetString(LOC.None)));
+                    ReleaseYears.SetItems(years, years.Where(a => filter.ReleaseYear?.Values?.Contains(a.Value) == true));
                     break;
                 case GameDatabaseCollection.Platforms:
                     if (settings.UsedFieldsOnlyOnFilterLists)

@@ -1,34 +1,25 @@
-﻿using System;
+﻿using Playnite.Common;
+using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Playnite.DesktopApp.Controls
 {
-    /// <summary>
-    /// Interaction logic for DdItemListSelectionBox.xaml
-    /// </summary>
-    public partial class FilterStringSelectionBox : UserControl
+    public class FilterStringSelectionBox : FilterSelectionBoxBase
     {
-        internal bool IgnoreChanges { get; set; }
+        public override string ItemStyleName => "FilterStringSelectionBoxItemStyle";
 
-        public SelectableStringList ItemsList
+        public SelectableObjectList<NamedObject<string>> ItemsList
         {
             get
             {
-                return (SelectableStringList)GetValue(ItemsListProperty);
+                return (SelectableObjectList<NamedObject<string>>)GetValue(ItemsListProperty);
             }
 
             set
@@ -39,28 +30,29 @@ namespace Playnite.DesktopApp.Controls
 
         public static readonly DependencyProperty ItemsListProperty = DependencyProperty.Register(
             nameof(ItemsList),
-            typeof(SelectableStringList),
+            typeof(SelectableObjectList<NamedObject<string>>),
             typeof(FilterStringSelectionBox),
             new PropertyMetadata(null, ItemsListPropertyChangedCallback));
 
         private static void ItemsListPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as FilterStringSelectionBox;
-            var oldVal = (SelectableStringList)e.NewValue;
+            var oldVal = (SelectableObjectList<NamedObject<string>>)e.NewValue;
             if (oldVal != null)
             {
                 oldVal.SelectionChanged -= obj.List_SelectionChanged;
             }
 
-            var list = (SelectableStringList)e.NewValue;
+            var list = (SelectableObjectList<NamedObject<string>>)e.NewValue;
             obj.IgnoreChanges = true;
             list.SelectionChanged += obj.List_SelectionChanged;
             if (obj.FilterProperties != null)
             {
-                list.SetSelection(obj.FilterProperties.Values);
+                list.SetSelection(obj.FilterProperties.Values?.Select(a => new NamedObject<string>(a)));
             }
 
             obj.IgnoreChanges = false;
+            obj.UpdateTextStatus();
         }
 
         private void List_SelectionChanged(object sender, EventArgs e)
@@ -68,8 +60,9 @@ namespace Playnite.DesktopApp.Controls
             if (!IgnoreChanges)
             {
                 IgnoreChanges = true;
-                FilterProperties = new StringFilterItemProperites(ItemsList.GetSelectedItems());
+                FilterProperties = new StringFilterItemProperites(ItemsList.GetSelectedItems().Select(a => a.Value).ToList());
                 IgnoreChanges = false;
+                UpdateTextStatus();
             }
         }
 
@@ -107,14 +100,34 @@ namespace Playnite.DesktopApp.Controls
             }
             else
             {
-                obj.ItemsList?.SetSelection(obj.FilterProperties.Values);
+                obj.ItemsList?.SetSelection(obj.FilterProperties.Values?.Select(a => new NamedObject<string>(a)));
             }
             obj.IgnoreChanges = false;
+            obj.UpdateTextStatus();
         }
 
-        public FilterStringSelectionBox()
+        static FilterStringSelectionBox()
         {
-            InitializeComponent();
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(FilterStringSelectionBox), new FrameworkPropertyMetadata(typeof(FilterStringSelectionBox)));
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            if (ButtonClearFilter != null)
+            {
+                ButtonClearFilter.Click += ClearButton_Click;
+            }
+
+            UpdateTextStatus();
+        }
+
+        private void UpdateTextStatus()
+        {
+            if (TextFilterString != null)
+            {
+                TextFilterString.Text = ItemsList?.AsString;
+            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

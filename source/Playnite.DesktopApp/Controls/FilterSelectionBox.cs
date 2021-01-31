@@ -1,27 +1,23 @@
-﻿using System;
+﻿using Playnite.Common;
+using Playnite.Converters;
+using Playnite.DesktopApp.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Playnite.DesktopApp.Controls
 {
-    /// <summary>
-    /// Interaction logic for FilterSelectionBox.xaml
-    /// </summary>
-    public partial class FilterSelectionBox : UserControl, INotifyPropertyChanged
+    [TemplatePart(Name = "PART_TextFilterInput", Type = typeof(TextBox))]
+    public class FilterSelectionBox : FilterSelectionBoxBase
     {
-        internal bool IgnoreChanges { get; set; }
+        private BindingExpressionBase textInputBinding;
+        internal TextBox TextFilterInput;
+        public override string ItemStyleName => "FilterSelectionBoxItemStyle";
 
         public bool IsFullTextEnabled
         {
@@ -83,7 +79,7 @@ namespace Playnite.DesktopApp.Controls
                 list.SetSelection(box.FilterProperties.Ids);
             }
 
-            box.OnFullTextTextChanged();
+            box.UpdateTextStatus();
             box.IgnoreChanges = false;
         }
 
@@ -93,7 +89,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 IgnoreChanges = true;
                 FilterProperties = new FilterItemProperites { Ids = ItemsList.GetSelectedIds() };
-                OnFullTextTextChanged();
+                UpdateTextStatus();
                 IgnoreChanges = false;
             }
         }
@@ -136,7 +132,7 @@ namespace Playnite.DesktopApp.Controls
                 box.ItemsList?.SetSelection(null);
             }
 
-            box.OnFullTextTextChanged();
+            box.UpdateTextStatus();
             box.IgnoreChanges = false;
         }
 
@@ -172,20 +168,52 @@ namespace Playnite.DesktopApp.Controls
                     }
                 }
 
-                OnFullTextTextChanged();
+                UpdateTextStatus();
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public FilterSelectionBox()
+        static FilterSelectionBox()
         {
-            InitializeComponent();
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(FilterSelectionBox), new FrameworkPropertyMetadata(typeof(FilterSelectionBox)));
         }
 
-        internal void OnFullTextTextChanged()
+        public override void OnApplyTemplate()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FullTextText)));
+            base.OnApplyTemplate();
+            TextFilterInput = Template.FindName("PART_TextFilterInput", this) as TextBox;
+            if (ButtonClearFilter != null)
+            {
+                ButtonClearFilter.Click += ClearButton_Click;
+            }
+
+            if (TextFilterInput != null)
+            {
+                textInputBinding = BindingTools.SetBinding(
+                    TextFilterInput,
+                    TextBox.TextProperty,
+                    this,
+                    nameof(FullTextText),
+                    delay: 200,
+                    trigger: System.Windows.Data.UpdateSourceTrigger.PropertyChanged);
+                BindingTools.SetBinding(
+                    TextFilterInput,
+                    TextBox.VisibilityProperty,
+                    this,
+                    nameof(IsFullTextEnabled),
+                    converter: new Converters.BooleanToVisibilityConverter());
+            }
+
+            if (TextFilterString != null)
+            {
+                BindingTools.SetBinding(
+                    TextFilterString,
+                    TextBox.VisibilityProperty,
+                    this,
+                    nameof(IsFullTextEnabled),
+                    converter: new InvertedBooleanToVisibilityConverter());
+            }
+
+            UpdateTextStatus();
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
@@ -194,6 +222,19 @@ namespace Playnite.DesktopApp.Controls
             IgnoreChanges = true;
             ItemsList?.SetSelection(null);
             IgnoreChanges = false;
+        }
+
+        private void UpdateTextStatus()
+        {
+            if (TextFilterString != null)
+            {
+                TextFilterString.Text = FullTextText;
+            }
+
+            if (textInputBinding != null)
+            {
+                textInputBinding.UpdateTarget();
+            }
         }
     }
 }

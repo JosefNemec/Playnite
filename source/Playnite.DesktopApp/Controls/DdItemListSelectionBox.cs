@@ -1,26 +1,19 @@
-﻿using System;
+﻿using Playnite.Common;
+using Playnite.DesktopApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
 {
-    /// <summary>
-    /// Interaction logic for DdItemListSelectionBox.xaml
-    /// </summary>
-    public partial class DdItemListSelectionBox : UserControl
+    public class DdItemListSelectionBox : FilterSelectionBoxBase
     {
-        internal bool IgnoreChanges { get; set; }
+        public override string ItemStyleName => "DdItemListSelectionBoxItemStyle";
 
         public SelectableDbItemList ItemsList
         {
@@ -52,6 +45,7 @@ namespace Playnite.DesktopApp.Controls
 
             var list = (SelectableDbItemList)e.NewValue;
             list.SelectionChanged += obj.List_SelectionChanged;
+            obj.UpdateTextStatus();
         }
 
         private void List_SelectionChanged(object sender, EventArgs e)
@@ -61,6 +55,7 @@ namespace Playnite.DesktopApp.Controls
                 IgnoreChanges = true;
                 BoundIds = ItemsList.GetSelectedIds();
                 IgnoreChanges = false;
+                UpdateTextStatus();
             }
         }
 
@@ -112,17 +107,51 @@ namespace Playnite.DesktopApp.Controls
             obj.IgnoreChanges = true;
             obj.ItemsList?.SetSelection(obj.BoundIds as IEnumerable<Guid>);
             obj.IgnoreChanges = false;
+            obj.UpdateTextStatus();
         }
 
-        public DdItemListSelectionBox()
+        static DdItemListSelectionBox()
         {
-            InitializeComponent();
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(DdItemListSelectionBox), new FrameworkPropertyMetadata(typeof(DdItemListSelectionBox)));
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            if (ButtonClearFilter != null)
+            {
+                ButtonClearFilter.Click += ClearButton_Click;
+            }
+
+            if (ItemsPanel != null)
+            {
+                XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+                ItemsPanel.ItemTemplate = Xaml.FromString<DataTemplate>(new XDocument(
+                    new XElement(pns + nameof(DataTemplate),
+                        new XElement(pns + nameof(CheckBox),
+                            new XAttribute(nameof(CheckBox.IsChecked), "{Binding Selected}"),
+                            new XAttribute(nameof(CheckBox.Content), "{Binding Item.Name}"),
+                            new XAttribute(nameof(CheckBox.IsThreeState), "{Binding IsThreeState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=DdItemListSelectionBox}}"),
+                            new XAttribute(nameof(CheckBox.Style), $"{{DynamicResource {ItemStyleName}}}")))
+                ).ToString());
+            }
+
+            UpdateTextStatus();
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             ItemsList.SetSelection(null);
             BoundIds = null;
+        }
+
+        private void UpdateTextStatus()
+        {
+            if (TextFilterString != null)
+            {
+                TextFilterString.Text = ItemsList?.AsString;
+            }
         }
     }
 }

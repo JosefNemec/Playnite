@@ -1,47 +1,39 @@
-﻿using System;
+﻿using Playnite.Common;
+using Playnite.DesktopApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
 {
-    /// <summary>
-    /// Interaction logic for DdItemListSelectionBox.xaml
-    /// </summary>
-    public partial class FilterEnumSelectionBox : UserControl, INotifyPropertyChanged
+    public class FilterEnumSelectionBox : FilterSelectionBoxBase
     {
+        public override string ItemStyleName => "FilterEnumSelectionBoxItemStyle";
+        public List<SelectableItem<SelectionObject>> ItemsList { get; set; }
+
         public class SelectionObject
         {
-            public string DisplayName { get; }
+            public string Name { get; }
             public int Value { get; }
 
             public SelectionObject(Enum enumValue)
             {
                 Value = Convert.ToInt32(enumValue);
-                DisplayName = enumValue.GetDescription();
+                Name = enumValue.GetDescription();
+            }
+
+            public override string ToString()
+            {
+                return Name;
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName]string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        internal bool IgnoreChanges { get; set; }
 
         public Type EnumType
         {
@@ -100,7 +92,6 @@ namespace Playnite.DesktopApp.Controls
 
             if (e.PropertyName == nameof(SelectableItem<SelectionObject>.Selected))
             {
-                OnPropertyChanged(nameof(SelectionString));
                 var selected = ItemsList.Where(a => a.Selected == true);
                 if (selected.HasItems())
                 {
@@ -110,21 +101,6 @@ namespace Playnite.DesktopApp.Controls
                 {
                     FilterProperties = null;
                 }
-            }
-        }
-
-        public List<SelectableItem<SelectionObject>> ItemsList { get; set; }
-
-        public string SelectionString
-        {
-            get
-            {
-                if (ItemsList.HasItems())
-                {
-                    return string.Join(", ", ItemsList.Where(a => a.Selected == true).Select(a => a.Item.DisplayName).ToArray());
-                }
-
-                return string.Empty;
             }
         }
 
@@ -165,15 +141,41 @@ namespace Playnite.DesktopApp.Controls
                 obj.ItemsList?.ForEach(a => a.Selected = obj.FilterProperties.Values.Contains(a.Item.Value));
             }
             obj.IgnoreChanges = false;
-            obj.OnPropertyChanged(nameof(obj.SelectionString));
+            obj.UpdateTextStatus();
         }
 
-        public FilterEnumSelectionBox()
+        static FilterEnumSelectionBox()
         {
-            InitializeComponent();
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(FilterEnumSelectionBox), new FrameworkPropertyMetadata(typeof(FilterEnumSelectionBox)));
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            if (ButtonClearFilter != null)
+            {
+                ButtonClearFilter.Click += ElemClearFilter_Click;
+            }
+
+            UpdateTextStatus();
+        }
+
+        private void UpdateTextStatus()
+        {
+            if (TextFilterString != null)
+            {
+                if (ItemsList.HasItems())
+                {
+                    TextFilterString.Text = string.Join(", ", ItemsList.Where(a => a.Selected == true).Select(a => a.Item.Name).ToArray());
+                }
+                else
+                {
+                    TextFilterString.Text = string.Empty;
+                }
+            }
+        }
+
+        private void ElemClearFilter_Click(object sender, RoutedEventArgs e)
         {
             FilterProperties = null;
         }

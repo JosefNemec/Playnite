@@ -63,6 +63,11 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExpanderEx.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SidebarItem.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/DdItemListSelectionBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterEnumSelectionBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterSelectionBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterStringSelectionBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SearchBox.xaml" />
 
                 <!--Derived Styles-->
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/TextBlockGameScore.xaml" />
