@@ -164,7 +164,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets list of emulator profiles sorted by name.
         /// </summary>
-        [DontSerializeAttribute]
+        [DontSerialize]
         public List<EmulatorProfile> SortedProfiles
         {
             get => Profiles.OrderBy(a => a.Name).ToList();

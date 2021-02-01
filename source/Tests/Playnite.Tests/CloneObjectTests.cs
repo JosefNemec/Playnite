@@ -80,7 +80,7 @@ namespace Playnite.Tests
             [JsonIgnore]
             public int Prop2 { get; set; }
 
-            [DontSerializeAttribute]
+            [DontSerialize]
             public int Prop3 { get; set; }
         }
 
