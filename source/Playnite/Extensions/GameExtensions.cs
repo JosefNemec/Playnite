@@ -116,7 +116,29 @@ namespace Playnite
             return game;
         }
 
+        public static Game ExpandGame(this Game game)
+        {
+            var g = game.GetClone();
+            g.InstallDirectory = g.StringExpand(g.InstallDirectory);
+            g.GameImagePath = g.StringExpand(g.GameImagePath);
+            return g;
+        }
+
+        public static GameInfo ExpandGame(this GameInfo game)
+        {
+            var g = game.GetClone();
+            g.InstallDirectory = g.StringExpand(g.InstallDirectory);
+            g.GameImagePath = g.StringExpand(g.GameImagePath);
+            return g;
+        }
+
         public static string ExpandVariables(this Game game, string inputString, bool fixSeparators = false)
+        {
+            var g = game.ExpandGame();
+            return StringExpand(g, inputString, fixSeparators);
+        }
+
+        private static string StringExpand(this Game game, string inputString, bool fixSeparators = false)
         {
             if (string.IsNullOrEmpty(inputString) || !inputString.Contains('{'))
             {
@@ -148,6 +170,12 @@ namespace Playnite
         }
 
         public static string ExpandVariables(this GameInfo game, string inputString, bool fixSeparators = false)
+        {
+            var g = game.ExpandGame();
+            return StringExpand(g, inputString, fixSeparators);
+        }
+
+        private static string StringExpand(this GameInfo game, string inputString, bool fixSeparators = false)
         {
             if (string.IsNullOrEmpty(inputString) || !inputString.Contains('{'))
             {

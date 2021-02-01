@@ -54,6 +54,25 @@ namespace Playnite.Tests.Models
         }
 
         [Test]
+        public void ExpandVariablesReferenceTest()
+        {
+            var database = new InMemoryGameDatabase();
+            Game.DatabaseReference = database;
+            GameDatabase.GenerateSampleData(database);
+
+            var game = new Game()
+            {
+                Name = "test game",
+                InstallDirectory = @"{PlayniteDir}\test\test2\",
+                GameImagePath = @"{InstallDir}\test.iso"
+            };
+
+            var expanded = game.ExpandVariables("{ImagePath}");
+            StringAssert.DoesNotContain("{ImagePath}", expanded);
+            StringAssert.DoesNotContain("{PlayniteDir}", expanded);
+        }
+
+        [Test]
         public void ExpandVariablesEmptyTest()
         {
             // Should not throw
