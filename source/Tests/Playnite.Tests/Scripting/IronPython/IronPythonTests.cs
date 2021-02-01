@@ -99,14 +99,14 @@ f.write('test')
 f.close()");
                     FileAssert.Exists(outPath);
 
-                    FileSystem.CreateDirectory("subdirectory");
                     var tempDir2 = Path.Combine(tempDir.TempPath, "subdirectory");
+                    FileSystem.CreateDirectory(tempDir2);
                     outPath = Path.Combine(tempDir2, outPath);
                     FileSystem.DeleteFile(outPath);
                     FileAssert.DoesNotExist(outPath);
                     runtime.Execute(@"f = open('workDirTest.txt', 'w')
 f.write('test')
-f.close()", tempDir.TempPath);
+f.close()", tempDir2);
                     FileAssert.Exists(outPath);
                 }
                 Directory.SetCurrentDirectory("\\");

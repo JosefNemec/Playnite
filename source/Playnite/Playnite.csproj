@@ -443,6 +443,7 @@
     <None Include="App.config" />
     <None Include="Common.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="crash_reporter.cfg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

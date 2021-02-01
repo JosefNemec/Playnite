@@ -76,6 +76,10 @@ namespace Playnite
         public static PlayniteApplication Current { get; private set; }
         public ServicesClient ServicesClient { get; private set; }
 
+        public PlayniteApplication()
+        {
+        }
+
         public PlayniteApplication(
             Application nativeApp,
             ApplicationMode mode,
