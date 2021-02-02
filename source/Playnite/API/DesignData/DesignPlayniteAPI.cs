@@ -33,6 +33,11 @@ namespace Playnite.API.DesignData
 
         public IAddons Addons => throw new NotImplementedException();
 
+        public void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
         public ILogger CreateLogger(string name)
         {
             throw new NotImplementedException();

@@ -104,5 +104,12 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="gameId">Game's database ID.</param>
         void StartGame(Guid gameId);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args);
     }
 }

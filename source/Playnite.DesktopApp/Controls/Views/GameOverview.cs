@@ -4,6 +4,8 @@ using Playnite.Controls;
 using Playnite.Converters;
 using Playnite.DesktopApp.Markup;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
+using Playnite.SDK.Controls;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -75,8 +77,8 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     public abstract class GameOverview : Control
     {
-        private readonly ViewType viewType;
-        private readonly DesktopAppViewModel mainModel;
+        internal readonly ViewType viewType;
+        internal readonly DesktopAppViewModel mainModel;
 
         private FrameworkElement ElemPlayTime;
         private FrameworkElement ElemLastPlayed;
@@ -484,6 +486,14 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GamesCollectionViewEntry.Links),
                 nameof(GameDetailsViewModel.LinkVisibility),
                 nameof(Link.Url));
+
+            ControlTemplateTools.InitializePluginControls(
+                mainModel.Extensions,
+                Template,
+                this,
+                ApplicationMode.Desktop,
+                mainModel,
+                $"{nameof(DesktopAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
         }
 
         private void SetBackgroundBinding()

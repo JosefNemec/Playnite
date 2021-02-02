@@ -151,7 +151,8 @@ namespace Playnite.DesktopApp
                 GamesEditor,
                 new PlayniteUriHandler(),
                 new PlayniteSettingsAPI(AppSettings),
-                new AddonsAPI(Extensions, AppSettings));
+                new AddonsAPI(Extensions, AppSettings),
+                Extensions);
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new DesktopAppViewModel(

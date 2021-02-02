@@ -17,7 +17,7 @@ using System.Windows.Controls;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public class PluginSettings
+    public class PluginSettingsItem
     {
         public ISettings Settings { get; set; }
         public UserControl View { get; set; }
@@ -34,7 +34,7 @@ namespace Playnite.DesktopApp.ViewModels
         internal GameDatabase database;
         internal PlayniteApplication application;
         internal PlayniteSettings originalSettings;
-        internal Dictionary<Guid, PluginSettings> loadedPluginSettings = new Dictionary<Guid, PluginSettings>();
+        internal Dictionary<Guid, PluginSettingsItem> loadedPluginSettings = new Dictionary<Guid, PluginSettingsItem>();
         internal bool closingHanled = false;
         internal List<string> editedFields = new List<string>();
 
@@ -133,7 +133,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     provView.DataContext = provSetting;
                     provSetting.BeginEdit();
-                    var plugSetting = new PluginSettings()
+                    var plugSetting = new PluginSettingsItem()
                     {
                         Name = plugin.Description.Name,
                         Settings = provSetting,

@@ -36,7 +36,7 @@ namespace Playnite.DesktopApp.ViewModels
         private IResourceProvider resources;
         private ExtensionFactory extensions;
         private IPlayniteAPI playniteApi;
-        private List<PluginSettings> selectedPlugins;
+        private List<PluginSettingsItem> selectedPlugins;
         private int selectedPluginIndex = 0;
 
         public bool ShowFinishButton
@@ -105,8 +105,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private PluginSettings selectedPlugin;
-        public PluginSettings SelectedLibraryPlugin
+        private PluginSettingsItem selectedPlugin;
+        public PluginSettingsItem SelectedLibraryPlugin
         {
             get
             {
@@ -206,7 +206,7 @@ namespace Playnite.DesktopApp.ViewModels
             window.Close(result);
         }
 
-        private void SetPluginConfiguration(PluginSettings plugin)
+        private void SetPluginConfiguration(PluginSettingsItem plugin)
         {
             SelectedLibraryPlugin = plugin;
             var view = plugin.View;
@@ -223,7 +223,7 @@ namespace Playnite.DesktopApp.ViewModels
                 selectedPlugins = LibraryPlugins.Where(a => a.Selected)?.Select(a =>
                 {
                     var lib = a.Plugin as LibraryPlugin;
-                    return new PluginSettings()
+                    return new PluginSettingsItem()
                     {
                         Name = lib.Name,
                         View = lib.GetSettingsView(true),

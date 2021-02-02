@@ -713,5 +713,27 @@ namespace Playnite.Plugins
         {
             return LibraryPlugins.FirstOrDefault(a => a.Id == pluginId);
         }
+
+        public List<PluginUiElementSupport> CustomElementList = new List<PluginUiElementSupport>();
+
+        public void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args)
+        {
+            if (CustomElementList.Any(a => a.Source == source))
+            {
+                return;
+            }
+
+            foreach (var elem in args.ElementList)
+            {
+                var elemSupport = args.GetClone<AddCustomElementSupportArgs, PluginUiElementSupport>();
+                elemSupport.Source = source;
+                CustomElementList.Add(elemSupport);
+            }
+        }
+    }
+
+    public class PluginUiElementSupport : AddCustomElementSupportArgs
+    {
+        public Plugin Source { get; set; }
     }
 }

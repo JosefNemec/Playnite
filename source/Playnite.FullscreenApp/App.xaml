@@ -36,7 +36,8 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonVirtualKeyboard.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonMessageBox.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonMainMenu.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ListGameItem.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ListGameItemStyle.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ListGameItemTemplate.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonBottomMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonTopMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ToggleButtonTopFilter.xaml" />

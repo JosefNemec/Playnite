@@ -195,7 +195,9 @@
     <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
+    <Compile Include="ControlTemplateTools.cs" />
     <Compile Include="Converters\GenericTypeConverter.cs" />
+    <Compile Include="Extensions\Markup\PluginSettings.cs" />
     <Compile Include="Extensions\Markup\ThemeFileBinding.cs" />
     <Compile Include="Manifests\AddonManifestBase.cs" />
     <Compile Include="Manifests\ExtensionManifest.cs" />

@@ -4,6 +4,7 @@ using Playnite.Controls;
 using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.Extensions;
+using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -143,6 +144,14 @@ namespace Playnite.DesktopApp.Controls
                     Button.CommandParameterProperty,
                     string.Empty);
             }
+
+            ControlTemplateTools.InitializePluginControls(
+                mainModel.Extensions,
+                Template,
+                this,
+                ApplicationMode.Desktop,
+                this.DataContext,
+                nameof(GamesCollectionViewEntry.Game));
         }
     }
 }

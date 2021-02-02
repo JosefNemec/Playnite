@@ -54,6 +54,7 @@
     <Compile Include="Collections\ObservableConcurrentDictionary.cs" />
     <Compile Include="Collections\ObservableObject.cs" />
     <Compile Include="Collections\RangeObservableCollection.cs" />
+    <Compile Include="Controls\PluginUserControl.cs" />
     <Compile Include="Database\IGameDatabase.cs" />
     <Compile Include="Database\IItemCollection.cs" />
     <Compile Include="Data\MarkupConverter.cs" />

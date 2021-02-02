@@ -34,6 +34,8 @@
       href: extensions/scriptingDebugging.md
     - name: String localizations
       href: extensions/localizations.md
+    - name: UI Integration
+      href: extensions/customUiIntegration.md
     - name: Manifest file
       href: extensions/extensionsManifest.md
 

@@ -27,6 +27,11 @@ namespace Playnite.Extensions.Markup
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
+            if (ServiceProvider.IsTargetTemplate(serviceProvider))
+            {
+                return this;
+            }
+
             if (!PathFormat.IsNullOrEmpty())
             {
                 Converter = new GenericTypeConverter() { StringFormat = ThemeFile.GetFilePath(PathFormat, false) };

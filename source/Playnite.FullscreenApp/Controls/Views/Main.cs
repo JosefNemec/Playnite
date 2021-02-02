@@ -352,7 +352,24 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ListGameItems = Template.FindName("PART_ListGameItems", this) as ListBox;
                 if (ListGameItems != null)
                 {
-                    ListGameItems.ItemsPanel = GetItemsPanelTemplate();
+                    XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+                    ListGameItems.ItemsPanel = Xaml.FromString<ItemsPanelTemplate>(new XDocument(
+                        new XElement(pns + nameof(ItemsPanelTemplate),
+                            new XElement(pns + nameof(FullscreenTilePanel),
+                                new XAttribute(nameof(FullscreenTilePanel.Rows), "{Settings Fullscreen.Rows}"),
+                                new XAttribute(nameof(FullscreenTilePanel.Columns), "{Settings Fullscreen.Columns}"),
+                                new XAttribute(nameof(FullscreenTilePanel.UseHorizontalLayout), "{Settings Fullscreen.HorizontalLayout}"),
+                                new XAttribute(nameof(FullscreenTilePanel.ItemAspectRatio), "{Settings CoverAspectRatio}"),
+                                new XAttribute(nameof(FullscreenTilePanel.ItemSpacing), "{Settings FullscreenItemSpacing}")))
+                    ).ToString());
+
+                    ListGameItems.ItemTemplate = Xaml.FromString<DataTemplate>(new XDocument(
+                        new XElement(pns + nameof(DataTemplate),
+                            new XElement(pns + nameof(GameListItem),
+                                new XAttribute(nameof(GameListItem.Style), "{StaticResource ListGameItemTemplate}")))
+                    ).ToString());
+
+                    ListGameItems.SetResourceReference(ListBoxEx.ItemContainerStyleProperty, "ListGameItemStyle");
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameOptionsCommand, Key = Key.X });
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = Key.A });
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ActivateSelectedCommand, Key = Key.Enter });
@@ -527,22 +544,6 @@ namespace Playnite.FullscreenApp.Controls.Views
             {
                 button.Command = command;
             }
-        }
-
-        private ItemsPanelTemplate GetItemsPanelTemplate()
-        {
-            XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
-            var templateDoc = new XDocument(
-                new XElement(pns + nameof(ItemsPanelTemplate),
-                    new XElement(pns + nameof(FullscreenTilePanel),
-                        new XAttribute("Rows", "{Settings Fullscreen.Rows}"),
-                        new XAttribute("Columns", "{Settings Fullscreen.Columns}"),
-                        new XAttribute("UseHorizontalLayout", "{Settings Fullscreen.HorizontalLayout}"),
-                        new XAttribute("ItemAspectRatio", "{Settings CoverAspectRatio}"),
-                        new XAttribute("ItemSpacing", "{Settings FullscreenItemSpacing}"))));
-
-            var str = templateDoc.ToString();
-            return Xaml.FromString<ItemsPanelTemplate>(str);
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -20,12 +21,19 @@ namespace TestPlugin
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public ISettings Settings { get; private set; } = new TestPluginSettings();
+        public TestPluginSettingsViewModel Settings { get; private set; }
 
         public override Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C9");
 
         public TestPlugin(IPlayniteAPI api) : base(api)
         {
+            Settings = new TestPluginSettingsViewModel(this, api);
+            AddCustomElementSupport(new AddCustomElementSupportArgs
+            {
+                ElementList = new List<string> { "TestUserControl" },
+                SourceName = "TestPlugin",
+                SettingsRoot = $"{nameof(Settings)}.{nameof(Settings.Settings)}"
+            });
         }
 
         public override ISettings GetSettings(bool firstRunSettings)
@@ -192,6 +200,16 @@ namespace TestPlugin
                     Type = GenericPlayActionType.File
                 }
             };
+        }
+
+        public override Control GetGameViewControl(GetGameViewControlArgs args)
+        {
+            if (args.Name == "TestUserControl")
+            {
+                return new TestPluginUserControl();
+            }
+
+            return null;
         }
     }
 }

@@ -4,7 +4,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     mc:Ignorable="d">
 
-    <Style x:Key="ListGameItem" TargetType="ListBoxItem">        
+    <Style x:Key="ListGameItemStyle" TargetType="ListBoxItem">        
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -36,24 +36,7 @@
                         <Grid.RenderTransform>
                             <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
                         </Grid.RenderTransform>
-                        <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"
-                               Stretch="{Settings CoverArtStretch}">
-                            <Image.Source>
-                                <PriorityBinding>
-                                    <Binding Path="CoverImageObject" Mode="OneWay" 
-                                            Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
-                                    <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
-                                </PriorityBinding>
-                            </Image.Source>
-                        </Image>
-                        <Border Background="#AA000000" x:Name="BorderDarken" Visibility="Collapsed" />
-                        <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
-                                   Visibility="{Settings Fullscreen.ShowGameTitles}"
-                                   Style="{DynamicResource TextBlockBaseStyle}" FontSize="18"
-                                   HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-                                   TextAlignment="Center" Padding="5"                                    
-                                   Background="{DynamicResource ControlBackgroundDarkBrush}"/>
+                        <ContentPresenter />
                         <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
                                 Margin="-3"/>
                         <Border x:Name="MainBorder" BorderThickness="5" BorderBrush="{DynamicResource SelectionBrush}"
@@ -66,13 +49,6 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsInstalled}" Value="False" />
-                                <Condition Binding="{Settings Fullscreen.DarkenUninstalledGamesGrid}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Visibility" Value="Visible" TargetName="BorderDarken" />
-                        </MultiDataTrigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
                             <Setter Property="Canvas.ZIndex" Value="90" />

@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Playnite.SDK.Plugins
@@ -286,5 +287,61 @@ namespace Playnite.SDK.Plugins
         {
             return null;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public virtual Control GetGameViewControl(GetGameViewControlArgs args)
+        {
+            return null;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        public void AddCustomElementSupport(AddCustomElementSupportArgs args)
+        {
+            PlayniteApi.AddCustomElementSupport(this, args);
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetGameViewControlArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ApplicationMode Mode { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddCustomElementSupportArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public List<string> ElementList { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SettingsRoot { get; set; }
     }
 }

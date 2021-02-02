@@ -12,12 +12,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Playnite.Plugins;
 
 namespace Playnite.API
 {
     public class PlayniteAPI : IPlayniteAPI
     {
         private readonly GamesEditor gameEditor;
+        private readonly ExtensionFactory extensions;
 
         public PlayniteAPI(
             IGameDatabaseAPI databaseApi,
@@ -31,7 +33,8 @@ namespace Playnite.API
             GamesEditor gameEditor,
             IUriHandlerAPI uriHandler,
             IPlayniteSettingsAPI settingsApi,
-            IAddons addonsApi)
+            IAddons addonsApi,
+            ExtensionFactory extensions)
         {
             WebViews = webViewFactory;
             Paths = pathsApi;
@@ -45,6 +48,7 @@ namespace Playnite.API
             UriHandler = uriHandler;
             ApplicationSettings = settingsApi;
             Addons = addonsApi;
+            this.extensions = extensions;
         }
 
         public IDialogsFactory Dialogs { get; }
@@ -103,6 +107,11 @@ namespace Playnite.API
             {
                 gameEditor.PlayGame(game);
             }
+        }
+
+        public void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args)
+        {
+            extensions.AddCustomElementSupport(source, args);
         }
     }
 }

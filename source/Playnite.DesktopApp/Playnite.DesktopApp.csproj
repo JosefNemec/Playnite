@@ -252,6 +252,7 @@
     <Compile Include="DesktopCollectionView.cs" />
     <Compile Include="DesktopDialogs.cs" />
     <Compile Include="DesktopGamesEditor.cs" />
+    <Compile Include="Markup\PluginSettings.cs" />
     <Compile Include="Markup\ThemeFileBinding.cs" />
     <Compile Include="Markup\Api.cs" />
     <Compile Include="Markup\MainViewModel.cs" />

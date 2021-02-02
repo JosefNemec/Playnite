@@ -5,6 +5,7 @@ using Playnite.Converters;
 using Playnite.FullscreenApp.Markup;
 using Playnite.FullscreenApp.ViewModels;
 using Playnite.Input;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,6 +136,14 @@ namespace Playnite.FullscreenApp.Controls.Views
                         nameof(GamesCollectionViewEntry.Description));
                     HtmlDescription.TemplatePath = ThemeFile.GetFilePath("DescriptionView.html");
                 }
+
+                ControlTemplateTools.InitializePluginControls(
+                    mainModel.Extensions,
+                    Template,
+                    this,
+                    ApplicationMode.Fullscreen,
+                    mainModel,
+                    $"{nameof(FullscreenAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
             }
         }
     }
