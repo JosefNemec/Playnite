@@ -43,7 +43,7 @@ namespace System
 
         public bool Equals(NamedObject<TItem> p)
         {
-            if (p == null)
+            if (p is null)
             {
                 return false;
             }
@@ -58,6 +58,16 @@ namespace System
 
         public static bool operator ==(NamedObject<TItem> l, NamedObject<TItem> r)
         {
+            if ((l is null && !(r is null)) || (!(l is null) && r is null))
+            {
+                return false;
+            }
+
+            if (l is null && r is null)
+            {
+                return true;
+            }
+
             return l.Value.Equals(r.Value);
         }
 
