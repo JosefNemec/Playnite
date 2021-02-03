@@ -727,6 +727,7 @@ namespace Playnite
             }
         }
 
+        [JsonIgnore]
         public bool SuppressFilterChanges = false;
         public event EventHandler<FilterChangedEventArgs> FilterChanged;
 
