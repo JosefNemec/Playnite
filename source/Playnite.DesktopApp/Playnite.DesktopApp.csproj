@@ -252,12 +252,7 @@
     <Compile Include="DesktopCollectionView.cs" />
     <Compile Include="DesktopDialogs.cs" />
     <Compile Include="DesktopGamesEditor.cs" />
-    <Compile Include="Markup\PluginSettings.cs" />
-    <Compile Include="Markup\ThemeFileBinding.cs" />
-    <Compile Include="Markup\Api.cs" />
-    <Compile Include="Markup\MainViewModel.cs" />
-    <Compile Include="Markup\Settings.cs" />
-    <Compile Include="Markup\ThemeFile.cs" />
+    <Compile Include="Markups.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AddonsViewModel.cs" />
     <Compile Include="ViewModels\AddonsViewModel_Installed.cs" />

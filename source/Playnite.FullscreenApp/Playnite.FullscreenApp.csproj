@@ -145,12 +145,7 @@
     <Compile Include="Controls\Views\SettingsMenu.cs" />
     <Compile Include="FullscreenCollectionView.cs" />
     <Compile Include="FullscreenDialogs.cs" />
-    <Compile Include="Markup\Api.cs" />
-    <Compile Include="Markup\MainViewModel.cs" />
-    <Compile Include="Markup\PluginSettings.cs" />
-    <Compile Include="Markup\Settings.cs" />
-    <Compile Include="Markup\ThemeFile.cs" />
-    <Compile Include="Markup\ThemeFileBinding.cs" />
+    <Compile Include="Markup\Markups.cs" />
     <Compile Include="ViewModels\AddonsViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel.cs" />

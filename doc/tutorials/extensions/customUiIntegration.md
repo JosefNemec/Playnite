@@ -95,6 +95,13 @@ Plugin controls can be currently used in following views:
 |GridViewItemTemplate||
 |DetailsViewItemTemplate||
 
+### Checking if plugin is installed
+
+You can use `PluginStatus` markup to add conditions based on if a plugin is installed or not.
+
+```xml
+{PluginStatus Plugin=AddonId, Status=Installed}
+```
 
 Plugin settings
 ---------------------
