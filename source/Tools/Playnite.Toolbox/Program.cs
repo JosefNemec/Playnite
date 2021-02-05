@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using CommandLine.Text;
 using Playnite.API;
 using Playnite.Common;
 using Playnite.Plugins;
@@ -31,15 +32,20 @@ namespace Playnite.Toolbox
             logger.Debug("Toolbox started.");
             logger.Debug(Environment.CommandLine);
 
-            var cmdlineParser = new Parser(with => with.CaseInsensitiveEnumValues = true);
-            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions, UpdateCmdLineOptions>(args)
-                .WithParsed<NewCmdLineOptions>(ProcessNewOptions)
+            var cmdlineParser = new Parser(with =>
+            {
+                with.CaseInsensitiveEnumValues = true;
+                with.HelpWriter = null;
+            });
+
+            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions, UpdateCmdLineOptions>(args);
+            result.WithParsed<NewCmdLineOptions>(ProcessNewOptions)
                 .WithParsed<PackCmdLineOptions>(ProcessPackOptions)
-                .WithParsed<UpdateCmdLineOptions>(ProcessUpdateOptions);
+                .WithParsed<UpdateCmdLineOptions>(ProcessUpdateOptions)
+                .WithNotParsed(errs => DisplayHelp(result, errs));
             if (result.Tag == ParserResultType.NotParsed)
             {
                 AppResult = 2;
-                logger.Error("No acceptable arguments given.");
             }
 
             if (Debugger.IsAttached)
@@ -48,6 +54,19 @@ namespace Playnite.Toolbox
             }
 
             return AppResult;
+        }
+
+        static void DisplayHelp<T>(ParserResult<T> result, IEnumerable<Error> errs)
+        {
+            var helpText = HelpText.AutoBuild(result, h =>
+            {
+                h.AdditionalNewLineAfterOption = false;
+                h.AddEnumValuesToHelpText = true;
+                h.AutoHelp = false;
+                h.AutoVersion = false;
+                return h;
+            });
+            Console.WriteLine(helpText);
         }
 
         public static ItemType GetExtensionType(string directory)
