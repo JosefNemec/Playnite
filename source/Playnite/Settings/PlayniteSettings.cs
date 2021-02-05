@@ -22,6 +22,7 @@ using Playnite.Metadata;
 using Playnite.SDK;
 using Microsoft.Win32;
 using Playnite.SDK.Models;
+using System.Collections.ObjectModel;
 
 namespace Playnite
 {
@@ -1557,6 +1558,18 @@ namespace Playnite
             get; set;
         } = new ImportExclusionList();
 
+        [JsonIgnore]
+        public List<FilterPreset> FilterPresets
+        {
+            get; private set;
+        } = new List<FilterPreset>();
+
+        [JsonIgnore]
+        public List<FilterPreset> SortedFilterPresets
+        {
+            get => FilterPresets.OrderBy(a => a.Name).ToList();
+        }
+
         private List<SelectableItem<string>> develExtenions = new List<SelectableItem<string>>();
         public List<SelectableItem<string>> DevelExtenions
         {
@@ -1713,44 +1726,30 @@ namespace Playnite
                 settings.Version = 5;
             }
 
-            settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
-            if (settings.WindowPositions == null)
-            {
-                logger.Warn("No existing WindowPositions settings found.");
-                settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.BackupWindowPositionsPath);
-                if (settings.WindowPositions == null)
-                {
-                    logger.Warn("No WindowPositions settings backup found, creating default ones.");
-                    settings.WindowPositions = new WindowPositions();
-                }
-            }
-
-            settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath);
-            if (settings.Fullscreen == null)
-            {
-                logger.Warn("No existing fullscreen settings found.");
-                settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.BackupFullscreenConfigFilePath);
-                if (settings.Fullscreen == null)
-                {
-                    logger.Warn("No fullscreen settings backup found, creating default ones.");
-                    settings.Fullscreen = new FullscreenSettings();
-                }
-            }
-
-            settings.ImportExclusionList = LoadSettingFile<ImportExclusionList>(PlaynitePaths.ExclusionListConfigFilePath);
-            if (settings.ImportExclusionList == null)
-            {
-                logger.Warn("No existing ImportExclusionList settings found.");
-                settings.ImportExclusionList = LoadSettingFile<ImportExclusionList>(PlaynitePaths.BackupExclusionListConfigFilePath);
-                if (settings.ImportExclusionList == null)
-                {
-                    logger.Warn("No ImportExclusionList settings backup found, creating default ones.");
-                    settings.ImportExclusionList = new ImportExclusionList();
-                }
-            }
-
+            settings.WindowPositions = LoadExternalConfig<WindowPositions>(PlaynitePaths.WindowPositionsPath, PlaynitePaths.BackupWindowPositionsPath);
+            settings.Fullscreen = LoadExternalConfig<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath, PlaynitePaths.BackupFullscreenConfigFilePath);
+            settings.ImportExclusionList = LoadExternalConfig<ImportExclusionList>(PlaynitePaths.ExclusionListConfigFilePath, PlaynitePaths.BackupExclusionListConfigFilePath);
+            settings.FilterPresets = LoadExternalConfig<List<FilterPreset>>(PlaynitePaths.FilterPresetsFilePath, PlaynitePaths.BackupFilterPresetsFilePath);
             settings.BackupSettings();
             return settings;
+        }
+
+        private static T LoadExternalConfig<T>(string origPath, string backupPath) where T : class, new()
+        {
+            var name = Path.GetFileName(origPath);
+            var config = LoadSettingFile<T>(origPath);
+            if (config == null)
+            {
+                logger.Warn($"No existing {name} settings found.");
+                config = LoadSettingFile<T>(backupPath);
+                if (config == null)
+                {
+                    logger.Warn($"No {name} settings backup found, creating default ones.");
+                    config = new T();
+                }
+            }
+
+            return config;
         }
 
         public void SaveSettings()
@@ -1762,6 +1761,7 @@ namespace Playnite
                 SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
                 SaveSettingFile(ImportExclusionList, PlaynitePaths.ExclusionListConfigFilePath);
+                SaveSettingFile(FilterPresets, PlaynitePaths.FilterPresetsFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -1778,6 +1778,7 @@ namespace Playnite
                 SaveSettingFile(WindowPositions, PlaynitePaths.BackupWindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.BackupFullscreenConfigFilePath);
                 SaveSettingFile(ImportExclusionList, PlaynitePaths.BackupExclusionListConfigFilePath);
+                SaveSettingFile(FilterPresets, PlaynitePaths.BackupFilterPresetsFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {

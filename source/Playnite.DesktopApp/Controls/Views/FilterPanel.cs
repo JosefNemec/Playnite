@@ -22,12 +22,20 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonClear", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonClose", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_PanelItemsHost", Type = typeof(Panel))]
+    [TemplatePart(Name = "PART_ButtonDeleteFilter", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ButtonRenameFilter", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ButtonSaveFilter", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ComboFilterPresets", Type = typeof(ComboBox))]
     public class FilterPanel : Control
     {
         private readonly DesktopAppViewModel mainModel;
         private ButtonBase ButtonClear;
         private ButtonBase ButtonClose;
         private Panel PanelItemsHost;
+        private ButtonBase ButtonDeleteFilter;
+        private ButtonBase ButtonRenameFilter;
+        private ButtonBase ButtonSaveFilter;
+        private ComboBox ComboFilterPresets;
 
         static FilterPanel()
         {
@@ -65,6 +73,56 @@ namespace Playnite.DesktopApp.Controls.Views
             if (ButtonClose != null)
             {
                 ButtonClose.Command = mainModel.CloseFilterPanelCommand;
+            }
+
+            ButtonDeleteFilter = Template.FindName("PART_ButtonDeleteFilter", this) as ButtonBase;
+            if (ButtonDeleteFilter != null)
+            {
+                BindingTools.SetBinding(ButtonDeleteFilter,
+                    ButtonBase.CommandProperty,
+                    mainModel,
+                    nameof(mainModel.RemoveFilterPresetCommand));
+                BindingTools.SetBinding(ButtonDeleteFilter,
+                    ButtonBase.CommandParameterProperty,
+                    mainModel,
+                    nameof(mainModel.ActiveFilterPreset));
+            }
+
+            ButtonRenameFilter = Template.FindName("PART_ButtonRenameFilter", this) as ButtonBase;
+            if (ButtonRenameFilter != null)
+            {
+                BindingTools.SetBinding(ButtonRenameFilter,
+                    ButtonBase.CommandProperty,
+                    mainModel,
+                    nameof(mainModel.RenameFilterPresetCommand));
+                BindingTools.SetBinding(ButtonRenameFilter,
+                    ButtonBase.CommandParameterProperty,
+                    mainModel,
+                    nameof(mainModel.ActiveFilterPreset));
+            }
+
+            ButtonSaveFilter = Template.FindName("PART_ButtonSaveFilter", this) as ButtonBase;
+            if (ButtonSaveFilter != null)
+            {
+                BindingTools.SetBinding(ButtonSaveFilter,
+                    ButtonBase.CommandProperty,
+                    mainModel,
+                    nameof(mainModel.AddFilterPresetCommand));
+            }
+
+            ComboFilterPresets = Template.FindName("PART_ComboFilterPresets", this) as ComboBox;
+            if (ComboFilterPresets != null)
+            {
+                BindingTools.SetBinding(ComboFilterPresets,
+                    ComboBox.ItemsSourceProperty,
+                    mainModel.AppSettings,
+                    nameof(mainModel.AppSettings.SortedFilterPresets));
+                BindingTools.SetBinding(ComboFilterPresets,
+                    ComboBox.SelectedItemProperty,
+                    mainModel,
+                    nameof(mainModel.ActiveFilterPreset),
+                    mode: BindingMode.TwoWay);
+                ComboFilterPresets.DisplayMemberPath = nameof(FilterPreset.Name);
             }
 
             SetToggleFilter(nameof(FilterSettings.IsInstalled), nameof(DatabaseStats.Installed), LOC.GameIsInstalledTitle);

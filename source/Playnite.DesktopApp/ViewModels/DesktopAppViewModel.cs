@@ -325,6 +325,18 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private FilterPreset activeFilterPreset;
+        public FilterPreset ActiveFilterPreset
+        {
+            get => activeFilterPreset;
+            set
+            {
+                activeFilterPreset = value;
+                ApplyFilterPreset(value);
+                OnPropertyChanged();
+            }
+        }
+
         public DesktopAppViewModel()
         {
             InitializeCommands();
@@ -1116,6 +1128,7 @@ namespace Playnite.DesktopApp.ViewModels
         public virtual void ClearFilters()
         {
             AppSettings.FilterSettings.ClearFilters();
+            ActiveFilterPreset = null;
         }
 
         public void Dispose()
@@ -1206,6 +1219,67 @@ namespace Playnite.DesktopApp.ViewModels
                 default:
                     Logger.Warn($"Uknown URI command {command}");
                     break;
+            }
+        }
+
+        private void ApplyFilterPreset(FilterPreset preset)
+        {
+            if (preset == null)
+            {
+                return;
+            }
+
+            AppSettings.FilterSettings.ApplyFilter(preset.Settings);
+        }
+
+        private void RenameFilterPreset(FilterPreset preset)
+        {
+            if (preset == null)
+            {
+                return;
+            }
+
+            var res = Dialogs.SelectString(LOC.EnterName, string.Empty, preset.Name);
+            if (res.Result && !res.SelectedString.IsNullOrEmpty())
+            {
+                preset.Name = res.SelectedString;
+            }
+        }
+
+        private void RemoveFilterPreset(FilterPreset preset)
+        {
+            if (preset == null)
+            {
+                return;
+            }
+
+            if (Dialogs.ShowMessage(LOC.AskRemoveItemMessage, LOC.AskRemoveItemTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                AppSettings.FilterPresets.Remove(preset);
+                if (ActiveFilterPreset == preset)
+                {
+                    ActiveFilterPreset = null;
+                }
+
+                AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterPresets));
+            }
+        }
+
+        private void AddFilterPreset()
+        {
+            var res = Dialogs.SelectString(LOC.EnterName, string.Empty, string.Empty);
+            if (res.Result && !res.SelectedString.IsNullOrEmpty())
+            {
+                var filter = AppSettings.FilterSettings.GetClone();
+                var preset = new FilterPreset
+                {
+                    Name = res.SelectedString,
+                    Settings = filter
+                };
+
+                AppSettings.FilterPresets.Add(preset);
+                ActiveFilterPreset = preset;
+                AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterPresets));
             }
         }
     }

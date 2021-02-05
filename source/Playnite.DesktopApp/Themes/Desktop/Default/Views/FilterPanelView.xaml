@@ -39,6 +39,14 @@
         <Setter Property="Margin" Value="8,0,6,0" />
     </Style>
 
+    <Style x:Key="FilterPresetButtonAction" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="FontFamily" Value="{StaticResource FontIcoFont}" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="DockPanel.Dock" Value="Right" />
+    </Style>
+
     <Style TargetType="{x:Type FilterPanel}">  
         <Setter Property="Template">
             <Setter.Value>
@@ -59,7 +67,7 @@
                             </Style>
                         </Border.Style>
                         <DockPanel Background="{TemplateBinding Background}">
-                            <DockPanel Margin="10,8,5,12" DockPanel.Dock="Top">
+                            <DockPanel Margin="10,8,5,5" DockPanel.Dock="Top">
                                 <Button Content="r" FontFamily="Marlett"
                                         Style="{StaticResource SimpleButton}"
                                         DockPanel.Dock="Right" Margin="0,0,5,0"
@@ -69,6 +77,16 @@
                                         Style="{StaticResource SimpleButton}"
                                         Name="PART_ButtonClear"/>
                             </DockPanel>
+                            <DockPanel DockPanel.Dock="Top" Margin="8,0,6,5">
+                                <Button x:Name="PART_ButtonDeleteFilter"
+                                        Content="&#xec53;" Style="{DynamicResource FilterPresetButtonAction}" />
+                                <Button x:Name="PART_ButtonRenameFilter"
+                                        Content="&#xec55;" Style="{DynamicResource FilterPresetButtonAction}"/>
+                                <Button x:Name="PART_ButtonSaveFilter"
+                                        Content="&#xee00;" Style="{DynamicResource FilterPresetButtonAction}" />
+                                <ComboBox x:Name="PART_ComboFilterPresets"
+                                          DockPanel.Dock="Left" VerticalAlignment="Center" />
+                            </DockPanel>                            
                             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
                                       DockPanel.Dock="Top" Padding="0,0,0,15">
                                 <StackPanel x:Name="PART_PanelItemsHost" />

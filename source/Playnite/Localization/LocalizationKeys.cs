@@ -3185,5 +3185,13 @@ namespace Playnite
         /// Scroll amount modifier
         /// </summary>
         public const string GridViewScrollAmountModifier = "LOCGridViewScrollAmountModifier";
+        /// <summary>
+        /// Remove item?
+        /// </summary>
+        public const string AskRemoveItemTitle = "LOCAskRemoveItemTitle";
+        /// <summary>
+        /// Are you sure you want to remove this item?
+        /// </summary>
+        public const string AskRemoveItemMessage = "LOCAskRemoveItemMessage";
     }
 }

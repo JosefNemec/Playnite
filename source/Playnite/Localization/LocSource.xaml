@@ -892,4 +892,6 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Items only</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">Start and end only</sys:String>
     <sys:String x:Key="LOCGridViewScrollAmountModifier">Scroll amount modifier</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemTitle">Remove item?</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemMessage">Are you sure you want to remove this item?</sys:String>
 </ResourceDictionary>

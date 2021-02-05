@@ -84,6 +84,11 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> SelectRandomGameCommand { get; private set; }
         public RelayCommand<SidebarWrapperItem> SelectSidebarViewCommand { get; private set; }
 
+        public RelayCommand<object> AddFilterPresetCommand { get; private set; }
+        public RelayCommand<FilterPreset> RenameFilterPresetCommand { get; private set; }
+        public RelayCommand<FilterPreset> RemoveFilterPresetCommand { get; private set; }
+        public RelayCommand<FilterPreset> ApplyFilterPresetCommand { get; private set; }
+
         private void InitializeCommands()
         {
             OpenSearchCommand = new RelayCommand<object>((game) =>
@@ -569,6 +574,26 @@ namespace Playnite.DesktopApp.ViewModels
             SelectSidebarViewCommand = new RelayCommand<SidebarWrapperItem>((a) =>
             {
                 a.Command.Execute(null);
+            });
+
+            ApplyFilterPresetCommand = new RelayCommand<FilterPreset>((a) =>
+            {
+                ApplyFilterPreset(a);
+            });
+
+            RemoveFilterPresetCommand = new RelayCommand<FilterPreset>((a) =>
+            {
+                RemoveFilterPreset(a);
+            }, (a) => a != null);
+
+            RenameFilterPresetCommand = new RelayCommand<FilterPreset>((a) =>
+            {
+                RenameFilterPreset(a);
+            }, (a) => a != null);
+
+            AddFilterPresetCommand = new RelayCommand<object>((a) =>
+            {
+                AddFilterPreset();
             });
         }
     }
