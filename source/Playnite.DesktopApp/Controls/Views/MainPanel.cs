@@ -19,6 +19,7 @@ namespace Playnite.DesktopApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ElemMainMenu", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemViewMenu", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ElemFiltersMenu", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_TextMainSearch", Type = typeof(SearchBox))]
     [TemplatePart(Name = "PART_ToggleFilter", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ToggleNotifications", Type = typeof(ToggleButton))]
@@ -31,6 +32,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private readonly DesktopAppViewModel mainModel;
         private FrameworkElement ElemMainMenu;
         private FrameworkElement ElemViewMenu;
+        private FrameworkElement ElemFiltersMenu;
         private SearchBox TextMainSearch;
         private ToggleButton ToggleFilter;
         private ToggleButton ToggleNotifications;
@@ -86,6 +88,17 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 LeftClickContextMenuBehavior.SetEnabled(ElemViewMenu, true);
                 ElemViewMenu.ContextMenu = new ViewSettingsMenu(mainModel.AppSettings)
+                {
+                    StaysOpen = false,
+                    Placement = PlacementMode.Bottom
+                };
+            }
+
+            ElemFiltersMenu = Template.FindName("PART_ElemFiltersMenu", this) as FrameworkElement;
+            if (ElemFiltersMenu != null)
+            {
+                LeftClickContextMenuBehavior.SetEnabled(ElemFiltersMenu, true);
+                ElemFiltersMenu.ContextMenu = new FilterPresetsMenu(mainModel)
                 {
                     StaysOpen = false,
                     Placement = PlacementMode.Bottom

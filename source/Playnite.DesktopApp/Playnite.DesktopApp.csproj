@@ -141,9 +141,10 @@
       <DependentUpon>InstalledExtensions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ExpanderEx.cs" />
+    <Compile Include="Controls\Menus\FilterPresetsMenu.cs" />
     <Compile Include="Controls\FilterSelectionBoxBase.cs" />
-    <Compile Include="Controls\GameGroupMenu.cs" />
-    <Compile Include="Controls\GameMenu.cs" />
+    <Compile Include="Controls\Menus\GameGroupMenu.cs" />
+    <Compile Include="Controls\Menus\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
     </Compile>
@@ -230,9 +231,9 @@
     <Compile Include="Controls\SliderWithPopup.xaml.cs">
       <DependentUpon>SliderWithPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TrayContextMenu.cs" />
-    <Compile Include="Controls\ViewSettingsMenu.cs" />
-    <Compile Include="Controls\MainMenu.cs" />
+    <Compile Include="Controls\Menus\TrayContextMenu.cs" />
+    <Compile Include="Controls\Menus\ViewSettingsMenu.cs" />
+    <Compile Include="Controls\Menus\MainMenu.cs" />
     <Compile Include="Controls\Views\ExplorerPanel.cs" />
     <Compile Include="Controls\Views\Library.cs" />
     <Compile Include="Controls\Views\GameOverview.cs" />

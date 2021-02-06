@@ -197,6 +197,7 @@
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
     <Compile Include="ControlTemplateTools.cs" />
     <Compile Include="Converters\GenericTypeConverter.cs" />
+    <Compile Include="Converters\ObjectEqualityToBoolConverter.cs" />
     <Compile Include="Extensions\Markup\PluginSettings.cs" />
     <Compile Include="Extensions\Markup\PluginStatus.cs" />
     <Compile Include="Extensions\Markup\ThemeFileBinding.cs" />

@@ -45,6 +45,16 @@
                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Border>
 
+                            <Border x:Name="PART_ElemFiltersMenu" Background="Transparent"
+                                    DockPanel.Dock="Left" Margin="10,6,0,6" Width="35"
+                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                    Style="{DynamicResource HighlightBorder}">
+                                <TextBlock Text="&#xeec0;" 
+                                           FontFamily="{StaticResource FontIcoFont}"
+                                           Foreground="{DynamicResource TextBrush}"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+
                             <CheckBox x:Name="PART_ToggleFilter"
                                       WindowChrome.IsHitTestVisibleInChrome="True"
                                       DockPanel.Dock="Left" Margin="10,6,0,6" MinWidth="35">

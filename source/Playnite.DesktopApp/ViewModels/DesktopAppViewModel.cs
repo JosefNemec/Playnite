@@ -1229,6 +1229,11 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
+            if (ActiveFilterPreset != preset)
+            {
+                ActiveFilterPreset = preset;
+            }
+
             AppSettings.FilterSettings.ApplyFilter(preset.Settings);
         }
 
