@@ -3233,5 +3233,9 @@ namespace Playnite
         /// Filter presets
         /// </summary>
         public const string TopPanelFilterPresets = "LOCTopPanelFilterPresets";
+        /// <summary>
+        /// Plugin items position
+        /// </summary>
+        public const string TopPanelPluginPanelPosition = "LOCTopPanelPluginPanelPosition";
     }
 }

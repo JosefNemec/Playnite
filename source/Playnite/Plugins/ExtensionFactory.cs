@@ -730,6 +730,34 @@ namespace Playnite.Plugins
                 CustomElementList.Add(elemSupport);
             }
         }
+
+        public List<object> GetTopPanelPluginItems()
+        {
+            var res = new List<object>();
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    var items = plugin.Plugin.GetTopPanelItems();
+                    if (items != null)
+                    {
+                        res.AddRange(items);
+                    }
+
+                    var elemts = plugin.Plugin.GetTopPanelElements();
+                    if (elemts != null)
+                    {
+                        res.AddRange(elemts);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get top panel itesm from {plugin.Description.Id}");
+                }
+            }
+
+            return res;
+        }
     }
 
     public class PluginUiElementSupport : AddCustomElementSupportArgs

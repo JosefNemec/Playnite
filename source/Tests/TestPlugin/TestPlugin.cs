@@ -133,7 +133,7 @@ namespace TestPlugin
                 Title = "Calculator";
                 Icon = new TextBlock
                 {
-                    Text = char.ConvertFromUtf32(Convert.ToInt32(0xef08)),
+                    Text = char.ConvertFromUtf32(0xef08),
                     FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily,
                     Foreground = Brushes.OrangeRed
                 };
@@ -155,7 +155,7 @@ namespace TestPlugin
                 Title = "TestView";
                 Icon = new TextBlock
                 {
-                    Text = char.ConvertFromUtf32(Convert.ToInt32(0xeaf1)),
+                    Text = char.ConvertFromUtf32(0xeaf1),
                     FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
                 };
             }
@@ -210,6 +210,24 @@ namespace TestPlugin
             }
 
             return null;
+        }
+
+        public override List<TopPanelItem> GetTopPanelItems()
+        {
+            return new List<TopPanelItem>
+            {
+                new TopPanelItem()
+                {
+                    Icon = new TextBlock
+                    {
+                        Text = char.ConvertFromUtf32(0xeaf1),
+                        FontSize = 20,
+                        FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
+                    },
+                    ToolTip = "Steam fields",
+                    Action = ()=> Process.Start(@"steam://open/friends")
+                }
+            };
         }
     }
 }

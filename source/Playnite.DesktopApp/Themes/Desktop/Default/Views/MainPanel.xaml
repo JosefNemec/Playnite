@@ -178,17 +178,7 @@
 
                             <StackPanel x:Name="PART_PanelMainPluginItems" Orientation="Horizontal"
                                         VerticalAlignment="Stretch" Margin="0,6,0,6"
-                                        DockPanel.Dock="Right"/>
-
-                            <!--<Button Name="PART_ButtonSteamFriends"
-                                    Margin="15,6,5,6" DockPanel.Dock="Right"
-                                    Background="Transparent"
-                                    Padding="0" BorderThickness="0"
-                                    WindowChrome.IsHitTestVisibleInChrome="True"
-                                    ToolTip="{DynamicResource LOCSteamFriendsTooltip}">
-                                <TextBlock Text="&#xecf9;" FontFamily="{StaticResource FontIcoFont}" FontSize="24"
-                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Button>-->
+                                        DockPanel.Dock="{Settings PluginTopPanelAlignment}"/>   
 
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"
                                         HorizontalAlignment="Center" Margin="0,5,0,5">

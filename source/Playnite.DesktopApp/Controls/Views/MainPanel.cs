@@ -3,6 +3,7 @@ using Playnite.Common;
 using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
+using Playnite.SDK.Plugins;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_TextProgressText", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_ButtonProgressCancel", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_PanelMainItems", Type = typeof(Panel))]
+    [TemplatePart(Name = "PART_PanelMainPluginItems", Type = typeof(Panel))]
     public class MainPanel : Control
     {
         private readonly DesktopAppViewModel mainModel;
@@ -37,6 +39,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private TextBlock TextProgressText;
         private ButtonBase ButtonProgressCancel;
         private Panel PanelMainItems;
+        private Panel PanelMainPluginItems;
 
         private Button ButtonViewSettings;
         private Button ButtonGroupSettings;
@@ -105,6 +108,16 @@ namespace Playnite.DesktopApp.Controls.Views
             return button;
         }
 
+        private Button AssignPluginButton(TopPanelItem item)
+        {
+            var button = new Button();
+            button.SetResourceReference(Button.StyleProperty, "MainPanelButton");
+            button.Content = item.Icon;
+            button.Command = new RelayCommand<object>((_) => item.Action());
+            button.ToolTip = item.ToolTip;
+            return button;
+        }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -117,6 +130,22 @@ namespace Playnite.DesktopApp.Controls.Views
                 PanelMainItems.Children.Add(ButtonGroupSettings = AssignPanelButton("GroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings));
                 PanelMainItems.Children.Add(ButtonSortSettings = AssignPanelButton("SortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings));
                 SetButtonVisibility();
+            }
+
+            PanelMainPluginItems = Template.FindName("PART_PanelMainPluginItems", this) as Panel;
+            if (PanelMainPluginItems != null)
+            {
+                foreach (object item in mainModel.Extensions.GetTopPanelPluginItems())
+                {
+                    if (item is TopPanelItem tpItem)
+                    {
+                        PanelMainPluginItems.Children.Add(AssignPluginButton(tpItem));
+                    }
+                    else if (item is FrameworkElement fElem)
+                    {
+                        PanelMainPluginItems.Children.Add(fElem);
+                    }
+                }
             }
 
             ElemMainMenu = Template.FindName("PART_ElemMainMenu", this) as FrameworkElement;

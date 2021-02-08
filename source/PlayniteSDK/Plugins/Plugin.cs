@@ -306,6 +306,45 @@ namespace Playnite.SDK.Plugins
         {
             PlayniteApi.AddCustomElementSupport(this, args);
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<TopPanelItem> GetTopPanelItems()
+        {
+            return null;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<FrameworkElement> GetTopPanelElements()
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class TopPanelItem
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public object Icon { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string ToolTip { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public Action Action { get; set; }
     }
 
     /// <summary>

@@ -1563,6 +1563,17 @@ namespace Playnite
             }
         }
 
+        private Dock pluginTopPanelAlignment = Dock.Right;
+        public Dock PluginTopPanelAlignment
+        {
+            get => pluginTopPanelAlignment;
+            set
+            {
+                pluginTopPanelAlignment = value;
+                OnPropertyChanged();
+            }
+        }
+
         private GridViewSpacingMode gridViewSpacingMode = GridViewSpacingMode.StartAndEndOnly;
         [RequiresRestart]
         public GridViewSpacingMode GridViewSpacingMode

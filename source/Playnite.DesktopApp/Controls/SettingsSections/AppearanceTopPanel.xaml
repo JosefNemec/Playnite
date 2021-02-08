@@ -4,8 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             xmlns:sysCtrls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+             xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <x:Array x:Key="LeftRightDockOptions" Type="{x:Type sys:Enum}">
+            <sysCtrls:Dock>Left</sysCtrls:Dock>
+            <sysCtrls:Dock>Right</sysCtrls:Dock>
+        </x:Array>
+        <DataTemplate x:Key="LeftRightComboTemplate">
+            <TextBlock Text="{Binding Converter={pcon:DockToStringConverter}}"/>
+        </DataTemplate>
+    </UserControl.Resources>
     
     <StackPanel Margin="20">
         <TextBlock Text="{DynamicResource LOCSettingsTopPanelItems}" Style="{StaticResource BaseTextBlockStyle}" />
@@ -17,5 +30,14 @@
                   Content="{DynamicResource LOCSettingsTopPanelSortingItem}" Margin="0,15,0,0" />
         <CheckBox IsChecked="{Binding Settings.ShowTopPanelFilterPresetsItem}"
                   Content="{DynamicResource LOCSettingsTopPanelFilterPresetsItem}" Margin="0,15,0,0" />
+
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+            <TextBlock Text="{DynamicResource LOCTopPanelPluginPanelPosition}"
+                       Margin="0,0,5,0" Style="{StaticResource BaseTextBlockStyle}" VerticalAlignment="Center"  />
+            <ComboBox ItemTemplate="{StaticResource LeftRightComboTemplate}"
+                  ItemsSource="{StaticResource LeftRightDockOptions}"
+                  SelectedValue="{Binding Settings.PluginTopPanelAlignment}"
+                  HorizontalAlignment="Left" />
+        </StackPanel>
     </StackPanel>
 </UserControl>
