@@ -35,6 +35,66 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private SortOrder? sortingOrder;
+        public SortOrder? SortingOrder
+        {
+            get
+            {
+                return sortingOrder;
+            }
+
+            set
+            {
+                sortingOrder = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SortOrderDirection? sortingOrderDirection;
+        public SortOrderDirection? SortingOrderDirection
+        {
+            get
+            {
+                return sortingOrderDirection;
+            }
+
+            set
+            {
+                sortingOrderDirection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private GroupableField? groupingOrder;
+        public GroupableField? GroupingOrder
+        {
+            get
+            {
+                return groupingOrder;
+            }
+
+            set
+            {
+                groupingOrder = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShouldSerializeGroupingOrder()
+        {
+            return GroupingOrder != null;
+        }
+
+        public bool ShouldSerializeSortingOrderDirection()
+        {
+            return SortingOrderDirection != null;
+        }
+
+        public bool ShouldSerializeSortingOrder()
+        {
+            return SortingOrder != null;
+        }
     }
 
     public class FilterChangedEventArgs : EventArgs

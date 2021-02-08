@@ -114,7 +114,28 @@ namespace Playnite.DesktopApp.Windows
             }
         }
 
-        private MessageBoxImage displayIcon;
+        private bool extraOptionSelected = false;
+        public bool ExtraOptionSelected
+        {
+            get => extraOptionSelected;
+            set
+            {
+                extraOptionSelected = value;
+                OnPropertyChanged(nameof(ExtraOptionSelected));
+            }
+        }
+
+        private string extraOptionText;
+        public string ExtraOptionText
+        {
+            get => extraOptionText;
+            set
+            {
+                extraOptionText = value;
+                OnPropertyChanged(nameof(ExtraOptionText));
+            }
+        }
+        private MessageBoxImage displayIcon = MessageBoxImage.None;
         public MessageBoxImage DisplayIcon
         {
             get => displayIcon;
@@ -172,7 +193,8 @@ namespace Playnite.DesktopApp.Windows
             Window owner,
             string messageBoxText,
             string caption,
-            string defaultInput)
+            string defaultInput,
+            string additionalOptionText = null)
         {
             if (owner == null || owner == this)
             {
@@ -192,15 +214,21 @@ namespace Playnite.DesktopApp.Windows
             ShowCancelButton = true;
             ButtonCancel.IsCancel = true;
             InputText = defaultInput ?? string.Empty;
+            if (!additionalOptionText.IsNullOrEmpty())
+            {
+                CheckExtraOption.Visibility = Visibility.Visible;
+                ExtraOptionText = additionalOptionText.StartsWith("LOC") ? ResourceProvider.GetString(additionalOptionText) : additionalOptionText;
+            }
+
             ShowDialog();
 
             if (result == MessageBoxResult.Cancel)
             {
-                return new StringSelectionDialogResult(false, InputText);
+                return new StringSelectionDialogResult(false, InputText) { ExtraOptionSelected = ExtraOptionSelected };
             }
             else
             {
-                return new StringSelectionDialogResult(true, InputText);
+                return new StringSelectionDialogResult(true, InputText) { ExtraOptionSelected = ExtraOptionSelected };
             }
         }
 
@@ -263,6 +291,11 @@ namespace Playnite.DesktopApp.Windows
                     break;
             }
 
+            if (icon != MessageBoxImage.None)
+            {
+                ViewIcon.Visibility = Visibility.Visible;
+            }
+
             ShowDialog();
             return result;
         }
@@ -313,6 +346,11 @@ namespace Playnite.DesktopApp.Windows
                 {
                     button.Focus();
                 }
+            }
+
+            if (icon != MessageBoxImage.None)
+            {
+                ViewIcon.Visibility = Visibility.Visible;
             }
 
             ShowDialog();

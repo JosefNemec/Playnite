@@ -262,18 +262,17 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets or sets dialog result. True if user confirmed selected otherwise false.
         /// </summary>
-        public bool Result
-        {
-            get; set;
-        }
+        public bool Result { get; set; }
 
         /// <summary>
         /// Gets or sets string selected by user.
         /// </summary>
-        public string SelectedString
-        {
-            get; set;
-        }
+        public string SelectedString { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool ExtraOptionSelected { get; set; }
 
         /// <summary>
         /// Creates new instance of StringSelectionDialogResult.
@@ -420,6 +419,16 @@ namespace Playnite.SDK
         /// <param name="defaultInput">Default string presented in input field.</param>
         /// <returns>Selection result.</returns>
         StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="messageBoxText"></param>
+        /// <param name="caption"></param>
+        /// <param name="defaultInput"></param>
+        /// <param name="additionalOption"></param>
+        /// <returns></returns>
+        StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput, string additionalOption);
 
         /// <summary>
         /// Displays dialog with textbox allowing to select/copy text.

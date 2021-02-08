@@ -50,6 +50,11 @@ namespace Playnite.Tests
             return new StringSelectionDialogResult(false, string.Empty);
         }
 
+        public StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput, string additionalOption)
+        {
+            return new StringSelectionDialogResult(false, string.Empty);
+        }
+
         public System.Windows.MessageBoxResult ShowErrorMessage(string messageBoxText, string caption)
         {
             return MessageBoxResult.None;

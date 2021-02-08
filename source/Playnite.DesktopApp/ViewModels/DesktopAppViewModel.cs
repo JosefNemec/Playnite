@@ -1235,6 +1235,20 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             AppSettings.FilterSettings.ApplyFilter(preset.Settings);
+            if (preset.SortingOrder != null)
+            {
+                AppSettings.ViewSettings.SortingOrder = preset.SortingOrder.Value;
+            }
+
+            if (preset.SortingOrderDirection != null)
+            {
+                AppSettings.ViewSettings.SortingOrderDirection = preset.SortingOrderDirection.Value;
+            }
+
+            if (preset.GroupingOrder != null)
+            {
+                AppSettings.ViewSettings.GroupingOrder = preset.GroupingOrder.Value;
+            }
         }
 
         private void RenameFilterPreset(FilterPreset preset)
@@ -1272,7 +1286,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void AddFilterPreset()
         {
-            var res = Dialogs.SelectString(LOC.EnterName, string.Empty, string.Empty);
+            var res = Dialogs.SelectString(LOC.EnterName, string.Empty, string.Empty, LOC.FilterPresetSaveViewOptions);
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
                 var filter = AppSettings.FilterSettings.GetClone();
@@ -1281,6 +1295,13 @@ namespace Playnite.DesktopApp.ViewModels
                     Name = res.SelectedString,
                     Settings = filter
                 };
+
+                if (res.ExtraOptionSelected)
+                {
+                    preset.SortingOrder = AppSettings.ViewSettings.SortingOrder;
+                    preset.SortingOrderDirection = AppSettings.ViewSettings.SortingOrderDirection;
+                    preset.GroupingOrder = AppSettings.ViewSettings.GroupingOrder;
+                }
 
                 AppSettings.FilterPresets.Add(preset);
                 ActiveFilterPreset = preset;
