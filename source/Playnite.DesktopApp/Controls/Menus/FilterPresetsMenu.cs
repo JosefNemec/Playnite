@@ -36,11 +36,13 @@ namespace Playnite.DesktopApp.Controls
                 mainModel = model;
                 Opened += FilterPresetsMenu_Opened;
             }
+
+            Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            StaysOpen = false;
         }
 
         private void FilterPresetsMenu_Opened(object sender, RoutedEventArgs e)
         {
-            Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             Items.Clear();
             foreach (var preset in mainModel.AppSettings.SortedFilterPresets)
             {

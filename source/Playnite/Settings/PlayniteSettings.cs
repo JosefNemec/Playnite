@@ -1519,6 +1519,50 @@ namespace Playnite
             }
         }
 
+        private bool showTopPanelGeneralViewItem = true;
+        public bool ShowTopPanelGeneralViewItem
+        {
+            get => showTopPanelGeneralViewItem;
+            set
+            {
+                showTopPanelGeneralViewItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelGroupingItem = false;
+        public bool ShowTopPanelGroupingItem
+        {
+            get => showTopPanelGroupingItem;
+            set
+            {
+                showTopPanelGroupingItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelSortingItem = false;
+        public bool ShowTopPanelSortingItem
+        {
+            get => showTopPanelSortingItem;
+            set
+            {
+                showTopPanelSortingItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelFilterPresetsItem = true;
+        public bool ShowTopPanelFilterPresetsItem
+        {
+            get => showTopPanelFilterPresetsItem;
+            set
+            {
+                showTopPanelFilterPresetsItem = value;
+                OnPropertyChanged();
+            }
+        }
+
         private GridViewSpacingMode gridViewSpacingMode = GridViewSpacingMode.StartAndEndOnly;
         [RequiresRestart]
         public GridViewSpacingMode GridViewSpacingMode

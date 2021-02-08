@@ -57,6 +57,7 @@
                     <TreeViewItem Header="{DynamicResource LOCDetailsViewLabel}" Tag="3" />
                     <TreeViewItem Header="{DynamicResource LOCGridViewLabel}" Tag="4" />
                     <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="5" />
+                    <TreeViewItem Header="{DynamicResource LOCSettingsTopPanelLabel}" Tag="20" />
                 </TreeViewItem>
                 <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
                 <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />

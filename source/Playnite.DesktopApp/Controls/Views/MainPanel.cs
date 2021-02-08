@@ -2,6 +2,7 @@
 using Playnite.Common;
 using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,28 +19,29 @@ using BooleanToVisibilityConverter = System.Windows.Controls.BooleanToVisibility
 namespace Playnite.DesktopApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ElemMainMenu", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemViewMenu", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemFiltersMenu", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_TextMainSearch", Type = typeof(SearchBox))]
     [TemplatePart(Name = "PART_ToggleFilter", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ToggleNotifications", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_ButtonSteamFriends", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ProgressGlobal", Type = typeof(ProgressBar))]
     [TemplatePart(Name = "PART_TextProgressText", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_ButtonProgressCancel", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_PanelMainItems", Type = typeof(Panel))]
     public class MainPanel : Control
     {
         private readonly DesktopAppViewModel mainModel;
         private FrameworkElement ElemMainMenu;
-        private FrameworkElement ElemViewMenu;
-        private FrameworkElement ElemFiltersMenu;
         private SearchBox TextMainSearch;
         private ToggleButton ToggleFilter;
         private ToggleButton ToggleNotifications;
-        private ButtonBase ButtonSteamFriends;
         private ProgressBar ProgressGlobal;
         private TextBlock TextProgressText;
         private ButtonBase ButtonProgressCancel;
+        private Panel PanelMainItems;
+
+        private Button ButtonViewSettings;
+        private Button ButtonGroupSettings;
+        private Button ButtonSortSettings;
+        private Button ButtonFilterPresets;
 
         static MainPanel()
         {
@@ -60,49 +62,75 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 this.mainModel = mainModel;
             }
+
+            Loaded += MainPanel_Loaded;
+            Unloaded += MainPanel_Unloaded;
+        }
+
+        private void MainPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
+        }
+
+        private void MainPanel_Unloaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
+        }
+
+        private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.StartsWith("ShowTopPanel"))
+            {
+                SetButtonVisibility();
+            }
+        }
+
+        private void SetButtonVisibility()
+        {
+            ButtonViewSettings.Visibility = mainModel.AppSettings.ShowTopPanelGeneralViewItem ? Visibility.Visible : Visibility.Collapsed;
+            ButtonGroupSettings.Visibility = mainModel.AppSettings.ShowTopPanelGroupingItem ? Visibility.Visible : Visibility.Collapsed;
+            ButtonSortSettings.Visibility = mainModel.AppSettings.ShowTopPanelSortingItem ? Visibility.Visible : Visibility.Collapsed;
+            ButtonFilterPresets.Visibility = mainModel.AppSettings.ShowTopPanelFilterPresetsItem ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private Button AssignPanelButton(string contentTemplate, ContextMenu menu, string tooltip)
+        {
+            var button = new Button();
+            button.SetResourceReference(Button.ContentTemplateProperty, contentTemplate);
+            button.SetResourceReference(Button.StyleProperty, "MainPanelButton");
+            LeftClickContextMenuBehavior.SetEnabled(button, true);
+            menu.SetResourceReference(ContextMenu.StyleProperty, "MainPanelMenu");
+            button.ContextMenu = menu;
+            button.ToolTip = ResourceProvider.GetString(tooltip);
+            return button;
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
+            PanelMainItems = Template.FindName("PART_PanelMainItems", this) as Panel;
+            if (PanelMainItems != null)
+            {
+                PanelMainItems.Children.Add(ButtonViewSettings = AssignPanelButton("GeneralViewSettingsTemplate", new ViewSettingsMenu(mainModel.AppSettings), LOC.TopPanelViewSettings));
+                PanelMainItems.Children.Add(ButtonFilterPresets = AssignPanelButton("FilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.TopPanelFilterPresets));
+                PanelMainItems.Children.Add(ButtonGroupSettings = AssignPanelButton("GroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings));
+                PanelMainItems.Children.Add(ButtonSortSettings = AssignPanelButton("SortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings));
+                SetButtonVisibility();
+            }
+
             ElemMainMenu = Template.FindName("PART_ElemMainMenu", this) as FrameworkElement;
             if (ElemMainMenu != null)
             {
                 LeftClickContextMenuBehavior.SetEnabled(ElemMainMenu, true);
-                ElemMainMenu.ContextMenu = new MainMenu(mainModel)
-                {
-                    StaysOpen = false,
-                    Placement = PlacementMode.Bottom
-                };
+                ElemMainMenu.ContextMenu = new MainMenu(mainModel);
+                ElemMainMenu.ContextMenu.SetResourceReference(ContextMenu.StyleProperty, "MainPanelMenu");
 
                 BindingTools.SetBinding(ElemMainMenu,
                     FrameworkElement.VisibilityProperty,
                     mainModel.AppSettings,
                     nameof(PlayniteSettings.SidebarVisible),
                     converter: new InvertedBooleanToVisibilityConverter());
-            }
-
-            ElemViewMenu = Template.FindName("PART_ElemViewMenu", this) as FrameworkElement;
-            if (ElemViewMenu != null)
-            {
-                LeftClickContextMenuBehavior.SetEnabled(ElemViewMenu, true);
-                ElemViewMenu.ContextMenu = new ViewSettingsMenu(mainModel.AppSettings)
-                {
-                    StaysOpen = false,
-                    Placement = PlacementMode.Bottom
-                };
-            }
-
-            ElemFiltersMenu = Template.FindName("PART_ElemFiltersMenu", this) as FrameworkElement;
-            if (ElemFiltersMenu != null)
-            {
-                LeftClickContextMenuBehavior.SetEnabled(ElemFiltersMenu, true);
-                ElemFiltersMenu.ContextMenu = new FilterPresetsMenu(mainModel)
-                {
-                    StaysOpen = false,
-                    Placement = PlacementMode.Bottom
-                };
             }
 
             TextMainSearch = Template.FindName("PART_TextMainSearch", this) as SearchBox;
@@ -143,17 +171,6 @@ namespace Playnite.DesktopApp.Controls.Views
                     mainModel.AppSettings,
                     nameof(PlayniteSettings.NotificationPanelVisible),
                     BindingMode.TwoWay);
-            }
-
-            ButtonSteamFriends = Template.FindName("PART_ButtonSteamFriends", this) as ButtonBase;
-            if (ButtonSteamFriends != null)
-            {
-                ButtonSteamFriends.Command = mainModel.OpenSteamFriendsCommand;
-                BindingTools.SetBinding(ButtonSteamFriends,
-                    ButtonBase.VisibilityProperty,
-                    mainModel.AppSettings,
-                    nameof(PlayniteSettings.ShowSteamFriendsButton),
-                    converter: new BooleanToVisibilityConverter());
             }
 
             ProgressGlobal = Template.FindName("PART_ProgressGlobal", this) as ProgressBar;

@@ -950,6 +950,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsGeneralLabel = "LOCSettingsGeneralLabel";
         /// <summary>
+        /// Top panel
+        /// </summary>
+        public const string SettingsTopPanelLabel = "LOCSettingsTopPanelLabel";
+        /// <summary>
         /// Appearance
         /// </summary>
         public const string SettingsAppearanceLabel = "LOCSettingsAppearanceLabel";
@@ -3193,5 +3197,41 @@ namespace Playnite
         /// Are you sure you want to remove this item?
         /// </summary>
         public const string AskRemoveItemMessage = "LOCAskRemoveItemMessage";
+        /// <summary>
+        /// Show buttons on top panel:
+        /// </summary>
+        public const string SettingsTopPanelItems = "LOCSettingsTopPanelItems";
+        /// <summary>
+        /// General view settings
+        /// </summary>
+        public const string SettingsTopPanelGeneralViewItem = "LOCSettingsTopPanelGeneralViewItem";
+        /// <summary>
+        /// Grouping settings
+        /// </summary>
+        public const string SettingsTopPanelGroupingItem = "LOCSettingsTopPanelGroupingItem";
+        /// <summary>
+        /// Sorting settings
+        /// </summary>
+        public const string SettingsTopPanelSortingItem = "LOCSettingsTopPanelSortingItem";
+        /// <summary>
+        /// Filter presets
+        /// </summary>
+        public const string SettingsTopPanelFilterPresetsItem = "LOCSettingsTopPanelFilterPresetsItem";
+        /// <summary>
+        /// View settings
+        /// </summary>
+        public const string TopPanelViewSettings = "LOCTopPanelViewSettings";
+        /// <summary>
+        /// Group settings
+        /// </summary>
+        public const string TopPanelGroupSettings = "LOCTopPanelGroupSettings";
+        /// <summary>
+        /// Sort settings
+        /// </summary>
+        public const string TopPanelSortSettings = "LOCTopPanelSortSettings";
+        /// <summary>
+        /// Filter presets
+        /// </summary>
+        public const string TopPanelFilterPresets = "LOCTopPanelFilterPresets";
     }
 }

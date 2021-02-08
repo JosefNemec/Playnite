@@ -34,6 +34,25 @@ namespace Playnite.DesktopApp.Controls
         {
             this.settings = settings;
             InitializeItems();
+            Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            StaysOpen = false;
+        }
+
+        public static void GenerateSortMenu(ItemCollection itemsRoot, PlayniteSettings settings)
+        {
+            MenuHelpers.PopulateEnumOptions<SortOrderDirection>(itemsRoot, nameof(settings.ViewSettings.SortingOrderDirection), settings.ViewSettings);
+            itemsRoot.Add(new Separator());
+            MenuHelpers.PopulateEnumOptions<SortOrder>(itemsRoot, nameof(settings.ViewSettings.SortingOrder), settings.ViewSettings, true);
+        }
+
+        public static void GenerateGroupMenu(ItemCollection itemsRoot, PlayniteSettings settings)
+        {
+            var dontGroupItem = MainMenu.AddMenuChild(itemsRoot, GroupableField.None.GetDescription(), null);
+            dontGroupItem.IsCheckable = true;
+            MenuHelpers.SetEnumBinding(dontGroupItem, nameof(settings.ViewSettings.GroupingOrder), settings.ViewSettings, GroupableField.None);
+            itemsRoot.Add(new Separator());
+            MenuHelpers.PopulateEnumOptions<GroupableField>(itemsRoot, nameof(settings.ViewSettings.GroupingOrder), settings.ViewSettings, true,
+                new List<GroupableField> { GroupableField.None });
         }
 
         public void InitializeItems()
@@ -50,24 +69,14 @@ namespace Playnite.DesktopApp.Controls
             {
                 Header = ResourceProvider.GetString("LOCMenuSortByTitle")
             };
-
-            MenuHelpers.PopulateEnumOptions<SortOrderDirection>(sortItem.Items, nameof(settings.ViewSettings.SortingOrderDirection), settings.ViewSettings);
-            sortItem.Items.Add(new Separator());
-            MenuHelpers.PopulateEnumOptions<SortOrder>(sortItem.Items, nameof(settings.ViewSettings.SortingOrder), settings.ViewSettings, true);
+            GenerateSortMenu(sortItem.Items, settings);
 
             // Group By
             var groupItem = new MenuItem
             {
                 Header = ResourceProvider.GetString("LOCMenuGroupByTitle")
             };
-
-            var dontGroupItem = MainMenu.AddMenuChild(groupItem.Items, GroupableField.None.GetDescription(), null);
-            dontGroupItem.IsCheckable = true;
-            MenuHelpers.SetEnumBinding(dontGroupItem, nameof(settings.ViewSettings.GroupingOrder), settings.ViewSettings, GroupableField.None);
-            groupItem.Items.Add(new Separator());
-            MenuHelpers.PopulateEnumOptions<GroupableField>(groupItem.Items, nameof(settings.ViewSettings.GroupingOrder), settings.ViewSettings, true,
-                new List<GroupableField> { GroupableField.None });
-
+            GenerateGroupMenu(groupItem.Items, settings);
             Items.Add(sortItem);
             Items.Add(groupItem);
             Items.Add(new Separator());

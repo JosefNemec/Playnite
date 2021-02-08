@@ -203,7 +203,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
                 { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
-                { 19, new Controls.SettingsSections.Development() { DataContext = this } }
+                { 19, new Controls.SettingsSections.Development() { DataContext = this } },
+                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];

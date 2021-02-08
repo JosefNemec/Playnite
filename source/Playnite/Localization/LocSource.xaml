@@ -270,6 +270,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Requires restart to apply</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Settings</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">General</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelLabel">Top panel</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Appearance</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Game Details</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
@@ -893,5 +894,14 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">Start and end only</sys:String>
     <sys:String x:Key="LOCGridViewScrollAmountModifier">Scroll amount modifier</sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle">Remove item?</sys:String>
-    <sys:String x:Key="LOCAskRemoveItemMessage">Are you sure you want to remove this item?</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemMessage">Are you sure you want to remove this item?</sys:String>    
+    <sys:String x:Key="LOCSettingsTopPanelItems">Show buttons on top panel:</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">General view settings</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Grouping settings</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem">Sorting settings</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Filter presets</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSettings">View settings</sys:String>
+    <sys:String x:Key="LOCTopPanelGroupSettings">Group settings</sys:String>
+    <sys:String x:Key="LOCTopPanelSortSettings">Sort settings</sys:String>
+    <sys:String x:Key="LOCTopPanelFilterPresets">Filter presets</sys:String>
 </ResourceDictionary>

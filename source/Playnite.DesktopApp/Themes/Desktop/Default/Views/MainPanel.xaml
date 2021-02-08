@@ -2,8 +2,67 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d">    
+                    mc:Ignorable="d">
 
+    <DataTemplate x:Key="GeneralViewSettingsTemplate">
+        <TextBlock Text="⋯" FontSize="26" 
+                   Foreground="{DynamicResource TextBrush}"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FilterPresetsSelectionTemplate">
+        <TextBlock Text="&#xeec0;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
+                   Foreground="{DynamicResource TextBrush}"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GroupSettingsTemplate">
+        <TextBlock Text="&#xee03;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
+                   Foreground="{DynamicResource TextBrush}"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SortSettingsTemplate">
+        <TextBlock Text="&#xefee;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
+                   Foreground="{DynamicResource TextBrush}"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ViewSelectionTemplate">
+        <TextBlock Text="&#xeec0;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
+                   Foreground="{DynamicResource TextBrush}"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </DataTemplate>
+
+    <Style x:Key="MainPanelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Width" Value="35" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Margin" Value="8,0,0,0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style x:Key="MainPanelMenu" TargetType="{x:Type ContextMenu}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContextMenu}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Grid.IsSharedSizeScope="True">
+                        <ItemsPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style TargetType="{x:Type MainPanel}">
         <Setter Property="Template">
             <Setter.Value>
@@ -34,26 +93,10 @@
                             <SearchBox x:Name="PART_TextMainSearch"
                                         Margin="5,6,0,6" DockPanel.Dock="Left"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Width="300" />                      
-
-                            <Border x:Name="PART_ElemViewMenu" Background="Transparent"
-                                    DockPanel.Dock="Left" Margin="10,6,0,6" Width="35"
-                                    WindowChrome.IsHitTestVisibleInChrome="True"
-                                    Style="{DynamicResource HighlightBorder}">
-                                <TextBlock Text="⋯" FontSize="26" 
-                                           Foreground="{DynamicResource TextBrush}"
-                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-
-                            <Border x:Name="PART_ElemFiltersMenu" Background="Transparent"
-                                    DockPanel.Dock="Left" Margin="10,6,0,6" Width="35"
-                                    WindowChrome.IsHitTestVisibleInChrome="True"
-                                    Style="{DynamicResource HighlightBorder}">
-                                <TextBlock Text="&#xeec0;" 
-                                           FontFamily="{StaticResource FontIcoFont}"
-                                           Foreground="{DynamicResource TextBrush}"
-                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
+                                        Width="300" />
+                            
+                            <StackPanel x:Name="PART_PanelMainItems" Orientation="Horizontal"
+                                        VerticalAlignment="Stretch" Margin="0,6,0,6"/>
 
                             <CheckBox x:Name="PART_ToggleFilter"
                                       WindowChrome.IsHitTestVisibleInChrome="True"
@@ -133,7 +176,11 @@
                                 </CheckBox.Style>
                             </CheckBox>
 
-                            <Button Name="PART_ButtonSteamFriends"
+                            <StackPanel x:Name="PART_PanelMainPluginItems" Orientation="Horizontal"
+                                        VerticalAlignment="Stretch" Margin="0,6,0,6"
+                                        DockPanel.Dock="Right"/>
+
+                            <!--<Button Name="PART_ButtonSteamFriends"
                                     Margin="15,6,5,6" DockPanel.Dock="Right"
                                     Background="Transparent"
                                     Padding="0" BorderThickness="0"
@@ -141,7 +188,7 @@
                                     ToolTip="{DynamicResource LOCSteamFriendsTooltip}">
                                 <TextBlock Text="&#xecf9;" FontFamily="{StaticResource FontIcoFont}" FontSize="24"
                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Button>
+                            </Button>-->
 
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"
                                         HorizontalAlignment="Center" Margin="0,5,0,5">

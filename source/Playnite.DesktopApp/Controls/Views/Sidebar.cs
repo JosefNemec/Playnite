@@ -67,6 +67,7 @@ namespace Playnite.DesktopApp.Controls.Views
                     StaysOpen = false,
                     Placement = PlacementMode.Bottom
                 };
+                ElemMainMenu.ContextMenu.SetResourceReference(ContextMenu.StyleProperty, "MainPanelMenu");
             }
         }
     }

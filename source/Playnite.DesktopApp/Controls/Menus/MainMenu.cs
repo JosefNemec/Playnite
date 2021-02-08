@@ -54,6 +54,9 @@ namespace Playnite.DesktopApp.Controls
                 Opened += MainMenu_Opened;
                 Closed += MainMenu_Closed;
             }
+
+            Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            StaysOpen = false;
         }
 
         public static MenuItem AddMenuChild(

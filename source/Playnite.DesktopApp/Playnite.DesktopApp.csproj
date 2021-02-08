@@ -156,12 +156,18 @@
       <DependentUpon>LibraryStatistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MenuHelpers.cs" />
+    <Compile Include="Controls\Menus\ViewSelectionMenu.cs" />
+    <Compile Include="Controls\Menus\SortSettingsMenu.cs" />
+    <Compile Include="Controls\Menus\GroupSettingsMenu.cs" />
     <Compile Include="Controls\MetadataDownloadSettings.xaml.cs">
       <DependentUpon>MetadataDownloadSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NullableIntBox.cs" />
     <Compile Include="Controls\NumericDoubleBox.cs" />
     <Compile Include="Controls\NumericBox.cs" />
+    <Compile Include="Controls\SettingsSections\AppearanceTopPanel.xaml.cs">
+      <DependentUpon>AppearanceTopPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\AppearanceAdvanced.xaml.cs">
       <DependentUpon>AppearanceAdvanced.xaml</DependentUpon>
     </Compile>
@@ -512,11 +518,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Desktop\Default\CustomControls\MainMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Page Include="Controls\AddonsSections\AddonUpdates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -544,6 +545,10 @@
     <Page Include="Controls\MetadataDownloadSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\AppearanceTopPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\AppearanceAdvanced.xaml">
       <SubType>Designer</SubType>
@@ -633,11 +638,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Content Include="Themes\Desktop\Default\CustomControls\ViewSettingsMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Themes\Desktop\Default\DerivedStyles\HighlightBorder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
