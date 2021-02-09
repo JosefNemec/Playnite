@@ -65,6 +65,14 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 nameof(FullscreenSettings.ShowClock),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                TogglePrimaryDisplayOnly,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.UsePrimaryDisplay),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
         }
     }
 }

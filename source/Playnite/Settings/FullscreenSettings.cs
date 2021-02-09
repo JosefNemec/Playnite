@@ -387,5 +387,16 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool usePrimaryDisplay = false;
+        public bool UsePrimaryDisplay
+        {
+            get => usePrimaryDisplay;
+            set
+            {
+                usePrimaryDisplay = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

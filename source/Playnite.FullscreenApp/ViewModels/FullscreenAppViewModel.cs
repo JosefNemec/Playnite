@@ -440,7 +440,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 SetQuickFilter(AppSettings.Fullscreen);
                 SelectGameIndex(0);
             }
-            else if (e.PropertyName == nameof(FullscreenSettings.Monitor))
+            else if (e.PropertyName == nameof(FullscreenSettings.Monitor) || e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay))
             {
                 SetViewSizeAndPosition(IsFullScreen);
             }
@@ -999,14 +999,28 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void SetViewSizeAndPosition(bool fullscreen)
         {
-            var screenIndex = AppSettings.Fullscreen.Monitor;
+            ComputerScreen screen = null;
             var screens = Computer.GetScreens();
-            if (screenIndex + 1 > screens.Count || screenIndex < 0)
+            if (AppSettings.Fullscreen.UsePrimaryDisplay)
             {
-                screenIndex = 0;
+                screen = screens.FirstOrDefault(a => a.Primary);
+            }
+            else
+            {
+                var screenIndex = AppSettings.Fullscreen.Monitor;
+                if (screenIndex + 1 > screens.Count || screenIndex < 0)
+                {
+                    screenIndex = 0;
+                }
+
+                screen = screens[screenIndex];
             }
 
-            var screen = screens[screenIndex];
+            if (screen == null)
+            {
+                screen = screens[0];
+            }
+
             var ratio = Sizes.GetAspectRatio(screen.Bounds);
             ViewportWidth = ratio.GetWidth(ViewportHeight);
             var dpi = VisualTreeHelper.GetDpi(Window.Window);

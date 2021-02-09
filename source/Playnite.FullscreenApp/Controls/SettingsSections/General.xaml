@@ -16,17 +16,23 @@
         <TextBlock Text="General" Style="{StaticResource TextBlockBaseStyle}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"  />
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
-            <TextBlock Text="{DynamicResource LOCSettingsTargetMonitor}"
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}" IsEnabled="{Binding IsChecked, ElementName=TogglePrimaryDisplayOnly, Converter={StaticResource NegateConverter}}">
+            <TextBlock Text="{DynamicResource LOCSettingsTargetDisplay}"
                        VerticalAlignment="Center"                  
                                            Style="{DynamicResource TextBlockBaseStyle}" />
-            <pctrls:ComboBoxEx x:Name="SelectMonitor" pbeh:FocusBahaviors.OnVisibilityFocus="True"
+            <pctrls:ComboBoxEx x:Name="SelectMonitor" 
                         DockPanel.Dock="Right"
-                    Width="300"  />
+                    Width="300" />
 
             
         </DockPanel>
-        
+
+        <pctrls:CheckBoxEx x:Name="TogglePrimaryDisplayOnly"
+                           pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                                            Margin="{StaticResource ItemMargin}"
+                                            Style="{DynamicResource CheckBoxSettings}"
+                                            Content="{DynamicResource LOCSettingsAlwaysUsePrimaryDisplay}"  />
+
         <pctrls:CheckBoxEx x:Name="ToggleBattery"
                                             Margin="{StaticResource ItemMargin}"
                                             Style="{DynamicResource CheckBoxSettings}"

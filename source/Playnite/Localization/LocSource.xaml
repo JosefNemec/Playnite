@@ -350,7 +350,8 @@ The new database location will not be used until Playnite is restarted. </sys:St
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Enable controller support in Desktop Mode</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide button opens Fullscreen mode</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Automatic Metadata download settings for newly imported games.</sys:String>
-    <sys:String x:Key="LOCSettingsTargetMonitor">Target Monitor</sys:String>
+    <sys:String x:Key="LOCSettingsTargetDisplay">Target display</sys:String>
+    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Always use primary display</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Show Game Titles</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Show Battery Status</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Show Battery Percentage</sys:String>
