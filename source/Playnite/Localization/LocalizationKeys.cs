@@ -3241,5 +3241,21 @@ namespace Playnite
         /// Save grouping and sorting settings
         /// </summary>
         public const string FilterPresetSaveViewOptions = "LOCFilterPresetSaveViewOptions";
+        /// <summary>
+        /// In past 7 days
+        /// </summary>
+        public const string InPast7Days = "LOCInPast7Days";
+        /// <summary>
+        /// In past 31 days
+        /// </summary>
+        public const string InPast31Days = "LOCInPast31Days";
+        /// <summary>
+        /// In past 365 days
+        /// </summary>
+        public const string InPast365Days = "LOCInPast365Days";
+        /// <summary>
+        /// More than 365 days ago
+        /// </summary>
+        public const string MoreThan365DaysAgo = "LOCMoreThan365DaysAgo";
     }
 }

@@ -906,4 +906,8 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCTopPanelFilterPresets">Filter presets</sys:String>
     <sys:String x:Key="LOCTopPanelPluginPanelPosition">Plugin items position</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Save grouping and sorting settings</sys:String>
+    <sys:String x:Key="LOCInPast7Days">In past 7 days</sys:String>
+    <sys:String x:Key="LOCInPast31Days">In past 31 days</sys:String>
+    <sys:String x:Key="LOCInPast365Days">In past 365 days</sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo">More than 365 days ago</sys:String>
 </ResourceDictionary>
