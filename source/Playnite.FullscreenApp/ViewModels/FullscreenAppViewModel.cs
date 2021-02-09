@@ -33,11 +33,10 @@ namespace Playnite.FullscreenApp.ViewModels
         public static ILogger Logger = LogManager.GetLogger();
         private static object gamesLock = new object();
         private readonly SynchronizationContext context;
-        private PlayniteApplication application;
         private bool isInitialized = false;
-        private string oldTheme;
         protected bool ignoreCloseActions = false;
 
+        public PlayniteApplication Application;
         public PlayniteAPI PlayniteApi { get; set; }
         public ExtensionFactory Extensions { get; }
         public IWindowFactory Window { get; }
@@ -230,17 +229,6 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        private bool mainMenuVisible = false;
-        public bool MainMenuVisible
-        {
-            get => mainMenuVisible;
-            set
-            {
-                mainMenuVisible = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool gameMenuVisible = false;
         public bool GameMenuVisible
         {
@@ -415,12 +403,9 @@ namespace Playnite.FullscreenApp.ViewModels
         #region Commands
         public RelayCommand<CancelEventArgs> WindowClosingCommand { get; private set; }
         public RelayCommand<EventArgs> WindowGotFocusCommand { get; private set; }
-        public RelayCommand<object> ExitCommand { get; private set; }
-        public RelayCommand<object> SwitchToDesktopCommand { get; private set; }
         public RelayCommand<object> ToggleFullscreenCommand { get; private set; }
-        public RelayCommand<object> ToggleMainMenuCommand { get; private set; }
+        public RelayCommand<object> OpenMainMenuCommand { get; private set; }
         public RelayCommand<object> ToggleGameOptionsCommand { get; private set; }
-        public RelayCommand<object> ToggleSettingsMenuCommand { get; private set; }
         public RelayCommand<object> ToggleGameDetailsCommand { get; private set; }
         public RelayCommand<object> ToggleFiltersCommand { get; private set; }
         public RelayCommand<object> ToggleNotificationsCommand { get; private set; }
@@ -428,10 +413,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<GameField> LoadSubFilterCommand { get; private set; }
         public RelayCommand<object> CloseSubFilterCommand { get; private set; }
         public RelayCommand<object> CloseAdditionalFilterCommand { get; private set; }
-        public RelayCommand<object> ShutdownSystemCommand { get; private set; }
-        public RelayCommand<object> RestartSystemCommand { get; private set; }
-        public RelayCommand<object> HibernateSystemCommand { get; private set; }
-        public RelayCommand<object> SleepSystemCommand { get; private set; }
         public RelayCommand<object> ClearFiltersCommand { get; private set; }
         public RelayCommand<object> OpenAdditionalFiltersCommand { get; private set; }
         public RelayCommand<object> CloseAdditionalFiltersCommand { get; private set; }
@@ -442,9 +423,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SelectPrevGameCommand { get; private set; }
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
-        public RelayCommand<object> SelectRandomGameCommand { get; private set; }
-        public RelayCommand<object> UpdateGamesCommand { get; private set; }
-        public RelayCommand<object> OpenSettingsCommand { get; private set; }
         #endregion Commands
 
         public FullscreenAppViewModel()
@@ -464,7 +442,7 @@ namespace Playnite.FullscreenApp.ViewModels
             PlayniteApplication app) : this()
         {
             context = SynchronizationContext.Current;
-            application = app;
+            Application = app;
             Window = window;
             Dialogs = dialogs;
             Resources = resources;
@@ -581,7 +559,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 if (!ignoreCloseActions)
                 {
                     Dispose();
-                    application.Quit();
+                    Application.Quit();
                 }
             });
 
@@ -602,36 +580,9 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
             });
 
-            ExitCommand = new RelayCommand<object>((a) =>
-            {
-                Shutdown();
-            });
-
             ToggleFullscreenCommand = new RelayCommand<object>((a) =>
             {
                 ToggleFullscreen();
-            });
-
-            ToggleMainMenuCommand = new RelayCommand<object>((a) =>
-            {
-                if (MainMenuVisible)
-                {
-                    GameListFocused = true;
-                }
-                else
-                {
-                    GameListFocused = false;
-                }
-
-                MainMenuVisible = !MainMenuVisible;
-                if (!MainMenuVisible)
-                {
-                    MainMenuFocused = false;
-                }
-                else
-                {
-                    MainMenuFocused = true;
-                }
             });
 
             ToggleGameOptionsCommand = new RelayCommand<object>((a) =>
@@ -661,32 +612,6 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 GameMenuVisible = !GameMenuVisible;
             }, (a) => SelectedGame != null);
-
-            ToggleSettingsMenuCommand = new RelayCommand<object>((a) =>
-            {
-                if (SettingsMenuVisible)
-                {
-                    if (oldTheme != AppSettings.Fullscreen.Theme)
-                    {
-                        if (Dialogs.ShowMessage(
-                            ResourceProvider.GetString("LOCSettingsRestartAskMessage"),
-                            ResourceProvider.GetString("LOCSettingsRestartTitle"),
-                            MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                        {
-                            application.Restart(new CmdLineOptions() { SkipLibUpdate = true });
-                        }
-                    }
-
-                    MainMenuFocused = true;
-                }
-                else
-                {
-                    MainMenuFocused = false;
-                    oldTheme = AppSettings.Fullscreen.Theme;
-                }
-
-                SettingsMenuVisible = !SettingsMenuVisible;
-            });
 
             ToggleGameDetailsCommand = new RelayCommand<object>((a) =>
             {
@@ -723,65 +648,6 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
 
                 NotificationsVisible = !NotificationsVisible;
-            });
-
-            SwitchToDesktopCommand = new RelayCommand<object>((a) =>
-            {
-                SwitchToDesktopMode();
-            }, new KeyGesture(Key.F11));
-
-            ShutdownSystemCommand = new RelayCommand<object>((a) =>
-            {
-                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCMenuShutdownSystem", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
-                {
-                    return;
-                }
-
-                if (!PlayniteEnvironment.IsDebuggerAttached)
-                {
-                    Computer.Shutdown();
-                }
-            });
-
-            HibernateSystemCommand = new RelayCommand<object>((a) =>
-            {
-                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCMenuHibernateSystem", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
-                {
-                    return;
-                }
-
-                ToggleMainMenuCommand.Execute(null);
-                if (!PlayniteEnvironment.IsDebuggerAttached)
-                {
-                    Computer.Hibernate();
-                }
-            });
-
-            SleepSystemCommand = new RelayCommand<object>((a) =>
-            {
-                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCMenuSuspendSystem", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
-                {
-                    return;
-                }
-
-                ToggleMainMenuCommand.Execute(null);
-                if (!PlayniteEnvironment.IsDebuggerAttached)
-                {
-                    Computer.Sleep();
-                }
-            });
-
-            RestartSystemCommand = new RelayCommand<object>((a) =>
-            {
-                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCMenuRestartSystem", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
-                {
-                    return;
-                }
-
-                if (!PlayniteEnvironment.IsDebuggerAttached)
-                {
-                    Computer.Restart();
-                }
             });
 
             LoadSubFilterCommand = new RelayCommand<GameField>((gameField) =>
@@ -1007,28 +873,12 @@ namespace Playnite.FullscreenApp.ViewModels
                 OnFileDropped(args);
             });
 
-            SelectRandomGameCommand = new RelayCommand<object>((a) =>
-            {
-                PlayRandomGame();
-            }, (a) => Database?.IsOpen == true,
-            new KeyGesture(Key.F6));
-
-            UpdateGamesCommand = new RelayCommand<object>(async (a) =>
-            {
-                if (MainMenuVisible)
-                {
-                    ToggleMainMenuCommand.Execute(null);
-                }
-
-                await UpdateDatabase(AppSettings.DownloadMetadataOnImport);
-            }, (a) => !DatabaseUpdateRunning);
-
-            OpenSettingsCommand = new RelayCommand<object>((_) => OpenSettings());
+            OpenMainMenuCommand = new RelayCommand<object>((_) => OpenMainMenu());
         }
 
-        public void OpenSettings()
+        public void OpenMainMenu()
         {
-            var vm = new SettingsViewModel(new SettingsWindowFactory(), this);
+            var vm = new MainMenuViewModel(new MainMenuWindowFactory(), this);
             vm.OpenView();
         }
 
@@ -1042,7 +892,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
 
             CloseView();
-            application.QuitAndStart(
+            Application.QuitAndStart(
                 PlaynitePaths.DesktopExecutablePath,
                 new CmdLineOptions()
                 {
@@ -1170,7 +1020,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Window.Show(this);
             SetViewSizeAndPosition(IsFullScreen);
-            application.UpdateScreenInformation(Window.Window);
+            Application.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
             InitializeView();
         }
@@ -1181,12 +1031,6 @@ namespace Playnite.FullscreenApp.ViewModels
             Window.Close();
             Dispose();
             ignoreCloseActions = false;
-        }
-
-        public void Shutdown()
-        {
-            CloseView();
-            application.Quit();
         }
 
         public void ToggleFullscreen()
@@ -1271,7 +1115,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             try
             {
-                application.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
+                Application.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -1401,7 +1245,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 try
                 {
-                    var updates = Addons.CheckAddonUpdates(application.ServicesClient);
+                    var updates = Addons.CheckAddonUpdates(Application.ServicesClient);
                     if (updates.HasItems())
                     {
                         PlayniteApi.Notifications.Add(new NotificationMessage("AddonUpdateAvailable", Resources.GetString(LOC.AddonUpdatesAvailable), NotificationType.Info,
@@ -1412,10 +1256,10 @@ namespace Playnite.FullscreenApp.ViewModels
                                      PlayniteApi,
                                      Dialogs,
                                      Resources,
-                                     application.ServicesClient,
+                                     Application.ServicesClient,
                                      Extensions,
                                      AppSettings,
-                                     application,
+                                     Application,
                                      updates).OpenView();
                             }));
                     }
@@ -1448,35 +1292,13 @@ namespace Playnite.FullscreenApp.ViewModels
                         var ext = Path.GetExtension(path).ToLower();
                         if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            application.InstallThemeFile(path);
+                            Application.InstallThemeFile(path);
                         }
                         else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            application.InstallExtensionFile(path);
+                            Application.InstallExtensionFile(path);
                         }
                     }
-                }
-            }
-        }
-
-        public void PlayRandomGame()
-        {
-            if (MainMenuVisible)
-            {
-                ToggleMainMenuCommand.Execute(null);
-            }
-
-            var model = new RandomGameSelectViewModel(
-                Database,
-                GamesView,
-                new RandomGameSelectWindowFactory(),
-                Resources);
-            if (model.OpenView() == true && model.SelectedGame != null)
-            {
-                var selection = GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
-                if (selection != null)
-                {
-                    GamesEditor.PlayGame(selection.Game);
                 }
             }
         }
@@ -1500,7 +1322,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            application.UpdateScreenInformation(Window.Window);
+            Application.UpdateScreenInformation(Window.Window);
         }
 
         internal void ProcessUriRequest(PlayniteUriEventArgs args)

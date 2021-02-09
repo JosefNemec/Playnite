@@ -15,10 +15,10 @@ namespace Playnite.FullscreenApp
     public class NavigateUrlCommand : RelayCommand<object>
     {
         public NavigateUrlCommand() : base(Navigate)
-        {            
+        {
         }
 
-        private static void Navigate(object link)
+        public static void Navigate(object link)
         {
             if (FullscreenApplication.Current.Dialogs.ShowMessage(
                 string.Format(ResourceProvider.GetString("LOCUrlNavigationMessage"), link.ToString()),

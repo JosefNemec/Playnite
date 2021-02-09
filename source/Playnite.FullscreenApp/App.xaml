@@ -48,9 +48,6 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersAdditional.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersView.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameDetails.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/SettingsMenu.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameMenu.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/MainMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Main.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

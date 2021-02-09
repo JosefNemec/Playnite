@@ -43,9 +43,6 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonDetails", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonGameOptions", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ElemNotifications", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemMainMenu", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemSettingsMenu", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemGameMenu", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemFilters", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemFiltersAdditional", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ContentFilterItems", Type = typeof(ContentControl))]
@@ -77,9 +74,6 @@ namespace Playnite.FullscreenApp.Controls.Views
         private ButtonBase ButtonDetails;
         private ButtonBase ButtonGameOptions;
         private FrameworkElement ElemNotifications;
-        private FrameworkElement ElemMainMenu;
-        private FrameworkElement ElemSettingsMenu;
-        private FrameworkElement ElemGameMenu;
         private FrameworkElement ElemFilters;
         private FrameworkElement ElemFiltersAdditional;
         private ContentControl ContentFilterItems;
@@ -186,16 +180,15 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ViewHost = Template.FindName("PART_ViewHost", this) as FrameworkElement;
                 if (ViewHost != null)
                 {
-                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleMainMenuCommand, Key = Key.F1 });
+                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenMainMenuCommand, Key = Key.F1 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.PrevFilterViewCommand, Key = Key.F2 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.NextFilterViewCommand, Key = Key.F3 });
-                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenSettingsCommand, Key = Key.F4 });
-                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectRandomGameCommand, Key = Key.F6 });
-                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SwitchToDesktopCommand, Key = Key.F11 });
+                    //ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenSettingsCommand, Key = Key.F4 });
+                    //ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectRandomGameCommand, Key = Key.F6 });
+                    //ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SwitchToDesktopCommand, Key = Key.F11 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenSearchCommand, Key = Key.Y });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleFiltersCommand, Key = Key.F });
 
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.ToggleMainMenuCommand, XInputButton.Back));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.PrevFilterViewCommand, XInputButton.LeftShoulder));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.NextFilterViewCommand, XInputButton.RightShoulder));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.OpenSearchCommand, XInputButton.Y));
@@ -209,7 +202,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     BindingTools.SetBinding(MainHost, FrameworkElement.HeightProperty, mainModel, nameof(FullscreenAppViewModel.ViewportHeight));
                 }
 
-                AssignButtonWithCommand(ref ButtonMainMenu, "PART_ButtonMainMenu", mainModel.ToggleMainMenuCommand);
+                AssignButtonWithCommand(ref ButtonMainMenu, "PART_ButtonMainMenu", mainModel.OpenMainMenuCommand);
                 AssignButtonWithCommand(ref ButtonNotifications, "PART_ButtonNotifications", mainModel.ToggleNotificationsCommand);
 
                 ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
@@ -455,36 +448,6 @@ namespace Playnite.FullscreenApp.Controls.Views
                         FrameworkElement.VisibilityProperty,
                         mainModel,
                         nameof(FullscreenAppViewModel.NotificationsVisible),
-                        converter: new Converters.BooleanToVisibilityConverter());
-                }
-
-                ElemMainMenu = Template.FindName("PART_ElemMainMenu", this) as FrameworkElement;
-                if (ElemMainMenu != null)
-                {
-                    BindingTools.SetBinding(ElemMainMenu,
-                        FrameworkElement.VisibilityProperty,
-                        mainModel,
-                        nameof(FullscreenAppViewModel.MainMenuVisible),
-                        converter: new Converters.BooleanToVisibilityConverter());
-                }
-
-                ElemSettingsMenu = Template.FindName("PART_ElemSettingsMenu", this) as FrameworkElement;
-                if (ElemSettingsMenu != null)
-                {
-                    BindingTools.SetBinding(ElemSettingsMenu,
-                        FrameworkElement.VisibilityProperty,
-                        mainModel,
-                        nameof(FullscreenAppViewModel.SettingsMenuVisible),
-                        converter: new Converters.BooleanToVisibilityConverter());
-                }
-
-                ElemGameMenu = Template.FindName("PART_ElemGameMenu", this) as FrameworkElement;
-                if (ElemGameMenu != null)
-                {
-                    BindingTools.SetBinding(ElemGameMenu,
-                        FrameworkElement.VisibilityProperty,
-                        mainModel,
-                        nameof(FullscreenAppViewModel.GameMenuVisible),
                         converter: new Converters.BooleanToVisibilityConverter());
                 }
 

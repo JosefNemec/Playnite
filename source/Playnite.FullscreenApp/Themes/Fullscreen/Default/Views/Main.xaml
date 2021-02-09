@@ -274,22 +274,13 @@
                                                 Height="38" Width="38" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Grid>
-                        </Grid>
-
-                        <Border Background="{DynamicResource OverlayBrush}"
-                                Visibility="{Binding MainMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </Grid>    
 
                         <GameDetails x:Name="PART_ElemGameDetails" Grid.RowSpan="3"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                         <Notifications x:Name="PART_ElemNotifications" Grid.RowSpan="3"
                                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                        <MainMenu x:Name="PART_ElemMainMenu" Grid.RowSpan="3"
-                                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                        <SettingsMenu x:Name="PART_ElemSettingsMenu" Grid.RowSpan="3"                                      
-                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <GameMenu x:Name="PART_ElemGameMenu" Grid.RowSpan="3"
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
